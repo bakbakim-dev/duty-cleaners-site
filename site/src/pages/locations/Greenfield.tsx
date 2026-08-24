@@ -4,6 +4,7 @@ import { buildLocationSchema } from "@/lib/location-schema";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import { Phone } from "lucide-react";
 import HonestReviewLink from "@/components/HonestReviewLink";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -71,8 +72,8 @@ export default function Greenfield() {
               Reliable house cleaners in Greenfield, Edmonton.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-              <Button size="lg" className="text-lg px-8">
-                GET INSTANT PRICE
+              <Button size="lg" className="text-lg px-8" asChild>
+                <a href="#quote">GET INSTANT PRICE</a>
               </Button>
               <a href="tel:780-913-6565" className="flex items-center gap-2 text-lg font-semibold text-primary hover:text-primary/80 transition-colors">
                 <Phone className="w-5 h-5" />
@@ -159,16 +160,18 @@ export default function Greenfield() {
             <h3 className="text-2xl font-bold mb-4 text-foreground">
               Get an instant quote, without all the hassle.
             </h3>
-            <Button size="lg" className="mb-8">
-              GET A FREE ESTIMATE
+            <Button size="lg" className="mb-8" asChild>
+              <a href="#quote">GET A FREE ESTIMATE</a>
             </Button>
             <div className="space-y-4">
-              <p className="text-lg font-semibold text-foreground">JOIN 100's HAPPY CLIENTS A MONTH</p>
+              <p className="text-lg font-semibold text-foreground">Trusted by Alberta families since 2017</p>
               <p className="text-muted-foreground">
                 <strong>100% Satisfaction Guarantee.</strong><br />
                 We stand behind the quality of our staff. If you're not 100% satisfied with your cleaning, we'll come back and re-clean it at no additional charge, as long as we’re informed within 24 hours after the cleaning.
               </p>
-              <Button variant="link">Learn More</Button>
+              <Button variant="link" asChild>
+                <Link to="/satisfaction-guarantee">Learn More</Link>
+              </Button>
             </div>
           </div>
         </section>
@@ -207,7 +210,9 @@ export default function Greenfield() {
             <p className="text-lg text-muted-foreground mb-8">
               Call us today or request a free quote online. We'd love to add you to our growing list of Greenfield clients who value service that's close to home and easy to trust.
             </p>
-            <Button size="lg">GET A FREE ESTIMATE</Button>
+            <Button size="lg" asChild>
+              <a href="#quote">GET A FREE ESTIMATE</a>
+            </Button>
           </div>
         </section>
 

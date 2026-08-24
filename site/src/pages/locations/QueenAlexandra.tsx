@@ -149,8 +149,8 @@ const QueenAlexandra = () => {
               <a href="/contact-us">GET A FREE ESTIMATE</a>
             </Button>
             <div className="pt-8">
-              <p className="text-sm text-muted-foreground mb-2">JOIN 100's</p>
-              <p className="text-2xl font-bold">HAPPY CLIENTS A MONTH</p>
+              <p className="text-sm text-muted-foreground mb-2">Serving Alberta homes</p>
+              <p className="text-2xl font-bold">SINCE 2017</p>
               <p className="text-lg font-semibold mt-4">100% Satisfaction Guarantee.</p>
               <p className="text-muted-foreground">
                 We stand behind the quality of our staff. If you're not 100% satisfied with your cleaning, we'll come back and re-clean it at no additional charge, as long as we’re informed within 24 hours after the cleaning.

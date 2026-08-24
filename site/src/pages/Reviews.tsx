@@ -68,41 +68,59 @@ const StatCard = ({ icon: Icon, value, label }: {icon: React.ElementType;value: 
   </div>;
 
 
+/**
+ * Verbatim customer reviews, transcribed from the business's public Google
+ * profile (the same eight that ran on the previous dutycleaners.ca /reviews
+ * page, which is the source of record).
+ *
+ * These render inside quotation marks under a "Verified" badge, so the words
+ * MUST be the reviewer's own. They previously were not: seven of the eight had
+ * been rewritten into shorter marketing paraphrase, and one was additionally
+ * re-attributed to a person who never wrote it ("Linny 84" was displayed as
+ * "Sarah M."). Quoting someone saying something they did not say is the same
+ * problem as an invented testimonial, only harder to spot.
+ *
+ * Rules for editing this list:
+ *   - Text is verbatim. Shorten only by truncating at a sentence boundary and
+ *     marking it with [...]. Never reword, merge or "tighten" a quote.
+ *   - Surnames are reduced to an initial for privacy; the person is never
+ *     swapped. Google display handles are left exactly as written.
+ */
 const reviews = [
 {
-  name: "Sarah M.",
+  name: "Linny 84",
   location: "Edmonton",
   rating: 5,
   date: "February 2025",
-  text: "I hired Duty Cleaners for my move-out cleaning and they did an incredible job. Got my full deposit back! They cleaned everything including the fridge, oven, and inside cabinets. Highly recommend!"
+  text: "I did not have the time to do a thorough clean before moving out of my apartment, so I hired Duty Cleaners. I only paid extra for one blind that was pretty dirty. A lot of baseboards and the baseboard heating to clean in my apartment. They did a great job cleaning it all even my fridge and oven, and in the cabinets. It was so clean that my apartment overlooked the small amounts of wear and tear and I got my full deposit back!"
 },
 {
   name: "Rosaleen B.",
   location: "Edmonton",
   rating: 5,
   date: "January 2025",
-  text: "After a major renovation, we needed post-construction cleaning. Two experienced cleaners did our 2100 sq ft home in 5.5 hours. Every surface was spotless. The online portal made it easy to communicate our needs."
+  text: "Very happy!! Booked - Residential post construction cleaning done in Edmonton. This was my first time booking this type of service for our home following a bigger reno project (new floors, baseboards/trim, walls painted). We were very impressed with the cleaning. Two very experienced ladies came and did our 2100 square foot space in about 5.5 hours. […]"
 },
 {
   name: "Bob B.",
   location: "Calgary",
   rating: 5,
   date: "January 2025",
-  text: "Vicky is awesome! She's friendly, courteous and excellent at her job. The whole team at Duty Cleaners is professional and efficient."
+  text: "Vicky is awesome, she is friendly, courteous and very excellent at her job!"
 },
 {
   name: "Mom S.",
   location: "Edmonton",
   rating: 5,
   date: "December 2024",
-  text: "Called for same-day service and they delivered! The manager was helpful and the cleaners were very efficient. Deep cleaned within exact time. 5 stars for the whole team!"
+  text: "Update: i called Duty cleaners again..the Cleaners were very efficient, perfectly cleaned within exact time.. 5★ for whole team including The manager, Sherree was helpful & provided the service on the same day.. i will definitely go for Duty Cleaners next time 🙂 1st time, Reyce worked at my place, she did an amazing job.. her behavior is very nice and positive .. i truly appreciate her efficient work .. this 5☆ for Reyce !! […]"
 },
 {
   name: "Fidausi S.",
   location: "Calgary",
   rating: 5,
   date: "December 2024",
-  text: "Amazing move-out cleaning service! The place was spotless and even got a compliment from the landlord. Super happy with their work."
+  text: "Duty Cleaners did an amazing job with our move-out cleaning. They managed to make everything look spotless, and we even got a compliment from the landlord on how clean the place was. Super happy with their work."
 },
 {
   name: "BG B.",
@@ -116,15 +134,16 @@ const reviews = [
   location: "Edmonton",
   rating: 5,
   date: "October 2024",
-  text: "I use Duty Cleaners for all my move-in cleans and am always impressed by their thorough work and excellent communication."
+  text: "I have used Duty Cleaners for all of my move-in cleans and am always impressed by their thorough work and excellent communication."
 },
 {
   name: "Terry H.",
   location: "Edmonton",
   rating: 5,
   date: "August 2024",
-  text: "The most professional cleaning service I have ever hired! From the arrival notices to the follow-up call, everything was perfect. They did a miraculous move-out cleaning. Will definitely use again."
-}];
+  text: "The most professional cleaning service I have ever hired in Edmonton. From the message notices of when they are heading to our home to the phone call the next day to make sure we were happy with their work. Duty Cleaners did a miraculous move out cleaning in our condo. The property was put on the market the very next day looking spotless. Thank you again Duty Cleaners, we will definitely use your professional services again."
+}
+];
 
 
 export default function Reviews() {

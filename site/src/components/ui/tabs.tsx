@@ -39,10 +39,26 @@ const TabsContent = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof TabsPrimitive.Content>
 >(({ className, ...props }, ref) => (
+  /**
+   * `forceMount` keeps every tab panel in the DOM, not just the active one.
+   *
+   * Radix unmounts inactive panels by default. On the two pricing pages that
+   * meant the Deep Clean and Move In/Out price tables prerendered as literally
+   * empty <div role="tabpanel" hidden> — so Google and every AI crawler (none
+   * of which click tabs) saw only Standard pricing on a page titled "House
+   * Cleaning Prices". /pricing is a preserved legacy URL carrying ~29k
+   * impressions, and deep/move-out are the higher-value services.
+   *
+   * This is the same parity fix already applied to AccordionContent. Radix
+   * still sets hidden="" on inactive panels, so they stay visually and
+   * assistively hidden; the content is simply present in the HTML.
+   */
   <TabsPrimitive.Content
     ref={ref}
+    forceMount
     className={cn(
       "mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+      "data-[state=inactive]:hidden",
       className,
     )}
     {...props}

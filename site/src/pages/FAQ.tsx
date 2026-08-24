@@ -223,7 +223,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "How does your pricing work?",
-        answer: "Most homes are priced flat by size, so you see your exact number — GST included — before you book, and it doesn't go up because a clean took longer. If a flat rate doesn't suit your job or budget, we can quote hourly instead and we'll tell you which works out cheaper. Your quote is based on the size and condition you describe. If the job turns out bigger once we're in it — heavy build-up, extra cabinets or glass — we'll let you know what changed and why.",
+        answer: "Most homes are priced flat by size, so you see your exact number — plus 5% GST — before you book, and it doesn't go up because a clean took longer. If a flat rate doesn't suit your job or budget, we can quote hourly instead and we'll tell you which works out cheaper. Your quote is based on the size and condition you describe. If the job turns out bigger once we're in it — heavy build-up, extra cabinets or glass — we'll let you know what changed and why.",
       },
       {
         question: "What payment methods do you accept?",

@@ -53,7 +53,7 @@ const CityPricingTable = () => (
           </span>
           <h2 className="text-3xl md:text-4xl font-bold mt-2">Pricing that fits the job</h2>
           <p className="text-white/90 mt-4 max-w-[65ch] mx-auto">
-            Most homes are priced flat by size — you see your number before you book, GST included,
+            Most homes are priced flat by size — you see your number before you book, plus 5% GST,
             and it doesn&rsquo;t go up because a clean took longer. If a flat rate doesn&rsquo;t suit
             your job or your budget, we&rsquo;ll quote you hourly instead — and tell you which option
             costs you less.

@@ -414,7 +414,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
               <span className="text-accent font-semibold text-sm uppercase tracking-wider">Proven Track Record</span>
               <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Trusted by Albertan Homeowners</h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                A decade of dependable service, thousands of spotless homes, and a community of customers who keep coming back.
+                {`Dependable service since ${COMPANY.foundedYear}, ${HOMES_CLEANED.alberta} homes cleaned, and a community of customers who keep coming back.`}
               </p>
             </div>
 

@@ -155,7 +155,7 @@ export default function EdmontonPricing() {
               <span className="text-accent">fit the job</span>
             </h1>
             <p className="text-xl md:text-2xl text-white/85 mb-3 leading-relaxed">
-              Most homes are priced flat by size — you see your number before you book, GST included, and it doesn’t go up because a clean took longer.
+              Most homes are priced flat by size — you see your number before you book, plus 5% GST, and it doesn’t go up because a clean took longer.
             </p>
             <p className="text-lg text-white/90 mb-10">
               If a flat rate doesn’t suit your job or your budget, we’ll quote you hourly instead — and tell you which option costs you less. Condition, pets and add-ons can change the final number.

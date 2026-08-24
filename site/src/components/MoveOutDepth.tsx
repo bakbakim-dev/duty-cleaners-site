@@ -66,7 +66,7 @@ export default function MoveOutDepth({ city, showPricing = true }: MoveOutDepthP
               Move in / move out cleaning prices in {city}
             </h2>
             <p className="text-muted-foreground leading-relaxed">
-              Flat rate by home size, GST included. The price you see is the price you pay — it
+              Flat rate by home size, plus 5% GST. The rate you see is the rate you pay — it
               doesn't change if the job runs long, and nothing is charged until the clean is done.
             </p>
           </div>

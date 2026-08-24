@@ -293,7 +293,7 @@ export default function EdmontonPostConstruction() {
             <div className="max-w-3xl mx-auto text-center">
               <div className="inline-flex items-center gap-2 bg-accent/20 rounded-full px-4 py-2 mb-6">
                 <Heart className="w-4 h-4 text-accent" />
-                <span className="text-accent text-sm font-semibold">JOIN 100's OF HAPPY CLIENTS</span>
+                <span className="text-accent text-sm font-semibold">TRUSTED ACROSS EDMONTON SINCE 2017</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">100% Satisfaction Guarantee</h2>
               <p className="text-lg text-white/90 mb-4">
