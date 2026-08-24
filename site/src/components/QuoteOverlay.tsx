@@ -1,10 +1,18 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, lazy, Suspense } from "react";
 import { createPortal } from "react-dom";
 import { ArrowLeft, Phone, Star, X } from "lucide-react";
-import QuoteFlow from "@/components/quote/QuoteFlow";
 import { useQuoteOverlay } from "@/hooks/use-quote-overlay";
 import { useLocation } from "react-router-dom";
 import { isCalgaryPath } from "@/lib/city-from-path";
+
+/**
+ * The funnel (with react-hook-form + zod + the whole pricing engine) used to be
+ * a static import, so every visitor downloaded it on every page even though the
+ * overlay renders nothing until it is opened. It is lazy now, and because the
+ * provider already prewarms on hover/touch of any quote CTA (see
+ * use-quote-overlay), the chunk is normally in flight before the click lands.
+ */
+const QuoteFlow = lazy(() => import("@/components/quote/QuoteFlow"));
 
 /**
  * Human label for wherever the visitor came from, so closing the takeover
@@ -159,12 +167,18 @@ export default function QuoteOverlay() {
       <div className="funnel-canvas flex-1 overflow-y-auto">
         <div className="mx-auto w-full max-w-7xl px-4 py-6 md:px-6 md:py-8">
           <div className="rounded-lg border border-border bg-card p-5 shadow-[0_18px_40px_-32px_hsl(var(--brand-navy)/0.5)] md:p-8">
-            <QuoteFlow
-              initialService={initialService}
-              initialIntent={initialIntent}
-              servicePreset={servicePreset}
-              onClose={closeQuote}
-            />
+            <Suspense
+              fallback={
+                <div className="min-h-[420px] animate-pulse rounded-md bg-muted/40" aria-hidden="true" />
+              }
+            >
+              <QuoteFlow
+                initialService={initialService}
+                initialIntent={initialIntent}
+                servicePreset={servicePreset}
+                onClose={closeQuote}
+              />
+            </Suspense>
           </div>
         </div>
       </div>

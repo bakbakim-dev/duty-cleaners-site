@@ -312,6 +312,8 @@
 /quote-redirect  /index.html  200
 /locations/all/  /index.html  200
 /locations/all  /index.html  200
+/gift-cards/  /index.html  200
+/gift-cards  /index.html  200
 
 # Everything else genuinely does not exist, so say so. A 200 with the app shell is
 # the soft-404 pattern: it tells a crawler to keep the URL and re-crawl it, across

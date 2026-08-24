@@ -10,8 +10,17 @@
  *      `{ ok: false }` so the UI can show the phone fallback.
  */
 
-import { supabase } from "@/integrations/supabase/client";
 import { getStoredTracking } from "@/lib/tracking";
+
+/**
+ * The relay is a Supabase Edge Function, but reaching it is a single
+ * unauthenticated POST — no session, no realtime, no database queries. Pulling
+ * in @supabase/supabase-js for that shipped the whole SDK to every visitor on
+ * every page just to build one fetch() call. `functions.invoke(name, { body })`
+ * is exactly the request below, so we make it directly.
+ */
+const FUNCTIONS_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1`;
+const ANON_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
 export interface QuotePayload {
   source: string;
@@ -48,20 +57,28 @@ const stageFor = (payload: Partial<QuotePayload>): "lead" | "confirm" =>
 
 export async function submitQuote(payload: Partial<QuotePayload>): Promise<SubmitResult> {
   try {
-    const { data, error } = await supabase.functions.invoke("ghl-quote", {
-      body: {
+    const response = await fetch(`${FUNCTIONS_URL}/ghl-quote`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        // Edge Functions accept the anon key on either header; send both so we
+        // match what supabase-js did byte for byte.
+        apikey: ANON_KEY,
+        Authorization: `Bearer ${ANON_KEY}`,
+      },
+      body: JSON.stringify({
         ...payload,
         stage: stageFor(payload),
         tracking: getStoredTracking(),
-      },
+      }),
     });
 
-    if (error) {
-      console.error("[quote] relay error", error);
+    if (!response.ok) {
+      console.error("[quote] relay error", response.status, await response.text().catch(() => ""));
       return { ok: false, status: 0 };
     }
 
-    const result = data as { ok?: boolean; status?: number; contactId?: string | null };
+    const result = (await response.json()) as { ok?: boolean; status?: number; contactId?: string | null };
     if (!result?.ok) console.error("[quote] GHL rejected the submission", result);
     return {
       ok: Boolean(result?.ok),

@@ -27,6 +27,13 @@ export default defineConfig(({ mode }) => ({
           if (id.includes("@radix-ui")) return "radix";
           if (id.includes("react-hook-form") || id.includes("zod")) return "forms";
           if (id.includes("leaflet")) return "leaflet";
+          // NOTE: react / react-dom / scheduler are deliberately NOT split into
+          // their own chunk. Doing so broke every route at runtime (the vendor
+          // chunk initialised before React was defined, so the app rendered a
+          // blank page and prerendering failed on all 208 routes). The entry
+          // chunk keeps them.
+          if (id.includes("@tanstack")) return "query";
+          if (id.includes("react-helmet")) return "helmet";
         },
       },
     },

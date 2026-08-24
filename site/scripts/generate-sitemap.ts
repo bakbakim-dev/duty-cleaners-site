@@ -19,6 +19,11 @@ const EXCLUDED = new Set([
   "/quote-redirect",
   "/book",
   "/locations/all",
+  // /gift-cards is a design-picker variant that declares /gift-card/ as its
+  // canonical and is linked from nowhere. Submitting both told Google to index
+  // a URL that immediately disclaims itself; /gift-card/ is the legacy URL, has
+  // the real purchase flow, and is the one the footer links to.
+  "/gift-cards",
 ]);
 
 function readRoutes(): string[] {
