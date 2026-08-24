@@ -1,0 +1,100 @@
+import ServiceDetailPage from "@/components/ServiceDetailPage";
+import { Accent, AccentGold } from "@/components/Accent";
+import { Sparkles, Bath, UtensilsCrossed, Layers } from "lucide-react";
+import heroImage from "@/assets/gallery/kitchen-deep-clean.jpg";
+
+export default function EdmontonDeepCleaning() {
+  return (
+    <ServiceDetailPage
+      city="edmonton"
+      quoteService="deep-cleaning"
+      phone="(780) 913-6565"
+      phoneHref="tel:7809136565"
+      seoTitle="Deep Cleaning Edmonton | Top-to-Bottom Detail Cleaning | Duty Cleaners"
+      seoDescription="Detailed deep cleaning in Edmonton: baseboards, switches, vents, exterior of appliances, and built-up grime removed. Non-toxic products and a 100% satisfaction guarantee."
+      canonical="https://dutycleaners.ca/edmonton/deep-cleaning"
+      heroHeading={<>Deep Cleaning Services in <AccentGold>Edmonton</AccentGold></>}
+      heroSubheading="A meticulous top-to-bottom reset for the areas regular cleaning never reaches."
+      heroBadges={["Top-to-Bottom Detail", "High Quality Cleaning Supplies", "100% Satisfaction Guarantee"]}
+      heroImage={heroImage}
+      heroImageAlt="Sparkling Edmonton kitchen after a professional deep cleaning"
+      overviewEyebrow="Service Overview"
+      overviewHeading={<>The reset regular cleaning <Accent>can't reach.</Accent></>}
+      overviewParagraphs={[
+        "Deep cleaning is a comprehensive, detail-driven reset of your home. It goes far beyond the surfaces touched during a regular visit — addressing built-up dust, grease, soap scum, and grime in the places that quietly collect dirt over months of use.",
+        "It's the right service for a seasonal refresh, before hosting guests, after a renovation cleanup, or as a first-time visit before starting recurring cleanings. Once a deep clean has been completed, your home is reset to a baseline that's much easier to maintain with regular service.",
+        "Our team works methodically from top to bottom, room by room, scrubbing baseboards and door frames, hand-wiping light switches and outlet covers, degreasing stovetops and range hoods, and detail-cleaning bathrooms. The result is a noticeably cleaner, fresher, and healthier home.",
+      ]}
+      includedHeading="Detailed Top-to-Bottom Cleaning"
+      includedSubheading="Every inch of your home is addressed — including the spots usually missed."
+      included={[
+        { icon: UtensilsCrossed, title: "Kitchen Detail Clean", description: "Degreasing stovetops, range hoods, exterior of appliances, cabinet fronts, backsplash, and sanitizing all prep surfaces." },
+        { icon: Bath, title: "Bathroom Deep Scrub", description: "Detailed dusting of fans, vents, and accessible high and low areas throughout the home." },
+        { icon: Layers, title: "Edges & Details", description: "Hand-wiping baseboards, door frames, light switches, outlet covers, vents, and corners that collect dust." },
+        { icon: Sparkles, title: "Full Dust Reset", description: "Detailed dusting of fans, vents, and accessible high and low areas throughout the home." },
+      ]}
+      bullets={[
+        "All standard cleaning tasks included",
+        "Baseboards hand-wiped throughout",
+        "Doors, door frames, and trim wiped",
+        "Light switches and outlet covers cleaned",
+        "Stovetop and range hood degreased",
+        "Exterior of all kitchen appliances cleaned",
+        "Cabinet fronts and handles wiped",
+        "Tile and shower glass detailed",
+        "Vents and ceiling fans dusted",
+        "Detailed cobweb and corner cleaning",
+        "Floors thoroughly mopped and vacuumed",
+      ]}
+      roomTasks={[
+        { name: "Kitchen Detail", tasks: 6, sample: "degreasing the stovetop and range hood" },
+        { name: "Bathroom Scrub", tasks: 5, sample: "detailing tile and shower glass" },
+        { name: "Edges & Details", tasks: 5, sample: "hand-wiping baseboards and door frames" },
+        { name: "Bedrooms & Living", tasks: 4, sample: "dusting high and low areas" },
+      ]}
+      pricingBySize={[
+        { size: "1 Bedroom", price: "$242" },
+        { size: "2 Bedroom", price: "$300" },
+        { size: "3 Bedroom", price: "$355" },
+        { size: "4 Bedroom", price: "$424" },
+        { size: "5+ Bedroom", price: "$463" },
+      ]}
+      pricingNote="Starting estimates are based on home size — final time and cost can vary with condition, bathrooms, and add-ons."
+      fromPrice="$242"
+      extras={[
+        { name: "Inside fridge cleaning", price: "$59.99" },
+        { name: "Inside oven cleaning", price: "$59.99" },
+        { name: "Inside cabinets (empty)", price: "$74.99" },
+        { name: "Interior window cleaning", price: "$64.99" },
+        { name: "Spot wall cleaning (2 rooms min)", price: "$59.99" },
+        { name: "Wipe window blinds", price: "$15/set" },
+        { name: "Balcony/garage sweeping", price: "$29.99" },
+      ]}
+      notIncluded={[
+        "Moving heavy items over 25 lbs",
+        "Outdoor or exterior window cleaning",
+        "Mold remediation, bodily fluids, or pest removal",
+        "Areas beyond the reach of a 3-step ladder",
+        "Light bulbs and fragile fixtures",
+        "Garages, patios, and outdoor areas (winter safety)",
+      ]}
+      faqs={[
+        { q: "Can I book deep cleaning for only certain areas?", a: "Yes, you may request deep cleaning for specific areas, such as bathrooms, kitchen, basement, or main floor only." },
+        { q: "Should I declutter before deep cleaning?", a: "Yes, we recommend removing clutter before the appointment so our team can focus on cleaning surfaces properly." },
+        { q: "Is deep cleaning more expensive than standard cleaning?", a: "Yes, deep cleaning usually costs more because it requires more time, detail, and effort." },
+        { q: "Does deep cleaning remove mold or mildew?", a: "We may wipe light surface mildew if safe, but we do not provide mold remediation or remove heavy mold." },
+        { q: "When should I book a deep cleaning?", a: "Book a deep clean for a seasonal refresh, before guests arrive, after a renovation, after a long stretch without service, or as your first visit before starting a recurring schedule." },
+        { q: "How long does a deep cleaning take?", a: "We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
+        { q: "How is deep cleaning different from regular cleaning?", a: "Regular cleaning maintains an already-clean home. Deep cleaning tackles built-up grime, detailed edges, baseboards, and the areas that aren't included in every visit." },
+        { q: "Do I need to prepare anything?", a: "Please pick up any personal items you'd like put away and clear surfaces such as vanities, countertops, and other cluttered areas so our cleaners can work efficiently. You may also let us know any priority areas or spaces you would like us to focus on or skip." },
+        { q: "Are your products safe for kids and pets?", a: "Yes. We use non-toxic products as our default and can adjust for specific sensitivities — just let us know when booking." },
+        { q: "How often should I get a deep cleaning?", a: "Most homes benefit from a deep clean every 3–6 months, with regular maintenance cleaning in between." },
+      ]}
+      ctaHeading={<>Give your home the <AccentGold>full reset.</AccentGold></>}
+      ctaDescription="Reset your home with a thorough, detail-driven cleaning. Flexible scheduling and a satisfaction guarantee on every visit."
+      galleryImages={[
+        { src: heroImage, alt: "Sparkling Edmonton kitchen after a professional deep cleaning" },
+      ]}
+    />
+  );
+}

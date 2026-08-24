@@ -1,0 +1,702 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Editorial display serif — MARKETING headings only. Never used for body
+   copy, UI chrome, or anything inside the quote funnel (forms stay on the
+   sans for maximum legibility). Variable file covers 400–700. */
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/fonts/fraunces-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF,
+    U+FFFD;
+}
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+
+@layer base {
+  :root {
+    /* Calm, soothing off-white background */
+    --background: 210 20% 98%;
+    --foreground: 215 25% 20%;
+
+    /* Soft warm white cards */
+    --card: 210 15% 99%;
+    --card-foreground: 215 25% 20%;
+
+    --popover: 210 15% 99%;
+    --popover-foreground: 215 25% 20%;
+
+    /* Trust-inspiring deep teal primary */
+    --primary: 192 70% 35%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Gentle sage secondary */
+    --secondary: 165 25% 95%;
+    --secondary-foreground: 192 60% 25%;
+
+    /* Soft neutral muted tones */
+    --muted: 210 15% 93%;
+    --muted-foreground: 215 15% 45%;
+
+    /* Action orange — AA-compliant on white (5.27:1). Used for CTA fills and
+       any orange TEXT. The brighter tone below is decoration only. */
+    --accent: 17 90% 40%;
+    --accent-foreground: 0 0% 100%;
+    /* Non-text accents only: bars, badges, icons. 3.1:1 on white. */
+    --accent-bright: 18 85% 55%;
+    --accent-bright-foreground: 0 0% 100%;
+    /* Orange TEXT on navy surfaces — 5.5:1+ on brand navy. */
+    --accent-on-dark: 22 95% 70%;
+    /* Gold TEXT on light surfaces — 5.2:1+ on white (gold itself is 2.4:1). */
+    --gold-ink: 42 100% 27%;
+    /* Fine print (GST notes, travel fee, risk-reversal). AAA-grade 7:1+ so
+       65+ readers get the small text as clearly as the headline copy. */
+    --fine-print: 215 28% 30%;
+    /* Same role on brand navy — 7:1+ against the dark surface. */
+    --fine-print-on-dark: 210 30% 92%;
+
+
+    /* Tonal ladder — two intermediate tints between white and navy.
+       Tints of the existing cream/navy only; no new hues. */
+    --cream-50: 38 55% 97%;
+    --blue-grey-100: 213 30% 94%;
+
+    /* Duty Cleaners brand surfaces */
+    --brand-navy: 213 56% 25%;
+    --brand-navy-foreground: 0 0% 100%;
+    --brand-gold: 39 72% 51%;
+    --brand-gold-foreground: 213 56% 18%;
+
+    /* Recurring-savings block: light green surface with dark green ink
+       (7:1+ on the surface, so the saving reads clearly at 65+). */
+    --savings-surface: 141 79% 90%;
+    --savings-ink: 143 64% 20%;
+    --savings-border: 142 55% 70%;
+
+    /* Quote funnel zones — calm, distinct surfaces that break the long
+       white scroll into findable blocks. All body text on them clears AA
+       and fine print clears 7:1. */
+    --quote-price-surface: 38 60% 96%;
+    --quote-price-border: 38 40% 84%;
+    --quote-shelf-surface: 205 40% 97%;
+    --quote-shelf-border: 205 30% 87%;
+    --quote-detail-surface: 210 16% 96%;
+    --quote-detail-border: 210 14% 86%;
+
+
+
+    --destructive: 0 65% 55%;
+    /* Error TEXT on light surfaces — the fill tone above is only 3.4:1. */
+    --destructive-ink: 0 74% 34%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Softer borders */
+    --border: 210 15% 88%;
+    --input: 210 15% 90%;
+    --ring: 192 70% 35%;
+
+    --radius: 0.5rem;
+
+    /* City-specific colors - refined for trust */
+    --edmonton: 192 70% 35%;
+    --edmonton-foreground: 0 0% 100%;
+    --calgary: 230 60% 55%;
+    --calgary-foreground: 0 0% 100%;
+    --success: 158 60% 40%;
+    --warning: 40 85% 50%;
+    --info: 205 75% 55%;
+
+    /* Calming sidebar tones */
+    --sidebar-background: 210 18% 96%;
+    --sidebar-foreground: 215 25% 20%;
+    --sidebar-primary: 192 70% 35%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 165 20% 94%;
+    --sidebar-accent-foreground: 192 60% 25%;
+    --sidebar-border: 210 15% 88%;
+    --sidebar-ring: 192 70% 35%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* WCAG 2.2 SC 2.4.11 — one visible focus style everywhere. */
+  :focus-visible {
+    outline: 3px solid hsl(var(--brand-navy));
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* On dark navy surfaces the navy ring would vanish — use gold there. */
+  .bg-brand-navy :focus-visible,
+  .dark :focus-visible {
+    outline-color: hsl(var(--brand-gold));
+  }
+
+  /* WCAG 2.2 SC 2.5.8 — standalone links need a 24px minimum target. Links
+     that sit inside a sentence are exempt, so this only lifts links that are
+     already their own block: list rows, table cells, footers and nav. */
+  li > a:only-child,
+  td a,
+  th a,
+  footer a,
+  nav a,
+  address a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+  }
+
+  /* Where the layout has room, standalone links get the full 44px target. */
+  footer a,
+  nav a,
+  address a,
+  li > a:only-child {
+    padding-block: 0.25rem;
+  }
+
+}
+
+/* Leaflet's attribution links render at 14px with no padding, under the WCAG
+   2.2 SC 2.5.8 24px minimum. This sits OUTSIDE @layer base on purpose:
+   Leaflet's own stylesheet is unlayered and would otherwise win. */
+.leaflet-control-attribution {
+  line-height: 1.6;
+}
+
+.leaflet-control-attribution a,
+.leaflet-container .leaflet-control-attribution a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding-inline: 2px;
+}
+
+/* Skip link — first focusable element on every page. Hidden until focused. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+}
+
+.skip-link:focus-visible,
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  background: hsl(var(--brand-navy));
+  color: hsl(var(--brand-navy-foreground));
+  font-weight: 700;
+  border-radius: 4px;
+}
+
+
+
+
+/* Custom animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes blob {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 0 0 0 hsl(var(--primary) / 0.4);
+  }
+  50% { 
+    box-shadow: 0 0 20px 4px hsl(var(--primary) / 0.6);
+  }
+}
+
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translateY(-50px);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fade-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gentle-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-3px) rotate(-0.5deg); }
+  40% { transform: translateX(3px) rotate(0.5deg); }
+  60% { transform: translateX(-2px) rotate(-0.3deg); }
+  80% { transform: translateX(2px) rotate(0.3deg); }
+}
+
+.animate-fadeIn { animation: fadeIn 0.6s ease-out; }
+.animate-fadeInLeft { animation: fadeInLeft 0.8s ease-out; }
+.animate-slideInUp { animation: slideInUp 0.6s ease-out; }
+.animate-blob { animation: blob 7s infinite; }
+.animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+.animate-bounce-in { animation: bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
+.animate-fade-slide-up { animation: fade-slide-up 0.8s ease-out forwards; }
+.hover-gentle-shake:hover { animation: gentle-shake 0.5s ease-in-out; }
+.animation-delay-2000 { animation-delay: 2s; }
+.animation-delay-4000 { animation-delay: 4s; }
+.opacity-0 { opacity: 0; }
+
+/* Trust marquee — infinite horizontal scroll */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-marquee { animation: marquee-scroll 32s linear infinite; }
+.marquee-hover-pause:hover .animate-marquee { animation-play-state: paused; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee { animation: none; }
+
+  /* Vestibular safety: every decorative motion stops, not just the ticker. */
+  .animate-fadeIn,
+  .animate-fadeInLeft,
+  .animate-slideInUp,
+  .animate-blob,
+  .animate-pulse-glow,
+  .animate-bounce-in,
+  .animate-fade-slide-up,
+  .hover-gentle-shake:hover,
+  [class*="animate-in"] {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .animate-fade-slide-up,
+  .animate-fadeIn,
+  .animate-slideInUp {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Recurring-savings card: one gentle entrance, never a loop. */
+@media (prefers-reduced-motion: no-preference) {
+  .savings-appear {
+    animation: savings-appear 300ms ease-out both;
+  }
+}
+
+@keyframes savings-appear {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Editorial display layer (marketing surfaces only)
+   ------------------------------------------------------------------------ */
+
+.display-serif {
+  font-family: "Fraunces", ui-serif, Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-variation-settings: "SOFT" 0, "WONK" 0;
+}
+
+/* Fluid display sizes. `!important`-free: these classes are applied on the
+   heading itself and the Tailwind size utilities are removed alongside. */
+.display-1 {
+  font-size: clamp(3rem, 6vw, 4.75rem);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+}
+
+.display-2 {
+  font-size: clamp(1.9rem, 3.2vw, 3rem);
+  line-height: 1.12;
+}
+
+.display-quote {
+  font-size: clamp(1.6rem, 2.6vw, 2.5rem);
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+}
+
+/* ---------------------------------------------------------------------------
+   Micro-motion — exactly three interactions, all 200–400ms, all opt-out safe
+   ------------------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: no-preference) {
+  /* 1. Card hover lift */
+  .motion-lift {
+    transition: transform 220ms ease-out, box-shadow 220ms ease-out;
+  }
+
+  .motion-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px -22px hsl(var(--brand-navy) / 0.45);
+  }
+
+  /* 2. Section fade-up on first scroll into view */
+  .motion-reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 380ms ease-out, transform 380ms ease-out;
+  }
+
+  .motion-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* 3. Price update flash */
+  .motion-price-flash {
+    animation: price-flash 300ms ease-out;
+  }
+}
+
+@keyframes price-flash {
+  from {
+    background-color: hsl(var(--brand-gold) / 0.28);
+  }
+  to {
+    background-color: transparent;
+  }
+}
+
+/* 4. Accent underline draw on marketing section headings (120–180ms) */
+.rule-draw {
+  display: block;
+  width: 72px;
+  height: 3px;
+  background-color: hsl(var(--accent));
+  transform-origin: left center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .rule-draw {
+    transform: scaleX(0);
+    transition: transform 180ms ease-out 80ms;
+  }
+
+  .rule-draw.is-visible {
+    transform: scaleX(1);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Material hierarchy — two named surface recipes. Sections use these instead
+   of hand-rolled tints so the rhythm stays consistent.
+   ------------------------------------------------------------------------ */
+
+/* "Warm paper" — reading/editorial sections: cream field, hairline rules,
+   no heavy shadow. */
+.surface-paper {
+  background-color: hsl(var(--cream-50));
+  border-top: 1px solid hsl(var(--border));
+  border-bottom: 1px solid hsl(var(--border));
+}
+
+.surface-paper .paper-rule {
+  border-color: hsl(var(--border));
+  border-width: 1px;
+  box-shadow: none;
+}
+
+/* "Deep ink" — authority moments: pricing band, Promise, final CTA. Orange
+   remains reserved for primary actions on top of it. */
+.surface-ink {
+  background-color: hsl(var(--brand-navy));
+  color: hsl(var(--brand-navy-foreground));
+}
+
+/* Motif guard: the linen line and sun disc stay decorative and out of the way
+   on small screens, where they would otherwise sit under content. */
+.motif-linen {
+  opacity: 0.08;
+}
+
+@media (max-width: 767px) {
+  .motif-linen {
+    display: none;
+  }
+}
+
+/* 5. Image reveal — fade plus a 2% settle, no layout shift (transform only). */
+@media (prefers-reduced-motion: no-preference) {
+  .motion-image-reveal {
+    opacity: 0;
+    transform: scale(1.02);
+    transition: opacity 200ms ease-out, transform 200ms ease-out;
+  }
+
+  .motion-image-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* 6. Selected tile gains quiet depth. */
+  .motion-depth {
+    transition: box-shadow 150ms ease-out, border-color 150ms ease-out;
+  }
+
+  .motion-depth[data-selected="true"] {
+    box-shadow: 0 12px 28px -18px hsl(var(--brand-navy) / 0.5);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-image-reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Sticky nav "glass" is chrome only, and only where the browser supports it.
+   Without backdrop-filter the bar renders fully solid. */
+@supports not ((backdrop-filter: blur(4px)) or (-webkit-backdrop-filter: blur(4px))) {
+  .nav-glass {
+    background-color: hsl(var(--background)) !important;
+    backdrop-filter: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Quote funnel — visual shell only. Motif-free by rule; these classes just
+   standardize the canvas, progress header, callout rail and control sizing so
+   all four steps share one rhythm.
+   ------------------------------------------------------------------------ */
+
+/* Warm canvas behind the funnel card, white content on top of it. */
+.funnel-canvas {
+  background-color: hsl(var(--cream-50));
+}
+
+/* Two-tier progress header. */
+.funnel-progress {
+  border-bottom: 1px solid hsl(var(--border));
+  background-color: hsl(var(--card));
+}
+
+.funnel-progress-track {
+  height: 4px;
+  width: 100%;
+  background-color: hsl(var(--quote-shelf-surface));
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.funnel-progress-fill {
+  height: 100%;
+  background-color: hsl(var(--accent));
+  border-radius: 999px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .funnel-progress-fill {
+    transition: width 300ms ease-out;
+  }
+}
+
+/* Labeled note rail. */
+.funnel-callout {
+  display: grid;
+  gap: 0.25rem;
+  border-left: 3px solid hsl(var(--accent));
+  background-color: hsl(var(--quote-detail-surface));
+  padding: 0.875rem 1rem;
+  border-radius: 0 0.25rem 0.25rem 0;
+}
+
+.funnel-callout-label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: hsl(var(--fine-print));
+}
+
+/* Uniform control metrics across selects, chips and inputs in the funnel. */
+.funnel-field {
+  height: 3rem;
+  width: 100%;
+  border-radius: 0.25rem;
+  border: 1px solid hsl(var(--quote-detail-border));
+  background-color: hsl(var(--card));
+  padding-inline: 0.75rem;
+  font-size: 1rem;
+  color: hsl(var(--foreground));
+}
+
+/* Consistent vertical rhythm inside a step. */
+.funnel-step {
+  display: grid;
+  gap: 2rem;
+}
+
+.funnel-chapter {
+  display: block;
+}
+
+/* ---------------------------------------------------------------------------
+   Magazine band rhythm — homey warmth without changing a single colour token.
+   Sections alternate paper (cream) / white / ink (navy) with a hairline seam
+   instead of hard colour jumps, and share one generous vertical rhythm.
+   ------------------------------------------------------------------------ */
+
+.band {
+  padding-block: 4.5rem;
+}
+
+@media (min-width: 768px) {
+  .band {
+    padding-block: 6.5rem;
+  }
+}
+
+/* Slightly tighter band for utility sections (quote, cross-links). */
+.band-tight {
+  padding-block: 3.5rem;
+}
+
+@media (min-width: 768px) {
+  .band-tight {
+    padding-block: 4.5rem;
+  }
+}
+
+.band-paper {
+  background-color: hsl(var(--cream-50));
+}
+
+.band-white {
+  background-color: hsl(var(--card));
+}
+
+.band-ink {
+  background-color: hsl(var(--brand-navy));
+  color: hsl(var(--brand-navy-foreground));
+}
+
+/* Soft seam between bands — a hairline, never a hard rule. */
+.band-hairline {
+  border-top: 1px solid hsl(var(--border) / 0.7);
+}
+
+/* Magazine measure for marketing body copy. */
+.prose-column {
+  max-width: 62ch;
+}
+
+/* Marketing cards: softer corner, low warm shadow instead of a flat border.
+   Funnel controls keep their own metrics and are untouched. */
+.card-warm {
+  border-radius: 1rem;
+  box-shadow: 0 18px 40px -32px hsl(28 40% 18% / 0.5);
+}
+
+/* Neighbourhood marquee — slow serif ledger of service areas. */
+@keyframes dc-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.dc-marquee-track {
+  animation: dc-marquee 55s linear infinite;
+}
+.dc-marquee:hover .dc-marquee-track,
+.dc-marquee:focus-within .dc-marquee-track {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .dc-marquee { overflow-x: auto; }
+  .dc-marquee-track { animation: none; }
+}

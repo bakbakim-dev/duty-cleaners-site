@@ -1,0 +1,13 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dutycleaners",
+      "runtimeExecutable": "bun",
+      "runtimeArgs": ["run", "dev", "--host", "0.0.0.0"],
+      "cwd": "site",
+      "port": 8080,
+      "url": "http://localhost:8080"
+    }
+  ]
+}

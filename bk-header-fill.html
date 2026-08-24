@@ -1,0 +1,124 @@
+<script>
+/* Duty Cleaners — booking-form autofill.
+   Reads dc_* params appended by the funnel and fills the fields BookingKoala's
+   URL prefill cannot reach. Inert unless dc_* params are present. Never touches
+   payment. Fails silently — must never block a booking.
+   Params: dc_entry=home|mailbox|code|other  dc_clean=1..5
+           dc_park=street|visitor|driveway|paid  dc_notes=<=500 chars
+           dc_addr  dc_apt  dc_city  dc_prov  dc_zip                        */
+(function () {
+  'use strict';
+  var TIMEOUT_MS = 30000, TICK_MS = 300;
+
+  function params() {
+    var p = new URLSearchParams(location.search || '');
+    var h = location.hash || '';
+    if (h.indexOf('?') >= 0) {
+      new URLSearchParams(h.slice(h.indexOf('?'))).forEach(function (v, k) {
+        if (!p.has(k)) p.append(k, v);
+      });
+    }
+    return p;
+  }
+  function visible(el) { return !!(el && el.getClientRects().length); }
+  function setNative(el, val) {
+    var proto = el.tagName === 'TEXTAREA' ? window.HTMLTextAreaElement : window.HTMLInputElement;
+    var d = Object.getOwnPropertyDescriptor(proto.prototype, 'value');
+    if (d && d.set) d.set.call(el, val); else el.value = val;
+    el.dispatchEvent(new Event('input', { bubbles: true }));
+    el.dispatchEvent(new Event('change', { bubbles: true }));
+  }
+
+  /* Dropdowns — matched by OPTION TEXT signature, not CSS classes or labels,
+     so BookingKoala restyling or relabeling does not break them. */
+  var SELECTS = [
+    { p: 'dc_entry', sig: /someone will be home/i,
+      opts: { home: /someone will be home/i, mailbox: /key will be in the mailbox/i,
+              code: /access code/i, other: /^other/i } },
+    { p: 'dc_clean', sig: /almost spotless/i,
+      opts: { '1': /almost spotless/i, '2': /mostly clean/i, '3': /decently clean/i,
+              '4': /needs attention/i, '5': /very dirty/i } },
+    { p: 'dc_park', sig: /street parking/i,
+      opts: { street: /street parking/i, visitor: /visitor parking/i,
+              driveway: /driveway/i, paid: /paid parking/i } }
+  ];
+  /* Address — plain text inputs, matched by placeholder. */
+  var TEXTS = [
+    { p: 'dc_addr', ph: /type address/i },
+    { p: 'dc_apt',  ph: /condo or apt/i },
+    { p: 'dc_city', ph: /^city$/i },
+    { p: 'dc_prov', ph: /^province$/i },
+    { p: 'dc_zip',  ph: /postal code/i }
+  ];
+
+  function findSelect(m) {
+    return Array.prototype.slice.call(document.querySelectorAll('select')).filter(visible)
+      .find(function (s) {
+        return Array.prototype.slice.call(s.options).some(function (o) { return m.sig.test(o.text); });
+      });
+  }
+  function findText(m) {
+    return Array.prototype.slice.call(document.querySelectorAll('input[type=text]')).filter(visible)
+      .find(function (e) { return m.ph.test(e.getAttribute('placeholder') || ''); });
+  }
+  function findNotes() {
+    return Array.prototype.slice.call(document.querySelectorAll('textarea')).filter(visible)
+      .find(function (t) {
+        var n = t, d = 0;
+        while (n && d < 6) {
+          if (/special notes/i.test(n.innerText || '')) return true;
+          n = n.parentElement; d++;
+        }
+        return false;
+      });
+  }
+
+  var q = params();
+  var wantSel = SELECTS.filter(function (m) {
+    var v = q.get(m.p);
+    return v && Object.prototype.hasOwnProperty.call(m.opts, v);
+  });
+  var wantTxt = TEXTS.filter(function (m) { return !!q.get(m.p); });
+  var notes = q.get('dc_notes');
+  if (!wantSel.length && !wantTxt.length && !notes) return;   // inert for everyone else
+
+  var t0 = Date.now();
+  var timer = setInterval(function () {
+    try {
+      var pending = [];
+
+      wantSel.forEach(function (m) {
+        var sel = findSelect(m);
+        if (!sel) { pending.push(m.p); return; }
+        if (sel.dataset.dcFilled) return;
+        var opt = Array.prototype.slice.call(sel.options).find(function (o) {
+          return m.opts[q.get(m.p)].test(o.text);
+        });
+        if (!opt) { pending.push(m.p); return; }
+        sel.value = opt.value;
+        sel.dispatchEvent(new Event('change', { bubbles: true }));
+        sel.dataset.dcFilled = '1';
+      });
+
+      wantTxt.forEach(function (m) {
+        var el = findText(m);
+        if (!el) { pending.push(m.p); return; }
+        if (el.dataset.dcFilled || el.value) return;   // never overwrite the customer
+        setNative(el, q.get(m.p).slice(0, 120));
+        el.dataset.dcFilled = '1';
+      });
+
+      if (notes) {
+        var ta = findNotes();
+        if (!ta) pending.push('dc_notes');
+        else if (!ta.dataset.dcFilled && !ta.value) {
+          setNative(ta, notes.slice(0, 500));
+          ta.dataset.dcFilled = '1';
+        }
+      }
+
+      if (!pending.length || Date.now() - t0 > TIMEOUT_MS) clearInterval(timer);
+    } catch (e) { clearInterval(timer); }
+  }, TICK_MS);
+})();
+</script>

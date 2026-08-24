@@ -1,0 +1,14 @@
+# dutycleaners.ca is trailing-slash canonical — see src/data/legacy-urls.ts.
+[build]
+  publish = "dist"
+  # prerender:all, not prerender — public/_redirects now ends in a 404 fallback,
+  # so every indexable route must exist on disk as a real file. The short
+  # prerender covers only the main and blog sitemaps; the ~150 location pages
+  # would fall through to the 404.
+  command = "bun run build && bun run prerender:all"
+
+# Netlify's Pretty URLs already normalise /path -> /path/; this pins it.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"

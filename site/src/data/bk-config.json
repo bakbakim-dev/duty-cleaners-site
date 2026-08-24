@@ -1,0 +1,4745 @@
+{
+  "captured_at": "2026-08-15",
+  "source": "https://dutycleaners.bookingkoala.com/booknow",
+  "industries": [
+    {
+      "id": 1,
+      "form_id": 1,
+      "name": "Home Cleaning",
+      "slug": "home_cleaning",
+      "services": [
+        {
+          "id": 17,
+          "name": "Hourly Cleaning",
+          "description": "This service is an hourly service charged at $65 per hour per cleaner.",
+          "display_order": null,
+          "status": 1
+        },
+        {
+          "id": 6,
+          "name": "Standard Cleaning ",
+          "description": "This service is a flat rate service.  A standard clean is something that a homeowner does (or should do) regularly to upkeep the cleanliness of their homes. Regular chores, such as vacuuming and mopping the floors, general bathroom cleaning, kitchen cleaning, and dusting surface areas.",
+          "display_order": 1,
+          "status": 1
+        },
+        {
+          "id": 2,
+          "name": "Move in Move Out Cleaning",
+          "description": "Need a Moving in or moving out clean?  Select this",
+          "display_order": 2,
+          "status": 1
+        },
+        {
+          "id": 4,
+          "name": "Re-Clean $0",
+          "description": "This service is a re-do with the same cleaner at no extra cost to the provider.",
+          "display_order": 4,
+          "status": 1
+        },
+        {
+          "id": 5,
+          "name": "Re-Clean - with different cleaner $25",
+          "description": "This service is a re-do with a different cleaner at $25/hour to the provider to fix someone else's job.",
+          "display_order": 5,
+          "status": 1
+        }
+      ],
+      "frequencies": [
+        {
+          "id": 8,
+          "name": "Every 2 Weeks (Hourly)",
+          "repeat_every": "every_2_weeks",
+          "occurence_time": "recurring",
+          "discount": 0,
+          "discount_type": "amount",
+          "discount_on": "all-bookings",
+          "display_order": null,
+          "status": 1
+        },
+        {
+          "id": 9,
+          "name": "Weekly Cleaning (Hourly)",
+          "repeat_every": "every_week",
+          "occurence_time": "recurring",
+          "discount": 0,
+          "discount_type": "amount",
+          "discount_on": "all-bookings",
+          "display_order": null,
+          "status": 1
+        },
+        {
+          "id": 11,
+          "name": "Every 4 weeks! (Hourly)",
+          "repeat_every": "every_4_weeks",
+          "occurence_time": "recurring",
+          "discount": 0,
+          "discount_type": "amount",
+          "discount_on": "all-bookings",
+          "display_order": null,
+          "status": 1
+        },
+        {
+          "id": 1,
+          "name": "One-Time",
+          "repeat_every": "onetime",
+          "occurence_time": "onetime",
+          "discount": 0,
+          "discount_type": "amount",
+          "discount_on": "all-bookings",
+          "display_order": 1,
+          "status": 1
+        },
+        {
+          "id": 3,
+          "name": "Weekly",
+          "repeat_every": "every_week",
+          "occurence_time": "recurring",
+          "discount": 20,
+          "discount_type": "percentage",
+          "discount_on": "exclude-first-booking",
+          "display_order": 2,
+          "status": 1
+        },
+        {
+          "id": 4,
+          "name": "Bi-Weekly (Every 2 Weeks)",
+          "repeat_every": "every_2_weeks",
+          "occurence_time": "recurring",
+          "discount": 15,
+          "discount_type": "percentage",
+          "discount_on": "exclude-first-booking",
+          "display_order": 3,
+          "status": 1
+        },
+        {
+          "id": 2,
+          "name": "Every 4 Weeks",
+          "repeat_every": "every_4_weeks",
+          "occurence_time": "recurring",
+          "discount": 10,
+          "discount_type": "percentage",
+          "discount_on": "exclude-first-booking",
+          "display_order": 4,
+          "status": 1
+        }
+      ],
+      "variable_categories": [
+        {
+          "id": 9,
+          "name": "What Type of Home? Click Here",
+          "slug": "what_type_of_home?_click_here"
+        },
+        {
+          "id": 5,
+          "name": "Bedrooms -Move in Move out ",
+          "slug": "bedrooms_-move_in_move_out_"
+        },
+        {
+          "id": 6,
+          "name": "Full Bathrooms - Move in Move Out",
+          "slug": "full_bathrooms_-_move_in_move_out"
+        },
+        {
+          "id": 7,
+          "name": "Half Baths  - Move In Move Out",
+          "slug": "half_baths__-_move_in_move_out"
+        },
+        {
+          "id": 1,
+          "name": "Bedrooms",
+          "slug": "bedrooms"
+        },
+        {
+          "id": 2,
+          "name": "Full Bathrooms ",
+          "slug": "full_bathrooms_"
+        },
+        {
+          "id": 8,
+          "name": "Half Baths",
+          "slug": "half_baths"
+        }
+      ],
+      "pricing_parameters": [
+        {
+          "id": 9,
+          "name": "what_type_of_home?_click_here",
+          "value": [
+            {
+              "id": 57,
+              "name": "Click Here and Select Your Type of Home",
+              "description": "",
+              "price_ml": 0,
+              "time_ml": 0,
+              "service_categories": [
+                6,
+                2
+              ],
+              "frequencies": [
+                1,
+                3,
+                4,
+                5,
+                15,
+                18,
+                21,
+                2,
+                64,
+                65,
+                66,
+                67,
+                68
+              ],
+              "display_order": 1,
+              "status": 1,
+              "variable_category": 9
+            },
+            {
+              "id": 90,
+              "name": "Two Storey House (Main + Upper Floor)",
+              "description": "Two full storeys (one up and one down, plus basement, but basement is not included in the price unless added on in the extras), fully detached (no walls shared with other homes).",
+              "price_ml": 50,
+              "time_ml": 1800,
+              "service_categories": [
+                6,
+                2
+              ],
+              "frequencies": [
+                1,
+                3,
+                4,
+                5,
+                15,
+                18,
+                21,
+                2,
+                64,
+                65,
+                66,
+                67,
+                68
+              ],
+              "display_order": 2,
+              "status": 1,
+              "variable_category": 9
+            },
+            {
+              "id": 89,
+              "name": "Two Story Townhouse (Duplex)",
+              "description": "semi-detached duplex = home which shares one wall with another home, while the opposite side wall is free.  Townhouses are homes which share 2 side walls with other homes",
+              "price_ml": 50,
+              "time_ml": 1800,
+              "service_categories": [
+                2,
+                6
+              ],
+              "frequencies": [
+                1,
+                3,
+                4,
+                5,
+                15,
+                18,
+                21,
+                2,
+                64,
+                65,
+                66,
+                67,
+                68
+              ],
+              "display_order": 3,
+              "status": 1,
+              "variable_category": 9
+            },
+            {
+              "id": 54,
+              "name": "Bungalow (Single Story Home)",
+              "description": "A bungalow-style home is one where the living areas and the bedrooms are all on the same level",
+              "price_ml": 15,
+              "time_ml": 300,
+              "service_categories": [
+                6,
+                2
+              ],
+              "frequencies": [
+                1,
+                3,
+                4,
+                5,
+                15,
+                18,
+                21,
+                2,
+                64,
+                65,
+                66,
+                67,
+                68
+              ],
+              "display_order": 4,
+              "status": 1,
+              "variable_category": 9
+            },
+            {
+              "id": 56,
+              "name": "Basement Suite Only",
+              "description": "A basement suite is a separate unit from the main residence that has regular facilities and is found beneath ground level",
+              "price_ml": 10,
+              "time_ml": 300,
+              "service_categories": [
+                6,
+                2
+              ],
+              "frequencies": [
+                1,
+                3,
+                4,
+                5,
+                15,
+                18,
+                21,
+                2,
+                64,
+                65,
+                66,
+                67,
+                68
+              ],
+              "display_order": 5,
+              "status": 1,
+              "variable_category": 9
+            },
+            {
+              "id": 55,
+              "name": "Apartment or Condo",
+              "description": "A condo is similar in structure to an apartment \u2014 usually a unit within a larger residential building \u2014 but condos are owned instead of rented",
+              "price_ml": 0,
+              "time_ml": 0,
+              "service_categories": [
+                6,
+                2
+              ],
+              "frequencies": [
+                0,
+                15,
+                18,
+                21,
+                64,
+                65,
+                66,
+                67,
+                68
+              ],
+              "display_order": 6,
+              "status": 1,
+              "variable_category": 9
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "name": "bedrooms_-move_in_move_out_",
+          "value": [
+            {
+              "id": 74,
+              "name": "1 Bedroom (Under 800sqft)",
+              "description": "",
+              "price_ml": 219.99,
+              "time_ml": 6300,
+              "service_categories": [
+                2
+              ],
+              "frequencies": null,
+              "display_order": 1,
+              "status": 1,
+              "variable_category": 5
+            },
+            {
+              "id": 75,
+              "name": "2 Bedroom (Under 1100sqft)",
+              "description": "",
+              "price_ml": 219.99,
+              "time_ml": 6300,
+              "service_categories": [
+                2
+              ],
+              "frequencies": null,
+              "display_order": 2,
+              "status": 1,
+              "variable_category": 5
+            },
+            {
+              "id": 76,
+              "name": "3 Bedroom (Under 1700sqft)",
+              "description": "",
+              "price_ml": 219.99,
+              "time_ml": 6300,
+              "service_categories": [
+                2
+              ],
+              "frequencies": null,
+              "display_order": 3,
+              "status": 1,
+              "variable_category": 5
+            },
+            {
+              "id": 77,
+              "name": "4 Bedroom (Under 2300sqft)",
+              "description": "",
+              "price_ml": 219.99,
+              "time_ml": 6300,
+              "service_categories": [
+                2
+              ],
+              "frequencies": null,
+              "display_order": 4,
+              "status": 1,
+              "variable_category": 5
+            },
+            {
+              "id": 78,
+              "name": "5 Bedroom (Under 3000sqft)",
+              "description": "",
+              "price_ml": 219.99,
+              "time_ml": 6300,
+              "service_categories": [
+                2
+              ],
+              "frequencies": null,
+              "display_order": 5,
+              "status": 1,
+              "variable_category": 5
+            },
+            {
+              "id": 79,
+              "name": "6 Bedroom (Under 3600sqft)",
+              "description": "",
+              "price_ml": 219.99,
+              "time_ml": 6300,
+              "service_categories": [
+                2
+              ],
+              "frequencies": null,
+              "display_order": 6,
+              "status": 1,
+              "variable_category": 5
+            },
+            {
+              "id": 80,
+              "name": "7 Bedroom (Under 4200sqft)",
+              "description": "",
+              "price_ml": 219.99,
+              "time_ml": 6300,
+              "service_categories": [
+                2
+              ],
+              "frequencies": null,
+              "display_order": 7,
+              "status": 1,
+              "variable_category": 5
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "name": "full_bathrooms_-_move_in_move_out",
+          "value": [
+            {
+              "id": 39,
+              "name": "1 Bathroom",
+              "description": "",
+              "price_ml": 29.99,
+              "time_ml": 1200,
+              "service_categories": [
+                2
+              ],
+              "frequencies": [
+                0
+              ],
+              "display_order": 1,
+              "status": 1,
+              "variable_category": 6
+            },
+            {
+              "id": 40,
+              "name": "2 Bathrooms",
+              "description": "",
+              "price_ml": 29.99,
+              "time_ml": 1200,
+              "service_categories": [
+                2
+              ],
+              "frequencies": [
+                0
+              ],
+              "display_order": 2,
+              "status": 1,
+              "variable_category": 6
+            },
+            {
+              "id": 41,
+              "name": "3 Bathrooms",
+              "description": "",
+              "price_ml": 29.99,
+              "time_ml": 1200,
+              "service_categories": [
+                2
+              ],
+              "frequencies": [
+                0
+              ],
+              "display_order": 3,
+              "status": 1,
+              "variable_category": 6
+            },
+            {
+              "id": 42,
+              "name": "4 Bathrooms",
+              "description": "",
+              "price_ml": 29.99,
+              "time_ml": 1200,
+              "service_categories": [
+                2
+              ],
+              "frequencies": [
+                0
+              ],
+              "display_order": 4,
+              "status": 1,
+              "variable_category": 6
+            },
+            {
+              "id": 43,
+              "name": "5 Bathrooms ",
+              "description": "",
+              "price_ml": 29.99,
+              "time_ml": 1200,
+              "service_categories": [
+                2
+              ],
+              "frequencies": [
+                0
+              ],
+              "display_order": 5,
+              "status": 1,
+              "variable_category": 6
+            },
+            {
+              "id": 44,
+              "name": "6 Bathrooms",
+              "description": "",
+              "price_ml": 29.99,
+              "time_ml": 1200,
+              "service_categories": [
+                2
+              ],
+              "frequencies": [
+                0
+              ],
+              "display_order": 6,
+              "status": 1,
+              "variable_category": 6
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "name": "half_baths__-_move_in_move_out",
+          "value": [
+            {
+              "id": 58,
+              "name": "0 Half Baths",
+              "description": "",
+              "price_ml": 0,
+              "time_ml": 0,
+              "service_categories": [
+                2
+              ],
+              "frequencies": [
+                1,
+                15,
+                18,
+                21,
+                64,
+                65,
+                66,
+                67
+              ],
+              "display_order": null,
+              "status": 1,
+              "variable_category": 7
+            },
+            {
+              "id": 45,
+              "name": "1 Half Baths",
+              "description": "",
+              "price_ml": 19.99,
+              "time_ml": 900,
+              "service_categories": [
+                2
+              ],
+              "frequencies": [
+                0
+              ],
+              "display_order": 1,
+              "status": 1,
+              "variable_category": 7
+            },
+            {
+              "id": 46,
+              "name": "2 Half Baths",
+              "description": "",
+              "price_ml": 19.99,
+              "time_ml": 900,
+              "service_categories": [
+                2
+              ],
+              "frequencies": [
+                0
+              ],
+              "display_order": 2,
+              "status": 1,
+              "variable_category": 7
+            },
+            {
+              "id": 47,
+              "name": "3 Half Baths",
+              "description": "",
+              "price_ml": 19.99,
+              "time_ml": 900,
+              "service_categories": [
+                2
+              ],
+              "frequencies": [
+                0
+              ],
+              "display_order": 3,
+              "status": 1,
+              "variable_category": 7
+            },
+            {
+              "id": 48,
+              "name": "4 Half Baths",
+              "description": "",
+              "price_ml": 19.99,
+              "time_ml": 900,
+              "service_categories": [
+                2
+              ],
+              "frequencies": [
+                0
+              ],
+              "display_order": 4,
+              "status": 1,
+              "variable_category": 7
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "name": "bedrooms",
+          "value": [
+            {
+              "id": 87,
+              "name": "1 Bedroom (Under 800sqft)",
+              "description": "",
+              "price_ml": 99,
+              "time_ml": 5400,
+              "service_categories": [
+                1,
+                6
+              ],
+              "frequencies": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                15,
+                18,
+                21,
+                64,
+                65,
+                66,
+                67,
+                68
+              ],
+              "display_order": 1,
+              "status": 1,
+              "variable_category": 1
+            },
+            {
+              "id": 81,
+              "name": "2 Bedrooms (Under 1100sqft)",
+              "description": "2 Bedrooms",
+              "price_ml": 109,
+              "time_ml": 7200,
+              "service_categories": [
+                1,
+                6
+              ],
+              "frequencies": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                15,
+                18,
+                21,
+                64,
+                65,
+                66,
+                67,
+                68
+              ],
+              "display_order": 2,
+              "status": 1,
+              "variable_category": 1
+            },
+            {
+              "id": 82,
+              "name": "3 Bedrooms (Under 1700sqft)",
+              "description": "This is a 3 bedroom home.",
+              "price_ml": 119,
+              "time_ml": 9000,
+              "service_categories": [
+                1,
+                6
+              ],
+              "frequencies": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                15,
+                18,
+                21,
+                64,
+                65,
+                66,
+                67,
+                68
+              ],
+              "display_order": 3,
+              "status": 1,
+              "variable_category": 1
+            },
+            {
+              "id": 83,
+              "name": "4 Bedrooms (Under 2300sqft)",
+              "description": "This is a 4 bedrooms home.",
+              "price_ml": 129,
+              "time_ml": 10800,
+              "service_categories": [
+                1,
+                6
+              ],
+              "frequencies": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                15,
+                18,
+                21,
+                64,
+                65,
+                66,
+                67,
+                68
+              ],
+              "display_order": 4,
+              "status": 1,
+              "variable_category": 1
+            },
+            {
+              "id": 84,
+              "name": "5 Bedrooms (Under 3000sqft)",
+              "description": "This is a 5 bedroom home.",
+              "price_ml": 139,
+              "time_ml": 12600,
+              "service_categories": [
+                1,
+                6
+              ],
+              "frequencies": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                15,
+                18,
+                21,
+                64,
+                65,
+                66,
+                67,
+                68
+              ],
+              "display_order": 5,
+              "status": 1,
+              "variable_category": 1
+            },
+            {
+              "id": 85,
+              "name": "6 Bedrooms (Under 3600sqft)",
+              "description": "This is a 6 bedroom home.",
+              "price_ml": 149,
+              "time_ml": 14400,
+              "service_categories": [
+                1,
+                6
+              ],
+              "frequencies": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                15,
+                18,
+                21,
+                64,
+                65,
+                66,
+                67,
+                68
+              ],
+              "display_order": 6,
+              "status": 1,
+              "variable_category": 1
+            },
+            {
+              "id": 86,
+              "name": "7 Bedrooms (Under 4200sqft)",
+              "description": "",
+              "price_ml": 429.99,
+              "time_ml": 9900,
+              "service_categories": [
+                6
+              ],
+              "frequencies": [
+                1,
+                3,
+                4,
+                5,
+                15,
+                18,
+                21,
+                2,
+                64,
+                65,
+                66,
+                67,
+                68
+              ],
+              "display_order": 7,
+              "status": 1,
+              "variable_category": 1
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "full_bathrooms_",
+          "value": [
+            {
+              "id": 88,
+              "name": "1 Full Bath(s)",
+              "description": "This home has just 1 bathroom.",
+              "price_ml": 10,
+              "time_ml": 1800,
+              "service_categories": [
+                1,
+                6
+              ],
+              "frequencies": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                15,
+                18,
+                21,
+                64,
+                65,
+                66,
+                67,
+                68
+              ],
+              "display_order": 1,
+              "status": 1,
+              "variable_category": 2
+            },
+            {
+              "id": 9,
+              "name": "2 Full Bath(s)",
+              "description": "This home has 2 bathrooms.",
+              "price_ml": 20,
+              "time_ml": 3600,
+              "service_categories": [
+                1,
+                6
+              ],
+              "frequencies": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                15,
+                18,
+                21,
+                64,
+                65,
+                66,
+                67,
+                68
+              ],
+              "display_order": 2,
+              "status": 1,
+              "variable_category": 2
+            },
+            {
+              "id": 11,
+              "name": "3 Full Bath(s)",
+              "description": "This home has 3 bathroom.",
+              "price_ml": 30,
+              "time_ml": 5400,
+              "service_categories": [
+                1,
+                6
+              ],
+              "frequencies": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                15,
+                18,
+                21,
+                64,
+                65,
+                66,
+                67,
+                68
+              ],
+              "display_order": 3,
+              "status": 1,
+              "variable_category": 2
+            },
+            {
+              "id": 13,
+              "name": "4 Full Bath(s)",
+              "description": "This home has 4 bathrooms.",
+              "price_ml": 70,
+              "time_ml": 7200,
+              "service_categories": [
+                1,
+                6
+              ],
+              "frequencies": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                15,
+                18,
+                21,
+                64,
+                65,
+                66,
+                67,
+                68
+              ],
+              "display_order": 4,
+              "status": 1,
+              "variable_category": 2
+            },
+            {
+              "id": 15,
+              "name": "5 Full Bath(s)",
+              "description": "This home has 5 bathrooms.",
+              "price_ml": 100,
+              "time_ml": 9000,
+              "service_categories": [
+                1,
+                6
+              ],
+              "frequencies": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                15,
+                18,
+                21,
+                64,
+                65,
+                66,
+                67,
+                68
+              ],
+              "display_order": 6,
+              "status": 1,
+              "variable_category": 2
+            },
+            {
+              "id": 17,
+              "name": "6 Full Bath(s)",
+              "description": "This home has 6 bathrooms.",
+              "price_ml": 130,
+              "time_ml": 10800,
+              "service_categories": [
+                1,
+                6
+              ],
+              "frequencies": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                15,
+                18,
+                21,
+                64,
+                65,
+                66,
+                67,
+                68
+              ],
+              "display_order": 7,
+              "status": 1,
+              "variable_category": 2
+            },
+            {
+              "id": 19,
+              "name": "7 Full Bath(s)",
+              "description": "This home has 7 bathrooms.",
+              "price_ml": 160,
+              "time_ml": 12600,
+              "service_categories": [
+                1,
+                6
+              ],
+              "frequencies": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                15,
+                18,
+                21,
+                64,
+                65,
+                66,
+                67,
+                68
+              ],
+              "display_order": 8,
+              "status": 1,
+              "variable_category": 2
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "name": "half_baths",
+          "value": [
+            {
+              "id": 51,
+              "name": "0 Half Baths (With Only A Toilet or Sink)",
+              "description": "",
+              "price_ml": 0,
+              "time_ml": 0,
+              "service_categories": [
+                6
+              ],
+              "frequencies": [
+                0,
+                15,
+                18,
+                21,
+                64,
+                65,
+                66,
+                67,
+                68
+              ],
+              "display_order": 1,
+              "status": 1,
+              "variable_category": 8
+            },
+            {
+              "id": 8,
+              "name": "1 Half Bath (With Only A Toilet or Sink)",
+              "description": "This home has 1 bathroom.",
+              "price_ml": 20,
+              "time_ml": 2700,
+              "service_categories": [
+                1,
+                6
+              ],
+              "frequencies": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                15,
+                18,
+                21,
+                64,
+                65,
+                66,
+                67,
+                68
+              ],
+              "display_order": 2,
+              "status": 1,
+              "variable_category": 8
+            },
+            {
+              "id": 10,
+              "name": "2 Half Baths (With Only A Toilet or Sink)",
+              "description": "This home has 2 half bathrooms.",
+              "price_ml": 30,
+              "time_ml": 4500,
+              "service_categories": [
+                1,
+                6
+              ],
+              "frequencies": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                15,
+                18,
+                21,
+                64,
+                65,
+                66,
+                67,
+                68
+              ],
+              "display_order": 3,
+              "status": 1,
+              "variable_category": 8
+            },
+            {
+              "id": 12,
+              "name": "3 Half Baths (With Only A Toilet or Sink)",
+              "description": "This home has 3 Bathrooms",
+              "price_ml": 70,
+              "time_ml": 6300,
+              "service_categories": [
+                1,
+                6
+              ],
+              "frequencies": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                15,
+                18,
+                21,
+                64,
+                65,
+                66,
+                67,
+                68
+              ],
+              "display_order": 4,
+              "status": 1,
+              "variable_category": 8
+            },
+            {
+              "id": 16,
+              "name": "4 Half Baths (With Only A Toilet or Sink)",
+              "description": "This home has 4 half bathrooms.",
+              "price_ml": 130,
+              "time_ml": 9900,
+              "service_categories": [
+                1,
+                6
+              ],
+              "frequencies": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                15,
+                18,
+                21,
+                64,
+                65,
+                66,
+                67,
+                68
+              ],
+              "display_order": 5,
+              "status": 1,
+              "variable_category": 8
+            }
+          ]
+        }
+      ],
+      "extras": [
+        {
+          "id": 113,
+          "name": "Inside Windows",
+          "description": "Interior windows will be cleaned on the inside of the home only.",
+          "tooltip_text": "Interior windows will be cleaned on the inside of the home only. $179.99",
+          "prices_ml": [
+            179.99
+          ],
+          "service_categories": [
+            2,
+            6
+          ],
+          "variables": [
+            1,
+            7,
+            8,
+            9,
+            10,
+            11,
+            18,
+            17,
+            16,
+            15,
+            14,
+            19,
+            12,
+            13,
+            20,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            4,
+            6,
+            50,
+            36,
+            37,
+            38,
+            71,
+            78,
+            79,
+            80,
+            84,
+            85,
+            86,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 145,
+          "name": "Finished basement*",
+          "description": "",
+          "tooltip_text": "$64.99",
+          "prices_ml": [
+            64.99
+          ],
+          "service_categories": [
+            6
+          ],
+          "variables": [
+            7,
+            9,
+            11,
+            13,
+            14,
+            15,
+            17,
+            19,
+            3,
+            51,
+            8,
+            10,
+            12,
+            16,
+            57,
+            52,
+            53,
+            54,
+            55,
+            71,
+            81,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 146,
+          "name": "Deep Cleaning",
+          "description": "This deep cleaning package is for: baseboards, doors, light switches, wall outlets, vent covers.",
+          "tooltip_text": "This deep cleaning package is for: baseboards, doors, light switches, wall outlets, vent covers.  $99.99",
+          "prices_ml": [
+            99.99
+          ],
+          "service_categories": [
+            1,
+            6
+          ],
+          "variables": [
+            1,
+            8,
+            10,
+            49,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            7,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            12,
+            16,
+            71,
+            87,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 147,
+          "name": "Deep Cleaning",
+          "description": "This deep cleaning package is for: baseboards, doors, light switches, wall outlets, vent covers.  $119.99",
+          "tooltip_text": "This deep cleaning package is for: baseboards, doors, light switches, wall outlets, vent covers. ",
+          "prices_ml": [
+            119.99
+          ],
+          "service_categories": [
+            1,
+            6
+          ],
+          "variables": [
+            1,
+            8,
+            10,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            7,
+            9,
+            12,
+            16,
+            11,
+            13,
+            3,
+            15,
+            17,
+            19,
+            71,
+            81,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 148,
+          "name": "Deep Cleaning",
+          "description": "This deep cleaning package is for: baseboards, doors, light switches, wall outlets, vent covers. ",
+          "tooltip_text": "This deep cleaning package is for: baseboards, doors, light switches, wall outlets, vent covers.  $139.99",
+          "prices_ml": [
+            139.99
+          ],
+          "service_categories": [
+            1,
+            6
+          ],
+          "variables": [
+            1,
+            8,
+            10,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            7,
+            9,
+            12,
+            16,
+            11,
+            13,
+            2,
+            15,
+            17,
+            19,
+            71,
+            82,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 149,
+          "name": "Deep Cleaning",
+          "description": "This deep cleaning package is for: baseboards, doors, light switches, wall outlets, vent covers.  $159.99",
+          "tooltip_text": "This deep cleaning package is for: baseboards, doors, light switches, wall outlets, vent covers. ",
+          "prices_ml": [
+            159.99
+          ],
+          "service_categories": [
+            1,
+            6
+          ],
+          "variables": [
+            1,
+            8,
+            10,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            7,
+            9,
+            5,
+            11,
+            13,
+            12,
+            15,
+            17,
+            19,
+            16,
+            71,
+            83,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 150,
+          "name": "Deep Cleaning",
+          "description": "This deep cleaning package is for: baseboards, doors, light switches, wall outlets, vent covers. ",
+          "tooltip_text": "This deep cleaning package is for: baseboards, doors, light switches, wall outlets, vent covers.  $179.99",
+          "prices_ml": [
+            179.99
+          ],
+          "service_categories": [
+            1,
+            6
+          ],
+          "variables": [
+            1,
+            8,
+            10,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            7,
+            9,
+            11,
+            13,
+            12,
+            16,
+            4,
+            14,
+            15,
+            17,
+            19,
+            71,
+            84,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 151,
+          "name": "Deep Cleaning",
+          "description": "This deep cleaning package is for: baseboards, doors, light switches, wall outlets, vent covers. ",
+          "tooltip_text": "This deep cleaning package is for: baseboards, doors, light switches, wall outlets, vent covers.  $219.99",
+          "prices_ml": [
+            219.99
+          ],
+          "service_categories": [
+            1,
+            6
+          ],
+          "variables": [
+            1,
+            8,
+            10,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            7,
+            9,
+            11,
+            13,
+            12,
+            16,
+            14,
+            15,
+            17,
+            19,
+            6,
+            50,
+            71,
+            86,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 152,
+          "name": "Deep Cleaning",
+          "description": "This deep cleaning package is for: baseboards, doors, light switches, wall outlets, vent covers.",
+          "tooltip_text": "This deep cleaning package is for: baseboards, doors, light switches, wall outlets, vent covers.  $199.99",
+          "prices_ml": [
+            199.99
+          ],
+          "service_categories": [
+            6
+          ],
+          "variables": [
+            57,
+            90,
+            89,
+            54,
+            56,
+            55,
+            88,
+            9,
+            11,
+            13,
+            15,
+            17,
+            19,
+            51,
+            8,
+            10,
+            12,
+            16,
+            85
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": false,
+          "apply_to_bookings": "all",
+          "status": 1
+        },
+        {
+          "id": 143,
+          "name": "Inside Windows",
+          "description": "Interior windows will be cleaned on the inside of the home only.",
+          "tooltip_text": "Interior windows will be cleaned on the inside of the home only. $39.99",
+          "prices_ml": [
+            39.99
+          ],
+          "service_categories": [
+            1,
+            2,
+            6
+          ],
+          "variables": [
+            1,
+            7,
+            8,
+            9,
+            10,
+            11,
+            18,
+            17,
+            16,
+            15,
+            14,
+            19,
+            12,
+            13,
+            20,
+            32,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            71,
+            72,
+            74,
+            87,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 109,
+          "name": "Inside Windows",
+          "description": "Interior windows will be cleaned on the inside of the home only.",
+          "tooltip_text": "Interior windows will be cleaned on the inside of the home only.  $64.99",
+          "prices_ml": [
+            64.99
+          ],
+          "service_categories": [
+            1,
+            2,
+            6
+          ],
+          "variables": [
+            1,
+            7,
+            8,
+            9,
+            10,
+            11,
+            18,
+            17,
+            16,
+            15,
+            14,
+            19,
+            12,
+            13,
+            20,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            33,
+            3,
+            71,
+            73,
+            75,
+            81,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 110,
+          "name": "Inside Windows",
+          "description": "Interior windows will be cleaned on the inside of the home only.",
+          "tooltip_text": "Interior windows will be cleaned on the inside of the home only. $109.99",
+          "prices_ml": [
+            109.99
+          ],
+          "service_categories": [
+            1,
+            2,
+            6
+          ],
+          "variables": [
+            1,
+            7,
+            8,
+            9,
+            10,
+            11,
+            18,
+            17,
+            16,
+            15,
+            14,
+            19,
+            12,
+            13,
+            20,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            34,
+            2,
+            71,
+            76,
+            82,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 112,
+          "name": "Inside Windows",
+          "description": "Interior windows will be cleaned on the inside of the home only.",
+          "tooltip_text": "Interior windows will be cleaned on the inside of the home only. $139.99",
+          "prices_ml": [
+            139.99
+          ],
+          "service_categories": [
+            1,
+            2,
+            6
+          ],
+          "variables": [
+            1,
+            7,
+            8,
+            9,
+            10,
+            11,
+            18,
+            17,
+            16,
+            15,
+            14,
+            19,
+            12,
+            13,
+            20,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            5,
+            35,
+            71,
+            77,
+            83,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 114,
+          "name": "wipe window blinds (per set)",
+          "description": "",
+          "tooltip_text": "$15 per window blind set",
+          "prices_ml": [
+            15
+          ],
+          "service_categories": [
+            6,
+            2
+          ],
+          "variables": null,
+          "quantity_based": 30,
+          "enable_quantity_based": "yes",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 144,
+          "name": "Spot cleaning inside Walls",
+          "description": "Spot cleaning of walls here and there. We do not take out furniture marks or drawings. Just handprints, smudges,  visible dirt and if possible, in some cases grime.",
+          "tooltip_text": "$39.99",
+          "prices_ml": [
+            39.99
+          ],
+          "service_categories": [
+            6,
+            2
+          ],
+          "variables": [
+            58,
+            45,
+            46,
+            7,
+            9,
+            32,
+            39,
+            40,
+            49,
+            51,
+            8,
+            10,
+            12,
+            16,
+            57,
+            52,
+            53,
+            54,
+            56,
+            55,
+            47,
+            11,
+            13,
+            15,
+            17,
+            19,
+            48,
+            41,
+            42,
+            43,
+            44,
+            71,
+            72,
+            74,
+            87,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 115,
+          "name": "Spot cleaning inside Walls",
+          "description": "Spot cleaning of walls here and there. We do not take out furniture marks or drawings. Just handprints, smudges,  visible dirt and if possible, in some cases grime. ",
+          "tooltip_text": "$59.99",
+          "prices_ml": [
+            59.99
+          ],
+          "service_categories": [
+            6,
+            2
+          ],
+          "variables": [
+            58,
+            45,
+            46,
+            7,
+            9,
+            51,
+            8,
+            10,
+            12,
+            16,
+            57,
+            52,
+            53,
+            54,
+            56,
+            55,
+            11,
+            47,
+            41,
+            42,
+            13,
+            14,
+            15,
+            48,
+            43,
+            17,
+            19,
+            39,
+            40,
+            44,
+            71,
+            33,
+            3,
+            73,
+            75,
+            81,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 90,
+          "name": "Spot cleaning inside Walls",
+          "description": "Spot cleaning of walls here and there. We do not take out furniture marks or drawings. Just handprints, smudges,  visible dirt and if possible, in some cases grime. ",
+          "tooltip_text": "$69.99",
+          "prices_ml": [
+            69.99
+          ],
+          "service_categories": [
+            6,
+            2
+          ],
+          "variables": [
+            58,
+            45,
+            46,
+            7,
+            9,
+            51,
+            8,
+            10,
+            12,
+            16,
+            57,
+            52,
+            53,
+            54,
+            56,
+            55,
+            11,
+            47,
+            41,
+            42,
+            13,
+            14,
+            15,
+            48,
+            43,
+            17,
+            19,
+            39,
+            40,
+            44,
+            71,
+            34,
+            2,
+            76,
+            82,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 116,
+          "name": "Spot cleaning inside Walls",
+          "description": "Spot cleaning of walls here and there. We do not take out furniture marks or drawings. Just handprints, smudges,  visible dirt and if possible, in some cases grime. ",
+          "tooltip_text": "Spot cleaning of walls here and there. We do not take out furniture marks or drawings. Just handprints, smudges,  visible dirt and if possible, in some cases grime.  $74.99",
+          "prices_ml": [
+            74.99
+          ],
+          "service_categories": [
+            6,
+            2
+          ],
+          "variables": [
+            58,
+            45,
+            46,
+            7,
+            9,
+            51,
+            8,
+            10,
+            12,
+            16,
+            57,
+            52,
+            53,
+            54,
+            56,
+            55,
+            11,
+            47,
+            41,
+            42,
+            13,
+            14,
+            15,
+            48,
+            43,
+            44,
+            17,
+            19,
+            39,
+            40,
+            71,
+            35,
+            5,
+            77,
+            83,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 117,
+          "name": "Spot cleaning inside Walls",
+          "description": "Spot cleaning of walls here and there. We do not take out furniture marks or drawings. Just handprints, smudges,  visible dirt and if possible, in some cases grime. ",
+          "tooltip_text": "Spot cleaning of walls here and there. We do not take out furniture marks or drawings. Just handprints, smudges,  visible dirt and if possible, in some cases grime.  $89.99",
+          "prices_ml": [
+            89.99
+          ],
+          "service_categories": [
+            6,
+            2
+          ],
+          "variables": [
+            58,
+            45,
+            46,
+            7,
+            9,
+            51,
+            8,
+            10,
+            12,
+            16,
+            57,
+            52,
+            53,
+            54,
+            56,
+            55,
+            11,
+            47,
+            41,
+            42,
+            13,
+            14,
+            15,
+            48,
+            43,
+            44,
+            17,
+            19,
+            39,
+            40,
+            71,
+            36,
+            4,
+            78,
+            84,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 84,
+          "name": "Spot cleaning inside Walls",
+          "description": "Spot cleaning of walls here and there. We do not take out furniture marks or drawings. Just handprints, smudges,  visible dirt and if possible, in some cases grime. ",
+          "tooltip_text": "Spot cleaning of walls here and there. We do not take out furniture marks or drawings. Just handprints, smudges,  visible dirt and if possible, in some cases grime.  $99.99",
+          "prices_ml": [
+            99.99
+          ],
+          "service_categories": [
+            6,
+            2
+          ],
+          "variables": [
+            58,
+            45,
+            46,
+            7,
+            9,
+            51,
+            8,
+            10,
+            12,
+            16,
+            57,
+            52,
+            53,
+            54,
+            56,
+            55,
+            11,
+            47,
+            41,
+            42,
+            13,
+            14,
+            15,
+            48,
+            43,
+            44,
+            17,
+            19,
+            39,
+            40,
+            71,
+            37,
+            6,
+            79,
+            85,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 85,
+          "name": "Spot cleaning inside Walls",
+          "description": "Spot cleaning of walls here and there. We do not take out furniture marks or drawings. Just handprints, smudges,  visible dirt and if possible, in some cases grime. ",
+          "tooltip_text": "Spot cleaning of walls here and there. We do not take out furniture marks or drawings. Just handprints, smudges,  visible dirt and if possible, in some cases grime.  $109.99",
+          "prices_ml": [
+            109.99
+          ],
+          "service_categories": [
+            6,
+            2
+          ],
+          "variables": [
+            58,
+            45,
+            46,
+            7,
+            9,
+            51,
+            8,
+            10,
+            12,
+            16,
+            57,
+            52,
+            53,
+            54,
+            56,
+            55,
+            11,
+            47,
+            41,
+            42,
+            13,
+            14,
+            15,
+            48,
+            43,
+            44,
+            17,
+            19,
+            39,
+            40,
+            71,
+            50,
+            38,
+            80,
+            86,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 107,
+          "name": "Complete Inside Wall Washing",
+          "description": "This is for homes that have too many handprints, smudges, visible dirt, and require an extensive wall washing. Usually to be paint ready. This price does not include if the home has been smoked in. ",
+          "tooltip_text": "This is for homes that have too many handprints, smudges, visible dirt, and require an extensive wall washing. Usually to be paint ready. This price does not include if the home has been smoked in.  $119.99",
+          "prices_ml": [
+            119.99
+          ],
+          "service_categories": [
+            6,
+            2
+          ],
+          "variables": [
+            58,
+            45,
+            46,
+            47,
+            48,
+            7,
+            9,
+            11,
+            13,
+            14,
+            15,
+            17,
+            19,
+            32,
+            39,
+            40,
+            49,
+            51,
+            8,
+            10,
+            12,
+            16,
+            57,
+            52,
+            53,
+            54,
+            56,
+            55,
+            71,
+            72,
+            74,
+            87,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 118,
+          "name": "Complete Inside Wall Washing",
+          "description": "This is for homes that have too many handprints, smudges, visible dirt, and require an extensive wall washing. Usually to be paint ready. This price does not include if the home has been smoked in. ",
+          "tooltip_text": "This is for homes that have too many handprints, smudges, visible dirt, and require an extensive wall washing. Usually to be paint ready. This price does not include if the home has been smoked in.  $134.99",
+          "prices_ml": [
+            134.99
+          ],
+          "service_categories": [
+            6,
+            2
+          ],
+          "variables": [
+            58,
+            45,
+            46,
+            47,
+            48,
+            7,
+            9,
+            11,
+            13,
+            14,
+            15,
+            17,
+            19,
+            40,
+            51,
+            8,
+            10,
+            12,
+            16,
+            57,
+            52,
+            53,
+            54,
+            56,
+            55,
+            39,
+            3,
+            33,
+            41,
+            42,
+            43,
+            71,
+            73,
+            75,
+            81,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 119,
+          "name": "Complete Inside Wall Washing",
+          "description": "This is for homes that have too many handprints, smudges, visible dirt, and require an extensive wall washing. Usually to be paint ready. This price does not include if the home has been smoked in. ",
+          "tooltip_text": "This is for homes that have too many handprints, smudges, visible dirt, and require an extensive wall washing. Usually to be paint ready. This price does not include if the home has been smoked in.  $154.99",
+          "prices_ml": [
+            154.99
+          ],
+          "service_categories": [
+            6,
+            2
+          ],
+          "variables": [
+            58,
+            45,
+            46,
+            47,
+            48,
+            7,
+            9,
+            11,
+            13,
+            14,
+            15,
+            17,
+            19,
+            51,
+            8,
+            10,
+            12,
+            16,
+            57,
+            52,
+            53,
+            54,
+            56,
+            55,
+            39,
+            40,
+            34,
+            2,
+            41,
+            42,
+            43,
+            44,
+            71,
+            76,
+            82,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 43,
+          "name": "Complete Inside Wall Washing",
+          "description": "This is for homes that have too many handprints, smudges, visible dirt, and require an extensive wall washing. Usually to be paint ready. This price does not include if the home has been smoked in. ",
+          "tooltip_text": "This is for homes that have too many handprints, smudges, visible dirt, and require an extensive wall washing. Usually to be paint ready. This price does not include if the home has been smoked in.  $174.99",
+          "prices_ml": [
+            174.99
+          ],
+          "service_categories": [
+            6,
+            2
+          ],
+          "variables": [
+            58,
+            45,
+            46,
+            47,
+            48,
+            7,
+            9,
+            11,
+            13,
+            14,
+            15,
+            17,
+            19,
+            51,
+            8,
+            10,
+            12,
+            16,
+            57,
+            52,
+            53,
+            54,
+            56,
+            55,
+            39,
+            40,
+            41,
+            42,
+            44,
+            43,
+            5,
+            35,
+            71,
+            77,
+            83,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 120,
+          "name": "Complete Inside Wall Washing",
+          "description": "This is for homes that have too many handprints, smudges, visible dirt, and require an extensive wall washing. Usually to be paint ready. This price does not include if the home has been smoked in. ",
+          "tooltip_text": "This is for homes that have too many handprints, smudges, visible dirt, and require an extensive wall washing. Usually to be paint ready. This price does not include if the home has been smoked in.  $194.99",
+          "prices_ml": [
+            194.99
+          ],
+          "service_categories": [
+            6,
+            2
+          ],
+          "variables": [
+            58,
+            45,
+            46,
+            47,
+            48,
+            7,
+            9,
+            11,
+            13,
+            14,
+            15,
+            17,
+            19,
+            51,
+            8,
+            10,
+            12,
+            16,
+            57,
+            52,
+            53,
+            54,
+            56,
+            55,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            36,
+            4,
+            71,
+            78,
+            84,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 121,
+          "name": "Complete Inside Wall Washing",
+          "description": "This is for homes that have too many handprints, smudges, visible dirt, and require an extensive wall washing. Usually to be paint ready. This price does not include if the home has been smoked in. ",
+          "tooltip_text": "This is for homes that have too many handprints, smudges, visible dirt, and require an extensive wall washing. Usually to be paint ready. This price does not include if the home has been smoked in.  $214.99",
+          "prices_ml": [
+            214.99
+          ],
+          "service_categories": [
+            6,
+            2
+          ],
+          "variables": [
+            58,
+            45,
+            46,
+            47,
+            48,
+            7,
+            9,
+            11,
+            13,
+            14,
+            15,
+            17,
+            19,
+            51,
+            8,
+            10,
+            12,
+            16,
+            57,
+            52,
+            53,
+            54,
+            56,
+            55,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            37,
+            6,
+            71,
+            79,
+            85,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 45,
+          "name": "Complete Inside Wall Washing",
+          "description": "This is for homes that have too many handprints, smudges, visible dirt, and require an extensive wall washing. Usually to be paint ready. This price does not include if the home has been smoked in. ",
+          "tooltip_text": "This is for homes that have too many handprints, smudges, visible dirt, and require an extensive wall washing. Usually to be paint ready. This price does not include if the home has been smoked in.  $234.99",
+          "prices_ml": [
+            234.99
+          ],
+          "service_categories": [
+            6,
+            2
+          ],
+          "variables": [
+            58,
+            45,
+            46,
+            47,
+            48,
+            7,
+            9,
+            11,
+            13,
+            14,
+            15,
+            17,
+            19,
+            51,
+            8,
+            10,
+            12,
+            16,
+            57,
+            52,
+            53,
+            54,
+            56,
+            55,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            50,
+            38,
+            71,
+            80,
+            86,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 122,
+          "name": "Must choose if you have pets",
+          "description": "Even if your pet is non shedding we've seen instances that paw prints(from rain, mud, saliva) and other smudges around the home are visible.",
+          "tooltip_text": "Even if your pet is non shedding we've seen instances that paw prints(from rain, mud, saliva) and other smudges around the home are visible.  $19.99 fee.",
+          "prices_ml": [
+            19.99
+          ],
+          "service_categories": [
+            6,
+            2,
+            3,
+            17
+          ],
+          "variables": null,
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": false,
+          "apply_to_bookings": "all",
+          "status": 1
+        },
+        {
+          "id": 123,
+          "name": "Inside Oven",
+          "description": "Clean out the inside of the oven. $59.99",
+          "tooltip_text": "$59.99",
+          "prices_ml": [
+            59.99
+          ],
+          "service_categories": [
+            1,
+            6
+          ],
+          "variables": [
+            2,
+            1,
+            3,
+            5,
+            4,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            20,
+            19,
+            18,
+            17,
+            16,
+            15,
+            14,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            71,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 124,
+          "name": "Inside Fridge",
+          "description": "Clean out the inside of the fridge. Please empty out the fridge for us, as we do not know what you want to throw in the garbage. We will put everything back in. ",
+          "tooltip_text": "Clean out the inside of the fridge. Please empty out the fridge for us, as we do not know what you want to throw in the garbage. We will put everything back in.  $59.99",
+          "prices_ml": [
+            59.99
+          ],
+          "service_categories": [
+            1,
+            6
+          ],
+          "variables": [
+            2,
+            1,
+            3,
+            5,
+            4,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            20,
+            19,
+            18,
+            17,
+            16,
+            15,
+            14,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            71,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 125,
+          "name": "Inside cabinets (Kitchen & Bathroom Only)",
+          "description": "All cabinets inside the home will be cleaned out. You will need to de-clutter them for us, and we would put everything back in after the inside cabinets have been cleaned.  $74.99",
+          "tooltip_text": "All cabinets inside the home will be cleaned out. You will need to de-clutter them for us, and we would put everything back in after the inside cabinets have been cleaned. ",
+          "prices_ml": [
+            74.99
+          ],
+          "service_categories": [
+            1,
+            6
+          ],
+          "variables": [
+            1,
+            7,
+            8,
+            49,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            9,
+            11,
+            13,
+            14,
+            15,
+            17,
+            19,
+            10,
+            3,
+            2,
+            12,
+            16,
+            71,
+            81,
+            82,
+            87,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 126,
+          "name": "Inside cabinets (Kitchen & Bathroom Only)",
+          "description": "All cabinets inside the home will be cleaned out. You will need to de-clutter them for us, and we would put everything back in after the inside cabinets have been cleaned.  $129.99",
+          "tooltip_text": "All cabinets inside the home will be cleaned out. You will need to de-clutter them for us, and we would put everything back in after the inside cabinets have been cleaned. ",
+          "prices_ml": [
+            129.99
+          ],
+          "service_categories": [
+            1,
+            6
+          ],
+          "variables": [
+            1,
+            7,
+            8,
+            5,
+            4,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            9,
+            11,
+            13,
+            14,
+            15,
+            17,
+            19,
+            10,
+            12,
+            16,
+            71,
+            83,
+            84,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 47,
+          "name": "Inside cabinets (Kitchen & Bathroom Only)",
+          "description": "All cabinets inside the home will be cleaned out. You will need to de-clutter them for us, and we would put everything back in after the inside cabinets have been cleaned. ",
+          "tooltip_text": "All cabinets inside the home will be cleaned out. You will need to de-clutter them for us, and we would put everything back in after the inside cabinets have been cleaned.  $199.99",
+          "prices_ml": [
+            199.99
+          ],
+          "service_categories": [
+            1,
+            6
+          ],
+          "variables": [
+            1,
+            7,
+            8,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            9,
+            11,
+            13,
+            14,
+            15,
+            17,
+            19,
+            10,
+            12,
+            16,
+            6,
+            50,
+            71,
+            85,
+            86,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 127,
+          "name": "Unfinished Basement Sweep",
+          "description": "Only a sweep of the basement, this is not a mop of the basement as we do not provide mopping of the basement. ",
+          "tooltip_text": "$24.99",
+          "prices_ml": [
+            24.99
+          ],
+          "service_categories": [
+            6,
+            2
+          ],
+          "variables": [
+            58,
+            45,
+            46,
+            47,
+            48,
+            7,
+            9,
+            11,
+            13,
+            14,
+            15,
+            17,
+            19,
+            33,
+            34,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            3,
+            2,
+            51,
+            8,
+            10,
+            12,
+            16,
+            57,
+            52,
+            53,
+            54,
+            55,
+            71,
+            73,
+            75,
+            76,
+            81,
+            82,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 128,
+          "name": "Unfinished Basement Sweep",
+          "description": "Only a sweep of the basement, this is not a mop of the basement as we do not provide mopping of the basement. ",
+          "tooltip_text": "$39.99",
+          "prices_ml": [
+            39.99
+          ],
+          "service_categories": [
+            6,
+            2
+          ],
+          "variables": [
+            58,
+            45,
+            46,
+            47,
+            48,
+            7,
+            9,
+            11,
+            13,
+            14,
+            15,
+            17,
+            19,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            51,
+            8,
+            10,
+            12,
+            16,
+            57,
+            52,
+            53,
+            54,
+            55,
+            5,
+            4,
+            35,
+            36,
+            71,
+            77,
+            78,
+            83,
+            84,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 54,
+          "name": "Unfinished Basement Sweep",
+          "description": "Only a sweep of the basement, this is not a mop of the basement as we do not provide mopping of the basement.",
+          "tooltip_text": "Only a sweep of the basement, this is not a mop of the basement as we do not provide mopping of the basement.  $64.99",
+          "prices_ml": [
+            64.99
+          ],
+          "service_categories": [
+            6,
+            2
+          ],
+          "variables": [
+            58,
+            45,
+            46,
+            47,
+            48,
+            7,
+            9,
+            11,
+            13,
+            14,
+            15,
+            17,
+            19,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            51,
+            8,
+            10,
+            12,
+            16,
+            57,
+            52,
+            53,
+            54,
+            55,
+            6,
+            50,
+            38,
+            37,
+            71,
+            79,
+            80,
+            85,
+            86,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 129,
+          "name": "Finished basement",
+          "description": "",
+          "tooltip_text": "$99.99",
+          "prices_ml": [
+            99.99
+          ],
+          "service_categories": [
+            2
+          ],
+          "variables": [
+            58,
+            45,
+            46,
+            47,
+            48,
+            7,
+            9,
+            11,
+            13,
+            14,
+            15,
+            17,
+            19,
+            33,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            3,
+            51,
+            8,
+            10,
+            12,
+            16,
+            57,
+            52,
+            53,
+            54,
+            55,
+            71,
+            73,
+            75,
+            81,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 130,
+          "name": "Finished basement",
+          "description": "",
+          "tooltip_text": "$109.99",
+          "prices_ml": [
+            109.99
+          ],
+          "service_categories": [
+            2
+          ],
+          "variables": [
+            58,
+            45,
+            46,
+            47,
+            48,
+            7,
+            9,
+            11,
+            13,
+            14,
+            15,
+            17,
+            19,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            51,
+            8,
+            10,
+            12,
+            16,
+            57,
+            52,
+            53,
+            54,
+            55,
+            2,
+            5,
+            34,
+            35,
+            71,
+            76,
+            77,
+            82,
+            83,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 131,
+          "name": "Finished basement",
+          "description": "",
+          "tooltip_text": "$144.99",
+          "prices_ml": [
+            144.99
+          ],
+          "service_categories": [
+            2
+          ],
+          "variables": [
+            58,
+            45,
+            46,
+            47,
+            48,
+            7,
+            9,
+            11,
+            13,
+            14,
+            15,
+            17,
+            19,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            51,
+            8,
+            10,
+            12,
+            16,
+            57,
+            52,
+            53,
+            54,
+            55,
+            36,
+            37,
+            4,
+            6,
+            71,
+            78,
+            79,
+            84,
+            85,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 58,
+          "name": "Finished basement",
+          "description": "",
+          "tooltip_text": "$174.99",
+          "prices_ml": [
+            174.99
+          ],
+          "service_categories": [
+            2
+          ],
+          "variables": [
+            58,
+            45,
+            46,
+            47,
+            48,
+            7,
+            9,
+            11,
+            13,
+            14,
+            15,
+            17,
+            19,
+            39,
+            40,
+            41,
+            42,
+            51,
+            8,
+            10,
+            12,
+            16,
+            57,
+            52,
+            53,
+            54,
+            55,
+            50,
+            43,
+            44,
+            38,
+            71,
+            80,
+            86,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 133,
+          "name": "Finished basement*",
+          "description": "",
+          "tooltip_text": "$74.99",
+          "prices_ml": [
+            74.99
+          ],
+          "service_categories": [
+            6
+          ],
+          "variables": [
+            7,
+            9,
+            11,
+            13,
+            14,
+            15,
+            17,
+            19,
+            51,
+            8,
+            10,
+            12,
+            16,
+            57,
+            52,
+            53,
+            54,
+            55,
+            2,
+            71,
+            82,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 134,
+          "name": "Finished basement*",
+          "description": "",
+          "tooltip_text": "$94.99",
+          "prices_ml": [
+            94.99
+          ],
+          "service_categories": [
+            6
+          ],
+          "variables": [
+            58,
+            45,
+            46,
+            47,
+            48,
+            7,
+            9,
+            11,
+            13,
+            14,
+            15,
+            17,
+            19,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            51,
+            8,
+            10,
+            12,
+            16,
+            57,
+            52,
+            53,
+            54,
+            55,
+            35,
+            36,
+            5,
+            4,
+            71,
+            77,
+            78,
+            83,
+            84,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 135,
+          "name": "Finished basement *",
+          "description": "",
+          "tooltip_text": "$119.99",
+          "prices_ml": [
+            119.99
+          ],
+          "service_categories": [
+            6
+          ],
+          "variables": [
+            58,
+            45,
+            46,
+            47,
+            48,
+            7,
+            9,
+            11,
+            13,
+            14,
+            15,
+            17,
+            19,
+            51,
+            8,
+            10,
+            12,
+            16,
+            57,
+            52,
+            53,
+            54,
+            55,
+            37,
+            6,
+            71,
+            79,
+            85,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 136,
+          "name": "Finished basement *",
+          "description": "",
+          "tooltip_text": "$134.99",
+          "prices_ml": [
+            134.99
+          ],
+          "service_categories": [
+            6
+          ],
+          "variables": [
+            58,
+            45,
+            46,
+            47,
+            48,
+            7,
+            9,
+            11,
+            13,
+            14,
+            15,
+            17,
+            19,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            51,
+            8,
+            10,
+            12,
+            16,
+            57,
+            52,
+            53,
+            54,
+            55,
+            50,
+            71,
+            86,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 63,
+          "name": "Finished Basement with Kitchenette* (exterior only)",
+          "description": "This is a basement that has a kitchen but only the exterior of the kitchen surfaces get cleaned, such as exterior of kitchen cabinets, exterior of the oven, and fridge. ",
+          "tooltip_text": "This is a basement that has a kitchen but only the exterior of the kitchen surfaces get cleaned, such as exterior of kitchen cabinets, exterior of the oven, and fridge.  $94.99",
+          "prices_ml": [
+            94.99
+          ],
+          "service_categories": [
+            6
+          ],
+          "variables": [
+            58,
+            45,
+            46,
+            47,
+            48,
+            7,
+            9,
+            11,
+            13,
+            14,
+            15,
+            17,
+            19,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            3,
+            51,
+            8,
+            10,
+            12,
+            16,
+            57,
+            52,
+            53,
+            54,
+            55,
+            71,
+            81,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 139,
+          "name": "Finished Basement with Kitchenette* (exterior only)",
+          "description": "This is a basement that has a kitchen but only the exterior of the kitchen surfaces get cleaned, such as exterior of kitchen cabinets, exterior of the oven, and fridge. ",
+          "tooltip_text": "This is a basement that has a kitchen but only the exterior of the kitchen surfaces get cleaned, such as exterior of kitchen cabinets, exterior of the oven, and fridge.  $119.99",
+          "prices_ml": [
+            119.99
+          ],
+          "service_categories": [
+            6
+          ],
+          "variables": [
+            58,
+            45,
+            46,
+            47,
+            48,
+            7,
+            9,
+            11,
+            13,
+            14,
+            15,
+            17,
+            19,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            51,
+            8,
+            10,
+            12,
+            16,
+            57,
+            52,
+            53,
+            54,
+            55,
+            2,
+            5,
+            71,
+            82,
+            83,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 140,
+          "name": "Finished Basement with Kitchenette* (exterior only)",
+          "description": "This is a basement that has a kitchen but only the exterior of the kitchen surfaces get cleaned, such as exterior of kitchen cabinets, exterior of the oven, and fridge. ",
+          "tooltip_text": "This is a basement that has a kitchen but only the exterior of the kitchen surfaces get cleaned, such as exterior of kitchen cabinets, exterior of the oven, and fridge.  $159.99",
+          "prices_ml": [
+            159.99
+          ],
+          "service_categories": [
+            6
+          ],
+          "variables": [
+            58,
+            45,
+            46,
+            47,
+            48,
+            7,
+            9,
+            11,
+            13,
+            14,
+            15,
+            17,
+            19,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            51,
+            8,
+            10,
+            12,
+            16,
+            57,
+            52,
+            53,
+            54,
+            55,
+            4,
+            6,
+            71,
+            84,
+            85,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 65,
+          "name": "Finished Basement with Kitchenette* (exterior only)",
+          "description": "This is a basement that has a kitchen but only the exterior of the kitchen surfaces get cleaned, such as exterior of kitchen cabinets, exterior of the oven, and fridge. ",
+          "tooltip_text": "This is a basement that has a kitchen but only the exterior of the kitchen surfaces get cleaned, such as exterior of kitchen cabinets, exterior of the oven, and fridge.   $199.99",
+          "prices_ml": [
+            199.99
+          ],
+          "service_categories": [
+            6
+          ],
+          "variables": [
+            58,
+            45,
+            46,
+            47,
+            48,
+            7,
+            9,
+            11,
+            13,
+            14,
+            15,
+            17,
+            19,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            51,
+            8,
+            10,
+            12,
+            16,
+            57,
+            52,
+            53,
+            54,
+            55,
+            50,
+            71,
+            86,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 59,
+          "name": "Finished Basement with Kitchenette",
+          "description": "",
+          "tooltip_text": "$194.99",
+          "prices_ml": [
+            194.99
+          ],
+          "service_categories": [
+            2
+          ],
+          "variables": [
+            58,
+            45,
+            46,
+            47,
+            48,
+            7,
+            9,
+            11,
+            13,
+            14,
+            15,
+            17,
+            19,
+            33,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            51,
+            8,
+            10,
+            12,
+            16,
+            57,
+            52,
+            53,
+            54,
+            55,
+            3,
+            71,
+            73,
+            75,
+            81,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 137,
+          "name": "Finished Basement with Kitchenette",
+          "description": "",
+          "tooltip_text": "$199.99",
+          "prices_ml": [
+            199.99
+          ],
+          "service_categories": [
+            2
+          ],
+          "variables": [
+            58,
+            45,
+            46,
+            47,
+            48,
+            7,
+            9,
+            11,
+            13,
+            14,
+            15,
+            17,
+            19,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            51,
+            8,
+            10,
+            12,
+            16,
+            57,
+            52,
+            53,
+            54,
+            55,
+            34,
+            2,
+            71,
+            76,
+            82,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 138,
+          "name": "Finished Basement with Kitchenette",
+          "description": "",
+          "tooltip_text": "$219.99",
+          "prices_ml": [
+            219.99
+          ],
+          "service_categories": [
+            2
+          ],
+          "variables": [
+            58,
+            45,
+            46,
+            47,
+            48,
+            7,
+            9,
+            11,
+            13,
+            14,
+            15,
+            17,
+            19,
+            35,
+            36,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            5,
+            4,
+            51,
+            8,
+            10,
+            12,
+            16,
+            57,
+            52,
+            53,
+            54,
+            55,
+            71,
+            77,
+            78,
+            83,
+            84,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 62,
+          "name": "Finished Basement with Kitchenette",
+          "description": "",
+          "tooltip_text": "$239.99",
+          "prices_ml": [
+            239.99
+          ],
+          "service_categories": [
+            2
+          ],
+          "variables": [
+            58,
+            45,
+            46,
+            47,
+            48,
+            7,
+            9,
+            11,
+            13,
+            14,
+            15,
+            17,
+            19,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            6,
+            50,
+            51,
+            8,
+            10,
+            12,
+            16,
+            57,
+            52,
+            53,
+            54,
+            55,
+            71,
+            79,
+            80,
+            85,
+            86,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": false,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 141,
+          "name": "De-cluttering or Organizing Per Hour",
+          "description": "De-cluttering simple things such as toys in the toy box. We are not a professional organizers, so this would not be organizing your pantry or organizing your clothes etc. ",
+          "tooltip_text": "De-cluttering simple things such as toys in the toy box. We are not a professional organizers, so this would not be organizing your pantry or organizing your clothes etc.  $69.99",
+          "prices_ml": [
+            69.99
+          ],
+          "service_categories": [
+            1,
+            6
+          ],
+          "variables": [
+            1,
+            3,
+            2,
+            5,
+            4,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            71,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90
+          ],
+          "quantity_based": 8,
+          "enable_quantity_based": "yes",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 142,
+          "name": "sweep only of garage or balcony",
+          "description": "Pick which you would like, the garage or balcony? If it is a garage it is only a sweep of the floors, nothing else. If it is the balcony it is only a sweep of the balcony and not cleaning of the railings and not outside windows. ",
+          "tooltip_text": "Pick which you would like, the garage or balcony? If it is a garage it is only a sweep of the floors, nothing else. If it is the balcony it is only a sweep of the balcony and not cleaning of the railings and not outside windows.  Fee $29.99",
+          "prices_ml": [
+            29.99
+          ],
+          "service_categories": [
+            6,
+            2
+          ],
+          "variables": null,
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 108,
+          "name": "Outside Edmonton/Calgary(Surrounding areas) - Travel fee  (Do not select this if you live inside Edmonton/Calgary)",
+          "description": "",
+          "tooltip_text": "Travel Fee $29.99",
+          "prices_ml": [
+            29.99
+          ],
+          "service_categories": [
+            6,
+            2,
+            3,
+            4,
+            5,
+            17
+          ],
+          "variables": null,
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": true,
+          "apply_to_bookings": "all",
+          "status": 1
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "form_id": 1,
+      "name": "Post Construction Cleaning",
+      "slug": "post-construction-cleaning-",
+      "services": [
+        {
+          "id": 15,
+          "name": "Residential Post Construction Cleaning",
+          "description": "This is the final cleaning only",
+          "display_order": 1,
+          "status": 1
+        }
+      ],
+      "frequencies": [
+        {
+          "id": 1,
+          "name": "One-Time",
+          "repeat_every": "onetime",
+          "occurence_time": "onetime",
+          "discount": 0,
+          "discount_type": "amount",
+          "discount_on": "all-bookings",
+          "display_order": 1,
+          "status": 1
+        }
+      ],
+      "variable_categories": [
+        {
+          "id": 12,
+          "name": "Post Construction Cleaning",
+          "slug": "post_construction_cleaning"
+        }
+      ],
+      "pricing_parameters": [
+        {
+          "id": 12,
+          "name": "post_construction_cleaning",
+          "value": [
+            {
+              "id": 62,
+              "name": "Under 1000 sq/ft",
+              "description": "",
+              "price_ml": 550,
+              "time_ml": 14400,
+              "service_categories": [
+                0
+              ],
+              "frequencies": [
+                0
+              ],
+              "display_order": null,
+              "status": 1,
+              "variable_category": 12
+            },
+            {
+              "id": 63,
+              "name": "1001-1499 SQFT",
+              "description": "",
+              "price_ml": 650,
+              "time_ml": 18000,
+              "service_categories": [
+                0
+              ],
+              "frequencies": [
+                0
+              ],
+              "display_order": null,
+              "status": 1,
+              "variable_category": 12
+            },
+            {
+              "id": 64,
+              "name": "1500-1999 sq/ft",
+              "description": "",
+              "price_ml": 750,
+              "time_ml": 21600,
+              "service_categories": [
+                0
+              ],
+              "frequencies": [
+                0
+              ],
+              "display_order": null,
+              "status": 1,
+              "variable_category": 12
+            },
+            {
+              "id": 65,
+              "name": "2001-2499 sq/ft",
+              "description": "",
+              "price_ml": 850,
+              "time_ml": 25200,
+              "service_categories": [
+                0
+              ],
+              "frequencies": [
+                0
+              ],
+              "display_order": null,
+              "status": 1,
+              "variable_category": 12
+            },
+            {
+              "id": 66,
+              "name": "2500-2999 sq/ft",
+              "description": "",
+              "price_ml": 1100,
+              "time_ml": 28800,
+              "service_categories": [
+                0
+              ],
+              "frequencies": [
+                0
+              ],
+              "display_order": null,
+              "status": 1,
+              "variable_category": 12
+            },
+            {
+              "id": 67,
+              "name": "3000-3499 sq/ft",
+              "description": "",
+              "price_ml": 1300,
+              "time_ml": 36000,
+              "service_categories": [
+                0
+              ],
+              "frequencies": [
+                0
+              ],
+              "display_order": null,
+              "status": 1,
+              "variable_category": 12
+            },
+            {
+              "id": 68,
+              "name": "3500-3999 sq/ft",
+              "description": "",
+              "price_ml": 1500,
+              "time_ml": 43200,
+              "service_categories": [
+                0
+              ],
+              "frequencies": [
+                0
+              ],
+              "display_order": null,
+              "status": 1,
+              "variable_category": 12
+            },
+            {
+              "id": 69,
+              "name": "4000-4499 sq/ft",
+              "description": "",
+              "price_ml": 1700,
+              "time_ml": 50400,
+              "service_categories": [
+                0
+              ],
+              "frequencies": [
+                0
+              ],
+              "display_order": null,
+              "status": 1,
+              "variable_category": 12
+            },
+            {
+              "id": 70,
+              "name": "4500-4999 sq/ft",
+              "description": "",
+              "price_ml": 1900,
+              "time_ml": 57600,
+              "service_categories": [
+                0
+              ],
+              "frequencies": [
+                0
+              ],
+              "display_order": null,
+              "status": 1,
+              "variable_category": 12
+            }
+          ]
+        }
+      ],
+      "extras": [
+        {
+          "id": 78,
+          "name": "sweep only of garage or balcony ",
+          "description": "sweep only of garage or balcony $29.99",
+          "tooltip_text": "sweep only of garage or balcony $29.99",
+          "prices_ml": [
+            29.99
+          ],
+          "service_categories": [
+            0
+          ],
+          "variables": [
+            0
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": false,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 79,
+          "name": " Outside Edmonton (Surrounding area) - Travel fee $50 (Do not select this if you live inside Edmonton)",
+          "description": " Outside Edmonton (Surrounding area) - Travel fee $50 (Do not select this if you live inside Edmonton)",
+          "tooltip_text": " Outside Edmonton (Surrounding area) - Travel fee $50 (Do not select this if you live inside Edmonton)",
+          "prices_ml": [
+            50
+          ],
+          "service_categories": [
+            0
+          ],
+          "variables": [
+            0
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": false,
+          "apply_to_bookings": "all",
+          "status": 1
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "form_id": 5,
+      "name": "Airbnb Cleaning",
+      "slug": "airbnb-cleaning",
+      "services": [
+        {
+          "id": 16,
+          "name": "Hourly Service  $60 Per Hour/ Per Cleaner",
+          "description": "",
+          "display_order": 1,
+          "status": 1
+        }
+      ],
+      "frequencies": [
+        {
+          "id": 1,
+          "name": "One-Time",
+          "repeat_every": "onetime",
+          "occurence_time": "onetime",
+          "discount": 0,
+          "discount_type": "amount",
+          "discount_on": "all-bookings",
+          "display_order": 1,
+          "status": 1
+        }
+      ],
+      "variable_categories": [],
+      "pricing_parameters": [],
+      "extras": [
+        {
+          "id": 80,
+          "name": "Pet Fee $19.99",
+          "description": "If there was any pets in the home",
+          "tooltip_text": null,
+          "prices_ml": [
+            0
+          ],
+          "service_categories": [
+            0
+          ],
+          "variables": null,
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": false,
+          "apply_to_bookings": "all",
+          "status": 1
+        },
+        {
+          "id": 81,
+          "name": "Outside Edmonton (Surrounding areas) - Travel fee $29.99 (Do not select this if you live inside Edmonton)",
+          "description": "Outside Edmonton (Surrounding areas) - Travel fee $29.99 (Do not select this if you live inside Edmonton)",
+          "tooltip_text": null,
+          "prices_ml": [
+            29.99
+          ],
+          "service_categories": [
+            0
+          ],
+          "variables": null,
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": false,
+          "apply_to_bookings": "all",
+          "status": 1
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "form_id": 4,
+      "name": "Office Cleaning",
+      "slug": "office_cleaning",
+      "services": [
+        {
+          "id": 8,
+          "name": "Office Cleaning",
+          "description": "This service is specifically designed for office cleanings only and is charged by square footage of the office.",
+          "display_order": 1,
+          "status": 1
+        }
+      ],
+      "frequencies": [
+        {
+          "id": 5,
+          "name": "Daily ( NO Saturday & Sunday)",
+          "repeat_every": "daily_no_saturday_sunday",
+          "occurence_time": "recurring",
+          "discount": 15,
+          "discount_type": "percentage",
+          "discount_on": "exclude-first-booking",
+          "display_order": null,
+          "status": 1
+        },
+        {
+          "id": 6,
+          "name": "Saturday and Sunday ",
+          "repeat_every": "saturday_sunday",
+          "occurence_time": "recurring",
+          "discount": 10,
+          "discount_type": "percentage",
+          "discount_on": "all-bookings",
+          "display_order": null,
+          "status": 1
+        },
+        {
+          "id": 7,
+          "name": "Every 8 weeks",
+          "repeat_every": "every_8_weeks",
+          "occurence_time": "recurring",
+          "discount": 0,
+          "discount_type": "percentage",
+          "discount_on": "exclude-first-booking",
+          "display_order": null,
+          "status": 1
+        },
+        {
+          "id": 1,
+          "name": "One-Time",
+          "repeat_every": "onetime",
+          "occurence_time": "onetime",
+          "discount": 0,
+          "discount_type": "amount",
+          "discount_on": "all-bookings",
+          "display_order": 1,
+          "status": 1
+        },
+        {
+          "id": 3,
+          "name": "Weekly",
+          "repeat_every": "every_week",
+          "occurence_time": "recurring",
+          "discount": 20,
+          "discount_type": "percentage",
+          "discount_on": "exclude-first-booking",
+          "display_order": 2,
+          "status": 1
+        },
+        {
+          "id": 4,
+          "name": "Bi-Weekly (Every 2 Weeks)",
+          "repeat_every": "every_2_weeks",
+          "occurence_time": "recurring",
+          "discount": 15,
+          "discount_type": "percentage",
+          "discount_on": "exclude-first-booking",
+          "display_order": 3,
+          "status": 1
+        },
+        {
+          "id": 2,
+          "name": "Every 4 Weeks",
+          "repeat_every": "every_4_weeks",
+          "occurence_time": "recurring",
+          "discount": 10,
+          "discount_type": "percentage",
+          "discount_on": "exclude-first-booking",
+          "display_order": 4,
+          "status": 1
+        }
+      ],
+      "variable_categories": [
+        {
+          "id": 10,
+          "name": "Office",
+          "slug": "office"
+        }
+      ],
+      "pricing_parameters": [
+        {
+          "id": 10,
+          "name": "office",
+          "value": [
+            {
+              "id": 59,
+              "name": "Square Footage",
+              "description": "This variable is to know how much we charge per square footage for office cleanings.",
+              "price_ml": 0.12,
+              "time_ml": 10,
+              "service_categories": [
+                8
+              ],
+              "frequencies": [
+                10,
+                11,
+                12,
+                13,
+                14,
+                17,
+                20
+              ],
+              "display_order": 1,
+              "status": 1,
+              "variable_category": 10
+            }
+          ]
+        }
+      ],
+      "extras": [
+        {
+          "id": 72,
+          "name": "Inside Cabinets (Under 2000sqft Office Only) (Kitchen/Bathroom Only)",
+          "description": "Cabinets must be empty. ",
+          "tooltip_text": null,
+          "prices_ml": [
+            120
+          ],
+          "service_categories": [
+            0
+          ],
+          "variables": [
+            0
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": false,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 73,
+          "name": "Deep cleaning (Under 2000 sqft only)",
+          "description": "This includes the baseboards, doors, light switches, wall outlets, vent covers only",
+          "tooltip_text": "This includes the baseboards, doors, light switches, wall outlets, vent covers only",
+          "prices_ml": [
+            120
+          ],
+          "service_categories": [
+            0
+          ],
+          "variables": [
+            0
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": false,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 74,
+          "name": "Inside Fridge (Must be Empty)",
+          "description": "Inside the fridge must be empty.",
+          "tooltip_text": "Inside the fridge must be empty.",
+          "prices_ml": [
+            59.99
+          ],
+          "service_categories": [
+            0
+          ],
+          "variables": [
+            0
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": false,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 75,
+          "name": "Spot Cleaning Walls (Under 2000 sqft office)",
+          "description": "If the walls are heavily soiled then call to ask about custom pricing. This is only for quick spot cleaning of walls. ",
+          "tooltip_text": "If the walls are heavily soiled then call to ask about custom pricing. This is only for quick spot cleaning of walls. ",
+          "prices_ml": [
+            59.99
+          ],
+          "service_categories": [
+            0
+          ],
+          "variables": [
+            0
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": false,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 76,
+          "name": "Inside Windows (Under 2000sqft Office only)",
+          "description": "Window tracks, the glass, frames around, window sills (But no screens and no blinds)",
+          "tooltip_text": null,
+          "prices_ml": [
+            20
+          ],
+          "service_categories": [
+            0
+          ],
+          "variables": [
+            0
+          ],
+          "quantity_based": 15,
+          "enable_quantity_based": "yes",
+          "exempt_extra_from_freq_disc": false,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 77,
+          "name": "Wipe Window Blinds (non fabric)",
+          "description": "",
+          "tooltip_text": null,
+          "prices_ml": [
+            15
+          ],
+          "service_categories": [
+            0
+          ],
+          "variables": [
+            0
+          ],
+          "quantity_based": 15,
+          "enable_quantity_based": "yes",
+          "exempt_extra_from_freq_disc": false,
+          "apply_to_bookings": "first-only",
+          "status": 1
+        },
+        {
+          "id": 86,
+          "name": "Outside Edmonton (Surrounding areas) - Travel fee $29.99 (Do not select this if you live inside Edmonton)",
+          "description": "",
+          "tooltip_text": null,
+          "prices_ml": [
+            29.99
+          ],
+          "service_categories": [
+            8
+          ],
+          "variables": [
+            59
+          ],
+          "quantity_based": 1,
+          "enable_quantity_based": "no",
+          "exempt_extra_from_freq_disc": false,
+          "apply_to_bookings": "all",
+          "status": 1
+        }
+      ]
+    }
+  ]
+}

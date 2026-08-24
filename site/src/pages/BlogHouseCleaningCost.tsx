@@ -1,0 +1,349 @@
+import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import { absoluteAssetUrl, ARTICLE_AUTHOR, ARTICLE_PUBLISHER } from "@/lib/seo";
+import { canonicalUrlForPath } from "@/data/legacy-urls";
+import { Calendar, Clock, ArrowLeft, DollarSign, Home, Users, Sparkles, Clock3, MapPin, Package } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+
+import heroImage from "@/assets/blog/house-cleaning-cost-hero.jpg";
+import apartmentImage from "@/assets/blog/apartment-cleaning.jpg";
+import suppliesImage from "@/assets/blog/cleaning-supplies-cost.jpg";
+import deepCleanImage from "@/assets/blog/deep-cleaning-kitchen.jpg";
+
+const cleaningTypes = [
+  {
+    title: "General Cleanings",
+    description: "Involves sanitizing and tidying up surfaces like countertops, cabinets, and appliances. For a 3-bedroom, 2,000 sq ft home: $150-$250. For larger homes (3,000-3,500 sq ft): $350-$500.",
+    priceRange: "$150 - $500"
+  },
+  {
+    title: "Deep Cleanings",
+    description: "Intensive cleaning of all surfaces with special attention to hard-to-reach areas like interior of appliances and cabinets. Takes longer to complete.",
+    priceRange: "$200 - $400"
+  },
+  {
+    title: "Move-in/Move-out Cleanings",
+    description: "More thorough than general cleanings. Includes washing walls and windows, scrubbing hard surfaces. For homes 600-2,400 sq ft.",
+    priceRange: "$130 - $500"
+  },
+  {
+    title: "Post-Construction Cleanings",
+    description: "For post-renovation or post-construction cleaning. Includes removing dust and debris from all surfaces. Charged per square foot.",
+    priceRange: "$0.10 - $0.50/sq ft"
+  }
+];
+
+const pricingFactors = [
+  {
+    icon: Home,
+    title: "Size of House",
+    description: "Companies typically charge by square footage. A 2-bedroom apartment (800 sq ft) may cost ~$180 for deep cleaning, while a 4-bedroom home (2,000 sq ft) can cost $350+."
+  },
+  {
+    icon: Users,
+    title: "Number of Bedrooms & Bathrooms",
+    description: "More rooms and bathrooms = more time-consuming to clean, resulting in higher rates."
+  },
+  {
+    icon: Clock3,
+    title: "Frequency of Service",
+    description: "Weekly cleanings may be $160/visit, while bi-weekly could be $180/visit. More frequent service = lower per-visit cost."
+  },
+  {
+    icon: MapPin,
+    title: "Your Location",
+    description: "Travel charges may apply for areas outside the company's city or far from their office."
+  },
+  {
+    icon: Package,
+    title: "Products & Supplies",
+    description: "Companies that provide their own supplies may charge more. Larger companies with more resources typically include this in their pricing."
+  },
+  {
+    icon: Sparkles,
+    title: "Additional Services",
+    description: "Extras like carpet cleaning, window cleaning, laundry, or dishes will increase the total cost."
+  }
+];
+
+export default function BlogHouseCleaningCost() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return (
+    <>
+      <Helmet>
+        <title>How Much Does House Cleaning Cost? | Duty Cleaners</title>
+        <meta
+          name="description"
+          content="Discover house cleaning costs in Canada. Learn about hourly rates, flat rates, and factors affecting professional cleaning service prices in Alberta."
+        />
+        <link rel="canonical" href="https://dutycleaners.ca/how-much-does-a-house-cleaning-cost/" />
+        <meta property="og:title" content="How Much Does House Cleaning Cost? | Duty Cleaners" />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="https://dutycleaners.ca/how-much-does-a-house-cleaning-cost/" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "How Much Does House Cleaning Cost? Complete Pricing Guide",
+          "description": "Discover house cleaning costs in Canada. Learn about hourly rates, flat rates, and factors affecting professional cleaning service prices in Alberta.",
+          "image": absoluteAssetUrl(heroImage),
+          "datePublished": "2026-01-25",
+          "dateModified": "2026-01-25",
+          "author": ARTICLE_AUTHOR,
+          "publisher": ARTICLE_PUBLISHER,
+          "mainEntityOfPage": canonicalUrlForPath("/how-much-does-a-house-cleaning-cost")
+})}</script>
+      </Helmet>
+
+      <div className="min-h-screen bg-background">
+        <Navigation />
+        <div className="container mx-auto px-4 pt-4">
+          <Breadcrumbs />
+        </div>
+
+        {/* Hero Section */}
+        <section className="relative pt-24 pb-16">
+          <div className="container mx-auto px-4">
+            <Link to="/blog">
+              <Button variant="ghost" className="mb-6">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Back to Blog
+              </Button>
+            </Link>
+            
+            <div className="max-w-4xl mx-auto">
+              <div className="flex items-center gap-4 mb-6 text-sm text-muted-foreground">
+                <span className="inline-flex items-center gap-1 bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
+                  Pricing Guide
+                </span>
+                <span className="flex items-center gap-1">
+                  <Calendar className="h-4 w-4" />
+                  January 25, 2026
+                </span>
+                <span className="flex items-center gap-1">
+                  <Clock className="h-4 w-4" />
+                  12 min read
+                </span>
+              </div>
+
+              <h1 className="text-3xl md:text-5xl font-bold mb-6 text-foreground leading-tight">
+                How Much Does a House Cleaning Cost?
+              </h1>
+              
+              <p className="text-xl text-muted-foreground mb-8">
+                Understand the factors that affect professional house cleaning prices and what you can expect to pay for different types of cleaning services.
+              </p>
+
+              <div className="aspect-video rounded-2xl overflow-hidden mb-12">
+                <img width={1920} height={1080}
+                  src={heroImage}
+                  alt="Professional house cleaner with cleaning supplies and pricing checklist"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Article Content */}
+        <section className="pb-20">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              {/* Introduction */}
+              <div className="prose prose-lg max-w-none mb-12">
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  House cleaning hardly seems like a priority when you have such a long list of daily tasks, including work and taking care of the kids. Running errands also steal plenty of time from your day. This is where it becomes beneficial to hire professional cleaners because they will get the job done quickly so you can focus on other things.
+                </p>
+                <p className="text-lg text-muted-foreground leading-relaxed mt-4">
+                  But how much do these services cost? Unfortunately, there is no one simple answer to this question. There are numerous factors that go into how much a cleaner or professional cleaning company will charge for their services. Every home is different, so they will have different needs.
+                </p>
+              </div>
+
+              {/* Types of Cleaners */}
+              <div className="mb-16">
+                <h2 className="text-2xl md:text-3xl font-bold mb-6 text-foreground">
+                  Types of House Cleaners and Their Cost
+                </h2>
+
+                <div className="grid md:grid-cols-2 gap-6 mb-8">
+                  <div className="p-6 bg-muted/30 rounded-xl border">
+                    <h4 className="font-bold text-foreground mb-3 text-lg">🧹 Independent Cleaner</h4>
+                    <p className="text-muted-foreground text-sm mb-4">
+                      The cost of an independent cleaner will depend on their rate and the type of cleaning you require. An independent cleaner who just started out may offer lower rates, while an established house cleaner may charge more.
+                    </p>
+                    <div className="bg-primary/10 rounded-lg p-3">
+                      <p className="text-primary font-semibold text-center">$50 - $90 for 2 hours</p>
+                    </div>
+                  </div>
+                  <div className="p-6 bg-muted/30 rounded-xl border">
+                    <h4 className="font-bold text-foreground mb-3 text-lg">🏢 Professional Cleaning Company</h4>
+                    <p className="text-muted-foreground text-sm mb-4">
+                      Pricing for professional companies is typically more standardized. They don't usually charge by the hour but by square footage. You can always expect to pay around the same amount for basic cleaning.
+                    </p>
+                    <div className="bg-primary/10 rounded-lg p-3">
+                      <p className="text-primary font-semibold text-center">Discounts for recurring services</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Types of Charges */}
+              <div className="mb-16">
+                <h2 className="text-2xl md:text-3xl font-bold mb-6 text-foreground">
+                  Types of Cleaning Charges
+                </h2>
+
+                <div className="aspect-video rounded-xl overflow-hidden mb-6">
+                  <img width={1024} height={1024}
+                    src={apartmentImage}
+                    alt="Clean modern apartment living room"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                <p className="text-muted-foreground mb-6">
+                  There are two types of charges for home cleaning services: the <strong>hourly rate</strong> and the <strong>flat rate</strong>. House cleaning prices range from $120 to $235 on average but the cost may differ depending on the level of cleaning needed.
+                </p>
+
+                <div className="grid md:grid-cols-2 gap-6 mb-8">
+                  <div className="p-6 bg-secondary/10 rounded-xl border border-secondary/20">
+                    <div className="flex items-center gap-2 mb-3">
+                      <Clock3 className="h-5 w-5 text-secondary-foreground" />
+                      <h4 className="font-bold text-foreground">Hourly Rate</h4>
+                    </div>
+                    <ul className="text-muted-foreground text-sm space-y-2">
+                      <li>• 2-bedroom apartment: <strong>$40-$65/hour</strong> per cleaner</li>
+                      <li>• Larger homes with more rooms: <strong>$70-$80/hour</strong> per cleaner</li>
+                      <li>• Professional companies usually have minimum hours (e.g., 3 hours for $210)</li>
+                    </ul>
+                  </div>
+                  <div className="p-6 bg-accent/10 rounded-xl border border-accent/20">
+                    <div className="flex items-center gap-2 mb-3">
+                      <DollarSign className="h-5 w-5 text-accent-foreground" />
+                      <h4 className="font-bold text-foreground">Flat Rate</h4>
+                    </div>
+                    <ul className="text-muted-foreground text-sm space-y-2">
+                      <li>• Based on the size of your home</li>
+                      <li>• Small 1-bedroom apartment: <strong>$170-$200</strong> for deep cleaning</li>
+                      <li>• Larger 4-bedroom house: <strong>$400+</strong></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Pricing Factors */}
+              <div className="mb-16">
+                <h2 className="text-2xl md:text-3xl font-bold mb-6 text-foreground">
+                  Factors That Affect House Cleaning Cost
+                </h2>
+
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {pricingFactors.map((factor, index) => (
+                    <div key={index} className="p-5 bg-muted/30 rounded-xl border">
+                      <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center mb-3">
+                        <factor.icon className="h-5 w-5 text-primary" />
+                      </div>
+                      <h4 className="font-semibold text-foreground mb-2">{factor.title}</h4>
+                      <p className="text-muted-foreground text-sm">{factor.description}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Types of Cleaning Services */}
+              <div className="mb-16">
+                <h2 className="text-2xl md:text-3xl font-bold mb-6 text-foreground">
+                  Types of Cleaning Services & Their Cost
+                </h2>
+
+                <div className="grid md:grid-cols-2 gap-6 mb-8">
+                  <div className="aspect-video rounded-xl overflow-hidden">
+                    <img width={1024} height={1024}
+                      src={deepCleanImage}
+                      alt="Professional cleaner deep cleaning kitchen appliances"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="aspect-video rounded-xl overflow-hidden">
+                    <img width={1024} height={1024}
+                      src={suppliesImage}
+                      alt="Professional cleaning supplies and equipment"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  {cleaningTypes.map((type, index) => (
+                    <div key={index} className="flex flex-col sm:flex-row sm:items-center gap-4 p-5 bg-muted/30 rounded-xl border">
+                      <div className="flex-1">
+                        <h4 className="font-semibold text-foreground mb-1">{type.title}</h4>
+                        <p className="text-muted-foreground text-sm">{type.description}</p>
+                      </div>
+                      <div className="bg-primary text-primary-foreground px-4 py-2 rounded-lg font-semibold text-sm whitespace-nowrap">
+                        {type.priceRange}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Additional Considerations */}
+              <div className="mb-16">
+                <h2 className="text-2xl md:text-3xl font-bold mb-6 text-foreground">
+                  Additional Considerations
+                </h2>
+
+                <div className="space-y-4">
+                  <div className="p-5 bg-destructive/10 rounded-xl border border-destructive/20">
+                    <h4 className="font-semibold text-foreground mb-2">⚠️ Late Cancellation Fees</h4>
+                    <p className="text-muted-foreground text-sm">
+                      Many companies charge fees for last-minute cancellations. Some may charge 50%-60% of the service cost, while others may require a flat rate of $50-$75. Always ask about cancellation policies when booking.
+                    </p>
+                  </div>
+                  
+                  <div className="p-5 bg-muted/30 rounded-xl border">
+                    <h4 className="font-semibold text-foreground mb-2">📋 Getting an Accurate Estimate</h4>
+                    <p className="text-muted-foreground text-sm">
+                      The best way to get an accurate estimate for your specific situation is to contact a local cleaning company and schedule an estimate. During this estimate, they will take all pricing factors into account to give you an exact quote.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* CTA */}
+              <div className="bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 rounded-2xl p-8 text-center">
+                <h3 className="text-2xl font-bold mb-4 text-foreground">
+                  See My Instant Price Today
+                </h3>
+                <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+                  Ready to find out how much professional cleaning will cost for your home? Contact Duty Cleaners for a free, no-obligation quote. We serve Alberta with transparent, competitive pricing.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Link to="/">
+                    <Button size="lg" className="w-full sm:w-auto">
+                      See My Instant Price
+                    </Button>
+                  </Link>
+                  <Link to="/cleaning-services-calgary">
+                    <Button size="lg" variant="outline" className="w-full sm:w-auto">
+                      See My Instant Price
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <Footer />
+      </div>
+    </>
+  );
+}

@@ -1,0 +1,29 @@
+/* =============================================================================
+   Duty Cleaners — WordPress Customizer → Additional CSS
+   (Appearance → Customize → Additional CSS)
+
+   Mirror of what is live. Replaces the dc-form-embed-fix.php MU-plugin, which
+   is disabled and must stay that way: editing it live took the site down with
+   a PHP fatal on 2026-08-08. CSS here can only affect layout; it cannot
+   white-screen the site.
+   ============================================================================= */
+
+/* min-height only, NEVER height: this guarantees a floor before GHL's deferred
+   resize script runs, while leaving the script free to grow the iframe
+   afterwards. Without a floor the iframe sits at its inline 800px and the
+   overflow becomes an inner scroll region — and on iOS an iframe with any
+   internal scroll swallows the swipe, so the page will not scroll.
+
+   Content measured 2026-08-08 after the mobile-rhythm tightening:
+     desktop  1279px
+     mobile   1227px @320px, 1205px @375px+
+   One floor covers both, leaving ~71px headroom.
+
+   IF YOU ADD FIELDS TO THE FORM, RE-MEASURE AND RAISE THIS. Content creeping
+   above the floor is what broke mobile scrolling once already. And note
+   documentElement.scrollHeight lies here — it is clamped to the iframe height
+   — so measure the real content bottom instead. */
+
+iframe[id^="inline-AwJDnvuYtkojIN3aOysC"] {
+  min-height: 1350px !important;
+}

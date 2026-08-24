@@ -1,0 +1,247 @@
+/* ===========================================================================
+   Duty Cleaners quote form — readability, accessibility, mobile
+   Paste at the BOTTOM of: GHL builder → Styles & Options (sliders icon,
+   top right) → Advanced → CUSTOM CSS → Save.
+
+   Palette chosen for legibility, not brand match. Every ratio below was
+   measured against the live form. WCAG 2.1/2.2: body text 4.5:1,
+   UI components & borders 3:1, focus indicator 3:1 vs unfocused state.
+
+   ---------------------------------------------------------------------------
+   WHY THE DOUBLED #_builder-form#_builder-form
+   The form's own generated CSS already styles fields with !important at
+   specificity (1,2,0), e.g. `#_builder-form .multiselect .multiselect__tags`.
+   A single-id rule LOSES to it even with !important. Doubling the id gives
+   (2,2,0) and wins. Do not "simplify" these selectors — the styling silently
+   reverts if you do.
+
+   Specificity also matters within this file: the focus rules must be at
+   least as specific as the base field rules, hence `input[type=text]:focus`
+   rather than a bare `input:focus`.
+   ---------------------------------------------------------------------------
+*/
+
+/* ---- Card: off-white, not pure white -------------------------------------
+   Pure black on pure white triggers halation / visual stress for dyslexic
+   and astigmatic readers; near-black on slightly off-white is the
+   recommended pairing. It also makes the white fields read as distinct
+   "wells" rather than blending into the card.
+   -------------------------------------------------------------------------- */
+#_builder-form#_builder-form { background-color: #F7F8FA !important; }
+
+/* ---- Fields: white fill + strong border ----------------------------------
+   WCAG 1.4.11 lets a field be identified by EITHER its fill or its edge at
+   3:1 — so a white field with a real border is compliant and maximises text
+   contrast. No tinted fill needed.
+     field border #6B7280 vs white   4.83:1  (needs 3)
+     field border #6B7280 vs card    4.55:1
+     typed text   #1F2937 on white  14.68:1
+     placeholder  #6B7280 on white   4.83:1  (was 2.33 — failed)
+   -------------------------------------------------------------------------- */
+#_builder-form#_builder-form .multiselect .multiselect__tags,
+#_builder-form#_builder-form input[type=text],
+#_builder-form#_builder-form input[type=email],
+#_builder-form#_builder-form input[type=tel] {
+  background-color: #FFFFFF !important;
+  border: 1px solid #6B7280 !important;
+  color: #1F2937 !important;
+  border-radius: 6px !important;
+}
+
+#_builder-form#_builder-form .multiselect .multiselect__placeholder,
+#_builder-form#_builder-form ::placeholder {
+  color: #6B7280 !important;
+  opacity: 1 !important;
+}
+
+/* The placeholder/value SPANS carry their own background — the old mustard
+   was set on them directly, not just on the field. Changing only the field's
+   background leaves a yellow highlight box hugging the placeholder text, and
+   grey text on that mustard is 3.36:1 (fails). Clear the spans too. */
+#_builder-form#_builder-form .multiselect .multiselect__placeholder,
+#_builder-form#_builder-form .multiselect .multiselect__single,
+#_builder-form#_builder-form .multiselect .multiselect__tags-wrap,
+#_builder-form#_builder-form .multiselect span {
+  background-color: transparent !important;
+}
+#_builder-form#_builder-form .multiselect .multiselect__single,
+#_builder-form#_builder-form .multiselect .multiselect__input {
+  color: #1F2937 !important;
+}
+
+/* ---- Labels: near-black + semibold, 16.69:1 on the card ------------------
+   NN/g: always-visible labels outperform placeholder-as-label, and pale grey
+   labels slow everyone down, not just low-vision users.
+   -------------------------------------------------------------------------- */
+#_builder-form#_builder-form label {
+  color: #111827 !important;
+  font-weight: 600 !important;
+}
+
+/* ---- Open dropdown list -------------------------------------------------
+   Options #1F2937 on white = 14.68:1. Highlight/selected uses the deep blue
+   with white text = 7.14:1 (AAA), so the active row is unmistakable.
+   -------------------------------------------------------------------------- */
+#_builder-form#_builder-form .multiselect .multiselect__content-wrapper {
+  background-color: #FFFFFF !important;
+  border: 1px solid #6B7280 !important;
+}
+#_builder-form#_builder-form .multiselect .multiselect__option {
+  color: #1F2937 !important;
+  background-color: #FFFFFF !important;
+}
+#_builder-form#_builder-form .multiselect .multiselect__option--highlight,
+#_builder-form#_builder-form .multiselect .multiselect__option--selected {
+  background-color: #175A96 !important;
+  color: #FFFFFF !important;
+}
+
+/* ---- Focus: a real ring, not a recoloured border -------------------------
+   WCAG 2.4.13 wants >=2px and 3:1 between focused and unfocused states.
+   Recolouring the grey border blue would only be 1.08:1 — near-identical
+   luminance. An outline OFFSET outside the field instead paints over card
+   pixels: #175A96 vs #F7F8FA = 6.72:1. Keyboard users can actually see it.
+   -------------------------------------------------------------------------- */
+#_builder-form#_builder-form input[type=text]:focus,
+#_builder-form#_builder-form input[type=email]:focus,
+#_builder-form#_builder-form input[type=tel]:focus,
+#_builder-form#_builder-form .multiselect.multiselect--active .multiselect__tags {
+  outline: 3px solid #175A96 !important;
+  outline-offset: 2px !important;
+  border-color: #1F2937 !important;
+}
+
+/* ---- Submit button: deep blue, white text = 7.14:1 (AAA) ----------------- */
+#_builder-form#_builder-form button[type=submit] {
+  background-color: #175A96 !important;
+  color: #FFFFFF !important;
+}
+
+/* Stray <br> inside the button label was inflating it to 101px tall */
+#_builder-form button[type=submit] br { display: none !important; }
+
+/* ---- Labels sized up: 14px -> 16px --------------------------------------- */
+#_builder-form#_builder-form label { font-size: 16px !important; }
+
+/* ---- Validation errors ---------------------------------------------------
+   GHL already renders the message text (`<div class="error">Name is
+   required</div>`) at #CB3837 = 4.75:1, which passes. What it does NOT do is
+   mark the FIELD, so on a ~1300px form the message can sit off-screen.
+   This tints the whole field block and adds a red bar down its left edge.
+
+   The `.error` div is injected ONLY after failed validation (verified: zero
+   `.error` nodes exist before submit), so `:has(.error)` is safe here — it
+   can never match a valid field.
+
+   Note this styles the WRAPPER, not the input. Something in GHL's own CSS
+   wins on the input's border even against inline !important — box-shadow on
+   the wrapper is uncontested and achieves the same signal.
+   -------------------------------------------------------------------------- */
+#_builder-form#_builder-form .form-builder--item:has(.error) {
+  background-color: #FEF2F2 !important;
+  box-shadow: inset 4px 0 0 0 #B91C1C !important;
+  border-radius: 6px !important;
+  padding-left: 10px !important;
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
+}
+#_builder-form#_builder-form .error {
+  color: #B3261E !important;   /* 5.98:1 on the pink error background */
+  font-weight: 600 !important;
+  margin-top: 4px !important;
+}
+
+/* ---- Trust bar: keep all three items on one line -------------------------
+   It's a Bootstrap <table class="table"> whose <tr class="row"> is a flex
+   container that wrapped 2+1, orphaning "5 Star Rated Service". Equal flex
+   cells keep it to one row down to 320px with no overflow.
+   -------------------------------------------------------------------------- */
+#_builder-form#_builder-form .table-wrapper .table .row {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  gap: 4px !important;
+}
+#_builder-form#_builder-form .table-wrapper .table .row > td {
+  flex: 1 1 0 !important;
+  width: auto !important;
+  max-width: none !important;
+  padding-left: 2px !important;
+  padding-right: 2px !important;
+}
+
+/* ---- Section headings ----------------------------------------------------
+   The form is ~1330px tall on a phone with nine questions and no indication
+   that it ends. These two headings split it into a long first part and a
+   short second part, so the contact fields read as the home stretch rather
+   than "yet more questions".
+
+   Injected with ::before on the first field of each group. The field wrappers
+   carry stable ids — `..._zZe52Ae37d5GYopA6Ozr_0` (first dropdown) and
+   `..._full_name_6` — so `[id$=...]` anchors safely. Doing it this way avoids
+   adding elements in the builder, which is drag-and-drop and unreliable.
+
+   Caveat: CSS-generated text is not a real heading element. Modern screen
+   readers do announce ::before content, but if you ever want proper <h3>s,
+   add Text elements in the builder and delete this block.
+
+   NOTE: if fields are ever reordered or added, these id suffixes may shift —
+   re-check the anchors.
+   -------------------------------------------------------------------------- */
+#_builder-form#_builder-form [id$=_zZe52Ae37d5GYopA6Ozr_0]::before,
+#_builder-form#_builder-form [id$=_full_name_6]::before {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: #4B5563;              /* 7.11:1 on the card */
+  margin-bottom: 10px;
+}
+#_builder-form#_builder-form [id$=_zZe52Ae37d5GYopA6Ozr_0]::before {
+  content: "Step 1 of 2 - About your home";
+}
+/* "Where to send your quote" was wrong — the quote is shown on the next
+   page, not emailed. "Your details" is accurate and shorter. */
+#_builder-form#_builder-form [id$=_full_name_6]::before {
+  content: "Step 2 of 2 - Your details";
+  border-top: 1px solid #E2E5EA;
+  padding-top: 14px;
+  margin-top: 18px;
+}
+
+/* ---- Mobile --------------------------------------------------------------
+   GHL zeroes the form's own padding on small screens, so pad the field items.
+   16px inputs prevent iOS Safari zooming on focus. Measured at 320px and
+   375px: 13px side gaps, no horizontal overflow.
+   -------------------------------------------------------------------------- */
+@media (max-width: 600px) {
+  /* ---- Tighter vertical rhythm ------------------------------------------
+     Measured saving: 1368px -> 1205px content height (163px / 12% less
+     scrolling). Field wrappers carried 16px bottom margins and labels a
+     28.8px line-height (1.8x — very loose). Tap targets are untouched at
+     59px, well above the 44px minimum.
+
+     THIS ALSO FIXES A SCROLL BUG. The section headings added ~100px, pushing
+     mobile content to 1428px against a 1420px iframe floor. That 8px
+     overflow re-created an inner scroll region, and on iOS an iframe with
+     ANY internal scroll swallows the swipe — the page won't move until you
+     fight it. Keeping content under the floor is what prevents this, so if
+     you ever add fields, re-measure and raise the floor in
+     dc-form-embed-fix.php.
+     ---------------------------------------------------------------------- */
+  #_builder-form#_builder-form .form-field-wrapper { margin-bottom: 10px !important; }
+  #_builder-form#_builder-form label { margin-bottom: 5px !important; line-height: 1.35 !important; }
+  #_builder-form#_builder-form { padding-top: 18px !important; padding-bottom: 10px !important; }
+
+  .form-builder--item {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+  #_builder-form input[type=text],
+  #_builder-form input[type=email],
+  #_builder-form input[type=tel] { font-size: 16px !important; }
+  .multiselect,
+  .multiselect__single,
+  .multiselect__placeholder,
+  .multiselect__option { font-size: 15px !important; }
+}

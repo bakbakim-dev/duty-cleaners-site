@@ -1,0 +1,10 @@
+# dutycleaners.ca is trailing-slash canonical — see src/data/legacy-urls.ts.
+[build]
+  publish = "dist"
+  command = "bun run build && bun run prerender"
+
+# Netlify's Pretty URLs already normalise /path -> /path/; this pins it.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
