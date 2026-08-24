@@ -331,6 +331,13 @@ export default function Devon() {
             <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
               View All Service Areas →
             </Link>
+            <p className="mt-6 text-sm text-muted-foreground">
+              Run a business in Devon? We also handle 
+              <Link to="/commercial-cleaning" className="text-primary hover:underline font-medium">
+                commercial and office cleaning across the Edmonton region
+              </Link>.
+            </p>
+
           </AnimatedSection>
         </div>
       </section>

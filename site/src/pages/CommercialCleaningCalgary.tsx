@@ -12,6 +12,7 @@ import {
 import { Link } from "react-router-dom";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import CommercialDepth, { commercialFaqs } from "@/components/CommercialDepth";
+import CoverageChips from "@/components/CoverageChips";
 
 function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -242,6 +243,45 @@ export default function CommercialCleaningCalgary() {
         </AnimatedSection>
 
         <CommercialDepth city="Calgary" phone="(403) 768-1341" phoneLink="tel:4037681341" />
+
+        {/* Service areas.
+            Search Console shows real, entirely unserved demand for commercial
+            cleaning in the Calgary-region towns — "commercial cleaning services
+            cochrane" (1,946 impressions), "industrial cleaning cochrane" (1,582)
+            and "office cleaning services airdrie" (1,536) all rank between
+            position 20 and 40 with ZERO clicks, because this page never named a
+            single one of those towns. */}
+        <AnimatedSection>
+          <section className="py-16 bg-secondary/10">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto text-center">
+                <span className="text-primary text-sm font-semibold tracking-wider uppercase">Service Areas</span>
+                <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">
+                  Commercial Cleaning Across the Calgary Region
+                </h2>
+                <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
+                  We clean offices, retail units, warehouses and industrial space in Calgary and the
+                  surrounding towns — including Cochrane, Airdrie, Okotoks and Chestermere. Same
+                  walkthrough, same written quote, same hourly rate wherever your premises are.
+                </p>
+                <CoverageChips
+                  areas={[
+                    "Cochrane",
+                    "Airdrie",
+                    "Okotoks",
+                    "Chestermere",
+                    "Strathmore",
+                    "High River",
+                    "Langdon",
+                    "Crossfield",
+                    "Black Diamond",
+                    "Turner Valley",
+                  ]}
+                />
+              </div>
+            </div>
+          </section>
+        </AnimatedSection>
 
         {/* CTA Section */}
         <AnimatedSection>

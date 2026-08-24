@@ -12,6 +12,7 @@ import {
 import { Link } from "react-router-dom";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import CommercialDepth, { commercialFaqs } from "@/components/CommercialDepth";
+import CoverageChips from "@/components/CoverageChips";
 
 function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -242,6 +243,40 @@ export default function CommercialCleaning() {
         </AnimatedSection>
 
         <CommercialDepth city="Edmonton" phone="(780) 913-6565" phoneLink="tel:7809136565" />
+
+        {/* Service areas — parity with the Calgary page, which added this after
+            Search Console showed satellite-town commercial queries ranking at
+            position 20-40 with zero clicks because no page named those towns. */}
+        <AnimatedSection>
+          <section className="py-16 bg-secondary/10">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto text-center">
+                <span className="text-primary text-sm font-semibold tracking-wider uppercase">Service Areas</span>
+                <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">
+                  Commercial Cleaning Across the Edmonton Region
+                </h2>
+                <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
+                  We clean offices, retail units, warehouses and industrial space in Edmonton and the
+                  surrounding communities — same walkthrough, same written quote, same hourly rate
+                  wherever your premises are.
+                </p>
+                <CoverageChips
+                  areas={[
+                    "St. Albert",
+                    "Sherwood Park",
+                    "Spruce Grove",
+                    "Leduc",
+                    "Beaumont",
+                    "Fort Saskatchewan",
+                    "Stony Plain",
+                    "Morinville",
+                    "Devon",
+                  ]}
+                />
+              </div>
+            </div>
+          </section>
+        </AnimatedSection>
 
         {/* CTA Section */}
         <AnimatedSection>

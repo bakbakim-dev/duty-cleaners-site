@@ -292,6 +292,18 @@ export default function LocationPageTemplate({
             <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
               View All Service Areas →
             </Link>
+            {/* Commercial cross-link: Search Console shows office/commercial
+                queries for these towns ranking 20-40 with zero clicks. */}
+            <p className="mt-6 text-sm text-muted-foreground">
+              Run a business in {city}? We also handle{" "}
+              <Link
+                to={region === "calgary" ? "/commercial-cleaning-services-calgary" : "/commercial-cleaning"}
+                className="text-primary hover:underline font-medium"
+              >
+                commercial and office cleaning across the {regionLabel} region
+              </Link>
+              .
+            </p>
           </AnimatedSection>
         </div>
       </section>
