@@ -136,7 +136,7 @@ export default function Beaumont() {
                 Professional House Cleaning in Beaumont
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                Reliable house cleaning services in Beaumont. Trusted by local families since 2015.
+                Reliable house cleaning services in Beaumont. Licensed and cleaning Alberta homes since 2017.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>

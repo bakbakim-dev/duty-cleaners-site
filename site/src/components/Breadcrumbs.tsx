@@ -57,7 +57,9 @@ function generateBreadcrumbs(pathname: string): BreadcrumbItem[] {
     const isLast = index === segments.length - 1;
     
     // Format label - check mapping or format from segment
-    let label = routeLabels[segment] || formatSegment(segment);
+    let label =
+      routeLabels[segment] ||
+      formatSegment(segment, breadcrumbs.map((b) => b.label));
     
     breadcrumbs.push({
       label,
@@ -68,15 +70,41 @@ function generateBreadcrumbs(pathname: string): BreadcrumbItem[] {
   return breadcrumbs;
 }
 
+/**
+ * Proper-noun casing that simple word-capitalisation gets wrong. Only the names
+ * that actually exist as routes on this site are listed — a general "Mc" rule
+ * would mangle unrelated words.
+ */
+const PROPER_CASE: Record<string, string> = {
+  Mcconachie: "McConachie",
+  Mccauley: "McCauley",
+  Mcleod: "McLeod",
+  Mcdougall: "McDougall",
+};
+
 // Format segment to readable label
-function formatSegment(segment: string): string {
-  return segment
+function formatSegment(segment: string, precedingLabels: string[] = []): string {
+  const words = segment
     .split("-")
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ")
-    .replace("Edmonton", "")
-    .replace("Calgary", "")
-    .trim();
+    .map((word) => {
+      const cased = word.charAt(0).toUpperCase() + word.slice(1);
+      return PROPER_CASE[cased] ?? cased;
+    });
+
+  // Drop a trailing city name ONLY when an earlier crumb already established it
+  // (e.g. Locations > Calgary > Varsity). On a top-level legacy URL such as
+  // /cleaning-services-calgary there is no parent city crumb, and stripping it
+  // produced the geo-less "Cleaning Services" — losing the qualifier from both
+  // the visible trail and the BreadcrumbList schema on the highest-traffic
+  // Calgary pages.
+  const filtered = words.filter((word, i) => {
+    const isCity = word === "Edmonton" || word === "Calgary";
+    if (!isCity) return true;
+    if (i === 0) return true; // "Edmonton Pricing" — keep the leading city
+    return !precedingLabels.some((l) => l.includes(word));
+  });
+
+  return (filtered.length ? filtered : words).join(" ").trim();
 }
 
 export default function Breadcrumbs({ items, className = "" }: BreadcrumbsProps) {

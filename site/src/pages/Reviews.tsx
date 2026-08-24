@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import heroReviews from "@/assets/hero-reviews-testimonials.jpg";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -129,9 +128,9 @@ const reviews = [
 
 
 export default function Reviews() {
-  useEffect(() => {
-    document.title = "Client Reviews | Duty Cleaners Edmonton & Calgary";
-  }, []);
+  // Title is owned by <Helmet> below. A useEffect that also set document.title
+  // raced it with a *different* string ("Client Reviews" vs "Customer Reviews"),
+  // so which one shipped depended on effect ordering.
 
   return (
     <div className="min-h-screen">
@@ -251,7 +250,7 @@ export default function Reviews() {
                     <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                     )}
                   </div>
-                  <span className="text-muted-foreground text-xs mt-1">out of 4.9</span>
+                  <span className="text-muted-foreground text-xs mt-1">out of 5</span>
                 </div>
               </div>
               <p className="text-muted-foreground mb-2">Verified Google reviews</p>

@@ -112,15 +112,15 @@ export default function Downtown() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning in Downtown Edmonton, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Downtown Edmonton, Edmonton. Trusted local cleaners serving Downtown Edmonton homes with reliable, customer-rated cleaning service." />
+        <title>House Cleaning in Downtown Edmonton | Duty Cleaners</title>
+        <meta name="description" content="Professional house cleaning in Downtown Edmonton. Trusted local cleaners serving Downtown Edmonton homes with reliable, customer-rated cleaning service." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
-  name: "Duty Cleaners – Downtown Edmonton, Edmonton",
+  name: "Duty Cleaners – Downtown Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/downtown-edmonton",
-  areaServed: "Downtown Edmonton, Edmonton, AB",
-  description: "Professional house cleaning services in Downtown Edmonton, Edmonton.",
+  areaServed: "Downtown Edmonton, AB",
+  description: "Professional house cleaning services in Downtown Edmonton.",
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/downtown-edmonton/" />
@@ -142,7 +142,7 @@ export default function Downtown() {
               <div className="flex-1 text-center lg:text-left">
                 <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-5 py-2 mb-6">
                   <MapPin className="w-4 h-4 text-accent" />
-                  <span className="text-white/90 text-sm font-medium">Serving Downtown Edmonton, Edmonton</span>
+                  <span className="text-white/90 text-sm font-medium">Serving Downtown Edmonton</span>
                 </div>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                   Professional House Cleaning in Downtown Edmonton
@@ -176,7 +176,7 @@ export default function Downtown() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
                   src={heroImg}
-                  alt="Professional cleaner working in a Downtown Edmonton, Edmonton home"
+                  alt="Professional cleaner working in a Downtown Edmonton home"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   width={1024}
                   height={1024}
@@ -274,7 +274,7 @@ export default function Downtown() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse rounded-2xl" />}>
-                  <LocationMap center={[53.5444, -113.4909]} label="Downtown Edmonton, Edmonton" />
+                  <LocationMap center={[53.5444, -113.4909]} label="Downtown Edmonton" />
                 </Suspense>
               </div>
             </AnimatedSection>
