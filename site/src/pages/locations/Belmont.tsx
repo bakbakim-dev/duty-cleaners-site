@@ -198,7 +198,8 @@ export default function Belmont() {
                     Belmont is a quiet, newer residential pocket in northeast Edmonton with modern family homes, walking trails and easy access to Manning Drive. The people who live here take pride in their homes, and at Duty Cleaners, we're proud to be part of the rhythm of daily life in the neighbourhood.
                   </p>
                   <p>
-                    Whether your home is                    <a href="https://www.google.com/maps/search/Belmont+School+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Belmont School</a>,
+                    Whether your home is near{" "}
+                    <a href="https://www.google.com/maps/search/Belmont+School+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Belmont School</a>,
                     steps from <a href="https://www.google.com/maps/place/Hermitage+Park/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Hermitage Park</a>,
                     minutes from <a href="https://www.google.com/maps/place/Manning+Dr,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Manning Drive</a>,
                     or close to <a href="https://www.google.com/maps/place/Victoria+Trail,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Victoria Trail</a>,

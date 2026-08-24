@@ -198,7 +198,8 @@ export default function HollickKenyon() {
                     Hollick-Kenyon is a modern northeast Edmonton family community with newer two-storey homes, schools and trail-connected parks. The people who live here take pride in their homes, and at Duty Cleaners, we're proud to be part of the rhythm of daily life in the neighbourhood.
                   </p>
                   <p>
-                    Whether your home is                    <a href="https://www.google.com/maps/search/Mary+Hanley+School+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Mary Hanley School</a>,
+                    Whether your home is near{" "}
+                    <a href="https://www.google.com/maps/search/Mary+Hanley+School+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Mary Hanley School</a>,
                     steps from <a href="https://www.google.com/maps/place/Manning+Town+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Manning Town Centre</a>,
                     minutes from <a href="https://www.google.com/maps/place/50+St+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">50 Street</a>,
                     or close to <a href="https://www.google.com/maps/place/167+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">167 Avenue</a>,

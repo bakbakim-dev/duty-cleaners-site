@@ -51,8 +51,27 @@ function priorityFor(path: string): string {
   return "0.8";
 }
 
+/**
+ * A blanket `weekly` on 200+ pages is noise — location pages genuinely change
+ * rarely, the blog and pricing move more often. Crawlers treat an obviously
+ * uniform changefreq as uninformative, so give it real signal.
+ */
+function changefreqFor(path: string): string {
+  if (path === "/") return "weekly";
+  if (path.startsWith("/blog")) return "monthly";
+  if (path.includes("pricing")) return "monthly";
+  if (path.startsWith("/locations/") || path.startsWith("/cleaning-services-")) return "yearly";
+  return "monthly";
+}
+
+/**
+ * `lastmod` is stamped at build time. That is honest for this site: pages are
+ * static and only change when the site is rebuilt and redeployed.
+ */
+const LASTMOD = new Date().toISOString().slice(0, 10);
+
 function urlBlock(path: string): string {
-  return `  <url><loc>${BASE_URL}${withTrailingSlash(path)}</loc><changefreq>weekly</changefreq><priority>${priorityFor(path)}</priority></url>`;
+  return `  <url><loc>${BASE_URL}${withTrailingSlash(path)}</loc><lastmod>${LASTMOD}</lastmod><changefreq>${changefreqFor(path)}</changefreq><priority>${priorityFor(path)}</priority></url>`;
 }
 
 function urlset(paths: string[]): string {

@@ -20,6 +20,7 @@ import { canonicalForPath } from "@/data/legacy-urls";
 import { submitQuote } from "@/lib/quote-submit";
 import { toast } from "sonner";
 import { z } from "zod";
+import { CITY_PROOF, SUPPORT_EMAIL } from "@/data/proof";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
@@ -269,6 +270,48 @@ export default function Contact() {
         <meta name="description" content="Contact Duty Cleaners for professional cleaning services in Alberta. Call (780) 913-6565 or (403) 768-1341. Available Mon-Sat 8am-8pm." />
         <meta name="keywords" content="contact duty cleaners, cleaning services Edmonton, cleaning services Calgary, house cleaning contact" />
         <link rel="canonical" href="https://dutycleaners.ca/contact-us/" />
+        {/* This page renders fully-authored NAP for both offices but carried no
+            structured data at all. Both nodes use the same @id the rest of the
+            site references, and every value reads from src/data/proof.ts so the
+            markup can never disagree with the visible address or phone. */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": (["edmonton", "calgary"] as const).map((key) => {
+              const office = CITY_PROOF[key];
+              return {
+                "@type": ["LocalBusiness", "HouseCleaning"],
+                "@id": `https://dutycleaners.ca/#${key}`,
+                name: `Duty Cleaners ${office.city}`,
+                url: "https://dutycleaners.ca/contact-us/",
+                telephone: office.phoneLink.replace("tel:", "+1-"),
+                email: SUPPORT_EMAIL,
+                address: {
+                  "@type": "PostalAddress",
+                  streetAddress: office.address.split(",")[0].trim(),
+                  addressLocality: office.city,
+                  addressRegion: "AB",
+                  addressCountry: "CA",
+                },
+                areaServed: { "@type": "City", name: office.city },
+                openingHoursSpecification: [
+                  {
+                    "@type": "OpeningHoursSpecification",
+                    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                    opens: "08:00",
+                    closes: "20:00",
+                  },
+                  {
+                    "@type": "OpeningHoursSpecification",
+                    dayOfWeek: "Sunday",
+                    opens: "09:00",
+                    closes: "15:00",
+                  },
+                ],
+              };
+            }),
+          })}
+        </script>
         <meta property="og:title" content="Contact Duty Cleaners | Edmonton & Calgary Cleaning Services" />
         <meta property="og:description" content="Contact Duty Cleaners for professional cleaning services in Alberta. Call (780) 913-6565 or (403) 768-1341. Available Mon-Sat 8am-8pm." />
         <meta property="og:type" content="website" />

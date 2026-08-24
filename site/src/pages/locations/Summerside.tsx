@@ -198,7 +198,8 @@ export default function Summerside() {
                     Summerside is a unique south Edmonton lake community with a private beach, family homes and year-round amenities at Summerside Lake. The people who live here take pride in their homes, and at Duty Cleaners, we're proud to be part of the rhythm of daily life in the neighbourhood.
                   </p>
                   <p>
-                    Whether your home is                    <a href="https://www.google.com/maps/search/Summerside+Beach+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Summerside Lake</a>,
+                    Whether your home is near{" "}
+                    <a href="https://www.google.com/maps/search/Summerside+Beach+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Summerside Lake</a>,
                     steps from <a href="https://www.google.com/maps/search/Summerside+Community+Centre+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Summerside Community Centre</a>,
                     minutes from <a href="https://www.google.com/maps/place/Ellerslie+Rd+SW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Ellerslie Road</a>,
                     or close to <a href="https://www.google.com/maps/place/91+St+SW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">91 Street</a>,

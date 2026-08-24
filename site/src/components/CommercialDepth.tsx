@@ -96,7 +96,9 @@ const SPACES = [
 export default function CommercialDepth({ city, phone, phoneLink }: CommercialDepthProps) {
   const faqs = commercialFaqs(city, phone);
   const other = city === "Edmonton" ? "Calgary" : "Edmonton";
-  const otherPath = city === "Edmonton" ? "/calgary/commercial-cleaning/" : "/commercial-cleaning/";
+  // Canonical form: /calgary/commercial-cleaning 301s to the preserved legacy URL.
+  const otherPath =
+    city === "Edmonton" ? "/commercial-cleaning-services-calgary/" : "/commercial-cleaning/";
 
   return (
     <>

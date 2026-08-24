@@ -198,7 +198,8 @@ export default function Hermitage() {
                     Hermitage is a riverside northeast Edmonton community known for Hermitage Park, family homes, and access to the river valley trails. The people who live here take pride in their homes, and at Duty Cleaners, we're proud to be part of the rhythm of daily life in the neighbourhood.
                   </p>
                   <p>
-                    Whether your home is                    <a href="https://www.google.com/maps/place/Hermitage+Park/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Hermitage Park</a>,
+                    Whether your home is near{" "}
+                    <a href="https://www.google.com/maps/place/Hermitage+Park/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Hermitage Park</a>,
                     steps from <a href="https://www.google.com/maps/place/Victoria+Trail,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Victoria Trail</a>,
                     minutes from <a href="https://www.google.com/maps/place/Abbottsfield+Shoppers+Mall/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Abbottsfield Mall</a>,
                     or close to <a href="https://www.google.com/maps/place/Manning+Dr,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Manning Drive</a>,

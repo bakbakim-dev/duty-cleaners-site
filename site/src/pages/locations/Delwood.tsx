@@ -198,7 +198,8 @@ export default function Delwood() {
                     Delwood is a mature north Edmonton community of brick bungalows and split-levels, with quiet streets and easy access to Yellowhead Trail. The people who live here take pride in their homes, and at Duty Cleaners, we're proud to be part of the rhythm of daily life in the neighbourhood.
                   </p>
                   <p>
-                    Whether your home is                    <a href="https://www.google.com/maps/search/Delwood+School+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Delwood School</a>,
+                    Whether your home is near{" "}
+                    <a href="https://www.google.com/maps/search/Delwood+School+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Delwood School</a>,
                     steps from <a href="https://www.google.com/maps/place/Yellowhead+Trail,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Yellowhead Trail</a>,
                     minutes from <a href="https://www.google.com/maps/place/Northgate+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Northtown Mall</a>,
                     or close to <a href="https://www.google.com/maps/place/82+St+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">82 Street</a>,

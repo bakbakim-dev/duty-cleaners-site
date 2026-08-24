@@ -198,7 +198,8 @@ export default function MattBerry() {
                     Matt Berry is a family-oriented northeast Edmonton neighbourhood with newer homes, parks and quick access to Manning Drive. The people who live here take pride in their homes, and at Duty Cleaners, we're proud to be part of the rhythm of daily life in the neighbourhood.
                   </p>
                   <p>
-                    Whether your home is                    <a href="https://www.google.com/maps/search/Matt+Berry+Park+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Matt Berry Park</a>,
+                    Whether your home is near{" "}
+                    <a href="https://www.google.com/maps/search/Matt+Berry+Park+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Matt Berry Park</a>,
                     steps from <a href="https://www.google.com/maps/place/Manning+Dr,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Manning Drive</a>,
                     minutes from <a href="https://www.google.com/maps/place/167+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">167 Avenue</a>,
                     or close to <a href="https://www.google.com/maps/place/Manning+Town+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Manning Town Centre</a>,

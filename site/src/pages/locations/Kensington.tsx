@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { buildLocationSchema } from "@/lib/location-schema";
 import CoverageChips from "@/components/CoverageChips";
+import calgaryLivingRoom from "@/assets/gallery/calgary-living-room-clean.jpg";
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -160,10 +161,12 @@ export default function Kensington() {
               </div>
               <div className="flex-shrink-0 w-full lg:w-[500px]">
                 <img
-                  src="https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?auto=format&fit=crop&w=1000&q=80"
-                  alt="Charming Kensington village streetscape in Calgary with tree-lined streets"
+                  src={calgaryLivingRoom}
+                  alt="A tidy, freshly cleaned Calgary living room"
+                  width={600}
+                  height={400}
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
-                loading="lazy" decoding="async" />
+                  loading="lazy" decoding="async" />
               </div>
             </div>
           </div>

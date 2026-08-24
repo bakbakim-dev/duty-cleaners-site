@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { buildLocationSchema } from "@/lib/location-schema";
 import CoverageChips from "@/components/CoverageChips";
+import calgaryKitchen from "@/assets/gallery/calgary-kitchen-clean.jpg";
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -155,10 +156,12 @@ export default function MardaLoop() {
               </div>
               <div className="flex-shrink-0 w-full lg:w-[500px]">
                 <img
-                  src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&q=80"
-                  alt="Charming home in Marda Loop Calgary neighbourhood"
+                  src={calgaryKitchen}
+                  alt="A spotless kitchen after a Duty Cleaners visit in Calgary"
+                  width={600}
+                  height={400}
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
-                loading="lazy" decoding="async" />
+                  loading="lazy" decoding="async" />
               </div>
             </div>
           </div>

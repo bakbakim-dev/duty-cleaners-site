@@ -73,8 +73,8 @@ const StepCard = ({ step, icon: Icon, title, description }: { step: number; icon
 );
 
 const calgaryLocations = [
-  { name: "Airdrie", path: "/locations/airdrie" },
-  { name: "Cochrane", path: "/locations/cochrane" },
+  { name: "Airdrie", path: "/cleaning-services-airdrie" },
+  { name: "Cochrane", path: "/cleaning-services-cochrane" },
   { name: "Okotoks", path: "/locations/okotoks" },
   { name: "Chestermere", path: "/locations/chestermere" },
   { name: "High River", path: "/locations/high-river" },
@@ -140,6 +140,19 @@ export default function WallWashingCalgary() {
         <title>Wall Washing Calgary | Duty Cleaners</title>
         <meta name="description" content="Professional wall and baseboard washing in Calgary. Non-toxic products, customer-rated cleaners, no-obligation quote." />
         <link rel="canonical" href="https://dutycleaners.ca/wall-washing-wall-cleaning-calgary/" />
+        {/* Mirrors the FAQ rendered on this page. Generated from the same
+            `faqs` array, so the markup can never drift from the copy. */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((f) => ({
+              "@type": "Question",
+              name: f.q,
+              acceptedAnswer: { "@type": "Answer", text: f.a },
+            })),
+          })}
+        </script>
       </Helmet>
       <Navigation city="calgary" />
       <div className="container mx-auto px-4 pt-4">

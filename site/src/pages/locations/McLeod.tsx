@@ -198,7 +198,8 @@ export default function McLeod() {
                     McLeod is a quiet northeast Edmonton neighbourhood of family bungalows and townhomes near Greenfield, Belvedere LRT and Yellowhead Trail. The people who live here take pride in their homes, and at Duty Cleaners, we're proud to be part of the rhythm of daily life in the neighbourhood.
                   </p>
                   <p>
-                    Whether your home is                    <a href="https://www.google.com/maps/search/McLeod+Park+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">McLeod Park</a>,
+                    Whether your home is near{" "}
+                    <a href="https://www.google.com/maps/search/McLeod+Park+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">McLeod Park</a>,
                     steps from <a href="https://www.google.com/maps/place/Belvedere+LRT+Station/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Belvedere LRT Station</a>,
                     minutes from <a href="https://www.google.com/maps/place/Yellowhead+Trail,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Yellowhead Trail</a>,
                     or close to <a href="https://www.google.com/maps/place/Victoria+Trail,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Victoria Trail</a>,

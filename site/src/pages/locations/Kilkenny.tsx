@@ -198,7 +198,8 @@ export default function Kilkenny() {
                     Kilkenny is a quiet, mature northeast Edmonton community of family homes, schools and convenient shopping at Londonderry Mall. The people who live here take pride in their homes, and at Duty Cleaners, we're proud to be part of the rhythm of daily life in the neighbourhood.
                   </p>
                   <p>
-                    Whether your home is                    <a href="https://www.google.com/maps/place/Londonderry+Mall/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Londonderry Mall</a>,
+                    Whether your home is near{" "}
+                    <a href="https://www.google.com/maps/place/Londonderry+Mall/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Londonderry Mall</a>,
                     steps from <a href="https://www.google.com/maps/search/Kilkenny+School+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Kilkenny School</a>,
                     minutes from <a href="https://www.google.com/maps/place/144+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">144 Avenue</a>,
                     or close to <a href="https://www.google.com/maps/place/66+St+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">66 Street</a>,

@@ -14,6 +14,7 @@ import {
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { buildLocationSchema } from "@/lib/location-schema";
 import CoverageChips from "@/components/CoverageChips";
+import calgaryKitchen from "@/assets/gallery/calgary-kitchen-clean.jpg";
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -176,10 +177,12 @@ export default function ScenicAcres() {
               </div>
               <div className="flex-shrink-0 w-full lg:w-[500px]">
                 <img
-                  src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600&h=400&fit=crop"
-                  alt="Scenic natural landscape near Nose Hill Park in Scenic Acres, Calgary"
+                  src={calgaryKitchen}
+                  alt="A spotless kitchen after a Duty Cleaners visit in Calgary"
+                  width={600}
+                  height={400}
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
-                loading="lazy" decoding="async" />
+                  loading="lazy" decoding="async" />
               </div>
             </div>
           </div>

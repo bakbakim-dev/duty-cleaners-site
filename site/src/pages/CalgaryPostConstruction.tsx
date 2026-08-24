@@ -90,6 +90,19 @@ export default function CalgaryPostConstruction() {
         <title>Post-Construction Cleaning Calgary | Duty Cleaners</title>
         <meta name="description" content="Final-stage post-construction cleaning in Calgary for newly built and renovated homes. Remove drywall dust, smudges, and contractor residue. Customer-rated cleaners and move-in ready results." />
         <link rel="canonical" href="https://dutycleaners.ca/post-construction-cleaning-calgary/" />
+        {/* Mirrors the FAQ rendered on this page. Generated from the same
+            `faqs` array, so the markup can never drift from the copy. */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((f) => ({
+              "@type": "Question",
+              name: f.q,
+              acceptedAnswer: { "@type": "Answer", text: f.a },
+            })),
+          })}
+        </script>
       </Helmet>
 
       <Navigation city="calgary" />

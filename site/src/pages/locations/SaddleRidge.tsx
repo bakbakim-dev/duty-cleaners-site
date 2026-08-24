@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { buildLocationSchema } from "@/lib/location-schema";
 import CoverageChips from "@/components/CoverageChips";
+import calgaryLivingRoom from "@/assets/gallery/calgary-living-room-clean.jpg";
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -155,10 +156,12 @@ export default function SaddleRidge() {
               </div>
               <div className="flex-shrink-0 w-full lg:w-[500px]">
                 <img
-                  src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80"
-                  alt="Modern family home in Saddle Ridge Calgary"
+                  src={calgaryLivingRoom}
+                  alt="A tidy, freshly cleaned Calgary living room"
+                  width={600}
+                  height={400}
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
-                loading="lazy" decoding="async" />
+                  loading="lazy" decoding="async" />
               </div>
             </div>
           </div>

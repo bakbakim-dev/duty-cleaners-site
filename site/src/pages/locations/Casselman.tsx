@@ -198,7 +198,8 @@ export default function Casselman() {
                     Casselman is a modern north Edmonton family community with newer townhomes, green spaces, and convenient access to 153 Avenue and Manning Drive. The people who live here take pride in their homes, and at Duty Cleaners, we're proud to be part of the rhythm of daily life in the neighbourhood.
                   </p>
                   <p>
-                    Whether your home is                    <a href="https://www.google.com/maps/search/Casselman+Park+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Casselman Park</a>,
+                    Whether your home is near{" "}
+                    <a href="https://www.google.com/maps/search/Casselman+Park+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Casselman Park</a>,
                     steps from <a href="https://www.google.com/maps/place/153+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">153 Avenue</a>,
                     minutes from <a href="https://www.google.com/maps/place/Manning+Town+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Manning Crossing</a>,
                     or close to <a href="https://www.google.com/maps/place/Anthony+Henday+Drive/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Anthony Henday Drive</a>,

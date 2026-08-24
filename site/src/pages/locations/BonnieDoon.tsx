@@ -198,7 +198,8 @@ export default function BonnieDoon() {
                     Bonnie Doon is a beloved southeast Edmonton neighbourhood of character bungalows, modern infills and walkable streets close to the Mill Creek Ravine. The people who live here take pride in their homes, and at Duty Cleaners, we're proud to be part of the rhythm of daily life in the neighbourhood.
                   </p>
                   <p>
-                    Whether your home is                    <a href="https://www.google.com/maps/place/Bonnie+Doon+Shopping+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Bonnie Doon Centre</a>,
+                    Whether your home is near{" "}
+                    <a href="https://www.google.com/maps/place/Bonnie+Doon+Shopping+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Bonnie Doon Centre</a>,
                     steps from <a href="https://www.google.com/maps/place/Mill+Creek+Ravine+Park/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Mill Creek Ravine</a>,
                     minutes from <a href="https://www.google.com/maps/search/Bonnie+Doon+Park+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Bonnie Doon Park</a>,
                     or close to <a href="https://www.google.com/maps/place/Whyte+Ave,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Whyte Avenue</a>,

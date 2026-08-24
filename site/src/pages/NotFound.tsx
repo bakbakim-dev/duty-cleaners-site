@@ -17,7 +17,7 @@ const POPULAR = [
   { label: "Calgary house cleaning", to: canonicalForPath("/calgary") },
   { label: "Pricing", to: canonicalForPath("/edmonton/pricing") },
   { label: "What's included", to: "/whats-included" },
-  { label: "Move in / move out cleaning", to: "/edmonton/move-in-move-out-cleaning" },
+  { label: "Move in / move out cleaning", to: "/move-out-cleaning-edmonton" },
   { label: "Deep cleaning", to: "/edmonton/deep-cleaning" },
   { label: "Reviews", to: "/reviews" },
   { label: "Contact us", to: canonicalForPath("/contact") },

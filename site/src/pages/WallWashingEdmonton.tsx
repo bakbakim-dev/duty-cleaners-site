@@ -74,15 +74,15 @@ const StepCard = ({ step, icon: Icon, title, description }: { step: number; icon
 );
 
 const edmontonLocations = [
-  { name: "St. Albert", path: "/locations/st-albert" },
-  { name: "Sherwood Park", path: "/locations/sherwood-park" },
-  { name: "Spruce Grove", path: "/locations/spruce-grove" },
-  { name: "Stony Plain", path: "/locations/stony-plain" },
-  { name: "Leduc", path: "/locations/leduc" },
-  { name: "Beaumont", path: "/locations/beaumont" },
-  { name: "Fort Saskatchewan", path: "/locations/fort-saskatchewan" },
-  { name: "Devon", path: "/locations/devon" },
-  { name: "Morinville", path: "/locations/morinville" },
+  { name: "St. Albert", path: "/cleaning-services-st-albert" },
+  { name: "Sherwood Park", path: "/cleaning-services-sherwood-park" },
+  { name: "Spruce Grove", path: "/cleaning-services-spruce-grove" },
+  { name: "Stony Plain", path: "/cleaning-services-stony-plain" },
+  { name: "Leduc", path: "/cleaning-services-leduc" },
+  { name: "Beaumont", path: "/cleaning-services-beaumont" },
+  { name: "Fort Saskatchewan", path: "/cleaning-services-fort-saskatchewan" },
+  { name: "Devon", path: "/cleaning-services-devon" },
+  { name: "Morinville", path: "/cleaning-services-morinville" },
 ];
 
 const wallProblems = [
@@ -141,6 +141,19 @@ export default function WallWashingEdmonton() {
         <title>Wall Washing Edmonton | Duty Cleaners</title>
         <meta name="description" content="Professional wall and baseboard washing in Edmonton. Non-toxic products, customer-rated cleaners, no-obligation quote." />
         <link rel="canonical" href="https://dutycleaners.ca/wall-washing-wall-cleaning/" />
+        {/* Mirrors the FAQ rendered on this page. Generated from the same
+            `faqs` array, so the markup can never drift from the copy. */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((f) => ({
+              "@type": "Question",
+              name: f.q,
+              acceptedAnswer: { "@type": "Answer", text: f.a },
+            })),
+          })}
+        </script>
       </Helmet>
       <Navigation city="edmonton" />
       <div className="container mx-auto px-4 pt-4">

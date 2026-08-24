@@ -120,3 +120,24 @@ export const RESPONSE_TIME_PROMISE = "1 hour during business hours";
 /** BookingKoala scheduling handoff — v2 only. TODO-OWNER: confirm the URL. */
 export const BOOKING_KOALA_URL: string | null = null;
 
+/**
+ * Cleaner recruitment posting.
+ *
+ * JobPosting structured data is only emitted when `datePosted` is set, because
+ * Google demotes and eventually drops postings with stale or missing dates — a
+ * wrong date is worse than no markup. `baseSalary` is deliberately absent until
+ * the owner confirms a real range; the site never prints an invented figure.
+ *
+ * TODO-OWNER: set datePosted (ISO yyyy-mm-dd) and validThrough when recruiting,
+ * and clear them when the role closes.
+ */
+export const CLEANER_JOB_POSTING: {
+  datePosted: string | null;
+  validThrough: string | null;
+  employmentType: string;
+} = {
+  datePosted: null,
+  validThrough: null,
+  employmentType: "PART_TIME",
+};
+

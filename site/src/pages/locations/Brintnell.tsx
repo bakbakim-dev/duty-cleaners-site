@@ -198,7 +198,8 @@ export default function Brintnell() {
                     Brintnell is a thriving northeast Edmonton family community with modern two-storey homes, schools and parks within walking distance. The people who live here take pride in their homes, and at Duty Cleaners, we're proud to be part of the rhythm of daily life in the neighbourhood.
                   </p>
                   <p>
-                    Whether your home is                    <a href="https://www.google.com/maps/search/Brintnell+School+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Brintnell School</a>,
+                    Whether your home is near{" "}
+                    <a href="https://www.google.com/maps/search/Brintnell+School+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Brintnell School</a>,
                     steps from <a href="https://www.google.com/maps/place/Manning+Town+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Manning Town Centre</a>,
                     minutes from <a href="https://www.google.com/maps/place/167+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">167 Avenue</a>,
                     or close to <a href="https://www.google.com/maps/place/50+St+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">50 Street</a>,

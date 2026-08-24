@@ -198,7 +198,8 @@ export default function AspenGardens() {
                     Aspen Gardens is a prestigious southwest Edmonton neighbourhood known for its custom homes, mature canopy and proximity to the river valley. The people who live here take pride in their homes, and at Duty Cleaners, we're proud to be part of the rhythm of daily life in the neighbourhood.
                   </p>
                   <p>
-                    Whether your home is                    <a href="https://www.google.com/maps/search/Aspen+Gardens+Park+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Aspen Gardens Park</a>,
+                    Whether your home is near{" "}
+                    <a href="https://www.google.com/maps/search/Aspen+Gardens+Park+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Aspen Gardens Park</a>,
                     steps from <a href="https://www.google.com/maps/place/Whitemud+Dr,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Whitemud Drive</a>,
                     minutes from <a href="https://www.google.com/maps/place/Snow+Valley+Ski+Club/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Snow Valley Ski Club</a>,
                     or close to <a href="https://www.google.com/maps/place/Riverbend,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Riverbend</a>,

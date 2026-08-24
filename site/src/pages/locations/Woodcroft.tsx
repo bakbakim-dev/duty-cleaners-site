@@ -198,7 +198,8 @@ export default function Woodcroft() {
                     Woodcroft is a leafy northwest Edmonton community with mid-century homes, the Woodcroft Library and easy access to Groat Road. The people who live here take pride in their homes, and at Duty Cleaners, we're proud to be part of the rhythm of daily life in the neighbourhood.
                   </p>
                   <p>
-                    Whether your home is                    <a href="https://www.google.com/maps/search/Woodcroft+Library+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Woodcroft Library</a>,
+                    Whether your home is near{" "}
+                    <a href="https://www.google.com/maps/search/Woodcroft+Library+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Woodcroft Library</a>,
                     steps from <a href="https://www.google.com/maps/place/Coronation+Park/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Coronation Park</a>,
                     minutes from <a href="https://www.google.com/maps/place/Groat+Rd,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Groat Road</a>,
                     or close to <a href="https://www.google.com/maps/place/111+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">111 Avenue</a>,

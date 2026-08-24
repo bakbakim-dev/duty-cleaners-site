@@ -238,6 +238,19 @@ const AirbnbCleaningCalgary = () => {
         <title>Airbnb Turnover Cleaning Calgary | Duty Cleaners</title>
         <meta name="description" content="Reliable Airbnb and short-term rental turnover cleaning in Calgary. Restocking, fresh linens and fast turnarounds — priced per hour." />
         <link rel="canonical" href="https://dutycleaners.ca/airbnb-cleaning-services-calgary/" />
+        {/* Mirrors the FAQ rendered on this page. Generated from the same
+            `faqs` array, so the markup can never drift from the copy. */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((f) => ({
+              "@type": "Question",
+              name: f.q,
+              acceptedAnswer: { "@type": "Answer", text: f.a },
+            })),
+          })}
+        </script>
       </Helmet>
       <Navigation city="calgary" />
       <div className="container mx-auto px-4 pt-4">

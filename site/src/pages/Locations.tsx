@@ -48,7 +48,7 @@ const mainLocations = [
       { name: "Glenora", link: "/locations/glenora-edmonton" },
       { name: "Westmount", link: "/locations/westmount-edmonton" },
       { name: "Glastonbury", link: "/locations/glastonbury" },
-      { name: "Windermere", link: "/locations/windermere" },
+      { name: "Windermere", link: "/cleaning-services-windermere" },
       { name: "Summerside", link: "/locations/summerside" },
       { name: "Terwillegar", link: "/locations/terwillegar" },
       { name: "Riverbend", link: "/locations/riverbend" },
@@ -74,11 +74,11 @@ const mainLocations = [
       { name: "Tuscany", link: "/locations/tuscany" },
       { name: "Mahogany", link: "/locations/mahogany" },
       { name: "Auburn Bay", link: "/locations/auburn-bay" },
-      { name: "Airdrie", link: "/locations/airdrie" },
+      { name: "Airdrie", link: "/cleaning-services-airdrie" },
       { name: "Aspen Woods", link: "/locations/aspen-woods" },
       { name: "Cranston", link: "/locations/cranston" },
       { name: "Inglewood", link: "/locations/inglewood-calgary" },
-      { name: "Cochrane", link: "/locations/cochrane" },
+      { name: "Cochrane", link: "/cleaning-services-cochrane" },
       { name: "Okotoks", link: "/locations/okotoks" },
     ],
     link: canonicalForPath("/calgary"),
@@ -88,16 +88,16 @@ const mainLocations = [
 
 // Edmonton region cities
 const edmontonRegionCities = [
-  { name: "Morinville", link: "/locations/morinville" },
-  { name: "Sherwood Park", link: "/locations/sherwood-park" },
-  { name: "St. Albert", link: "/locations/st-albert" },
-  { name: "Windermere", link: "/locations/windermere" },
-  { name: "Stony Plain", link: "/locations/stony-plain" },
-  { name: "Devon", link: "/locations/devon" },
-  { name: "Spruce Grove", link: "/locations/spruce-grove" },
-  { name: "Beaumont", link: "/locations/beaumont" },
-  { name: "Leduc", link: "/locations/leduc" },
-  { name: "Fort Saskatchewan", link: "/locations/fort-saskatchewan" }
+  { name: "Morinville", link: "/cleaning-services-morinville" },
+  { name: "Sherwood Park", link: "/cleaning-services-sherwood-park" },
+  { name: "St. Albert", link: "/cleaning-services-st-albert" },
+  { name: "Windermere", link: "/cleaning-services-windermere" },
+  { name: "Stony Plain", link: "/cleaning-services-stony-plain" },
+  { name: "Devon", link: "/cleaning-services-devon" },
+  { name: "Spruce Grove", link: "/cleaning-services-spruce-grove" },
+  { name: "Beaumont", link: "/cleaning-services-beaumont" },
+  { name: "Leduc", link: "/cleaning-services-leduc" },
+  { name: "Fort Saskatchewan", link: "/cleaning-services-fort-saskatchewan" }
 ];
 
 // Edmonton neighborhoods
@@ -184,10 +184,10 @@ const edmontonNeighborhoods = [
 
 // Calgary region cities
 const calgaryRegionCities = [
-  { name: "Airdrie", link: "/locations/airdrie" },
+  { name: "Airdrie", link: "/cleaning-services-airdrie" },
   { name: "Black Diamond", link: "/locations/black-diamond" },
   { name: "Chestermere", link: "/locations/chestermere" },
-  { name: "Cochrane", link: "/locations/cochrane" },
+  { name: "Cochrane", link: "/cleaning-services-cochrane" },
   { name: "Crossfield", link: "/locations/crossfield" },
   { name: "High River", link: "/locations/high-river" },
   { name: "Langdon", link: "/locations/langdon" },

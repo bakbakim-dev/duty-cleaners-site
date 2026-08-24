@@ -6,7 +6,7 @@ const GUIDES = [
     meta: "Pricing · 6 min read",
     title: "What house cleaning actually costs in Alberta.",
     blurb: "Flat-rate vs hourly, what moves the number, and how to read a quote before you book.",
-    to: "/blog/house-cleaning-cost",
+    to: "/how-much-does-a-house-cleaning-cost",
   },
   {
     meta: "Planning · 5 min read",

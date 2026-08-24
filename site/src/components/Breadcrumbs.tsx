@@ -8,6 +8,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { resolvedLinkPath } from "@/data/legacy-urls";
 
 interface BreadcrumbItem {
   label: string;
@@ -45,6 +46,16 @@ const routeLabels: Record<string, string> = {
   "commercial-cleaning": "Commercial Cleaning",
 };
 
+/**
+ * Ancestor paths that exist only as a `<Navigate>` route, so they are not in
+ * legacy-urls.ts and `resolvedLinkPath` cannot map them. Breadcrumb slicing
+ * still produces them (e.g. /edmonton/deep-cleaning yields an "/edmonton"
+ * crumb), and linking there costs a redirect hop on every page under it.
+ */
+const ANCESTOR_OVERRIDES: Record<string, string> = {
+  "/edmonton": "/", // the Edmonton city root IS the homepage
+};
+
 // Generate breadcrumbs from current path
 function generateBreadcrumbs(pathname: string): BreadcrumbItem[] {
   const segments = pathname.split("/").filter(Boolean);
@@ -63,7 +74,12 @@ function generateBreadcrumbs(pathname: string): BreadcrumbItem[] {
     
     breadcrumbs.push({
       label,
-      href: isLast ? undefined : currentPath,
+      // Ancestor crumbs must point at the canonical URL — /calgary and
+      // /edmonton both 301, so an unresolved crumb sends every breadcrumb
+      // click (and the BreadcrumbList schema) through a redirect.
+      href: isLast
+        ? undefined
+        : ANCESTOR_OVERRIDES[currentPath] ?? resolvedLinkPath(currentPath),
     });
   });
   

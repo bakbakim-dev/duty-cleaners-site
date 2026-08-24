@@ -111,6 +111,19 @@ export default function EdmontonPricing() {
         <script type="application/ld+json">
           {JSON.stringify(buildPricingSchema({ city: "edmonton", standard: standardPricing, deep: deepPricing, moveInOut: moveInOutPricing }))}
         </script>
+        {/* Mirrors the FAQ rendered on this page. Generated from the same
+            `faqItems` array, so the markup can never drift from the copy. */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqItems.map((f) => ({
+              "@type": "Question",
+              name: f.question,
+              acceptedAnswer: { "@type": "Answer", text: f.answer },
+            })),
+          })}
+        </script>
       </Helmet>
 
       <Navigation city="edmonton" />

@@ -198,7 +198,8 @@ export default function Evansdale() {
                     Evansdale is a tight-knit family neighbourhood in north Edmonton known for its schools, parks and proximity to Northgate Centre. The people who live here take pride in their homes, and at Duty Cleaners, we're proud to be part of the rhythm of daily life in the neighbourhood.
                   </p>
                   <p>
-                    Whether your home is                    <a href="https://www.google.com/maps/search/Evansdale+School+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Evansdale School</a>,
+                    Whether your home is near{" "}
+                    <a href="https://www.google.com/maps/search/Evansdale+School+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Evansdale School</a>,
                     steps from <a href="https://www.google.com/maps/place/Northgate+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Northgate Centre</a>,
                     minutes from <a href="https://www.google.com/maps/search/Evansdale+Community+League/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Evansdale Community League</a>,
                     or close to <a href="https://www.google.com/maps/place/97+St+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">97 Street</a>,

@@ -122,7 +122,7 @@ const services: Service[] = [
       "Vacuuming and mopping of all floors, including carpet vacuuming"
     ],
     price: MOVE_FROM,
-    link: "/edmonton/move-in-move-out-cleaning",
+    link: "/move-out-cleaning-edmonton",
     linkText: "Learn More",
     icon: Truck,
     accent: false
@@ -137,7 +137,7 @@ const services: Service[] = [
       "Final move-in ready detailing"
     ],
     price: POST_FROM,
-    link: "/edmonton/post-construction-cleaning",
+    link: "/post-construction-cleaning",
     linkText: "Learn More",
     icon: HardHat,
     accent: true
@@ -167,7 +167,7 @@ const services: Service[] = [
       "Restore wall color vibrancy"
     ],
     price: "Custom Pricing",
-    link: "/edmonton/wall-washing",
+    link: "/wall-washing-wall-cleaning",
     linkText: "Learn More",
     icon: PaintRoller,
     accent: false

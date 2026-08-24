@@ -30,6 +30,12 @@ interface BlogPost {
   slug?: string;
 }
 
+
+// Only posts that actually exist are listed. Six entries used to sit here
+// with no `slug`, hotlinked Unsplash images and invented Feb-Mar 2024 dates.
+// BlogPostCard renders a slugless card as a plain <div>, so they kept all the
+// hover states and a "Read Article" button while doing nothing on click —
+// six dead entries ahead of the eight real ones on the index.
 const blogPosts: BlogPost[] = [
   {
     id: 14,
@@ -79,7 +85,7 @@ const blogPosts: BlogPost[] = [
     date: "January 25, 2026",
     readTime: "12 min read",
     image: houseCleaningCostHero,
-    slug: "/blog/house-cleaning-cost"
+    slug: "/how-much-does-a-house-cleaning-cost"
   },
   {
     id: 9,
@@ -89,7 +95,7 @@ const blogPosts: BlogPost[] = [
     date: "January 25, 2026",
     readTime: "15 min read",
     image: vinegarBakingSodaHero,
-    slug: "/blog/vinegar-baking-soda"
+    slug: "/cleaning-with-vinegar-and-baking-soda"
   },
   {
     id: 8,
@@ -110,60 +116,6 @@ const blogPosts: BlogPost[] = [
     readTime: "12 min read",
     image: cleaningScheduleHero,
     slug: "/blog/cleaning-schedule"
-  },
-  {
-    id: 1,
-    title: "10 Essential Spring Cleaning Tips for Your Alberta Home",
-    excerpt: "Get your home ready for spring with these professional cleaning tips that will help you tackle every corner efficiently and effectively.",
-    category: "Cleaning Tips",
-    date: "March 15, 2024",
-    readTime: "5 min read",
-    image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80"
-  },
-  {
-    id: 2,
-    title: "The Ultimate Guide to Move-In/Move-Out Cleaning",
-    excerpt: "Moving can be stressful, but cleaning doesn't have to be. Learn the essential steps for a spotless transition to your new home.",
-    category: "Moving",
-    date: "March 10, 2024",
-    readTime: "7 min read",
-    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80"
-  },
-  {
-    id: 3,
-    title: "How Often Should You Deep Clean Your Home?",
-    excerpt: "Discover the optimal cleaning schedule for maintaining a healthy and pristine home environment throughout the year.",
-    category: "Home Care",
-    date: "March 5, 2024",
-    readTime: "4 min read",
-    image: "https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?w=800&q=80"
-  },
-  {
-    id: 4,
-    title: "Eco-Friendly Cleaning: Better for Your Home and the Environment",
-    excerpt: "Learn about green cleaning solutions that are safe for your family and gentle on the planet while still delivering powerful results.",
-    category: "Green Cleaning",
-    date: "February 28, 2024",
-    readTime: "6 min read",
-    image: "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=800&q=80"
-  },
-  {
-    id: 5,
-    title: "Post-Construction Cleaning: What You Need to Know",
-    excerpt: "Renovated your home? Here's everything you need to know about thorough post-construction cleaning for a safe and beautiful space.",
-    category: "Construction",
-    date: "February 20, 2024",
-    readTime: "5 min read",
-    image: "https://images.unsplash.com/photo-1581404649187-3d17c4457f68?w=800&q=80"
-  },
-  {
-    id: 6,
-    title: "5 Cleaning Mistakes That Could Be Damaging Your Home",
-    excerpt: "Avoid these common cleaning errors that can cause long-term damage to your surfaces, furniture, and appliances.",
-    category: "Home Care",
-    date: "February 15, 2024",
-    readTime: "4 min read",
-    image: "https://images.unsplash.com/photo-1585421514738-01798e348b17?w=800&q=80"
   }
 ];
 

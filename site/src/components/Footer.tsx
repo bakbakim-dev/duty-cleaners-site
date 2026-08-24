@@ -174,8 +174,8 @@ export default function Footer() {
             <nav aria-label="Footer navigation">
               <FooterLink to="/about-us">About Us</FooterLink>
               <FooterLink to="/locations">All Locations</FooterLink>
-              <FooterLink to={`/${city}/services`}>Services</FooterLink>
-              <FooterLink to={`/${city}/pricing`}>Pricing</FooterLink>
+              <FooterLink to={canonicalForPath(`/${city}/services`)}>Services</FooterLink>
+              <FooterLink to={canonicalForPath(`/${city}/pricing`)}>Pricing</FooterLink>
               <FooterLink to="/reviews">Reviews</FooterLink>
               <FooterLink to="/blog">Blog</FooterLink>
               <FooterLink to="/faqs">FAQ</FooterLink>
@@ -189,26 +189,26 @@ export default function Footer() {
             <FooterHeading>Cleaning services</FooterHeading>
             <p className="mb-2 text-sm font-semibold uppercase tracking-[0.16em] text-brand-gold">Residential</p>
             <nav aria-label="Residential cleaning services">
-              {serviceGroups.residential.map(([label, path]) => <FooterLink key={path} to={`/${city}/${path}`}>{label}</FooterLink>)}
+              {serviceGroups.residential.map(([label, path]) => <FooterLink key={path} to={canonicalForPath(`/${city}/${path}`)}>{label}</FooterLink>)}
             </nav>
             <p className="mb-2 mt-5 text-sm font-semibold uppercase tracking-[0.16em] text-brand-gold">Specialty</p>
             <nav aria-label="Specialty cleaning services">
               {serviceGroups.specialty.map(([label, path]) => (
                 <FooterLink
                   key={path}
-                  to={
+                  to={canonicalForPath(
                     path === "commercial-cleaning"
                       ? city === "calgary"
                         ? "/calgary/commercial-cleaning"
                         : "/commercial-cleaning"
                       : `/${city}/${path}`
-                  }
+                  )}
                 >
                   {label}
                 </FooterLink>
               ))}
               {city !== "calgary" && (
-                <FooterLink to="/edmonton/march-out-cleaning">March Out Cleaning</FooterLink>
+                <FooterLink to={canonicalForPath("/edmonton/march-out-cleaning")}>March Out Cleaning</FooterLink>
               )}
             </nav>
           </div>

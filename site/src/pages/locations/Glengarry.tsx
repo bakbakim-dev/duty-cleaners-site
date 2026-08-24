@@ -198,7 +198,8 @@ export default function Glengarry() {
                     Glengarry is a mature north Edmonton community of brick bungalows on tree-lined streets, close to Northgate Centre and Killarney. The people who live here take pride in their homes, and at Duty Cleaners, we're proud to be part of the rhythm of daily life in the neighbourhood.
                   </p>
                   <p>
-                    Whether your home is                    <a href="https://www.google.com/maps/search/Glengarry+Park+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Glengarry Park</a>,
+                    Whether your home is near{" "}
+                    <a href="https://www.google.com/maps/search/Glengarry+Park+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Glengarry Park</a>,
                     steps from <a href="https://www.google.com/maps/place/Northgate+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Northgate Centre</a>,
                     minutes from <a href="https://www.google.com/maps/place/97+St+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">97 Street</a>,
                     or close to <a href="https://www.google.com/maps/place/132+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">132 Avenue</a>,

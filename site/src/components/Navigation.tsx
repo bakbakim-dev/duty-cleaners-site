@@ -188,6 +188,10 @@ export default function Navigation({ city }: NavigationProps) {
 
   const phone = city === "calgary" ? "(403) 768-1341" : "780-913-6565";
   const phoneLink = city === "calgary" ? "tel:4037681341" : "tel:7809136565";
+  // NOTE: cityPath composes MODERN routes (/edmonton/pricing). Several of
+  // those have a preserved legacy canonical (/pricing), so every link built
+  // from it is resolved through canonicalForPath — otherwise the sitewide nav
+  // sends a 301 hop from every page on the site.
   const cityPath = city ? `/${city}` : "/edmonton";
   const quoteTarget = city === "calgary" ? `${canonicalForPath("/calgary")}#quote` : "/#quote";
 
@@ -208,10 +212,10 @@ export default function Navigation({ city }: NavigationProps) {
   ];
 
   const servicesItems: DropdownItem[] = [
-    { to: `${cityPath}/services`, icon: Sparkles, title: "All Services", description: "Standard, deep & specialty cleaning" },
+    { to: canonicalForPath(`${cityPath}/services`), icon: Sparkles, title: "All Services", description: "Standard, deep & specialty cleaning" },
     { to: "/whats-included", icon: ClipboardList, title: "What's Included", description: "Room-by-room cleaning checklists" },
-    { to: `${cityPath}/move-in-move-out-cleaning`, icon: Truck, title: "Move In/Out Cleaning", description: "Get your deposit back, guaranteed" },
-    { to: `${cityPath}/post-construction-cleaning`, icon: HardHat, title: "Post-Construction", description: "Dust & debris removal after reno" },
+    { to: canonicalForPath(`${cityPath}/move-in-move-out-cleaning`), icon: Truck, title: "Move In/Out Cleaning", description: "Get your deposit back, guaranteed" },
+    { to: canonicalForPath(`${cityPath}/post-construction-cleaning`), icon: HardHat, title: "Post-Construction", description: "Dust & debris removal after reno" },
     // March-out is Edmonton-only military housing work, quoted by phone.
     ...(city === "calgary"
       ? []
@@ -297,7 +301,7 @@ export default function Navigation({ city }: NavigationProps) {
               {openDropdown === "services" && <DropdownPanel items={servicesItems} />}
             </div>
 
-            <NavLink to={`${cityPath}/pricing`} active={isActive(`${cityPath}/pricing`)}>
+            <NavLink to={canonicalForPath(`${cityPath}/pricing`)} active={isActive(`${cityPath}/pricing`)}>
               Pricing
             </NavLink>
 
@@ -437,7 +441,7 @@ export default function Navigation({ city }: NavigationProps) {
               )}
             </div>
 
-            <Link to={`${cityPath}/pricing`} className="block py-3 px-2 rounded-lg text-foreground hover:bg-secondary hover:text-accent transition-colors" onClick={() => setMobileMenuOpen(false)}>
+            <Link to={canonicalForPath(`${cityPath}/pricing`)} className="block py-3 px-2 rounded-lg text-foreground hover:bg-secondary hover:text-accent transition-colors" onClick={() => setMobileMenuOpen(false)}>
               Pricing
             </Link>
 

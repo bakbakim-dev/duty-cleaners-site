@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { buildLocationSchema } from "@/lib/location-schema";
 import CoverageChips from "@/components/CoverageChips";
+import calgaryKitchen from "@/assets/gallery/calgary-kitchen-clean.jpg";
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -175,10 +176,12 @@ export default function AuburnBay() {
               </div>
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
-                  src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80"
-                  alt="Professional cleaner maintaining an Auburn Bay home"
+                  src={calgaryKitchen}
+                  alt="A spotless kitchen after a Duty Cleaners visit in Calgary"
+                  width={600}
+                  height={400}
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
-                loading="lazy" decoding="async" />
+                  loading="lazy" decoding="async" />
               </div>
             </div>
           </div>

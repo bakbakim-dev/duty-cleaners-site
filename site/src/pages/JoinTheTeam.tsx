@@ -43,6 +43,7 @@ import { submitQuote } from "@/lib/quote-submit";
 import { toast } from "sonner";
 import { z } from "zod";
 import heroCleanersSmiling from "@/assets/hero-cleaners-smiling.jpg";
+import { CITY_PROOF, CLEANER_JOB_POSTING } from "@/data/proof";
 
 const applicationSchema = z.object({
   firstName: z.string().trim().min(1, "First name is required").max(50, "First name must be less than 50 characters"),
@@ -284,6 +285,52 @@ export default function JoinTheTeam() {
           content="Join the Duty Cleaners team! Flexible schedules, competitive pay, and consistent work. Apply today for cleaning positions in Edmonton and Calgary."
         />
         <link rel="canonical" href="https://dutycleaners.ca/join-the-team/" />
+        {/* Mirrors the FAQ accordion rendered on this page. */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((f) => ({
+              "@type": "Question",
+              name: f.question,
+              acceptedAnswer: { "@type": "Answer", text: f.answer },
+            })),
+          })}
+        </script>
+        {/* JobPosting is emitted only once the owner sets a real datePosted in
+            src/data/proof.ts. Google demotes postings with stale or missing
+            dates, so shipping a hardcoded one would be worse than none. */}
+        {CLEANER_JOB_POSTING.datePosted && (
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "JobPosting",
+              title: "House Cleaner",
+              description:
+                "Duty Cleaners is hiring experienced house cleaners in Edmonton and Calgary. Regular bookings at the same time and location each week, flexible scheduling, no night shifts, and the option to take weekends off.",
+              datePosted: CLEANER_JOB_POSTING.datePosted,
+              ...(CLEANER_JOB_POSTING.validThrough
+                ? { validThrough: CLEANER_JOB_POSTING.validThrough }
+                : {}),
+              employmentType: CLEANER_JOB_POSTING.employmentType,
+              hiringOrganization: {
+                "@type": "Organization",
+                name: "Duty Cleaners",
+                sameAs: "https://dutycleaners.ca/",
+              },
+              jobLocation: (["edmonton", "calgary"] as const).map((key) => ({
+                "@type": "Place",
+                address: {
+                  "@type": "PostalAddress",
+                  addressLocality: CITY_PROOF[key].city,
+                  addressRegion: "AB",
+                  addressCountry: "CA",
+                },
+              })),
+              directApply: true,
+            })}
+          </script>
+        )}
       </Helmet>
 
       <div className="min-h-screen bg-background">

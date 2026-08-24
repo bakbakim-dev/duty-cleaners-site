@@ -198,7 +198,8 @@ export default function Holyrood() {
                     Holyrood is a mature southeast Edmonton neighbourhood prized for its mid-century homes, tree-lined avenues and proximity to the Mill Creek Ravine. The people who live here take pride in their homes, and at Duty Cleaners, we're proud to be part of the rhythm of daily life in the neighbourhood.
                   </p>
                   <p>
-                    Whether your home is                    <a href="https://www.google.com/maps/search/Holyrood+Elementary+School+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Holyrood School</a>,
+                    Whether your home is near{" "}
+                    <a href="https://www.google.com/maps/search/Holyrood+Elementary+School+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Holyrood School</a>,
                     steps from <a href="https://www.google.com/maps/place/Mill+Creek+Ravine+Park/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Mill Creek Ravine</a>,
                     minutes from <a href="https://www.google.com/maps/place/Bonnie+Doon+Shopping+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Bonnie Doon Centre</a>,
                     or close to <a href="https://www.google.com/maps/place/85+St+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">85 Street</a>,

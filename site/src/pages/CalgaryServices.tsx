@@ -121,7 +121,7 @@ const services: Service[] = [
       "Vacuuming and mopping of all floors, including carpet vacuuming"
     ],
     price: MOVE_FROM,
-    link: "/calgary/move-in-move-out-cleaning",
+    link: "/move-out-cleaning-calgary",
     linkText: "Learn More",
     icon: Truck,
     accent: false
@@ -136,7 +136,7 @@ const services: Service[] = [
       "Final move-in ready detailing"
     ],
     price: POST_FROM,
-    link: "/calgary/post-construction-cleaning",
+    link: "/post-construction-cleaning-calgary",
     linkText: "Learn More",
     icon: HardHat,
     accent: true
@@ -151,7 +151,7 @@ const services: Service[] = [
       "Restore wall color vibrancy"
     ],
     price: "Custom Pricing",
-    link: "/calgary/wall-washing",
+    link: "/wall-washing-wall-cleaning-calgary",
     linkText: "Learn More",
     icon: PaintRoller,
     accent: false
@@ -166,7 +166,7 @@ const services: Service[] = [
       "Quick turnaround scheduling"
     ],
     price: "Hourly Cleaning",
-    link: "/calgary/airbnb-cleaning",
+    link: "/airbnb-cleaning-services-calgary",
     linkText: "Learn More",
     icon: BedDouble,
     accent: true
@@ -181,7 +181,7 @@ const services: Service[] = [
       "Flexible scheduling options"
     ],
     price: "Custom Pricing",
-    link: "/calgary/commercial-cleaning",
+    link: "/commercial-cleaning-services-calgary",
     linkText: "Learn More",
     icon: Briefcase,
     badge: "Professional Service",

@@ -198,7 +198,8 @@ export default function Miller() {
                     Miller is a newer family-friendly northeast Edmonton community with modern homes, walking trails and quick access to Anthony Henday Drive. The people who live here take pride in their homes, and at Duty Cleaners, we're proud to be part of the rhythm of daily life in the neighbourhood.
                   </p>
                   <p>
-                    Whether your home is                    <a href="https://www.google.com/maps/search/Miller+Park+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Miller Park</a>,
+                    Whether your home is near{" "}
+                    <a href="https://www.google.com/maps/search/Miller+Park+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Miller Park</a>,
                     steps from <a href="https://www.google.com/maps/place/Anthony+Henday+Drive/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Anthony Henday Drive</a>,
                     minutes from <a href="https://www.google.com/maps/place/Manning+Town+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Manning Town Centre</a>,
                     or close to <a href="https://www.google.com/maps/place/18+St+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">18 Street</a>,

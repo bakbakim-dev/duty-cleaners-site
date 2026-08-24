@@ -14,6 +14,7 @@ import {
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { buildLocationSchema } from "@/lib/location-schema";
 import CoverageChips from "@/components/CoverageChips";
+import calgaryCleanHome from "@/assets/gallery/calgary-clean-home-northwest.jpg";
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -176,10 +177,12 @@ export default function ArbourLake() {
               </div>
               <div className="flex-shrink-0 w-full lg:w-[500px]">
                 <img
-                  src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=400&fit=crop"
-                  alt="Beautiful lakeside home in Arbour Lake, Calgary — a welcoming community with private beach access"
+                  src={calgaryCleanHome}
+                  alt="A freshly cleaned Calgary living space"
+                  width={600}
+                  height={400}
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
-                loading="lazy" decoding="async" />
+                  loading="lazy" decoding="async" />
               </div>
             </div>
           </div>
