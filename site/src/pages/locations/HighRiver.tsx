@@ -69,6 +69,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - High River",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/high-river",
+  areaServed: "High River, AB",
   priceRange: "$155-$519",
 });
 

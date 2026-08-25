@@ -116,7 +116,7 @@ export default function Leduc() {
         <meta name="twitter:description" content="Professional house cleaning in Leduc, from Telford Lake to Fred Johns Park. Standard, deep and move-out cleans at a flat price you see before booking." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
-      <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Leduc Edmonton", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-leduc", areaServed: "Leduc, Edmonton, AB" }))}</script>
+      <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Leduc Edmonton", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-leduc", areaServed: "Leduc, AB" }))}</script>
       <Navigation city="edmonton" />
       <div className="container mx-auto px-4 pt-4">
         <Breadcrumbs />

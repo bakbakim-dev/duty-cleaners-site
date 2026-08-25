@@ -36,3 +36,25 @@ describe("location-directory", () => {
     expect(LINKABLE_LOCATION_COUNT).toBeGreaterThan(150);
   });
 });
+
+describe("city scoping", () => {
+  it("resolves an ambiguous name to the page in the CURRENT city", () => {
+    // Inglewood exists in both markets — this is the case that was sending
+    // Calgary visitors to the Edmonton page.
+    expect(locationRouteForName("Inglewood", "calgary")).toBe("/locations/inglewood-calgary");
+    expect(locationRouteForName("Inglewood", "edmonton")).toBe("/locations/inglewood");
+  });
+
+  it("returns null rather than linking across cities", () => {
+    // These have an Edmonton page but no Calgary one. An unlinked chip is
+    // correct; pointing Calgary's Montrose at Edmonton's Montrose is not.
+    for (const name of ["Downtown", "Westmount", "Montrose", "Riverbend"]) {
+      expect(locationRouteForName(name, "calgary"), name).toBeNull();
+    }
+  });
+
+  it("still resolves unambiguous names within their own city", () => {
+    expect(locationRouteForName("Beltline", "calgary")).toBe("/locations/beltline-calgary");
+    expect(locationRouteForName("Allendale", "edmonton")).toBe("/locations/allendale");
+  });
+});

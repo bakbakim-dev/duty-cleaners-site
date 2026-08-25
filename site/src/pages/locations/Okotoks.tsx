@@ -69,6 +69,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Okotoks",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/okotoks",
+  areaServed: "Okotoks, AB",
   priceRange: "$155-$519",
 });
 

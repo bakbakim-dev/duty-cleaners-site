@@ -25,6 +25,12 @@ interface LocationPageProps {
   phoneLink: string;
   /** Real, verbatim-sourced "Things To Do" paragraphs for this town, if confirmed. */
   thingsToDo?: string[];
+  /**
+   * Set for places that are their OWN municipality rather than a neighbourhood
+   * of the region's main city. Black Diamond is a town near Calgary, not part
+   * of it, so "Black Diamond, Calgary, AB" is geographically false.
+   */
+  isOwnMunicipality?: boolean;
 }
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -88,6 +94,7 @@ export default function LocationPageTemplate({
   phone,
   phoneLink,
   thingsToDo,
+  isOwnMunicipality = false,
 }: LocationPageProps) {
   useEffect(() => {
     document.title = title;
@@ -105,7 +112,7 @@ export default function LocationPageTemplate({
     city: region,
     url: canonicalUrl,
     description,
-    areaServed: `${city}, ${regionLabel}, AB`,
+    areaServed: isOwnMunicipality ? `${city}, AB` : `${city}, ${regionLabel}, AB`,
   });
 
   const faqs = [

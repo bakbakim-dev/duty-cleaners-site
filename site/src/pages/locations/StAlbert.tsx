@@ -116,7 +116,7 @@ export default function StAlbert() {
         <meta name="twitter:description" content="House cleaning in St. Albert — serving Lacombe Park, Erin Ridge, Grandin and homes along the Sturgeon River. Flat-rate pricing and reference-checked cleaners." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
-      <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - St. Albert Edmonton", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-st-albert", areaServed: "St. Albert, Edmonton, AB" }))}</script>
+      <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - St. Albert Edmonton", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-st-albert", areaServed: "St. Albert, AB" }))}</script>
       <Navigation city="edmonton" />
       <div className="container mx-auto px-4 pt-4">
         <Breadcrumbs />

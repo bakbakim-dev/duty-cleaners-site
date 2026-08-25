@@ -33,7 +33,7 @@ export const LEGACY_URLS: LegacyUrl[] = [
   { legacy: "/services", target: "/edmonton/services", mode: "preserve", impressions: 78958 },
   { legacy: "/8081/the-top-5-must-have-cleaning-products-for-a-spotless-home", target: "/the-top-5-must-have-cleaning-products-for-a-spotless-home", mode: "redirect", impressions: 73104 },
   { legacy: "/post-construction-cleaning-calgary", target: "/calgary/post-construction-cleaning", mode: "preserve", impressions: 54453 },
-  { legacy: "/8060/how-often-should-a-cleaning-service-clean-my-house", target: "/blog/cleaning-frequency", mode: "redirect", impressions: 44921 },
+  { legacy: "/8060/how-often-should-a-cleaning-service-clean-my-house", target: "/how-often-should-a-cleaning-service-clean-my-house", mode: "redirect", impressions: 44921 },
   { legacy: "/cleaning-services-beaumont", target: "/locations/beaumont", mode: "preserve", impressions: 44138 },
   { legacy: "/contact-us", target: "/contact", mode: "preserve", impressions: 43173 },
   { legacy: "/cleaning-services-morinville", target: "/locations/morinville", mode: "preserve", impressions: 41995 },
@@ -77,7 +77,12 @@ export const LEGACY_URLS: LegacyUrl[] = [
   { legacy: "/cleaning-services-red-deer", target: "/locations", mode: "redirect", impressions: 600 },
   { legacy: "/cleaning-services-glenora-edmonton-ab", target: "/locations/glenora-edmonton", mode: "redirect", impressions: 528 },
   { legacy: "/1848/house-cleaning-hacks-easy-tips-for-busy-lives", target: "/blog", mode: "redirect", impressions: 521 },
-  { legacy: "/how-often-should-a-cleaning-service-clean-my-house", target: "/blog/cleaning-frequency", mode: "redirect", impressions: 509 },
+  // PRESERVE, matching the cost and vinegar posts above: the numeric WordPress
+  // URL 301s to the clean WP slug, and the clean slug is canonical. This entry
+  // used to redirect too, so BOTH legacy URLs pointed at /blog/cleaning-frequency —
+  // a slug that never existed on WordPress — while /8060/ was earning 264 clicks
+  // and 44,921 impressions at position 12.65.
+  { legacy: "/how-often-should-a-cleaning-service-clean-my-house", target: "/blog/cleaning-frequency", mode: "preserve", impressions: 509 },
   { legacy: "/services/wall-washing-wall-cleaning", target: "/wall-washing-wall-cleaning", mode: "redirect", impressions: 459 },
   { legacy: "/cleaning-services-riverdale-edmonton-ab", target: "/locations/riverdale-edmonton", mode: "redirect", impressions: 444 },
   { legacy: "/cleaning-services-edmonton", target: "/", mode: "redirect", impressions: 430 },

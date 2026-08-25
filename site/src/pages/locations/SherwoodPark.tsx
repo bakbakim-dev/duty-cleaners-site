@@ -115,7 +115,7 @@ export default function SherwoodPark() {
         <meta name="twitter:description" content="House cleaning across Sherwood Park — Broadmoor, Emerald Hills, Lakeland Ridge and beyond. Vetted cleaners, flat pricing, and a 24-hour make-it-right promise." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
-      <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Sherwood Park Edmonton", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-sherwood-park", areaServed: "Sherwood Park, Edmonton, AB" }))}</script>
+      <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Sherwood Park Edmonton", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-sherwood-park", areaServed: "Sherwood Park, AB" }))}</script>
       <Navigation city="edmonton" />
       <div className="container mx-auto px-4 pt-4">
         <Breadcrumbs />

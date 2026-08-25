@@ -69,6 +69,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Cochrane",
   city: "calgary",
   url: "https://dutycleaners.ca/cleaning-services-cochrane",
+  areaServed: "Cochrane, AB",
   priceRange: "$155-$519",
 });
 

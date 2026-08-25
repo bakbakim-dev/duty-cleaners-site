@@ -115,7 +115,7 @@ export default function Beaumont() {
         <meta name="twitter:description" content="Professional house cleaning in Beaumont — from Four Seasons Park to the shops along 50th Avenue. Flat-rate pricing, vetted cleaners, pay after your clean." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
-      <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Beaumont Edmonton", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-beaumont", areaServed: "Beaumont, Edmonton, AB" }))}</script>
+      <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Beaumont Edmonton", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-beaumont", areaServed: "Beaumont, AB" }))}</script>
       <Navigation city="edmonton" />
       <div className="container mx-auto px-4 pt-4">
         <Breadcrumbs />

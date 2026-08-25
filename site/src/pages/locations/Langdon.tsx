@@ -69,6 +69,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Langdon",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/langdon",
+  areaServed: "Langdon, AB",
   priceRange: "$155-$519",
 });
 

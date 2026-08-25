@@ -121,7 +121,7 @@ export default function StonyPlain() {
         <meta name="twitter:description" content="Trusted house cleaning in Stony Plain, home of the downtown murals. Flat-rate standard, deep and move-out cleans — quoted online, paid after the work is done." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
-      <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Stony Plain Edmonton", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-stony-plain", areaServed: "Stony Plain, Edmonton, AB" }))}</script>
+      <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Stony Plain Edmonton", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-stony-plain", areaServed: "Stony Plain, AB" }))}</script>
       <Navigation city="edmonton" />
       <div className="container mx-auto px-4 pt-4">
         <Breadcrumbs />

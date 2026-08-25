@@ -69,6 +69,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Strathmore",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/strathmore",
+  areaServed: "Strathmore, AB",
   priceRange: "$155-$519",
   geo: { latitude: "51.0378", longitude: "-113.4001" },
 });

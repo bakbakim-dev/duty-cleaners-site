@@ -84,10 +84,12 @@ export default function BlogCleaningFrequency() {
           name="description"
           content="Learn how often you should hire a cleaning service - weekly, bi-weekly, or monthly. Expert guide from Duty Cleaners to help you choose the right cleaning frequency."
         />
-        <link rel="canonical" href="https://dutycleaners.ca/blog/cleaning-frequency/" />
+        {/* Canonical is the preserved WordPress slug, matching the cost and vinegar
+            posts. /blog/cleaning-frequency is the modern route and now 301s here. */}
+        <link rel="canonical" href="https://dutycleaners.ca/how-often-should-a-cleaning-service-clean-my-house/" />
         <meta property="og:title" content="How Often Should A Cleaning Service Clean My House | Duty Cleaners" />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content="https://dutycleaners.ca/blog/cleaning-frequency/" />
+        <meta property="og:url" content="https://dutycleaners.ca/how-often-should-a-cleaning-service-clean-my-house/" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Article",
@@ -98,7 +100,7 @@ export default function BlogCleaningFrequency() {
           "dateModified": "2026-01-22",
           "author": ARTICLE_AUTHOR,
           "publisher": ARTICLE_PUBLISHER,
-          "mainEntityOfPage": canonicalUrlForPath("/blog/cleaning-frequency")
+          "mainEntityOfPage": canonicalUrlForPath("/how-often-should-a-cleaning-service-clean-my-house")
 })}</script>
       </Helmet>
 

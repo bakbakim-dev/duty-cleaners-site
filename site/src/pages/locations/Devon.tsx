@@ -116,7 +116,7 @@ export default function Devon() {
         <meta name="twitter:description" content="Trusted house cleaning in Devon, from Voyageur Park to the river valley trails. See your flat price in 60 seconds — no phone call, pay after your clean." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
-      <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Devon Edmonton", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-devon", areaServed: "Devon, Edmonton, AB" }))}</script>
+      <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Devon Edmonton", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-devon", areaServed: "Devon, AB" }))}</script>
       <Navigation city="edmonton" />
       <div className="container mx-auto px-4 pt-4">
         <Breadcrumbs />

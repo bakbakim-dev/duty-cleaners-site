@@ -69,6 +69,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Airdrie",
   city: "calgary",
   url: "https://dutycleaners.ca/cleaning-services-airdrie",
+  areaServed: "Airdrie, AB",
   priceRange: "$155-$519",
 });
 

@@ -116,7 +116,7 @@ export default function FortSaskatchewan() {
         <meta name="twitter:description" content="House cleaning in Fort Saskatchewan — serving homes near Legacy Park, the Fort Heritage Precinct and Dow Centennial Centre. Flat rates, vetted cleaners." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
-      <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Fort Saskatchewan Edmonton", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-fort-saskatchewan", areaServed: "Fort Saskatchewan, Edmonton, AB" }))}</script>
+      <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Fort Saskatchewan Edmonton", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-fort-saskatchewan", areaServed: "Fort Saskatchewan, AB" }))}</script>
       <Navigation city="edmonton" />
       <div className="container mx-auto px-4 pt-4">
         <Breadcrumbs />

@@ -521,7 +521,7 @@ const App = () => (
           {/* Legacy 301s -> canonical successor */}
           <Route path="/8038/how-much-does-a-house-cleaning-cost" element={<Navigate to="/how-much-does-a-house-cleaning-cost" replace />} />
           <Route path="/8081/the-top-5-must-have-cleaning-products-for-a-spotless-home" element={<Navigate to="/the-top-5-must-have-cleaning-products-for-a-spotless-home" replace />} />
-          <Route path="/8060/how-often-should-a-cleaning-service-clean-my-house" element={<Navigate to="/blog/cleaning-frequency" replace />} />
+          <Route path="/8060/how-often-should-a-cleaning-service-clean-my-house" element={<Navigate to="/how-often-should-a-cleaning-service-clean-my-house" replace />} />
           <Route path="/services/move-in-move-out-cleaning" element={<Navigate to="/move-out-cleaning-edmonton" replace />} />
           <Route path="/8088/cleaning-with-vinegar-and-baking-soda" element={<Navigate to="/cleaning-with-vinegar-and-baking-soda" replace />} />
           <Route path="/8102/a-house-cleaning-schedule-that-does-not-overwhelm-you" element={<Navigate to="/blog/cleaning-schedule" replace />} />
@@ -545,7 +545,7 @@ const App = () => (
           <Route path="/cleaning-services-red-deer" element={<Navigate to="/locations" replace />} />
           <Route path="/cleaning-services-glenora-edmonton-ab" element={<Navigate to="/locations/glenora-edmonton" replace />} />
           <Route path="/1848/house-cleaning-hacks-easy-tips-for-busy-lives" element={<Navigate to="/blog" replace />} />
-          <Route path="/how-often-should-a-cleaning-service-clean-my-house" element={<Navigate to="/blog/cleaning-frequency" replace />} />
+          <Route path="/how-often-should-a-cleaning-service-clean-my-house" element={<BlogCleaningFrequency />} />
           <Route path="/services/wall-washing-wall-cleaning" element={<Navigate to="/wall-washing-wall-cleaning" replace />} />
           <Route path="/cleaning-services-riverdale-edmonton-ab" element={<Navigate to="/locations/riverdale-edmonton" replace />} />
           <Route path="/cleaning-services-edmonton" element={<Navigate to="/" replace />} />

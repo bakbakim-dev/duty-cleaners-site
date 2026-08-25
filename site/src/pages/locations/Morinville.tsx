@@ -113,7 +113,7 @@ export default function Morinville() {
         <meta name="twitter:description" content="Reliable house cleaning in Morinville, near St. Jean Baptiste Church and the Leisure Centre. Flat-rate quotes in 60 seconds, and you pay after the clean." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
-      <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Morinville Edmonton", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-morinville", areaServed: "Morinville, Edmonton, AB" }))}</script>
+      <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Morinville Edmonton", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-morinville", areaServed: "Morinville, AB" }))}</script>
       <Navigation city="edmonton" />
       <div className="container mx-auto px-4 pt-4">
         <Breadcrumbs />

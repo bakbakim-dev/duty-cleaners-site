@@ -69,6 +69,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Crossfield",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/crossfield",
+  areaServed: "Crossfield, AB",
   priceRange: "$155-$519",
 });
 

@@ -69,6 +69,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Turner Valley",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/turner-valley",
+  areaServed: "Turner Valley, AB",
   priceRange: "$155-$519",
 });
 

@@ -69,6 +69,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Chestermere",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/chestermere",
+  areaServed: "Chestermere, AB",
   priceRange: "$155-$519",
 });
 
