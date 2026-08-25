@@ -16,12 +16,10 @@
          there is no flash of content that then snaps away.
          The timeout is the failsafe for the bundle-error case: if React has not
          mounted after 4s, drop the flag and let the prerendered HTML show. -->
-    <script>
-      document.documentElement.dataset.motion = "on";
-      setTimeout(function () {
-        if (!window.__dcMounted) document.documentElement.removeAttribute("data-motion");
-      }, 4000);
-    </script>
+    <!-- Deliberately one line: the CSP in public/_headers pins a sha256 of this
+         script's exact bytes, and a multi-line body would hash differently
+         depending on whether the file is checked out with LF or CRLF. -->
+    <script>document.documentElement.dataset.motion="on";setTimeout(function(){if(!window.__dcMounted)document.documentElement.removeAttribute("data-motion")},4000);</script>
 
 
 
