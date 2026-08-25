@@ -86,7 +86,7 @@ const CHROME_ARGS = [
   "--virtual-time-budget=10000", "--timeout=20000", "--dump-dom",
 ];
 
-let done = 0, failed = 0, retried = 0;
+let done = 0, failed = 0, retried = 0, strippedTiles = 0;
 
 /**
  * Headless Chrome occasionally returns a shell with no <h1> under concurrency —
@@ -122,7 +122,26 @@ async function renderRoute(route) {
     // HTML would claim JS is running before it is, and the CSS guard that keeps
     // scroll-reveal sections visible for no-JS visitors would never match.
     // The real browser re-stamps this within the first tick.
-    const out = html.replace(/(<html\b[^>]*?)\s+data-motion="on"/i, "$1");
+    let out = html.replace(/(<html\b[^>]*?)\s+data-motion="on"/i, "$1");
+
+    // Leaflet builds its map in an effect, so the headless run loads real map
+    // tiles and --dump-dom freezes them into the snapshot as <img> tags. 593 of
+    // them across 57 pages, 20 on the homepage alone.
+    //
+    // Every visitor then fetched those tiles from openstreetmap.org during
+    // initial HTML parse -- before any interaction, before Leaflet had even
+    // initialised -- handing OSM their IP and referer. Leaflet promptly threw
+    // the frozen tiles away and requested its own, so the traffic was wasted as
+    // well as unconsented, and OSMF's tile policy prohibits this class of
+    // commercial hotlinking. (These frozen tiles were also what the "673 images
+    // missing dimensions" audit figure was actually counting.)
+    //
+    // Stripping them changes nothing a visitor sees: the map is still built on
+    // mount exactly as before. It only stops the snapshot from firing requests
+    // the page never meant to make. The attribution link is left in place.
+    const beforeTiles = out.length;
+    out = out.replace(/<img\b[^>]*\bsrc="https:\/\/[a-c]\.tile\.openstreetmap\.org\/[^"]*"[^>]*>/g, "");
+    if (out.length !== beforeTiles) strippedTiles++;
     const outDir = route === "/" ? DIST : join(DIST, route.replace(/^\//, ""));
     mkdirSync(outDir, { recursive: true });
     writeFileSync(join(outDir, "index.html"), "<!doctype html>\n" + out);
@@ -155,6 +174,7 @@ console.log("wrote 404.html from the SPA shell");
 
 console.log(
   `prerender complete: ${done} ok, ${failed} failed` +
-    (retried ? ` (${retried} needed a retry)` : ""),
+    (retried ? ` (${retried} needed a retry)` : "") +
+    (strippedTiles ? `; stripped baked map tiles from ${strippedTiles} pages` : ""),
 );
 if (failed > 0) process.exitCode = 1;
