@@ -332,7 +332,7 @@ export default function Riverbend() {
                   <a href="tel:7809136565"><Phone className="mr-2 w-5 h-5" />Call 780-913-6565</a>
                 </Button>
                 <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
-                  <a href="https://dutycleaners.ca/get-a-quote/"><Mail className="mr-2 w-5 h-5" />See My Instant Price</a>
+                  <a href="#quote"><Mail className="mr-2 w-5 h-5" />See My Instant Price</a>
                 </Button>
               </div>
             </AnimatedSection>

@@ -86,15 +86,37 @@ const CHROME_ARGS = [
   "--virtual-time-budget=10000", "--timeout=20000", "--dump-dom",
 ];
 
-let done = 0, failed = 0;
+let done = 0, failed = 0, retried = 0;
+
+/**
+ * Headless Chrome occasionally returns a shell with no <h1> under concurrency —
+ * a different route each run, passing on the next attempt. The <h1> guard turns
+ * that into a hard build failure, so without a retry an entirely healthy build
+ * fails at random. Two attempts, with a short backoff, and every retry is
+ * reported so a route that is genuinely broken still stands out rather than
+ * being quietly papered over.
+ */
+async function renderOnce(url) {
+  const { stdout: html } = await execFileP(CHROME, [...CHROME_ARGS, url], {
+    maxBuffer: 64 * 1024 * 1024,
+    timeout: 45_000,
+  });
+  if (!/<h1/i.test(html)) throw new Error("no <h1> in rendered output");
+  return html;
+}
+
 async function renderRoute(route) {
   const url = `http://127.0.0.1:${port}${BASE.replace(/\/$/, "")}${route === "/" ? "/" : route}`;
   try {
-    const { stdout: html } = await execFileP(CHROME, [...CHROME_ARGS, url], {
-      maxBuffer: 64 * 1024 * 1024,
-      timeout: 45_000,
-    });
-    if (!/<h1/i.test(html)) throw new Error("no <h1> in rendered output");
+    let html;
+    try {
+      html = await renderOnce(url);
+    } catch (first) {
+      retried++;
+      console.warn(`  retrying ${route}: ${String(first.message).slice(0, 80)}`);
+      await new Promise((r) => setTimeout(r, 1000));
+      html = await renderOnce(url);
+    }
     // The headless run executes the inline script that stamps data-motion="on",
     // and --dump-dom bakes the result into the snapshot. Left in, the static
     // HTML would claim JS is running before it is, and the CSS guard that keeps
@@ -131,5 +153,8 @@ server.close();
 writeFileSync(join(DIST, "404.html"), readFileSync(join(DIST, "spa-shell.html"), "utf-8"));
 console.log("wrote 404.html from the SPA shell");
 
-console.log(`prerender complete: ${done} ok, ${failed} failed`);
+console.log(
+  `prerender complete: ${done} ok, ${failed} failed` +
+    (retried ? ` (${retried} needed a retry)` : ""),
+);
 if (failed > 0) process.exitCode = 1;

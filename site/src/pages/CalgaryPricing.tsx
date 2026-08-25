@@ -82,7 +82,7 @@ const faqItems = [
   { value: "included", question: "What is included in maid service in Calgary?", answer: "Our standard cleaning includes dusting all surfaces, vacuuming carpets, mopping floors, cleaning mirrors, kitchen cleaning (sink, stovetop, outside appliances, countertops), and bathroom cleaning (scrubbing toilets, showers, tubs, sinks). Deep cleaning and move-in/out services include additional tasks like baseboards, inside appliances, and cabinets." },
   { value: "duration", question: "How long does a typical house cleaning take?", answer: "We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes. Deep cleaning and move-in/out services cover more tasks than a standard clean." },
   { value: "supplies", question: "Are there discounts if I provide my own cleaning supplies?", answer: "We bring all professional-grade cleaning supplies and equipment at no extra cost. While we don't offer discounts for providing your own supplies, we're happy to use specific products you prefer at your request." },
-  { value: "recurring", question: "Do you offer recurring service discounts?", answer: "Yes! We offer substantial discounts for recurring services: 20% off for weekly cleaning, 15% off for bi-weekly cleaning, and 10% off for monthly cleaning. These discounts apply to standard and deep cleaning services." },
+  { value: "recurring", question: "Do you offer recurring service discounts?", answer: "Yes! We offer substantial discounts for recurring services: 20% off for weekly cleaning, 15% off for bi-weekly cleaning, and 10% off for monthly cleaning. These discounts apply to standard and deep cleaning services. Your first clean is at the standard one-time rate — the discount starts from your second visit and applies to every visit after that." },
   { value: "pricing-types", question: "What's the difference between Hourly Cleaning and flat-rate pricing?", answer: `Hourly Cleaning (${formatPrice(HOURLY_RATE)}/hour per cleaner) is flexible and ideal for one-time needs or focusing on specific areas. Our hourly service has a minimum of 3 hours for 1 cleaner or 2 hours for 2 cleaners. Flat-rate pricing offers predictable costs based on your home size and service type, with comprehensive cleaning included. Most customers prefer flat-rate for its transparency and value.` },
   { value: "hidden-fees", question: "Are there any hidden fees?", answer: "We do not charge trip fees or diagnostic fees. Estimates are based on the details provided when booking, while uncommon condition-based adjustments may apply if a home requires substantially more time or work than expected." },
   { value: "satisfaction", question: "What if I'm not satisfied with the cleaning?", answer: "We offer 100% satisfaction guarantee. If you're not completely happy with our service, let us know within 24 hours and we'll come back to re-clean the areas of concern at no additional cost. Your satisfaction is our commitment." },
@@ -172,9 +172,14 @@ export default function CalgaryPricing() {
             </div>
 
             <div className="flex flex-wrap justify-center gap-4">
-              <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-10 py-6 h-auto font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5">
-                <Calculator className="w-5 h-5 mr-2" />
-                See My Instant Price
+              {/* Without asChild + href this rendered as a bare <button> that did
+                  nothing — the primary CTA on the Calgary pricing page. Edmonton's
+                  identical block has always pointed at #quote. */}
+              <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-10 py-6 h-auto font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5" asChild>
+                <a href="#quote">
+                  <Calculator className="w-5 h-5 mr-2" />
+                  See My Instant Price
+                </a>
               </Button>
               <Button size="lg" className="bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 text-lg px-8 py-6 h-auto font-semibold transition-all duration-300" asChild>
                 <a href="tel:4037681341">
