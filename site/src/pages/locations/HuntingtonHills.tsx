@@ -72,7 +72,7 @@ const landmarks = [
   {
     "title": "Nose Hill Park",
     "url": "https://www.google.com/maps/place/Nose+Hill+Park,+Calgary,+AB/",
-    "description": "Wide-open prairie trails just south of the community"
+    "description": "Wide-open prairie trails along the community's western edge"
   },
   {
     "title": "Huntington Hills Community Centre",

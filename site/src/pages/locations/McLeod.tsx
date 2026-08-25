@@ -196,7 +196,7 @@ export default function McLeod() {
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Residential Cleaning in McLeod</h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
                   <p>
-                    McLeod is a quiet northeast Edmonton neighbourhood of family bungalows and townhomes near Greenfield, Belvedere LRT and Yellowhead Trail. The people who live here take pride in their homes, and at Duty Cleaners, we're proud to be part of the rhythm of daily life in the neighbourhood.
+                    McLeod is a quiet northeast Edmonton neighbourhood of family bungalows and townhomes near Kilkenny, Belvedere LRT and Yellowhead Trail. The people who live here take pride in their homes, and at Duty Cleaners, we're proud to be part of the rhythm of daily life in the neighbourhood.
                   </p>
                   <p>
                     Whether your home is near{" "}
@@ -293,7 +293,7 @@ export default function McLeod() {
                     We're in and around the neighbourhood daily, so we know the area well.
                   </p>
                 </div>
-                <CoverageChips areas={["McLeod Park", "Belvedere LRT", "Yellowhead Trail", "Victoria Trail", "Greenfield", "Belvedere", "Kildare", "Hermitage"]} variant="compact" />
+                <CoverageChips areas={["McLeod Park", "Belvedere LRT", "Yellowhead Trail", "Victoria Trail", "Casselman", "Belvedere", "Kildare", "Hermitage"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →

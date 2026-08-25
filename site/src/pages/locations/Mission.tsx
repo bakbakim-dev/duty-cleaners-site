@@ -199,7 +199,7 @@ export default function Mission() {
                     and the riverside pathways that wind toward downtown. The community sits steps from the iconic{" "}
                     <a href="https://www.google.com/maps/place/Stampede+Park,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Stampede Park</a>{" "}
                     and the{" "}
-                    <a href="https://www.google.com/maps/place/Repsol+Sport+Centre,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Repsol Sport Centre</a>.
+                    <a href="https://www.google.com/maps/place/MNP+Community+%26+Sport+Centre,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">MNP Community &amp; Sport Centre</a>.
                   </p>
                   <p>
                     Whether you live in a heritage home on a tree-lined street or a modern high-rise overlooking the river, our team provides flexible scheduling and non-toxic cleaning solutions designed for Mission's unique mix of households.

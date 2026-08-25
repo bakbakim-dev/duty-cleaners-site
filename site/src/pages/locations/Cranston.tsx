@@ -181,7 +181,7 @@ export default function Cranston() {
                   <p>
                     Cranston is a thriving master-planned community in southeast Calgary, centered around the impressive{" "}
                     <a href="https://www.google.com/maps/search/Century+Hall+Cranston+Calgary" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Century Hall</a>,
-                    a 17,000 sq ft residents-only facility featuring a pool, fitness center, hockey rink, and activity rooms. With over 13 km of pathways and beautiful natural areas along{" "}
+                    a 22,000 sq ft residents-only facility with a gymnasium, hockey rink, tennis courts, splash park and activity rooms. With over 13 km of pathways and beautiful natural areas along{" "}
                     <a href="https://www.google.com/maps/place/Fish+Creek+Provincial+Park,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Fish Creek Provincial Park</a>,
                     it's one of Calgary's most sought-after family neighborhoods.
                   </p>

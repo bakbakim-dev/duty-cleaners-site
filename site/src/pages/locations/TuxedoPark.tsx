@@ -206,7 +206,7 @@ export default function TuxedoPark() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">About the Neighbourhood</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Cleaning Designed Around Tuxedo Park Lifestyles</h2>
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
-                  <p>Tuxedo Park is a vibrant inner-city community where Edwardian character homes share streets with sleek new infills. Just north of downtown along Centre Street, residents enjoy quick LRT access, walkability, and the cafés and restaurants of 16th Ave.</p>
+                  <p>Tuxedo Park is a vibrant inner-city community where Edwardian character homes share streets with sleek new infills. Just north of downtown along Centre Street, residents enjoy quick bus access to downtown, walkability, and the cafés and restaurants of 16th Ave.</p>
                   <p>We understand the unique needs of mixed-vintage homes — the patience an old hardwood floor needs, the systems-thinking an open-concept infill rewards. Our team brings care, consistency, and non-toxic products to every visit.</p>
                 </div>
               </div>

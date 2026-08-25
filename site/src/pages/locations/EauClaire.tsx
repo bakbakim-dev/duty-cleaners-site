@@ -70,9 +70,9 @@ const landmarks = [
     "description": "Iconic downtown island park just steps away"
   },
   {
-    "title": "Eau Claire Market",
-    "url": "https://www.google.com/maps/place/Eau+Claire+Market,+Calgary,+AB/",
-    "description": "Historic riverside market and entertainment hub"
+    "title": "Eau Claire Plaza",
+    "url": "https://www.google.com/maps/place/Eau+Claire+Plaza,+Calgary,+AB/",
+    "description": "Riverfront plaza beside Prince's Island Park"
   },
   {
     "title": "Peace Bridge",

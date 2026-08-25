@@ -177,8 +177,8 @@ export default function MountRoyal() {
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Cleaning Services Tailored to Mount Royal Living</h2>
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>
-                    Mount Royal is one of Calgary's most prestigious neighbourhoods, established in the early 1900s and renowned for its stately heritage homes and tree-lined streets. Near{" "}
-                    <a href="https://www.google.com/maps/place/Mount+Royal+University,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Mount Royal University</a>{" "}
+                    Mount Royal is one of Calgary's most prestigious neighbourhoods, established in the early 1900s and renowned for its stately heritage homes and tree-lined streets. Close to{" "}
+                    <a href="https://www.google.com/maps/place/17+Avenue+SW,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">17th Avenue SW</a>{" "}
                     and the historic{" "}
                     <a href="https://www.google.com/maps/search/Mount+Royal+Park+Calgary" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Mount Royal Park</a>,
                     this community offers stunning views of the downtown skyline and Rocky Mountains.

@@ -228,7 +228,7 @@ export default function Airdrie() {
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>Located just north of Calgary, Airdrie is a dynamic city within Alberta’s Calgary Metropolitan Region. Originally established as a railway village in the late 1800s, Airdrie has blossomed into a thriving community with a population of over 80,000 residents. Despite its rapid growth, Airdrie has retained its friendly, small-town atmosphere while offering all the amenities of urban life. One of Airdrie’s standout features is its vibrant community events, like the famous Airdrie Festival of Lights, Canada’s largest free outdoor light display, held annually in Nose Creek Park.</p>
-                <p>For those who love the outdoors, Iron Horse Park offers miniature train rides that are perfect for family fun, while nature enthusiasts can explore scenic trails and serene views at East Lake Regional Park. Shopping lovers can visit the Airdrie Farmers Market to enjoy local produce and handcrafted goods. For dining, First & Vine is a must-visit, offering locally sourced cuisine with a cozy, contemporary vibe.</p>
+                <p>For those who love the outdoors, Iron Horse Park offers miniature train rides that are perfect for family fun, while nature enthusiasts can explore scenic trails and serene views at East Lake Regional Park. Shopping lovers can visit the Airdrie Farmers Market to enjoy local produce and handcrafted goods. For dining, the restaurants along Main Street offer plenty of choice, from casual family spots to locally sourced menus.</p>
               </div>
             </div>
           </AnimatedSection>

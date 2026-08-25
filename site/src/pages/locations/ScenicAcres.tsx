@@ -200,8 +200,8 @@ export default function ScenicAcres() {
                 </h2>
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>
-                    Scenic Acres is one of Calgary's most peaceful and established neighbourhoods, located in the northwest and bordering the magnificent{" "}
-                    <a href="https://www.google.com/maps/place/Nose+Hill+Park,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Nose Hill Park</a>.
+                    Scenic Acres is one of Calgary's most peaceful and established neighbourhoods, located in the northwest, close to the{" "}
+                    <a href="https://www.google.com/maps/place/Twelve+Mile+Coulee+Natural+Environment+Park,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Twelve Mile Coulee</a>.
                     This community is perfect for nature lovers, offering immediate access to some of the city's most scenic trails and green spaces. Residents enjoy watching wildlife, hiking through natural prairies, and taking in stunning views of the city and mountains.
                   </p>
                   <p>

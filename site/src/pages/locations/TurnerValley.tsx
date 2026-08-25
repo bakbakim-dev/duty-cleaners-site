@@ -63,7 +63,7 @@ const whyUsItems = [
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
 ];
 
-const nearbyAreas = ["Diamond Valley", "Black Diamond", "Millarville", "Longview", "Priddis"];
+const nearbyAreas = ["Diamond Valley", "Millarville", "Longview", "Priddis", "Okotoks"];
 
 const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Turner Valley",
@@ -227,7 +227,7 @@ export default function TurnerValley() {
                     this town offers a peaceful lifestyle with easy access to nature.
                   </p>
                   <p className="mt-4">
-                    We proudly serve Turner Valley and surrounding communities like Black Diamond, Millarville, and Longview — bringing professional, non-toxic cleaning right to your door.
+                    We proudly serve Turner Valley and the wider Diamond Valley area, including Millarville and Longview — bringing professional, non-toxic cleaning right to your door.
                   </p>
                 </div>
               </div>

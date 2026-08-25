@@ -206,7 +206,7 @@ export default function AuburnBay() {
                   <p>
                     The community features a diverse range of homes and exclusive access to the{" "}
                     <a href="https://www.google.com/maps/place/Auburn+House,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Auburn House</a>,
-                    a 14,000 sq ft recreational facility with indoor pools, skating rink, and fitness center. Residents also enjoy proximity to the{" "}
+                    a 14,000 sq ft residents' facility with a gymnasium and banquet room, beside a private lake used for skating in winter. Residents also enjoy proximity to the{" "}
                     <a href="https://www.google.com/maps/place/South+Health+Campus,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">South Health Campus</a>{" "}
                     and excellent schools.
                   </p>

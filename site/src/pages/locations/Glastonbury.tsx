@@ -191,7 +191,7 @@ export default function Glastonbury() {
                     sits near{" "}
                     <a href="https://www.google.com/maps/place/Patricia+Ravine/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Patricia Ravine</a>,
                     or borders the scenic trails along{" "}
-                    <a href="https://www.google.com/maps/place/Whitemud+Creek/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Whitemud Creek</a>,
+                    <a href="https://www.google.com/maps/place/Wedgewood+Ravine,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Wedgewood Ravine</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>
@@ -261,7 +261,7 @@ export default function Glastonbury() {
                     We're in and around the neighbourhood daily, so we know the area well.
                   </p>
                 </div>
-                <CoverageChips areas={["The Grange", "Patricia Ravine", "Whitemud Creek Trails", "Glastonbury Gate", "Lessard Road", "Callingwood Road"]} variant="compact" />
+                <CoverageChips areas={["The Grange", "Patricia Ravine", "Wedgewood Ravine Trails", "Glastonbury Gate", "Lessard Road", "Callingwood Road"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →

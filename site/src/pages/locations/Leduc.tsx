@@ -207,8 +207,8 @@ export default function Leduc() {
                 </p>
                 <p>
                   From the established streets near{" "}
-                  <a href="https://www.google.com/maps/place/William+F.+Chicken+Memorial+Park,+Leduc,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
-                    William F. Chicken Memorial Park
+                  <a href="https://www.google.com/maps/place/William+F.+Lede+Park,+Leduc,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                    William F. Lede Park
                   </a>{" "}
                   to the newer developments in Southfork and Bridgeport, Duty Cleaners is proud to keep Leduc homes sparkling.
                 </p>

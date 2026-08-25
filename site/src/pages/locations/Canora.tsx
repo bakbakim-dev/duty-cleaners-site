@@ -195,7 +195,7 @@ export default function Canora() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">About the Neighbourhood</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Residential Cleaning in Canora</h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
-                  <p>Canora is a hidden west Edmonton gem just south of Stony Plain Road, with quiet streets, vintage bungalows and a relaxed community feel. With nearby parks and easy LRT access, it's a peaceful pocket that families love to call home.</p>
+                  <p>Canora is a hidden west Edmonton gem just south of Stony Plain Road, with quiet streets, vintage bungalows and a relaxed community feel. With nearby parks and quick access to downtown along Stony Plain Road, it's a peaceful pocket that families love to call home.</p>
                   <p>
                     Whether your home is near{" "}
                     <a href="https://www.google.com/maps/place/Canora+Community+League+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Canora Community League</a>,

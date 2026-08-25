@@ -204,7 +204,7 @@ export default function Pleasantview() {
                     close to{" "}
                     <a href="https://www.google.com/maps/place/University+of+Alberta" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">University of Alberta</a>,
                     or near{" "}
-                    <a href="https://www.google.com/maps/place/South+Campus+Fort+Edmonton+LRT" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Macewan LRT South Campus</a>,
+                    <a href="https://www.google.com/maps/place/South+Campus%2FFort+Edmonton+Park+Station,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">South Campus/Fort Edmonton Park LRT</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

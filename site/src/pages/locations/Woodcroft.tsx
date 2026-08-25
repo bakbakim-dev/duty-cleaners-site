@@ -149,7 +149,7 @@ export default function Woodcroft() {
                   Professional House Cleaning in Woodcroft
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Your reliable, local cleaning team serving the Woodcroft community. From mature bungalows along 133 Avenue to townhomes near Westmount — friendly, neighbourhood-level cleaning service.
+                  Your reliable, local cleaning team serving the Woodcroft community. From mature bungalows along 133 Street to townhomes near Westmount — friendly, neighbourhood-level cleaning service.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>

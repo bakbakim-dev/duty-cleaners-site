@@ -77,7 +77,7 @@ const landmarks = [
   {
     "title": "Forest Lawn High School",
     "url": "https://www.google.com/maps/place/Forest+Lawn+High+School,+Calgary,+AB/",
-    "description": "A long-standing community landmark since 1957"
+    "description": "A long-standing community landmark since 1968"
   },
   {
     "title": "Pop Davies Athletic Park",
