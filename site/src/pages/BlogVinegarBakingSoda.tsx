@@ -177,8 +177,19 @@ export default function BlogVinegarBakingSoda() {
                   Can You Clean with Vinegar and Baking Soda?
                 </h2>
                 
+                {/* The original copy claimed that combining opposite ends of the pH
+                    scale makes a *more* effective cleaner. That is the single most
+                    fact-checked claim in domestic cleaning, and it is wrong — an acid
+                    and a base neutralise each other. The article already contradicted
+                    itself further down ("similar to cleaning with plain water" once the
+                    fizzing stops). Corrected here so the two agree, and so a cleaning
+                    company is not publishing chemistry its own next section refutes. */}
                 <p className="text-muted-foreground mb-6">
-                  You'd be surprised at how many things in your home you can clean with baking soda and vinegar. You can use these two household items as natural cleaners to eliminate grime, grease, and dirt. By using substances that sit on both ends of the pH scale, you can create a more effective cleaning solution.
+                  You'd be surprised at how many things in your home you can clean with baking soda and vinegar. Each one is a capable cleaner in its own right — and that is the important part. Baking soda is a mild alkali and a gentle abrasive; vinegar is a weak acid that dissolves mineral deposits and soap scum. They are at opposite ends of the pH scale, so combining them does not make a stronger cleaner. It makes a weaker one: the acid and the base cancel each other out, and what is left is mostly water.
+                </p>
+
+                <p className="text-muted-foreground mb-6">
+                  That fizzing reaction is still genuinely useful, but for a mechanical reason rather than a chemical one — the carbon dioxide bubbles lift loose debris, which is why the combination works in a slow drain. For everything else, you will get better results using them separately, one after the other, than mixed together in a bowl.
                 </p>
 
                 <div className="grid md:grid-cols-2 gap-6 mb-8">
@@ -219,9 +230,37 @@ export default function BlogVinegarBakingSoda() {
                   <div className="flex items-start gap-3">
                     <AlertTriangle className="h-6 w-6 text-accent-foreground flex-shrink-0 mt-0.5" />
                     <div>
-                      <h4 className="font-bold text-foreground mb-2">Pro Tip: Use While Bubbling!</h4>
+                      <h4 className="font-bold text-foreground mb-2">Pro Tip: Use It While It's Still Fizzing</h4>
                       <p className="text-muted-foreground text-sm">
-                        For the best results, apply the mixture to the surface while it is still bubbling and slightly basic. When baking soda and vinegar mix, they create a reaction that releases carbon dioxide gas. These bubbles help cut through grime and dirt. Once the mixture stops bubbling, it will be less effective – similar to cleaning with plain water.
+                        If you do combine them, use the mixture straight away. The carbon dioxide bubbles do the useful work by lifting loose debris, so the mixture is at its most helpful while it is still fizzing. Once it stops, the acid and base have neutralised each other and what remains is close to plain water. That is the whole reason we suggest using them one after the other rather than pre-mixed.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* This article recommends a baking soda + hydrogen peroxide toilet
+                    mixture. Published in a piece that is otherwise about vinegar, with
+                    no warning, that is a genuine hazard: a reader combining the two
+                    makes peracetic acid. Never-mix guidance belongs in any article that
+                    tells people to combine household chemicals. */}
+                <div className="p-6 bg-destructive/10 rounded-xl border-2 border-destructive/40 mb-6">
+                  <div className="flex items-start gap-3">
+                    <AlertTriangle className="h-6 w-6 text-destructive flex-shrink-0 mt-0.5" />
+                    <div>
+                      <h4 className="font-bold text-foreground mb-2">Never mix these, whatever you read online</h4>
+                      <ul className="text-muted-foreground text-sm list-disc pl-5 space-y-1.5">
+                        <li>
+                          <strong>Vinegar and hydrogen peroxide.</strong> Combining them makes peracetic acid, which can irritate skin, eyes and airways. Use one, rinse the surface thoroughly, then use the other — never in the same container.
+                        </li>
+                        <li>
+                          <strong>Vinegar and bleach.</strong> This releases chlorine gas. This combination is genuinely dangerous, not merely ineffective.
+                        </li>
+                        <li>
+                          <strong>Bleach and ammonia</strong> (including many glass cleaners). Releases chloramine vapour.
+                        </li>
+                      </ul>
+                      <p className="text-muted-foreground text-sm mt-3">
+                        Whenever you switch products, rinse the surface with water first, and open a window. If you ever notice a sharp smell or start coughing, leave the room and let it air out.
                       </p>
                     </div>
                   </div>

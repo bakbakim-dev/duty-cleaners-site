@@ -728,3 +728,20 @@ html:not([data-motion="on"]) .opacity-0.translate-y-8 {
     transform: none !important;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Accent text on the navy brand surface.
+
+   --accent (17 90% 40%) is tuned for light backgrounds and lands at 2.12:1 on
+   --brand-navy, well under the 4.5:1 WCAG AA needs. --accent-on-dark already
+   exists for exactly this case and measures 5.47:1, but nothing was using it:
+   575 accent-coloured elements across the site sit on navy, including the
+   "Why Us" eyebrow on 163 pages.
+
+   Remapping the token here fixes every one of them at once, rather than
+   rewriting 226 distinct strings and hoping the next navy section remembers.
+   Anything that genuinely needs the darker accent can still set it explicitly.
+--------------------------------------------------------------------------- */
+.bg-brand-navy .text-accent {
+  color: hsl(var(--accent-on-dark));
+}

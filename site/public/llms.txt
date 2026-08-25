@@ -32,40 +32,40 @@ Transparent flat-rate pricing by home size. Recurring customers save 10–20% de
 
 ## Services
 
-- [Standard Cleaning (Edmonton)](https://dutycleaners.ca/edmonton/regular-cleaning): Recurring weekly, bi-weekly, or monthly home cleaning
-- [Deep Cleaning (Edmonton)](https://dutycleaners.ca/edmonton/deep-cleaning): Top-to-bottom reset for homes needing extra attention
-- [Move In/Out Cleaning (Edmonton)](https://dutycleaners.ca/edmonton/move-in-move-out-cleaning): Detailed cleaning for empty homes during moves
-- [Recurring Cleaning (Edmonton)](https://dutycleaners.ca/edmonton/recurring-cleaning): Scheduled maintenance cleaning with discounts
-- [Post-Construction Cleaning (Edmonton)](https://dutycleaners.ca/edmonton/post-construction-cleaning): Dust and debris removal after renovations
-- [Airbnb Cleaning (Edmonton)](https://dutycleaners.ca/edmonton/airbnb-cleaning): Short-term rental turnover cleaning
-- [Standard Cleaning (Calgary)](https://dutycleaners.ca/calgary/regular-cleaning): Recurring weekly, bi-weekly, or monthly home cleaning
-- [Deep Cleaning (Calgary)](https://dutycleaners.ca/calgary/deep-cleaning): Top-to-bottom reset for homes needing extra attention
-- [Move In/Out Cleaning (Calgary)](https://dutycleaners.ca/calgary/move-in-move-out-cleaning): Detailed cleaning for empty homes during moves
-- [Recurring Cleaning (Calgary)](https://dutycleaners.ca/calgary/recurring-cleaning): Scheduled maintenance cleaning with discounts
-- [Post-Construction Cleaning (Calgary)](https://dutycleaners.ca/calgary/post-construction-cleaning): Dust and debris removal after renovations
-- [Commercial Cleaning (Edmonton)](https://dutycleaners.ca/commercial-cleaning): Office and commercial space cleaning
-- [Commercial Cleaning (Calgary)](https://dutycleaners.ca/calgary/commercial-cleaning): Office and commercial space cleaning
+- [Standard Cleaning (Edmonton)](https://dutycleaners.ca/edmonton/regular-cleaning/): Recurring weekly, bi-weekly, or monthly home cleaning
+- [Deep Cleaning (Edmonton)](https://dutycleaners.ca/edmonton/deep-cleaning/): Top-to-bottom reset for homes needing extra attention
+- [Move In/Out Cleaning (Edmonton)](https://dutycleaners.ca/move-out-cleaning-edmonton/): Detailed cleaning for empty homes during moves
+- [Recurring Cleaning (Edmonton)](https://dutycleaners.ca/edmonton/recurring-cleaning/): Scheduled maintenance cleaning with discounts
+- [Post-Construction Cleaning (Edmonton)](https://dutycleaners.ca/post-construction-cleaning/): Dust and debris removal after renovations
+- [Airbnb Cleaning (Edmonton)](https://dutycleaners.ca/edmonton/airbnb-cleaning/): Short-term rental turnover cleaning
+- [Standard Cleaning (Calgary)](https://dutycleaners.ca/calgary/regular-cleaning/): Recurring weekly, bi-weekly, or monthly home cleaning
+- [Deep Cleaning (Calgary)](https://dutycleaners.ca/calgary/deep-cleaning/): Top-to-bottom reset for homes needing extra attention
+- [Move In/Out Cleaning (Calgary)](https://dutycleaners.ca/move-out-cleaning-calgary/): Detailed cleaning for empty homes during moves
+- [Recurring Cleaning (Calgary)](https://dutycleaners.ca/calgary/recurring-cleaning/): Scheduled maintenance cleaning with discounts
+- [Post-Construction Cleaning (Calgary)](https://dutycleaners.ca/post-construction-cleaning-calgary/): Dust and debris removal after renovations
+- [Commercial Cleaning (Edmonton)](https://dutycleaners.ca/commercial-cleaning/): Office and commercial space cleaning
+- [Commercial Cleaning (Calgary)](https://dutycleaners.ca/commercial-cleaning-services-calgary/): Office and commercial space cleaning
 
 ## Locations
 
 - [Edmonton](https://dutycleaners.ca/): 79 neighbourhoods plus St. Albert, Sherwood Park, Spruce Grove, Leduc, Beaumont, Fort Saskatchewan, Stony Plain, Morinville, and Devon
-- [Calgary](https://dutycleaners.ca/calgary): 66 neighbourhoods plus Airdrie, Cochrane, Chestermere, Okotoks, High River, and more
-- [All Locations](https://dutycleaners.ca/locations): Full list of neighbourhoods and communities we serve
+- [Calgary](https://dutycleaners.ca/cleaning-services-calgary/): 66 neighbourhoods plus Airdrie, Cochrane, Chestermere, Okotoks, High River, and more
+- [All Locations](https://dutycleaners.ca/locations/): Full list of neighbourhoods and communities we serve
 
 ## Documentation
 
-- [What's Included](https://dutycleaners.ca/whats-included): Full checklist of what our cleans cover
-- [Edmonton Pricing](https://dutycleaners.ca/edmonton/pricing): Transparent Edmonton rates by home size
-- [Calgary Pricing](https://dutycleaners.ca/calgary/pricing): Transparent Calgary rates by home size
-- [FAQ](https://dutycleaners.ca/faq): Answers to common cleaning questions
-- [Reviews](https://dutycleaners.ca/reviews): Verified five-star customer reviews
-- [Blog](https://dutycleaners.ca/blog): Cleaning guides, tips, and pricing explainers
-- [Satisfaction Guarantee](https://dutycleaners.ca/satisfaction-guarantee): Our 24-hour re-clean promise
-- [Full details](https://dutycleaners.ca/llms-full.txt): Complete site content for LLM consumption
+- [What's Included](https://dutycleaners.ca/whats-included/): Full checklist of what our cleans cover
+- [Edmonton Pricing](https://dutycleaners.ca/pricing/): Transparent Edmonton rates by home size
+- [Calgary Pricing](https://dutycleaners.ca/calgary/pricing/): Transparent Calgary rates by home size
+- [FAQ](https://dutycleaners.ca/faqs/): Answers to common cleaning questions
+- [Reviews](https://dutycleaners.ca/reviews/): Verified five-star customer reviews
+- [Blog](https://dutycleaners.ca/blog/): Cleaning guides, tips, and pricing explainers
+- [Satisfaction Guarantee](https://dutycleaners.ca/satisfaction-guarantee/): Our 24-hour re-clean promise
+- [Full details](https://dutycleaners.ca/llms-full.txt/): Complete site content for LLM consumption
 
 ## Optional
 
-- [About Us](https://dutycleaners.ca/about-us): Our story, values, and team
-- [Contact](https://dutycleaners.ca/contact): Get a free quote or reach our team
-- [Gift Cards](https://dutycleaners.ca/gift-cards): Cleaning gift cards valid across Alberta
-- [Join the Team](https://dutycleaners.ca/join-the-team): Careers at Duty Cleaners
+- [About Us](https://dutycleaners.ca/about-us/): Our story, values, and team
+- [Contact](https://dutycleaners.ca/contact-us/): Get a free quote or reach our team
+- [Gift Cards](https://dutycleaners.ca/gift-cards/): Cleaning gift cards valid across Alberta
+- [Join the Team](https://dutycleaners.ca/join-the-team/): Careers at Duty Cleaners
