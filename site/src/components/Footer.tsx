@@ -28,6 +28,12 @@ const serviceGroups = {
   specialty: [
     ["Post-Construction", "post-construction-cleaning"],
     ["Commercial Cleaning", "commercial-cleaning"],
+    // Wall washing and Airbnb were missing here, which is why
+    // /wall-washing-wall-cleaning/ had ONE inbound internal link sitewide while
+    // its siblings had 136+ — despite being the site's best click-efficiency
+    // content (1.49-2.28% CTR from position 26-38).
+    ["Wall Washing", "wall-washing"],
+    ["Airbnb Cleaning", "airbnb-cleaning"],
   ],
 };
 

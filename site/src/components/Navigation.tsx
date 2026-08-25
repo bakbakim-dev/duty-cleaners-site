@@ -6,6 +6,7 @@ import {
   Menu,
   X,
   ChevronDown,
+  KeyRound,
   Phone,
   Calculator,
   MapPin,
@@ -41,13 +42,30 @@ interface DropdownItem {
 function DropdownPanel({
   items,
   align = "left",
+  open,
+  id,
 }: {
   items: DropdownItem[];
   align?: "left" | "right";
+  open: boolean;
+  id: string;
 }) {
+  /**
+   * Always rendered, hidden with CSS when closed.
+   *
+   * This panel used to be mounted only while open, which meant the header's
+   * Services, Service Areas and Company links existed in NO prerendered page —
+   * `/wall-washing-wall-cleaning` ended up with a single inbound internal link
+   * sitewide while its siblings had 136+. `visibility: hidden` keeps it out of
+   * the accessibility tree and out of the tab order while leaving the anchors
+   * in the HTML for crawlers.
+   */
   return (
     <div
-      className={`absolute ${align === "right" ? "right-0" : "left-0"} w-80 z-50 pt-3 animate-in fade-in-0 slide-in-from-top-2 zoom-in-95 duration-200`}
+      id={id}
+      className={`absolute ${align === "right" ? "right-0" : "left-0"} w-80 z-50 pt-3 transition-opacity duration-200 ${
+        open ? "visible opacity-100" : "invisible opacity-0 pointer-events-none"
+      }`}
       style={{ top: "100%" }}
     >
       <div className="relative bg-card rounded-xl shadow-2xl shadow-primary/15 border border-border p-2">
@@ -216,6 +234,8 @@ export default function Navigation({ city }: NavigationProps) {
     { to: "/whats-included", icon: ClipboardList, title: "What's Included", description: "Room-by-room cleaning checklists" },
     { to: canonicalForPath(`${cityPath}/move-in-move-out-cleaning`), icon: Truck, title: "Move In/Out Cleaning", description: "Get your deposit back, guaranteed" },
     { to: canonicalForPath(`${cityPath}/post-construction-cleaning`), icon: HardHat, title: "Post-Construction", description: "Dust & debris removal after reno" },
+    { to: canonicalForPath(`${cityPath}/wall-washing`), icon: Sparkles, title: "Wall Washing", description: "Marks, scuffs and smoke off painted walls" },
+    { to: canonicalForPath(`${cityPath}/airbnb-cleaning`), icon: KeyRound, title: "Airbnb Turnovers", description: "Same-day changeovers between guests" },
     // March-out is Edmonton-only military housing work, quoted by phone.
     ...(city === "calgary"
       ? []
@@ -244,6 +264,12 @@ export default function Navigation({ city }: NavigationProps) {
       type="button"
       aria-haspopup="true"
       aria-expanded={openDropdown === id}
+      aria-controls={`nav-panel-${id}`}
+      // Hover alone left this unreachable by keyboard and by touch (WCAG 2.1.1).
+      onClick={() => setOpenDropdown(openDropdown === id ? null : id)}
+      onKeyDown={(e) => {
+        if (e.key === "Escape") setOpenDropdown(null);
+      }}
       className={`relative text-[0.95rem] font-medium flex items-center gap-1 py-2 transition-colors after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-accent after:rounded-full after:transition-all after:duration-300 ${
         openDropdown === id
           ? "text-accent after:w-full"
@@ -298,7 +324,7 @@ export default function Navigation({ city }: NavigationProps) {
               onMouseLeave={() => setOpenDropdown(null)}
             >
               {dropdownButton("Services", "services")}
-              {openDropdown === "services" && <DropdownPanel items={servicesItems} />}
+              <DropdownPanel items={servicesItems} open={openDropdown === "services"} id={`nav-panel-services`} />
             </div>
 
             <NavLink to={canonicalForPath(`${cityPath}/pricing`)} active={isActive(`${cityPath}/pricing`)}>
@@ -320,7 +346,7 @@ export default function Navigation({ city }: NavigationProps) {
               onMouseLeave={() => setOpenDropdown(null)}
             >
               {dropdownButton("Service Areas", "locations")}
-              {openDropdown === "locations" && <DropdownPanel items={locationsItems} />}
+              <DropdownPanel items={locationsItems} open={openDropdown === "locations"} id={`nav-panel-locations`} />
             </div>
 
             {/* Company paths: about, FAQ, gift cards, careers, contact */}
@@ -330,7 +356,7 @@ export default function Navigation({ city }: NavigationProps) {
               onMouseLeave={() => setOpenDropdown(null)}
             >
               {dropdownButton("Company", "contact")}
-              {openDropdown === "contact" && <DropdownPanel items={contactItems} align="right" />}
+              <DropdownPanel items={contactItems} align="right" open={openDropdown === "contact"} id={`nav-panel-contact`} />
             </div>
 
 

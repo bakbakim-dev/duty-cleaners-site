@@ -3,6 +3,7 @@
 // only supply their name, URL, and (optionally) geo, priceRange, description.
 
 import { getListing } from "@/lib/google-listings";
+import { withTrailingSlash } from "@/data/legacy-urls";
 
 
 export interface LocationSchemaInput {
@@ -23,6 +24,17 @@ const CITY_CONTACT = {
   calgary: { telephone: "+1-403-768-1341", locality: "Calgary" },
 } as const;
 
+
+/** Absolute URL with the site's canonical trailing slash. */
+function toCanonicalUrl(url: string): string {
+  try {
+    const u = new URL(url);
+    return `${u.origin}${withTrailingSlash(u.pathname)}${u.search}${u.hash}`;
+  } catch {
+    return withTrailingSlash(url);
+  }
+}
+
 export function buildLocationSchema(input: LocationSchemaInput) {
   const contact = CITY_CONTACT[input.city];
 
@@ -31,7 +43,12 @@ export function buildLocationSchema(input: LocationSchemaInput) {
     "@type": ["LocalBusiness", "HouseCleaning"],
     name: input.name,
     ...(input.description ? { description: input.description } : {}),
-    url: input.url,
+    // Normalised here, not at the call sites. dutycleaners.ca is trailing-slash
+    // canonical, but 152 pages passed the un-slashed form — so the entity's
+    // declared url disagreed with the page's own <link rel="canonical"> on
+    // every one of them. Doing it in the builder means a call site cannot
+    // reintroduce the drift.
+    url: toCanonicalUrl(input.url),
     telephone: contact.telephone,
     email: "support@dutycleaners.ca",
     address: {
