@@ -6,7 +6,7 @@ export default function BlackDiamond() {
       city="Black Diamond"
       region="calgary"
       title="House Cleaning Services Black Diamond | Duty Cleaners"
-      description="Professional house cleaning in Black Diamond. Same-day service available."
+      description="Professional house cleaning in Black Diamond. Same-day service subject to availability."
       phone="(403) 768-1341"
       phoneLink="tel:4037681341"
       isOwnMunicipality

@@ -58,7 +58,7 @@ const whyUsItems = [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
   { icon: Star, title: "Five-Star Rated", description: "Trusted by thousands of Calgary families with verified Google reviews." },
   { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability. We work around your busy creative life." },
-  { icon: Leaf, title: "High Quality Cleaning Supplies", description: "Safe for your family, pets, and the planet — without compromising on clean." },
+  { icon: Leaf, title: "High Quality Cleaning Supplies", description: "Safe to use around your family and pets — without compromising on clean." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners experienced with heritage homes and modern loft conversions." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
 ];
@@ -92,7 +92,7 @@ export default function InglewoodCalgary() {
         <title>House Cleaning Services in Inglewood, Calgary | Duty Cleaners</title>
         <meta name="description" content="Professional house cleaning in Inglewood, Calgary. Heritage homes and modern lofts. 100% satisfaction guaranteed. Call (403) 768-1341." />
         <meta property="og:title" content="House Cleaning Services Inglewood Calgary | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Inglewood, Calgary. Same-day service available. 100% satisfaction guaranteed." />
+        <meta property="og:description" content="Professional house cleaning in Inglewood, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/inglewood-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/inglewood-calgary/" />

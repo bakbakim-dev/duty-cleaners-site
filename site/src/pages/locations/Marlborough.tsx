@@ -90,7 +90,7 @@ export default function Marlborough() {
         <title>House Cleaning Services in Marlborough, Calgary | Duty Cleaners</title>
         <meta name="description" content="Professional house cleaning in Marlborough, Calgary. Established NE community near Marlborough Mall & Memorial Drive. 100% satisfaction guaranteed. Call (403) 768-1341." />
         <meta property="og:title" content="House Cleaning Services Marlborough Calgary | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Marlborough, Calgary. Same-day service available. 100% satisfaction guaranteed." />
+        <meta property="og:description" content="Professional house cleaning in Marlborough, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/marlborough/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/marlborough/" />

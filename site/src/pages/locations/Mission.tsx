@@ -105,9 +105,9 @@ export default function Mission() {
     <>
       <Helmet>
         <title>House Cleaning Services in Mission, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Mission, Calgary. Same-day service available. 100% satisfaction guaranteed. Pay after your clean. Get a free quote today!" />
+        <meta name="description" content="Professional house cleaning in Mission, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed. Pay after your clean. Get a free quote today!" />
         <meta property="og:title" content="House Cleaning Services Mission Calgary | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Mission, Calgary. Same-day service available. 100% satisfaction guaranteed." />
+        <meta property="og:description" content="Professional house cleaning in Mission, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/mission/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/mission/" />

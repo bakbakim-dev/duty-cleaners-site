@@ -81,7 +81,15 @@ const whyUsItems = [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
   { icon: Star, title: "Five-Star Rated", description: "Trusted by thousands of Alberta families with verified Google reviews." },
   { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability. We work around your busy life." },
-  { icon: Leaf, title: "High Quality Cleaning Supplies", description: "Safe for your family, pets, and the planet — without compromising on clean." },
+  // "and the planet" is an environmental-benefit claim. Since the June 2024
+  // Competition Act amendments those require substantiation on an internationally
+  // recognised methodology, and private applications to the Tribunal have been
+  // live since June 2025. Nothing on the site or in the repo substantiates it.
+  // The card title had already been softened from an eco claim to "High Quality
+  // Cleaning Supplies" — this finishes that edit, which was left half-done.
+  // The family-and-pets half is kept: it describes handling, not an environmental
+  // benefit, and matches what the FAQ already tells customers.
+  { icon: Leaf, title: "High Quality Cleaning Supplies", description: "Safe to use around your family and pets — without compromising on clean." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
 ];
@@ -108,7 +116,12 @@ export default function LocationPageTemplate({
   // /cleaning-services-black-diamond/).
   const canonicalUrl = canonicalUrlForPath(pathname);
   const jsonLd = buildLocationSchema({
-    name: `Duty Cleaners - ${city} ${regionLabel}`,
+    // A neighbourhood is genuinely "Allendale Edmonton". A separate municipality
+    // is not: "Leduc Edmonton" or "St. Albert Edmonton" names a place that does
+    // not exist, and reads as though the town were part of the city. The
+    // isOwnMunicipality flag already distinguishes the two for areaServed below;
+    // the entity name needs it just as much.
+    name: isOwnMunicipality ? `Duty Cleaners - ${city}, AB` : `Duty Cleaners - ${city} ${regionLabel}`,
     city: region,
     url: canonicalUrl,
     description,
@@ -185,7 +198,11 @@ export default function LocationPageTemplate({
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-5 py-2 mb-6">
               <MapPin className="w-4 h-4 text-accent" />
-              <span className="text-white/90 text-sm font-medium">Serving {city}, {regionLabel}</span>
+              {/* Same distinction as the schema name: "Serving Leduc, Edmonton"
+                  misstates a separate town as part of the city. */}
+              <span className="text-white/90 text-sm font-medium">
+                Serving {city}, {isOwnMunicipality ? "AB" : regionLabel}
+              </span>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
               Professional House Cleaning in {city}
@@ -206,7 +223,13 @@ export default function LocationPageTemplate({
             <div className="flex flex-wrap justify-center gap-6">
               {[
                 { icon: CheckCircle2, text: "Pay After Your Clean" },
-                { icon: CalendarCheck, text: "Same-Day Available" },
+                // Round one deliberately softened the body of these pages to
+                // "Flexible Scheduling Available", but this badge kept promising
+                // same-day outright, so the hero contradicted the section below it.
+                // The FAQ's own wording is the qualified version — "same-day and
+                // next-day appointments based on availability" — so match that
+                // rather than either over-promising or dropping a real selling point.
+                { icon: CalendarCheck, text: "Same-Day When Available" },
                 { icon: Award, text: "100% Satisfaction Guarantee" },
               ].map((badge, i) => (
                 <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">

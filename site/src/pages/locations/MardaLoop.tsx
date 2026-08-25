@@ -90,7 +90,7 @@ export default function MardaLoop() {
         <title>House Cleaning Services in Marda Loop, Calgary | Duty Cleaners</title>
         <meta name="description" content="Professional house cleaning in Marda Loop, Calgary. Trendy SW neighbourhood near 33rd Avenue shops & River Park. 100% satisfaction guaranteed. Call (403) 768-1341." />
         <meta property="og:title" content="House Cleaning Services Marda Loop Calgary | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Marda Loop, Calgary. Same-day service available. 100% satisfaction guaranteed." />
+        <meta property="og:description" content="Professional house cleaning in Marda Loop, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/marda-loop/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/marda-loop/" />
