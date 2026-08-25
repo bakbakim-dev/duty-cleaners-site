@@ -30,7 +30,7 @@ const steps = [
 
 const goodToKnow = [
   "Use it on any of our cleaning services in Edmonton or Calgary.",
-  "Redeem within six months to keep the gift card valid.",
+  "No expiry date — the balance stays on the card until it is used.",
   "If the balance doesn't cover the whole visit, they simply pay the difference.",
   "Backed by our satisfaction guarantee: tell us within 24 hours after the clean and we re-clean at no additional charge.",
 ];

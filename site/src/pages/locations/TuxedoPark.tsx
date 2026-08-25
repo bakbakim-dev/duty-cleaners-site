@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Tuxedo Park Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/tuxedo-park-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.0680", longitude: "-114.0680" },
 });
 

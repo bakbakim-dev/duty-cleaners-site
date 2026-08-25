@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Meadowlark Park Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/meadowlark-park-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.0072", longitude: "-114.0790" },
 });
 

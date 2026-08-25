@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { standardTierRows, deepCleanTierRows, moveInOutTierRows } from "./pricing";
 
 /**
  * llms.txt exists for exactly one audience — machine readers that will not
@@ -48,5 +49,43 @@ describe("llms.txt", () => {
       hops.map(([from, to]) => `${from} -> ${to}`),
       "llms.txt points machine readers at redirects",
     ).toEqual([]);
+  });
+});
+
+/**
+ * The llms.txt files publish price tables for machine readers. They were
+ * hand-maintained and had drifted badly: deep cleaning was quoted at
+ * $242–$463 against a real $255–$485, and move-in/out at $284–$519 against a
+ * real $284–$539 — the same understated figures the service pages carried, and
+ * still wrong here after those pages were fixed.
+ */
+describe("llms.txt price tables match bk-config", () => {
+  const llmsFull = readFileSync(join(ROOT, "public", "llms-full.txt"), "utf-8");
+  const both = `${llms}\n${llmsFull}`;
+
+  const rows = {
+    standard: standardTierRows(),
+    deep: deepCleanTierRows(),
+    "move-in-out": moveInOutTierRows(),
+  };
+
+  for (const [service, tiers] of Object.entries(rows)) {
+    it(`quotes the real ${service} range`, () => {
+      const low = tiers[0].price;
+      const high = tiers[tiers.length - 1].price;
+      expect(both, `${service} low (${low}) missing from llms files`).toContain(low);
+      expect(both, `${service} high (${high}) missing from llms files`).toContain(high);
+    });
+  }
+
+  it("carries no figure that is not a real published tier", () => {
+    // Every tier price across the three services, plus the hourly rate and the
+    // add-on shelf, is legitimate. Anything else is a hand-typed leftover.
+    const legitimate = new Set(
+      Object.values(rows).flat().map((r) => r.price),
+    );
+    const stale = ["$242", "$463", "$519", "$300", "$355", "$414", "$481"]
+      .filter((v) => !legitimate.has(v) && both.includes(v));
+    expect(stale, `stale prices still in the llms files: ${stale.join(", ")}`).toEqual([]);
   });
 });

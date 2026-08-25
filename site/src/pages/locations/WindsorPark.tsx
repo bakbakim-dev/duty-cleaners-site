@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Windsor Park Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/windsor-park-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.0083", longitude: "-114.0715" },
 });
 

@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Stanley Park Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/stanley-park-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.0208", longitude: "-114.0610" },
 });
 

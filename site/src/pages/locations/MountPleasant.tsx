@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Mount Pleasant Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/mount-pleasant-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.0760", longitude: "-114.0800" },
 });
 

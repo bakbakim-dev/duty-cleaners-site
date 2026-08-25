@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Montgomery Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/montgomery-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.0780", longitude: "-114.1750" },
 });
 

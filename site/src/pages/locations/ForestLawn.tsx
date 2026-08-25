@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Forest Lawn Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/forest-lawn-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.0418", longitude: "-113.9890" },
 });
 

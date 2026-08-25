@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Bowness Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/bowness-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.0898", longitude: "-114.1965" },
 });
 

@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Southwood Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/southwood-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "50.9569", longitude: "-114.0775" },
 });
 

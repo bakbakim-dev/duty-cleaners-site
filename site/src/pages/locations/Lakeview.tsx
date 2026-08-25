@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Lakeview Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/lakeview-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.0028", longitude: "-114.1340" },
 });
 

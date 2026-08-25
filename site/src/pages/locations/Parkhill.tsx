@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Parkhill Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/parkhill-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.0250", longitude: "-114.0623" },
 });
 

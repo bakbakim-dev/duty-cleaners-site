@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Rideau Park Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/rideau-park-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.0312", longitude: "-114.0700" },
 });
 

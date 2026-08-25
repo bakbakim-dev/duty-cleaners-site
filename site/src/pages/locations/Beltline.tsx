@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Beltline Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/beltline-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.0420", longitude: "-114.0720" },
 });
 

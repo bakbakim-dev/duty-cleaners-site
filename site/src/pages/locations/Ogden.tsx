@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Ogden Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/ogden-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "50.9929", longitude: "-114.0145" },
 });
 

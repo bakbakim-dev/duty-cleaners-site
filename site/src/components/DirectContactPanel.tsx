@@ -40,7 +40,7 @@ export default function DirectContactPanel({ phone, phoneLink }: DirectContactPa
       </div>
 
       <p className="mt-8 border-t border-white/15 pt-5 text-sm leading-relaxed text-white/70">
-        No payment today · Free reschedule up to 24 hours before · No contracts.
+        No payment today · Free to reschedule with 24 hours' notice · No contracts.
       </p>
     </aside>
   );

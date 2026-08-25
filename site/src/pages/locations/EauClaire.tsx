@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Eau Claire Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/eau-claire-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.0530", longitude: "-114.0710" },
 });
 

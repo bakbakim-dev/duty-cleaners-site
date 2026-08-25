@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Highland Park Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/highland-park-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.0900", longitude: "-114.0750" },
 });
 

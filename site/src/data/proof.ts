@@ -77,7 +77,7 @@ export const COMPANY = {
  */
 export const RISK_REVERSAL: { id: string; label: string; enabled: boolean }[] = [
   { id: "no-charge", label: "You won't be charged today", enabled: true },
-  { id: "reschedule", label: "Free reschedule or cancel up to 24 hours before", enabled: true },
+  { id: "reschedule", label: "Free to reschedule or cancel with 24 hours' notice", enabled: true },
   { id: "no-contract", label: "No contracts — book one clean or many", enabled: true },
 ];
 

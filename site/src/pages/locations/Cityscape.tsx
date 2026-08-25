@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Cityscape Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/cityscape",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.1623", longitude: "-113.9614" },
 });
 

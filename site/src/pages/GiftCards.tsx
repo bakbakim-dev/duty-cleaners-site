@@ -288,7 +288,7 @@ export default function GiftCards() {
                   items={[
                     { text: "Book online or call us and mention your gift card code" },
                     { text: "Gift card balance applied manually during checkout" },
-                    { text: "Redeem within 6 months to ensure your gift card remains valid" },
+                    { text: "No expiry date — the balance stays on the card until it is used" },
                   ]}
                 />
 

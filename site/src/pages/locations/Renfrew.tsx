@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Renfrew Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/renfrew-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.0640", longitude: "-114.0470" },
 });
 

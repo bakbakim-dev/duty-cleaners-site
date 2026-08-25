@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Huntington Hills Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/huntington-hills-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.1185", longitude: "-114.0640" },
 });
 

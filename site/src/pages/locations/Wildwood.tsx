@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Wildwood Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/wildwood-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.0480", longitude: "-114.1490" },
 });
 

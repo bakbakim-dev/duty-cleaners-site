@@ -91,7 +91,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Mission Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/mission",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.0375", longitude: "-114.0678" },
 });
 

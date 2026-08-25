@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Crescent Heights Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/crescent-heights-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.0626", longitude: "-114.0648" },
 });
 

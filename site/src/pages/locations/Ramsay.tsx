@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Ramsay Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/ramsay-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.0405", longitude: "-114.0440" },
 });
 

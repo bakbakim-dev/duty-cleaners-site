@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Cliff Bungalow Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/cliff-bungalow-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.0388", longitude: "-114.0700" },
 });
 

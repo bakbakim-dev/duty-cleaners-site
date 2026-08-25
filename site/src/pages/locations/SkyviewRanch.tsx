@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Skyview Ranch Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/skyview-ranch",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.1745", longitude: "-113.9587" },
 });
 

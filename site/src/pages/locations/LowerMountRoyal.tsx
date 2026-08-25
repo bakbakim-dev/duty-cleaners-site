@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Lower Mount Royal Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/lower-mount-royal-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.0395", longitude: "-114.0810" },
 });
 

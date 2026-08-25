@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Sunnyside Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/sunnyside-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.0566", longitude: "-114.0865" },
 });
 

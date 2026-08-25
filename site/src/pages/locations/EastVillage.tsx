@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - East Village Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/east-village-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.0460", longitude: "-114.0510" },
 });
 

@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Bankview Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/bankview-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.0380", longitude: "-114.0995" },
 });
 

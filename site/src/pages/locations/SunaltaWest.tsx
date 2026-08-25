@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Sunalta West Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/sunalta-west-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.0410", longitude: "-114.1010" },
 });
 

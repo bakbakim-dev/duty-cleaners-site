@@ -92,7 +92,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Auburn Bay Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/auburn-bay",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "50.8867", longitude: "-113.9725" },
 });
 

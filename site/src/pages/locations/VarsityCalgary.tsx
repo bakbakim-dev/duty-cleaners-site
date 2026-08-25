@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Varsity Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/varsity-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.0820", longitude: "-114.1408" },
 });
 

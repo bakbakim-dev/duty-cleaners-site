@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Dalhousie Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/dalhousie-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.1006", longitude: "-114.1527" },
 });
 

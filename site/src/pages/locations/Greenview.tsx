@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Greenview Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/greenview-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.0830", longitude: "-114.0610" },
 });
 

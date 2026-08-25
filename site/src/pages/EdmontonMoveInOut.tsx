@@ -77,7 +77,7 @@ const whyUsItems = [
   { icon: Home, title: "Move-In Ready Freshness", description: "We eliminate built-up dust, pet dander, allergens, and lingering odors left by previous tenants so your new Edmonton home feels genuinely fresh from day one." },
   { icon: Clock, title: "Availability & Service Areas", description: "We offer weekday and weekend move-in / move-out cleaning across Edmonton, Sherwood Park, St. Albert, Spruce Grove, Leduc, and Beaumont, based on availability." },
   { icon: Sparkles, title: "Pro-Grade Tools & Supplies", description: "High-quality equipment and non-toxic cleaning products designed for move-in and move-out deep cleaning standards." },
-  { icon: Shield, title: "Reference-Checked & Customer-Rated", description: "Reference-checked cleaners trained specifically on end-of-tenancy checklists, equipped with all supplies — eco-friendly products available on request." },
+  { icon: Shield, title: "Reference-Checked & Customer-Rated", description: "Reference-checked cleaners trained specifically on end-of-tenancy checklists, equipped with all supplies — eco-friendly products available on request for a $15 add-on." },
   { icon: Award, title: "24-Hour Re-Clean Guarantee", description: "If anything is missed, let us know within 24 hours and we'll return to make it right — completely free of charge." },
 ];
 

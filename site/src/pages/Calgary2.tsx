@@ -166,7 +166,7 @@ export default function Calgary2() {
       "Calgary", "Airdrie", "Cochrane", "Okotoks", "Chestermere", "Strathmore",
       "High River", "Langdon", "Crossfield",
     ].map((name) => ({ "@type": "City", name })),
-    priceRange: "$155-$519",
+    priceRange: "$155-$539",
     openingHours: ["Mo-Sa 08:00-20:00", "Su 09:00-15:00"],
     openingHoursSpecification: [
       {

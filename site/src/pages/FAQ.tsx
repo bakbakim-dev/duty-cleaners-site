@@ -40,6 +40,22 @@ const faqCategories: FAQCategory[] = [
         answer: "Most households in Alberta choose bi-weekly. Weekly works best for larger families, homes with pets, or busy schedules; monthly is a good fit for smaller, lower-traffic homes. You can change or pause your frequency at any time.",
       },
       {
+        question: "What time will the cleaners arrive?",
+        answer: "We schedule to an arrival window rather than an exact time, so traffic or an earlier job running long does not push your whole day. The windows are 9:00 – 10:00 AM, 12:00 – 1:00 PM, and 3:00 – 4:00 PM. You will be told which window is yours when you book.",
+      },
+      {
+        question: "What is your cancellation policy?",
+        answer: "We ask for at least 24 hours' notice to change or cancel a clean, so we can offer the slot to someone else. Cancelling or rescheduling inside 24 hours is charged $50. There is no long-term contract, and you can change or pause a recurring schedule at any time.",
+      },
+      {
+        question: "What if the cleaners cannot get in?",
+        answer: "If our team arrives and cannot get into the home — no key left, a code that does not work, or nobody able to let them in — the visit is charged at half the cost of the scheduled service. The cleaner has already travelled and the slot cannot be reassigned at that point. Letting us know at least 24 hours ahead avoids this entirely.",
+      },
+      {
+        question: "What happens if something is damaged during a clean?",
+        answer: "Tell us as soon as you notice. Send photos or video within 24 hours so we can investigate while the details are still fresh, either by phone or to support@dutycleaners.ca, and we will look into what happened and come back to you.",
+      },
+      {
         question: "What are your operating hours?",
         answer: "We're available Monday through Saturday from 8:00 AM to 8:00 PM, and Sundays from 9:00 AM to 3:00 PM. We offer flexible scheduling to accommodate your busy lifestyle.",
       },
@@ -257,7 +273,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "Do you bring supplies?",
-        answer: "Yes — all supplies and equipment. Prefer eco-friendly products? Ask when booking and we'll use them.",
+        answer: "Yes — all supplies and equipment. Prefer eco-friendly products? Ask when booking and we can use them for a $15 add-on.",
       },
       {
         question: "Which areas do you serve?",

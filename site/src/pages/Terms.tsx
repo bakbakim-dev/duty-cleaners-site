@@ -11,6 +11,7 @@ import {
   PRICING_TERMS,
   NOT_INCLUDED,
   SERVICE_TERMS,
+  ARRIVAL_WINDOWS,
 } from "@/data/policy";
 
 /**
@@ -83,15 +84,20 @@ export default function Terms() {
               </ul>
 
               <h2 className="text-2xl font-bold mb-4 text-foreground">Scheduling and Access</h2>
-              <ul className="list-disc pl-6 mb-8">
+              <ul className="list-disc pl-6 mb-4">
                 {SERVICE_TERMS.map((term) => (
                   <li key={term}>{term}</li>
                 ))}
               </ul>
+              <p className="mb-2">Our arrival windows are:</p>
+              <ul className="list-disc pl-6 mb-8">
+                {ARRIVAL_WINDOWS.map((slot) => (
+                  <li key={slot}>{slot}</li>
+                ))}
+              </ul>
 
-              {/* Renders only once the owner has settled the cancellation question —
-                  the site currently promises free cancellation while the legacy FAQ
-                  charged $50, and we will not publish a fee that was never agreed. */}
+              {/* The cancellation fee is confirmed, so this now states it plainly
+                  rather than omitting it. */}
               {POLICY.cancellationNoticeHours !== null && (
                 <>
                   <h2 className="text-2xl font-bold mb-4 text-foreground">
@@ -102,8 +108,10 @@ export default function Terms() {
                     notice if you need to move or cancel a clean, so we can offer the slot to
                     someone else and keep your cleaner's day full.
                     {POLICY.cancellationFee
-                      ? ` Cancellations inside that window may be charged ${POLICY.cancellationFee}.`
-                      : " There is no long-term contract, and you can change or pause a recurring schedule at any time."}
+                      ? ` Cancelling or rescheduling inside that window is charged ${POLICY.cancellationFee}.`
+                      : ""}{" "}
+                    There is no long-term contract, and you can change or pause a recurring
+                    schedule at any time.
                   </p>
                 </>
               )}
@@ -132,7 +140,7 @@ export default function Terms() {
 
               <h2 className="text-2xl font-bold mb-4 text-foreground">What We Do Not Clean</h2>
               <p className="mb-4">
-                Some tasks are outside what our teams are equipped and insured to do, usually for
+                Some tasks are outside what our teams are equipped and trained to do, usually for
                 safety reasons. If you need one of these, tell us and we will point you to a
                 specialist where we can.
               </p>
@@ -142,10 +150,29 @@ export default function Terms() {
                 ))}
               </ul>
 
+              {POLICY.giftCardExpiryMonths !== null && (
+                <>
+                  <h2 className="text-2xl font-bold mb-4 text-foreground">Gift Cards</h2>
+                  <p className="mb-8">
+                    {POLICY.giftCardExpiryMonths === "none"
+                      ? "Gift cards do not expire. We track the remaining balance, so it can be used across more than one visit, and if a clean costs more than the balance you simply pay the difference."
+                      : `Gift cards should be redeemed within ${POLICY.giftCardExpiryMonths} months. We track the remaining balance, so it can be used across more than one visit.`}{" "}
+                    Gift cards are non-refundable and cannot be combined with other promotions.
+                    {POLICY.giftCardMaxValue ? ` The maximum value we can issue is ${POLICY.giftCardMaxValue}.` : ""}
+                  </p>
+                </>
+              )}
+
               {POLICY.lockoutFee !== null && (
                 <>
                   <h2 className="text-2xl font-bold mb-4 text-foreground">If We Cannot Get In</h2>
-                  <p className="mb-8">{POLICY.lockoutFee}</p>
+                  <p className="mb-8">
+                    If our team arrives for a scheduled clean and cannot get into the home — no
+                    key left, a code that does not work, or nobody able to let them in — we
+                    charge {POLICY.lockoutFee}. The cleaner has already travelled and the slot
+                    cannot be given to anyone else at that point. Telling us at least{" "}
+                    {POLICY.cancellationNoticeHours} hours ahead avoids this entirely.
+                  </p>
                 </>
               )}
 
@@ -155,6 +182,13 @@ export default function Terms() {
                     Damage and Breakage
                   </h2>
                   <p className="mb-8">{POLICY.liabilityNote}</p>
+                </>
+              )}
+
+              {POLICY.insuranceClaim !== null && (
+                <>
+                  <h2 className="text-2xl font-bold mb-4 text-foreground">Our Cleaners</h2>
+                  <p className="mb-8">{POLICY.insuranceClaim}</p>
                 </>
               )}
 

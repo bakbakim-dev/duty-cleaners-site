@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Manchester Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/manchester-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.0153", longitude: "-114.0680" },
 });
 

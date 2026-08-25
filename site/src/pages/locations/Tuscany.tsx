@@ -91,7 +91,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Tuscany Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/tuscany",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.1289", longitude: "-114.2247" },
 });
 

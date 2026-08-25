@@ -32,7 +32,8 @@ export interface ServicePolicy {
   damageClaimWindowHours: Confirmed<number> | Unconfirmed;
   liabilityNote: Confirmed<string> | Unconfirmed;
   governingProvince: Confirmed<string> | Unconfirmed;
-  giftCardExpiryMonths: Confirmed<number> | Unconfirmed;
+  /** Months until expiry, or "none" when the card genuinely never expires. */
+  giftCardExpiryMonths: Confirmed<number | "none"> | Unconfirmed;
   giftCardMaxValue: Confirmed<string> | Unconfirmed;
   insuranceClaim: Confirmed<string> | Unconfirmed;
 }
@@ -60,50 +61,50 @@ export const POLICY: ServicePolicy = {
   guaranteeRequiresPhotos: null,
 
   /**
-   * TODO-OWNER: the site currently promises "Free reschedule or cancel up to 24
-   * hours before" (proof.ts, itself flagged "confirm before launch"), while the
-   * legacy FAQ said a cancellation inside 24 hours incurs a $50 fee. These are
-   * opposite promises and both cannot ship. Until one is chosen, the terms page
-   * states no cancellation charge at all — the safer error, since you cannot
-   * charge a fee you never published.
+   * Confirmed by the owner: 24 hours' notice, $50 inside that window. This
+   * settles the conflict between the live "free reschedule or cancel" line and
+   * the legacy FAQ's $50 fee — the legacy FAQ was right.
    */
   cancellationNoticeHours: 24,
-  cancellationFee: null,
+  cancellationFee: "$50",
 
-  /** TODO-OWNER: no statement exists anywhere about a cleaner arriving and being
-   *  unable to get in. Given customers are told they need not be home, this gap
-   *  will eventually be tested. */
-  lockoutFee: null,
+  /**
+   * Confirmed by the owner. Nothing had ever been published about a cleaner
+   * arriving and being unable to get in, which mattered because customers are
+   * explicitly told they need not be home.
+   */
+  lockoutFee: "half the cost of the scheduled service",
 
-  /** TODO-OWNER: no damage or breakage claims process exists in either the
-   *  current site or the legacy mirror — no deadline, no process, no cap. */
-  damageClaimWindowHours: null,
-  liabilityNote: null,
+  /**
+   * Confirmed by the owner. Neither the current site nor the legacy mirror had
+   * any damage process at all — no deadline, no method, nothing.
+   */
+  damageClaimWindowHours: 24,
+  liabilityNote:
+    "If something is damaged or broken during a clean, send us photos or video within 24 hours so we can investigate while the details are still fresh. Get in touch by phone or email and we will look into what happened and come back to you.",
 
   /** TODO-OWNER: no governing-law or dispute clause has ever been published. */
   governingProvince: null,
 
   /**
-   * TODO-OWNER: the gift card page says "No expiry pressure" five lines above
-   * "Redeem within six months to keep the gift card valid." Alberta's Consumer
-   * Protection Act restricts expiry on gift cards sold for consideration, so
-   * this is worth confirming properly rather than picking the tidier sentence.
+   * Confirmed by the owner: gift cards do not expire, and the balance is
+   * tracked. The "redeem within six months" lines were the error and have been
+   * removed. This is also the safer side of Alberta's Consumer Protection Act,
+   * which restricts expiry on gift cards sold for consideration.
    */
-  giftCardExpiryMonths: null,
+  giftCardExpiryMonths: "none",
 
   /** The legacy site published a $2,000 CAD ceiling; the rebuild dropped it.
    *  TODO-OWNER: confirm whether it still applies operationally. */
   giftCardMaxValue: null,
 
   /**
-   * TODO-OWNER: the legacy site claimed "fully licensed, insured and bonded"
-   * with background checks; the current site deliberately says only
-   * "reference-checked"; and the careers page asks cleaners to carry their own
-   * insurance as subcontractors. Those are three different claims, and
-   * "insured and bonded" is legally meaningful. Nothing is rendered until the
-   * true position is confirmed.
+   * Confirmed by the owner: reference-checked only. The legacy site's "fully
+   * licensed, insured and bonded" claim is NOT reinstated — it is legally
+   * meaningful and is not the true position. Do not reintroduce it.
    */
-  insuranceClaim: null,
+  insuranceClaim:
+    "Every cleaner is reference-checked before their first job, and rated by the customer after every visit. Those ratings decide who we keep sending.",
 };
 
 /* ---------------------------------------------------------------------------
@@ -154,8 +155,24 @@ export const NOT_INCLUDED = [
 /** Access, scheduling and what we bring. Consistent across the FAQ and Prepare. */
 export const SERVICE_TERMS = [
   "You do not need to be home. Most customers leave a key, a lockbox code, or smart-lock access, and we lock up when we finish.",
-  "We bring all cleaning supplies and equipment. If you would prefer we use specific products of your own, tell us when you book.",
+  "We bring all cleaning supplies and equipment. Eco-friendly products are available on request as a $15 add-on.",
   "Running water is required. Some tasks, including vacuuming, may not be possible without electricity.",
   "Tell us about pets, parking, how to get in, and any rooms to skip when you book — the booking form asks for each of these.",
   "Our operating hours are Monday to Saturday 8:00 AM to 8:00 PM, and Sunday 9:00 AM to 3:00 PM.",
+  "We schedule to an arrival window rather than an exact time, so traffic or an earlier job running long does not push your whole day.",
 ] as const;
+
+/**
+ * The three arrival windows. These were published on the legacy site, dropped in
+ * the rebuild, and confirmed by the owner as still accurate. Restoring them
+ * matters: a visitor deciding whether to book wants to know when someone turns
+ * up, and "we'll confirm your window when you book" answers nothing.
+ */
+export const ARRIVAL_WINDOWS = ["9:00 – 10:00 AM", "12:00 – 1:00 PM", "3:00 – 4:00 PM"] as const;
+
+/**
+ * Eco-friendly products are a chargeable upgrade, not a free swap. The FAQ said
+ * "ask when booking and we'll use them", which read as free; the legacy
+ * move-out page correctly called it an add-on.
+ */
+export const ECO_PRODUCTS_ADDON = "$15" as const;

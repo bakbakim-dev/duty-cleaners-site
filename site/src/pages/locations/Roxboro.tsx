@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Roxboro Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/roxboro-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.0298", longitude: "-114.0750" },
 });
 

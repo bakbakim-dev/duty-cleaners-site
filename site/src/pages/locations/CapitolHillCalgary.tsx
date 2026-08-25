@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Capitol Hill Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/capitol-hill-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.0738", longitude: "-114.0962" },
 });
 

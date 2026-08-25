@@ -80,7 +80,7 @@ const whyUsItems = [
 const faqs = [
   { q: "How much does residential cleaning typically cost in Delton?", a: "Pricing depends on your home size and cleaning needs, but we keep everything transparent with clear starting rates and service details." },
   { q: "Do you bring supplies, or should I provide my own?", a: "We come fully equipped with everything we need, so you don't have to lift a finger. If you have preferences, we're happy to work with them." },
-  { q: "What if I need to reschedule or cancel a visit?", a: "We understand that life happens! Just let us know as soon as possible and we'll accommodate the change. Cancellations within 24 hours of your appointment may incur a fee." },
+  { q: "What if I need to reschedule or cancel a visit?", a: "We understand that life happens! Just let us know as soon as possible and we'll accommodate the change. Cancellations within 24 hours of your appointment are charged $50." },
 ];
 
 export default function Delton() {

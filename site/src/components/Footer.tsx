@@ -126,11 +126,10 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-            <a href="https://www.bbb.org/ca/ab" target="_blank" rel="nofollow noopener noreferrer" className="group flex min-h-16 items-center justify-center gap-2 rounded-lg border border-brand-navy-foreground/15 bg-brand-navy-foreground/5 px-3 text-brand-navy-foreground/85 transition-all hover:border-brand-gold/60 hover:bg-brand-navy-foreground/10 hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold">
-              <Shield className="h-5 w-5 shrink-0 text-brand-gold" aria-hidden="true" />
-              <span className="text-left text-xs leading-tight"><strong className="block text-brand-navy-foreground">BBB</strong>Accredited</span>
-            </a>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {/* The BBB Accredited badge was removed at the owner's direction.
+                It asserted an accreditation on all 209 pages and linked to BBB
+                Alberta's generic landing page rather than a company profile. */}
             <a href="https://business.edmontonchamber.com/" target="_blank" rel="nofollow noopener noreferrer" className="group flex min-h-16 items-center justify-center rounded-lg border border-brand-navy-foreground/15 bg-brand-navy-foreground/5 px-3 text-center text-xs font-semibold leading-tight text-brand-navy-foreground/85 transition-all hover:border-brand-gold/60 hover:bg-brand-navy-foreground/10 hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold">Edmonton Chamber<br />of Commerce</a>
             <a href="https://www.calgarychamber.com/" target="_blank" rel="nofollow noopener noreferrer" className="group flex min-h-16 items-center justify-center rounded-lg border border-brand-navy-foreground/15 bg-brand-navy-foreground/5 px-3 text-center text-xs font-semibold leading-tight text-brand-navy-foreground/85 transition-all hover:border-brand-gold/60 hover:bg-brand-navy-foreground/10 hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold">Calgary Chamber<br />of Commerce</a>
             <div className="flex min-h-16 items-center justify-center gap-2 rounded-lg border border-brand-navy-foreground/15 bg-brand-navy-foreground/5 px-3 text-xs font-semibold leading-tight text-brand-navy-foreground/85"><Shield className="h-5 w-5 shrink-0 text-brand-gold" aria-hidden="true" /><span>Pay After<br />Your Clean</span></div>

@@ -99,7 +99,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Altadore Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/altadore-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.0180", longitude: "-114.1020" },
 });
 

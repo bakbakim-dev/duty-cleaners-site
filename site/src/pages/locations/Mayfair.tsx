@@ -115,7 +115,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Mayfair Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/mayfair-calgary",
-  priceRange: "$155-$519",
+  priceRange: "$155-$539",
   geo: { latitude: "51.0010", longitude: "-114.0760" },
 });
 
