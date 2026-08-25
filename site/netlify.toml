@@ -7,8 +7,17 @@
   # would fall through to the 404.
   command = "bun run build && bun run prerender:all"
 
-# Netlify's Pretty URLs already normalise /path -> /path/; this pins it.
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Content-Type-Options = "nosniff"
+# Response headers live in ONE place: public/_headers.
+#
+# There used to be a nosniff header here too, under a comment claiming
+# "Netlify's Pretty URLs already normalise /path -> /path/; this pins it."
+# It pinned nothing — the block only set nosniff, and trailing-slash
+# normalisation is a Netlify UI setting no file in this repo touches. Keeping
+# headers in two places meant neither was the source of truth, so they are
+# consolidated into public/_headers, which carries nosniff along with the
+# frame-ancestors, referrer, permissions and caching rules.
+#
+# The trailing-slash behaviour genuinely does depend on "Pretty URLs" being
+# enabled in the site's Build & deploy settings. That is not expressible here,
+# so it is written down rather than left implied by a comment that suggested
+# this file handled it.

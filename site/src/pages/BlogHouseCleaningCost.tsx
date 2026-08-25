@@ -166,6 +166,33 @@ export default function BlogHouseCleaningCost() {
                 </p>
               </div>
 
+              {/* This article publishes roughly 30 dollar figures and originally
+                  carried no currency marker and no statement of where they came
+                  from — on a page whose own meta description says Canada. Readers
+                  had no way to tell market ranges apart from this company's actual
+                  prices, and the two are not the same thing. */}
+              <div className="mb-12 p-6 bg-muted/40 rounded-xl border-l-4 border-primary">
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  <strong className="text-foreground">About the figures in this guide.</strong>{" "}
+                  Every price below is in Canadian dollars. They are typical market ranges for
+                  professional cleaning across Canadian cities, gathered from publicly advertised
+                  rates — not a statistical survey, and not a quote. What any given company charges
+                  depends on your home, its condition and where you live.
+                </p>
+                <p className="text-sm text-muted-foreground leading-relaxed mt-3">
+                  For what <em>we</em> charge, see our{" "}
+                  <a href="/pricing/" className="text-primary underline">
+                    Edmonton pricing
+                  </a>{" "}
+                  and{" "}
+                  <a href="/calgary/pricing/" className="text-primary underline">
+                    Calgary pricing
+                  </a>{" "}
+                  pages. Those figures come straight from our live booking system, and are the ones
+                  you will actually be charged — before 5% GST.
+                </p>
+              </div>
+
               {/* Types of Cleaners */}
               <div className="mb-16">
                 <h2 className="text-2xl md:text-3xl font-bold mb-6 text-foreground">
