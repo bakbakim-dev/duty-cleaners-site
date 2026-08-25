@@ -5,6 +5,14 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import TrustPageCta from "@/components/TrustPageCta";
 import { Lock, Phone, Mail } from "lucide-react";
 
+/**
+ * Bump this whenever the sections below change — the policy itself promises
+ * that this date moves when the policy does. It sat at "December 2024" through
+ * a stack change that added the BookingKoala handoff, the GoHighLevel form
+ * embed and the map embeds, none of which the old text mentioned.
+ */
+const LAST_UPDATED = "August 2026";
+
 export default function PrivacyPolicy() {
   return (
     <>
@@ -29,7 +37,7 @@ export default function PrivacyPolicy() {
                 <Lock className="w-10 h-10 text-accent" />
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">Privacy Policy</h1>
-              <p className="text-lg text-white/85">Last updated: December 2024</p>
+              <p className="text-lg text-white/85">Last updated: {LAST_UPDATED}</p>
             </div>
           </div>
         </section>
@@ -99,10 +107,65 @@ export default function PrivacyPolicy() {
                 <li>Request deletion of your information (subject to legal requirements)</li>
               </ul>
 
-              <h2 className="text-2xl font-bold mb-4 text-foreground">Cookies and Tracking</h2>
+              {/* Every claim in the next three sections is checked against the code:
+                  no first-party tracking cookies are set (only sessionStorage, which
+                  the browser clears with the tab), and the third parties named below
+                  are exactly the external origins the site actually contacts. If an
+                  embed, analytics tag or pixel is ever added, it belongs here too. */}
+              <h2 className="text-2xl font-bold mb-4 text-foreground">Cookies and Website Storage</h2>
+              <p className="mb-4">
+                We do not set advertising or analytics cookies on this website, and we do not use cross-site
+                tracking pixels. The site stores a small amount of information in your browser's session
+                storage, which your browser discards as soon as you close the tab:
+              </p>
+              <ul className="list-disc pl-6 mb-4">
+                <li>
+                  Any <strong>gclid or UTM parameters</strong> in the link you arrived through, so that if you
+                  book we can tell which ad or campaign brought you here
+                </li>
+                <li>Whether you have dismissed the announcement bar, so it stays dismissed</li>
+                <li>A flag noting that you have been sent to our booking system, so the page can restore correctly if you come back</li>
+              </ul>
               <p className="mb-8">
-                Our website may use cookies and similar technologies to enhance your experience. You can control
-                cookies through your browser settings.
+                None of this identifies you personally, and none of it survives the browser session. You can
+                also block or clear storage and cookies through your browser settings.
+              </p>
+
+              <h2 className="text-2xl font-bold mb-4 text-foreground">Third-Party Services on This Website</h2>
+              <p className="mb-4">
+                Some parts of this site are provided by other companies. When one of these loads, that company
+                receives your IP address and technical details about your browser, and may set its own cookies
+                under its own privacy policy — not ours:
+              </p>
+              <ul className="list-disc pl-6 mb-8">
+                <li>
+                  <strong>BookingKoala</strong> — our online booking system. When you choose a time, we send
+                  you to their booking form. See the section below on what travels with you.
+                </li>
+                <li>
+                  <strong>HighLevel</strong> — powers the quote request form embedded on some pages. What you
+                  type into that form is submitted to them and passed on to us.
+                </li>
+                <li>
+                  <strong>Google Maps</strong> — the service-area map embedded on many of our neighbourhood
+                  pages. Loading the page loads the map, and Google receives your IP address and the page you
+                  are viewing.
+                </li>
+                <li>
+                  <strong>OpenStreetMap</strong> — supplies the map tiles on our coverage maps, and likewise
+                  receives your IP address when those tiles load.
+                </li>
+              </ul>
+
+              <h2 className="text-2xl font-bold mb-4 text-foreground">When You Book</h2>
+              <p className="mb-8">
+                Our booking system is operated by BookingKoala on their own website. When you press the button
+                to choose a time, we carry the details you have already given us across to their booking form
+                so you do not have to type them twice. Depending on what you filled in, that can include your
+                name, email address, phone number, postal code, and any access notes or special instructions
+                you wrote for the cleaner. This happens only when you actively choose to continue to booking —
+                nothing is sent to BookingKoala while you are simply filling in or reading your quote. Once you
+                are on their site, their privacy policy governs the information you enter there.
               </p>
 
               <h2 className="text-2xl font-bold mb-4 text-foreground">Children's Privacy</h2>

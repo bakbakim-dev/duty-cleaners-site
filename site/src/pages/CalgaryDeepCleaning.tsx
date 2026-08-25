@@ -1,7 +1,13 @@
 import ServiceDetailPage from "@/components/ServiceDetailPage";
+import { deepCleanTierRows, featuredExtraRows } from "@/data/pricing";
 import { Accent, AccentGold } from "@/components/Accent";
 import { Sparkles, Bath, UtensilsCrossed, Layers } from "lucide-react";
 import heroImage from "@/assets/gallery/calgary-kitchen-clean.jpg";
+
+// Published figures come from bk-config via pricing.ts. Hand-typing them
+// here is what let this page drift out of step with /pricing and with what
+// BookingKoala actually charges.
+const TIERS = deepCleanTierRows().map((row) => ({ size: row.beds, price: row.price }));
 
 export default function CalgaryDeepCleaning() {
   return (
@@ -52,24 +58,10 @@ export default function CalgaryDeepCleaning() {
         { name: "Edges & Details", tasks: 5, sample: "hand-wiping baseboards and door frames" },
         { name: "Bedrooms & Living", tasks: 4, sample: "dusting high and low areas" },
       ]}
-      pricingBySize={[
-        { size: "1 Bedroom", price: "$242" },
-        { size: "2 Bedroom", price: "$300" },
-        { size: "3 Bedroom", price: "$355" },
-        { size: "4 Bedroom", price: "$424" },
-        { size: "5+ Bedroom", price: "$463" },
-      ]}
+      pricingBySize={TIERS}
       pricingNote="Starting estimates are based on home size — final time and cost can vary with condition, bathrooms, and add-ons."
-      fromPrice="$242"
-      extras={[
-        { name: "Inside fridge cleaning", price: "$59.99" },
-        { name: "Inside oven cleaning", price: "$59.99" },
-        { name: "Inside cabinets (empty)", price: "$74.99" },
-        { name: "Interior window cleaning", price: "$64.99" },
-        { name: "Spot wall cleaning (2 rooms min)", price: "$59.99" },
-        { name: "Wipe window blinds", price: "$15/set" },
-        { name: "Balcony/garage sweeping", price: "$29.99" },
-      ]}
+      fromPrice={TIERS[0].price}
+      extras={featuredExtraRows()}
       notIncluded={[
         "Moving heavy items over 25 lbs",
         "Outdoor or exterior window cleaning",

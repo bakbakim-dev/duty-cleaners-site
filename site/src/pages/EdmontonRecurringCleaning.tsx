@@ -1,10 +1,16 @@
 import ServiceDetailPage from "@/components/ServiceDetailPage";
+import { standardTierRows, featuredExtraRows } from "@/data/pricing";
 import { Accent, AccentGold } from "@/components/Accent";
 import { Home, Bath, UtensilsCrossed } from "lucide-react";
 import heroImage from "@/assets/gallery/family-clean-home-edmonton.jpg";
 import kitchenImage from "@/assets/gallery/summerside-cleaner-home.jpg";
 import livingRoomImage from "@/assets/gallery/glenora-cleaner-living-room.jpg";
 import cleanerImage from "@/assets/gallery/westmount-cleaner-kitchen.jpg";
+
+// Published figures come from bk-config via pricing.ts. Hand-typing them
+// here is what let this page drift out of step with /pricing and with what
+// BookingKoala actually charges.
+const TIERS = standardTierRows().map((row) => ({ size: row.beds, price: row.price }));
 
 export default function EdmontonRecurringCleaning() {
   return (
@@ -51,25 +57,10 @@ export default function EdmontonRecurringCleaning() {
         { name: "Living Areas", tasks: 4, sample: "dusting, vacuuming, and mopping" },
         { name: "Bedrooms", tasks: 3, sample: "dusting surfaces and vacuuming under beds" },
       ]}
-      pricingBySize={[
-        { size: "1 Bedroom", price: "$155" },
-        { size: "2 Bedroom", price: "$195" },
-        { size: "3 Bedroom", price: "$232" },
-        { size: "4 Bedroom", price: "$284" },
-        { size: "5+ Bedroom", price: "$305" },
-      ]}
+      pricingBySize={TIERS}
       pricingNote="Rates shown are one-time standard pricing. Recurring plans save on every visit: 20% off weekly · 15% off bi-weekly · 10% off monthly."
-      fromPrice="$155"
-      extras={[
-        { name: "Inside fridge cleaning", price: "$59.99" },
-        { name: "Inside oven cleaning", price: "$59.99" },
-        { name: "Inside cabinets (empty)", price: "$74.99" },
-        { name: "Interior window cleaning", price: "$64.99" },
-        { name: "Baseboards (2 rooms min)", price: "$105" },
-        { name: "Spot wall cleaning (2 rooms min)", price: "$59.99" },
-        { name: "Wipe window blinds", price: "$15/set" },
-        { name: "Balcony/garage sweeping", price: "$29.99" },
-      ]}
+      fromPrice={TIERS[0].price}
+      extras={featuredExtraRows()}
       notIncluded={[
         "Moving heavy items over 25 lbs",
         "Outdoor or exterior window cleaning",

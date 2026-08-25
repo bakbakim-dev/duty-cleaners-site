@@ -761,3 +761,51 @@ export const serviceTierRows = (id: ServiceId) =>
 
 export const standardTierRows = () => serviceTierRows("standard");
 export const moveInOutTierRows = () => serviceTierRows("move-in-out");
+
+/**
+ * The add-on shelf published on the service detail pages.
+ *
+ * These used to be hand-typed on six pages and had drifted badly: interior
+ * window cleaning was listed at a flat $64.99 when bk-config prices it from
+ * $39.99 to $179.99 by home size, spot wall cleaning was $20 over, and
+ * "Baseboards (2 rooms min) — $105" was not a bookable row at all (baseboards
+ * are part of the Deep Cleaning package). Names live here; every figure is
+ * read from bk-config.
+ *
+ * Several rows scale with home size, so a single number would be wrong at both
+ * ends of the range. Those are published as "from $X" using the smallest home,
+ * which is what the customer is comparing against when they read a starting
+ * price. Flat rows print bare.
+ */
+const FEATURED_EXTRAS: { id: string; name: string; suffix?: string }[] = [
+  { id: "inside-fridge", name: "Inside fridge cleaning" },
+  { id: "inside-oven", name: "Inside oven cleaning" },
+  { id: "inside-cabinets-kitchen-bathroom-only", name: "Inside cabinets (empty)" },
+  { id: "inside-windows", name: "Interior window cleaning" },
+  { id: "spot-cleaning-inside-walls", name: "Spot wall cleaning" },
+  { id: "wipe-window-blinds-per-set", name: "Wipe window blinds", suffix: "/set" },
+  { id: "sweep-only-of-garage-or-balcony", name: "Balcony/garage sweeping" },
+];
+
+export const featuredExtraRows = (): { name: string; price: string }[] => {
+  const rows: { name: string; price: string }[] = [];
+  for (const entry of FEATURED_EXTRAS) {
+    // Price the row at every published home size; a row that quotes the same
+    // figure across all of them is genuinely flat.
+    const prices: number[] = [];
+    for (const tier of PRICING_TIERS) {
+      const bedroomId = bedroomOptions("standard").find((b) => b.value === tier.beds)?.id ?? null;
+      const found = addOnsFor("standard", bedroomId).find((a) => a.id === entry.id);
+      if (found) prices.push(found.price);
+    }
+    // A row bk-config no longer carries is dropped rather than published at a
+    // stale price — an unbookable line item is worse than a missing one.
+    if (prices.length === 0) continue;
+
+    const min = Math.min(...prices);
+    const flat = prices.every((p) => p === min);
+    const money = `$${min.toFixed(2).replace(/\.00$/, "")}${entry.suffix ?? ""}`;
+    rows.push({ name: entry.name, price: flat ? money : `from ${money}` });
+  }
+  return rows;
+};
