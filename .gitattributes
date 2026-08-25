@@ -1,0 +1,18 @@
+# Deploy-config files are parsed line-by-line by Netlify / Cloudflare Pages.
+# Checking them out with CRLF on Windows risks a trailing \r ending up inside a
+# header value or redirect target, which is hard to spot and only fails in
+# production. Pin them to LF regardless of platform.
+_headers      text eol=lf
+_redirects    text eol=lf
+*.htaccess    text eol=lf
+*.conf        text eol=lf
+
+# index.html carries the inline script whose sha256 is pinned in the CSP. The
+# script is written on one line so line endings cannot change the hash, but
+# pinning LF removes the question entirely.
+index.html    text eol=lf
+
+# Crawler-facing files are served verbatim.
+robots.txt    text eol=lf
+*.xml         text eol=lf
+llms*.txt     text eol=lf
