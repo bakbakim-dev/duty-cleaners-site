@@ -766,30 +766,26 @@ export default function QuoteFlow({
   const bookingUrl = bookingQuery === null ? null : `${BOOKING_ORIGIN}/booknow?${bookingQuery}`;
 
   /**
-   * Speculation Rules prefetch — Chrome/Edge start fetching the exact booking
-   * URL the CTA uses while the visitor is still reading their price, so the hop
-   * paints almost instantly. Pure progressive enhancement: other engines ignore
-   * the unknown script type silently and the preconnect tags still apply.
-   * Cross-site prefetch is skipped for visitors who already hold booking-host
-   * cookies — i.e. it helps exactly the new customers who need it.
+   * There used to be a Speculation Rules prefetch of `bookingUrl` here with
+   * `eagerness: "immediate"`, to make the hop to BookingKoala paint instantly.
+   * It was removed because that URL is not safe to send speculatively.
+   *
+   * buildBookingQuery() puts the visitor's first and last name, email, phone,
+   * postal code and free-text entry instructions ("key is under the mat") in
+   * the query string. Those ride along on the real navigation too, which is
+   * BookingKoala's own form contract and something the visitor opts into by
+   * pressing Book. A prefetch is different: it fires with no click at all, and
+   * the effect re-ran on every keystroke, so a visitor who typed an address and
+   * then abandoned the form still had their details written into the booking
+   * host's access logs — repeatedly, in plaintext, having consented to nothing.
+   *
+   * Prefetching a PII-free URL instead would not help: the prefetch cache is
+   * keyed on the exact URL, so it would never be used and would simply be a
+   * wasted request. The `preconnect` and `dns-prefetch` tags below already
+   * remove DNS, TCP and TLS from the hop, which is the dominant cost of a
+   * cross-origin navigation. What is left on the table is small; what was
+   * being leaked was not.
    */
-  useEffect(() => {
-    if (BOOKING_MODE !== "redirect" || step !== 2 || !bookingUrl) return;
-    const id = "bk-speculation-rules";
-    const script =
-      (document.getElementById(id) as HTMLScriptElement | null) ??
-      (() => {
-        const node = document.createElement("script");
-        node.id = id;
-        node.type = "speculationrules";
-        document.head.appendChild(node);
-        return node;
-      })();
-    script.textContent = JSON.stringify({
-      prefetch: [{ urls: [bookingUrl], eagerness: "immediate" }],
-    });
-    return () => script.remove();
-  }, [bookingUrl, step]);
 
 
   /**
