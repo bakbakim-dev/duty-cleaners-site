@@ -4,10 +4,29 @@
     {
       "name": "dutycleaners",
       "runtimeExecutable": "bun",
-      "runtimeArgs": ["run", "dev", "--host", "0.0.0.0"],
+      "runtimeArgs": [
+        "run",
+        "dev",
+        "--host",
+        "0.0.0.0"
+      ],
       "cwd": "site",
       "port": 8080,
       "url": "http://localhost:8080"
+    },
+    {
+      "name": "dutycleaners-dist",
+      "runtimeExecutable": "bunx",
+      "runtimeArgs": [
+        "vite",
+        "preview",
+        "--port",
+        "4178",
+        "--strictPort"
+      ],
+      "cwd": "site",
+      "port": 4178,
+      "url": "http://localhost:4178"
     }
   ]
 }

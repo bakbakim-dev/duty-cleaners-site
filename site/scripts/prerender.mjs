@@ -95,9 +95,15 @@ async function renderRoute(route) {
       timeout: 45_000,
     });
     if (!/<h1/i.test(html)) throw new Error("no <h1> in rendered output");
+    // The headless run executes the inline script that stamps data-motion="on",
+    // and --dump-dom bakes the result into the snapshot. Left in, the static
+    // HTML would claim JS is running before it is, and the CSS guard that keeps
+    // scroll-reveal sections visible for no-JS visitors would never match.
+    // The real browser re-stamps this within the first tick.
+    const out = html.replace(/(<html\b[^>]*?)\s+data-motion="on"/i, "$1");
     const outDir = route === "/" ? DIST : join(DIST, route.replace(/^\//, ""));
     mkdirSync(outDir, { recursive: true });
-    writeFileSync(join(outDir, "index.html"), "<!doctype html>\n" + html);
+    writeFileSync(join(outDir, "index.html"), "<!doctype html>\n" + out);
     done++;
     if (done % 10 === 0) console.log(`  ${done}/${routes.length}`);
   } catch (err) {

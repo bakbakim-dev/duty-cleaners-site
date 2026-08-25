@@ -8,6 +8,21 @@
     <link rel="apple-touch-icon" href="/logo.png" />
     <link rel="preload" href="/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin />
 
+    <!-- Scroll-reveal opt-in. ~1,750 section wrappers ship prerendered at
+         opacity:0 and are revealed by an IntersectionObserver. Without this
+         flag those sections stay invisible forever whenever the observer never
+         runs: JS disabled, or the bundle failing to boot. Setting it here (not
+         from React) means the hidden start state applies before first paint, so
+         there is no flash of content that then snaps away.
+         The timeout is the failsafe for the bundle-error case: if React has not
+         mounted after 4s, drop the flag and let the prerendered HTML show. -->
+    <script>
+      document.documentElement.dataset.motion = "on";
+      setTimeout(function () {
+        if (!window.__dcMounted) document.documentElement.removeAttribute("data-motion");
+      }, 4000);
+    </script>
+
 
 
     <title>Duty Cleaners | House Cleaning in Edmonton & Calgary</title>

@@ -15,3 +15,9 @@ if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
 }
 
 createRoot(document.getElementById("root")!).render(<App />);
+
+// Tells the failsafe in index.html that the bundle booted, so the scroll-reveal
+// start state (opacity:0) can stand. If this line is never reached, that
+// timeout drops the `data-motion` flag and the prerendered content stays
+// visible instead of sitting invisible behind an observer that will never run.
+window.__dcMounted = true;
