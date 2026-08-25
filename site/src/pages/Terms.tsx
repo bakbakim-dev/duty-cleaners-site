@@ -127,7 +127,7 @@ export default function Terms() {
                     additional charge.
                     {POLICY.guaranteeRequiresPhotos
                       ? " Please include photos of the areas in question so the team knows exactly what to put right."
-                      : ""}
+                      : " Photos help the team know exactly what to put right, but they are not required — a phone call describing what was missed is enough."}
                   </p>
                   <p className="mb-2">The guarantee covers the work included in your booking. It does not cover:</p>
                   <ul className="list-disc pl-6">
@@ -158,7 +158,11 @@ export default function Terms() {
                       ? "Gift cards do not expire. We track the remaining balance, so it can be used across more than one visit, and if a clean costs more than the balance you simply pay the difference."
                       : `Gift cards should be redeemed within ${POLICY.giftCardExpiryMonths} months. We track the remaining balance, so it can be used across more than one visit.`}{" "}
                     Gift cards are non-refundable and cannot be combined with other promotions.
-                    {POLICY.giftCardMaxValue ? ` The maximum value we can issue is ${POLICY.giftCardMaxValue}.` : ""}
+                    {POLICY.giftCardMaxValue === "none"
+                      ? " There is no minimum or maximum amount."
+                      : POLICY.giftCardMaxValue
+                        ? ` The maximum value we can issue is ${POLICY.giftCardMaxValue}.`
+                        : ""}
                   </p>
                 </>
               )}

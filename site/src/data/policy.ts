@@ -34,7 +34,8 @@ export interface ServicePolicy {
   governingProvince: Confirmed<string> | Unconfirmed;
   /** Months until expiry, or "none" when the card genuinely never expires. */
   giftCardExpiryMonths: Confirmed<number | "none"> | Unconfirmed;
-  giftCardMaxValue: Confirmed<string> | Unconfirmed;
+  /** A dollar ceiling, or "none" when there deliberately is not one. */
+  giftCardMaxValue: Confirmed<string | "none"> | Unconfirmed;
   insuranceClaim: Confirmed<string> | Unconfirmed;
 }
 
@@ -52,13 +53,17 @@ export const POLICY: ServicePolicy = {
   guaranteeWindowHours: 24,
 
   /**
-   * TODO-OWNER: llms.txt tells AI assistants the guarantee requires a "photo of
-   * missed areas", and the guarantee page's process list asks for photos — but
-   * no customer-facing promise mentions it as a condition. Making a photo a
-   * precondition of a refund-equivalent is a real restriction, so it is not
-   * rendered as one until you confirm it.
+   * Confirmed by the owner: photos help, but they are NOT a condition of the
+   * guarantee. A customer who phones within the window and describes what was
+   * missed is covered whether or not they send a picture.
+   *
+   * This matters because the wording had drifted the other way: llms.txt was
+   * telling AI assistants a photo was "required" (removed), and the guarantee
+   * page listed "Send photos" as a numbered step, which reads as mandatory.
+   * Anything that asks for photos must frame them as helpful, never as a
+   * precondition.
    */
-  guaranteeRequiresPhotos: null,
+  guaranteeRequiresPhotos: false,
 
   /**
    * Confirmed by the owner: 24 hours' notice, $50 inside that window. This
@@ -83,8 +88,12 @@ export const POLICY: ServicePolicy = {
   liabilityNote:
     "If something is damaged or broken during a clean, send us photos or video within 24 hours so we can investigate while the details are still fresh. Get in touch by phone or email and we will look into what happened and come back to you.",
 
-  /** TODO-OWNER: no governing-law or dispute clause has ever been published. */
-  governingProvince: null,
+  /**
+   * Confirmed by the owner: Alberta. Neither the current site nor any of the 135
+   * legacy pages had ever named a province or a forum, so a dispute had no
+   * stated jurisdiction at all.
+   */
+  governingProvince: "Alberta",
 
   /**
    * Confirmed by the owner: gift cards do not expire, and the balance is
@@ -94,9 +103,22 @@ export const POLICY: ServicePolicy = {
    */
   giftCardExpiryMonths: "none",
 
-  /** The legacy site published a $2,000 CAD ceiling; the rebuild dropped it.
-   *  TODO-OWNER: confirm whether it still applies operationally. */
-  giftCardMaxValue: null,
+  /**
+   * Confirmed by the owner: no ceiling. The legacy site published a $2,000 CAD
+   * limit and the rebuild replaced it with "no minimum or maximum" — an active
+   * claim rather than a quiet omission, which is why it needed settling.
+   *
+   * BookingKoala imposes no ceiling of its own. Per their gift card docs, the
+   * maximum is an opt-in toggle: "Select 'No' to disable the maximum gift card
+   * amount limit." (help.bookingkoala.com/help/gift-cards)
+   *
+   * DEPENDS ON A SETTING: this is only true while "Enable the maximum gift card
+   * amount limit?" is set to No under Settings > General > Store Options >
+   * Admin. The same screen carries a gift card MINIMUM, which the site also
+   * claims not to have. If either is ever switched on, this constant and the
+   * gift card pages must change with it.
+   */
+  giftCardMaxValue: "none",
 
   /**
    * Confirmed by the owner: reference-checked only. The legacy site's "fully

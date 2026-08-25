@@ -72,7 +72,14 @@ export default function SatisfactionGuarantee() {
               <ol className="list-decimal pl-6 space-y-3 mb-8">
                 <li>Contact us within 24 hours of your cleaning appointment</li>
                 <li>Describe the specific areas or items that didn't meet your expectations</li>
-                <li>Send photos of those areas that were missed so we can fully understand the issue</li>
+                {/* Photos are a favour, not a condition — confirmed by the owner.
+                    As a bare numbered step this read as mandatory, which is how
+                    llms.txt ended up telling AI assistants a photo was "required". */}
+                <li>
+                  If you can, send photos of the areas that were missed — it helps the team
+                  know exactly what to put right. They are not required, and a phone call
+                  describing the problem is enough.
+                </li>
                 <li>We'll schedule a return visit at a time convenient for you (typically within 48 hours)</li>
                 <li>Our team will address all identified concerns at no extra charge</li>
               </ol>
