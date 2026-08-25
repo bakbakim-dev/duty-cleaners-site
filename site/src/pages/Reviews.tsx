@@ -166,6 +166,7 @@ export default function Reviews() {
         <meta name="twitter:description" content="Five-star rated house cleaning in Edmonton and Calgary. Read what Alberta homeowners say about Duty Cleaners before you book." />
       </Helmet>
       <Navigation />
+      <main id="main-content" tabIndex={-1}>
       <div className="container mx-auto px-4 pt-4">
         <Breadcrumbs />
       </div>
@@ -337,6 +338,7 @@ export default function Reviews() {
           </div>
         </div>
       </section>
+      </main>
 
       <Footer />
     </div>);

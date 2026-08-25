@@ -117,6 +117,7 @@ export default function Beaumont() {
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Beaumont Edmonton", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-beaumont", areaServed: "Beaumont, AB" }))}</script>
       <Navigation city="edmonton" />
+      <main id="main-content" tabIndex={-1}>
       <div className="container mx-auto px-4 pt-4">
         <Breadcrumbs />
       </div>
@@ -379,6 +380,7 @@ export default function Beaumont() {
           </AnimatedSection>
         </div>
       </section>
+      </main>
 
       <Footer />
     </div>

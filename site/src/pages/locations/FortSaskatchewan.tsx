@@ -118,6 +118,7 @@ export default function FortSaskatchewan() {
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Fort Saskatchewan Edmonton", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-fort-saskatchewan", areaServed: "Fort Saskatchewan, AB" }))}</script>
       <Navigation city="edmonton" />
+      <main id="main-content" tabIndex={-1}>
       <div className="container mx-auto px-4 pt-4">
         <Breadcrumbs />
       </div>
@@ -390,6 +391,7 @@ export default function FortSaskatchewan() {
           </AnimatedSection>
         </div>
       </section>
+      </main>
 
       <Footer />
     </div>

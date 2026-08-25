@@ -415,6 +415,7 @@ export default function Locations() {
         <link rel="canonical" href="https://dutycleaners.ca/locations/" />
       </Helmet>
       <Navigation />
+      <main id="main-content" tabIndex={-1}>
       <div className="container mx-auto px-4 pt-4">
         <Breadcrumbs />
       </div>
@@ -647,6 +648,7 @@ export default function Locations() {
           <h1> behind ~20 marketing headings and made a directory page read as a
           second homepage. Embedded mode renders no Helmet and no nav. */}
       <BrandHome hideFooter />
+      </main>
 
       <Footer />
     </div>

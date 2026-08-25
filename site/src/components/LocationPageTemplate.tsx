@@ -164,6 +164,7 @@ export default function LocationPageTemplate({
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       </Helmet>
       <Navigation city={region} />
+      <main id="main-content" tabIndex={-1}>
       <div className="container mx-auto px-4 pt-4">
         <Breadcrumbs />
       </div>
@@ -363,6 +364,7 @@ export default function LocationPageTemplate({
           </AnimatedSection>
         </div>
       </section>
+      </main>
 
       <Footer />
     </div>

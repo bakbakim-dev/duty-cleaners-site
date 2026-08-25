@@ -129,6 +129,7 @@ export default function Kilkenny() {
 
       <div className="min-h-screen">
         <Navigation city="edmonton" />
+        <main id="main-content" tabIndex={-1}>
         <div className="container mx-auto px-4 pt-4">
           <Breadcrumbs />
         </div>
@@ -352,6 +353,7 @@ export default function Kilkenny() {
             </AnimatedSection>
           </div>
         </section>
+        </main>
 
         <Footer />
       </div>

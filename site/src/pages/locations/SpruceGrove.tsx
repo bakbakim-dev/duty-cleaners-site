@@ -118,6 +118,7 @@ export default function SpruceGrove() {
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Spruce Grove Edmonton", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-spruce-grove", areaServed: "Spruce Grove, AB" }))}</script>
       <Navigation city="edmonton" />
+      <main id="main-content" tabIndex={-1}>
       <div className="container mx-auto px-4 pt-4">
         <Breadcrumbs />
       </div>
@@ -314,6 +315,7 @@ export default function SpruceGrove() {
           </AnimatedSection>
         </div>
       </section>
+      </main>
 
       <Footer />
     </div>

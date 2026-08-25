@@ -224,6 +224,7 @@ const ServiceDetailPage = ({
         )}
       </Helmet>
       <Navigation city={city} />
+      <main id="main-content" tabIndex={-1}>
 
       {/* Breadcrumb strip */}
       <div className="bg-background border-b border-border">
@@ -568,6 +569,7 @@ const ServiceDetailPage = ({
           </div>
         </div>
       </section>
+      </main>
 
       <Footer />
 

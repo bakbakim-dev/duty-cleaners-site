@@ -132,6 +132,7 @@ export default function Riverbend() {
 
       <div className="min-h-screen">
         <Navigation city="edmonton" />
+        <main id="main-content" tabIndex={-1}>
 
         {/* Hero */}
         <section className="relative py-24 bg-brand-navy overflow-hidden">
@@ -337,6 +338,7 @@ export default function Riverbend() {
             </AnimatedSection>
           </div>
         </section>
+        </main>
 
         <Footer />
       </div>

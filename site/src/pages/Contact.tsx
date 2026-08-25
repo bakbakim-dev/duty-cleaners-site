@@ -322,6 +322,7 @@ export default function Contact() {
       </Helmet>
 
       <Navigation />
+      <main id="main-content" tabIndex={-1}>
 
       <div className="container mx-auto px-4 pt-4">
         <Breadcrumbs />
@@ -619,6 +620,7 @@ Sun: 9:00am–3:00pm"
           </div>
         </div>
       </section>
+      </main>
 
       <Footer />
     </div>

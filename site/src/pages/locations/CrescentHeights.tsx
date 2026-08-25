@@ -153,6 +153,7 @@ export default function CrescentHeights() {
 
       <div className="min-h-screen">
         <Navigation city="calgary" />
+        <main id="main-content" tabIndex={-1}>
         <div className="container mx-auto px-4 pt-4">
           <Breadcrumbs />
         </div>
@@ -404,6 +405,7 @@ export default function CrescentHeights() {
             </AnimatedSection>
           </div>
         </section>
+        </main>
 
         <Footer />
       </div>

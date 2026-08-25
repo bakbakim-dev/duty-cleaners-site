@@ -123,6 +123,7 @@ export default function Windermere() {
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Windermere Edmonton", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-windermere", areaServed: "Windermere, Edmonton, AB" }))}</script>
       <Navigation city="edmonton" />
+      <main id="main-content" tabIndex={-1}>
       <div className="container mx-auto px-4 pt-4">
         <Breadcrumbs />
       </div>
@@ -373,6 +374,7 @@ export default function Windermere() {
           </AnimatedSection>
         </div>
       </section>
+      </main>
 
       <Footer />
     </div>

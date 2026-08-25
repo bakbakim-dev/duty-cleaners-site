@@ -253,6 +253,7 @@ const AirbnbCleaningCalgary = () => {
         </script>
       </Helmet>
       <Navigation city="calgary" />
+      <main id="main-content" tabIndex={-1}>
       <div className="container mx-auto px-4 pt-4">
         <Breadcrumbs />
       </div>
@@ -544,6 +545,7 @@ const AirbnbCleaningCalgary = () => {
           </div>
         </div>
       </section>
+      </main>
 
       <Footer />
     </div>

@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -75,6 +76,15 @@ interface BrandHomeProps {
   hideFooter?: boolean;
 }
 
+/**
+ * Owns the page's <main> landmark only when this renders as its own page.
+ * Embedded in /locations (hideFooter), the host page already provides one and a
+ * document must not contain two. Hoisted to module scope so toggling the prop
+ * never remounts the whole tree.
+ */
+const Shell = ({ standalone, children }: { standalone: boolean; children: ReactNode }) =>
+  standalone ? <main id="main-content" tabIndex={-1}>{children}</main> : <>{children}</>;
+
 export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
   // Embedded usage (Locations page) already renders that page's <h1>.
   const HeroHeading = hideFooter ? "h2" : "h1";
@@ -113,6 +123,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
         </>
       )}
 
+      <Shell standalone={!hideFooter}>
       {/* Hero Section */}
       <section className="bg-brand-navy py-20 md:py-32 relative overflow-hidden">
         <img
@@ -503,6 +514,8 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
           </div>
         </div>
       </section>
+
+      </Shell>
 
       {!hideFooter && <Footer />}
     </div>;

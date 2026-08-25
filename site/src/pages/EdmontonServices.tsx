@@ -265,6 +265,7 @@ export default function EdmontonServices() {
         <link rel="canonical" href="https://dutycleaners.ca/services/" />
       </Helmet>
       <Navigation city="edmonton" />
+      <main id="main-content" tabIndex={-1}>
       <div className="container mx-auto px-4 pt-4">
         <Breadcrumbs />
       </div>
@@ -429,6 +430,7 @@ export default function EdmontonServices() {
           </div>
         </div>
       </section>
+      </main>
 
       <Footer />
     </div>

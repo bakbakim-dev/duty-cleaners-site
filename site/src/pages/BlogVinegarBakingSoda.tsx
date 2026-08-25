@@ -105,6 +105,7 @@ export default function BlogVinegarBakingSoda() {
 
       <div className="min-h-screen bg-background">
         <Navigation />
+        <main id="main-content" tabIndex={-1}>
         <div className="container mx-auto px-4 pt-4">
           <Breadcrumbs />
         </div>
@@ -314,6 +315,7 @@ export default function BlogVinegarBakingSoda() {
             </div>
           </div>
         </section>
+        </main>
 
         <Footer />
       </div>

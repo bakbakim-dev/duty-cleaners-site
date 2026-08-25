@@ -105,7 +105,7 @@ const blogPosts: BlogPost[] = [
     date: "January 22, 2026",
     readTime: "10 min read",
     image: cleaningFrequencyHero,
-    slug: "/blog/cleaning-frequency"
+    slug: "/how-often-should-a-cleaning-service-clean-my-house"
   },
   {
     id: 7,
@@ -155,6 +155,7 @@ export default function Blog() {
 
       <div className="min-h-screen bg-background">
         <Navigation />
+        <main id="main-content" tabIndex={-1}>
         <div className="container mx-auto px-4 pt-4">
           <Breadcrumbs />
         </div>
@@ -268,6 +269,7 @@ export default function Blog() {
             </div>
           </div>
         </section>
+        </main>
 
         <Footer />
       </div>

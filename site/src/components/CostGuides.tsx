@@ -12,7 +12,7 @@ const GUIDES = [
     meta: "Planning · 5 min read",
     title: "How often should a home actually be cleaned?",
     blurb: "Weekly, bi-weekly or monthly — an honest schedule for how your home is really lived in.",
-    to: "/blog/cleaning-frequency",
+    to: "/how-often-should-a-cleaning-service-clean-my-house",
   },
   {
     meta: "Hiring · 5 min read",

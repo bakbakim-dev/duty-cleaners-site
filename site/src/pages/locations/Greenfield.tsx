@@ -61,6 +61,7 @@ export default function Greenfield() {
       
       <div className="min-h-screen bg-background">
         <Navigation />
+        <main id="main-content" tabIndex={-1}>
         
         {/* Hero Section */}
         <section className="pt-32 pb-16 px-4 bg-gradient-to-b from-primary/5 to-background">
@@ -215,6 +216,7 @@ export default function Greenfield() {
             </Button>
           </div>
         </section>
+        </main>
 
         <Footer />
       </div>

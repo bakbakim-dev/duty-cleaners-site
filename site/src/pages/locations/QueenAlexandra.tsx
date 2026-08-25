@@ -55,6 +55,7 @@ const QueenAlexandra = () => {
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       <div className="min-h-screen bg-background">
         <Navigation />
+        <main id="main-content" tabIndex={-1}>
 
         {/* Hero Section */}
         <section className="pt-24 pb-12 px-4">
@@ -196,6 +197,7 @@ const QueenAlexandra = () => {
             </Button>
           </div>
         </section>
+        </main>
 
         <Footer />
       </div>

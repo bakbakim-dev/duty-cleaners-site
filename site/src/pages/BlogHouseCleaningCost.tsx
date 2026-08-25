@@ -103,6 +103,7 @@ export default function BlogHouseCleaningCost() {
 
       <div className="min-h-screen bg-background">
         <Navigation />
+        <main id="main-content" tabIndex={-1}>
         <div className="container mx-auto px-4 pt-4">
           <Breadcrumbs />
         </div>
@@ -341,6 +342,7 @@ export default function BlogHouseCleaningCost() {
             </div>
           </div>
         </section>
+        </main>
 
         <Footer />
       </div>

@@ -22,6 +22,7 @@ export default function AboutUs() {
         <meta name="twitter:description" content="Meet the team behind Duty Cleaners. Serving Alberta since 2017 with reference-checked, customer-rated cleaners in Edmonton and Calgary." />
       </Helmet>
       <Navigation />
+      <main id="main-content" tabIndex={-1}>
       <div className="container mx-auto px-4 pt-4">
         <Breadcrumbs />
       </div>
@@ -219,7 +220,7 @@ export default function AboutUs() {
           </div>
         </div>
       </section>
-
+      </main>
 
       <Footer />
     </div>;

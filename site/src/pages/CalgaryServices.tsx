@@ -247,6 +247,7 @@ export default function CalgaryServices() {
         <link rel="canonical" href="https://dutycleaners.ca/calgary/services/" />
       </Helmet>
       <Navigation city="calgary" />
+      <main id="main-content" tabIndex={-1}>
       <div className="container mx-auto px-4 pt-4">
         <Breadcrumbs />
       </div>
@@ -406,6 +407,7 @@ export default function CalgaryServices() {
           </div>
         </div>
       </section>
+      </main>
 
       <Footer />
     </div>

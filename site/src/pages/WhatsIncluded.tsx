@@ -284,6 +284,7 @@ export default function WhatsIncluded() {
         <meta name="twitter:description" content="See exactly what's included in a standard, deep and move-in/out clean with Duty Cleaners in Edmonton and Calgary. Room-by-room checklist." />
       </Helmet>
       <Navigation />
+      <main id="main-content" tabIndex={-1}>
       <div className="container mx-auto px-4 pt-4">
         <Breadcrumbs />
       </div>
@@ -565,6 +566,7 @@ export default function WhatsIncluded() {
           </div>
         </div>
       </section>
+      </main>
 
       <Footer />
     </div>
