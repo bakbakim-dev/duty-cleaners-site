@@ -27,9 +27,9 @@ export default function CalgaryDeepCleaning() {
       overviewEyebrow="Service Overview"
       overviewHeading={<>The reset regular cleaning <Accent>can't reach.</Accent></>}
       overviewParagraphs={[
-        "Deep cleaning is a comprehensive, detail-driven reset of your home. It goes far beyond the surfaces touched during a regular visit — addressing built-up dust, grease, soap scum, and grime in the places that quietly collect dirt over months of use.",
-        "It's the right service for a seasonal refresh, before hosting guests, after a renovation cleanup, or as a first-time visit before starting recurring cleanings. Once a deep clean has been completed, your home is reset to a baseline that's much easier to maintain with regular service.",
-        "Our team works methodically from top to bottom, room by room, scrubbing baseboards and door frames, hand-wiping light switches and outlet covers, degreasing stovetops and range hoods, and detail-cleaning bathrooms. The result is a noticeably cleaner, fresher, and healthier home.",
+        "Deep cleaning is a comprehensive, detail-driven reset of your home. It goes far beyond the surfaces touched during a regular visit — addressing built-up dust, grease, soap scum, and grime in the places that accumulate quietly over months.",
+        "Calgary homes collect that build-up differently than most. Sitting at the foot of the Rockies, the city thaws and refreezes all winter long, so roads are gritted, melted and gritted again rather than staying frozen through to spring. That sand and de-icer does not stop at the door. It works along baseboards, into carpet edges, down the sides of stair treads and under furniture — and by February it is somewhere a vacuum no longer reaches. A deep clean is what actually takes it back out.",
+        "The rest depends on where you live. In a Beltline or Eau Claire condo the work concentrates on window tracks, balcony door channels and the fine dust that a dry, windy city drives into every seal. In a newer home out in Mahogany, Cranston or Seton it is usually construction dust, which keeps resurfacing from vents, closet shelves and the tops of doors for a year or two after handover. Our team works methodically from top to bottom, room by room — scrubbing baseboards and door frames, hand-wiping switches and outlet covers, degreasing stovetops and range hoods, and detailing tile and shower glass.",
       ]}
       includedHeading="Detailed Top-to-Bottom Cleaning"
       includedSubheading="Every inch of your home is addressed — including the spots usually missed."
@@ -71,6 +71,7 @@ export default function CalgaryDeepCleaning() {
         "Garages, patios, and outdoor areas (winter safety)",
       ]}
       faqs={[
+        { q: "Is there a best time of year for a deep clean in Calgary?", a: "Early spring is the most popular, because it clears out a full winter of road sand and de-icer at once — Calgary thaws and refreezes on chinooks all season, so entryways and baseboards collect grit continuously rather than staying frozen over. Late autumn is the other good window, resetting the house before that cycle starts. Both book up quickly, so give us a week or two of notice if you can." },
         { q: "Can I book deep cleaning for only certain areas?", a: "Yes, you may request deep cleaning for specific areas, such as bathrooms, kitchen, basement, or main floor only." },
         { q: "Should I declutter before deep cleaning?", a: "Yes, we recommend removing clutter before the appointment so our team can focus on cleaning surfaces properly." },
         { q: "Is deep cleaning more expensive than standard cleaning?", a: "Yes, deep cleaning usually costs more because it requires more time, detail, and effort." },

@@ -30,9 +30,9 @@ export default function CalgaryRecurringCleaning() {
       overviewEyebrow="Service Overview"
       overviewHeading={<>Always clean. <Accent>Never a chore.</Accent></>}
       overviewParagraphs={[
-        "Recurring cleaning is an ongoing scheduled service designed to keep your Calgary home consistently clean week after week. Choose the cadence that fits your household — weekly, bi-weekly, or monthly — and your home stays tidy, hygienic, and guest-ready without the hassle of booking each time.",
-        "Every recurring appointment covers the kitchen, bathrooms, bedrooms, and living areas, including dusting, vacuuming, mopping, and sanitizing high-touch surfaces. Because we visit on a regular schedule, we get to know your home and your preferences, delivering a reliable standard of cleanliness over time.",
-        "Your first clean is at the standard one-time rate; from your second visit on, recurring clients save on every visit: 20% off weekly, 15% off bi-weekly, and 10% off monthly cleanings. Our cleaners use non-toxic products that are safe for kids and pets, and bring all supplies and equipment.",
+        "Recurring cleaning puts your home on a schedule, so it is looked after continuously rather than rescued occasionally. You pick the rhythm; we keep to it.",
+        "Choosing that rhythm in Calgary usually comes down to the season and the front door. Because the city swings above and below freezing all winter instead of staying frozen, road sand and de-icer arrive indoors continuously from roughly October to April — so households that are comfortable on a monthly schedule through the summer often move to bi-weekly once the chinooks start. Homes with a dog, a garage entry, or small children tracking straight through from the yard tend to feel it first.",
+        "Frequency also tracks how you live. A Beltline or Mission apartment where two people leave early and come back late genuinely holds up on a monthly visit. A family home in Evergreen, Panorama Hills or Cranston with a busy kitchen usually wants weekly or bi-weekly. There is no contract either way, so you can start on one cadence, see how your home actually behaves through a Calgary winter, and change it.",
       ]}
       includedHeading="What Every Recurring Visit Includes"
       includedSubheading="Consistent maintenance cleaning of the rooms and surfaces that matter most for a healthy, lived-in home."
@@ -70,6 +70,7 @@ export default function CalgaryRecurringCleaning() {
         "Garages, patios, and outdoor areas (winter safety)",
       ]}
       faqs={[
+        { q: "How often should I book in Calgary specifically?", a: "Most Calgary households find the answer changes with the season. Because the city cycles above and below freezing all winter rather than staying frozen, road sand and de-icer come indoors continuously from about October to April — so homes that are comfortable monthly through summer often move to bi-weekly once the chinooks start. Homes with a dog, a garage entry or young children usually feel it first. There is no contract, so you can change the cadence whenever you like." },
         { q: "How much do I save with recurring cleaning?", a: "Your first clean is charged at the standard one-time rate. From your second visit onward you save 20% on weekly, 15% on bi-weekly and 10% on monthly cleanings, compared to one-time pricing." },
         { q: "Can I change or skip a scheduled cleaning?", a: "Yes — just give us reasonable notice and we'll reschedule or skip a visit. There's no long-term contract." },
         { q: "Will I have the same cleaner each visit?", a: "We do our best to send the same cleaning team for each visit so they become familiar with your home and preferences. However, in cases such as emergencies, sick days, or scheduled leave, we may send a different trusted team. If you prefer the same cleaners each time and have flexibility with scheduling, we can also adjust your appointment to a day when your regular team is available." },

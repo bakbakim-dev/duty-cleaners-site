@@ -30,9 +30,9 @@ export default function CalgaryRegularCleaning() {
       overviewEyebrow="Service Overview"
       overviewHeading={<>A spotless home, <Accent>without lifting a finger.</Accent></>}
       overviewParagraphs={[
-        "Standard cleaning is a thorough one-time service designed to refresh your Calgary home, making it hygienic, presentable, and comfortable. It's a single cleaning appointment focused on the areas you use most, removing dust, grime, and bacteria that build up over time. If you'd prefer ongoing upkeep, recurring cleaning plans are also available separately.",
-        "Your appointment covers the kitchen, bathrooms, bedrooms, and living areas — including dusting, vacuuming, mopping, sanitizing high-touch surfaces, and general surface cleaning throughout the home. Whether you need a reset before guests arrive or simply want your space professionally cleaned, our team delivers a high standard of cleanliness in a single visit.",
-        "Our cleaners follow a detailed room-by-room checklist, use non-toxic products that are safe for kids and pets, and bring all necessary cleaning supplies and equipment. To help us focus on cleaning, we ask that homes are reasonably prepared before arrival, including picking up clothing, toys, dishes, or excessive clutter. Small items may be lightly organized if it only takes 1–2 minutes, but our primary focus is professional cleaning rather than full decluttering or home organization services.",
+        "Regular cleaning keeps your home consistently comfortable without the effort falling to you. It covers the surfaces that matter week to week — kitchen, bathrooms, floors, and the living spaces you actually use.",
+        "In Calgary that job is mostly a losing battle with dust, and the reason is geography. The city is dry, it is windy, and it sits where the prairie meets the foothills, so fine grit stays in the air far more of the year than it does further north. Add a winter that thaws and refreezes on a chinook rather than staying locked in, and entryways take a beating from October through April as road sand and de-icer come in on boots, over and over.",
+        "That is why a steady rhythm beats an occasional blitz here. Regular visits keep the grit from ever becoming build-up: floors and entry areas get cleared before anything sets, bathrooms stay ahead of hard-water marks, and the kitchen never reaches the point of needing a full degrease. Whether that is a downtown condo or a family home in Tuscany or Auburn Bay, the same principle holds — it is far less work to stay ahead of a Calgary winter than to recover from one.",
       ]}
       includedHeading="Comprehensive Standard Cleaning"
       includedSubheading="Your one-time appointment covers the rooms and surfaces that matter most for a healthy, lived-in home."
@@ -70,6 +70,7 @@ export default function CalgaryRegularCleaning() {
         "Garages, patios, and outdoor areas (winter safety)",
       ]}
       faqs={[
+        { q: "Why does my Calgary home get dusty so quickly?", a: "Calgary is dry, windy, and sits where the prairie meets the foothills, so fine grit stays airborne far more of the year than it does further north. Through winter it is compounded by road sand and de-icer coming in on boots every time a chinook melts things off. It is not a sign you are doing anything wrong — it is why a steady cleaning rhythm works better here than an occasional big effort." },
         { q: "Does standard cleaning include cleaning the kitchen?", a: "Yes. We clean kitchen counters, sinks, exterior appliance surfaces, outside of the cupboards, and floors." },
         { q: "What's the difference between standard and deep cleaning?", a: "Standard cleaning refreshes a home that's already clean — dusting, vacuuming, mopping, and sanitizing high-use areas. Deep cleaning tackles built-up grime, baseboards, doors, light switches, wall outlets, and outside vents." },
         { q: "How long does a standard cleaning take?", a: "We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
