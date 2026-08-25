@@ -1,4 +1,5 @@
 import Navigation from "@/components/Navigation";
+import { NOT_INCLUDED } from "@/data/policy";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import heroBg from "@/assets/whats-included-hero.jpg";
@@ -251,23 +252,20 @@ export default function WhatsIncluded() {
     "Clean mirrors",
   ];
 
-  const exclusions = [
-    "Moving heavy items over 25 pounds",
-    "Outdoor or exterior window cleaning",
-    "Removal of pet or human bodily fluids, mold",
-    "Pest or infestation removal",
-    "Areas above a 3-step ladder reach",
-    "Light bulbs and fragile lighting fixtures",
-    "Garages and outdoor patios (winter safety)",
-    "Carpet steam cleaning",
-    "Chandelier cleaning (we can attempt if safely reachable, but not a specialized service)",
-    "Hoarding or excessive debris removal",
-    "Cleaning cat litter boxes",
-    "Heavy wall or door scrubbing",
-    "Furnace, vents, or duct cleaning",
-    "Drain cleaning or plumbing",
-    "Window screen removal or disassembly",
-  ];
+  /**
+   * Read from policy.ts rather than authored here. This page is the document
+   * both sides reach for in a doorstep disagreement, and it used to contradict
+   * itself twice in the same section:
+   *
+   *  - "Heavy wall or door scrubbing" sat in the exclusions while the table
+   *    directly above offered "Wall washing" as an add-on, and the site sells
+   *    dedicated wall-washing services. It is not refused, it is a separate
+   *    package — the list now says so.
+   *  - "Chandelier cleaning (we can attempt if safely reachable, but not a
+   *    specialized service)" was an exclusion that said it was not an exclusion.
+   *    Chandeliers now sit unambiguously with fragile lighting fixtures.
+   */
+  const exclusions = NOT_INCLUDED;
 
   return (
     <div className="min-h-screen bg-background">
