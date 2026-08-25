@@ -249,6 +249,7 @@ export default function Footer() {
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 md:justify-end">
               <Link to="/satisfaction-guarantee" className="text-brand-navy-foreground/85 transition-colors hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold">Satisfaction Guarantee</Link>
               <Link to="/privacy-policy" className="text-brand-navy-foreground/85 transition-colors hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold">Privacy Policy</Link>
+              <Link to="/terms" className="text-brand-navy-foreground/85 transition-colors hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold">Terms of Service</Link>
               {/* Plain anchor: /sitemap.xml is a real static file, not a React route. */}
               <a href="/sitemap.xml" className="text-brand-navy-foreground/85 transition-colors hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold">Sitemap</a>
             </div>

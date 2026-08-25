@@ -54,6 +54,7 @@ const BlogSpotlessHomeTips = lazy(() => import("./pages/BlogSpotlessHomeTips"));
 const BlogChoosingCalgaryCleaner = lazy(() => import("./pages/BlogChoosingCalgaryCleaner"));
 const SatisfactionGuarantee = lazy(() => import("./pages/SatisfactionGuarantee"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const Terms = lazy(() => import("./pages/Terms"));
 const GiftCards = lazy(() => import("./pages/GiftCards"));
 const GiftCard = lazy(() => import("./pages/GiftCard"));
 const Prepare = lazy(() => import("./pages/Prepare"));
@@ -306,6 +307,7 @@ const App = () => (
           <Route path="/satisfaction-guarantee" element={<SatisfactionGuarantee />} />
           <Route path="/insurance-liability" element={<Navigate to="/satisfaction-guarantee" replace />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<Terms />} />
           <Route path="/gift-cards" element={<GiftCards />} />
           <Route path="/gift-card" element={<GiftCard />} />
           <Route path="/prepare" element={<Prepare />} />

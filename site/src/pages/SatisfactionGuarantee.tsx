@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { POLICY } from "@/data/policy";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -99,7 +100,13 @@ export default function SatisfactionGuarantee() {
               <ul className="space-y-2 mb-8">
                 <li>• Services not included in the original cleaning package</li>
                 <li>• Pre-existing stains, damage, or permanent discoloration</li>
-                <li>• Issues reported more than 48 hours after the cleaning</li>
+                {/* This said 48 hours while the promise at the top of the same page
+                    — and roughly 100 other surfaces — says 24, so a customer calling
+                    at 30 hours could not tell whether they were covered. Now reads
+                    from policy.ts, which is the single place the window is defined.
+                    TODO-OWNER: if 48 was the intended window, change the one constant
+                    there and every surface follows. */}
+                <li>• Issues reported more than {POLICY.guaranteeWindowHours} hours after the cleaning</li>
                 <li>• Normal dust accumulation after cleaning completion</li>
               </ul>
 
