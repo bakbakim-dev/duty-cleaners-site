@@ -41,14 +41,16 @@ export interface ServicePolicy {
 
 export const POLICY: ServicePolicy = {
   /**
-   * 24 hours. Stated on roughly 100 surfaces including the guarantee page's own
-   * instruction ("contact us within 24 hours of your appointment"), the FAQ, and
-   * every location page.
+   * Confirmed by the owner: 24 hours, and explicitly not 48.
    *
-   * TODO-OWNER: one line on the guarantee page contradicted this by excluding
-   * issues "reported more than 48 hours after the cleaning". That outlier has
-   * been aligned to 24 so a customer calling at 30 hours gets a clear answer.
-   * If you meant 48, change this one number and every surface follows.
+   * One line on the guarantee page used to exclude issues "reported more than 48
+   * hours after the cleaning", directly under a promise saying 24 — so a
+   * customer calling at 30 hours could not tell whether they were covered. That
+   * outlier now reads from here, as does every other surface.
+   *
+   * Note for anyone editing the guarantee page: the "return visit typically
+   * within 48 hours" line there is a DIFFERENT figure — how quickly we come
+   * back, not how long a customer has to tell us. Leave it alone.
    */
   guaranteeWindowHours: 24,
 

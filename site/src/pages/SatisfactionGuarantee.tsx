@@ -108,11 +108,10 @@ export default function SatisfactionGuarantee() {
                 <li>• Services not included in the original cleaning package</li>
                 <li>• Pre-existing stains, damage, or permanent discoloration</li>
                 {/* This said 48 hours while the promise at the top of the same page
-                    — and roughly 100 other surfaces — says 24, so a customer calling
-                    at 30 hours could not tell whether they were covered. Now reads
-                    from policy.ts, which is the single place the window is defined.
-                    TODO-OWNER: if 48 was the intended window, change the one constant
-                    there and every surface follows. */}
+                    — and roughly 100 other surfaces — said 24, so a customer calling
+                    at 30 hours could not tell whether they were covered. The owner
+                    has confirmed 24, and this now reads from policy.ts, the single
+                    place the window is defined. */}
                 <li>• Issues reported more than {POLICY.guaranteeWindowHours} hours after the cleaning</li>
                 <li>• Normal dust accumulation after cleaning completion</li>
               </ul>
