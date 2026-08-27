@@ -90,6 +90,7 @@ export const edmontonNeighborhoods: CityLocation[] = [
   { name: "Aspen Gardens", to: "/locations/aspen-gardens-edmonton" },
   { name: "Woodcroft", to: "/locations/woodcroft-edmonton" },
   { name: "Kilkenny", to: "/locations/kilkenny-edmonton" },
+  { name: "Lago Lindo", to: "/locations/lago-lindo-edmonton" },
   { name: "Miller", to: "/locations/miller-edmonton" },
   { name: "Matt Berry", to: "/locations/matt-berry-edmonton" },
   { name: "Ozerna", to: "/locations/ozerna-edmonton" },

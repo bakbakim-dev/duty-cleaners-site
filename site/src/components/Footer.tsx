@@ -23,6 +23,9 @@ const serviceGroups = {
   residential: [
     ["Standard House Cleaning", "regular-cleaning"],
     ["Deep Cleaning", "deep-cleaning"],
+    // Recurring had ONE inbound link sitewide while siblings had 72-137 —
+    // the best-economics service was the least linked money page.
+    ["Recurring Cleaning", "recurring-cleaning"],
     ["Move In/Out Cleaning", "move-in-move-out-cleaning"],
   ],
   specialty: [
@@ -64,7 +67,9 @@ function FooterLink({ to, children }: { to: string; children: ReactNode }) {
   );
 }
 
-export default function Footer() {
+// hasQuoteSection: the four pages that render their own id="quote" form pass
+// this so the footer's sitewide fallback target doesn't duplicate the id.
+export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: boolean } = {}) {
   const { pathname } = useLocation();
   // Canonical-aware: the Calgary landing page's canonical URL is
   // /cleaning-services-calgary/, which a startsWith("/calgary") test misses.
@@ -82,7 +87,10 @@ export default function Footer() {
       <ThresholdLine tone="light" className="mx-auto max-w-md pt-6" />
       <div className="container mx-auto px-4 py-14 sm:py-16 lg:py-20">
         {/* Closing conversion band */}
-        <div className="mb-14 flex flex-col gap-6 border-b border-brand-navy-foreground/15 pb-12 md:flex-row md:items-center md:justify-between lg:mb-16 lg:pb-14">
+        {/* Sitewide #quote target: use-quote-overlay intercepts every #quote anchor
+            (documented pattern), but without JS 159 pages had no element to land on.
+            Pages with their own id="quote" form still win — first id in the DOM. */}
+        <div id={hasQuoteSection ? undefined : "quote"} className="mb-14 flex flex-col gap-6 border-b border-brand-navy-foreground/15 pb-12 md:flex-row md:items-center md:justify-between lg:mb-16 lg:pb-14">
           <div className="max-w-2xl">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-brand-gold">Ready when you are</p>
             <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">A cleaner home starts with a simple quote.</h2>
@@ -139,20 +147,20 @@ export default function Footer() {
           <div className="mt-10">
             <p className="mb-5 text-center text-sm font-semibold uppercase tracking-[0.2em] text-brand-navy-foreground/85">Review platforms</p>
             <div className="mx-auto grid max-w-5xl grid-cols-2 gap-3 lg:grid-cols-4">
-              <a href={GOOGLE_LISTINGS.edmonton.reviewsUrl} target="_blank" rel="nofollow noopener noreferrer" onClick={(event) => openGoogleListing(event, GOOGLE_LISTINGS.edmonton.reviewsUrl)} className="group flex min-h-16 items-center justify-center gap-2.5 rounded-lg border border-brand-navy-foreground/15 bg-brand-navy-foreground/5 px-3 text-brand-navy-foreground/85 transition-all hover:border-brand-gold/60 hover:bg-brand-navy-foreground/10 hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold" aria-label="Edmonton Google Business Profile">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-navy-foreground text-xs font-bold text-brand-navy">G</span>
+              <a href={GOOGLE_LISTINGS.edmonton.reviewsUrl} target="_blank" rel="nofollow noopener noreferrer" onClick={(event) => openGoogleListing(event, GOOGLE_LISTINGS.edmonton.reviewsUrl)} className="group flex min-h-16 items-center justify-center gap-2.5 rounded-lg border border-brand-navy-foreground/15 bg-brand-navy-foreground/5 px-3 text-brand-navy-foreground/85 transition-all hover:border-brand-gold/60 hover:bg-brand-navy-foreground/10 hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-navy-foreground text-xs font-bold text-brand-navy" aria-hidden="true">G</span>
                 <span className="text-left text-xs leading-tight"><strong className="block text-brand-navy-foreground">Edmonton</strong>Google Reviews</span>
               </a>
-              <a href={GOOGLE_LISTINGS.calgary.reviewsUrl} target="_blank" rel="nofollow noopener noreferrer" onClick={(event) => openGoogleListing(event, GOOGLE_LISTINGS.calgary.reviewsUrl)} className="group flex min-h-16 items-center justify-center gap-2.5 rounded-lg border border-brand-navy-foreground/15 bg-brand-navy-foreground/5 px-3 text-brand-navy-foreground/85 transition-all hover:border-brand-gold/60 hover:bg-brand-navy-foreground/10 hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold" aria-label="Calgary Google Business Profile">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-navy-foreground text-xs font-bold text-brand-navy">G</span>
+              <a href={GOOGLE_LISTINGS.calgary.reviewsUrl} target="_blank" rel="nofollow noopener noreferrer" onClick={(event) => openGoogleListing(event, GOOGLE_LISTINGS.calgary.reviewsUrl)} className="group flex min-h-16 items-center justify-center gap-2.5 rounded-lg border border-brand-navy-foreground/15 bg-brand-navy-foreground/5 px-3 text-brand-navy-foreground/85 transition-all hover:border-brand-gold/60 hover:bg-brand-navy-foreground/10 hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-navy-foreground text-xs font-bold text-brand-navy" aria-hidden="true">G</span>
                 <span className="text-left text-xs leading-tight"><strong className="block text-brand-navy-foreground">Calgary</strong>Google Reviews</span>
               </a>
-              <a href="https://www.yelp.ca/biz/duty-cleaners-edmonton" target="_blank" rel="nofollow noopener noreferrer" className="group flex min-h-16 items-center justify-center gap-2.5 rounded-lg border border-brand-navy-foreground/15 bg-brand-navy-foreground/5 px-3 text-brand-navy-foreground/85 transition-all hover:border-brand-gold/60 hover:bg-brand-navy-foreground/10 hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold" aria-label="Duty Cleaners Edmonton on Yelp">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-navy-foreground text-xs font-bold text-brand-navy">Y</span>
+              <a href="https://www.yelp.ca/biz/duty-cleaners-edmonton" target="_blank" rel="nofollow noopener noreferrer" className="group flex min-h-16 items-center justify-center gap-2.5 rounded-lg border border-brand-navy-foreground/15 bg-brand-navy-foreground/5 px-3 text-brand-navy-foreground/85 transition-all hover:border-brand-gold/60 hover:bg-brand-navy-foreground/10 hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-navy-foreground text-xs font-bold text-brand-navy" aria-hidden="true">Y</span>
                 <span className="text-left text-xs leading-tight"><strong className="block text-brand-navy-foreground">Edmonton</strong>Yelp Reviews</span>
               </a>
-              <a href="https://www.yelp.ca/biz/duty-cleaners-calgary-calgary?osq=Duty+Cleaners+Calgary" target="_blank" rel="nofollow noopener noreferrer" className="group flex min-h-16 items-center justify-center gap-2.5 rounded-lg border border-brand-navy-foreground/15 bg-brand-navy-foreground/5 px-3 text-brand-navy-foreground/85 transition-all hover:border-brand-gold/60 hover:bg-brand-navy-foreground/10 hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold" aria-label="Duty Cleaners Calgary on Yelp">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-navy-foreground text-xs font-bold text-brand-navy">Y</span>
+              <a href="https://www.yelp.ca/biz/duty-cleaners-calgary-calgary?osq=Duty+Cleaners+Calgary" target="_blank" rel="nofollow noopener noreferrer" className="group flex min-h-16 items-center justify-center gap-2.5 rounded-lg border border-brand-navy-foreground/15 bg-brand-navy-foreground/5 px-3 text-brand-navy-foreground/85 transition-all hover:border-brand-gold/60 hover:bg-brand-navy-foreground/10 hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-navy-foreground text-xs font-bold text-brand-navy" aria-hidden="true">Y</span>
                 <span className="text-left text-xs leading-tight"><strong className="block text-brand-navy-foreground">Calgary</strong>Yelp Reviews</span>
               </a>
             </div>

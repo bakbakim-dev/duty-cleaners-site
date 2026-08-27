@@ -129,7 +129,7 @@ export default function Lakeview() {
     <>
       <Helmet>
         <title>House Cleaning Services in Lakeview, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Lakeview, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed. Pay after your clean. Get a free quote today!" />
+        <meta name="description" content="Professional house cleaning in Lakeview, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed. Pay after your clean." />
         <meta property="og:title" content="House Cleaning Services Lakeview Calgary | Duty Cleaners" />
         <meta property="og:description" content="Professional house cleaning in Lakeview, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
         <meta property="og:type" content="website" />

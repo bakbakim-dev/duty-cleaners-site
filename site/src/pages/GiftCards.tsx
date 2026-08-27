@@ -174,7 +174,7 @@ export default function GiftCards() {
 
               <div className="text-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-8 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5" asChild>
-                  <Link to={`/contact?topic=gift-card&design=${selectedDesign}`}>
+                  <Link to={`/contact-us/?topic=gift-card&design=${selectedDesign}`}>
                     <Gift className="w-5 h-5 mr-2" />
                     Continue with {giftCardDesigns.find((d) => d.id === selectedDesign)?.name}
                   </Link>

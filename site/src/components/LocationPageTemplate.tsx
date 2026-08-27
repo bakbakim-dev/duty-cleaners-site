@@ -7,6 +7,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { Link, useLocation } from "react-router-dom";
+import { quoteHrefFor } from "@/lib/quote-link";
 import { Helmet } from "react-helmet-async";
 import { buildLocationSchema } from "@/lib/location-schema";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -217,7 +218,7 @@ export default function LocationPageTemplate({
                 </a>
               </Button>
               <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
-                <a href="#quote">See My Instant Price</a>
+                <a href={quoteHrefFor(pathname)}>See My Instant Price</a>
               </Button>
             </div>
             <div className="flex flex-wrap justify-center gap-6">
@@ -379,7 +380,7 @@ export default function LocationPageTemplate({
                 </a>
               </Button>
               <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
-                <a href="#quote">
+                <a href={quoteHrefFor(pathname)}>
                   <Mail className="mr-2 w-5 h-5" />See My Instant Price
                 </a>
               </Button>

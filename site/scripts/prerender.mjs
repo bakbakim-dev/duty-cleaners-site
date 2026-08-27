@@ -31,6 +31,28 @@ if (!existsSync(join(DIST, "index.html"))) {
 if (!existsSync(join(DIST, "spa-shell.html"))) {
   copyFileSync(join(DIST, "index.html"), join(DIST, "spa-shell.html"));
 }
+// The end of this script stamps noindex into the shell. If a stamped shell is
+// still here, this run is reusing a dist that was already prerendered — and the
+// shell is the render TEMPLATE, so every page would inherit the noindex (that
+// exact accident shipped a fully-noindexed build once). Refuse; build first.
+if (/name="robots" content="noindex"/.test(readFileSync(join(DIST, "spa-shell.html"), "utf-8"))) {
+  console.error("spa-shell.html is already noindex-stamped — stale dist. Run `npm run build` first.");
+  process.exit(1);
+}
+// The shell is a client-routing fallback, not a page. Served at /spa-shell(.html)
+// and as 404.html it was INDEXABLE, so an audit correctly reported both as live
+// empty pages. Stamp noindex once here; every copy below inherits it.
+// The shell template ships an "index, follow" robots meta, so "skip if one
+// exists" left the shell indexable — REPLACE any existing robots meta instead.
+const noindexShell = (html) => {
+  const noindex = '<meta name="robots" content="noindex">';
+  return /name="robots"/.test(html)
+    ? html.replace(/<meta\s+name="robots"[^>]*>/, noindex)
+    : html.replace("<head>", `<head>${noindex}`);
+};
+// Stamping happens at the END of this script: the shell is also the render
+// template (and the on-disk fallback during rendering), so stamping it here
+// would noindex every prerendered page — audit #439's blocked gate proved it.
 
 // The built asset base ("/": production, "/dutycleaners-preview/": staging).
 const shell = readFileSync(join(DIST, "spa-shell.html"), "utf-8");
@@ -142,6 +164,11 @@ async function renderRoute(route) {
     const beforeTiles = out.length;
     out = out.replace(/<img\b[^>]*\bsrc="https:\/\/[a-c]\.tile\.openstreetmap\.org\/[^"]*"[^>]*>/g, "");
     if (out.length !== beforeTiles) strippedTiles++;
+    // Leaflet's baked popup close button is href="#close" — an id no page has.
+    // Leaflet re-renders the popup on hydration, so the frozen anchor is inert;
+    // neutralise the fragment rather than ship a link that lands nowhere.
+    out = out.replace(/(<a[^>]*leaflet-popup-close-button[^>]*href=")#close(")/g, "$1#$2");
+    out = out.replace(/(<a[^>]*href=")#close("[^>]*leaflet-popup-close-button)/g, "$1#$2");
     const outDir = route === "/" ? DIST : join(DIST, route.replace(/^\//, ""));
     mkdirSync(outDir, { recursive: true });
     writeFileSync(join(outDir, "index.html"), "<!doctype html>\n" + out);
@@ -171,6 +198,10 @@ server.close();
 // it" and no script did, so dist/404.html was whatever an earlier deploy left behind.
 writeFileSync(join(DIST, "404.html"), readFileSync(join(DIST, "spa-shell.html"), "utf-8"));
 console.log("wrote 404.html from the SPA shell");
+for (const f of ["spa-shell.html", "404.html"]) {
+  writeFileSync(join(DIST, f), noindexShell(readFileSync(join(DIST, f), "utf-8")));
+}
+console.log("noindexed the shell artifacts (spa-shell.html, 404.html)");
 
 console.log(
   `prerender complete: ${done} ok, ${failed} failed` +

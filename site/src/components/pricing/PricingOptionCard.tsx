@@ -1,3 +1,5 @@
+import { useLocation } from "react-router-dom";
+import { quoteHrefFor } from "@/lib/quote-link";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -24,6 +26,7 @@ const PricingOptionCard = ({
   buttonText,
   isHighlighted = false,
 }: PricingOptionCardProps) => {
+  const { pathname } = useLocation();
   return (
     <div className="group h-full" style={{ perspective: "1000px" }}>
       <div
@@ -59,7 +62,7 @@ const PricingOptionCard = ({
           asChild
         >
           {/* "Instant price" must open the instant-quote funnel, not the 24h contact inbox. */}
-          <a href="#quote">{buttonText}</a>
+          <a href={quoteHrefFor(pathname)}>{buttonText}</a>
         </Button>
       </div>
     </div>

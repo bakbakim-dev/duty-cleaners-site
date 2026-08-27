@@ -468,7 +468,7 @@ export default function Calgary2() {
             </Button>
           </aside>}
 
-        <Footer />
+        <Footer hasQuoteSection />
       </div>
     </>;
 }

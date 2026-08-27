@@ -480,7 +480,7 @@ export default function Edmonton2() {
           </aside>}
 
 
-        <Footer />
+        <Footer hasQuoteSection />
       </div>
     </>;
 }

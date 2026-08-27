@@ -1,3 +1,4 @@
+import { quoteHrefFor } from "@/lib/quote-link";
 import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { canonicalForPath } from "@/data/legacy-urls";
@@ -397,7 +398,7 @@ export default function Navigation({ city }: NavigationProps) {
           <div id="mobile-menu" role="dialog" aria-modal="false" aria-label="Site menu" className="md:hidden py-4 space-y-1 border-t animate-in fade-in-0 slide-in-from-top-2 duration-200">
             {/* The primary action belongs inside the menu, not only in the bar. */}
             <a
-              href="#quote"
+              href={quoteHrefFor(location.pathname)}
               onClick={() => setMobileMenuOpen(false)}
               className="mb-3 flex min-h-[52px] items-center justify-center rounded-lg bg-accent px-5 text-base font-bold text-accent-foreground shadow-lg transition-colors hover:bg-accent/90"
             >

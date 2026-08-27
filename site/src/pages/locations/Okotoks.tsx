@@ -115,7 +115,7 @@ export default function Okotoks() {
     <>
       <Helmet>
         <title>House Cleaning Services in Okotoks, AB | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Okotoks, AB. Same-day service subject to availability. 100% satisfaction guaranteed. Pay after your clean. Get a free quote today!" />
+        <meta name="description" content="Professional house cleaning in Okotoks, AB. Same-day service subject to availability. 100% satisfaction guaranteed. Pay after your clean." />
         <meta property="og:title" content="House Cleaning Services Okotoks | Duty Cleaners" />
         <meta property="og:description" content="Professional house cleaning in Okotoks, AB. Same-day service subject to availability. 100% satisfaction guaranteed." />
         <meta property="og:type" content="website" />

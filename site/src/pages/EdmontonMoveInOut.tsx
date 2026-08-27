@@ -1,3 +1,4 @@
+import CityCrossLink from "@/components/CityCrossLink";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -431,7 +432,17 @@ export default function EdmontonMoveInOut() {
         )}
         </main>
 
-        <Footer />
+        <section className="pb-16">
+
+          <div className="container mx-auto px-4">
+
+            <CityCrossLink city="Calgary" to="/move-out-cleaning-calgary/" description="Move-out and move-in cleaning for Calgary homes and rentals." />
+
+          </div>
+
+        </section>
+
+        <Footer hasQuoteSection />
       </div>
     </>
   );

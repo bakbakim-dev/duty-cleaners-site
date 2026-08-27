@@ -13,6 +13,7 @@ export default function CalgaryDeepCleaning() {
   return (
     <ServiceDetailPage
       city="calgary"
+      crossCity={{ city: "Edmonton", to: "/edmonton/deep-cleaning/", description: "The same top-to-bottom deep clean, delivered by our Edmonton team." }}
       quoteService="deep-cleaning"
       phone="(403) 768-1341"
       phoneHref="tel:4037681341"

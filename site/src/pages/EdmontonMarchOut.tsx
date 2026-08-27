@@ -34,7 +34,8 @@ import imgWalls from "@/assets/gallery/clean-walls-edmonton.jpg";
 
 const PHONE_DISPLAY = "(780) 913-6565";
 const PHONE_TEL = "tel:7809136565";
-const CALLBACK_HREF = "/contact?topic=march-out&city=edmonton";
+// /contact force-301s to /contact-us/ and a redirect may drop the prefill.
+const CALLBACK_HREF = "/contact-us/?topic=march-out&city=edmonton";
 
 const AnimatedSection = ({
   children,

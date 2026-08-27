@@ -129,7 +129,7 @@ export default function VictoriaPark() {
     <>
       <Helmet>
         <title>House Cleaning Services in Victoria Park, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Victoria Park, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed. Pay after your clean. Get a free quote today!" />
+        <meta name="description" content="Professional house cleaning in Victoria Park, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed. Pay after your clean." />
         <meta property="og:title" content="House Cleaning Services Victoria Park Calgary | Duty Cleaners" />
         <meta property="og:description" content="Professional house cleaning in Victoria Park, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
         <meta property="og:type" content="website" />

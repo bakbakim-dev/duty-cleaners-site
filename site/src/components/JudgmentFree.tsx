@@ -1,3 +1,5 @@
+import { useLocation } from "react-router-dom";
+import { quoteHrefFor } from "@/lib/quote-link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import defaultRoom from "@/assets/gallery/living-room-clean.jpg";
@@ -12,6 +14,7 @@ interface JudgmentFreeProps {
  * carried over a full-bleed lived-in room, supporting copy on paper below.
  */
 export default function JudgmentFree({ image = defaultRoom }: JudgmentFreeProps) {
+  const { pathname } = useLocation();
   return (
     <section id="judgment-free" aria-labelledby="judgment-free-heading">
       {/* Interstitial — one image, one line, nothing else competing. */}
@@ -64,7 +67,7 @@ export default function JudgmentFree({ image = defaultRoom }: JudgmentFreeProps)
               className="h-14 bg-accent px-8 text-base font-bold text-accent-foreground hover:bg-accent/90 lg:mt-1"
               asChild
             >
-              <a href="#quote">
+              <a href={quoteHrefFor(pathname)}>
                 See my price
                 <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
               </a>

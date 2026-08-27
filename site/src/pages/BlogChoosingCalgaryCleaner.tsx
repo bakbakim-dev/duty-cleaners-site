@@ -69,7 +69,10 @@ export default function BlogChoosingCalgaryCleaner() {
   }, []);
 
   const canonical = "https://dutycleaners.ca/blog/cleaning-services-calgary/";
-  const title = "Cleaning Services Calgary: What to Look For Before You Book";
+  // Retitled from "Cleaning Services Calgary: What to Look For Before You Book" —
+  // the exact-match front-load competed with the money page for its own head
+  // term. The slug is a preserved legacy URL and deliberately unchanged.
+  const title = "How to Choose a Cleaning Company in Calgary";
   const description =
     "A practical buyer's guide to hiring a house cleaning service in Calgary — what separates a reliable company from a risky one, and what to check before you book.";
 
@@ -143,12 +146,13 @@ export default function BlogChoosingCalgaryCleaner() {
               </div>
 
               <h1 className="text-3xl md:text-5xl font-bold mb-6 text-foreground leading-tight">
-                Cleaning Services Calgary: What to Look For Before You Book
+                How to Choose a Cleaning Company in Calgary
               </h1>
 
               <p className="text-xl text-muted-foreground mb-8">
                 Calgary has no shortage of cleaning companies. The difference between a good one and a
-                risky one usually shows up in four specific places — here's what to check before you book.
+                risky one usually shows up in four specific places — here's what to check before you
+                book <Link to="/cleaning-services-calgary/" className="text-primary hover:underline font-medium">house cleaning services in Calgary</Link>.
               </p>
 
               <div className="aspect-video rounded-2xl overflow-hidden mb-12">

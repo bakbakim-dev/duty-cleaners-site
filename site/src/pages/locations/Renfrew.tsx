@@ -129,7 +129,7 @@ export default function Renfrew() {
     <>
       <Helmet>
         <title>House Cleaning Services in Renfrew, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Renfrew, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed. Pay after your clean. Get a free quote today!" />
+        <meta name="description" content="Professional house cleaning in Renfrew, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed. Pay after your clean." />
         <meta property="og:title" content="House Cleaning Services Renfrew Calgary | Duty Cleaners" />
         <meta property="og:description" content="Professional house cleaning in Renfrew, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
         <meta property="og:type" content="website" />

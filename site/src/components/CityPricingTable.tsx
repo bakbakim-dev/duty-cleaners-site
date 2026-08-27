@@ -1,3 +1,5 @@
+import { useLocation } from "react-router-dom";
+import { quoteHrefFor } from "@/lib/quote-link";
 import { Button } from "@/components/ui/button";
 import { deepCleanTierRows, moveInOutTierRows, standardTierRows } from "@/data/pricing";
 
@@ -7,7 +9,8 @@ import { deepCleanTierRows, moveInOutTierRows, standardTierRows } from "@/data/p
  * Conversion note: this used to render nine identical CTA buttons (one per
  * cell) that all pointed at a separate pricing page. That split attention and
  * pulled people away from the quote flow living lower on the same page. Now
- * there is a single CTA, and it goes straight to #quote.
+ * there is a single CTA, and it goes to the city home page's #quote section
+ * (a same-page #quote was broken on every page without that id).
  *
  * Every figure is derived from `src/data/pricing.ts` (a capture of the live
  * BookingKoala config) — nothing here is hand-typed, so this table can never
@@ -43,7 +46,9 @@ const ROWS = [
 const COLUMNS = ["1-2 Bedroom", "3 Bedroom", "4+ Bedroom"];
 
 
-const CityPricingTable = () => (
+const CityPricingTable = () => {
+  const { pathname } = useLocation();
+  return (
   <section id="pricing" className="py-16 md:py-20 bg-brand-navy text-brand-navy-foreground">
     <div className="container mx-auto px-4">
       <div className="max-w-4xl mx-auto">
@@ -141,7 +146,7 @@ const CityPricingTable = () => (
             size="lg"
             className="bg-accent hover:bg-accent/90 text-white font-bold min-h-[48px] px-8"
           >
-            <a href="#quote">See My Instant Price</a>
+            <a href={quoteHrefFor(pathname)}>See My Instant Price</a>
           </Button>
           <p className="text-sm text-white/90 mt-4 max-w-[60ch] mx-auto">
             Answer a few quick questions and see your exact price — no phone call needed.
@@ -150,6 +155,7 @@ const CityPricingTable = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
 export default CityPricingTable;

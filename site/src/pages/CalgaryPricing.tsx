@@ -282,7 +282,7 @@ export default function CalgaryPricing() {
                       beds={item.beds}
                       price={item.price}
                       note={`${item.standard} standard + ${item.packagePrice} Deep Cleaning package`}
-                      ctaHref="/calgary?intent=deep#quote"
+                      ctaHref="/cleaning-services-calgary/?intent=deep#quote"
                     />
                   ))}
                 </div>

@@ -679,7 +679,7 @@ export default function JoinTheTeam() {
                       value={formData.location}
                       onValueChange={(value) => setFormData({ ...formData, location: value })}
                     >
-                      <SelectTrigger className={`bg-secondary/30 border-primary/20 ${errors.location ? "border-destructive" : ""}`}>
+                      <SelectTrigger id="location" className={`bg-secondary/30 border-primary/20 ${errors.location ? "border-destructive" : ""}`}>
                         <SelectValue placeholder="Select location" />
                       </SelectTrigger>
                       <SelectContent>
@@ -696,7 +696,7 @@ export default function JoinTheTeam() {
                       value={formData.experience}
                       onValueChange={(value) => setFormData({ ...formData, experience: value })}
                     >
-                      <SelectTrigger className={`bg-secondary/30 border-primary/20 ${errors.experience ? "border-destructive" : ""}`}>
+                      <SelectTrigger id="experience" className={`bg-secondary/30 border-primary/20 ${errors.experience ? "border-destructive" : ""}`}>
                         <SelectValue placeholder="Select experience" />
                       </SelectTrigger>
                       <SelectContent>
@@ -716,7 +716,7 @@ export default function JoinTheTeam() {
                       value={formData.ownEquipment}
                       onValueChange={(value) => setFormData({ ...formData, ownEquipment: value })}
                     >
-                      <SelectTrigger className={`bg-secondary/30 border-primary/20 ${errors.ownEquipment ? "border-destructive" : ""}`}>
+                      <SelectTrigger id="ownEquipment" className={`bg-secondary/30 border-primary/20 ${errors.ownEquipment ? "border-destructive" : ""}`}>
                         <SelectValue placeholder="Select answer" />
                       </SelectTrigger>
                       <SelectContent>
@@ -733,7 +733,7 @@ export default function JoinTheTeam() {
                       value={formData.currentClients}
                       onValueChange={(value) => setFormData({ ...formData, currentClients: value })}
                     >
-                      <SelectTrigger className={`bg-secondary/30 border-primary/20 ${errors.currentClients ? "border-destructive" : ""}`}>
+                      <SelectTrigger id="currentClients" className={`bg-secondary/30 border-primary/20 ${errors.currentClients ? "border-destructive" : ""}`}>
                         <SelectValue placeholder="Select answer" />
                       </SelectTrigger>
                       <SelectContent>

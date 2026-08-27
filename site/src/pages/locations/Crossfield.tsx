@@ -115,7 +115,7 @@ export default function Crossfield() {
     <>
       <Helmet>
         <title>House Cleaning Services in Crossfield, AB | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Crossfield, AB. Same-day service subject to availability. 100% satisfaction guaranteed. Pay after your clean. Get a free quote today!" />
+        <meta name="description" content="Professional house cleaning in Crossfield, AB. Same-day service subject to availability. 100% satisfaction guaranteed. Pay after your clean." />
         <meta property="og:title" content="House Cleaning Services Crossfield | Duty Cleaners" />
         <meta property="og:description" content="Professional house cleaning in Crossfield, AB. Same-day service subject to availability. 100% satisfaction guaranteed." />
         <meta property="og:type" content="website" />

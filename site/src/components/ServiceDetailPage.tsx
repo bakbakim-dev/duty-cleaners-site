@@ -1,5 +1,6 @@
 import { canonicalForPath, canonicalUrlForPath } from "@/data/legacy-urls";
 import { schemaAddressFor } from "@/data/proof";
+import CityCrossLink from "@/components/CityCrossLink";
 import { useState, useEffect, type ReactNode } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
@@ -42,6 +43,12 @@ export interface ExtraItem {
 }
 
 interface ServiceDetailPageProps {
+  /**
+   * "Also serving" card for this service's other-city twin. Verified across all
+   * four service pairs: only commercial cross-linked, so a visitor landing on
+   * the wrong city's page had no route to the right one.
+   */
+  crossCity?: { city: string; to: string; description: string };
   city: "edmonton" | "calgary";
   phone: string;
   phoneHref: string;
@@ -135,6 +142,7 @@ const ServiceDetailPage = ({
   notIncluded,
   fromPrice,
   quoteService,
+  crossCity,
 }: ServiceDetailPageProps) => {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const [showSticky, setShowSticky] = useState(false);
@@ -574,6 +582,13 @@ const ServiceDetailPage = ({
           </div>
         </div>
       </section>
+      {crossCity && (
+        <section className="pb-16">
+          <div className="container mx-auto px-4">
+            <CityCrossLink city={crossCity.city} to={crossCity.to} description={crossCity.description} />
+          </div>
+        </section>
+      )}
       </main>
 
       <Footer />

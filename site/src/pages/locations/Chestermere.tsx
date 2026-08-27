@@ -115,7 +115,7 @@ export default function Chestermere() {
     <>
       <Helmet>
         <title>House Cleaning Services in Chestermere, AB | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Chestermere, AB. Same-day service subject to availability. 100% satisfaction guaranteed. Pay after your clean. Get a free quote today!" />
+        <meta name="description" content="Professional house cleaning in Chestermere, AB. Same-day service subject to availability. 100% satisfaction guaranteed. Pay after your clean." />
         <meta property="og:title" content="House Cleaning Services Chestermere | Duty Cleaners" />
         <meta property="og:description" content="Professional house cleaning in Chestermere, AB. Same-day service subject to availability. 100% satisfaction guaranteed." />
         <meta property="og:type" content="website" />
