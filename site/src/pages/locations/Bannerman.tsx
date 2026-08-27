@@ -142,6 +142,14 @@ export default function Bannerman() {
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/bannerman/" />
+        <meta property="og:title" content="House Cleaning Services in Bannerman, Edmonton | Duty Cleaners" />
+        <meta property="og:description" content="Professional house cleaning in Bannerman, Edmonton. Serving families near Bannerman Park, Bannerman School, Hermitage Park & more. Local cleaners you can trust." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dutycleaners.ca/locations/bannerman/" />
+        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="House Cleaning Services in Bannerman, Edmonton | Duty Cleaners" />
+        <meta name="twitter:description" content="Professional house cleaning in Bannerman, Edmonton. Serving families near Bannerman Park, Bannerman School, Hermitage Park & more. Local cleaners you can trust." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 

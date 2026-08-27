@@ -35,7 +35,10 @@ All colors MUST be HSL.
     --popover-foreground: 215 25% 20%;
 
     /* Trust-inspiring deep teal primary */
-    --primary: 192 70% 35%;
+    /* 33% (was 35%): the teal link on the cream band measured 4.37:1, just
+       under WCAG AA's 4.5:1. 33% clears it (4.65:1 on cream, 5.12:1 for white
+       text on primary buttons) with no visible shift. */
+    --primary: 192 70% 33%;
     --primary-foreground: 0 0% 100%;
 
     /* Gentle sage secondary */
@@ -744,4 +747,12 @@ html:not([data-motion="on"]) .opacity-0.translate-y-8 {
 --------------------------------------------------------------------------- */
 .bg-brand-navy .text-accent {
   color: hsl(var(--accent-on-dark));
+}
+
+/* The remap above overshoots into LIGHT surfaces nested inside navy sections:
+   a white/cream card inside .bg-brand-navy put the bright on-dark orange on a
+   near-white card at 1.99:1 (Lighthouse flags the homepage service cards).
+   Restore the light-background accent on any light surface inside navy. */
+.bg-brand-navy :is(.card-warm, .bg-card, .bg-white, .bg-background, .bg-secondary) .text-accent {
+  color: hsl(var(--accent));
 }

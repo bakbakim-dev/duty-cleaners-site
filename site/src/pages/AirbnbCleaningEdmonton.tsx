@@ -48,6 +48,7 @@ import gal4 from "@/assets/gallery/living-room-clean.jpg";
 import gal5 from "@/assets/gallery/before-after.jpg";
 import gal6 from "@/assets/hero-family-bedroom.jpg";
 import { Helmet } from "react-helmet-async";
+import CityCrossLink from "@/components/CityCrossLink";
 
 const AnimatedSection = ({
   children,
@@ -235,9 +236,17 @@ const AirbnbCleaningEdmonton = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Airbnb Turnover Cleaning Edmonton | Duty Cleaners</title>
+        <title>Airbnb Cleaning Edmonton | Turnover Service | Duty Cleaners</title>
         <meta name="description" content="Reliable Airbnb and short-term rental turnover cleaning in Edmonton. Restocking, fresh linens and fast turnarounds — priced per hour." />
         <link rel="canonical" href="https://dutycleaners.ca/edmonton/airbnb-cleaning/" />
+        <meta property="og:title" content="Airbnb Cleaning Edmonton | Turnover Service | Duty Cleaners" />
+        <meta property="og:description" content="Reliable Airbnb and short-term rental turnover cleaning in Edmonton. Restocking, fresh linens and fast turnarounds — priced per hour." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dutycleaners.ca/edmonton/airbnb-cleaning/" />
+        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Airbnb Cleaning Edmonton | Turnover Service | Duty Cleaners" />
+        <meta name="twitter:description" content="Reliable Airbnb and short-term rental turnover cleaning in Edmonton. Restocking, fresh linens and fast turnarounds — priced per hour." />
         {/* Mirrors the FAQ rendered on this page. Generated from the same
             `faqs` array, so the markup can never drift from the copy. */}
         <script type="application/ld+json">
@@ -546,6 +555,12 @@ const AirbnbCleaningEdmonton = () => {
         </div>
       </section>
       </main>
+
+      <section className="pb-16">
+        <div className="container mx-auto px-4">
+          <CityCrossLink city="Calgary" to="/airbnb-cleaning-services-calgary/" description="Airbnb turnover cleaning for Calgary short-term rentals." />
+        </div>
+      </section>
 
       <Footer />
     </div>

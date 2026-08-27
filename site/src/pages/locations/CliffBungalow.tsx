@@ -131,6 +131,9 @@ export default function CliffBungalow() {
         <title>House Cleaning Services in Cliff Bungalow, Calgary | Duty Cleaners</title>
         <meta name="description" content="Professional house cleaning in Cliff Bungalow, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed. Pay after your clean." />
         <meta property="og:title" content="House Cleaning Services Cliff Bungalow Calgary | Duty Cleaners" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="House Cleaning Services Cliff Bungalow Calgary | Duty Cleaners" />
+        <meta name="twitter:description" content="Professional house cleaning in Cliff Bungalow, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
         <meta property="og:description" content="Professional house cleaning in Cliff Bungalow, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/cliff-bungalow-calgary/" />

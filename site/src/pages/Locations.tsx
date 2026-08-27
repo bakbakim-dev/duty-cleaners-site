@@ -157,6 +157,7 @@ const edmontonNeighborhoods = [
   { name: "Aspen Gardens", link: "/locations/aspen-gardens-edmonton" },
   { name: "Woodcroft", link: "/locations/woodcroft-edmonton" },
   { name: "Kilkenny", link: "/locations/kilkenny-edmonton" },
+  { name: "Lago Lindo", link: "/locations/lago-lindo-edmonton" },
   { name: "Miller", link: "/locations/miller-edmonton" },
   { name: "Matt Berry", link: "/locations/matt-berry-edmonton" },
   { name: "Ozerna", link: "/locations/ozerna-edmonton" },
@@ -411,8 +412,16 @@ export default function Locations() {
     <div className="min-h-screen bg-background">
       <Helmet>
         <title>House Cleaning Locations in Alberta | Duty Cleaners</title>
-        <meta name="description" content="Find trusted professional house cleaning services across Alberta. Serving Edmonton, Calgary, and surrounding regions with reference-checked, customer-rated cleaners." />
+        <meta name="description" content="Trusted house cleaning across Alberta: Edmonton, Calgary and surrounding towns. Reference-checked, customer-rated cleaners." />
         <link rel="canonical" href="https://dutycleaners.ca/locations/" />
+        <meta property="og:title" content="House Cleaning Locations in Alberta | Duty Cleaners" />
+        <meta property="og:description" content="Trusted house cleaning across Alberta: Edmonton, Calgary and surrounding towns. Reference-checked, customer-rated cleaners." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dutycleaners.ca/locations/" />
+        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="House Cleaning Locations in Alberta | Duty Cleaners" />
+        <meta name="twitter:description" content="Trusted house cleaning across Alberta: Edmonton, Calgary and surrounding towns. Reference-checked, customer-rated cleaners." />
       </Helmet>
       <Navigation />
       <main id="main-content" tabIndex={-1}>

@@ -92,6 +92,9 @@ export default function AspenWoods() {
         <title>House Cleaning Services in Aspen Woods, Calgary | Duty Cleaners</title>
         <meta name="description" content="Premium house cleaning in Aspen Woods, Calgary. Experienced with luxury homes and fine finishes. 100% satisfaction guaranteed. Call (403) 768-1341." />
         <meta property="og:title" content="House Cleaning Services Aspen Woods Calgary | Duty Cleaners" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="House Cleaning Services Aspen Woods Calgary | Duty Cleaners" />
+        <meta name="twitter:description" content="Premium house cleaning in Aspen Woods, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
         <meta property="og:description" content="Premium house cleaning in Aspen Woods, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/aspen-woods/" />

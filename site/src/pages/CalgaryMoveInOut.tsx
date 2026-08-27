@@ -16,6 +16,11 @@ import { CheckCircle2, Phone, Home, Shield, Star, Clock, DollarSign, Award, MapP
 import { Link } from "react-router-dom";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import MoveOutDepth from "@/components/MoveOutDepth";
+import { moveInOutTierRows } from "@/data/pricing";
+
+// Derived, never hand-typed (published-prices.test.ts): the cheapest
+// move-in/out tier from bk-config is the honest floor.
+const moveInOutFromPrice = () => moveInOutTierRows()[0]?.price ?? "";
 // The FAQ accordion below already renders these nine Q&As — kept as data
 // so the FAQPage schema (previously absent, along with any other schema on
 // this page) matches visible content exactly.
@@ -34,17 +39,17 @@ const faqs = [
 export default function CalgaryMoveInOut() {
   return <div className="min-h-screen">
       <Helmet>
-        <title>Move Out Cleaning Calgary | Move In Cleaning Services | Duty Cleaners</title>
-        <meta name="description" content="Inspection-ready move out cleaning Calgary & move in cleaning services. End of tenancy cleaning trusted by landlords. Same-day available. 24-hr re-clean guarantee." />
+        <title>Move Out & Move In Cleaning Calgary | Duty Cleaners</title>
+        <meta name="description" content="Inspection-ready move out cleaning Calgary & move in cleaning services. End of tenancy cleaning trusted by landlords. Same-day available." />
         <meta name="keywords" content="move out cleaning Calgary, move in cleaning Calgary, end of tenancy cleaning Calgary, move in ready cleaning, damage deposit cleaning Calgary" />
         <link rel="canonical" href="https://dutycleaners.ca/move-out-cleaning-calgary/" />
         <meta property="og:title" content="Move Out Cleaning Calgary | Move In Cleaning Services | Duty Cleaners" />
-        <meta property="og:description" content="Inspection-ready move out cleaning Calgary & move in cleaning services. End of tenancy cleaning trusted by landlords. Same-day available. 24-hr re-clean guarantee." />
+        <meta property="og:description" content="Inspection-ready move out cleaning Calgary & move in cleaning services. End of tenancy cleaning trusted by landlords. Same-day available." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/move-out-cleaning-calgary/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Move Out Cleaning Calgary | Move In Cleaning Services | Duty Cleaners" />
-        <meta name="twitter:description" content="Inspection-ready move out cleaning Calgary & move in cleaning services. End of tenancy cleaning trusted by landlords. Same-day available. 24-hr re-clean guarantee." />
+        <meta name="twitter:description" content="Inspection-ready move out cleaning Calgary & move in cleaning services. End of tenancy cleaning trusted by landlords. Same-day available." />
         {/* This page had no structured data at all. Service ties the offering
             to the Calgary LocalBusiness node; FAQPage mirrors the accordion
             content rendered further down the page. */}
@@ -83,10 +88,11 @@ export default function CalgaryMoveInOut() {
           <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-10">
             <div className="flex-1 text-center lg:text-left">
               <h1 className="display-serif text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-white">
-                Move Out Cleaning Calgary – Expert Move In Cleaning Services Too!
+                Move Out & Move In Cleaning in Calgary
               </h1>
               <p className="text-xl md:text-2xl mb-8 text-white/85">
-                Secure Your Deposit & Start Fresh with Expert Cleaning
+                Secure Your Deposit & Start Fresh with Expert Cleaning{" "}
+                  — flat-rate from {moveInOutFromPrice()} by home size, plus 5% GST.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">

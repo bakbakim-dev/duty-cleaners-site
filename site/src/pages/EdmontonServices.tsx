@@ -260,9 +260,17 @@ export default function EdmontonServices() {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Edmonton Cleaning Services | Duty Cleaners</title>
+        <title>Compare Our Edmonton Cleaning Services | Duty Cleaners</title>
         <meta name="description" content="Standard, deep, recurring, move-in/out and post-construction cleaning in Edmonton. See your instant price in about 60 seconds." />
         <link rel="canonical" href="https://dutycleaners.ca/services/" />
+        <meta property="og:title" content="Compare Our Edmonton Cleaning Services | Duty Cleaners" />
+        <meta property="og:description" content="Standard, deep, recurring, move-in/out and post-construction cleaning in Edmonton. See your instant price in about 60 seconds." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dutycleaners.ca/services/" />
+        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Compare Our Edmonton Cleaning Services | Duty Cleaners" />
+        <meta name="twitter:description" content="Standard, deep, recurring, move-in/out and post-construction cleaning in Edmonton. See your instant price in about 60 seconds." />
       </Helmet>
       <Navigation city="edmonton" />
       <main id="main-content" tabIndex={-1}>

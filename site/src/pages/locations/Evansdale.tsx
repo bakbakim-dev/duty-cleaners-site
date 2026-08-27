@@ -124,6 +124,14 @@ export default function Evansdale() {
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/evansdale-edmonton/" />
+        <meta property="og:title" content="House Cleaning in Evansdale, Edmonton | Duty Cleaners" />
+        <meta property="og:description" content="Professional house cleaning in Evansdale, Edmonton. Trusted local cleaners serving north Edmonton families. Customer-rated cleaners and five-star rated service." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dutycleaners.ca/locations/evansdale-edmonton/" />
+        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="House Cleaning in Evansdale, Edmonton | Duty Cleaners" />
+        <meta name="twitter:description" content="Professional house cleaning in Evansdale, Edmonton. Trusted local cleaners serving north Edmonton families. Customer-rated cleaners and five-star rated service." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 

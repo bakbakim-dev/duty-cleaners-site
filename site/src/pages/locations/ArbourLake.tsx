@@ -106,9 +106,12 @@ export default function ArbourLake() {
     <>
       <Helmet>
         <title>House Cleaning Services Arbour Lake Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning services in Arbour Lake, Calgary. Welcoming lakeside community near Stoney Trail NW. 100% satisfaction guarantee. Call (403) 768-1341." />
+        <meta name="description" content="Professional house cleaning services in Arbour Lake, Calgary. Welcoming lakeside community near Stoney Trail NW. 100% satisfaction guarantee." />
         <meta name="keywords" content="house cleaning Arbour Lake Calgary, cleaning services Arbour Lake, maid service Arbour Lake Calgary, home cleaning Northwest Calgary" />
         <meta property="og:title" content="House Cleaning Services Arbour Lake Calgary | Duty Cleaners" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="House Cleaning Services Arbour Lake Calgary | Duty Cleaners" />
+        <meta name="twitter:description" content="Professional house cleaning in Arbour Lake, Calgary. 100% satisfaction guaranteed." />
         <meta property="og:description" content="Professional house cleaning in Arbour Lake, Calgary. 100% satisfaction guaranteed." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/arbour-lake/" />

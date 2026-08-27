@@ -92,10 +92,13 @@ export default function BlogChoosingCleaningCompany() {
         <title>Choosing the Right Cleaning Company for Your Needs | Duty Cleaners</title>
         <meta
           name="description"
-          content="Learn how to choose the perfect cleaning company for your home or office. From assessing your needs to checking credentials, we guide you through the key factors."
+          content="How to choose the right cleaning company for your home or office - from assessing your needs to checking credentials, the key factors that matter."
         />
         <link rel="canonical" href="https://dutycleaners.ca/blog/choosing-cleaning-company/" />
         <meta property="og:title" content="Choosing the Right Cleaning Company for Your Needs | Duty Cleaners" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Choosing the Right Cleaning Company for Your Needs | Duty Cleaners" />
+        <meta name="twitter:description" content="How to choose the perfect cleaning company — assessing your needs, checking credentials, comparing services." />
         <meta property="og:description" content="How to choose the perfect cleaning company — assessing your needs, checking credentials, comparing services." />
         <meta property="og:type" content="article" />
         <meta property="og:url" content="https://dutycleaners.ca/blog/choosing-cleaning-company/" />
@@ -285,7 +288,7 @@ export default function BlogChoosingCleaningCompany() {
                   Customer reviews and testimonials are valuable resources when choosing a cleaning company. They provide insights into the experiences of past clients and can highlight the company's strengths and weaknesses. Check reviews on multiple platforms, such as Google, Yelp, and social media, to get a comprehensive view.
                 </p>
                 <p className="text-muted-foreground mt-4">
-                  Look for patterns in the feedback—consistent praise for reliability and thoroughness or recurring complaints about punctuality or communication. Reviews can also reveal how the company handles issues and customer service. Positive testimonials and high ratings are strong indicators of a reliable and professional cleaning service, helping you make an informed decision.
+                  Look for patterns in the feedback—consistent praise for reliability and thoroughness or recurring complaints about punctuality or communication. Reviews can also reveal how the company handles issues and customer service. Positive testimonials and high ratings are strong indicators of a reliable and <Link to="/" className="text-primary hover:underline font-medium">professional cleaning service</Link>, helping you make an informed decision. Choosing in Calgary specifically? Our <Link to="/blog/cleaning-services-calgary/" className="text-primary hover:underline font-medium">Calgary hiring guide</Link> covers what to check before you book there.
                 </p>
               </div>
 

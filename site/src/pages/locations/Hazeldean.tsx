@@ -85,6 +85,14 @@ export default function Hazeldean() {
   description: "Professional house cleaning services in Hazeldean, Edmonton.",
 }))}</script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/hazeldean/" />
+        <meta property="og:title" content="House Cleaning in Hazeldean, Edmonton | Duty Cleaners" />
+        <meta property="og:description" content="Professional house cleaning in Hazeldean, Edmonton. Serving families near Mill Creek Ravine, Donnan Park & more. Local cleaners you can trust." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dutycleaners.ca/locations/hazeldean/" />
+        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="House Cleaning in Hazeldean, Edmonton | Duty Cleaners" />
+        <meta name="twitter:description" content="Professional house cleaning in Hazeldean, Edmonton. Serving families near Mill Creek Ravine, Donnan Park & more. Local cleaners you can trust." />
         {/* The FAQs this page already renders — marked up so machine readers
             get the same Q&A the visitor sees. */}
         <script type="application/ld+json">

@@ -117,6 +117,14 @@ export default function McConachie() {
         </script>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/mcconachie-edmonton/" />
+        <meta property="og:title" content="House Cleaning in McConachie, Edmonton | Duty Cleaners" />
+        <meta property="og:description" content="Professional house cleaning in McConachie, Edmonton. Serving families near McConachie Park, 167 Avenue & Manning Town Centre. Local cleaners you can trust." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dutycleaners.ca/locations/mcconachie-edmonton/" />
+        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="House Cleaning in McConachie, Edmonton | Duty Cleaners" />
+        <meta name="twitter:description" content="Professional house cleaning in McConachie, Edmonton. Serving families near McConachie Park, 167 Avenue & Manning Town Centre. Local cleaners you can trust." />
       </Helmet>
 
       <div className="min-h-screen">

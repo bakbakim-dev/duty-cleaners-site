@@ -83,10 +83,13 @@ export default function BlogVinegarBakingSoda() {
         <title>Cleaning with Vinegar and Baking Soda: Complete Guide | Duty Cleaners</title>
         <meta
           name="description"
-          content="Learn how to clean your home naturally with vinegar and baking soda. Safe, effective cleaning tips for kitchen, bathroom, laundry and more from Duty Cleaners Edmonton."
+          content="Learn how to clean your home naturally with vinegar and baking soda. Safe, effective tips for kitchen, bathroom and laundry from Duty Cleaners."
         />
         <link rel="canonical" href="https://dutycleaners.ca/cleaning-with-vinegar-and-baking-soda/" />
         <meta property="og:title" content="Cleaning with Vinegar and Baking Soda: Complete Guide | Duty Cleaners" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Cleaning with Vinegar and Baking Soda: Complete Guide | Duty Cleaners" />
+        <meta name="twitter:description" content="Learn how to clean your home naturally with vinegar and baking soda. Safe, effective tips for kitchen, bathroom and laundry from Duty Cleaners." />
         <meta property="og:type" content="article" />
         <meta property="og:url" content="https://dutycleaners.ca/cleaning-with-vinegar-and-baking-soda/" />
         <script type="application/ld+json">{JSON.stringify({
@@ -336,7 +339,7 @@ export default function BlogVinegarBakingSoda() {
                   Trust the Cleaning Professionals
                 </h3>
                 <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                  Are you trying to figure out which cleaners are best for your home? Leave the cleaning to us! The professionals at Duty Cleaners will ensure your home is thoroughly clean with our top-of-the-line products. No matter your preference – natural remedies or professional-grade solutions – our cleaners will work with you to ensure your needs are met.
+                  Are you trying to figure out which cleaners are best for your home? Leave the cleaning to us! The professionals at Duty Cleaners will ensure your home is thoroughly clean with our top-of-the-line products — and when vinegar and baking soda have met their match, our <Link to="/edmonton/deep-cleaning/" className="text-primary hover:underline font-medium">deep cleaning service</Link> handles the built-up grime they can’t. No matter your preference – natural remedies or professional-grade solutions – our cleaners will work with you to ensure your needs are met.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link to="/#quote">

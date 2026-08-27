@@ -131,6 +131,9 @@ export default function BlogCleaningProducts() {
         <link rel="canonical" href={canonical} />
         <meta property="og:title" content={`${title} | Duty Cleaners`} />
         <meta property="og:description" content={description} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${title} | Duty Cleaners`} />
+        <meta name="twitter:description" content={description} />
         <meta property="og:type" content="article" />
         <meta property="og:url" content={canonical} />
         <script type="application/ld+json">{JSON.stringify({

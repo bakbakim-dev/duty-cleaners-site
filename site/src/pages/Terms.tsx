@@ -36,6 +36,14 @@ export default function Terms() {
           content="Duty Cleaners terms of service: how our pricing, payment, scheduling and satisfaction guarantee work, and what our cleaning does and does not include."
         />
         <link rel="canonical" href="https://dutycleaners.ca/terms/" />
+        <meta property="og:title" content="Terms of Service | Duty Cleaners" />
+        <meta property="og:description" content="Duty Cleaners terms of service: how our pricing, payment, scheduling and satisfaction guarantee work, and what our cleaning does and does not include." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dutycleaners.ca/terms/" />
+        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Terms of Service | Duty Cleaners" />
+        <meta name="twitter:description" content="Duty Cleaners terms of service: how our pricing, payment, scheduling and satisfaction guarantee work, and what our cleaning does and does not include." />
       </Helmet>
 
       <div className="min-h-screen">

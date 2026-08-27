@@ -117,6 +117,14 @@ export default function Allendale() {
           })}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/allendale/" />
+        <meta property="og:title" content="House Cleaning in Allendale, Edmonton | Duty Cleaners" />
+        <meta property="og:description" content="Professional house cleaning in Allendale, Edmonton. Serving families near Allendale Park, Gateway Boulevard & 109 Street. Local cleaners you can trust." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dutycleaners.ca/locations/allendale/" />
+        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="House Cleaning in Allendale, Edmonton | Duty Cleaners" />
+        <meta name="twitter:description" content="Professional house cleaning in Allendale, Edmonton. Serving families near Allendale Park, Gateway Boulevard & 109 Street. Local cleaners you can trust." />
       </Helmet>
 
       <div className="min-h-screen">

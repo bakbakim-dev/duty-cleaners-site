@@ -109,6 +109,14 @@ export default function Capilano() {
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/capilano-edmonton/" />
+        <meta property="og:title" content="House Cleaning in Capilano, Edmonton | Duty Cleaners" />
+        <meta property="og:description" content="Professional house cleaning in Capilano, Edmonton. Serving families near Capilano Mall, Gold Bar Park & the river valley. Local cleaners you can trust." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dutycleaners.ca/locations/capilano-edmonton/" />
+        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="House Cleaning in Capilano, Edmonton | Duty Cleaners" />
+        <meta name="twitter:description" content="Professional house cleaning in Capilano, Edmonton. Serving families near Capilano Mall, Gold Bar Park & the river valley. Local cleaners you can trust." />
       </Helmet>
 
       <div className="min-h-screen">

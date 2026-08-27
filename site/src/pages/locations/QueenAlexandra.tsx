@@ -50,6 +50,14 @@ const QueenAlexandra = () => {
         <title>Queen Alexandra House Cleaning Professionals | Duty Cleaners Edmonton</title>
         <meta name="description" content="Reliable home cleaning in Queen Alexandra, Edmonton. Professional service near Queen Alexandra School, Tipton Park, and Whyte Avenue." />
         <link rel="canonical" href="https://dutycleaners.ca/locations/queen-alexandra-edmonton/" />
+        <meta property="og:title" content="Queen Alexandra House Cleaning Professionals | Duty Cleaners Edmonton" />
+        <meta property="og:description" content="Reliable home cleaning in Queen Alexandra, Edmonton. Professional service near Queen Alexandra School, Tipton Park, and Whyte Avenue." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dutycleaners.ca/locations/queen-alexandra-edmonton/" />
+        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Queen Alexandra House Cleaning Professionals | Duty Cleaners Edmonton" />
+        <meta name="twitter:description" content="Reliable home cleaning in Queen Alexandra, Edmonton. Professional service near Queen Alexandra School, Tipton Park, and Whyte Avenue." />
         <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Queen Alexandra Edmonton", city: "edmonton", url: "https://dutycleaners.ca/locations/queen-alexandra-edmonton", areaServed: "Queen Alexandra, Edmonton, AB" }))}</script>
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>

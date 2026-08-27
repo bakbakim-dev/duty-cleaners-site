@@ -195,7 +195,7 @@ export default function Reviews() {
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-              Client Testimonials
+              Customer Reviews
             </h1>
             <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
               Hear from homeowners across Alberta who trust Duty Cleaners to keep their spaces spotless.

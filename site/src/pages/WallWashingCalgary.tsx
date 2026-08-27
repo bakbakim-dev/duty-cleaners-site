@@ -18,6 +18,7 @@ import kitchenGrease from "@/assets/wall-washing/kitchen-grease.jpg";
 import dirtyWallBefore from "@/assets/wall-washing/dirty-wall-before.jpg";
 import stainCloseup from "@/assets/wall-washing/stain-closeup.jpg";
 import { Helmet } from "react-helmet-async";
+import CityCrossLink from "@/components/CityCrossLink";
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -140,6 +141,14 @@ export default function WallWashingCalgary() {
         <title>Wall Washing Calgary | Duty Cleaners</title>
         <meta name="description" content="Professional wall and baseboard washing in Calgary. Non-toxic products, customer-rated cleaners, no-obligation quote." />
         <link rel="canonical" href="https://dutycleaners.ca/wall-washing-wall-cleaning-calgary/" />
+        <meta property="og:title" content="Wall Washing Calgary | Duty Cleaners" />
+        <meta property="og:description" content="Professional wall and baseboard washing in Calgary. Non-toxic products, customer-rated cleaners, no-obligation quote." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dutycleaners.ca/wall-washing-wall-cleaning-calgary/" />
+        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Wall Washing Calgary | Duty Cleaners" />
+        <meta name="twitter:description" content="Professional wall and baseboard washing in Calgary. Non-toxic products, customer-rated cleaners, no-obligation quote." />
         {/* Mirrors the FAQ rendered on this page. Generated from the same
             `faqs` array, so the markup can never drift from the copy. */}
         <script type="application/ld+json">
@@ -493,6 +502,12 @@ export default function WallWashingCalgary() {
         </div>
       </section>
       </main>
+
+      <section className="pb-16">
+        <div className="container mx-auto px-4">
+          <CityCrossLink city="Edmonton" to="/wall-washing-wall-cleaning/" description="Wall washing and wall cleaning for Edmonton homes." />
+        </div>
+      </section>
 
       <Footer />
     </div>

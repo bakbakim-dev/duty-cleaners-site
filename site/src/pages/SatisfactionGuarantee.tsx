@@ -13,6 +13,14 @@ export default function SatisfactionGuarantee() {
         <title>100% Satisfaction Guarantee Policy | Duty Cleaners</title>
         <meta name="description" content="Our 100% Satisfaction Guarantee ensures you're completely happy with your cleaning. If not, we'll re-clean for free within 24 hours." />
         <link rel="canonical" href="https://dutycleaners.ca/satisfaction-guarantee/" />
+        <meta property="og:title" content="100% Satisfaction Guarantee Policy | Duty Cleaners" />
+        <meta property="og:description" content="Our 100% Satisfaction Guarantee ensures you're completely happy with your cleaning. If not, we'll re-clean for free within 24 hours." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dutycleaners.ca/satisfaction-guarantee/" />
+        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="100% Satisfaction Guarantee Policy | Duty Cleaners" />
+        <meta name="twitter:description" content="Our 100% Satisfaction Guarantee ensures you're completely happy with your cleaning. If not, we'll re-clean for free within 24 hours." />
       </Helmet>
 
       <div className="min-h-screen">

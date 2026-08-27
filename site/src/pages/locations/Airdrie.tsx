@@ -117,6 +117,9 @@ export default function Airdrie() {
         <title>House Cleaning Services in Airdrie, AB | Duty Cleaners</title>
         <meta name="description" content="Professional house cleaning in Airdrie, AB. Same-day service subject to availability. 100% satisfaction guaranteed. Pay after your clean." />
         <meta property="og:title" content="House Cleaning Services Airdrie | Duty Cleaners" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="House Cleaning Services Airdrie | Duty Cleaners" />
+        <meta name="twitter:description" content="Professional house cleaning in Airdrie, AB. Same-day service subject to availability. 100% satisfaction guaranteed." />
         <meta property="og:description" content="Professional house cleaning in Airdrie, AB. Same-day service subject to availability. 100% satisfaction guaranteed." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/cleaning-services-airdrie/" />

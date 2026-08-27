@@ -48,6 +48,7 @@ import gal4 from "@/assets/airbnb/turnover-kitchen.jpg";
 import gal5 from "@/assets/airbnb/turnover-dining.jpg";
 import gal6 from "@/assets/airbnb/turnover-entry.jpg";
 import { Helmet } from "react-helmet-async";
+import CityCrossLink from "@/components/CityCrossLink";
 
 const AnimatedSection = ({
   children,
@@ -235,9 +236,17 @@ const AirbnbCleaningCalgary = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Airbnb Turnover Cleaning Calgary | Duty Cleaners</title>
+        <title>Airbnb Cleaning Calgary | Turnover Service | Duty Cleaners</title>
         <meta name="description" content="Reliable Airbnb and short-term rental turnover cleaning in Calgary. Restocking, fresh linens and fast turnarounds — priced per hour." />
         <link rel="canonical" href="https://dutycleaners.ca/airbnb-cleaning-services-calgary/" />
+        <meta property="og:title" content="Airbnb Cleaning Calgary | Turnover Service | Duty Cleaners" />
+        <meta property="og:description" content="Reliable Airbnb and short-term rental turnover cleaning in Calgary. Restocking, fresh linens and fast turnarounds — priced per hour." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dutycleaners.ca/airbnb-cleaning-services-calgary/" />
+        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Airbnb Cleaning Calgary | Turnover Service | Duty Cleaners" />
+        <meta name="twitter:description" content="Reliable Airbnb and short-term rental turnover cleaning in Calgary. Restocking, fresh linens and fast turnarounds — priced per hour." />
         {/* Mirrors the FAQ rendered on this page. Generated from the same
             `faqs` array, so the markup can never drift from the copy. */}
         <script type="application/ld+json">
@@ -546,6 +555,12 @@ const AirbnbCleaningCalgary = () => {
         </div>
       </section>
       </main>
+
+      <section className="pb-16">
+        <div className="container mx-auto px-4">
+          <CityCrossLink city="Edmonton" to="/edmonton/airbnb-cleaning/" description="Airbnb turnover cleaning for Edmonton short-term rentals." />
+        </div>
+      </section>
 
       <Footer />
     </div>

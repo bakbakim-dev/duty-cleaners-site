@@ -118,8 +118,16 @@ export default function Riverbend() {
     <>
       <Helmet>
         <title>Home Cleaning You Can Count On in Riverbend, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Trusted, local house cleaning service for homes in Riverbend, Edmonton. Professional cleaners serving Brander Gardens, Rhatigan Ridge, Southgate area, and surrounding streets." />
+        <meta name="description" content="Trusted local house cleaning in Riverbend, Edmonton. Cleaners serving Brander Gardens, Rhatigan Ridge and surrounding streets." />
         <link rel="canonical" href="https://dutycleaners.ca/locations/riverbend/" />
+        <meta property="og:title" content="Home Cleaning You Can Count On in Riverbend, Edmonton | Duty Cleaners" />
+        <meta property="og:description" content="Trusted local house cleaning in Riverbend, Edmonton. Cleaners serving Brander Gardens, Rhatigan Ridge and surrounding streets." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dutycleaners.ca/locations/riverbend/" />
+        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Home Cleaning You Can Count On in Riverbend, Edmonton | Duty Cleaners" />
+        <meta name="twitter:description" content="Trusted local house cleaning in Riverbend, Edmonton. Cleaners serving Brander Gardens, Rhatigan Ridge and surrounding streets." />
         <script type="application/ld+json">{JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Riverbend, Edmonton",
   city: "edmonton",

@@ -11,6 +11,7 @@ import {
 import { Helmet } from "react-helmet-async";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import postConstructionBeforeAfter from "@/assets/gallery/post-construction-before-after.jpg";
+import CityCrossLink from "@/components/CityCrossLink";
 
 const includedServices = [
   { icon: Wind, title: "Fine Dust & Debris Removal", desc: "Drywall and construction dust wiped from baseboards, vents, window ledges, trim, and floors — no fine residue left behind." },
@@ -97,8 +98,16 @@ export default function EdmontonPostConstruction() {
     <div className="min-h-screen">
       <Helmet>
         <title>Post-Construction Cleaning Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Final-stage post-construction cleaning in Edmonton for newly built and renovated homes. Remove drywall dust, smudges, and contractor residue. Customer-rated cleaners and move-in ready results." />
+        <meta name="description" content="Final-stage post-construction cleaning in Edmonton for newly built and renovated homes. Remove drywall dust, smudges, and contractor residue." />
         <link rel="canonical" href="https://dutycleaners.ca/post-construction-cleaning/" />
+        <meta property="og:title" content="Post-Construction Cleaning Edmonton | Duty Cleaners" />
+        <meta property="og:description" content="Final-stage post-construction cleaning in Edmonton for newly built and renovated homes. Remove drywall dust, smudges, and contractor residue." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dutycleaners.ca/post-construction-cleaning/" />
+        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Post-Construction Cleaning Edmonton | Duty Cleaners" />
+        <meta name="twitter:description" content="Final-stage post-construction cleaning in Edmonton for newly built and renovated homes. Remove drywall dust, smudges, and contractor residue." />
         {/* Mirrors the FAQ rendered on this page. Generated from the same
             `faqs` array, so the markup can never drift from the copy. */}
         <script type="application/ld+json">
@@ -416,6 +425,12 @@ export default function EdmontonPostConstruction() {
         </div>
       </section>
       </main>
+
+      <section className="pb-16">
+        <div className="container mx-auto px-4">
+          <CityCrossLink city="Calgary" to="/post-construction-cleaning-calgary/" description="Post-construction cleaning for newly built and renovated Calgary homes." />
+        </div>
+      </section>
 
       <Footer />
     </div>

@@ -17,7 +17,7 @@ export default function EdmontonDeepCleaning() {
       quoteService="deep-cleaning"
       phone="(780) 913-6565"
       phoneHref="tel:7809136565"
-      seoTitle="Deep Cleaning Edmonton | Top-to-Bottom Detail Cleaning | Duty Cleaners"
+      seoTitle="Deep Cleaning Services Edmonton | Duty Cleaners"
       seoDescription="Detailed deep cleaning in Edmonton: baseboards, switches, vents, exterior of appliances, and built-up grime removed. Non-toxic products and a 100% satisfaction guarantee."
       canonical="https://dutycleaners.ca/edmonton/deep-cleaning"
       heroHeading={<>Deep Cleaning Services in <AccentGold>Edmonton</AccentGold></>}

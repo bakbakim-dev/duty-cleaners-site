@@ -20,6 +20,14 @@ export default function PrivacyPolicy() {
         <title>Privacy Policy | Duty Cleaners</title>
         <meta name="description" content="Duty Cleaners Privacy Policy. Learn how we collect, use, and protect your personal information." />
         <link rel="canonical" href="https://dutycleaners.ca/privacy-policy/" />
+        <meta property="og:title" content="Privacy Policy | Duty Cleaners" />
+        <meta property="og:description" content="Duty Cleaners Privacy Policy. Learn how we collect, use, and protect your personal information." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dutycleaners.ca/privacy-policy/" />
+        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Privacy Policy | Duty Cleaners" />
+        <meta name="twitter:description" content="Duty Cleaners Privacy Policy. Learn how we collect, use, and protect your personal information." />
       </Helmet>
 
       <div className="min-h-screen">

@@ -116,6 +116,14 @@ export default function Delton() {
           })}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/delton/" />
+        <meta property="og:title" content="House Cleaning in Delton, Edmonton | Duty Cleaners" />
+        <meta property="og:description" content="Professional house cleaning in Delton, Edmonton. Serving families near 97 Street, Norwood Square & Delton School. Local cleaners you can trust." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dutycleaners.ca/locations/delton/" />
+        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="House Cleaning in Delton, Edmonton | Duty Cleaners" />
+        <meta name="twitter:description" content="Professional house cleaning in Delton, Edmonton. Serving families near 97 Street, Norwood Square & Delton School. Local cleaners you can trust." />
       </Helmet>
 
       <div className="min-h-screen">

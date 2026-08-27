@@ -131,6 +131,9 @@ export default function Bankview() {
         <title>House Cleaning Services in Bankview, Calgary | Duty Cleaners</title>
         <meta name="description" content="Professional house cleaning in Bankview, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed. Pay after your clean." />
         <meta property="og:title" content="House Cleaning Services Bankview Calgary | Duty Cleaners" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="House Cleaning Services Bankview Calgary | Duty Cleaners" />
+        <meta name="twitter:description" content="Professional house cleaning in Bankview, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
         <meta property="og:description" content="Professional house cleaning in Bankview, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/bankview-calgary/" />

@@ -151,6 +151,14 @@ export default function Blog() {
           content="Expert cleaning tips, guides, and advice from professional cleaners. Learn how to maintain a spotless home with insights from Duty Cleaners."
         />
         <link rel="canonical" href="https://dutycleaners.ca/blog/" />
+        <meta property="og:title" content="Cleaning Tips & Guides Blog | Duty Cleaners" />
+        <meta property="og:description" content="Expert cleaning tips, guides, and advice from professional cleaners. Learn how to maintain a spotless home with insights from Duty Cleaners." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dutycleaners.ca/blog/" />
+        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Cleaning Tips & Guides Blog | Duty Cleaners" />
+        <meta name="twitter:description" content="Expert cleaning tips, guides, and advice from professional cleaners. Learn how to maintain a spotless home with insights from Duty Cleaners." />
       </Helmet>
 
       <div className="min-h-screen bg-background">

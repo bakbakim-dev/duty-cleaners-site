@@ -107,7 +107,7 @@ export default function SpruceAvenue() {
     <>
       <Helmet>
         <title>House Cleaning in Spruce Avenue, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Spruce Avenue, Edmonton. Serving families near Kingsway Mall, Spruce Avenue School & Norwood Square. Local cleaners you can trust." />
+        <meta name="description" content="Professional house cleaning in Spruce Avenue, Edmonton. Serving families near Kingsway Mall, Spruce Avenue School & Norwood Square." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Spruce Avenue, Edmonton",
@@ -118,6 +118,14 @@ export default function SpruceAvenue() {
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/spruce-avenue/" />
+        <meta property="og:title" content="House Cleaning in Spruce Avenue, Edmonton | Duty Cleaners" />
+        <meta property="og:description" content="Professional house cleaning in Spruce Avenue, Edmonton. Serving families near Kingsway Mall, Spruce Avenue School & Norwood Square." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dutycleaners.ca/locations/spruce-avenue/" />
+        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="House Cleaning in Spruce Avenue, Edmonton | Duty Cleaners" />
+        <meta name="twitter:description" content="Professional house cleaning in Spruce Avenue, Edmonton. Serving families near Kingsway Mall, Spruce Avenue School & Norwood Square." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 

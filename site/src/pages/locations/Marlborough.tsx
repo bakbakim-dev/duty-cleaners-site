@@ -88,8 +88,11 @@ export default function Marlborough() {
     <>
       <Helmet>
         <title>House Cleaning Services in Marlborough, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Marlborough, Calgary. Established NE community near Marlborough Mall & Memorial Drive. 100% satisfaction guaranteed. Call (403) 768-1341." />
+        <meta name="description" content="Professional house cleaning in Marlborough, Calgary. Established NE community near Marlborough Mall & Memorial Drive. 100% satisfaction guaranteed." />
         <meta property="og:title" content="House Cleaning Services Marlborough Calgary | Duty Cleaners" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="House Cleaning Services Marlborough Calgary | Duty Cleaners" />
+        <meta name="twitter:description" content="Professional house cleaning in Marlborough, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
         <meta property="og:description" content="Professional house cleaning in Marlborough, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/marlborough/" />

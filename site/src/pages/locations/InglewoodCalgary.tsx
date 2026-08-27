@@ -92,6 +92,9 @@ export default function InglewoodCalgary() {
         <title>House Cleaning Services in Inglewood, Calgary | Duty Cleaners</title>
         <meta name="description" content="Professional house cleaning in Inglewood, Calgary. Heritage homes and modern lofts. 100% satisfaction guaranteed. Call (403) 768-1341." />
         <meta property="og:title" content="House Cleaning Services Inglewood Calgary | Duty Cleaners" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="House Cleaning Services Inglewood Calgary | Duty Cleaners" />
+        <meta name="twitter:description" content="Professional house cleaning in Inglewood, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
         <meta property="og:description" content="Professional house cleaning in Inglewood, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/inglewood-calgary/" />

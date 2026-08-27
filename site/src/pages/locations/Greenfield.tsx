@@ -55,6 +55,14 @@ export default function Greenfield() {
         <title>House Cleaning Services in Greenfield Edmonton | Duty Cleaners</title>
         <meta name="description" content="Professional residential cleaning services in Greenfield, Edmonton. Local cleaners serving Greenfield and surrounding areas." />
         <link rel="canonical" href="https://dutycleaners.ca/locations/greenfield-edmonton/" />
+        <meta property="og:title" content="House Cleaning Services in Greenfield Edmonton | Duty Cleaners" />
+        <meta property="og:description" content="Professional residential cleaning services in Greenfield, Edmonton. Local cleaners serving Greenfield and surrounding areas." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dutycleaners.ca/locations/greenfield-edmonton/" />
+        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="House Cleaning Services in Greenfield Edmonton | Duty Cleaners" />
+        <meta name="twitter:description" content="Professional residential cleaning services in Greenfield, Edmonton. Local cleaners serving Greenfield and surrounding areas." />
         <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Greenfield Edmonton", city: "edmonton", url: "https://dutycleaners.ca/locations/greenfield-edmonton", areaServed: "Greenfield, Edmonton, AB" }))}</script>
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>

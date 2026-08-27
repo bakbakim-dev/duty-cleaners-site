@@ -82,12 +82,15 @@ export default function BlogCleaningFrequency() {
         <title>How Often Should A Cleaning Service Clean My House | Duty Cleaners</title>
         <meta
           name="description"
-          content="Learn how often you should hire a cleaning service - weekly, bi-weekly, or monthly. Expert guide from Duty Cleaners to help you choose the right cleaning frequency."
+          content="Learn how often you should hire a cleaning service - weekly, bi-weekly, or monthly. An expert guide to choosing the right cleaning frequency."
         />
         {/* Canonical is the preserved WordPress slug, matching the cost and vinegar
             posts. /blog/cleaning-frequency is the modern route and now 301s here. */}
         <link rel="canonical" href="https://dutycleaners.ca/how-often-should-a-cleaning-service-clean-my-house/" />
         <meta property="og:title" content="How Often Should A Cleaning Service Clean My House | Duty Cleaners" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="How Often Should A Cleaning Service Clean My House | Duty Cleaners" />
+        <meta name="twitter:description" content="Learn how often you should hire a cleaning service - weekly, bi-weekly, or monthly. An expert guide to choosing the right cleaning frequency." />
         <meta property="og:type" content="article" />
         <meta property="og:url" content="https://dutycleaners.ca/how-often-should-a-cleaning-service-clean-my-house/" />
         <script type="application/ld+json">{JSON.stringify({
@@ -162,7 +165,7 @@ export default function BlogCleaningFrequency() {
               {/* Introduction */}
               <div className="prose prose-lg max-w-none mb-12">
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Having a tidy home is aesthetically pleasing and important for our mental and physical health, yet not all of us can find the time or energy to clean each day, right? That's why most of us consider hiring cleaning services to help us with household cleaning chores. A lot of professional cleaning providers offer weekly, biweekly, and monthly home cleaning services which we can choose based on our needs and budget.
+                  Having a tidy home is aesthetically pleasing and important for our mental and physical health, yet not all of us can find the time or energy to clean each day, right? That's why most of us consider hiring cleaning services to help us with household cleaning chores. A lot of professional cleaning providers offer <Link to="/edmonton/recurring-cleaning/" className="text-primary hover:underline font-medium">weekly, biweekly, and monthly home cleaning services</Link> which we can choose based on our needs and budget — and if budget is the deciding factor, our guide to <Link to="/how-much-does-a-house-cleaning-cost/" className="text-primary hover:underline font-medium">what house cleaning costs</Link> breaks the numbers down.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed mt-4">
                   But how often do we need professional cleanings for our homes? Is once a week too much? Is bi-weekly enough? Or does monthly service make more sense timewise and financially? Well, the answer to these questions depends on many factors.

@@ -113,7 +113,7 @@ export default function Summerside() {
     <>
       <Helmet>
         <title>House Cleaning in Summerside, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Summerside, Edmonton. Trusted local cleaners serving south Edmonton families. Customer-rated cleaners and five-star rated service." />
+        <meta name="description" content="Professional house cleaning in Summerside, Edmonton. Trusted local cleaners serving south Edmonton families." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Summerside, Edmonton",
@@ -124,6 +124,14 @@ export default function Summerside() {
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/summerside/" />
+        <meta property="og:title" content="House Cleaning in Summerside, Edmonton | Duty Cleaners" />
+        <meta property="og:description" content="Professional house cleaning in Summerside, Edmonton. Trusted local cleaners serving south Edmonton families." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dutycleaners.ca/locations/summerside/" />
+        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="House Cleaning in Summerside, Edmonton | Duty Cleaners" />
+        <meta name="twitter:description" content="Professional house cleaning in Summerside, Edmonton. Trusted local cleaners serving south Edmonton families." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 

@@ -219,6 +219,14 @@ const ServiceDetailPage = ({
         <title>{seoTitle}</title>
         <meta name="description" content={seoDescription} />
         <link rel="canonical" href={canonicalUrlForPath(new URL(canonical).pathname)} />
+        <meta property="og:title" content={seoTitle} />
+        <meta property="og:description" content={seoDescription} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonicalUrlForPath(new URL(canonical).pathname)} />
+        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={seoTitle} />
+        <meta name="twitter:description" content={seoDescription} />
         <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
         {/* FAQ rich results retired (May 2026), but the markup still mirrors the
             rendered Q&A below and helps machine readers parse the page. */}

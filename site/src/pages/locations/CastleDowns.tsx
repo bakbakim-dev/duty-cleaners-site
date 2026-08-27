@@ -112,6 +112,14 @@ export default function CastleDowns() {
         <title>House Cleaning in Castle Downs, Edmonton | Duty Cleaners</title>
         <meta name="description" content="Professional house cleaning in Castle Downs, Edmonton. Serving families near Beaumaris Lake, Castle Downs Park & more. Local cleaners you can trust." />
         <link rel="canonical" href="https://dutycleaners.ca/locations/castle-downs/" />
+        <meta property="og:title" content="House Cleaning in Castle Downs, Edmonton | Duty Cleaners" />
+        <meta property="og:description" content="Professional house cleaning in Castle Downs, Edmonton. Serving families near Beaumaris Lake, Castle Downs Park & more. Local cleaners you can trust." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dutycleaners.ca/locations/castle-downs/" />
+        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="House Cleaning in Castle Downs, Edmonton | Duty Cleaners" />
+        <meta name="twitter:description" content="Professional house cleaning in Castle Downs, Edmonton. Serving families near Beaumaris Lake, Castle Downs Park & more. Local cleaners you can trust." />
         <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Castle Downs Edmonton", city: "edmonton", url: "https://dutycleaners.ca/locations/castle-downs", areaServed: "Castle Downs, Edmonton, AB" }))}</script>
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>

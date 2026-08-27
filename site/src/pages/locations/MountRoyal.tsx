@@ -90,6 +90,9 @@ export default function MountRoyal() {
         <title>House Cleaning Services in Mount Royal, Calgary | Duty Cleaners</title>
         <meta name="description" content="Premium house cleaning in Mount Royal, Calgary. Experienced with heritage homes and fine finishes. 100% satisfaction guaranteed. Call (403) 768-1341." />
         <meta property="og:title" content="House Cleaning Services Mount Royal Calgary | Duty Cleaners" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="House Cleaning Services Mount Royal Calgary | Duty Cleaners" />
+        <meta name="twitter:description" content="Premium house cleaning in Mount Royal, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
         <meta property="og:description" content="Premium house cleaning in Mount Royal, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/mount-royal/" />

@@ -107,6 +107,9 @@ export default function Mahogany() {
         <title>House Cleaning Services in Mahogany, Calgary | Duty Cleaners</title>
         <meta name="description" content="Professional house cleaning in Mahogany, Calgary. Beautiful lakeside community in SE Calgary. 100% satisfaction guarantee. Call (403) 768-1341." />
         <meta property="og:title" content="House Cleaning Services Mahogany Calgary | Duty Cleaners" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="House Cleaning Services Mahogany Calgary | Duty Cleaners" />
+        <meta name="twitter:description" content="Professional house cleaning in Mahogany, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
         <meta property="og:description" content="Professional house cleaning in Mahogany, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/mahogany/" />

@@ -113,7 +113,7 @@ export default function CentralMcDougall() {
     <>
       <Helmet>
         <title>House Cleaning in Central McDougall, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Central McDougall, Edmonton. Trusted local cleaners serving Central McDougall homes with reliable, customer-rated cleaning service." />
+        <meta name="description" content="Professional house cleaning in Central McDougall, Edmonton. Reliable, customer-rated local cleaners. Pay after your clean." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Central McDougall, Edmonton",
@@ -124,6 +124,14 @@ export default function CentralMcDougall() {
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/central-mcdougall-edmonton/" />
+        <meta property="og:title" content="House Cleaning in Central McDougall, Edmonton | Duty Cleaners" />
+        <meta property="og:description" content="Professional house cleaning in Central McDougall, Edmonton. Reliable, customer-rated local cleaners. Pay after your clean." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dutycleaners.ca/locations/central-mcdougall-edmonton/" />
+        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="House Cleaning in Central McDougall, Edmonton | Duty Cleaners" />
+        <meta name="twitter:description" content="Professional house cleaning in Central McDougall, Edmonton. Reliable, customer-rated local cleaners. Pay after your clean." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 

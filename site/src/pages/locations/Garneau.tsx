@@ -104,7 +104,7 @@ export default function Garneau() {
     <>
       <Helmet>
         <title>House Cleaning Services Garneau Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning services in Garneau, Edmonton. Serving this vibrant university district with heritage homes, walkable streets, and stunning River Valley access near the University of Alberta." />
+        <meta name="description" content="Professional house cleaning in Garneau, Edmonton. Serving the university district's heritage homes near the University of Alberta." />
         <script type="application/ld+json">{JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Garneau, Edmonton",
   city: "edmonton",
@@ -113,6 +113,14 @@ export default function Garneau() {
   description: "Professional house cleaning services in Garneau, Edmonton.",
 }))}</script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/garneau/" />
+        <meta property="og:title" content="House Cleaning Services Garneau Edmonton | Duty Cleaners" />
+        <meta property="og:description" content="Professional house cleaning in Garneau, Edmonton. Serving the university district's heritage homes near the University of Alberta." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dutycleaners.ca/locations/garneau/" />
+        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="House Cleaning Services Garneau Edmonton | Duty Cleaners" />
+        <meta name="twitter:description" content="Professional house cleaning in Garneau, Edmonton. Serving the university district's heritage homes near the University of Alberta." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 

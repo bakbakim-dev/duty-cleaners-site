@@ -127,6 +127,9 @@ export default function BlogCleaningSchedule() {
         />
         <link rel="canonical" href="https://dutycleaners.ca/blog/cleaning-schedule/" />
         <meta property="og:title" content="A House Cleaning Schedule That Does Not Overwhelm You | Duty Cleaners" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="A House Cleaning Schedule That Does Not Overwhelm You | Duty Cleaners" />
+        <meta name="twitter:description" content="Create a realistic cleaning schedule with daily, weekly, and monthly tasks. Expert tips from Duty Cleaners to keep your home clean without the stress." />
         <meta property="og:type" content="article" />
         <meta property="og:url" content="https://dutycleaners.ca/blog/cleaning-schedule/" />
         <script type="application/ld+json">{JSON.stringify({

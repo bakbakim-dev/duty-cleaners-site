@@ -109,6 +109,9 @@ export default function ScenicAcres() {
         <meta name="description" content="Professional house cleaning services in Scenic Acres, Calgary. Peaceful neighborhood near Nose Hill Park. 100% satisfaction guarantee. Call (403) 768-1341." />
         <meta name="keywords" content="house cleaning Scenic Acres Calgary, cleaning services Scenic Acres, maid service Scenic Acres Calgary, home cleaning Northwest Calgary" />
         <meta property="og:title" content="House Cleaning Services Scenic Acres Calgary | Duty Cleaners" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="House Cleaning Services Scenic Acres Calgary | Duty Cleaners" />
+        <meta name="twitter:description" content="Professional house cleaning in Scenic Acres, Calgary. 100% satisfaction guaranteed." />
         <meta property="og:description" content="Professional house cleaning in Scenic Acres, Calgary. 100% satisfaction guaranteed." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/scenic-acres/" />
