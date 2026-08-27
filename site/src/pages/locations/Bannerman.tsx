@@ -92,7 +92,7 @@ const faqs = [
   },
   {
     question: "Do you use non-toxic cleaning products?",
-    answer: "Absolutely. We use safe, non-toxic products that are effective yet gentle for families, pets, and the environment.",
+    answer: "Absolutely. We bring all supplies, and we can use specific products you prefer — just tell us when you book.",
   },
   {
     question: "How long does an initial cleaning take?",

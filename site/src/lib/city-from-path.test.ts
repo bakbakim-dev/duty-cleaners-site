@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { cityFromPath, isCalgaryPath } from "./city-from-path";
+import { calgarySurrounding, calgaryNeighborhoods } from "@/data/city-locations";
 
 describe("cityFromPath", () => {
   it("treats the canonical Calgary landing URL as Calgary", () => {
@@ -102,5 +103,40 @@ describe("cityFromPath", () => {
   it("isCalgaryPath mirrors cityFromPath", () => {
     expect(isCalgaryPath("/cleaning-services-calgary")).toBe(true);
     expect(isCalgaryPath("/")).toBe(false);
+  });
+});
+
+/**
+ * The regression this guards: the Calgary set was a hand-maintained list of the
+ * ten satellite towns and silently omitted the fifteen Calgary neighbourhoods
+ * whose slugs carry no "calgary" token. Those pages resolved to Edmonton, so a
+ * Calgary visitor got Edmonton's phone number and an all-Edmonton footer on a
+ * page whose own H1 and schema said Calgary.
+ *
+ * Asserting against the directory data rather than a literal list means a new
+ * Calgary neighbourhood cannot be added to the site without this passing.
+ */
+describe("every Calgary page in the directory resolves to Calgary", () => {
+  it("covers all calgarySurrounding and calgaryNeighborhoods entries", () => {
+    const wrong = [...calgarySurrounding, ...calgaryNeighborhoods]
+      .filter((entry) => cityFromPath(entry.to) !== "calgary")
+      .map((entry) => entry.to);
+    expect(wrong, `these Calgary directory entries resolve to Edmonton: ${wrong.join(", ")}`).toEqual([]);
+  });
+
+  it("resolves both URL forms for a bare Calgary neighbourhood slug", () => {
+    for (const p of ["/locations/tuscany", "/locations/mahogany", "/locations/cranston",
+                     "/locations/marda-loop", "/locations/mission", "/locations/auburn-bay"]) {
+      expect(cityFromPath(p), p).toBe("calgary");
+      expect(cityFromPath(`${p}/`), `${p}/`).toBe("calgary");
+    }
+  });
+
+  it("still resolves genuine Edmonton neighbourhoods to Edmonton", () => {
+    // Guard against over-matching: these are Edmonton and must stay Edmonton.
+    for (const p of ["/locations/allendale", "/locations/inglewood", "/locations/montrose",
+                     "/cleaning-services-leduc", "/locations/glenora-edmonton", "/"]) {
+      expect(cityFromPath(p), p).toBe("edmonton");
+    }
   });
 });

@@ -27,24 +27,32 @@
  *   - the Calgary-region satellite towns, which contain no "calgary" token
  */
 
+import { calgarySurrounding, calgaryNeighborhoods } from "@/data/city-locations";
+
 export type City = "edmonton" | "calgary";
 
 /**
- * Calgary-region towns whose slugs never contain "calgary".
- * Mirrors `calgarySurrounding` in src/data/city-locations.ts.
+ * Every Calgary path whose URL carries no "calgary" token.
+ *
+ * This used to be a hand-maintained list of the ten satellite towns, and it
+ * silently omitted the Calgary NEIGHBOURHOODS whose slugs are bare — Tuscany,
+ * Mahogany, Cranston, Auburn Bay, Marda Loop, Mission, Kensington and eight
+ * more. Those fifteen pages fell through to `return "edmonton"`, so a Calgary
+ * visitor got the Edmonton phone number in the footer CTA, eight links to
+ * Edmonton service pages, and the Edmonton number in the quote overlay — on
+ * pages whose own H1 and schema said Calgary.
+ *
+ * Deriving the set from city-locations.ts instead means the directory that
+ * renders the links and the resolver that picks the city can no longer
+ * disagree: adding a Calgary neighbourhood there now routes it correctly here
+ * with no second edit. Entries are stored as bare slugs so both URL forms
+ * (/locations/<slug> and /cleaning-services-<slug>) resolve.
  */
-const CALGARY_REGION_SLUGS = [
-  "airdrie",
-  "okotoks",
-  "cochrane",
-  "chestermere",
-  "black-diamond",
-  "crossfield",
-  "high-river",
-  "langdon",
-  "strathmore",
-  "turner-valley",
-] as const;
+const CALGARY_SLUGS: ReadonlySet<string> = new Set(
+  [...calgarySurrounding, ...calgaryNeighborhoods].map((entry) =>
+    entry.to.replace(/^\/(?:locations|cleaning-services)[/-]?/, "").replace(/\/+$/, ""),
+  ),
+);
 
 /**
  * Blog posts are editorial, not a city landing page. `/blog/cleaning-services-calgary`
@@ -62,11 +70,9 @@ export function cityFromPath(pathname: string): City {
   // /cleaning-services-calgary, /move-out-cleaning-calgary, /locations/varsity-calgary…
   if (/(^|[/-])calgary($|[/-])/.test(path)) return "calgary";
 
-  // Calgary-region satellite towns, on either URL form.
+  // Calgary neighbourhoods and satellite towns, on either URL form.
   const slug = path.replace(/^\/(locations|cleaning-services)[/-]?/, "");
-  if (CALGARY_REGION_SLUGS.some((t) => slug === t || path.endsWith(`/${t}`) || path.endsWith(`-${t}`))) {
-    return "calgary";
-  }
+  if (CALGARY_SLUGS.has(slug)) return "calgary";
 
   return "edmonton";
 }

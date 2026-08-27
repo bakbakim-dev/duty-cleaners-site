@@ -233,7 +233,7 @@ export default function Navigation({ city }: NavigationProps) {
   const servicesItems: DropdownItem[] = [
     { to: canonicalForPath(`${cityPath}/services`), icon: Sparkles, title: "All Services", description: "Standard, deep & specialty cleaning" },
     { to: "/whats-included", icon: ClipboardList, title: "What's Included", description: "Room-by-room cleaning checklists" },
-    { to: canonicalForPath(`${cityPath}/move-in-move-out-cleaning`), icon: Truck, title: "Move In/Out Cleaning", description: "Get your deposit back, guaranteed" },
+    { to: canonicalForPath(`${cityPath}/move-in-move-out-cleaning`), icon: Truck, title: "Move In/Out Cleaning", description: "Cleaned to the standard landlords inspect for" },
     { to: canonicalForPath(`${cityPath}/post-construction-cleaning`), icon: HardHat, title: "Post-Construction", description: "Dust & debris removal after reno" },
     { to: canonicalForPath(`${cityPath}/wall-washing`), icon: Sparkles, title: "Wall Washing", description: "Marks, scuffs and smoke off painted walls" },
     { to: canonicalForPath(`${cityPath}/airbnb-cleaning`), icon: KeyRound, title: "Airbnb Turnovers", description: "Same-day changeovers between guests" },

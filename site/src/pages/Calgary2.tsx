@@ -190,7 +190,7 @@ export default function Calgary2() {
     answer: "Yes, subject to availability! Our Calgary cleaning crews understand that life gets busy. Call us and we'll do our best to accommodate same-day or next-day requests."
   }, {
     question: "What cleaning products do you use?",
-    answer: "We use non-toxic cleaning products that are safe for children, pets, and the environment. We can also accommodate specific product requests."
+    answer: "We bring all cleaning supplies and equipment, and we can use specific products you prefer — just tell us when you book."
   }];
   // Schema must mirror the FAQs actually rendered on the page.
   const faqSchema = {

@@ -41,6 +41,10 @@ const deepPricing = deepCleanTierRows();
 
 const moveInOutPricing = moveInOutTierRows();
 
+/** "$155 to $305" — derived, so the prose summary can never contradict the tables. */
+const priceSpan = (rows: { price: string }[]) =>
+  `${rows[0].price} to ${rows[rows.length - 1].price}`;
+
 const standardIncludes = [
   "Dust & clean all surfaces",
   "Vacuum carpets",
@@ -156,6 +160,19 @@ export default function CalgaryPricing() {
             </p>
             <p className="text-lg text-white/90 mb-10">
               If a flat rate doesn’t suit your job or your budget, we’ll quote you hourly instead — and tell you which option costs you less. Condition, pets and add-ons can change the final number.
+            </p>
+
+            {/* Plain-text summary of all three services. The tables further down
+                live in tab panels, and an inactive panel is display:none — so a
+                reader that extracts rendered text (most AI assistants do) saw
+                Standard pricing only and missed deep and move-out entirely.
+                Every figure is derived, never typed. */}
+            <p className="text-lg text-white/90 mb-10">
+              In Calgary, a standard clean runs {priceSpan(standardPricing)} depending on home
+              size, a deep clean {priceSpan(deepPricing)}, and a move-in or move-out clean{" "}
+              {priceSpan(moveInOutPricing)}. All figures are flat rates in Canadian dollars before
+              5% GST. Recurring visits save 20% weekly, 15% bi-weekly and 10% monthly from the
+              second clean.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4 mb-10">

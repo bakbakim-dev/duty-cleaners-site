@@ -214,7 +214,12 @@ export default function Reviews() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 max-w-4xl mx-auto">
             <StatCard icon={Star} value="5★" label="Five-Star Rated" />
             <StatCard icon={ThumbsUp} value="5,000+" label="Homes Cleaned" />
-            <StatCard icon={Award} value="100%" label="Satisfaction Rate" />
+            {/* Was value="100%" label="Satisfaction Rate". A "rate" reads as a measured
+            outcome, and nothing measures it -- proof.ts has rebookRate: null. It also
+            sat directly above "4.9 out of 5" on this page, which refutes it: a 4.9 mean
+            necessarily includes customers who rated below five. This states the promise
+            the company actually honours instead. */}
+            <StatCard icon={Award} value="24-Hour" label="Make-It-Right Guarantee" />
             <StatCard icon={Heart} value="2017" label="Serving Alberta Since" />
           </div>
         </div>
