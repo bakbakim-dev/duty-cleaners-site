@@ -229,7 +229,7 @@ export default function Footer() {
               <div>
                 <Link to="/cleaning-services-calgary" className="group flex min-h-12 items-center gap-2 font-semibold transition-colors hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"><MapPin className="h-4 w-4 text-brand-gold" aria-hidden="true" /><span>Calgary Office</span></Link>
                 <a href="tel:4037681341" className="flex min-h-12 items-center gap-2 text-sm text-brand-navy-foreground/85 transition-colors hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"><Phone className="h-4 w-4" aria-hidden="true" />(403) 768-1341</a>
-                <p className="text-sm leading-6 text-brand-navy-foreground/85">2835 37 Street SW #24<br />Calgary, Alberta</p>
+                <p className="text-sm leading-6 text-brand-navy-foreground/85">2835 37 Street SW #24<br />Calgary, AB T3E 3B3</p>
               </div>
               <div className="border-t border-brand-navy-foreground/15 pt-5">
                 <div className="flex min-h-12 items-center gap-2 font-semibold"><Clock className="h-4 w-4 text-brand-gold" aria-hidden="true" /><span>Hours</span></div>

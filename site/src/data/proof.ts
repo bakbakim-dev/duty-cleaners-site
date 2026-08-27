@@ -11,6 +11,17 @@ export interface CityProof {
   phone: string;
   phoneLink: string;
   address: string;
+  /**
+   * Structured NAP parts, for schema. An AuditSpur build audit found 175 pages
+   * shipping a LocalBusiness node with NO address at all — the provider nodes
+   * in pricing-schema.ts and ServiceDetailPage.tsx each hand-built their own
+   * entity and none carried one. Schema reads these parts; display strings
+   * above stay as they are. Postal sources: Edmonton from this site's own
+   * footer; Calgary from the live dutycleaners.ca footer (captured 2026-08-25,
+   * AuditSpur scan 422), since no file in this repo declared it.
+   */
+  streetAddress: string;
+  postalCode: string;
   /** TODO-OWNER: real Google rating (e.g. 4.8). */
   googleRating: number | null;
   /** TODO-OWNER: real Google review count. */
@@ -23,6 +34,8 @@ export const CITY_PROOF: Record<"edmonton" | "calgary", CityProof> = {
     phone: "(780) 913-6565",
     phoneLink: "tel:7809136565",
     address: "18615 71 Ave NW, Edmonton, AB",
+    streetAddress: "18615 71 Ave NW",
+    postalCode: "T5T 2V9",
     // Read from the live Google Reviews widget embedded on the legacy site's
     // /reviews/ page (dutycleaners.ca), captured 2026-08-24. Reconfirm before
     // launch in case the count has moved since.
@@ -34,6 +47,8 @@ export const CITY_PROOF: Record<"edmonton" | "calgary", CityProof> = {
     phone: "(403) 768-1341",
     phoneLink: "tel:4037681341",
     address: "2835 37 Street SW #24, Calgary, AB",
+    streetAddress: "2835 37 Street SW #24",
+    postalCode: "T3E 3B3",
     googleRating: null, // TODO-OWNER
     googleReviewCount: null, // TODO-OWNER
   },
@@ -141,3 +156,22 @@ export const CLEANER_JOB_POSTING: {
   employmentType: "PART_TIME",
 };
 
+
+/**
+ * The city's PostalAddress node for JSON-LD, from the same source of truth the
+ * display strings use. Every LocalBusiness/provider node on the site must call
+ * this rather than hand-building an entity: an AuditSpur build audit found 175
+ * pages whose LocalBusiness carried no address because three emitters each
+ * built their own.
+ */
+export const schemaAddressFor = (city: "edmonton" | "calgary") => {
+  const p = CITY_PROOF[city];
+  return {
+    "@type": "PostalAddress",
+    streetAddress: p.streetAddress,
+    addressLocality: p.city,
+    addressRegion: "AB",
+    postalCode: p.postalCode,
+    addressCountry: "CA",
+  } as const;
+};

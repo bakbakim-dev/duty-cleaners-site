@@ -20,7 +20,7 @@ import { canonicalForPath } from "@/data/legacy-urls";
 import { submitQuote } from "@/lib/quote-submit";
 import { toast } from "sonner";
 import { z } from "zod";
-import { CITY_PROOF, SUPPORT_EMAIL } from "@/data/proof";
+import { CITY_PROOF, SUPPORT_EMAIL, schemaAddressFor } from "@/data/proof";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
@@ -286,13 +286,11 @@ export default function Contact() {
                 url: "https://dutycleaners.ca/contact-us/",
                 telephone: office.phoneLink.replace("tel:", "+1-"),
                 email: SUPPORT_EMAIL,
-                address: {
-                  "@type": "PostalAddress",
-                  streetAddress: office.address.split(",")[0].trim(),
-                  addressLocality: office.city,
-                  addressRegion: "AB",
-                  addressCountry: "CA",
-                },
+                // One authority (data/proof.ts) — the split-on-comma inline
+                // version carried no postalCode.
+                address: schemaAddressFor(
+                  office.city.toLowerCase() as "edmonton" | "calgary",
+                ),
                 areaServed: { "@type": "City", name: office.city },
                 openingHoursSpecification: [
                   {

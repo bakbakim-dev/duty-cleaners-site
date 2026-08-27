@@ -4,6 +4,7 @@
 
 import { getListing } from "@/lib/google-listings";
 import { withTrailingSlash } from "@/data/legacy-urls";
+import { schemaAddressFor } from "@/data/proof";
 
 
 export interface LocationSchemaInput {
@@ -51,12 +52,11 @@ export function buildLocationSchema(input: LocationSchemaInput) {
     url: toCanonicalUrl(input.url),
     telephone: contact.telephone,
     email: "support@dutycleaners.ca",
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: contact.locality,
-      addressRegion: "AB",
-      addressCountry: "CA",
-    },
+    // Full branch address from the one authority (data/proof.ts). The old
+    // inline literal carried locality/region/country only — no street, no
+    // postal — which is a LocalBusiness that can't be matched to its GBP
+    // listing or its citations.
+    address: schemaAddressFor(input.city),
     areaServed: {
       "@type": "Place",
       name: input.areaServed ?? `${contact.locality}, AB`,

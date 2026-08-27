@@ -1,4 +1,5 @@
 import { canonicalForPath, canonicalUrlForPath } from "@/data/legacy-urls";
+import { schemaAddressFor } from "@/data/proof";
 import { useState, useEffect, type ReactNode } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
@@ -161,6 +162,10 @@ const ServiceDetailPage = ({
       name: `Duty Cleaners ${cityName}`,
       telephone: phone,
       url: `https://dutycleaners.ca${quoteBase}`,
+      // One authority for the entity's address (data/proof.ts). This provider
+      // node used to carry none — on every service×city page, ~165 of the 175
+      // address-less LocalBusiness nodes an AuditSpur build audit found.
+      address: schemaAddressFor(city),
     },
     areaServed: { "@type": "City", name: `${cityName}, AB` },
     ...(pricingBySize && pricingBySize.length > 0

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { CALGARY_REVIEWS } from "@/data/reviews";
+import { schemaAddressFor } from "@/data/proof";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -152,13 +153,10 @@ export default function Calgary2() {
     logo: "https://dutycleaners.ca/logo.png",
     telephone: "+1-403-768-1341",
     email: "support@dutycleaners.ca",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "2835 37 Street SW #24",
-      addressLocality: "Calgary",
-      addressRegion: "AB",
-      addressCountry: "CA"
-    },
+    // One authority for the entity's address (data/proof.ts) — this inline
+    // block was one of two stragglers still missing postalCode after the
+    // provider-node sweep.
+    address: schemaAddressFor("calgary"),
     url: "https://dutycleaners.ca/cleaning-services-calgary/",
     hasMap: "https://www.google.com/maps?cid=6193344199307583189",
     sameAs: ["https://www.google.com/maps?cid=6193344199307583189"],

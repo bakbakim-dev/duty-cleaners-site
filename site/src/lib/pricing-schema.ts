@@ -1,3 +1,5 @@
+import { schemaAddressFor } from "@/data/proof";
+
 interface PriceRow {
   beds: string;
   price: string;
@@ -54,6 +56,9 @@ export function buildPricingSchema({ city, standard, deep, moveInOut }: PricingS
       name: `Duty Cleaners ${meta.locality}`,
       telephone: meta.telephone,
       url: meta.url,
+      // One authority for the entity's address (data/proof.ts). This provider
+      // node used to carry none at all — on every pricing page.
+      address: schemaAddressFor(city),
     },
     areaServed: { "@type": "City", name: `${meta.locality}, AB` },
     hasOfferCatalog: {
