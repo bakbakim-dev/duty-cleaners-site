@@ -11,7 +11,7 @@ import {
   Home, Sparkles, Truck, SprayCan, Bath, UtensilsCrossed,
   Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail
 } from "lucide-react";
-import devonLandmark from "@/assets/gallery/devon-landmark.jpg";
+import devonLandmark from "@/assets/gallery/devon-landmark.webp";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CoverageChips from "@/components/CoverageChips";
 
@@ -169,7 +169,8 @@ export default function Devon() {
                 src={devonLandmark}
                 alt="Devon River Valley Trail along the North Saskatchewan River in Devon, Alberta"
                 className="rounded-2xl shadow-2xl w-full h-auto object-cover"
-              loading="lazy" decoding="async" />
+              loading="eager"
+                  {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
             </div>
           </div>
         </div>

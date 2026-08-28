@@ -11,11 +11,11 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 
-import heroImage from "@/assets/blog/cleaning-frequency-hero.jpg";
-import familyImage from "@/assets/blog/family-household.jpg";
-import petsImage from "@/assets/blog/pets-home.jpg";
-import professionalImage from "@/assets/blog/professional-cleaning.jpg";
-import calendarImage from "@/assets/blog/cleaning-calendar.jpg";
+import heroImage from "@/assets/blog/cleaning-frequency-hero.webp";
+import familyImage from "@/assets/blog/family-household.webp";
+import petsImage from "@/assets/blog/pets-home.webp";
+import professionalImage from "@/assets/blog/professional-cleaning.webp";
+import calendarImage from "@/assets/blog/cleaning-calendar.webp";
 
 const factors = [
   {

@@ -12,7 +12,7 @@ import {
   Home, Sparkles, Truck, SprayCan, Bath, Building2,
   Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail
 } from "lucide-react";
-import cleanHomeImg from "@/assets/gallery/neighborhoods/wildwood.jpg";
+import cleanHomeImg from "@/assets/gallery/neighborhoods/wildwood.webp";
 import { buildLocationSchema } from "@/lib/location-schema";
 import CoverageChips from "@/components/CoverageChips";
 

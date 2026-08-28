@@ -25,7 +25,7 @@ import {
 } from "@/data/pricing";
 import { addOnTableRows } from "@/data/addon-table";
 
-import heroPricingCleaner from "@/assets/hero-edmonton-pricing-cleaner.jpg";
+import heroPricingCleaner from "@/assets/hero-edmonton-pricing-cleaner.webp";
 import {
   CheckCircle2, Phone, Calculator, Sparkles, Shield, Clock,
   Star, BadgeCheck, Home, Ruler, Bath, Wrench, CalendarClock,

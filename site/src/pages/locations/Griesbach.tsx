@@ -13,7 +13,7 @@ import {
   Home, Sparkles, Truck, SprayCan, Bath, UtensilsCrossed,
   Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail, TreePine
 } from "lucide-react";
-import griesbachLandmark from "@/assets/gallery/griesbach-landmark.jpg";
+import griesbachLandmark from "@/assets/gallery/griesbach-landmark.webp";
 import HonestReviewLink from "@/components/HonestReviewLink";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
@@ -184,7 +184,8 @@ export default function Griesbach() {
                   src={griesbachLandmark}
                   alt="Patricia Lake in Griesbach, Edmonton"
                   className="rounded-2xl shadow-2xl w-full object-cover"
-                loading="lazy" decoding="async" />
+                loading="eager"
+                  {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
               </div>
             </div>
           </div>

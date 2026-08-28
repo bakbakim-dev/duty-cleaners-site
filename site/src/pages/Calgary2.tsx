@@ -25,7 +25,7 @@ import CityPricingTable from "@/components/CityPricingTable";
 import StatBand from "@/components/StatBand";
 import NeighborhoodMarquee from "@/components/NeighborhoodMarquee";
 import CostGuides from "@/components/CostGuides";
-import judgmentRoom from "@/assets/hero-faq-living-room.jpg";
+import judgmentRoom from "@/assets/hero-faq-living-room.webp";
 import DirectContactPanel from "@/components/DirectContactPanel";
 import { Button } from "@/components/ui/button";
 import { Phone, Calculator, CheckCircle2, Sparkles, Home, HardHat, Star, Shield, Clock, MapPin, Award, Users, TrendingUp, Bed, Bath, Sofa, ChefHat, ChevronDown, ChevronUp, LucideIcon, Zap, ThumbsUp, Leaf, DollarSign, Truck, Calendar, MessageSquare, ExternalLink, Play, Heart, KeyRound, ArrowRight, BadgeCheck, CalendarCheck } from "lucide-react";
@@ -35,17 +35,17 @@ import GetInTouch from "@/components/GetInTouch";
 import { quoteCtaLabel, useQuoteProgress } from "@/lib/quote-progress";
 import { Suspense, lazy } from "react";
 const CalgaryServiceAreaMap = lazy(() => import("@/components/CalgaryServiceAreaMap"));
-import calgaryHeroRoom from "@/assets/hero-room-calgary.jpg";
+import calgaryHeroRoom from "@/assets/hero-room-calgary.webp";
 
 import galleryOvenBA from "@/assets/gallery/calgary-oven-ba.webp";
-import galleryKitchenBA from "@/assets/gallery/calgary-kitchen-ba.jpg";
+import galleryKitchenBA from "@/assets/gallery/calgary-kitchen-ba.webp";
 import galleryCalgaryOvenBA from "@/assets/gallery/calgary-oven-ba.webp";
-import galleryHappyPlace from "@/assets/gallery/calgary-happy-place.jpg";
-import galleryCalgaryMoveOut from "@/assets/gallery/calgary-move-out-clean.jpg";
-import galleryCalgaryWindow from "@/assets/gallery/calgary-window-cleaning.jpg";
-import gallerySpotlessKitchen from "@/assets/gallery/calgary-spotless-kitchen.jpg";
-import galleryBathroomDeep from "@/assets/gallery/calgary-bathroom-deep.jpg";
-import galleryToiletBA from "@/assets/gallery/calgary-toilet-ba.jpg";
+import galleryHappyPlace from "@/assets/gallery/calgary-happy-place.webp";
+import galleryCalgaryMoveOut from "@/assets/gallery/calgary-move-out-clean.webp";
+import galleryCalgaryWindow from "@/assets/gallery/calgary-window-cleaning.webp";
+import gallerySpotlessKitchen from "@/assets/gallery/calgary-spotless-kitchen.webp";
+import galleryBathroomDeep from "@/assets/gallery/calgary-bathroom-deep.webp";
+import galleryToiletBA from "@/assets/gallery/calgary-toilet-ba.webp";
 
 // Counter card for room counts
 const CounterCard = ({

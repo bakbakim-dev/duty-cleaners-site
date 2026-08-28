@@ -4,7 +4,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Heart, Shield, Users, Award, Clock, Sparkles, Phone, MapPin, DollarSign, Star, MessageSquare } from "lucide-react";
 import { Link } from "react-router-dom";
-import heroCleaningLadies from "@/assets/hero-cleaning-ladies.jpg";
+import heroCleaningLadies from "@/assets/hero-cleaning-ladies.webp";
 import DutyCleanPromise from "@/components/DutyCleanPromise";
 import { Helmet } from "react-helmet-async";
 export default function AboutUs() {

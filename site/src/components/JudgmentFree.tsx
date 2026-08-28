@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 import { quoteHrefFor } from "@/lib/quote-link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import defaultRoom from "@/assets/gallery/living-room-clean.jpg";
+import defaultRoom from "@/assets/gallery/living-room-clean.webp";
 
 interface JudgmentFreeProps {
   /** Calm wide room behind the pull-quote; pick one not already on the page. */

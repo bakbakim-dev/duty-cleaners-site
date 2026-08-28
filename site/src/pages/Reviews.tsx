@@ -1,4 +1,4 @@
-import heroReviews from "@/assets/hero-reviews-testimonials.jpg";
+import heroReviews from "@/assets/hero-reviews-testimonials.webp";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";

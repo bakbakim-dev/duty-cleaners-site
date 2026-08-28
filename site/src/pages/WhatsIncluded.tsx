@@ -2,7 +2,7 @@ import Navigation from "@/components/Navigation";
 import { NOT_INCLUDED } from "@/data/policy";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import heroBg from "@/assets/whats-included-hero.jpg";
+import heroBg from "@/assets/whats-included-hero.webp";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";

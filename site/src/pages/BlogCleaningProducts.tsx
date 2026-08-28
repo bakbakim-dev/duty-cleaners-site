@@ -8,10 +8,10 @@ import { Calendar, Clock, ArrowLeft, CheckCircle2, XCircle, AlertTriangle, Shopp
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-import heroImage from "@/assets/hero-blog-cleaning-supplies.jpg";
-import flatlayImage from "@/assets/cleaning-equipment-flatlay.jpg";
-import kitchenImage from "@/assets/blog/deep-cleaning-kitchen.jpg";
-import bathroomImage from "@/assets/blog/bathroom-cleaning.jpg";
+import heroImage from "@/assets/hero-blog-cleaning-supplies.webp";
+import flatlayImage from "@/assets/cleaning-equipment-flatlay.webp";
+import kitchenImage from "@/assets/blog/deep-cleaning-kitchen.webp";
+import bathroomImage from "@/assets/blog/bathroom-cleaning.webp";
 
 /**
  * Replaces the old WordPress post "/8081/the-top-5-must-have-cleaning-products-

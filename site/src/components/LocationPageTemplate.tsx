@@ -3,7 +3,7 @@ import { standardTierRows, deepCleanTierRows, moveInOutTierRows, addOnFromPrice,
 import { TRAVEL_FEE_KEY } from "@/data/addon-table";
 import { useEffect } from "react";
 import Navigation from "@/components/Navigation";
-import heroFamilyBedroom from "@/assets/hero-family-bedroom.jpg";
+import heroFamilyBedroom from "@/assets/hero-family-bedroom.webp";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";

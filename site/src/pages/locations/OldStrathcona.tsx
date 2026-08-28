@@ -11,7 +11,7 @@ import {
   Home, Sparkles, Truck, SprayCan, Bath, UtensilsCrossed,
   Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail
 } from "lucide-react";
-import oldStrathconaCleanerImg from "@/assets/gallery/old-strathcona-cleaner-home.jpg";
+import oldStrathconaCleanerImg from "@/assets/gallery/old-strathcona-cleaner-home.webp";
 import { buildLocationSchema } from "@/lib/location-schema";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CoverageChips from "@/components/CoverageChips";
@@ -175,7 +175,8 @@ export default function OldStrathcona() {
                   src={oldStrathconaCleanerImg}
                   alt="Professional cleaner tidying a stylish loft-style home in Old Strathcona, Edmonton"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
-                loading="lazy" decoding="async" />
+                loading="eager"
+                  {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
               </div>
             </div>
           </div>

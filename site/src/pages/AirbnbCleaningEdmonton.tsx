@@ -34,20 +34,20 @@ import {
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import React from "react";
 
-import imgBedroom from "@/assets/hero-family-bedroom.jpg";
-import imgBathroom from "@/assets/gallery/bathroom-clean.jpg";
-import imgKitchen from "@/assets/gallery/kitchen-deep-clean.jpg";
-import imgLiving from "@/assets/gallery/living-room-clean.jpg";
-import imgLaundry from "@/assets/cleaning-equipment-flatlay.jpg";
-import imgEssentials from "@/assets/gallery/eco-products.jpg";
-import heroBg from "@/assets/airbnb/edmonton-hero-living.jpg";
+import imgBedroom from "@/assets/hero-family-bedroom.webp";
+import imgBathroom from "@/assets/gallery/bathroom-clean.webp";
+import imgKitchen from "@/assets/gallery/kitchen-deep-clean.webp";
+import imgLiving from "@/assets/gallery/living-room-clean.webp";
+import imgLaundry from "@/assets/cleaning-equipment-flatlay.webp";
+import imgEssentials from "@/assets/gallery/eco-products.webp";
+import heroBg from "@/assets/airbnb/edmonton-hero-living.webp";
 
-import gal1 from "@/assets/gallery/family-clean-home-edmonton.jpg";
-import gal2 from "@/assets/gallery/bathroom-clean.jpg";
-import gal3 from "@/assets/gallery/kitchen-deep-clean.jpg";
-import gal4 from "@/assets/gallery/living-room-clean.jpg";
-import gal5 from "@/assets/gallery/before-after.jpg";
-import gal6 from "@/assets/hero-family-bedroom.jpg";
+import gal1 from "@/assets/gallery/family-clean-home-edmonton.webp";
+import gal2 from "@/assets/gallery/bathroom-clean.webp";
+import gal3 from "@/assets/gallery/kitchen-deep-clean.webp";
+import gal4 from "@/assets/gallery/living-room-clean.webp";
+import gal5 from "@/assets/gallery/before-after.webp";
+import gal6 from "@/assets/hero-family-bedroom.webp";
 import { Helmet } from "react-helmet-async";
 import CityCrossLink from "@/components/CityCrossLink";
 import LocalMarketNote from "@/components/LocalMarketNote";

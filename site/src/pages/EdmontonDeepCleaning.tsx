@@ -2,7 +2,7 @@ import ServiceDetailPage from "@/components/ServiceDetailPage";
 import { deepCleanTierRows, featuredExtraRows } from "@/data/pricing";
 import { Accent, AccentGold } from "@/components/Accent";
 import { Sparkles, Bath, UtensilsCrossed, Layers } from "lucide-react";
-import heroImage from "@/assets/gallery/kitchen-deep-clean.jpg";
+import heroImage from "@/assets/gallery/kitchen-deep-clean.webp";
 
 // Published figures come from bk-config via pricing.ts. Hand-typing them
 // here is what let this page drift out of step with /pricing and with what

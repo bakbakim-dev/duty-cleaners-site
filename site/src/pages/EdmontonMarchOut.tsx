@@ -27,10 +27,10 @@ import {
 } from "@/components/ui/accordion";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
-import heroBg from "@/assets/gallery/move-out-clean.jpg";
-import imgKitchen from "@/assets/gallery/kitchen-deep-clean.jpg";
-import imgBathroom from "@/assets/gallery/bathroom-clean.jpg";
-import imgWalls from "@/assets/gallery/clean-walls-edmonton.jpg";
+import heroBg from "@/assets/gallery/move-out-clean.webp";
+import imgKitchen from "@/assets/gallery/kitchen-deep-clean.webp";
+import imgBathroom from "@/assets/gallery/bathroom-clean.webp";
+import imgWalls from "@/assets/gallery/clean-walls-edmonton.webp";
 
 const PHONE_DISPLAY = "(780) 913-6565";
 const PHONE_TEL = "tel:7809136565";
@@ -269,20 +269,20 @@ export default function EdmontonMarchOut() {
               </p>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <img
+              <img width={1024} height={1024}
                 src={imgKitchen}
                 alt="Kitchen appliances deep cleaned for an Edmonton march-out inspection"
                 loading="lazy"
                 className="rounded-2xl object-cover w-full h-full aspect-[4/5]"
               />
               <div className="grid gap-4">
-                <img
+                <img width={1024} height={1024}
                   src={imgBathroom}
                   alt="Bathroom sanitized to march-out standards in Edmonton"
                   loading="lazy"
                   className="rounded-2xl object-cover w-full aspect-square"
                 />
-                <img
+                <img width={768} height={1024}
                   src={imgWalls}
                   alt="Washed walls in an Edmonton military housing unit"
                   loading="lazy"

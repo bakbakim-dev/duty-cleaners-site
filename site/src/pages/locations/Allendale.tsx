@@ -12,7 +12,7 @@ import {
   Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail
 } from "lucide-react";
 import { Suspense, lazy } from "react";
-import allendaleCleanerImg from "@/assets/gallery/allendale-cleaner-dining-room.jpg";
+import allendaleCleanerImg from "@/assets/gallery/allendale-cleaner-dining-room.webp";
 
 const AllendaleMap = lazy(() => import("@/components/AllendaleMap"));
 import {
@@ -180,7 +180,8 @@ export default function Allendale() {
                   src={allendaleCleanerImg}
                   alt="Professional cleaner cleaning a dining room in Allendale, Edmonton"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
-                loading="lazy" decoding="async" />
+                loading="eager"
+                  {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
               </div>
             </div>
           </div>

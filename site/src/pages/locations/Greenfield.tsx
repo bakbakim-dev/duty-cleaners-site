@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { Phone } from "lucide-react";
 import HonestReviewLink from "@/components/HonestReviewLink";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import greenfieldCleanHome from "@/assets/gallery/family-clean-home-edmonton.jpg";
+import greenfieldCleanHome from "@/assets/gallery/family-clean-home-edmonton.webp";
 
 const LocationMap = lazy(() => import("@/components/LocationMap"));
 
@@ -187,7 +187,7 @@ export default function Greenfield() {
                 We stand behind the quality of our staff. If you're not 100% satisfied with your cleaning, we'll come back and re-clean it at no additional charge, as long as we’re informed within 24 hours after the cleaning.
               </p>
               <Button variant="link" asChild>
-                <Link to="/satisfaction-guarantee">Learn More</Link>
+                <Link to="/satisfaction-guarantee">Read the Satisfaction Guarantee</Link>
               </Button>
             </div>
           </div>

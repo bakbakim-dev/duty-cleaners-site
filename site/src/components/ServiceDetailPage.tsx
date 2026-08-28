@@ -314,7 +314,7 @@ const ServiceDetailPage = ({
                 <img
                   src={heroImage}
                   alt={heroImageAlt ?? ""}
-                  className="w-full max-h-[500px] object-cover rounded-2xl shadow-2xl border-4 border-white/10"
+                  className="w-full h-[500px] object-cover rounded-2xl shadow-2xl border-4 border-white/10"
                 />
               </div>
             )}

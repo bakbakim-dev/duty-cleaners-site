@@ -11,9 +11,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, Calendar, Clock, Phone, CheckCircle2, Users, Shield, Star, Settings, MessageSquare, DollarSign } from "lucide-react";
 import { Link } from "react-router-dom";
 
-import heroImage from "@/assets/blog/choosing-cleaning-company-hero.jpg";
-import credentialsImage from "@/assets/blog/cleaning-credentials.jpg";
-import reviewsImage from "@/assets/blog/reading-reviews.jpg";
+import heroImage from "@/assets/blog/choosing-cleaning-company-hero.webp";
+import credentialsImage from "@/assets/blog/cleaning-credentials.webp";
+import reviewsImage from "@/assets/blog/reading-reviews.webp";
 
 const keyFactors = [
   {

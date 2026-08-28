@@ -52,9 +52,31 @@
         "sameAs": [
           "https://www.google.com/maps?cid=8192121191672692049",
           "https://www.google.com/maps?cid=6193344199307583189"
-        ]
+        ],
+        "potentialAction": {
+          "@type": "ReserveAction",
+          "name": "Get an instant house-cleaning price and book online",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://dutycleaners.ca/?quote#quote",
+            "actionPlatform": [
+              "https://schema.org/DesktopWebPlatform",
+              "https://schema.org/MobileWebPlatform"
+            ]
+          },
+          "result": { "@type": "Reservation", "name": "House cleaning appointment" }
+        }
       }
     </script>
+    <!-- potentialAction: the machine-readable entry point for starting a
+         booking. Google only consumes ReserveAction through partner programs,
+         but AI agents parsing the entity graph (Phase 5B of the audit) get a
+         declared, stable URL for "begin a reservation" instead of having to
+         infer it from CTA buttons — the schema-first half of agentic
+         readiness. The funnel itself is client-side; the fallback for non-JS
+         agents remains the prose pricing + tel: links, which are prerendered
+         on every page. -->
+
   </head>
 
   <body>

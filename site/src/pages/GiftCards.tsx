@@ -10,7 +10,7 @@ import HowItWorksStep from "@/components/gift-cards/HowItWorksStep";
 import InfoCard from "@/components/gift-cards/InfoCard";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-import giftCardsHero from "@/assets/gift-cards-hero.jpg";
+import giftCardsHero from "@/assets/gift-cards-hero.webp";
 import {
   Gift, Heart, PartyPopper, Sparkles, Clock, CreditCard,
   Send, Shield, Snowflake, Award, HeartHandshake, Home,

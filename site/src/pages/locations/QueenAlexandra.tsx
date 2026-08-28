@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Phone } from "lucide-react";
 import HonestReviewLink from "@/components/HonestReviewLink";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import strathconaCleanHome from "@/assets/gallery/old-strathcona-cleaner-home.jpg";
+import strathconaCleanHome from "@/assets/gallery/old-strathcona-cleaner-home.webp";
 
 const LocationMap = lazy(() => import("@/components/LocationMap"));
 

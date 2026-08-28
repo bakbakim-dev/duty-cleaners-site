@@ -13,14 +13,14 @@ import { canonicalUrlForPath } from "@/data/legacy-urls";
 import { modifiedFor } from "@/data/post-dates";
 import { ORG_ID } from "@/data/proof";
 
-import cleaningScheduleHero from "@/assets/blog/cleaning-schedule-hero.jpg";
-import cleaningFrequencyHero from "@/assets/blog/cleaning-frequency-hero.jpg";
-import vinegarBakingSodaHero from "@/assets/blog/vinegar-baking-soda-hero.jpg";
-import houseCleaningCostHero from "@/assets/blog/house-cleaning-cost-hero.jpg";
-import choosingCleaningCompanyHero from "@/assets/blog/choosing-cleaning-company-hero.jpg";
-import heroBlogSupplies from "@/assets/hero-blog-cleaning-supplies.jpg";
-import cleaningProductsHero from "@/assets/hero-blog-cleaning-supplies.jpg";
-import spotlessHomeTipsHero from "@/assets/blog/family-household.jpg";
+import cleaningScheduleHero from "@/assets/blog/cleaning-schedule-hero.webp";
+import cleaningFrequencyHero from "@/assets/blog/cleaning-frequency-hero.webp";
+import vinegarBakingSodaHero from "@/assets/blog/vinegar-baking-soda-hero.webp";
+import houseCleaningCostHero from "@/assets/blog/house-cleaning-cost-hero.webp";
+import choosingCleaningCompanyHero from "@/assets/blog/choosing-cleaning-company-hero.webp";
+import heroBlogSupplies from "@/assets/hero-blog-cleaning-supplies.webp";
+import cleaningProductsHero from "@/assets/hero-blog-cleaning-supplies.webp";
+import spotlessHomeTipsHero from "@/assets/blog/family-household.webp";
 import calgaryCleanerHero from "@/assets/hero-calgary-skyline.webp";
 
 interface BlogPost {

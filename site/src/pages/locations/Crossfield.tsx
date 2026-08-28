@@ -11,7 +11,7 @@ import {
   Home, Sparkles, Truck, SprayCan, Bath, UtensilsCrossed,
   Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail, Building2
 } from "lucide-react";
-import crossfieldImg from "@/assets/gallery/crossfield-clean-home.jpg";
+import crossfieldImg from "@/assets/gallery/crossfield-clean-home.webp";
 import { buildLocationSchema } from "@/lib/location-schema";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CoverageChips from "@/components/CoverageChips";
@@ -181,7 +181,8 @@ export default function Crossfield() {
                   src={crossfieldImg}
                   alt="Clean modern home interior in Crossfield, Alberta — bright and inviting living space"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
-                loading="lazy" decoding="async" />
+                loading="eager"
+                  {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
               </div>
             </div>
           </div>

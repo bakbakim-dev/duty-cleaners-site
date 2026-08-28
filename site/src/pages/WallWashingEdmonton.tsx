@@ -14,13 +14,13 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-import cleanWallsPhoto from "@/assets/gallery/clean-walls-edmonton.jpg";
-import wallStainRemoval from "@/assets/wall-washing/wall-stain-removal.jpg";
-import hallwayClean from "@/assets/wall-washing/hallway-clean.jpg";
-import livingRoomWalls from "@/assets/wall-washing/living-room-walls.jpg";
-import kitchenGrease from "@/assets/wall-washing/kitchen-grease.jpg";
-import dirtyWallBefore from "@/assets/wall-washing/dirty-wall-before.jpg";
-import stainCloseup from "@/assets/wall-washing/stain-closeup.jpg";
+import cleanWallsPhoto from "@/assets/gallery/clean-walls-edmonton.webp";
+import wallStainRemoval from "@/assets/wall-washing/wall-stain-removal.webp";
+import hallwayClean from "@/assets/wall-washing/hallway-clean.webp";
+import livingRoomWalls from "@/assets/wall-washing/living-room-walls.webp";
+import kitchenGrease from "@/assets/wall-washing/kitchen-grease.webp";
+import dirtyWallBefore from "@/assets/wall-washing/dirty-wall-before.webp";
+import stainCloseup from "@/assets/wall-washing/stain-closeup.webp";
 import { Helmet } from "react-helmet-async";
 import CityCrossLink from "@/components/CityCrossLink";
 
@@ -434,7 +434,7 @@ export default function WallWashingEdmonton() {
                 We stand behind the quality of our staff. If you're not 100% satisfied with your cleaning, we'll come back and re-clean it at no additional charge, as long as we're informed within 24 hours after the cleaning.
               </p>
               <Link to="/about-us">
-                <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10">Learn More</Button>
+                <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10">About Duty Cleaners</Button>
               </Link>
             </div>
           </AnimatedSection>

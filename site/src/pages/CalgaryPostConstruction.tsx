@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-import calgaryPostConstructionBeforeAfter from "@/assets/gallery/calgary-post-construction-before-after.jpg";
+import calgaryPostConstructionBeforeAfter from "@/assets/gallery/calgary-post-construction-before-after.webp";
 import CityCrossLink from "@/components/CityCrossLink";
 
 const includedServices = [
@@ -338,7 +338,7 @@ export default function CalgaryPostConstruction() {
                   <a href="#contact-form">Get a Free Estimate</a>
                 </Button>
                 <Button asChild size="lg" className="bg-white/10 hover:bg-white/20 text-white border border-white/20">
-                  <a href="/about-us">Learn More</a>
+                  <a href="/about-us">About Duty Cleaners</a>
                 </Button>
               </div>
             </div>

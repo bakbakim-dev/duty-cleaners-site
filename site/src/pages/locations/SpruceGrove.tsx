@@ -11,7 +11,7 @@ import {
   Home, Sparkles, Truck, SprayCan, Bath, UtensilsCrossed,
   Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail
 } from "lucide-react";
-import spruceGroveFamilyHome from "@/assets/gallery/spruce-grove-family-home.jpg";
+import spruceGroveFamilyHome from "@/assets/gallery/spruce-grove-family-home.webp";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CoverageChips from "@/components/CoverageChips";
 
@@ -169,7 +169,8 @@ export default function SpruceGrove() {
                 src={spruceGroveFamilyHome}
                 alt="Happy family relaxing in a beautifully cleaned home in Spruce Grove, Alberta"
                 className="rounded-2xl shadow-2xl w-full h-auto object-cover"
-              loading="lazy" decoding="async" />
+              loading="eager"
+                  {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
             </div>
           </div>
         </div>

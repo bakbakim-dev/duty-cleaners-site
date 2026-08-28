@@ -17,7 +17,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import deltonCleanerImg from "@/assets/gallery/delton-cleaner-living-room.jpg";
+import deltonCleanerImg from "@/assets/gallery/delton-cleaner-living-room.webp";
 import { buildLocationSchema } from "@/lib/location-schema";
 import HonestReviewLink from "@/components/HonestReviewLink";
 import CoverageChips from "@/components/CoverageChips";

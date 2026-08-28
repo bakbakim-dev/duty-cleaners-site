@@ -12,7 +12,7 @@ import {
   Home, Sparkles, Truck, SprayCan, Bath, Building2,
   Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail
 } from "lucide-react";
-import featureImg from "@/assets/gallery/lakeview-clean-kitchen.jpg";
+import featureImg from "@/assets/gallery/lakeview-clean-kitchen.webp";
 import { buildLocationSchema } from "@/lib/location-schema";
 import CoverageChips from "@/components/CoverageChips";
 

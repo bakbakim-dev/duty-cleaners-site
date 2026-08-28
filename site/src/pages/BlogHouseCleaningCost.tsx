@@ -11,10 +11,10 @@ import { Calendar, Clock, ArrowLeft, DollarSign, Home, Users, Sparkles, Clock3, 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-import heroImage from "@/assets/blog/house-cleaning-cost-hero.jpg";
-import apartmentImage from "@/assets/blog/apartment-cleaning.jpg";
-import suppliesImage from "@/assets/blog/cleaning-supplies-cost.jpg";
-import deepCleanImage from "@/assets/blog/deep-cleaning-kitchen.jpg";
+import heroImage from "@/assets/blog/house-cleaning-cost-hero.webp";
+import apartmentImage from "@/assets/blog/apartment-cleaning.webp";
+import suppliesImage from "@/assets/blog/cleaning-supplies-cost.webp";
+import deepCleanImage from "@/assets/blog/deep-cleaning-kitchen.webp";
 
 const cleaningTypes = [
   {

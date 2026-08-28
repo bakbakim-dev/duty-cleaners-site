@@ -8,9 +8,9 @@ import { Calendar, Clock, ArrowLeft, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-import heroImage from "@/assets/blog/family-household.jpg";
-import bedroomImage from "@/assets/blog/daily-cleaning-bedroom.jpg";
-import floorImage from "@/assets/blog/weekly-cleaning-floor.jpg";
+import heroImage from "@/assets/blog/family-household.webp";
+import bedroomImage from "@/assets/blog/daily-cleaning-bedroom.webp";
+import floorImage from "@/assets/blog/weekly-cleaning-floor.webp";
 
 /**
  * Replaces the old WordPress post "/1948/house-cleaning-tips-for-a-spotless-

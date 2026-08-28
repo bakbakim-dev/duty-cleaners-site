@@ -11,7 +11,7 @@ import {
   Home, Sparkles, Truck, SprayCan, Bath, UtensilsCrossed,
   Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail
 } from "lucide-react";
-import fortSaskKitchen from "@/assets/gallery/fort-saskatchewan-kitchen-clean.jpg";
+import fortSaskKitchen from "@/assets/gallery/fort-saskatchewan-kitchen-clean.webp";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CoverageChips from "@/components/CoverageChips";
 
@@ -169,7 +169,8 @@ export default function FortSaskatchewan() {
                 src={fortSaskKitchen}
                 alt="Professional cleaner cleaning a kitchen appliance in a Fort Saskatchewan home"
                 className="rounded-2xl shadow-2xl w-full h-auto object-cover"
-              loading="lazy" decoding="async" />
+              loading="eager"
+                  {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
             </div>
           </div>
         </div>

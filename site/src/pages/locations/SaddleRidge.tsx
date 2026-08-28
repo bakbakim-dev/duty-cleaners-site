@@ -15,7 +15,7 @@ import {
 import { buildLocationSchema } from "@/lib/location-schema";
 import CoverageChips from "@/components/CoverageChips";
 import LocationPricing from "@/components/LocationPricing";
-import calgaryLivingRoom from "@/assets/gallery/calgary-living-room-clean.jpg";
+import calgaryLivingRoom from "@/assets/gallery/calgary-living-room-clean.webp";
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -166,7 +166,8 @@ export default function SaddleRidge() {
                   width={600}
                   height={400}
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
-                  loading="lazy" decoding="async" />
+                  loading="eager"
+                  {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
               </div>
             </div>
           </div>

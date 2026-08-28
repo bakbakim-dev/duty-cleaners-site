@@ -10,10 +10,10 @@ import { Calendar, Clock, ArrowLeft, CheckCircle2, XCircle, AlertTriangle } from
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-import heroImage from "@/assets/blog/vinegar-baking-soda-hero.jpg";
-import sinkImage from "@/assets/blog/cleaning-sink-baking-soda.jpg";
-import bathroomImage from "@/assets/blog/bathroom-faucet-cleaning.jpg";
-import laundryImage from "@/assets/blog/laundry-natural-cleaning.jpg";
+import heroImage from "@/assets/blog/vinegar-baking-soda-hero.webp";
+import sinkImage from "@/assets/blog/cleaning-sink-baking-soda.webp";
+import bathroomImage from "@/assets/blog/bathroom-faucet-cleaning.webp";
+import laundryImage from "@/assets/blog/laundry-natural-cleaning.webp";
 
 const whatToClean = [
   {

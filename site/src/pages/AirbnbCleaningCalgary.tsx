@@ -34,20 +34,20 @@ import {
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import React from "react";
 
-import imgBedroom from "@/assets/hero-family-bedroom.jpg";
-import imgBathroom from "@/assets/gallery/calgary-bathroom-clean.jpg";
-import imgKitchen from "@/assets/gallery/calgary-kitchen-clean.jpg";
-import imgLiving from "@/assets/gallery/calgary-living-room-clean.jpg";
-import imgLaundry from "@/assets/cleaning-equipment-flatlay.jpg";
-import imgEssentials from "@/assets/gallery/calgary-eco-products.jpg";
+import imgBedroom from "@/assets/hero-family-bedroom.webp";
+import imgBathroom from "@/assets/gallery/calgary-bathroom-clean.webp";
+import imgKitchen from "@/assets/gallery/calgary-kitchen-clean.webp";
+import imgLiving from "@/assets/gallery/calgary-living-room-clean.webp";
+import imgLaundry from "@/assets/cleaning-equipment-flatlay.webp";
+import imgEssentials from "@/assets/gallery/calgary-eco-products.webp";
 
-import heroBg from "@/assets/airbnb/calgary-hero-living.jpg";
-import gal1 from "@/assets/airbnb/turnover-living.jpg";
-import gal2 from "@/assets/airbnb/turnover-bedroom.jpg";
-import gal3 from "@/assets/airbnb/turnover-bathroom.jpg";
-import gal4 from "@/assets/airbnb/turnover-kitchen.jpg";
-import gal5 from "@/assets/airbnb/turnover-dining.jpg";
-import gal6 from "@/assets/airbnb/turnover-entry.jpg";
+import heroBg from "@/assets/airbnb/calgary-hero-living.webp";
+import gal1 from "@/assets/airbnb/turnover-living.webp";
+import gal2 from "@/assets/airbnb/turnover-bedroom.webp";
+import gal3 from "@/assets/airbnb/turnover-bathroom.webp";
+import gal4 from "@/assets/airbnb/turnover-kitchen.webp";
+import gal5 from "@/assets/airbnb/turnover-dining.webp";
+import gal6 from "@/assets/airbnb/turnover-entry.webp";
 import { Helmet } from "react-helmet-async";
 import CityCrossLink from "@/components/CityCrossLink";
 import LocalMarketNote from "@/components/LocalMarketNote";

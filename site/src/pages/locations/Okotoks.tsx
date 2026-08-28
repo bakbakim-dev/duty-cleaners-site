@@ -11,7 +11,7 @@ import {
   Home, Sparkles, Truck, SprayCan, Bath, Building2,
   Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail
 } from "lucide-react";
-import okotoksImg from "@/assets/gallery/okotoks-clean-home-kids.jpg";
+import okotoksImg from "@/assets/gallery/okotoks-clean-home-kids.webp";
 import { buildLocationSchema } from "@/lib/location-schema";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CoverageChips from "@/components/CoverageChips";
@@ -181,7 +181,8 @@ export default function Okotoks() {
                   src={okotoksImg}
                   alt="Happy children playing in a clean home in Okotoks, Alberta"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
-                loading="lazy" decoding="async" />
+                loading="eager"
+                  {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
               </div>
             </div>
           </div>

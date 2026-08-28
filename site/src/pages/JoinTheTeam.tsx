@@ -42,7 +42,7 @@ import {
 import { submitQuote } from "@/lib/quote-submit";
 import { toast } from "sonner";
 import { z } from "zod";
-import heroCleanersSmiling from "@/assets/hero-cleaners-smiling.jpg";
+import heroCleanersSmiling from "@/assets/hero-cleaners-smiling.webp";
 import { CITY_PROOF, CLEANER_JOB_POSTING } from "@/data/proof";
 
 const applicationSchema = z.object({

@@ -11,7 +11,7 @@ import {
   Home, Sparkles, Truck, SprayCan, Bath, UtensilsCrossed,
   Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail
 } from "lucide-react";
-import leducChildDog from "@/assets/gallery/leduc-child-dog-clean-home.jpg";
+import leducChildDog from "@/assets/gallery/leduc-child-dog-clean-home.webp";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CoverageChips from "@/components/CoverageChips";
 
@@ -169,7 +169,8 @@ export default function Leduc() {
                 src={leducChildDog}
                 alt="A child and dog playing together in a freshly cleaned home in Leduc, Alberta"
                 className="rounded-2xl shadow-2xl w-full h-auto object-cover"
-              loading="lazy" decoding="async" />
+              loading="eager"
+                  {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
             </div>
           </div>
         </div>

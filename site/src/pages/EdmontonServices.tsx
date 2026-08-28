@@ -27,7 +27,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import edmontonHero from "@/assets/edmonton-hero-cleaner.jpg";
+import edmontonHero from "@/assets/edmonton-hero-cleaner.webp";
 import { Helmet } from "react-helmet-async";
 import {
   deepCleanTierRows,
@@ -80,7 +80,7 @@ const services: Service[] = [
     ],
     price: STANDARD_FROM,
     link: "/edmonton/regular-cleaning",
-    linkText: "Learn More",
+    linkText: "See Standard Cleaning",
     icon: Home,
     badge: "Popular",
     accent: true
@@ -95,7 +95,7 @@ const services: Service[] = [
     ],
     price: from(RECURRING_FROM),
     link: "/edmonton/recurring-cleaning",
-    linkText: "Learn More",
+    linkText: "See Recurring Cleaning",
     icon: Repeat,
     accent: true
   },
@@ -110,7 +110,7 @@ const services: Service[] = [
     ],
     price: DEEP_FROM,
     link: "/edmonton/deep-cleaning",
-    linkText: "Learn More",
+    linkText: "See Deep Cleaning",
     icon: Sparkles,
     accent: true
   },
@@ -125,7 +125,7 @@ const services: Service[] = [
     ],
     price: MOVE_FROM,
     link: "/move-out-cleaning-edmonton",
-    linkText: "Learn More",
+    linkText: "See Move-In/Move-Out Cleaning",
     icon: Truck,
     accent: false
   },
@@ -140,7 +140,7 @@ const services: Service[] = [
     ],
     price: POST_FROM,
     link: "/post-construction-cleaning",
-    linkText: "Learn More",
+    linkText: "See Post-Construction Cleaning",
     icon: HardHat,
     accent: true
   },
@@ -155,7 +155,7 @@ const services: Service[] = [
     ],
     price: "Quoted by Phone",
     link: "/edmonton/march-out-cleaning",
-    linkText: "Learn More",
+    linkText: "See March Out Cleaning",
     icon: ShieldCheck,
     accent: false
   },
@@ -170,7 +170,7 @@ const services: Service[] = [
     ],
     price: "Custom Pricing",
     link: "/wall-washing-wall-cleaning",
-    linkText: "Learn More",
+    linkText: "See Wall Washing & Cleaning",
     icon: PaintRoller,
     accent: false
   },
@@ -185,7 +185,7 @@ const services: Service[] = [
     ],
     price: "Hourly Cleaning",
     link: "/edmonton/airbnb-cleaning",
-    linkText: "Learn More",
+    linkText: "See Airbnb Cleaning Service",
     icon: BedDouble,
     accent: true
   },
@@ -200,7 +200,7 @@ const services: Service[] = [
     ],
     price: "Custom Pricing",
     link: "/commercial-cleaning",
-    linkText: "Learn More",
+    linkText: "See Commercial Cleaning",
     icon: Briefcase,
     badge: "Professional Service",
     accent: true

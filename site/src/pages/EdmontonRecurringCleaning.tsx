@@ -2,10 +2,10 @@ import ServiceDetailPage from "@/components/ServiceDetailPage";
 import { standardTierRows, featuredExtraRows } from "@/data/pricing";
 import { Accent, AccentGold } from "@/components/Accent";
 import { Home, Bath, UtensilsCrossed } from "lucide-react";
-import heroImage from "@/assets/gallery/family-clean-home-edmonton.jpg";
-import kitchenImage from "@/assets/gallery/summerside-cleaner-home.jpg";
-import livingRoomImage from "@/assets/gallery/glenora-cleaner-living-room.jpg";
-import cleanerImage from "@/assets/gallery/westmount-cleaner-kitchen.jpg";
+import heroImage from "@/assets/gallery/family-clean-home-edmonton.webp";
+import kitchenImage from "@/assets/gallery/summerside-cleaner-home.webp";
+import livingRoomImage from "@/assets/gallery/glenora-cleaner-living-room.webp";
+import cleanerImage from "@/assets/gallery/westmount-cleaner-kitchen.webp";
 
 // Published figures come from bk-config via pricing.ts. Hand-typing them
 // here is what let this page drift out of step with /pricing and with what

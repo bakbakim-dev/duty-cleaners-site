@@ -14,13 +14,13 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-import familyCleanHome from "@/assets/gallery/family-clean-home-edmonton.jpg";
-import kitchenDeepClean from "@/assets/gallery/kitchen-deep-clean.jpg";
-import bathroomClean from "@/assets/gallery/bathroom-clean.jpg";
-import livingRoomClean from "@/assets/gallery/living-room-clean.jpg";
-import moveOutClean from "@/assets/gallery/move-out-clean.jpg";
-import beforeAfter from "@/assets/gallery/before-after.jpg";
-import windowCleaning from "@/assets/gallery/window-cleaning.jpg";
+import familyCleanHome from "@/assets/gallery/family-clean-home-edmonton.webp";
+import kitchenDeepClean from "@/assets/gallery/kitchen-deep-clean.webp";
+import bathroomClean from "@/assets/gallery/bathroom-clean.webp";
+import livingRoomClean from "@/assets/gallery/living-room-clean.webp";
+import moveOutClean from "@/assets/gallery/move-out-clean.webp";
+import beforeAfter from "@/assets/gallery/before-after.webp";
+import windowCleaning from "@/assets/gallery/window-cleaning.webp";
 
 
 

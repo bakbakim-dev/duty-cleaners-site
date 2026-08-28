@@ -11,7 +11,7 @@ import {
   Home, Sparkles, Truck, SprayCan, Bath, UtensilsCrossed,
   Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail
 } from "lucide-react";
-import morinvilleHome from "@/assets/gallery/morinville-home.jpg";
+import morinvilleHome from "@/assets/gallery/morinville-home.webp";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CoverageChips from "@/components/CoverageChips";
 
@@ -166,7 +166,8 @@ export default function Morinville() {
                 src={morinvilleHome}
                 alt="A charming residential home in Morinville, Alberta"
                 className="rounded-2xl shadow-2xl w-full h-auto object-cover"
-              loading="lazy" decoding="async" />
+              loading="eager"
+                  {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
             </div>
           </div>
         </div>

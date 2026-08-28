@@ -174,7 +174,8 @@ export default function StonyPlain() {
                 src={stonyPlainHome}
                 alt="A charming residential home in Stony Plain, Alberta"
                 className="rounded-2xl shadow-2xl w-full h-auto object-cover"
-              loading="lazy" decoding="async" />
+              loading="eager"
+                  {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
             </div>
           </div>
         </div>

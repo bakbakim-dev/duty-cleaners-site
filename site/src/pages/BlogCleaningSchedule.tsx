@@ -10,11 +10,11 @@ import { Calendar, Clock, ArrowLeft, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-import heroImage from "@/assets/blog/cleaning-schedule-hero.jpg";
-import bedroomImage from "@/assets/blog/daily-cleaning-bedroom.jpg";
-import floorImage from "@/assets/blog/weekly-cleaning-floor.jpg";
-import bathroomImage from "@/assets/blog/bathroom-cleaning.jpg";
-import dishwasherImage from "@/assets/blog/dishwasher-cleaning.jpg";
+import heroImage from "@/assets/blog/cleaning-schedule-hero.webp";
+import bedroomImage from "@/assets/blog/daily-cleaning-bedroom.webp";
+import floorImage from "@/assets/blog/weekly-cleaning-floor.webp";
+import bathroomImage from "@/assets/blog/bathroom-cleaning.webp";
+import dishwasherImage from "@/assets/blog/dishwasher-cleaning.webp";
 
 const dailyTasks = [
   {

@@ -5,7 +5,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Phone, HelpCircle, Home, Truck, Building2, HardHat, DollarSign, Award, Sparkles, MessageSquare, Shield, Heart } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-import heroFaqLivingRoom from "@/assets/hero-faq-living-room.jpg";
+import heroFaqLivingRoom from "@/assets/hero-faq-living-room.webp";
 import { RATING_CLAIM } from "@/data/proof";
 
 interface FAQCategory {

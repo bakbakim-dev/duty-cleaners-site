@@ -11,7 +11,7 @@ import {
   Home, Sparkles, Truck, Building2, HardHat, Bath,
   Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail
 } from "lucide-react";
-import terwillegarCleanerImg from "@/assets/gallery/terwillegar-cleaner-bathroom.jpg";
+import terwillegarCleanerImg from "@/assets/gallery/terwillegar-cleaner-bathroom.webp";
 import { buildLocationSchema } from "@/lib/location-schema";
 import HonestReviewLink from "@/components/HonestReviewLink";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -190,7 +190,8 @@ export default function Terwillegar() {
                   src={terwillegarCleanerImg}
                   alt="Professional cleaner cleaning a bathroom in Terwillegar, Edmonton"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
-                loading="lazy" decoding="async" />
+                loading="eager"
+                  {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
               </div>
             </div>
           </div>
