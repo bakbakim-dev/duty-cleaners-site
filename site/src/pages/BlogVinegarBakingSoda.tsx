@@ -4,6 +4,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { absoluteAssetUrl, ARTICLE_AUTHOR, ARTICLE_PUBLISHER } from "@/lib/seo";
+import { modifiedFor } from "@/data/post-dates";
 import { canonicalUrlForPath } from "@/data/legacy-urls";
 import { Calendar, Clock, ArrowLeft, CheckCircle2, XCircle, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -99,7 +100,7 @@ export default function BlogVinegarBakingSoda() {
           "description": "Learn how to clean your home naturally with vinegar and baking soda. Safe, effective cleaning tips for kitchen, bathroom, laundry and more from Duty Cleaners Edmonton.",
           "image": absoluteAssetUrl(heroImage),
           "datePublished": "2026-01-25",
-          "dateModified": "2026-01-25",
+          "dateModified": modifiedFor("/cleaning-with-vinegar-and-baking-soda", "2026-01-25"),
           "author": ARTICLE_AUTHOR,
           "publisher": ARTICLE_PUBLISHER,
           "mainEntityOfPage": canonicalUrlForPath("/cleaning-with-vinegar-and-baking-soda")
@@ -164,10 +165,18 @@ export default function BlogVinegarBakingSoda() {
               {/* Introduction */}
               <div className="prose prose-lg max-w-none mb-12">
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Nowadays, we can find different cleaning products available in the market, but of course with many harsh chemicals and robust solutions, which are unsafe to use in every household. Talking about house cleansers, we are all concerned with the safety and health of our family; Always!
+                  {/*
+                    This opening was un-edited WordPress-era copy and it said the
+                    opposite of what it meant: "unsafe to use in every household"
+                    reads as "unsafe everywhere" when the point was that harsh
+                    products do not suit every home. It also called household items
+                    "skilled", which objects cannot be. The rest of the article is
+                    recent and accurate; only the intro had been left behind.
+                  */}
+                  Most cleaning aisles are built around strong, single-purpose products, and plenty of homes have good reasons to want fewer of them around — young children, pets, sensitive skin, or a bathroom with no window and nowhere for fumes to go.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed mt-4">
-                  That's why instead of using these strong cleaners, we can utilize household items that are not only skilled and efficient home cleaners but also safe to use. <strong>Vinegar and Baking Soda</strong> are two products we can use for many things in the home, not just for cleaning but for many other purposes.
+                  <strong>Vinegar and baking soda</strong> cover a surprising amount of that ground between them, and both are cheap enough that it costs nothing to try. What follows is where each one genuinely works, where it does not, and — the part most guides get wrong — what actually happens when you combine them.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed mt-4">
                   The downside is we can't use these products to clean everything in your house. But they are still safer than using cleaners with harsh chemicals. This blog will teach you different techniques and how and when to use or not use them.

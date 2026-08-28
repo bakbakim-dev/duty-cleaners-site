@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
+import { modifiedFor } from "@/data/post-dates";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -143,7 +144,7 @@ export default function BlogCleaningProducts() {
           description,
           image: "https://dutycleaners.ca/og-image.jpg",
           datePublished: "2026-08-23",
-          dateModified: "2026-08-23",
+          dateModified: modifiedFor("/the-top-5-must-have-cleaning-products-for-a-spotless-home", "2026-08-23"),
           author: { "@type": "Organization", name: "Duty Cleaners", url: "https://dutycleaners.ca/" },
           publisher: {
             "@type": "Organization",

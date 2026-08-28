@@ -4,7 +4,8 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { absoluteAssetUrl, ARTICLE_AUTHOR, ARTICLE_PUBLISHER } from "@/lib/seo";
-import { canonicalUrlForPath } from "@/data/legacy-urls";
+import { modifiedFor } from "@/data/post-dates";
+import { canonicalUrlForPath, canonicalForPath } from "@/data/legacy-urls";
 import { Calendar, Clock, ArrowLeft, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -120,26 +121,26 @@ export default function BlogCleaningSchedule() {
   return (
     <>
       <Helmet>
-        <title>A House Cleaning Schedule That Does Not Overwhelm You | Duty Cleaners</title>
+        <title>A Cleaning Schedule That Actually Holds Up | Duty Cleaners</title>
         <meta
           name="description"
           content="Create a realistic cleaning schedule with daily, weekly, and monthly tasks. Expert tips from Duty Cleaners to keep your home clean without the stress."
         />
         <link rel="canonical" href="https://dutycleaners.ca/blog/cleaning-schedule/" />
-        <meta property="og:title" content="A House Cleaning Schedule That Does Not Overwhelm You | Duty Cleaners" />
+        <meta property="og:title" content="A Cleaning Schedule That Actually Holds Up | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="A House Cleaning Schedule That Does Not Overwhelm You | Duty Cleaners" />
+        <meta name="twitter:title" content="A Cleaning Schedule That Actually Holds Up | Duty Cleaners" />
         <meta name="twitter:description" content="Create a realistic cleaning schedule with daily, weekly, and monthly tasks. Expert tips from Duty Cleaners to keep your home clean without the stress." />
         <meta property="og:type" content="article" />
         <meta property="og:url" content="https://dutycleaners.ca/blog/cleaning-schedule/" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Article",
-          "headline": "A House Cleaning Schedule That Does Not Overwhelm You",
+          "headline": "A Cleaning Schedule That Actually Holds Up",
           "description": "Create a realistic cleaning schedule with daily, weekly, and monthly tasks. Expert tips from Duty Cleaners to keep your home clean without the stress.",
           "image": absoluteAssetUrl(heroImage),
           "datePublished": "2026-01-20",
-          "dateModified": "2026-01-20",
+          "dateModified": modifiedFor("/blog/cleaning-schedule", "2026-01-20"),
           "author": ARTICLE_AUTHOR,
           "publisher": ARTICLE_PUBLISHER,
           "mainEntityOfPage": canonicalUrlForPath("/blog/cleaning-schedule")
@@ -179,7 +180,7 @@ export default function BlogCleaningSchedule() {
               </div>
 
               <h1 className="text-3xl md:text-5xl font-bold mb-6 text-foreground leading-tight">
-                A House Cleaning Schedule That Does Not Overwhelm You
+                A Cleaning Schedule That Actually Holds Up
               </h1>
               
               <p className="text-xl text-muted-foreground mb-8">
@@ -327,11 +328,33 @@ export default function BlogCleaningSchedule() {
                 <h2 className="text-2xl md:text-3xl font-bold mb-6 text-foreground">
                   Create Your Perfect Cleaning Schedule
                 </h2>
+                {/*
+                  These two paragraphs were un-edited legacy copy — a 47-word
+                  opening sentence, and a close that argued for hiring us by
+                  telling the reader their own schedule was too much for them.
+                  The post's job is to be useful whether or not anyone books.
+                */}
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  The primary objective of a cleaning schedule is to organize household cleaning tasks as per your convenience so that they not only fit into your personal day-to-day schedule, but are also divided and planned out in a realistic manner to avoid overwhelming yourself.
+                  A schedule only works if it survives a bad week. Build it around what your
+                  household actually does rather than an ideal version of it: pick the two or
+                  three daily habits you will genuinely keep, put the weekly work on a day that
+                  is reliably free, and let the monthly jobs float within their month rather
+                  than fixing them to a date.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed mt-4">
-                  Take a look at the home cleaning tasks above and make your own unique house cleaning schedule to keep your home neat and clean daily, weekly, and monthly. You may think that this is too much to do, and this is why a professional cleaner is better to hire than doing the cleaning tasks of your home yourself.
+                  Expect to revise it. The first draft is usually too ambitious, and the fix is
+                  to cut tasks rather than to try harder — a short list you follow beats a
+                  complete one you abandon in February. If the weekly tier is the part that
+                  keeps slipping, that is the tier most people hand over first:{" "}
+                  <Link to={canonicalForPath("/edmonton/recurring-cleaning")} className="text-accent hover:underline">
+                    recurring cleaning
+                  </Link>{" "}
+                  covers exactly that band of work on a fixed cadence, and the daily habits stay
+                  yours. What a visit includes is set out on{" "}
+                  <Link to={canonicalForPath("/whats-included")} className="text-accent hover:underline">
+                    what's included
+                  </Link>
+                  .
                 </p>
               </div>
 

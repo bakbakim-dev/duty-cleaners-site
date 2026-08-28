@@ -4,6 +4,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { absoluteAssetUrl, ARTICLE_AUTHOR, ARTICLE_PUBLISHER } from "@/lib/seo";
+import { modifiedFor } from "@/data/post-dates";
 import { canonicalUrlForPath } from "@/data/legacy-urls";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -89,15 +90,15 @@ export default function BlogChoosingCleaningCompany() {
   return (
     <>
       <Helmet>
-        <title>Choosing the Right Cleaning Company for Your Needs | Duty Cleaners</title>
+        <title>How to Choose a Cleaning Company | Duty Cleaners</title>
         <meta
           name="description"
           content="How to choose the right cleaning company for your home or office - from assessing your needs to checking credentials, the key factors that matter."
         />
         <link rel="canonical" href="https://dutycleaners.ca/blog/choosing-cleaning-company/" />
-        <meta property="og:title" content="Choosing the Right Cleaning Company for Your Needs | Duty Cleaners" />
+        <meta property="og:title" content="How to Choose a Cleaning Company | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Choosing the Right Cleaning Company for Your Needs | Duty Cleaners" />
+        <meta name="twitter:title" content="How to Choose a Cleaning Company | Duty Cleaners" />
         <meta name="twitter:description" content="How to choose the perfect cleaning company — assessing your needs, checking credentials, comparing services." />
         <meta property="og:description" content="How to choose the perfect cleaning company — assessing your needs, checking credentials, comparing services." />
         <meta property="og:type" content="article" />
@@ -112,7 +113,7 @@ export default function BlogChoosingCleaningCompany() {
           // old image URL pointed at /blog/... which is not a served path.
           image: absoluteAssetUrl(heroImage),
           datePublished: "2026-01-27",
-          dateModified: "2026-01-27",
+          dateModified: modifiedFor("/blog/choosing-cleaning-company", "2026-01-27"),
           author: ARTICLE_AUTHOR,
           publisher: ARTICLE_PUBLISHER,
           mainEntityOfPage: canonicalUrlForPath("/blog/choosing-cleaning-company")

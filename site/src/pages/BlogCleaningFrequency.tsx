@@ -4,6 +4,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { absoluteAssetUrl, ARTICLE_AUTHOR, ARTICLE_PUBLISHER } from "@/lib/seo";
+import { modifiedFor } from "@/data/post-dates";
 import { canonicalUrlForPath } from "@/data/legacy-urls";
 import { Calendar, Clock, ArrowLeft, Home, Users, PawPrint, Briefcase, DollarSign } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -100,7 +101,7 @@ export default function BlogCleaningFrequency() {
           "description": "Learn how often you should hire a cleaning service - weekly, bi-weekly, or monthly. Expert guide from Duty Cleaners to help you choose the right cleaning frequency.",
           "image": absoluteAssetUrl(heroImage),
           "datePublished": "2026-01-22",
-          "dateModified": "2026-01-22",
+          "dateModified": modifiedFor("/how-often-should-a-cleaning-service-clean-my-house", "2026-01-22"),
           "author": ARTICLE_AUTHOR,
           "publisher": ARTICLE_PUBLISHER,
           "mainEntityOfPage": canonicalUrlForPath("/how-often-should-a-cleaning-service-clean-my-house")

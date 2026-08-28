@@ -8,6 +8,10 @@ import { Button } from "@/components/ui/button";
 import { BookOpen, Sparkles } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import BlogPostCard from "@/components/blog/BlogPostCard";
+import { absoluteAssetUrl, ARTICLE_AUTHOR } from "@/lib/seo";
+import { canonicalUrlForPath } from "@/data/legacy-urls";
+import { modifiedFor } from "@/data/post-dates";
+import { ORG_ID } from "@/data/proof";
 
 import cleaningScheduleHero from "@/assets/blog/cleaning-schedule-hero.jpg";
 import cleaningFrequencyHero from "@/assets/blog/cleaning-frequency-hero.jpg";
@@ -31,6 +35,23 @@ interface BlogPost {
 }
 
 
+/**
+ * "August 24, 2026" -> "2026-08-24".
+ *
+ * The `date` field on these entries is a display string for the card. Schema
+ * requires ISO 8601, and emitting the display form would publish an invalid
+ * date rather than no date — which is the worse of the two. Anything that does
+ * not parse returns undefined so the property is dropped entirely.
+ */
+const MONTHS = ["january","february","march","april","may","june","july","august","september","october","november","december"];
+function isoDate(display: string): string | undefined {
+  const m = /^([A-Za-z]+)\s+(\d{1,2}),\s*(\d{4})$/.exec(display.trim());
+  if (!m) return undefined;
+  const month = MONTHS.indexOf(m[1].toLowerCase());
+  if (month < 0) return undefined;
+  return `${m[3]}-${String(month + 1).padStart(2, "0")}-${m[2].padStart(2, "0")}`;
+}
+
 // Only posts that actually exist are listed. Six entries used to sit here
 // with no `slug`, hotlinked Unsplash images and invented Feb-Mar 2024 dates.
 // BlogPostCard renders a slugless card as a plain <div>, so they kept all the
@@ -39,7 +60,7 @@ interface BlogPost {
 const blogPosts: BlogPost[] = [
   {
     id: 14,
-    title: "House Cleaning Tips for a Spotless Home Environment",
+    title: "House Cleaning Tips for a Spotless Home",
     excerpt: "Small, consistent habits beat one big weekend clean. Daily routines, a room-by-room guide, and a three-tier schedule that actually holds up.",
     category: "Cleaning Tips",
     date: "August 24, 2026",
@@ -109,7 +130,7 @@ const blogPosts: BlogPost[] = [
   },
   {
     id: 7,
-    title: "A House Cleaning Schedule That Does Not Overwhelm You",
+    title: "A Cleaning Schedule That Actually Holds Up",
     excerpt: "Divide and conquer! Create a realistic cleaning schedule with daily, weekly, and monthly tasks that fit your lifestyle without adding stress.",
     category: "Cleaning Tips",
     date: "January 20, 2026",
@@ -151,6 +172,46 @@ export default function Blog() {
           content="Expert cleaning tips, guides, and advice from professional cleaners. Learn how to maintain a spotless home with insights from Duty Cleaners."
         />
         <link rel="canonical" href="https://dutycleaners.ca/blog/" />
+        {/*
+          The index carried only BreadcrumbList, so nothing declared what this
+          page IS or what it collects. Blog + an ItemList of the posts lets a
+          crawler read the set in one pass instead of inferring it from cards,
+          and gives an AI retriever the eight canonical URLs directly.
+
+          Built from blogPosts, the same array the cards render from, so the
+          schema cannot list a post the page does not show — or miss one it does.
+          URLs go through canonicalUrlForPath because two slugs in that array
+          carry a trailing slash and the rest do not.
+        */}
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Blog",
+          "@id": "https://dutycleaners.ca/blog/#blog",
+          name: "Duty Cleaners Blog",
+          description:
+            "Cleaning guides and advice from the Duty Cleaners team, covering Edmonton and Calgary.",
+          url: "https://dutycleaners.ca/blog/",
+          publisher: { "@id": ORG_ID },
+          blogPost: blogPosts
+            .filter((p) => p.slug)
+            .map((p) => {
+              const published = isoDate(p.date);
+              return {
+                "@type": "BlogPosting",
+                headline: p.title,
+                description: p.excerpt,
+                url: canonicalUrlForPath(p.slug!),
+                image: absoluteAssetUrl(p.image),
+                ...(published
+                  ? {
+                      datePublished: published,
+                      dateModified: modifiedFor(p.slug!, published),
+                    }
+                  : {}),
+                author: ARTICLE_AUTHOR,
+              };
+            }),
+        })}</script>
         <meta property="og:title" content="Cleaning Tips & Guides Blog | Duty Cleaners" />
         <meta property="og:description" content="Expert cleaning tips, guides, and advice from professional cleaners. Learn how to maintain a spotless home with insights from Duty Cleaners." />
         <meta property="og:type" content="website" />

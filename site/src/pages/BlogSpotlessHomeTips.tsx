@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
+import { modifiedFor } from "@/data/post-dates";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -80,9 +81,9 @@ export default function BlogSpotlessHomeTips() {
   }, []);
 
   const canonical = "https://dutycleaners.ca/blog/spotless-home-tips/";
-  const title = "House Cleaning Tips for a Spotless Home Environment";
+  const title = "House Cleaning Tips for a Spotless Home";
   const description =
-    "Practical, low-effort habits for keeping a home consistently clean — daily routines, a room-by-room guide, and how to build a cleaning schedule that actually sticks. From the professional cleaners at Duty Cleaners.";
+    "Low-effort habits that keep a home clean between visits: daily routines, a room-by-room guide, and a cleaning schedule that actually sticks.";
 
   return (
     <>
@@ -104,7 +105,7 @@ export default function BlogSpotlessHomeTips() {
           description,
           image: "https://dutycleaners.ca/og-image.jpg",
           datePublished: "2026-08-24",
-          dateModified: "2026-08-24",
+          dateModified: modifiedFor("/blog/spotless-home-tips", "2026-08-24"),
           author: { "@type": "Organization", name: "Duty Cleaners", url: "https://dutycleaners.ca/" },
           publisher: {
             "@type": "Organization",
@@ -157,7 +158,7 @@ export default function BlogSpotlessHomeTips() {
               </div>
 
               <h1 className="text-3xl md:text-5xl font-bold mb-6 text-foreground leading-tight">
-                House Cleaning Tips for a Spotless Home Environment
+                House Cleaning Tips for a Spotless Home
               </h1>
 
               <p className="text-xl text-muted-foreground mb-8">
@@ -344,7 +345,7 @@ export default function BlogSpotlessHomeTips() {
                     to="/blog/cleaning-schedule"
                     className="block p-5 border border-border rounded-xl bg-card hover:border-accent transition-colors"
                   >
-                    <h3 className="font-bold text-foreground">A House Cleaning Schedule That Does Not Overwhelm You</h3>
+                    <h3 className="font-bold text-foreground">A Cleaning Schedule That Actually Holds Up</h3>
                     <p className="text-muted-foreground text-sm mt-1">
                       A more detailed breakdown of the three-tier schedule above.
                     </p>

@@ -5,6 +5,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { absoluteAssetUrl, ARTICLE_AUTHOR, ARTICLE_PUBLISHER } from "@/lib/seo";
+import { modifiedFor } from "@/data/post-dates";
 import { canonicalUrlForPath } from "@/data/legacy-urls";
 import { Calendar, Clock, ArrowLeft, DollarSign, Home, Users, Sparkles, Clock3, MapPin, Package } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -107,7 +108,7 @@ export default function BlogHouseCleaningCost() {
           "description": "Discover house cleaning costs in Canada. Learn about hourly rates, flat rates, and factors affecting professional cleaning service prices in Alberta.",
           "image": absoluteAssetUrl(heroImage),
           "datePublished": "2026-01-25",
-          "dateModified": "2026-01-25",
+          "dateModified": modifiedFor("/how-much-does-a-house-cleaning-cost", "2026-01-25"),
           "author": ARTICLE_AUTHOR,
           "publisher": ARTICLE_PUBLISHER,
           "mainEntityOfPage": canonicalUrlForPath("/how-much-does-a-house-cleaning-cost")
@@ -172,7 +173,13 @@ export default function BlogHouseCleaningCost() {
               {/* Introduction */}
               <div className="prose prose-lg max-w-none mb-12">
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  House cleaning hardly seems like a priority when you have such a long list of daily tasks, including work and taking care of the kids. Running errands also steal plenty of time from your day. This is where it becomes beneficial to hire professional cleaners because they will get the job done quickly so you can focus on other things.
+                  {/*
+                    Un-edited WordPress-era intro. "Running errands also steal"
+                    was a subject-verb disagreement sitting in the first
+                    paragraph of the site's highest-intent article — the one
+                    people land on while deciding whether to hire anyone at all.
+                  */}
+                  Cleaning is the job that loses. Work, children and errands all have deadlines attached; the kitchen floor does not, so it waits — and by the time it stops waiting, it is a bigger job than it was. That is the calculation most people are actually making when they start pricing a cleaner: not whether the house needs it, but whether the hours are worth buying back.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed mt-4">
                   But how much do these services cost? Unfortunately, there is no one simple answer to this question. There are numerous factors that go into how much a cleaner or professional cleaning company will charge for their services. Every home is different, so they will have different needs.

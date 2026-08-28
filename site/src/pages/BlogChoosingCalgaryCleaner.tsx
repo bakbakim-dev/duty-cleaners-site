@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { HOMES_CLEANED, COMPANY } from "@/data/proof";
 
+import { modifiedFor } from "@/data/post-dates";
 import heroImage from "@/assets/hero-calgary-skyline.webp";
 import teamImage from "@/assets/calgary-cleaning-team.webp";
 
@@ -96,7 +97,7 @@ export default function BlogChoosingCalgaryCleaner() {
           description,
           image: "https://dutycleaners.ca/og-image.jpg",
           datePublished: "2026-08-24",
-          dateModified: "2026-08-24",
+          dateModified: modifiedFor("/blog/cleaning-services-calgary", "2026-08-24"),
           author: { "@type": "Organization", name: "Duty Cleaners", url: "https://dutycleaners.ca/" },
           publisher: {
             "@type": "Organization",
@@ -228,6 +229,76 @@ export default function BlogChoosingCalgaryCleaner() {
                   reference-checked before their first job, and if something's missed, tell us within
                   24 hours and we'll come back and make it right at no additional charge — no fine
                   print attached to that.
+                </p>
+              </div>
+
+              {/*
+                At 566 words this was the thinnest article on the site against
+                867-1,481 for the rest, and it is the destination of two
+                preserved legacy URLs — so it earns its traffic on hiring
+                intent and had almost nothing to say once someone arrived. The
+                two sections below answer what a reader at that moment actually
+                still has to decide.
+              */}
+              <div className="mb-16">
+                <h2 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">
+                  Questions worth asking before you book
+                </h2>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  Most of what separates companies does not show up on a website, and the
+                  answers take about five minutes to collect on the phone. Ask what happens if
+                  the clean takes longer than expected — a flat rate should not move, and if the
+                  answer is vague you are being quoted an estimate rather than a price. Ask
+                  whether you get the same cleaner each visit; consistency is the single
+                  biggest predictor of whether a recurring arrangement survives past month
+                  three, because a cleaner who knows your home stops needing to be told things.
+                </p>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  Ask what is <em>not</em> included, and be suspicious of a company that says
+                  everything is. Nobody moves heavy furniture, cleans exterior windows, handles
+                  bodily fluids or litter boxes, or works above a three-step ladder as part of a
+                  standard visit — a firm that will not say so up front is one you will have a
+                  disagreement with later. Ask how payment works, too: taking full payment
+                  before any work happens is unusual in this trade, and it removes your only
+                  real leverage if something goes wrong.
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  Finally, ask about the guarantee in specifics rather than as a slogan. "One
+                  hundred per cent satisfaction guaranteed" means nothing on its own. What is
+                  the deadline for reporting a problem, what is the remedy, and does claiming it
+                  require photographs? A company that can answer those three questions
+                  immediately has an actual process; one that cannot has a marketing line.
+                </p>
+              </div>
+
+              <div className="mb-16">
+                <h2 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">
+                  What is specific to Calgary
+                </h2>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  Two local things change what you should book. The first is the chinook cycle:
+                  because the city thaws and refreezes all winter, the roads are gritted, melt,
+                  and are gritted again rather than staying frozen through to spring. That sand
+                  and de-icer arrives at the door repeatedly from November to April and works
+                  along baseboards, into carpet edges and under furniture. By late winter a
+                  standard clean is often not the service the home actually needs, and a company
+                  that books you one anyway without mentioning it is not paying attention.
+                </p>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  The second is the housing split. An inner-city condo in the Beltline, Mission
+                  or Eau Claire is small in square footage but heavy on window tracks, balcony
+                  door channels and the fine dust a dry, windy city pushes into every seal — it
+                  takes longer per square metre than its size suggests. A newer house out in
+                  Mahogany, Seton or Livingston is the reverse, except where construction dust is
+                  still surfacing from vents and closet shelves, which is normal for a year or
+                  two after possession. Any quote given purely on bedroom count is ignoring the
+                  larger of the two variables.
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  One thing that should <em>not</em> vary locally is the price. We charge the
+                  same in Calgary as in Edmonton, with no city premium and no trip fee inside
+                  either city, and every published figure is before 5% GST. If a company quotes
+                  a Calgary surcharge, ask what it covers.
                 </p>
               </div>
 
