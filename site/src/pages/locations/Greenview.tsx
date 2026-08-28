@@ -288,7 +288,7 @@ export default function Greenview() {
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
+                    referrerPolicy="no-referrer"
                     title="Greenview Calgary Service Area Map"
                   />
                 </div>

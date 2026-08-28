@@ -256,7 +256,7 @@ export default function Leduc() {
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
+                referrerPolicy="no-referrer"
                 title="Leduc Service Area Map"
               />
             </div>

@@ -272,7 +272,7 @@ export default function Altadore() {
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
+                    referrerPolicy="no-referrer"
                     title="Altadore Calgary Service Area Map"
                   />
                 </div>

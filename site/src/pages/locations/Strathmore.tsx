@@ -254,7 +254,7 @@ export default function Strathmore() {
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
+                    referrerPolicy="no-referrer"
                     title="Strathmore Service Area Map"
                   />
                 </div>

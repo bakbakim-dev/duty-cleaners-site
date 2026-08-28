@@ -231,7 +231,7 @@ export default function Tuscany() {
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
+                    referrerPolicy="no-referrer"
                     title="Tuscany Calgary Service Area Map"
                   />
                 </div>

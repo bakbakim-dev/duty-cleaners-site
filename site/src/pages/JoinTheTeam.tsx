@@ -136,7 +136,7 @@ const faqs = [
   {
     value: "hours",
     question: "What are the hours?",
-    answer: "We are open Monday to Sunday, with cleaning hours from 9:00 AM to 5:00 PM. You can choose the days and hours that work best for you."
+    answer: "Most cleaning shifts run between 9:00 AM and 5:00 PM, Monday to Sunday. (Our customer service hours are Monday to Saturday 8:00 AM to 8:00 PM and Sunday 9:00 AM to 3:00 PM.). You can choose the days and hours that work best for you."
   },
   {
     value: "transportation",

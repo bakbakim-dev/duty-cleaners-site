@@ -208,7 +208,7 @@ export default function MountRoyal() {
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10040.0!2d-114.0867!3d51.0317!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53717108a1c1e0a7%3A0x1b0d1e1e1e1e1e1e!2sMount+Royal%2C+Calgary%2C+AB!5e0!3m2!1sen!2sca!4v1700000000000"
                     width="100%" height="450" style={{ border: 0 }} allowFullScreen loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade" title="Mount Royal Service Area Map"
+                    referrerPolicy="no-referrer" title="Mount Royal Service Area Map"
                   />
                 </div>
               </div>

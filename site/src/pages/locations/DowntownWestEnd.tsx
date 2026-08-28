@@ -292,7 +292,7 @@ export default function DowntownWestEnd() {
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
+                    referrerPolicy="no-referrer"
                     title="Downtown West End Calgary Service Area Map"
                   />
                 </div>

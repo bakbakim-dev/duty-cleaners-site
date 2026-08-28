@@ -292,7 +292,7 @@ export default function LowerMountRoyal() {
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
+                    referrerPolicy="no-referrer"
                     title="Lower Mount Royal Calgary Service Area Map"
                   />
                 </div>

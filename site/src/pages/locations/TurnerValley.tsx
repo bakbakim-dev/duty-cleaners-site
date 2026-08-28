@@ -323,7 +323,7 @@ export default function TurnerValley() {
                   style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
+                  referrerPolicy="no-referrer"
                   title="Turner Valley Service Area Map"
                 />
               </div>

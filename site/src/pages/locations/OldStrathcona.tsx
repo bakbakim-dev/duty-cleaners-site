@@ -278,7 +278,7 @@ export default function OldStrathcona() {
                     title="Old Strathcona Edmonton Map"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9460!2d-113.5!3d53.5195!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a0221b2e8b0e5d%3A0x1!2sOld+Strathcona%2C+Edmonton%2C+AB!5e0!3m2!1sen!2sca!4v1"
                     width="100%" height="400" style={{ border: 0 }} allowFullScreen loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
+                    referrerPolicy="no-referrer"
                   />
                 </div>
               </div>

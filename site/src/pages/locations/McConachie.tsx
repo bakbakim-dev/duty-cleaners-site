@@ -316,7 +316,7 @@ export default function McConachie() {
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
+                    referrerPolicy="no-referrer"
                   />
                 </div>
               </div>

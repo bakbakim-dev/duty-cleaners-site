@@ -288,7 +288,7 @@ export default function HighlandPark() {
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
+                    referrerPolicy="no-referrer"
                     title="Highland Park Calgary Service Area Map"
                   />
                 </div>

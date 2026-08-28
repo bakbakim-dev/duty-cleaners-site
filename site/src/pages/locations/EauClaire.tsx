@@ -292,7 +292,7 @@ export default function EauClaire() {
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
+                    referrerPolicy="no-referrer"
                     title="Eau Claire Calgary Service Area Map"
                   />
                 </div>

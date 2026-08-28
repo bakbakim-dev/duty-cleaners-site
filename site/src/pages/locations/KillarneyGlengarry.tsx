@@ -292,7 +292,7 @@ export default function KillarneyGlengarry() {
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
+                    referrerPolicy="no-referrer"
                     title="Killarney-Glengarry Calgary Service Area Map"
                   />
                 </div>

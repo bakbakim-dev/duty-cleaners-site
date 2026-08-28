@@ -81,7 +81,19 @@ for (const p of real) {
   if (canonical !== p) add(p, slash(canonical), "301!");
 }
 // 4. Routes that must still resolve but are not indexable.
-for (const p of APP_ONLY_ROUTES) if (real.has(p)) add(p, "/index.html", "200");
+//
+// These served /index.html, which meant Google could index four extra URLs whose
+// body was the homepage — soft duplicates of the site's most important page. The
+// SPA shell renders exactly the same for the client router (it IS the render
+// template) but carries <meta name="robots" content="noindex">, so the route
+// still resolves and the duplicate stops being indexable. That matches the
+// stated intent of this list: "must resolve but are not indexable".
+for (const p of APP_ONLY_ROUTES) if (real.has(p)) add(p, "/spa-shell.html", "200");
+
+// 5. The live WordPress robots.txt points crawlers at /sitemaps.xml. The new
+// build ships /sitemap.xml, so without this the old path 404s from the moment
+// the DNS flips until Google re-reads robots.txt.
+add("/sitemaps.xml", "/sitemap.xml", "301!");
 
 // Invariant 3: no chains.
 const sources = new Set(rules.filter((r) => r.code !== "200").map((r) => r.from.replace(/\/+$/, "")));

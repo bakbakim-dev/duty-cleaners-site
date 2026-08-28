@@ -272,7 +272,7 @@ export default function ElbowPark() {
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
+                    referrerPolicy="no-referrer"
                     title="Elbow Park Calgary Service Area Map"
                   />
                 </div>

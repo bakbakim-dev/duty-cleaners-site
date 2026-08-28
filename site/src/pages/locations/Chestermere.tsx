@@ -254,7 +254,7 @@ export default function Chestermere() {
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
+                    referrerPolicy="no-referrer"
                     title="Chestermere Service Area Map"
                   />
                 </div>

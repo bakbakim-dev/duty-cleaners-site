@@ -309,7 +309,7 @@ export default function WhatsIncluded() {
             </div>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-              What's Included in<br />
+              What's Included in{" "}<br />
               Your <span className="text-accent">Cleaning</span>
             </h1>
 

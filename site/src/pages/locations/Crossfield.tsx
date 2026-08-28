@@ -252,7 +252,7 @@ export default function Crossfield() {
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
+                    referrerPolicy="no-referrer"
                     title="Crossfield Service Area Map"
                   />
                 </div>

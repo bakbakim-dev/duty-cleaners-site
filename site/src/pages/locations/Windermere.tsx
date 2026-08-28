@@ -318,7 +318,7 @@ export default function Windermere() {
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
+                referrerPolicy="no-referrer"
                 title="Windermere Edmonton Service Area Map"
               />
             </div>

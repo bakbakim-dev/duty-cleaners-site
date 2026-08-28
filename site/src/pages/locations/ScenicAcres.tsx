@@ -237,7 +237,7 @@ export default function ScenicAcres() {
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
+                    referrerPolicy="no-referrer"
                     title="Scenic Acres Service Area Map"
                   />
                 </div>

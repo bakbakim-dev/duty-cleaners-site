@@ -288,7 +288,7 @@ export default function Parkhill() {
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
+                    referrerPolicy="no-referrer"
                     title="Parkhill Calgary Service Area Map"
                   />
                 </div>

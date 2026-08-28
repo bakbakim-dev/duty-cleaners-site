@@ -236,7 +236,7 @@ export default function SherwoodPark() {
                   style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
+                  referrerPolicy="no-referrer"
                   title="Sherwood Park Service Area Map"
                 />
               </div>

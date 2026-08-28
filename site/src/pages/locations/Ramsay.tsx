@@ -292,7 +292,7 @@ export default function Ramsay() {
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
+                    referrerPolicy="no-referrer"
                     title="Ramsay Calgary Service Area Map"
                   />
                 </div>

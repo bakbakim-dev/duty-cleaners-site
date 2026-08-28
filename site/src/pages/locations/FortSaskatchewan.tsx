@@ -260,7 +260,7 @@ export default function FortSaskatchewan() {
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
+                referrerPolicy="no-referrer"
                 title="Fort Saskatchewan Service Area Map"
               />
             </div>

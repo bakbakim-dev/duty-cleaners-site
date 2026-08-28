@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { readFileSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { standardTierRows, deepCleanTierRows, moveInOutTierRows } from "./pricing";
 
@@ -36,8 +36,11 @@ describe("llms.txt", () => {
     expect(links.length).toBeGreaterThan(20);
   });
 
-  it("every link is trailing-slash canonical", () => {
-    const bare = links.filter((l) => !l.endsWith("/"));
+  it("every page link is trailing-slash canonical", () => {
+    // File paths are exempt: /llms-full.txt is a file, and a trailing slash on
+    // it is a hard 404 — which is exactly the bug this suite once passed.
+    const isFile = (l: string) => /\.[a-z0-9]{2,4}$/i.test(l.split("?")[0]);
+    const bare = links.filter((l) => !l.endsWith("/") && !isFile(l));
     expect(bare, `these omit the trailing slash: ${bare.join(", ")}`).toEqual([]);
   });
 
@@ -87,5 +90,51 @@ describe("llms.txt price tables match bk-config", () => {
     const stale = ["$242", "$463", "$519", "$300", "$355", "$414", "$481"]
       .filter((v) => !legitimate.has(v) && both.includes(v));
     expect(stale, `stale prices still in the llms files: ${stale.join(", ")}`).toEqual([]);
+  });
+});
+
+/**
+ * The blind spot this closes: the checks above verify a link is trailing-slash
+ * canonical and does not hit a 301 — and both passed a hard 404
+ * (`/llms-full.txt/`, a trailing slash on a file path) and a soft duplicate
+ * (`/gift-cards/`, which 200-rewrites to the SPA shell while the real page is
+ * `/gift-card/`). Passing those two is exactly the failure this file exists to
+ * prevent, so it now asserts the target is a thing that actually exists.
+ */
+describe("llms.txt links point at real destinations", () => {
+  const DIST = join(ROOT, "dist");
+
+  it("every link resolves to a built page or a real file", () => {
+    if (!existsSync(DIST)) return; // nothing to check before a build
+    const missing: string[] = [];
+    for (const link of links) {
+      const clean = link.split("?")[0];
+      const asFile = join(DIST, clean.replace(/^\//, ""));
+      const asPage = join(DIST, clean.replace(/^\//, ""), "index.html");
+      if (!existsSync(asFile) && !existsSync(asPage)) missing.push(link);
+    }
+    expect(missing, `llms.txt links with no destination in dist: ${missing.join(", ")}`).toEqual([]);
+  });
+
+  it("never puts a trailing slash on a file path", () => {
+    // /llms-full.txt/ is a hard 404 in production. It is NOT caught by an
+    // existsSync check, because the local filesystem happily resolves the file
+    // through the trailing slash — so this needs asserting directly.
+    const bad = links.filter((l) => l.endsWith("/") && /\.[a-z0-9]{2,4}\/$/i.test(l));
+    expect(bad, `file paths with a trailing slash 404 in production: ${bad.join(", ")}`).toEqual([]);
+  });
+
+  it("never links a path that 200-rewrites to the SPA shell", () => {
+    // These resolve, so an existence check alone would pass them — but they
+    // serve the shell, not the page the link claims to point at.
+    const shellRewrites = new Set<string>();
+    for (const line of redirectsRaw.split("\n")) {
+      const parts = line.trim().split(/\s+/);
+      if (parts.length >= 3 && parts[2] === "200" && /spa-shell|index\.html/.test(parts[1])) {
+        shellRewrites.add(parts[0].replace(/\/$/, "") || "/");
+      }
+    }
+    const bad = links.filter((l) => shellRewrites.has(l.replace(/\/$/, "") || "/"));
+    expect(bad, `llms.txt links at SPA-shell rewrites: ${bad.join(", ")}`).toEqual([]);
   });
 });

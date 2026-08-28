@@ -288,7 +288,7 @@ export default function MeadowlarkPark() {
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
+                    referrerPolicy="no-referrer"
                     title="Meadowlark Park Calgary Service Area Map"
                   />
                 </div>

@@ -292,7 +292,7 @@ export default function CapitolHillCalgary() {
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
+                    referrerPolicy="no-referrer"
                     title="Capitol Hill Calgary Service Area Map"
                   />
                 </div>

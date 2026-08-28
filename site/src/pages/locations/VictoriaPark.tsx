@@ -292,7 +292,7 @@ export default function VictoriaPark() {
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
+                    referrerPolicy="no-referrer"
                     title="Victoria Park Calgary Service Area Map"
                   />
                 </div>

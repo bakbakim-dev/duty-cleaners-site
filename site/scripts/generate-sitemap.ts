@@ -3,6 +3,7 @@
 // Route list is derived from src/App.tsx so the sitemap can't drift.
 
 import { canonicalForPath, withTrailingSlash } from "../src/data/legacy-urls";
+import { execSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
@@ -65,13 +66,58 @@ function changefreqFor(path: string): string {
 }
 
 /**
- * `lastmod` is stamped at build time. That is honest for this site: pages are
- * static and only change when the site is rebuilt and redeployed.
+ * `lastmod` per route, from the git commit that last touched the component that
+ * renders it.
+ *
+ * This used to be `new Date()` at build time, which stamped all 209 URLs with
+ * today's date on every deploy — telling Google the whole site changed when one
+ * page did. Google's documented position is that an untrustworthy lastmod is
+ * ignored outright, and that a site emitting wrong dates is better off without
+ * the field, so the old value was worse than nothing.
+ *
+ * Falls back to the repo's last commit date when a route cannot be mapped to a
+ * file (never to `now`, which is the failure mode this replaced).
  */
-const LASTMOD = new Date().toISOString().slice(0, 10);
+const REPO_LAST_COMMIT = (() => {
+  try {
+    return execSync("git log -1 --format=%cs", { encoding: "utf8" }).trim();
+  } catch {
+    return new Date().toISOString().slice(0, 10);
+  }
+})();
+
+const lastmodCache = new Map<string, string>();
+
+function componentFileFor(path: string): string | null {
+  const app = readFileSync(resolve("src/App.tsx"), "utf8");
+  // Find the element name for this route, then the import that defines it.
+  const escaped = path.replace(/[-/\\^$*+?.()|[\]{}]/g, "\\$&");
+  const m = app.match(new RegExp('<Route\\s+path="' + escaped + '"[^>]*element=\\{<(\\w+)'));
+  if (!m) return null;
+  const name = m[1];
+  const lazy = app.match(new RegExp(name + '\\s*=\\s*lazy\\(\\(\\)\\s*=>\\s*import\\("([^"]+)"'));
+  const direct = app.match(new RegExp('import\\s+' + name + '\\s+from\\s+"([^"]+)"'));
+  const spec = (lazy || direct)?.[1];
+  if (!spec) return null;
+  return spec.replace(/^\.\//, "src/") + ".tsx";
+}
+
+function lastmodFor(path: string): string {
+  if (lastmodCache.has(path)) return lastmodCache.get(path)!;
+  let date = REPO_LAST_COMMIT;
+  const file = componentFileFor(path);
+  if (file) {
+    try {
+      const out = execSync(`git log -1 --format=%cs -- "${file}"`, { encoding: "utf8" }).trim();
+      if (out) date = out;
+    } catch { /* keep the fallback */ }
+  }
+  lastmodCache.set(path, date);
+  return date;
+}
 
 function urlBlock(path: string): string {
-  return `  <url><loc>${BASE_URL}${withTrailingSlash(path)}</loc><lastmod>${LASTMOD}</lastmod><changefreq>${changefreqFor(path)}</changefreq><priority>${priorityFor(path)}</priority></url>`;
+  return `  <url><loc>${BASE_URL}${withTrailingSlash(path)}</loc><lastmod>${lastmodFor(path)}</lastmod><changefreq>${changefreqFor(path)}</changefreq><priority>${priorityFor(path)}</priority></url>`;
 }
 
 function urlset(paths: string[]): string {

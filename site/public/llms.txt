@@ -69,11 +69,11 @@ Transparent flat-rate pricing by home size. Recurring customers save 10–20% de
 - [Reviews](https://dutycleaners.ca/reviews/): Verified five-star customer reviews
 - [Blog](https://dutycleaners.ca/blog/): Cleaning guides, tips, and pricing explainers
 - [Satisfaction Guarantee](https://dutycleaners.ca/satisfaction-guarantee/): Our 24-hour re-clean promise
-- [Full details](https://dutycleaners.ca/llms-full.txt/): Complete site content for LLM consumption
+- [Full details](https://dutycleaners.ca/llms-full.txt): Complete site content for LLM consumption
 
 ## Optional
 
 - [About Us](https://dutycleaners.ca/about-us/): Our story, values, and team
 - [Contact](https://dutycleaners.ca/contact-us/): Get a free quote or reach our team
-- [Gift Cards](https://dutycleaners.ca/gift-cards/): Cleaning gift cards valid across Alberta
+- [Gift Cards](https://dutycleaners.ca/gift-card/): Cleaning gift cards valid across Alberta
 - [Join the Team](https://dutycleaners.ca/join-the-team/): Careers at Duty Cleaners

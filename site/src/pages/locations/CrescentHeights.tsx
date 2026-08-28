@@ -292,7 +292,7 @@ export default function CrescentHeights() {
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
+                    referrerPolicy="no-referrer"
                     title="Crescent Heights Calgary Service Area Map"
                   />
                 </div>

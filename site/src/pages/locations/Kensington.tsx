@@ -220,7 +220,7 @@ export default function Kensington() {
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
+                    referrerPolicy="no-referrer"
                     title="Kensington Service Area Map"
                   />
                 </div>

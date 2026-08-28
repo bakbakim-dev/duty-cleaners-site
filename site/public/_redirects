@@ -304,16 +304,18 @@
 /locations/airdrie  /cleaning-services-airdrie/  301!
 /locations/cochrane/  /cleaning-services-cochrane/  301!
 /locations/cochrane  /cleaning-services-cochrane/  301!
+/sitemaps.xml/  /sitemap.xml  301!
+/sitemaps.xml  /sitemap.xml  301!
 
 # Real routes that must resolve but are not indexable.
-/book/  /index.html  200
-/book  /index.html  200
-/quote-redirect/  /index.html  200
-/quote-redirect  /index.html  200
-/locations/all/  /index.html  200
-/locations/all  /index.html  200
-/gift-cards/  /index.html  200
-/gift-cards  /index.html  200
+/book/  /spa-shell.html  200
+/book  /spa-shell.html  200
+/quote-redirect/  /spa-shell.html  200
+/quote-redirect  /spa-shell.html  200
+/locations/all/  /spa-shell.html  200
+/locations/all  /spa-shell.html  200
+/gift-cards/  /spa-shell.html  200
+/gift-cards  /spa-shell.html  200
 
 # Everything else genuinely does not exist, so say so. A 200 with the app shell is
 # the soft-404 pattern: it tells a crawler to keep the URL and re-crawl it, across

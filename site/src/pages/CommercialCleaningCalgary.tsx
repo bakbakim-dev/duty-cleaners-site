@@ -140,7 +140,7 @@ export default function CommercialCleaningCalgary() {
               </div>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                Commercial Cleaning<br />
+                Commercial Cleaning{" "}<br />
                 Services in <span className="text-accent">Calgary</span>
               </h1>
 

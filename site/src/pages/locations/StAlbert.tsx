@@ -325,7 +325,7 @@ export default function StAlbert() {
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
+                referrerPolicy="no-referrer"
                 title="St. Albert Service Area Map"
               />
             </div>
