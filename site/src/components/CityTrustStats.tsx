@@ -97,7 +97,7 @@ export default function CityTrustStats({ city, homesCleaned }: CityTrustStatsPro
   const stats: Stat[] = [
     { icon: Award, value: "10+", label: "Years of service" },
     { icon: Home, value: homesCleaned, label: `${city} homes cleaned` },
-    { icon: Star, value: "Five-Star", label: "Rated by local homeowners" },
+    { icon: Star, value: "4.9", label: "Google rating from local homeowners" },
     { icon: UserCheck, value: "<5%", label: "Of applicants accepted" },
   ];
 

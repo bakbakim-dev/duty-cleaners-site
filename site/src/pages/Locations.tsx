@@ -471,9 +471,17 @@ export default function Locations() {
               <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-5 py-3 rounded-full border border-white/20">
                 <Users className="w-5 h-5 text-accent" />
                 {/* "10+ Years Combined Experience" had no source anywhere in
-                    the codebase (see src/data/proof.ts). Licensed since 2017
-                    is the real, verifiable fact used everywhere else. */}
-                <span className="font-medium text-white">Licensed &amp; Operating Since 2017</span>
+                    the codebase (see src/data/proof.ts). The founding year is
+                    the real, verifiable fact used everywhere else.
+
+                    "Licensed" was dropped from here and four other surfaces:
+                    proof.ts carries no licence field, and policy.ts warns that
+                    the legacy "licensed, insured and bonded" claim is not the
+                    true position and must not be reintroduced. A municipal
+                    business licence is probably real, but nothing in the repo
+                    sources it, and in this trade "licensed" reads as the wider
+                    claim. The founding year alone is backed. */}
+                <span className="font-medium text-white">Operating in Alberta Since 2017</span>
               </div>
             </div>
           </div>

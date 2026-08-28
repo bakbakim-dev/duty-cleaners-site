@@ -55,7 +55,24 @@ export const LEGACY_URLS: LegacyUrl[] = [
   { legacy: "/cleaning-services-cochrane", target: "/locations/cochrane", mode: "preserve", impressions: 11692 },
   { legacy: "/services/commercial-cleaning", target: "/commercial-cleaning", mode: "redirect", impressions: 10200 },
   { legacy: "/services/post-construction-cleaning", target: "/post-construction-cleaning", mode: "redirect", impressions: 9473 },
-  { legacy: "/booking-page", target: "/book", mode: "redirect", impressions: 9130 },
+  /**
+   * Retargeted from /book to /pricing.
+   *
+   * /book is deliberately `noindex, nofollow` — it is step 4 of the funnel, a
+   * checkout shell with no nav, and that is the right call for that page. But
+   * it meant this redirect handed 9,130 impressions a year of legacy equity to
+   * a page that immediately disclaims itself, so Google drops the URL and the
+   * equity evaporates rather than transferring.
+   *
+   * /pricing is the closest indexable match for the intent: someone who
+   * searched their way onto the old WordPress booking page wants to know what
+   * it costs and then book, and the pricing page answers the first and carries
+   * the instant-quote CTA for the second.
+   *
+   * /checkout below stays pointed at /book — it carries 10 impressions, and
+   * checkout is genuinely what it means.
+   */
+  { legacy: "/booking-page", target: "/pricing", mode: "redirect", impressions: 9130 },
   { legacy: "/wall-washing-wall-cleaning-calgary", target: "/calgary/wall-washing", mode: "preserve", impressions: 7354 },
   { legacy: "/move-in-move-out-cleaning", target: "/move-out-cleaning-edmonton", mode: "redirect", impressions: 5988 },
   { legacy: "/cleaning-services-stony-plain", target: "/locations/stony-plain", mode: "preserve", impressions: 5446 },

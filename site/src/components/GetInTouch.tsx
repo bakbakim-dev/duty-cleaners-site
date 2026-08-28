@@ -38,7 +38,7 @@ const GetInTouch = ({ city }: GetInTouchProps) => {
 
   const quickLinks = [
     { to: data.pricingPath, icon: DollarSign, label: "View Pricing", hint: "Transparent rates" },
-    { to: "/reviews", icon: Star, label: "Read Reviews", hint: "Five-star rated" },
+    { to: "/reviews", icon: Star, label: "Read Reviews", hint: "Rated 4.9 on Google" },
     { to: canonicalForPath("/faq"), icon: MessageSquare, label: "Full FAQ", hint: "Answers to common questions" },
     { to: "/about-us", icon: Users, label: "About Us", hint: "Meet the team" },
   ];

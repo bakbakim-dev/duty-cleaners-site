@@ -122,7 +122,7 @@ const whyUs = [
   { icon: Home, title: "Improves home appearance", description: "Cleaner walls instantly make every room feel newer and brighter." },
   { icon: Droplets, title: "Safe interior wall methods", description: "Products and techniques suited to painted surfaces." },
   { icon: ThumbsUp, title: "Satisfaction guarantee", description: "We'll re-clean any missed area at no charge within 24 hours." },
-  { icon: Star, title: "Trusted across Calgary", description: "Five-Star rated by homeowners across the Calgary region." },
+  { icon: Star, title: "Trusted across Calgary", description: "Rated 4.9 on Google by homeowners across the Calgary region." },
 ];
 
 const faqs = [

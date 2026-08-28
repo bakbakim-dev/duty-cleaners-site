@@ -114,7 +114,7 @@ export default function Evansdale() {
     <>
       <Helmet>
         <title>House Cleaning in Evansdale, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Evansdale, Edmonton. Trusted local cleaners serving north Edmonton families. Customer-rated cleaners and five-star rated service." />
+        <meta name="description" content="Professional house cleaning in Evansdale, Edmonton. Trusted local cleaners serving north Edmonton families. Customer-rated cleaners, rated 4.9 on Google." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Evansdale, Edmonton",
@@ -127,13 +127,13 @@ export default function Evansdale() {
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/evansdale-edmonton/" />
         <meta property="og:title" content="House Cleaning in Evansdale, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Evansdale, Edmonton. Trusted local cleaners serving north Edmonton families. Customer-rated cleaners and five-star rated service." />
+        <meta property="og:description" content="Professional house cleaning in Evansdale, Edmonton. Trusted local cleaners serving north Edmonton families. Customer-rated cleaners, rated 4.9 on Google." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/evansdale-edmonton/" />
         <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Evansdale, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Evansdale, Edmonton. Trusted local cleaners serving north Edmonton families. Customer-rated cleaners and five-star rated service." />
+        <meta name="twitter:description" content="Professional house cleaning in Evansdale, Edmonton. Trusted local cleaners serving north Edmonton families. Customer-rated cleaners, rated 4.9 on Google." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 

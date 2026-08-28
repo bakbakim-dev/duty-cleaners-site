@@ -45,7 +45,7 @@ export function commercialFaqs(city: "Edmonton" | "Calgary", phone: string) {
     },
     {
       q: "Are your cleaners vetted and insured?",
-      a: "Every cleaner is reference-checked before their first job and rated by the customer after every visit — those ratings decide who keeps working for us. Duty Cleaners has been licensed and operating in Alberta since 2017. For contracts that require specific insurance certificates or security clearances, ask when you book and we will confirm what we can provide in writing.",
+      a: "Every cleaner is reference-checked before their first job and rated by the customer after every visit — those ratings decide who keeps working for us. Duty Cleaners has been operating in Alberta since 2017. For contracts that require specific insurance certificates or security clearances, ask when you book and we will confirm what we can provide in writing.",
     },
     {
       q: "Will the same team clean our premises each visit?",

@@ -15,7 +15,7 @@ import { COMPANY, HOMES_CLEANED, RATING_CLAIM } from "@/data/proof";
 // file or in llms-full.txt; there was no source for either number.
 const stats = [{
   value: "2017",
-  label: "Licensed & Operating in Alberta",
+  label: "Operating in Alberta",
   icon: Clock
 }, {
   value: HOMES_CLEANED.alberta,

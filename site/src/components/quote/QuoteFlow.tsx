@@ -1333,7 +1333,7 @@ export default function QuoteFlow({
               {/* Proof at the point of hesitation. */}
               <p className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
                 <span className="text-brand-gold" aria-hidden="true">★★★★★</span>
-                Five-star rated by {proof.city} homeowners · customer-rated cleaners
+                Rated 4.9 on Google by {proof.city} homeowners · customer-rated cleaners
               </p>
 
             </form>

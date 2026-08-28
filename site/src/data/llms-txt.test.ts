@@ -28,7 +28,24 @@ for (const line of redirectsRaw.split("\n")) {
   redirects.set(parts[0].replace(/\/$/, "") || "/", parts[1]);
 }
 
-const links = [...llms.matchAll(/https:\/\/dutycleaners\.ca(\/[^\s)\]]*)/g)].map((m) => m[1]);
+/**
+ * THE BLIND SPOT THIS CLOSES
+ *
+ * Every link assertion below used to read llms.txt alone. llms-full.txt was
+ * loaded further down for the price checks only — so the link rules never
+ * touched it, and it kept the exact bug this file was written to kill: all 27
+ * of its links omitted the trailing slash on a trailing-slash-canonical site,
+ * 9 pointed at paths that 301 elsewhere, and one pointed at /gift-cards, which
+ * 200-rewrites to the noindexed SPA shell while the real page is /gift-card.
+ *
+ * Both files are machine-reader surfaces and both get the same rules now.
+ */
+const llmsFullRaw = readFileSync(join(ROOT, "public", "llms-full.txt"), "utf-8");
+
+const linksIn = (text: string) =>
+  [...text.matchAll(/https:\/\/dutycleaners\.ca(\/[^\s)\]]*)/g)].map((m) => m[1]);
+
+const links = [...linksIn(llms), ...linksIn(llmsFullRaw)];
 
 describe("llms.txt", () => {
   it("actually contains links", () => {
@@ -104,8 +121,17 @@ describe("llms.txt price tables match bk-config", () => {
 describe("llms.txt links point at real destinations", () => {
   const DIST = join(ROOT, "dist");
 
+  /**
+   * `dist` exists after `bun run build`, but the per-route index.html files
+   * only appear after `node scripts/prerender.mjs --all`. Guarding on the
+   * directory alone meant a build-without-prerender reported all 53 links as
+   * broken — a false alarm loud enough to train someone to ignore this test.
+   * A known prerendered route is the honest sentinel.
+   */
+  const prerendered = () => existsSync(join(DIST, "pricing", "index.html"));
+
   it("every link resolves to a built page or a real file", () => {
-    if (!existsSync(DIST)) return; // nothing to check before a build
+    if (!existsSync(DIST) || !prerendered()) return;
     const missing: string[] = [];
     for (const link of links) {
       const clean = link.split("?")[0];
@@ -137,4 +163,69 @@ describe("llms.txt links point at real destinations", () => {
     const bad = links.filter((l) => shellRewrites.has(l.replace(/\/$/, "") || "/"));
     expect(bad, `llms.txt links at SPA-shell rewrites: ${bad.join(", ")}`).toEqual([]);
   });
+});
+
+/**
+ * Claims the site has deliberately retired, guarded across every surface.
+ *
+ * All three of these were removed from the rendered pages in earlier passes and
+ * survived in llms.txt and llms-full.txt — the two files written specifically
+ * for AI assistants to quote. That is the worst possible place for them to
+ * survive: gone from where a person would read it, intact where a machine will
+ * repeat it as fact.
+ *
+ *   "non-toxic"   0 live pages, 3 hits in the llms files. The owner's position
+ *                 is that not every product is non-toxic. Under Competition Act
+ *                 s.74.01(b.1) a product claim needs pre-existing testing, and
+ *                 it is privately actionable.
+ *
+ *   "licensed"    5 live surfaces plus both llms files, with no licence field
+ *                 anywhere in proof.ts. policy.ts warns that the legacy
+ *                 "licensed, insured and bonded" claim is not the true position
+ *                 and must not be reintroduced.
+ *
+ *   "five-star"   15 live pages plus llms.txt, against a real rating of 4.9.
+ *                 proof.ts already replaced the canonical claim with
+ *                 RATING_CLAIM = "4.9 on Google"; these were stragglers.
+ *
+ * Uses of "five-star" that describe an individual review, a star-icon row, or
+ * an Airbnb guest experience are NOT rating claims about this business and are
+ * deliberately left alone — the pattern below only matches the rating form.
+ */
+describe("retired claims stay retired", () => {
+  const surfaces: Array<[string, string]> = [
+    ["llms.txt", llms],
+    ["llms-full.txt", llmsFullRaw],
+  ];
+
+  const FORBIDDEN: Array<[RegExp, string]> = [
+    [/non-?toxic/i, "product-safety claim with no substantiation (s.74.01(b.1))"],
+    [/\blicen[sc]ed\b/i, "no licence field exists in proof.ts; see the warning in policy.ts"],
+    [/\bbonded\b/i, "part of the retired 'licensed, insured and bonded' claim"],
+    [/five[- ]star\s+(?:rated|customer|service|house cleaning)/i, "rounds the real 4.9 up to 5"],
+  ];
+
+  for (const [name, text] of surfaces) {
+    for (const [pattern, why] of FORBIDDEN) {
+      it(`${name} does not claim ${pattern.source} — ${why}`, () => {
+        const m = pattern.exec(text);
+        expect(
+          m ? `${name}: "...${text.slice(Math.max(0, m.index - 60), m.index + 80)}..."` : null,
+        ).toBeNull();
+      });
+    }
+  }
+
+  /**
+   * The travel fee is mandatory outside the two metros and applied by postal
+   * code. An assistant quoting a price for one of those towns from these files
+   * while omitting it repeats the drip-pricing problem s.74.01(1.1) describes —
+   * which turns on effect, not intent. Both files must carry the fee.
+   */
+  for (const [name, text] of surfaces) {
+    it(`${name} discloses the travel fee alongside its prices`, () => {
+      expect(/\$\d/.test(text), `${name} should quote prices`).toBe(true);
+      expect(/travel fee/i.test(text), `${name} quotes prices but never mentions the travel fee`).toBe(true);
+    });
+  }
 });

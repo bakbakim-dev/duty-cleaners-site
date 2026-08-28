@@ -161,7 +161,7 @@ export default function CityRecentCleans({ city, reviews, reviewsTo = "/reviews"
               ))}
             </div>
             <h2 className="text-2xl font-bold md:text-3xl">
-              Five-star rated by <Accent>{city}</Accent> homeowners
+              Rated 4.9 on Google by <Accent>{city}</Accent> homeowners
             </h2>
             <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
               Every review is on our Google Business Profile, unedited — read what {city} customers

@@ -5,7 +5,7 @@
  */
 const STATS = [
   { value: "$0", caption: "Charged today. Your card is only charged once the clean is done." },
-  { value: "2017", caption: "Licensed and cleaning Alberta homes since." },
+  { value: "2017", caption: "Cleaning Alberta homes since." },
   { value: "60s", caption: "From first question to a real dollar price for your home." },
   { value: "24h", caption: "Make-it-right window. Tell us and we return at no charge." },
 ];

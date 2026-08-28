@@ -529,7 +529,7 @@ const App = () => (
           <Route path="/8102/a-house-cleaning-schedule-that-does-not-overwhelm-you" element={<Navigate to="/blog/cleaning-schedule" replace />} />
           <Route path="/services/commercial-cleaning" element={<Navigate to="/commercial-cleaning" replace />} />
           <Route path="/services/post-construction-cleaning" element={<Navigate to="/post-construction-cleaning" replace />} />
-          <Route path="/booking-page" element={<Navigate to="/book" replace />} />
+          <Route path="/booking-page" element={<Navigate to="/pricing" replace />} />
           <Route path="/move-in-move-out-cleaning" element={<Navigate to="/move-out-cleaning-edmonton" replace />} />
           <Route path="/cleaning-services-for-fort-saskatchewan-ab" element={<Navigate to="/cleaning-services-fort-saskatchewan" replace />} />
           <Route path="/1948/house-cleaning-tips-for-a-spotless-home-environment" element={<Navigate to="/blog/spotless-home-tips" replace />} />

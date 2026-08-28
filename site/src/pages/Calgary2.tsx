@@ -459,7 +459,7 @@ export default function Calgary2() {
           <CityCrossLink
             city="Edmonton"
             to="/"
-            description="Five-star rated house cleaning for Edmonton and surrounding communities, with the same vetted pros and transparent pricing."
+            description="House cleaning rated 4.9 on Google for Edmonton and surrounding communities, with the same vetted pros and transparent pricing."
           />
         </div>
 

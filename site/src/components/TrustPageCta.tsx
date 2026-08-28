@@ -61,7 +61,7 @@ export default function TrustPageCta({
           </li>
           <li className="flex items-start gap-2">
             <Sparkles className="mt-0.5 h-5 w-5 flex-shrink-0 text-accent" aria-hidden="true" />
-            <span className="text-sm text-brand-navy-foreground/85">Vetted cleaners, five-star rated</span>
+            <span className="text-sm text-brand-navy-foreground/85">Vetted cleaners, rated 4.9 on Google</span>
           </li>
           <li className="flex items-start gap-2">
             <Clock className="mt-0.5 h-5 w-5 flex-shrink-0 text-accent" aria-hidden="true" />

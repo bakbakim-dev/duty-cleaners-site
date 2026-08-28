@@ -516,7 +516,7 @@ export default function EdmontonPricing() {
 
             <div className="grid md:grid-cols-3 gap-6 mb-10">
               {[
-                { icon: Clock, title: `Serving Alberta since ${COMPANY.foundedYear}`, desc: "Licensed and operating across Edmonton" },
+                { icon: Clock, title: `Serving Alberta since ${COMPANY.foundedYear}`, desc: "Operating across Edmonton" },
                 { icon: Award, title: "100% Satisfaction Guarantee", desc: "Not happy? Let us know within 24 hours and we'll re-clean at no cost" },
                 { icon: Users, title: "Skilled Professionals", desc: "Reference-checked, customer-rated, and customer-rated" },
               ].map((item, i) => (

@@ -155,15 +155,15 @@ export default function Reviews() {
     <div className="min-h-screen">
       <Helmet>
         <title>Customer Reviews | Duty Cleaners Edmonton & Calgary</title>
-        <meta name="description" content="Five-star rated house cleaning in Edmonton and Calgary. Read what Alberta homeowners say about Duty Cleaners before you book." />
+        <meta name="description" content="House cleaning rated 4.9 on Google in Edmonton and Calgary. Read what Alberta homeowners say about Duty Cleaners before you book." />
         <link rel="canonical" href="https://dutycleaners.ca/reviews/" />
         <meta property="og:title" content="Customer Reviews | Duty Cleaners Edmonton & Calgary" />
-        <meta property="og:description" content="Five-star rated house cleaning in Edmonton and Calgary. Read what Alberta homeowners say about Duty Cleaners before you book." />
+        <meta property="og:description" content="House cleaning rated 4.9 on Google in Edmonton and Calgary. Read what Alberta homeowners say about Duty Cleaners before you book." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/reviews/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Customer Reviews | Duty Cleaners Edmonton & Calgary" />
-        <meta name="twitter:description" content="Five-star rated house cleaning in Edmonton and Calgary. Read what Alberta homeowners say about Duty Cleaners before you book." />
+        <meta name="twitter:description" content="House cleaning rated 4.9 on Google in Edmonton and Calgary. Read what Alberta homeowners say about Duty Cleaners before you book." />
       </Helmet>
       <Navigation />
       <main id="main-content" tabIndex={-1}>
