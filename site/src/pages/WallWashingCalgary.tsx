@@ -117,7 +117,7 @@ const whyUs = [
   { icon: Sparkles, title: "Restores wall brightness", description: "Bring back the original colour and clean look of your interior." },
   { icon: Shield, title: "Removes buildup others miss", description: "We target stains, grime and residue most general cleans skip." },
   { icon: Home, title: "Improves home appearance", description: "Cleaner walls instantly make every room feel newer and brighter." },
-  { icon: Droplets, title: "Safe interior wall methods", description: "Non-toxic products and techniques suited to painted surfaces." },
+  { icon: Droplets, title: "Safe interior wall methods", description: "Products and techniques suited to painted surfaces." },
   { icon: ThumbsUp, title: "Satisfaction guarantee", description: "We'll re-clean any missed area at no charge within 24 hours." },
   { icon: Star, title: "Trusted across Calgary", description: "Five-Star rated by homeowners across the Calgary region." },
 ];
@@ -139,16 +139,16 @@ export default function WallWashingCalgary() {
     <div className="min-h-screen">
       <Helmet>
         <title>Wall Washing Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional wall and baseboard washing in Calgary. Non-toxic products, customer-rated cleaners, no-obligation quote." />
+        <meta name="description" content="Professional wall and baseboard washing in Calgary. Professional products, customer-rated cleaners, no-obligation quote." />
         <link rel="canonical" href="https://dutycleaners.ca/wall-washing-wall-cleaning-calgary/" />
         <meta property="og:title" content="Wall Washing Calgary | Duty Cleaners" />
-        <meta property="og:description" content="Professional wall and baseboard washing in Calgary. Non-toxic products, customer-rated cleaners, no-obligation quote." />
+        <meta property="og:description" content="Professional wall and baseboard washing in Calgary. Professional products, customer-rated cleaners, no-obligation quote." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/wall-washing-wall-cleaning-calgary/" />
         <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Wall Washing Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional wall and baseboard washing in Calgary. Non-toxic products, customer-rated cleaners, no-obligation quote." />
+        <meta name="twitter:description" content="Professional wall and baseboard washing in Calgary. Professional products, customer-rated cleaners, no-obligation quote." />
         {/* Mirrors the FAQ rendered on this page. Generated from the same
             `faqs` array, so the markup can never drift from the copy. */}
         <script type="application/ld+json">

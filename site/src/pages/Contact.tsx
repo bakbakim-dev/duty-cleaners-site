@@ -97,7 +97,7 @@ const OfficeCard = ({
         <h2 className="text-2xl font-bold text-white transition-transform duration-300 group-hover:translate-x-1">{city} Office</h2>
         <div className="flex items-center gap-1 text-sm text-white/90">
           <Star className="w-4 h-4 text-accent fill-accent" />
-          <span>Five-Star Rated on Google</span>
+          <span>4.9 on Google</span>
         </div>
       </div>
     </div>

@@ -18,7 +18,7 @@ export default function CalgaryDeepCleaning() {
       phone="(403) 768-1341"
       phoneHref="tel:4037681341"
       seoTitle="Deep Cleaning Services Calgary | Duty Cleaners"
-      seoDescription="Detailed deep cleaning in Calgary: baseboards, switches, vents, exterior of appliances, and built-up grime removed. Non-toxic products and a 100% satisfaction guarantee."
+      seoDescription="Detailed deep cleaning in Calgary: baseboards, switches, vents, exterior of appliances, and built-up grime removed. Professional products and a 100% satisfaction guarantee."
       canonical="https://dutycleaners.ca/calgary/deep-cleaning"
       heroHeading={<>Deep Cleaning Services in <AccentGold>Calgary</AccentGold></>}
       heroSubheading="A meticulous top-to-bottom reset for the areas regular cleaning never reaches."
@@ -81,7 +81,7 @@ export default function CalgaryDeepCleaning() {
         { q: "How long does a deep cleaning take?", a: "We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
         { q: "How is deep cleaning different from regular cleaning?", a: "Regular cleaning maintains an already-clean home. Deep cleaning tackles built-up grime, detailed edges, baseboards, and the areas that aren't included in every visit." },
         { q: "Do I need to prepare anything?", a: "Please pick up any personal items you'd like put away and clear surfaces such as vanities, countertops, and other cluttered areas so our cleaners can work efficiently. You may also let us know any priority areas or spaces you would like us to focus on or skip." },
-        { q: "Are your products safe for kids and pets?", a: "Yes. We use non-toxic products as our default and can adjust for specific sensitivities — just let us know when booking." },
+        { q: "Are your products safe for kids and pets?", a: "Tell us about any sensitivities, or products you would rather we used, and we will work to them — just let us know when booking." },
         { q: "How often should I get a deep cleaning?", a: "Most homes benefit from a deep clean every 3–6 months, with regular maintenance cleaning in between." },
       ]}
       ctaHeading={<>Give your home the <AccentGold>full reset.</AccentGold></>}

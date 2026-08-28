@@ -56,9 +56,9 @@ const services = [
 
 const whyUsItems = [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
-  { icon: Star, title: "Five-Star Rated", description: "Trusted by thousands of Alberta families with verified Google reviews." },
+  { icon: Star, title: "4.9 on Google", description: "Trusted by thousands of Alberta families with verified Google reviews." },
   { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability. We work around your busy life." },
-  { icon: Leaf, title: "High Quality Cleaning Supplies", description: "Safe to use around your family and pets — without compromising on clean." },
+  { icon: Leaf, title: "High Quality Cleaning Supplies", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
 ];
@@ -210,7 +210,7 @@ export default function Strathmore() {
                   </p>
                   <p>
                     From the established streets of Westmount to the family-friendly community of Heritage Heights,
-                    we provide flexible scheduling and non-toxic cleaning solutions suited to every household in Strathmore.
+                    we provide flexible scheduling and cleaning suited to every household in Strathmore.
                     Don't miss the annual{" "}
                     <a href="https://www.google.com/maps/place/Strathmore+Stampede+Grounds,+Strathmore,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Strathmore Stampede</a>
                     — one of Canada's largest rodeos — while we take care of the cleaning at home.
@@ -232,7 +232,7 @@ export default function Strathmore() {
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>Located just 40 km east of Calgary, Strathmore is a thriving town that blends rural charm with modern conveniences. With a population of over 13,000, Strathmore is known for its friendly community spirit and outdoor recreation opportunities. Start your day with a walk or bike ride along the scenic Kinsmen Park Trail System, offering beautiful views of the natural surroundings. In the summer, you can cool off at the Strathmore Aquatic Centre or enjoy a round of golf at the Strathmore Golf Club.</p>
-                <p>History buffs will appreciate a visit to the Strathmore Heritage Days Museum, showcasing the town’s rich agricultural roots. For family fun, don’t miss the annual Strathmore Stampede, one of Canada’s largest rodeos, featuring exciting events, live music, and delicious food. After a busy day, enjoy a meal at Mike’s Bar & Grill, a local favorite for hearty dishes and a welcoming atmosphere. When the day is done, let Duty Cleaners take care of your cleaning needs, so you can unwind in a spotless home.</p>
+                <p>History buffs will appreciate a visit to the Strathmore Heritage Days Museum, showcasing the town’s rich agricultural roots. For family fun, don’t miss the annual Strathmore Stampede, one of Canada’s largest rodeos, featuring exciting events, live music, and delicious food. Mike’s Bar & Grill is on Second Street. When the day is done, let Duty Cleaners take care of your cleaning needs, so you can unwind in a spotless home.</p>
               </div>
             </div>
           </AnimatedSection>
@@ -316,7 +316,7 @@ export default function Strathmore() {
                   Why Strathmore Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by families across the Calgary region for reliable, thorough, and non-toxic cleaning.
+                  Trusted by families across the Calgary region for reliable, thorough cleaning.
                 </p>
               </div>
             </AnimatedSection>

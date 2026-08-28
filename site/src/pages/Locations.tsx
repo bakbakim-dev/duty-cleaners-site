@@ -466,7 +466,7 @@ export default function Locations() {
               </div>
               <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-5 py-3 rounded-full border border-white/20">
                 <Award className="w-5 h-5 text-accent" />
-                <span className="font-medium text-white">Five-Star Rated</span>
+                <span className="font-medium text-white">4.9 on Google</span>
               </div>
               <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-5 py-3 rounded-full border border-white/20">
                 <Users className="w-5 h-5 text-accent" />

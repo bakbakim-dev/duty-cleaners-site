@@ -56,9 +56,9 @@ const services = [
 
 const whyUsItems = [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
-  { icon: Star, title: "Five-Star Rated", description: "Trusted by thousands of Alberta families with verified Google reviews." },
+  { icon: Star, title: "4.9 on Google", description: "Trusted by thousands of Alberta families with verified Google reviews." },
   { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability. We work around your busy life." },
-  { icon: Leaf, title: "High Quality Cleaning Supplies", description: "Safe to use around your family and pets — without compromising on clean." },
+  { icon: Leaf, title: "High Quality Cleaning Supplies", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
 ];
@@ -206,7 +206,7 @@ export default function Langdon() {
                     our team knows Langdon well and is ready to keep your home spotless.
                   </p>
                   <p>
-                    From the established homes in Langdon proper to the acreages and newer developments in the surrounding area, we provide flexible scheduling and non-toxic cleaning solutions suited to every household.
+                    From the established homes in Langdon proper to the acreages and newer developments in the surrounding area, we provide flexible scheduling and cleaning suited to every household.
                   </p>
                 </div>
               </div>
@@ -225,7 +225,7 @@ export default function Langdon() {
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>Just a short drive east of Calgary, Langdon is known as the “Good Luck Town.” With a welcoming community of over 5,000 people, Langdon offers a perfect mix of small-town warmth and modern conveniences. Start your morning at The Track Golf Course, where you can enjoy 18 scenic holes in a laid-back setting. For those who love the outdoors, Langdon Park is ideal for picnics, playing sports, or simply taking a leisurely walk.</p>
-                <p>If you’re a fan of fresh, local produce, the Langdon Farmers' Market is the perfect place to pick up seasonal fruits, vegetables, and handmade goods. After a day out, refuel at The Langdon Firehouse Bar & Grill, a local favorite known for its hearty meals and friendly atmosphere. And when you head home, let Duty Cleaners handle the cleanup, so you can relax in a pristine space.</p>
+                <p>If you’re a fan of fresh, local produce, the Langdon Farmers' Market is the perfect place to pick up seasonal fruits, vegetables, and handmade goods. The Langdon Firehouse Bar & Grill is on Centre Street. And when you head home, let Duty Cleaners handle the cleanup, so you can relax in a pristine space.</p>
               </div>
             </div>
           </AnimatedSection>
@@ -309,7 +309,7 @@ export default function Langdon() {
                   Why Langdon Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by families across the Calgary region for reliable, thorough, and non-toxic cleaning.
+                  Trusted by families across the Calgary region for reliable, thorough cleaning.
                 </p>
               </div>
             </AnimatedSection>

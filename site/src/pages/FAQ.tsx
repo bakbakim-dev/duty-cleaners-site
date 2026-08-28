@@ -73,7 +73,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "Do I need to provide cleaning supplies?",
-        answer: "No — our team brings all cleaning supplies and equipment, including non-toxic products that are safe for children and pets.",
+        answer: "No — our team brings all cleaning supplies and equipment. If you would prefer we use specific products, tell us when you book.",
       },
       {
         question: "Do you take out the trash after cleaning?",

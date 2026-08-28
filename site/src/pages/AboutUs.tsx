@@ -95,7 +95,7 @@ export default function AboutUs() {
                 { title: "Where we started", text: "A small family business with one simple promise: treat every home like our own." },
                 { title: "4,000+ Edmonton homes", text: "Word of mouth made us one of Edmonton's most trusted cleaning teams." },
                 { title: "Calgary, here we come", text: "The same vetted cleaners, transparent pricing, and guarantee — now in Calgary and surrounding communities." },
-                { title: "Today", text: "Two cities, a strict 5-step vetting process, and the same promise on every single visit." },
+                { title: "Today", text: "Two cities, cleaners who are reference-checked before their first job and customer-rated after every visit, and the same promise every time." },
               ].map((step, index) => (
                 <div key={step.title} className="relative pl-10 md:pl-0 md:pt-10">
                   <span className="absolute left-0 top-2 h-4 w-4 rounded-full border-2 border-brand-gold bg-white md:left-1/2 md:top-0 md:-translate-x-1/2" aria-hidden="true" />
@@ -144,7 +144,7 @@ export default function AboutUs() {
                 iconWrap: "bg-primary/10",
                 iconColor: "text-primary",
                 title: "All Cleaning Supplies & Equipment Provided",
-                text: "Our professional cleaners arrive fully equipped with premium, non-toxic products and top-tier equipment, so you don't have to worry about providing a thing.",
+                text: "Our professional cleaners arrive fully equipped with premium products and top-tier equipment, so you don't have to worry about providing a thing.",
               },
               {
                 icon: Clock,
@@ -208,7 +208,7 @@ export default function AboutUs() {
             Ready to Experience the Duty Cleaners Difference?
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Join hundreds of satisfied customers across Alberta. Get your free quote today!
+            Join thousands of satisfied customers across Alberta. Get your free quote today!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-white text-primary hover:bg-white/90" asChild>

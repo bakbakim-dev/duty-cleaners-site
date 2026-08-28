@@ -56,9 +56,9 @@ const services = [
 
 const whyUsItems = [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
-  { icon: Star, title: "Five-Star Rated", description: "Trusted by thousands of Calgary families with verified Google reviews." },
+  { icon: Star, title: "4.9 on Google", description: "Trusted by thousands of Calgary families with verified Google reviews." },
   { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability. We work around your busy family life." },
-  { icon: Leaf, title: "High Quality Cleaning Supplies", description: "Safe to use around your family and pets — without compromising on clean." },
+  { icon: Leaf, title: "High Quality Cleaning Supplies", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
 ];
@@ -191,7 +191,7 @@ export default function Cranston() {
                   <p>
                     Whether you live in a spacious estate on the ridge with panoramic views or a cozy townhome near the{" "}
                     <a href="https://www.google.com/maps/search/Seton+Urban+District+Calgary" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Seton Urban District</a>,
-                    we provide flexible scheduling and non-toxic cleaning solutions suited to every household.
+                    we provide flexible scheduling and cleaning suited to every household.
                   </p>
                 </div>
               </div>
@@ -258,7 +258,7 @@ export default function Cranston() {
               <div className="text-center mb-14">
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Cranston Residents Choose Duty Cleaners</h2>
-                <p className="text-white/90 max-w-2xl mx-auto text-lg">Trusted by families across Calgary for reliable, thorough, and non-toxic cleaning.</p>
+                <p className="text-white/90 max-w-2xl mx-auto text-lg">Trusted by families across Calgary for reliable, thorough cleaning.</p>
               </div>
             </AnimatedSection>
             <AnimatedSection>

@@ -29,7 +29,7 @@ const faqs = [
   { q: 'How long does move out cleaning take in Calgary?', a: "We work to the move-out checklist rather than a set number of hours. Your team stays until every task is complete, and your flat rate does not change based on how long it takes. We'll confirm your arrival window when you book." },
   { q: 'Should I clean before you arrive?', a: 'For move in and move out cleaning, the home must be completely empty before our team arrives — that includes all personal belongings, furniture, and trash. This ensures we can deliver a thorough, top-to-bottom clean without obstacles.' },
   { q: "Do you guarantee I'll get my security deposit back?", a: "While we can't control all landlord decisions, our thorough cleaning meets or exceeds the standards required by most Calgary property managers. If cleaning issues are cited for deposit deductions, we'll return to address them at no additional cost." },
-  { q: 'Do you bring your own cleaning supplies and equipment?', a: "Yes, our professional move out cleaners bring all necessary cleaning supplies, equipment, and non-toxic products on request. You don't need to provide anything except access to the property and functioning utilities (water and electricity)." },
+  { q: 'Do you bring your own cleaning supplies and equipment?', a: "Yes, our professional move out cleaners bring all necessary cleaning supplies, equipment, and can use products you prefer on request. You don't need to provide anything except access to the property and functioning utilities (water and electricity)." },
   { q: 'What is included in move out cleaning in Calgary?', a: 'A complete top-to-bottom deep clean: kitchen degreasing (stovetop, range hood, backsplash, inside oven, microwave, fridge), inside cabinets and drawers, full bathroom sanitization (soap scum, hard water, tile), all floors, baseboards, door frames, light switches, vents, window sills, and inside closets and storage spaces.' },
   { q: 'Do you clean inside appliances and cabinets?', a: 'Yes — inside the oven, microwave, fridge, freezer, dishwasher, and the inside of every cabinet and drawer are all included in our standard move out / move in cleaning in Calgary.' },
   { q: "What's the difference between regular cleaning and move out cleaning?", a: 'Regular cleaning maintains an occupied home week to week. Move out (and move in) cleaning is a one-time, far more detailed service that addresses built-up grime, hidden surfaces, inside appliances, baseboards, vents, and every storage space — the level of detail required for inspections, walk-throughs, and turnovers.' },
@@ -380,7 +380,7 @@ export default function CalgaryMoveInOut() {
               </p>
               <ul className="space-y-2 text-muted-foreground">
                 <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" /><span>Professional cleaning team assigned based on the size and needs of the home</span></li>
-                <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" /><span>High-quality equipment and non-toxic cleaning products</span></li>
+                <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" /><span>High-quality equipment and professional cleaning products</span></li>
                 <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" /><span>Move-out cleaning checklist designed to meet landlord inspection standards your landlord will love</span></li>
               </ul>
             </div>
@@ -444,7 +444,7 @@ export default function CalgaryMoveInOut() {
               </div>
               <h3 className="text-xl font-bold mb-3">Trusted & Experienced Cleaners</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Our move out cleaners in Calgary are carefully vetted professionals, committed to delivering a high-quality cleaning experience. We bring all the necessary equipment, and non-toxic cleaning products are available upon request.
+                Our move out cleaners in Calgary are carefully vetted professionals, committed to delivering a high-quality cleaning experience. We bring all the necessary equipment, and products you prefer can be used on request.
               </p>
             </div>
 

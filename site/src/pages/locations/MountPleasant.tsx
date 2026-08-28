@@ -50,15 +50,15 @@ const services = [
   { icon: Sparkles, title: "Deep Cleaning", description: "Detailed seasonal deep cleans that reset every room." },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Move cleans for buyers, sellers, and renters across the area." },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Post-construction cleanup for the area's many infills and renos." },
-  { icon: Bath, title: "Bathroom Sanitization", description: "Family-safe bathroom sanitization with non-toxic products." },
+  { icon: Bath, title: "Bathroom Sanitization", description: "Thorough bathroom cleaning and sanitization." },
   { icon: Building2, title: "Commercial Cleaning", description: "Local business cleaning along 16th Ave and 4th Street NW." },
 ];
 
 const whyUsItems = [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
-  { icon: Star, title: "Five-Star Rated", description: "Trusted by thousands of Alberta families with verified Google reviews." },
+  { icon: Star, title: "4.9 on Google", description: "Trusted by thousands of Alberta families with verified Google reviews." },
   { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability. We work around your busy life." },
-  { icon: Leaf, title: "High Quality Cleaning Supplies", description: "Safe to use around your family and pets — without compromising on clean." },
+  { icon: Leaf, title: "High Quality Cleaning Supplies", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
 ];
@@ -312,7 +312,7 @@ export default function MountPleasant() {
                     There's no better feeling than walking into a kitchen where every surface gleams and the air smells fresh. Our team makes that the standard, not the exception, in every Mount Pleasant home we visit.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Non-toxic, family-safe products","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -350,7 +350,7 @@ export default function MountPleasant() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Mount Pleasant Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by families across Calgary for reliable, thorough, and non-toxic cleaning.
+                  Trusted by families across Calgary for reliable, thorough cleaning.
                 </p>
               </div>
             </AnimatedSection>

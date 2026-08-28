@@ -33,7 +33,7 @@ export default function EdmontonRecurringCleaning() {
       overviewParagraphs={[
         "Recurring cleaning is an ongoing scheduled service designed to keep your Edmonton home consistently clean week after week. Choose the cadence that fits your household — weekly, bi-weekly, or monthly — and your home stays tidy, hygienic, and guest-ready without the hassle of booking each time.",
         "Every recurring appointment covers the kitchen, bathrooms, bedrooms, and living areas, including dusting, vacuuming, mopping, and sanitizing high-touch surfaces. Because we visit on a regular schedule, we get to know your home and your preferences, delivering a reliable standard of cleanliness over time.",
-        "Your first clean is at the standard one-time rate; from your second visit on, recurring clients save on every visit: 20% off weekly, 15% off bi-weekly, and 10% off monthly cleanings. Our cleaners use non-toxic products that are safe for kids and pets, and bring all supplies and equipment.",
+        "Your first clean is at the standard one-time rate; from your second visit on, recurring clients save on every visit: 20% off weekly, 15% off bi-weekly, and 10% off monthly cleanings. Our cleaners bring all supplies and equipment.",
       ]}
       includedHeading="What Every Recurring Visit Includes"
       includedSubheading="Consistent maintenance cleaning of the rooms and surfaces that matter most for a healthy, lived-in home."
@@ -75,7 +75,7 @@ export default function EdmontonRecurringCleaning() {
         { q: "Can I change or skip a scheduled cleaning?", a: "Yes — just give us reasonable notice and we'll reschedule or skip a visit. There's no long-term contract." },
         { q: "Will I have the same cleaner each visit?", a: "We do our best to send the same cleaning team for each visit so they become familiar with your home and preferences. However, in cases such as emergencies, sick days, or scheduled leave, we may send a different trusted team. If you prefer the same cleaners each time and have flexibility with scheduling, we can also adjust your appointment to a day when your regular team is available." },
         { q: "Do I need to be home during the cleaning?", a: "No. Most recurring clients provide a lockbox code, smart-lock access, or leave keys in a safe spot. We'll lock up after we're done." },
-        { q: "Do I need to provide cleaning supplies?", a: "No — our team brings all cleaning supplies and equipment, including non-toxic products that are safe for children and pets." },
+        { q: "Do I need to provide cleaning supplies?", a: "No — our team brings all cleaning supplies and equipment. If you would prefer we use specific products, tell us when you book." },
         { q: "What if I only need a single cleaning?", a: "If you'd prefer a one-time appointment, our standard or deep cleaning service are great fit." },
       ]}
       ctaHeading={<>Set it. Forget it. <AccentGold>Stay spotless.</AccentGold></>}

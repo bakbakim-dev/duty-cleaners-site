@@ -50,15 +50,15 @@ const services = [
   { icon: Sparkles, title: "Deep Cleaning", description: "Periodic deep cleans for spring resets and seasonal refreshes." },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Stress-free move cleans coordinated with your moving timeline." },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust and debris cleanup for renos and basement developments." },
-  { icon: Bath, title: "Bathroom Sanitization", description: "Kid- and pet-safe bathroom sanitization with non-toxic products." },
+  { icon: Bath, title: "Bathroom Sanitization", description: "Thorough bathroom cleaning and sanitization." },
   { icon: Building2, title: "Commercial Cleaning", description: "Commercial cleaning for offices and clinics along Centre Street N." },
 ];
 
 const whyUsItems = [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
-  { icon: Star, title: "Five-Star Rated", description: "Trusted by thousands of Alberta families with verified Google reviews." },
+  { icon: Star, title: "4.9 on Google", description: "Trusted by thousands of Alberta families with verified Google reviews." },
   { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability. We work around your busy life." },
-  { icon: Leaf, title: "High Quality Cleaning Supplies", description: "Safe to use around your family and pets — without compromising on clean." },
+  { icon: Leaf, title: "High Quality Cleaning Supplies", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
 ];
@@ -210,7 +210,7 @@ export default function Greenview() {
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Family-Friendly Cleaning Across Greenview</h2>
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>Greenview is one of Calgary's most well-connected inner-city neighbourhoods. With Centre Street, Deerfoot Trail, and McKnight Boulevard at its edges, it's a favourite for commuters, growing families, and anyone who values a quick downtown drive.</p>
-                  <p>We clean everything from cozy bungalows to townhomes and rental suites in Greenview. Our products are non-toxic and family-safe — important to us because most of our clients here have kids, pets, or both.</p>
+                  <p>We clean everything from cozy bungalows to townhomes and rental suites in Greenview. We bring our own products and equipment — important to us because most of our clients here have kids, pets, or both.</p>
                 </div>
               </div>
             </AnimatedSection>
@@ -312,7 +312,7 @@ export default function Greenview() {
                     Skip the weekend scrub session. Our Greenview families love walking into a tidy living room, fresh-smelling kitchen, and bathrooms that sparkle — all while they were out enjoying the river or the zoo.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Non-toxic, family-safe products","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -350,7 +350,7 @@ export default function Greenview() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Greenview Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by families across Calgary for reliable, thorough, and non-toxic cleaning.
+                  Trusted by families across Calgary for reliable, thorough cleaning.
                 </p>
               </div>
             </AnimatedSection>

@@ -237,7 +237,7 @@ export default function CommercialCleaning() {
                 <FeatureItem icon={CalendarCheck} title="Flexible Scheduling" description="We work around your business hours with options for weekend cleanings." />
                 <FeatureItem icon={ThumbsUp} title="100% Satisfaction Guaranteed" description="If you're not happy with our service, we’ll come back free of charge. Simply let us know within 24 hours after your cleaning, and we’ll make it right." />
                 <FeatureItem icon={Star} title="Transparent Pricing" description="Upfront, honest pricing with no hidden fees. We provide detailed quotes and work within your budget." />
-                <FeatureItem icon={Leaf} title="Safe Quality Products" description="Safe, non-toxic cleaning products that are effective for commercial environments and gentle on surfaces." />
+                <FeatureItem icon={Leaf} title="Safe Quality Products" description="Professional cleaning products suited to commercial environments and gentle on surfaces." />
               </div>
             </div>
           </section>

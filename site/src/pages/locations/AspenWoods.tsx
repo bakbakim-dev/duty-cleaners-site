@@ -56,9 +56,9 @@ const services = [
 
 const whyUsItems = [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
-  { icon: Star, title: "Five-Star Rated", description: "Trusted by thousands of Calgary families with verified Google reviews." },
+  { icon: Star, title: "4.9 on Google", description: "Trusted by thousands of Calgary families with verified Google reviews." },
   { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability. We work around your busy professional lifestyle." },
-  { icon: Leaf, title: "Premium Products", description: "High-quality, non-toxic products safe for delicate surfaces and fine finishes." },
+  { icon: Leaf, title: "Premium Products", description: "High-quality products suited to delicate surfaces and fine finishes." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to handle premium fixtures and materials with care." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
 ];
@@ -258,7 +258,7 @@ export default function AspenWoods() {
               <div className="text-center mb-14">
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Aspen Woods Residents Choose Duty Cleaners</h2>
-                <p className="text-white/90 max-w-2xl mx-auto text-lg">Trusted by families across Calgary for reliable, thorough, and non-toxic cleaning.</p>
+                <p className="text-white/90 max-w-2xl mx-auto text-lg">Trusted by families across Calgary for reliable, thorough cleaning.</p>
               </div>
             </AnimatedSection>
             <AnimatedSection>

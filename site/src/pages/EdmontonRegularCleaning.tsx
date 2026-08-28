@@ -20,7 +20,7 @@ export default function EdmontonRegularCleaning() {
       phone="(780) 913-6565"
       phoneHref="tel:7809136565"
       seoTitle="Standard Cleaning & Maid Service Edmonton | Duty Cleaners"
-      seoDescription="Reliable standard house cleaning in Edmonton. One-time thorough cleaning from vetted professionals using non-toxic products. 100% satisfaction guaranteed."
+      seoDescription="Reliable standard house cleaning in Edmonton. One-time thorough cleaning from vetted professionals. 100% satisfaction guaranteed."
       canonical="https://dutycleaners.ca/edmonton/regular-cleaning"
       heroHeading={<>Standard Cleaning Services in <AccentGold>Edmonton</AccentGold></>}
       heroSubheading="A one-time professional cleaning appointment for busy households — recurring plans available if you'd like ongoing maintenance."
@@ -32,7 +32,7 @@ export default function EdmontonRegularCleaning() {
       overviewParagraphs={[
         "Standard cleaning is a thorough one-time service designed to refresh your Edmonton home, making it hygienic, presentable, and comfortable. It's a single cleaning appointment focused on the areas you use most, removing dust, grime, and bacteria that build up over time. If you'd prefer ongoing upkeep, recurring cleaning plans are also available separately.",
         "Your appointment covers the kitchen, bathrooms, bedrooms, and living areas — including dusting, vacuuming, mopping, sanitizing high-touch surfaces, and general surface cleaning throughout the home. Whether you need a reset before guests arrive or simply want your space professionally cleaned, our team delivers a high standard of cleanliness in a single visit.",
-        "Our cleaners follow a detailed room-by-room checklist, use non-toxic products that are safe for kids and pets, and bring all necessary cleaning supplies and equipment. To help us focus on cleaning, we ask that homes are reasonably prepared before arrival, including picking up clothing, toys, dishes, or excessive clutter. Small items may be lightly organized if it only takes 1–2 minutes, but our primary focus is professional cleaning rather than full decluttering or home organization services.",
+        "Our cleaners follow a detailed room-by-room checklist, bring all necessary cleaning supplies and equipment. To help us focus on cleaning, we ask that homes are reasonably prepared before arrival, including picking up clothing, toys, dishes, or excessive clutter. Small items may be lightly organized if it only takes 1–2 minutes, but our primary focus is professional cleaning rather than full decluttering or home organization services.",
       ]}
       includedHeading="Comprehensive Standard Cleaning"
       includedSubheading="Your one-time appointment covers the rooms and surfaces that matter most for a healthy, lived-in home."
@@ -75,7 +75,7 @@ export default function EdmontonRegularCleaning() {
         { q: "How long does a standard cleaning take?", a: "We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
         { q: "How often should I schedule standard cleaning?", a: "Most Edmonton households book standard cleaning as needed — before events, seasonally, or whenever their home needs a refresh. For ongoing upkeep, many clients book every 2–4 weeks." },
         { q: "Do I need to be home during the cleaning?", a: "No. Most clients provide a lockbox code, smart-lock access, or leave the keys under the mat. We'll lock up after we're done." },
-        { q: "Do I need to provide cleaning supplies?", a: "No — our team brings all cleaning supplies and equipment, including non-toxic products that are safe for children and pets." },
+        { q: "Do I need to provide cleaning supplies?", a: "No — our team brings all cleaning supplies and equipment. If you would prefer we use specific products, tell us when you book." },
         { q: "What should I do to prepare?", a: "Please pick up any personal items you'd like put away and clear surfaces such as vanities, countertops, and other cluttered areas so our cleaners can work efficiently. You may also let us know any priority areas or spaces you would like us to focus on or skip." },
       ]}
       ctaHeading={<>Ready for a spotless <AccentGold>Edmonton</AccentGold> home?</>}

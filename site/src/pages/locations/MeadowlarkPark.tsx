@@ -56,9 +56,9 @@ const services = [
 
 const whyUsItems = [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
-  { icon: Star, title: "Five-Star Rated", description: "Trusted by thousands of Alberta families with verified Google reviews." },
+  { icon: Star, title: "4.9 on Google", description: "Trusted by thousands of Alberta families with verified Google reviews." },
   { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability. We work around your busy life." },
-  { icon: Leaf, title: "High Quality Cleaning Supplies", description: "Safe to use around your family and pets — without compromising on clean." },
+  { icon: Leaf, title: "High Quality Cleaning Supplies", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
 ];
@@ -210,7 +210,7 @@ export default function MeadowlarkPark() {
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Cleaning Services Tailored to Meadowlark Park Living</h2>
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>Meadowlark Park is a small, low-key SW community known for its 1950s bungalows, leafy streets, and the central park that gives the neighbourhood its name. Families love the laid-back pace and easy access to Chinook and Britannia.</p>
-                  <p>From original bungalows to thoughtful renovations, our team adapts to your home's character — using non-toxic products that protect your finishes and keep indoor air fresh for kids, pets, and guests.</p>
+                  <p>From original bungalows to thoughtful renovations, our team adapts to your home's character — using products chosen to protect your finishes and keep indoor air fresh for kids, pets, and guests.</p>
                 </div>
               </div>
             </AnimatedSection>
@@ -312,7 +312,7 @@ export default function MeadowlarkPark() {
                     Our vetted cleaners treat your home with care, attention, and the same standards we'd want in our own. Walk in to fresh air, gleaming surfaces, and that quiet feeling of <em>everything in its place</em>.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Non-toxic, family-safe products","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -350,7 +350,7 @@ export default function MeadowlarkPark() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Meadowlark Park Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by families across Calgary for reliable, thorough, and non-toxic cleaning.
+                  Trusted by families across Calgary for reliable, thorough cleaning.
                 </p>
               </div>
             </AnimatedSection>

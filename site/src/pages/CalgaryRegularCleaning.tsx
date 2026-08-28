@@ -20,7 +20,7 @@ export default function CalgaryRegularCleaning() {
       phone="(403) 768-1341"
       phoneHref="tel:4037681341"
       seoTitle="Standard Cleaning Calgary | Professional Maid Service | Duty Cleaners"
-      seoDescription="Reliable standard house cleaning in Calgary. One-time thorough cleaning from vetted professionals using non-toxic products. 100% satisfaction guaranteed."
+      seoDescription="Reliable standard house cleaning in Calgary. One-time thorough cleaning from vetted professionals. 100% satisfaction guaranteed."
       canonical="https://dutycleaners.ca/calgary/regular-cleaning"
       heroHeading={<>Standard Cleaning in <AccentGold>Calgary</AccentGold></>}
       heroSubheading="A one-time professional cleaning appointment for busy households — recurring plans available if you'd like ongoing maintenance."
@@ -76,7 +76,7 @@ export default function CalgaryRegularCleaning() {
         { q: "How long does a standard cleaning take?", a: "We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
         { q: "How often should I schedule standard cleaning?", a: "Most Calgary households book standard cleaning as needed — before events, seasonally, or whenever their home needs a refresh. For ongoing upkeep, many clients book every 2–4 weeks." },
         { q: "Do I need to be home during the cleaning?", a: "No. Most clients provide a lockbox code, smart-lock access, or leave the keys under the mat. We'll lock up after we're done." },
-        { q: "Do I need to provide cleaning supplies?", a: "No — our team brings all cleaning supplies and equipment, including non-toxic products that are safe for children and pets." },
+        { q: "Do I need to provide cleaning supplies?", a: "No — our team brings all cleaning supplies and equipment. If you would prefer we use specific products, tell us when you book." },
         { q: "What should I do to prepare?", a: "Please pick up any personal items you'd like put away and clear surfaces such as vanities, countertops, and other cluttered areas so our cleaners can work efficiently. You may also let us know any priority areas or spaces you would like us to focus on or skip." },
       ]}
       ctaHeading={<>Ready for a spotless <AccentGold>Calgary</AccentGold> home?</>}

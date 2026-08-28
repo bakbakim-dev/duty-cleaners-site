@@ -618,7 +618,7 @@ const ServiceDetailPage = ({
               )}
               <span className="hidden lg:inline-flex items-center gap-1.5 text-sm text-muted-foreground whitespace-nowrap">
                 <Star className="w-4 h-4 text-brand-gold fill-brand-gold" aria-hidden="true" />
-                Five-Star Rated
+                4.9 on Google
               </span>
             </div>
             <div className="flex items-center gap-4 shrink-0">

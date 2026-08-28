@@ -56,9 +56,9 @@ const services = [
 
 const whyUsItems = [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
-  { icon: Star, title: "Five-Star Rated", description: "Trusted by thousands of Alberta families with verified Google reviews." },
+  { icon: Star, title: "4.9 on Google", description: "Trusted by thousands of Alberta families with verified Google reviews." },
   { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability. We work around your busy life." },
-  { icon: Leaf, title: "High Quality Cleaning Supplies", description: "Safe to use around your family and pets — without compromising on clean." },
+  { icon: Leaf, title: "High Quality Cleaning Supplies", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
 ];
@@ -210,7 +210,7 @@ export default function HighlandPark() {
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Cleaning Services Built for Highland Park Homes</h2>
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>Highland Park is a tight-knit N Calgary community of 1940s and '50s character bungalows, generous lots, and tree-lined streets. The community is in the middle of a quiet renaissance, with thoughtful infills appearing alongside lovingly maintained originals.</p>
-                  <p>We tailor every clean to your home's character — gentle on original hardwood and trim in older homes, thorough in modern builds. Always with non-toxic products and a 100% satisfaction guarantee.</p>
+                  <p>We tailor every clean to your home's character — gentle on original hardwood and trim in older homes, thorough in modern builds. Always with professional products and a 100% satisfaction guarantee.</p>
                 </div>
               </div>
             </AnimatedSection>
@@ -312,7 +312,7 @@ export default function HighlandPark() {
                     There's something special about walking into a freshly cleaned bathroom — chrome that gleams, tile that sparkles, towels neatly folded. It's the small things that make Highland Park homes feel like a sanctuary.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Non-toxic, family-safe products","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -350,7 +350,7 @@ export default function HighlandPark() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Highland Park Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by families across Calgary for reliable, thorough, and non-toxic cleaning.
+                  Trusted by families across Calgary for reliable, thorough cleaning.
                 </p>
               </div>
             </AnimatedSection>

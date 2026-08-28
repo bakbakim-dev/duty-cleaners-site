@@ -189,7 +189,7 @@ export default function EdmontonPricing() {
 
             <div className="flex flex-wrap items-center justify-center gap-4 mb-10">
               {[
-                { icon: Star, label: "Five-Star Rated" },
+                { icon: Star, label: "4.9 on Google" },
                 { icon: Shield, label: "Pay after your clean" },
                 { icon: BadgeCheck, label: "No Hidden Fees" },
               ].map((badge, i) => (

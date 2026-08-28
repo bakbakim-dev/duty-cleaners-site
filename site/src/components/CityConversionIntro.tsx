@@ -78,7 +78,7 @@ export default function CityConversionIntro({
       ? `${proof.googleRating} on Google · ${proof.googleReviewCount} ${city} reviews`
       : proof.googleRating
         ? `${proof.googleRating} on Google in ${city} — read the reviews`
-        : `Five-Star Rated on Google in ${city} — read the reviews`;
+        : `4.9 on Google in ${city} — read the reviews`;
 
   return (
     <>

@@ -55,9 +55,9 @@ const services = [
 
 const whyUsItems = [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
-  { icon: Star, title: "Five-Star Rated", description: "Trusted by thousands of Alberta families with verified Google reviews." },
+  { icon: Star, title: "4.9 on Google", description: "Trusted by thousands of Alberta families with verified Google reviews." },
   { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability that works around your busy Mission lifestyle." },
-  { icon: Leaf, title: "High Quality Cleaning Supplies", description: "Family- and pet-safe supplies that protect your home without compromising on clean." },
+  { icon: Leaf, title: "High Quality Cleaning Supplies", description: "Professional supplies and equipment that protect your home without compromising on clean." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
 ];
@@ -205,7 +205,7 @@ export default function Mission() {
                     <a href="https://www.google.com/maps/place/MNP+Community+%26+Sport+Centre,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">MNP Community &amp; Sport Centre</a>.
                   </p>
                   <p>
-                    Whether you live in a heritage home on a tree-lined street or a modern high-rise overlooking the river, our team provides flexible scheduling and non-toxic cleaning solutions designed for Mission's unique mix of households.
+                    Whether you live in a heritage home on a tree-lined street or a modern high-rise overlooking the river, our team provides flexible scheduling and professional cleaning solutions designed for Mission's unique mix of households.
                   </p>
                 </div>
               </div>
@@ -290,7 +290,7 @@ export default function Mission() {
                   Why Mission Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by inner-city Calgary households for reliable, thorough, non-toxic cleaning.
+                  Trusted by inner-city Calgary households for reliable, thorough cleaning.
                 </p>
               </div>
             </AnimatedSection>

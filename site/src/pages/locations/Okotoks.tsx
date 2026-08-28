@@ -56,9 +56,9 @@ const services = [
 
 const whyUsItems = [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
-  { icon: Star, title: "Five-Star Rated", description: "Trusted by thousands of Alberta families with verified Google reviews." },
+  { icon: Star, title: "4.9 on Google", description: "Trusted by thousands of Alberta families with verified Google reviews." },
   { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability. We work around your busy life." },
-  { icon: Leaf, title: "High Quality Cleaning Supplies", description: "Safe to use around your family and pets — without compromising on clean." },
+  { icon: Leaf, title: "High Quality Cleaning Supplies", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
 ];
@@ -209,7 +209,7 @@ export default function Okotoks() {
                     <a href="https://www.google.com/maps/place/Cimarron,+Okotoks,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Cimarron</a>{" "}
                     to the eco-conscious community of{" "}
                     <a href="https://www.google.com/maps/place/Drake+Landing,+Okotoks,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Drake Landing</a>,
-                    our team knows Okotoks well and provides flexible scheduling and non-toxic cleaning solutions suited to every household.
+                    our team knows Okotoks well and provides flexible scheduling and cleaning suited to every household.
                   </p>
                 </div>
               </div>
@@ -228,7 +228,7 @@ export default function Okotoks() {
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>Situated along the beautiful Sheep River, Okotoks is a vibrant town just south of Calgary, known for its natural beauty and welcoming community. With a population of over 30,000, Okotoks offers a unique mix of small-town charm and modern amenities. Nature enthusiasts will love exploring Sheep River Valley, with its stunning walking trails and picturesque views. Start your day with a peaceful walk along the Sheep River Pathway, or head to Eagle 72 Park for some outdoor fun with the family. History lovers can visit the Okotoks Museum and Archives to learn about the town’s rich past.</p>
-                <p>And don't miss the famous Okotoks Erratic (Big Rock), a massive glacial boulder that’s a must-see landmark. If you’re a fan of markets, the Okotoks Farmers' Market is the perfect spot to find fresh local produce and handmade goods. For art lovers, the Okotoks Art Gallery offers rotating exhibits that showcase local talent. During the summer, don't miss a visit to Kayben Farms, where you can enjoy fresh berries, farm-to-table dining, and family-friendly activities. Downtown Okotoks is filled with charming boutiques, local shops, and cozy cafes, perfect for a leisurely day out. Wrap up your day with a delicious meal at The Heartland Cafe, a local favorite known for its hearty dishes and cozy atmosphere. When you come home after a day of fun, let Duty Cleaners take care of the mess, so you can relax and unwind.</p>
+                <p>And don't miss the famous Okotoks Erratic (Big Rock), a massive glacial boulder that’s a must-see landmark. If you’re a fan of markets, the Okotoks Farmers' Market is the perfect spot to find fresh local produce and handmade goods. For art lovers, the Okotoks Art Gallery offers rotating exhibits that showcase local talent. During the summer, don't miss a visit to Kayben Farms, where you can enjoy fresh berries, farm-to-table dining, and family-friendly activities. Downtown Okotoks is filled with charming boutiques, local shops, and cozy cafes, perfect for a leisurely day out. The Heartland Cafe is on Elizabeth Street downtown. When you come home after a day of fun, let Duty Cleaners take care of the mess, so you can relax and unwind.</p>
               </div>
             </div>
           </AnimatedSection>
@@ -312,7 +312,7 @@ export default function Okotoks() {
                   Why Okotoks Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by families across the Calgary region for reliable, thorough, and non-toxic cleaning.
+                  Trusted by families across the Calgary region for reliable, thorough cleaning.
                 </p>
               </div>
             </AnimatedSection>

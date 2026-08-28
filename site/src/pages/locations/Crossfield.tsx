@@ -56,9 +56,9 @@ const services = [
 
 const whyUsItems = [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
-  { icon: Star, title: "Five-Star Rated", description: "Trusted by thousands of Alberta families with verified Google reviews." },
+  { icon: Star, title: "4.9 on Google", description: "Trusted by thousands of Alberta families with verified Google reviews." },
   { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability. We work around your busy life." },
-  { icon: Leaf, title: "High Quality Cleaning Supplies", description: "Safe to use around your family and pets — without compromising on clean." },
+  { icon: Leaf, title: "High Quality Cleaning Supplies", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
 ];
@@ -211,7 +211,7 @@ export default function Crossfield() {
                     From the established homes along{" "}
                     <a href="https://www.google.com/maps/place/Railway+St,+Crossfield,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Railway Avenue</a>{" "}
                     to the newer developments in Mountain View Estates,
-                    we provide flexible scheduling and non-toxic cleaning solutions suited to every household in Crossfield.
+                    we provide flexible scheduling and cleaning suited to every household in Crossfield.
                   </p>
                 </div>
               </div>
@@ -229,7 +229,7 @@ export default function Crossfield() {
                 Things To Do In Crossfield
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
-                <p>Located just north of Calgary, Crossfield is a welcoming town known for its scenic charm and tight-knit community. With a population of over 3,000, Crossfield offers a perfect blend of small-town atmosphere and modern amenities. Spend a leisurely morning at the Collicutt Siding Golf Club, a local favorite offering stunning views and a relaxed environment.</p>
+                <p>Located just north of Calgary, Crossfield is a welcoming town known for its scenic charm and tight-knit community. With a population of over 3,000, Crossfield offers a perfect blend of small-town atmosphere and modern amenities. Collicutt Siding Golf Club is just west of town.</p>
                 <p>Enjoy a walk or family picnic at Banta Park, a beautiful green space perfect for outdoor activities. For fresh, local produce and unique finds, the Crossfield Farmers' Market is a must-visit. Wrap up your day with a hearty meal at The Lobby Kitchen & Bar, known for its cozy ambiance and delicious food. After a day out, let Duty Cleaners handle the cleaning so you can return to a spotless home.</p>
               </div>
             </div>
@@ -314,7 +314,7 @@ export default function Crossfield() {
                   Why Crossfield Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by families across the Calgary region for reliable, thorough, and non-toxic cleaning.
+                  Trusted by families across the Calgary region for reliable, thorough cleaning.
                 </p>
               </div>
             </AnimatedSection>

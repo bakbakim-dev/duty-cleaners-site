@@ -198,7 +198,7 @@ const AirbnbCleaningCalgary = () => {
     { icon: Clock, title: "Fast & Reliable Turnovers", description: "Consistent same-window cleanings so your property is always ready on time." },
     { icon: Star, title: "Trusted by Calgary Hosts", description: "Calgary Airbnb hosts and property managers rely on us for repeat turnovers." },
     { icon: Calendar, title: "Flexible Scheduling", description: "We schedule based on availability — book in advance to lock in your preferred time." },
-    { icon: Shield, title: "Safe, Guest-Friendly Products", description: "Non-toxic cleaning products that are safe for guests, pets, and your property." },
+    { icon: Shield, title: "Safe, Guest-Friendly Products", description: "Professional cleaning products suited to guest-ready turnovers." },
   ];
 
   const gallery = [

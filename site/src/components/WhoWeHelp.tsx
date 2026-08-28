@@ -23,7 +23,7 @@ const personas: Persona[] = [
     label: "For growing families",
     title: "Families With Kids",
     desc: (city) =>
-      `A safe, sanitized home for little ones. Non-toxic products and detail-focused cleaning families across ${city} trust.`,
+      `A safe, sanitized home for little ones. Professional products and detail-focused cleaning families across ${city} trust.`,
   },
   {
     icon: PawPrint,
@@ -105,7 +105,7 @@ export function WhoWeHelp({ city }: { city: City }) {
 
         <div className="mx-auto mt-12 flex max-w-4xl flex-col items-center gap-5 text-center">
           <ul className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm font-medium text-muted-foreground">
-            {[copy.homesStat, "Non-toxic products", "Vetted cleaners"].map((item, i) => (
+            {[copy.homesStat, "Professional products", "Vetted cleaners"].map((item, i) => (
               <li key={item} className="flex items-center gap-3">
                 {i > 0 && <span className="h-1.5 w-1.5 rounded-full bg-brand-gold" aria-hidden="true" />}
                 <span>{item}</span>

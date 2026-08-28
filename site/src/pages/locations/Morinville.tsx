@@ -55,9 +55,9 @@ const services = [
 
 const whyUsItems = [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
-  { icon: Star, title: "Five-Star Rated", description: "Trusted by thousands of Alberta families with verified Google reviews." },
+  { icon: Star, title: "4.9 on Google", description: "Trusted by thousands of Alberta families with verified Google reviews." },
   { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability. We work around your busy life." },
-  { icon: Leaf, title: "High Quality Cleaning Supplies", description: "Safe to use around your family and pets — without compromising on clean." },
+  { icon: Leaf, title: "High Quality Cleaning Supplies", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
 ];
@@ -197,7 +197,7 @@ export default function Morinville() {
                   <a href="https://www.google.com/maps/place/100+Avenue,+Morinville,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">100 Avenue</a>{" "}
                   to the established homes near{" "}
                   <a href="https://www.google.com/maps/place/Notre+Dame+Elementary+School,+Morinville,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Notre Dame Elementary</a>,
-                  we provide flexible scheduling and non-toxic cleaning solutions suited to every household in Morinville.
+                  we provide flexible scheduling and cleaning suited to every household in Morinville.
                 </p>
               </div>
             </div>
@@ -300,7 +300,7 @@ export default function Morinville() {
                 Why Morinville Residents Choose Duty Cleaners
               </h2>
               <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                Trusted by families across the Edmonton region for reliable, thorough, and non-toxic cleaning.
+                Trusted by families across the Edmonton region for reliable, thorough cleaning.
               </p>
             </div>
           </AnimatedSection>

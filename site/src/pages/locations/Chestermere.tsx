@@ -56,9 +56,9 @@ const services = [
 
 const whyUsItems = [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
-  { icon: Star, title: "Five-Star Rated", description: "Trusted by thousands of Alberta families with verified Google reviews." },
+  { icon: Star, title: "4.9 on Google", description: "Trusted by thousands of Alberta families with verified Google reviews." },
   { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability. We work around your busy life." },
-  { icon: Leaf, title: "High Quality Cleaning Supplies", description: "Safe to use around your family and pets — without compromising on clean." },
+  { icon: Leaf, title: "High Quality Cleaning Supplies", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
 ];
@@ -213,7 +213,7 @@ export default function Chestermere() {
                     <a href="https://www.google.com/maps/place/Westmere,+Chestermere,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Westmere</a>{" "}
                     to the growing community of{" "}
                     <a href="https://www.google.com/maps/place/Rainbow+Falls,+Chestermere,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Rainbow Falls</a>,
-                    we provide flexible scheduling and non-toxic cleaning solutions suited to every lakeside household.
+                    we provide flexible scheduling and cleaning suited to every lakeside household.
                   </p>
                 </div>
               </div>
@@ -232,7 +232,7 @@ export default function Chestermere() {
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>Located just east of Calgary, Chestermere is a beautiful lakeside city known for its vibrant community and outdoor recreational opportunities. With a population of over 20,000, Chestermere combines small-town charm with the convenience of city amenities. Start your day with a visit to Chestermere Lake, the heart of the community, perfect for boating, kayaking, paddleboarding, and even swimming during the summer months. For a scenic stroll or a bike ride, the Chestermere Pathway System offers picturesque views around the lake and throughout the city. If you’re into golf, Lakeside Golf Club offers a beautiful course with stunning views and a relaxed atmosphere.</p>
-                <p>Families can enjoy a fun day at John Peake Park, which features playgrounds, picnic spots, and a boat launch. For shopping and dining, check out Chestermere Station, a bustling hub with local shops, boutiques, and cozy restaurants. Wrap up your day with a delicious meal at The Canadian Brewhouse, a local favorite offering hearty dishes and a friendly atmosphere. After a day of exploring Chestermere, come home to a spotless space with the help of Duty Cleaners.</p>
+                <p>Families can enjoy a fun day at John Peake Park, which features playgrounds, picnic spots, and a boat launch. For shopping and dining, check out Chestermere Station, a bustling hub with local shops, boutiques, and cozy restaurants. The Canadian Brewhouse is on Chestermere Station Way. After a day of exploring Chestermere, come home to a spotless space with the help of Duty Cleaners.</p>
               </div>
             </div>
           </AnimatedSection>
@@ -316,7 +316,7 @@ export default function Chestermere() {
                   Why Chestermere Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by families across the Calgary region for reliable, thorough, and non-toxic cleaning.
+                  Trusted by families across the Calgary region for reliable, thorough cleaning.
                 </p>
               </div>
             </AnimatedSection>

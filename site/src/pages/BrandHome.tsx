@@ -53,7 +53,7 @@ const whyChooseUs = [{
   desc: "Every cleaner is reference-checked before working in a customer’s home."
 }, {
   icon: Star,
-  title: "Five-Star Rated",
+  title: "4.9 on Google",
   desc: "Our reputation speaks for itself. Trusted by thousands of satisfied clients across Alberta."
 }, {
   icon: Award,
@@ -142,7 +142,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
           <div className="max-w-5xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-6 py-2.5 rounded-full mb-8 border border-white/15">
               <BadgeCheck className="w-4 h-4 text-accent" />
-              <span className="text-sm font-medium text-white/90">Trusted Since 2017 · Five-Star Rated</span>
+              <span className="text-sm font-medium text-white/90">Trusted Since 2017 · 4.9 on Google</span>
             </div>
 
             {/* When embedded inside another page (Locations) that page owns the
@@ -161,7 +161,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
               label: "Pay After Your Clean"
             }, {
               icon: Star,
-              label: "Five-Star Rated"
+              label: "4.9 on Google"
             }, {
               icon: Users,
               label: "5,000+ Homes Cleaned"

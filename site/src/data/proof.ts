@@ -65,7 +65,13 @@ export const HOMES_CLEANED = {
   alberta: "5,000+",
 } as const;
 
-export const RATING_CLAIM = "Five-Star Rated";
+/**
+ * The site said "Five-Star Rated" on 170 pages, which rounds the real 4.9 up to
+ * a number the business has not earned — and sat on the same page as "4.9 out of
+ * 5", contradicting it. This states the sourced figure instead. GOOGLE_RATING
+ * below is the single place it is defined; nothing should hand-type a rating.
+ */
+export const RATING_CLAIM = "4.9 on Google";
 
 export const cityProofFor = (pathname: string) =>
   // Canonical-aware. A bare startsWith("/calgary") missed every preserved

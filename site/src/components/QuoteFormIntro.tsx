@@ -68,7 +68,7 @@ const QuoteFormIntro = () => {
             <Star key={index} className="h-4 w-4 fill-brand-gold text-brand-gold" />
           ))}
         </span>
-        <span className="text-sm font-semibold text-foreground">Five-Star Rated on Google</span>
+        <span className="text-sm font-semibold text-foreground">4.9 on Google</span>
       </div>
 
       <div className="flex items-center justify-between">

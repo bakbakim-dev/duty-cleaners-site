@@ -131,7 +131,7 @@ export default function QuoteOverlay() {
               ))}
             </span>
             <span className="truncate text-xs font-semibold text-muted-foreground sm:text-sm">
-              Five-Star Rated on Google
+              4.9 on Google
             </span>
           </span>
         </div>

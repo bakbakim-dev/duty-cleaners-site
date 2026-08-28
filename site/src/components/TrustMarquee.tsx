@@ -8,7 +8,7 @@ const defaultItems = [
   "Non-Toxic Products",
   "24-Hour Re-Clean Promise",
   "Serving Alberta since 2017",
-  "Five-Star Rated",
+  "4.9 on Google",
   "High Quality Supplies",
   "Pay After Your Clean",
 ];

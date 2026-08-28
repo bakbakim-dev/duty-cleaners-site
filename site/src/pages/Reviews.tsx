@@ -205,14 +205,14 @@ export default function Reviews() {
               {[...Array(5)].map((_, i) =>
               <Star key={i} className="w-7 h-7 fill-yellow-400 text-yellow-400" />
               )}
-              <span className="text-2xl font-bold text-white ml-2">Five-Star Rated</span>
+              <span className="text-2xl font-bold text-white ml-2">4.9 on Google</span>
             </div>
             <p className="text-white/90 text-sm">Verified Google reviews from Alberta homeowners</p>
           </div>
 
           {/* Stats Row */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 max-w-4xl mx-auto">
-            <StatCard icon={Star} value="5★" label="Five-Star Rated" />
+            <StatCard icon={Star} value="4.9" label="Rating on Google" />
             <StatCard icon={ThumbsUp} value="5,000+" label="Homes Cleaned" />
             {/* Was value="100%" label="Satisfaction Rate". A "rate" reads as a measured
             outcome, and nothing measures it -- proof.ts has rebookRate: null. It also

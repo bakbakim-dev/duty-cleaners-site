@@ -82,7 +82,7 @@ const whyUsItems = [
   { icon: DollarSign, title: "Deposit Protection Standard", description: "Inspection-ready cleaning calibrated to the standards Edmonton landlords, property managers, and rental agencies expect — designed to maximize your damage deposit return." },
   { icon: Home, title: "Move-In Ready Freshness", description: "We eliminate built-up dust, pet dander, allergens, and lingering odors left by previous tenants so your new Edmonton home feels genuinely fresh from day one." },
   { icon: Clock, title: "Availability & Service Areas", description: "We offer weekday and weekend move-in / move-out cleaning across Edmonton, Sherwood Park, St. Albert, Spruce Grove, Leduc, and Beaumont, based on availability." },
-  { icon: Sparkles, title: "Pro-Grade Tools & Supplies", description: "High-quality equipment and non-toxic cleaning products designed for move-in and move-out deep cleaning standards." },
+  { icon: Sparkles, title: "Pro-Grade Tools & Supplies", description: "High-quality equipment and professional cleaning products suited to move-in and move-out standards." },
   { icon: Shield, title: "Reference-Checked & Customer-Rated", description: "Reference-checked cleaners trained specifically on end-of-tenancy checklists, equipped with all supplies — eco-friendly products available on request for a $15 add-on." },
   { icon: Award, title: "24-Hour Re-Clean Guarantee", description: "If anything is missed, let us know within 24 hours and we'll return to make it right — completely free of charge." },
 ];
@@ -94,7 +94,7 @@ const faqs = [
   { q: "Is move out cleaning required to get my damage deposit back?", a: "Most Edmonton lease agreements require the unit returned in 'reasonably clean' condition, and professional move out cleaning is the most reliable way to meet inspection standards. Our service is built specifically around landlord and property-manager checklists." },
   { q: "Do you clean inside appliances and cabinets?", a: "Yes — inside the oven, microwave, fridge, freezer, dishwasher, and the inside of every cabinet and drawer are all included in our standard move out / move in cleaning." },
   { q: "What's the difference between regular cleaning and move out cleaning?", a: "Regular cleaning maintains an occupied home week to week. Move out (and move in) cleaning is a one-time, far more detailed service that addresses built-up grime, hidden surfaces, inside appliances, baseboards, vents, and every storage space — the level of detail required for inspections and turnovers." },
-  { q: "Do you bring your own cleaning supplies?", a: "Yes — we bring all supplies, equipment, and non-toxic products on request. You only need to ensure water and electricity are still active at the property." },
+  { q: "Do you bring your own cleaning supplies?", a: "Yes — we bring all supplies, equipment, and can use products you prefer on request. You only need to ensure water and electricity are still active at the property." },
   { q: "Do I need to be home during the cleaning?", a: "Most clients leave a key in a mailbox, lockbox, or provide a buzzer code. Once the cleaning is complete, we will lock up and confirm completion by phone 30 minutes before we finish." },
 ];
 
@@ -333,7 +333,7 @@ export default function EdmontonMoveInOut() {
                   </p>
                   <ul className="space-y-2 text-muted-foreground">
                     <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" /><span>Professional cleaning team assigned based on the size and needs of the home</span></li>
-                    <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" /><span>High-quality equipment and non-toxic cleaning products</span></li>
+                    <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" /><span>High-quality equipment and professional cleaning products</span></li>
                     <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" /><span>Move-out cleaning checklist designed to meet landlord inspection standards your landlord will love</span></li>
                   </ul>
                 </div>
