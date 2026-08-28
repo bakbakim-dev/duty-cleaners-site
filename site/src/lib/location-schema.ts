@@ -5,6 +5,7 @@
 import { getListing } from "@/lib/google-listings";
 import { withTrailingSlash } from "@/data/legacy-urls";
 import { schemaAddressFor, BRAND_PROFILES, ORG_ID, BRANCH_ID } from "@/data/proof";
+import { geoFor } from "@/data/location-geo";
 
 
 export interface LocationSchemaInput {
@@ -72,15 +73,31 @@ export function buildLocationSchema(input: LocationSchemaInput) {
       "@type": "Place",
       name: input.areaServed ?? `${contact.locality}, AB`,
     },
-    ...(input.geo
-      ? {
-          geo: {
-            "@type": "GeoCoordinates",
-            latitude: input.geo.latitude,
-            longitude: input.geo.longitude,
-          },
-        }
-      : {}),
+    /*
+      86 of the 153 location pages emitted no GeoCoordinates — every Edmonton
+      page and the 7 Calgary satellite towns — because `geo` is optional and
+      only the Calgary neighbourhood pages passed it. 47 of those already
+      RENDERED real coordinates in their <LocationMap center={[lat,lng]}/> and
+      simply never handed them to this builder; the remaining 51 had none
+      anywhere, and were left empty rather than given a guessed pin.
+
+      Those 51 are now sourced from OpenStreetMap and live in
+      data/location-geo.ts. Resolving the fallback HERE rather than at 51 call
+      sites means a page cannot forget to pass it, and an explicit `geo` still
+      wins — so the pages that carry their own inline coordinates are unchanged.
+    */
+    ...(() => {
+      const geo = input.geo ?? geoFor(input.url);
+      return geo
+        ? {
+            geo: {
+              "@type": "GeoCoordinates",
+              latitude: geo.latitude,
+              longitude: geo.longitude,
+            },
+          }
+        : {};
+    })(),
     ...(input.priceRange ? { priceRange: input.priceRange } : {}),
     openingHours: ["Mo-Sa 08:00-20:00", "Su 09:00-15:00"],
     openingHoursSpecification: [
