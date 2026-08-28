@@ -19,8 +19,8 @@ export default function CalgaryRegularCleaning() {
       quoteService="regular-cleaning"
       phone="(403) 768-1341"
       phoneHref="tel:4037681341"
-      seoTitle="Standard Cleaning Calgary | Professional Maid Service | Duty Cleaners"
-      seoDescription="Reliable standard house cleaning in Calgary. One-time thorough cleaning from vetted professionals. 100% satisfaction guaranteed."
+      seoTitle="Standard Cleaning & Maid Service Calgary | Duty Cleaners"
+      seoDescription="Reliable standard house cleaning in Calgary. One-time thorough cleaning from vetted professionals. Miss something? We re-clean it within 24 hours."
       canonical="https://dutycleaners.ca/calgary/regular-cleaning"
       heroHeading={<>Standard Cleaning in <AccentGold>Calgary</AccentGold></>}
       heroSubheading="A one-time professional cleaning appointment for busy households — recurring plans available if you'd like ongoing maintenance."

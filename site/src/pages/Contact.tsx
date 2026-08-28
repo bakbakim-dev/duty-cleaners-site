@@ -17,6 +17,7 @@ import {
 import { Phone, Mail, MapPin, Clock, CheckCircle2, MessageSquare, Sparkles, Heart, Shield, Star, Building2, Users, LucideIcon, Send } from "lucide-react";
 import { Link, useSearchParams } from "react-router-dom";
 import { canonicalForPath } from "@/data/legacy-urls";
+import { ARRIVAL_WINDOWS } from "@/data/policy";
 import { submitQuote } from "@/lib/quote-submit";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -589,6 +590,89 @@ Sun: 9:00am–3:00pm"
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/*
+        At 288 words of main content this was the thinnest page on the site —
+        a phone number and a form, with none of the information that decides
+        whether someone needs to call at all. The three link destinations below
+        (/prepare, /gift-card, /join-the-team) were also the site's only pages
+        with zero contextual in-body links anywhere: footer-linked, so
+        crawlable, but nothing editorial pointed at them.
+      */}
+      <section className="py-16 md:py-20 bg-background border-t border-border">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mb-6">
+              Before you call
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-5">
+              We answer Monday to Saturday, 8:00 AM to 8:00 PM, and Sunday 9:00 AM to 3:00 PM. If
+              you already know your home's size and roughly what you want done, the instant quote
+              will give you a real number faster than we can on the phone — the price you see is
+              the price, before 5% GST. Call when the home is unusual, when you are working to a
+              specific inspection date, or when you would simply rather talk it through.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mb-5">
+              Two things speed up any booking call: the number of bedrooms and bathrooms, and
+              whether the home has been professionally cleaned recently. Those two answers decide
+              which service you actually need, and getting it right up front is usually the
+              difference between the standard rate and the deep-clean rate. If you are not sure,
+              describe the place and we will tell you which is the cheaper honest answer.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mb-8">
+              We schedule to an arrival window rather than an exact time, so one job running long
+              does not push your whole day. The windows are{" "}
+              {ARRIVAL_WINDOWS.join(", ")}, and you do not need to be home — most customers leave
+              a key, a lockbox code or smart-lock access, and we lock up when we finish.
+            </p>
+
+            <h3 className="text-xl font-bold text-foreground mb-4">
+              Questions we can answer without a phone call
+            </h3>
+            <ul className="space-y-3 text-muted-foreground">
+              <li>
+                <strong className="text-foreground">What's actually included?</strong>{" "}
+                <Link to={canonicalForPath("/whats-included")} className="text-accent hover:underline">
+                  The full scope list
+                </Link>{" "}
+                covers every service and, just as usefully, what falls outside it.
+              </li>
+              <li>
+                <strong className="text-foreground">Do I need to do anything first?</strong>{" "}
+                <Link to={canonicalForPath("/prepare")} className="text-accent hover:underline">
+                  How to prepare
+                </Link>{" "}
+                is short — mostly it is about access, pets, and the few things that stop a team
+                reaching a surface at all.
+              </li>
+              <li>
+                <strong className="text-foreground">Can I buy this for someone else?</strong>{" "}
+                <Link to={canonicalForPath("/gift-card")} className="text-accent hover:underline">
+                  Gift cards
+                </Link>{" "}
+                have no expiry date and no maximum value, and the balance carries over if a
+                clean costs less than the card.
+              </li>
+              <li>
+                <strong className="text-foreground">What if something was missed?</strong> Tell us
+                within 24 hours and we return and re-clean it free —{" "}
+                <Link to={canonicalForPath("/satisfaction-guarantee")} className="text-accent hover:underline">
+                  the guarantee
+                </Link>{" "}
+                sets out exactly what that covers.
+              </li>
+              <li>
+                <strong className="text-foreground">Are you hiring?</strong> Often, in both cities.{" "}
+                <Link to={canonicalForPath("/join-the-team")} className="text-accent hover:underline">
+                  Join the team
+                </Link>{" "}
+                is the place to apply — please don't use the form above for job enquiries, as it
+                routes to booking.
+              </li>
+            </ul>
           </div>
         </div>
       </section>

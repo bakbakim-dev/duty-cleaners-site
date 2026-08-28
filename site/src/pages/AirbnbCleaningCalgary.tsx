@@ -50,6 +50,7 @@ import gal5 from "@/assets/airbnb/turnover-dining.jpg";
 import gal6 from "@/assets/airbnb/turnover-entry.jpg";
 import { Helmet } from "react-helmet-async";
 import CityCrossLink from "@/components/CityCrossLink";
+import LocalMarketNote from "@/components/LocalMarketNote";
 
 const AnimatedSection = ({
   children,
@@ -330,6 +331,17 @@ const AirbnbCleaningCalgary = () => {
           </div>
         </div>
       </section>
+
+      <LocalMarketNote
+        accent="calgary"
+        eyebrow="Calgary turnovers"
+        heading="What running a short-term rental in Calgary actually demands"
+        paragraphs={[
+          "Calgary's booking calendar is not evenly spread, and the cleaning schedule has to bend around it. Stampede lands in the first half of July and compresses a month of demand into ten days — hosts who normally see a turnover every few days suddenly need same-day back-to-backs, often with a checkout at 11 and a check-in at 4. Booking that window early matters more here than almost anywhere else in the province, because every host in the city wants the same afternoon slot.",
+          "The other rhythm is the mountains. A large share of Calgary stays are one- and two-night stopovers — guests landing at YYC, sleeping, and driving west to Banff or Canmore in the morning, or coming back the other way. Short stays mean more turnovers per month than a comparable property elsewhere, and they mean grit: ski boots, hiking gear and gravel from the Trans-Canada come in with every party, so entryways, tub bases and floor edges take the visible wear.",
+          "Then there is the licensing side. The City of Calgary requires a business licence to operate a short-term rental, and the inspection standards that come with it make a documented, repeatable cleaning routine worth having on paper — not just for guest reviews, but for the file. We work to a fixed checklist and can tell you exactly what was covered on any given turnover.",
+        ]}
+      />
 
       {/* What We Clean - Visual Grid */}
       <section className="py-20 px-4 bg-background">

@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import Navigation from "@/components/Navigation";
 import { addOnFromPrice, formatPrice } from "@/data/pricing";
 import { buildServiceSchema } from "@/lib/service-schema";
@@ -229,6 +230,16 @@ export default function WallWashingEdmonton() {
           </div>
         </div>
       </section>
+
+      <LocalMarketNote
+        eyebrow="Why Edmonton walls"
+        heading="What actually ends up on a wall in Edmonton"
+        paragraphs={[
+          "Edmonton runs a long, unbroken heating season — the furnace here does not get the mid-winter reprieve that a chinook gives Calgary, so it simply runs, month after month. Everything that cycles through the ducts in that time ends up somewhere, and a good deal of it ends up on the walls: a fine, even grey deposit above every register, along the ceiling line, and in the still air behind doors and furniture. It builds slowly enough that most people only see it when a picture comes down.",
+          "Closed-up houses concentrate the rest. From November through March windows stay shut, so cooking vapour, candle and fireplace soot and pet dander recirculate instead of venting. Kitchens take the worst of it — a sticky film spreads well past the backsplash onto the surrounding wall, and because it is greasy rather than dusty it holds onto everything that lands on it afterwards.",
+          "Then there is the entry. Edmonton's cold is persistent rather than intermittent, so road salt and sand arrive dry and get kicked up rather than tracked as slush. Splash marks and grit run up the wall beside the door and along the stairwell to about knee height. That band is the most-photographed part of a move-out inspection, and it is the reason wall washing and end-of-tenancy cleaning are so often booked together here.",
+        ]}
+      />
 
       {/* Real Results Gallery */}
       <section className="py-16 md:py-20 bg-background">

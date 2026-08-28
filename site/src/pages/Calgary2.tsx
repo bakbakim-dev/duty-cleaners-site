@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, useState } from "react";
 import { CALGARY_REVIEWS } from "@/data/reviews";
 import { schemaAddressFor, BRAND_PROFILES } from "@/data/proof";
@@ -239,6 +240,17 @@ export default function Calgary2() {
            ]}
           />
 
+
+        <LocalMarketNote
+          accent="calgary"
+          eyebrow="Cleaning in Calgary"
+          heading="What a Calgary house actually needs, and when"
+          paragraphs={[
+            "Calgary is hard on floors and easy on nothing. Because the chinooks keep pushing the city above freezing and back down again, the roads are gritted, melted and gritted again rather than staying frozen through to spring — so sand and de-icer arrive at the door repeatedly from November to April instead of once. It works along baseboards, into carpet edges, down the sides of stair treads and under furniture, and by February it is past the point a vacuum reaches. That is the single most common reason a Calgary home books a deep clean rather than a standard one.",
+            "The city's quadrant split is a genuine planning difference, not just an address convention, and it shows up in the work. Inner-city Beltline, Mission, Kensington and Inglewood are mostly condos and older infill: small in square footage, heavy on window tracks, balcony seals and the fine dust a dry, windy city drives into every gap. The newer edges — Mahogany, Seton and Cranston in the deep south, Livingston and Cornerstone in the north — are larger, faster homes still shedding construction dust from vents and closet shelves for a year or two after possession.",
+            "We serve the city and the ring of towns around it, including Airdrie, Cochrane, Okotoks and Chestermere, with no trip fee inside Calgary itself. Prices are the same here as in Edmonton — there is no city premium — and every figure quoted is before the 5% GST. If you are not sure whether your home needs a standard or a deep clean, describe it on the phone and we will tell you which is the cheaper honest answer.",
+          ]}
+        />
 
         {/* Recent activity — social proof right before the conversion point */}
         <RecentActivityStrip city="Calgary" reviews={googleReviews} />

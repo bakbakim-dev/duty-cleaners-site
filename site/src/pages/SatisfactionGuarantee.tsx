@@ -1,5 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { POLICY } from "@/data/policy";
+import { Link } from "react-router-dom";
+import { canonicalForPath } from "@/data/legacy-urls";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -123,6 +125,74 @@ export default function SatisfactionGuarantee() {
                 <li>• Issues reported more than {POLICY.guaranteeWindowHours} hours after the cleaning</li>
                 <li>• Normal dust accumulation after cleaning completion</li>
               </ul>
+
+              {/*
+                This page was 314 words of main content — the thinnest page on
+                the site after /contact-us/, and the destination every "100%
+                Satisfaction Guarantee" badge points at. The questions below are
+                the ones the guarantee genuinely raises and the page did not
+                answer: what the remedy is, what it is not, why the window is
+                what it is, and where a damage claim goes instead. Every figure
+                reads from policy.ts.
+              */}
+              <h2 className="text-2xl font-bold mb-4 text-foreground">What the guarantee is, and what it isn't</h2>
+              <p className="mb-4">
+                The remedy is a return visit. If something in your service scope was missed or
+                not done well, we come back and clean it again at no additional charge — that is
+                the whole of it, and it is deliberately the whole of it. We do not describe this
+                as a money-back guarantee, because a refund is not what we are promising. If a
+                re-clean is not what you want, call and say so and we will talk about it, but the
+                commitment on this page is the return visit.
+              </p>
+              <p className="mb-4">
+                It is also not a guarantee about someone else's decision. Move-out customers ask
+                whether we guarantee the damage deposit comes back, and we do not — a landlord's
+                assessment is theirs to make and can turn on things that have nothing to do with
+                cleaning. What we will do is return and address anything cited as a cleaning
+                issue, which is the part that is actually ours.
+              </p>
+
+              <h2 className="text-2xl font-bold mb-4 text-foreground">
+                Why {POLICY.guaranteeWindowHours} hours
+              </h2>
+              <p className="mb-4">
+                A cleaned home starts collecting dust, prints and traffic the moment it is
+                finished, and after a few days there is no honest way to separate what was missed
+                from what has happened since. {POLICY.guaranteeWindowHours} hours is short enough
+                that both of us are looking at the same room. It is the window everywhere on this
+                site — if you find a page that says anything else, that page is wrong and we would
+                like to know.
+              </p>
+              <p className="mb-8">
+                Photos help us brief the team on what to look for, but they are not a condition.
+                A phone call describing what was missed is enough.
+              </p>
+
+              <h2 className="text-2xl font-bold mb-4 text-foreground">If something was damaged</h2>
+              <p className="mb-8">
+                That is a different process from this one and it has its own deadline.{" "}
+                {POLICY.liabilityNote} The full terms, including cancellation, lockout and
+                liability, are set out on our{" "}
+                <Link to={canonicalForPath("/terms")} className="text-accent hover:underline">
+                  terms of service
+                </Link>
+                .
+              </p>
+
+              <h2 className="text-2xl font-bold mb-4 text-foreground">Fewer reasons to need this</h2>
+              <p className="mb-8">
+                Most re-cleans we are called back for trace to a mismatch between what was booked
+                and what the home needed — a standard clean booked for a home that wanted a deep
+                one, or an add-on everyone assumed was included. Two pages head that off:{" "}
+                <Link to={canonicalForPath("/whats-included")} className="text-accent hover:underline">
+                  what's included
+                </Link>{" "}
+                lists the scope of each service and what falls outside it, and{" "}
+                <Link to={canonicalForPath("/prepare")} className="text-accent hover:underline">
+                  how to prepare
+                </Link>{" "}
+                covers the few things that stop a team getting to a surface at all.
+              </p>
 
               <div className="bg-accent/10 border-2 border-accent/20 rounded-xl p-6">
                 <h3 className="text-xl font-bold mb-4 text-foreground">Contact Us</h3>

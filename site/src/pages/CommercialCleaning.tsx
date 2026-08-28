@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -201,6 +202,16 @@ export default function CommercialCleaning() {
             </div>
           </section>
         </AnimatedSection>
+
+        <LocalMarketNote
+          eyebrow="Edmonton commercial"
+          heading="The Edmonton buildings we spend most of our time in"
+          paragraphs={[
+            "Edmonton is the seat of provincial government, and that shapes the commercial cleaning market more than anything else does. A large share of the office, health and post-secondary space here answers to a procurement process rather than a single owner, which means documented scope, named products, and a contact who can sign off on what was done. We write scope in that form as a matter of course, because it is what most of our Edmonton clients have to file anyway.",
+            "Downtown work clusters around the Ice District and the office stock along Jasper and 104th, where evening service after the building empties is the norm — the reverse of the early-morning pattern that dominates in Calgary. That has knock-on effects: parking, loading access and building security all have to be arranged for after hours, and a team that finishes at eleven needs a key or fob arrangement that a property manager has actually approved.",
+            "The rest of the volume sits away from the core — clinics and retail in the south around Windermere and Terwillegar, and warehouse and light-industrial space out in the northwest and toward Nisku. Those buildings have long floor runs, dock-level grit, and in the medical ones, disinfection and waste handling that a general office scope does not cover. They get quoted on their own terms rather than at an office rate.",
+          ]}
+        />
 
         {/* Industries We Serve */}
         <AnimatedSection>

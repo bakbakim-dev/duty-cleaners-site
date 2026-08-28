@@ -17,10 +17,36 @@ import { Link } from "react-router-dom";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import MoveOutDepth from "@/components/MoveOutDepth";
 import { moveInOutTierRows } from "@/data/pricing";
+import { buildServiceSchema } from "@/lib/service-schema";
+import { schemaAddressFor, BRANCH_ID, ORG_ID } from "@/data/proof";
 
 // Derived, never hand-typed (published-prices.test.ts): the cheapest
 // move-in/out tier from bk-config is the honest floor.
 const moveInOutFromPrice = () => moveInOutTierRows()[0]?.price ?? "";
+
+/**
+ * The branch node, carrying the two properties buildServiceSchema does not
+ * model: priceRange and opening hours. It reuses BRANCH_ID, so this merges
+ * into the existing Calgary entity instead of declaring a second anonymous
+ * business — which is what the Edmonton twin was doing with a hardcoded
+ * street address that could drift from proof.ts.
+ */
+const branchSchema = () => {
+  const rows = moveInOutTierRows();
+  return {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": BRANCH_ID.calgary,
+    name: "Duty Cleaners Calgary",
+    telephone: "+1-403-768-1341",
+    email: "support@dutycleaners.ca",
+    address: schemaAddressFor("calgary"),
+    url: "https://dutycleaners.ca/move-out-cleaning-calgary/",
+    priceRange: `${rows[0]?.price}-${rows[rows.length - 1]?.price}+`,
+    openingHours: ["Mo-Sa 08:00-20:00", "Su 09:00-15:00"],
+    parentOrganization: { "@id": ORG_ID },
+  };
+};
 // The FAQ accordion below already renders these nine Q&As — kept as data
 // so the FAQPage schema (previously absent, along with any other schema on
 // this page) matches visible content exactly.
@@ -52,18 +78,25 @@ export default function CalgaryMoveInOut() {
         <meta name="twitter:description" content="Inspection-ready move out cleaning Calgary & move in cleaning services. End of tenancy cleaning trusted by landlords. Same-day available." />
         {/* This page had no structured data at all. Service ties the offering
             to the Calgary LocalBusiness node; FAQPage mirrors the accordion
-            content rendered further down the page. */}
+            content rendered further down the page.
+
+            Built through buildServiceSchema rather than hand-rolled, so this
+            page and its Edmonton twin emit the same node shape. The hand-rolled
+            version named a bare provider @id with no inline node and no
+            address, while Edmonton emitted a full LocalBusiness — the two pages
+            described the business differently for no reason. */}
         <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Service",
-            serviceType: "Move In/Out Cleaning",
-            name: "Move In / Move Out Cleaning Calgary",
-            url: "https://dutycleaners.ca/move-out-cleaning-calgary/",
-            provider: { "@id": "https://dutycleaners.ca/#calgary" },
-            areaServed: { "@type": "City", name: "Calgary" },
-          })}
+          {JSON.stringify(
+            buildServiceSchema({
+              name: "Move Out and Move In Cleaning",
+              description:
+                "Inspection-ready move out cleaning Calgary & move in cleaning services. End of tenancy cleaning trusted by landlords. Same-day available.",
+              path: "/move-out-cleaning-calgary",
+              city: "calgary",
+            }),
+          )}
         </script>
+        <script type="application/ld+json">{JSON.stringify(branchSchema())}</script>
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",

@@ -18,7 +18,7 @@ export default function EdmontonDeepCleaning() {
       phone="(780) 913-6565"
       phoneHref="tel:7809136565"
       seoTitle="Deep Cleaning Services Edmonton | Duty Cleaners"
-      seoDescription="Detailed deep cleaning in Edmonton: baseboards, switches, vents, exterior of appliances, and built-up grime removed. Professional products and a 100% satisfaction guarantee."
+      seoDescription="Detailed deep cleaning in Edmonton: baseboards, switches, vents, appliance exteriors and built-up grime removed. Miss something? We re-clean it within 24 hours."
       canonical="https://dutycleaners.ca/edmonton/deep-cleaning"
       heroHeading={<>Deep Cleaning Services in <AccentGold>Edmonton</AccentGold></>}
       heroSubheading="A meticulous top-to-bottom reset for the areas regular cleaning never reaches."

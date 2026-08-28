@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { buildPricingSchema } from "@/lib/pricing-schema";
@@ -210,6 +211,17 @@ export default function CalgaryPricing() {
       </section>
 
       <PricingFormula city="Calgary" />
+
+      <LocalMarketNote
+        accent="calgary"
+        eyebrow="Calgary pricing, in plain terms"
+        heading="Why your Calgary quote lands where it does"
+        paragraphs={[
+          "Our prices are the same in Calgary as in Edmonton — we do not charge a city premium, and there is no trip fee inside either city. What differs is which service a Calgary home usually needs, and that is where the real cost difference shows up. Because the chinooks keep putting the roads through melt-and-grit cycles all winter, sand and de-icer accumulate along baseboards and carpet edges in a way that a standard clean is not scoped to remove. Booked in late winter, a Calgary home is more likely to genuinely need the deep clean than the standard one.",
+          "Home type moves the number more than neighbourhood does. A Beltline or Mission condo is small in square footage but heavy on glass, tracks and balcony seals, so it prices lower than a suburban house but takes longer per square foot than the tier suggests. A newer place in Mahogany, Seton or Livingston is the reverse — larger and quicker, unless it is still shedding construction dust from the vents and closet shelves, which is common for a year or two after possession.",
+          "Everything quoted here is before tax; 5% GST is added on top. Recurring discounts of 20% weekly, 15% bi-weekly and 10% monthly start from your second visit, and the first clean is charged at the one-time rate. If the home turns out to need substantially more work than described, the team explains what they found and your options before continuing rather than adjusting the bill afterwards.",
+        ]}
+      />
 
       {/* Service Pricing Tabs */}
       <section className="py-20 bg-background">

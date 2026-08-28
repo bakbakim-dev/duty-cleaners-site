@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import Navigation from "@/components/Navigation";
 import { buildServiceSchema } from "@/lib/service-schema";
 import Footer from "@/components/Footer";
@@ -329,6 +330,16 @@ export default function EdmontonServices() {
           </div>
         </div>
       </section>
+
+      <LocalMarketNote
+        eyebrow="Choosing a service in Edmonton"
+        heading="Which of these you actually need, and how Edmonton changes the answer"
+        paragraphs={[
+          "The honest short version: if the home is lived in and has been cleaned in the last month or two, standard cleaning is the right service and the cheapest one. Deep cleaning is for what standard cleaning cannot reach, and Edmonton generates that in its own way — the cold here holds rather than cycling, so the heating season runs unbroken from October to April. The furnace simply keeps going, and everything that moves through the ducts in those months settles on the tops of doors, along ceiling lines and behind furniture where nothing disturbs it.",
+          "Closed-up winters do the rest. With windows shut for five months, cooking vapour, fireplace soot and pet dander recirculate instead of venting, and they land as a film rather than as dust — which is why kitchens and the walls around them so often need more than a wipe by March. In older Oliver, Garneau and Strathcona homes with original trim and radiators there is more surface to hand-clean than the square footage suggests; in newer Windermere, Keswick or Laurel builds it is usually construction dust still working its way out of the vents.",
+          "Move-in and move-out cleaning is a separate service rather than a larger deep clean, priced against what landlords actually inspect: inside appliances, inside every cabinet and drawer, and the storage spaces. If you are working to a walk-through date, book that one. If you are unsure which fits, the instant quote asks a few questions about the home and tells you — or you can call and describe it and we will say which is the cheaper honest answer.",
+        ]}
+      />
 
       {/* Services Grid */}
       <section className="py-20 bg-secondary/30">

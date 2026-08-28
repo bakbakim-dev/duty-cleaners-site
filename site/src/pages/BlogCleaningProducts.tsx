@@ -119,9 +119,9 @@ export default function BlogCleaningProducts() {
   }, []);
 
   const canonical = "https://dutycleaners.ca/the-top-5-must-have-cleaning-products-for-a-spotless-home/";
-  const title = "The Top 5 Must-Have Cleaning Products for a Spotless Home";
+  const title = "The 5 Cleaning Products You Actually Need";
   const description =
-    "The only five cleaning products a home actually needs — what each one does, what to look for on the label, and the products you can stop buying. From the professional cleaners at Duty Cleaners.";
+    "The only five cleaning products a home actually needs — what each one does, what to look for on the label, and what you can stop buying.";
 
   return (
     <>

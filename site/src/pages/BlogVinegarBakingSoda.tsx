@@ -80,15 +80,15 @@ export default function BlogVinegarBakingSoda() {
   return (
     <>
       <Helmet>
-        <title>Cleaning with Vinegar and Baking Soda: Complete Guide | Duty Cleaners</title>
+        <title>Cleaning with Vinegar and Baking Soda | Duty Cleaners</title>
         <meta
           name="description"
           content="Learn how to clean your home naturally with vinegar and baking soda. Safe, effective tips for kitchen, bathroom and laundry from Duty Cleaners."
         />
         <link rel="canonical" href="https://dutycleaners.ca/cleaning-with-vinegar-and-baking-soda/" />
-        <meta property="og:title" content="Cleaning with Vinegar and Baking Soda: Complete Guide | Duty Cleaners" />
+        <meta property="og:title" content="Cleaning with Vinegar and Baking Soda | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Cleaning with Vinegar and Baking Soda: Complete Guide | Duty Cleaners" />
+        <meta name="twitter:title" content="Cleaning with Vinegar and Baking Soda | Duty Cleaners" />
         <meta name="twitter:description" content="Learn how to clean your home naturally with vinegar and baking soda. Safe, effective tips for kitchen, bathroom and laundry from Duty Cleaners." />
         <meta property="og:type" content="article" />
         <meta property="og:url" content="https://dutycleaners.ca/cleaning-with-vinegar-and-baking-soda/" />

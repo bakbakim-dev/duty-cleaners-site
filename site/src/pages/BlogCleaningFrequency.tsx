@@ -79,7 +79,7 @@ export default function BlogCleaningFrequency() {
   return (
     <>
       <Helmet>
-        <title>How Often Should A Cleaning Service Clean My House | Duty Cleaners</title>
+        <title>How Often Should You Get Your House Cleaned? | Duty Cleaners</title>
         <meta
           name="description"
           content="Learn how often you should hire a cleaning service - weekly, bi-weekly, or monthly. An expert guide to choosing the right cleaning frequency."
@@ -87,9 +87,9 @@ export default function BlogCleaningFrequency() {
         {/* Canonical is the preserved WordPress slug, matching the cost and vinegar
             posts. /blog/cleaning-frequency is the modern route and now 301s here. */}
         <link rel="canonical" href="https://dutycleaners.ca/how-often-should-a-cleaning-service-clean-my-house/" />
-        <meta property="og:title" content="How Often Should A Cleaning Service Clean My House | Duty Cleaners" />
+        <meta property="og:title" content="How Often Should You Get Your House Cleaned? | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="How Often Should A Cleaning Service Clean My House | Duty Cleaners" />
+        <meta name="twitter:title" content="How Often Should You Get Your House Cleaned? | Duty Cleaners" />
         <meta name="twitter:description" content="Learn how often you should hire a cleaning service - weekly, bi-weekly, or monthly. An expert guide to choosing the right cleaning frequency." />
         <meta property="og:type" content="article" />
         <meta property="og:url" content="https://dutycleaners.ca/how-often-should-a-cleaning-service-clean-my-house/" />

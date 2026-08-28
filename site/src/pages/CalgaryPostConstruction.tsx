@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import Navigation from "@/components/Navigation";
 import { buildServiceSchema } from "@/lib/service-schema";
 import Footer from "@/components/Footer";
@@ -177,6 +178,17 @@ export default function CalgaryPostConstruction() {
           </div>
         </div>
       </section>
+
+      <LocalMarketNote
+        accent="calgary"
+        eyebrow="Calgary builds"
+        heading="Where the post-construction work in Calgary actually is"
+        paragraphs={[
+          "Most of what we clean is at the two edges of the city. The far south — Seton, Mahogany, Cranston, Wolf Willow — and the north around Livingston and Cornerstone are where new possession dates cluster, and they come with a particular problem: these are large communities still under construction around the finished homes. Drywall dust from the lot next door keeps arriving after your own build is done, which is why a final clean too early gets undone and why we would rather come after the last trade than before.",
+          "Calgary's freeze-thaw cycle makes the timing harder than it is elsewhere. A chinook can put a site through mud and back to frozen twice in a week, so what tracks through a house in February is wet clay one day and dry grit the next. Both end up ground into new flooring and pushed into the corners of window channels, and the two need different handling — one has to be lifted before it is scrubbed, or it just spreads.",
+          "The third stream is downtown. The City's conversion program has been turning empty office towers into apartments, and a converted floor plate is not a new-build: there is decades-old duct dust behind new drywall, concrete dust from core drilling, and adhesive residue on floors that were never meant to be lived on. We quote those after seeing them, because no per-square-foot figure survives contact with a conversion.",
+        ]}
+      />
 
       {/* Description Section */}
       <section className="py-20">

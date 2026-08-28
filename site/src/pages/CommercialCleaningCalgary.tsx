@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -201,6 +202,17 @@ export default function CommercialCleaningCalgary() {
             </div>
           </section>
         </AnimatedSection>
+
+        <LocalMarketNote
+          accent="calgary"
+          eyebrow="Calgary commercial"
+          heading="The Calgary buildings we spend most of our time in"
+          paragraphs={[
+            "Downtown Calgary has spent the better part of a decade carrying some of the highest office vacancy in the country, and the City's downtown incentive program has been paying to convert empty towers into apartments. That has changed what commercial cleaning in the core actually looks like. Fewer floors are running a full nine-to-five with a hundred desks; more are half-tenanted, subdivided, or a construction zone on one level and occupied on the next. Scope written for a full floor plate does not fit any of that, so we quote after a walkthrough rather than by square footage alone.",
+            "The energy and professional-services tenants that remain tend to want cleaning that is finished before the building fills up, not after it empties. Early-morning service before seven is a more common request here than evening service, and it changes the practicalities — building access, freight elevator booking, and security sign-in all have to be arranged around a window that opens before most property managers are reachable.",
+            "Outside the core it is a different job again. The industrial and warehouse stock through the northeast toward the airport, and the retail and clinic space in the newer south and far-north communities, come with their own constraints: dock-level dust, long unbroken floor runs, and in medical space, disinfection standards and waste handling that a general office scope does not cover. We price those separately rather than folding them into a single rate.",
+          ]}
+        />
 
         {/* Industries We Serve */}
         <AnimatedSection>

@@ -6,6 +6,8 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Gift, Mail, Wallet, Phone, Check } from "lucide-react";
 import { standardTierRows, deepCleanTierRows } from "@/data/pricing";
+import { Link } from "react-router-dom";
+import { canonicalForPath } from "@/data/legacy-urls";
 
 const GIFT_CARD_ORIGIN = "https://dutycleaners.bookingkoala.com";
 const GIFT_CARD_URL = `${GIFT_CARD_ORIGIN}/gift-cards/send`;
@@ -268,6 +270,61 @@ export default function GiftCard() {
                   </li>
                 ))}
               </ul>
+
+              {/*
+                309 words of main content, on a page asking someone to spend
+                money on behalf of a person who is not in the room. The gaps
+                below are the questions that actually stop that purchase, and
+                the page answered none of them. Expiry and maximum-value rules
+                are read from policy.ts, not restated here — the legacy site
+                published a six-month expiry and a $2,000 ceiling, and both were
+                wrong.
+              */}
+              <div className="mt-12 space-y-5 text-muted-foreground leading-relaxed">
+                <h3 className="text-xl font-bold text-foreground">
+                  Giving a cleaning as a gift, without it landing wrong
+                </h3>
+                <p>
+                  The awkwardness is real and worth naming: a cleaning gift can read as a comment
+                  on the state of someone's home. It almost never does when there is an obvious
+                  occasion attached to it — a new baby, a house move, a stretch of illness or
+                  recovery, a parent who has stopped managing stairs comfortably, or the week
+                  either side of hosting a large family gathering. Those are the times people are
+                  most relieved to be handed this and least likely to read anything into it.
+                </p>
+                <p>
+                  Two practical points that catch people out. The recipient has to be able to let
+                  a cleaner in, so a gift for someone who travels constantly or works unpredictable
+                  shifts may sit unused for months — which is survivable here, because the card
+                  does not expire, but it is worth knowing. And they choose their own date and
+                  service; you are giving a balance, not booking an appointment on their behalf.
+                  If you want a specific day covered, book it yourself and pay for it directly
+                  instead.
+                </p>
+                <h3 className="text-xl font-bold text-foreground">How much to put on it</h3>
+                <p>
+                  A card does not have to cover a whole clean to be useful — the balance comes off
+                  whatever they book, and they pay the difference. If you would rather it cover a
+                  full service outright, the tables on our{" "}
+                  <Link to={canonicalForPath("/pricing")} className="text-accent hover:underline">
+                    Edmonton
+                  </Link>{" "}
+                  and{" "}
+                  <Link to={canonicalForPath("/calgary/pricing")} className="text-accent hover:underline">
+                    Calgary
+                  </Link>{" "}
+                  pricing pages give the exact figure by home size, and{" "}
+                  <Link to={canonicalForPath("/whats-included")} className="text-accent hover:underline">
+                    what's included
+                  </Link>{" "}
+                  shows what each service actually covers. All published prices are before 5% GST,
+                  so a card sized to the sticker price will fall a little short of the final total.
+                </p>
+                <p>
+                  If a card is lost, we can look it up — the balance is tracked against the
+                  purchase, so call either office with the purchaser's name and we can reissue it.
+                </p>
+              </div>
             </div>
           </div>
         </section>

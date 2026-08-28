@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import Navigation from "@/components/Navigation";
 import { buildServiceSchema } from "@/lib/service-schema";
 import Footer from "@/components/Footer";
@@ -309,6 +310,17 @@ export default function CalgaryServices() {
           </div>
         </div>
       </section>
+
+      <LocalMarketNote
+        accent="calgary"
+        eyebrow="Choosing a service in Calgary"
+        heading="Which of these you actually need, and how Calgary changes the answer"
+        paragraphs={[
+          "The honest short version: if the home is lived in and has been cleaned in the last month or two, standard cleaning is the right service and the cheapest one. Deep cleaning is for the build-up standard cleaning does not reach, and in Calgary that build-up has a specific cause — the freeze-thaw cycle means roads get gritted, melt, and get gritted again all winter rather than staying frozen, so sand and de-icer keep coming through the door from November to April. By late winter it is along the baseboards, into carpet edges and under furniture, and a vacuum no longer lifts it.",
+          "Where you live shifts the work more than the size of the home does. In a Beltline, Mission or Eau Claire condo the time goes into window tracks, balcony door channels and the fine dust a dry, windy city drives into every seal. In a newer house out in Mahogany, Cranston, Seton or Livingston it is usually construction dust, which keeps resurfacing from vents, closet shelves and the tops of doors for a year or two after handover. The same square footage can be a very different job.",
+          "Move-in and move-out cleaning is a separate service, not a bigger version of a deep clean, and it is priced against what property managers actually inspect: inside appliances, inside every cabinet and drawer, and the storage spaces. If you are working to a walk-through date, that is the one to book. If you are not sure which applies, the instant quote will ask a few questions about the home and tell you — and you can call and describe it instead.",
+        ]}
+      />
 
       {/* Services Grid */}
       <section className="py-20 bg-secondary/30">

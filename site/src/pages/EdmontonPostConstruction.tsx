@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import Navigation from "@/components/Navigation";
 import { buildServiceSchema } from "@/lib/service-schema";
 import Footer from "@/components/Footer";
@@ -186,6 +187,16 @@ export default function EdmontonPostConstruction() {
           </div>
         </div>
       </section>
+
+      <LocalMarketNote
+        eyebrow="Edmonton builds"
+        heading="Where the post-construction work in Edmonton actually is"
+        paragraphs={[
+          "The new-build volume here sits in the southwest and the west — Windermere, Keswick, Glenridding Ravine, Laurel and out toward Rosenthal and Edgemont. Like any active community, the lots around a finished home keep producing dust long after that home is done, so a final clean scheduled before the neighbouring builds are closed in gets partly undone. We would rather come after the last trade has left than be the reason you clean twice.",
+          "Edmonton's build calendar is compressed by the winter in a way that changes the cleaning. Interior work carries on through the cold months with temporary heat running, and construction heaters push fine dust through a house continuously while every window stays sealed. It settles into the tops of door frames, closet shelves, and the inside of vents, and it keeps resurfacing for months after possession — which is why the first deep clean in a winter-finished Edmonton home almost never gets everything.",
+          "River valley lots come with an extra step. Builds on the ravine edges through the west end and the southwest sit on sandier ground, and that fine sand tracks in and gets into window channels and slider tracks where it grinds against new hardware. Clearing it out properly is slower than it looks, and skipping it is how a brand-new door starts sticking in its first year.",
+        ]}
+      />
 
       {/* Description Section */}
       <section className="py-20">

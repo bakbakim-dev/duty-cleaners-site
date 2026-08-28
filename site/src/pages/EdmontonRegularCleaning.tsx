@@ -20,7 +20,7 @@ export default function EdmontonRegularCleaning() {
       phone="(780) 913-6565"
       phoneHref="tel:7809136565"
       seoTitle="Standard Cleaning & Maid Service Edmonton | Duty Cleaners"
-      seoDescription="Reliable standard house cleaning in Edmonton. One-time thorough cleaning from vetted professionals. 100% satisfaction guaranteed."
+      seoDescription="Reliable standard house cleaning in Edmonton. One-time thorough cleaning from vetted professionals. Miss something? We re-clean it within 24 hours."
       canonical="https://dutycleaners.ca/edmonton/regular-cleaning"
       heroHeading={<>Standard Cleaning Services in <AccentGold>Edmonton</AccentGold></>}
       heroSubheading="A one-time professional cleaning appointment for busy households — recurring plans available if you'd like ongoing maintenance."

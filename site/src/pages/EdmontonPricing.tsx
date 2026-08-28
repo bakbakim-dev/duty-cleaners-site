@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
@@ -219,6 +220,16 @@ export default function EdmontonPricing() {
       </section>
 
       <PricingFormula city="Edmonton" />
+
+      <LocalMarketNote
+        eyebrow="Edmonton pricing, in plain terms"
+        heading="Why your Edmonton quote lands where it does"
+        paragraphs={[
+          "Our prices are identical in Edmonton and Calgary — there is no city premium and no trip fee within either city. What varies is which service a given home actually needs. Edmonton's heating season runs unbroken from roughly October to April, and a furnace that never stops moves duct dust onto the tops of doors, along ceiling lines and behind furniture for months. A home booked in early spring after that run often needs the deep clean rather than the standard one, and it is cheaper to hear that up front than to book the wrong tier.",
+          "The housing stock swings the number as much as anything. Older homes through Oliver, Garneau and Strathcona carry original trim, radiators and more hand-cleaned surface than their square footage implies, so they sit at the slower end of their tier. Newer builds in Windermere, Keswick or Laurel are quicker for the same size — unless construction dust is still working out of the vents and closet shelves, which is normal for a year or two after possession.",
+          "Every figure here is before tax; 5% GST is added on top. Recurring discounts of 20% weekly, 15% bi-weekly and 10% monthly apply from the second visit, with the first clean charged at the one-time rate. If a home turns out to need substantially more work than it was described as needing, the team explains what they found and the options before carrying on — not afterwards on the invoice.",
+        ]}
+      />
 
       {/* Service Pricing Tabs */}
       <section className="py-20 bg-background">

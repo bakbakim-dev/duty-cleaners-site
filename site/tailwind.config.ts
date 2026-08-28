@@ -39,6 +39,20 @@ export default {
            DEFAULT: "hsl(var(--brand-gold))",
            foreground: "hsl(var(--brand-gold-foreground))",
          },
+        /**
+         * --calgary has been defined in index.css since the rebuild, and
+         * text-calgary / bg-calgary are used 18 times across the site — but
+         * the token was never registered here, so Tailwind emitted no rule
+         * for any of them. Every one of those call sites rendered with an
+         * inherited colour and a transparent background, silently.
+         *
+         * Caught while auditing /airbnb-cleaning-services-calgary/, where the
+         * section eyebrow resolved to the same navy as the heading beside it.
+         */
+        calgary: {
+          DEFAULT: "hsl(var(--calgary))",
+          foreground: "hsl(var(--calgary-foreground))",
+        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",

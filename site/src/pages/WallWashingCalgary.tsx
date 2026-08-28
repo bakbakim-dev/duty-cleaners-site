@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import Navigation from "@/components/Navigation";
 import { addOnFromPrice, formatPrice } from "@/data/pricing";
 import { buildServiceSchema } from "@/lib/service-schema";
@@ -228,6 +229,17 @@ export default function WallWashingCalgary() {
           </div>
         </div>
       </section>
+
+      <LocalMarketNote
+        accent="calgary"
+        eyebrow="Why Calgary walls"
+        heading="What actually ends up on a wall in Calgary"
+        paragraphs={[
+          "Calgary sits in a semi-arid belt at the edge of the foothills, and the air here is dry enough for most of the year that fine dust never really settles — it circulates and clings. Walls above baseboards, around vents and behind doors pick up a grey film that a duster moves around rather than removes, because static is holding it there. That film is the single most common thing we are called about, and it comes off with washing rather than dusting.",
+          "The chinooks make it worse in a specific way. Temperature swings of twenty degrees inside a day drive the furnace on and off repeatedly instead of letting it hold a steady cycle, and every restart pushes another load of duct dust into the room. Above the registers and along the ceiling line is where that shows first — a soft dark halo that homeowners often mistake for a paint defect.",
+          "The other Calgary problem is water. The supply comes off the Bow and the Elbow, drawing through Rockies limestone, and it is hard. In bathrooms that leaves a mineral haze on the wall around the shower and behind the sink that regular cleaning does not shift, and in kitchens it combines with cooking grease into a film on the backsplash surround. Both need the wall washed rather than wiped.",
+        ]}
+      />
 
       {/* Real Results Gallery */}
       <section className="py-16 md:py-20 bg-background">

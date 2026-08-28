@@ -28,6 +28,7 @@ import windowCleaning from "@/assets/gallery/window-cleaning.jpg";
 // Animated section wrapper
 import MoveOutDepth from "@/components/MoveOutDepth";
 import { moveInOutTierRows } from "@/data/pricing";
+import { schemaAddressFor, BRANCH_ID, ORG_ID } from "@/data/proof";
 
 // Derived, never hand-typed (published-prices.test.ts): the cheapest
 // move-in/out tier from bk-config is the honest floor.
@@ -110,16 +111,30 @@ export default function EdmontonMoveInOut() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  /**
+   * Carries priceRange and opening hours, the two properties
+   * buildServiceSchema does not model. It reuses BRANCH_ID so it merges into
+   * the existing Edmonton entity rather than declaring a second, anonymous
+   * business under a different name.
+   *
+   * The address and the price range were both hardcoded here. The address is
+   * now read from proof.ts and the range derived from bk-config, because a
+   * hand-typed "$284-$539+" is exactly the kind of figure that stays put while
+   * the real prices move.
+   */
+  const moveRows = moveInOutTierRows();
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    name: "Duty Cleaners - Edmonton Move In/Out Cleaning",
+    "@id": BRANCH_ID.edmonton,
+    name: "Duty Cleaners Edmonton",
     telephone: "+1-780-913-6565",
     email: "support@dutycleaners.ca",
-    address: { "@type": "PostalAddress", streetAddress: "18615 71 Ave NW", addressLocality: "Edmonton", addressRegion: "AB", postalCode: "T5T 2V9", addressCountry: "CA" },
+    address: schemaAddressFor("edmonton"),
     url: "https://dutycleaners.ca/move-out-cleaning-edmonton/",
-    priceRange: "$284-$539+",
+    priceRange: `${moveRows[0]?.price}-${moveRows[moveRows.length - 1]?.price}+`,
     openingHours: ["Mo-Sa 08:00-20:00", "Su 09:00-15:00"],
+    parentOrganization: { "@id": ORG_ID },
   };
 
   // The FAQ section below already renders these eight Q&As — this mirrors

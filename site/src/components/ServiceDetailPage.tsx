@@ -1,5 +1,6 @@
 import { canonicalForPath, canonicalUrlForPath } from "@/data/legacy-urls";
 import { schemaAddressFor } from "@/data/proof";
+import { POLICY } from "@/data/policy";
 import CityCrossLink from "@/components/CityCrossLink";
 import { useState, useEffect, type ReactNode } from "react";
 import { Helmet } from "react-helmet-async";
@@ -588,6 +589,23 @@ const ServiceDetailPage = ({
               </a>
             </Button>
           </div>
+          {/*
+            Four pages using this template carried a "100% Satisfaction
+            Guarantee" hero badge with the remedy stated nowhere on the page —
+            the exact unqualified slogan /blog/cleaning-services-calgary tells
+            readers to treat as a red flag. Stating the process here, from
+            POLICY rather than hand-typed, is what makes the badge a claim the
+            page actually backs.
+          */}
+          <p className="mt-10 text-sm text-white/70 max-w-2xl mx-auto">
+            What the guarantee means: if something was missed, tell us within{" "}
+            {POLICY.guaranteeWindowHours} hours and we come back and re-clean it at no
+            additional charge. Photos help but are not required.{" "}
+            <Link to={canonicalForPath("/satisfaction-guarantee")} className="underline hover:text-brand-gold">
+              Read the full guarantee
+            </Link>
+            .
+          </p>
         </div>
       </section>
       {crossCity && (

@@ -50,6 +50,7 @@ import gal5 from "@/assets/gallery/before-after.jpg";
 import gal6 from "@/assets/hero-family-bedroom.jpg";
 import { Helmet } from "react-helmet-async";
 import CityCrossLink from "@/components/CityCrossLink";
+import LocalMarketNote from "@/components/LocalMarketNote";
 
 const AnimatedSection = ({
   children,
@@ -330,6 +331,16 @@ const AirbnbCleaningEdmonton = () => {
           </div>
         </div>
       </section>
+
+      <LocalMarketNote
+        eyebrow="Edmonton turnovers"
+        heading="What running a short-term rental in Edmonton actually demands"
+        paragraphs={[
+          "Edmonton's short-term rental year has two peaks rather than one, and they sit back to back. K-Days runs through late July, and the Fringe — the oldest and largest festival of its kind in North America — takes over Old Strathcona for most of August. A Whyte Avenue or Garneau listing can spend those weeks fully booked on one- and two-night stays, which means turnovers every single day rather than the two or three a week the same property sees in October.",
+          "Winter is the opposite problem, and it is the one that damages a listing's rating. Edmonton holds its cold rather than cycling through it, so the salt and sand tracked in from November onward arrives dry and stays put — it works into entry mats, along baseboards and into the grout at the door. Guests notice it immediately because it is the first thing they step on. Entryways get specific attention on every winter turnover for exactly that reason.",
+          "The paperwork matters too. Edmonton requires a business licence to operate a short-term rental, and hosts renting near Rogers Place or the university are the ones most likely to be asked about their cleaning process — by the platform, by a strata, or by a guest querying a cleaning fee. We work to a fixed checklist, so you can say precisely what is covered on each visit.",
+        ]}
+      />
 
       {/* What We Clean - Visual Grid */}
       <section className="py-20 px-4 bg-background">
