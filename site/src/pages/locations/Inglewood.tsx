@@ -202,7 +202,7 @@ export default function Inglewood() {
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Residential Cleaning in Inglewood</h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
                   <p>
-                    Inglewood blends old charm with a fresh spirit. From century-old homes on tree-lined streets to modern infills and cozy walk-ups, the neighborhood has a personality all its own — and so do the people who live here. At Duty Cleaners, we're proud to be part of the rhythm of daily life in Inglewood.
+                    Inglewood blends old charm with a fresh spirit. From century-old homes on tree-lined streets to modern infills and cozy walk-ups, the neighbourhood has a personality all its own — and so do the people who live here. At Duty Cleaners, we're proud to be part of the rhythm of daily life in Inglewood.
                   </p>
                   <p>
                     Whether your home is near{" "}

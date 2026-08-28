@@ -468,7 +468,7 @@ export default function CalgaryMoveInOut() {
             Move Out Cleaning Services Throughout Calgary
           </h2>
           <p className="text-center text-muted-foreground mb-12">
-            Our professional move out cleaning teams serve all neighborhoods across Calgary and surrounding areas
+            Our professional move out cleaning teams serve all neighbourhoods across Calgary and surrounding areas
           </p>
 
           <div className="bg-white rounded-xl p-8 shadow-md">
@@ -480,7 +480,7 @@ export default function CalgaryMoveInOut() {
             </div>
 
             <p className="text-center text-muted-foreground mt-8 pt-6 border-t">
-              Don't see your neighborhood listed? <Link to="/contact-us" className="text-primary font-semibold hover:underline">Contact us!</Link> We likely serve your area and can provide professional move out cleaning services throughout the Calgary region.
+              Don't see your neighbourhood listed? <Link to="/contact-us" className="text-primary font-semibold hover:underline">Contact us!</Link> We likely serve your area and can provide professional move out cleaning services throughout the Calgary region.
             </p>
           </div>
         </div>

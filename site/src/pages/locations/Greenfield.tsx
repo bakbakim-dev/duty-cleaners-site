@@ -131,7 +131,7 @@ export default function Greenfield() {
             </h2>
             <div className="prose prose-lg max-w-none text-muted-foreground space-y-4">
               <p>
-                Greenfield isn't just a place on the map—it's a real community, one where people take pride in their homes, know their neighbors, and enjoy a slower, more thoughtful pace of life. From the tidy bungalows near 61 Avenue to the tree-covered paths by Greenfield Park, this neighborhood is full of character. And we're proud to be a small part of keeping it that way.
+                Greenfield isn't just a place on the map—it's a real community, one where people take pride in their homes, know their neighbors, and enjoy a slower, more thoughtful pace of life. From the tidy bungalows near 61 Avenue to the tree-covered paths by Greenfield Park, this neighbourhood is full of character. And we're proud to be a small part of keeping it that way.
               </p>
               <p>
                 At Duty Cleaners, we don't just drive through Greenfield—we work here, we know the streets, and we understand the value of being reliable. Our clients don't need to chase us for answers or wonder who's showing up. They know us by name, and we do our best to return that trust with every visit.
@@ -147,7 +147,7 @@ export default function Greenfield() {
                 Being local means less waiting, fewer delays, and a smoother experience all around.
               </p>
               <p>
-                We're proud to be among the trusted providers of residential cleaning service in Edmonton—serving the Greenfield neighborhood with a level of care that reflects the community itself.
+                We're proud to be among the trusted providers of residential cleaning service in Edmonton—serving the Greenfield neighbourhood with a level of care that reflects the community itself.
               </p>
 
               <h3 className="text-2xl font-bold mt-8 mb-4 text-foreground">
@@ -157,7 +157,7 @@ export default function Greenfield() {
                 We don't overpromise. Instead, we focus on showing up when we say we will, doing the job right, and communicating clearly every step of the way. You won't find call centers or generic replies here—just a small team who respects your home and your time.
               </p>
               <p>
-                It's the kind of service that makes sense in a neighborhood like this: consistent, considerate, and never rushed.
+                It's the kind of service that makes sense in a neighbourhood like this: consistent, considerate, and never rushed.
               </p>
             </div>
           </div>

@@ -189,7 +189,7 @@ export default function Garneau() {
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Residential Cleaning in Garneau</h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
                   <p>
-                    Garneau is a charming, walkable neighborhood nestled between the{" "}
+                    Garneau is a charming, walkable neighbourhood nestled between the{" "}
                     <a href="https://www.google.com/maps/place/University+of+Alberta/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">University of Alberta</a>{" "}
                     and the scenic{" "}
                     <a href="https://www.google.com/maps/place/North+Saskatchewan+River+Valley/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">North Saskatchewan River Valley</a>.

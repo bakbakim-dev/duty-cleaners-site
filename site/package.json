@@ -12,7 +12,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "prerender": "node scripts/prerender.mjs",
-    "prerender:all": "node scripts/prerender.mjs --all"
+    "prerender:all": "node scripts/prerender.mjs --all",
+    "indexnow": "node scripts/indexnow.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

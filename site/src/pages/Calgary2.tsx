@@ -393,7 +393,7 @@ export default function Calgary2() {
 
 
             <NeighborhoodMarquee city="Calgary" />
-            <CityCoverageGrid city="Calgary" neighborhoods={calgaryNeighborhoods} surrounding={calgarySurrounding} />
+            <CityCoverageGrid city="Calgary" neighbourhoods={calgaryNeighborhoods} surrounding={calgarySurrounding} />
 
             <div className="mt-10 max-w-5xl mx-auto">
               <Suspense fallback={<div className="w-full h-[400px] rounded-xl bg-muted animate-pulse" />}>

@@ -211,7 +211,7 @@ export default function Bannerman() {
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">A Local Touch for Bannerman Homes</h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
                   <p>
-                    Life in Bannerman offers the best of both worlds: a close-knit community and quick access to Edmonton's northeast. With its family-oriented streets, welcoming parks, and nearby river valley, Bannerman is a neighborhood where people take pride in their homes. Our role is simple — to help keep those homes feeling comfortable, refreshed, and cared for.
+                    Life in Bannerman offers the best of both worlds: a close-knit community and quick access to Edmonton's northeast. With its family-oriented streets, welcoming parks, and nearby river valley, Bannerman is a neighbourhood where people take pride in their homes. Our role is simple — to help keep those homes feeling comfortable, refreshed, and cared for.
                   </p>
                   <p>
                     Whether your home is near{" "}
@@ -366,7 +366,7 @@ export default function Bannerman() {
                 Ready for a Fresh Start in Bannerman?
               </h2>
               <p className="text-xl text-white/80 mb-4 max-w-2xl mx-auto">
-                Whether you're near Hermitage Park, tucked close to 144 Avenue, or walking distance from Clareview Recreation Centre, we're right in the neighborhood and ready to help.
+                Whether you're near Hermitage Park, tucked close to 144 Avenue, or walking distance from Clareview Recreation Centre, we're right in the neighbourhood and ready to help.
               </p>
               <p className="text-white/90 mb-10 max-w-2xl mx-auto">
                 Call us today or request your free quote online. A cleaner, more comfortable home in Bannerman is just a step away.

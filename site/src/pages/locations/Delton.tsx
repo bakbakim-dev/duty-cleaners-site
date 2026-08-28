@@ -194,7 +194,7 @@ export default function Delton() {
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Residential Cleaning in Delton</h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
                   <p>
-                    Delton is one of those rare Edmonton neighborhoods that still feels like a real community. With its mix of character homes, newer builds, and quiet streets near the core, it's a place where people know their neighbors and value reliable, honest help.
+                    Delton is one of those rare Edmonton neighbourhoods that still feels like a real community. With its mix of character homes, newer builds, and quiet streets near the core, it's a place where people know their neighbors and value reliable, honest help.
                   </p>
                   <p>
                     Whether your home is near{" "}

@@ -187,7 +187,7 @@ export default function Kensington() {
                 </h2>
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>
-                    Kensington is one of Calgary's most beloved neighborhoods, offering a vibrant village atmosphere just minutes from downtown. Located near{" "}
+                    Kensington is one of Calgary's most beloved neighbourhoods, offering a vibrant village atmosphere just minutes from downtown. Located near{" "}
                     <a href="https://www.google.com/maps/place/SAIT,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">SAIT</a>{" "}
                     and the beautiful{" "}
                     <a href="https://www.google.com/maps/place/Bow+River+Pathway,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Bow River pathways</a>,

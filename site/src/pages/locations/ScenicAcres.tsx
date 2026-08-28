@@ -106,7 +106,7 @@ export default function ScenicAcres() {
     <>
       <Helmet>
         <title>House Cleaning Services Scenic Acres Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning services in Scenic Acres, Calgary. Peaceful neighborhood near Nose Hill Park. 100% satisfaction guarantee. Call (403) 768-1341." />
+        <meta name="description" content="Professional house cleaning services in Scenic Acres, Calgary. Peaceful neighbourhood near Nose Hill Park. 100% satisfaction guarantee. Call (403) 768-1341." />
         <meta name="keywords" content="house cleaning Scenic Acres Calgary, cleaning services Scenic Acres, maid service Scenic Acres Calgary, home cleaning Northwest Calgary" />
         <meta property="og:title" content="House Cleaning Services Scenic Acres Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />

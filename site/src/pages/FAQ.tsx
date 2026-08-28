@@ -40,6 +40,18 @@ const faqCategories: FAQCategory[] = [
         answer: "Most households in Alberta choose bi-weekly. Weekly works best for larger families, homes with pets, or busy schedules; monthly is a good fit for smaller, lower-traffic homes. You can change or pause your frequency at any time.",
       },
       {
+        question: "How long does a house cleaning take?",
+        answer: "For a typical 3-bedroom home, a standard clean usually takes one cleaner around 3 to 4 hours, or two cleaners about 2 hours. A deep clean of the same home generally runs longer. We schedule to the checklist rather than the clock, so the team stays until every task in your service scope is done — and because the rate is flat, it costs the same whether the job runs short or long.",
+      },
+      {
+        question: "Should I tip the cleaners?",
+        answer: "Tipping is not expected and never required — the price you are quoted is the whole price, and our cleaners are paid for the job either way. If you would like to leave something for a team that did well, it is welcome and goes to the cleaners who did the work. A review is just as valuable to us, and free.",
+      },
+      {
+        question: "What happens if something is damaged during a clean?",
+        answer: "Tell us as soon as you notice. Send photos or video within 24 hours, by phone or to support@dutycleaners.ca, so we can look into it while the details are fresh — we will ask the team what happened, come back to you with what we find, and agree how to put it right. If a clean simply missed something rather than damaged it, that falls under the 24-hour re-clean guarantee instead.",
+      },
+      {
         question: "What time will the cleaners arrive?",
         answer: "We schedule to an arrival window rather than an exact time, so traffic or an earlier job running long does not push your whole day. The windows are 9:00 – 10:00 AM, 12:00 – 1:00 PM, and 3:00 – 4:00 PM. You will be told which window is yours when you book.",
       },

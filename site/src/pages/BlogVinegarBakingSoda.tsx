@@ -49,7 +49,7 @@ const whatToClean = [
   },
   {
     title: "Laundry Detergent Booster",
-    description: "Add half a cup of baking soda to your clothes before the wash cycle in the washing machine. Then, add vinegar to the rinse cycle. Baking soda can boost your liquid laundry detergent cleaning process and brighten your clothes, while vinegar removes the foul odor and softens the fabric."
+    description: "Add half a cup of baking soda to your clothes before the wash cycle in the washing machine. Then, add vinegar to the rinse cycle. Baking soda can boost your liquid laundry detergent cleaning process and brighten your clothes, while vinegar removes the foul odour and softens the fabric."
   }
 ];
 

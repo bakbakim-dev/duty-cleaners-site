@@ -204,7 +204,7 @@ export default function AuburnBay() {
                   <p>
                     Auburn Bay is a vibrant lake community located in the southeast quadrant of Calgary, centered around a{" "}
                     <a href="https://www.google.com/maps/place/Auburn+Bay,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">43-acre lake with a private beach</a>,
-                    making it one of Calgary's most desirable neighborhoods for families and active individuals who love waterfront living.
+                    making it one of Calgary's most desirable neighbourhoods for families and active individuals who love waterfront living.
                   </p>
                   <p>
                     The community features a diverse range of homes and exclusive access to the{" "}

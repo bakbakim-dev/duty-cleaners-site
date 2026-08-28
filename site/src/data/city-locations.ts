@@ -1,6 +1,6 @@
 // Single source of truth for city coverage lists.
 // Mirrors the curated arrays on the Locations page — every entry links to a
-// real, registered neighborhood/location route.
+// real, registered neighbourhood/location route.
 //
 // NOTE ON URL FORM: the satellite towns below intentionally use their
 // /cleaning-services-<town>/ form rather than /locations/<town>. Those legacy

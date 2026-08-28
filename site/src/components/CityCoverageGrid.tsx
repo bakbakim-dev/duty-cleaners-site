@@ -6,7 +6,7 @@ import type { CityLocation } from "@/data/city-locations";
 
 interface CityCoverageGridProps {
   city: string;
-  neighborhoods: CityLocation[];
+  neighbourhoods: CityLocation[];
   surrounding: CityLocation[];
   viewAllTo?: string;
 }
@@ -26,18 +26,18 @@ function Chip({ name, to }: CityLocation) {
 }
 
 /**
- * "Covering all of {City}" — full neighborhood + surrounding-community chip
+ * "Covering all of {City}" — full neighbourhood + surrounding-community chip
  * grid that internal-links to every location page (silo strategy).
  */
 export default function CityCoverageGrid({
   city,
-  neighborhoods,
+  neighbourhoods,
   surrounding,
   viewAllTo = "/locations",
 }: CityCoverageGridProps) {
   const [expanded, setExpanded] = useState(false);
-  const shown = expanded ? neighborhoods : neighborhoods.slice(0, PREVIEW_COUNT);
-  const hiddenCount = neighborhoods.length - PREVIEW_COUNT;
+  const shown = expanded ? neighbourhoods : neighbourhoods.slice(0, PREVIEW_COUNT);
+  const hiddenCount = neighbourhoods.length - PREVIEW_COUNT;
 
   return (
     <div className="max-w-5xl mx-auto">
@@ -70,7 +70,7 @@ export default function CityCoverageGrid({
               </>
             ) : (
               <>
-                Show all {neighborhoods.length} areas <ChevronDown className="w-4 h-4" aria-hidden="true" />
+                Show all {neighbourhoods.length} areas <ChevronDown className="w-4 h-4" aria-hidden="true" />
               </>
             )}
           </button>

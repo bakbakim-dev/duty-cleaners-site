@@ -116,7 +116,7 @@ const steps = [
 ];
 
 const whyUs = [
-  { icon: Sparkles, title: "Restores wall brightness", description: "Bring back the original colour and clean look of your interior." },
+  { icon: Sparkles, title: "Restores wall brightness", description: "Bring back the original color and clean look of your interior." },
   { icon: Shield, title: "Removes buildup others miss", description: "We target stains, grime and residue most general cleans skip." },
   { icon: Home, title: "Improves home appearance", description: "Cleaner walls instantly make every room feel newer and brighter." },
   { icon: Droplets, title: "Safe interior wall methods", description: "Products and techniques suited to painted surfaces." },

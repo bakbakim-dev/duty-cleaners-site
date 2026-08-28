@@ -72,7 +72,7 @@ export default function Riverbend() {
   const faqs = [
     {
       question: "Do you serve all of Riverbend?",
-      answer: "Yes! We serve all areas of Riverbend including Brander Gardens, Rhatigan Ridge, Ramsay Heights, and surrounding neighborhoods."
+      answer: "Yes! We serve all areas of Riverbend including Brander Gardens, Rhatigan Ridge, Ramsay Heights, and surrounding neighbourhoods."
     },
     {
       question: "How do you handle older homes with special care needs?",
@@ -200,7 +200,7 @@ export default function Riverbend() {
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Residential Cleaning in Riverbend</h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
                   <p>
-                    Riverbend is one of Southwest Edmonton's most treasured neighborhoods, known for its mature trees, established homes, and incredible sense of community. For decades, families have chosen Riverbend for its proximity to <a href="https://www.google.com/maps/search/Southgate+Centre+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">Southgate Centre</a>, excellent schools, and beautiful parks.
+                    Riverbend is one of Southwest Edmonton's most treasured neighbourhoods, known for its mature trees, established homes, and incredible sense of community. For decades, families have chosen Riverbend for its proximity to <a href="https://www.google.com/maps/search/Southgate+Centre+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">Southgate Centre</a>, excellent schools, and beautiful parks.
                   </p>
                   <p>
                     Whether you live in a classic family home near <a href="https://www.google.com/maps/search/Brander+Gardens+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">Brander Gardens</a> or a well-kept property along <a href="https://www.google.com/maps/search/Riverbend+Road+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">Riverbend Road</a>, we bring experience with mature homes and a personal, attentive approach to every visit.
@@ -333,7 +333,7 @@ export default function Riverbend() {
             <AnimatedSection>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Let's Take Cleaning Off Your Plate</h2>
               <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
-                Trust your cherished home to Edmonton's favorite cleaning team. Call us today or request your free quote — no pressure, no hassle.
+                Trust your cherished home to Edmonton's favourite cleaning team. Call us today or request your free quote — no pressure, no hassle.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>

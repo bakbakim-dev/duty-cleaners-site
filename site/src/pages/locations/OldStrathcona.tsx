@@ -189,7 +189,7 @@ export default function OldStrathcona() {
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Residential Cleaning in Old Strathcona</h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
                   <p>
-                    Old Strathcona is one of Edmonton's most beloved and culturally rich neighborhoods. Known for its historic{" "}
+                    Old Strathcona is one of Edmonton's most beloved and culturally rich neighbourhoods. Known for its historic{" "}
                     <a href="https://www.google.com/maps/place/Whyte+Avenue,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Whyte Avenue</a>,
                     eclectic mix of boutiques, cafes, live music venues, and the famous{" "}
                     <a href="https://www.google.com/maps/place/Old+Strathcona+Farmers'+Market/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Old Strathcona Farmers' Market</a>,

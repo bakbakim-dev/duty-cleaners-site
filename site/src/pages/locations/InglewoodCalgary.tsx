@@ -137,7 +137,7 @@ export default function InglewoodCalgary() {
                   Professional House Cleaning in Inglewood, Calgary
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Trusted cleaning for Calgary's oldest and most artistic neighborhood. From heritage homes to modern lofts — customer-rated cleaners, locally loved.
+                  Trusted cleaning for Calgary's oldest and most artistic neighbourhood. From heritage homes to modern lofts — customer-rated cleaners, locally loved.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -182,7 +182,7 @@ export default function InglewoodCalgary() {
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Cleaning Services Tailored to Inglewood Living</h2>
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>
-                    Inglewood is Calgary's oldest neighborhood, established in 1875, and has transformed into one of the city's most vibrant communities. Known for its thriving arts scene, antique shops, and independent boutiques along{" "}
+                    Inglewood is Calgary's oldest neighbourhood, established in 1875, and has transformed into one of the city's most vibrant communities. Known for its thriving arts scene, antique shops, and independent boutiques along{" "}
                     <a href="https://www.google.com/maps/search/9+Avenue+SE+Inglewood+Calgary" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">9th Avenue SE</a>,
                     this historic area attracts artists, young professionals, and families who appreciate character and creativity.
                   </p>

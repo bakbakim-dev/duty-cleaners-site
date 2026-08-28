@@ -44,7 +44,7 @@ const mainLocations = [
     addressLine2: "Edmonton, AB T5T 2V9",
     experience: `Serving Alberta since ${COMPANY.foundedYear}`,
     homesCleaned: "4,000+ Homes Cleaned",
-    neighborhoods: [
+    neighbourhoods: [
       { name: "Glenora", link: "/locations/glenora-edmonton" },
       { name: "Westmount", link: "/locations/westmount-edmonton" },
       { name: "Glastonbury", link: "/locations/glastonbury" },
@@ -69,7 +69,7 @@ const mainLocations = [
     addressLine2: "Calgary, Alberta",
     experience: `Serving Alberta since ${COMPANY.foundedYear}`,
     homesCleaned: "1,000+ Homes Cleaned",
-    neighborhoods: [
+    neighbourhoods: [
       { name: "Kensington", link: "/locations/kensington" },
       { name: "Tuscany", link: "/locations/tuscany" },
       { name: "Mahogany", link: "/locations/mahogany" },
@@ -100,7 +100,7 @@ const edmontonRegionCities = [
   { name: "Fort Saskatchewan", link: "/cleaning-services-fort-saskatchewan" }
 ];
 
-// Edmonton neighborhoods
+// Edmonton neighbourhoods
 const edmontonNeighborhoods = [
   { name: "Castle Downs", link: "/locations/castle-downs" },
   { name: "Inglewood", link: "/locations/inglewood" },
@@ -197,7 +197,7 @@ const calgaryRegionCities = [
   { name: "Turner Valley", link: "/locations/turner-valley" }
 ];
 
-// Calgary neighborhoods
+// Calgary neighbourhoods
 const calgaryNeighborhoods = [
   { name: "Kensington", link: "/locations/kensington" },
   { name: "Tuscany", link: "/locations/tuscany" },
@@ -268,9 +268,9 @@ const calgaryNeighborhoods = [
 ];
 
 // Coverage counts pulled from the single source of truth in city-locations.ts
-const coverageByCity: Record<string, { neighborhoods: number; surrounding: number }> = {
-  Edmonton: { neighborhoods: edmHoods.length, surrounding: edmSurrounding.length },
-  Calgary: { neighborhoods: calHoods.length, surrounding: calSurrounding.length },
+const coverageByCity: Record<string, { neighbourhoods: number; surrounding: number }> = {
+  Edmonton: { neighbourhoods: edmHoods.length, surrounding: edmSurrounding.length },
+  Calgary: { neighbourhoods: calHoods.length, surrounding: calSurrounding.length },
 };
 
 // Location Card Component
@@ -342,7 +342,7 @@ function LocationCard({ location }: { location: typeof mainLocations[0] }) {
           <div className="flex items-center gap-3 pt-2 border-t border-white/10">
             <MapPin className="w-5 h-5 text-accent" />
             <span className="text-sm font-semibold text-white/90">
-              {coverage.neighborhoods} neighborhoods + {coverage.surrounding} surrounding communities
+              {coverage.neighbourhoods} neighbourhoods + {coverage.surrounding} surrounding communities
             </span>
           </div>
         )}
@@ -352,7 +352,7 @@ function LocationCard({ location }: { location: typeof mainLocations[0] }) {
       <div className="mb-6 relative z-10">
         <h3 className="font-bold text-lg mb-3 text-white">Key Neighborhoods Served:</h3>
         <div className="flex flex-wrap gap-2">
-          {location.neighborhoods.map(area => (
+          {location.neighbourhoods.map(area => (
             <Link 
               key={area.name}
               to={area.link}
@@ -528,16 +528,16 @@ export default function Locations() {
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Edmonton Neighborhoods</h2>
             <p className="text-muted-foreground max-w-3xl mx-auto">
-              We serve all Edmonton neighborhoods with professional cleaning services
+              We serve all Edmonton neighbourhoods with professional cleaning services
             </p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 max-w-6xl mx-auto">
-            {edmontonNeighborhoods.map(neighborhood => (
+            {edmontonNeighborhoods.map(neighbourhood => (
               <NeighborhoodLink 
-                key={neighborhood.name} 
-                name={neighborhood.name} 
-                link={neighborhood.link} 
+                key={neighbourhood.name} 
+                name={neighbourhood.name} 
+                link={neighbourhood.link} 
                 variant="edmonton" 
               />
             ))}
@@ -597,16 +597,16 @@ export default function Locations() {
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Calgary Neighborhoods</h2>
             <p className="text-muted-foreground max-w-3xl mx-auto">
-              We serve all Calgary neighborhoods with professional cleaning services
+              We serve all Calgary neighbourhoods with professional cleaning services
             </p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 max-w-6xl mx-auto">
-            {calgaryNeighborhoods.map(neighborhood => (
+            {calgaryNeighborhoods.map(neighbourhood => (
               <NeighborhoodLink 
-                key={neighborhood.name} 
-                name={neighborhood.name} 
-                link={neighborhood.link} 
+                key={neighbourhood.name} 
+                name={neighbourhood.name} 
+                link={neighbourhood.link} 
                 variant="calgary" 
               />
             ))}

@@ -159,7 +159,7 @@ export default function Glenora() {
                   Home Cleaning You Can Count On in Glenora
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Trusted, local service for homes in one of the city's most cherished neighborhoods.
+                  Trusted, local service for homes in one of the city's most cherished neighbourhoods.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>

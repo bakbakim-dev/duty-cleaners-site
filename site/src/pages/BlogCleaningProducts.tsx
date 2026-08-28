@@ -38,7 +38,7 @@ const THE_FIVE = [
     name: "Microfibre cloths — a real stack of them",
     role: "The single biggest upgrade most homes can make",
     body:
-      "Microfibre lifts and traps soil instead of pushing it around, so it out-cleans paper towel and old cotton with less product. Buy 12 or more and colour-code them: one colour for bathrooms, another for kitchen, a third for glass. That is how professional crews avoid moving bathroom bacteria onto a kitchen counter.",
+      "Microfibre lifts and traps soil instead of pushing it around, so it out-cleans paper towel and old cotton with less product. Buy 12 or more and colour-code them: one color for bathrooms, another for kitchen, a third for glass. That is how professional crews avoid moving bathroom bacteria onto a kitchen counter.",
     look: "300 GSM or higher for general work; a separate flat-weave or waffle cloth for glass.",
     watch: "No fabric softener, ever — it coats the fibres and kills the grab. Wash warm, tumble low, and keep them out of the same load as cotton lint.",
   },
@@ -390,7 +390,7 @@ export default function BlogCleaningProducts() {
                       </h4>
                       <ul className="space-y-2 text-muted-foreground text-sm">
                         <li>• pH-neutral all-purpose cleaner (a concentrate is cheapest per use)</li>
-                        <li>• 12+ microfibre cloths, in at least three colours</li>
+                        <li>• 12+ microfibre cloths, in at least three colors</li>
                         <li>• Acidic bathroom / descaling cleaner</li>
                         <li>• Glass cleaner, plus one flat-weave cloth kept only for glass</li>
                         <li>• A box of baking soda</li>

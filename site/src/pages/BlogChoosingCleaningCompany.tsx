@@ -19,7 +19,7 @@ const keyFactors = [
     icon: Users,
     title: "Assessing Your Cleaning Needs",
     description: "Understanding your specific cleaning needs is the first step in finding the right cleaning company. Are you looking for regular maintenance cleaning, a one-time deep clean, or specialized services like carpet or upholstery cleaning? Consider the size and type of space that needs cleaning—residential, commercial, or industrial—as different companies may specialize in different areas.",
-    details: "Identify any unique requirements you have, such as non-toxic cleaning products or pet-friendly services. By clearly defining your cleaning needs, you can narrow down your search to companies that offer the exact services you're looking for, ensuring a better match and a more satisfactory outcome."
+    details: "Identify any unique requirements you have, such as specific cleaning products or pet-friendly services. By clearly defining your cleaning needs, you can narrow down your search to companies that offer the exact services you're looking for, ensuring a better match and a more satisfactory outcome."
   },
   {
     icon: Star,
@@ -46,7 +46,7 @@ const customizationOptions = [
   },
   {
     title: "Special Requests",
-    description: "If you have particular preferences, such as using non-toxic products or focusing on high-traffic areas, the company should be willing to accommodate these requests."
+    description: "If you have particular preferences, such as using particular products or focusing on high-traffic areas, the company should be willing to accommodate these requests."
   },
   {
     title: "Adjustable Frequency",
@@ -169,7 +169,7 @@ export default function BlogChoosingCleaningCompany() {
               {/* Introduction */}
               <div className="prose prose-lg max-w-none mb-12">
                 <p className="text-xl text-muted-foreground leading-relaxed">
-                  Finding the perfect cleaning company can feel like searching for a needle in a haystack. With so many options, how do you know which one will meet your specific needs? At Duty Cleaners, we understand the importance of a clean and organized space, whether it's your home or office.
+                  Most people booking a cleaner for the first time are comparing three quotes and a handful of reviews, with no easy way to tell which company will actually turn up and do the work. With so many options, how do you know which one will meet your specific needs? At Duty Cleaners, we understand the importance of a clean and organized space, whether it's your home or office.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed mt-4">
                   In this blog, we'll guide you through the key factors to consider when choosing a cleaning company. From understanding your requirements to checking credentials and reviews, we'll help you make an informed decision. Let's dive into what makes a cleaning service truly exceptional and how you can find the right match for your needs.
@@ -315,12 +315,12 @@ export default function BlogChoosingCleaningCompany() {
               {/* Conclusion */}
               <Card className="bg-primary/5 border-primary/20 mb-12">
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold mb-4 text-foreground">Conclusion</h2>
+                  <h2 className="text-2xl font-bold mb-4 text-foreground">What to do with this</h2>
                   <p className="text-muted-foreground mb-4">
                     Choosing the right cleaning company can make a significant difference in maintaining a pristine and comfortable space. By assessing your cleaning needs, evaluating experience, checking credentials, and exploring customization options, you ensure that the service you select aligns perfectly with your requirements. Don't overlook the importance of customer support and communication, as they are crucial for a smooth and satisfactory experience.
                   </p>
                   <p className="text-muted-foreground">
-                    At Duty Cleaners, serving Alberta, we prioritize tailored solutions and excellent customer service to meet your unique needs.
+                    If you want to see how we answer these questions ourselves: our prices are published by home size, our terms set out the cancellation, lockout and damage policies in plain language, and every cleaner is reference-checked before their first job and rated by the customer after every visit.
                   </p>
                 </CardContent>
               </Card>

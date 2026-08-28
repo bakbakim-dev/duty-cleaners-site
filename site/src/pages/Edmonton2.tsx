@@ -405,7 +405,7 @@ export default function Edmonton2() {
 
 
             <NeighborhoodMarquee city="Edmonton" />
-            <CityCoverageGrid city="Edmonton" neighborhoods={edmontonNeighborhoods} surrounding={edmontonSurrounding} />
+            <CityCoverageGrid city="Edmonton" neighbourhoods={edmontonNeighborhoods} surrounding={edmontonSurrounding} />
 
             <div className="mt-10 max-w-5xl mx-auto">
               <Suspense fallback={<div className="w-full h-[400px] rounded-xl bg-muted animate-pulse" />}>

@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { standardTierRows, deepCleanTierRows, moveInOutTierRows } from "@/data/pricing";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -69,6 +70,15 @@ const pricingFactors = [
     description: "Extras like carpet cleaning, window cleaning, laundry, or dishes will increase the total cost."
   }
 ];
+
+
+/** Derived from bk-config so this page cannot quote a stale figure. */
+const span = (rows: { price: string }[]) => `${rows[0].price} to ${rows[rows.length - 1].price}`;
+const COST_SPANS = {
+  standard: span(standardTierRows()),
+  deep: span(deepCleanTierRows()),
+  moveInOut: span(moveInOutTierRows()),
+};
 
 export default function BlogHouseCleaningCost() {
   useEffect(() => {
@@ -174,6 +184,27 @@ export default function BlogHouseCleaningCost() {
                   from — on a page whose own meta description says Canada. Readers
                   had no way to tell market ranges apart from this company's actual
                   prices, and the two are not the same thing. */}
+              {/* This page is the most likely of any on the site to be pulled for
+                  the highest-volume cost query, and its only extractable numbers
+                  were generic Canadian market ranges in styled cards. Duty
+                  Cleaners' own prices appeared nowhere on it, so a passage-level
+                  extractor would attribute someone else's ranges to this domain.
+                  Own figures first, market context after. All derived. */}
+              <div className="mb-10 p-6 bg-primary/5 rounded-xl border-2 border-primary/20">
+                <h2 className="text-xl font-bold text-foreground mb-3">What Duty Cleaners charges</h2>
+                <p className="text-muted-foreground leading-relaxed mb-3">
+                  In Edmonton and Calgary a standard clean is {COST_SPANS.standard} depending on the size
+                  of the home, a deep clean {COST_SPANS.deep}, and a move-in or move-out clean{" "}
+                  {COST_SPANS.moveInOut}. Those are flat rates in Canadian dollars before 5% GST, and
+                  they do not change because a clean ran long.
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  See <a href="/pricing/" className="text-primary underline">Edmonton pricing</a> or{" "}
+                  <a href="/calgary/pricing/" className="text-primary underline">Calgary pricing</a> for
+                  the full table by bedroom count, including add-ons.
+                </p>
+              </div>
+
               <div className="mb-12 p-6 bg-muted/40 rounded-xl border-l-4 border-primary">
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   <strong className="text-foreground">About the figures in this guide.</strong>{" "}

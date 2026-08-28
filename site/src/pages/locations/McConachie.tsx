@@ -185,7 +185,7 @@ export default function McConachie() {
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">House Cleaning in McConachie</h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
                   <p>
-                    McConachie is one of northeast Edmonton's most welcoming and fast-growing neighborhoods. With its family-friendly streets, green spaces, and convenient access to shopping and schools, it's a community where people take pride in their homes. We're here to make sure those homes stay fresh, comfortable, and cared for—without adding stress to your routine.
+                    McConachie is one of northeast Edmonton's most welcoming and fast-growing neighbourhoods. With its family-friendly streets, green spaces, and convenient access to shopping and schools, it's a community where people take pride in their homes. We're here to make sure those homes stay fresh, comfortable, and cared for—without adding stress to your routine.
                   </p>
                   <p>
                     Whether your home is near{" "}
