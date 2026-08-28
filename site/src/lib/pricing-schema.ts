@@ -52,7 +52,7 @@ export function buildPricingSchema({ city, standard, deep, moveInOut }: PricingS
     name: `House Cleaning Services in ${meta.locality}`,
     url: meta.url,
     provider: {
-      "@type": ["LocalBusiness", "HouseCleaning"],
+      "@type": "LocalBusiness",
       name: `Duty Cleaners ${meta.locality}`,
       telephone: meta.telephone,
       url: meta.url,

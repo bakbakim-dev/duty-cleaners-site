@@ -1,3 +1,4 @@
+import { BRAND_PROFILES } from "@/data/proof";
 import { useEffect, useState } from "react";
 import { EDMONTON_REVIEWS } from "@/data/reviews";
 import { Helmet } from "react-helmet-async";
@@ -149,7 +150,7 @@ export default function Edmonton2() {
   // lat/long (5+ decimals) of the 71 Ave office when confirmed.
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": ["LocalBusiness", "HouseCleaning"],
+    "@type": "LocalBusiness",
     "@id": "https://dutycleaners.ca/#edmonton",
     name: "Duty Cleaners - Edmonton",
     parentOrganization: { "@id": "https://dutycleaners.ca/#org" },
@@ -167,7 +168,7 @@ export default function Edmonton2() {
     },
     url: "https://dutycleaners.ca/",
     hasMap: "https://www.google.com/maps?cid=8192121191672692049",
-    sameAs: ["https://www.google.com/maps?cid=8192121191672692049"],
+    sameAs: [...BRAND_PROFILES],
     areaServed: [
       "Edmonton", "St. Albert", "Sherwood Park", "Spruce Grove", "Leduc",
       "Beaumont", "Fort Saskatchewan", "Stony Plain", "Morinville", "Devon",

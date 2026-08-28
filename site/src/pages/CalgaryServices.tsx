@@ -1,4 +1,5 @@
 import Navigation from "@/components/Navigation";
+import { buildServiceSchema } from "@/lib/service-schema";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import {
@@ -253,6 +254,9 @@ export default function CalgaryServices() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Compare Our Calgary Cleaning Services | Duty Cleaners" />
         <meta name="twitter:description" content="Standard, deep, recurring, move-in/out and post-construction cleaning in Calgary. See your instant price in about 60 seconds." />
+        <script type="application/ld+json">
+          {JSON.stringify(buildServiceSchema({ name: "House Cleaning Services", description: "Standard, deep, recurring, move-in/out and post-construction cleaning in Calgary. See your instant price in about 60 seconds.", path: "/calgary/services", city: "calgary" }))}
+        </script>
       </Helmet>
       <Navigation city="calgary" />
       <main id="main-content" tabIndex={-1}>

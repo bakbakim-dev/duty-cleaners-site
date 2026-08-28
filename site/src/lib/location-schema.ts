@@ -4,7 +4,7 @@
 
 import { getListing } from "@/lib/google-listings";
 import { withTrailingSlash } from "@/data/legacy-urls";
-import { schemaAddressFor } from "@/data/proof";
+import { schemaAddressFor, BRAND_PROFILES, ORG_ID, BRANCH_ID } from "@/data/proof";
 
 
 export interface LocationSchemaInput {
@@ -41,7 +41,18 @@ export function buildLocationSchema(input: LocationSchemaInput) {
 
   return {
     "@context": "https://schema.org",
-    "@type": ["LocalBusiness", "HouseCleaning"],
+    // "HouseCleaning" is NOT a schema.org type — it validates as an unknown
+    // string and does nothing. Google falls back to LocalBusiness anyway, so
+    // the extra entry was noise on 177 pages. Dropped.
+    "@type": "LocalBusiness",
+    // Without an @id every one of these was an anonymous business that merely
+    // happened to share an address — 166 unconnected entities Google could not
+    // reconcile with either Google Business Profile. Each node now has a stable
+    // identity, names the branch it belongs to, and hangs off the one
+    // Organization.
+    "@id": `${toCanonicalUrl(input.url)}#business`,
+    parentOrganization: { "@id": ORG_ID },
+    branchOf: { "@id": BRANCH_ID[input.city] },
     name: input.name,
     ...(input.description ? { description: input.description } : {}),
     // Normalised here, not at the call sites. dutycleaners.ca is trailing-slash
@@ -88,7 +99,10 @@ export function buildLocationSchema(input: LocationSchemaInput) {
     ],
     // Permalink to the actual Google Business Profile, not a search query.
     hasMap: getListing(contact.locality).url,
-    sameAs: [getListing(contact.locality).url],
+    // Was the single Google Maps permalink. The other eight profiles are linked
+    // in the footer on every page but were absent here, where they would
+    // actually do disambiguation work.
+    sameAs: [...BRAND_PROFILES],
 
   };
 }

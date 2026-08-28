@@ -20,6 +20,7 @@ import {
   PartyPopper,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { buildServiceSchema } from "@/lib/service-schema";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -259,6 +260,9 @@ const AirbnbCleaningCalgary = () => {
               acceptedAnswer: { "@type": "Answer", text: f.a },
             })),
           })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(buildServiceSchema({ name: "Airbnb Turnover Cleaning", description: "Reliable Airbnb and short-term rental turnover cleaning in Calgary. Restocking, fresh linens and fast turnarounds — priced per hour.", path: "/airbnb-cleaning-services-calgary", city: "calgary" }))}
         </script>
       </Helmet>
       <Navigation city="calgary" />

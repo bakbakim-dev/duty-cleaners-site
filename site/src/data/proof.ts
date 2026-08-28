@@ -133,6 +133,37 @@ export const isOfferLive = (now: Date = new Date()) => {
 export const SUPPORT_EMAIL = "support@dutycleaners.ca";
 
 /**
+ * Every profile that represents this business elsewhere on the web, for schema
+ * `sameAs`. These are all linked in the footer already; until now `sameAs`
+ * carried only the two Google Maps permalinks, so the other seven did no
+ * entity-disambiguation work at all. Keep this in sync with Footer.tsx.
+ *
+ * The Calgary Yelp URL is stored without its leftover ?osq= search parameter —
+ * a canonical profile URL, not the search that happened to find it.
+ */
+export const BRAND_PROFILES = [
+  "https://www.google.com/maps?cid=8192121191672692049",
+  "https://www.google.com/maps?cid=6193344199307583189",
+  "https://www.yelp.ca/biz/duty-cleaners-edmonton",
+  "https://www.yelp.ca/biz/duty-cleaners-calgary-calgary",
+  "https://www.facebook.com/dutycleaners/",
+  "https://www.instagram.com/dutycleaners/",
+  "https://www.linkedin.com/company/duty-cleaners/",
+  "https://www.youtube.com/@dutycleaners2795",
+  "https://x.com/Dutycleaners",
+] as const;
+
+/** Stable @id for the Organization every branch and location node hangs off. */
+export const ORG_ID = "https://dutycleaners.ca/#org";
+
+/** Stable @id per branch, so 166 location nodes stop being anonymous businesses. */
+export const BRANCH_ID = {
+  edmonton: "https://dutycleaners.ca/#edmonton",
+  calgary: "https://dutycleaners.ca/#calgary",
+} as const;
+
+
+/**
  * How fast we promise to come back after a booking request.
  * TODO-OWNER: confirm the real promise before launch.
  */

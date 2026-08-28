@@ -1,4 +1,5 @@
 import Navigation from "@/components/Navigation";
+import { buildServiceSchema } from "@/lib/service-schema";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
@@ -120,6 +121,9 @@ export default function EdmontonPostConstruction() {
               acceptedAnswer: { "@type": "Answer", text: f.a },
             })),
           })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(buildServiceSchema({ name: "Post-Construction Cleaning", description: "Final-stage post-construction cleaning in Edmonton for newly built and renovated homes. Remove drywall dust, smudges, and contractor residue.", path: "/post-construction-cleaning", city: "edmonton" }))}
         </script>
       </Helmet>
 

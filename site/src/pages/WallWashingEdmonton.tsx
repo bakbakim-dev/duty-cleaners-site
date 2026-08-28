@@ -1,4 +1,6 @@
 import Navigation from "@/components/Navigation";
+import { addOnFromPrice, formatPrice } from "@/data/pricing";
+import { buildServiceSchema } from "@/lib/service-schema";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import {
@@ -131,6 +133,14 @@ const faqs = [
   { q: "Do you clean ceilings in homes affected by smoke or nicotine?", a: "We generally do not clean very high areas like ceilings as part of our standard service. However, as long as the ceiling is safely reachable and not very high, we can attempt to clean flat ceilings for an additional charge, since this work can take significantly more time and effort. Please note: ceiling cleaning is considered an extra service, additional charges and time may apply, and we cannot guarantee full stain or odor removal. We do not clean popcorn ceilings and usually recommend replacement instead, especially in heavily smoke-damaged homes." },
 ];
 
+/** Cheapest bookable wall service, derived from bk-config — never typed. */
+const WALL_FROM = addOnFromPrice("standard", "spot-cleaning-inside-walls") ?? 0;
+const WALL_FULL = addOnFromPrice("standard", "complete-inside-wall-washing") ?? 0;
+/** These pages are the site's highest click-efficiency content and stated no
+ *  price at all, so neither a shopper nor an AI assistant could name one.
+ *  Both figures are derived from bk-config, never typed. */
+const WALL_PRICE_LINE = `Spot cleaning of walls starts at ${formatPrice(WALL_FROM)} and a full top-to-bottom wall wash at ${formatPrice(WALL_FULL)}, added to any clean. Both are flat rates before 5% GST.`;
+
 export default function WallWashingEdmonton() {
   useEffect(() => {
     document.title = "Wall Washing & Wall Cleaning Edmonton | Duty Cleaners";
@@ -163,6 +173,9 @@ export default function WallWashingEdmonton() {
             })),
           })}
         </script>
+        <script type="application/ld+json">
+          {JSON.stringify(buildServiceSchema({ name: "Wall Washing and Wall Cleaning", description: "Professional wall and baseboard washing in Edmonton. Professional products, customer-rated cleaners, no-obligation quote.", path: "/wall-washing-wall-cleaning", city: "edmonton", offerFrom: WALL_FROM }))}
+        </script>
       </Helmet>
       <Navigation city="edmonton" />
       <main id="main-content" tabIndex={-1}>
@@ -188,6 +201,9 @@ export default function WallWashingEdmonton() {
               </h1>
               <p className="text-lg text-white/80 mb-10 leading-relaxed max-w-2xl">
                 Restore the look and feel of your home with professional wall washing. We remove stains, smudges, buildup and trapped odours — leaving your walls visibly brighter and your air noticeably fresher.
+              </p>
+              <p className="text-lg text-white/90 mb-10 leading-relaxed max-w-2xl">
+                {WALL_PRICE_LINE}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <a href="#quote">

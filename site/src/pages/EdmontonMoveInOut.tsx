@@ -1,4 +1,5 @@
 import CityCrossLink from "@/components/CityCrossLink";
+import { buildServiceSchema } from "@/lib/service-schema";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -150,6 +151,9 @@ export default function EdmontonMoveInOut() {
         <meta name="twitter:description" content="Inspection-ready move out cleaning Edmonton & move in cleaning services. End of tenancy cleaning trusted by landlords. Same-day available." />
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        <script type="application/ld+json">
+          {JSON.stringify(buildServiceSchema({ name: "Move Out and Move In Cleaning", description: "Inspection-ready move out cleaning Edmonton & move in cleaning services. End of tenancy cleaning trusted by landlords. Same-day available.", path: "/move-out-cleaning-edmonton", city: "edmonton" }))}
+        </script>
       </Helmet>
 
       <div className="min-h-screen bg-background">

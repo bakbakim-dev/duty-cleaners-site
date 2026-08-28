@@ -166,7 +166,7 @@ const ServiceDetailPage = ({
     description: seoDescription,
     url: canonicalUrlForPath(new URL(canonical).pathname),
     provider: {
-      "@type": ["LocalBusiness", "HouseCleaning"],
+      "@type": "LocalBusiness",
       name: `Duty Cleaners ${cityName}`,
       telephone: phone,
       url: `https://dutycleaners.ca${quoteBase}`,

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { CALGARY_REVIEWS } from "@/data/reviews";
-import { schemaAddressFor } from "@/data/proof";
+import { schemaAddressFor, BRAND_PROFILES } from "@/data/proof";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -145,7 +145,7 @@ export default function Calgary2() {
   // location, then add postalCode and `geo`.
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": ["LocalBusiness", "HouseCleaning"],
+    "@type": "LocalBusiness",
     "@id": "https://dutycleaners.ca/#calgary",
     name: "Duty Cleaners - Calgary",
     parentOrganization: { "@id": "https://dutycleaners.ca/#org" },
@@ -159,7 +159,7 @@ export default function Calgary2() {
     address: schemaAddressFor("calgary"),
     url: "https://dutycleaners.ca/cleaning-services-calgary/",
     hasMap: "https://www.google.com/maps?cid=6193344199307583189",
-    sameAs: ["https://www.google.com/maps?cid=6193344199307583189"],
+    sameAs: [...BRAND_PROFILES],
     areaServed: [
       "Calgary", "Airdrie", "Cochrane", "Okotoks", "Chestermere", "Strathmore",
       "High River", "Langdon", "Crossfield",

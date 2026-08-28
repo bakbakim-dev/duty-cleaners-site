@@ -280,7 +280,7 @@ export default function Contact() {
             "@graph": (["edmonton", "calgary"] as const).map((key) => {
               const office = CITY_PROOF[key];
               return {
-                "@type": ["LocalBusiness", "HouseCleaning"],
+                "@type": "LocalBusiness",
                 "@id": `https://dutycleaners.ca/#${key}`,
                 name: `Duty Cleaners ${office.city}`,
                 url: "https://dutycleaners.ca/contact-us/",
