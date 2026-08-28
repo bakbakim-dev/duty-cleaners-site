@@ -17,6 +17,7 @@ import HonestReviewLink from "@/components/HonestReviewLink";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CoverageChips from "@/components/CoverageChips";
 
+import LocationPricing from "@/components/LocationPricing";
 const LocationMap = lazy(() => import("@/components/LocationMap"));
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -121,6 +122,7 @@ export default function Rapperswill() {
   url: "https://dutycleaners.ca/locations/rapperswill-edmonton",
   areaServed: "Rapperswill, Edmonton, AB",
   description: "Professional house cleaning services in Rapperswill, Edmonton.",
+  geo: { latitude: "53.631", longitude: "-113.55" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/rapperswill-edmonton/" />
@@ -312,6 +314,8 @@ export default function Rapperswill() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Rapperswill" />
 
         {/* FAQ */}

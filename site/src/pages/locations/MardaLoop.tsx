@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { buildLocationSchema } from "@/lib/location-schema";
 import CoverageChips from "@/components/CoverageChips";
+import LocationPricing from "@/components/LocationPricing";
 import calgaryKitchen from "@/assets/gallery/calgary-kitchen-clean.jpg";
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -87,7 +88,7 @@ export default function MardaLoop() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning Services in Marda Loop, Calgary | Duty Cleaners</title>
+        <title>House Cleaning in Marda Loop, Calgary | Duty Cleaners</title>
         <meta name="description" content="Professional house cleaning in Marda Loop, Calgary. Trendy SW neighbourhood near 33rd Avenue shops & River Park. 100% satisfaction guaranteed." />
         <meta property="og:title" content="House Cleaning Services Marda Loop Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -229,6 +230,8 @@ export default function MardaLoop() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocationPricing />
 
         {/* Services */}
         <section className="py-20 bg-background">

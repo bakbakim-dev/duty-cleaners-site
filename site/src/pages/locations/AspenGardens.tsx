@@ -17,6 +17,7 @@ import HonestReviewLink from "@/components/HonestReviewLink";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CoverageChips from "@/components/CoverageChips";
 
+import LocationPricing from "@/components/LocationPricing";
 const LocationMap = lazy(() => import("@/components/LocationMap"));
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -121,6 +122,7 @@ export default function AspenGardens() {
   url: "https://dutycleaners.ca/locations/aspen-gardens-edmonton",
   areaServed: "Aspen Gardens, Edmonton, AB",
   description: "Professional house cleaning services in Aspen Gardens, Edmonton.",
+  geo: { latitude: "53.487", longitude: "-113.56" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/aspen-gardens-edmonton/" />
@@ -311,6 +313,8 @@ export default function AspenGardens() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Aspen Gardens" />
 
         {/* FAQ */}

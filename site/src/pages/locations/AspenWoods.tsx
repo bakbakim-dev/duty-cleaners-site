@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { buildLocationSchema } from "@/lib/location-schema";
 import CoverageChips from "@/components/CoverageChips";
+import LocationPricing from "@/components/LocationPricing";
 import calgaryLivingRoom from "@/assets/gallery/calgary-living-room-clean.jpg";
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -89,7 +90,7 @@ export default function AspenWoods() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning Services in Aspen Woods, Calgary | Duty Cleaners</title>
+        <title>House Cleaning in Aspen Woods, Calgary | Duty Cleaners</title>
         <meta name="description" content="Premium house cleaning in Aspen Woods, Calgary. Experienced with luxury homes and fine finishes. 100% satisfaction guaranteed. Call (403) 768-1341." />
         <meta property="og:title" content="House Cleaning Services Aspen Woods Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -231,6 +232,8 @@ export default function AspenWoods() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocationPricing />
 
         {/* Services */}
         <section className="py-20 bg-background">

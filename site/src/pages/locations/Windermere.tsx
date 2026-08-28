@@ -15,6 +15,7 @@ import windermereHome from "@/assets/gallery/windermere-home.jpg";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CoverageChips from "@/components/CoverageChips";
 
+import LocationPricing from "@/components/LocationPricing";
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
   return (
@@ -296,6 +297,8 @@ export default function Windermere() {
           </AnimatedSection>
         </div>
       </section>
+
+      <LocationPricing />
 
       {/* Interactive Map */}
       <section className="py-20 bg-muted/30">

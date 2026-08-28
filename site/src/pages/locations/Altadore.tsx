@@ -16,6 +16,7 @@ import cleanHomeImg from "@/assets/gallery/neighborhoods/altadore.jpg";
 import { buildLocationSchema } from "@/lib/location-schema";
 import CoverageChips from "@/components/CoverageChips";
 
+import LocationPricing from "@/components/LocationPricing";
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
   return (
@@ -322,6 +323,8 @@ export default function Altadore() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocationPricing />
 
         <section className="py-20 bg-brand-navy relative overflow-hidden">
           <div className="absolute top-10 right-20 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />

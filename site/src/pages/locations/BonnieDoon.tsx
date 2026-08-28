@@ -17,6 +17,7 @@ import HonestReviewLink from "@/components/HonestReviewLink";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CoverageChips from "@/components/CoverageChips";
 
+import LocationPricing from "@/components/LocationPricing";
 const LocationMap = lazy(() => import("@/components/LocationMap"));
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -121,6 +122,7 @@ export default function BonnieDoon() {
   url: "https://dutycleaners.ca/locations/bonnie-doon-edmonton",
   areaServed: "Bonnie Doon, Edmonton, AB",
   description: "Professional house cleaning services in Bonnie Doon, Edmonton.",
+  geo: { latitude: "53.521", longitude: "-113.453" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/bonnie-doon-edmonton/" />
@@ -311,6 +313,8 @@ export default function BonnieDoon() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Bonnie Doon" />
 
         {/* FAQ */}

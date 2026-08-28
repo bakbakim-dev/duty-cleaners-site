@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { buildLocationSchema } from "@/lib/location-schema";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import LocationPricing from "@/components/LocationPricing";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
@@ -116,16 +117,16 @@ export default function Griesbach() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning Services in Griesbach, Edmonton | Duty Cleaners</title>
+        <title>House Cleaning in Griesbach, Edmonton | Duty Cleaners</title>
         <meta name="description" content="Reliable cleaners you can count on in Griesbach, Edmonton. Professional house cleaning services near Patricia Lake and Major General Griesbach Park." />
         <link rel="canonical" href="https://dutycleaners.ca/locations/griesbach-edmonton/" />
-        <meta property="og:title" content="House Cleaning Services in Griesbach, Edmonton | Duty Cleaners" />
+        <meta property="og:title" content="House Cleaning in Griesbach, Edmonton | Duty Cleaners" />
         <meta property="og:description" content="Reliable cleaners you can count on in Griesbach, Edmonton. Professional house cleaning services near Patricia Lake and Major General Griesbach Park." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/griesbach-edmonton/" />
         <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning Services in Griesbach, Edmonton | Duty Cleaners" />
+        <meta name="twitter:title" content="House Cleaning in Griesbach, Edmonton | Duty Cleaners" />
         <meta name="twitter:description" content="Reliable cleaners you can count on in Griesbach, Edmonton. Professional house cleaning services near Patricia Lake and Major General Griesbach Park." />
         <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Griesbach Edmonton", city: "edmonton", url: "https://dutycleaners.ca/locations/griesbach-edmonton", areaServed: "Griesbach, Edmonton, AB" }))}</script>
       </Helmet>
@@ -188,6 +189,8 @@ export default function Griesbach() {
             </div>
           </div>
         </section>
+
+      <LocationPricing />
 
         {/* About the Neighbourhood */}
         <section className="py-20 bg-background">

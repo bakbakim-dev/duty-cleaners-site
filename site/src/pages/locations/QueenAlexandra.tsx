@@ -3,6 +3,8 @@ import { Helmet } from "react-helmet-async";
 import { buildLocationSchema } from "@/lib/location-schema";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import LocationPricing from "@/components/LocationPricing";
 import { Button } from "@/components/ui/button";
 import { Phone } from "lucide-react";
 import HonestReviewLink from "@/components/HonestReviewLink";
@@ -47,23 +49,27 @@ const QueenAlexandra = () => {
   return (
     <>
       <Helmet>
-        <title>Queen Alexandra House Cleaning Professionals | Duty Cleaners Edmonton</title>
+        <title>House Cleaning in Queen Alexandra, Edmonton</title>
         <meta name="description" content="Reliable home cleaning in Queen Alexandra, Edmonton. Professional service near Queen Alexandra School, Tipton Park, and Whyte Avenue." />
         <link rel="canonical" href="https://dutycleaners.ca/locations/queen-alexandra-edmonton/" />
-        <meta property="og:title" content="Queen Alexandra House Cleaning Professionals | Duty Cleaners Edmonton" />
+        <meta property="og:title" content="House Cleaning in Queen Alexandra, Edmonton" />
         <meta property="og:description" content="Reliable home cleaning in Queen Alexandra, Edmonton. Professional service near Queen Alexandra School, Tipton Park, and Whyte Avenue." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/queen-alexandra-edmonton/" />
         <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Queen Alexandra House Cleaning Professionals | Duty Cleaners Edmonton" />
+        <meta name="twitter:title" content="House Cleaning in Queen Alexandra, Edmonton" />
         <meta name="twitter:description" content="Reliable home cleaning in Queen Alexandra, Edmonton. Professional service near Queen Alexandra School, Tipton Park, and Whyte Avenue." />
-        <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Queen Alexandra Edmonton", city: "edmonton", url: "https://dutycleaners.ca/locations/queen-alexandra-edmonton", areaServed: "Queen Alexandra, Edmonton, AB" }))}</script>
+        <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Queen Alexandra Edmonton", city: "edmonton", url: "https://dutycleaners.ca/locations/queen-alexandra-edmonton", areaServed: "Queen Alexandra, Edmonton, AB",   geo: { latitude: "53.518", longitude: "-113.504" },
+}))}</script>
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       <div className="min-h-screen bg-background">
         <Navigation />
         <main id="main-content" tabIndex={-1}>
+        <div className="container mx-auto px-4 pt-4">
+          <Breadcrumbs />
+        </div>
 
         {/* Hero Section */}
         <section className="pt-24 pb-12 px-4">
@@ -89,6 +95,8 @@ const QueenAlexandra = () => {
             </div>
           </div>
         </section>
+
+      <LocationPricing />
 
         {/* Our work in the Queen Alexandra / Old Strathcona area. Queen Alexandra
             sits immediately south of Whyte Avenue, so this Old Strathcona photo is

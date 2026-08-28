@@ -17,6 +17,7 @@ import HonestReviewLink from "@/components/HonestReviewLink";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CoverageChips from "@/components/CoverageChips";
 
+import LocationPricing from "@/components/LocationPricing";
 const LocationMap = lazy(() => import("@/components/LocationMap"));
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -121,6 +122,7 @@ export default function Downtown() {
   url: "https://dutycleaners.ca/locations/downtown-edmonton",
   areaServed: "Downtown Edmonton, AB",
   description: "Professional house cleaning services in Downtown Edmonton.",
+  geo: { latitude: "53.5444", longitude: "-113.4909" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/downtown-edmonton/" />
@@ -312,6 +314,8 @@ export default function Downtown() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Downtown" />
 
         {/* FAQ */}

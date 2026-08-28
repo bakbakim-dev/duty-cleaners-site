@@ -16,6 +16,7 @@ import { buildLocationSchema } from "@/lib/location-schema";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CoverageChips from "@/components/CoverageChips";
 
+import LocationPricing from "@/components/LocationPricing";
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
   return (
@@ -103,7 +104,7 @@ export default function OldStrathcona() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning Services Old Strathcona Edmonton | Duty Cleaners</title>
+        <title>House Cleaning Old Strathcona Edmonton | Duty Cleaners</title>
         <meta name="description" content="Professional house cleaning in Old Strathcona, Edmonton. Serving the heritage homes of the Whyte Avenue district. Pay after your clean." />
         <script type="application/ld+json">{JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Old Strathcona, Edmonton",
@@ -113,13 +114,13 @@ export default function OldStrathcona() {
   description: "Professional house cleaning services in Old Strathcona, Edmonton.",
 }))}</script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/old-strathcona/" />
-        <meta property="og:title" content="House Cleaning Services Old Strathcona Edmonton | Duty Cleaners" />
+        <meta property="og:title" content="House Cleaning Old Strathcona Edmonton | Duty Cleaners" />
         <meta property="og:description" content="Professional house cleaning in Old Strathcona, Edmonton. Serving the heritage homes of the Whyte Avenue district. Pay after your clean." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/old-strathcona/" />
         <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning Services Old Strathcona Edmonton | Duty Cleaners" />
+        <meta name="twitter:title" content="House Cleaning Old Strathcona Edmonton | Duty Cleaners" />
         <meta name="twitter:description" content="Professional house cleaning in Old Strathcona, Edmonton. Serving the heritage homes of the Whyte Avenue district. Pay after your clean." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
@@ -263,6 +264,8 @@ export default function OldStrathcona() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocationPricing />
 
         {/* Map */}
         <section className="py-20 bg-muted/30">

@@ -17,6 +17,7 @@ import HonestReviewLink from "@/components/HonestReviewLink";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CoverageChips from "@/components/CoverageChips";
 
+import LocationPricing from "@/components/LocationPricing";
 const LocationMap = lazy(() => import("@/components/LocationMap"));
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -121,6 +122,7 @@ export default function Belmont() {
   url: "https://dutycleaners.ca/locations/belmont-edmonton",
   areaServed: "Belmont, Edmonton, AB",
   description: "Professional house cleaning services in Belmont, Edmonton.",
+  geo: { latitude: "53.583", longitude: "-113.395" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/belmont-edmonton/" />
@@ -311,6 +313,8 @@ export default function Belmont() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Belmont" />
 
         {/* FAQ */}

@@ -17,6 +17,7 @@ import HonestReviewLink from "@/components/HonestReviewLink";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CoverageChips from "@/components/CoverageChips";
 
+import LocationPricing from "@/components/LocationPricing";
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
   return (
@@ -122,16 +123,16 @@ export default function Glenora() {
   return (
     <>
       <Helmet>
-        <title>Home Cleaning You Can Count On in Glenora, Edmonton | Duty Cleaners</title>
+        <title>Home Cleaning You Can Count On in Glenora, Edmonton</title>
         <meta name="description" content="Trusted local house cleaning in Glenora, Edmonton. Reliable cleaners serving Alexander Circle, Government House Park and nearby streets." />
         <link rel="canonical" href="https://dutycleaners.ca/locations/glenora-edmonton/" />
-        <meta property="og:title" content="Home Cleaning You Can Count On in Glenora, Edmonton | Duty Cleaners" />
+        <meta property="og:title" content="Home Cleaning You Can Count On in Glenora, Edmonton" />
         <meta property="og:description" content="Trusted local house cleaning in Glenora, Edmonton. Reliable cleaners serving Alexander Circle, Government House Park and nearby streets." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/glenora-edmonton/" />
         <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Home Cleaning You Can Count On in Glenora, Edmonton | Duty Cleaners" />
+        <meta name="twitter:title" content="Home Cleaning You Can Count On in Glenora, Edmonton" />
         <meta name="twitter:description" content="Trusted local house cleaning in Glenora, Edmonton. Reliable cleaners serving Alexander Circle, Government House Park and nearby streets." />
         <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Glenora Edmonton", city: "edmonton", url: "https://dutycleaners.ca/locations/glenora-edmonton", areaServed: "Glenora, Edmonton, AB" }))}</script>
       </Helmet>
@@ -306,6 +307,8 @@ export default function Glenora() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocationPricing />
 
         <HonestReviewLink city="Edmonton" area="Glenora" />
 

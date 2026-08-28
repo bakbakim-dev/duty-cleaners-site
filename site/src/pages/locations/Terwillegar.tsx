@@ -2,6 +2,7 @@ import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { Link } from "react-router-dom";
@@ -16,6 +17,7 @@ import HonestReviewLink from "@/components/HonestReviewLink";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CoverageChips from "@/components/CoverageChips";
 
+import LocationPricing from "@/components/LocationPricing";
 const TerwillegarMap = lazy(() => import("@/components/TerwillegarMap"));
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -117,16 +119,16 @@ export default function Terwillegar() {
   return (
     <>
       <Helmet>
-        <title>Home Cleaning You Can Count On in Terwillegar, Edmonton | Duty Cleaners</title>
+        <title>Home Cleaning You Can Count On in Terwillegar, Edmonton</title>
         <meta name="description" content="Trusted local house cleaning in Terwillegar, Edmonton. Cleaners serving Terwillegar Park, Magrath Heights and surrounding areas." />
         <link rel="canonical" href="https://dutycleaners.ca/locations/terwillegar/" />
-        <meta property="og:title" content="Home Cleaning You Can Count On in Terwillegar, Edmonton | Duty Cleaners" />
+        <meta property="og:title" content="Home Cleaning You Can Count On in Terwillegar, Edmonton" />
         <meta property="og:description" content="Trusted local house cleaning in Terwillegar, Edmonton. Cleaners serving Terwillegar Park, Magrath Heights and surrounding areas." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/terwillegar/" />
         <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Home Cleaning You Can Count On in Terwillegar, Edmonton | Duty Cleaners" />
+        <meta name="twitter:title" content="Home Cleaning You Can Count On in Terwillegar, Edmonton" />
         <meta name="twitter:description" content="Trusted local house cleaning in Terwillegar, Edmonton. Cleaners serving Terwillegar Park, Magrath Heights and surrounding areas." />
         <script type="application/ld+json">{JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Terwillegar, Edmonton",
@@ -141,6 +143,9 @@ export default function Terwillegar() {
       <div className="min-h-screen">
         <Navigation city="edmonton" />
         <main id="main-content" tabIndex={-1}>
+        <div className="container mx-auto px-4 pt-4">
+          <Breadcrumbs />
+        </div>
 
         {/* Hero */}
         <section className="relative py-24 bg-brand-navy overflow-hidden">
@@ -282,6 +287,8 @@ export default function Terwillegar() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocationPricing />
 
         {/* Map */}
         <section className="py-20 bg-muted/30">

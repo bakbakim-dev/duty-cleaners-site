@@ -14,6 +14,7 @@ import {
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { buildLocationSchema } from "@/lib/location-schema";
 import CoverageChips from "@/components/CoverageChips";
+import LocationPricing from "@/components/LocationPricing";
 import calgaryKitchen from "@/assets/gallery/calgary-kitchen-clean.jpg";
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -263,6 +264,8 @@ export default function ScenicAcres() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocationPricing />
 
         {/* Services */}
         <section className="py-20 bg-background">

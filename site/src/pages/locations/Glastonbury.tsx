@@ -16,6 +16,7 @@ import glastonburyCleanerImg from "@/assets/gallery/glastonbury-cleaner-home.jpg
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CoverageChips from "@/components/CoverageChips";
 
+import LocationPricing from "@/components/LocationPricing";
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
   return (
@@ -109,16 +110,16 @@ export default function Glastonbury() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning Services in Glastonbury, Edmonton | Duty Cleaners</title>
+        <title>House Cleaning in Glastonbury, Edmonton | Duty Cleaners</title>
         <meta name="description" content="Professional house cleaning in Glastonbury, Edmonton. Beautiful homes, welcoming community near The Grange. Local cleaners you can trust. Get instant pricing!" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/glastonbury/" />
-        <meta property="og:title" content="House Cleaning Services in Glastonbury, Edmonton | Duty Cleaners" />
+        <meta property="og:title" content="House Cleaning in Glastonbury, Edmonton | Duty Cleaners" />
         <meta property="og:description" content="Professional house cleaning in Glastonbury, Edmonton. Beautiful homes, welcoming community near The Grange. Local cleaners you can trust. Get instant pricing!" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/glastonbury/" />
         <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning Services in Glastonbury, Edmonton | Duty Cleaners" />
+        <meta name="twitter:title" content="House Cleaning in Glastonbury, Edmonton | Duty Cleaners" />
         <meta name="twitter:description" content="Professional house cleaning in Glastonbury, Edmonton. Beautiful homes, welcoming community near The Grange. Local cleaners you can trust. Get instant pricing!" />
         <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Glastonbury Edmonton", city: "edmonton", url: "https://dutycleaners.ca/locations/glastonbury", areaServed: "Glastonbury, Edmonton, AB" }))}</script>
       </Helmet>
@@ -279,6 +280,8 @@ export default function Glastonbury() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocationPricing />
 
         {/* FAQ */}
         <section className="py-20 bg-muted/30">

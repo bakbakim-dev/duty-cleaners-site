@@ -17,6 +17,7 @@ import HonestReviewLink from "@/components/HonestReviewLink";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CoverageChips from "@/components/CoverageChips";
 
+import LocationPricing from "@/components/LocationPricing";
 const LocationMap = lazy(() => import("@/components/LocationMap"));
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -112,7 +113,7 @@ export default function CentralMcDougall() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning in Central McDougall, Edmonton | Duty Cleaners</title>
+        <title>House Cleaning in Central McDougall, Edmonton</title>
         <meta name="description" content="Professional house cleaning in Central McDougall, Edmonton. Reliable, customer-rated local cleaners. Pay after your clean." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
@@ -121,16 +122,17 @@ export default function CentralMcDougall() {
   url: "https://dutycleaners.ca/locations/central-mcdougall-edmonton",
   areaServed: "Central McDougall, Edmonton, AB",
   description: "Professional house cleaning services in Central McDougall, Edmonton.",
+  geo: { latitude: "53.555", longitude: "-113.496" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/central-mcdougall-edmonton/" />
-        <meta property="og:title" content="House Cleaning in Central McDougall, Edmonton | Duty Cleaners" />
+        <meta property="og:title" content="House Cleaning in Central McDougall, Edmonton" />
         <meta property="og:description" content="Professional house cleaning in Central McDougall, Edmonton. Reliable, customer-rated local cleaners. Pay after your clean." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/central-mcdougall-edmonton/" />
         <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning in Central McDougall, Edmonton | Duty Cleaners" />
+        <meta name="twitter:title" content="House Cleaning in Central McDougall, Edmonton" />
         <meta name="twitter:description" content="Professional house cleaning in Central McDougall, Edmonton. Reliable, customer-rated local cleaners. Pay after your clean." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
@@ -312,6 +314,8 @@ export default function CentralMcDougall() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Central Mc Dougall" />
 
         {/* FAQ */}

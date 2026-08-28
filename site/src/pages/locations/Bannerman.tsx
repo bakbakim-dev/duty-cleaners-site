@@ -16,6 +16,7 @@ import HonestReviewLink from "@/components/HonestReviewLink";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CoverageChips from "@/components/CoverageChips";
 
+import LocationPricing from "@/components/LocationPricing";
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
   return (
@@ -130,7 +131,7 @@ export default function Bannerman() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning Services in Bannerman, Edmonton | Duty Cleaners</title>
+        <title>House Cleaning in Bannerman, Edmonton | Duty Cleaners</title>
         <meta name="description" content="Professional house cleaning in Bannerman, Edmonton. Serving families near Bannerman Park, Bannerman School, Hermitage Park & more. Local cleaners you can trust." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
@@ -142,13 +143,13 @@ export default function Bannerman() {
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/bannerman/" />
-        <meta property="og:title" content="House Cleaning Services in Bannerman, Edmonton | Duty Cleaners" />
+        <meta property="og:title" content="House Cleaning in Bannerman, Edmonton | Duty Cleaners" />
         <meta property="og:description" content="Professional house cleaning in Bannerman, Edmonton. Serving families near Bannerman Park, Bannerman School, Hermitage Park & more. Local cleaners you can trust." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/bannerman/" />
         <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning Services in Bannerman, Edmonton | Duty Cleaners" />
+        <meta name="twitter:title" content="House Cleaning in Bannerman, Edmonton | Duty Cleaners" />
         <meta name="twitter:description" content="Professional house cleaning in Bannerman, Edmonton. Serving families near Bannerman Park, Bannerman School, Hermitage Park & more. Local cleaners you can trust." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
@@ -333,6 +334,8 @@ export default function Bannerman() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Bannerman" />
 
         {/* FAQ */}

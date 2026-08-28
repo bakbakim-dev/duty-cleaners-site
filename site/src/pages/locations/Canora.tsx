@@ -17,6 +17,7 @@ import HonestReviewLink from "@/components/HonestReviewLink";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CoverageChips from "@/components/CoverageChips";
 
+import LocationPricing from "@/components/LocationPricing";
 const LocationMap = lazy(() => import("@/components/LocationMap"));
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -121,6 +122,7 @@ export default function Canora() {
   url: "https://dutycleaners.ca/locations/canora-edmonton",
   areaServed: "Canora, Edmonton, AB",
   description: "Professional house cleaning services in Canora, Edmonton.",
+  geo: { latitude: "53.536", longitude: "-113.557" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/canora-edmonton/" />
@@ -312,6 +314,8 @@ export default function Canora() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Canora" />
 
         {/* FAQ */}

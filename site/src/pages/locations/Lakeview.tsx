@@ -16,6 +16,7 @@ import featureImg from "@/assets/gallery/lakeview-clean-kitchen.jpg";
 import { buildLocationSchema } from "@/lib/location-schema";
 import CoverageChips from "@/components/CoverageChips";
 
+import LocationPricing from "@/components/LocationPricing";
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
   return (
@@ -340,6 +341,8 @@ export default function Lakeview() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocationPricing />
 
         {/* Why Choose Us */}
         <section className="py-20 bg-brand-navy relative overflow-hidden">

@@ -22,6 +22,7 @@ import { buildLocationSchema } from "@/lib/location-schema";
 import HonestReviewLink from "@/components/HonestReviewLink";
 import CoverageChips from "@/components/CoverageChips";
 
+import LocationPricing from "@/components/LocationPricing";
 const DeltonMap = lazy(() => import("@/components/DeltonMap"));
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -304,6 +305,8 @@ export default function Delton() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocationPricing />
 
         {/* FAQ */}
         <section className="py-20 bg-muted/30">

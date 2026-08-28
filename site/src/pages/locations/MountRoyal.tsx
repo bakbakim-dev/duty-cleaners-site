@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { buildLocationSchema } from "@/lib/location-schema";
 import CoverageChips from "@/components/CoverageChips";
+import LocationPricing from "@/components/LocationPricing";
 import calgaryCleanHome from "@/assets/gallery/calgary-clean-home-northwest.jpg";
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -87,7 +88,7 @@ export default function MountRoyal() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning Services in Mount Royal, Calgary | Duty Cleaners</title>
+        <title>House Cleaning in Mount Royal, Calgary | Duty Cleaners</title>
         <meta name="description" content="Premium house cleaning in Mount Royal, Calgary. Experienced with heritage homes and fine finishes. 100% satisfaction guaranteed. Call (403) 768-1341." />
         <meta property="og:title" content="House Cleaning Services Mount Royal Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -229,6 +230,8 @@ export default function MountRoyal() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocationPricing />
 
         {/* Services */}
         <section className="py-20 bg-background">

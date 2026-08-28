@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { buildLocationSchema } from "@/lib/location-schema";
 import CoverageChips from "@/components/CoverageChips";
+import LocationPricing from "@/components/LocationPricing";
 import calgaryKitchen from "@/assets/gallery/calgary-kitchen-clean.jpg";
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -105,7 +106,7 @@ export default function AuburnBay() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning Services in Auburn Bay, Calgary | Duty Cleaners</title>
+        <title>House Cleaning in Auburn Bay, Calgary | Duty Cleaners</title>
         <meta name="description" content="Professional house cleaning in Auburn Bay, Calgary. Lakeside community with private beach. 100% satisfaction guaranteed. Pay after your clean." />
         <meta property="og:title" content="House Cleaning Services Auburn Bay Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -267,6 +268,8 @@ export default function AuburnBay() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocationPricing />
 
         {/* Services */}
         <section className="py-20 bg-background">

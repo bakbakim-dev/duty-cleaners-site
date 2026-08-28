@@ -12,6 +12,7 @@ import { Link, useLocation } from "react-router-dom";
 import { quoteHrefFor } from "@/lib/quote-link";
 import { Helmet } from "react-helmet-async";
 import { buildLocationSchema } from "@/lib/location-schema";
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import {
   Phone, CheckCircle2, Star, Shield, Clock, Award,
@@ -23,11 +24,39 @@ interface LocationPageProps {
   city: string;
   region: "edmonton" | "calgary";
   title: string;
+  /** Hero blurb. Prose, so it runs long — NOT the meta description. */
   description: string;
+  /**
+   * The meta description, which must fit inside 160 characters.
+   *
+   * `description` used to serve both jobs, and it is written as hero prose —
+   * so the twelve pages using this template shipped meta descriptions of 199
+   * to 403 characters, every one of them truncated in search results. Falls
+   * back to `description` when absent so nothing regresses silently, but
+   * location-meta.test.ts fails any page that leaves it that way.
+   */
+  seoDescription?: string;
   phone: string;
   phoneLink: string;
   /** Real, verbatim-sourced "Things To Do" paragraphs for this town, if confirmed. */
   thingsToDo?: string[];
+  /**
+   * Cleaning-relevant local content — the thing that stops this page being a
+   * copy of the other twelve.
+   *
+   * Measured as novel 8-grams against every sibling location page with the
+   * place name normalised away, these thirteen pages had a median of 37 and a
+   * floor of 14 (Laurel). The 140 hand-written location pages median 116-158.
+   * The gap was entirely this: the template varied by name and one blurb.
+   *
+   * Write what changes the JOB, not what a tourism board would write. Housing
+   * era and type is the strongest axis — a 1950s bungalow with original trim
+   * and a 2015 open-plan build shed dust differently and take different
+   * amounts of time — followed by what the location does to a home: ring-road
+   * grit, lake and wetland humidity, LRT-adjacent traffic, active construction
+   * next door.
+   */
+  localNote?: { heading: string; paragraphs: string[] };
   /**
    * Set for places that are their OWN municipality rather than a neighbourhood
    * of the region's main city. Black Diamond is a town near Calgary, not part
@@ -120,11 +149,16 @@ export default function LocationPageTemplate({
   region,
   title,
   description,
+  seoDescription,
   phone,
   phoneLink,
   thingsToDo,
+  localNote,
   isOwnMunicipality = false,
 }: LocationPageProps) {
+  // Falls back so an un-migrated page still renders; the test enforces the rest.
+  const metaDescription = seoDescription ?? description;
+
   useEffect(() => {
     document.title = title;
   }, [title]);
@@ -185,15 +219,15 @@ export default function LocationPageTemplate({
     <div className="min-h-screen">
       <Helmet>
         <title>{title}</title>
-        <meta name="description" content={description} />
+        <meta name="description" content={metaDescription} />
         <link rel="canonical" href={canonicalUrl} />
         <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
+        <meta property="og:description" content={metaDescription} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonicalUrl} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
-        <meta name="twitter:description" content={description} />
+        <meta name="twitter:description" content={metaDescription} />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       </Helmet>
@@ -302,6 +336,15 @@ export default function LocationPageTemplate({
           </AnimatedSection>
         </div>
       </section>
+
+      {localNote && (
+        <LocalMarketNote
+          eyebrow={`Homes in ${city}`}
+          heading={localNote.heading}
+          paragraphs={localNote.paragraphs}
+          accent={region === "calgary" ? "calgary" : "primary"}
+        />
+      )}
 
       {thingsToDo && thingsToDo.length > 0 && (
         <section className="py-20 bg-muted/30">

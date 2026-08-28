@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { buildLocationSchema } from "@/lib/location-schema";
 import CoverageChips from "@/components/CoverageChips";
+import LocationPricing from "@/components/LocationPricing";
 import calgaryLivingRoom from "@/assets/gallery/calgary-living-room-clean.jpg";
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -87,7 +88,7 @@ export default function SaddleRidge() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning Services in Saddle Ridge, Calgary | Duty Cleaners</title>
+        <title>House Cleaning in Saddle Ridge, Calgary | Duty Cleaners</title>
         <meta name="description" content="Professional house cleaning in Saddle Ridge, Calgary. Family-friendly NE community near Prairie Winds Park & Genesis Centre. 100% satisfaction guaranteed." />
         <meta property="og:title" content="House Cleaning Services Saddle Ridge Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -229,6 +230,8 @@ export default function SaddleRidge() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocationPricing />
 
         {/* Services */}
         <section className="py-20 bg-background">

@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { buildLocationSchema } from "@/lib/location-schema";
 import CoverageChips from "@/components/CoverageChips";
+import LocationPricing from "@/components/LocationPricing";
 import calgaryBathroom from "@/assets/gallery/calgary-bathroom-clean.jpg";
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -87,7 +88,7 @@ export default function Marlborough() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning Services in Marlborough, Calgary | Duty Cleaners</title>
+        <title>House Cleaning in Marlborough, Calgary | Duty Cleaners</title>
         <meta name="description" content="Professional house cleaning in Marlborough, Calgary. Established NE community near Marlborough Mall & Memorial Drive. 100% satisfaction guaranteed." />
         <meta property="og:title" content="House Cleaning Services Marlborough Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -229,6 +230,8 @@ export default function Marlborough() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocationPricing />
 
         {/* Services */}
         <section className="py-20 bg-background">

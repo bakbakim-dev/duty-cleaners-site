@@ -3,6 +3,8 @@ import { Helmet } from "react-helmet-async";
 import { buildLocationSchema } from "@/lib/location-schema";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import LocationPricing from "@/components/LocationPricing";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Phone } from "lucide-react";
@@ -52,24 +54,28 @@ export default function Greenfield() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning Services in Greenfield Edmonton | Duty Cleaners</title>
+        <title>House Cleaning in Greenfield Edmonton | Duty Cleaners</title>
         <meta name="description" content="Professional residential cleaning services in Greenfield, Edmonton. Local cleaners serving Greenfield and surrounding areas." />
         <link rel="canonical" href="https://dutycleaners.ca/locations/greenfield-edmonton/" />
-        <meta property="og:title" content="House Cleaning Services in Greenfield Edmonton | Duty Cleaners" />
+        <meta property="og:title" content="House Cleaning in Greenfield Edmonton | Duty Cleaners" />
         <meta property="og:description" content="Professional residential cleaning services in Greenfield, Edmonton. Local cleaners serving Greenfield and surrounding areas." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/greenfield-edmonton/" />
         <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning Services in Greenfield Edmonton | Duty Cleaners" />
+        <meta name="twitter:title" content="House Cleaning in Greenfield Edmonton | Duty Cleaners" />
         <meta name="twitter:description" content="Professional residential cleaning services in Greenfield, Edmonton. Local cleaners serving Greenfield and surrounding areas." />
-        <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Greenfield Edmonton", city: "edmonton", url: "https://dutycleaners.ca/locations/greenfield-edmonton", areaServed: "Greenfield, Edmonton, AB" }))}</script>
+        <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Greenfield Edmonton", city: "edmonton", url: "https://dutycleaners.ca/locations/greenfield-edmonton", areaServed: "Greenfield, Edmonton, AB", geo: { latitude: "53.475", longitude: "-113.511" },
+}))}</script>
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       
       <div className="min-h-screen bg-background">
         <Navigation />
         <main id="main-content" tabIndex={-1}>
+        <div className="container mx-auto px-4 pt-4">
+          <Breadcrumbs />
+        </div>
         
         {/* Hero Section */}
         <section className="pt-32 pb-16 px-4 bg-gradient-to-b from-primary/5 to-background">
@@ -91,6 +97,8 @@ export default function Greenfield() {
             </div>
           </div>
         </section>
+
+      <LocationPricing />
 
         {/* Our work in Greenfield homes.
             The alt text describes what the photo actually shows — a Duty Cleaners

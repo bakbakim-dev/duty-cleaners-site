@@ -17,6 +17,7 @@ import HonestReviewLink from "@/components/HonestReviewLink";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CoverageChips from "@/components/CoverageChips";
 
+import LocationPricing from "@/components/LocationPricing";
 const LocationMap = lazy(() => import("@/components/LocationMap"));
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -121,6 +122,7 @@ export default function Casselman() {
   url: "https://dutycleaners.ca/locations/casselman-edmonton",
   areaServed: "Casselman, Edmonton, AB",
   description: "Professional house cleaning services in Casselman, Edmonton.",
+  geo: { latitude: "53.61", longitude: "-113.421" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/casselman-edmonton/" />
@@ -311,6 +313,8 @@ export default function Casselman() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Casselman" />
 
         {/* FAQ */}

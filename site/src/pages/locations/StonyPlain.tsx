@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import LocationPricing from "@/components/LocationPricing";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
@@ -178,6 +179,8 @@ export default function StonyPlain() {
           </div>
         </div>
       </section>
+
+      <LocationPricing />
 
       {/* About the Neighbourhood */}
       <section className="py-20 bg-background">

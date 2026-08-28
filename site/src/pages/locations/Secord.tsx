@@ -17,6 +17,7 @@ import HonestReviewLink from "@/components/HonestReviewLink";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CoverageChips from "@/components/CoverageChips";
 
+import LocationPricing from "@/components/LocationPricing";
 const LocationMap = lazy(() => import("@/components/LocationMap"));
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -121,6 +122,7 @@ export default function Secord() {
   url: "https://dutycleaners.ca/locations/secord-edmonton",
   areaServed: "Secord, Edmonton, AB",
   description: "Professional house cleaning services in Secord, Edmonton.",
+  geo: { latitude: "53.531", longitude: "-113.681" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/secord-edmonton/" />
@@ -312,6 +314,8 @@ export default function Secord() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Secord" />
 
         {/* FAQ */}

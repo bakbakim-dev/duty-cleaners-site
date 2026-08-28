@@ -17,6 +17,7 @@ import HonestReviewLink from "@/components/HonestReviewLink";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CoverageChips from "@/components/CoverageChips";
 
+import LocationPricing from "@/components/LocationPricing";
 const LocationMap = lazy(() => import("@/components/LocationMap"));
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -121,6 +122,7 @@ export default function Ottewell() {
   url: "https://dutycleaners.ca/locations/ottewell-edmonton",
   areaServed: "Ottewell, Edmonton, AB",
   description: "Professional house cleaning services in Ottewell, Edmonton.",
+  geo: { latitude: "53.53", longitude: "-113.418" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/ottewell-edmonton/" />
@@ -311,6 +313,8 @@ export default function Ottewell() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Ottewell" />
 
         {/* FAQ */}

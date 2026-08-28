@@ -17,6 +17,7 @@ import HonestReviewLink from "@/components/HonestReviewLink";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CoverageChips from "@/components/CoverageChips";
 
+import LocationPricing from "@/components/LocationPricing";
 const LocationMap = lazy(() => import("@/components/LocationMap"));
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -121,6 +122,7 @@ export default function PrinceCharles() {
   url: "https://dutycleaners.ca/locations/prince-charles-edmonton",
   areaServed: "Prince Charles, Edmonton, AB",
   description: "Professional house cleaning services in Prince Charles, Edmonton.",
+  geo: { latitude: "53.575", longitude: "-113.507" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/prince-charles-edmonton/" />
@@ -312,6 +314,8 @@ export default function PrinceCharles() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Prince Charles" />
 
         {/* FAQ */}

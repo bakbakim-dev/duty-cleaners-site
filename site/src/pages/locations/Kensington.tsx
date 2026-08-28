@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { buildLocationSchema } from "@/lib/location-schema";
 import CoverageChips from "@/components/CoverageChips";
+import LocationPricing from "@/components/LocationPricing";
 import calgaryLivingRoom from "@/assets/gallery/calgary-living-room-clean.jpg";
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -90,7 +91,7 @@ export default function Kensington() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning Services in Kensington, Calgary | Duty Cleaners</title>
+        <title>House Cleaning in Kensington, Calgary | Duty Cleaners</title>
         <meta name="description" content="Professional house cleaning in Kensington, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed. Pay after your clean." />
         <meta property="og:title" content="House Cleaning Services Kensington Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -246,6 +247,8 @@ export default function Kensington() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocationPricing />
 
         {/* Services */}
         <section className="py-20 bg-background">

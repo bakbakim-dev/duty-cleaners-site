@@ -16,6 +16,7 @@ import cleanHomeImg from "@/assets/gallery/neighborhoods/manchester.jpg";
 import { buildLocationSchema } from "@/lib/location-schema";
 import CoverageChips from "@/components/CoverageChips";
 
+import LocationPricing from "@/components/LocationPricing";
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
   return (
@@ -128,7 +129,7 @@ export default function Manchester() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning Services in Manchester, Calgary | Duty Cleaners</title>
+        <title>House Cleaning in Manchester, Calgary | Duty Cleaners</title>
         <meta name="description" content="Professional house cleaning in Manchester, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed. Pay after your clean." />
         <meta property="og:title" content="House Cleaning Services Manchester Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -340,6 +341,8 @@ export default function Manchester() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocationPricing />
 
         {/* Why Choose Us */}
         <section className="py-20 bg-brand-navy relative overflow-hidden">
