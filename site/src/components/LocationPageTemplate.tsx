@@ -1,4 +1,6 @@
 import { canonicalUrlForPath } from "@/data/legacy-urls";
+import { standardTierRows, deepCleanTierRows, moveInOutTierRows, addOnFromPrice, formatPrice } from "@/data/pricing";
+import { TRAVEL_FEE_KEY } from "@/data/addon-table";
 import { useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import heroFamilyBedroom from "@/assets/hero-family-bedroom.jpg";
@@ -33,6 +35,24 @@ interface LocationPageProps {
    */
   isOwnMunicipality?: boolean;
 }
+
+
+/**
+ * Prices shown on every location page, derived once from bk-config.
+ * published-prices.test.ts forbids hand-typed dollar literals on pricing
+ * surfaces; these come from the same tier rows the pricing tables use.
+ */
+const span = (rows: { price: string }[]) => `${rows[0].price} to ${rows[rows.length - 1].price}`;
+const LOCATION_PRICES = {
+  standard: span(standardTierRows()),
+  deep: span(deepCleanTierRows()),
+  moveInOut: span(moveInOutTierRows()),
+};
+/** Mandatory outside the two metros, applied by postal code at booking. */
+const TRAVEL_FEE = (() => {
+  const v = addOnFromPrice("standard", TRAVEL_FEE_KEY);
+  return v === null ? null : formatPrice(v);
+})();
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -240,6 +260,46 @@ export default function LocationPageTemplate({
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* What it costs here.
+          No location page stated a price -- 145 of them -- so a visitor who
+          searched "house cleaning in <neighbourhood>" and landed here could not
+          find a number, and neither could an assistant answering on their
+          behalf. Every figure is derived from bk-config, so this cannot drift
+          from what BookingKoala charges.
+
+          The travel-fee line is not optional politeness: the fee is applied
+          automatically by postal code, which makes it MANDATORY for these
+          customers. Advertising a price to them without disclosing it is the
+          pattern the Competition Act calls drip pricing, so the two have to
+          appear together. Only own-municipality pages (the satellite towns)
+          get it -- inside Edmonton and Calgary no fee applies. */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4">
+          <AnimatedSection>
+            <div className="max-w-4xl mx-auto">
+              <span className="text-primary text-sm font-semibold tracking-wider uppercase">What it costs</span>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">
+                Cleaning prices in {city}
+              </h2>
+              <p className="text-muted-foreground text-lg leading-relaxed mb-4">
+                A standard clean in {city} runs {LOCATION_PRICES.standard} depending on the size of your
+                home, a deep clean {LOCATION_PRICES.deep}, and a move-in or move-out clean{" "}
+                {LOCATION_PRICES.moveInOut}. Those are flat rates in Canadian dollars before 5% GST — the
+                figure you see before booking is the figure you pay, and it does not go up because a clean
+                took longer than expected.
+                {isOwnMunicipality && TRAVEL_FEE !== null
+                  ? ` Because ${city} sits outside our Edmonton and Calgary service areas, a ${TRAVEL_FEE} travel fee is added to bookings here.`
+                  : ""}
+              </p>
+              <p className="text-muted-foreground text-lg leading-relaxed">
+                Recurring visits save 20% weekly, 15% bi-weekly and 10% monthly from the second clean.
+                Your first clean is charged at the standard one-time rate.
+              </p>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 

@@ -176,6 +176,48 @@ export default function PrivacyPolicy() {
                 are on their site, their privacy policy governs the information you enter there.
               </p>
 
+              <h2 className="text-2xl font-bold mb-4 text-foreground">Where Your Information Is Stored</h2>
+              <p className="mb-8">
+                Duty Cleaners operates in Alberta, but two of the services we rely on are based in the
+                United States: BookingKoala, which runs our booking system, and HighLevel, which handles
+                quote enquiries. When you book or request a quote, the details you enter — including your
+                name, address, phone number, email and any access instructions — are stored and processed
+                on servers outside Canada. While your information is in another country it is subject to
+                that country&rsquo;s laws, and may be accessible to its courts and government authorities.
+                If you would rather not have your details handled that way, call us instead and we will
+                take your booking over the phone.
+              </p>
+
+              <h2 className="text-2xl font-bold mb-4 text-foreground">How Long We Keep It</h2>
+              <p className="mb-8">
+                We keep customer records for as long as you are a customer and for seven years afterwards,
+                which is the period Canadian tax and business records rules require. Quote enquiries that
+                never become bookings are kept for two years. After those periods we delete the records or
+                remove anything that identifies you. You can ask us to delete your information sooner and
+                we will, unless we are required to keep it.
+              </p>
+
+              <h2 className="text-2xl font-bold mb-4 text-foreground">Who Is Responsible, and How to Complain</h2>
+              <p className="mb-4">
+                Alberta&rsquo;s Personal Information Protection Act (PIPA) governs how we handle your
+                information, and requires us to name someone accountable for it. That is our Privacy
+                Officer, reachable at{" "}
+                <a href="mailto:support@dutycleaners.ca" className="text-primary underline">
+                  support@dutycleaners.ca
+                </a>{" "}
+                or on the phone numbers below. Ask us for a copy of what we hold about you, or to correct
+                it, and we will respond within 45 days as PIPA requires.
+              </p>
+              <p className="mb-8">
+                If you are not satisfied with how we handle a privacy question, you can complain to the
+                Office of the Information and Privacy Commissioner of Alberta at{" "}
+                <a href="https://oipc.ab.ca/" target="_blank" rel="noopener noreferrer" className="text-primary underline">
+                  oipc.ab.ca
+                </a>
+                . Because some of our processing happens outside Canada, the federal Privacy Commissioner
+                at priv.gc.ca may also be able to help.
+              </p>
+
               <h2 className="text-2xl font-bold mb-4 text-foreground">Children's Privacy</h2>
               <p className="mb-8">
                 Our services are not directed to individuals under 18. We do not knowingly collect personal

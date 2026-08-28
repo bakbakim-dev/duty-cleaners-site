@@ -44,7 +44,7 @@ const ROWS: AddOnSpec[] = [
   { key: "must-choose-if-you-have-pets", label: "Homes with pets" },
 ];
 
-const TRAVEL_FEE_KEY =
+export const TRAVEL_FEE_KEY =
   "outside-edmonton-calgary-surrounding-areas-travel-fee-do-not-select-this-if-you-live-inside-edmonton-calgary";
 
 const priceCell = (value: number | null, unit?: string) =>

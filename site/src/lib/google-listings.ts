@@ -28,11 +28,21 @@ export interface GoogleListing {
   url: string;
   /** Permalink used when citing review content. */
   reviewsUrl: string;
+  /**
+   * Google Place ID (`ChIJ...`), the only identifier that can build a
+   * write-a-review link. The numeric CID cannot — which is why the site had no
+   * way for a customer to leave a review on any of its 209 pages.
+   */
+  placeId: string;
+  /** Deep link that opens Google's review form for this profile. */
+  writeReviewUrl: string;
 }
 
-const listing = (name: string, cid: string): GoogleListing => ({
+const listing = (name: string, cid: string, placeId: string): GoogleListing => ({
   name,
   cid,
+  placeId,
+  writeReviewUrl: `https://search.google.com/local/writereview?placeid=${placeId}`,
   url: `https://www.google.com/maps?cid=${cid}`,
   // Same permalink: the profile page shows its reviews. Do NOT append an
   // `#lrd=` fragment unless it carries Google's real hex feature ID — an
@@ -42,13 +52,20 @@ const listing = (name: string, cid: string): GoogleListing => ({
 
 
 export const GOOGLE_LISTINGS: Record<CityKey, GoogleListing> = {
+  // The Place IDs were verified, not looked up and trusted: a ChIJ… Place ID is
+  // base64url protobuf with the profile's CID embedded as a fixed64, and both
+  // decode to exactly the CIDs above (8192121191672692049 / 6193344199307583189).
+  // A wrong Place ID would send customers to another business's review form, so
+  // that check matters more than the source it came from.
   edmonton: listing(
     "Duty Cleaners House Cleaning Services Edmonton",
     "8192121191672692049",
+    "ChIJgW2ny3MgoFMRUb2Z8tFCsHE",
   ),
   calgary: listing(
     "Duty Cleaners House Cleaning Services Calgary",
     "6193344199307583189",
+    "ChIJGQImSeFvcVMR1V50S7wt81U",
   ),
 };
 

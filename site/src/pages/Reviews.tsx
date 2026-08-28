@@ -343,6 +343,40 @@ export default function Reviews() {
           </div>
         </div>
       </section>
+      {/* Until now there was no way to leave a review anywhere on 209 pages: the
+          code stored only Google's numeric CID, which cannot build a review
+          link — you need the Place ID. Review recency and a steady flow of new
+          reviews are now among the strongest local ranking factors, and the
+          newest review displayed here dates from February 2025. This gives a
+          happy customer somewhere to go. */}
+      <section className="py-16 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+              Cleaned with us recently?
+            </h2>
+            <p className="text-muted-foreground text-lg mb-8">
+              Reviews are how most people find us, and they are the fairest test of whether we did the
+              job properly. If you have a minute, it genuinely helps.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              {(["edmonton", "calgary"] as const).map((key) => (
+                <a
+                  key={key}
+                  href={GOOGLE_LISTINGS[key].writeReviewUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-primary text-primary-foreground font-semibold rounded-lg transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                >
+                  <Star className="w-4 h-4" aria-hidden="true" />
+                  Review our {key === "edmonton" ? "Edmonton" : "Calgary"} team
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       </main>
 
       <Footer />
