@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -314,6 +315,15 @@ export default function Kildare() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Neighbourhood notes"
+        heading="Grit season on 137 Avenue"
+        paragraphs={[
+          "Kildare is boxed in on four sides — 137 Avenue south, 66 Street east, 144 Avenue north, 82 Street west — and Londonderry Mall occupies the southeast corner where the first two meet. Both of those get sanded through winter, and the sand does not stay outdoors. It rides in on boots and settles at door bottoms, in entry mats and along the first stretch of hallway, and it keeps arriving until spring sweeping clears the streets.",
+          "About half the housing dates from the 1960s and another three in ten from the 1970s. At the 2005 municipal count roughly a quarter of dwellings were row houses, and they are not spread evenly — a large row-house development takes up the northwest corner. Those units are narrow and vertical, so kitchen, bathroom and stairwell absorb most of the daily wear while floor area stays small. Cleaning them well is about surfaces touched daily, not square metres.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Kildare" />

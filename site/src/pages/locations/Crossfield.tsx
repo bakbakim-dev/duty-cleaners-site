@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -279,6 +280,16 @@ export default function Crossfield() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Two economies"
+        heading="What the work clothes bring in"
+        paragraphs={[
+          "Three things pay the bills around here: farming, the services that supply it, and natural gas — a processing plant has run just south of the townsite since 1965. Both kinds of work come home on the clothes and on the boots, which makes the entry, the laundry and the utility sink the hardest-working rooms in the house. A clean that starts in the living room has started in the wrong place.",
+          "It began in 1892 as a railway station, waited until 1907 for village status and 1980 for town status, then grew 20.7 percent in five years to 3,599 people at the 2021 count. Growth like that keeps the housing stock young, and young stock means young finishes — matte wall paint, engineered plank, low-sheen cabinet fronts. All three want neutral-pH cleaner and a soft cloth; the cream cleansers and scouring pads that suit old enamel will haze them for good.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

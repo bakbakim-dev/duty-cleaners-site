@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -287,6 +288,15 @@ export default function Terwillegar() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Newer builds"
+        heading="Nothing here predates 1995"
+        paragraphs={[
+          "Every street here was laid out after 1995, and the plan follows new-urbanist lines: vehicle access runs through service lanes behind the houses rather than off the street in front. That makes the back door the working entrance. Road gravel in winter and March slush arrive there instead of at the front, so the mat doing the real work is the rear one, and the front hall stays presentable between visits with almost nothing on it.",
+          "Detached houses account for four in five addresses, with duplexes, row housing and low-rise condominiums making up most of the rest, so the work is whole homes rather than units — more floor area per stop, fewer shared entries. Laminate flooring and acrylic tub surrounds became standard in exactly these build years, and both rule out a wet mop and an abrasive pad, so the safe default on a first visit is damp cloths and a question about the finish.",
+        ]}
+      />
 
       <LocationPricing />
 

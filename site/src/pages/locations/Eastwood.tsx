@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -314,6 +315,15 @@ export default function Eastwood() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="On the ground"
+        heading="Rented walk-ups near the rail line"
+        paragraphs={[
+          "Two housing facts shape the work here, both from census counts in the early 2000s: about 69% of homes were rented, and 44% were apartments in walk-up buildings under five storeys — more than the 42% that were single-family. Rental stock in that proportion means move-out cleans rather than long-standing weekly routines. Ovens and fridges back to bare enamel, grout reset, closet shelves and window tracks done because a walkthrough will check them.",
+          "Eastwood is split by 122 Avenue, and the two halves have different edges. Only the smaller pocket north of that line runs up to the Yellowhead Trail corridor; the larger southern portion reaches 118 Avenue, with a jagged eastern boundary that follows Fort Road in places and the CN Rail right-of-way in others. Where a home backs onto that corridor, the film on outward-facing glass is the job — and screens come out to be washed, not wiped in place.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Eastwood" />

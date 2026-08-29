@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -267,6 +268,16 @@ export default function ArbourLake() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="From the route"
+        heading="Northwest Calgary's only lake"
+        paragraphs={[
+          "Sand is the summer story on these streets. The ten-acre man-made lake at the centre of Arbour Lake is the only one of its kind in northwest Calgary, and its beach sends sand home in towels, swim bags and sandal treads from May onward. Fine sand works down into carpet backing and hardwood seams instead of sitting on top of them, which is why shaking out a mat achieves nothing and a slow, sectioned vacuum pass does.",
+          "Thirty-plus years of the same ductwork is the other thing. Building started in 1992, and a lot of these houses are still moving air through their original supply runs, so a deep clean that skips the vents and cold-air returns just puts the same dust back onto surfaces it has only now cleared. Registers and returns come first here, then the rest of the room.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -340,6 +341,16 @@ export default function Lakeview() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Ground truth"
+        heading="Where Calgary ends at 37 Street"
+        paragraphs={[
+          "37 Street SW is the western city limit at this point, so Lakeview has no neighbouring block on that side at all. The two edges that do carry traffic are expressways — Glenmore Trail on the north, Crowchild Trail on the east — which makes the soiling one-sided. North- and east-facing glass hazes first, and once the sanding season starts the grey grit off Glenmore settles into screens and sills within days of a wash.",
+          "The south end of the community meets the Glenmore Reservoir, with the Calgary Rowing Club and Calgary Canoe Club down there and pathways running the shore between Glenmore Trail and the Weaselhead. A neighbourhood with hiking trails at its back door brings the outside in on boots and dog paws, and it lands on entry tile, mudroom grout and the stair runner rather than spreading evenly through the house.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

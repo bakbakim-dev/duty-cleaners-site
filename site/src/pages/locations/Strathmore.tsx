@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -281,6 +282,16 @@ export default function Strathmore() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Corridor facts"
+        heading="The bypass nobody has funded"
+        paragraphs={[
+          "Highway 1 still runs through the built-up area rather than around it. A southern bypass exists on paper — temporarily numbered Highway 1X:12, and it would replace roughly eight kilometres of the current route — but it is unfunded, with no construction timeline. So the film on exterior glass and white frames near that corridor is a standing condition, not a phase: diesel soot bound into tire rubber. Water alone slides over it. Detergent first, then a full rinse.",
+          "Past the last street is Wheatland County — 4,505 square kilometres running on agriculture and oil and gas. In dry weather that ground gives up fine soil, and open windows bring it inside, where it lands on the surfaces nobody looks at: blind slats, fan blades, the top edge of door casings, the furnace return filter. Work high to low, or you clean the same dust twice.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

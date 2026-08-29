@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -277,6 +278,16 @@ export default function Okotoks() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Water discipline"
+        heading="Two watering days a week"
+        paragraphs={[
+          "How much water the town may take is set by provincial licence on the Sheep River, not by demand, and land use for new development is approved only where licence capacity already exists. A mandatory watering schedule has been in place since 2008, when the population was just over 17,000. Conservation here is not a preference; it is the operating condition, and cleaning method follows it.",
+          "Under Stage 1 of the water bylaw, outdoor watering runs two days a week and weekdays only: even-numbered homes Tuesday and Friday, odd-numbered Monday and Thursday, May through October. Exterior work gets booked onto a household's own days, and the indoor method is a refilled bucket and a wrung cloth rather than a running tap — same result, a fraction of the litres.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

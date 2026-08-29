@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -313,6 +314,15 @@ export default function Inglewood() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="What we see here"
+        heading="A former rail line, a busy road"
+        paragraphs={[
+          "Most of Inglewood's housing between 111 and 118 Avenue went up in the thirty-five years after the war, and building had all but stopped by 1990. What that leaves is low-rise apartment blocks and small post-war houses with kitchens and bathrooms of a certain age - enamel, tile grout, painted wood window frames - where a move-out clean is measured against a damage-deposit inspection rather than a resident's own standard. Oven interiors, fridge seals and window tracks get checked regardless.",
+          "Groat Road runs the western boundary, and along this stretch it is a plain surface arterial rather than the parkway it becomes further south - so suites on that frontage collect winter sand at the entries and a road film on balcony glass. The eastern boundary is not a street at all but a former Canadian National railway right-of-way, which is why the two sides of Inglewood need noticeably different attention on the same visit.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Inglewood" />

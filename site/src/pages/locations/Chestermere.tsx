@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -281,6 +282,16 @@ export default function Chestermere() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Reservoir town"
+        heading="Nothing natural about this lake"
+        paragraphs={[
+          "The CPR dug this lake in the 1880s for irrigation, and it is still plumbed that way — canal-fed from the Bow River, draining out through two more canals, five kilometres long and nowhere deeper than seven metres. The city stands on every side of it. No home here sits far from open water, and no season here is a dry one at the back door.",
+          "Summer is swimming, windsurfing and fishing; winter is skating on the same surface. Wet gear comes through the back door twelve months a year, which makes damp the recurring problem rather than dirt — mats that never fully dry, thresholds that darken at the edges, a mudroom that smells before it looks dirty. Air movement and dry storage fix more here than any cleaning product does.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

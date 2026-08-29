@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -314,6 +315,15 @@ export default function Canora() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="From the route"
+        heading="Where the LRT turns south"
+        paragraphs={[
+          "Stony Plain Road is Canora's southern boundary, and the Valley Line West alignment runs down the centre of it before turning south at 156 Street and leaving the neighbourhood behind. One flank is a live work zone through the 2026 season; the other three are not. Between visits, sills, screens and window tracks on the south blocks collect a fine grey concrete dust that houses up at 107 Avenue never see.",
+          "Tenure shapes the rest of the work. About 68% of occupied dwellings are rented, roughly half the stock is apartments and another 28% duplex or fourplex, and seven of every eight buildings went up between the end of the Second World War and 1980. That mix means move-outs are a bigger share of what we do here than in owner-occupied pockets — suites judged against a damage-deposit inspection rather than a homeowner's eye.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Canora" />

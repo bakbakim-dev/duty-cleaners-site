@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -314,6 +315,15 @@ export default function Downtown() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Neighbourhood notes"
+        heading="Towers, lofts and loading bays"
+        paragraphs={[
+          "Tower living changes the job before anyone opens a cupboard. Loading bays, service elevators and fob-controlled floors have to be booked, and on a move-out the building's elevator window sets the schedule, not us. Inside, sealed glazing on the upper floors means dust has no way out on its own — it recirculates and resettles until something physically removes it, which is why a condo above Jasper Avenue needs vents and high ledges done, not just surfaces.",
+          "Not all of it is glass, though. The 104 Street blocks in the Warehouse District hold residential conversions of early-1900s warehouse buildings, and those units bring exposed brick, timber beams and sometimes original concrete floors — porous, often unsealed, and easily marked by anything acidic or aggressively wet. Same neighbourhood, opposite methods: one job is dust control, the other is restraint with moisture.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Downtown" />

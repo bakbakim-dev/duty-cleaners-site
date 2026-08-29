@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -268,6 +269,16 @@ export default function AuburnBay() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Neighbourhood notes"
+        heading="Deerfoot west, Stoney north"
+        paragraphs={[
+          "Two freeways bound this place - Deerfoot Trail the whole western side, Stoney Trail the north - so Auburn Bay's lake sits inside an L of high-speed traffic. Perimeter homes pay for it. Exterior glass and window screens on those two elevations pick up a road film that interior streets never produce, and it is back in weeks, not months. Worth knowing before anyone books a single annual window clean.",
+          "Age drives the rest. Development began in 2005, so the earliest phases are around twenty years old now, and that is the point where grout goes porous, tub and shower silicone stains rather than soils, and original hardwood finish wears through at the doorways. Those are replacement and refinishing problems, not scrubbing problems, and we will say so rather than keep working a stain that has already set.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

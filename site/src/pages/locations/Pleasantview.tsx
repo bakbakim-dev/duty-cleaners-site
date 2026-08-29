@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -314,6 +315,15 @@ export default function Pleasantview() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="What we see"
+        heading="Bungalow hours, apartment hours"
+        paragraphs={[
+          "Pleasantview carries two housing stocks at once. Census counts from the early 2000s put just under half its homes as single-family and two in five as apartments, evenly split between towers of five storeys and up and low-rise walk-ups, with the 1960s the dominant build decade across the neighbourhood. The two stocks ask for different visits — a bungalow's hours go to floors and baseboards, an apartment's to a galley kitchen, a bathroom fan and a balcony door track that packs with dirt until it jams.",
+          "Southgate station and its transit centre sit a few blocks south of the southwest corner, below where 111 Street meets 51 Avenue, which puts a walking commute within reach of these streets. Walking commutes bring the street indoors. From first snow through spring breakup that means road salt and sand at the door, and salt left to dry will dull a finish, so entry floors and the runner beyond them get weekly attention, not monthly.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Pleasantview" />

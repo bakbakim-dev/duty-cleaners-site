@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -280,6 +281,16 @@ export default function Airdrie() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Supply and scale"
+        heading="Cloudy glass, not dirty glass"
+        paragraphs={[
+          "No treatment plant operates here. The water arrives already treated, bought from the City of Calgary and held in local reservoirs before it reaches a tap — and the published hardness at that supplier's two plants never drops below about 140 milligrams per litre in any quarter. So shower glass, kettle elements and chrome go cloudy rather than grubby. Scale ignores scrubbing. It answers to a mild acid and a few minutes of patience.",
+          "A 2012 annexation brought in 12,640 acres from Rocky View County, land banked to carry growth all the way to 2062. That is four decades of city edge with a build site somewhere along it. Downwind of an active phase, what collects in window tracks and on patio doors is gypsum and saw dust — light, dry and abrasive. Lift it off dry. Wiping it across glass is how glass gets scratched.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

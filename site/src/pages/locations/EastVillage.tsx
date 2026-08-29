@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -344,6 +345,16 @@ export default function EastVillage() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Neighbourhood notes"
+        heading="Half a neighbourhood still to come"
+        paragraphs={[
+          "The two genuinely old buildings here are not housing: the 1905 King Edward Hotel is part of the National Music Centre now, and the 1912 Simmons mattress factory holds restaurants. Nearly all of the housing arrived under the master plan council approved in 2009. So what we meet indoors is new-build residue rather than decades of buildup — drywall haze still working out of vents and closet tracks, adhesive marks on window frames, grout in its first years.",
+          "And the plan is roughly half delivered. CMLC counts more than 1,700 homes built on these 49 acres since 2009 against an eventual 3,500, which means live construction sites a block or two from most lobbies for years yet. Balcony rails and glass facing an open excavation collect a hard concrete dust that will scratch if it is wiped dry; it comes off wet, then gets polished.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

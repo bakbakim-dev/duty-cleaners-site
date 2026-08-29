@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -295,6 +296,15 @@ export default function Capilano() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="Everything the ravine sends up"
+        paragraphs={[
+          "Capilano went up in one short stretch: about five houses in six date from 1946 to 1960, and the neighbourhood was essentially complete by 1970. In homes still on their original floors and original layouts, what builds up isn't mess so much as layers — cooking film above the cabinets, old polish worked into the boards, the tops of door casings nobody has reached in years. A first visit is mostly subtraction.",
+          "The North Saskatchewan River valley wraps the north, northwest and northeast sides, and Gold Bar Ravine closes the east, so the trees that matter are below the houses, not along the street. What comes up the slope is organic, not mineral: seed fluff, leaf litter, the fine debris of a wooded ravine. It collects in screens, window wells and the frames on the lower level long before any of it reaches a floor.",
+        ]}
+      />
 
       <LocationPricing />
 

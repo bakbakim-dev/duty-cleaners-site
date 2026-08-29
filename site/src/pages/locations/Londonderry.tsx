@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -299,6 +300,15 @@ export default function Londonderry() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Area notes"
+        heading="Between 137 and 153 Avenue"
+        paragraphs={[
+          "Roughly half the homes between these two avenues went up in the 1960s, and the mix runs the full range: detached houses, long runs of row housing, and apartment blocks, walk-up and taller, with about a third of households renting. That changes the work. Move-out cleans to a damage-deposit standard are routine, and so are the narrow stairwells and tight kitchens that row housing brings with it.",
+          "A shopping centre has anchored the southeast corner since 1972, where 137 Avenue meets 66 Street; 82 Street closes the west side and 153 Avenue the north. Homes fronting those roads collect the winter sanding heavy traffic throws off — grey grit at the entry mat, in the door tracks, along the baseboards nearest the front hall. Interior blocks, set back behind a full depth of housing, show noticeably less of it.",
+        ]}
+      />
 
       <LocationPricing />
 

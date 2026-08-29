@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -265,6 +266,16 @@ export default function ScenicAcres() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="On the ground"
+        heading="Coulee trails and commuter grit"
+        paragraphs={[
+          "Across Stoney Trail on the western edge, 12 Mile Coulee drops toward the Bow through native grassland and aspen. The pathway along the top of the ridge is paved, but the trails down in the coulee itself are dirt, and those are the ones that show up in our work. Melt weeks put mud on paws and boot soles; late summer sends grass seed and burrs home in coats and sock cuffs. Entry mats and stair treads catch nearly all of it.",
+          "There is no road from Scenic Acres to its own C-Train stop. Crowfoot station sits in the median of Crowchild Trail along the northern boundary, and the way across is a pedestrian overpass. From November to April that walk covers sanded walkways and a bridge deck above a sanded freeway, and the grit finishes its trip indoors - in entryway grout, in door tracks, and on the first flight of stairs.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

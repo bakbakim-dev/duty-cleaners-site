@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -297,6 +298,15 @@ export default function McConachie() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Ground truth"
+        heading="Where the ring road is the edge"
+        paragraphs={[
+          "This is a 2006 neighbourhood — the structure plan was adopted that year — and the housing that followed is one generation of construction: the same era of flooring, glass shower enclosures and brushed fixtures, street after street. Those surfaces rarely want scrubbing. They show water spotting and streaking, and the wrong product leaves haze on exactly them, so drying and buffing carry the visit. The earliest phases are near twenty years old now, and starting to show it.",
+          "Anthony Henday Drive isn't nearby, it's the boundary. The ring road runs the north edge and then angles southeast, so the last streets on that side face it from the northeast as well. The windows and sills on those two exposures fill faster than anywhere else in the house — road film through the wet months, fine dust through the dry ones — and they are worth putting on a shorter cycle than the rest.",
+        ]}
+      />
 
       <LocationPricing />
 

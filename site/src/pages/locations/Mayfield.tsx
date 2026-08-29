@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -314,6 +315,15 @@ export default function Mayfield() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="Where the deep clean goes downstairs"
+        paragraphs={[
+          "Industrial land presses on this neighbourhood from two sides: Youngstown Industrial to the west, Sheffield Industrial to the north, with High Park Industrial off the northeast corner. The residential edges are the other two — 156 Street on the east, 107 Avenue on the south. Where a home faces the industrial side, window tracks, screens and the tops of exterior door frames are the surfaces that reward a regular pass; they collect what the wind carries off working land.",
+          "Seven of every ten homes here went up between 1946 and 1960, and most are single-family detached. In houses of that vintage the main floor is compact and quick to work through, while the basement below — laundry, storage, a rec room finished at some later date — is effectively a second floor that can go months without a turn. Deep cleans in Mayfield often spend longer downstairs than up.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Mayfield" />

@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -307,6 +308,15 @@ export default function Montrose() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="What we see here"
+        heading="Between the Yellowhead and 118 Avenue"
+        paragraphs={[
+          "Yellowhead Trail runs along the northern edge here, 118 Avenue along the southern one, and the CN right-of-way with the northeast LRT line down the west side. The Yellowhead is Highway 16 through the city, so it carries truck traffic in both directions year-round. Houses on the north blocks take more of that than the middle of the neighbourhood does, and it turns up first on exterior glass and window screens.",
+          "Roughly two-thirds of the housing went up before 1961, a fifth of it before 1946. Main floors of that age are small by modern standards, and living space has spread downward over the decades. The work moves with it: a stairwell, a lower-level bathroom and a finished basement room can add up to more of a visit than the kitchen does, and none of that appears in a square-footage estimate.",
+        ]}
+      />
 
       <LocationPricing />
 

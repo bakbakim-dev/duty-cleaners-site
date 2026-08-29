@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -340,6 +341,16 @@ export default function CliffBungalow() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="Downhill from Cliff Street"
+        paragraphs={[
+          "The Olmsted firm laid this out in 1909-10 on Canadian Pacific land, an eastern extension of the Mount Royal garden suburb, and named the street along the top of the escarpment Cliff Street. The ground falls away east from there toward 4 Street. Meltwater off that slope arrives the same way every spring — wet floors inside every street door, silt on the stair treads of the older walk-ups, and lower suites that need airing as much as wiping.",
+          "Along the northern edge is 17 Avenue SW, Uptown 17, one of Calgary's designated business revitalization zones, with the Elbow River closing the community off to the south. Those two edges behave nothing alike. Front halls within a block of 17 Avenue carry in whatever was on the sidewalk the night before, and most of our work here is apartment work, timed around move-outs and the damage deposit riding on them.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

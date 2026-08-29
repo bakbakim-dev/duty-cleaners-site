@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -340,6 +341,16 @@ export default function Manchester() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="From the route"
+        heading="Industry on three sides"
+        paragraphs={[
+          "Industrial land wraps this community on the north, east and south; only the west flank faces houses, across Macleod Trail from Elboya, Parkhill and Windsor Park. The Canadian Pacific right-of-way runs the eastern edge. With traffic on one side and yard activity on the other three, horizontal surfaces re-film quickly here — blind slats, frame tops and baseboards read dusty again sooner than the same rooms would a few blocks west.",
+          "The stock splits in two. Most of the original dwellings were up by 1940 — Heritage Calgary's inventory includes the Edwardian workers' cottages on 1 Street SW — while a significant share of the housing in the southern part was built in 2003. Those are different jobs: small pre-war rooms want dry dusting and a barely damp cloth on any original painted woodwork, while the newer units take ordinary washable surfaces and a faster pass.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

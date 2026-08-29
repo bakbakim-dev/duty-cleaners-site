@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -340,6 +341,16 @@ export default function Parkhill() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="From the route"
+        heading="What Macleod Trail leaves behind"
+        paragraphs={[
+          "Macleod Trail runs the length of the eastern boundary, and the City names it among the roads carrying over twenty thousand vehicles a day — the tier it treats first with anti-icing brine when snow is forecast. Storm doors and east-facing glass on those first blocks carry a pale brine haze all winter, and entry tile picks the same thing up off boots. Salt wants rinsing off before a cloth goes near it, so those homes get a wet pass first.",
+          "The opposite edge has no traffic at all. Ground falls away west into the Elbow River valley, with Stanley Park and the river pathway below. That side stays open to whatever moves through the valley, and the work follows — fine pathway dust settling on sills through summer, damp entry mats through the melt, and patio door tracks that need doing far more often than anything up on the flat.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

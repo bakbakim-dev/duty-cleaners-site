@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -314,6 +315,15 @@ export default function CentralMcDougall() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="Scheduling around the Royal Alex"
+        paragraphs={[
+          "Six blocks north to south and eight east to west — 105 Avenue up to 111, 101 Street west to 109 — and every one of those four boundaries is a through road rather than a residential street. Inside that small a footprint, curb space is the practical constraint on the day. We plan on parking a street back and carrying kit in, and confirm the door and the parking before the visit rather than working it out on arrival.",
+          "The Royal Alexandra Hospital sits inside the neighbourhood boundaries, with the Metro Line's Kingsway/Royal Alex station on the north side of Kingsway at its door and a nine-bay transit centre on 111 Avenue. When a household here works hospital shifts, the clean has to fit around sleep: quiet-hours requests, vacuuming sequenced to keep noise off one bedroom, and afternoon starts instead of the usual morning slot.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Central McDougall" />

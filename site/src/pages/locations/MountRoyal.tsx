@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -231,6 +232,16 @@ export default function MountRoyal() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Ground truth"
+        heading="Above and below the escarpment"
+        paragraphs={[
+          "An escarpment running east to west along Cameron and Royal Avenues splits this community in two. Upper Mount Royal, on the high side, goes back to 1904, and pre-war construction sets the method: lath-and-plaster walls that dent under pressure, deep milled trim holding a century of paint in its profiles, and, in the houses still on radiators, fins packing dust no vacuum head reaches. Slow and dry beats aggressive product on all three.",
+          "Below the escarpment the pattern flips. Lower Mount Royal is one of the inner city's densest pockets - roughly 10,600 people per square kilometre, in low-rise blocks rather than houses - and its northern edge is 17 Avenue SW itself, not a few streets short of it. A suite fronting that strip and a pre-war house four blocks uphill share a community name and almost nothing about the work; we scope them separately.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

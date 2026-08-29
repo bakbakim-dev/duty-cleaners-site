@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -274,6 +275,16 @@ export default function Langdon() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Gravel calendar"
+        heading="After the calcium wears off"
+        paragraphs={[
+          "Once a year Rocky View County lays calcium chloride on the gravel frontage of every home within 150 metres of the road centre line — 100 metres either side of the driveway, applied automatically, no request required. The program starts in May and is usually finished by the end of July. The dustiest weeks of the year, August through freeze-up, therefore fall after the treatment ends, not during it.",
+          "Two rural highways cross in the middle of the hamlet, and the county keeps roughly 1,600 kilometres of gravel road, resurfacing about 500 of them each spring with 100,000 tonnes of fresh material. What lands on a boot here is crushed rock and calcium chloride residue together, and that salt pulls moisture from the air, so it films rather than sweeps away. Vacuum first, damp-mop second, never the reverse.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

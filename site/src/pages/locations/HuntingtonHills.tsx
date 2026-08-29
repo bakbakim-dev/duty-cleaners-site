@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -340,6 +341,16 @@ export default function HuntingtonHills() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="On the ground"
+        heading="Nose Hill comes indoors"
+        paragraphs={[
+          "Across 14 Street NW the grid stops and Nose Hill Park begins — eleven square kilometres of open hill, where rough fescue grassland is one of seven major native habitat types. Dogs and boots come back off it loaded: seed heads, dry grass dust in August, and a sticky clay through the thaw that sets like glue in carpet pile. Entry mats and the first few metres of hallway do most of the work in these homes.",
+          "The eastern boundary is a different problem entirely. Deerfoot Trail and the Nose Creek valley run its full length, and homes on those blocks pick up a traffic film on east-facing glass noticeably faster than the streets tucked in behind Centre Street. A film that fine only redistributes when you wipe it, so we wash it off properly and clear the window channels underneath, where the grit collects and then grinds.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

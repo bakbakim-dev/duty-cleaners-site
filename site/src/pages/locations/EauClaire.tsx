@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -344,6 +345,16 @@ export default function EauClaire() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Ground truth"
+        heading="After the market came down"
+        paragraphs={[
+          "Eau Claire Market closed at the end of May 2024 and was demolished to make room for a Green Line LRT station, which puts a cleared and working block inside a community that runs only from 4 Avenue north to the Bow. Suites nearest it show it first: a fine, abrasive grey dust that packs into window channels and screen frames. Screens come out and get washed rather than wiped in place.",
+          "The riverside itself is settled now. The flood barrier and Eau Claire Promenade were finished in 2023, running unbroken from the Peace Bridge to the Reconciliation Bridge, and the rebuilt Plaza opened in July 2025. What is left along there is seasonal: Prince's Island sits in the Bow directly north, and festival weekends — the Folk Music Festival, Shakespeare in the Park — put more traffic through lobbies and elevators than any other stretch of the year.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

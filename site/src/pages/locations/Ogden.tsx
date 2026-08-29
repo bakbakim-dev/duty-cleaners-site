@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -340,6 +341,16 @@ export default function Ogden() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="On the ground"
+        heading="Ogden Road is moving"
+        paragraphs={[
+          "Named in 1912 for a Canadian Pacific vice-president, this southeast community has had the railway's Ogden Shops along its northern and eastern edges ever since. A working yard produces a particular dirt - fine, dark and gritty rather than household lint - and it shows up first in window tracks, on screens and along the sills of whichever side of the house faces the rail land.",
+          "A second dust source arrived in September 2025, when Calgary began realigning Ogden Road SE between the CN rail bridge and 69 Avenue SE to make room for the Green Line. Completion is anticipated in October 2026, and until then the detours move week to week, so where the dust lands moves with them. Vents and door tracks are worth a second pass for as long as that work runs.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

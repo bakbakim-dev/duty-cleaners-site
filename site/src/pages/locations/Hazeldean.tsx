@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -238,6 +239,15 @@ export default function Hazeldean() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Two boundaries"
+        heading="Rail yards west, ravine east"
+        paragraphs={[
+          "Rail land sits on the west and northwest of this pocket and industrial blocks wrap the south, which puts a fine mineral dust on window tracks and sills — the sort that dry dusting lifts into the air and drops again two feet away. The old Edmonton, Yukon & Pacific line once crossed here too, leaving the CP tracks near 67 Avenue, cutting over 99 Street and dropping into the ravine to reach a brickyard, a coal mine and two packing plants.",
+          "The east boundary is Mill Creek Ravine, where the paved path north of 67 Avenue runs on the old rail bed and the dirt side trails off it turn to mud after the melt — April soil and August soil arrive at the same door looking nothing alike. Indoors, three houses in four date from between the war's end and 1960 and barely one in fifteen from after 1970, so post-construction work here means renovation dust in an occupied house, not an empty shell.",
+        ]}
+      />
 
       <LocationPricing />
 

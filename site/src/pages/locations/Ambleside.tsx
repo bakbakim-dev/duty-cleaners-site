@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -314,6 +315,15 @@ export default function Ambleside() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="On the ground"
+        heading="Nothing in Ambleside is old yet"
+        paragraphs={[
+          "The 2009 census counted 248 people here; three years later it counted 2,328. Nearly everything you walk into is a first-generation finish, and the packages repeat street to street — engineered stone, vinyl plank, frameless glass shower panels. None of it forgives an abrasive, and all of it shows mineral spotting within days. The work is squeegee discipline on glass and pH-neutral product on stone, not the scrubbing an older kitchen would shrug off.",
+          "Anthony Henday Drive runs along the northeast edge and Terwillegar Drive along the northwest, and the Currents of Windermere sits on the north side. Freeway and parking-lot pavement both throw grit. From November until the Spring Sweep finishes — April to June, up to eight weeks of it — that grit arrives as sand and calcium-chloride residue on boots, and entry mats, the first two metres of floor and the garage threshold take almost all of it.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Ambleside" />

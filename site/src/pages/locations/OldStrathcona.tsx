@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -264,6 +265,15 @@ export default function OldStrathcona() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Ground truth"
+        heading="Pre-1913 houses off Whyte Avenue"
+        paragraphs={[
+          "The oldest houses on the blocks off Whyte Avenue went up before Strathcona amalgamated with Edmonton in 1912, in the boom that began when the Calgary and Edmonton Railway arrived in 1891. Plaster walls and softwood floors do not behave like drywall and engineered plank. Plaster takes a damp cloth rather than a wet one, and a floor that soft is scratched by whatever gets tracked across it, not by the mop.",
+          "These are also the blocks that host the Fringe each August — the oldest and largest festival of its kind in North America, staged in and around Old Strathcona. Residents near the venues spend that stretch with visitors coming and going off the street, and a hundred-year-old floor registers every bit of it. Mats at each door and a dry sweep before anything wet goes down are worth more here than any product.",
+        ]}
+      />
 
       <LocationPricing />
 

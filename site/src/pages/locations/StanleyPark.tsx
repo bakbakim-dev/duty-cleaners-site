@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -340,6 +341,16 @@ export default function StanleyPark() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="What we see here"
+        heading="The pool below the houses"
+        paragraphs={[
+          "Twenty-one hectares of river flats sit below the houses on this community's western edge — an outdoor pool and wading pool in summer, a toboggan hill and a lawn bowling green the rest of the year, and Elbow River pathway the length of it. What comes back indoors is seasonal and predictable: sunscreen film on floors in July, chlorine on towels, and river grit off the pathway on every pair of shoes.",
+          "Stanley Park/Elboya was one of 26 Calgary neighbourhoods placed under mandatory evacuation in June 2013, and the Elbow has not moved since. Window wells on the low side silt up every spring and want clearing before they fill. Where a lower level was redone after the flood, its finishes are newer than the house above — sealed floors that abrasive powder will haze. We book the basement as its own job, not the last ten minutes.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -340,6 +341,16 @@ export default function Roxboro() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Ground truth"
+        heading="Between the Elbow and 4 Street"
+        paragraphs={[
+          "Two edges do the defining here: the Elbow River along the north, 4 Street SW along the west. Inside them sit just 165 occupied homes - 97 per cent detached at the 2021 census, and every one of those households an owner rather than a renter. Nothing turns over, so the work is long-run maintenance on floors and finishes people intend to keep, rather than the reset a new tenant needs.",
+          "In June 2013 this was one of the communities Calgary placed under mandatory evacuation, and the city lists rising groundwater among the ways homes took damage that month. Basements on a low riverside street stay the part of the house worth checking: corners, baseboards and the backs of storage rooms hold moisture and dust longer than anything upstairs, and they are easy to leave until a year has gone by.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

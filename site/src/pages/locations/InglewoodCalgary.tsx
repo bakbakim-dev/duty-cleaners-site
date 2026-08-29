@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -233,6 +234,16 @@ export default function InglewoodCalgary() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Neighbourhood notes"
+        heading="Two rivers and a rail yard"
+        paragraphs={[
+          "The community's own boundary listing is two rivers and a rail yard: the Bow to the north and east, the Elbow to the south, and CPKC's Alyth yard — 168 acres, the company's busiest in Western Canada — hard against the west. Yard-side blocks pick up a fine gritty film the river blocks do not. Screens, sills and outdoor glass show it first, usually within days of a wash.",
+          "Established in 1875, this is the oldest neighbourhood in the city, and the housing behind 9 Avenue SE — probably Calgary's first main street — shows its age. In the oldest of them, floors have been refinished down to almost nothing and the walls are plaster, which does not forgive standing water. So the wet work stays wet and the dry work stays dry: the damp cloth is for tile and glass, and abrasives stay in the van.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

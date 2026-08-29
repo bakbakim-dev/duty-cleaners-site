@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -340,6 +341,16 @@ export default function MountPleasant() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Edge effects"
+        heading="One edge highway, one edge coulee"
+        paragraphs={[
+          "The southern boundary is the Trans-Canada Highway. Blocks nearest it carry a grey traffic film on exterior glass and a dark line of the same thing along the sills, and from November onward they take in whatever traction material the city has spread. Two jobs, not one: a degreasing wash and a real rinse on the glass, and the grit lifted off floors before anything wet goes near it.",
+          "North and west, the boundary is Confederation Park — 160 hectares following the North Hill Coulee since 1967, its riparian bottom holding Douglas fir, dogwood and willow. That end of the neighbourhood trades traffic film for organic litter: needle drop in the deck boards, willow cotton and spent catkins matting screen mesh in late spring. Screens to clear there, not glass to degrease.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

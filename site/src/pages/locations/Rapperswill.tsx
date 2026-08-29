@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -314,6 +315,15 @@ export default function Rapperswill() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Ground truth"
+        heading="Streets that postdate 2007"
+        paragraphs={[
+          "As late as September 2007 the City held virtually no data on this pocket of northwest Edmonton, because there was almost nothing here to record. Everything standing on these streets went up afterward, and that sets the product list before we arrive. Engineered flooring, factory-finished cabinet doors and sealed counters are what a house of this age is built from, and all three want a pH-neutral cleaner and a soft cloth.",
+          "127 Street closes the west side and 167 Avenue the south, and inside those lines nearly every home shares the same build era. That has a practical upside for the people living in them: in houses this new the flooring and counter warranties are often still live, and the paperwork usually names the products that void them. Homeowners here can generally find those documents, and we would rather read them than guess.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Rapperswill" />

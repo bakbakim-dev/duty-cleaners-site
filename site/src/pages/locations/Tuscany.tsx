@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -257,6 +258,16 @@ export default function Tuscany() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="What we see here"
+        heading="A decade of building, then quiet"
+        paragraphs={[
+          "Construction started in 1994 and then ran hard: about three-quarters of the roughly 7,300 homes here date from 2000 or later, and by 2009 the community was effectively finished. Whole streets therefore reach the same wear points together. Where the grout and tub silicone is still original, it is now around twenty years old and porous — staining sits in the material rather than on it, so it needs dwell time with a mild product rather than pressure or abrasives.",
+          "Twelve Mile Coulee Road runs down the western edge, and past it the street grid gives out — the Lynx Ridge acreages, then the Bearspaw country. With open land that side, west-facing rooms take low late-afternoon sun straight on, and that is the light that finds every streak a sprayed-and-buffed window leaves behind. Glass on that wall repays a squeegee and a dried edge; the same work on a north-facing window would never show at all.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -340,6 +341,16 @@ export default function WindsorPark() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="From the route"
+        heading="Mostly apartments, mostly rented"
+        paragraphs={[
+          "Two-thirds of the buildings here are apartments or condominiums and most of the housing is rented, which is an unusual mix for a community that started building in 1940. Rentals turn over, and turnover means move-out cleans against a deadline — oven, fridge seals, tub surround, inside every closet, the track of every sliding door. That work is measured against a damage deposit, not against a weekly standard.",
+          "The community runs from 50 Avenue south to 58, with Macleod Trail along its entire eastern edge and Chinook Centre immediately beyond that southern boundary. Arterial traffic throws off winter sanding grit and summer road film, and it lands on balcony glass, window tracks and entry mats first. It is abrasive, so we lift it rather than push it around: vacuum the tracks out before anything wet goes near them.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

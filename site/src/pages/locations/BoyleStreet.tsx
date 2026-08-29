@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -314,6 +315,15 @@ export default function BoyleStreet() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="On the ground"
+        heading="Between the LRT and the river"
+        paragraphs={[
+          "Few parts of Edmonton hold as much surviving Edwardian brick as Boyle Street - the Gibson Block of 1913, the Hecla Block of 1914, the Ernest Brown Block, all designated municipal historic resources. Housing here runs to apartment blocks and converted older buildings rather than houses, and that decides how a clean goes: unit by unit, everything carried up stairs or into an elevator, no driveway to stage from, older trim that wants a soft cloth over a scouring pad.",
+          "Three of the four boundaries are hard ones. Ground falls away to the river valley on the south along Grierson Hill and Rowland Road, the LRT corridor runs the north edge, and 97 Street closes it off to the west; only 82 Street on the east is an ordinary street. Winter sand and road grit arrive on shoes rather than on the wind, so entry mats, thresholds and hallway-side floors are what refill first in a suite here.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Boyle Street" />

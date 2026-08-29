@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -340,6 +341,16 @@ export default function SunaltaWest() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="Living beside Crowchild Trail"
+        paragraphs={[
+          "Crowchild Trail cuts this community in two, and Sunalta West is the small residential pocket left on the west side of the freeway. Bow Trail runs along the north of it; 17 Avenue SW closes it off to the south. For a handful of blocks, that is a great deal of moving traffic, and brake dust builds on the glass facing Crowchild far faster than on anything sheltered behind it.",
+          "The land climbs away from Bow Trail, which changes what February does here. Sanding grit gets dragged uphill on boots and tires and arrives already ground fine, so it reaches entryways, stair nosings and hard floors long before it reaches anywhere else in the house. We start at the door and work inward, and we lift the grit dry before a wet mop can drag it across the floor.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

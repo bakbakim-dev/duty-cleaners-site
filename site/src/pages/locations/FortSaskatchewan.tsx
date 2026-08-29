@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -344,6 +345,15 @@ export default function FortSaskatchewan() {
           </AnimatedSection>
         </div>
       </section>
+
+      <LocalMarketNote
+        eyebrow="From the route"
+        heading="Quiet hours in a shift town"
+        paragraphs={[
+          "Alberta's Industrial Heartland — the largest Canadian industrial area west of Toronto — takes in Fort Saskatchewan and the counties around it, and enough of the households we clean run on a plant rotation that we ask about it at booking. Someone may be asleep at two in the afternoon. Tell us which room: the order a house gets done in is easy to change, and the vacuum is the part that matters.",
+          "Growth here has been steep and long: roughly 2,600 residents in the mid-1950s, more than 27,000 by 2021. Southfort and Westpark were laid out generations after the older streets near the 1875 fort site, so the work swings between move-in cleans in houses nobody has lived in yet and long-settled homes where the lower level holds decades of storage and is the real job of the visit.",
+        ]}
+      />
 
       <LocationPricing />
 

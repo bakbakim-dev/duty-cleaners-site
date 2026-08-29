@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -340,6 +341,16 @@ export default function Scarboro() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="Built to fit the hill"
+        paragraphs={[
+          "Canadian Pacific owned this land before the subdivision plans went in — annexed in 1907, approved in 1910 and 1911 — and the plan followed the hill rather than overruling it, which is why the streets here carry names instead of numbers. A restrictive covenant from that period still limits uses that are not residential, so the community is houses almost throughout, and a booking here means a full house with stairs rather than a single-level suite.",
+          "Bow Trail along the north, 17 Avenue SW along the south and Crowchild Trail down the west enclose fewer than 350 dwellings, all of them on Scarboro Hill. Sloped, curving blocks send runoff toward their low points, so houses on the downhill side of a street tend to collect more sediment against the foundation and dirtier basement window wells than the neighbours above them — worth checking before exterior work gets priced.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -340,6 +341,16 @@ export default function Thorncliffe() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="What we see here"
+        heading="Grassland west, freeway east"
+        paragraphs={[
+          "Across 14 Street from the western edge, Nose Hill Park opens into eleven square kilometres of native rough fescue grassland, and its trails are overwhelmingly dirt and gravel rather than asphalt. Dogs and boots bring that surface home. Through a dry stretch it turns up as pale trail dust on ledges, blind slats and the tops of door frames, with grass seed working down into mats and baseboards.",
+          "The eastern boundary is a different jurisdiction. Deerfoot Trail is maintained by the Province, not the City, so it sits outside the spring cleanup that runs Thorncliffe's own streets from mid-April into June to lift what winter left behind. First-block homes on that side keep bringing grit into entryways and pale rings onto storm doors weeks after the streets behind them have been swept clean.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

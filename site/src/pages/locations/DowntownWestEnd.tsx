@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -344,6 +345,16 @@ export default function DowntownWestEnd() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="On the ground"
+        heading="Twenty-five houses and everything else"
+        paragraphs={[
+          "Twenty-five single-family houses are all that remain inside the boundaries; everything else on this strip between the Bow River and the CPR tracks is towers. So nearly every job here is a condo job, and the constraints repeat — window walls reachable only from the inside, glass rails that show every mark, and no outdoor tap anywhere in the building plan to fill a bucket from.",
+          "Which face a suite has decides the rest. Rail-corridor sills on the south side hold a fine dark film that smears under a dry cloth; north-side glass over the river trades that for a humid haze the moment the weather turns. Access sets the schedule too. The Downtown West–Kerby platform and the Plus 15 both land here, but crews and equipment still go up the service elevator, so we confirm loading hours before a first visit.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

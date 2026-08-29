@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { buildLocationSchema } from "@/lib/location-schema";
@@ -189,6 +190,15 @@ export default function Griesbach() {
             </div>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="A base still becoming a neighbourhood"
+        paragraphs={[
+          "Griesbach was a Canadian Forces base until the early 2000s, when the land was sold off to be rebuilt as housing. Two decades on it is still going up: the northeast corner is the last major section left, and it is expected to take another ten to fifteen years to finish. Living beside a lot that is still being framed produces a different kind of dust than an established street does.",
+          "Sawdust and drywall silt ride in on air and settle on flat horizontals - the tops of door casings, the blade edges of ceiling fans, the shoulders of baseboards - where a routine wipe-down never reaches. On the finished streets around Patricia Lake the problem inverts: newly built houses shed their own construction dust out of ducts and closets for a year or two before they settle down.",
+        ]}
+      />
 
       <LocationPricing />
 

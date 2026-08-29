@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -333,6 +334,15 @@ export default function Bannerman() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="On the rim"
+        heading="The edge with no street"
+        paragraphs={[
+          "Three sides of these blocks are roads — Victoria Trail on the west, 137 Avenue south, 144 Avenue north. The fourth side has no street at all: east of the last houses the ground falls away into the river valley, with trails at the bottom and an unsurfaced bank in between. What comes back up on boots and paws is valley clay, and clay releases from a mat while it is damp, then stops releasing the moment it dries to powder.",
+          "The build-out was quick: better than three quarters of the housing dates to the 1970s and almost all the rest to the 1980s. Fewer than half the homes are detached; over a third are row houses, and most of the remainder are rented apartments in buildings under five storeys. A round here concentrates in an entry, a kitchen and one bathroom instead of spreading across a main floor, and where tile is original, grout wants patience over pressure.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Bannerman" />

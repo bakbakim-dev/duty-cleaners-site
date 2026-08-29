@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -340,6 +341,16 @@ export default function Mayfair() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Neighbourhood notes"
+        heading="A reservoir for a west boundary"
+        paragraphs={[
+          "Glenmore Trail runs the full length of the southern boundary and Elbow Drive closes the east side, which puts through traffic on two edges of a neighbourhood of about three-tenths of a square kilometre. South-facing windows, patio glass and door tracks carry the film that comes off Glenmore. On a recurring schedule that elevation earns attention every visit; the north side of the same house does not.",
+          "The reservoir forms the western boundary and the community of Bel-Aire the northern one, so nothing arterial feeds in from either side. When the City last published community statistics for Mayfair, every building was a single detached house and none of the housing was rented; the 2012 civic census counted 156 dwellings. Work here tends to be upkeep on long-held finishes rather than the reset a turnover block needs.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 
