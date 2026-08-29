@@ -47,9 +47,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Turner Valley home spotless and fresh year-round." },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning of your Turner Valley home — every corner, baseboard, and hidden surface." },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth Turner Valley move — leave or arrive to a pristine home." },
+  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning that leaves your Turner Valley home spotless and fresh." },
+  { icon: Sparkles, title: "Deep Cleaning", description: "Top-to-bottom detail that reaches what weekly cleaning never does." },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Move-day cleaning done to the standard landlords check for." },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Turner Valley." },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
   { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
@@ -58,7 +58,7 @@ const services = [
 const whyUsItems = [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
   { icon: Star, title: "4.9 on Google", description: "Trusted by Alberta families with verified Google reviews." },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability in Turner Valley. We work around your busy life." },
+  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day openings most weeks. We work around your busy life." },
   { icon: Leaf, title: "High Quality Cleaning Supplies", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
@@ -76,7 +76,6 @@ const structuredData = buildLocationSchema({
 
 export default function TurnerValley() {
   useEffect(() => {
-    document.title = "House Cleaning Services Turner Valley | Duty Cleaners";
     window.scrollTo(0, 0);
   }, []);
   const faqs = [
@@ -86,19 +85,19 @@ export default function TurnerValley() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Turner Valley?",
-      answer: `Around Turner Valley we offer the full range:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `Every service we run can be booked locally:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
-      answer: `Yes — recurring Turner Valley customers save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+      answer: `Yes, recurring visits cost less every time:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `A Turner Valley deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+      answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
     },
     {
       question: "What is your 100% satisfaction guarantee policy?",
-      answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back to your Turner Valley home and make it right — at no extra cost!"
+      answer: "If you're not 100% satisfied, call us within 24 hours and we'll re-clean the missed areas — at no extra cost!"
     }
   ];
   const faqJsonLd = {
@@ -116,12 +115,12 @@ export default function TurnerValley() {
     <>
       <Helmet>
         <title>House Cleaning Services in Turner Valley, AB | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Turner Valley, AB. Same-day service subject to availability. 100% satisfaction guaranteed. Pay after your clean." />
-        <meta property="og:title" content="House Cleaning Services Turner Valley | Duty Cleaners" />
+        <meta name="description" content="Professional cleaners serving Turner Valley. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta property="og:title" content="House Cleaning Services in Turner Valley, AB | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning Services Turner Valley | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Turner Valley, AB. Same-day service subject to availability. 100% satisfaction guaranteed." />
-        <meta property="og:description" content="Professional house cleaning in Turner Valley, AB. Same-day service subject to availability. 100% satisfaction guaranteed." />
+        <meta name="twitter:title" content="House Cleaning Services in Turner Valley, AB | Duty Cleaners" />
+        <meta name="twitter:description" content="Professional cleaners serving Turner Valley. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta property="og:description" content="Professional cleaners serving Turner Valley. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/turner-valley/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/turner-valley/" />
@@ -198,7 +197,7 @@ export default function TurnerValley() {
                   Cleaning Services for Turner Valley Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Turner Valley homes get every service they need.
+                  Everything from weekly upkeep to full move-out cleans.
                 </p>
               </div>
             </AnimatedSection>
@@ -299,7 +298,7 @@ export default function TurnerValley() {
                 View All Service Areas →
               </Link>
             <p className="mt-6 text-sm text-muted-foreground">
-              Run a business in Turner Valley? We also handle 
+              Run a business in Turner Valley? We also handle{" "}
               <Link to="/commercial-cleaning-services-calgary/" className="text-primary hover:underline font-medium">
                 commercial and office cleaning across the Calgary region
               </Link>.

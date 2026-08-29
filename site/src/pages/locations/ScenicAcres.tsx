@@ -47,8 +47,8 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Scenic Acres home spotless and fresh year-round." },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning of your Scenic Acres home — every corner, baseboard, and hidden surface." },
+  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning that resets the whole home, room by room." },
+  { icon: Sparkles, title: "Deep Cleaning", description: "Top-to-bottom detail that reaches what weekly cleaning never does." },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for smooth transitions — leave or arrive to a pristine home near Nose Hill Park." },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Scenic Acres." },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
@@ -73,7 +73,7 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Scenic Acres?",
-    answer: `Whenever you choose Duty Cleaners, you'll have an expert taking care of your home or business. We offer:\n\n• Commercial Cleaning\n• Standard Cleaning & Deep Cleaning Packages\n• Move-In And Move-Out Cleaning Service\n• Post Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `We offer:\n\n• Commercial Cleaning\n• Standard Cleaning & Deep Cleaning Packages\n• Move-In And Move-Out Cleaning Service\n• Post Construction Cleaning\n• Wall Washing and Wall Cleaning`
   },
   {
     question: "Do you offer discounts?",
@@ -85,7 +85,7 @@ const faqs = [
   },
   {
     question: "What is your 100% satisfaction guarantee policy?",
-    answer: "If you're not 100% satisfied with the results, call us back within 24 hours, and we'll return to make it right!"
+    answer: "If anything was missed, call within 24 hours and we'll re-clean the areas of concern free of charge."
   }
 ];
 
@@ -93,7 +93,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Scenic Acres Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/scenic-acres",
-  description: "Professional house cleaning services in Scenic Acres, Calgary",
+  description: "Professional house cleaning services in Scenic Acres, Calgary. Peaceful neighbourhood near Nose Hill Park. 100% satisfaction guarantee. Call (403) 768-1341.",
   priceRange: "$$",
   geo: { latitude: "51.0983", longitude: "-114.1933" },
 });
@@ -112,8 +112,8 @@ export default function ScenicAcres() {
         <meta property="og:title" content="House Cleaning Services Scenic Acres Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services Scenic Acres Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Scenic Acres, Calgary. 100% satisfaction guaranteed." />
-        <meta property="og:description" content="Professional house cleaning in Scenic Acres, Calgary. 100% satisfaction guaranteed." />
+        <meta name="twitter:description" content="Professional house cleaning services in Scenic Acres, Calgary. Peaceful neighbourhood near Nose Hill Park. 100% satisfaction guarantee. Call (403) 768-1341." />
+        <meta property="og:description" content="Professional house cleaning services in Scenic Acres, Calgary. Peaceful neighbourhood near Nose Hill Park. 100% satisfaction guarantee. Call (403) 768-1341." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/scenic-acres/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/scenic-acres/" />

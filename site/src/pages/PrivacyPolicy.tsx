@@ -24,7 +24,6 @@ export default function PrivacyPolicy() {
         <meta property="og:description" content="Duty Cleaners Privacy Policy. Learn how we collect, use, and protect your personal information." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/privacy-policy/" />
-        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Privacy Policy | Duty Cleaners" />
         <meta name="twitter:description" content="Duty Cleaners Privacy Policy. Learn how we collect, use, and protect your personal information." />
@@ -37,6 +36,7 @@ export default function PrivacyPolicy() {
         </div>
 
         {/* Hero Section */}
+        <main id="main-content" tabIndex={-1}>
         <section className="relative bg-brand-navy py-20 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-brand-navy/80 via-brand-navy/70 to-brand-navy/90" />
           <div className="container mx-auto px-4 relative z-10">
@@ -50,7 +50,7 @@ export default function PrivacyPolicy() {
           </div>
         </section>
 
-        <main id="main-content" tabIndex={-1} className="container mx-auto px-4 py-16">
+        <div className="container mx-auto px-4 py-16">
           <div className="max-w-3xl mx-auto">
             <div className="prose prose-lg max-w-none text-muted-foreground">
               <p className="mb-8 text-lg">
@@ -267,6 +267,7 @@ export default function PrivacyPolicy() {
             </div>
           </div>
           <TrustPageCta />
+        </div>
         </main>
 
         <Footer />

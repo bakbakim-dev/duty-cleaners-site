@@ -89,6 +89,7 @@ export default function BlogCleaningFrequency() {
             posts. /blog/cleaning-frequency is the modern route and now 301s here. */}
         <link rel="canonical" href="https://dutycleaners.ca/how-often-should-a-cleaning-service-clean-my-house/" />
         <meta property="og:title" content="How Often Should You Get Your House Cleaned? | Duty Cleaners" />
+        <meta property="og:description" content="Learn how often you should hire a cleaning service - weekly, bi-weekly, or monthly. An expert guide to choosing the right cleaning frequency." />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="How Often Should You Get Your House Cleaned? | Duty Cleaners" />
         <meta name="twitter:description" content="Learn how often you should hire a cleaning service - weekly, bi-weekly, or monthly. An expert guide to choosing the right cleaning frequency." />
@@ -176,13 +177,13 @@ export default function BlogCleaningFrequency() {
               {/* Quick Examples */}
               <div className="grid md:grid-cols-2 gap-6 mb-12">
                 <div className="p-6 bg-primary/10 rounded-xl border border-primary/20">
-                  <h4 className="font-bold text-foreground mb-2">Weekly Cleaning Recommended</h4>
+                  <h2 className="font-bold text-foreground mb-2">Weekly Cleaning Recommended</h2>
                   <p className="text-muted-foreground text-sm">
                     If you own a large house, with a dog that sheds, and little kids but none of your family members have time to do even basic cleaning, then definitely you need a house cleaner to come weekly to maintain cleanliness and tidiness in your home.
                   </p>
                 </div>
                 <div className="p-6 bg-secondary/30 rounded-xl border border-secondary/30">
-                  <h4 className="font-bold text-foreground mb-2">Monthly Cleaning Sufficient</h4>
+                  <h2 className="font-bold text-foreground mb-2">Monthly Cleaning Sufficient</h2>
                   <p className="text-muted-foreground text-sm">
                     If you live alone in a one-bedroom apartment with one bathroom and you constantly do some regular tidying in your home, a monthly schedule will be enough.
                   </p>

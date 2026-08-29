@@ -58,10 +58,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your McConachie home spotless and fresh year-round." },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning of your McConachie home — every corner, baseboard, and hidden surface." },
+  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning for a spotless, fresh reset in one visit." },
+  { icon: Sparkles, title: "Deep Cleaning", description: "A full top-to-bottom reset — corners, baseboards, and the surfaces regular visits skip." },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth McConachie move — leave or arrive to a pristine home." },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around McConachie." },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared properly after renos and handovers." },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
   { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
 ];
@@ -105,7 +105,7 @@ export default function McConachie() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning in McConachie, Edmonton | Duty Cleaners</title>
+        <title>House Cleaners in McConachie, Edmonton | Duty Cleaners</title>
         <meta name="description" content="Professional house cleaning in McConachie, Edmonton. Serving families near McConachie Park, 167 Avenue & Manning Town Centre. Local cleaners you can trust." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
@@ -113,18 +113,17 @@ export default function McConachie() {
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/mcconachie-edmonton",
   areaServed: "McConachie, Edmonton, AB",
-  description: "Professional house cleaning services in McConachie, Edmonton.",
+  description: "Professional house cleaning in McConachie, Edmonton. Serving families near McConachie Park, 167 Avenue & Manning Town Centre. Local cleaners you can trust.",
 }))}
         </script>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/mcconachie-edmonton/" />
-        <meta property="og:title" content="House Cleaning in McConachie, Edmonton | Duty Cleaners" />
+        <meta property="og:title" content="House Cleaners in McConachie, Edmonton | Duty Cleaners" />
         <meta property="og:description" content="Professional house cleaning in McConachie, Edmonton. Serving families near McConachie Park, 167 Avenue & Manning Town Centre. Local cleaners you can trust." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/mcconachie-edmonton/" />
-        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning in McConachie, Edmonton | Duty Cleaners" />
+        <meta name="twitter:title" content="House Cleaners in McConachie, Edmonton | Duty Cleaners" />
         <meta name="twitter:description" content="Professional house cleaning in McConachie, Edmonton. Serving families near McConachie Park, 167 Avenue & Manning Town Centre. Local cleaners you can trust." />
       </Helmet>
 
@@ -260,7 +259,7 @@ export default function McConachie() {
                   Why McConachie Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by McConachie families for reliable, thorough cleaning.
+                  Trusted locally for reliable, thorough cleaning.
                 </p>
               </div>
             </AnimatedSection>

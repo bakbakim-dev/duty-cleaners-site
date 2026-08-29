@@ -48,9 +48,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Sunalta home spotless and fresh year-round." },
+  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning that leaves your Sunalta home spotless and fresh." },
   { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning of your Sunalta home — every corner, baseboard, and hidden surface." },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth Sunalta move — leave or arrive to a pristine home." },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for moving day — leave or arrive to a pristine home." },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Sunalta." },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
   { icon: Building2, title: "Commercial Cleaning", description: "Professional office and commercial space cleaning for Sunalta businesses of all sizes." },
@@ -93,7 +93,7 @@ const nearbyAreas = ["Scarboro","Shaganappi","Bankview","Beltline","Downtown Wes
 const faqs = [
   {
     question: "How long does an initial cleaning take?",
-    answer: `We work to a checklist, not a clock. Your Sunalta team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
+    answer: `We work to a checklist, not a clock. The crew stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Sunalta?",
@@ -101,15 +101,15 @@ const faqs = [
   },
   {
     question: "Do you offer discounts?",
-    answer: `Yes — recurring Sunalta customers save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+    answer: `Yes — customers in Sunalta on a recurring schedule save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `A Sunalta deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+    answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
   },
   {
     question: "What is your 100% satisfaction guarantee policy?",
-    answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back to your Sunalta home and make it right — at no extra cost!"
+    answer: "If you're not 100% satisfied, call us within 24 hours and we'll return and make it right — at no extra cost!"
   }
 ];
 
@@ -123,7 +123,6 @@ const structuredData = buildLocationSchema({
 
 export default function Sunalta() {
   useEffect(() => {
-    document.title = "House Cleaning Services Sunalta | Duty Cleaners";
     window.scrollTo(0, 0);
   }, []);
 
@@ -131,12 +130,12 @@ export default function Sunalta() {
     <>
       <Helmet>
         <title>House Cleaning Services in Sunalta, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Sunalta, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed. Pay after your clean." />
-        <meta property="og:title" content="House Cleaning Services Sunalta Calgary | Duty Cleaners" />
+        <meta name="description" content="Professional cleaners serving Sunalta, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta property="og:title" content="House Cleaning Services in Sunalta, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning Services Sunalta Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Sunalta, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
-        <meta property="og:description" content="Professional house cleaning in Sunalta, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
+        <meta name="twitter:title" content="House Cleaning Services in Sunalta, Calgary | Duty Cleaners" />
+        <meta name="twitter:description" content="Professional cleaners serving Sunalta, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta property="og:description" content="Professional cleaners serving Sunalta, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/sunalta-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/sunalta-calgary/" />
@@ -177,7 +176,7 @@ export default function Sunalta() {
                 Professional House Cleaning in Sunalta
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Trusted house cleaning services for one of Calgary's most-loved communities — bringing a calm, spotless home within reach.
+                Trusted house cleaning for Sunalta — bringing a calm, spotless home within reach.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -212,10 +211,10 @@ export default function Sunalta() {
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Cleaning Services Tailored to Sunalta Living</h2>
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>
-                    Sunalta is a sunny inner-city SW community with character homes, a quick LRT ride downtown, and a tight-knit feel that residents have loved for over a century. Whether you're juggling work, family, or weekend adventures, our team helps keep your home calm, fresh, and welcoming.
+                    Sunalta is a sunny inner-city SW community with character homes, a quick LRT ride downtown, and a tight-knit feel that residents have loved for over a century. A standing visit keeps the house at baseline through the busiest stretches: calm, fresh, and guest-ready.
                   </p>
                   <p>
-                    From single-family houses to townhomes and condos, we tailor every visit to your space — bringing every supply we need — including any product you would rather we used.
+                    Whatever the home, we shape the clean to it and arrive fully supplied, with your preferred products used on request.
                   </p>
                 </div>
               </div>
@@ -368,7 +367,7 @@ export default function Sunalta() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Sunalta Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by Sunalta families for reliable, thorough cleaning.
+                  Reliable, detail-first cleaning families count on.
                 </p>
               </div>
             </AnimatedSection>

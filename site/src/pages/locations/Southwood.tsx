@@ -47,9 +47,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Southwood home spotless and fresh year-round." },
+  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning for a spotless, fresh reset in one visit." },
   { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning of your Southwood home — every corner, baseboard, and hidden surface." },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth Southwood move — leave or arrive to a pristine home." },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for moving day — leave or arrive to a pristine home." },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Southwood." },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
   { icon: Building2, title: "Commercial Cleaning", description: "Professional office and commercial space cleaning for Southwood businesses of all sizes." },
@@ -58,7 +58,7 @@ const services = [
 const whyUsItems = [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
   { icon: Star, title: "4.9 on Google", description: "Trusted by thousands of Alberta families with verified Google reviews." },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability in Southwood. We work around your busy life." },
+  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day slots when the schedule allows. We work around your busy life." },
   { icon: Leaf, title: "High Quality Cleaning Supplies", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
@@ -92,7 +92,7 @@ const nearbyAreas = ["Willow Park","Kingsland","Acadia","Haysboro","Bonavista Do
 const faqs = [
   {
     question: "How long does an initial cleaning take?",
-    answer: `We work to a checklist, not a clock. Your Southwood team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
+    answer: `We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Southwood?",
@@ -100,15 +100,15 @@ const faqs = [
   },
   {
     question: "Do you offer discounts?",
-    answer: `Yes — recurring Southwood customers save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+    answer: `Yes — the discount grows with visit frequency:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `A Southwood deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+    answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
   },
   {
     question: "What is your 100% satisfaction guarantee policy?",
-    answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back to your Southwood home and make it right — at no extra cost!"
+    answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back and put it right — at no extra cost!"
   }
 ];
 
@@ -122,20 +122,19 @@ const structuredData = buildLocationSchema({
 
 export default function Southwood() {
   useEffect(() => {
-    document.title = "House Cleaning Services Southwood | Duty Cleaners";
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <>
       <Helmet>
-        <title>House Cleaning in Southwood, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Southwood, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed. Pay after your clean." />
-        <meta property="og:title" content="House Cleaning Services Southwood Calgary | Duty Cleaners" />
+        <title>Southwood, Calgary House Cleaning | Duty Cleaners</title>
+        <meta name="description" content="Professional cleaners serving Southwood, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta property="og:title" content="Southwood, Calgary House Cleaning | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning Services Southwood Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Southwood, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
-        <meta property="og:description" content="Professional house cleaning in Southwood, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
+        <meta name="twitter:title" content="Southwood, Calgary House Cleaning | Duty Cleaners" />
+        <meta name="twitter:description" content="Professional cleaners serving Southwood, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta property="og:description" content="Professional cleaners serving Southwood, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/southwood-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/southwood-calgary/" />
@@ -226,7 +225,7 @@ export default function Southwood() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Southwood Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Southwood homes get every service they need.
+                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
                 </p>
               </div>
             </AnimatedSection>
@@ -310,7 +309,7 @@ export default function Southwood() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
                   <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Calm, Spotless Southwood Home — Every Visit</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Our vetted cleaners treat your home with care, attention, and the same standards we'd want in our own. Walk in to fresh air, gleaming surfaces, and that quiet feeling of <em>everything in its place</em>.
+                    Care and attention are the whole job. Expect gleaming surfaces, fresh air, and the quiet feeling of a home put properly <em>back in order</em>.
                   </p>
                   <ul className="space-y-3">
                     {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(

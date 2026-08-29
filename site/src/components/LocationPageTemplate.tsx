@@ -1,7 +1,6 @@
 import { canonicalUrlForPath } from "@/data/legacy-urls";
 import { standardTierRows, deepCleanTierRows, moveInOutTierRows, addOnFromPrice, formatPrice } from "@/data/pricing";
 import { TRAVEL_FEE_KEY } from "@/data/addon-table";
-import { useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import heroFamilyBedroom from "@/assets/hero-family-bedroom.webp";
 import Footer from "@/components/Footer";
@@ -118,11 +117,18 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
   </div>
 );
 
+
+/** Deterministic 0-3 from the place name — drives copy-variant rotation. */
+const variantOf = (place: string) =>
+  place.split("").reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, 7) % 4;
+const pickV = (place: string, salt: number, v: string[]) =>
+  v[(variantOf(place) + salt) % v.length].replace("{p}", place);
+
 const services = (place: string) => [
   { icon: Home, title: "Standard House Cleaning", description: "Weekly or bi-weekly maintenance to keep your home spotless and fresh year-round." },
-  { icon: Sparkles, title: "Deep Cleaning", description: `Thorough top-to-bottom cleaning of your ${place} home — every corner, baseboard, and hidden surface.` },
-  { icon: Truck, title: "Move In/Out Cleaning", description: `Detailed cleaning for a smooth ${place} move — leave or arrive to a pristine home.` },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: `Expert dust and debris removal after renovations or new builds around ${place}.` },
+  { icon: Sparkles, title: "Deep Cleaning", description: pickV(place, 0, ["Thorough top-to-bottom cleaning of your {p} home — every corner, baseboard, and hidden surface.","A full top-to-bottom reset — corners, baseboards, and the surfaces regular visits skip.","Every corner, baseboard, and hidden surface, cleaned top to bottom.","Top-to-bottom detail that reaches what weekly cleaning never does."]) },
+  { icon: Truck, title: "Move In/Out Cleaning", description: pickV(place, 1, ["Detailed cleaning for a smooth {p} move — leave or arrive to a pristine home.","Detailed cleaning for moving day — leave or arrive to a pristine home.","Inspection-grade detail for moving out or settling in.","Move-day cleaning done to the standard landlords check for."]) },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: pickV(place, 2, ["Expert dust and debris removal after renovations or new builds around {p}.","Dust and debris cleared after renovations or new builds.","Construction dust cleared properly after renos and handovers.","Post-renovation dust and debris, professionally removed."]) },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
   { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
 ];
@@ -130,7 +136,7 @@ const services = (place: string) => [
 const whyUsItems = (place: string) => [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
   { icon: Star, title: "4.9 on Google", description: "Trusted by thousands of Alberta families with verified Google reviews." },
-  { icon: Clock, title: "Flexible Scheduling", description: `Same-day and next-day availability in ${place}. We work around your busy life.` },
+  { icon: Clock, title: "Flexible Scheduling", description: pickV(place, 3, ["Same-day and next-day availability in {p}. We work around your busy life.","Same-day and next-day slots when the schedule allows. We work around your busy life.","Same-day and next-day openings most weeks. We work around your busy life.","Same-day and next-day availability, schedule permitting. We work around your busy life."]) },
   // "and the planet" is an environmental-benefit claim. Since the June 2024
   // Competition Act amendments those require substantiation on an internationally
   // recognised methodology, and private applications to the Tribunal have been
@@ -159,9 +165,6 @@ export default function LocationPageTemplate({
   // Falls back so an un-migrated page still renders; the test enforces the rest.
   const metaDescription = seoDescription ?? description;
 
-  useEffect(() => {
-    document.title = title;
-  }, [title]);
 
   const { pathname } = useLocation();
   const regionLabel = region === "edmonton" ? "Edmonton" : "Calgary";
@@ -186,23 +189,23 @@ export default function LocationPageTemplate({
   const faqs = [
     {
       question: "How long does an initial cleaning take?",
-      answer: `We work to a checklist, not a clock. Your ${city} team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
+      answer: `We work to a checklist, not a clock. ${pickV(city, 1, ["Your {p} team stays until","Your team stays until","The crew stays until","Your cleaners stay until"])} every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
     },
     {
       question: `What cleaning services does Duty Cleaners offer in ${city}?`,
-      answer: `Around ${city} we offer the full range:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `${pickV(city, 0, ["Around {p} we offer the full range:","The full service menu is available here:","Every service we run can be booked locally:","Households here can book any of the following:"])}\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
-      answer: `Yes — recurring ${city} customers save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+      answer: `${pickV(city, 1, ["Yes — customers in {p} on a recurring schedule save:","Yes. A recurring schedule earns a standing discount:","Yes — the discount grows with visit frequency:","Yes, recurring visits cost less every time:"])}\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `A ${city} deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+      answer: `${pickV(city, 2, ["In {p}, a deep clean adds to the standard package:","A deep clean layers these onto the standard visit:","Beyond the standard scope, deep cleaning covers:","The deep package extends the standard clean with:"])}\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
     },
     {
       question: "What is your 100% satisfaction guarantee policy?",
-      answer: `If you're not 100% satisfied, call us within 24 hours and we'll come back to your ${city} home and make it right — at no extra cost!`
+      answer: `If you're not 100% satisfied, call us within 24 hours and ${pickV(city, 3, ["we'll come back to your {p} home and make it right","we'll return and make it right","we'll come back and put it right","we'll re-clean the missed areas"])} — at no extra cost!`
     }
   ];
   const faqJsonLd = {
@@ -241,7 +244,7 @@ export default function LocationPageTemplate({
       <section className="relative py-24 bg-brand-navy overflow-hidden">
         <img
           src={heroFamilyBedroom}
-          alt="Happy family laughing in a clean, freshly cleaned bedroom"
+          alt={`Freshly cleaned bedroom in a ${city} home`}
           width={1920}
           height={1280}
           className="absolute inset-0 w-full h-full object-cover opacity-25"

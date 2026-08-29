@@ -68,23 +68,23 @@ const nearbyAreas = ["4th Street SW", "Cliff Bungalow", "Erlton", "Beltline", "R
 const faqs = [
   {
     question: "How long does an initial cleaning take?",
-    answer: `We work to a checklist, not a clock. Your Mission team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
+    answer: `We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Mission?",
-    answer: `Around Mission we offer the full range:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `Every service we run can be booked locally:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
   },
   {
     question: "Do you offer discounts?",
-    answer: `Yes — recurring Mission customers save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+    answer: `Yes. A recurring schedule earns a standing discount:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `A Mission deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+    answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
   },
   {
     question: "What is your 100% satisfaction guarantee policy?",
-    answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back to your Mission home and make it right — at no extra cost!"
+    answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back and put it right — at no extra cost!"
   }
 ];
 
@@ -98,7 +98,6 @@ const structuredData = buildLocationSchema({
 
 export default function Mission() {
   useEffect(() => {
-    document.title = "House Cleaning Services Mission Calgary | Duty Cleaners";
     window.scrollTo(0, 0);
   }, []);
 
@@ -106,12 +105,12 @@ export default function Mission() {
     <>
       <Helmet>
         <title>House Cleaning Services in Mission, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Mission, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed. Pay after your clean." />
-        <meta property="og:title" content="House Cleaning Services Mission Calgary | Duty Cleaners" />
+        <meta name="description" content="Professional cleaners serving Mission, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta property="og:title" content="House Cleaning Services in Mission, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning Services Mission Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Mission, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
-        <meta property="og:description" content="Professional house cleaning in Mission, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
+        <meta name="twitter:title" content="House Cleaning Services in Mission, Calgary | Duty Cleaners" />
+        <meta name="twitter:description" content="Professional cleaners serving Mission, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta property="og:description" content="Professional cleaners serving Mission, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/mission/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/mission/" />
@@ -268,7 +267,7 @@ export default function Mission() {
                   Cleaning Services for Mission Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Mission homes get every service they need.
+                  Everything from weekly upkeep to full move-out cleans.
                 </p>
               </div>
             </AnimatedSection>

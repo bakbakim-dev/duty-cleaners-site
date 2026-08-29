@@ -56,10 +56,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Eastwood home spotless and fresh year-round." },
+  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to bring the whole home back to baseline." },
   { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning of your Eastwood home — every corner, baseboard, and hidden surface." },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth Eastwood move — leave or arrive to a pristine home." },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around Eastwood." },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Move-day cleaning done to the standard landlords check for." },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Post-renovation dust and debris, professionally removed." },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
   { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
 ];
@@ -67,7 +67,7 @@ const services = [
 const whyUsItems = [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
   { icon: Star, title: "4.9 on Google", description: "Trusted by thousands of Alberta families with verified Google reviews." },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability in Eastwood. We work around your busy life." },
+  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability, schedule permitting. We work around your busy life." },
   { icon: Leaf, title: "High Quality Cleaning Supplies", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "Not happy? Let us know within 24 hours and we'll re-clean at no extra cost." },
@@ -84,15 +84,15 @@ export default function Eastwood() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Eastwood?",
-      answer: `Around Eastwood we offer the full range:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `Every service we run can be booked locally:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
-      answer: `Yes — recurring Eastwood customers save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+      answer: `Yes. A recurring schedule earns a standing discount:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `A Eastwood deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
     },
     {
       question: "What is your 100% satisfaction guarantee policy?",
@@ -113,7 +113,7 @@ export default function Eastwood() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning in Eastwood, Edmonton | Duty Cleaners</title>
+        <title>Eastwood, Edmonton House Cleaning | Duty Cleaners</title>
         <meta name="description" content="Professional house cleaning in Eastwood, Edmonton. Trusted local cleaners serving Eastwood homes with reliable, customer-rated cleaning service." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
@@ -121,18 +121,17 @@ export default function Eastwood() {
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/eastwood-edmonton",
   areaServed: "Eastwood, Edmonton, AB",
-  description: "Professional house cleaning services in Eastwood, Edmonton.",
+  description: "Professional house cleaning in Eastwood, Edmonton. Trusted local cleaners serving Eastwood homes with reliable, customer-rated cleaning service.",
   geo: { latitude: "53.571", longitude: "-113.463" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/eastwood-edmonton/" />
-        <meta property="og:title" content="House Cleaning in Eastwood, Edmonton | Duty Cleaners" />
+        <meta property="og:title" content="Eastwood, Edmonton House Cleaning | Duty Cleaners" />
         <meta property="og:description" content="Professional house cleaning in Eastwood, Edmonton. Trusted local cleaners serving Eastwood homes with reliable, customer-rated cleaning service." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/eastwood-edmonton/" />
-        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning in Eastwood, Edmonton | Duty Cleaners" />
+        <meta name="twitter:title" content="Eastwood, Edmonton House Cleaning | Duty Cleaners" />
         <meta name="twitter:description" content="Professional house cleaning in Eastwood, Edmonton. Trusted local cleaners serving Eastwood homes with reliable, customer-rated cleaning service." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
@@ -234,7 +233,7 @@ export default function Eastwood() {
                   Cleaning Services for Eastwood Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Eastwood homes get every service they need.
+                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
                 </p>
               </div>
             </AnimatedSection>
@@ -259,7 +258,7 @@ export default function Eastwood() {
                   Why Eastwood Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by Eastwood families for reliable, thorough cleaning.
+                  Trusted locally for reliable, thorough cleaning.
                 </p>
               </div>
             </AnimatedSection>

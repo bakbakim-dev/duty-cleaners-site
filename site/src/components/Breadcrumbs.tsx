@@ -91,6 +91,8 @@ function generateBreadcrumbs(pathname: string): BreadcrumbItem[] {
  * that actually exist as routes on this site are listed — a general "Mc" rule
  * would mangle unrelated words.
  */
+import { displayNameFor } from "@/data/place-names";
+
 const PROPER_CASE: Record<string, string> = {
   Mcconachie: "McConachie",
   Mccauley: "McCauley",
@@ -100,6 +102,20 @@ const PROPER_CASE: Record<string, string> = {
 
 // Format segment to readable label
 function formatSegment(segment: string, precedingLabels: string[] = []): string {
+  // Location slugs go through the central name authority so hyphenated and
+  // irregular names survive: "hollick-kenyon-edmonton" must render
+  // "Hollick-Kenyon, Edmonton", not "Hollick Kenyon Edmonton"; "st-albert"
+  // must keep its period. De-slugging per component is how the same casing
+  // bug shipped three separate times.
+  if (precedingLabels.includes("Locations") || segment.startsWith("cleaning-services-")) {
+    const name = displayNameFor(segment);
+    const city = /-edmonton$/.test(segment)
+      ? "Edmonton"
+      : /-calgary$/.test(segment)
+        ? "Calgary"
+        : null;
+    return city && !name.endsWith(city) ? `${name}, ${city}` : name;
+  }
   const words = segment
     .split("-")
     .map((word) => {
@@ -117,10 +133,27 @@ function formatSegment(segment: string, precedingLabels: string[] = []): string 
     const isCity = word === "Edmonton" || word === "Calgary";
     if (!isCity) return true;
     if (i === 0) return true; // "Edmonton Pricing" — keep the leading city
+    // A trailing city under /locations/ is a slug qualifier, not part of the
+    // name: "laurel-edmonton" is the Laurel page. Rendering it produced the
+    // label "Laurel Edmonton" — no comma, visible AND in BreadcrumbList schema
+    // — on 110 of 153 location pages. The parent-crumb check alone never fired
+    // there, because the preceding crumbs are "Home" and "Locations". Render
+    // the city as a ", Edmonton" suffix instead of a bare appended word.
+    if (precedingLabels.includes("Locations")) return false;
     return !precedingLabels.some((l) => l.includes(word));
   });
 
-  return (filtered.length ? filtered : words).join(" ").trim();
+  const label = (filtered.length ? filtered : words).join(" ").trim();
+  // Re-attach the city as a proper qualifier for location crumbs.
+  const trailingCity = words[words.length - 1];
+  if (
+    precedingLabels.includes("Locations") &&
+    (trailingCity === "Edmonton" || trailingCity === "Calgary") &&
+    words.length > 1
+  ) {
+    return `${label}, ${trailingCity}`;
+  }
+  return label;
 }
 
 export default function Breadcrumbs({ items, className = "" }: BreadcrumbsProps) {

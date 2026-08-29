@@ -13,7 +13,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import wallStainRemoval from "@/assets/wall-washing/wall-stain-removal.webp";
 import hallwayClean from "@/assets/wall-washing/hallway-clean.webp";
@@ -143,9 +142,6 @@ const WALL_FULL = addOnFromPrice("standard", "complete-inside-wall-washing") ?? 
 const WALL_PRICE_LINE = `Spot cleaning of walls starts at ${formatPrice(WALL_FROM)} and a full top-to-bottom wall wash at ${formatPrice(WALL_FULL)}, added to any clean. Both are flat rates before 5% GST.`;
 
 export default function WallWashingCalgary() {
-  useEffect(() => {
-    document.title = "Wall Washing & Wall Cleaning Calgary | Duty Cleaners";
-  }, []);
 
   return (
     <div className="min-h-screen">
@@ -157,7 +153,6 @@ export default function WallWashingCalgary() {
         <meta property="og:description" content="Professional wall and baseboard washing in Calgary. Professional products, customer-rated cleaners, no-obligation quote." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/wall-washing-wall-cleaning-calgary/" />
-        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Wall Washing Calgary | Duty Cleaners" />
         <meta name="twitter:description" content="Professional wall and baseboard washing in Calgary. Professional products, customer-rated cleaners, no-obligation quote." />

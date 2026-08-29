@@ -68,10 +68,10 @@ const nearbyAreas = ["Elbow Park", "Britannia", "Scarboro", "Rideau Park", "Uppe
 
 const faqs = [
   { question: "How long does an initial cleaning take?", answer: "We work to a checklist, not a clock. Your Mount Royal team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
-  { question: "What cleaning services does Duty Cleaners offer in Mount Royal?", answer: "Whenever you choose Duty Cleaners, you'll have an expert taking care of your home or business. We offer:\n\n• Commercial Cleaning\n• Standard Cleaning & Deep Cleaning Packages\n• Move-In And Move-Out Cleaning Service\n• Post Construction Cleaning\n• Wall Washing and Wall Cleaning" },
+  { question: "What cleaning services does Duty Cleaners offer in Mount Royal?", answer: "We offer:\n\n• Commercial Cleaning\n• Standard Cleaning & Deep Cleaning Packages\n• Move-In And Move-Out Cleaning Service\n• Post Construction Cleaning\n• Wall Washing and Wall Cleaning" },
   { question: "Do you offer discounts?", answer: "We offer recurring discounts for our Standard and Deep Cleaning Packages.\n\nIf you avail of our recurring discount, on your next cleaning:\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off" },
   { question: "What's included in a deep cleaning?", answer: "Deep cleaning adds the following to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!" },
-  { question: "What is your 100% satisfaction guarantee policy?", answer: "If you're not 100% satisfied with the results, call us back within 24 hours, and we'll return to make it right!" },
+  { question: "What is your 100% satisfaction guarantee policy?", answer: "Not fully satisfied? Let us know within 24 hours and we'll come back and put it right at no charge." },
 ];
 
 const structuredData = buildLocationSchema({
@@ -88,13 +88,13 @@ export default function MountRoyal() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning in Mount Royal, Calgary | Duty Cleaners</title>
+        <title>Mount Royal, Calgary House Cleaning | Duty Cleaners</title>
         <meta name="description" content="Premium house cleaning in Mount Royal, Calgary. Experienced with heritage homes and fine finishes. 100% satisfaction guaranteed. Call (403) 768-1341." />
-        <meta property="og:title" content="House Cleaning Services Mount Royal Calgary | Duty Cleaners" />
+        <meta property="og:title" content="Mount Royal, Calgary House Cleaning | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning Services Mount Royal Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Premium house cleaning in Mount Royal, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
-        <meta property="og:description" content="Premium house cleaning in Mount Royal, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
+        <meta name="twitter:title" content="Mount Royal, Calgary House Cleaning | Duty Cleaners" />
+        <meta name="twitter:description" content="Premium house cleaning in Mount Royal, Calgary. Experienced with heritage homes and fine finishes. 100% satisfaction guaranteed. Call (403) 768-1341." />
+        <meta property="og:description" content="Premium house cleaning in Mount Royal, Calgary. Experienced with heritage homes and fine finishes. 100% satisfaction guaranteed. Call (403) 768-1341." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/mount-royal/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/mount-royal/" />
@@ -260,7 +260,7 @@ export default function MountRoyal() {
               <div className="text-center mb-14">
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Mount Royal Residents Choose Duty Cleaners</h2>
-                <p className="text-white/90 max-w-2xl mx-auto text-lg">Trusted by Mount Royal families for reliable, thorough cleaning.</p>
+                <p className="text-white/90 max-w-2xl mx-auto text-lg">Trusted locally for reliable, thorough cleaning.</p>
               </div>
             </AnimatedSection>
             <AnimatedSection>

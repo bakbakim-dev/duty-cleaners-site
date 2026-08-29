@@ -47,9 +47,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Ogden home spotless and fresh year-round." },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning of your Ogden home — every corner, baseboard, and hidden surface." },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth Ogden move — leave or arrive to a pristine home." },
+  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning for a spotless, fresh reset in one visit." },
+  { icon: Sparkles, title: "Deep Cleaning", description: "Top-to-bottom detail that reaches what weekly cleaning never does." },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Inspection-grade detail for moving out or settling in." },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Ogden." },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
   { icon: Building2, title: "Commercial Cleaning", description: "Professional office and commercial space cleaning for Ogden businesses of all sizes." },
@@ -100,15 +100,15 @@ const faqs = [
   },
   {
     question: "Do you offer discounts?",
-    answer: `Yes — recurring Ogden customers save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+    answer: `Yes — the discount grows with visit frequency:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `A Ogden deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+    answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
   },
   {
     question: "What is your 100% satisfaction guarantee policy?",
-    answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back to your Ogden home and make it right — at no extra cost!"
+    answer: "If you're not 100% satisfied, call us within 24 hours and we'll return and make it right — at no extra cost!"
   }
 ];
 
@@ -122,7 +122,6 @@ const structuredData = buildLocationSchema({
 
 export default function Ogden() {
   useEffect(() => {
-    document.title = "House Cleaning Services Ogden | Duty Cleaners";
     window.scrollTo(0, 0);
   }, []);
 
@@ -130,12 +129,12 @@ export default function Ogden() {
     <>
       <Helmet>
         <title>House Cleaning Services in Ogden, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Ogden, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed. Pay after your clean." />
-        <meta property="og:title" content="House Cleaning Services Ogden Calgary | Duty Cleaners" />
+        <meta name="description" content="Book house cleaning in Ogden, Calgary in about 60 seconds. Reference-checked cleaners and a 24-hour make-it-right guarantee." />
+        <meta property="og:title" content="House Cleaning Services in Ogden, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning Services Ogden Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Ogden, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
-        <meta property="og:description" content="Professional house cleaning in Ogden, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
+        <meta name="twitter:title" content="House Cleaning Services in Ogden, Calgary | Duty Cleaners" />
+        <meta name="twitter:description" content="Book house cleaning in Ogden, Calgary in about 60 seconds. Reference-checked cleaners and a 24-hour make-it-right guarantee." />
+        <meta property="og:description" content="Book house cleaning in Ogden, Calgary in about 60 seconds. Reference-checked cleaners and a 24-hour make-it-right guarantee." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/ogden-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/ogden-calgary/" />
@@ -226,7 +225,7 @@ export default function Ogden() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Ogden Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Ogden homes get every service they need.
+                  Everything from weekly upkeep to full move-out cleans.
                 </p>
               </div>
             </AnimatedSection>

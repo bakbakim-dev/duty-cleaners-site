@@ -168,7 +168,7 @@ const RoomItem = ({
       <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
         <Icon className="w-5 h-5 text-primary" />
       </div>
-      <h4 className="font-semibold text-lg">{title}</h4>
+      <h3 className="font-semibold text-lg">{title}</h3>
     </div>
     <ul className="space-y-2">
       {items.map((item, idx) => (
@@ -292,7 +292,7 @@ export default function WhatsIncluded() {
         {/* Background image */}
         <img width={1920} height={1080}
           src={heroBg}
-          alt=""
+          alt="Freshly cleaned open-plan living space covered by the standard checklist"
           className="absolute inset-0 w-full h-full object-cover opacity-40"
         />
         {/* Gradient overlay */}

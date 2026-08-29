@@ -71,19 +71,19 @@ export default function Garneau() {
   const faqs = [
     {
       question: "How long does an initial cleaning take?",
-      answer: `We work to a checklist, not a clock. Your Garneau team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
+      answer: `We work to a checklist, not a clock. Your cleaners stay until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Garneau?",
-      answer: `Around Garneau we offer the full range:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `Every service we run can be booked locally:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
-      answer: `Yes — recurring Garneau customers save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+      answer: `Yes — customers in Garneau on a recurring schedule save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `A Garneau deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+      answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
     },
     {
       question: "What is your 100% satisfaction guarantee policy?",
@@ -111,14 +111,13 @@ export default function Garneau() {
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/garneau",
   areaServed: "Garneau, Edmonton, AB",
-  description: "Professional house cleaning services in Garneau, Edmonton.",
+  description: "Professional house cleaning in Garneau, Edmonton. Serving the university district's heritage homes near the University of Alberta.",
 }))}</script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/garneau/" />
         <meta property="og:title" content="House Cleaning Services Garneau Edmonton | Duty Cleaners" />
         <meta property="og:description" content="Professional house cleaning in Garneau, Edmonton. Serving the university district's heritage homes near the University of Alberta." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/garneau/" />
-        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services Garneau Edmonton | Duty Cleaners" />
         <meta name="twitter:description" content="Professional house cleaning in Garneau, Edmonton. Serving the university district's heritage homes near the University of Alberta." />
@@ -219,7 +218,7 @@ export default function Garneau() {
               <div className="text-center mb-14">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Garneau Homes</h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto text-lg">From routine upkeep to move-outs, Garneau homes get every service they need.</p>
+                <p className="text-muted-foreground max-w-2xl mx-auto text-lg">Everything from weekly upkeep to full move-out cleans.</p>
               </div>
             </AnimatedSection>
             <AnimatedSection>

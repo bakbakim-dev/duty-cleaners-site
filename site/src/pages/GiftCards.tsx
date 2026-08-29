@@ -82,8 +82,7 @@ export default function GiftCards() {
           {/* Background image */}
           <img
             src={giftCardsHero}
-            alt=""
-            aria-hidden="true"
+            alt="Bright, freshly cleaned living room — a clean home given as a gift"
             width={1920}
             height={1080}
             className="absolute inset-0 w-full h-full object-cover opacity-40 pointer-events-none"

@@ -56,9 +56,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Boyle Street home spotless and fresh year-round." },
+  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to bring the whole home back to baseline." },
   { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning of your Boyle Street home — every corner, baseboard, and hidden surface." },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth Boyle Street move — leave or arrive to a pristine home." },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Inspection-grade detail for moving out or settling in." },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around Boyle Street." },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
   { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
@@ -67,7 +67,7 @@ const services = [
 const whyUsItems = [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
   { icon: Star, title: "4.9 on Google", description: "Trusted by thousands of Alberta families with verified Google reviews." },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability in Boyle Street. We work around your busy life." },
+  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability, schedule permitting. We work around your busy life." },
   { icon: Leaf, title: "High Quality Cleaning Supplies", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "Not happy? Let us know within 24 hours and we'll re-clean at no extra cost." },
@@ -80,23 +80,23 @@ export default function BoyleStreet() {
   const faqs = [
     {
       question: "How long does an initial cleaning take?",
-      answer: `We work to a checklist, not a clock. Your Boyle Street team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
+      answer: `We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Boyle Street?",
-      answer: `Around Boyle Street we offer the full range:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `The full service menu is available here:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
-      answer: `Yes — recurring Boyle Street customers save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+      answer: `Yes — customers in Boyle Street on a recurring schedule save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `A Boyle Street deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+      answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
     },
     {
       question: "What is your 100% satisfaction guarantee policy?",
-      answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back to your Boyle Street home and make it right — at no extra cost!"
+      answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back and put it right — at no extra cost!"
     }
   ];
   const faqJsonLd = {
@@ -113,7 +113,7 @@ export default function BoyleStreet() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning in Boyle Street, Edmonton | Duty Cleaners</title>
+        <title>Boyle Street, Edmonton House Cleaning | Duty Cleaners</title>
         <meta name="description" content="Professional house cleaning in Boyle Street, Edmonton. Trusted local cleaners serving Boyle Street homes with reliable, customer-rated cleaning service." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
@@ -121,18 +121,17 @@ export default function BoyleStreet() {
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/boyle-street-edmonton",
   areaServed: "Boyle Street, Edmonton, AB",
-  description: "Professional house cleaning services in Boyle Street, Edmonton.",
+  description: "Professional house cleaning in Boyle Street, Edmonton. Trusted local cleaners serving Boyle Street homes with reliable, customer-rated cleaning service.",
   geo: { latitude: "53.547", longitude: "-113.481" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/boyle-street-edmonton/" />
-        <meta property="og:title" content="House Cleaning in Boyle Street, Edmonton | Duty Cleaners" />
+        <meta property="og:title" content="Boyle Street, Edmonton House Cleaning | Duty Cleaners" />
         <meta property="og:description" content="Professional house cleaning in Boyle Street, Edmonton. Trusted local cleaners serving Boyle Street homes with reliable, customer-rated cleaning service." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/boyle-street-edmonton/" />
-        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning in Boyle Street, Edmonton | Duty Cleaners" />
+        <meta name="twitter:title" content="Boyle Street, Edmonton House Cleaning | Duty Cleaners" />
         <meta name="twitter:description" content="Professional house cleaning in Boyle Street, Edmonton. Trusted local cleaners serving Boyle Street homes with reliable, customer-rated cleaning service." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>

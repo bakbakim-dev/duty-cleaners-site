@@ -111,16 +111,15 @@ export default function EdmontonPricing() {
     <div className="min-h-screen">
       <Helmet>
         <title>Edmonton House Cleaning Prices | Duty Cleaners</title>
-        <meta name="description" content="Clear, upfront pricing for Edmonton cleaning services. Standard, deep, and move-in/out cleaning. No hidden fees. Get instant quote. 100% satisfaction guarantee." />
+        <meta name="description" content="Edmonton house cleaning prices by home size — standard, deep and move-out rates you see before booking, no trip fees inside the city." />
         <link rel="canonical" href="https://dutycleaners.ca/pricing/" />
         <meta property="og:title" content="Edmonton House Cleaning Prices | Duty Cleaners" />
-        <meta property="og:description" content="Clear, upfront pricing for Edmonton cleaning services. Standard, deep, and move-in/out cleaning. No hidden fees. Get instant quote. 100% satisfaction guarantee." />
+        <meta property="og:description" content="Edmonton house cleaning prices by home size — standard, deep and move-out rates you see before booking, no trip fees inside the city." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/pricing/" />
-        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Edmonton House Cleaning Prices | Duty Cleaners" />
-        <meta name="twitter:description" content="Clear, upfront pricing for Edmonton cleaning services. Standard, deep, and move-in/out cleaning. No hidden fees. Get instant quote. 100% satisfaction guarantee." />
+        <meta name="twitter:description" content="Edmonton house cleaning prices by home size — standard, deep and move-out rates you see before booking, no trip fees inside the city." />
         <script type="application/ld+json">
           {JSON.stringify(buildPricingSchema({ city: "edmonton", standard: standardPricing, deep: deepPricing, moveInOut: moveInOutPricing }))}
         </script>

@@ -19,7 +19,6 @@ export default function SatisfactionGuarantee() {
         <meta property="og:description" content="Our 100% Satisfaction Guarantee ensures you're completely happy with your cleaning. If not, we'll re-clean for free within 24 hours." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/satisfaction-guarantee/" />
-        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="100% Satisfaction Guarantee Policy | Duty Cleaners" />
         <meta name="twitter:description" content="Our 100% Satisfaction Guarantee ensures you're completely happy with your cleaning. If not, we'll re-clean for free within 24 hours." />
@@ -32,6 +31,7 @@ export default function SatisfactionGuarantee() {
         </div>
 
         {/* Hero Section */}
+        <main id="main-content" tabIndex={-1}>
         <section className="relative bg-brand-navy py-20 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-brand-navy/80 via-brand-navy/70 to-brand-navy/90" />
           <div className="container mx-auto px-4 relative z-10">
@@ -47,7 +47,7 @@ export default function SatisfactionGuarantee() {
           </div>
         </section>
 
-        <main id="main-content" tabIndex={-1} className="container mx-auto px-4 py-16">
+        <div className="container mx-auto px-4 py-16">
           <div className="max-w-3xl mx-auto">
             <div className="prose prose-lg max-w-none text-muted-foreground">
               <h2 className="text-2xl font-bold mb-4 text-foreground">Our Promise to You</h2>
@@ -217,6 +217,7 @@ export default function SatisfactionGuarantee() {
             </div>
           </div>
           <TrustPageCta />
+        </div>
         </main>
 
         <Footer />

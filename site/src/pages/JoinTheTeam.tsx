@@ -289,7 +289,6 @@ export default function JoinTheTeam() {
         <meta property="og:description" content="Join the Duty Cleaners team! Flexible schedules, competitive pay, and consistent work. Apply today for cleaning positions in Edmonton and Calgary." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/join-the-team/" />
-        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Cleaning Jobs Edmonton & Calgary | Duty Cleaners Careers" />
         <meta name="twitter:description" content="Join the Duty Cleaners team! Flexible schedules, competitive pay, and consistent work. Apply today for cleaning positions in Edmonton and Calgary." />

@@ -241,16 +241,15 @@ const AirbnbCleaningCalgary = () => {
     <div className="min-h-screen flex flex-col">
       <Helmet>
         <title>Airbnb Cleaning Calgary | Turnover Service | Duty Cleaners</title>
-        <meta name="description" content="Reliable Airbnb and short-term rental turnover cleaning in Calgary. Restocking, fresh linens and fast turnarounds — priced per hour." />
+        <meta name="description" content="Turnover cleaning for Calgary short-term rentals — Stampede-week back-to-backs, guest-ready staging and linen resets, priced hourly." />
         <link rel="canonical" href="https://dutycleaners.ca/airbnb-cleaning-services-calgary/" />
         <meta property="og:title" content="Airbnb Cleaning Calgary | Turnover Service | Duty Cleaners" />
-        <meta property="og:description" content="Reliable Airbnb and short-term rental turnover cleaning in Calgary. Restocking, fresh linens and fast turnarounds — priced per hour." />
+        <meta property="og:description" content="Turnover cleaning for Calgary short-term rentals — Stampede-week back-to-backs, guest-ready staging and linen resets, priced hourly." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/airbnb-cleaning-services-calgary/" />
-        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Airbnb Cleaning Calgary | Turnover Service | Duty Cleaners" />
-        <meta name="twitter:description" content="Reliable Airbnb and short-term rental turnover cleaning in Calgary. Restocking, fresh linens and fast turnarounds — priced per hour." />
+        <meta name="twitter:description" content="Turnover cleaning for Calgary short-term rentals — Stampede-week back-to-backs, guest-ready staging and linen resets, priced hourly." />
         {/* Mirrors the FAQ rendered on this page. Generated from the same
             `faqs` array, so the markup can never drift from the copy. */}
         <script type="application/ld+json">
@@ -265,7 +264,7 @@ const AirbnbCleaningCalgary = () => {
           })}
         </script>
         <script type="application/ld+json">
-          {JSON.stringify(buildServiceSchema({ name: "Airbnb Turnover Cleaning", description: "Reliable Airbnb and short-term rental turnover cleaning in Calgary. Restocking, fresh linens and fast turnarounds — priced per hour.", path: "/airbnb-cleaning-services-calgary", city: "calgary" }))}
+          {JSON.stringify(buildServiceSchema({ name: "Airbnb Turnover Cleaning", description: "Turnover cleaning for Calgary short-term rentals — Stampede-week back-to-backs, guest-ready staging and linen resets, priced hourly.", path: "/airbnb-cleaning-services-calgary", city: "calgary" }))}
         </script>
       </Helmet>
       <Navigation city="calgary" />
@@ -278,8 +277,7 @@ const AirbnbCleaningCalgary = () => {
       <section className="relative py-20 px-4 bg-brand-navy overflow-hidden">
         <img width={1920} height={1080}
           src={heroBg}
-          alt=""
-          aria-hidden="true"
+          alt="Guest-ready short-term rental living room in Calgary after a turnover clean"
           className="absolute inset-0 w-full h-full object-cover opacity-25"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-brand-navy/80 via-brand-navy/70 to-brand-navy/90" />

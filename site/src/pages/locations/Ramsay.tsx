@@ -48,7 +48,7 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Ramsay home spotless and fresh year-round." },
+  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning that resets the whole home, room by room." },
   { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning of your Ramsay home — every corner, baseboard, and hidden surface." },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth Ramsay move — leave or arrive to a pristine home." },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Ramsay." },
@@ -93,23 +93,23 @@ const nearbyAreas = ["Inglewood","Erlton","Victoria Park","Mission","Crescent He
 const faqs = [
   {
     question: "How long does an initial cleaning take?",
-    answer: `We work to a checklist, not a clock. Your Ramsay team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
+    answer: `We work to a checklist, not a clock. Your cleaners stay until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Ramsay?",
-    answer: `Around Ramsay we offer the full range:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `The full service menu is available here:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
   },
   {
     question: "Do you offer discounts?",
-    answer: `Yes — recurring Ramsay customers save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+    answer: `Yes — customers in Ramsay on a recurring schedule save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `A Ramsay deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+    answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
   },
   {
     question: "What is your 100% satisfaction guarantee policy?",
-    answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back to your Ramsay home and make it right — at no extra cost!"
+    answer: "If you're not 100% satisfied, call us within 24 hours and we'll re-clean the missed areas — at no extra cost!"
   }
 ];
 
@@ -123,7 +123,6 @@ const structuredData = buildLocationSchema({
 
 export default function Ramsay() {
   useEffect(() => {
-    document.title = "House Cleaning Services Ramsay | Duty Cleaners";
     window.scrollTo(0, 0);
   }, []);
 
@@ -131,12 +130,12 @@ export default function Ramsay() {
     <>
       <Helmet>
         <title>House Cleaning Services in Ramsay, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Ramsay, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed. Pay after your clean." />
-        <meta property="og:title" content="House Cleaning Services Ramsay Calgary | Duty Cleaners" />
+        <meta name="description" content="House cleaning in Ramsay, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
+        <meta property="og:title" content="House Cleaning Services in Ramsay, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning Services Ramsay Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Ramsay, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
-        <meta property="og:description" content="Professional house cleaning in Ramsay, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
+        <meta name="twitter:title" content="House Cleaning Services in Ramsay, Calgary | Duty Cleaners" />
+        <meta name="twitter:description" content="House cleaning in Ramsay, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
+        <meta property="og:description" content="House cleaning in Ramsay, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/ramsay-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/ramsay-calgary/" />
@@ -215,7 +214,7 @@ export default function Ramsay() {
                     Ramsay is a historic SE community perched on Scotsman's Hill with stunning Stampede and downtown views, character homes, and a tight-knit neighbourhood feel.
                   </p>
                   <p>
-                    From single-family houses to townhomes and condos, we tailor every visit to your space — bringing every supply we need — including any product you would rather we used.
+                    Detached house, townhome or condo: the visit is tailored to the space, and we bring every supply, including any product you'd rather we used.
                   </p>
                 </div>
               </div>
@@ -231,7 +230,7 @@ export default function Ramsay() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Ramsay Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Ramsay homes get every service they need.
+                  From routine upkeep to deep cleans and move-outs — every service a home needs.
                 </p>
               </div>
             </AnimatedSection>
@@ -315,7 +314,7 @@ export default function Ramsay() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
                   <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Calm, Spotless Ramsay Home — Every Visit</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Our vetted cleaners treat your home with care, attention, and the same standards we'd want in our own. Walk in to fresh air, gleaming surfaces, and that quiet feeling of <em>everything in its place</em>.
+                    Every cleaner is vetted and customer-rated, and it shows in the details: clear counters, gleaming taps, and a home that smells like a fresh start.
                   </p>
                   <ul className="space-y-3">
                     {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
@@ -368,7 +367,7 @@ export default function Ramsay() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Ramsay Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by Ramsay families for reliable, thorough cleaning.
+                  Reliable, detail-first cleaning families count on.
                 </p>
               </div>
             </AnimatedSection>

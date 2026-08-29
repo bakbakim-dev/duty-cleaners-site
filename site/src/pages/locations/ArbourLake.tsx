@@ -47,8 +47,8 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Arbour Lake home spotless and fresh year-round." },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning of your Arbour Lake home — every corner, baseboard, and hidden surface." },
+  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning for a spotless, fresh reset in one visit." },
+  { icon: Sparkles, title: "Deep Cleaning", description: "Top-to-bottom detail that reaches what weekly cleaning never does." },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for smooth transitions — leave or arrive to a pristine lakeside home." },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Arbour Lake." },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
@@ -58,7 +58,7 @@ const services = [
 const whyUsItems = [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
   { icon: Star, title: "4.9 on Google", description: "Trusted by thousands of Alberta families with verified Google reviews." },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability in Arbour Lake. We work around your busy life." },
+  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day openings most weeks. We work around your busy life." },
   { icon: Leaf, title: "High Quality Cleaning Supplies", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
@@ -69,11 +69,11 @@ const nearbyAreas = ["Arbour Lake Estates", "Tuscany", "Scenic Acres", "Citadel"
 const faqs = [
   {
     question: "How long does an initial cleaning take?",
-    answer: `We work to a checklist, not a clock. Your Arbour Lake team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
+    answer: `We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Arbour Lake?",
-    answer: `Whenever you choose Duty Cleaners, you'll have an expert taking care of your home or business. We offer:\n\n• Commercial Cleaning\n• Standard Cleaning & Deep Cleaning Packages\n• Move-In And Move-Out Cleaning Service\n• Post Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `We offer:\n\n• Commercial Cleaning\n• Standard Cleaning & Deep Cleaning Packages\n• Move-In And Move-Out Cleaning Service\n• Post Construction Cleaning\n• Wall Washing and Wall Cleaning`
   },
   {
     question: "Do you offer discounts?",
@@ -85,7 +85,7 @@ const faqs = [
   },
   {
     question: "What is your 100% satisfaction guarantee policy?",
-    answer: "If you're not 100% satisfied with the results, call us back within 24 hours, and we'll return to make it right!"
+    answer: "If you're not 100% satisfied, tell us within 24 hours and we'll return and make it right at no additional charge."
   }
 ];
 
@@ -93,7 +93,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Arbour Lake Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/arbour-lake",
-  description: "Professional house cleaning services in Arbour Lake, Calgary",
+  description: "Professional house cleaning services in Arbour Lake, Calgary. Welcoming lakeside community near Stoney Trail NW. 100% satisfaction guarantee.",
   priceRange: "$$",
   geo: { latitude: "51.1011", longitude: "-114.2031" },
 });
@@ -112,8 +112,8 @@ export default function ArbourLake() {
         <meta property="og:title" content="House Cleaning Services Arbour Lake Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services Arbour Lake Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Arbour Lake, Calgary. 100% satisfaction guaranteed." />
-        <meta property="og:description" content="Professional house cleaning in Arbour Lake, Calgary. 100% satisfaction guaranteed." />
+        <meta name="twitter:description" content="Professional house cleaning services in Arbour Lake, Calgary. Welcoming lakeside community near Stoney Trail NW. 100% satisfaction guarantee." />
+        <meta property="og:description" content="Professional house cleaning services in Arbour Lake, Calgary. Welcoming lakeside community near Stoney Trail NW. 100% satisfaction guarantee." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/arbour-lake/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/arbour-lake/" />

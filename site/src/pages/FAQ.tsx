@@ -64,10 +64,6 @@ const faqCategories: FAQCategory[] = [
         answer: "If our team arrives and cannot get into the home — no key left, a code that does not work, or nobody able to let them in — the visit is charged at half the cost of the scheduled service. The cleaner has already travelled and the slot cannot be reassigned at that point. Letting us know at least 24 hours ahead avoids this entirely.",
       },
       {
-        question: "What happens if something is damaged during a clean?",
-        answer: "Tell us as soon as you notice. Send photos or video within 24 hours so we can investigate while the details are still fresh, either by phone or to support@dutycleaners.ca, and we will look into what happened and come back to you.",
-      },
-      {
         question: "What are your operating hours?",
         answer: "We're available Monday through Saturday from 8:00 AM to 8:00 PM, and Sundays from 9:00 AM to 3:00 PM. We offer flexible scheduling to accommodate your busy lifestyle.",
       },
@@ -359,9 +355,9 @@ export default function FAQ() {
         <meta name="description" content="Find answers to common questions about Duty Cleaners' house cleaning services in Edmonton and Calgary. Pricing, scheduling, services, and more." />
         <meta name="keywords" content="cleaning FAQ, house cleaning questions, Edmonton cleaning, Calgary cleaning, cleaning service hours" />
         <link rel="canonical" href="https://dutycleaners.ca/faqs/" />
-        <meta property="og:title" content="FAQ - Duty Cleaners | House Cleaning Questions Answered" />
+        <meta property="og:title" content="House Cleaning FAQs – Edmonton & Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="FAQ - Duty Cleaners | House Cleaning Questions Answered" />
+        <meta name="twitter:title" content="House Cleaning FAQs – Edmonton & Calgary | Duty Cleaners" />
         <meta name="twitter:description" content="Answers to common questions about Duty Cleaners' house cleaning services in Edmonton and Calgary." />
         <meta property="og:description" content="Answers to common questions about Duty Cleaners' house cleaning services in Edmonton and Calgary." />
         <meta property="og:url" content="https://dutycleaners.ca/faqs/" />
@@ -377,8 +373,7 @@ export default function FAQ() {
       <section className="bg-brand-navy py-20 relative overflow-hidden">
         <img width={1920} height={1088}
           src={heroFaqLivingRoom}
-          alt=""
-          aria-hidden="true"
+          alt="Freshly cleaned living room after a Duty Cleaners visit"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-brand-navy/85 via-brand-navy/75 to-brand-navy/85" />

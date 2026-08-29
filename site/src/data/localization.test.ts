@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { join } from "node:path";
+import { displayNameFor, proseNameFor } from "./place-names";
 
 /**
  * Two guards from the duplicate-content / localization sweep of 2026-08-29.
@@ -24,28 +25,6 @@ import { join } from "node:path";
 
 const ROOT = join(__dirname, "..", "..");
 const DIST = join(ROOT, "dist");
-
-const SPECIAL: Record<string, string> = {
-  "st-albert": "St. Albert",
-  "mcconachie": "McConachie",
-  "mccauley": "McCauley",
-  "mckernan": "McKernan",
-  "mcleod": "McLeod",
-  "hollick-kenyon": "Hollick-Kenyon",
-};
-
-function displayName(slug: string): string {
-  const bare = slug
-    .replace(/^cleaning-services-/, "")
-    .replace(/-(edmonton|calgary)$/, "");
-  return (
-    SPECIAL[bare] ??
-    bare
-      .split("-")
-      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-      .join(" ")
-  );
-}
 
 function locationUrls(): Array<{ url: string; city: "edmonton" | "calgary" }> {
   if (!existsSync(DIST)) return [];
@@ -77,9 +56,9 @@ describe("every location page is localized to its own place", () => {
     const wrong: string[] = [];
     for (const { url } of locs) {
       const slug = url.replace(/\/+$/, "").split("/").pop()!;
-      const name = displayName(slug);
+      const name = proseNameFor(slug);
       const text = mainText(read(url));
-      const m = /A standard clean in ([A-Z][\w.'\- ]+?) runs/.exec(text);
+      const m = /A standard clean in (.+?) runs/.exec(text);
       if (m && m[1].trim() !== name) {
         wrong.push(`${url}: prose says "${m[1].trim()}", page is "${name}"`);
       }
@@ -92,7 +71,7 @@ describe("every location page is localized to its own place", () => {
     const missing: string[] = [];
     for (const { url } of locs) {
       const slug = url.replace(/\/+$/, "").split("/").pop()!;
-      const first = displayName(slug).split(" ")[0].toLowerCase();
+      const first = displayNameFor(slug).split(" ")[0].toLowerCase();
       const html = read(url);
       const title = (/<title[^>]*>([\s\S]*?)<\/title>/.exec(html)?.[1] ?? "").toLowerCase();
       const h1 = (/<h1[^>]*>([\s\S]*?)<\/h1>/.exec(html)?.[1] ?? "")

@@ -56,10 +56,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Grovenor home spotless and fresh year-round." },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning of your Grovenor home — every corner, baseboard, and hidden surface." },
+  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning that leaves your Grovenor home spotless and fresh." },
+  { icon: Sparkles, title: "Deep Cleaning", description: "Top-to-bottom detail that reaches what weekly cleaning never does." },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth Grovenor move — leave or arrive to a pristine home." },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around Grovenor." },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Post-renovation dust and debris, professionally removed." },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
   { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
 ];
@@ -80,19 +80,19 @@ export default function Grovenor() {
   const faqs = [
     {
       question: "How long does an initial cleaning take?",
-      answer: `We work to a checklist, not a clock. Your Grovenor team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
+      answer: `We work to a checklist, not a clock. The crew stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Grovenor?",
-      answer: `Around Grovenor we offer the full range:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `Households here can book any of the following:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
-      answer: `Yes — recurring Grovenor customers save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+      answer: `Yes — customers in Grovenor on a recurring schedule save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `A Grovenor deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+      answer: `In Grovenor, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
     },
     {
       question: "What is your 100% satisfaction guarantee policy?",
@@ -113,7 +113,7 @@ export default function Grovenor() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning in Grovenor, Edmonton | Duty Cleaners</title>
+        <title>Grovenor, Edmonton House Cleaning | Duty Cleaners</title>
         <meta name="description" content="Professional house cleaning in Grovenor, Edmonton. Trusted local cleaners serving Grovenor homes with reliable, customer-rated cleaning service." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
@@ -121,18 +121,17 @@ export default function Grovenor() {
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/grovenor",
   areaServed: "Grovenor, Edmonton, AB",
-  description: "Professional house cleaning services in Grovenor, Edmonton.",
+  description: "Professional house cleaning in Grovenor, Edmonton. Trusted local cleaners serving Grovenor homes with reliable, customer-rated cleaning service.",
   geo: { latitude: "53.543", longitude: "-113.553" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/grovenor/" />
-        <meta property="og:title" content="House Cleaning in Grovenor, Edmonton | Duty Cleaners" />
+        <meta property="og:title" content="Grovenor, Edmonton House Cleaning | Duty Cleaners" />
         <meta property="og:description" content="Professional house cleaning in Grovenor, Edmonton. Trusted local cleaners serving Grovenor homes with reliable, customer-rated cleaning service." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/grovenor/" />
-        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning in Grovenor, Edmonton | Duty Cleaners" />
+        <meta name="twitter:title" content="Grovenor, Edmonton House Cleaning | Duty Cleaners" />
         <meta name="twitter:description" content="Professional house cleaning in Grovenor, Edmonton. Trusted local cleaners serving Grovenor homes with reliable, customer-rated cleaning service." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
@@ -234,7 +233,7 @@ export default function Grovenor() {
                   Cleaning Services for Grovenor Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Grovenor homes get every service they need.
+                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
                 </p>
               </div>
             </AnimatedSection>
@@ -259,7 +258,7 @@ export default function Grovenor() {
                   Why Grovenor Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by Grovenor families for reliable, thorough cleaning.
+                  Reliable, detail-first cleaning families count on.
                 </p>
               </div>
             </AnimatedSection>

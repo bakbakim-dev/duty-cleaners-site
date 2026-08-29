@@ -69,12 +69,12 @@ export default function CalgaryMoveInOut() {
         <meta name="description" content="Inspection-ready move out cleaning Calgary & move in cleaning services. End of tenancy cleaning trusted by landlords. Same-day available." />
         <meta name="keywords" content="move out cleaning Calgary, move in cleaning Calgary, end of tenancy cleaning Calgary, move in ready cleaning, damage deposit cleaning Calgary" />
         <link rel="canonical" href="https://dutycleaners.ca/move-out-cleaning-calgary/" />
-        <meta property="og:title" content="Move Out Cleaning Calgary | Move In Cleaning Services | Duty Cleaners" />
+        <meta property="og:title" content="Move Out & Move In Cleaning Calgary | Duty Cleaners" />
         <meta property="og:description" content="Inspection-ready move out cleaning Calgary & move in cleaning services. End of tenancy cleaning trusted by landlords. Same-day available." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/move-out-cleaning-calgary/" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Move Out Cleaning Calgary | Move In Cleaning Services | Duty Cleaners" />
+        <meta name="twitter:title" content="Move Out & Move In Cleaning Calgary | Duty Cleaners" />
         <meta name="twitter:description" content="Inspection-ready move out cleaning Calgary & move in cleaning services. End of tenancy cleaning trusted by landlords. Same-day available." />
         {/* This page had no structured data at all. Service ties the offering
             to the Calgary LocalBusiness node; FAQPage mirrors the accordion

@@ -56,9 +56,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Ambleside home spotless and fresh year-round." },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning of your Ambleside home — every corner, baseboard, and hidden surface." },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth Ambleside move — leave or arrive to a pristine home." },
+  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to bring the whole home back to baseline." },
+  { icon: Sparkles, title: "Deep Cleaning", description: "A full top-to-bottom reset — corners, baseboards, and the surfaces regular visits skip." },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for moving day — leave or arrive to a pristine home." },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around Ambleside." },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
   { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
@@ -67,7 +67,7 @@ const services = [
 const whyUsItems = [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
   { icon: Star, title: "4.9 on Google", description: "Trusted by thousands of Alberta families with verified Google reviews." },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability in Ambleside. We work around your busy life." },
+  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day slots when the schedule allows. We work around your busy life." },
   { icon: Leaf, title: "High Quality Cleaning Supplies", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "Not happy? Let us know within 24 hours and we'll re-clean at no extra cost." },
@@ -88,11 +88,11 @@ export default function Ambleside() {
     },
     {
       question: "Do you offer discounts?",
-      answer: `Yes — recurring Ambleside customers save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+      answer: `Yes — customers in Ambleside on a recurring schedule save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `A Ambleside deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
     },
     {
       question: "What is your 100% satisfaction guarantee policy?",
@@ -121,7 +121,7 @@ export default function Ambleside() {
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/ambleside-edmonton",
   areaServed: "Ambleside, Edmonton, AB",
-  description: "Professional house cleaning services in Ambleside, Edmonton.",
+  description: "Professional house cleaning in Ambleside, Edmonton. Trusted local cleaners serving Ambleside homes with reliable, customer-rated cleaning service.",
   geo: { latitude: "53.454", longitude: "-113.63" },
 }))}
         </script>
@@ -130,7 +130,6 @@ export default function Ambleside() {
         <meta property="og:description" content="Professional house cleaning in Ambleside, Edmonton. Trusted local cleaners serving Ambleside homes with reliable, customer-rated cleaning service." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/ambleside-edmonton/" />
-        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Ambleside, Edmonton | Duty Cleaners" />
         <meta name="twitter:description" content="Professional house cleaning in Ambleside, Edmonton. Trusted local cleaners serving Ambleside homes with reliable, customer-rated cleaning service." />
@@ -234,7 +233,7 @@ export default function Ambleside() {
                   Cleaning Services for Ambleside Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Ambleside homes get every service they need.
+                  From routine upkeep to deep cleans and move-outs — every service a home needs.
                 </p>
               </div>
             </AnimatedSection>
@@ -259,7 +258,7 @@ export default function Ambleside() {
                   Why Ambleside Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by Ambleside families for reliable, thorough cleaning.
+                  Trusted locally for reliable, thorough cleaning.
                 </p>
               </div>
             </AnimatedSection>

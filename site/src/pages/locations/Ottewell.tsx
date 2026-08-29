@@ -57,10 +57,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Ottewell home spotless and fresh year-round." },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning of your Ottewell home — every corner, baseboard, and hidden surface." },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth Ottewell move — leave or arrive to a pristine home." },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around Ottewell." },
+  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning for a spotless, fresh reset in one visit." },
+  { icon: Sparkles, title: "Deep Cleaning", description: "A full top-to-bottom reset — corners, baseboards, and the surfaces regular visits skip." },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Inspection-grade detail for moving out or settling in." },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared properly after renos and handovers." },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
   { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
 ];
@@ -85,15 +85,15 @@ export default function Ottewell() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Ottewell?",
-      answer: `Around Ottewell we offer the full range:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `Households here can book any of the following:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
-      answer: `Yes — recurring Ottewell customers save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+      answer: `Yes. A recurring schedule earns a standing discount:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `A Ottewell deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+      answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
     },
     {
       question: "What is your 100% satisfaction guarantee policy?",
@@ -114,7 +114,7 @@ export default function Ottewell() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning in Ottewell, Edmonton | Duty Cleaners</title>
+        <title>Ottewell, Edmonton House Cleaning | Duty Cleaners</title>
         <meta name="description" content="Professional house cleaning in Ottewell, Edmonton. Trusted local cleaners serving southeast Edmonton families." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
@@ -122,18 +122,17 @@ export default function Ottewell() {
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/ottewell-edmonton",
   areaServed: "Ottewell, Edmonton, AB",
-  description: "Professional house cleaning services in Ottewell, Edmonton.",
+  description: "Professional house cleaning in Ottewell, Edmonton. Trusted local cleaners serving southeast Edmonton families.",
   geo: { latitude: "53.53", longitude: "-113.418" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/ottewell-edmonton/" />
-        <meta property="og:title" content="House Cleaning in Ottewell, Edmonton | Duty Cleaners" />
+        <meta property="og:title" content="Ottewell, Edmonton House Cleaning | Duty Cleaners" />
         <meta property="og:description" content="Professional house cleaning in Ottewell, Edmonton. Trusted local cleaners serving southeast Edmonton families." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/ottewell-edmonton/" />
-        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning in Ottewell, Edmonton | Duty Cleaners" />
+        <meta name="twitter:title" content="Ottewell, Edmonton House Cleaning | Duty Cleaners" />
         <meta name="twitter:description" content="Professional house cleaning in Ottewell, Edmonton. Trusted local cleaners serving southeast Edmonton families." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
@@ -234,7 +233,7 @@ export default function Ottewell() {
                   Cleaning Services for Ottewell Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Ottewell homes get every service they need.
+                  From routine upkeep to deep cleans and move-outs — every service a home needs.
                 </p>
               </div>
             </AnimatedSection>
@@ -259,7 +258,7 @@ export default function Ottewell() {
                   Why Ottewell Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by Ottewell families for reliable, thorough cleaning.
+                  Reliable, detail-first cleaning families count on.
                 </p>
               </div>
             </AnimatedSection>

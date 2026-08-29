@@ -241,16 +241,15 @@ const AirbnbCleaningEdmonton = () => {
     <div className="min-h-screen flex flex-col">
       <Helmet>
         <title>Airbnb Cleaning Edmonton | Turnover Service | Duty Cleaners</title>
-        <meta name="description" content="Reliable Airbnb and short-term rental turnover cleaning in Edmonton. Restocking, fresh linens and fast turnarounds — priced per hour." />
+        <meta name="description" content="Airbnb turnover cleaning across Edmonton — same-day changeovers between guests, linens and restocking handled, priced hourly with a 3-hour minimum." />
         <link rel="canonical" href="https://dutycleaners.ca/edmonton/airbnb-cleaning/" />
         <meta property="og:title" content="Airbnb Cleaning Edmonton | Turnover Service | Duty Cleaners" />
-        <meta property="og:description" content="Reliable Airbnb and short-term rental turnover cleaning in Edmonton. Restocking, fresh linens and fast turnarounds — priced per hour." />
+        <meta property="og:description" content="Airbnb turnover cleaning across Edmonton — same-day changeovers between guests, linens and restocking handled, priced hourly with a 3-hour minimum." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/edmonton/airbnb-cleaning/" />
-        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Airbnb Cleaning Edmonton | Turnover Service | Duty Cleaners" />
-        <meta name="twitter:description" content="Reliable Airbnb and short-term rental turnover cleaning in Edmonton. Restocking, fresh linens and fast turnarounds — priced per hour." />
+        <meta name="twitter:description" content="Airbnb turnover cleaning across Edmonton — same-day changeovers between guests, linens and restocking handled, priced hourly with a 3-hour minimum." />
         {/* Mirrors the FAQ rendered on this page. Generated from the same
             `faqs` array, so the markup can never drift from the copy. */}
         <script type="application/ld+json">
@@ -265,7 +264,7 @@ const AirbnbCleaningEdmonton = () => {
           })}
         </script>
         <script type="application/ld+json">
-          {JSON.stringify(buildServiceSchema({ name: "Airbnb Turnover Cleaning", description: "Reliable Airbnb and short-term rental turnover cleaning in Edmonton. Restocking, fresh linens and fast turnarounds — priced per hour.", path: "/edmonton/airbnb-cleaning", city: "edmonton" }))}
+          {JSON.stringify(buildServiceSchema({ name: "Airbnb Turnover Cleaning", description: "Airbnb turnover cleaning across Edmonton — same-day changeovers between guests, linens and restocking handled, priced hourly with a 3-hour minimum.", path: "/edmonton/airbnb-cleaning", city: "edmonton" }))}
         </script>
       </Helmet>
       <Navigation city="edmonton" />
@@ -278,8 +277,7 @@ const AirbnbCleaningEdmonton = () => {
       <section className="relative py-20 px-4 bg-brand-navy overflow-hidden">
         <img width={1920} height={1080}
           src={heroBg}
-          alt=""
-          aria-hidden="true"
+          alt="Guest-ready short-term rental living room in Edmonton after a turnover clean"
           className="absolute inset-0 w-full h-full object-cover opacity-25"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-brand-navy/80 via-brand-navy/70 to-brand-navy/90" />

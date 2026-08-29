@@ -228,7 +228,7 @@ export default function BlogChoosingCleaningCompany() {
                       <div className="flex items-start gap-3">
                         <CheckCircle2 className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
                         <div>
-                          <h4 className="font-semibold text-foreground mb-1">{option.title}</h4>
+                          <h3 className="font-semibold text-foreground mb-1">{option.title}</h3>
                           <p className="text-sm text-muted-foreground">{option.description}</p>
                         </div>
                       </div>
@@ -255,7 +255,7 @@ export default function BlogChoosingCleaningCompany() {
                       <div className="flex items-start gap-3">
                         <CheckCircle2 className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
                         <div>
-                          <h4 className="font-semibold text-foreground mb-1">{point.title}</h4>
+                          <h3 className="font-semibold text-foreground mb-1">{point.title}</h3>
                           <p className="text-sm text-muted-foreground">{point.description}</p>
                         </div>
                       </div>

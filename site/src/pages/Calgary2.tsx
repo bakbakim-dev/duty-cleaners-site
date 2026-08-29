@@ -238,7 +238,7 @@ export default function Calgary2() {
            phone="(403) 768-1341"
            phoneLink="tel:4037681341"
            heroImage={calgaryHeroRoom}
-           heroAlt=""
+           heroAlt="Bright, freshly cleaned Calgary living room with sunlight across the floor"
            heroPosition="center 58%"
            processImages={[
              { src: gallerySpotlessKitchen, alt: "Spotless Calgary kitchen after a professional cleaning" },
@@ -274,7 +274,7 @@ export default function Calgary2() {
 
         <DutyCleanPromise />
 
-       <JudgmentFree image={judgmentRoom} />
+       <JudgmentFree image={judgmentRoom} alt="Calgary living room reset after a clean — lived-in, not staged" />
 
         <CityServicesChapter
           city="Calgary"

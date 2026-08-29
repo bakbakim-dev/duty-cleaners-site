@@ -200,7 +200,7 @@ export default function Edmonton2() {
     answer: "Yes, subject to availability! Our Edmonton cleaning crews understand that life gets busy. Call us and we'll do our best to accommodate same-day or next-day requests."
   }, {
     question: "What cleaning products do you use?",
-    answer: "We bring all cleaning supplies and equipment, and we can use specific products you prefer — just tell us when you book."
+    answer: "Our teams arrive with all supplies and equipment included. If there is a product line you prefer — or one you want us to avoid — note it on your booking and we will work to it."
   }];
   // Schema must mirror the FAQs actually rendered on the page.
   const faqSchema = {
@@ -240,7 +240,7 @@ export default function Edmonton2() {
            phone="(780) 913-6565"
            phoneLink="tel:7809136565"
            heroImage={edmontonHeroRoom}
-           heroAlt=""
+           heroAlt="Bright, freshly cleaned Edmonton living room with sunlight across the floor"
            heroPosition="center"
            heroScrim="soft"
            processImages={[
@@ -264,7 +264,7 @@ export default function Edmonton2() {
 
         <DutyCleanPromise />
 
-       <JudgmentFree image={judgmentRoom} />
+       <JudgmentFree image={judgmentRoom} alt="Tidied Edmonton living room after a routine clean — lived-in, not staged" />
 
         <CityServicesChapter
           city="Edmonton"

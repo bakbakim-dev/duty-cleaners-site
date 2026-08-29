@@ -165,7 +165,7 @@ const FeatureHighlight = ({
       <Icon className="w-5 h-5 text-accent" />
     </div>
     <div>
-      <h4 className="font-semibold text-white mb-1">{title}</h4>
+      <h3 className="font-semibold text-white mb-1">{title}</h3>
       <p className="text-white/90 text-sm">{description}</p>
     </div>
   </div>

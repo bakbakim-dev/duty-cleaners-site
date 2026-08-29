@@ -58,10 +58,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Balwin home spotless and fresh year-round." },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning of your Balwin home — every corner, baseboard, and hidden surface." },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth Balwin move — leave or arrive to a pristine home." },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around Balwin." },
+  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to bring the whole home back to baseline." },
+  { icon: Sparkles, title: "Deep Cleaning", description: "A full top-to-bottom reset — corners, baseboards, and the surfaces regular visits skip." },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Inspection-grade detail for moving out or settling in." },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared properly after renos and handovers." },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
   { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
 ];
@@ -84,7 +84,7 @@ export default function Balwin() {
   name: "Duty Cleaners – Balwin, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/balwin-edmonton",
-  description: "Professional house cleaning services in Balwin, Edmonton. Reliable local cleaners serving the Balwin community.",
+  description: "Professional house cleaning in Balwin, Edmonton. Serving families near Zoie Gardens Park, Princeton School & more. Local cleaners you can trust.",
 });
   const faqJsonLd = {
     "@context": "https://schema.org",
@@ -111,18 +111,17 @@ export default function Balwin() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning in Balwin, Edmonton | Duty Cleaners</title>
+        <title>House Cleaners in Balwin, Edmonton | Duty Cleaners</title>
         <meta name="description" content="Professional house cleaning in Balwin, Edmonton. Serving families near Zoie Gardens Park, Princeton School & more. Local cleaners you can trust." />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/balwin-edmonton/" />
-        <meta property="og:title" content="House Cleaning in Balwin, Edmonton | Duty Cleaners" />
+        <meta property="og:title" content="House Cleaners in Balwin, Edmonton | Duty Cleaners" />
         <meta property="og:description" content="Professional house cleaning in Balwin, Edmonton. Serving families near Zoie Gardens Park, Princeton School & more. Local cleaners you can trust." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/balwin-edmonton/" />
-        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning in Balwin, Edmonton | Duty Cleaners" />
+        <meta name="twitter:title" content="House Cleaners in Balwin, Edmonton | Duty Cleaners" />
         <meta name="twitter:description" content="Professional house cleaning in Balwin, Edmonton. Serving families near Zoie Gardens Park, Princeton School & more. Local cleaners you can trust." />
       </Helmet>
 
@@ -213,7 +212,7 @@ export default function Balwin() {
                   Cleaning Services for Balwin Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Balwin homes get every service they need.
+                  Everything from weekly upkeep to full move-out cleans.
                 </p>
               </div>
             </AnimatedSection>

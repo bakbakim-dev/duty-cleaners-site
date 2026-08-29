@@ -360,7 +360,7 @@ export default function BlogCleaningProducts() {
                     >
                       <XCircle className="h-6 w-6 text-destructive flex-shrink-0 mt-0.5" />
                       <div>
-                        <h4 className="font-semibold text-foreground mb-1">{item.title}</h4>
+                        <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
                         <p className="text-muted-foreground text-sm">{item.why}</p>
                       </div>
                     </div>
@@ -386,9 +386,9 @@ export default function BlogCleaningProducts() {
                   <div className="flex items-start gap-3">
                     <ShoppingCart className="h-6 w-6 text-primary flex-shrink-0 mt-0.5" />
                     <div>
-                      <h4 className="font-bold text-foreground mb-3">
+                      <h3 className="font-bold text-foreground mb-3">
                         Everything above, available at any Canadian grocery or hardware chain
-                      </h4>
+                      </h3>
                       <ul className="space-y-2 text-muted-foreground text-sm">
                         <li>• pH-neutral all-purpose cleaner (a concentrate is cheapest per use)</li>
                         <li>• 12+ microfibre cloths, in at least three colors</li>

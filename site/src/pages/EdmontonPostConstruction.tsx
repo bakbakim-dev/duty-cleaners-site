@@ -106,7 +106,6 @@ export default function EdmontonPostConstruction() {
         <meta property="og:description" content="Final-stage post-construction cleaning in Edmonton for newly built and renovated homes. Remove drywall dust, smudges, and contractor residue." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/post-construction-cleaning/" />
-        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Post-Construction Cleaning Edmonton | Duty Cleaners" />
         <meta name="twitter:description" content="Final-stage post-construction cleaning in Edmonton for newly built and renovated homes. Remove drywall dust, smudges, and contractor residue." />

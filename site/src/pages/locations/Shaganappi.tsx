@@ -48,9 +48,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Shaganappi home spotless and fresh year-round." },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning of your Shaganappi home — every corner, baseboard, and hidden surface." },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth Shaganappi move — leave or arrive to a pristine home." },
+  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning for a spotless, fresh reset in one visit." },
+  { icon: Sparkles, title: "Deep Cleaning", description: "Top-to-bottom detail that reaches what weekly cleaning never does." },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Move-day cleaning done to the standard landlords check for." },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Shaganappi." },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
   { icon: Building2, title: "Commercial Cleaning", description: "Professional office and commercial space cleaning for Shaganappi businesses of all sizes." },
@@ -93,7 +93,7 @@ const nearbyAreas = ["Sunalta","Killarney-Glengarry","Westgate","Spruce Cliff","
 const faqs = [
   {
     question: "How long does an initial cleaning take?",
-    answer: `We work to a checklist, not a clock. Your Shaganappi team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
+    answer: `We work to a checklist, not a clock. Your cleaners stay until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Shaganappi?",
@@ -101,15 +101,15 @@ const faqs = [
   },
   {
     question: "Do you offer discounts?",
-    answer: `Yes — recurring Shaganappi customers save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+    answer: `Yes. A recurring schedule earns a standing discount:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `A Shaganappi deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+    answer: `In Shaganappi, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
   },
   {
     question: "What is your 100% satisfaction guarantee policy?",
-    answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back to your Shaganappi home and make it right — at no extra cost!"
+    answer: "If you're not 100% satisfied, call us within 24 hours and we'll re-clean the missed areas — at no extra cost!"
   }
 ];
 
@@ -123,7 +123,6 @@ const structuredData = buildLocationSchema({
 
 export default function Shaganappi() {
   useEffect(() => {
-    document.title = "House Cleaning Services Shaganappi | Duty Cleaners";
     window.scrollTo(0, 0);
   }, []);
 
@@ -131,12 +130,12 @@ export default function Shaganappi() {
     <>
       <Helmet>
         <title>House Cleaning in Shaganappi, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Shaganappi, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed. Pay after your clean." />
-        <meta property="og:title" content="House Cleaning Services Shaganappi Calgary | Duty Cleaners" />
+        <meta name="description" content="Book house cleaning in Shaganappi, Calgary in about 60 seconds. Reference-checked cleaners and a 24-hour make-it-right guarantee." />
+        <meta property="og:title" content="House Cleaning in Shaganappi, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning Services Shaganappi Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Shaganappi, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
-        <meta property="og:description" content="Professional house cleaning in Shaganappi, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
+        <meta name="twitter:title" content="House Cleaning in Shaganappi, Calgary | Duty Cleaners" />
+        <meta name="twitter:description" content="Book house cleaning in Shaganappi, Calgary in about 60 seconds. Reference-checked cleaners and a 24-hour make-it-right guarantee." />
+        <meta property="og:description" content="Book house cleaning in Shaganappi, Calgary in about 60 seconds. Reference-checked cleaners and a 24-hour make-it-right guarantee." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/shaganappi-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/shaganappi-calgary/" />
@@ -177,7 +176,7 @@ export default function Shaganappi() {
                 Professional House Cleaning in Shaganappi
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Trusted house cleaning services for one of Calgary's most-loved communities — bringing a calm, spotless home within reach.
+                Trusted house cleaning for Shaganappi — bringing a calm, spotless home within reach.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -212,10 +211,10 @@ export default function Shaganappi() {
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Cleaning Services Tailored to Shaganappi Living</h2>
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>
-                    Shaganappi is a peaceful inner-SW community framed by its namesake golf course, with bungalows, character infills, and quick LRT access to downtown. Whether you're juggling work, family, or weekend adventures, our team helps keep your home calm, fresh, and welcoming.
+                    Shaganappi is a peaceful inner-SW community framed by its namesake golf course, with bungalows, character infills, and quick LRT access to downtown. A standing visit keeps the house at baseline through the busiest stretches: calm, fresh, and guest-ready.
                   </p>
                   <p>
-                    From single-family houses to townhomes and condos, we tailor every visit to your space — bringing every supply we need — including any product you would rather we used.
+                    Whatever the home, we shape the clean to it and arrive fully supplied, with your preferred products used on request.
                   </p>
                 </div>
               </div>
@@ -231,7 +230,7 @@ export default function Shaganappi() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Shaganappi Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Shaganappi homes get every service they need.
+                  From routine upkeep to deep cleans and move-outs — every service a home needs.
                 </p>
               </div>
             </AnimatedSection>
@@ -315,7 +314,7 @@ export default function Shaganappi() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
                   <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Calm, Spotless Shaganappi Home — Every Visit</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Our vetted cleaners treat your home with care, attention, and the same standards we'd want in our own. Walk in to fresh air, gleaming surfaces, and that quiet feeling of <em>everything in its place</em>.
+                    Vetted cleaners, careful hands, and the standard we'd hold for our own homes. Come back to fresh air and surfaces that actually gleam.
                   </p>
                   <ul className="space-y-3">
                     {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
@@ -368,7 +367,7 @@ export default function Shaganappi() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Shaganappi Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by Shaganappi families for reliable, thorough cleaning.
+                  Dependable cleaning, visit after visit.
                 </p>
               </div>
             </AnimatedSection>

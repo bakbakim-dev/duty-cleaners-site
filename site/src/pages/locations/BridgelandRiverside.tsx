@@ -48,9 +48,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Bridgeland-Riverside home spotless and fresh year-round." },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning of your Bridgeland Riverside home — every corner, baseboard, and hidden surface." },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth Bridgeland Riverside move — leave or arrive to a pristine home." },
+  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning that resets the whole home, room by room." },
+  { icon: Sparkles, title: "Deep Cleaning", description: "A full top-to-bottom reset — corners, baseboards, and the surfaces regular visits skip." },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Move-day cleaning done to the standard landlords check for." },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Bridgeland-Riverside." },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
   { icon: Building2, title: "Commercial Cleaning", description: "Professional office and commercial space cleaning for Bridgeland-Riverside businesses of all sizes." },
@@ -59,7 +59,7 @@ const services = [
 const whyUsItems = [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
   { icon: Star, title: "4.9 on Google", description: "Trusted by thousands of Alberta families with verified Google reviews." },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability in Bridgeland Riverside. We work around your busy life." },
+  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day slots when the schedule allows. We work around your busy life." },
   { icon: Leaf, title: "High Quality Cleaning Supplies", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
@@ -93,23 +93,23 @@ const nearbyAreas = ["Renfrew","Crescent Heights","Inglewood","Downtown","Sunnys
 const faqs = [
   {
     question: "How long does an initial cleaning take?",
-    answer: `We work to a checklist, not a clock. Your Bridgeland Riverside team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
+    answer: `We work to a checklist, not a clock. Your cleaners stay until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Bridgeland-Riverside?",
-    answer: `Around Bridgeland Riverside we offer the full range:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `Around Bridgeland-Riverside we offer the full range:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
   },
   {
     question: "Do you offer discounts?",
-    answer: `Yes — recurring Bridgeland Riverside customers save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+    answer: `Yes — customers in Bridgeland-Riverside on a recurring schedule save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `A Bridgeland Riverside deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+    answer: `In Bridgeland-Riverside, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
   },
   {
     question: "What is your 100% satisfaction guarantee policy?",
-    answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back to your Bridgeland Riverside home and make it right — at no extra cost!"
+    answer: "If you're not 100% satisfied, call us within 24 hours and we'll re-clean the missed areas — at no extra cost!"
   }
 ];
 
@@ -123,7 +123,6 @@ const structuredData = buildLocationSchema({
 
 export default function BridgelandRiverside() {
   useEffect(() => {
-    document.title = "House Cleaning Services Bridgeland-Riverside | Duty Cleaners";
     window.scrollTo(0, 0);
   }, []);
 
@@ -131,12 +130,12 @@ export default function BridgelandRiverside() {
     <>
       <Helmet>
         <title>House Cleaning in Bridgeland-Riverside, Calgary</title>
-        <meta name="description" content="Professional house cleaning in Bridgeland-Riverside, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed. Pay after your clean." />
-        <meta property="og:title" content="House Cleaning Services Bridgeland-Riverside Calgary | Duty Cleaners" />
+        <meta name="description" content="Book house cleaning in Bridgeland-Riverside, Calgary in about 60 seconds. Reference-checked cleaners and a 24-hour make-it-right guarantee." />
+        <meta property="og:title" content="House Cleaning in Bridgeland-Riverside, Calgary" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning Services Bridgeland-Riverside Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Bridgeland-Riverside, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
-        <meta property="og:description" content="Professional house cleaning in Bridgeland-Riverside, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
+        <meta name="twitter:title" content="House Cleaning in Bridgeland-Riverside, Calgary" />
+        <meta name="twitter:description" content="Book house cleaning in Bridgeland-Riverside, Calgary in about 60 seconds. Reference-checked cleaners and a 24-hour make-it-right guarantee." />
+        <meta property="og:description" content="Book house cleaning in Bridgeland-Riverside, Calgary in about 60 seconds. Reference-checked cleaners and a 24-hour make-it-right guarantee." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/bridgeland-riverside-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/bridgeland-riverside-calgary/" />
@@ -177,7 +176,7 @@ export default function BridgelandRiverside() {
                 Professional House Cleaning in Bridgeland-Riverside
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Trusted house cleaning services for one of Calgary's most-loved communities — bringing a calm, spotless home within reach.
+                Trusted house cleaning for Bridgeland-Riverside — bringing a calm, spotless home within reach.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -215,7 +214,7 @@ export default function BridgelandRiverside() {
                     Bridgeland-Riverside is a vibrant inner-city community just east of downtown, blending historic European heritage with a thriving food scene and stunning river views. Whether you're juggling work, family, or weekend adventures, our team helps keep your home calm, fresh, and welcoming.
                   </p>
                   <p>
-                    From single-family houses to townhomes and condos, we tailor every visit to your space — bringing every supply we need — including any product you would rather we used.
+                    Whatever the home, we shape the clean to it and arrive fully supplied, with your preferred products used on request.
                   </p>
                 </div>
               </div>
@@ -231,7 +230,7 @@ export default function BridgelandRiverside() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Bridgeland-Riverside Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Bridgeland Riverside homes get every service they need.
+                  Everything from weekly upkeep to full move-out cleans.
                 </p>
               </div>
             </AnimatedSection>
@@ -315,7 +314,7 @@ export default function BridgelandRiverside() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
                   <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Calm, Spotless Bridgeland-Riverside Home — Every Visit</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Our vetted cleaners treat your home with care, attention, and the same standards we'd want in our own. Walk in to fresh air, gleaming surfaces, and that quiet feeling of <em>everything in its place</em>.
+                    Vetted cleaners, careful hands, and the standard we'd hold for our own homes. Come back to fresh air and surfaces that actually gleam.
                   </p>
                   <ul className="space-y-3">
                     {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
@@ -368,7 +367,7 @@ export default function BridgelandRiverside() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Bridgeland-Riverside Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by Bridgeland Riverside families for reliable, thorough cleaning.
+                  Dependable cleaning, visit after visit.
                 </p>
               </div>
             </AnimatedSection>

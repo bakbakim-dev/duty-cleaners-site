@@ -69,7 +69,7 @@ export default function GiftCard() {
           content="Buy a Duty Cleaners gift card online. Choose any amount, add a message, and it arrives by email right away or on a date you pick. Edmonton & Calgary."
         />
         <link rel="canonical" href="https://dutycleaners.ca/gift-card/" />
-        <meta property="og:title" content="Duty Cleaners Gift Cards" />
+        <meta property="og:title" content="Duty Cleaners Gift Cards | Give a Clean Home in Alberta" />
         <meta
           property="og:description"
           content="Give someone their weekend back. Any amount, delivered by email, redeemable across visits."
@@ -77,6 +77,8 @@ export default function GiftCard() {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/gift-card/" />
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Duty Cleaners Gift Cards | Give a Clean Home in Alberta" />
+        <meta name="twitter:description" content="Give someone their weekend back. Any amount, delivered by email, redeemable across visits." />
       </Helmet>
 
       <div className="min-h-screen">

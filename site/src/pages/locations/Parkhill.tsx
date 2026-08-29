@@ -47,9 +47,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Parkhill home spotless and fresh year-round." },
+  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning that leaves your Parkhill home spotless and fresh." },
   { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning of your Parkhill home — every corner, baseboard, and hidden surface." },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth Parkhill move — leave or arrive to a pristine home." },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Move-day cleaning done to the standard landlords check for." },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Parkhill." },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
   { icon: Building2, title: "Commercial Cleaning", description: "Professional office and commercial space cleaning for Parkhill businesses of all sizes." },
@@ -96,19 +96,19 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Parkhill?",
-    answer: `Around Parkhill we offer the full range:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `The full service menu is available here:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
   },
   {
     question: "Do you offer discounts?",
-    answer: `Yes — recurring Parkhill customers save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+    answer: `Yes — the discount grows with visit frequency:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `A Parkhill deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+    answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
   },
   {
     question: "What is your 100% satisfaction guarantee policy?",
-    answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back to your Parkhill home and make it right — at no extra cost!"
+    answer: "If you're not 100% satisfied, call us within 24 hours and we'll re-clean the missed areas — at no extra cost!"
   }
 ];
 
@@ -122,7 +122,6 @@ const structuredData = buildLocationSchema({
 
 export default function Parkhill() {
   useEffect(() => {
-    document.title = "House Cleaning Services Parkhill | Duty Cleaners";
     window.scrollTo(0, 0);
   }, []);
 
@@ -130,12 +129,12 @@ export default function Parkhill() {
     <>
       <Helmet>
         <title>House Cleaning Services in Parkhill, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Parkhill, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed. Pay after your clean." />
-        <meta property="og:title" content="House Cleaning Services Parkhill Calgary | Duty Cleaners" />
+        <meta name="description" content="House cleaning in Parkhill, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
+        <meta property="og:title" content="House Cleaning Services in Parkhill, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning Services Parkhill Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Parkhill, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
-        <meta property="og:description" content="Professional house cleaning in Parkhill, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
+        <meta name="twitter:title" content="House Cleaning Services in Parkhill, Calgary | Duty Cleaners" />
+        <meta name="twitter:description" content="House cleaning in Parkhill, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
+        <meta property="og:description" content="House cleaning in Parkhill, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/parkhill-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/parkhill-calgary/" />
@@ -226,7 +225,7 @@ export default function Parkhill() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Parkhill Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Parkhill homes get every service they need.
+                  Everything from weekly upkeep to full move-out cleans.
                 </p>
               </div>
             </AnimatedSection>
@@ -353,7 +352,7 @@ export default function Parkhill() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Parkhill Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by Parkhill families for reliable, thorough cleaning.
+                  Reliable, detail-first cleaning families count on.
                 </p>
               </div>
             </AnimatedSection>

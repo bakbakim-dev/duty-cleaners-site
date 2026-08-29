@@ -228,7 +228,6 @@ const ServiceDetailPage = ({
         <meta property="og:description" content={seoDescription} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonicalUrlForPath(new URL(canonical).pathname)} />
-        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={seoTitle} />
         <meta name="twitter:description" content={seoDescription} />
@@ -328,7 +327,7 @@ const ServiceDetailPage = ({
 
       {/* Photo Strip — horizontal snap-scroll, authentic interiors only */}
       {galleryImages && galleryImages.length > 0 && (
-        <section aria-label="Cleaning photo gallery" className="bg-background border-b border-border">
+        <section aria-label={`${cityName} cleaning photo gallery`} className="bg-background border-b border-border">
           <div className="py-6 overflow-x-auto snap-x snap-mandatory">
             <div className="flex gap-4 px-4 w-max mx-auto">
               {galleryImages.map((img, i) => (

@@ -88,6 +88,7 @@ export default function BlogVinegarBakingSoda() {
         />
         <link rel="canonical" href="https://dutycleaners.ca/cleaning-with-vinegar-and-baking-soda/" />
         <meta property="og:title" content="Cleaning with Vinegar and Baking Soda | Duty Cleaners" />
+        <meta property="og:description" content="Learn how to clean your home naturally with vinegar and baking soda. Safe, effective tips for kitchen, bathroom and laundry from Duty Cleaners." />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Cleaning with Vinegar and Baking Soda | Duty Cleaners" />
         <meta name="twitter:description" content="Learn how to clean your home naturally with vinegar and baking soda. Safe, effective tips for kitchen, bathroom and laundry from Duty Cleaners." />
@@ -206,7 +207,7 @@ export default function BlogVinegarBakingSoda() {
 
                 <div className="grid md:grid-cols-2 gap-6 mb-8">
                   <div className="p-6 bg-primary/10 rounded-xl border border-primary/20">
-                    <h4 className="font-bold text-foreground mb-2">🧂 Baking Soda (Base)</h4>
+                    <h3 className="font-bold text-foreground mb-2">🧂 Baking Soda (Base)</h3>
                     <p className="text-muted-foreground text-sm">
                       Also known as sodium bicarbonate, baking soda can dissolve some compounds, including grease and dirt. It's also a natural abrasive cleaner that can serve as an excellent cleaning agent without fear of damaging your surfaces.
                     </p>
@@ -242,7 +243,7 @@ export default function BlogVinegarBakingSoda() {
                   <div className="flex items-start gap-3">
                     <AlertTriangle className="h-6 w-6 text-accent-foreground flex-shrink-0 mt-0.5" />
                     <div>
-                      <h4 className="font-bold text-foreground mb-2">Pro Tip: Use It While It's Still Fizzing</h4>
+                      <h3 className="font-bold text-foreground mb-2">Pro Tip: Use It While It's Still Fizzing</h3>
                       <p className="text-muted-foreground text-sm">
                         If you do combine them, use the mixture straight away. The carbon dioxide bubbles do the useful work by lifting loose debris, so the mixture is at its most helpful while it is still fizzing. Once it stops, the acid and base have neutralised each other and what remains is close to plain water. That is the whole reason we suggest using them one after the other rather than pre-mixed.
                       </p>
@@ -294,7 +295,7 @@ export default function BlogVinegarBakingSoda() {
                     <div key={index} className="flex gap-4 p-4 bg-muted/30 rounded-lg">
                       <CheckCircle2 className="h-6 w-6 text-primary flex-shrink-0 mt-0.5" />
                       <div>
-                        <h4 className="font-semibold text-foreground mb-1">{item.title}</h4>
+                        <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
                         <p className="text-muted-foreground text-sm">{item.description}</p>
                       </div>
                     </div>
@@ -334,7 +335,7 @@ export default function BlogVinegarBakingSoda() {
                     <div key={index} className="flex gap-4 p-4 bg-destructive/10 rounded-lg border border-destructive/20">
                       <XCircle className="h-6 w-6 text-destructive flex-shrink-0 mt-0.5" />
                       <div>
-                        <h4 className="font-semibold text-foreground mb-1">{item.title}</h4>
+                        <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
                         <p className="text-muted-foreground text-sm">{item.description}</p>
                       </div>
                     </div>

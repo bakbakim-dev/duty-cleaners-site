@@ -53,10 +53,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Griesbach home spotless and fresh year-round." },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning of your Griesbach home — every corner, baseboard, and hidden surface." },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth Griesbach move — leave or arrive to a pristine home." },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around Griesbach." },
+  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning that leaves your Griesbach home spotless and fresh." },
+  { icon: Sparkles, title: "Deep Cleaning", description: "Every corner, baseboard, and hidden surface, cleaned top to bottom." },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Move-day cleaning done to the standard landlords check for." },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Post-renovation dust and debris, professionally removed." },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
   { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
 ];
@@ -64,7 +64,7 @@ const services = [
 const whyUsItems = [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
   { icon: Star, title: "4.9 on Google", description: "Trusted by thousands of Alberta families with verified Google reviews." },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability in Griesbach. We work around your busy life." },
+  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day slots when the schedule allows. We work around your busy life." },
   { icon: Leaf, title: "High Quality Cleaning Supplies", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
@@ -84,7 +84,7 @@ export default function Griesbach() {
   const faqs = [
     {
       question: "How long does an initial cleaning take?",
-      answer: `We work to a checklist, not a clock. Your Griesbach team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
+      answer: `We work to a checklist, not a clock. Your cleaners stay until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Griesbach?",
@@ -92,11 +92,11 @@ export default function Griesbach() {
     },
     {
       question: "Do you offer discounts?",
-      answer: `Yes — recurring Griesbach customers save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+      answer: `Yes — customers in Griesbach on a recurring schedule save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `A Griesbach deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+      answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
     },
     {
       question: "What is your 100% satisfaction guarantee policy?",
@@ -117,16 +117,15 @@ export default function Griesbach() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning in Griesbach, Edmonton | Duty Cleaners</title>
+        <title>Griesbach, Edmonton House Cleaning | Duty Cleaners</title>
         <meta name="description" content="Reliable cleaners you can count on in Griesbach, Edmonton. Professional house cleaning services near Patricia Lake and Major General Griesbach Park." />
         <link rel="canonical" href="https://dutycleaners.ca/locations/griesbach-edmonton/" />
-        <meta property="og:title" content="House Cleaning in Griesbach, Edmonton | Duty Cleaners" />
+        <meta property="og:title" content="Griesbach, Edmonton House Cleaning | Duty Cleaners" />
         <meta property="og:description" content="Reliable cleaners you can count on in Griesbach, Edmonton. Professional house cleaning services near Patricia Lake and Major General Griesbach Park." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/griesbach-edmonton/" />
-        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning in Griesbach, Edmonton | Duty Cleaners" />
+        <meta name="twitter:title" content="Griesbach, Edmonton House Cleaning | Duty Cleaners" />
         <meta name="twitter:description" content="Reliable cleaners you can count on in Griesbach, Edmonton. Professional house cleaning services near Patricia Lake and Major General Griesbach Park." />
         <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Griesbach Edmonton", city: "edmonton", url: "https://dutycleaners.ca/locations/griesbach-edmonton", areaServed: "Griesbach, Edmonton, AB" }))}</script>
       </Helmet>
@@ -235,7 +234,7 @@ export default function Griesbach() {
                   Cleaning Services for Griesbach Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Griesbach homes get every service they need.
+                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
                 </p>
               </div>
             </AnimatedSection>
@@ -260,7 +259,7 @@ export default function Griesbach() {
                   Why Griesbach Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by Griesbach families for reliable, thorough cleaning.
+                  Dependable cleaning, visit after visit.
                 </p>
               </div>
             </AnimatedSection>

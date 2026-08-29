@@ -97,7 +97,6 @@ export default function CalgaryPostConstruction() {
         <meta property="og:description" content="Final-stage post-construction cleaning in Calgary for newly built and renovated homes. Remove drywall dust, smudges, and contractor residue." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/post-construction-cleaning-calgary/" />
-        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Post-Construction Cleaning Calgary | Duty Cleaners" />
         <meta name="twitter:description" content="Final-stage post-construction cleaning in Calgary for newly built and renovated homes. Remove drywall dust, smudges, and contractor residue." />

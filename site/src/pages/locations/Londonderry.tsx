@@ -56,8 +56,8 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Londonderry home spotless and fresh year-round." },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning of your Londonderry home — every corner, baseboard, and hidden surface." },
+  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning for a spotless, fresh reset in one visit." },
+  { icon: Sparkles, title: "Deep Cleaning", description: "Top-to-bottom detail that reaches what weekly cleaning never does." },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth Londonderry move — leave or arrive to a pristine home." },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around Londonderry." },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
@@ -87,7 +87,7 @@ export default function Londonderry() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning in Londonderry, Edmonton | Duty Cleaners</title>
+        <title>Londonderry, Edmonton House Cleaning | Duty Cleaners</title>
         <meta name="description" content="Professional house cleaning in Londonderry, Edmonton. Serving families near Londonderry Mall, Evansdale Park & M.E. LaZerte. Local cleaners you can trust." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
@@ -95,7 +95,7 @@ export default function Londonderry() {
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/londonderry",
   areaServed: "Londonderry, Edmonton, AB",
-  description: "Professional house cleaning services in Londonderry, Edmonton.",
+  description: "Professional house cleaning in Londonderry, Edmonton. Serving families near Londonderry Mall, Evansdale Park & M.E. LaZerte. Local cleaners you can trust.",
 }))}
         </script>
         {/* The FAQs below this page already renders — marked up so machine
@@ -112,13 +112,12 @@ export default function Londonderry() {
           })}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/londonderry/" />
-        <meta property="og:title" content="House Cleaning in Londonderry, Edmonton | Duty Cleaners" />
+        <meta property="og:title" content="Londonderry, Edmonton House Cleaning | Duty Cleaners" />
         <meta property="og:description" content="Professional house cleaning in Londonderry, Edmonton. Serving families near Londonderry Mall, Evansdale Park & M.E. LaZerte. Local cleaners you can trust." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/londonderry/" />
-        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning in Londonderry, Edmonton | Duty Cleaners" />
+        <meta name="twitter:title" content="Londonderry, Edmonton House Cleaning | Duty Cleaners" />
         <meta name="twitter:description" content="Professional house cleaning in Londonderry, Edmonton. Serving families near Londonderry Mall, Evansdale Park & M.E. LaZerte. Local cleaners you can trust." />
       </Helmet>
 
@@ -221,7 +220,7 @@ export default function Londonderry() {
                   Cleaning Services for Londonderry Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Londonderry homes get every service they need.
+                  Everything from weekly upkeep to full move-out cleans.
                 </p>
               </div>
             </AnimatedSection>

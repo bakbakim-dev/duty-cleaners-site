@@ -418,7 +418,6 @@ export default function Locations() {
         <meta property="og:description" content="Trusted house cleaning across Alberta: Edmonton, Calgary and surrounding towns. Reference-checked, customer-rated cleaners." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/" />
-        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Locations in Alberta | Duty Cleaners" />
         <meta name="twitter:description" content="Trusted house cleaning across Alberta: Edmonton, Calgary and surrounding towns. Reference-checked, customer-rated cleaners." />

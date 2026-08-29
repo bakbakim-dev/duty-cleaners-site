@@ -53,10 +53,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Bannerman home spotless and fresh year-round." },
+  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning that leaves your Bannerman home spotless and fresh." },
   { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning of your Bannerman home — every corner, baseboard, and hidden surface." },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth Bannerman move — leave or arrive to a pristine home." },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around Bannerman." },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Inspection-grade detail for moving out or settling in." },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Post-renovation dust and debris, professionally removed." },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
   { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
 ];
@@ -64,7 +64,7 @@ const services = [
 const whyUsItems = [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
   { icon: Star, title: "4.9 on Google", description: "Trusted by thousands of Alberta families with verified Google reviews." },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability in Bannerman. We work around your busy life." },
+  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability, schedule permitting. We work around your busy life." },
   { icon: Leaf, title: "High Quality Cleaning Supplies", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
@@ -97,7 +97,7 @@ const faqs = [
   },
   {
     question: "How long does an initial cleaning take?",
-    answer: "We work to a checklist, not a clock. Your Bannerman team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.",
+    answer: "We work to a checklist, not a clock. Your cleaners stay until every task in your service scope is complete, and your flat rate does not change based on how long it takes.",
   },
   {
     question: "Do you offer discounts?",
@@ -109,7 +109,7 @@ const faqs = [
   },
   {
     question: "What is your 100% satisfaction guarantee policy?",
-    answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back to your Bannerman home and make it right — at no extra cost!",
+    answer: "If you're not 100% satisfied, call us within 24 hours and we'll re-clean the missed areas — at no extra cost!",
   },
 ];
 
@@ -131,7 +131,7 @@ export default function Bannerman() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning in Bannerman, Edmonton | Duty Cleaners</title>
+        <title>Bannerman, Edmonton House Cleaning | Duty Cleaners</title>
         <meta name="description" content="Professional house cleaning in Bannerman, Edmonton. Serving families near Bannerman Park, Bannerman School, Hermitage Park & more. Local cleaners you can trust." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
@@ -139,17 +139,16 @@ export default function Bannerman() {
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/bannerman",
   areaServed: "Bannerman, Edmonton, AB",
-  description: "Professional house cleaning services in Bannerman, Edmonton.",
+  description: "Professional house cleaning in Bannerman, Edmonton. Serving families near Bannerman Park, Bannerman School, Hermitage Park & more. Local cleaners you can trust.",
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/bannerman/" />
-        <meta property="og:title" content="House Cleaning in Bannerman, Edmonton | Duty Cleaners" />
+        <meta property="og:title" content="Bannerman, Edmonton House Cleaning | Duty Cleaners" />
         <meta property="og:description" content="Professional house cleaning in Bannerman, Edmonton. Serving families near Bannerman Park, Bannerman School, Hermitage Park & more. Local cleaners you can trust." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/bannerman/" />
-        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning in Bannerman, Edmonton | Duty Cleaners" />
+        <meta name="twitter:title" content="Bannerman, Edmonton House Cleaning | Duty Cleaners" />
         <meta name="twitter:description" content="Professional house cleaning in Bannerman, Edmonton. Serving families near Bannerman Park, Bannerman School, Hermitage Park & more. Local cleaners you can trust." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>

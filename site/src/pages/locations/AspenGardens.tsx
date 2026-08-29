@@ -57,10 +57,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Aspen Gardens home spotless and fresh year-round." },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning of your Aspen Gardens home — every corner, baseboard, and hidden surface." },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth Aspen Gardens move — leave or arrive to a pristine home." },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around Aspen Gardens." },
+  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to bring the whole home back to baseline." },
+  { icon: Sparkles, title: "Deep Cleaning", description: "Every corner, baseboard, and hidden surface, cleaned top to bottom." },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Inspection-grade detail for moving out or settling in." },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris cleared after renovations or new builds." },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
   { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
 ];
@@ -68,7 +68,7 @@ const services = [
 const whyUsItems = [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
   { icon: Star, title: "4.9 on Google", description: "Trusted by thousands of Alberta families with verified Google reviews." },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability in Aspen Gardens. We work around your busy life." },
+  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability, schedule permitting. We work around your busy life." },
   { icon: Leaf, title: "High Quality Cleaning Supplies", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Vetted cleaners trained to Duty Cleaners' exacting quality standards." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "Not happy? Let us know within 24 hours and we'll re-clean at no additional charge." },
@@ -85,19 +85,19 @@ export default function AspenGardens() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Aspen Gardens?",
-      answer: `Around Aspen Gardens we offer the full range:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `Every service we run can be booked locally:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
-      answer: `Yes — recurring Aspen Gardens customers save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+      answer: `Yes, recurring visits cost less every time:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `A Aspen Gardens deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+      answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
     },
     {
       question: "What is your 100% satisfaction guarantee policy?",
-      answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back to your Aspen Gardens home and make it right — at no extra cost!"
+      answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back and put it right — at no extra cost!"
     }
   ];
   const faqJsonLd = {
@@ -114,7 +114,7 @@ export default function AspenGardens() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning in Aspen Gardens, Edmonton | Duty Cleaners</title>
+        <title>Aspen Gardens, Edmonton House Cleaning | Duty Cleaners</title>
         <meta name="description" content="Professional house cleaning in Aspen Gardens, Edmonton. Trusted local cleaners serving southwest Edmonton families." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
@@ -122,18 +122,17 @@ export default function AspenGardens() {
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/aspen-gardens-edmonton",
   areaServed: "Aspen Gardens, Edmonton, AB",
-  description: "Professional house cleaning services in Aspen Gardens, Edmonton.",
+  description: "Professional house cleaning in Aspen Gardens, Edmonton. Trusted local cleaners serving southwest Edmonton families.",
   geo: { latitude: "53.487", longitude: "-113.56" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/aspen-gardens-edmonton/" />
-        <meta property="og:title" content="House Cleaning in Aspen Gardens, Edmonton | Duty Cleaners" />
+        <meta property="og:title" content="Aspen Gardens, Edmonton House Cleaning | Duty Cleaners" />
         <meta property="og:description" content="Professional house cleaning in Aspen Gardens, Edmonton. Trusted local cleaners serving southwest Edmonton families." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/aspen-gardens-edmonton/" />
-        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning in Aspen Gardens, Edmonton | Duty Cleaners" />
+        <meta name="twitter:title" content="Aspen Gardens, Edmonton House Cleaning | Duty Cleaners" />
         <meta name="twitter:description" content="Professional house cleaning in Aspen Gardens, Edmonton. Trusted local cleaners serving southwest Edmonton families." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
@@ -234,7 +233,7 @@ export default function AspenGardens() {
                   Cleaning Services for Aspen Gardens Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Aspen Gardens homes get every service they need.
+                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
                 </p>
               </div>
             </AnimatedSection>
@@ -259,7 +258,7 @@ export default function AspenGardens() {
                   Why Aspen Gardens Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by Aspen Gardens families for reliable, thorough cleaning.
+                  Dependable cleaning, visit after visit.
                 </p>
               </div>
             </AnimatedSection>

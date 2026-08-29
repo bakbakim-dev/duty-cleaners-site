@@ -52,10 +52,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Capilano home spotless and fresh year-round." },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning of your Capilano home — every corner, baseboard, and hidden surface." },
+  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to bring the whole home back to baseline." },
+  { icon: Sparkles, title: "Deep Cleaning", description: "Top-to-bottom detail that reaches what weekly cleaning never does." },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth Capilano move — leave or arrive to a pristine home." },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around Capilano." },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Post-renovation dust and debris, professionally removed." },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
   { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
 ];
@@ -78,7 +78,7 @@ export default function Capilano() {
   name: "Duty Cleaners – Capilano, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/capilano-edmonton",
-  description: "Professional house cleaning services in Capilano, Edmonton. Reliable, customer-rated, and trusted by local families.",
+  description: "Professional house cleaning in Capilano, Edmonton. Serving families near Capilano Mall, Gold Bar Park & the river valley. Local cleaners you can trust.",
 });
   const faqJsonLd = {
     "@context": "https://schema.org",
@@ -114,7 +114,6 @@ export default function Capilano() {
         <meta property="og:description" content="Professional house cleaning in Capilano, Edmonton. Serving families near Capilano Mall, Gold Bar Park & the river valley. Local cleaners you can trust." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/capilano-edmonton/" />
-        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Capilano, Edmonton | Duty Cleaners" />
         <meta name="twitter:description" content="Professional house cleaning in Capilano, Edmonton. Serving families near Capilano Mall, Gold Bar Park & the river valley. Local cleaners you can trust." />
@@ -209,7 +208,7 @@ export default function Capilano() {
                   Cleaning Services for Capilano Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Capilano homes get every service they need.
+                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
                 </p>
               </div>
             </AnimatedSection>
@@ -234,7 +233,7 @@ export default function Capilano() {
                   Why Capilano Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by Capilano families for reliable, thorough cleaning.
+                  Reliable, detail-first cleaning families count on.
                 </p>
               </div>
             </AnimatedSection>

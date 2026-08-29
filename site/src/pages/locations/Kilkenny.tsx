@@ -57,10 +57,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Kilkenny home spotless and fresh year-round." },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning of your Kilkenny home — every corner, baseboard, and hidden surface." },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth Kilkenny move — leave or arrive to a pristine home." },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around Kilkenny." },
+  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning that leaves your Kilkenny home spotless and fresh." },
+  { icon: Sparkles, title: "Deep Cleaning", description: "Top-to-bottom detail that reaches what weekly cleaning never does." },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for moving day — leave or arrive to a pristine home." },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared properly after renos and handovers." },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
   { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
 ];
@@ -68,7 +68,7 @@ const services = [
 const whyUsItems = [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
   { icon: Star, title: "4.9 on Google", description: "Trusted by thousands of Alberta families with verified Google reviews." },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability in Kilkenny. We work around your busy life." },
+  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day openings most weeks. We work around your busy life." },
   { icon: Leaf, title: "High Quality Cleaning Supplies", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Vetted cleaners trained to Duty Cleaners' exacting quality standards." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "Not happy? Let us know within 24 hours and we'll re-clean at no additional charge." },
@@ -81,7 +81,7 @@ export default function Kilkenny() {
   const faqs = [
     {
       question: "How long does an initial cleaning take?",
-      answer: `We work to a checklist, not a clock. Your Kilkenny team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
+      answer: `We work to a checklist, not a clock. The crew stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Kilkenny?",
@@ -89,15 +89,15 @@ export default function Kilkenny() {
     },
     {
       question: "Do you offer discounts?",
-      answer: `Yes — recurring Kilkenny customers save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+      answer: `Yes. A recurring schedule earns a standing discount:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `A Kilkenny deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
     },
     {
       question: "What is your 100% satisfaction guarantee policy?",
-      answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back to your Kilkenny home and make it right — at no extra cost!"
+      answer: "If you're not 100% satisfied, call us within 24 hours and we'll re-clean the missed areas — at no extra cost!"
     }
   ];
   const faqJsonLd = {
@@ -114,7 +114,7 @@ export default function Kilkenny() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning in Kilkenny, Edmonton | Duty Cleaners</title>
+        <title>House Cleaners in Kilkenny, Edmonton | Duty Cleaners</title>
         <meta name="description" content="Professional house cleaning in Kilkenny, Edmonton. Trusted local cleaners serving northeast Edmonton families." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
@@ -122,18 +122,17 @@ export default function Kilkenny() {
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/kilkenny-edmonton",
   areaServed: "Kilkenny, Edmonton, AB",
-  description: "Professional house cleaning services in Kilkenny, Edmonton.",
+  description: "Professional house cleaning in Kilkenny, Edmonton. Trusted local cleaners serving northeast Edmonton families.",
   geo: { latitude: "53.601", longitude: "-113.466" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/kilkenny-edmonton/" />
-        <meta property="og:title" content="House Cleaning in Kilkenny, Edmonton | Duty Cleaners" />
+        <meta property="og:title" content="House Cleaners in Kilkenny, Edmonton | Duty Cleaners" />
         <meta property="og:description" content="Professional house cleaning in Kilkenny, Edmonton. Trusted local cleaners serving northeast Edmonton families." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/kilkenny-edmonton/" />
-        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning in Kilkenny, Edmonton | Duty Cleaners" />
+        <meta name="twitter:title" content="House Cleaners in Kilkenny, Edmonton | Duty Cleaners" />
         <meta name="twitter:description" content="Professional house cleaning in Kilkenny, Edmonton. Trusted local cleaners serving northeast Edmonton families." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
@@ -234,7 +233,7 @@ export default function Kilkenny() {
                   Cleaning Services for Kilkenny Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Kilkenny homes get every service they need.
+                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
                 </p>
               </div>
             </AnimatedSection>
@@ -259,7 +258,7 @@ export default function Kilkenny() {
                   Why Kilkenny Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by Kilkenny families for reliable, thorough cleaning.
+                  Reliable, detail-first cleaning families count on.
                 </p>
               </div>
             </AnimatedSection>
@@ -321,7 +320,7 @@ export default function Kilkenny() {
         heading="Kilkenny's era, in cleaning terms"
         paragraphs={[
           "Kilkenny was laid down in the late 1960s, and its bungalows keep the era's signature basement: panelled rec rooms, drop ceilings and bar corners that collect a specific mix of dust and dryness. Drop-ceiling tiles hold decades of fine particles and shed them when bumped, so basement cleans here start at the top or get undone.",
-          "The neighbourhood's border arterials — 97 Street on one side, 66 Street traffic nearby — bring the north side's constant grit, while the interior crescents stay quiet. Which street a Kilkenny home faces changes its entry workload more than its size does, and it is worth saying so when booking.",
+          "The neighbourhood's border arterials — 82 Street on one side, 66 Street traffic nearby — bring the north side's constant grit, while the interior crescents stay quiet. Which street a Kilkenny home faces changes its entry workload more than its size does, and it is worth saying so when booking.",
         ]}
       />
 

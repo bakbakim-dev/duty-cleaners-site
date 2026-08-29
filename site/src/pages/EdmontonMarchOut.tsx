@@ -184,6 +184,8 @@ export default function EdmontonMarchOut() {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/edmonton/march-out-cleaning/" />
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="March Out Cleaning Edmonton | CFHA Move-Out Cleaners" />
+        <meta name="twitter:description" content="Military housing move-out cleaning in Edmonton, done to CFHA march-out inspection standards." />
         <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
@@ -198,8 +200,7 @@ export default function EdmontonMarchOut() {
       <section className="relative py-20 px-4 bg-brand-navy overflow-hidden">
         <img
           src={heroBg}
-          alt=""
-          aria-hidden="true"
+          alt="Emptied Edmonton military home cleaned to march-out inspection standard"
           width={1920}
           height={1080}
           className="absolute inset-0 w-full h-full object-cover opacity-25"

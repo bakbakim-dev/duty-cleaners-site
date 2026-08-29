@@ -108,15 +108,15 @@ export default function CalgaryPricing() {
     <div className="min-h-screen">
       <Helmet>
         <title>Calgary House Cleaning Prices | Duty Cleaners</title>
-        <meta name="description" content="Clear, upfront pricing for Calgary cleaning services. Standard, deep, and move-in/out cleaning. No hidden fees. Get instant quote. 100% satisfaction guarantee." />
+        <meta name="description" content="Calgary cleaning rates, flat by home size — the same price sheet as Edmonton, with every add-on listed and 5% GST stated upfront." />
         <link rel="canonical" href="https://dutycleaners.ca/calgary/pricing/" />
         <meta property="og:title" content="Calgary House Cleaning Prices | Duty Cleaners" />
-        <meta property="og:description" content="Clear, upfront pricing for Calgary cleaning services. Standard, deep, and move-in/out cleaning. No hidden fees. Get instant quote. 100% satisfaction guarantee." />
+        <meta property="og:description" content="Calgary cleaning rates, flat by home size — the same price sheet as Edmonton, with every add-on listed and 5% GST stated upfront." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/calgary/pricing/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Calgary House Cleaning Prices | Duty Cleaners" />
-        <meta name="twitter:description" content="Clear, upfront pricing for Calgary cleaning services. Standard, deep, and move-in/out cleaning. No hidden fees. Get instant quote. 100% satisfaction guarantee." />
+        <meta name="twitter:description" content="Calgary cleaning rates, flat by home size — the same price sheet as Edmonton, with every add-on listed and 5% GST stated upfront." />
         <script type="application/ld+json">
           {JSON.stringify(buildPricingSchema({ city: "calgary", standard: standardPricing, deep: deepPricing, moveInOut: moveInOutPricing }))}
         </script>

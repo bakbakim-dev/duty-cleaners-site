@@ -63,10 +63,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Allendale home spotless and fresh year-round." },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning of your Allendale home — every corner, baseboard, and hidden surface." },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth Allendale move — leave or arrive to a pristine home." },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around Allendale." },
+  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning for a spotless, fresh reset in one visit." },
+  { icon: Sparkles, title: "Deep Cleaning", description: "Top-to-bottom detail that reaches what weekly cleaning never does." },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for moving day — leave or arrive to a pristine home." },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared properly after renos and handovers." },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
   { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
 ];
@@ -74,7 +74,7 @@ const services = [
 const whyUsItems = [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
   { icon: Star, title: "4.9 on Google", description: "Trusted by thousands of Alberta families with verified Google reviews." },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability in Allendale. We work around your busy life." },
+  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day slots when the schedule allows. We work around your busy life." },
   { icon: Leaf, title: "High Quality Cleaning Supplies", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
@@ -94,7 +94,7 @@ export default function Allendale() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning in Allendale, Edmonton | Duty Cleaners</title>
+        <title>House Cleaners in Allendale, Edmonton | Duty Cleaners</title>
         <meta name="description" content="Professional house cleaning in Allendale, Edmonton. Serving families near Allendale Park, Gateway Boulevard & 109 Street. Local cleaners you can trust." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
@@ -102,7 +102,7 @@ export default function Allendale() {
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/allendale",
   areaServed: "Allendale, Edmonton, AB",
-  description: "Professional house cleaning services in Allendale, Edmonton.",
+  description: "Professional house cleaning in Allendale, Edmonton. Serving families near Allendale Park, Gateway Boulevard & 109 Street. Local cleaners you can trust.",
 }))}
         </script>
         {/* The FAQs below this page already renders — marked up so machine
@@ -119,13 +119,12 @@ export default function Allendale() {
           })}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/allendale/" />
-        <meta property="og:title" content="House Cleaning in Allendale, Edmonton | Duty Cleaners" />
+        <meta property="og:title" content="House Cleaners in Allendale, Edmonton | Duty Cleaners" />
         <meta property="og:description" content="Professional house cleaning in Allendale, Edmonton. Serving families near Allendale Park, Gateway Boulevard & 109 Street. Local cleaners you can trust." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/allendale/" />
-        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning in Allendale, Edmonton | Duty Cleaners" />
+        <meta name="twitter:title" content="House Cleaners in Allendale, Edmonton | Duty Cleaners" />
         <meta name="twitter:description" content="Professional house cleaning in Allendale, Edmonton. Serving families near Allendale Park, Gateway Boulevard & 109 Street. Local cleaners you can trust." />
       </Helmet>
 
@@ -226,7 +225,7 @@ export default function Allendale() {
                   Cleaning Services for Allendale Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Allendale homes get every service they need.
+                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
                 </p>
               </div>
             </AnimatedSection>

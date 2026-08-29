@@ -64,6 +64,8 @@ export default function Prepare() {
         <meta property="og:type" content="article" />
         <meta property="og:url" content="https://dutycleaners.ca/prepare/" />
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Getting Ready for Your Clean | Duty Cleaners" />
+        <meta name="twitter:description" content="What actually helps before a house cleaning — and what you can skip." />
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
 
@@ -73,6 +75,7 @@ export default function Prepare() {
           <Breadcrumbs />
         </div>
 
+        <main id="main-content" tabIndex={-1}>
         <section className="bg-brand-navy py-16 md:py-20">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-3xl">
@@ -91,7 +94,6 @@ export default function Prepare() {
           </div>
         </section>
 
-        <main id="main-content" tabIndex={-1}>
           <section className="bg-background py-14 md:py-20">
             <div className="container mx-auto px-4">
               <div className="mx-auto max-w-3xl">

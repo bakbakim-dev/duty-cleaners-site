@@ -7,13 +7,15 @@ import defaultRoom from "@/assets/gallery/living-room-clean.webp";
 interface JudgmentFreeProps {
   /** Calm wide room behind the pull-quote; pick one not already on the page. */
   image?: string;
+  /** Describes that room; localize it so the page's city carries into image search. */
+  alt?: string;
 }
 
 /**
  * Our most differentiated claim, staged as a cinematic pause: the pull-quote
  * carried over a full-bleed lived-in room, supporting copy on paper below.
  */
-export default function JudgmentFree({ image = defaultRoom }: JudgmentFreeProps) {
+export default function JudgmentFree({ image = defaultRoom, alt = "Sunlit living room kept clean between visits" }: JudgmentFreeProps) {
   const { pathname } = useLocation();
   return (
     <section id="judgment-free" aria-labelledby="judgment-free-heading">
@@ -21,7 +23,7 @@ export default function JudgmentFree({ image = defaultRoom }: JudgmentFreeProps)
       <div className="relative isolate overflow-hidden bg-brand-navy">
         <img
           src={image}
-          alt=""
+          alt={alt}
           loading="lazy"
           decoding="async"
           className="absolute inset-0 h-full w-full object-cover"

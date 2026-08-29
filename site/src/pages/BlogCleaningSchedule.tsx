@@ -128,6 +128,7 @@ export default function BlogCleaningSchedule() {
         />
         <link rel="canonical" href="https://dutycleaners.ca/blog/cleaning-schedule/" />
         <meta property="og:title" content="A Cleaning Schedule That Actually Holds Up | Duty Cleaners" />
+        <meta property="og:description" content="Create a realistic cleaning schedule with daily, weekly, and monthly tasks. Expert tips from Duty Cleaners to keep your home clean without the stress." />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="A Cleaning Schedule That Actually Holds Up | Duty Cleaners" />
         <meta name="twitter:description" content="Create a realistic cleaning schedule with daily, weekly, and monthly tasks. Expert tips from Duty Cleaners to keep your home clean without the stress." />
@@ -239,7 +240,7 @@ export default function BlogCleaningSchedule() {
                     <div key={index} className="flex gap-4 p-4 bg-muted/30 rounded-lg">
                       <CheckCircle2 className="h-6 w-6 text-primary flex-shrink-0 mt-0.5" />
                       <div>
-                        <h4 className="font-semibold text-foreground mb-1">{task.title}</h4>
+                        <h3 className="font-semibold text-foreground mb-1">{task.title}</h3>
                         <p className="text-muted-foreground text-sm">{task.description}</p>
                       </div>
                     </div>
@@ -278,7 +279,7 @@ export default function BlogCleaningSchedule() {
                     <div key={index} className="flex gap-4 p-4 bg-secondary/30 rounded-lg">
                       <CheckCircle2 className="h-6 w-6 text-secondary-foreground flex-shrink-0 mt-0.5" />
                       <div>
-                        <h4 className="font-semibold text-foreground mb-1">{task.title}</h4>
+                        <h3 className="font-semibold text-foreground mb-1">{task.title}</h3>
                         <p className="text-muted-foreground text-sm">{task.description}</p>
                       </div>
                     </div>
@@ -315,7 +316,7 @@ export default function BlogCleaningSchedule() {
                     <div key={index} className="flex gap-4 p-4 bg-accent/30 rounded-lg">
                       <CheckCircle2 className="h-6 w-6 text-accent-foreground flex-shrink-0 mt-0.5" />
                       <div>
-                        <h4 className="font-semibold text-foreground mb-1">{task.title}</h4>
+                        <h3 className="font-semibold text-foreground mb-1">{task.title}</h3>
                         <p className="text-muted-foreground text-sm">{task.description}</p>
                       </div>
                     </div>

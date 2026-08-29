@@ -40,7 +40,6 @@ export default function Terms() {
         <meta property="og:description" content="Duty Cleaners terms of service: how our pricing, payment, scheduling and satisfaction guarantee work, and what our cleaning does and does not include." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/terms/" />
-        <meta property="og:image" content="https://dutycleaners.ca/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Terms of Service | Duty Cleaners" />
         <meta name="twitter:description" content="Duty Cleaners terms of service: how our pricing, payment, scheduling and satisfaction guarantee work, and what our cleaning does and does not include." />
@@ -52,6 +51,7 @@ export default function Terms() {
           <Breadcrumbs />
         </div>
 
+        <main id="main-content" tabIndex={-1}>
         <section className="relative bg-brand-navy py-20 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-brand-navy/80 via-brand-navy/70 to-brand-navy/90" />
           <div className="container mx-auto px-4 relative z-10">
@@ -67,7 +67,7 @@ export default function Terms() {
           </div>
         </section>
 
-        <main id="main-content" tabIndex={-1} className="container mx-auto px-4 py-16">
+        <div className="container mx-auto px-4 py-16">
           <div className="max-w-3xl mx-auto">
             <div className="prose prose-lg max-w-none text-muted-foreground">
               <p className="mb-8 text-lg">
@@ -258,6 +258,7 @@ export default function Terms() {
               </div>
             </div>
           </div>
+        </div>
         </main>
 
         <TrustPageCta />

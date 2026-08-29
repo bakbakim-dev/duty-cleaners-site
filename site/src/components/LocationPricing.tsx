@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { canonicalForPath } from "@/data/legacy-urls";
 import { cityFromPath } from "@/lib/city-from-path";
+import { proseNameFor } from "@/data/place-names";
 import {
   standardTierRows,
   deepCleanTierRows,
@@ -66,26 +67,9 @@ export default function LocationPricing({ place }: LocationPricingProps) {
   const slug = pathname.replace(/^\/(locations|cleaning-services)[/-]?/, "").replace(/\/+$/, "");
   const city = cityFromPath(pathname) === "calgary" ? "Calgary" : "Edmonton";
   const isOwnMunicipality = SURROUNDING_SLUGS.has(slug);
-  // Derive the display name from the slug WITHOUT the city suffix — the raw
-  // slug produced "Altadore Calgary" / "Hollick Kenyon Edmonton" inside prose
-  // ("A standard clean in Altadore Calgary runs…") on ~100 pages. Names with
-  // non-standard casing get pinned explicitly.
-  const SPECIAL: Record<string, string> = {
-    "st-albert": "St. Albert",
-    "mcconachie": "McConachie",
-    "mccauley": "McCauley",
-    "mckernan": "McKernan",
-    "mcleod": "McLeod",
-    "hollick-kenyon": "Hollick-Kenyon",
-  };
-  const bare = slug.replace(/-(edmonton|calgary)$/, "");
-  const name =
-    place ??
-    SPECIAL[bare] ??
-    bare
-      .split("-")
-      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-      .join(" ");
+  // One derivation, one override table — see data/place-names.ts. Private
+  // de-slugging here is how "Altadore Calgary" shipped in prose on ~100 pages.
+  const name = place ?? proseNameFor(slug);
   const pricingPath = city === "Calgary" ? "/calgary/pricing" : "/pricing";
 
   return (

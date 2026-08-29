@@ -48,9 +48,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Cranston home spotless and fresh year-round." },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning of your Cranston home — every corner, baseboard, and hidden surface." },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth Cranston move — leave or arrive to a pristine home." },
+  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning that leaves your Cranston home spotless and fresh." },
+  { icon: Sparkles, title: "Deep Cleaning", description: "Every corner, baseboard, and hidden surface, cleaned top to bottom." },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Inspection-grade detail for moving out or settling in." },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Cranston." },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
   { icon: Building2, title: "Commercial Cleaning", description: "Professional cleaning for businesses near Seton Urban District and surrounding area." },
@@ -68,11 +68,11 @@ const whyUsItems = [
 const nearbyAreas = ["Auburn Bay", "Mahogany", "Seton", "McKenzie Towne", "Douglasdale", "New Brighton", "Copperfield", "Chaparral"];
 
 const faqs = [
-  { question: "How long does an initial cleaning take?", answer: "We work to a checklist, not a clock. Your Cranston team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
-  { question: "What cleaning services does Duty Cleaners offer in Cranston?", answer: "Whenever you choose Duty Cleaners, you'll have an expert taking care of your home or business. We offer:\n\n• Commercial Cleaning\n• Standard Cleaning & Deep Cleaning Packages\n• Move-In And Move-Out Cleaning Service\n• Post Construction Cleaning\n• Wall Washing and Wall Cleaning" },
+  { question: "How long does an initial cleaning take?", answer: "We work to a checklist, not a clock. Your cleaners stay until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
+  { question: "What cleaning services does Duty Cleaners offer in Cranston?", answer: "We offer:\n\n• Commercial Cleaning\n• Standard Cleaning & Deep Cleaning Packages\n• Move-In And Move-Out Cleaning Service\n• Post Construction Cleaning\n• Wall Washing and Wall Cleaning" },
   { question: "Do you offer discounts?", answer: "We offer recurring discounts for our Standard and Deep Cleaning Packages.\n\nIf you avail of our recurring discount, on your next cleaning:\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off" },
   { question: "What's included in a deep cleaning?", answer: "Deep cleaning adds the following to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!" },
-  { question: "What is your 100% satisfaction guarantee policy?", answer: "If you're not 100% satisfied with the results, call us back within 24 hours, and we'll return to make it right!" },
+  { question: "What is your 100% satisfaction guarantee policy?", answer: "If you're not 100% satisfied, tell us within 24 hours and we'll return and make it right at no additional charge." },
 ];
 
 const structuredData = buildLocationSchema({
@@ -93,11 +93,11 @@ export default function Cranston() {
       <Helmet>
         <title>House Cleaning Services in Cranston, Calgary | Duty Cleaners</title>
         <meta name="description" content="Professional house cleaning in Cranston, Calgary. Family-friendly community with Century Hall amenities. 100% satisfaction guaranteed. Call (403) 768-1341." />
-        <meta property="og:title" content="House Cleaning Services Cranston Calgary | Duty Cleaners" />
+        <meta property="og:title" content="House Cleaning Services in Cranston, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning Services Cranston Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Cranston, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
-        <meta property="og:description" content="Professional house cleaning in Cranston, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
+        <meta name="twitter:title" content="House Cleaning Services in Cranston, Calgary | Duty Cleaners" />
+        <meta name="twitter:description" content="Professional house cleaning in Cranston, Calgary. Family-friendly community with Century Hall amenities. 100% satisfaction guaranteed. Call (403) 768-1341." />
+        <meta property="og:description" content="Professional house cleaning in Cranston, Calgary. Family-friendly community with Century Hall amenities. 100% satisfaction guaranteed. Call (403) 768-1341." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/cranston/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/cranston/" />
@@ -254,7 +254,7 @@ export default function Cranston() {
               <div className="text-center mb-14">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Cranston Homes</h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto text-lg">From routine upkeep to move-outs, Cranston homes get every service they need.</p>
+                <p className="text-muted-foreground max-w-2xl mx-auto text-lg">Upkeep, deep cleans, move-outs: the whole toolkit in one place.</p>
               </div>
             </AnimatedSection>
             <AnimatedSection>
@@ -273,7 +273,7 @@ export default function Cranston() {
               <div className="text-center mb-14">
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Cranston Residents Choose Duty Cleaners</h2>
-                <p className="text-white/90 max-w-2xl mx-auto text-lg">Trusted by Cranston families for reliable, thorough cleaning.</p>
+                <p className="text-white/90 max-w-2xl mx-auto text-lg">Reliable, detail-first cleaning families count on.</p>
               </div>
             </AnimatedSection>
             <AnimatedSection>

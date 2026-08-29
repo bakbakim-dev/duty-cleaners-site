@@ -46,7 +46,7 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Mahogany home spotless and fresh year-round." },
+  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to bring the whole home back to baseline." },
   { icon: Sparkles, title: "Deep Cleaning", description: "Comprehensive cleaning of the house reaching every corner, baseboard, and hidden surface." },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for smooth transitions — leave or arrive to a pristine lakeside home." },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris removal after renovations or constructions in Mahogany." },
@@ -68,19 +68,19 @@ const nearbyAreas = ["Mahogany Beach Club", "Mahogany Lake", "Mahogany Wetlands"
 const faqs = [
   {
     question: "How long does an initial cleaning take?",
-    answer: `We work to a checklist, not a clock. Your Mahogany team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
+    answer: `We work to a checklist, not a clock. Your cleaners stay until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Mahogany?",
-    answer: `Around Mahogany we offer the full range:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `Every service we run can be booked locally:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
   },
   {
     question: "Do you offer discounts?",
-    answer: `Yes — recurring Mahogany customers save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+    answer: `Yes — customers in Mahogany on a recurring schedule save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `A Mahogany deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+    answer: `In Mahogany, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
   },
   {
     question: "What is your 100% satisfaction guarantee policy?",
@@ -98,7 +98,6 @@ const structuredData = buildLocationSchema({
 
 export default function Mahogany() {
   useEffect(() => {
-    document.title = "House Cleaning Services Mahogany | Duty Cleaners";
     window.scrollTo(0, 0);
   }, []);
 
@@ -107,11 +106,11 @@ export default function Mahogany() {
       <Helmet>
         <title>House Cleaning Services in Mahogany, Calgary | Duty Cleaners</title>
         <meta name="description" content="Professional house cleaning in Mahogany, Calgary. Beautiful lakeside community in SE Calgary. 100% satisfaction guarantee. Call (403) 768-1341." />
-        <meta property="og:title" content="House Cleaning Services Mahogany Calgary | Duty Cleaners" />
+        <meta property="og:title" content="House Cleaning Services in Mahogany, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning Services Mahogany Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Mahogany, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
-        <meta property="og:description" content="Professional house cleaning in Mahogany, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed." />
+        <meta name="twitter:title" content="House Cleaning Services in Mahogany, Calgary | Duty Cleaners" />
+        <meta name="twitter:description" content="Professional house cleaning in Mahogany, Calgary. Beautiful lakeside community in SE Calgary. 100% satisfaction guarantee. Call (403) 768-1341." />
+        <meta property="og:description" content="Professional house cleaning in Mahogany, Calgary. Beautiful lakeside community in SE Calgary. 100% satisfaction guarantee. Call (403) 768-1341." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/mahogany/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/mahogany/" />

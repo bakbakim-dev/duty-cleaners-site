@@ -157,12 +157,12 @@ export default function EdmontonMoveInOut() {
         <meta name="description" content="Inspection-ready move out cleaning Edmonton & move in cleaning services. End of tenancy cleaning trusted by landlords. Same-day available." />
         <meta name="keywords" content="move out cleaning Edmonton, move in cleaning Edmonton, end of tenancy cleaning Edmonton, move in ready cleaning, damage deposit cleaning Edmonton, move out cleaners Edmonton" />
         <link rel="canonical" href="https://dutycleaners.ca/move-out-cleaning-edmonton/" />
-        <meta property="og:title" content="Move Out Cleaning Edmonton | Move In Cleaning Services | Duty Cleaners" />
+        <meta property="og:title" content="Move Out & Move In Cleaning Edmonton | Duty Cleaners" />
         <meta property="og:description" content="Inspection-ready move out cleaning Edmonton & move in cleaning services. End of tenancy cleaning trusted by landlords. Same-day available." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/move-out-cleaning-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Move Out Cleaning Edmonton | Move In Cleaning Services | Duty Cleaners" />
+        <meta name="twitter:title" content="Move Out & Move In Cleaning Edmonton | Duty Cleaners" />
         <meta name="twitter:description" content="Inspection-ready move out cleaning Edmonton & move in cleaning services. End of tenancy cleaning trusted by landlords. Same-day available." />
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>

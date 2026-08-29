@@ -96,6 +96,7 @@ export default function BlogHouseCleaningCost() {
         />
         <link rel="canonical" href="https://dutycleaners.ca/how-much-does-a-house-cleaning-cost/" />
         <meta property="og:title" content="How Much Does House Cleaning Cost? | Duty Cleaners" />
+        <meta property="og:description" content="Discover house cleaning costs in Canada. Learn about hourly rates, flat rates, and factors affecting professional cleaning service prices in Alberta." />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="How Much Does House Cleaning Cost? | Duty Cleaners" />
         <meta name="twitter:description" content="Discover house cleaning costs in Canada. Learn about hourly rates, flat rates, and factors affecting professional cleaning service prices in Alberta." />
@@ -242,7 +243,7 @@ export default function BlogHouseCleaningCost() {
 
                 <div className="grid md:grid-cols-2 gap-6 mb-8">
                   <div className="p-6 bg-muted/30 rounded-xl border">
-                    <h4 className="font-bold text-foreground mb-3 text-lg">🧹 Independent Cleaner</h4>
+                    <h3 className="font-bold text-foreground mb-3 text-lg">🧹 Independent Cleaner</h3>
                     <p className="text-muted-foreground text-sm mb-4">
                       The cost of an independent cleaner will depend on their rate and the type of cleaning you require. An independent cleaner who just started out may offer lower rates, while an established house cleaner may charge more.
                     </p>
@@ -284,7 +285,7 @@ export default function BlogHouseCleaningCost() {
                   <div className="p-6 bg-secondary/10 rounded-xl border border-secondary/20">
                     <div className="flex items-center gap-2 mb-3">
                       <Clock3 className="h-5 w-5 text-secondary-foreground" />
-                      <h4 className="font-bold text-foreground">Hourly Rate</h4>
+                      <h3 className="font-bold text-foreground">Hourly Rate</h3>
                     </div>
                     <ul className="text-muted-foreground text-sm space-y-2">
                       <li>• 2-bedroom apartment: <strong>$40-$65/hour</strong> per cleaner</li>
@@ -318,7 +319,7 @@ export default function BlogHouseCleaningCost() {
                       <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center mb-3">
                         <factor.icon className="h-5 w-5 text-primary" />
                       </div>
-                      <h4 className="font-semibold text-foreground mb-2">{factor.title}</h4>
+                      <h3 className="font-semibold text-foreground mb-2">{factor.title}</h3>
                       <p className="text-muted-foreground text-sm">{factor.description}</p>
                     </div>
                   ))}
@@ -352,7 +353,7 @@ export default function BlogHouseCleaningCost() {
                   {cleaningTypes.map((type, index) => (
                     <div key={index} className="flex flex-col sm:flex-row sm:items-center gap-4 p-5 bg-muted/30 rounded-xl border">
                       <div className="flex-1">
-                        <h4 className="font-semibold text-foreground mb-1">{type.title}</h4>
+                        <h3 className="font-semibold text-foreground mb-1">{type.title}</h3>
                         <p className="text-muted-foreground text-sm">{type.description}</p>
                       </div>
                       <div className="bg-primary text-primary-foreground px-4 py-2 rounded-lg font-semibold text-sm whitespace-nowrap">
@@ -371,7 +372,7 @@ export default function BlogHouseCleaningCost() {
 
                 <div className="space-y-4">
                   <div className="p-5 bg-destructive/10 rounded-xl border border-destructive/20">
-                    <h4 className="font-semibold text-foreground mb-2">⚠️ Late Cancellation Fees</h4>
+                    <h3 className="font-semibold text-foreground mb-2">⚠️ Late Cancellation Fees</h3>
                     <p className="text-muted-foreground text-sm">
                       Many companies charge fees for last-minute cancellations. Some may charge 50%-60% of the service cost, while others may require a flat rate of $50-$75. Always ask about cancellation policies when booking.
                     </p>

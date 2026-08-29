@@ -75,26 +75,77 @@ const ngrams = (words: string[], n = 8) => {
   return out;
 };
 
+/**
+ * BOTH directions are measured. The original guard only asked whether the
+ * Calgary page said something Edmonton's did not - which let the Edmonton
+ * sides of the deep-cleaning and recurring pairs sit at 191 and 196 novel
+ * 8-grams (below threshold) without any test noticing, because Calgary had
+ * been given bespoke local copy while Edmonton kept the generic base text.
+ * A twin relationship is symmetric; the guard now is too.
+ */
 describe("city twin pages are not copies of each other", () => {
+  const novelCount = (from: Set<string>, vs: Set<string>) => [...from].filter((g) => !vs.has(g)).length;
+
   for (const [edmonton, calgary] of PAIRS) {
-    it(`${calgary} says something ${edmonton} does not`, () => {
-      const a = mainText(edmonton);
-      const b = mainText(calgary);
-      if (a === null || b === null) return; // nothing to check before a prerender
+    for (const [page, twin] of [
+      [calgary, edmonton],
+      [edmonton, calgary],
+    ] as const) {
+      it(`${page} says something ${twin} does not`, () => {
+        const a = mainText(twin);
+        const b = mainText(page);
+        if (a === null || b === null) return; // nothing to check before a prerender
 
-      const wordsA = normalize(a).split(" ");
-      const wordsB = normalize(b).split(" ");
-      const gramsA = ngrams(wordsA);
-      const gramsB = ngrams(wordsB);
-      const novel = [...gramsB].filter((g) => !gramsA.has(g));
-      const percent = ((novel.length / Math.max(gramsB.size, 1)) * 100).toFixed(1);
+        const gramsTwin = ngrams(normalize(a).split(" "));
+        const gramsPage = ngrams(normalize(b).split(" "));
+        const novel = novelCount(gramsPage, gramsTwin);
+        const percent = ((novel / Math.max(gramsPage.size, 1)) * 100).toFixed(1);
 
-      expect(
-        novel.length,
-        `${calgary} carries only ${novel.length} novel 8-grams vs ${edmonton} (${percent}% of the page). ` +
-          `It reads as a find-and-replace copy. Add content true of this city and not the other — ` +
-          `weather, geography, building stock, the events calendar, licensing. See LocalMarketNote.`,
-      ).toBeGreaterThanOrEqual(MIN_NOVEL_NGRAMS);
-    });
+        expect(
+          novel,
+          `${page} carries only ${novel} novel 8-grams vs ${twin} (${percent}% of the page). ` +
+            `It reads as a find-and-replace copy. Add content true of this city and not the other - ` +
+            `weather, geography, building stock, the events calendar, licensing. See LocalMarketNote.`,
+        ).toBeGreaterThanOrEqual(MIN_NOVEL_NGRAMS);
+      });
+    }
   }
+});
+
+/**
+ * The homepage and /cleaning-services-calgary/ are the two conversion hubs.
+ * They share the pricing tables, the what's-included checklist, and the quote
+ * funnel BY DESIGN - funnel parity means a Calgary visitor gets the same
+ * decision-grade information as an Edmonton one, and faking differences in
+ * prices or scope to look "unique" would be lying to one city or the other.
+ *
+ * Measured RAW (no city-name normalisation), the pair sat at 76.1% 8-gram
+ * overlap-of-smaller after the localization pass. That is acceptable for a
+ * hub pair whose canonical/title/H1/schema/FAQ/testimonials/neighbourhood
+ * content all differ - but it must not creep back toward a clone. The ceiling
+ * fails the build if shared chapters grow or a city-specific chapter is
+ * deleted.
+ */
+describe("hub pair raw similarity ceiling", () => {
+  it("/ vs /cleaning-services-calgary/ stays under 78% raw 8-gram overlap", () => {
+    const a = mainText("/");
+    const b = mainText("/cleaning-services-calgary/");
+    if (a === null || b === null) return; // nothing to check before a prerender
+
+    const gramsA = ngrams(a.toLowerCase().split(" "));
+    const gramsB = ngrams(b.toLowerCase().split(" "));
+    const smaller = gramsA.size <= gramsB.size ? gramsA : gramsB;
+    const larger = gramsA.size <= gramsB.size ? gramsB : gramsA;
+    let shared = 0;
+    for (const g of smaller) if (larger.has(g)) shared++;
+    const overlap = (shared / Math.max(smaller.size, 1)) * 100;
+
+    expect(
+      overlap,
+      `Homepage and the Calgary hub share ${overlap.toFixed(1)}% of raw 8-grams ` +
+        `(ceiling 78%). The shared funnel chapters are by-design, but this much ` +
+        `overlap means city-specific chapters shrank or new shared copy was added. ` +
+        `Differentiate the new material per city before raising this ceiling.`,
+    ).toBeLessThanOrEqual(78);
+  });
 });
