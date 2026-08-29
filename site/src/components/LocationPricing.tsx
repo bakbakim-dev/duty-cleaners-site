@@ -66,9 +66,23 @@ export default function LocationPricing({ place }: LocationPricingProps) {
   const slug = pathname.replace(/^\/(locations|cleaning-services)[/-]?/, "").replace(/\/+$/, "");
   const city = cityFromPath(pathname) === "calgary" ? "Calgary" : "Edmonton";
   const isOwnMunicipality = SURROUNDING_SLUGS.has(slug);
+  // Derive the display name from the slug WITHOUT the city suffix — the raw
+  // slug produced "Altadore Calgary" / "Hollick Kenyon Edmonton" inside prose
+  // ("A standard clean in Altadore Calgary runs…") on ~100 pages. Names with
+  // non-standard casing get pinned explicitly.
+  const SPECIAL: Record<string, string> = {
+    "st-albert": "St. Albert",
+    "mcconachie": "McConachie",
+    "mccauley": "McCauley",
+    "mckernan": "McKernan",
+    "mcleod": "McLeod",
+    "hollick-kenyon": "Hollick-Kenyon",
+  };
+  const bare = slug.replace(/-(edmonton|calgary)$/, "");
   const name =
     place ??
-    slug
+    SPECIAL[bare] ??
+    bare
       .split("-")
       .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
       .join(" ");
@@ -85,7 +99,7 @@ export default function LocationPricing({ place }: LocationPricingProps) {
             Cleaning prices in {name}
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed mb-4">
-            A standard clean runs {PRICES.standard} depending on the size of your home, a deep
+            A standard clean in {name} runs {PRICES.standard} depending on the size of your home, a deep
             clean {PRICES.deep}, and a move-in or move-out clean {PRICES.moveInOut}. Those are flat
             rates in Canadian dollars before 5% GST — the figure you see before booking is the
             figure you pay, and it does not go up because a clean took longer than expected.
@@ -94,7 +108,7 @@ export default function LocationPricing({ place }: LocationPricingProps) {
               : ""}
           </p>
           <p className="text-muted-foreground text-lg leading-relaxed">
-            Recurring visits save 20% weekly, 15% bi-weekly and 10% monthly from the second clean.
+            For {name} homes on a recurring schedule, the discount is 20% weekly, 15% bi-weekly and 10% monthly from the second clean.
             Your first clean is charged at the standard one-time rate. The{" "}
             <Link to={canonicalForPath(pricingPath)} className="text-accent hover:underline">
               full {city} price list

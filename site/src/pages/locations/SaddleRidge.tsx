@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -67,7 +68,7 @@ const whyUsItems = [
 const nearbyAreas = ["Taradale", "Martindale", "Cityscape", "Skyview Ranch", "Falconridge", "Castleridge", "Coral Springs", "Redstone"];
 
 const faqs = [
-  { question: "How long does an initial cleaning take?", answer: "We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
+  { question: "How long does an initial cleaning take?", answer: "We work to a checklist, not a clock. Your Saddle Ridge team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
   { question: "What cleaning services does Duty Cleaners offer in Saddle Ridge?", answer: "Whenever you choose Duty Cleaners, you'll have an expert taking care of your home or business. We offer:\n\n• Commercial Cleaning\n• Standard Cleaning & Deep Cleaning Packages\n• Move-In And Move-Out Cleaning Service\n• Post Construction Cleaning\n• Wall Washing and Wall Cleaning" },
   { question: "Do you offer discounts?", answer: "We offer recurring discounts for our Standard and Deep Cleaning Packages.\n\nIf you avail of our recurring discount, on your next cleaning:\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off" },
   { question: "What's included in a deep cleaning?", answer: "Deep cleaning adds the following to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!" },
@@ -232,6 +233,16 @@ export default function SaddleRidge() {
           </div>
         </section>
 
+      <LocalMarketNote
+        accent="calgary"
+        eyebrow="Local knowledge"
+        heading="Saddle Ridge at family scale"
+        paragraphs={[
+          "Saddle Ridge runs to some of Calgary's largest family households, and its 2000s homes are built for them — double-primary layouts, spice kitchens whose cooking films need degreasing on a schedule regular kitchens never demand, and main-floor bedrooms that add an extra full bath to the count. A Saddle Ridge clean is bigger than its bedroom number implies.",
+          "Saddletowne's LRT and plaza anchor daily life, and the northeast's wind carries fine dust off Metis Trail and the airport lands to west-facing sills. Ongoing construction on the community's growing edges keeps site grit in rotation — window tracks tell you which phase is building.",
+        ]}
+      />
+
       <LocationPricing />
 
         {/* Services */}
@@ -260,7 +271,7 @@ export default function SaddleRidge() {
               <div className="text-center mb-14">
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Saddle Ridge Residents Choose Duty Cleaners</h2>
-                <p className="text-white/90 max-w-2xl mx-auto text-lg">Trusted by families across Calgary for reliable, thorough cleaning.</p>
+                <p className="text-white/90 max-w-2xl mx-auto text-lg">Trusted by Saddle Ridge families for reliable, thorough cleaning.</p>
               </div>
             </AnimatedSection>
             <AnimatedSection>

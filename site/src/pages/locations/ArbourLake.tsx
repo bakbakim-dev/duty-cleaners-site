@@ -48,7 +48,7 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Arbour Lake home spotless and fresh year-round." },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning reaching every corner, baseboard, and hidden surface." },
+  { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning of your Arbour Lake home — every corner, baseboard, and hidden surface." },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for smooth transitions — leave or arrive to a pristine lakeside home." },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Arbour Lake." },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
@@ -58,7 +58,7 @@ const services = [
 const whyUsItems = [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
   { icon: Star, title: "4.9 on Google", description: "Trusted by thousands of Alberta families with verified Google reviews." },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability. We work around your busy life." },
+  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability in Arbour Lake. We work around your busy life." },
   { icon: Leaf, title: "High Quality Cleaning Supplies", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
@@ -69,7 +69,7 @@ const nearbyAreas = ["Arbour Lake Estates", "Tuscany", "Scenic Acres", "Citadel"
 const faqs = [
   {
     question: "How long does an initial cleaning take?",
-    answer: `We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
+    answer: `We work to a checklist, not a clock. Your Arbour Lake team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Arbour Lake?",

@@ -54,9 +54,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Bannerman home spotless and fresh year-round." },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning reaching every corner, baseboard, and hidden surface." },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for smooth transitions — leave or arrive to a pristine home." },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in the area." },
+  { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning of your Bannerman home — every corner, baseboard, and hidden surface." },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth Bannerman move — leave or arrive to a pristine home." },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around Bannerman." },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
   { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
 ];
@@ -64,7 +64,7 @@ const services = [
 const whyUsItems = [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
   { icon: Star, title: "4.9 on Google", description: "Trusted by thousands of Alberta families with verified Google reviews." },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability. We work around your busy life." },
+  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability in Bannerman. We work around your busy life." },
   { icon: Leaf, title: "High Quality Cleaning Supplies", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
@@ -97,7 +97,7 @@ const faqs = [
   },
   {
     question: "How long does an initial cleaning take?",
-    answer: "We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.",
+    answer: "We work to a checklist, not a clock. Your Bannerman team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.",
   },
   {
     question: "Do you offer discounts?",
@@ -109,7 +109,7 @@ const faqs = [
   },
   {
     question: "What is your 100% satisfaction guarantee policy?",
-    answer: "If you're not 100% satisfied, call us within 24 hours and we'll return to make it right — at no extra cost!",
+    answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back to your Bannerman home and make it right — at no extra cost!",
   },
 ];
 
@@ -244,7 +244,7 @@ export default function Bannerman() {
                   Cleaning Services for Bannerman Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs, we have every service your home needs.
+                  From routine upkeep to move-outs, Bannerman homes get every service they need.
                 </p>
               </div>
             </AnimatedSection>
@@ -269,7 +269,7 @@ export default function Bannerman() {
                   Why Bannerman Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by families across Edmonton for reliable, thorough cleaning.
+                  Trusted by Bannerman families for reliable, thorough cleaning.
                 </p>
               </div>
             </AnimatedSection>

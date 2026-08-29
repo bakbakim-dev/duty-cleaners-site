@@ -118,19 +118,19 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
   </div>
 );
 
-const services = [
+const services = (place: string) => [
   { icon: Home, title: "Standard House Cleaning", description: "Weekly or bi-weekly maintenance to keep your home spotless and fresh year-round." },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning reaching every corner, baseboard, and hidden surface." },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for smooth transitions — leave or arrive to a pristine home." },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in the area." },
+  { icon: Sparkles, title: "Deep Cleaning", description: `Thorough top-to-bottom cleaning of your ${place} home — every corner, baseboard, and hidden surface.` },
+  { icon: Truck, title: "Move In/Out Cleaning", description: `Detailed cleaning for a smooth ${place} move — leave or arrive to a pristine home.` },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: `Expert dust and debris removal after renovations or new builds around ${place}.` },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
   { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
 ];
 
-const whyUsItems = [
+const whyUsItems = (place: string) => [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
   { icon: Star, title: "4.9 on Google", description: "Trusted by thousands of Alberta families with verified Google reviews." },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability. We work around your busy life." },
+  { icon: Clock, title: "Flexible Scheduling", description: `Same-day and next-day availability in ${place}. We work around your busy life.` },
   // "and the planet" is an environmental-benefit claim. Since the June 2024
   // Competition Act amendments those require substantiation on an internationally
   // recognised methodology, and private applications to the Tribunal have been
@@ -186,23 +186,23 @@ export default function LocationPageTemplate({
   const faqs = [
     {
       question: "How long does an initial cleaning take?",
-      answer: `We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
+      answer: `We work to a checklist, not a clock. Your ${city} team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
     },
     {
       question: `What cleaning services does Duty Cleaners offer in ${city}?`,
-      answer: `We offer a full range of services:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `Around ${city} we offer the full range:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
-      answer: `Yes! We offer recurring discounts:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+      answer: `Yes — recurring ${city} customers save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `Deep cleaning adds to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+      answer: `A ${city} deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
     },
     {
       question: "What is your 100% satisfaction guarantee policy?",
-      answer: "If you're not 100% satisfied, call us within 24 hours and we'll return to make it right — at no extra cost!"
+      answer: `If you're not 100% satisfied, call us within 24 hours and we'll come back to your ${city} home and make it right — at no extra cost!`
     }
   ];
   const faqJsonLd = {
@@ -380,7 +380,7 @@ export default function LocationPageTemplate({
           </AnimatedSection>
           <AnimatedSection>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {services.map((s, i) => (
+              {services(city).map((s, i) => (
                 <ServiceCard key={i} {...s} />
               ))}
             </div>
@@ -405,7 +405,7 @@ export default function LocationPageTemplate({
           </AnimatedSection>
           <AnimatedSection>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {whyUsItems.map((item, i) => (
+              {whyUsItems(city).map((item, i) => (
                 <WhyUsCard key={i} {...item} />
               ))}
             </div>

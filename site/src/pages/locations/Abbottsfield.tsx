@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -57,9 +58,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Abbottsfield home spotless and fresh year-round." },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning reaching every corner, baseboard, and hidden surface." },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for smooth transitions — leave or arrive to a pristine home." },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in the area." },
+  { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning of your Abbottsfield home — every corner, baseboard, and hidden surface." },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth Abbottsfield move — leave or arrive to a pristine home." },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around Abbottsfield." },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
   { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
 ];
@@ -67,7 +68,7 @@ const services = [
 const whyUsItems = [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
   { icon: Star, title: "4.9 on Google", description: "Trusted by thousands of Alberta families with verified Google reviews." },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability. We work around your busy life." },
+  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability in Abbottsfield. We work around your busy life." },
   { icon: Leaf, title: "High Quality Cleaning Supplies", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "Not happy? Let us know within 24 hours and we'll re-clean at no extra cost." },
@@ -80,23 +81,23 @@ export default function Abbottsfield() {
   const faqs = [
     {
       question: "How long does an initial cleaning take?",
-      answer: `We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
+      answer: `We work to a checklist, not a clock. Your Abbottsfield team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Abbottsfield?",
-      answer: `We offer a full range of services:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `Around Abbottsfield we offer the full range:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
-      answer: `Yes! We offer recurring discounts:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+      answer: `Yes — recurring Abbottsfield customers save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `Deep cleaning adds to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+      answer: `A Abbottsfield deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
     },
     {
       question: "What is your 100% satisfaction guarantee policy?",
-      answer: "If you're not 100% satisfied, call us within 24 hours and we'll return to make it right — at no extra cost!"
+      answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back to your Abbottsfield home and make it right — at no extra cost!"
     }
   ];
   const faqJsonLd = {
@@ -234,7 +235,7 @@ export default function Abbottsfield() {
                   Cleaning Services for Abbottsfield Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs, we have every service your home needs.
+                  From routine upkeep to move-outs, Abbottsfield homes get every service they need.
                 </p>
               </div>
             </AnimatedSection>
@@ -259,7 +260,7 @@ export default function Abbottsfield() {
                   Why Abbottsfield Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by families across Edmonton for reliable, thorough cleaning.
+                  Trusted by Abbottsfield families for reliable, thorough cleaning.
                 </p>
               </div>
             </AnimatedSection>
@@ -315,6 +316,15 @@ export default function Abbottsfield() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="Abbottsfield's compact stock"
+        paragraphs={[
+          "Abbottsfield is one of the northeast's densest pockets — 1970s townhouse rows and low-rise walk-ups more than detached homes — and row-house cleaning has its own economics: stair runs carry every footstep, galley kitchens film faster than open plans, and shared-wall units hold humidity in still corners. Compact homes here are denser work than their floor area suggests.",
+          "The neighbourhood sits against Abbottsfield Road's transit loop with the river valley's Rundle Park a walk east, so entries collect both bus-stop grit and valley debris in season. Units facing the road show sill film first; units facing the green get the leaf-and-pollen calendar instead.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Abbottsfield" />

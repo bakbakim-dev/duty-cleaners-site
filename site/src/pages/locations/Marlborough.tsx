@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -67,7 +68,7 @@ const whyUsItems = [
 const nearbyAreas = ["Penbrooke Meadows", "Forest Lawn", "Dover", "Albert Park", "Radisson Heights", "Southview", "Erin Woods", "East Village"];
 
 const faqs = [
-  { question: "How long does an initial cleaning take?", answer: "We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
+  { question: "How long does an initial cleaning take?", answer: "We work to a checklist, not a clock. Your Marlborough team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
   { question: "What cleaning services does Duty Cleaners offer in Marlborough?", answer: "Whenever you choose Duty Cleaners, you'll have an expert taking care of your home or business. We offer:\n\n• Commercial Cleaning\n• Standard Cleaning & Deep Cleaning Packages\n• Move-In And Move-Out Cleaning Service\n• Post Construction Cleaning\n• Wall Washing and Wall Cleaning" },
   { question: "Do you offer discounts?", answer: "We offer recurring discounts for our Standard and Deep Cleaning Packages.\n\nIf you avail of our recurring discount, on your next cleaning:\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off" },
   { question: "What's included in a deep cleaning?", answer: "Deep cleaning adds the following to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!" },
@@ -232,6 +233,16 @@ export default function Marlborough() {
           </div>
         </section>
 
+      <LocalMarketNote
+        accent="calgary"
+        eyebrow="Local knowledge"
+        heading="Marlborough's established northeast"
+        paragraphs={[
+          "Marlborough's 1970s bungalows and split-levels carry the era's fixtures — dark-stained rails and trim that show dust plainly but forgive wear, sunken living rooms whose low returns recirculate floor dust, and basement rec rooms with drop ceilings that shed fine particles when disturbed. Cleans here are top-down or they undo themselves.",
+          "The mall and its transit exchange anchor the neighbourhood's daily traffic, and Memorial Drive's flow adds arterial grit to the southern blocks. Homes near the exchange collect more entry wear; the interior crescents keep the quieter rhythm of long-settled streets.",
+        ]}
+      />
+
       <LocationPricing />
 
         {/* Services */}
@@ -260,7 +271,7 @@ export default function Marlborough() {
               <div className="text-center mb-14">
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Marlborough Residents Choose Duty Cleaners</h2>
-                <p className="text-white/90 max-w-2xl mx-auto text-lg">Trusted by families across Calgary for reliable, thorough cleaning.</p>
+                <p className="text-white/90 max-w-2xl mx-auto text-lg">Trusted by Marlborough families for reliable, thorough cleaning.</p>
               </div>
             </AnimatedSection>
             <AnimatedSection>

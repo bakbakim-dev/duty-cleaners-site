@@ -68,23 +68,23 @@ const nearbyAreas = ["4th Street SW", "Cliff Bungalow", "Erlton", "Beltline", "R
 const faqs = [
   {
     question: "How long does an initial cleaning take?",
-    answer: `We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
+    answer: `We work to a checklist, not a clock. Your Mission team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Mission?",
-    answer: `We offer a full range of services:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `Around Mission we offer the full range:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
   },
   {
     question: "Do you offer discounts?",
-    answer: `Yes! We offer recurring discounts:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+    answer: `Yes — recurring Mission customers save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `Deep cleaning adds to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+    answer: `A Mission deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
   },
   {
     question: "What is your 100% satisfaction guarantee policy?",
-    answer: "If you're not 100% satisfied, call us within 24 hours and we'll return to make it right — at no extra cost!"
+    answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back to your Mission home and make it right — at no extra cost!"
   }
 ];
 
@@ -268,7 +268,7 @@ export default function Mission() {
                   Cleaning Services for Mission Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs, we have every service your home needs.
+                  From routine upkeep to move-outs, Mission homes get every service they need.
                 </p>
               </div>
             </AnimatedSection>

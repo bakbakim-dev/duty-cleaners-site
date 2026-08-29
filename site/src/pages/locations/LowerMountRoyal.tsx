@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -48,8 +49,8 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Lower Mount Royal home spotless and fresh year-round." },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning reaching every corner, baseboard, and hidden surface." },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for smooth transitions — leave or arrive to a pristine home." },
+  { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning of your Lower Mount Royal home — every corner, baseboard, and hidden surface." },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth Lower Mount Royal move — leave or arrive to a pristine home." },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Lower Mount Royal." },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
   { icon: Building2, title: "Commercial Cleaning", description: "Professional office and commercial space cleaning for Lower Mount Royal businesses of all sizes." },
@@ -58,7 +59,7 @@ const services = [
 const whyUsItems = [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
   { icon: Star, title: "4.9 on Google", description: "Trusted by thousands of Alberta families with verified Google reviews." },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability. We work around your busy life." },
+  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability in Lower Mount Royal. We work around your busy life." },
   { icon: Leaf, title: "High Quality Cleaning Supplies", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
@@ -92,23 +93,23 @@ const nearbyAreas = ["Mount Royal","Beltline","Cliff Bungalow","Mission","Bankvi
 const faqs = [
   {
     question: "How long does an initial cleaning take?",
-    answer: `We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
+    answer: `We work to a checklist, not a clock. Your Lower Mount Royal team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Lower Mount Royal?",
-    answer: `We offer a full range of services:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `Around Lower Mount Royal we offer the full range:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
   },
   {
     question: "Do you offer discounts?",
-    answer: `Yes! We offer recurring discounts:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+    answer: `Yes — recurring Lower Mount Royal customers save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `Deep cleaning adds to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+    answer: `A Lower Mount Royal deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
   },
   {
     question: "What is your 100% satisfaction guarantee policy?",
-    answer: "If you're not 100% satisfied, call us within 24 hours and we'll return to make it right — at no extra cost!"
+    answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back to your Lower Mount Royal home and make it right — at no extra cost!"
   }
 ];
 
@@ -230,7 +231,7 @@ export default function LowerMountRoyal() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Lower Mount Royal Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs, we have every service your home needs.
+                  From routine upkeep to move-outs, Lower Mount Royal homes get every service they need.
                 </p>
               </div>
             </AnimatedSection>
@@ -346,6 +347,16 @@ export default function LowerMountRoyal() {
           </div>
         </section>
 
+      <LocalMarketNote
+        accent="calgary"
+        eyebrow="Local knowledge"
+        heading="Lower Mount Royal's walk-up life"
+        paragraphs={[
+          "Lower Mount Royal is Calgary's densest walk-up quarter — courtyard apartment blocks from the 1950s-60s threaded between surviving character houses — and suite cleaning is its own discipline: compact kitchens a step from living rooms, single-fan bathrooms doing double duty, and corridor dust arriving under every suite door. Small spaces here are dense, not quick.",
+          "Seventeenth Avenue's restaurant strip runs the district's southern edge, and its foot traffic, patio seasons and delivery cycles keep sidewalk grit constant at every entry. Balconies over the avenue collect street dust at a pace quiet residential blocks never see.",
+        ]}
+      />
+
       <LocationPricing />
 
         {/* Why Choose Us */}
@@ -357,7 +368,7 @@ export default function LowerMountRoyal() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Lower Mount Royal Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by families across Calgary for reliable, thorough cleaning.
+                  Trusted by Lower Mount Royal families for reliable, thorough cleaning.
                 </p>
               </div>
             </AnimatedSection>
