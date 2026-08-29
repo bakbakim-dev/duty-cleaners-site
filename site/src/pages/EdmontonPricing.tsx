@@ -450,7 +450,7 @@ export default function EdmontonPricing() {
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Button className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold shadow-md hover:shadow-lg transition-all" asChild>
-                    <Link to="/contact-us">
+                    <Link to="/contact-us/">
                       <CalendarClock className="w-5 h-5 mr-2" />
                       Book Your Cleaning
                     </Link>

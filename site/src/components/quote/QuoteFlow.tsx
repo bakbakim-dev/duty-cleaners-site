@@ -1102,7 +1102,7 @@ export default function QuoteFlow({
                   </a>{" "}
                   or{" "}
                   <Link
-                    to="/contact-us"
+                    to="/contact-us/"
                     onClick={onClose}
                     className="inline-flex min-h-[44px] items-center font-bold text-foreground underline underline-offset-4 hover:text-brand-navy"
                   >

@@ -213,7 +213,7 @@ export default function EdmontonPostConstruction() {
               <p className="text-lg text-muted-foreground mb-8">
                 <strong>Important:</strong> we do not provide rough construction cleanup, debris hauling, or active job-site cleaning. Our service begins after your contractor has finished and removed all materials.
               </p>
-              <a href="/contact-us" className="inline-flex items-center gap-3 bg-accent/10 rounded-full px-6 py-3 hover:bg-accent/20 transition-colors cursor-pointer">
+              <a href="/contact-us/" className="inline-flex items-center gap-3 bg-accent/10 rounded-full px-6 py-3 hover:bg-accent/20 transition-colors cursor-pointer">
                 <Clock className="w-5 h-5 text-accent" />
                 <span className="text-accent font-semibold">Flexible Scheduling | Transparent Pricing</span>
               </a>
@@ -332,7 +332,7 @@ export default function EdmontonPostConstruction() {
                   <a href="#contact-form">Get a Free Estimate</a>
                 </Button>
                 <Button asChild size="lg" className="bg-white/10 hover:bg-white/20 text-white border border-white/20">
-                  <a href="/about-us">About Duty Cleaners</a>
+                  <a href="/about-us/">About Duty Cleaners</a>
                 </Button>
               </div>
             </div>

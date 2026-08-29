@@ -83,7 +83,7 @@ const QueenAlexandra = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <Button size="lg" asChild>
-                  <a href="/contact-us">GET INSTANT PRICE</a>
+                  <a href="/contact-us/">GET INSTANT PRICE</a>
                 </Button>
                 <Button size="lg" variant="outline" asChild>
                   <a href="tel:780-913-6565">
@@ -163,7 +163,7 @@ const QueenAlexandra = () => {
           <div className="container mx-auto max-w-4xl text-center space-y-6">
             <h2 className="text-3xl md:text-4xl font-bold">Get an instant quote, without all the hassle.</h2>
             <Button size="lg" asChild>
-              <a href="/contact-us">GET A FREE ESTIMATE</a>
+              <a href="/contact-us/">GET A FREE ESTIMATE</a>
             </Button>
             <div className="pt-8">
               <p className="text-sm text-muted-foreground mb-2">Serving Alberta homes</p>
@@ -209,7 +209,7 @@ const QueenAlexandra = () => {
               Give us a call or request a free quote today. We're right here in the neighbourhood—and ready when you are.
             </p>
             <Button size="lg" asChild>
-              <a href="/contact-us">GET A FREE ESTIMATE</a>
+              <a href="/contact-us/">GET A FREE ESTIMATE</a>
             </Button>
           </div>
         </section>

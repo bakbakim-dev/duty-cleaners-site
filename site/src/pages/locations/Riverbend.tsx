@@ -282,7 +282,7 @@ export default function Riverbend() {
                 </div>
                 <CoverageChips areas={["Brander Gardens", "Rhatigan Ridge", "Ramsay Heights", "Southgate Centre Area", "Riverbend Road", "Whitemud Drive Corridor"]} variant="compact" />
                 <div className="text-center mt-8">
-                  <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">View All Service Areas →</Link>
+                  <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">View All Service Areas →</Link>
                 </div>
               </div>
             </AnimatedSection>

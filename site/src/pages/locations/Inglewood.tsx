@@ -306,7 +306,7 @@ export default function Inglewood() {
                 </div>
                 <CoverageChips areas={["Westmount Centre", "124 Street", "Inglewood School", "Inglewood Community League", "Westglen School", "Woodcroft Library", "111 Avenue", "Groat Road"]} variant="compact" />
                 <div className="text-center mt-8">
-                  <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
+                  <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
                   </Link>
                 </div>

@@ -347,7 +347,7 @@ export default function Tuscany() {
               <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
                 We provide professional house cleaning services throughout Tuscany and nearby communities in northwest Calgary.
               </p>
-              <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
+              <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                 View All Service Areas →
               </Link>
             </AnimatedSection>

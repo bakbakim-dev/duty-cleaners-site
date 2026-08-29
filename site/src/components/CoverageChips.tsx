@@ -1,3 +1,4 @@
+import { withTrailingSlash } from "@/data/legacy-urls";
 import { Link, useLocation } from "react-router-dom";
 import { Star } from "lucide-react";
 import { locationRouteForName } from "@/data/location-directory";
@@ -52,7 +53,7 @@ export default function CoverageChips({ areas, variant = "default", className = 
         return (
           <Link
             key={area}
-            to={to}
+            to={withTrailingSlash(to)}
             className={`${base} transition-colors hover:border-primary hover:text-primary`}
           >
             {icon}

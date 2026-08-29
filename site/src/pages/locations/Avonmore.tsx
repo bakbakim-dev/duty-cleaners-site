@@ -307,7 +307,7 @@ export default function Avonmore() {
                 </div>
                 <CoverageChips areas={["Avonmore School", "Avonmore Park", "Bonnie Doon", "Mill Creek Ravine", "75 Street", "76 Avenue", "Strathearn", "Holyrood"]} variant="compact" />
                 <div className="text-center mt-8">
-                  <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
+                  <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
                   </Link>
                 </div>

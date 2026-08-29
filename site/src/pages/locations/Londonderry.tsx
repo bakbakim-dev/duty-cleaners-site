@@ -292,7 +292,7 @@ export default function Londonderry() {
                 </div>
                 <CoverageChips areas={["Londonderry Mall", "Evansdale Park", "M.E. LaZerte High School", "137 Avenue", "Londonderry Fitness Centre", "Steele Heights", "Kilkenny", "Evansdale"]} variant="compact" />
                 <div className="text-center mt-8">
-                  <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
+                  <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
                   </Link>
                 </div>

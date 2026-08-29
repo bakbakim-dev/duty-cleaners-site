@@ -235,7 +235,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
               </Link>
 
               {/* Calgary Card */}
-              <Link to="/cleaning-services-calgary" className="group block" style={{
+              <Link to="/cleaning-services-calgary/" className="group block" style={{
               perspective: "1000px"
             }}>
                 <div className="bg-brand-navy rounded-2xl p-8 text-white transition-all duration-500 ease-out group-hover:-translate-y-2 group-hover:shadow-xl group-hover:scale-[1.02] relative overflow-hidden border border-white/10" style={{
@@ -336,7 +336,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
 
             <div className="text-center">
               <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold text-base h-14 px-8 shadow-lg hover:shadow-xl transition-all">
-                <Link to="/contact-us">
+                <Link to="/contact-us/">
                   Book Your Cleaning
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Link>
@@ -375,7 +375,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
             </div>
 
             <div className="text-center mt-10">
-              <Link to="/locations" className="inline-flex items-center gap-2 text-accent font-semibold hover:underline text-lg transition-colors">
+              <Link to="/locations/" className="inline-flex items-center gap-2 text-accent font-semibold hover:underline text-lg transition-colors">
                 View All Service Locations
                 <ArrowRight className="w-5 h-5" />
               </Link>

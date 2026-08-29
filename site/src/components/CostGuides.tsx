@@ -6,19 +6,19 @@ const GUIDES = [
     meta: "Pricing · 6 min read",
     title: "What house cleaning actually costs in Alberta.",
     blurb: "Flat-rate vs hourly, what moves the number, and how to read a quote before you book.",
-    to: "/how-much-does-a-house-cleaning-cost",
+    to: "/how-much-does-a-house-cleaning-cost/",
   },
   {
     meta: "Planning · 5 min read",
     title: "How often should a home actually be cleaned?",
     blurb: "Weekly, bi-weekly or monthly — an honest schedule for how your home is really lived in.",
-    to: "/how-often-should-a-cleaning-service-clean-my-house",
+    to: "/how-often-should-a-cleaning-service-clean-my-house/",
   },
   {
     meta: "Hiring · 5 min read",
     title: "How to choose a cleaning company you can trust.",
     blurb: "The questions worth asking — vetting, guarantees, and the flags to walk away from.",
-    to: "/blog/choosing-cleaning-company",
+    to: "/blog/choosing-cleaning-company/",
   },
 ];
 

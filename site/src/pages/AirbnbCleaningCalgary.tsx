@@ -302,7 +302,7 @@ const AirbnbCleaningCalgary = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Button asChild size="lg" className="text-lg bg-accent text-accent-foreground hover:bg-accent/90">
-              <Link to="/contact-us?topic=airbnb&city=calgary">Request a Callback</Link>
+              <Link to="/contact-us/?topic=airbnb&city=calgary">Request a Callback</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="text-lg border-white/20 text-white hover:bg-white/10">
               <a href="tel:4037681341">
@@ -559,7 +559,7 @@ const AirbnbCleaningCalgary = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="text-lg bg-accent text-accent-foreground hover:bg-accent/90">
-              <Link to="/contact-us?topic=airbnb&city=calgary">Request a Callback</Link>
+              <Link to="/contact-us/?topic=airbnb&city=calgary">Request a Callback</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="text-lg border-white/20 text-white hover:bg-white/10">
               <a href="tel:4037681341">

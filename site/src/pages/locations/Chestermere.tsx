@@ -345,12 +345,12 @@ export default function Chestermere() {
               <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
                 We provide professional house cleaning services throughout Chestermere and nearby communities in the Calgary region.
               </p>
-              <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
+              <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                 View All Service Areas →
               </Link>
             <p className="mt-6 text-sm text-muted-foreground">
               Run a business in Chestermere? We also handle 
-              <Link to="/commercial-cleaning-services-calgary" className="text-primary hover:underline font-medium">
+              <Link to="/commercial-cleaning-services-calgary/" className="text-primary hover:underline font-medium">
                 commercial and office cleaning across the Calgary region
               </Link>.
             </p>

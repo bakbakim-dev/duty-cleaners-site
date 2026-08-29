@@ -690,12 +690,12 @@ Sun: 9:00am–3:00pm"
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button size="lg" className="bg-accent hover:bg-accent/90 text-white h-12 px-8" asChild>
-              <Link to="/pricing">
+              <Link to="/pricing/">
                 View Edmonton Pricing
               </Link>
             </Button>
             <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 h-12 px-8" asChild>
-              <Link to="/calgary/pricing">
+              <Link to="/calgary/pricing/">
                 View Calgary Pricing
               </Link>
             </Button>

@@ -307,7 +307,7 @@ export default function Kildare() {
                 </div>
                 <CoverageChips areas={["Kildare Community League", "Kildare School", "Londonderry Mall", "Belmont Park", "66 Street", "144 Avenue", "Manning Drive", "Yellowhead Trail"]} variant="compact" />
                 <div className="text-center mt-8">
-                  <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
+                  <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
                   </Link>
                 </div>

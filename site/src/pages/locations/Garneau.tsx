@@ -261,7 +261,7 @@ export default function Garneau() {
                 </div>
                 <CoverageChips areas={["University of Alberta", "Garneau Theatre", "Garneau School", "109 Street", "River Valley Trails", "Whyte Avenue"]} variant="compact" />
                 <div className="text-center mt-8">
-                  <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">View All Service Areas →</Link>
+                  <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">View All Service Areas →</Link>
                 </div>
               </div>
             </AnimatedSection>

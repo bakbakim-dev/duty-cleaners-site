@@ -59,7 +59,7 @@ const whyUsItems = [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
   { icon: Star, title: "4.9 on Google", description: "Trusted by thousands of Calgary families with verified Google reviews." },
   { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability. We work around your busy schedule." },
-  { icon: Leaf, title: "High Quality Cleaning Supplies", description: "Safe, green cleaning products perfect for homes with children and pets." },
+  { icon: Leaf, title: "High Quality Cleaning Supplies", description: "We bring everything the job needs. Tell us about any sensitivities, or products you would rather we used, and we will work to them." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to deliver thorough and consistent results." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
 ];
@@ -300,7 +300,7 @@ export default function Marlborough() {
               <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
               <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Proudly Serving Marlborough & Surrounding Areas</h2>
               <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">We provide professional house cleaning services throughout Marlborough and nearby communities in Calgary.</p>
-              <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">View All Service Areas →</Link>
+              <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">View All Service Areas →</Link>
             </AnimatedSection>
           </div>
         </section>

@@ -185,17 +185,17 @@ export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: 
           <div>
             <FooterHeading>Explore</FooterHeading>
             <nav aria-label="Footer navigation">
-              <FooterLink to="/about-us">About Us</FooterLink>
-              <FooterLink to="/locations">All Locations</FooterLink>
-              <FooterLink to="/cleaning-services-leduc">House Cleaning in Leduc</FooterLink>
+              <FooterLink to="/about-us/">About Us</FooterLink>
+              <FooterLink to="/locations/">All Locations</FooterLink>
+              <FooterLink to="/cleaning-services-leduc/">House Cleaning in Leduc</FooterLink>
               <FooterLink to={canonicalForPath(`/${city}/services`)}>Services</FooterLink>
               <FooterLink to={canonicalForPath(`/${city}/pricing`)}>Pricing</FooterLink>
-              <FooterLink to="/reviews">Reviews</FooterLink>
-              <FooterLink to="/blog">Blog</FooterLink>
-              <FooterLink to="/faqs">FAQ</FooterLink>
-              <FooterLink to="/prepare">Getting Ready</FooterLink>
-              <FooterLink to="/gift-card">Gift Cards</FooterLink>
-              <FooterLink to="/contact-us">Contact</FooterLink>
+              <FooterLink to="/reviews/">Reviews</FooterLink>
+              <FooterLink to="/blog/">Blog</FooterLink>
+              <FooterLink to="/faqs/">FAQ</FooterLink>
+              <FooterLink to="/prepare/">Getting Ready</FooterLink>
+              <FooterLink to="/gift-card/">Gift Cards</FooterLink>
+              <FooterLink to="/contact-us/">Contact</FooterLink>
             </nav>
           </div>
 
@@ -214,7 +214,7 @@ export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: 
                     path === "commercial-cleaning"
                       ? city === "calgary"
                         ? "/calgary/commercial-cleaning"
-                        : "/commercial-cleaning"
+                        : "/commercial-cleaning/"
                       : `/${city}/${path}`
                   )}
                 >
@@ -236,7 +236,7 @@ export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: 
                 <p className="text-sm leading-6 text-brand-navy-foreground/85">18615 71 Ave NW<br />Edmonton, AB T5T 2V9</p>
               </div>
               <div>
-                <Link to="/cleaning-services-calgary" className="group flex min-h-12 items-center gap-2 font-semibold transition-colors hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"><MapPin className="h-4 w-4 text-brand-gold" aria-hidden="true" /><span>Calgary Office</span></Link>
+                <Link to="/cleaning-services-calgary/" className="group flex min-h-12 items-center gap-2 font-semibold transition-colors hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"><MapPin className="h-4 w-4 text-brand-gold" aria-hidden="true" /><span>Calgary Office</span></Link>
                 <a href="tel:4037681341" className="flex min-h-12 items-center gap-2 text-sm text-brand-navy-foreground/85 transition-colors hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"><Phone className="h-4 w-4" aria-hidden="true" />(403) 768-1341</a>
                 <p className="text-sm leading-6 text-brand-navy-foreground/85">2835 37 Street SW #24<br />Calgary, AB T3E 3B3</p>
               </div>
@@ -255,9 +255,9 @@ export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: 
           <div className="flex flex-col gap-5 text-sm md:flex-row md:items-center md:justify-between">
             <p className="text-center text-brand-navy-foreground/85 md:text-left">© {new Date().getFullYear()} Duty Cleaners. All rights reserved.</p>
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 md:justify-end">
-              <Link to="/satisfaction-guarantee" className="text-brand-navy-foreground/85 transition-colors hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold">Satisfaction Guarantee</Link>
-              <Link to="/privacy-policy" className="text-brand-navy-foreground/85 transition-colors hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold">Privacy Policy</Link>
-              <Link to="/terms" className="text-brand-navy-foreground/85 transition-colors hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold">Terms of Service</Link>
+              <Link to="/satisfaction-guarantee/" className="text-brand-navy-foreground/85 transition-colors hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold">Satisfaction Guarantee</Link>
+              <Link to="/privacy-policy/" className="text-brand-navy-foreground/85 transition-colors hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold">Privacy Policy</Link>
+              <Link to="/terms/" className="text-brand-navy-foreground/85 transition-colors hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold">Terms of Service</Link>
               {/* Plain anchor: /sitemap.xml is a real static file, not a React route. */}
               <a href="/sitemap.xml" className="text-brand-navy-foreground/85 transition-colors hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold">Sitemap</a>
             </div>

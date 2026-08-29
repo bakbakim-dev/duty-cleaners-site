@@ -520,7 +520,7 @@ export default function FAQ() {
                   See My Instant Price
                 </a>
                 <a
-                  href="/contact-us"
+                  href="/contact-us/"
                   className="inline-flex items-center justify-center gap-2 px-8 py-3.5 font-semibold text-white underline underline-offset-4 hover:text-brand-gold transition-colors"
                 >
                   <MessageSquare className="w-4 h-4" />

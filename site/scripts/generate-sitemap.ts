@@ -40,7 +40,16 @@ function readRoutes(): string[] {
   // Advertise the canonical URL for preserved legacy pages, never both copies:
   // the legacy path is the one Google already ranks, so it is what we submit.
   const canonical = new Set<string>();
-  for (const path of paths) canonical.add(canonicalForPath(path));
+  // Strip the trailing slash canonicalForPath now returns. Everything
+  // downstream of this function keys on the ROUTE form: the sitemap-splitting
+  // filters (startsWith("/locations/")), priorityFor/changefreqFor, and
+  // componentFileFor — which matches `<Route path="…">` in App.tsx, where paths
+  // are declared slash-less. Leaving the slash on put the /locations/ hub into
+  // the Edmonton *location* sitemap and silently broke every page's lastmod
+  // (componentFileFor found no route, so all 209 fell back to the repo date).
+  // urlBlock re-applies withTrailingSlash, so the emitted <loc> values are
+  // unchanged — still the canonical slash form.
+  for (const path of paths) canonical.add(canonicalForPath(path).replace(/\/+$/, "") || "/");
   return [...canonical];
 }
 

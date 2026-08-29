@@ -302,7 +302,7 @@ export default function SpruceAvenue() {
                 </div>
                 <CoverageChips areas={["Spruce Avenue School", "Kingsway Mall", "Royal Alexandra Hospital", "Norwood Square", "114 Avenue", "LRT Station", "Eastwood", "Delton"]} variant="compact" />
                 <div className="text-center mt-8">
-                  <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
+                  <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
                   </Link>
                 </div>

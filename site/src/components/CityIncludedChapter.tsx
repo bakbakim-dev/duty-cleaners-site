@@ -76,7 +76,7 @@ export default function CityIncludedChapter({ city }: CityIncludedChapterProps) 
             </p>
             <ThresholdLine className="mt-6 hidden max-w-[220px] lg:block" />
             <Link
-              to="/whats-included"
+              to="/whats-included/"
               className="mt-6 inline-flex min-h-[44px] items-center font-semibold text-primary hover:underline"
             >
               See the full checklist <ExternalLink className="ml-1 h-4 w-4" aria-hidden="true" />

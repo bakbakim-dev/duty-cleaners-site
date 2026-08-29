@@ -144,7 +144,7 @@ function PullQuote({ review, city }: { review: RecentCleanReview; city: string }
  * "Recent Five-Star Cleans" — Simply Maid-style transparency feed built only
  * from real Google review snippets (no invented job data, prices, or counts).
  */
-export default function CityRecentCleans({ city, reviews, reviewsTo = "/reviews" }: CityRecentCleansProps) {
+export default function CityRecentCleans({ city, reviews, reviewsTo = "/reviews/" }: CityRecentCleansProps) {
   const shown = reviews.slice(0, 3);
   // No verified review text on file yet: rather than leave one of the two
   // highest-trust slots on the page empty, show an honest invitation to read

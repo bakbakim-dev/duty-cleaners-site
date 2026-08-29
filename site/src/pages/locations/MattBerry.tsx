@@ -306,7 +306,7 @@ export default function MattBerry() {
                 </div>
                 <CoverageChips areas={["Matt Berry Park", "Manning Drive", "167 Avenue", "Manning Town Centre", "Miller", "Hollick-Kenyon", "Brintnell", "Casselman"]} variant="compact" />
                 <div className="text-center mt-8">
-                  <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
+                  <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
                   </Link>
                 </div>

@@ -424,7 +424,7 @@ export default function LocationPageTemplate({
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
               We provide professional house cleaning services throughout {city} and nearby communities in the {regionLabel} region.
             </p>
-            <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
+            <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
               View All Service Areas →
             </Link>
             {/* Commercial cross-link: Search Console shows office/commercial
@@ -432,7 +432,7 @@ export default function LocationPageTemplate({
             <p className="mt-6 text-sm text-muted-foreground">
               Run a business in {city}? We also handle{" "}
               <Link
-                to={region === "calgary" ? "/commercial-cleaning-services-calgary" : "/commercial-cleaning"}
+                to={region === "calgary" ? "/commercial-cleaning-services-calgary/" : "/commercial-cleaning/"}
                 className="text-primary hover:underline font-medium"
               >
                 commercial and office cleaning across the {regionLabel} region

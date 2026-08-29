@@ -127,7 +127,7 @@ export default function BlogChoosingCalgaryCleaner() {
         {/* Hero */}
         <section className="relative pt-24 pb-16">
           <div className="container mx-auto px-4">
-            <Link to="/blog">
+            <Link to="/blog/">
               <Button variant="ghost" className="mb-6">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Blog
@@ -322,7 +322,7 @@ export default function BlogChoosingCalgaryCleaner() {
                 <h2 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">Keep reading</h2>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <Link
-                    to="/how-much-does-a-house-cleaning-cost"
+                    to="/how-much-does-a-house-cleaning-cost/"
                     className="block p-5 border border-border rounded-xl bg-card hover:border-accent transition-colors"
                   >
                     <h3 className="font-bold text-foreground">How Much Does a House Cleaning Cost?</h3>
@@ -331,7 +331,7 @@ export default function BlogChoosingCalgaryCleaner() {
                     </p>
                   </Link>
                   <Link
-                    to="/calgary/pricing"
+                    to="/calgary/pricing/"
                     className="block p-5 border border-border rounded-xl bg-card hover:border-accent transition-colors"
                   >
                     <h3 className="font-bold text-foreground">Calgary Pricing</h3>
@@ -351,7 +351,7 @@ export default function BlogChoosingCalgaryCleaner() {
                   No phone call required — get a flat price for your Calgary home in about 60 seconds,
                   and pay only after the clean is done.
                 </p>
-                <Link to="/cleaning-services-calgary#quote">
+                <Link to="/cleaning-services-calgary/#quote">
                   <Button size="lg" variant="accent" className="w-full sm:w-auto min-h-[52px] text-base font-bold">
                     See My Instant Price — Calgary
                   </Button>

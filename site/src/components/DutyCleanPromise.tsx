@@ -48,7 +48,7 @@ export default function DutyCleanPromise() {
               &ldquo;Trust isn&rsquo;t something our cleaners claim — it&rsquo;s something they earn at every visit.&rdquo;
             </p>
             <Link
-              to="/satisfaction-guarantee"
+              to="/satisfaction-guarantee/"
               className="mt-8 inline-flex min-h-[44px] items-center gap-2 text-accent-on-dark font-semibold hover:underline underline-offset-4 group"
             >
               Read our full Satisfaction Guarantee

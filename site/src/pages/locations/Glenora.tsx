@@ -300,7 +300,7 @@ export default function Glenora() {
                 </div>
                 <CoverageChips areas={["102 Avenue & Groat Road", "Alexander Circle", "Government House Park", "St. George's Crescent", "Glenora Park", "Glenora School Area"]} variant="compact" />
                 <div className="text-center mt-8">
-                  <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
+                  <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
                   </Link>
                 </div>

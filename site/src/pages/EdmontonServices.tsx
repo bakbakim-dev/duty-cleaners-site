@@ -1,3 +1,4 @@
+import { RATING_CLAIM } from "@/data/proof";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import Navigation from "@/components/Navigation";
 import { buildServiceSchema } from "@/lib/service-schema";
@@ -79,7 +80,7 @@ const services: Service[] = [
       "Floors mopped and vacuumed"
     ],
     price: STANDARD_FROM,
-    link: "/edmonton/regular-cleaning",
+    link: "/edmonton/regular-cleaning/",
     linkText: "See Standard Cleaning",
     icon: Home,
     badge: "Popular",
@@ -94,7 +95,7 @@ const services: Service[] = [
       "Floors vacuumed and mopped"
     ],
     price: from(RECURRING_FROM),
-    link: "/edmonton/recurring-cleaning",
+    link: "/edmonton/recurring-cleaning/",
     linkText: "See Recurring Cleaning",
     icon: Repeat,
     accent: true
@@ -109,7 +110,7 @@ const services: Service[] = [
       "Baseboards, doors, light switches, wall outlets, and outside vent covers"
     ],
     price: DEEP_FROM,
-    link: "/edmonton/deep-cleaning",
+    link: "/edmonton/deep-cleaning/",
     linkText: "See Deep Cleaning",
     icon: Sparkles,
     accent: true
@@ -124,7 +125,7 @@ const services: Service[] = [
       "Vacuuming and mopping of all floors, including carpet vacuuming"
     ],
     price: MOVE_FROM,
-    link: "/move-out-cleaning-edmonton",
+    link: "/move-out-cleaning-edmonton/",
     linkText: "See Move-In/Move-Out Cleaning",
     icon: Truck,
     accent: false
@@ -139,7 +140,7 @@ const services: Service[] = [
       "Final move-in ready detailing"
     ],
     price: POST_FROM,
-    link: "/post-construction-cleaning",
+    link: "/post-construction-cleaning/",
     linkText: "See Post-Construction Cleaning",
     icon: HardHat,
     accent: true
@@ -154,7 +155,7 @@ const services: Service[] = [
       "Final walkthrough against the inspection list"
     ],
     price: "Quoted by Phone",
-    link: "/edmonton/march-out-cleaning",
+    link: "/edmonton/march-out-cleaning/",
     linkText: "See March Out Cleaning",
     icon: ShieldCheck,
     accent: false
@@ -169,7 +170,7 @@ const services: Service[] = [
       "Restore wall color vibrancy"
     ],
     price: "Custom Pricing",
-    link: "/wall-washing-wall-cleaning",
+    link: "/wall-washing-wall-cleaning/",
     linkText: "See Wall Washing & Cleaning",
     icon: PaintRoller,
     accent: false
@@ -184,7 +185,7 @@ const services: Service[] = [
       "Quick turnaround scheduling"
     ],
     price: "Hourly Cleaning",
-    link: "/edmonton/airbnb-cleaning",
+    link: "/edmonton/airbnb-cleaning/",
     linkText: "See Airbnb Cleaning Service",
     icon: BedDouble,
     accent: true
@@ -199,7 +200,7 @@ const services: Service[] = [
       "Flexible scheduling options"
     ],
     price: "Custom Pricing",
-    link: "/commercial-cleaning",
+    link: "/commercial-cleaning/",
     linkText: "See Commercial Cleaning",
     icon: Briefcase,
     badge: "Professional Service",
@@ -324,7 +325,7 @@ export default function EdmontonServices() {
               </div>
               <div className="flex items-center gap-2 text-white/90">
                 <Star className="w-5 h-5 text-accent" />
-                <span className="text-sm">5-Star Rated</span>
+                <span className="text-sm">{RATING_CLAIM}</span>
               </div>
             </div>
           </div>
@@ -409,7 +410,7 @@ export default function EdmontonServices() {
               <h3 className="font-bold text-xl text-white mb-6">Quick Links</h3>
               <div className="space-y-4">
                 <Link 
-                  to="/pricing" 
+                  to="/pricing/" 
                   className="flex items-center gap-3 text-white/80 hover:text-accent transition-colors group"
                 >
                   <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:bg-accent/30">
@@ -419,7 +420,7 @@ export default function EdmontonServices() {
                   <ArrowRight className="w-4 h-4 ml-auto opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
                 </Link>
                 <Link 
-                  to="/reviews" 
+                  to="/reviews/" 
                   className="flex items-center gap-3 text-white/80 hover:text-accent transition-colors group"
                 >
                   <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:bg-accent/30">
@@ -429,7 +430,7 @@ export default function EdmontonServices() {
                   <ArrowRight className="w-4 h-4 ml-auto opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
                 </Link>
                 <Link 
-                  to="/faqs" 
+                  to="/faqs/" 
                   className="flex items-center gap-3 text-white/80 hover:text-accent transition-colors group"
                 >
                   <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:bg-accent/30">
@@ -439,7 +440,7 @@ export default function EdmontonServices() {
                   <ArrowRight className="w-4 h-4 ml-auto opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
                 </Link>
                 <Link 
-                  to="/about-us" 
+                  to="/about-us/" 
                   className="flex items-center gap-3 text-white/80 hover:text-accent transition-colors group"
                 >
                   <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:bg-accent/30">

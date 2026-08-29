@@ -306,7 +306,7 @@ export default function Delwood() {
                 </div>
                 <CoverageChips areas={["Delwood School", "Yellowhead Trail", "Northgate Centre", "82 Street", "Killarney", "Belvedere", "Glengarry", "Balwin"]} variant="compact" />
                 <div className="text-center mt-8">
-                  <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
+                  <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
                   </Link>
                 </div>

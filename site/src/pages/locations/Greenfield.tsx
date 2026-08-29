@@ -187,7 +187,7 @@ export default function Greenfield() {
                 We stand behind the quality of our staff. If you're not 100% satisfied with your cleaning, we'll come back and re-clean it at no additional charge, as long as we’re informed within 24 hours after the cleaning.
               </p>
               <Button variant="link" asChild>
-                <Link to="/satisfaction-guarantee">Read the Satisfaction Guarantee</Link>
+                <Link to="/satisfaction-guarantee/">Read the Satisfaction Guarantee</Link>
               </Button>
             </div>
           </div>

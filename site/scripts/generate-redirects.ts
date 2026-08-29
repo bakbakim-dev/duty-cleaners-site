@@ -78,7 +78,15 @@ for (const [p, to] of redirectOnly) add(p, slash(canonicalForPath(to)), "301!");
 // 3. Real routes that are superseded by a preserved legacy URL.
 for (const p of real) {
   const canonical = canonicalForPath(p);
-  if (canonical !== p) add(p, slash(canonical), "301!");
+  // Compare slash-INSENSITIVELY. canonicalForPath now returns the site's
+  // canonical trailing-slash form, so a naive `canonical !== p` would call every
+  // route "superseded" and emit a self-redirect /x -> /x/ for all 209 of them —
+  // including the four app-only routes below, whose 200 rewrite would then sit
+  // behind a 301 and trip the no-chains invariant. Trailing-slash normalisation
+  // is the host's job (netlify.toml / Pretty URLs); this rule is only for a
+  // route genuinely superseded by a DIFFERENT preserved legacy URL.
+  const bare = (s: string) => s.replace(/\/+$/, "") || "/";
+  if (bare(canonical) !== bare(p)) add(p, slash(canonical), "301!");
 }
 // 4. Routes that must still resolve but are not indexable.
 //

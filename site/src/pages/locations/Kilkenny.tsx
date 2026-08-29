@@ -306,7 +306,7 @@ export default function Kilkenny() {
                 </div>
                 <CoverageChips areas={["Londonderry Mall", "Kilkenny School", "144 Avenue", "66 Street", "Belmead", "Belvedere", "Kildare", "Evansdale"]} variant="compact" />
                 <div className="text-center mt-8">
-                  <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
+                  <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
                   </Link>
                 </div>

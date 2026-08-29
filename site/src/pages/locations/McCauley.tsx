@@ -307,7 +307,7 @@ export default function McCauley() {
                 </div>
                 <CoverageChips areas={["Giovanni Caboto Park", "Italian Centre Shop", "Sacred Heart Church", "95 Street", "107A Avenue", "Little Italy", "Chinatown", "Boyle Street"]} variant="compact" />
                 <div className="text-center mt-8">
-                  <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
+                  <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
                   </Link>
                 </div>

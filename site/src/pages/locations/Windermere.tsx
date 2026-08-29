@@ -292,7 +292,7 @@ export default function Windermere() {
               We provide professional house cleaning services throughout Windermere and nearby communities in the Edmonton region.
             </p>
             <CoverageChips areas={nearbyAreas} variant="compact" />
-            <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
+            <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
               View All Service Areas →
             </Link>
           </AnimatedSection>

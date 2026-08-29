@@ -307,7 +307,7 @@ export default function Sherbrooke() {
                 </div>
                 <CoverageChips areas={["Sherbrooke Park", "Sherbrooke Community League", "Princess Elizabeth Avenue", "127 Street", "Yellowhead Trail", "Athlone", "Calder", "Wellington"]} variant="compact" />
                 <div className="text-center mt-8">
-                  <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
+                  <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
                   </Link>
                 </div>

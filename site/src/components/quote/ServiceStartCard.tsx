@@ -227,7 +227,7 @@ export default function ServiceStartCard({
           {phone}
         </a>{" "}
         or{" "}
-        <Link to="/contact-us" className="font-semibold text-foreground underline underline-offset-4">
+        <Link to="/contact-us/" className="font-semibold text-foreground underline underline-offset-4">
           request a quote
         </Link>
         .

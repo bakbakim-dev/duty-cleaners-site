@@ -306,7 +306,7 @@ export default function Ozerna() {
                 </div>
                 <CoverageChips areas={["Ozerna Park", "Manning Drive", "153 Avenue", "Manning Town Centre", "Brintnell", "Hollick-Kenyon", "Matt Berry", "Miller"]} variant="compact" />
                 <div className="text-center mt-8">
-                  <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
+                  <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
                   </Link>
                 </div>

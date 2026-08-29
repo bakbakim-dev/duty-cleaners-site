@@ -215,7 +215,7 @@ export default function AboutUs() {
               <a href="#quote">See My Instant Price</a>
             </Button>
             <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10" asChild>
-              <Link to="/reviews">Read Our Reviews</Link>
+              <Link to="/reviews/">Read Our Reviews</Link>
             </Button>
           </div>
         </div>

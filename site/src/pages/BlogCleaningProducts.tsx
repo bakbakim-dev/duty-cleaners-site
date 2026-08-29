@@ -174,7 +174,7 @@ export default function BlogCleaningProducts() {
         {/* Hero */}
         <section className="relative pt-24 pb-16">
           <div className="container mx-auto px-4">
-            <Link to="/blog">
+            <Link to="/blog/">
               <Button variant="ghost" className="mb-6">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Blog
@@ -461,7 +461,7 @@ export default function BlogCleaningProducts() {
                       See My Instant Price — Edmonton
                     </Button>
                   </Link>
-                  <Link to="/cleaning-services-calgary#quote">
+                  <Link to="/cleaning-services-calgary/#quote">
                     <Button size="lg" variant="outline" className="w-full sm:w-auto min-h-[52px] text-base font-semibold">
                       See My Instant Price — Calgary
                     </Button>

@@ -306,7 +306,7 @@ export default function Glenwood() {
                 </div>
                 <CoverageChips areas={["Glenwood Park", "Stony Plain Road", "Glenwood Elementary", "156 Street", "Meadowlark Health Centre", "100 Avenue", "West Edmonton Mall", "Mayfield"]} variant="compact" />
                 <div className="text-center mt-8">
-                  <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
+                  <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
                   </Link>
                 </div>

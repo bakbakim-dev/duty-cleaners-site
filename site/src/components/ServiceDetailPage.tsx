@@ -406,7 +406,7 @@ const ServiceDetailPage = ({
             </h2>
             <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
               A clear scope for every space in your {cityName} home — see the full breakdown on our{" "}
-              <Link to="/whats-included" className="text-primary font-semibold hover:text-accent">
+              <Link to="/whats-included/" className="text-primary font-semibold hover:text-accent">
                 What's Included checklist
               </Link>
               .
@@ -524,7 +524,7 @@ const ServiceDetailPage = ({
                   </ul>
                   <p className="text-xs text-muted-foreground mt-5">
                     Not sure about a task?{" "}
-                    <Link to="/contact-us" className="text-primary font-semibold hover:text-accent">
+                    <Link to="/contact-us/" className="text-primary font-semibold hover:text-accent">
                       Send us a message
                     </Link>{" "}
                     and we'll confirm.

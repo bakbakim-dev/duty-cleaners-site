@@ -458,7 +458,7 @@ export default function Edmonton2() {
         <div className="container mx-auto px-4">
           <CityCrossLink
             city="Calgary"
-            to="/cleaning-services-calgary"
+            to="/cleaning-services-calgary/"
             description="House cleaning rated 4.9 on Google for Calgary and surrounding communities, with the same vetted pros and transparent pricing."
           />
         </div>

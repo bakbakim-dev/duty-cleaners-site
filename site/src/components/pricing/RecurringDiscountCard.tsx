@@ -34,7 +34,7 @@ const RecurringDiscountCard = ({ percentage, title, savings, isPopular = false }
           className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-semibold shadow-md hover:shadow-lg transition-all"
           asChild
         >
-          <Link to="/contact-us">Get Started</Link>
+          <Link to="/contact-us/">Get Started</Link>
         </Button>
       </div>
     </div>

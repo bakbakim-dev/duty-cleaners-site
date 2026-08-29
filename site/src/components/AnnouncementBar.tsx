@@ -31,7 +31,7 @@ export default function AnnouncementBar() {
         <p className="flex-1 text-center text-sm text-white/85">
           Price first. See your cleaning price before you choose a time.
           <Link
-            to="/reviews"
+            to="/reviews/"
             className="ml-2 inline-flex min-h-[44px] items-center font-semibold text-accent-on-dark underline-offset-2 transition-colors hover:underline"
           >
             Read reviews →

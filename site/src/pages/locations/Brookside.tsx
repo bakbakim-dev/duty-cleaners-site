@@ -307,7 +307,7 @@ export default function Brookside() {
                 </div>
                 <CoverageChips areas={["Whitemud Creek Ravine", "Brookside Park", "Saddleback Road", "Riverbend Square", "Whitemud Drive", "Riverbend", "Bulyea Heights", "Henderson Estates"]} variant="compact" />
                 <div className="text-center mt-8">
-                  <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
+                  <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
                   </Link>
                 </div>

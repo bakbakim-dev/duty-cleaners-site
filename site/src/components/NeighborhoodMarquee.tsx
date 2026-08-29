@@ -1,3 +1,4 @@
+import { withTrailingSlash } from "@/data/legacy-urls";
 import { Link } from "react-router-dom";
 import {
   calgaryNeighborhoods,
@@ -27,7 +28,7 @@ export default function NeighborhoodMarquee({ city }: NeighborhoodMarqueeProps) 
       {places.map(({ name, to }) => (
         <span key={`${to}${ariaHidden ? "-b" : ""}`} className="flex items-baseline">
           <Link
-            to={to}
+            to={withTrailingSlash(to)}
             tabIndex={ariaHidden ? -1 : undefined}
             className="display-serif whitespace-nowrap px-2 text-4xl font-bold tracking-tight text-foreground transition-colors hover:text-accent md:text-6xl"
           >

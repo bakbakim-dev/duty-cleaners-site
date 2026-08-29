@@ -28,7 +28,7 @@ import windowCleaning from "@/assets/gallery/window-cleaning.webp";
 // Animated section wrapper
 import MoveOutDepth from "@/components/MoveOutDepth";
 import { moveInOutTierRows } from "@/data/pricing";
-import { schemaAddressFor, BRANCH_ID, ORG_ID } from "@/data/proof";
+import { schemaAddressFor, BRANCH_ID, ORG_ID, RATING_CLAIM } from "@/data/proof";
 
 // Derived, never hand-typed (published-prices.test.ts): the cheapest
 // move-in/out tier from bk-config is the honest floor.
@@ -214,7 +214,7 @@ export default function EdmontonMoveInOut() {
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5" />
-                    <span className="font-medium">5-Star Rated Service</span>
+                    <span className="font-medium">{RATING_CLAIM}</span>
                   </div>
                 </div>
               </div>
@@ -243,7 +243,7 @@ export default function EdmontonMoveInOut() {
                   Skip the phone tag. Tell us your home size, condition, and move-out date — get personalized, all-inclusive pricing instantly. Backed by our 100% satisfaction guarantee and 24-hour re-clean promise.
                 </p>
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-10 py-6 h-auto font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5" asChild>
-                  <Link to="/contact-us">
+                  <Link to="/contact-us/">
                     <Calculator className="w-5 h-5 mr-2" />
                     See Pricing & Availability
                   </Link>

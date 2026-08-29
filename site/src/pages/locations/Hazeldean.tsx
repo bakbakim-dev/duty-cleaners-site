@@ -233,7 +233,7 @@ export default function Hazeldean() {
                 </div>
                 <CoverageChips areas={["Mill Creek Ravine", "Donnan Park", "Hazeldean Elementary", "75 Avenue", "99 Street", "86 Street", "Ritchie Market", "Community Garden"]} variant="compact" />
                 <div className="text-center mt-8">
-                  <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">View All Service Areas →</Link>
+                  <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">View All Service Areas →</Link>
                 </div>
               </div>
             </AnimatedSection>

@@ -66,7 +66,7 @@ const blogPosts: BlogPost[] = [
     date: "August 24, 2026",
     readTime: "8 min read",
     image: spotlessHomeTipsHero,
-    slug: "/blog/spotless-home-tips"
+    slug: "/blog/spotless-home-tips/"
   },
   {
     id: 13,
@@ -76,7 +76,7 @@ const blogPosts: BlogPost[] = [
     date: "August 24, 2026",
     readTime: "7 min read",
     image: calgaryCleanerHero,
-    slug: "/blog/cleaning-services-calgary"
+    slug: "/blog/cleaning-services-calgary/"
   },
   {
     id: 12,
@@ -96,7 +96,7 @@ const blogPosts: BlogPost[] = [
     date: "January 27, 2026",
     readTime: "14 min read",
     image: choosingCleaningCompanyHero,
-    slug: "/blog/choosing-cleaning-company"
+    slug: "/blog/choosing-cleaning-company/"
   },
   {
     id: 10,
@@ -106,7 +106,7 @@ const blogPosts: BlogPost[] = [
     date: "January 25, 2026",
     readTime: "12 min read",
     image: houseCleaningCostHero,
-    slug: "/how-much-does-a-house-cleaning-cost"
+    slug: "/how-much-does-a-house-cleaning-cost/"
   },
   {
     id: 9,
@@ -116,7 +116,7 @@ const blogPosts: BlogPost[] = [
     date: "January 25, 2026",
     readTime: "15 min read",
     image: vinegarBakingSodaHero,
-    slug: "/cleaning-with-vinegar-and-baking-soda"
+    slug: "/cleaning-with-vinegar-and-baking-soda/"
   },
   {
     id: 8,
@@ -126,7 +126,7 @@ const blogPosts: BlogPost[] = [
     date: "January 22, 2026",
     readTime: "10 min read",
     image: cleaningFrequencyHero,
-    slug: "/how-often-should-a-cleaning-service-clean-my-house"
+    slug: "/how-often-should-a-cleaning-service-clean-my-house/"
   },
   {
     id: 7,
@@ -136,7 +136,7 @@ const blogPosts: BlogPost[] = [
     date: "January 20, 2026",
     readTime: "12 min read",
     image: cleaningScheduleHero,
-    slug: "/blog/cleaning-schedule"
+    slug: "/blog/cleaning-schedule/"
   }
 ];
 

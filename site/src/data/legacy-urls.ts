@@ -223,8 +223,23 @@ const TARGET_BY_LEGACY = new Map(PRESERVED_URLS.map((u) => [u.legacy, u.target])
  */
 export function canonicalForPath(path: string): string {
   const clean = path.replace(/\/+$/, "") || "/";
-  if (TARGET_BY_LEGACY.has(clean)) return clean; // already the canonical legacy URL
-  return canonicalPath(clean);
+  // Returns the TRAILING-SLASH form, because that is this site's canonical form
+  // and this helper feeds <Link to> / href attributes.
+  //
+  // It used to return the slash-less form, which meant 10,227 of the site's
+  // 11,949 internal links (85.6%) pointed at a URL that differs from the
+  // canonical on the page they point to — every internal link was a 301 hop at
+  // the host (Netlify Pretty URLs), and every anchor contradicted its target's
+  // own <link rel="canonical">. Six audit rounds missed it because each
+  // individual surface (canonicals, _redirects, sitemaps, llms.txt) was
+  // slash-correct on its own; nobody measured the anchor layer.
+  //
+  // React Router matches "/pricing/" against path="/pricing" (v6 normalises the
+  // trailing slash), so client-side navigation is unaffected. withTrailingSlash
+  // is idempotent and preserves ?query and #fragment, so canonicalUrlForPath —
+  // which wraps this — is unchanged.
+  const target = TARGET_BY_LEGACY.has(clean) ? clean : canonicalPath(clean);
+  return withTrailingSlash(target);
 }
 
 /**

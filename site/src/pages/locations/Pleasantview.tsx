@@ -307,7 +307,7 @@ export default function Pleasantview() {
                 </div>
                 <CoverageChips areas={["Pleasantview Community League", "Southgate Centre", "University of Alberta", "111 Street", "51 Avenue", "Allendale", "Parkallen", "Aspen Gardens"]} variant="compact" />
                 <div className="text-center mt-8">
-                  <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
+                  <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
                   </Link>
                 </div>

@@ -290,7 +290,7 @@ export default function McConachie() {
                 </div>
                 <CoverageChips areas={["McConachie Park", "167 Avenue", "Manning Town Centre", "Christ the King Elementary", "Clareview", "Belvedere", "Beacon Heights", "Hollick-Kenyon"]} variant="compact" />
                 <div className="text-center mt-8">
-                  <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
+                  <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
                   </Link>
                 </div>

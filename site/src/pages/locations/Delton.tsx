@@ -297,7 +297,7 @@ export default function Delton() {
                 </div>
                 <CoverageChips areas={["97 Street", "Norwood Square", "Delton School", "122 Avenue", "119 Avenue", "St. Patrick School", "Churchill Square", "Eastwood"]} variant="compact" />
                 <div className="text-center mt-8">
-                  <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
+                  <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
                   </Link>
                 </div>

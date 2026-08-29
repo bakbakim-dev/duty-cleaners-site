@@ -132,7 +132,7 @@ export default function GiftCards() {
                   </a>
                 </Button>
                 <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-lg px-10 py-6 h-auto font-semibold" asChild>
-                  <Link to="/contact-us?topic=gift-card">Ask a Question</Link>
+                  <Link to="/contact-us/?topic=gift-card">Ask a Question</Link>
                 </Button>
               </div>
               <p className="mt-4 text-sm text-white/80">
@@ -310,7 +310,7 @@ export default function GiftCards() {
                   variant="highlight"
                   items={[]}
                   footerText="Every gift card cleaning is backed by our satisfaction guarantee. If the recipient isn't 100% happy, we'll re-clean for free—as long as we are informed within 24 hours after the service."
-                  footerLink={{ text: "Learn more about our guarantee", href: "/satisfaction-guarantee" }}
+                  footerLink={{ text: "Learn more about our guarantee", href: "/satisfaction-guarantee/" }}
                 />
               </div>
             </div>

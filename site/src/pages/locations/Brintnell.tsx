@@ -306,7 +306,7 @@ export default function Brintnell() {
                 </div>
                 <CoverageChips areas={["Brintnell School", "Manning Town Centre", "167 Avenue", "50 Street", "Hollick-Kenyon", "Casselman", "Matt Berry", "McConachie"]} variant="compact" />
                 <div className="text-center mt-8">
-                  <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
+                  <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
                   </Link>
                 </div>

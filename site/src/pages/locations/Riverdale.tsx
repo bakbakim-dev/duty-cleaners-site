@@ -306,7 +306,7 @@ export default function Riverdale() {
                 </div>
                 <CoverageChips areas={["Riverdale Park", "Louise McKinney Park", "Dawson Park", "Rowland Road", "Cloverdale", "Boyle Street", "Downtown", "Highlands"]} variant="compact" />
                 <div className="text-center mt-8">
-                  <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
+                  <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
                   </Link>
                 </div>

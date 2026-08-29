@@ -151,7 +151,7 @@ export default function CommercialCleaningCalgary() {
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
                 <Button size="lg" className="bg-accent hover:bg-accent/90 text-white h-12 px-6" asChild>
-                  <Link to="/contact-us">Get Free Estimate</Link>
+                  <Link to="/contact-us/">Get Free Estimate</Link>
                 </Button>
                 <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 h-12 px-6" asChild>
                   <a href="tel:4037681341">
@@ -309,7 +309,7 @@ export default function CommercialCleaningCalgary() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button size="lg" className="bg-accent hover:bg-accent/90 text-white h-12 px-8" asChild>
-                    <Link to="/contact-us">Get Free Estimate</Link>
+                    <Link to="/contact-us/">Get Free Estimate</Link>
                   </Button>
                   <Button size="lg" variant="outline" className="h-12 px-8" asChild>
                     <a href="tel:4037681341">
@@ -319,7 +319,7 @@ export default function CommercialCleaningCalgary() {
                   </Button>
                 </div>
                 <p className="text-sm text-muted-foreground mt-6">
-                  Also serving: <Link to="/commercial-cleaning" className="text-primary hover:underline font-medium">Edmonton Commercial Cleaning</Link>
+                  Also serving: <Link to="/commercial-cleaning/" className="text-primary hover:underline font-medium">Edmonton Commercial Cleaning</Link>
                 </p>
               </div>
             </div>

@@ -307,7 +307,7 @@ export default function Downtown() {
                 </div>
                 <CoverageChips areas={["Rogers Place", "Ice District", "Jasper Avenue", "Churchill Square", "MacEwan University", "Stantec Tower", "Warehouse District", "104 Street"]} variant="compact" />
                 <div className="text-center mt-8">
-                  <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
+                  <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
                   </Link>
                 </div>

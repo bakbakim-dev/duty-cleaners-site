@@ -227,12 +227,12 @@ export default function Navigation({ city }: NavigationProps) {
   const locationsItems: DropdownItem[] = [
     { to: "/", icon: MapPin, title: "Edmonton", description: "Serving Edmonton & surrounding areas" },
     { to: canonicalForPath("/calgary"), icon: MapPin, title: "Calgary", description: "Serving Calgary & nearby communities" },
-    { to: "/locations", icon: Globe2, title: "All Locations", description: "See everywhere we clean" },
+    { to: "/locations/", icon: Globe2, title: "All Locations", description: "See everywhere we clean" },
   ];
 
   const servicesItems: DropdownItem[] = [
     { to: canonicalForPath(`${cityPath}/services`), icon: Sparkles, title: "All Services", description: "Standard, deep & specialty cleaning" },
-    { to: "/whats-included", icon: ClipboardList, title: "What's Included", description: "Room-by-room cleaning checklists" },
+    { to: "/whats-included/", icon: ClipboardList, title: "What's Included", description: "Room-by-room cleaning checklists" },
     { to: canonicalForPath(`${cityPath}/move-in-move-out-cleaning`), icon: Truck, title: "Move In/Out Cleaning", description: "Cleaned to the standard landlords inspect for" },
     { to: canonicalForPath(`${cityPath}/post-construction-cleaning`), icon: HardHat, title: "Post-Construction", description: "Dust & debris removal after reno" },
     { to: canonicalForPath(`${cityPath}/wall-washing`), icon: Sparkles, title: "Wall Washing", description: "Marks, scuffs and smoke off painted walls" },
@@ -241,7 +241,7 @@ export default function Navigation({ city }: NavigationProps) {
     ...(city === "calgary"
       ? []
       : [{
-          to: "/edmonton/march-out-cleaning",
+          to: "/edmonton/march-out-cleaning/",
           icon: ShieldCheck,
           title: "March Out Cleaning",
           description: "Military housing, CFHA inspection standards",
@@ -251,10 +251,10 @@ export default function Navigation({ city }: NavigationProps) {
   // Company paths sit behind one dropdown. Reviews is promoted to a top-level
   // link because it is the highest-trust page in the funnel.
   const contactItems: DropdownItem[] = [
-    { to: "/about-us", icon: Users, title: "About Us", description: "Who we are and how we vet our pros" },
+    { to: "/about-us/", icon: Users, title: "About Us", description: "Who we are and how we vet our pros" },
     { to: canonicalForPath("/faq"), icon: HelpCircle, title: "FAQ", description: "Answers to common questions" },
-    { to: "/gift-card", icon: Gift, title: "Gift Cards", description: "Give the gift of a clean home" },
-    { to: "/join-the-team", icon: Users, title: "Careers", description: "Join our cleaning team" },
+    { to: "/gift-card/", icon: Gift, title: "Gift Cards", description: "Give the gift of a clean home" },
+    { to: "/join-the-team/", icon: Users, title: "Careers", description: "Join our cleaning team" },
     { to: canonicalForPath("/contact"), icon: MessageSquare, title: "Contact Us", description: "Send us a message anytime" },
   ];
 
@@ -332,11 +332,11 @@ export default function Navigation({ city }: NavigationProps) {
               Pricing
             </NavLink>
 
-            <NavLink to="/reviews" active={isActive("/reviews")}>
+            <NavLink to="/reviews/" active={isActive("/reviews")}>
               Reviews
             </NavLink>
 
-            <NavLink to="/blog" active={isActive("/blog")}>
+            <NavLink to="/blog/" active={isActive("/blog")}>
               Blog
             </NavLink>
 
@@ -404,7 +404,7 @@ export default function Navigation({ city }: NavigationProps) {
             >
               See My Instant Price
             </a>
-            <Link to="/about-us" className="block py-3 px-2 rounded-lg text-foreground hover:bg-secondary hover:text-accent transition-colors" onClick={() => setMobileMenuOpen(false)}>
+            <Link to="/about-us/" className="block py-3 px-2 rounded-lg text-foreground hover:bg-secondary hover:text-accent transition-colors" onClick={() => setMobileMenuOpen(false)}>
               About Us
             </Link>
 
@@ -436,7 +436,7 @@ export default function Navigation({ city }: NavigationProps) {
               )}
             </div>
 
-            <Link to="/join-the-team" className="block py-3 px-2 rounded-lg text-foreground hover:bg-secondary hover:text-accent transition-colors" onClick={() => setMobileMenuOpen(false)}>
+            <Link to="/join-the-team/" className="block py-3 px-2 rounded-lg text-foreground hover:bg-secondary hover:text-accent transition-colors" onClick={() => setMobileMenuOpen(false)}>
               Careers
             </Link>
 
@@ -472,7 +472,7 @@ export default function Navigation({ city }: NavigationProps) {
               Pricing
             </Link>
 
-            <Link to="/reviews" className="block py-3 px-2 rounded-lg text-foreground hover:bg-secondary hover:text-accent transition-colors" onClick={() => setMobileMenuOpen(false)}>
+            <Link to="/reviews/" className="block py-3 px-2 rounded-lg text-foreground hover:bg-secondary hover:text-accent transition-colors" onClick={() => setMobileMenuOpen(false)}>
               Reviews
             </Link>
 
@@ -504,7 +504,7 @@ export default function Navigation({ city }: NavigationProps) {
               )}
             </div>
 
-            <Link to="/blog" className="block py-3 px-2 rounded-lg text-foreground hover:bg-secondary hover:text-accent transition-colors" onClick={() => setMobileMenuOpen(false)}>
+            <Link to="/blog/" className="block py-3 px-2 rounded-lg text-foreground hover:bg-secondary hover:text-accent transition-colors" onClick={() => setMobileMenuOpen(false)}>
               Blog
             </Link>
             <a href={phoneLink} className="flex min-h-[48px] items-center gap-2 py-3 px-2 text-accent font-bold">

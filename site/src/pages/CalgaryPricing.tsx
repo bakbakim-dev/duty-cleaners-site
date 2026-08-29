@@ -441,7 +441,7 @@ export default function CalgaryPricing() {
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Button className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold shadow-md hover:shadow-lg transition-all" asChild>
-                    <Link to="/contact-us">
+                    <Link to="/contact-us/">
                       <CalendarClock className="w-5 h-5 mr-2" />
                       Book Your Cleaning
                     </Link>
@@ -592,7 +592,7 @@ export default function CalgaryPricing() {
 
             <div className="flex flex-wrap justify-center gap-4 mb-10">
               <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-10 py-6 h-auto font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5" asChild>
-                <Link to="/cleaning-services-calgary#quote">
+                <Link to="/cleaning-services-calgary/#quote">
                   <Calculator className="w-5 h-5 mr-2" />
                   See My Instant Price
                 </Link>

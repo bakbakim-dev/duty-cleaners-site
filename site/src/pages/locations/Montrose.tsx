@@ -300,7 +300,7 @@ export default function Montrose() {
                 </div>
                 <CoverageChips areas={["Santa Rosa Park", "Montrose Park", "Wayne Gretzky Drive", "118 Avenue", "Eastglen Leisure Centre", "Rexall Place Plaza", "Norwood Boulevard", "Highlands"]} variant="compact" />
                 <div className="text-center mt-8">
-                  <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
+                  <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
                   </Link>
                 </div>

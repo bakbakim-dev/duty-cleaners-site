@@ -306,7 +306,7 @@ export default function Evansdale() {
                 </div>
                 <CoverageChips areas={["Evansdale School", "Northgate Centre", "Evansdale Community League", "97 Street", "144 Avenue", "Castle Downs", "Belle Rive", "Lago Lindo"]} variant="compact" />
                 <div className="text-center mt-8">
-                  <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
+                  <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
                   </Link>
                 </div>

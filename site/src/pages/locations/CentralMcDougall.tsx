@@ -307,7 +307,7 @@ export default function CentralMcDougall() {
                 </div>
                 <CoverageChips areas={["MacEwan University", "Kingsway Mall", "Royal Alexandra Hospital", "107 Avenue", "109 Street", "Queen Mary Park", "Westmount", "Oliver"]} variant="compact" />
                 <div className="text-center mt-8">
-                  <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
+                  <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
                   </Link>
                 </div>

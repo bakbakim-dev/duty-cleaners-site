@@ -307,7 +307,7 @@ export default function Westmount() {
                 </div>
                 <CoverageChips areas={["124 Street", "Westmount Park", "Westmount Shopping Centre", "Groat Road", "111 Avenue", "Coronation Park", "Glenora", "Inglewood"]} variant="compact" />
                 <div className="text-center mt-8">
-                  <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
+                  <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
                   </Link>
                 </div>

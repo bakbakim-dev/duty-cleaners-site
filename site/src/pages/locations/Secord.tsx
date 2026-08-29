@@ -307,7 +307,7 @@ export default function Secord() {
                 </div>
                 <CoverageChips areas={["Webber Greens Drive", "Secord Park", "Anthony Henday Drive", "Lewis Estates Town Centre", "215 Street", "Stony Plain Road", "The Hamptons", "Glastonbury"]} variant="compact" />
                 <div className="text-center mt-8">
-                  <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
+                  <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
                   </Link>
                 </div>

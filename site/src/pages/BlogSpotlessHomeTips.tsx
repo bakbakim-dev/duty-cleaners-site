@@ -135,7 +135,7 @@ export default function BlogSpotlessHomeTips() {
         {/* Hero */}
         <section className="relative pt-24 pb-16">
           <div className="container mx-auto px-4">
-            <Link to="/blog">
+            <Link to="/blog/">
               <Button variant="ghost" className="mb-6">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Blog
@@ -253,7 +253,7 @@ export default function BlogSpotlessHomeTips() {
                 </ul>
                 <p className="text-muted-foreground leading-relaxed">
                   If you're building this from scratch, our own{" "}
-                  <Link to="/whats-included" className="text-primary hover:underline font-medium">
+                  <Link to="/whats-included/" className="text-primary hover:underline font-medium">
                     cleaning checklist
                   </Link>{" "}
                   is a reasonable starting template — it's the same breakdown our crews work from.
@@ -307,7 +307,7 @@ export default function BlogSpotlessHomeTips() {
                   to sit for a few minutes before wiping or vacuuming does most of the work. And always
                   test any cleaning solution on a hidden patch first if the surface is delicate — the
                   full method is in{" "}
-                  <Link to="/cleaning-with-vinegar-and-baking-soda" className="text-primary hover:underline font-medium">
+                  <Link to="/cleaning-with-vinegar-and-baking-soda/" className="text-primary hover:underline font-medium">
                     Cleaning with Vinegar and Baking Soda
                   </Link>.
                 </p>
@@ -333,7 +333,7 @@ export default function BlogSpotlessHomeTips() {
                 <h2 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">Keep reading</h2>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <Link
-                    to="/the-top-5-must-have-cleaning-products-for-a-spotless-home"
+                    to="/the-top-5-must-have-cleaning-products-for-a-spotless-home/"
                     className="block p-5 border border-border rounded-xl bg-card hover:border-accent transition-colors"
                   >
                     <h3 className="font-bold text-foreground">The Top 5 Must-Have Cleaning Products</h3>
@@ -342,7 +342,7 @@ export default function BlogSpotlessHomeTips() {
                     </p>
                   </Link>
                   <Link
-                    to="/blog/cleaning-schedule"
+                    to="/blog/cleaning-schedule/"
                     className="block p-5 border border-border rounded-xl bg-card hover:border-accent transition-colors"
                   >
                     <h3 className="font-bold text-foreground">A Cleaning Schedule That Actually Holds Up</h3>
@@ -369,7 +369,7 @@ export default function BlogSpotlessHomeTips() {
                       See My Instant Price — Edmonton
                     </Button>
                   </Link>
-                  <Link to="/cleaning-services-calgary#quote">
+                  <Link to="/cleaning-services-calgary/#quote">
                     <Button size="lg" variant="outline" className="w-full sm:w-auto min-h-[52px] text-base font-semibold">
                       See My Instant Price — Calgary
                     </Button>

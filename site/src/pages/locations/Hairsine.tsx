@@ -307,7 +307,7 @@ export default function Hairsine() {
                 </div>
                 <CoverageChips areas={["Hairsine Park", "Clareview Recreation Centre", "Clareview LRT", "Victoria Trail", "144 Avenue", "Bannerman", "Kirkness", "Kernohan"]} variant="compact" />
                 <div className="text-center mt-8">
-                  <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
+                  <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
                   </Link>
                 </div>

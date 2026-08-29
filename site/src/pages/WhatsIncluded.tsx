@@ -527,7 +527,7 @@ export default function WhatsIncluded() {
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Button size="lg" className="bg-accent hover:bg-accent/90 text-white h-12 px-8" asChild>
-                <Link to="/contact-us">
+                <Link to="/contact-us/">
                   <Calculator className="mr-2 w-5 h-5" />
                   Get Free Estimate
                 </Link>
@@ -559,7 +559,7 @@ export default function WhatsIncluded() {
               let us know within 24 hours after the cleaning and we'll come back to re-clean at no additional charge.
             </p>
             <Button variant="outline" size="lg" asChild>
-              <Link to="/about-us">Learn More About Us</Link>
+              <Link to="/about-us/">Learn More About Us</Link>
             </Button>
           </div>
         </div>

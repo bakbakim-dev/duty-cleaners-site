@@ -164,7 +164,7 @@ export default function ArbourLake() {
                     </a>
                   </Button>
                   <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
-                    <Link to="/calgary/pricing">See My Instant Price</Link>
+                    <Link to="/calgary/pricing/">See My Instant Price</Link>
                   </Button>
                 </div>
                 <div className="flex flex-wrap justify-center lg:justify-start gap-6">
@@ -363,7 +363,7 @@ export default function ArbourLake() {
                   </a>
                 </Button>
                 <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
-                  <Link to="/calgary/pricing">See My Instant Price</Link>
+                  <Link to="/calgary/pricing/">See My Instant Price</Link>
                 </Button>
               </div>
             </AnimatedSection>

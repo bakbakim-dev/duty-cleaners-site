@@ -261,7 +261,7 @@ const App = () => (
           <Route path="/calgary" element={<Calgary2 />} />
           <Route path="/edmonton" element={<Navigate to="/" replace />} />
           <Route path="/edmonton-2" element={<Navigate to="/" replace />} />
-          <Route path="/calgary-2" element={<Navigate to="/cleaning-services-calgary" replace />} />
+          <Route path="/calgary-2" element={<Navigate to="/cleaning-services-calgary/" replace />} />
 
           <Route path="/edmonton/services" element={<EdmontonServices />} />
           <Route path="/calgary/services" element={<CalgaryServices />} />
@@ -291,7 +291,7 @@ const App = () => (
           <Route path="/reviews" element={<Reviews />} />
           <Route path="/commercial-cleaning" element={<CommercialCleaning />} />
           <Route path="/calgary/commercial-cleaning" element={<CommercialCleaningCalgary />} />
-          <Route path="/commercial-cleaning-calgary" element={<Navigate to="/commercial-cleaning-services-calgary" replace />} />
+          <Route path="/commercial-cleaning-calgary" element={<Navigate to="/commercial-cleaning-services-calgary/" replace />} />
           <Route path="/join-the-team" element={<JoinTheTeam />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/cleaning-schedule" element={<BlogCleaningSchedule />} />
@@ -305,7 +305,7 @@ const App = () => (
           <Route path="/blog/spotless-home-tips" element={<BlogSpotlessHomeTips />} />
           <Route path="/blog/cleaning-services-calgary" element={<BlogChoosingCalgaryCleaner />} />
           <Route path="/satisfaction-guarantee" element={<SatisfactionGuarantee />} />
-          <Route path="/insurance-liability" element={<Navigate to="/satisfaction-guarantee" replace />} />
+          <Route path="/insurance-liability" element={<Navigate to="/satisfaction-guarantee/" replace />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/gift-cards" element={<GiftCards />} />
@@ -521,96 +521,96 @@ const App = () => (
           <Route path="/cleaning-with-vinegar-and-baking-soda" element={<BlogVinegarBakingSoda />} />
 
           {/* Legacy 301s -> canonical successor */}
-          <Route path="/8038/how-much-does-a-house-cleaning-cost" element={<Navigate to="/how-much-does-a-house-cleaning-cost" replace />} />
-          <Route path="/8081/the-top-5-must-have-cleaning-products-for-a-spotless-home" element={<Navigate to="/the-top-5-must-have-cleaning-products-for-a-spotless-home" replace />} />
-          <Route path="/8060/how-often-should-a-cleaning-service-clean-my-house" element={<Navigate to="/how-often-should-a-cleaning-service-clean-my-house" replace />} />
-          <Route path="/services/move-in-move-out-cleaning" element={<Navigate to="/move-out-cleaning-edmonton" replace />} />
-          <Route path="/8088/cleaning-with-vinegar-and-baking-soda" element={<Navigate to="/cleaning-with-vinegar-and-baking-soda" replace />} />
-          <Route path="/8102/a-house-cleaning-schedule-that-does-not-overwhelm-you" element={<Navigate to="/blog/cleaning-schedule" replace />} />
-          <Route path="/services/commercial-cleaning" element={<Navigate to="/commercial-cleaning" replace />} />
-          <Route path="/services/post-construction-cleaning" element={<Navigate to="/post-construction-cleaning" replace />} />
-          <Route path="/booking-page" element={<Navigate to="/pricing" replace />} />
-          <Route path="/move-in-move-out-cleaning" element={<Navigate to="/move-out-cleaning-edmonton" replace />} />
-          <Route path="/cleaning-services-for-fort-saskatchewan-ab" element={<Navigate to="/cleaning-services-fort-saskatchewan" replace />} />
-          <Route path="/1948/house-cleaning-tips-for-a-spotless-home-environment" element={<Navigate to="/blog/spotless-home-tips" replace />} />
-          <Route path="/march-out-cleaning-calgary" element={<Navigate to="/move-out-cleaning-calgary" replace />} />
-          <Route path="/how-to-deep-clean-your-home" element={<Navigate to="/edmonton/deep-cleaning" replace />} />
-          <Route path="/cleaning-services-okotoks" element={<Navigate to="/locations/okotoks" replace />} />
-          <Route path="/cleaning-services-black-diamond" element={<Navigate to="/locations/black-diamond" replace />} />
-          <Route path="/cleaning-services-chestermere" element={<Navigate to="/locations/chestermere" replace />} />
-          <Route path="/10042/cleaning-services-calgary-transform-your-space" element={<Navigate to="/blog/cleaning-services-calgary" replace />} />
-          <Route path="/cleaning-services-downtown-edmonton-ab" element={<Navigate to="/locations/downtown-edmonton" replace />} />
-          <Route path="/cleaning-services-langdon" element={<Navigate to="/locations/langdon" replace />} />
-          <Route path="/airbnb-cleaning-service" element={<Navigate to="/edmonton/airbnb-cleaning" replace />} />
-          <Route path="/cleaning-services-strathmore" element={<Navigate to="/locations/strathmore" replace />} />
-          <Route path="/march-out-cleaning-edmonton" element={<Navigate to="/edmonton/march-out-cleaning" replace />} />
-          <Route path="/cleaning-services-red-deer" element={<Navigate to="/locations" replace />} />
-          <Route path="/cleaning-services-glenora-edmonton-ab" element={<Navigate to="/locations/glenora-edmonton" replace />} />
-          <Route path="/1848/house-cleaning-hacks-easy-tips-for-busy-lives" element={<Navigate to="/blog" replace />} />
+          <Route path="/8038/how-much-does-a-house-cleaning-cost" element={<Navigate to="/how-much-does-a-house-cleaning-cost/" replace />} />
+          <Route path="/8081/the-top-5-must-have-cleaning-products-for-a-spotless-home" element={<Navigate to="/the-top-5-must-have-cleaning-products-for-a-spotless-home/" replace />} />
+          <Route path="/8060/how-often-should-a-cleaning-service-clean-my-house" element={<Navigate to="/how-often-should-a-cleaning-service-clean-my-house/" replace />} />
+          <Route path="/services/move-in-move-out-cleaning" element={<Navigate to="/move-out-cleaning-edmonton/" replace />} />
+          <Route path="/8088/cleaning-with-vinegar-and-baking-soda" element={<Navigate to="/cleaning-with-vinegar-and-baking-soda/" replace />} />
+          <Route path="/8102/a-house-cleaning-schedule-that-does-not-overwhelm-you" element={<Navigate to="/blog/cleaning-schedule/" replace />} />
+          <Route path="/services/commercial-cleaning" element={<Navigate to="/commercial-cleaning/" replace />} />
+          <Route path="/services/post-construction-cleaning" element={<Navigate to="/post-construction-cleaning/" replace />} />
+          <Route path="/booking-page" element={<Navigate to="/pricing/" replace />} />
+          <Route path="/move-in-move-out-cleaning" element={<Navigate to="/move-out-cleaning-edmonton/" replace />} />
+          <Route path="/cleaning-services-for-fort-saskatchewan-ab" element={<Navigate to="/cleaning-services-fort-saskatchewan/" replace />} />
+          <Route path="/1948/house-cleaning-tips-for-a-spotless-home-environment" element={<Navigate to="/blog/spotless-home-tips/" replace />} />
+          <Route path="/march-out-cleaning-calgary" element={<Navigate to="/move-out-cleaning-calgary/" replace />} />
+          <Route path="/how-to-deep-clean-your-home" element={<Navigate to="/edmonton/deep-cleaning/" replace />} />
+          <Route path="/cleaning-services-okotoks" element={<Navigate to="/locations/okotoks/" replace />} />
+          <Route path="/cleaning-services-black-diamond" element={<Navigate to="/locations/black-diamond/" replace />} />
+          <Route path="/cleaning-services-chestermere" element={<Navigate to="/locations/chestermere/" replace />} />
+          <Route path="/10042/cleaning-services-calgary-transform-your-space" element={<Navigate to="/blog/cleaning-services-calgary/" replace />} />
+          <Route path="/cleaning-services-downtown-edmonton-ab" element={<Navigate to="/locations/downtown-edmonton/" replace />} />
+          <Route path="/cleaning-services-langdon" element={<Navigate to="/locations/langdon/" replace />} />
+          <Route path="/airbnb-cleaning-service" element={<Navigate to="/edmonton/airbnb-cleaning/" replace />} />
+          <Route path="/cleaning-services-strathmore" element={<Navigate to="/locations/strathmore/" replace />} />
+          <Route path="/march-out-cleaning-edmonton" element={<Navigate to="/edmonton/march-out-cleaning/" replace />} />
+          <Route path="/cleaning-services-red-deer" element={<Navigate to="/locations/" replace />} />
+          <Route path="/cleaning-services-glenora-edmonton-ab" element={<Navigate to="/locations/glenora-edmonton/" replace />} />
+          <Route path="/1848/house-cleaning-hacks-easy-tips-for-busy-lives" element={<Navigate to="/blog/" replace />} />
           <Route path="/how-often-should-a-cleaning-service-clean-my-house" element={<BlogCleaningFrequency />} />
-          <Route path="/services/wall-washing-wall-cleaning" element={<Navigate to="/wall-washing-wall-cleaning" replace />} />
-          <Route path="/cleaning-services-riverdale-edmonton-ab" element={<Navigate to="/locations/riverdale-edmonton" replace />} />
+          <Route path="/services/wall-washing-wall-cleaning" element={<Navigate to="/wall-washing-wall-cleaning/" replace />} />
+          <Route path="/cleaning-services-riverdale-edmonton-ab" element={<Navigate to="/locations/riverdale-edmonton/" replace />} />
           <Route path="/cleaning-services-edmonton" element={<Navigate to="/" replace />} />
           {/* NOTE: /the-top-5-must-have-cleaning-products-for-a-spotless-home is deliberately
               NOT redirected here. It is a `mode: "preserve"` URL (see src/data/legacy-urls.ts)
               and is served by <BlogCleaningProducts /> at its canonical route above. A duplicate
               Navigate route used to sit on this line and silently sent the site's 73,104-impression
               blog post to /blog whenever route ordering shifted. Do not re-add it. */}
-          <Route path="/cleaning-services-avonmore-edmonton-ab" element={<Navigate to="/locations/avonmore-edmonton" replace />} />
-          <Route path="/cleaning-services-hazeldean-edmonton-ab" element={<Navigate to="/locations/hazeldean" replace />} />
-          <Route path="/the-benefits-of-using-leather-conditioner-for-automotive-seats-and-home-furniture" element={<Navigate to="/blog" replace />} />
+          <Route path="/cleaning-services-avonmore-edmonton-ab" element={<Navigate to="/locations/avonmore-edmonton/" replace />} />
+          <Route path="/cleaning-services-hazeldean-edmonton-ab" element={<Navigate to="/locations/hazeldean/" replace />} />
+          <Route path="/the-benefits-of-using-leather-conditioner-for-automotive-seats-and-home-furniture" element={<Navigate to="/blog/" replace />} />
           <Route path="/9448/cleaning-services-edmonton-you-can-trust" element={<Navigate to="/" replace />} />
-          <Route path="/2038/top-benefits-of-professional-cleaning-services-today" element={<Navigate to="/blog" replace />} />
-          <Route path="/cleaning-services-turner-valley" element={<Navigate to="/locations/turner-valley" replace />} />
-          <Route path="/cleaning-services-crossfield" element={<Navigate to="/locations/crossfield" replace />} />
-          <Route path="/cleaning-services-bonnie-doon-edmonton-ab" element={<Navigate to="/locations/bonnie-doon-edmonton" replace />} />
-          <Route path="/cleaning-services-abbottsfield-edmonton-ab" element={<Navigate to="/locations/abbottsfield-edmonton" replace />} />
-          <Route path="/cleaning-services-canora-edmonton-ab" element={<Navigate to="/locations/canora-edmonton" replace />} />
+          <Route path="/2038/top-benefits-of-professional-cleaning-services-today" element={<Navigate to="/blog/" replace />} />
+          <Route path="/cleaning-services-turner-valley" element={<Navigate to="/locations/turner-valley/" replace />} />
+          <Route path="/cleaning-services-crossfield" element={<Navigate to="/locations/crossfield/" replace />} />
+          <Route path="/cleaning-services-bonnie-doon-edmonton-ab" element={<Navigate to="/locations/bonnie-doon-edmonton/" replace />} />
+          <Route path="/cleaning-services-abbottsfield-edmonton-ab" element={<Navigate to="/locations/abbottsfield-edmonton/" replace />} />
+          <Route path="/cleaning-services-canora-edmonton-ab" element={<Navigate to="/locations/canora-edmonton/" replace />} />
           <Route path="/how-it-works" element={<Navigate to="/" replace />} />
-          <Route path="/cleaning-services-greenfield-edmonton-ab" element={<Navigate to="/locations/greenfield-edmonton" replace />} />
-          <Route path="/why-hire-duty-cleaners-for-commercial-cleaning" element={<Navigate to="/commercial-cleaning" replace />} />
-          <Route path="/cleaning-services-dovercourt-edmonton-ab" element={<Navigate to="/locations/dovercourt-edmonton" replace />} />
-          <Route path="/cleaning-services-evansdale-edmonton-ab" element={<Navigate to="/locations/evansdale-edmonton" replace />} />
-          <Route path="/cleaning-services-ambleside-edmonton-ab" element={<Navigate to="/locations/ambleside-edmonton" replace />} />
-          <Route path="/cleaning-services-glenwood-edmonton-ab" element={<Navigate to="/locations/glenwood-edmonton" replace />} />
-          <Route path="/tag/cleaning-services" element={<Navigate to="/blog" replace />} />
-          <Route path="/services-pricing/commercial-cleaning-edmonton" element={<Navigate to="/commercial-cleaning" replace />} />
-          <Route path="/cleaning-services-ottewell-edmonton-ab" element={<Navigate to="/locations/ottewell-edmonton" replace />} />
-          <Route path="/cleaning-services-inglewood-edmonton-ab" element={<Navigate to="/locations/inglewood" replace />} />
-          <Route path="/cleaning-services-mcconachie-edmonton-ab" element={<Navigate to="/locations/mcconachie-edmonton" replace />} />
-          <Route path="/cleaning-services-belvedere-edmonton-ab" element={<Navigate to="/locations/belvedere-edmonton" replace />} />
-          <Route path="/cleaning-services-boyle-street-edmonton-ab" element={<Navigate to="/locations/boyle-street-edmonton" replace />} />
-          <Route path="/cleaning-services-delton-edmonton-ab" element={<Navigate to="/locations/delton" replace />} />
-          <Route path="/cleaning-services-aspen-gardens-edmonton-ab" element={<Navigate to="/locations/aspen-gardens-edmonton" replace />} />
-          <Route path="/1735/choosing-the-right-cleaning-company-for-your-needs" element={<Navigate to="/blog/choosing-cleaning-company" replace />} />
-          <Route path="/cleaning-services-high-river" element={<Navigate to="/locations/high-river" replace />} />
-          <Route path="/cleaning-services-allendale-edmonton-ab" element={<Navigate to="/locations/allendale" replace />} />
-          <Route path="/cleaning-services-matt-berry-edmonton-ab" element={<Navigate to="/locations/matt-berry-edmonton" replace />} />
-          <Route path="/cleaning-services-beacon-heights-edmonton-ab" element={<Navigate to="/locations/beacon-heights-edmonton" replace />} />
-          <Route path="/cleaning-services-rapperswill-edmonton-ab" element={<Navigate to="/locations/rapperswill-edmonton" replace />} />
-          <Route path="/march-out-cleaning" element={<Navigate to="/edmonton/march-out-cleaning" replace />} />
-          <Route path="/cleaning-services-queen-alexandra-edmonton-ab" element={<Navigate to="/locations/queen-alexandra-edmonton" replace />} />
-          <Route path="/cleaning-services-montrose-edmonton-ab" element={<Navigate to="/locations/montrose" replace />} />
-          <Route path="/cleaning-services-prince-charles-edmonton-ab" element={<Navigate to="/locations/prince-charles-edmonton" replace />} />
-          <Route path="/natural-cleaning-solutions-for-your-kitchen-appliances" element={<Navigate to="/cleaning-with-vinegar-and-baking-soda" replace />} />
-          <Route path="/services-pricing/move-in-move-out" element={<Navigate to="/move-out-cleaning-edmonton" replace />} />
+          <Route path="/cleaning-services-greenfield-edmonton-ab" element={<Navigate to="/locations/greenfield-edmonton/" replace />} />
+          <Route path="/why-hire-duty-cleaners-for-commercial-cleaning" element={<Navigate to="/commercial-cleaning/" replace />} />
+          <Route path="/cleaning-services-dovercourt-edmonton-ab" element={<Navigate to="/locations/dovercourt-edmonton/" replace />} />
+          <Route path="/cleaning-services-evansdale-edmonton-ab" element={<Navigate to="/locations/evansdale-edmonton/" replace />} />
+          <Route path="/cleaning-services-ambleside-edmonton-ab" element={<Navigate to="/locations/ambleside-edmonton/" replace />} />
+          <Route path="/cleaning-services-glenwood-edmonton-ab" element={<Navigate to="/locations/glenwood-edmonton/" replace />} />
+          <Route path="/tag/cleaning-services" element={<Navigate to="/blog/" replace />} />
+          <Route path="/services-pricing/commercial-cleaning-edmonton" element={<Navigate to="/commercial-cleaning/" replace />} />
+          <Route path="/cleaning-services-ottewell-edmonton-ab" element={<Navigate to="/locations/ottewell-edmonton/" replace />} />
+          <Route path="/cleaning-services-inglewood-edmonton-ab" element={<Navigate to="/locations/inglewood/" replace />} />
+          <Route path="/cleaning-services-mcconachie-edmonton-ab" element={<Navigate to="/locations/mcconachie-edmonton/" replace />} />
+          <Route path="/cleaning-services-belvedere-edmonton-ab" element={<Navigate to="/locations/belvedere-edmonton/" replace />} />
+          <Route path="/cleaning-services-boyle-street-edmonton-ab" element={<Navigate to="/locations/boyle-street-edmonton/" replace />} />
+          <Route path="/cleaning-services-delton-edmonton-ab" element={<Navigate to="/locations/delton/" replace />} />
+          <Route path="/cleaning-services-aspen-gardens-edmonton-ab" element={<Navigate to="/locations/aspen-gardens-edmonton/" replace />} />
+          <Route path="/1735/choosing-the-right-cleaning-company-for-your-needs" element={<Navigate to="/blog/choosing-cleaning-company/" replace />} />
+          <Route path="/cleaning-services-high-river" element={<Navigate to="/locations/high-river/" replace />} />
+          <Route path="/cleaning-services-allendale-edmonton-ab" element={<Navigate to="/locations/allendale/" replace />} />
+          <Route path="/cleaning-services-matt-berry-edmonton-ab" element={<Navigate to="/locations/matt-berry-edmonton/" replace />} />
+          <Route path="/cleaning-services-beacon-heights-edmonton-ab" element={<Navigate to="/locations/beacon-heights-edmonton/" replace />} />
+          <Route path="/cleaning-services-rapperswill-edmonton-ab" element={<Navigate to="/locations/rapperswill-edmonton/" replace />} />
+          <Route path="/march-out-cleaning" element={<Navigate to="/edmonton/march-out-cleaning/" replace />} />
+          <Route path="/cleaning-services-queen-alexandra-edmonton-ab" element={<Navigate to="/locations/queen-alexandra-edmonton/" replace />} />
+          <Route path="/cleaning-services-montrose-edmonton-ab" element={<Navigate to="/locations/montrose/" replace />} />
+          <Route path="/cleaning-services-prince-charles-edmonton-ab" element={<Navigate to="/locations/prince-charles-edmonton/" replace />} />
+          <Route path="/natural-cleaning-solutions-for-your-kitchen-appliances" element={<Navigate to="/cleaning-with-vinegar-and-baking-soda/" replace />} />
+          <Route path="/services-pricing/move-in-move-out" element={<Navigate to="/move-out-cleaning-edmonton/" replace />} />
           <Route path="/shop" element={<Navigate to="/" replace />} />
-          <Route path="/cleaning-services-glengarry-edmonton-ab" element={<Navigate to="/locations/glengarry-edmonton" replace />} />
-          <Route path="/checkout" element={<Navigate to="/book" replace />} />
-          <Route path="/cleaning-services-capilano-edmonton-ab" element={<Navigate to="/locations/capilano-edmonton" replace />} />
-          <Route path="/cleaning-services-castle-downs-edmonton-ab" element={<Navigate to="/locations/castle-downs" replace />} />
-          <Route path="/airbnb-cleaning-services-edmonton" element={<Navigate to="/edmonton/airbnb-cleaning" replace />} />
-          <Route path="/cleaning-services-hermitage-edmonton-ab" element={<Navigate to="/locations/hermitage-edmonton" replace />} />
-          <Route path="/cleaning-services-casselman-edmonton-ab" element={<Navigate to="/locations/casselman-edmonton" replace />} />
-          <Route path="/cleaning-services-griesbach-edmonton-ab" element={<Navigate to="/locations/griesbach-edmonton" replace />} />
+          <Route path="/cleaning-services-glengarry-edmonton-ab" element={<Navigate to="/locations/glengarry-edmonton/" replace />} />
+          <Route path="/checkout" element={<Navigate to="/book/" replace />} />
+          <Route path="/cleaning-services-capilano-edmonton-ab" element={<Navigate to="/locations/capilano-edmonton/" replace />} />
+          <Route path="/cleaning-services-castle-downs-edmonton-ab" element={<Navigate to="/locations/castle-downs/" replace />} />
+          <Route path="/airbnb-cleaning-services-edmonton" element={<Navigate to="/edmonton/airbnb-cleaning/" replace />} />
+          <Route path="/cleaning-services-hermitage-edmonton-ab" element={<Navigate to="/locations/hermitage-edmonton/" replace />} />
+          <Route path="/cleaning-services-casselman-edmonton-ab" element={<Navigate to="/locations/casselman-edmonton/" replace />} />
+          <Route path="/cleaning-services-griesbach-edmonton-ab" element={<Navigate to="/locations/griesbach-edmonton/" replace />} />
           <Route path="/cart" element={<Navigate to="/" replace />} />
           <Route path="/my-account" element={<Navigate to="/" replace />} />
-          <Route path="/cochrane-cleaning-services" element={<Navigate to="/cleaning-services-cochrane" replace />} />
-          <Route path="/cleaning-services-belmont-edmonton-ab" element={<Navigate to="/locations/belmont-edmonton" replace />} />
+          <Route path="/cochrane-cleaning-services" element={<Navigate to="/cleaning-services-cochrane/" replace />} />
+          <Route path="/cleaning-services-belmont-edmonton-ab" element={<Navigate to="/locations/belmont-edmonton/" replace />} />
           <Route path="/#!" element={<Navigate to="/" replace />} />
-          <Route path="/what-to-expect-from-professional-cleaners" element={<Navigate to="/blog/choosing-cleaning-company" replace />} />
-          <Route path="/cleaning-services-lauderdale-edmonton-ab" element={<Navigate to="/locations/lauderdale" replace />} />
-          <Route path="/2011/how-cleaning-services-improve-your-homes-health" element={<Navigate to="/blog" replace />} />
+          <Route path="/what-to-expect-from-professional-cleaners" element={<Navigate to="/blog/choosing-cleaning-company/" replace />} />
+          <Route path="/cleaning-services-lauderdale-edmonton-ab" element={<Navigate to="/locations/lauderdale/" replace />} />
+          <Route path="/2011/how-cleaning-services-improve-your-homes-health" element={<Navigate to="/blog/" replace />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         </Suspense>

@@ -282,7 +282,7 @@ export default function Terwillegar() {
                 </div>
                 <CoverageChips areas={["Terwillegar Park & Trails", "Terwillegar Towne", "Terwillegar Gardens", "South Terwillegar", "Magrath Heights", "Terwillegar Recreation Centre"]} variant="compact" />
                 <div className="text-center mt-8">
-                  <Link to="/locations" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">View All Service Areas →</Link>
+                  <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">View All Service Areas →</Link>
                 </div>
               </div>
             </AnimatedSection>
