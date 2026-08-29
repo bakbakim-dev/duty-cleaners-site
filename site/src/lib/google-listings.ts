@@ -57,6 +57,20 @@ export const GOOGLE_LISTINGS: Record<CityKey, GoogleListing> = {
   // decode to exactly the CIDs above (8192121191672692049 / 6193344199307583189).
   // A wrong Place ID would send customers to another business's review form, so
   // that check matters more than the source it came from.
+  //
+  // OWNER-CONFIRMED 2026-08-29: the owner stated both permalinks directly —
+  // Edmonton = cid 8192121191672692049, Calgary = cid 6193344199307583189.
+  //
+  // That closes the half the decode cannot reach. Decoding proves a CID and a
+  // Place ID describe THE SAME listing; it cannot prove the listing is ours, or
+  // which city it belongs to — a straight Edmonton/Calgary swap satisfies the
+  // decode perfectly. Only a human who can see the profiles can settle that, and
+  // now one has. Do not re-open this as an audit finding without new evidence.
+  //
+  // Guarded from the other direction too: google-listings.test.ts re-derives the
+  // CID from each Place ID, and claims-and-links.test.ts asserts no city-scoped
+  // LocalBusiness node references the other city's listing (before the sameAs
+  // fix in 527fa7d, all 190 of them referenced both).
   edmonton: listing(
     "Duty Cleaners House Cleaning Services Edmonton",
     "8192121191672692049",
