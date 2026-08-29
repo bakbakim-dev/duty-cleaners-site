@@ -1,5 +1,5 @@
 import { canonicalForPath, canonicalUrlForPath } from "@/data/legacy-urls";
-import { schemaAddressFor } from "@/data/proof";
+import { schemaAddressFor, BRANCH_ID, BRANCH_IDENTITY } from "@/data/proof";
 import { POLICY } from "@/data/policy";
 import CityCrossLink from "@/components/CityCrossLink";
 import { useState, useEffect, type ReactNode } from "react";
@@ -168,9 +168,13 @@ const ServiceDetailPage = ({
     url: canonicalUrlForPath(new URL(canonical).pathname),
     provider: {
       "@type": "LocalBusiness",
-      name: `Duty Cleaners ${cityName}`,
+      // @id merges this into the existing branch entity. Without it these were
+      // nine more anonymous businesses at the same address, each with its own
+      // drifting url — the duplication the branch @id exists to prevent.
+      "@id": BRANCH_ID[city],
+      name: BRANCH_IDENTITY[city].name,
       telephone: phone,
-      url: `https://dutycleaners.ca${quoteBase}`,
+      url: BRANCH_IDENTITY[city].url,
       // One authority for the entity's address (data/proof.ts). This provider
       // node used to carry none — on every service×city page, ~165 of the 175
       // address-less LocalBusiness nodes an AuditSpur build audit found.

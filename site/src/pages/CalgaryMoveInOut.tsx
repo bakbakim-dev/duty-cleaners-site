@@ -18,7 +18,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import MoveOutDepth from "@/components/MoveOutDepth";
 import { moveInOutTierRows } from "@/data/pricing";
 import { buildServiceSchema } from "@/lib/service-schema";
-import { schemaAddressFor, BRANCH_ID, ORG_ID, RATING_CLAIM } from "@/data/proof";
+import { schemaAddressFor, BRANCH_ID, ORG_ID, RATING_CLAIM, BRANCH_IDENTITY } from "@/data/proof";
 
 // Derived, never hand-typed (published-prices.test.ts): the cheapest
 // move-in/out tier from bk-config is the honest floor.
@@ -37,11 +37,11 @@ const branchSchema = () => {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "@id": BRANCH_ID.calgary,
-    name: "Duty Cleaners Calgary",
+    name: BRANCH_IDENTITY.calgary.name,
     telephone: "+1-403-768-1341",
     email: "support@dutycleaners.ca",
     address: schemaAddressFor("calgary"),
-    url: "https://dutycleaners.ca/move-out-cleaning-calgary/",
+    url: BRANCH_IDENTITY.calgary.url,
     priceRange: `${rows[0]?.price}-${rows[rows.length - 1]?.price}+`,
     openingHours: ["Mo-Sa 08:00-20:00", "Su 09:00-15:00"],
     parentOrganization: { "@id": ORG_ID },

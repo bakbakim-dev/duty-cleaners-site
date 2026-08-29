@@ -84,7 +84,7 @@ export default function Leduc() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `Deep cleaning adds to our standard package:\n\n• Clean outside AC outlet panels\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+      answer: `Deep cleaning adds to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
     },
     {
       question: "What is your 100% satisfaction guarantee policy?",
@@ -230,7 +230,7 @@ export default function Leduc() {
                 Things To Do In Leduc
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
-                <p>Nestled in the heart of Alberta lies Leduc, a captivating city that seamlessly intertwines the warmth of a small-town atmosphere with the vast array of opportunities found in larger urban centres. Leduc also boasts a rich history rooted in agriculture, oil, and gas, which is celebrated at the Leduc #1 Energy Discovery Centre, where you can explore the city's pivotal role in the energy industry. If you want to take a stroll, get to the beautiful Telford Lake Park (named after the city's founder), where you can enjoy a serene waterfront oasis with walking trails, picnic areas, and a beach. Go for an immersive cultural experience, and attend a performance at the Maclab Centre for the Performing Arts, a state-of-the-art venue hosting diverse theatrical productions. Lastly, end your day savouring a craft beer at Rig Hand Distillery, a local hotspot renowned for its unique brews and friendly atmosphere.</p>
+                <p>Leduc is a city that seamlessly intertwines the warmth of a small-town atmosphere with the vast array of opportunities found in larger urban centres. Leduc also boasts a rich history rooted in agriculture, oil, and gas, which is celebrated at the Leduc #1 Energy Discovery Centre, where you can explore the city's pivotal role in the energy industry. If you want to take a stroll, get to the beautiful Telford Lake Park (named after the city's founder), where you can enjoy a serene waterfront oasis with walking trails, picnic areas, and a beach. Go for an immersive cultural experience, and attend a performance at the Maclab Centre for the Performing Arts, a state-of-the-art venue hosting diverse theatrical productions. Lastly, end your day savouring a craft beer at Rig Hand Distillery, a local hotspot renowned for its unique brews and friendly atmosphere.</p>
               </div>
             </div>
           </AnimatedSection>

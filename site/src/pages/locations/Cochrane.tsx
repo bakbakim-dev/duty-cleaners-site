@@ -94,7 +94,7 @@ export default function Cochrane() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `Deep cleaning adds to our standard package:\n\n• Clean outside AC outlet panels\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+      answer: `Deep cleaning adds to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
     },
     {
       question: "What is your 100% satisfaction guarantee policy?",
@@ -199,7 +199,7 @@ export default function Cochrane() {
                 </h2>
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>
-                    Cochrane is a picturesque town nestled against the breathtaking Rocky Mountain foothills, just west of Calgary along{" "}
+                    Cochrane is a town in the Rocky Mountain foothills, just west of Calgary along{" "}
                     <a href="https://www.google.com/maps/place/Highway+1A,+Cochrane,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Highway 1A</a>.
                     Whether your home is near the iconic{" "}
                     <a href="https://www.google.com/maps/place/Cochrane+Ranche+Historic+Site/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Cochrane Ranche Historic Site</a>,

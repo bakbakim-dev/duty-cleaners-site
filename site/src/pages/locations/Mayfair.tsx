@@ -104,7 +104,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `Deep cleaning adds to our standard package:\n\n• Clean outside AC outlet panels\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+    answer: `Deep cleaning adds to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
   },
   {
     question: "What is your 100% satisfaction guarantee policy?",
@@ -210,7 +210,7 @@ export default function Mayfair() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">About the Neighbourhood</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Cleaning Services Tailored to Mayfair Estate Homes</h2>
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
-                  <p>Mayfair is a tiny, prestigious SW pocket of estate-style homes nestled between Elbow Park and Britannia. Wide lots, mature landscaping, and proximity to the river give it a calm, private feel that's rare this close to downtown.</p>
+                  <p>Mayfair is a tiny, prestigious SW pocket of estate-style homes sitting between Elbow Park and Britannia. Wide lots, mature landscaping, and proximity to the river give it a calm, private feel that's rare this close to downtown.</p>
                   <p>We treat Mayfair homes with the meticulous detail they deserve — thoughtful, consistent service tailored to fine finishes, and professional products you'll feel good about using around family and guests.</p>
                 </div>
               </div>

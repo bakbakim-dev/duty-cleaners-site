@@ -1,4 +1,4 @@
-import { BRAND_PROFILES } from "@/data/proof";
+import { BRANCH_PROFILES, BRANCH_IDENTITY } from "@/data/proof";
 import { useEffect, useState } from "react";
 import { EDMONTON_REVIEWS } from "@/data/reviews";
 import { Helmet } from "react-helmet-async";
@@ -152,7 +152,8 @@ export default function Edmonton2() {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "@id": "https://dutycleaners.ca/#edmonton",
-    name: "Duty Cleaners - Edmonton",
+    name: BRANCH_IDENTITY.edmonton.name,
+    url: BRANCH_IDENTITY.edmonton.url,
     parentOrganization: { "@id": "https://dutycleaners.ca/#org" },
     image: "https://dutycleaners.ca/og-image.jpg",
     logo: "https://dutycleaners.ca/logo.png",
@@ -168,7 +169,7 @@ export default function Edmonton2() {
     },
     url: "https://dutycleaners.ca/",
     hasMap: "https://www.google.com/maps?cid=8192121191672692049",
-    sameAs: [...BRAND_PROFILES],
+    sameAs: [...BRANCH_PROFILES.edmonton],
     areaServed: [
       "Edmonton", "St. Albert", "Sherwood Park", "Spruce Grove", "Leduc",
       "Beaumont", "Fort Saskatchewan", "Stony Plain", "Morinville", "Devon",

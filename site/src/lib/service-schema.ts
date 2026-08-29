@@ -1,4 +1,4 @@
-import { schemaAddressFor, BRAND_PROFILES, ORG_ID, BRANCH_ID } from "@/data/proof";
+import { schemaAddressFor, BRANCH_PROFILES, ORG_ID, BRANCH_ID, BRANCH_IDENTITY } from "@/data/proof";
 import { canonicalUrlForPath } from "@/data/legacy-urls";
 
 /**
@@ -35,11 +35,11 @@ export function buildServiceSchema(input: {
     provider: {
       "@type": "LocalBusiness",
       "@id": BRANCH_ID[input.city],
-      name: `Duty Cleaners ${cityName}`,
-      url: "https://dutycleaners.ca/",
+      name: BRANCH_IDENTITY[input.city].name,
+      url: BRANCH_IDENTITY[input.city].url,
       address: schemaAddressFor(input.city),
       parentOrganization: { "@id": ORG_ID },
-      sameAs: [...BRAND_PROFILES],
+      sameAs: [...BRANCH_PROFILES[input.city]],
     },
     ...(input.offerFrom !== undefined
       ? {

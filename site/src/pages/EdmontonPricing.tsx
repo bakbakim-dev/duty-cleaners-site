@@ -518,7 +518,7 @@ export default function EdmontonPricing() {
               {[
                 { icon: Clock, title: `Serving Alberta since ${COMPANY.foundedYear}`, desc: "Operating across Edmonton" },
                 { icon: Award, title: "100% Satisfaction Guarantee", desc: "Not happy? Let us know within 24 hours and we'll re-clean at no cost" },
-                { icon: Users, title: "Skilled Professionals", desc: "Reference-checked, customer-rated, and customer-rated" },
+                { icon: Users, title: "Skilled Professionals", desc: "Reference-checked and customer-rated" },
               ].map((item, i) => (
                 <div key={i} className="group text-center" style={{ perspective: "1000px" }}>
                   <div className="transition-all duration-500 ease-out group-hover:-translate-y-2" style={{ transformStyle: "preserve-3d" }}>

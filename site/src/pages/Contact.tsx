@@ -21,7 +21,7 @@ import { ARRIVAL_WINDOWS } from "@/data/policy";
 import { submitQuote } from "@/lib/quote-submit";
 import { toast } from "sonner";
 import { z } from "zod";
-import { CITY_PROOF, SUPPORT_EMAIL, schemaAddressFor } from "@/data/proof";
+import { CITY_PROOF, SUPPORT_EMAIL, schemaAddressFor, BRANCH_IDENTITY, BRANCH_PROFILES, ORG_ID } from "@/data/proof";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
@@ -283,8 +283,10 @@ export default function Contact() {
               return {
                 "@type": "LocalBusiness",
                 "@id": `https://dutycleaners.ca/#${key}`,
-                name: `Duty Cleaners ${office.city}`,
-                url: "https://dutycleaners.ca/contact-us/",
+                name: BRANCH_IDENTITY[key as "edmonton" | "calgary"].name,
+                url: BRANCH_IDENTITY[key as "edmonton" | "calgary"].url,
+                parentOrganization: { "@id": ORG_ID },
+                sameAs: [...BRANCH_PROFILES[key as "edmonton" | "calgary"]],
                 telephone: office.phoneLink.replace("tel:", "+1-"),
                 email: SUPPORT_EMAIL,
                 // One authority (data/proof.ts) — the split-on-comma inline

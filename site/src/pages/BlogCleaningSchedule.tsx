@@ -101,7 +101,7 @@ const monthlyTasks = [
   },
   {
     title: "Clean Kitchen Appliances",
-    description: "The microwave, oven, coffee maker, toaster, and refrigerator are often overlooked when it comes to cleaning. It's important to keep these appliances sanitary with a monthly clean."
+    description: "The microwave, oven, coffee maker, toaster, and refrigerator are easy to overlook. It's important to keep these appliances sanitary with a monthly clean."
   },
   {
     title: "Remove Cobwebs",

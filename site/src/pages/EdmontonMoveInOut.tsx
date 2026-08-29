@@ -28,7 +28,7 @@ import windowCleaning from "@/assets/gallery/window-cleaning.webp";
 // Animated section wrapper
 import MoveOutDepth from "@/components/MoveOutDepth";
 import { moveInOutTierRows } from "@/data/pricing";
-import { schemaAddressFor, BRANCH_ID, ORG_ID, RATING_CLAIM } from "@/data/proof";
+import { schemaAddressFor, BRANCH_ID, ORG_ID, RATING_CLAIM, BRANCH_IDENTITY } from "@/data/proof";
 
 // Derived, never hand-typed (published-prices.test.ts): the cheapest
 // move-in/out tier from bk-config is the honest floor.
@@ -97,7 +97,7 @@ const faqs = [
   { q: "Do you clean inside appliances and cabinets?", a: "Yes — inside the oven, microwave, fridge, freezer, dishwasher, and the inside of every cabinet and drawer are all included in our standard move out / move in cleaning." },
   { q: "What's the difference between regular cleaning and move out cleaning?", a: "Regular cleaning maintains an occupied home week to week. Move out (and move in) cleaning is a one-time, far more detailed service that addresses built-up grime, hidden surfaces, inside appliances, baseboards, vents, and every storage space — the level of detail required for inspections and turnovers." },
   { q: "Do you bring your own cleaning supplies?", a: "Yes — we bring all supplies, equipment, and can use products you prefer on request. You only need to ensure water and electricity are still active at the property." },
-  { q: "Do I need to be home during the cleaning?", a: "Most clients leave a key in a mailbox, lockbox, or provide a buzzer code. Once the cleaning is complete, we will lock up and confirm completion by phone 30 minutes before we finish." },
+  { q: "Do I need to be home during the cleaning?", a: "Most clients leave a key in a mailbox, lockbox, or provide a buzzer code. We lock up when we finish and confirm completion by phone." },
 ];
 
 export default function EdmontonMoveInOut() {
@@ -127,11 +127,11 @@ export default function EdmontonMoveInOut() {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "@id": BRANCH_ID.edmonton,
-    name: "Duty Cleaners Edmonton",
+    name: BRANCH_IDENTITY.edmonton.name,
     telephone: "+1-780-913-6565",
     email: "support@dutycleaners.ca",
     address: schemaAddressFor("edmonton"),
-    url: "https://dutycleaners.ca/move-out-cleaning-edmonton/",
+    url: BRANCH_IDENTITY.edmonton.url,
     priceRange: `${moveRows[0]?.price}-${moveRows[moveRows.length - 1]?.price}+`,
     openingHours: ["Mo-Sa 08:00-20:00", "Su 09:00-15:00"],
     parentOrganization: { "@id": ORG_ID },

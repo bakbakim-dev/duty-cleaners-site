@@ -1,7 +1,7 @@
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, useState } from "react";
 import { CALGARY_REVIEWS } from "@/data/reviews";
-import { schemaAddressFor, BRAND_PROFILES } from "@/data/proof";
+import { schemaAddressFor, BRANCH_PROFILES, BRANCH_IDENTITY } from "@/data/proof";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -148,7 +148,8 @@ export default function Calgary2() {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "@id": "https://dutycleaners.ca/#calgary",
-    name: "Duty Cleaners - Calgary",
+    name: BRANCH_IDENTITY.calgary.name,
+    url: BRANCH_IDENTITY.calgary.url,
     parentOrganization: { "@id": "https://dutycleaners.ca/#org" },
     image: "https://dutycleaners.ca/og-image.jpg",
     logo: "https://dutycleaners.ca/logo.png",
@@ -160,7 +161,7 @@ export default function Calgary2() {
     address: schemaAddressFor("calgary"),
     url: "https://dutycleaners.ca/cleaning-services-calgary/",
     hasMap: "https://www.google.com/maps?cid=6193344199307583189",
-    sameAs: [...BRAND_PROFILES],
+    sameAs: [...BRANCH_PROFILES.calgary],
     areaServed: [
       "Calgary", "Airdrie", "Cochrane", "Okotoks", "Chestermere", "Strathmore",
       "High River", "Langdon", "Crossfield",

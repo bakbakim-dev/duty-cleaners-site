@@ -153,6 +153,41 @@ export const BRAND_PROFILES = [
   "https://x.com/Dutycleaners",
 ] as const;
 
+/**
+ * Per-branch sameAs. Use this on any node scoped to ONE city.
+ *
+ * BRAND_PROFILES is the ORGANISATION's full profile set and is correct on the
+ * Organization node — but it was also being emitted on all 165 location
+ * #business nodes and both branch nodes, so every Edmonton location claimed
+ * identity with Calgary's Google Business Profile and Yelp listing, and vice
+ * versa. sameAs asserts "this node IS that entity", so that told Google the two
+ * GBP listings are the same business as each other and as every neighbourhood
+ * node — the precise opposite of the disambiguation the @id work was for.
+ *
+ * City-specific profiles first, brand-wide social after (those genuinely are
+ * shared by both branches).
+ */
+const SHARED_SOCIAL = [
+  "https://www.facebook.com/dutycleaners/",
+  "https://www.instagram.com/dutycleaners/",
+  "https://www.linkedin.com/company/duty-cleaners/",
+  "https://www.youtube.com/@dutycleaners2795",
+  "https://x.com/Dutycleaners",
+] as const;
+
+export const BRANCH_PROFILES: Record<"edmonton" | "calgary", readonly string[]> = {
+  edmonton: [
+    "https://www.google.com/maps?cid=8192121191672692049",
+    "https://www.yelp.ca/biz/duty-cleaners-edmonton",
+    ...SHARED_SOCIAL,
+  ],
+  calgary: [
+    "https://www.google.com/maps?cid=6193344199307583189",
+    "https://www.yelp.ca/biz/duty-cleaners-calgary-calgary",
+    ...SHARED_SOCIAL,
+  ],
+};
+
 /** Stable @id for the Organization every branch and location node hangs off. */
 export const ORG_ID = "https://dutycleaners.ca/#org";
 
@@ -160,6 +195,26 @@ export const ORG_ID = "https://dutycleaners.ca/#org";
 export const BRANCH_ID = {
   edmonton: "https://dutycleaners.ca/#edmonton",
   calgary: "https://dutycleaners.ca/#calgary",
+} as const;
+
+/**
+ * The canonical identity of each branch entity: one url, one name.
+ *
+ * The @id is shared by five surfaces (both city hubs, both move-out pages and
+ * /contact-us) and each was emitting its OWN page url and its own name spelling
+ * — so #edmonton appeared with three different `url` values and two names.
+ * An @id means "this is the same entity", so three urls for one @id is a
+ * contradiction that undoes the disambiguation the @id exists to provide.
+ *
+ * url points at the branch's own hub page, not at whichever page happens to be
+ * rendering the node.
+ */
+export const BRANCH_IDENTITY = {
+  edmonton: { url: "https://dutycleaners.ca/", name: "Duty Cleaners Edmonton" },
+  calgary: {
+    url: "https://dutycleaners.ca/cleaning-services-calgary/",
+    name: "Duty Cleaners Calgary",
+  },
 } as const;
 
 

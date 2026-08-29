@@ -83,7 +83,7 @@ export default function SherwoodPark() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `Deep cleaning adds to our standard package:\n\n• Clean outside AC outlet panels\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+      answer: `Deep cleaning adds to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
     },
     {
       question: "What is your 100% satisfaction guarantee policy?",
@@ -216,7 +216,7 @@ export default function SherwoodPark() {
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>Sherwood Park, located in Strathcona County, has everything you can expect from a hamlet: natural beauty, community spirit, and rich history. Established in 1955, Sherwood Park has blossomed into a vibrant place to become one of Canada's largest hamlets, offering a close-knit community experience with a strong sense of identity while providing residents with all the amenities you can find in a city. As you explore the area, you'll be enchanted by the lush green spaces, such as the expansive Strathcona Science Provincial Park, offering picturesque trails and tranquil lakes.</p>
-                <p>Sherwood Park is also home to numerous historical sites that shed light on its past, including the Strathcona County Museum and Archives, where you can delve into the region's pioneer heritage. For a dose of culture, catch a performance at Festival Place, a renowned venue that hosts a diverse array of live concerts, theatre productions, and dance performances. End your day with a visit to La Patrona, a vibrant Mexican restaurant renowned for its authentic flavours, lively atmosphere, and warm hospitality.</p>
+                <p>Sherwood Park is also home to numerous historical sites that shed light on its past, including the Strathcona County Museum and Archives, which covers the region's pioneer history. For a dose of culture, catch a performance at Festival Place, a renowned venue that hosts a diverse array of live concerts, theatre productions, and dance performances. End your day with a visit to La Patrona, a vibrant Mexican restaurant renowned for its authentic flavours, lively atmosphere, and warm hospitality.</p>
               </div>
             </div>
           </AnimatedSection>

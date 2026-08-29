@@ -81,7 +81,7 @@ export default function Morinville() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `Deep cleaning adds to our standard package:\n\n• Clean outside AC outlet panels\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+      answer: `Deep cleaning adds to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
     },
     {
       question: "What is your 100% satisfaction guarantee policy?",
@@ -218,7 +218,7 @@ export default function Morinville() {
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>Morinville is a charming town with rich history, a tight-knit community, and a scenic setting. Its roots trace back to the late 1800s when Jean Baptiste Morin and French-speaking immigrants established the area. With a population of around 10,000, Morinville provides a serene escape just north of Edmonton while offering easy access to urban amenities. Morinville's strong community spirit and pride in its heritage are evident in its historic buildings, such as the iconic St.</p>
-                <p>Jean Baptiste Church, which stands as a testament to the town's cultural roots. Begin your exploration by visiting the renowned Morinville Museum, where you can delve into the town's history through fascinating exhibits and artefacts. For a cultural experience, catch a performance at the Morinville Community Cultural Centre, a vibrant venue hosting live theatre productions, concerts, and art exhibitions. Finally, delight your taste buds at Bistro Di Madre Piccola, a cosy and inviting Italian bistro known for its flavorful dishes and warm hospitality.</p>
+                <p>Jean Baptiste Church, which stands as a testament to the town's cultural roots. Begin your exploration by visiting the renowned Morinville Museum, where the town's history is on display and artefacts. For a cultural experience, catch a performance at the Morinville Community Cultural Centre, a vibrant venue hosting live theatre productions, concerts, and art exhibitions. Finally, delight your taste buds at Bistro Di Madre Piccola, a cosy and inviting Italian bistro known for its flavorful dishes and warm hospitality.</p>
               </div>
             </div>
           </AnimatedSection>

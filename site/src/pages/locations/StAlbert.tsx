@@ -84,7 +84,7 @@ export default function StAlbert() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `Deep cleaning adds to our standard package:\n\n• Clean outside AC outlet panels\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+      answer: `Deep cleaning adds to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
     },
     {
       question: "What is your 100% satisfaction guarantee policy?",
@@ -224,7 +224,7 @@ export default function StAlbert() {
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>Founded in 1861 as a Catholic mission, St. Albert distinguishes itself by being Alberta's oldest non-fortified, peaceful settlement. With a population of over 66,000, this vibrant city is currently the second-largest city in Edmonton Metropolitan Region. Its picturesque location, just northwest of Edmonton, offers a serene escape from the bustle of the city while remaining conveniently close. St. Albert's commitment to preserving its past is evident in landmarks such as Father Lacombe Chapel, a provincial historic site that showcases the region's missionary roots.</p>
-                <p>If you are into art, you'll find the perfect place at the Art Gallery of St. Albert, which has a diverse range of local and international artworks, providing a glimpse into the city's vibrant art scene. To enjoy the natural beauty of St. Albert, the Lois Hole Centennial Provincial Park is a sprawling parkland with picturesque trails, picnic spots, and serene views of Big Lake. For a delightful shopping experience, head to the St. Albert Farmers' Market, where you can browse a plethora of fresh produce, handmade crafts, and delectable treats while enjoying a lively atmosphere.</p>
+                <p>If you are into art, you'll find the perfect place at the Art Gallery of St. Albert, which has a diverse range of local and international artworks, providing a glimpse into the city's vibrant art scene. To enjoy the natural beauty of St. Albert, the Lois Hole Centennial Provincial Park is a sprawling parkland with picturesque trails, picnic spots, and serene views of Big Lake. For a delightful shopping experience, head to the St. Albert Farmers' Market, where you can browse a wide range of fresh produce, handmade crafts, and delectable treats while enjoying a lively atmosphere.</p>
               </div>
             </div>
           </AnimatedSection>

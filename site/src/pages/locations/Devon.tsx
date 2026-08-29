@@ -84,7 +84,7 @@ export default function Devon() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `Deep cleaning adds to our standard package:\n\n• Clean outside AC outlet panels\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+      answer: `Deep cleaning adds to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
     },
     {
       question: "What is your 100% satisfaction guarantee policy?",
@@ -234,7 +234,7 @@ export default function Devon() {
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>Devon's birth directly resulted from one of the greatest oil discoveries in history—the monumental Leduc No. 1 well, drilled in 1947. With strong connections to the oil and gas industry, this community grew slowly but steadily, now boasting a population of 6,500 residents.</p>
-                <p>Situated along the breathtaking North Saskatchewan River, Devon enthrals both locals and visitors with its idyllic small-town allure and captivating natural splendour. The town's oil heritage is still evident today at the Leduc No. 1 Energy Discovery Centre just east of town. Nearby, the University of Alberta Botanic Garden offers stunning displays of flowers, lush gardens, and tranquil ponds perfect for a peaceful stroll. Dive further into history at the Devon Museum, which showcases exhibits that delve into the town's rich past and heritage. For outdoor enthusiasts, the River Valley Adventure Co. offers thrilling experiences like kayaking, canoeing, and paddleboarding along the picturesque North Saskatchewan River. End your visit with a trip to the scenic Voyageur Park, a popular destination for picnicking, fishing, and enjoying the scenic river views.</p>
+                <p>Situated along the breathtaking North Saskatchewan River, Devon enthrals both locals and visitors with its idyllic small-town allure and captivating natural splendour. The town's oil heritage is still evident today at the Leduc No. 1 Energy Discovery Centre just east of town. Nearby, the University of Alberta Botanic Garden offers stunning displays of flowers, lush gardens, and tranquil ponds perfect for a peaceful stroll. Dive further into history at the Devon Museum, which showcases exhibits covering the town's history. For outdoor enthusiasts, the River Valley Adventure Co. offers thrilling experiences like kayaking, canoeing, and paddleboarding along the picturesque North Saskatchewan River. End your visit with a trip to the scenic Voyageur Park, a popular destination for picnicking, fishing, and enjoying the scenic river views.</p>
               </div>
             </div>
           </AnimatedSection>

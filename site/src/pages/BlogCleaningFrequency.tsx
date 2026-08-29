@@ -49,7 +49,7 @@ const frequencyOptions = [
   {
     title: "Weekly Cleaning",
     ideal: "Busy households with kids and pets, larger homes, seniors or disabled individuals",
-    description: "Weekly cleaning is the best option for busy households that need consistent upkeep and maintenance. This is especially true if you have kids and pets at home. If your home is on the larger side, weekly cleaning is definitely something you should look into. The cleaning will not only focus on the surfaces of the home but will also include the high traffic areas of the house.",
+    description: "Weekly cleaning is the best option for busy households that need consistent upkeep and maintenance. This is especially true if you have kids and pets at home. If your home is on the larger side, weekly cleaning is definitely something you should look into. The cleaning covers the surfaces of the home as well as the high traffic areas of the house.",
     benefit: "Most cleaning companies offer higher recurring discounts for this type of service because it requires a much higher level of commitment from them."
   },
   {
@@ -328,7 +328,7 @@ export default function BlogCleaningFrequency() {
                   Ready to Book Your Cleaning Service?
                 </h3>
                 <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                  If you are looking for professional house cleaning services perfect for your home, look no further than Duty Cleaners in Alberta. Visit our website and request a quote.
+                  If you are looking for professional house cleaning services perfect for your home, Duty Cleaners serves Edmonton, Calgary and the surrounding communities. Request a quote.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link to="/#quote">

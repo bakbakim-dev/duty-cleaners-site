@@ -4,7 +4,7 @@
 
 import { getListing } from "@/lib/google-listings";
 import { withTrailingSlash } from "@/data/legacy-urls";
-import { schemaAddressFor, BRAND_PROFILES, ORG_ID, BRANCH_ID } from "@/data/proof";
+import { schemaAddressFor, BRANCH_PROFILES, ORG_ID, BRANCH_ID } from "@/data/proof";
 import { geoFor } from "@/data/location-geo";
 
 
@@ -119,7 +119,7 @@ export function buildLocationSchema(input: LocationSchemaInput) {
     // Was the single Google Maps permalink. The other eight profiles are linked
     // in the footer on every page but were absent here, where they would
     // actually do disambiguation work.
-    sameAs: [...BRAND_PROFILES],
+    sameAs: [...BRANCH_PROFILES[input.city]],
 
   };
 }

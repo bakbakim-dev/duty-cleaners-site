@@ -94,7 +94,7 @@ export default function TurnerValley() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `Deep cleaning adds to our standard package:\n\n• Clean outside AC outlet panels\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+      answer: `Deep cleaning adds to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
     },
     {
       question: "What is your 100% satisfaction guarantee policy?",
@@ -225,7 +225,7 @@ export default function TurnerValley() {
                 </div>
                 <div className="prose prose-lg max-w-none text-muted-foreground">
                   <p>
-                    Turner Valley is a charming community nestled in the foothills of the Canadian Rockies, known for its rich history and stunning natural surroundings. From the scenic trails along the{" "}
+                    Turner Valley sits in the foothills of the Canadian Rockies, known for its rich history and stunning natural surroundings. From the scenic trails along the{" "}
                     <a href="https://maps.google.com/?q=Sheep+River,+Turner+Valley,+AB" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">Sheep River</a>
                     {" "}to the historic{" "}
                     <a href="https://maps.google.com/?q=Turner+Valley+Gas+Plant,+AB" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">Turner Valley Gas Plant</a>,
@@ -250,7 +250,7 @@ export default function TurnerValley() {
                 Things To Do In Turner Valley
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
-                <p>Nestled in the foothills of the Rocky Mountains, Turner Valley is a picturesque town just southwest of Calgary, known for its natural beauty and rich history in Alberta’s oil and gas industry. With a population of just over 2,500, Turner Valley offers small-town charm with easy access to outdoor adventures. Start your day with a scenic hike through Sheep River Provincial Park, where you’ll find beautiful trails and stunning views of the surrounding landscapes.</p>
+                <p>In the foothills of the Rocky Mountains just southwest of Calgary, Turner Valley has been part of the Town of Diamond Valley since 2023, when it amalgamated with neighbouring Black Diamond, known for its natural beauty and rich history in Alberta’s oil and gas industry. With a population of just over 2,500, Turner Valley offers small-town charm with easy access to outdoor adventures. Start your day with a scenic hike through Sheep River Provincial Park, where you’ll find beautiful trails and stunning views of the surrounding landscapes.</p>
                 <p>For history enthusiasts, the Turner Valley Gas Plant National Historic Site provides a fascinating glimpse into Alberta’s industrial heritage. If you love local markets, don’t miss the Turner Valley Farmers' Market, offering fresh produce and artisanal goods from local vendors. For a taste of local flavor, visit the Eau Claire Distillery, Alberta’s first craft distillery, where you can enjoy handcrafted spirits in a rustic setting. After a day of exploring, unwind with a hearty meal at Chuckwagon Cafe, a beloved spot known for its farm-to-table dishes and welcoming atmosphere. When the day is done, let Duty Cleaners handle your cleaning needs, so you can relax in a fresh, spotless home.</p>
               </div>
             </div>

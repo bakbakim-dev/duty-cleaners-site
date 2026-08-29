@@ -83,7 +83,7 @@ export default function Beaumont() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `Deep cleaning adds to our standard package:\n\n• Clean outside AC outlet panels\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+      answer: `Deep cleaning adds to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
     },
     {
       question: "What is your 100% satisfaction guarantee policy?",
@@ -223,7 +223,7 @@ export default function Beaumont() {
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>Founded by French settlers as a small farming community, Beaumont (French for "beautiful hill") is now a beautiful city within the Edmonton Metropolitan Region of Alberta. With a population of over 21,000, this vibrant place still has its distinct small-town feeling while offering the amenities of an urban setting. Today, the downtown still resembles a French village, built with red brick walkways and picturesque architecture. Start your day in Beaumont on a delightful note by immersing yourself in a charming shopping experience. Pay a visit to the vibrant Beaumont Farmers Market, which showcases local produce and artisanal goods—soak up the lively community atmosphere that fills the air!</p>
-                <p>History enthusiasts can't miss the Beaumont & District Heritage Society, where you can learn about the region's heritage through engaging exhibits and artefacts. Do you like to enjoy nature? If so, you'll absolutely adore Four Seasons Park. This verdant oasis offers a plethora of delights, including picturesque walking trails that wind through breathtaking scenery. Finally, satiate your hunger at Chartier, a delightful restaurant known for its delectable French-Canadian cuisine that perfectly blends rustic charm with modern elegance.</p>
+                <p>History enthusiasts can't miss the Beaumont & District Heritage Society, where you can learn about the region's heritage through engaging exhibits and artefacts. Do you like to enjoy nature? If so, you'll absolutely adore Four Seasons Park. The park offers plenty to do, including picturesque walking trails that wind through breathtaking scenery. Finally, satiate your hunger at Chartier, a delightful restaurant known for its delectable French-Canadian cuisine that perfectly blends rustic charm with modern elegance.</p>
               </div>
             </div>
           </AnimatedSection>
