@@ -1,4 +1,4 @@
-import { schemaAddressFor } from "@/data/proof";
+import { schemaAddressFor, BRANCH_ID, BRANCH_IDENTITY } from "@/data/proof";
 
 interface PriceRow {
   beds: string;
@@ -53,9 +53,12 @@ export function buildPricingSchema({ city, standard, deep, moveInOut }: PricingS
     url: meta.url,
     provider: {
       "@type": "LocalBusiness",
-      name: `Duty Cleaners ${meta.locality}`,
+      // @id merges this into the branch entity. Without it the two pricing
+      // pages declared two more anonymous businesses at the branch addresses.
+      "@id": BRANCH_ID[city],
+      name: BRANCH_IDENTITY[city].name,
       telephone: meta.telephone,
-      url: meta.url,
+      url: BRANCH_IDENTITY[city].url,
       // One authority for the entity's address (data/proof.ts). This provider
       // node used to carry none at all — on every pricing page.
       address: schemaAddressFor(city),

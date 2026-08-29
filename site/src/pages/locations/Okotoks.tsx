@@ -199,7 +199,7 @@ export default function Okotoks() {
                 </h2>
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>
-                    Okotoks is a charming town nestled along the beautiful{" "}
+                    Okotoks is a town on the{" "}
                     <a href="https://www.google.com/maps/place/Sheep+River,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Sheep River</a>,
                     just south of Calgary. Known for its small-town charm and vibrant community, it's home to landmarks like the famous{" "}
                     <a href="https://www.google.com/maps/place/Big+Rock+(Okotoks+Erratic)/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Okotoks Erratic (Big Rock)</a>{" "}

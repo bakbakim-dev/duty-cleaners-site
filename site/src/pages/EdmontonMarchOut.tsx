@@ -1,3 +1,4 @@
+import { BRANCH_ID, BRANCH_IDENTITY } from "@/data/proof";
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
@@ -138,7 +139,9 @@ const serviceSchema = {
     "Military housing move-out cleaning in Edmonton, cleaned to CFHA march-out inspection standards. Quoted by phone.",
   provider: {
     "@type": "LocalBusiness",
-    name: "Duty Cleaners",
+    "@id": BRANCH_ID.edmonton,
+    name: BRANCH_IDENTITY.edmonton.name,
+    url: BRANCH_IDENTITY.edmonton.url,
     telephone: "+1-780-913-6565",
     address: {
       "@type": "PostalAddress",

@@ -191,7 +191,7 @@ export default function Tuscany() {
                 </h2>
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>
-                    Tuscany is one of Calgary's most desirable family-friendly communities, nestled in the northwest near{" "}
+                    Tuscany is a family-oriented community in Calgary's northwest, near{" "}
                     <a href="https://www.google.com/maps/place/Crowfoot+Crossing,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Crowfoot Crossing</a>.
                     Known for its tree-lined streets, stunning views of the{" "}
                     <a href="https://www.google.com/maps/place/Rocky+Mountains/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Rocky Mountains</a>,

@@ -187,7 +187,7 @@ export default function Devon() {
               </h2>
               <div className="prose prose-lg text-muted-foreground max-w-none space-y-4">
                 <p>
-                  Devon is a charming town nestled along the banks of the North Saskatchewan River, celebrated for its natural beauty and welcoming small-town atmosphere. Whether your home is near the stunning{" "}
+                  Devon is a town on the banks of the North Saskatchewan River, celebrated for its natural beauty and welcoming small-town atmosphere. Whether your home is near the stunning{" "}
                   <a href="https://www.google.com/maps/place/Devon+Voyageur+Park/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
                     Voyageur Park
                   </a>{" "}

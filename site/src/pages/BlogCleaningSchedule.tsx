@@ -35,7 +35,7 @@ const dailyTasks = [
   },
   {
     title: "Declutter",
-    description: "When it comes to decluttering your home, once you get the ball rolling, it's easy to keep it rolling. Tackle clutter as and when you see it; it only takes a minute or two to put things away, or discard them if it's rubbish that you're dealing with."
+    description: "Once you get decluttering started, it's easy to keep it rolling. Tackle clutter as and when you see it; it only takes a minute or two to put things away, or discard them if it's rubbish that you're dealing with."
   },
   {
     title: "Tidy Up Rooms",

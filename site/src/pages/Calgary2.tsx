@@ -225,8 +225,14 @@ export default function Calgary2() {
       <div className="min-h-screen bg-background">
         <Navigation city="calgary" />
         <main id="main-content" tabIndex={-1}>
-        
-        
+        {/* The Calgary hub was the only location-class page with no breadcrumb
+            — visible or in schema. It imported Breadcrumbs and never rendered
+            it. The Edmonton hub is the site root, where having none is
+            correct; this page sits a level down and needs the trail. */}
+        <div className="container mx-auto px-4 pt-4">
+          <Breadcrumbs />
+        </div>
+
          <CityConversionIntro
            city="Calgary"
            phone="(403) 768-1341"
