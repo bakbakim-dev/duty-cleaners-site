@@ -320,8 +320,8 @@ export default function Brookside() {
         eyebrow="What we see here"
         heading="Boxed in by ravine and freeway"
         paragraphs={[
-          "Two kinds of dirt arrive from opposite sides of a neighbourhood closed on all four. Whitemud Drive wraps the west and south and brings the winter half — grit and road film off the freeway lanes, salt tracked in from November on. The North Saskatchewan River valley closes the north and Whitemud Creek the east, and those sides bring poplar fluff in late June and leaf litter every fall. One wants a damp method; the other wants dry pickup first.",
-          "Just over half the homes were finished in the 1960s and two in five in the 1970s, with the last of them in the early 1980s — one build era, then nothing. More than four in five are single-detached, and where kitchens and baths are still original that means period tile and grout, stipple ceilings and painted wood recoated more than once. Those surfaces reward low-moisture work; pressure and strong solvents strip the finish before the dirt.",
+          "Two kinds of dirt arrive from opposite sides of a neighbourhood closed on all four. Whitemud Drive wraps the west and south and brings the winter half — grit and road film off the freeway lanes, salt tracked in from November on. The North Saskatchewan River valley closes the north and Whitemud Creek the east, and those sides bring poplar fluff in late June and leaf litter every fall. The freeway side is vacuumed dry before anything wet touches it; the ravine side is picked up by hand first.",
+          "Just over half the homes were finished in the 1960s and two in five in the 1970s, with the last of them in the early 1980s — one build era, then nothing. More than four in five are single-detached, and where kitchens and baths are still original that means period tile and grout, and painted wood that has been recoated more than once. Those surfaces reward low-moisture work; pressure and strong solvents strip the finish before the dirt.",
         ]}
       />
 

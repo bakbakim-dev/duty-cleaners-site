@@ -319,8 +319,8 @@ export default function Inglewood() {
         eyebrow="What we see here"
         heading="A former rail line, a busy road"
         paragraphs={[
-          "Most of Inglewood's housing between 111 and 118 Avenue went up in the thirty-five years after the war, and building had all but stopped by 1990. What that leaves is low-rise apartment blocks and small post-war houses with kitchens and bathrooms of a certain age - enamel, tile grout, painted wood window frames - where a move-out clean is measured against a damage-deposit inspection rather than a resident's own standard. Oven interiors, fridge seals and window tracks get checked regardless.",
-          "Groat Road runs the western boundary, and along this stretch it is a plain surface arterial rather than the parkway it becomes further south - so suites on that frontage collect winter sand at the entries and a road film on balcony glass. The eastern boundary is not a street at all but a former Canadian National railway right-of-way, which is why the two sides of Inglewood need noticeably different attention on the same visit.",
+          "Groat Road runs Inglewood's western boundary, and most of the housing between 111 and 118 Avenue went up in the thirty-five years after the war, with building all but stopped by 1990. What that leaves is low-rise apartment blocks and small post-war houses with kitchens and bathrooms of a certain age - enamel, tile grout, painted wood window frames - where a move-out clean ends in a walkthrough. Oven interiors, fridge seals and window tracks get done on every one, because those are the three a walkthrough opens first.",
+          "Along this stretch Groat Road is a plain surface arterial rather than the parkway it becomes further south, so suites on that frontage collect winter sand at the entries and a road film on balcony glass. On the east there is no street: the boundary is the abandoned Canadian National right-of-way. So the Groat Road suites get the balcony glass and the entries, and the rail side gets the screens.",
         ]}
       />
 

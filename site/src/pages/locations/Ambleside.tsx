@@ -321,7 +321,7 @@ export default function Ambleside() {
         heading="Nothing in Ambleside is old yet"
         paragraphs={[
           "The 2009 census counted 248 people here; three years later it counted 2,328. Nearly everything you walk into is a first-generation finish, and the packages repeat street to street — engineered stone, vinyl plank, frameless glass shower panels. None of it forgives an abrasive, and all of it shows mineral spotting within days. The work is squeegee discipline on glass and pH-neutral product on stone, not the scrubbing an older kitchen would shrug off.",
-          "Anthony Henday Drive runs along the northeast edge and Terwillegar Drive along the northwest, and the Currents of Windermere sits on the north side. Freeway and parking-lot pavement both throw grit. From November until the Spring Sweep finishes — April to June, up to eight weeks of it — that grit arrives as sand and calcium-chloride residue on boots, and entry mats, the first two metres of floor and the garage threshold take almost all of it.",
+          "Anthony Henday Drive runs along the north edge and 170 Street SW — Terwillegar Drive where it meets the ring road — closes the west side, with the Currents of Windermere a short way up 170 Street. Freeway and parking-lot pavement both throw grit. From November until the Spring Sweep finishes — April to June, up to eight weeks of it — that grit arrives as sand and calcium-chloride residue on boots, and the mats, the door tracks and the garage threshold take almost all of it.",
         ]}
       />
 

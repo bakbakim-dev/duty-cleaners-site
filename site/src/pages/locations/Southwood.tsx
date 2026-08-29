@@ -346,7 +346,7 @@ export default function Southwood() {
         eyebrow="On the ground"
         heading="Elbow Drive cuts straight through"
         paragraphs={[
-          "Southland and Anderson stations both stand inside the community, with Macleod Trail on the east side and Anderson Road on the south. From October to April that shows up at the door: sanding grit, de-icer and wet snow come off the platform, off the walk home, and onto the mat. Entry floors and the first stretch of hallway take the abuse, so that is where the visit starts.",
+          "Southland and Anderson stations both stand inside the community, with Macleod Trail on the east side and Anderson Road on the south. From October to April that shows up at the door: sanding grit, de-icer and wet snow come off the platform, off the walk home, and onto the mat. Platform grit lands on the mat, the door track and the tile inside it, so that is where the visit starts.",
           "Elbow Drive does not skirt an edge here — it bisects the community, so a fair number of homes front an arterial rather than a crescent. Southwood was established in 1960 and the housing is not all one thing: City community statistics have put about a fifth of the buildings as condominiums or apartments and over 40 per cent of the housing as rented. Move-out work here is measured against a property manager's list — oven, behind appliances, cabinet interiors, window tracks.",
         ]}
         accent="calgary"

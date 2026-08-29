@@ -320,7 +320,7 @@ export default function Westmount() {
         eyebrow="Ground truth"
         heading="Craftsman blocks under heritage control"
         paragraphs={[
-          "The 125 and 126 Street blocks between 107 and 111 Avenue carry the Westmount Architectural Heritage Area — Craftsman and Foursquare houses raised mostly between 1911 and 1925, placed under a development control provision by the city in 1997. Interiors of that age hold plaster walls, original wood trim and period hardware, all of which abrasives and standing water strip in a single visit. Gentle products and dry methods do more here than pressure ever will.",
+          "The blocks between 124 and 127 Street, from 107 Avenue up to 111 Avenue, carry the Westmount Architectural Heritage Area — Craftsman and Foursquare houses raised mostly between 1911 and 1925, placed under a development control provision by the city. Interiors of that age hold plaster walls, original wood trim and period hardware, all of which abrasives and standing water strip in a single visit. Gentle products and dry methods do more here than pressure ever will.",
           "124 Street runs the heritage area's eastern edge and doubles as Westmount's shopping and gallery strip; 111 Avenue carries arterial traffic across the top. Houses fronting either take the film a busy road leaves - a grey haze on exterior glass and door hardware that returns faster than it does a block in. Two streets deeper, on the quiet interior blocks, the same surfaces hold their finish from one clean to the next.",
         ]}
       />

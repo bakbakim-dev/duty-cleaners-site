@@ -272,10 +272,10 @@ export default function AuburnBay() {
 
       <LocalMarketNote
         eyebrow="Neighbourhood notes"
-        heading="Deerfoot west, Stoney north"
+        heading="Twenty years on the lake"
         paragraphs={[
-          "Two freeways bound this place - Deerfoot Trail the whole western side, Stoney Trail the north - so Auburn Bay's lake sits inside an L of high-speed traffic. Perimeter homes pay for it. Exterior glass and window screens on those two elevations pick up a road film that interior streets never produce, and it is back in weeks, not months. Worth knowing before anyone books a single annual window clean.",
-          "Age drives the rest. Development began in 2005, so the earliest phases are around twenty years old now, and that is the point where grout goes porous, tub and shower silicone stains rather than soils, and original hardwood finish wears through at the doorways. Those are replacement and refinishing problems, not scrubbing problems, and we will say so rather than keep working a stain that has already set.",
+          "Two freeways bound this place - Deerfoot Trail the whole western side, Stoney Trail the north - so Auburn Bay's lake sits inside an L of high-speed traffic. Perimeter homes pay for it. Exterior glass and window screens on those two elevations pick up a road film that interior streets never produce, and it is back in weeks, not months. One annual window clean will not hold on those two elevations.",
+          "The lake is the reason people are here and the reason the mudroom is the busiest room in the house: swim bags, beach sand and wet towels come off the water from May, and they land on the same two metres of tile every time. Development began in 2005, so the earliest phases are around twenty years old - the point where grout goes porous and tub silicone stains rather than soils. Those are replacement and refinishing problems, not scrubbing problems, and we will say so rather than keep working a stain that has already set.",
         ]}
         accent="calgary"
       />

@@ -311,8 +311,8 @@ export default function StAlbert() {
         eyebrow="Neighbourhood notes"
         heading="Elm seeds on the old streets"
         paragraphs={[
-          "St. Albert took New Town status on 1 January 1957, and the council plan behind it laid out four neighbourhoods, Braeside, Mission and Sturgeon Heights among them. Those streets carry much of the city's mature canopy today. Elms are the second most common boulevard tree on the municipal inventory, several thousand of them citywide, and every spring they drop papery samaras that mat into window screens and sliding-door channels, then ride indoors on shoes for weeks.",
-          "The published canopy figure is about thirteen per cent citywide, against a target of twenty by 2037, and it lumps developed, developing and undeveloped land into one number - so it describes no particular street. Riverside, the newest community, sits on the west side by Big Lake, its boulevard trees years from filling in. Those homes trade screen debris for unshaded south and west glass, where any film on a window is the first thing you notice.",
+          "St. Albert took New Town status on 1 January 1957, and the council plan behind it laid out four neighbourhoods, Braeside, Mission and Sturgeon Heights among them. Those streets carry much of the city's mature canopy today. Elms are a common boulevard tree on those older streets, and every spring they drop papery samaras that mat into window screens and sliding-door channels, then ride indoors on shoes for weeks.",
+          "A citywide canopy average lumps developed, developing and undeveloped land into one number, so it describes no particular street. Riverside, one of the city's newest communities, sits on the west side by Big Lake, its boulevard trees years from filling in. Those homes trade screen debris for unshaded south and west glass that collects street dust with no canopy to slow it.",
         ]}
       />
 

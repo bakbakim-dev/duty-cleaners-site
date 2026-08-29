@@ -305,7 +305,7 @@ export default function Balwin() {
         eyebrow="Neighbourhood notes"
         heading="Two kinds of front door"
         paragraphs={[
-          "Detached houses are only part of the picture in Balwin — low-rise rental blocks, duplexes and row housing make up a real share of the rest, and the residential build-out was finished by the early 1980s. That changes what the schedule looks like. Alongside the recurring visits there are suites handed back on a possession date: appliances pulled out, walls washed, and a landlord's checklist to satisfy rather than a family's preferences.",
+          "Detached houses are only part of the picture in Balwin — low-rise rental blocks, duplexes and row housing make up a real share of the rest, and the residential build-out was finished by the early 1980s. That changes what the schedule looks like. So the week's schedule mixes recurring visits with suites handed back on a possession date in the same walk-up, sometimes on the same stairwell.",
           "The south side ends at 127 Avenue, with the rail and industrial land of the Yellowhead corridor beyond it, so the quiet interior streets and the exposed edge are a few blocks apart. Winter sand off an arterial travels on tires and boots more than on wind. In a walk-up it lands on the shared stairs and the landing first, which is why entrance mats in these buildings earn their keep.",
         ]}
       />

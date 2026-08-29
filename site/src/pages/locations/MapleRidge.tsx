@@ -13,7 +13,7 @@ export default function MapleRidge() {
         paragraphs: [
           "Maple Ridge is established, and mature tree-lined streets change the cleaning year in a way new neighbourhoods do not experience. Spring brings pollen and seed fall, autumn brings leaf litter, and both get walked in and tracked through the main floor for weeks at a stretch. Homes with a big canopy overhead also get more organic debris in window tracks and door channels than a newer street does — it is fine, dark, and easy to mistake for general dirt until it is cleared out properly.",
           "The homes here are older and more generously sized than a modern build of the same footprint, which usually means more separate rooms rather than one open plan. That matters for pricing: a home divided into more rooms takes longer than an open-plan home of the same square footage, and it is worth describing the layout when you book rather than only the bedroom count.",
-          "Whitemud Drive and the Anthony Henday bracket the area, so winter road grit is a constant from November through April, and Mill Woods Town Centre keeps a steady flow through the neighbourhood. Flat rates by home size, no trip fee, and your quote does not change because a clean ran long.",
+          "Whitemud Drive and the Anthony Henday bracket the area, so winter road grit is a constant from November through April, and Mill Woods Town Centre keeps a steady flow through the neighbourhood.",
         ],
       }}
       phone="780-913-6565"

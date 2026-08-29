@@ -344,10 +344,10 @@ export default function SunaltaWest() {
 
       <LocalMarketNote
         eyebrow="Local knowledge"
-        heading="Living beside Crowchild Trail"
+        heading="Uphill from Bow Trail"
         paragraphs={[
           "Crowchild Trail cuts this community in two, and Sunalta West is the small residential pocket left on the west side of the freeway. Bow Trail runs along the north of it; 17 Avenue SW closes it off to the south. For a handful of blocks, that is a great deal of moving traffic, and brake dust builds on the glass facing Crowchild far faster than on anything sheltered behind it.",
-          "The land climbs away from Bow Trail, which changes what February does here. Sanding grit gets dragged uphill on boots and tires and arrives already ground fine, so it reaches entryways, stair nosings and hard floors long before it reaches anywhere else in the house. We start at the door and work inward, and we lift the grit dry before a wet mop can drag it across the floor.",
+          "The land climbs away from Bow Trail, which changes what February does here. Sanding grit gets dragged uphill on boots and tires and arrives already ground fine, so it reaches entryways, stair nosings and hard floors long before it reaches anywhere else in the house. The grit is vacuumed off the nosings and the hard floor before the mop comes out of the bucket.",
         ]}
         accent="calgary"
       />

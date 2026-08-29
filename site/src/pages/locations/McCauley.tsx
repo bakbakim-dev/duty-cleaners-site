@@ -321,7 +321,7 @@ export default function McCauley() {
         heading="Century houses beside a rail cut"
         paragraphs={[
           "McCauley's oldest housing is genuinely old — a good number of standing houses date to the first two decades of the 1900s, sitting beside later walk-ups and recent infill. Lath-and-plaster walls and original fir floors are the two surfaces that punish a wet mop: plaster crumbles at the base where water pools, and softwood raises grain and greys under it. Damp, wrung-out and quick beats saturated every time in these houses.",
-          "The southeast boundary is not a street but a rail cut — the old Canadian National right-of-way, now carrying the Capital Line past Stadium station — and 111 Avenue does the same job along the north. Blocks near either edge take a fine dark grit, and a century house gives it somewhere to land: deep painted casings, moulded baseboards, the tops of every door frame. Flat modern trim would shed most of it.",
+          "The southeast edge is the old Canadian National cut, now carrying the Capital Line past Stadium station, and 111 Avenue does the same job along the north. Blocks near either edge take a fine dark grit, and a century house gives it somewhere to land: deep painted casings, moulded baseboards, the tops of every door frame. Flat modern trim would shed most of it.",
         ]}
       />
 

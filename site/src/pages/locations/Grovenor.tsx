@@ -320,7 +320,7 @@ export default function Grovenor() {
         eyebrow="From the route"
         heading="Stony Plain Road is a worksite"
         paragraphs={[
-          "Stony Plain Road splits Grovenor in two, and it has been an active LRT worksite since 2021 - the Valley Line West stop going in at 142 Street carries the neighbourhood's own name, and the line is expected to be finished in 2028. Blocks nearest the road get the consequences: fine grey dust on sills, window tracks and exterior glass, plus grit walked in off detoured sidewalks.",
+          "Stony Plain Road splits Grovenor in two, and it has been an active LRT worksite since construction started in 2022 - the Valley Line West stop going in at 142 Street carries the neighbourhood's own name, and the line is expected to be finished in 2028. Blocks nearest the road get the consequences: cement dust on sills and window tracks, plus grit walked in off detoured sidewalks.",
           "At the south end the streets run down toward MacKinnon Ravine, out of the corridor entirely and into old trees. Close to nine in ten homes here are single detached, most of them up before 1980, so the yards are mature and what comes through the door is organic - leaf litter in autumn, ravine mud through the spring melt, seed and pollen in early summer. That is a mudroom-and-entry problem, not a glass one.",
         ]}
       />

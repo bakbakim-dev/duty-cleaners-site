@@ -346,8 +346,8 @@ export default function Thorncliffe() {
         eyebrow="What we see here"
         heading="Grassland west, freeway east"
         paragraphs={[
-          "Across 14 Street from the western edge, Nose Hill Park opens into eleven square kilometres of native rough fescue grassland, and its trails are overwhelmingly dirt and gravel rather than asphalt. Dogs and boots bring that surface home. Through a dry stretch it turns up as pale trail dust on ledges, blind slats and the tops of door frames, with grass seed working down into mats and baseboards.",
-          "The eastern boundary is a different jurisdiction. Deerfoot Trail is maintained by the Province, not the City, so it sits outside the spring cleanup that runs Thorncliffe's own streets from mid-April into June to lift what winter left behind. First-block homes on that side keep bringing grit into entryways and pale rings onto storm doors weeks after the streets behind them have been swept clean.",
+          "Thorncliffe's own streets are swept from mid-April into June. Deerfoot Trail, its eastern edge, is not — the freeway belongs to the Province, so the first block on that side keeps handing back winter grit for weeks after the crescents behind it are clean, and it arrives as pale rings on storm doors and grit in the entryway.",
+          "Centre Street North runs through the middle of the community rather than along an edge, so a good share of these homes front a bus route instead of a crescent. Exterior glass and storm doors on that frontage carry a traffic film the interior streets never produce, and it returns faster than anything indoors does.",
         ]}
         accent="calgary"
       />

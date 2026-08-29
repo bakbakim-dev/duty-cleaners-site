@@ -108,11 +108,26 @@ describe("rendered grammar and place-name integrity", () => {
     ],
   ];
 
+  /**
+   * /reviews/ quotes customers verbatim, and two of those reviews contain a
+   * doubled full stop. Editing a quoted review to fix its punctuation would be
+   * misquoting a real person, so that page is exempt from the punctuation rule
+   * rather than the review being "corrected".
+   */
+  const PUNCTUATION_EXEMPT = new Set(["/reviews/"]);
+
   it("no banned grammar artifact appears on any rendered page", () => {
     const pages = allPages();
     if (pages.length === 0) return; // nothing to check before a prerender
     const hits: string[] = [];
     for (const url of pages) {
+      if (!PUNCTUATION_EXEMPT.has(url)) {
+        const stray = /(?<!\.)\.\.(?!\.)/.exec(mainText(url));
+        if (stray) {
+          const at = mainText(url).slice(Math.max(0, stray.index - 50), stray.index + 30);
+          hits.push(`${url}: doubled full stop — ...${at}...`);
+        }
+      }
       const text = mainText(url);
       for (const [re, why] of BANNED) {
         const m = re.exec(text);
@@ -365,6 +380,88 @@ describe("head metadata is not duplicated", () => {
       problems.slice(0, 15),
       `Duplicate head metadata:\n${problems.slice(0, 15).join("\n")}` +
         (problems.length > 15 ? `\n...and ${problems.length - 15} more` : ""),
+    ).toEqual([]);
+  });
+});
+
+/**
+ * The local notes must not converge on a house formula.
+ *
+ * A final reader over all 71 newly written notes found the individual notes
+ * good and the SET formulaic: ten closed on "entry mats and the first N metres
+ * of hallway", seven on a "two sides, two jobs" epigram, twelve on "a fine
+ * [grey/pale/dark] dust", eight on "light finds every streak", and ten carried
+ * the identical pricing sentence "Flat rates by home size, no trip fee, quoted
+ * before you book" - which the pricing section of every page already says.
+ *
+ * Read one at a time that is invisible. Read as a set - which is how a
+ * duplicate-content check reads them - the template is louder than the local
+ * knowledge, which defeats the entire reason these notes exist.
+ */
+describe("local notes do not share a formula", () => {
+  const NOTES_DIR = join(__dirname, "..", "pages", "locations");
+  const MAX_NOTES_SHARING_A_SENTENCE = 2;
+  const MAX_NOTES_SHARING_A_PHRASE = 6;
+
+  /** The note text on each location page, however it is passed in. */
+  function noteTexts(): Map<string, string> {
+    const out = new Map<string, string>();
+    if (!existsSync(NOTES_DIR)) return out;
+    for (const file of readdirSync(NOTES_DIR).filter((f) => f.endsWith(".tsx"))) {
+      const src = readFileSync(join(NOTES_DIR, file), "utf-8");
+      const block =
+        /<LocalMarketNote([\s\S]*?)\/>/.exec(src) ?? /localNote=\{\{([\s\S]*?)\n {6}\}\}/.exec(src);
+      if (!block) continue;
+      const paragraphs = [...block[1].matchAll(/"([^"]{60,}?)"/g)].map((m) => m[1]);
+      if (paragraphs.length) out.set(file.replace(/\.tsx$/, ""), paragraphs.join(" "));
+    }
+    return out;
+  }
+
+  const normalize = (s: string) => s.toLowerCase().replace(/[^a-z ]/g, "").replace(/\s+/g, " ").trim();
+
+  it("no sentence is reused across notes", () => {
+    const notes = noteTexts();
+    if (notes.size === 0) return;
+    const owners = new Map<string, Set<string>>();
+    for (const [slug, text] of notes) {
+      for (const raw of text.split(/(?<=[.!?])\s+/)) {
+        if (raw.split(/\s+/).length < 10) continue;
+        const key = normalize(raw);
+        if (!key) continue;
+        owners.set(key, (owners.get(key) ?? new Set()).add(slug));
+      }
+    }
+    const shared = [...owners.entries()]
+      .filter(([, s]) => s.size > MAX_NOTES_SHARING_A_SENTENCE)
+      .map(([k, s]) => `${s.size} notes share "${k.slice(0, 90)}" — ${[...s].sort().slice(0, 6).join(", ")}`);
+    expect(
+      shared,
+      `Local notes share a sentence:\n${shared.join("\n")}\n` +
+        `A sentence true of several neighbourhoods is not local knowledge; move it to the shared page copy or rewrite it.`,
+    ).toEqual([]);
+  });
+
+  it("no distinctive phrase runs through more than a handful of notes", () => {
+    const notes = noteTexts();
+    if (notes.size === 0) return;
+    const owners = new Map<string, Set<string>>();
+    for (const [slug, text] of notes) {
+      const words = normalize(text).split(" ");
+      for (let i = 0; i + 6 <= words.length; i++) {
+        const key = words.slice(i, i + 6).join(" ");
+        owners.set(key, (owners.get(key) ?? new Set()).add(slug));
+      }
+    }
+    const shared = [...owners.entries()]
+      .filter(([, s]) => s.size > MAX_NOTES_SHARING_A_PHRASE)
+      .sort((a, b) => b[1].size - a[1].size)
+      .slice(0, 10)
+      .map(([k, s]) => `${s.size} notes: "${k}"`);
+    expect(
+      shared,
+      `A phrase runs through too many local notes:\n${shared.join("\n")}\n` +
+        `Vary the wording — these pages are measured against each other.`,
     ).toEqual([]);
   });
 });

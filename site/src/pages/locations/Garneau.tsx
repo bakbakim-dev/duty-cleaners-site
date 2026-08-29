@@ -273,7 +273,7 @@ export default function Garneau() {
         heading="Houses that were cut into suites"
         paragraphs={[
           "The University of Alberta's main campus sits directly west, and after the Second World War a great many of Garneau's older houses were divided into rooming houses and suites for the students it drew. Much of that fabric is still in place - original wood trim, plaster, period hardware - inside units that turn over on a rental cycle rather than an owner's. The build-up we find in them is often several tenancies deep.",
-          "109 Street runs straight through the middle of the neighbourhood, lined with high-rise and low-rise blocks that are mostly rented, largely to students, which makes move-out cleaning rather than weekly upkeep the bulk of what we do here. At the north edge, along Saskatchewan Drive, suites look out over the river valley with nothing in the way, and unobstructed glass like that shows every streak and missed corner.",
+          "109 Street runs straight through the middle of the neighbourhood, lined with high-rise and low-rise blocks that are mostly rented, largely to students, which is why the calendar here runs on possession dates rather than weekly slots. At the north edge, along Saskatchewan Drive, suites look out over the river valley with nothing in the way, and those windows are the whole outlook of the suite, which is why they are the surface both a tenant and a landlord check first.",
         ]}
       />
 

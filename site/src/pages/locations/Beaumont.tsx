@@ -310,7 +310,7 @@ export default function Beaumont() {
         eyebrow="What we see here"
         heading="The hill, then the fields"
         paragraphs={[
-          "Beaumont was named in 1895 for the hill it stands on, and St. Vital Church has held the top of that rise since 1919. The city is still high ground with farmland close at the edges, and little stands between the newest streets and the nearest field. Through seeding, and again at harvest, a fine mineral grit turns up on thresholds, on baseboards and across the first stretch of floor inside every entrance.",
+          "Beaumont was named in 1895 for the hill it stands on, and St. Vital Church has held the top of that rise since 1919. The city is still high ground with farmland close at the edges, and little stands between the newest streets and the nearest field. Through seeding, and again at harvest, a fine mineral grit turns up on thresholds, in door tracks and on the sills of any window left open for the evening.",
           "A village from 1973, a town from 1980, and a city only since 2019 — the population rose by a fifth between the 2016 and 2021 censuses alone. Most of what we clean is the product of that run: large, recent family houses where the difficulty is arithmetic, not grime. More bathrooms, more floor, more glass than the street frontage suggests. The honest quote here is about scale.",
         ]}
       />

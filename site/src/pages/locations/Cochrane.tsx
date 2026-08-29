@@ -287,7 +287,7 @@ export default function Cochrane() {
         heading="At the base of Big Hill"
         paragraphs={[
           "The town sits at the base of Big Hill, downtown low on the Bow River valley floor, with most of the newer streets up on the higher ground either side of it. Those upper communities lose the shelter the valley gives. Wind comes off the foothills to the west over open ranch country, and screens and window tracks up there load with dry grit far faster than they do downtown. Brushing tracks out is a standing item here, not a deep-clean extra.",
-          "The 2021 census counted 32,199 people here, a 24.5 per cent jump in five years, and the building has not let up since — the north end around Sunset Ridge, the streets south of the river in Fireside. Plenty of households live beside an active site or inside a house the trades only recently left. Construction dust is not household dust: finer, mildly abrasive, still working out of ductwork months later. Wet cloths, changed often. A dry pass just grinds it in.",
+          "The 2021 census counted 32,199 people here, a 24.5 per cent jump in five years, and the building has not let up since — the north end around Sunset Ridge, the streets south of the river in Fireside. Plenty of these households are in Sunset Ridge or Fireside, in a house the trades only recently left. Construction dust is mildly abrasive and still working out of ductwork months later. Wet cloths, changed often: a cloth that has already picked up construction fines becomes an abrasive itself.",
         ]}
         accent="calgary"
       />

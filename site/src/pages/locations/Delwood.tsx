@@ -320,7 +320,7 @@ export default function Delwood() {
         heading="The particular work of a Delwood house"
         paragraphs={[
           "Delwood was built out through the 1960s, and its bungalows and semi-bungalows carry the fixtures of that decade — tiled tub surrounds, painted wood cabinets, and furnace runs that have been pushing air through the same ducts for sixty winters. That long heating history leaves a fine film above every register that owners rarely notice until a picture comes off the wall.",
-          "Streets here are lined with mature elm and ash, which is lovely shade in July and a workload the rest of the year: elm samaras in spring, canopy dust in summer, and leaf fragments tracked across floors from September until the first hard snow.. Window tracks on the tree side of a Delwood house need clearing twice as often as the sunny side.",
+          "Streets here are lined with mature elm and ash, which is lovely shade in July and a workload the rest of the year: elm samaras in spring, canopy dust in summer, and leaf fragments tracked across floors from September until the first hard snow. Window tracks on the tree side of a Delwood house need clearing twice as often as the sunny side.",
         ]}
       />
 

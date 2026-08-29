@@ -346,7 +346,7 @@ export default function ForestLawn() {
         eyebrow="Neighbourhood notes"
         heading="A town until 1961"
         paragraphs={[
-          "Calgary annexed the Town of Forest Lawn on December 30, 1961, and the grid between 8 Avenue SE and 26 Avenue SE still reads like the separate place it was - four in five homes predate 1980. What matters more for scheduling is tenure: 68 per cent of households were renting at the 2021 census, so move-in and move-out cleans are a steady part of the year here, not an occasional job.",
+          "Calgary annexed the Town of Forest Lawn on December 30, 1961, and the grid between 8 Avenue SE and 26 Avenue SE still reads like the separate place it was - most of its homes predate 1980. What matters more for scheduling is tenure: 68 per cent of households were renting at the 2021 census, so move-in and move-out cleans are a steady part of the year here, not an occasional job.",
           "17 Avenue SE cuts through the middle as International Avenue, carrying the MAX Purple busway and an unbroken run of restaurants and shops. Homes on the blocks feeding into it get the traffic side of that arrangement: front windows that haze over between washes, grit at the door thresholds, cooking exhaust drifting on warm evenings. Range hoods and window glass come up here far more often than they do three blocks off.",
         ]}
         accent="calgary"

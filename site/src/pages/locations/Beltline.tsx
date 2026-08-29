@@ -350,7 +350,7 @@ export default function Beltline() {
         eyebrow="What we see here"
         heading="Freight one end, bars the other"
         paragraphs={[
-          "Everything between the CPR tracks and 17 Avenue SW is Beltline, from 14 Street SW east to the Elbow River — a freight corridor at one end, and at the other a dense concentration of bars, restaurants and nightclubs. In a tower, that lands on the balcony first, and in the sliding-door track behind it. A suite can be spotless inside and still look dirty through the glass, which is why the track and the rail get done before the floors.",
+          "Everything between the CPR tracks and 17 Avenue SW is Beltline, from 14 Street SW east to the Elbow River — a freight corridor at one end, and at the other a dense concentration of bars, restaurants and nightclubs. In a tower, that lands on the balcony first, and in the sliding-door track behind it. A suite can be spotless inside and still look dirty through the glass. The balcony is part of the suite here, and it gets the same half hour the kitchen does.",
           "This is one of the densest and most urban communities in Calgary, and most of the towers built since the early 2010s run between 25 and 40 storeys. That changes the logistics more than the method: no outdoor tap, everything carried up in a single load, and the service elevator booked ahead where a building requires it. Stampede Park adjoins the east end, and for ten days each July 17th Avenue carries the crowd.",
         ]}
         accent="calgary"

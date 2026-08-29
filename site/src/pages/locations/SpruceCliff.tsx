@@ -346,8 +346,8 @@ export default function SpruceCliff() {
         eyebrow="From the route"
         heading="Living on the escarpment rim"
         paragraphs={[
-          "Three quarters of the homes here are apartments - 2,220 dwellings at the 2021 census, and only one in ten of them detached. The community sits on the Bow River escarpment at about 1,125 metres, with the CP main line and the river directly below its northern edge. On that side the balcony door is the pressure point: valley wind drives grit into the sliding channels faster than anything indoors produces it.",
-          "Below the rim, the Douglas Fir Trail drops through old conifer stands toward Edworthy Park and the Bow River pathway - a genuine walk from most doors rather than a step outside, and a steady supply of needle litter, mud and cottonwood fluff on the way back up. Entry mats, stair treads and the first couple of metres of hallway carry that load; the rest of a suite stays comparatively clean.",
+          "Of the 2,220 dwellings counted here in 2021, about three in four are apartment units and only one in ten is a detached house. The community sits on the Bow River escarpment at about 1,125 metres, with the CP main line and the river directly below its northern edge. On that side the balcony door is the pressure point: valley wind drives grit into the sliding channels faster than anything indoors produces it.",
+          "Below the rim, the Douglas Fir Trail drops through old conifer stands toward Edworthy Park and the Bow River pathway - a genuine walk from most doors rather than a step outside, and a steady supply of needle litter, mud and cottonwood fluff on the way back up. It comes up the trail on boots and paws and stops at the stair treads and the door track; the rest of a suite stays comparatively clean.",
         ]}
         accent="calgary"
       />

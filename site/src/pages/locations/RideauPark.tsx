@@ -344,10 +344,10 @@ export default function RideauPark() {
 
       <LocalMarketNote
         eyebrow="Local knowledge"
-        heading="Water on three sides"
+        heading="Towers in the Elbow bend"
         paragraphs={[
-          "The Elbow River wraps this community north, west and south, leaving a single land edge along 4 Street SW. That one arterial does most of the dirty work - traffic grime settles on the glass and frames facing it right through winter, while the streets nearer the water gather dust slowly and evenly. The same small community ends up needing two different rhythms of visit.",
-          "The housing is not what the setting suggests. Of 340 homes counted in 2021, 57 per cent sit in apartment buildings over five storeys and only 35 per cent are detached. That splits the work in two: high up, the glass can only be done from the inside and valley dust settles on ledges and blinds; in the detached houses, river grit and spring melt arrive at floor level instead.",
+          "The Elbow River wraps this community on the north and west, leaving 4 Street SW as its only land edge. That one arterial does most of the dirty work - traffic grime settles on the glass and frames facing it right through winter, while the streets nearer the water gather dust slowly and evenly. The 4 Street frontage needs its glass and frames every visit; the streets down by the water can sit at the back of the rotation.",
+          "The housing is not what the setting suggests. Of the roughly 340 dwellings here, close to half are in apartment or condominium buildings and the rest are detached. That splits the work in two: high up, the glass can only be done from the inside and valley dust settles on ledges and blinds; in the detached houses, river grit and spring melt arrive at floor level instead.",
         ]}
         accent="calgary"
       />

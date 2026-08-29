@@ -259,7 +259,7 @@ export default function Mahogany() {
         eyebrow="Local knowledge"
         heading="Silt from the next phase"
         paragraphs={[
-          "Construction in Mahogany started in 2008 and has not stopped: new phases keep opening on the outer edges while settled streets sit a few blocks away. That proximity is the practical issue. Households downwind of an active lot get a fine pale silt on sills, window tracks and the top edges of doors, and it returns within days of the last wipe. It takes a damp cloth every time - a dry one grinds it into the finish.",
+          "Construction in Mahogany started in 2008 and, out on Calgary's southeast edge, it has not stopped: new phases keep opening past 52 Street SE while settled streets sit a few blocks away. That proximity is the practical issue. Households downwind of an active lot get silt on sills, window tracks and the top edges of doors, and it is back within days of the last wipe. It takes a damp cloth every time.",
           "Seventy-four acres of naturalized wetland sit inside the neighbourhood, ringed by pathways and interpretive areas. That changes what comes through the door. Spring and fall, the ground either side of the paved path stays soft, so boots and dog paws bring in a dark, greasy mud rather than dry grit. Late summer, seed fluff and insects load up the window screens. Screens and entry flooring take the extra time here.",
         ]}
         accent="calgary"

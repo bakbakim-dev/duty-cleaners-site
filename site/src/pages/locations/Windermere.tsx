@@ -304,8 +304,8 @@ export default function Windermere() {
         eyebrow="From the route"
         heading="Everything young except the valley"
         paragraphs={[
-          "The 2005 municipal census found 84 single-family houses in the whole neighbourhood; between 2009 and 2012 the population rose 563 per cent. Almost every home here went up inside the last twenty years, so nothing dates from the era of enamel fixtures and waxed hardwood floors. What that leaves is modern surface, and engineered stone and engineered wood are permanently dulled by abrasives and high-pH cleaner. Neutral-pH product and a dry cloth is the default.",
-          "The west and northwest edge is the North Saskatchewan valley, so a good number of lots face open sky rather than another house. At Edmonton's latitude the afternoon sun comes in low across that opening, and light at that angle finds every streak a single wet pass leaves. West glass gets a dry buff after the wash - and outside work waits for the city's spring sweep, which does not start until April, rather than fighting road sand in March.",
+          "The 2005 municipal census found 84 single-family houses in the whole neighbourhood. Almost every home here went up inside the last twenty years, so nothing dates from the era of enamel fixtures and waxed hardwood floors. What that leaves is modern surface, and engineered stone and engineered wood are permanently dulled by abrasives and high-pH cleaner. Neutral-pH product and a dry cloth is the default.",
+          "The west and northwest edge is the North Saskatchewan valley, so a good number of lots face open sky rather than another house. At Edmonton's latitude the afternoon sun comes in low across that opening, and at that angle a single wet pass dries into visible lines, so west glass gets a dry buff after the wash - and outside work waits for the city's spring sweep, which does not start until April, rather than fighting road sand in March.",
         ]}
       />
 

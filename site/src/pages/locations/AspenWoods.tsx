@@ -237,10 +237,10 @@ export default function AspenWoods() {
 
       <LocalMarketNote
         eyebrow="What we see here"
-        heading="Built to face the foothills"
+        heading="Two storeys of west-facing glass"
         paragraphs={[
           "Two-storey window walls, tall stairwell glass, great-room fixtures well past ladder height: the houses on this high, open ground - roughly 1,230 metres - were built to take the foothills straight on. Low winter sun swinging through the south and southwest lights up every streak on that west elevation, so west glass gets squeegee work and a dry buff, not a spray-and-wipe that leaves its own record.",
-          "The western boundary is the 101 Street SW corridor, where the ring road's last leg opened to traffic in December 2023; 17 Avenue SW closes Aspen Woods off to the south. Homes date from 2001, which puts the first generation of surfaces at the age where handling changes - hardwood thinned through the traffic lanes, stone counters that want a pH-neutral product rather than a degreaser.",
+          "The ring road's last leg opened just west of here in December 2023, and 17 Avenue SW closes Aspen Woods off to the south. Homes date from 2001, which puts the first generation of surfaces at the age where handling changes - hardwood thinned through the traffic lanes, stone counters that want a pH-neutral product rather than a degreaser.",
         ]}
         accent="calgary"
       />
