@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -314,6 +315,15 @@ export default function Ozerna() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="Ozerna's lakeside checklist"
+        paragraphs={[
+          "Ozerna cleans start where the water shows up indoors: ensuite glass and grout lines that hold moisture longer than in drier districts, window reveals in steam-facing rooms, and the laundry corners where humid air settles. The neighbourhood's 1990s two-storeys add spindle staircases and corner fireplaces to the hand-work list.",
+          "The lake path draws walkers year-round, and homes backing the pond get waterfowl-season debris on decks and rear thresholds — a back-entry workload the street-facing homes never see. Winter flips it: rink season on nearby ponds brings skate-bag slush through the garage entry instead.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Ozerna" />

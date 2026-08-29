@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -345,6 +346,16 @@ export default function KillarneyGlengarry() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        accent="calgary"
+        eyebrow="Local knowledge"
+        heading="Killarney's bungalow-to-infill turn"
+        paragraphs={[
+          "Killarney-Glengarry is mid-turnover: 1950s bungalows and their mature hedges on one lot, three-storey infills on the next. The infills bring third-floor loft dust, stair runs and roof-deck doors; the bungalows bring original tile, plaster and small dense rooms. A street's two neighbouring homes can be opposite cleaning jobs entirely.",
+          "The 17 Avenue and 26 Avenue corridors carry the area's traffic, and active infill sites keep construction dust circulating block by block. Homes beside a build need track and sill work every visit until the lot next door is landscaped — a temporary but real season that can last a year.",
+        ]}
+      />
 
       <LocationPricing />
 

@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -345,6 +346,16 @@ export default function Cityscape() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        accent="calgary"
+        eyebrow="Local knowledge"
+        heading="Cityscape's new-build realities"
+        paragraphs={[
+          "Cityscape is 2010s construction, and its homes still behave like new builds: drywall fines resurface from vents and closet shelving long after possession, high great-room ledges gather dust out of arm's reach, and dark laminate popular in these years shows every footprint and paw mark by mid-week.",
+          "The community's position off Métis Trail and under the airport's approaches means fine arterial dust rides the wind year-round, and ongoing construction on neighbouring phases keeps site dust in circulation. Window tracks on the development-facing side fill fastest and tell you which way the current build is.",
+        ]}
+      />
 
       <LocationPricing />
 

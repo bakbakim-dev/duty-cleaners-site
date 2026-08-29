@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -314,6 +315,15 @@ export default function BeaconHeights() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="Beacon Heights, close up"
+        paragraphs={[
+          "Beacon Heights carries 1950s-60s homes on big mature lots, many with the original single detached garage at the lane — which means front-door living, unusual for Edmonton. Main entries here take the traffic that garage-entry suburbs route through mudrooms, so hall closets, front mats and the first stretch of hardwood do outsized work.",
+          "The neighbourhood shoulders the river valley's wooded edge along Rundle Park's approaches, and valley pollen plus ravine dust are its seasonal signature. Screens and tracks on valley-facing windows fill noticeably faster, and autumn brings a longer-than-average leaf-tracking season off the older canopy.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Beacon Heights" />

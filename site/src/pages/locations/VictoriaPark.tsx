@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -345,6 +346,16 @@ export default function VictoriaPark() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        accent="calgary"
+        eyebrow="Local knowledge"
+        heading="Victoria Park at festival pitch"
+        paragraphs={[
+          "Victoria Park lives beside the Stampede grounds and the Saddledome, and event season is its cleaning calendar: concert and festival crowds bring sidewalk grit, and the BMO Centre's expanded convention flow keeps it coming year-round. Ground-floor units near the grounds see film on sills within days of a big event.",
+          "The housing is dense — condo towers and townhomes over retained heritage rows — and tower living concentrates cleans into kitchens, baths and balcony thresholds. Balconies facing the grounds collect event dust and rail-corridor grit both; their door tracks are the single most demanding surface in the quarter.",
+        ]}
+      />
 
       <LocationPricing />
 

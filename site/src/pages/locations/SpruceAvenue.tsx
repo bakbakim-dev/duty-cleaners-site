@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -310,6 +311,15 @@ export default function SpruceAvenue() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="Spruce Avenue's century mix"
+        paragraphs={[
+          "Spruce Avenue blends 1910s houses with post-war infill north of the Royal Alex, and the older share brings century-home work: high baseboards, panel doors, stair balustrades, and basements never designed as living space now serving as suites. Suite bathrooms and kitchenettes double the wet-room count in a modest footprint.",
+          "Kingsway's traffic and the hospital district's constant coming-and-going keep the area's ambient grit high, and NAIT's proximity adds student-rental turnover cleans to the local mix — end-of-lease work that runs closer to move-out standard than maintenance.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Spruce Avenue" />

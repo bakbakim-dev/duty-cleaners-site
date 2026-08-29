@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -345,6 +346,16 @@ export default function Ramsay() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        accent="calgary"
+        eyebrow="Local knowledge"
+        heading="Ramsay's industrial edges"
+        paragraphs={[
+          "Ramsay's heritage houses climb from the Elbow toward Scotsman's Hill with working industry still active on their flank — and that adjacency is the cleaning fact: rail-yard and fabrication dust drifts fine and dark, showing on white sills and glossy surfaces faster than ordinary road grit. Homes on the industrial side benefit from sill and track wiping every visit.",
+          "Inside, this is century-home territory: plaster, fir, steep narrow stairs and basements that were never meant to be living space but often are now. Low-clearance basement suites concentrate humidity and dust both, and their window wells collect what the hill sheds.",
+        ]}
+      />
 
       <LocationPricing />
 

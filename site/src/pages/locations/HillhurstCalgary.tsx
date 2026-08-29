@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -345,6 +346,16 @@ export default function HillhurstCalgary() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        accent="calgary"
+        eyebrow="Local knowledge"
+        heading="Hillhurst around the shops"
+        paragraphs={[
+          "Hillhurst's century homes ring the Kensington shops, and living beside a retail district reads indoors as constant entry traffic and window films from street dust. The houses themselves are classic character stock — fir floors that show water spots, plaster that prefers dry methods, stained-glass transoms that want careful hands.",
+          "Infill construction is continuous here, so most blocks have an active site nearby pushing cut-lumber and drywall dust across property lines. Homes mid-renovation-zone need track and sill clearing every visit, and pale heritage window putty shows that dust faster than modern frames.",
+        ]}
+      />
 
       <LocationPricing />
 

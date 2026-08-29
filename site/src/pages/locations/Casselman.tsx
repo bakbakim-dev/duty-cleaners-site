@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -314,6 +315,15 @@ export default function Casselman() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="The Casselman particulars"
+        paragraphs={[
+          "Casselman's 1970s housing splits between detached homes and townhouse clusters, and the clusters set the rhythm: shared walls hold cooking odours and humidity longer, compact kitchens grease-film faster than open plans, and stairwells in the rows concentrate the entire home's traffic onto one carpet run that needs the most attention of any surface.",
+          "Sitting a short reach from Manning Drive and the Clareview transit corridors, the area lives with steady arterial dust, and its playing fields add spring mud season to the calendar. The practical read: entries and stair runs first, everything else after.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Casselman" />

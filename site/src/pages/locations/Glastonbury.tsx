@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { buildLocationSchema } from "@/lib/location-schema";
@@ -281,6 +282,15 @@ export default function Glastonbury() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="Glastonbury's west-end 2000s stock"
+        paragraphs={[
+          "Glastonbury's 2000s two-storeys run the west-end pattern: garage-entry mudrooms that take all the tracking, open mains that clean quickly, and upstairs bonus rooms over the garage whose long exterior wall gathers condensation dust lines in cold snaps. Builder carpet on stairs shows traffic first — it is the honest indicator of a home's rhythm.",
+          "The Anthony Henday's proximity delivers ring-road grit on the wind, and Lewis Farms' big-box retail keeps local traffic steady. Homes backing the utility corridor get the strongest dust exposure and their window tracks fill first.",
+        ]}
+      />
 
       <LocationPricing />
 

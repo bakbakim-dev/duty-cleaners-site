@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -314,6 +315,15 @@ export default function BonnieDoon() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="Bonnie Doon between mall and ravine"
+        paragraphs={[
+          "Bonnie Doon spans real vintage range — 1910s houses on its ravine edge through 1950s infill near the mall — and its French-quarter blocks keep original character interiors: deep casings, glass-knob doors, and stair balustrades that are all hand-wipe territory. The Valley Line LRT's construction years left dust in the older ductwork that keeps surfacing.",
+          "Mill Creek Ravine borders the west side, and ravine-edge homes live with the valley's seasons indoors: June poplar fluff through screens, October leaf tracking, and the fine dry silt that valley winds lift in August. Screen and track clearing is a scheduled need here, not an occasional extra.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Bonnie Doon" />

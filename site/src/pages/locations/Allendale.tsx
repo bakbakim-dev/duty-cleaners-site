@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -306,6 +307,15 @@ export default function Allendale() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="Allendale beside the corridor"
+        paragraphs={[
+          "Allendale's post-war bungalows sit against the CPR corridor south of Whyte, and the rail line plus 104 Street's traffic define its dust profile — a fine, steady film heaviest on the corridor side. The neighbourhood's walkability to Whyte Avenue also keeps foot traffic and entry wear above what its quiet streets suggest.",
+          "University rentals thread through the area, bringing turnover cleans each spring — end-of-term work that concentrates on kitchens, bathrooms and the scuffs of moving day. Owner-occupied homes are classic small bungalows dense with original trim.",
+        ]}
+      />
 
       <LocationPricing />
 

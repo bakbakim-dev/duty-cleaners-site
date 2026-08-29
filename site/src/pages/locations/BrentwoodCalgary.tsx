@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -345,6 +346,16 @@ export default function BrentwoodCalgary() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        accent="calgary"
+        eyebrow="Local knowledge"
+        heading="Brentwood bungalows and student wear"
+        paragraphs={[
+          "Brentwood's 1960s bungalows sit a walk from the University of Calgary, and a meaningful share run as student rentals — which compresses years of wear into semesters. Turnover cleans here are a distinct job: inside appliances, closet shelving, and the scuff lines of frequent furniture moves, closer to a move-out standard than a maintenance visit.",
+          "Owner-occupied homes are classic mid-century: hardwood under carpet, plaster ceilings, original vanities whose porcelain and chrome reward polishing. Brentwood Village and the LRT station keep pedestrian traffic steady, and homes along the walking routes to campus see more front-entry grit than the crescents behind them.",
+        ]}
+      />
 
       <LocationPricing />
 

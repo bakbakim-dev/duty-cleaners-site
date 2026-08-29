@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -345,6 +346,16 @@ export default function Sunnyside() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        accent="calgary"
+        eyebrow="Local knowledge"
+        heading="Sunnyside, flood-aware and century-old"
+        paragraphs={[
+          "Sunnyside's century homes sit on the Bow's low bank, and the neighbourhood remembers 2013 — basements here are rebuilt, sump-equipped and humidity-watched. Cleans that include the below-grade level should check the seasonal tells: efflorescence lines, window-well condensation and the musty corners that say a dehumidifier needs emptying.",
+          "Above grade it is heritage-scale work: original casings, stained glass here and there, radiators that gather dust in fins a cloth cannot reach without a brush. The walk to Kensington's shops keeps front entries busy year-round, and bike traffic off the river path adds chain-grease marks to entry floors no other neighbourhood produces as reliably.",
+        ]}
+      />
 
       <LocationPricing />
 

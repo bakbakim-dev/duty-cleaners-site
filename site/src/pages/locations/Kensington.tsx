@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -248,6 +249,15 @@ export default function Kensington() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="Kensington, Edmonton's version"
+        paragraphs={[
+          "Edmonton's Kensington is 1960s bungalow country in the city's northwest, its streets curving off 127 Street with some of the north side's largest original lots. Big lots mean big gardens, and garden season tracks in as soil and mulch through back entries — spring and fall cleans here are heavier than mid-summer ones.",
+          "The Yellowhead's proximity gives the south blocks a steady traffic-dust baseline, and Calder's rail history still runs freight nearby. Homes south of 132 Avenue show it on their sills; the deeper crescents stay noticeably cleaner between visits.",
+        ]}
+      />
 
       <LocationPricing />
 

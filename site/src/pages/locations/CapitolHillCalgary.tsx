@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -345,6 +346,16 @@ export default function CapitolHillCalgary() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        accent="calgary"
+        eyebrow="Local knowledge"
+        heading="Capitol Hill's student-and-family blend"
+        paragraphs={[
+          "Capitol Hill's 1950s bungalows sit between SAIT and Confederation Park, and the student-rental share near campus gives cleans here two distinct modes: maintenance visits in family homes, and turnover-grade work in rentals where a semester's wear concentrates in kitchens and bathrooms. Original hardwood under old broadloom is common and worth protecting either way.",
+          "Confederation Park's toboggan slopes and pathways feed winter traffic through the neighbourhood's north side, and 16 Avenue's Trans-Canada traffic dusts the south edge constantly. Which edge a home sits on decides whether its heavy season is winter tracking or year-round arterial grit.",
+        ]}
+      />
 
       <LocationPricing />
 

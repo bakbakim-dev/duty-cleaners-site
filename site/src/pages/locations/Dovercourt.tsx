@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -315,6 +316,15 @@ export default function Dovercourt() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="Dovercourt between arteries"
+        paragraphs={[
+          "Dovercourt's 1950s homes sit boxed by 118 Avenue, the Yellowhead and Groat Road, and arterial dust is the neighbourhood's defining indoor condition — fine, constant, and heaviest on whichever face of the house takes the prevailing wind. Weekly sill passes show more benefit here than almost any other single task.",
+          "Inside, the stock is classic post-war: oak floors under later carpet, plaster walls, single-pane storms on some homes still. Those storm windows double the glass surfaces and their between-pane cavities collect a winter's worth of condensation grime that only a seasonal deep clean reaches.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Dovercourt" />

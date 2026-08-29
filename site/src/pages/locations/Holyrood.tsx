@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -314,6 +315,15 @@ export default function Holyrood() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="What cleaning a Holyrood home involves"
+        paragraphs={[
+          "Holyrood's houses mostly date from the 1950s, and sixty-plus years of paint layers show along every door frame and window sill. Original hardwood hides under carpet in many of them, mid-century tile keeps its looks only when grout is kept ahead of, and the coved plaster corners that make these interiors feel warm also hold dust in a way flat drywall never does. A careful hand-wipe matters more here than horsepower.",
+          "Mill Creek Ravine runs close by, and homes near the trailheads collect what the ravine sends: poplar fluff drifting in through June screens, leaf litter walked in every October, and river-valley dust on sills through dry stretches. The Valley Line LRT along 83 Street added construction dust for years — much of it is still working out of older ductwork.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Holyrood" />

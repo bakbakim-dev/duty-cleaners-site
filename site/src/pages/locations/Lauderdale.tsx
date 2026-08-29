@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -315,6 +316,15 @@ export default function Lauderdale() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="Lauderdale's quiet grid"
+        paragraphs={[
+          "Lauderdale's 1950s-60s bungalows keep one of the north side's most intact original streetscapes, and indoors that means first-generation kitchens and baths in many homes — enamel, tile and chrome that respond to polishing compounds no modern surface needs. Gentle products preserve exactly what makes these interiors worth keeping.",
+          "The neighbourhood sits between 97 Street's commercial strip and the airport lands' redevelopment, so construction seasons come and go on its edges. When Blatchford's build phases run, north-facing tracks and sills carry the evidence; between phases, Lauderdale is among the lowest-dust pockets in the north.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Lauderdale" />

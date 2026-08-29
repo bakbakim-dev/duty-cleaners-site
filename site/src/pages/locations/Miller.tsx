@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -314,6 +315,15 @@ export default function Miller() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="Miller's homes and their habits"
+        paragraphs={[
+          "Miller pairs 1990s and 2000s two-storeys with attached double garages, and the garage entry is the real front door — the mudroom route from garage to kitchen carries nearly all the household's tracking, while the formal entry stays clean. A visit that budgets its floor time by that reality serves these homes better than an even split.",
+          "The neighbourhood borders stormwater greens and pathway links, and households here skew young-family: more occupants, more footwear rotations, more washable surfaces touched at hip height and below. Fingerprint bands on stair rails, switch plates and appliance fronts are the visible difference a clean makes.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Miller" />

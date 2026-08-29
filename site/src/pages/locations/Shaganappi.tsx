@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -345,6 +346,16 @@ export default function Shaganappi() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        accent="calgary"
+        eyebrow="Local knowledge"
+        heading="Shaganappi's mix, and what it means for cleaning"
+        paragraphs={[
+          "Shaganappi layers three housing generations on one slope — original 1910s-40s cottages, mid-century infill, and new builds shoulder to shoulder. No two cleans here are alike: one house is plaster walls and fir floors that want gentle products, the next is fresh drywall still shedding construction dust, and quoting by bedroom count alone misreads both.",
+          "The Blue Line runs along the neighbourhood's edge and the golf course sits below it; homes near the LRT pick up platform grit and the constant fine dust of Bow Trail, while the course side deals with summer pollen drift off the fairways. West-facing windows on this slope also take the full force of chinook winds, which drive dust into every seal.",
+        ]}
+      />
 
       <LocationPricing />
 

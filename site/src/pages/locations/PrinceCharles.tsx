@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -315,6 +316,15 @@ export default function PrinceCharles() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="Prince Charles by the airfield"
+        paragraphs={[
+          "Prince Charles borders the old municipal airport lands, and Blatchford's decade-long build-out next door is the neighbourhood's defining dust source — cut earth and construction fines drifting over the fence line in every dry week. East-facing window tracks tell the story at a glance, and clearing them is a per-visit task while the build runs.",
+          "The homes are wartime and 1950s stock, compact with original trim, and many lots now carry garden suites — second kitchens and baths that extend a clean beyond the main house. Kingsway's traffic adds the usual corridor grit along the south edge.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Prince Charles" />

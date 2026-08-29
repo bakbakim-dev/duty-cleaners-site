@@ -136,7 +136,16 @@ describe("location pages", () => {
  * templated pages occupied, so a new page shipped as a straight copy fails.
  */
 describe("location pages are not copies of each other", () => {
-  const MIN_NOVEL = 50;
+  /**
+   * Raised from 50 after the doorway-floor pass of 2026-08-29: 41 pages in the
+   * 65-115 band received a LocalMarketNote each (housing era, geography, and
+   * their cleaning consequences, distinctly worded per page), lifting the
+   * measured floor from 65 to 120 and the median from 142 to 195. 100 leaves
+   * room for ordinary copy edits below the real floor while still failing any
+   * page that ships as a find-and-replace of its siblings — the old floor of
+   * 50 would have passed pages the site now considers templated.
+   */
+  const MIN_NOVEL = 100;
 
   it("no page is a find-and-replace of its siblings", () => {
     if (!urls.length) return;

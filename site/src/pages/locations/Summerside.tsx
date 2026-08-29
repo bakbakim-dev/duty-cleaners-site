@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -314,6 +315,15 @@ export default function Summerside() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="Summerside and its lake"
+        paragraphs={[
+          "Summerside is built around Edmonton's only residential beach lake, and lake life comes indoors all summer — sand in entry mats and stair carpets from July beach days, wet-towel humidity in mudrooms and baths, and sunscreen films on door hardware that ordinary dusting misses. A beach-season clean here has its own checklist.",
+          "The housing is 2000s two-storey stock with garage-entry mudrooms carrying nearly all traffic, and great-room ceilings holding dust at height. Winters flip the lake's role — rink season brings skate bags and boot slush through the same mudroom that handled sand in August.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Summerside" />

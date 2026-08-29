@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -315,6 +316,15 @@ export default function Sherbrooke() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="Sherbrooke's small footprint, big trim"
+        paragraphs={[
+          "Sherbrooke's post-war bungalows northwest of Westmount are compact — many under a thousand square feet — but the era packed them with hand-cleaned detail: coved plaster, original casings, hardwood that telegraphs dust. Small homes of this vintage take longer per square metre than anything built after 1980, and quoting by size alone underestimates them.",
+          "The Yellowhead's truck traffic runs close enough that north-facing sills carry a constant fine grey film, renewed faster than the neighbourhood's quiet interior streets would suggest. Groat Road's commuter flow does the same for the east edge — which side a home faces decides its dusting rhythm.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Sherbrooke" />

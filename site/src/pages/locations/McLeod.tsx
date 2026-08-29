@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -314,6 +315,15 @@ export default function McLeod() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="A McLeod house, item by item"
+        paragraphs={[
+          "McLeod's 1970s split-levels and bungalows carry a detail worth knowing: the era's dark-stained trim and doors show dust readily but forgive scuffs, the reverse of modern white trim — so the wipe-down list here runs to every horizontal stained surface, and a good clean is visible immediately in a way paint-grade homes never show.",
+          "The area's schools and rinks make it one of the northeast's higher-traffic family pockets through winter — gear bags, skate blades and boot slush arrive daily from October to March. Rubber-backed runners and entry tile take a beating, and the salt haze they collect needs a proper rinse rather than a dry mop.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Mc Leod" />

@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -314,6 +315,15 @@ export default function Kilkenny() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="Kilkenny's era, in cleaning terms"
+        paragraphs={[
+          "Kilkenny was laid down in the late 1960s, and its bungalows keep the era's signature basement: panelled rec rooms, drop ceilings and bar corners that collect a specific mix of dust and dryness. Drop-ceiling tiles hold decades of fine particles and shed them when bumped, so basement cleans here start at the top or get undone.",
+          "The neighbourhood's border arterials — 97 Street on one side, 66 Street traffic nearby — bring the north side's constant grit, while the interior crescents stay quiet. Which street a Kilkenny home faces changes its entry workload more than its size does, and it is worth saying so when booking.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Kilkenny" />

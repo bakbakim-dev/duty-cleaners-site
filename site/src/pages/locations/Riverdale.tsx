@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -314,6 +315,15 @@ export default function Riverdale() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="Riverdale on the flats"
+        paragraphs={[
+          "Riverdale sits on the river flats below downtown, and its homes — from surviving early-1900s cottages to contemporary architect builds — share the valley microclimate: morning fogs that damp entry floors, spring silt when the river runs high, and the valley's poplar seasons drifting through screens. Moisture-aware cleaning matters here more than anywhere upslope.",
+          "The footbridge and valley trail traffic passes residents' doors daily, and the neighbourhood's gravel lanes add their own dust in dry months. New builds on the flats run to big glass facing the water — showpiece windows that make streak-free work the visible measure of any clean.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Riverdale" />

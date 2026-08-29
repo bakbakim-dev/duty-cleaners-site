@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -314,6 +315,15 @@ export default function Glengarry() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="Cleaning in Glengarry, concretely"
+        paragraphs={[
+          "Glengarry's 1960s stock keeps its original footprint: compact bungalows with full basements, many still carrying first-generation kitchens whose painted cabinets and tile counters need gentler products and more hand-work than modern laminate. Basement suites are common, and a suite doubles the kitchens and bathrooms a clean has to cover.",
+          "With Northgate a few blocks off and 97 Street carrying constant traffic, the neighbourhood's western edge lives with arterial dust the quieter crescents never see. Winters make it worse — the 97 Street corridor is gritted heavily, and that sand migrates into every entryway within a block or two of it.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Glengarry" />

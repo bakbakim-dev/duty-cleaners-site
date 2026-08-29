@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -345,6 +346,16 @@ export default function Erlton() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        accent="calgary"
+        eyebrow="Local knowledge"
+        heading="Erlton beside the grounds"
+        paragraphs={[
+          "Erlton sits between the Elbow River and Stampede Park, and ten days each July the neighbourhood absorbs the grounds' dust, crowds and parking overflow — a seasonal spike no other Calgary community experiences at this intensity. Post-Stampede cleans here are a known genre: fine lot dust on every sill and floors that have hosted a festival's foot traffic.",
+          "The housing splits between heritage survivors and townhouse rows along the river bluff. River-path cyclists and MNP Centre traffic keep entries busy year-round, and the bluff's exposure means south glass carries visible dust films between visits.",
+        ]}
+      />
 
       <LocationPricing />
 

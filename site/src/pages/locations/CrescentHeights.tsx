@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -345,6 +346,16 @@ export default function CrescentHeights() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        accent="calgary"
+        eyebrow="Local knowledge"
+        heading="Crescent Heights' vintage stock"
+        paragraphs={[
+          "Crescent Heights runs to pre-war and immediate post-war houses along its bluff, and their interiors are dense with hand-cleaned surfaces: picture rails, panel doors, deep baseboards, stair balustrades. Square footage badly under-predicts effort here — a nine-hundred-square-foot 1928 house can out-clean a two-thousand-foot suburban open plan.",
+          "The bluff position over downtown is the other factor: exposure. Wind off the escarpment drives dust against the south faces, and the walking traffic drawn by the crescent viewpoints keeps sidewalk grit constant at front steps. South-facing sills and entry floors are the tell-tale surfaces on every visit.",
+        ]}
+      />
 
       <LocationPricing />
 

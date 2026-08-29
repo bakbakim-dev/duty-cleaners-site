@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -345,6 +346,16 @@ export default function BridgelandRiverside() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        accent="calgary"
+        eyebrow="Local knowledge"
+        heading="Bridgeland's hillside habits"
+        paragraphs={[
+          "Bridgeland-Riverside stacks its housing down a south-facing hill — heritage cottages, mid-rise condos and steep-lot infills — and the slope itself is the cleaning story. Everything walks uphill from the restaurants and the LRT, so stair-heavy entries take the grit, and south sun through big hillside windows makes every streak and dust film visible in a way flat-lot homes hide.",
+          "The condo share is high for an inner neighbourhood, and condo cleans have their own shape: balcony door tracks facing downtown wind, galley kitchens that film with cooking residue faster than open suburban plans, and shared-hallway dust that migrates in at the threshold.",
+        ]}
+      />
 
       <LocationPricing />
 

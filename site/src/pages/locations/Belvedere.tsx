@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -315,6 +316,15 @@ export default function Belvedere() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="Belvedere by the tracks"
+        paragraphs={[
+          "Belvedere's 1950s-60s homes sit alongside the CN corridor and the Belvedere LRT stop, and rail-adjacent living has a specific indoor signature: fine dark dust that shows on pale sills and glossy furniture within days. Homes nearest the tracks benefit from sill and track passes every visit; two streets in, the effect fades to normal.",
+          "The stock itself is compact post-war with original hardwood common under later flooring, and Fort Road's revitalization keeps construction cycles coming to the area's spine. Transit-oriented redevelopment around the station adds periodic site dust to the east blocks.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Belvedere" />

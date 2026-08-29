@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -314,6 +315,15 @@ export default function AspenGardens() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="Aspen Gardens under the canopy"
+        paragraphs={[
+          "Aspen Gardens is 1960s executive stock backing the Whitemud ravine, with vaulted cedar ceilings and floor-to-ceiling ravine glass in many homes. Cedar sheds fine fibres and holds dust along its grain lines, and those big view windows carry the whole burden of the room's first impression — tracks, sills and glass are the job here.",
+          "Ravine adjacency sets the calendar: heavy pollen weeks off the aspen and spruce, needle drop through fall, and wildlife-carried debris at grade. Homes on the ravine lots need screen and threshold attention on a rhythm street-side homes never do.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Aspen Gardens" />

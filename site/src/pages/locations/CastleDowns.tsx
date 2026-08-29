@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { buildLocationSchema } from "@/lib/location-schema";
@@ -283,6 +284,15 @@ export default function CastleDowns() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="Castle Downs at district scale"
+        paragraphs={[
+          "Castle Downs is a 1970s-80s district of distinct pockets, and its housing repeats two forms that shape cleans: cedar-sided splits whose exterior sheds onto sills, and townhouse courts where stair runs and shared walls concentrate wear. Lake District ponds nearby add summer humidity that bathrooms register first.",
+          "The district's arterials — 97 Street, 153 Avenue, Castle Downs Road — box every pocket in traffic, so no home is far from arterial dust. The practical difference between addresses is which arterial they face; booking notes that say so get a better-targeted first visit.",
+        ]}
+      />
 
       <LocationPricing />
 

@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -345,6 +346,16 @@ export default function DalhousieCalgary() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        accent="calgary"
+        eyebrow="Local knowledge"
+        heading="What a Dalhousie home asks of a cleaner"
+        paragraphs={[
+          "Dalhousie went up mostly in the 1970s, and its four-level splits and bi-levels put more staircases per square metre than nearly any other housing form — every half-flight adds spindles, edges and a landing that funnels traffic. Lower levels of that era also run cooler and damper, so window condensation lines and the closet walls against foundation deserve a check each visit.",
+          "The neighbourhood wraps around Dalhousie Station, and the park-and-ride draws commuter foot traffic through the area every weekday. Homes on the station side see more sidewalk grit at the door, and the chinook cycle keeps that grit coming from November to April — melted, re-sanded, and tracked in again.",
+        ]}
+      />
 
       <LocationPricing />
 

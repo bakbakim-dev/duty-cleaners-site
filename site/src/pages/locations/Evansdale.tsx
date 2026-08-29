@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -314,6 +315,15 @@ export default function Evansdale() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="Evansdale's split-levels at work"
+        paragraphs={[
+          "Evansdale's 1970s split-levels multiply the surfaces that matter: two or three short stair runs, iron railings with dust-holding scrollwork, and sunken living rooms whose low return vents recirculate floor-level dust. The era's textured ceilings also shed fine white particles when disturbed — ceiling-adjacent work needs a gentle touch.",
+          "The neighbourhood's schools and rink traffic define its calendar, and 97 Street's retail edge adds arterial grit to homes on the west blocks. Winter is the heavy season — boot slush, gear bags and rink sand from October through March — and entry systems earn most of the attention.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Evansdale" />

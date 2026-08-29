@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -345,6 +346,16 @@ export default function Renfrew() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        accent="calgary"
+        eyebrow="Local knowledge"
+        heading="Renfrew's old bones"
+        paragraphs={[
+          "Renfrew climbs its hill in 1940s and 50s houses — stucco exteriors, plaster interiors, fir floors — punctuated by modern infills. The old stock wants low-moisture methods: plaster hates soaked cloths, aged fir shows water spots, and the deep window wells of the era hold more dust per window than anything built since.",
+          "The hillside itself works against clean floors. Runoff crosses walks on every thaw, and the chinook cycle means thaw happens all winter — grit arrives at Renfrew doors wet, dries into film, and grinds into entry hardwood. Homes near the Nose Creek slope get the strongest version of this and deserve entry-first cleans.",
+        ]}
+      />
 
       <LocationPricing />
 

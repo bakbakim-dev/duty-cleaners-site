@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -314,6 +315,15 @@ export default function Delwood() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="The particular work of a Delwood house"
+        paragraphs={[
+          "Delwood was built out through the 1960s, and its bungalows and semi-bungalows carry the fixtures of that decade — tiled tub surrounds, painted wood cabinets, and furnace runs that have been pushing air through the same ducts for sixty winters. That long heating history leaves a fine film above every register that owners rarely notice until a picture comes off the wall.",
+          "Streets here are lined with mature elm and ash, which is lovely shade in July and a workload the rest of the year: catkins in spring, canopy dust in summer, and leaf fragments tracked across floors from September until the first hard snow. Window tracks on the tree side of a Delwood house need clearing twice as often as the sunny side.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Delwood" />

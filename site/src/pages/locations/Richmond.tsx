@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -345,6 +346,16 @@ export default function Richmond() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        accent="calgary"
+        eyebrow="Local knowledge"
+        heading="Richmond, between eras"
+        paragraphs={[
+          "Richmond is inner-southwest infill country — 1950s bungalows coming down, three-storey semis going up — and living beside an active build site is the defining cleaning fact here. Neighbouring construction pushes drywall and cut-stone dust through window seals for months, and homes mid-block between two projects need window-track clearing on every visit.",
+          "The new infills themselves clean differently: three storeys of stairs, roof-top deck doors that funnel wind-blown dust straight into top-floor mains, and pale wide-plank floors that show every footprint. The older bungalows that remain are the opposite job — small, dense with original trim, and slower per square metre than their size suggests.",
+        ]}
+      />
 
       <LocationPricing />
 

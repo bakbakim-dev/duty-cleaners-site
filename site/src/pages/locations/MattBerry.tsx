@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -314,6 +315,15 @@ export default function MattBerry() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="Matt Berry room by room"
+        paragraphs={[
+          "A Matt Berry clean leans on the era's specifics: oak-toned railings and spindle staircases that want hand-dusting, corner gas fireplaces whose mantels and tile surrounds gather a week of dust visibly, and main-bath skylights — common in these plans — whose wells collect what the fan cannot pull. The bonus-room-over-garage layout adds a long cold-wall dust line in winter.",
+          "Access runs through the attached garage for nearly every household, so the mudroom corridor absorbs the tracking that front entries elsewhere take. Hollick-Kenyon's shops sit close enough that errands stay on foot in good weather, keeping front walks and steps in light but steady use.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Matt Berry" />

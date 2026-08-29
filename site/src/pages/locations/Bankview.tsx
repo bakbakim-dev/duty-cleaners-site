@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -345,6 +346,16 @@ export default function Bankview() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        accent="calgary"
+        eyebrow="Local knowledge"
+        heading="Bankview on the grade"
+        paragraphs={[
+          "Bankview is one of Calgary's steepest residential grades, terraced with 1950s walk-up courts and newer townhomes. Slope living shows indoors: entries sit below or above street level with stairs immediately inside, runoff crosses walks on every chinook thaw, and grit arrives at doors wet and dries to film. Stair-and-entry-first is the right order for every clean here.",
+          "The walk-up share means many homes are compact suites where kitchens and bathrooms sit close together — humidity and cooking films overlap, and ventilation is often a single fan doing both jobs. Small-space cleans here are dense work, out of proportion to their square footage.",
+        ]}
+      />
 
       <LocationPricing />
 

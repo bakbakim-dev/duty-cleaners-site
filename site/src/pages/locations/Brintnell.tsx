@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -314,6 +315,15 @@ export default function Brintnell() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="What Brintnell homes actually need"
+        paragraphs={[
+          "Brintnell is one of the northeast's 2000s-era builds, which changes the job completely from the mature areas nearby: open-plan mains clean faster than divided plans, but the two-storey great rooms collect cobwebs at heights a step-stool cannot reach, and builder-grade carpet on stairs shows traffic lines earlier than the hardwood of older districts.",
+          "Being new also means the neighbourhood is still close to its construction years — vents, closet shelving and the tops of kitchen cabinets keep producing fine drywall dust well after possession. Homes near the retail on Manning Drive add delivery-traffic grit at the front walk to that mix.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Brintnell" />

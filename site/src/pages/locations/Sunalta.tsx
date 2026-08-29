@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -345,6 +346,16 @@ export default function Sunalta() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        accent="calgary"
+        eyebrow="Local knowledge"
+        heading="Sunalta's walk-up century"
+        paragraphs={[
+          "Sunalta mixes 1910s cottages with low-rise apartment courts, minutes west of downtown. The old houses are dense with trim-work and original fir; the walk-ups bring corridor dust to every suite door and galley kitchens that grease-film quickly. Both share pre-war windows whose deep sills and storm tracks hold more debris per opening than anything modern.",
+          "The West LRT runs the neighbourhood's edge on elevated track, and Bow Trail's traffic sits just north — between them, Sunalta's ambient grit level is among the inner city's highest. Balconies, sills and entry floors on the corridor sides need the most frequent passes.",
+        ]}
+      />
 
       <LocationPricing />
 

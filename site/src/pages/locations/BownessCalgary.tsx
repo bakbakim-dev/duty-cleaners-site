@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -345,6 +346,16 @@ export default function BownessCalgary() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        accent="calgary"
+        eyebrow="Local knowledge"
+        heading="Bowness by the river"
+        paragraphs={[
+          "Bowness grew as its own town before joining Calgary, and its mix shows it — original cottages, post-war bungalows and new riverside infills on the same block. The flood-aware basements along the Bow are the special consideration: rebuilt lower levels with sumps and vapour barriers where seasonal humidity checks belong in every clean.",
+          "Bowness Park draws city-wide traffic through the neighbourhood all summer and skating season, and Bow Trail's gravel shoulders feed grit onto local streets. Between park visitors and river-path cyclists, entry floors here work harder than the neighbourhood's quiet reputation suggests.",
+        ]}
+      />
 
       <LocationPricing />
 

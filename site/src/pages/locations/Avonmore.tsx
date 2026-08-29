@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -315,6 +316,15 @@ export default function Avonmore() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="Avonmore's balanced blocks"
+        paragraphs={[
+          "Avonmore's 1950s-60s homes sit between Mill Creek's ravine reach and 75 Street's traffic — ravine seasons on one side, arterial grit on the other. Which force dominates depends on the block, and the practical read is simple: ravine-side homes fight organic debris and pollen, 75 Street homes fight fine road dust.",
+          "The Argyll velodrome and park draw sports traffic through summer, and the area's original bungalows keep first-generation hardwood that shows both dust and care instantly. It is a neighbourhood where a good clean is unusually visible.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Avonmore" />

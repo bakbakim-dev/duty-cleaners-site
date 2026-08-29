@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -345,6 +346,16 @@ export default function West() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        accent="calgary"
+        eyebrow="Local knowledge"
+        heading="What 'west' means at district scale"
+        paragraphs={[
+          "West Calgary is a district label rather than one neighbourhood, and the west side's shared conditions are what a clean can plan on: chinook winds hit these communities first and hardest, driving dust into window seals on every west face; and the district's newer communities still have active construction phases feeding grit onto the wind.",
+          "Elevation matters too — the west side climbs toward the foothills, and upslope communities take more wind-driven dust and faster snowmelt cycles than the valley floor. Mountain-facing glass is the west district's showcase surface, and streak-free work there is what owners actually see.",
+        ]}
+      />
 
       <LocationPricing />
 

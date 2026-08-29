@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, Suspense, lazy } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -305,6 +306,15 @@ export default function Delton() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="Delton's workshop-era homes"
+        paragraphs={[
+          "Delton's early stock north of the Avenue includes wartime cottages and 1950s bungalows, many with the deep single garages and back-lane workshops of a hands-on era. Workshop dust migrates indoors on clothes and boots, and back entries off the lane do the real work — front doors here are often ceremonial.",
+          "The 97 Street corridor and nearby rail put steady fine grit on the neighbourhood, heaviest on the east blocks. Older furnaces pushing through original ducting redistribute it, so register grilles and cold-air returns here deserve wiping on every visit, not just deep cleans.",
+        ]}
+      />
 
       <LocationPricing />
 

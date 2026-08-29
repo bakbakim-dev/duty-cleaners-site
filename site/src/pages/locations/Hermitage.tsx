@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -314,6 +315,15 @@ export default function Hermitage() {
             </AnimatedSection>
           </div>
         </section>
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="What the river edge means for Hermitage homes"
+        paragraphs={[
+          "Hermitage sits against the North Saskatchewan's bends, with Hermitage Park's ponds and picnic grounds effectively in the neighbourhood's backyard. Proximity to water reads indoors as humidity swings — bathroom seals and basement window wells here mildew faster in warm months than in drier districts, and deserve attention every visit rather than seasonally.",
+          "Housing is a 1970s-80s blend of townhouse rows and detached homes, and the townhouse share matters: shared-wall homes ventilate differently, holding cooking films and pet dander longer in still corners. Kitchens in the rows generally need degreasing more often than the detached homes a street over.",
+        ]}
+      />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Hermitage" />
