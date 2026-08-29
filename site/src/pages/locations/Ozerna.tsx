@@ -207,7 +207,7 @@ export default function Ozerna() {
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Residential Cleaning in Ozerna</h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
                   <p>
-                    Ozerna is a peaceful northeast Edmonton family community with modern homes, schools and easy access to Manning Drive. The people who live here take pride in their homes, and at Duty Cleaners, we're proud to be part of the rhythm of daily life in the neighbourhood.
+                    Ozerna sits in Edmonton's Lake District, built around a stormwater lake with walking paths circling it. Living beside standing water raises humidity through the warm months, and indoors that means bathrooms and ensuites hold moisture longer between uses — the grout at the base of the shower and the seal around the tub are where it shows first, and they are the two places a standard wipe-down never reaches. The people who live here take pride in their homes, and at Duty Cleaners, we're proud to be part of the rhythm of daily life in the neighbourhood.
                   </p>
                   <p>
                     Whether your home is near{" "}

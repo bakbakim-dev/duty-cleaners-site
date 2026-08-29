@@ -38,13 +38,16 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-User-agent: Applebot-Extended
-Allow: /
-
 User-agent: MistralAI-User
 Allow: /
 
 User-agent: DuckAssistBot
+Allow: /
+
+# Applebot-Extended is Apple's TRAINING opt-out control, not a retrieval
+# crawler: allowing it permits training use. Apple's search crawler is
+# plain Applebot, which the catch-all already allows.
+User-agent: Applebot-Extended
 Allow: /
 
 # Training-only crawlers — blocked

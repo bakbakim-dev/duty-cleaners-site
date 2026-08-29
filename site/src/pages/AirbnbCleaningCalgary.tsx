@@ -1,3 +1,5 @@
+import { HOURLY_RATE, formatPrice } from "@/data/pricing";
+import { canonicalForPath } from "@/data/legacy-urls";
 import {
   CheckCircle,
   Clock,
@@ -501,6 +503,34 @@ const AirbnbCleaningCalgary = () => {
                 ))}
               </Accordion>
             </div>
+          </div>
+        </AnimatedSection>
+      </section>
+
+      {/* Pricing basis — these pages carried no price signal at all. Airbnb
+          turnovers are hourly, so the honest figure is the rate and its
+          minimum, both derived from bk-config (never hand-typed). */}
+      <section className="py-16 px-4 bg-secondary/30">
+        <AnimatedSection>
+          <div className="container mx-auto max-w-3xl">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+              What a turnover costs
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              Turnovers are priced hourly at {formatPrice(HOURLY_RATE)} per cleaner, before 5% GST,
+              because no two properties take the same time — a one-bedroom condo with a
+              stacked washer is a different job from a four-bedroom house with three
+              bathrooms. The minimum is 3 hours for one cleaner, or 2 hours for two.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              Most hosts settle into a predictable number within the first two or three
+              turnovers, and we will tell you what that looks like for your property after
+              the first clean. If you would rather have a flat rate by home size, our{" "}
+              <Link to={canonicalForPath("/calgary/pricing")} className="text-accent hover:underline">
+                standard cleaning prices
+              </Link>{" "}
+              apply to short-term rentals too.
+            </p>
           </div>
         </AnimatedSection>
       </section>

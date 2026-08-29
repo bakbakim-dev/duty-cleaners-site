@@ -349,9 +349,12 @@ export default function BlogChoosingCleaningCompany() {
                       </a>
                     </Button>
                   </div>
-                  <div className="mt-6">
+                  <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
                     <Button size="lg" variant="outline" asChild className="border-white text-white hover:bg-white/10">
-                      <Link to="/#quote">See My Instant Price</Link>
+                      <Link to="/pricing/">See our prices by home size</Link>
+                    </Button>
+                    <Button size="lg" variant="outline" asChild className="border-white text-white hover:bg-white/10">
+                      <Link to="/whats-included/">What each clean includes</Link>
                     </Button>
                   </div>
                 </CardContent>

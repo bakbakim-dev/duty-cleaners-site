@@ -129,7 +129,7 @@ export default function West() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning Services in West, Calgary | Duty Cleaners</title>
+        <title>House Cleaning in West Calgary | Duty Cleaners</title>
         <meta name="description" content="Professional house cleaning in West, Calgary. Same-day service subject to availability. 100% satisfaction guaranteed. Pay after your clean." />
         <meta property="og:title" content="House Cleaning Services West Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -170,10 +170,10 @@ export default function West() {
             <div className="max-w-4xl mx-auto text-center">
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-5 py-2 mb-6">
                 <MapPin className="w-4 h-4 text-accent" />
-                <span className="text-white/90 text-sm font-medium">Serving West, West Calgary</span>
+                <span className="text-white/90 text-sm font-medium">Serving West Calgary, West Calgary</span>
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                Professional House Cleaning in West
+                Professional House Cleaning in West Calgary
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
                 West Calgary covers the welcoming neighbourhoods along the city's western edge — quiet, family-friendly streets with quick access to the mountains, parks, and major routes.

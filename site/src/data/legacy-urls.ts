@@ -69,8 +69,10 @@ export const LEGACY_URLS: LegacyUrl[] = [
    * it costs and then book, and the pricing page answers the first and carries
    * the instant-quote CTA for the second.
    *
-   * /checkout below stays pointed at /book — it carries 10 impressions, and
-   * checkout is genuinely what it means.
+   * /checkout further down was retargeted the same way and for the same
+   * reason. It only carries 10 impressions, but "301 into a noindex page" is
+   * an equity sink whichever URL does it, and there is no upside to keeping
+   * one example of the pattern around.
    */
   { legacy: "/booking-page", target: "/pricing", mode: "redirect", impressions: 9130 },
   { legacy: "/wall-washing-wall-cleaning-calgary", target: "/calgary/wall-washing", mode: "preserve", impressions: 7354 },
@@ -144,7 +146,7 @@ export const LEGACY_URLS: LegacyUrl[] = [
   { legacy: "/services-pricing/move-in-move-out", target: "/move-out-cleaning-edmonton", mode: "redirect", impressions: 12 },
   { legacy: "/shop", target: "/", mode: "redirect", impressions: 11 },
   { legacy: "/cleaning-services-glengarry-edmonton-ab", target: "/locations/glengarry-edmonton", mode: "redirect", impressions: 11 },
-  { legacy: "/checkout", target: "/book", mode: "redirect", impressions: 10 },
+  { legacy: "/checkout", target: "/pricing", mode: "redirect", impressions: 10 },
   { legacy: "/cleaning-services-capilano-edmonton-ab", target: "/locations/capilano-edmonton", mode: "redirect", impressions: 9 },
   { legacy: "/cleaning-services-castle-downs-edmonton-ab", target: "/locations/castle-downs", mode: "redirect", impressions: 8 },
   { legacy: "/airbnb-cleaning-services-edmonton", target: "/edmonton/airbnb-cleaning", mode: "redirect", impressions: 7 },
@@ -155,7 +157,6 @@ export const LEGACY_URLS: LegacyUrl[] = [
   { legacy: "/my-account", target: "/", mode: "redirect", impressions: 1 },
   { legacy: "/cochrane-cleaning-services", target: "/cleaning-services-cochrane", mode: "redirect", impressions: 1 },
   { legacy: "/cleaning-services-belmont-edmonton-ab", target: "/locations/belmont-edmonton", mode: "redirect", impressions: 1 },
-  { legacy: "/#!", target: "/", mode: "redirect", impressions: 1 },
   { legacy: "/what-to-expect-from-professional-cleaners", target: "/blog/choosing-cleaning-company", mode: "redirect", impressions: 1 },
   { legacy: "/cleaning-services-lauderdale-edmonton-ab", target: "/locations/lauderdale", mode: "redirect", impressions: 1 },
   { legacy: "/2011/how-cleaning-services-improve-your-homes-health", target: "/blog", mode: "redirect", impressions: 1 },

@@ -29,7 +29,7 @@ const CITY_DATA = {
     phoneHref: "tel:4037681341",
     address: "2835 37 Street SW #24, Calgary, AB",
     mapUrl: "https://www.google.com/maps/search/?api=1&query=2835+37+Street+SW+%2324+Calgary+AB",
-    pricingPath: "/calgary/pricing",
+    pricingPath: "/calgary/pricing/",
   },
 } as const;
 

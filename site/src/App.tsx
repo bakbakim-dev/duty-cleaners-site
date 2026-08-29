@@ -607,7 +607,6 @@ const App = () => (
           <Route path="/my-account" element={<Navigate to="/" replace />} />
           <Route path="/cochrane-cleaning-services" element={<Navigate to="/cleaning-services-cochrane/" replace />} />
           <Route path="/cleaning-services-belmont-edmonton-ab" element={<Navigate to="/locations/belmont-edmonton/" replace />} />
-          <Route path="/#!" element={<Navigate to="/" replace />} />
           <Route path="/what-to-expect-from-professional-cleaners" element={<Navigate to="/blog/choosing-cleaning-company/" replace />} />
           <Route path="/cleaning-services-lauderdale-edmonton-ab" element={<Navigate to="/locations/lauderdale/" replace />} />
           <Route path="/2011/how-cleaning-services-improve-your-homes-health" element={<Navigate to="/blog/" replace />} />

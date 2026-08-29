@@ -1,3 +1,4 @@
+import { RATING_CLAIM } from "@/data/proof";
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -104,7 +105,7 @@ export default function GiftCards() {
               </h1>
               <p className="text-xl md:text-2xl text-white/85 mb-3 leading-relaxed">
                 Give Them a Cleaning Gift Card Backed by Our{" "}
-                <strong className="text-white">100% Stress-Free Guarantee</strong>
+                <strong className="text-white">24-Hour Make-It-Right Guarantee</strong>
               </p>
               <p className="text-lg text-white/90 mb-10">
                 So They Can Relax While We Take Care of Everything!
@@ -113,7 +114,7 @@ export default function GiftCards() {
               {/* Trust badges */}
               <div className="flex flex-wrap items-center justify-center gap-4 mb-10">
                 {[
-                  { icon: Star, label: "5-Star Rated" },
+                  { icon: Star, label: RATING_CLAIM },
                   { icon: Users, label: "5,000+ Homes Cleaned" },
                   { icon: BadgeCheck, label: "Satisfaction Guaranteed" },
                 ].map((badge, i) => (
@@ -306,7 +307,7 @@ export default function GiftCards() {
                 <InfoCard
                   icon={Shield}
                   iconColor="text-accent"
-                  title="100% Stress-Free Guarantee"
+                  title="24-Hour Make-It-Right Guarantee"
                   variant="highlight"
                   items={[]}
                   footerText="Every gift card cleaning is backed by our satisfaction guarantee. If the recipient isn't 100% happy, we'll re-clean for free—as long as we are informed within 24 hours after the service."

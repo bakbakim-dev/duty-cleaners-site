@@ -171,7 +171,10 @@ async function renderRoute(route) {
     out = out.replace(/(<a[^>]*href=")#close("[^>]*leaflet-popup-close-button)/g, "$1#$2");
     const outDir = route === "/" ? DIST : join(DIST, route.replace(/^\//, ""));
     mkdirSync(outDir, { recursive: true });
-    writeFileSync(join(outDir, "index.html"), "<!doctype html>\n" + out);
+    // Chrome's --dump-dom output already starts with <!DOCTYPE html>. Prepending
+    // unconditionally shipped two doctypes on all 209 pages.
+    const doctyped = /^\s*<!doctype html>/i.test(out) ? out : "<!doctype html>\n" + out;
+    writeFileSync(join(outDir, "index.html"), doctyped);
     done++;
     if (done % 10 === 0) console.log(`  ${done}/${routes.length}`);
   } catch (err) {

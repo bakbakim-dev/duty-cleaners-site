@@ -207,7 +207,7 @@ export default function MattBerry() {
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Residential Cleaning in Matt Berry</h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
                   <p>
-                    Matt Berry is a family-oriented northeast Edmonton neighbourhood with newer homes, parks and quick access to Manning Drive. The people who live here take pride in their homes, and at Duty Cleaners, we're proud to be part of the rhythm of daily life in the neighbourhood.
+                    Matt Berry is a late-1980s and 1990s neighbourhood in northeast Edmonton, laid out on a curved-crescent grid of two-storey and bi-level homes on generous lots. Most houses here are now thirty-odd years old, which is the age at which original carpet, popcorn ceilings and builder-grade bathroom tile start to show every year of it — so deep cleans here are usually about accumulated build-up rather than construction dust. The people who live here take pride in their homes, and at Duty Cleaners, we're proud to be part of the rhythm of daily life in the neighbourhood.
                   </p>
                   <p>
                     Whether your home is near{" "}

@@ -1,3 +1,4 @@
+import { withTrailingSlash } from "@/data/legacy-urls";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import Navigation from "@/components/Navigation";
 import { addOnFromPrice, formatPrice } from "@/data/pricing";
@@ -380,7 +381,7 @@ export default function WallWashingCalgary() {
                 {calgaryLocations.map((loc) => (
                   <Link
                     key={loc.path}
-                    to={loc.path}
+                    to={withTrailingSlash(loc.path)}
                     className="inline-flex items-center gap-2 bg-white border border-border rounded-full px-5 py-2.5 text-sm font-medium text-foreground hover:border-primary hover:text-primary transition-colors duration-200"
                   >
                     <MapPin className="w-3.5 h-3.5" />
