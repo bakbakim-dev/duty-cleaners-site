@@ -319,7 +319,7 @@ export default function Ottewell() {
         eyebrow="Local knowledge"
         heading="The Ottewell clean, in practice"
         paragraphs={[
-          "Ottewell is 1960s Edmonton at its most intact — wide bungalows on generous lots, hardwood under the broadloom, and the low-slung rooflines that keep eaves close to grade so exterior dust finds its way onto sills quickly. Interiors of this vintage reward patience: original doors and casings mean triple the hand-wiped trim of a new build.",
+          "Ottewell is 1950s Edmonton at its most intact — the great majority of its houses went up between 1946 and 1960 — wide bungalows on generous lots, hardwood under the broadloom, and low-slung rooflines that keep eaves close to grade so exterior dust finds its way onto sills quickly. Interiors of this vintage reward patience: original doors and casings mean triple the hand-wiped trim of a new build.",
           "The community's mature canopy is among the densest in the southeast, and homes back onto schoolyards and green strips that generate season-long tracking — spring mud from the fields, summer playground sand, autumn leaves. Back entrances here work harder than front doors and are the first place a visit should start.",
         ]}
       />

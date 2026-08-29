@@ -352,7 +352,7 @@ export default function Cityscape() {
         heading="Cityscape's new-build realities"
         paragraphs={[
           "Cityscape is 2010s construction, and its homes still behave like new builds: drywall fines resurface from vents and closet shelving long after possession, high great-room ledges gather dust out of arm's reach, and dark laminate popular in these years shows every footprint and paw mark by mid-week.",
-          "The community's position off Métis Trail and under the airport's approaches means fine arterial dust rides the wind year-round, and ongoing construction on neighbouring phases keeps site dust in circulation. Window tracks on the development-facing side fill fastest and tell you which way the current build is.",
+          "The community's west edge is Métis Trail and its south edge is Airport Trail, with the airport lands directly across it, so arterial dust rides the wind year-round, and ongoing construction on neighbouring phases keeps site dust in circulation. Window tracks on the development-facing side fill fastest and tell you which way the current build is., and ongoing construction on neighbouring phases keeps site dust in circulation. Window tracks on the development-facing side fill fastest and tell you which way the current build is.",
         ]}
       />
 

@@ -317,7 +317,7 @@ export default function Woodcroft() {
 
       <LocalMarketNote
         eyebrow="Local knowledge"
-        heading="Woodcroft, west of the yards"
+        heading="Woodcroft, between the park and the Centre"
         paragraphs={[
           "Woodcroft's late-1950s homes cluster near Westmount and Coronation Park, and the era's give-away indoors is the plaster-and-hardwood pairing: walls that mark easily but wipe clean, floors that show dust plainly. Original milk-door cubbies and boot closets survive in some, and those overlooked cavities hold decades of settled grime worth clearing once a season.",
           "The Westmount shopping district and 111 Avenue's bus corridors keep the neighbourhood's south edge busy, while Coronation Park's sports fields feed weekend traffic through the west side. Homes between the two collect entry wear from both directions — a mid-block Woodcroft house cleans differently front and back.",

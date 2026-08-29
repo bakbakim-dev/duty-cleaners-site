@@ -240,7 +240,7 @@ export default function Cranston() {
         eyebrow="Local knowledge"
         heading="Cranston on the ridge"
         paragraphs={[
-          "Cranston's 2000s two-storeys ride the Bow escarpment's edge, and ridge exposure is the cleaning fact: wind off the valley drives dust into south- and east-facing window seals, and the walkout basements common on the slope side add a second full living level — with its own glass doors and thresholds — to every deep clean.",
+          "Cranston's 2000s two-storeys ride the Bow escarpment's edge, and ridge exposure is the cleaning fact: Cranston's 2000s two-storeys ride the Bow escarpment's edge, and ridge exposure is the cleaning fact: wind off the valley drives dust into the west- and south-facing window seals that look over the Bow and Fish Creek, and the walkout basements common on the slope side add a second full living level — with its own glass doors and thresholds — to every deep clean., and the walkout basements common on the slope side add a second full living level — with its own glass doors and thresholds — to every deep clean.",
           "The community's family skew shows indoors as mudroom-first living through the attached garage, bonus rooms over garages with their cold-wall dust lines, and Century Hall's rink-and-splash-park seasons tracking through in boots and sandals by turn. Seton's shops next door keep weekend traffic close to home.",
         ]}
       />

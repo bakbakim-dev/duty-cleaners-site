@@ -352,7 +352,7 @@ export default function Erlton() {
         heading="Erlton beside the grounds"
         paragraphs={[
           "Erlton sits between the Elbow River and Stampede Park, and ten days each July the neighbourhood absorbs the grounds' dust, crowds and parking overflow — a seasonal spike no other Calgary community experiences at this intensity. Post-Stampede cleans here are a known genre: fine lot dust on every sill and floors that have hosted a festival's foot traffic.",
-          "The housing splits between heritage survivors and townhouse rows along the river bluff. River-path cyclists and MNP Centre traffic keep entries busy year-round, and the bluff's exposure means south glass carries visible dust films between visits.",
+          "The housing runs heavily to condominiums and apartments — about seven buildings in ten — with a scatter of heritage survivors among them, so most cleans here are suite-scale: compact kitchens, in-suite laundry, and balcony glass that collects Macleod Trail film between visits. River-path cyclists and MNP Centre traffic keep entries busy year-round, and Macleod Trail bisects the community north to south, so glass and balcony rails on the Macleod side carry visible traffic film between visits — the tell-tale surfaces on every Erlton clean..",
         ]}
       />
 

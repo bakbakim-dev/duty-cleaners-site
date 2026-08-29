@@ -320,7 +320,7 @@ export default function Glenwood() {
         heading="Glenwood's west-end vintage"
         paragraphs={[
           "Glenwood's 1950s bungalows west of 156 Street keep original oak floors and plaster coves in many homes, and their small square footage packs a full complement of trim, doors and built-ins into few rooms — slow, satisfying hand-work rather than open-floor speed. Garden suites are appearing on the deep lots, adding second small kitchens to the job.",
-          "Stony Plain Road's revitalization and the new LRT line define the north edge: construction seasons have left dust in older homes' ducts, and the corridor's bus-and-rail traffic keeps a steady fine grit on north-facing sills. Meadowlark's shops keep the south end's foot traffic constant.",
+          "Stony Plain Road defines the north edge and 156 Street the east, and the Valley Line West LRT runs down that 156 Street edge to the Glenwood/Sherwood stop: construction seasons have left dust in older homes' ducts, and the corridor's bus-and-rail traffic keeps a steady fine grit on east-facing sills. Meadowlark's shops keep the south end's foot traffic constant.",
         ]}
       />
 

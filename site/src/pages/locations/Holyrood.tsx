@@ -320,7 +320,7 @@ export default function Holyrood() {
         heading="What cleaning a Holyrood home involves"
         paragraphs={[
           "Holyrood's houses mostly date from the 1950s, and sixty-plus years of paint layers show along every door frame and window sill. Original hardwood hides under carpet in many of them, mid-century tile keeps its looks only when grout is kept ahead of, and the coved plaster corners that make these interiors feel warm also hold dust in a way flat drywall never does. A careful hand-wipe matters more here than horsepower.",
-          "Mill Creek Ravine runs close by, and homes near the trailheads collect what the ravine sends: poplar fluff drifting in through June screens, leaf litter walked in every October, and river-valley dust on sills through dry stretches. The Valley Line LRT along 83 Street added construction dust for years — much of it is still working out of older ductwork.",
+          "Mill Creek Ravine is a short drive west rather than out the back door, so what actually drives the seasonal pattern here is Holyrood's own mature boulevard canopy: seed fluff drifting in through June screens, leaf litter walked in every October, and dry-spell dust on sills. The Valley Line LRT along 85 Street — Holyrood's western edge, with the Holyrood stop at 93 Avenue — added construction dust for years, and much of it is still working out of older ductwork.",
         ]}
       />
 

@@ -351,7 +351,7 @@ export default function SkyviewRanch() {
         eyebrow="Local knowledge"
         heading="Skyview Ranch, still settling"
         paragraphs={[
-          "Skyview Ranch is one of the northeast's newest communities, and its homes are still in their construction afterlife — drywall fines from vents, stiff builder carpet showing stair traffic early, and high foyer ledges that collect dust where no cloth conveniently reaches. First deep cleans here routinely pull more out of a house than owners expect.",
+          "Skyview Ranch filled in fast through the 2010s, and its homes still carry the marks of a quick build-out — drywall fines working out of vents, builder-grade carpet showing stair traffic early, and high foyer ledges that collect dust where no cloth conveniently reaches., and high foyer ledges that collect dust where no cloth conveniently reaches. First deep cleans here routinely pull more out of a house than owners expect.",
           "Airport approaches and Métis Trail put steady fine dust on the wind, and phases still building nearby keep site grit in rotation. The tell is always the same: window tracks on the side facing the active phase fill first, and garage-entry mudrooms carry nearly all the family's tracking.",
         ]}
       />

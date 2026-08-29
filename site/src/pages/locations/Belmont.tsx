@@ -319,7 +319,7 @@ export default function Belmont() {
         eyebrow="Local knowledge"
         heading="Belmont homes, specifically"
         paragraphs={[
-          "Belmont's housing runs to 1970s bungalows and split-levels, and the split-level layout is the detail that changes a clean: half-flights of stairs multiply edges, landings and stair-nose dust lines, and the sunken family rooms typical of the era gather more airborne dust than main floors do because their returns sit low.",
+          "Belmont went up almost entirely in the 1970s, and its housing mix is the detail that changes a clean: single-family homes are only about 44% of the stock, with duplexes near 28% and row houses another 15%. Attached-wall homes stack their living space vertically, so stair runs, landings and stair-nose dust lines carry a share of the work well out of proportion to the floor area they occupy - and shared walls hold cooking humidity in the still corners longer than a detached plan does.",
           "The neighbourhood sits off 137 Avenue with steady traffic feeding the retail strip, so road grit rides in year-round rather than only in winter. Entry mats and the first two metres of hallway take the wear, and in homes near the avenue the front-facing sills pick up a grey film noticeably faster than the back of the house.",
         ]}
       />

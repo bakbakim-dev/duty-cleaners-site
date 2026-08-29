@@ -319,8 +319,8 @@ export default function BeaconHeights() {
         eyebrow="Local knowledge"
         heading="Beacon Heights, close up"
         paragraphs={[
-          "Beacon Heights carries 1950s-60s homes on big mature lots, many with the original single detached garage at the lane — which means front-door living, unusual for Edmonton. Main entries here take the traffic that garage-entry suburbs route through mudrooms, so hall closets, front mats and the first stretch of hardwood do outsized work.",
-          "The neighbourhood shoulders the river valley's wooded edge along Rundle Park's approaches, and valley pollen plus ravine dust are its seasonal signature. Screens and tracks on valley-facing windows fill noticeably faster, and autumn brings a longer-than-average leaf-tracking season off the older canopy.",
+          "Beacon Heights carries 1950s-60s homes on big mature lots, Beacon Heights carries 1950s-60s homes on generous mature lots, most with the original single detached garage off the back lane - the standard arrangement in Edmonton's pre-1970 neighbourhoods and the opposite of a suburban attached-garage mudroom. Households come and go through the rear door, so the back entry, the lane-side steps and the kitchen approach absorb the grit that newer homes trap in a mudroom, and those are where an honest clean starts.",
+          "Beacon Heights is tableland, not valley - 118 Avenue is its southern edge, with Beverly Heights sitting between it and the river bank - so the seasonal load comes from the neighbourhood's own mature canopy and back lanes rather than from valley wind. Jubilee Park, opened in 1955 on the old Beverly coal mine entrance, anchors the green space, and autumn leaf tracking off the older street trees is the reliable heavy season: entry mats, window tracks and the first stretch of flooring carry it.",
         ]}
       />
 

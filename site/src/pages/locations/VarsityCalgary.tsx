@@ -352,7 +352,7 @@ export default function VarsityCalgary() {
         heading="Varsity's houses and hospital shifts"
         paragraphs={[
           "Varsity's 1960s-70s homes range from bungalows to estate-scale splits near the golf course, with original terrazzo entries and tiled baths surviving in many. Terrazzo rewards proper neutral cleaners and dulls under harsh ones — a materials-aware clean preserves exactly the features that make these houses worth their market.",
-          "Between the University of Calgary, Market Mall and Foothills hospital, the neighbourhood hosts shift-work households and student suites in unusual numbers, which means access and scheduling matter as much as scrubbing: keyed entries, quiet daytime cleans for night-shift sleepers, and turnover-grade attention in the rental suites.",
+          "With Market Mall inside Varsity Village and the University of Calgary campus along the community's southern edge, the neighbourhood hosts shift-work households and student suites in unusual numbers, which means access and scheduling matter as much as scrubbing: keyed entries, quiet daytime cleans for night-shift sleepers, and turnover-grade attention in the rental suites., which means access and scheduling matter as much as scrubbing: keyed entries, quiet daytime cleans for night-shift sleepers, and turnover-grade attention in the rental suites.",
         ]}
       />
 
