@@ -346,7 +346,7 @@ export default function MeadowlarkPark() {
         eyebrow="What we see here"
         heading="Chinook's parking lot is inside the line"
         paragraphs={[
-          "Not one home counted here in the 2021 census was built after 1980. There are 260 of them, 92 per cent detached, and 81 per cent date from 1960 or earlier. Houses of that vintage put the front door a step or two from the main-floor finish, and with no vestibule to stop it, winter grit goes straight onto the hardwood the door opens onto.",
+          "Almost nothing here is new: the city's assessment roll dates about nine in ten Meadowlark Park houses to 1960 or earlier, and only a couple of dozen infills have gone up since 1980. The 2021 census counted 260 occupied dwellings, 92 per cent of them detached. Houses of that vintage put the front door a step or two from the main-floor finish, and with no vestibule to stop it, winter grit goes straight onto the hardwood the door opens onto.",
           "Arterials box the place in on three sides: Glenmore Trail south, Macleod Trail east, Elbow Drive west, with 58 Avenue SW closing the north. Chinook Centre and its parking lots occupy the eastern edge along Macleod, inside the community line. November to April, that geography delivers road sand and de-icing brine on every pair of boots, and brine dries to a white haze on wood and baseboards, which is why neutral-pH cleaning matters more here than any deep-clean add-on.",
         ]}
         accent="calgary"

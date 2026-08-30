@@ -50,7 +50,7 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning that resets the whole home, room by room." },
   { icon: Sparkles, title: "Deep Cleaning", description: "Top-to-bottom detail that reaches what weekly cleaning never does." },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for smooth transitions — leave or arrive to a pristine home near Nose Hill Park." },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for smooth transitions — leave or arrive to a pristine home near Crowfoot Crossing." },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Scenic Acres." },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
   { icon: Building2, title: "Commercial Cleaning", description: "Professional office and commercial space cleaning for businesses near Scenic Acres." },
@@ -94,7 +94,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Scenic Acres Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/scenic-acres",
-  description: "Professional house cleaning services in Scenic Acres, Calgary. Peaceful neighbourhood near Nose Hill Park. 100% satisfaction guarantee. Call (403) 768-1341.",
+  description: "Professional house cleaning in Scenic Acres, Calgary. Peaceful NW community beside Twelve Mile Coulee. 100% satisfaction guarantee. Call (403) 768-1341.",
   priceRange: "$$",
   geo: { latitude: "51.0983", longitude: "-114.1933" },
 });
@@ -108,13 +108,13 @@ export default function ScenicAcres() {
     <>
       <Helmet>
         <title>House Cleaning Services Scenic Acres Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning services in Scenic Acres, Calgary. Peaceful neighbourhood near Nose Hill Park. 100% satisfaction guarantee. Call (403) 768-1341." />
+        <meta name="description" content="Professional house cleaning in Scenic Acres, Calgary. Peaceful NW community beside Twelve Mile Coulee. 100% satisfaction guarantee. Call (403) 768-1341." />
         <meta name="keywords" content="house cleaning Scenic Acres Calgary, cleaning services Scenic Acres, maid service Scenic Acres Calgary, home cleaning Northwest Calgary" />
         <meta property="og:title" content="House Cleaning Services Scenic Acres Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services Scenic Acres Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning services in Scenic Acres, Calgary. Peaceful neighbourhood near Nose Hill Park. 100% satisfaction guarantee. Call (403) 768-1341." />
-        <meta property="og:description" content="Professional house cleaning services in Scenic Acres, Calgary. Peaceful neighbourhood near Nose Hill Park. 100% satisfaction guarantee. Call (403) 768-1341." />
+        <meta name="twitter:description" content="Professional house cleaning in Scenic Acres, Calgary. Peaceful NW community beside Twelve Mile Coulee. 100% satisfaction guarantee. Call (403) 768-1341." />
+        <meta property="og:description" content="Professional house cleaning in Scenic Acres, Calgary. Peaceful NW community beside Twelve Mile Coulee. 100% satisfaction guarantee. Call (403) 768-1341." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/scenic-acres/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/scenic-acres/" />
@@ -156,7 +156,7 @@ export default function ScenicAcres() {
                   House Cleaning Services in Scenic Acres, Calgary
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Professional cleaning for one of Calgary's most peaceful neighbourhoods. Customer-rated cleaners trusted by families living next to Nose Hill Park.
+                  Professional cleaning for one of Calgary's most peaceful neighbourhoods. Customer-rated cleaners trusted by families living beside Twelve Mile Coulee.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -289,7 +289,7 @@ export default function ScenicAcres() {
                   Cleaning Services for Scenic Acres Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs, we have every service your home near Nose Hill Park needs.
+                  From routine upkeep to deep cleans and move-outs, we have every service your home near Crowfoot Crossing needs.
                 </p>
               </div>
             </AnimatedSection>

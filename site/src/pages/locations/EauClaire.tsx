@@ -350,8 +350,8 @@ export default function EauClaire() {
         eyebrow="Ground truth"
         heading="After the market came down"
         paragraphs={[
-          "Eau Claire Market closed at the end of May 2024 and was demolished to make room for a Green Line LRT station, which puts a cleared and working block inside a community that runs only from 4 Avenue north to the Bow. Suites nearest it show it first: a fine, abrasive grey dust that packs into window channels and screen frames. On the suites facing the cleared block the screen frames have to come out and be washed over a sink; a cloth on the mesh only pushes the dust through it.",
-          "The riverside itself is settled now. The flood barrier and Eau Claire Promenade now run unbroken from the Peace Bridge to the Reconciliation Bridge, and the rebuilt Plaza has reopened. What is left along there is seasonal: Prince's Island sits in the Bow directly north, and festival weekends — the Folk Music Festival, Shakespeare in the Park — put more traffic through lobbies and elevators than any other stretch of the year.",
+          "Eau Claire Market closed at the end of May 2024 and was demolished by June 2025 to clear ground for a Green Line LRT station. The block sits open inside a community that runs only from 4 Avenue north to the Bow. Suites nearest it show it first: a fine, abrasive grey dust that packs into window channels and screen frames. On the suites facing the cleared block the screen frames have to come out and be washed over a sink; a cloth on the mesh only pushes the dust through it.",
+          "The riverside itself is settled now. The flood barrier and Eau Claire Promenade now run unbroken from the Peace Bridge to the Reconciliation Bridge, and the rebuilt Plaza has reopened. What is left along there is seasonal: Prince's Island sits in the Bow directly north, and festival weekends — the Calgary Folk Music Festival every July above all — put more traffic through lobbies and elevators than any other stretch of the year.",
         ]}
         accent="calgary"
       />
