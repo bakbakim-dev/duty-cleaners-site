@@ -8,3 +8,7 @@ dist/
 # Scratch space audit subagents write into; never part of the site.
 .tmpaudit/
 site/.tmpaudit/
+
+# Audit subagents dump page text beside the source; never part of the site.
+site/dist_*.txt
+dist_*.txt
