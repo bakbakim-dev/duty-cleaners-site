@@ -292,7 +292,7 @@ export default function EdmontonMoveInOut() {
               <div className="text-center mb-12">
                 <span className="text-accent font-semibold text-sm uppercase tracking-wide">What's Included</span>
                 <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Comprehensive Move In & Move Out Cleaning</h2>
-                <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">Every inch of your Edmonton property cleaned to inspection-ready standards.</p>
+                <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">Cleaned to the standard a move-out inspection looks for, room by room.</p>
               </div>
             </AnimatedSection>
             <AnimatedSection>

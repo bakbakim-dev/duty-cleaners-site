@@ -156,7 +156,7 @@ export const PRICING_TERMS = [
   "No trip fee or diagnostic fee inside Edmonton and Calgary city limits. Outside them, a travel fee applies: $29.99 for home cleaning, $50 for post-construction.",
   // Compulsory, not an add-on: BookingKoala's extra is literally named "Must
   // choose if you have pets", and it recurs on every visit.
-  "Homes with pets are charged $19.99 per visit. It appears on your quote before you book.",
+  "Homes with pets are charged $19.99 per visit — paw prints, nose marks on glass and shed hair add real time in every room. It appears on your quote before you book, and litter boxes and animal waste stay outside what we handle.",
   "Most homes are priced flat by size. Your flat rate does not change because a clean took longer than expected.",
   "If the home turns out to need substantially more work than described — heavy build-up, far more glass or cabinetry than stated — the team will explain what they found and your options before continuing.",
   "Recurring discounts of 20% weekly, 15% bi-weekly and 10% every four weeks apply from your second visit. The first clean is charged at the standard one-time rate.",
@@ -170,7 +170,7 @@ export const NOT_INCLUDED = [
   "Outdoor work, including exterior windows",
   "Anything beyond the reach of a 3-step ladder",
   "Light bulbs and fragile lighting fixtures, including chandeliers",
-  "Bodily fluids, animal waste, and cat litter boxes",
+  "Bodily fluids, animal waste, and cat litter boxes — a health call rather than a time one; the pet charge covers the extra time pets add everywhere else in the home",
   "Mold remediation and heavy mold removal — we may wipe light surface mildew where it is safe to do so",
   "Pest or rodent removal",
   "Garages, patios and other outdoor areas",

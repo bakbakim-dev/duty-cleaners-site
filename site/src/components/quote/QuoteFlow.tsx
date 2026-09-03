@@ -90,7 +90,9 @@ const unitSuffixFor = (name: string): string => {
 /** "Details for your cleaner" — chip values match the dc_* URL contract. */
 const DC_ENTRY_OPTIONS: { value: DcEntry; label: string }[] = [
   { value: "home", label: "Someone will be home" },
-  { value: "mailbox", label: "Key in mailbox" },
+  // Was "Key in mailbox" — the same idea as the key under the mat this audit
+  // took off five pages, and a community mailbox is Canada Post property.
+  { value: "mailbox", label: "Key in a lockbox" },
   { value: "code", label: "Access code" },
   { value: "other", label: "Other" },
 ];

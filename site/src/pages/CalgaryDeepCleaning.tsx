@@ -33,7 +33,7 @@ export default function CalgaryDeepCleaning() {
         "The rest depends on where you live. In a Beltline or Eau Claire condo the work concentrates on window tracks, balcony door channels and the fine dust that a dry, windy city drives into every seal. In a newer home out in Mahogany, Cranston or Seton it is usually construction dust, which keeps resurfacing from vents, closet shelves and the tops of doors for a year or two after handover. Our team works methodically from top to bottom, room by room — scrubbing baseboards and door frames, hand-wiping switches and outlet covers, degreasing stovetops and range hoods, and detailing tile and shower glass.",
       ]}
       includedHeading="Detailed Top-to-Bottom Cleaning"
-      includedSubheading="Every inch of your home is addressed — including the spots usually missed."
+      includedSubheading="The places a weekly visit never reaches, room by room."
       included={[
         { icon: UtensilsCrossed, title: "Kitchen Detail Clean", description: "Degreasing stovetops, range hoods, exterior of appliances, cabinet fronts, backsplash, and sanitizing all prep surfaces." },
         { icon: Bath, title: "Bathroom Deep Scrub", description: "Tile, grout and shower glass detailed, soap scum and mineral build-up removed from tubs and fixtures, toilets scrubbed inside and out, vanities and mirrors polished." },
@@ -64,6 +64,15 @@ export default function CalgaryDeepCleaning() {
       fromPrice={TIERS[0].price}
       extras={featuredExtraRows()}
       notIncluded={[
+        // The list was all safety exclusions — 25 lb, ladders, mold. The four
+        // below are scope, and they are what customers actually assume a deep
+        // clean covers: the commonest disputes in this trade, on the one page
+        // where someone is about to spend $372. Each can be added to the visit.
+        "Inside the oven — add it for $59.99",
+        "Inside the fridge — add it for $59.99",
+        "Inside cabinets and drawers — add it from $74.99",
+        "Interior windows — add them from $39.99",
+        "Wall washing — a separate service, not part of the deep package",
         "Moving heavy items over 25 lbs",
         "Outdoor or exterior window cleaning",
         "Mold remediation, bodily fluids, or pest removal",
