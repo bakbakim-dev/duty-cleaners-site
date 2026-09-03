@@ -1,3 +1,4 @@
+import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
 import { addOnFromPrice } from "@/data/pricing";
 import { POLICY } from "@/data/policy";
 import { useLocation } from "react-router-dom";
@@ -38,6 +39,16 @@ import { COMPANY, RATING_CLAIM } from "@/data/proof";
    drift from what BookingKoala actually charges. */
 /** BookingKoala extra 122, "Must choose if you have pets" — charged on every
  *  visit, so a "no hidden fees" answer has to name it. */
+/**
+ * Home-type surcharges, read from the verified BookingKoala Form 1 capture by
+ * variable id so a price change in BK moves this sentence with it.
+ */
+const HOME_TYPE_EXTRA = {
+  bungalow: formatPrice(BK_PRICE_OVERRIDES[54].price),
+  townhouse: formatPrice(BK_PRICE_OVERRIDES[89].price),
+  twoStorey: formatPrice(BK_PRICE_OVERRIDES[90].price),
+};
+
 const PET_FEE = formatPrice(addOnFromPrice("standard", "must-choose-if-you-have-pets") ?? 0);
 
 const standardPricing = standardTierRows();
@@ -95,7 +106,7 @@ const faqItems = [
   { value: "included", question: "What is included in maid service in Calgary?", answer: "Our standard cleaning includes dusting all surfaces, vacuuming carpets, mopping floors, cleaning mirrors, kitchen cleaning (sink, stovetop, outside appliances, countertops), and bathroom cleaning (scrubbing toilets, showers, tubs, sinks). Deep cleaning and move-in/out services include additional tasks like baseboards, inside appliances, and cabinets." },
   { value: "duration", question: "How long does a typical house cleaning take?", answer: "We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes. Deep cleaning and move-in/out services cover more tasks than a standard clean." },
   { value: "supplies", question: "Are there discounts if I provide my own cleaning supplies?", answer: "We bring all professional-grade cleaning supplies and equipment at no extra cost. While we don't offer discounts for providing your own supplies, we're happy to use specific products you prefer at your request." },
-  { value: "recurring", question: "Do you offer recurring service discounts?", answer: "Yes! We offer substantial discounts for recurring services: 20% off for weekly cleaning, 15% off for bi-weekly cleaning, and 10% off for monthly cleaning. These discounts apply to standard and deep cleaning services. Your first clean is at the standard one-time rate — the discount starts from your second visit and applies to every visit after that." },
+  { value: "recurring", question: "Do you offer recurring service discounts?", answer: "Yes: 20% off weekly, 15% off bi-weekly and 10% off every four weeks. The discount starts from your second visit — the first is at the one-time rate — and then applies to every visit after that. If you start with a deep clean, the deep-cleaning portion is charged once on that first visit and is not discounted; the recurring visits after it are standard cleans at the discounted rate." },
   { value: "pricing-types", question: "What's the difference between Hourly Cleaning and flat-rate pricing?", answer: `Hourly Cleaning (${formatPrice(HOURLY_RATE)}/hour per cleaner) is flexible and ideal for one-time needs or focusing on specific areas. Our hourly service has a minimum of 3 hours for 1 cleaner or 2 hours for 2 cleaners. Flat-rate pricing offers predictable costs based on your home size and service type, with comprehensive cleaning included. Most customers prefer flat-rate for its transparency and value.` },
   // A FAQ with this title has to name the charges customers call hidden. Both
   // are published on /terms/ and both read from POLICY, so this answer can
@@ -172,7 +183,14 @@ export default function CalgaryPricing() {
               Most homes are priced flat by size — you see your number before you book, plus 5% GST, and it doesn’t go up because a clean took longer.
             </p>
             <p className="text-lg text-white/90 mb-10">
-              The figures below are for an apartment or condo. A bungalow adds $15 and a townhouse or two-storey house adds $50, because there are stairs and more floor to cover — the quote asks which you have and shows the difference before you book.
+              {/* Was "a bungalow adds $15 and a townhouse or two-storey house adds
+                  $50" — two home types under one number, over by $10 on the
+                  townhouse and under by $5 on the two-storey. Read from the
+                  verified Form 1 table so BK and the page cannot diverge. */}
+              The figures below are for an apartment or condo. A bungalow or basement suite adds{" "}
+              {HOME_TYPE_EXTRA.bungalow}, a townhouse {HOME_TYPE_EXTRA.townhouse}, and a two-storey house{" "}
+              {HOME_TYPE_EXTRA.twoStorey} — stairs and more floor to cover. The quote asks which you have and
+              shows the difference before you book.
             </p>
             <p className="text-lg text-white/90 mb-10">
               If a flat rate doesn’t suit your job or your budget, we’ll quote you hourly instead — and tell you which option costs you less. Condition, pets and add-ons can change the final number.
@@ -417,7 +435,12 @@ export default function CalgaryPricing() {
             </div>
 
             <p className="text-center text-sm text-white/80 max-w-2xl mx-auto">
-              <strong className="text-white">Note:</strong> Recurring discounts apply to Standard and Deep cleaning services only.
+              {/* Was "apply to Standard and Deep cleaning services only". In
+                  bk-config six of seven Deep Cleaning rows are
+                  exempt_extra_from_freq_disc AND first-only, so the deep portion
+                  neither recurs nor discounts. */}
+              <strong className="text-white">Note:</strong> The discount applies to the standard clean on every
+              visit after your first. A deep clean is charged once, on the first visit, at the one-time rate.
               Initial cleaning and move-out services are not eligible for recurring discounts.
             </p>
           </div>
