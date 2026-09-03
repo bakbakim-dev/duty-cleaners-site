@@ -4,3 +4,7 @@ site/dist/
 dist/
 .DS_Store
 *.log
+
+# Scratch space audit subagents write into; never part of the site.
+.tmpaudit/
+site/.tmpaudit/
