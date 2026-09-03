@@ -69,18 +69,22 @@ const mainLocations = [
     address: "2835 37 Street SW #24",
     addressLine2: `Calgary, AB ${CITY_PROOF.calgary.postalCode}`,
     experience: `Serving Alberta since ${COMPANY.foundedYear}`,
-    homesCleaned: "1,000+ Homes Cleaned",
+    homesCleaned: `${HOMES_CLEANED.calgary} Calgary homes cleaned`,
     neighbourhoods: [
       { name: "Kensington", link: "/locations/kensington/" },
       { name: "Tuscany", link: "/locations/tuscany/" },
       { name: "Mahogany", link: "/locations/mahogany/" },
       { name: "Auburn Bay", link: "/locations/auburn-bay/" },
-      { name: "Airdrie", link: "/cleaning-services-airdrie/" },
+      // Airdrie, Cochrane and Okotoks used to sit here, under a heading that
+      // calls this list Calgary neighbourhoods. They are their own
+      // municipalities, and the surrounding-communities section below lists
+      // them correctly.
       { name: "Aspen Woods", link: "/locations/aspen-woods/" },
       { name: "Cranston", link: "/locations/cranston/" },
       { name: "Inglewood", link: "/locations/inglewood-calgary/" },
-      { name: "Cochrane", link: "/cleaning-services-cochrane/" },
-      { name: "Okotoks", link: "/locations/okotoks/" },
+      { name: "Bowness", link: "/locations/bowness-calgary/" },
+      { name: "Marda Loop", link: "/locations/marda-loop/" },
+      { name: "Beltline", link: "/locations/beltline-calgary/" },
     ],
     link: canonicalForPath("/calgary"),
     linkText: "View Calgary Services"

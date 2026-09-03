@@ -1,3 +1,4 @@
+import { POLICY } from "@/data/policy";
 import CityCrossLink from "@/components/CityCrossLink";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -459,7 +460,12 @@ export default function CalgaryMoveInOut() {
               </div>
               <h3 className="text-xl font-bold mb-3">Affordable & Transparent Pricing</h3>
               <p className="text-muted-foreground leading-relaxed">
-                We offer clear starting rates for move-out cleaning based on your home’s size, condition, and selected services. Our pricing is transparent, with no hidden fees, and our team delivers high-quality service at a fair rate.
+                {/* Was "no hidden fees" on a page that named none of them. */}
+                Starting rates depend on your home’s size, condition and the services you choose. Three
+                charges sit outside that: {POLICY.cancellationFee} for cancelling inside{" "}
+                {POLICY.cancellationNoticeHours} hours, {POLICY.lockoutFee} if we arrive and cannot get in,
+                and $29.99 for an address outside Calgary city limits. All three appear on your quote before
+                you book, and every figure is before 5% GST.
               </p>
             </div>
 

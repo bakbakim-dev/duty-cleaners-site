@@ -1,3 +1,4 @@
+import { POLICY } from "@/data/policy";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
@@ -246,6 +247,14 @@ export default function Prepare() {
                 <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
                   Every one of these is asked right in our booking funnel, so nothing gets
                   forgotten and nobody has to remember it on the doorstep.
+                </p>
+                {/* This page asks about access four separate times and never said what
+                    happens when it fails — the most expensive thing preparation can get
+                    wrong, and the one thing on this page that costs money. */}
+                <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+                  Worth knowing: if the team arrives and cannot get in, the visit is charged at{" "}
+                  {POLICY.lockoutFee}. A lockbox code or a buzzer code you have tested is all it
+                  takes to avoid it.
                 </p>
               </div>
             </div>

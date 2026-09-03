@@ -271,7 +271,9 @@ export default function Reviews() {
                 Ready to Join Our Happy Clients?
               </h2>
               <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
-                Experience the Duty Cleaners difference. Get your free quote today and see why hundreds of families trust us.
+                {CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount} reviews across
+                Edmonton and Calgary, averaging {CITY_PROOF.edmonton.googleRating}. See your own price in about a
+                minute, and pay after the clean.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
