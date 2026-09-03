@@ -148,7 +148,7 @@ const whyUsItems = (place: string) => [
   // Cleaning Supplies" — this finishes that edit, which was left half-done.
   // The family-and-pets half is kept: it describes handling, not an environmental
   // benefit, and matches what the FAQ already tells customers.
-  { icon: Leaf, title: "High Quality Cleaning Supplies", description: "We bring everything the job needs — and any product you would rather we used." },
+  { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
 ];

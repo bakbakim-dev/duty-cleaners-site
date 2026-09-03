@@ -24,7 +24,7 @@ export default function EdmontonRegularCleaning() {
       canonical="https://dutycleaners.ca/edmonton/regular-cleaning"
       heroHeading={<>Standard Cleaning Services in <AccentGold>Edmonton</AccentGold></>}
       heroSubheading="A one-time professional cleaning appointment for busy households — recurring plans available if you'd like ongoing maintenance."
-      heroBadges={["Vetted Professionals", "High Quality Cleaning Supplies", "100% Satisfaction Guarantee"]}
+      heroBadges={["Vetted Professionals", "All Supplies Brought For You", "100% Satisfaction Guarantee"]}
       heroImage={heroImage}
       heroImageAlt="Bright, tidy Edmonton living room after a standard cleaning visit"
       overviewEyebrow="Service Overview"
@@ -32,21 +32,24 @@ export default function EdmontonRegularCleaning() {
       overviewParagraphs={[
         "Standard cleaning is a thorough one-time service designed to refresh your Edmonton home, making it hygienic, presentable, and comfortable. It's a single cleaning appointment focused on the areas you use most, removing dust, grime, and bacteria that build up over time. If you'd prefer ongoing upkeep, recurring cleaning plans are also available separately.",
         "Your appointment covers the kitchen, bathrooms, bedrooms, and living areas — including dusting, vacuuming, mopping, sanitizing high-touch surfaces, and general surface cleaning throughout the home. Whether you need a reset before guests arrive or simply want your space professionally cleaned, our team delivers a high standard of cleanliness in a single visit.",
-        "Our cleaners follow a detailed room-by-room checklist, bring all necessary cleaning supplies and equipment. To help us focus on cleaning, we ask that homes are reasonably prepared before arrival, including picking up clothing, toys, dishes, or excessive clutter. Small items may be lightly organized if it only takes 1–2 minutes, but our primary focus is professional cleaning rather than full decluttering or home organization services.",
+        "Our cleaners follow a detailed room-by-room checklist and bring all the supplies and equipment with them. To help us focus on cleaning, we ask that homes are reasonably prepared before arrival, including picking up clothing, toys, dishes, or excessive clutter. Small items may be lightly organized if it only takes 1–2 minutes, but our primary focus is professional cleaning rather than full decluttering or home organization services.",
       ]}
       includedHeading="Comprehensive Standard Cleaning"
       includedSubheading="Your one-time appointment covers the rooms and surfaces that matter most for a healthy, lived-in home."
       included={[
         { icon: UtensilsCrossed, title: "Kitchen Cleaning", description: "Wipe-down of countertops, sinks, stovetop, exterior appliances, and cabinet fronts. Floors mopped and vacuumed." },
-        { icon: Bath, title: "Bathroom Sanitization", description: "Frequently touched surfaces wiped and sanitized." },
+        { icon: Bath, title: "Bathroom Sanitization", description: "Toilets, tubs and showers scrubbed and sanitized, soap scum off the tile and glass, mirrors and vanities polished, floors washed." },
         { icon: Home, title: "Bedrooms & Living Areas", description: "Dusting accessible surfaces, vacuuming carpets and rugs, and mopping hard flooring throughout the home." },
       ]}
       bullets={[
         "Dusting of all accessible surfaces and furniture",
-        "Vacuuming carpets, and rugs",
+        "Vacuuming carpets and rugs",
         "Mopping all hard floors",
         "Kitchen counters, sink, and stovetop cleaned",
         "Exterior of appliances and cabinets wiped",
+        // /whats-included/ lists the microwave interior in every service.
+        // These checklists left it out.
+        "Microwave cleaned inside and out",
         "Bathrooms scrubbed and sanitized",
         "Mirrors and glass surfaces polished",
         "Trash emptied",

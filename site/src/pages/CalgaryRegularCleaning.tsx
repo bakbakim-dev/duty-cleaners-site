@@ -24,7 +24,7 @@ export default function CalgaryRegularCleaning() {
       canonical="https://dutycleaners.ca/calgary/regular-cleaning"
       heroHeading={<>Standard Cleaning in <AccentGold>Calgary</AccentGold></>}
       heroSubheading="A one-time professional cleaning appointment for busy households — recurring plans available if you'd like ongoing maintenance."
-      heroBadges={["Vetted Professionals", "High Quality Cleaning Supplies", "100% Satisfaction Guarantee"]}
+      heroBadges={["Vetted Professionals", "All Supplies Brought For You", "100% Satisfaction Guarantee"]}
       heroImage={heroImage}
       heroImageAlt="Bright, tidy Calgary living room after a standard cleaning visit"
       overviewEyebrow="Service Overview"
@@ -38,15 +38,18 @@ export default function CalgaryRegularCleaning() {
       includedSubheading="Your one-time appointment covers the rooms and surfaces that matter most for a healthy, lived-in home."
       included={[
         { icon: UtensilsCrossed, title: "Kitchen Cleaning", description: "Wipe-down of countertops, sinks, stovetop, exterior appliances, and cabinet fronts. Floors mopped and vacuumed." },
-        { icon: Bath, title: "Bathroom Sanitization", description: "Frequently touched surfaces wiped and sanitized." },
+        { icon: Bath, title: "Bathroom Sanitization", description: "Toilets, tubs and showers scrubbed and sanitized, soap scum off the tile and glass, mirrors and vanities polished, floors washed." },
         { icon: Home, title: "Bedrooms & Living Areas", description: "Dusting accessible surfaces, vacuuming carpets and rugs, and mopping hard flooring throughout the home." },
       ]}
       bullets={[
         "Dusting of all accessible surfaces and furniture",
-        "Vacuuming carpets, and rugs",
+        "Vacuuming carpets and rugs",
         "Mopping all hard floors",
         "Kitchen counters, sink, and stovetop cleaned",
         "Exterior of appliances and cabinets wiped",
+        // /whats-included/ lists the microwave interior in every service.
+        // These checklists left it out.
+        "Microwave cleaned inside and out",
         "Bathrooms scrubbed and sanitized",
         "Mirrors and glass surfaces polished",
         "Trash emptied",

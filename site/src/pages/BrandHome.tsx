@@ -466,7 +466,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
               </div>
               <div className="inline-flex items-center gap-2 bg-card border border-border/50 px-4 py-2 rounded-full shadow-sm">
                 <Sparkles className="w-4 h-4 text-accent" />
-                <span className="text-sm font-medium">High Quality Cleaning Supplies</span>
+                <span className="text-sm font-medium">All Supplies Brought For You</span>
               </div>
               <div className="inline-flex items-center gap-2 bg-card border border-border/50 px-4 py-2 rounded-full shadow-sm">
                 <Users className="w-4 h-4 text-accent" />

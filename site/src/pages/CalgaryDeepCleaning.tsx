@@ -22,7 +22,7 @@ export default function CalgaryDeepCleaning() {
       canonical="https://dutycleaners.ca/calgary/deep-cleaning"
       heroHeading={<>Deep Cleaning Services in <AccentGold>Calgary</AccentGold></>}
       heroSubheading="A meticulous top-to-bottom reset for the areas regular cleaning never reaches."
-      heroBadges={["Top-to-Bottom Detail", "High Quality Cleaning Supplies", "100% Satisfaction Guarantee"]}
+      heroBadges={["Top-to-Bottom Detail", "All Supplies Brought For You", "100% Satisfaction Guarantee"]}
       heroImage={heroImage}
       heroImageAlt="Sparkling Calgary kitchen after a professional deep cleaning"
       overviewEyebrow="Service Overview"

@@ -72,7 +72,7 @@ const whyUsItems = [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
   { icon: Star, title: RATING_CLAIM, description: `${CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount} reviews across Edmonton and Calgary, and every one of them is on our Google listing.` },
   { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability, schedule permitting. We work around your busy life." },
-  { icon: Leaf, title: "High Quality Cleaning Supplies", description: "We bring everything the job needs — and any product you would rather we used." },
+  { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Vetted cleaners trained to Duty Cleaners' exacting quality standards." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "Not happy? Let us know within 24 hours and we'll re-clean at no additional charge." },
 ];
