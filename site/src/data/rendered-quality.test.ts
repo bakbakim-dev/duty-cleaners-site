@@ -465,3 +465,61 @@ describe("local notes do not share a formula", () => {
     ).toEqual([]);
   });
 });
+
+/**
+ * A button that promises a price must lead to the price.
+ *
+ * Twenty-six CTAs across the site were labelled "See My Instant Price", "Get
+ * Started", "Book Your Cleaning" or "Get Free Estimate" and pointed at
+ * /contact-us/ — a message form headed "Get In Touch" — or at an on-page
+ * #contact-form anchor. Ten of them sat on /pricing/, the highest-intent page
+ * on the site. The move-out pages put one directly under the words "Instant
+ * pricing. No phone call required."
+ *
+ * The quote overlay intercepts clicks only on hrefs matching /#quote(-form)?$/,
+ * so a contact link is never upgraded at runtime — it just navigates. That is
+ * why this has to be checked on the rendered output rather than trusted to the
+ * component layer: PricingOptionCard was fixed for exactly this reason and its
+ * three siblings kept the old target for months afterwards.
+ */
+describe("price CTAs reach the price", () => {
+  /**
+   * Wording that promises an immediate NUMBER, which only the funnel can give.
+   *
+   * "Free estimate" is deliberately NOT here. Commercial work is quoted per
+   * hour after a conversation, so its "Get Free Estimate" button genuinely
+   * belongs on the contact form — the label promises an estimate, not an
+   * instant price, and it keeps that promise. Narrowing this pattern is the
+   * difference between a guard that protects the funnel and one that would
+   * push honest copy into the wrong place.
+   */
+  const PROMISES_A_PRICE = /instant price|instant quote|see pricing|book your cleaning/i;
+
+  /** Destinations that cannot show a price. */
+  const CANNOT_PRICE = /contact-us|#contact-form/;
+
+  it("no CTA that promises a price opens a contact form", () => {
+    const pages = allPages();
+    if (pages.length === 0) return;
+    const bad: string[] = [];
+    for (const url of pages) {
+      const raw = html(url).replace(/<script[\s\S]*?<\/script>/g, " ");
+      const main = /<main\b[^>]*>([\s\S]*?)<\/main>/.exec(raw);
+      if (!main) continue;
+      for (const m of main[1].matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]{0,160}?)<\/a>/g)) {
+        const href = m[1];
+        const text = m[2].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
+        if (PROMISES_A_PRICE.test(text) && CANNOT_PRICE.test(href)) {
+          bad.push(`${url}: "${text.slice(0, 46)}" -> ${href}`);
+        }
+      }
+    }
+    expect(
+      bad,
+      `These buttons promise a price and open a contact form instead:\n${bad.join("\n")}\n` +
+        `Point them at quoteHrefFor(pathname) or "#quote" so the overlay opens. ` +
+        `Commercial work is the one honest exception — it is quoted per hour after a ` +
+        `conversation — and its buttons do not use this wording.`,
+    ).toEqual([]);
+  });
+});

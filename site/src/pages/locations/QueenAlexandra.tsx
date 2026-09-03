@@ -84,7 +84,7 @@ const QueenAlexandra = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <Button size="lg" asChild>
-                  <a href="/contact-us/">GET INSTANT PRICE</a>
+                  <a href="#quote">GET INSTANT PRICE</a>
                 </Button>
                 <Button size="lg" variant="outline" asChild>
                   <a href="tel:780-913-6565">

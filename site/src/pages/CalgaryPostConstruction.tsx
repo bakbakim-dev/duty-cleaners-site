@@ -156,7 +156,7 @@ export default function CalgaryPostConstruction() {
               </p>
               <div className="flex flex-wrap gap-4 justify-center lg:justify-start mb-10">
                 <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-white text-lg px-8">
-                  <a href="#contact-form">See My Instant Price</a>
+                  <a href="#quote">See My Instant Price</a>
                 </Button>
                 <Button asChild size="lg" className="bg-white/95 text-brand-navy hover:bg-white text-lg px-8">
                   <a href="tel:4037681341">
