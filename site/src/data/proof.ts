@@ -84,7 +84,11 @@ export const cityProofFor = (pathname: string) =>
 export const COMPANY = {
   foundedYear: 2017,
   sinceLabel: "since 2017",
-  /** Applicant acceptance rate — already published on the site. */
+  /**
+   * Applicant acceptance rate. NOT published anywhere — the previous comment
+   * said it was, which would invite someone to trust it. Unconfirmed, so it
+   * stays out of the pages until the owner checks it against BookingKoala.
+   */
   applicantAcceptanceRate: "under 5%",
   /** TODO-OWNER: total cleans completed since 2017 (from BookingKoala). */
   totalCleans: null as number | null,
@@ -246,7 +250,10 @@ export const CLEANER_JOB_POSTING: {
 } = {
   datePosted: null,
   validThrough: null,
-  employmentType: "PART_TIME",
+  // /join-the-team/ requires a CRA Business Number, an own vehicle and own
+  // equipment. That is contractor work; PART_TIME would misdescribe it in
+  // structured data the moment datePosted is set.
+  employmentType: "CONTRACTOR",
 };
 
 
