@@ -179,7 +179,7 @@ export default function EdmontonPostConstruction() {
             <div className="flex-shrink-0 w-full lg:w-[500px]">
               <img width={640} height={832}
                 src={postConstructionBeforeAfter}
-                alt="Before and after post-construction cleaning of a newly built Edmonton home"
+                alt="Newly built interior after a post-construction clean, drywall dust removed from floors, sills and fixtures"
                 className="rounded-2xl shadow-2xl w-full h-auto object-cover"
               />
             </div>

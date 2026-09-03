@@ -241,15 +241,15 @@ const AirbnbCleaningEdmonton = () => {
     <div className="min-h-screen flex flex-col">
       <Helmet>
         <title>Airbnb Cleaning Edmonton | Turnover Service | Duty Cleaners</title>
-        <meta name="description" content="Airbnb turnover cleaning across Edmonton — same-day changeovers between guests, linens and restocking handled, priced hourly with a 3-hour minimum." />
+        <meta name="description" content="Airbnb turnover cleaning across Edmonton — changeovers between guests, linens and restocking handled, priced hourly with a 3-hour minimum." />
         <link rel="canonical" href="https://dutycleaners.ca/edmonton/airbnb-cleaning/" />
         <meta property="og:title" content="Airbnb Cleaning Edmonton | Turnover Service | Duty Cleaners" />
-        <meta property="og:description" content="Airbnb turnover cleaning across Edmonton — same-day changeovers between guests, linens and restocking handled, priced hourly with a 3-hour minimum." />
+        <meta property="og:description" content="Airbnb turnover cleaning across Edmonton — changeovers between guests, linens and restocking handled, priced hourly with a 3-hour minimum." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/edmonton/airbnb-cleaning/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Airbnb Cleaning Edmonton | Turnover Service | Duty Cleaners" />
-        <meta name="twitter:description" content="Airbnb turnover cleaning across Edmonton — same-day changeovers between guests, linens and restocking handled, priced hourly with a 3-hour minimum." />
+        <meta name="twitter:description" content="Airbnb turnover cleaning across Edmonton — changeovers between guests, linens and restocking handled, priced hourly with a 3-hour minimum." />
         {/* Mirrors the FAQ rendered on this page. Generated from the same
             `faqs` array, so the markup can never drift from the copy. */}
         <script type="application/ld+json">
@@ -264,7 +264,7 @@ const AirbnbCleaningEdmonton = () => {
           })}
         </script>
         <script type="application/ld+json">
-          {JSON.stringify(buildServiceSchema({ name: "Airbnb Turnover Cleaning", description: "Airbnb turnover cleaning across Edmonton — same-day changeovers between guests, linens and restocking handled, priced hourly with a 3-hour minimum.", path: "/edmonton/airbnb-cleaning", city: "edmonton" }))}
+          {JSON.stringify(buildServiceSchema({ name: "Airbnb Turnover Cleaning", description: "Airbnb turnover cleaning across Edmonton — changeovers between guests, linens and restocking handled, priced hourly with a 3-hour minimum.", path: "/edmonton/airbnb-cleaning", city: "edmonton" }))}
         </script>
       </Helmet>
       <Navigation city="edmonton" />
@@ -447,10 +447,10 @@ const AirbnbCleaningEdmonton = () => {
                 <span className="text-primary text-sm font-medium">Guest-Ready Results</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Recent Edmonton Airbnb Turnovers
+                What guest-ready looks like
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                A look at the spotless spaces our team delivers for hosts across the city.
+                The standard every Edmonton turnover is cleaned to, before the next guest checks in.
               </p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">

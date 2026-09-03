@@ -242,12 +242,12 @@ export default function WallWashingCalgary() {
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="text-center mb-12 max-w-3xl mx-auto">
-              <span className="text-accent font-semibold text-sm uppercase tracking-wider">Real Results</span>
+              <span className="text-accent font-semibold text-sm uppercase tracking-wider">What comes off</span>
               <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">
-                Real Results From Our Wall Cleaning Services
+                What wall cleaning actually takes off
               </h2>
               <p className="text-muted-foreground">
-                Stains, smudges, grime and dust gone — see the kind of transformation our Calgary wall cleaning team delivers.
+                Scuffs, fingerprints around switches, cooking film above the stove, and the grey band that builds along a stairwell.
               </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">

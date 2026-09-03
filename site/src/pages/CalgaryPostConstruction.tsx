@@ -170,7 +170,7 @@ export default function CalgaryPostConstruction() {
             <div className="flex-shrink-0 w-full lg:w-[500px]">
               <img width={1024} height={1024}
                 src={calgaryPostConstructionBeforeAfter}
-                alt="Before and after post-construction cleaning of a large Calgary home"
+                alt="Newly built interior after a post-construction clean, drywall dust removed from floors, sills and fixtures"
                 className="rounded-2xl shadow-2xl w-full h-auto object-cover"
               />
             </div>

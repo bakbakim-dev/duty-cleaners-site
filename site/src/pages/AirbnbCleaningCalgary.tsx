@@ -448,10 +448,10 @@ const AirbnbCleaningCalgary = () => {
                 <span className="text-calgary text-sm font-medium">Guest-Ready Results</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Recent Calgary Airbnb Turnovers
+                What guest-ready looks like
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                A look at the spotless spaces our team delivers for hosts across the city.
+                The standard every Calgary turnover is cleaned to, before the next guest checks in.
               </p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">

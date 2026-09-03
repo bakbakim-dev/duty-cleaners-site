@@ -236,7 +236,7 @@ export default function Navigation({ city }: NavigationProps) {
     { to: canonicalForPath(`${cityPath}/move-in-move-out-cleaning`), icon: Truck, title: "Move In/Out Cleaning", description: "Cleaned to the standard landlords inspect for" },
     { to: canonicalForPath(`${cityPath}/post-construction-cleaning`), icon: HardHat, title: "Post-Construction", description: "Dust & debris removal after reno" },
     { to: canonicalForPath(`${cityPath}/wall-washing`), icon: Sparkles, title: "Wall Washing", description: "Marks, scuffs and smoke off painted walls" },
-    { to: canonicalForPath(`${cityPath}/airbnb-cleaning`), icon: KeyRound, title: "Airbnb Turnovers", description: "Same-day changeovers between guests" },
+    { to: canonicalForPath(`${cityPath}/airbnb-cleaning`), icon: KeyRound, title: "Airbnb Turnovers", description: "Changeovers between guests, priced hourly" },
     // March-out is Edmonton-only military housing work, quoted by phone.
     ...(city === "calgary"
       ? []

@@ -88,13 +88,15 @@ const services: Service[] = [
   },
   {
     title: "Recurring Cleaning",
-    description: "Weekly, bi-weekly, or monthly cleaning services to keep your home consistently clean and comfortable, with recurring discounts applied from your first scheduled recurring visit — 20% weekly, 15% bi-weekly, and 10% monthly.",
+    description: "Weekly, bi-weekly or every-4-weeks cleaning to keep your home consistently clean. Your first clean is the standard rate; from the second visit on you save 20% weekly, 15% bi-weekly and 10% every 4 weeks.",
     features: [
       "Recurring maintenance cleaning",
       "Kitchen, bathrooms, and living areas cleaned",
       "Floors vacuumed and mopped"
     ],
-    price: from(RECURRING_FROM),
+    // Both numbers, because BookingKoala charges the standard rate for the
+    // first clean and only applies the discount from the second visit.
+    price: `${STANDARD_FROM}, then ${formatPrice(RECURRING_FROM)}`,
     link: "/edmonton/recurring-cleaning/",
     linkText: "See Recurring Cleaning",
     icon: Repeat,
