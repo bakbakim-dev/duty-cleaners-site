@@ -1,3 +1,5 @@
+import { formatPrice } from "@/data/pricing";
+import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
 import { GST_RATE } from "@/data/pricing";
 import { canonicalForPath, canonicalUrlForPath } from "@/data/legacy-urls";
 import { schemaAddressFor, BRANCH_ID, BRANCH_IDENTITY } from "@/data/proof";
@@ -454,7 +456,7 @@ const ServiceDetailPage = ({
                 >
                   <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{tier.size}</p>
                   <p className="text-3xl font-bold mt-2">{tier.price}</p>
-                  <p className="text-xs text-muted-foreground mt-2">Flat rate — full checklist</p>
+                  <p className="text-xs text-muted-foreground mt-2">Apartment or condo — full checklist</p>
                 </div>
               ))}
             </div>
@@ -462,8 +464,15 @@ const ServiceDetailPage = ({
                 where search actually lands, said it nowhere while printing a full
                 price ladder. It belongs in the template so no future service page
                 can ship a ladder without it. */}
+            {/* Each figure is computed with the cheapest home type (Apartment or
+                Condo, $0 surcharge), so calling it a "flat rate" understated a
+                house by up to $55 — /pricing/ says so on the same site. */}
             <p className="text-center text-sm text-muted-foreground mt-8 max-w-2xl mx-auto">
-              All prices are in Canadian dollars before {Math.round(GST_RATE * 100)}% GST.
+              Prices are for an apartment or condo, in Canadian dollars before{" "}
+              {Math.round(GST_RATE * 100)}% GST. A bungalow or basement suite adds{" "}
+              {formatPrice(BK_PRICE_OVERRIDES[54].price)}, a townhouse{" "}
+              {formatPrice(BK_PRICE_OVERRIDES[89].price)} and a two-storey house{" "}
+              {formatPrice(BK_PRICE_OVERRIDES[90].price)} — the quote asks which you have.
             </p>
             {pricingNote && (
               <p className="text-center text-sm text-muted-foreground mt-3 max-w-2xl mx-auto">{pricingNote}</p>

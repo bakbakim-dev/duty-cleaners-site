@@ -1,7 +1,7 @@
 import { withTrailingSlash } from "@/data/legacy-urls";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import Navigation from "@/components/Navigation";
-import { addOnFromPrice, formatPrice } from "@/data/pricing";
+import { addOnMaxPrice, addOnFromPrice, formatPrice } from "@/data/pricing";
 import { buildServiceSchema } from "@/lib/service-schema";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -140,7 +140,11 @@ const WALL_FULL = addOnFromPrice("standard", "complete-inside-wall-washing") ?? 
 /** These pages are the site's highest click-efficiency content and stated no
  *  price at all, so neither a shopper nor an AI assistant could name one.
  *  Both figures are derived from bk-config, never typed. */
-const WALL_PRICE_LINE = `Spot cleaning of walls starts at ${formatPrice(WALL_FROM)} and a full top-to-bottom wall wash at ${formatPrice(WALL_FULL)}, added to any clean. Both are flat rates before 5% GST.`;
+/** Both extras have seven rows in BookingKoala, one per home size, so a single
+ *  figure called a "flat rate" understated the large end by up to $115. */
+const WALL_SPOT_MAX = addOnMaxPrice("standard", "spot-cleaning-inside-walls") ?? 0;
+const WALL_FULL_MAX = addOnMaxPrice("standard", "complete-inside-wall-washing") ?? 0;
+const WALL_PRICE_LINE = `Wall washing is added to a standard, deep or move-out clean rather than booked on its own. Spot cleaning runs ${formatPrice(WALL_FROM)} to ${formatPrice(WALL_SPOT_MAX)} and a full top-to-bottom wash ${formatPrice(WALL_FULL)} to ${formatPrice(WALL_FULL_MAX)}, by home size, before 5% GST. Your exact figure is on the quote before you book.`;
 
 export default function WallWashingEdmonton() {
 
@@ -324,7 +328,8 @@ export default function WallWashingEdmonton() {
             <div className="text-center mb-14 max-w-3xl mx-auto">
               <span className="text-accent font-semibold text-sm uppercase tracking-wider">Process</span>
               <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">How Wall Cleaning Works</h2>
-              <p className="text-muted-foreground">A simple, straightforward process from quote to finished walls.</p>
+              <p className="text-muted-foreground">Wall washing is an add-on, so it starts where your clean does:
+                tick it in the booking form and the price appears with it.</p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
               {steps.map((s, i) => (
