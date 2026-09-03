@@ -1,3 +1,4 @@
+import { POLICY } from "@/data/policy";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -58,6 +59,12 @@ const faqCategories: FAQCategory[] = [
       {
         question: "What is your cancellation policy?",
         answer: "We ask for at least 24 hours' notice to change or cancel a clean, so we can offer the slot to someone else. Cancelling or rescheduling inside 24 hours is charged $50. There is no long-term contract, and you can change or pause a recurring schedule at any time.",
+      },
+      {
+        // The cancellation answer above is entirely about what the customer
+        // owes. This is the other half, and it was missing from the whole site.
+        question: "What if you have to cancel or reschedule on me?",
+        answer: POLICY.ourCancellationNote ?? "",
       },
       {
         question: "What if the cleaners cannot get in?",

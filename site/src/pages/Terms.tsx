@@ -188,6 +188,18 @@ export default function Terms() {
                 </>
               )}
 
+              {/* Sits directly after the lockout clause on purpose: that one says
+                  what a missed visit costs the customer, this one says what a
+                  missed visit costs us. They belong on the same screen. */}
+              {POLICY.ourCancellationNote !== null && (
+                <>
+                  <h2 className="text-2xl font-bold mb-4 text-foreground">
+                    If We Have To Move Your Booking
+                  </h2>
+                  <p className="mb-8">{POLICY.ourCancellationNote}</p>
+                </>
+              )}
+
               {POLICY.liabilityNote !== null && (
                 <>
                   <h2 className="text-2xl font-bold mb-4 text-foreground">

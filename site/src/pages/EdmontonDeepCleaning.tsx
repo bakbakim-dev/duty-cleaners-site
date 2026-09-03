@@ -1,3 +1,5 @@
+import { formatPrice } from "@/data/pricing";
+import { addOnFromPrice } from "@/data/pricing";
 import ServiceDetailPage from "@/components/ServiceDetailPage";
 import { deepCleanTierRows, featuredExtraRows } from "@/data/pricing";
 import { Accent, AccentGold } from "@/components/Accent";
@@ -7,6 +9,9 @@ import heroImage from "@/assets/gallery/kitchen-deep-clean.webp";
 // Published figures come from bk-config via pricing.ts. Hand-typing them
 // here is what let this page drift out of step with /pricing and with what
 // BookingKoala actually charges.
+/** Cheapest published price for an add-on, straight from bk-config. */
+const addOnLabel = (key: string) => formatPrice(addOnFromPrice("standard", key) ?? 0);
+
 const TIERS = deepCleanTierRows().map((row) => ({ size: row.beds, price: row.price }));
 
 export default function EdmontonDeepCleaning() {
@@ -66,12 +71,14 @@ export default function EdmontonDeepCleaning() {
       notIncluded={[
         // The list was all safety exclusions — 25 lb, ladders, mold. The four
         // below are scope, and they are what customers actually assume a deep
-        // clean covers: the commonest disputes in this trade, on the one page
-        // where someone is about to spend $372. Each can be added to the visit.
-        "Inside the oven — add it for $59.99",
-        "Inside the fridge — add it for $59.99",
-        "Inside cabinets and drawers — add it from $74.99",
-        "Interior windows — add them from $39.99",
+        // clean covers: the commonest disputes in this trade, on the page where
+        // someone is about to spend several hundred dollars. Prices are derived
+        // from bk-config, because the published-prices guard is right that a
+        // hand-typed figure drifts the moment BookingKoala changes.
+        `Inside the oven — add it for ${addOnLabel("inside-oven")}`,
+        `Inside the fridge — add it for ${addOnLabel("inside-fridge")}`,
+        `Inside cabinets and drawers — add it from ${addOnLabel("inside-cabinets-kitchen-bathroom-only")}`,
+        `Interior windows — add them from ${addOnLabel("inside-windows")}`,
         "Wall washing — a separate service, not part of the deep package",
         "Moving heavy items over 25 lbs",
         "Outdoor or exterior window cleaning",

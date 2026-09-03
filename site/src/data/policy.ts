@@ -31,6 +31,8 @@ export interface ServicePolicy {
   lockoutFee: Confirmed<string> | Unconfirmed;
   damageClaimWindowHours: Confirmed<number> | Unconfirmed;
   liabilityNote: Confirmed<string> | Unconfirmed;
+  /** What happens when WE move a booking. */
+  ourCancellationNote: Confirmed<string> | Unconfirmed;
   governingProvince: Confirmed<string> | Unconfirmed;
   /** Months until expiry, or "none" when the card genuinely never expires. */
   giftCardExpiryMonths: Confirmed<number | "none"> | Unconfirmed;
@@ -85,10 +87,16 @@ export const POLICY: ServicePolicy = {
   /**
    * Confirmed by the owner. Neither the current site nor the legacy mirror had
    * any damage process at all — no deadline, no method, nothing.
+   *
+   * The remedy was added 2026-09-03, also confirmed by the owner. Until then
+   * the clause stopped at "we will come back to you", which is where a
+   * customer looking at a chipped stone edge assumes the worst version. The
+   * not-at-fault branch is stated too, on purpose: a conditional remedy reads
+   * as a dodge unless the other half of the condition is written down.
    */
   damageClaimWindowHours: 24,
   liabilityNote:
-    "If something is damaged or broken during a clean, send us photos or video within 24 hours so we can investigate while the details are still fresh. Get in touch by phone or email and we will look into what happened and come back to you.",
+    "If something is damaged or broken during a clean, send us photos or video within 24 hours so we can look into it while the details are still fresh. Reach us by phone or email; we will ask the team what happened and come back to you with what we find. Where we are at fault, we put it right — a credit, a repair, a replacement, reimbursing you, or taking it off the bill, whichever fits the damage, and we will talk it through with you before we settle on one. Where we find we are not at fault, we will tell you that plainly and explain why rather than leaving it open.",
 
   /**
    * Confirmed by the owner: Alberta. Neither the current site nor any of the 135
@@ -96,6 +104,19 @@ export const POLICY: ServicePolicy = {
    * stated jurisdiction at all.
    */
   governingProvince: "Alberta",
+
+  /**
+   * Confirmed by the owner 2026-09-03. The cancellation terms ran entirely one
+   * way — $50 from the customer inside 24 hours, half the visit for a lockout,
+   * and nothing at all about a clean WE move. There is no compensation, and
+   * saying so is the point: naming the limit yourself reads as fair, and being
+   * found out later does not. The two commitments attached cost nothing — the
+   * earliest slot we have, and no fee if the new date does not suit, because a
+   * 24-hour rule cannot fairly apply to a change we caused.
+   */
+  ourCancellationNote:
+    "Very occasionally we have to move a booking — a cleaner is ill, a vehicle will not start, or the roads are genuinely unsafe. We tell you as soon as we know, and we offer you the earliest slot we have; where we can move another job to keep you near your original date, we will. You are not charged for a visit we did not do, and if the new date does not suit you and you would rather cancel, there is no cancellation fee — the 24-hour rule does not apply to a change we caused. We do not pay compensation for a rescheduled clean, and we would rather say so here than have you find out at the time.",
+
 
   /**
    * Confirmed by the owner: gift cards do not expire, and the balance is
