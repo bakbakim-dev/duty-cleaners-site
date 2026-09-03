@@ -182,7 +182,7 @@ export default function Airdrie() {
               <div className="flex-shrink-0 w-full lg:w-[500px]">
                 <img width={800} height={600}
                   src={airdrieImg}
-                  alt="Nose Creek Park in Airdrie, Alberta at twilight — a vibrant community landmark"
+                  alt="A river path through a prairie town at dusk"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                 loading="eager"
                   {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />

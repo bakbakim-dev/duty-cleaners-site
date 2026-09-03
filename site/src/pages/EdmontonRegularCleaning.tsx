@@ -77,7 +77,11 @@ export default function EdmontonRegularCleaning() {
         { q: "What's the difference between standard and deep cleaning?", a: "Standard cleaning refreshes a home that's already clean — dusting, vacuuming, mopping, and sanitizing high-use areas. Deep cleaning tackles built-up grime, baseboards, doors, light switches, wall outlets, and outside vents." },
         { q: "How long does a standard cleaning take?", a: "We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
         { q: "How often should I schedule standard cleaning?", a: "Most Edmonton households book standard cleaning as needed — before events, seasonally, or whenever their home needs a refresh. For ongoing upkeep, many clients book every 2–4 weeks." },
-        { q: "Do I need to be home during the cleaning?", a: "No. Most clients provide a lockbox code, smart-lock access, or leave the keys under the mat. We'll lock up after we're done." },
+        // Was "or leave the keys under the mat", inside FAQPage schema. A cleaning
+        // company recommending that is advising customers into something most
+        // home-insurance policies exclude, next to a policy charging half the
+        // visit when the team cannot get in.
+        { q: "Do I need to be home during the cleaning?", a: "No. Most clients leave a lockbox or smart-lock code, a garage code, or a key with a concierge — a lockbox is the safest of these. Tell us the arrangement when you book so the team is not left standing outside, and we lock up when we leave." },
         { q: "Do I need to provide cleaning supplies?", a: "No — our team brings all cleaning supplies and equipment. If you would prefer we use specific products, tell us when you book." },
         { q: "What should I do to prepare?", a: "Please pick up any personal items you'd like put away and clear surfaces such as vanities, countertops, and other cluttered areas so our cleaners can work efficiently. You may also let us know any priority areas or spaces you would like us to focus on or skip." },
       ]}

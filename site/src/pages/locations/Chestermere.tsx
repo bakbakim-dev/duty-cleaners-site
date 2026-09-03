@@ -182,7 +182,7 @@ export default function Chestermere() {
               <div className="flex-shrink-0 w-full lg:w-[500px]">
                 <img width={1024} height={1024}
                   src={chestermereImg}
-                  alt="Chestermere Lake at golden hour — the heart of this vibrant lakeside community east of Calgary"
+                  alt="A prairie lake at golden hour"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                 loading="eager"
                   {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />

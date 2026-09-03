@@ -96,7 +96,7 @@ export default function McConachie() {
       {
         "@type": "Question",
         name: "Do I need to be home during the cleaning appointment?",
-        acceptedAnswer: { "@type": "Answer", text: "You don't need to be home during the cleaning. You can provide access by sharing a code, leaving the key in the mailbox or under the mat, or giving us a garage code. If you'd like to do a walkthrough with our cleaners, we can call you about 30 minutes before they finish." },
+        acceptedAnswer: { "@type": "Answer", text: "You don't need to be home during the cleaning. You can provide access by sharing a code, leaving a key in a lockbox, or giving us a garage code. If you'd like to do a walkthrough with our cleaners, we can call you about 30 minutes before they finish." },
       },
       {
         "@type": "Question",
@@ -360,7 +360,7 @@ export default function McConachie() {
                   <AccordionItem value="item-2">
                     <AccordionTrigger className="text-left">Do I need to be home during the cleaning appointment?</AccordionTrigger>
                     <AccordionContent>
-                      You don't need to be home during the cleaning. You can provide access by sharing a code, leaving the key in the mailbox or under the mat, or giving us a garage code. If you'd like to do a walkthrough with our cleaners, we can call you about 30 minutes before they finish.
+                      You don't need to be home during the cleaning. You can provide access by sharing a code, leaving a key in a lockbox, or giving us a garage code. If you'd like to do a walkthrough with our cleaners, we can call you about 30 minutes before they finish.
                     </AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="item-3">

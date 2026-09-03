@@ -185,7 +185,7 @@ export default function Griesbach() {
               <div className="flex-shrink-0 w-full lg:w-[500px]">
                 <img width={1024} height={1024}
                   src={griesbachLandmark}
-                  alt="Patricia Lake in Griesbach, Edmonton"
+                  alt="A small lake in a residential neighbourhood"
                   className="rounded-2xl shadow-2xl w-full object-cover"
                 loading="eager"
                   {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />

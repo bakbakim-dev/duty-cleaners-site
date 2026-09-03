@@ -170,7 +170,7 @@ export default function Beaumont() {
             <div className="flex-shrink-0 w-full lg:w-[500px]">
               <img width={800} height={544}
                 src={beaumontLandmark}
-                alt="Four Seasons Park in Beaumont, Alberta"
+                alt="A neighbourhood park with a playground on a clear summer day"
                 className="rounded-2xl shadow-2xl w-full h-auto object-cover border-2 border-white/10"
               loading="eager"
                   {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />

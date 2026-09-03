@@ -171,7 +171,7 @@ export default function Devon() {
             <div className="flex-shrink-0 w-full lg:w-[500px]">
               <img width={1024} height={768}
                 src={devonLandmark}
-                alt="Devon River Valley Trail along the North Saskatchewan River in Devon, Alberta"
+                alt="A wooded river valley trail"
                 className="rounded-2xl shadow-2xl w-full h-auto object-cover"
               loading="eager"
                   {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />

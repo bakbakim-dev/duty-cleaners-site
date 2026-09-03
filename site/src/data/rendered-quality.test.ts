@@ -619,4 +619,42 @@ describe("price CTAs reach the price", () => {
         `holds the sourced phrase. Use those instead of a star count.`,
     ).toEqual([]);
   });
+
+  /**
+   * Alt text claiming a named real place.
+   *
+   * Six location pages captioned generated images with real Alberta landmarks
+   * — Nose Creek Park, Four Seasons Park, Chestermere Lake, Patricia Lake, the
+   * Devon river trail, and the St. Albert Farmers' Market. That last image was
+   * a fabricated building whose sign read "FARMS MAKT / SIT. ALBERT" beneath a
+   * dozen United States flags, served as the page's LCP element.
+   *
+   * The site already refuses to present generated imagery as documentary on
+   * the Airbnb, wall-washing, post-construction and homepage galleries. Alt
+   * text was the surface that decision never reached.
+   *
+   * The pattern matches the shape those captions took — "<Proper Noun> in|at|
+   * along <Proper Noun>". All 285 distinct alt strings in dist were checked
+   * against it before this guard was added; none of the legitimate ones match.
+   */
+  const LANDMARK_ALT =
+    /^[A-Z][A-Za-z'\u2019.-]*(?: [A-Z][A-Za-z'\u2019.-]*){0,3} (?:in|at|along) [A-Z]/;
+
+  it("no image alt claims to be a named real place", () => {
+    const pages = allPages();
+    if (pages.length === 0) return;
+    const bad: string[] = [];
+    for (const url of pages) {
+      for (const m of html(url).matchAll(/alt="([^"]*)"/g)) {
+        if (LANDMARK_ALT.test(m[1])) bad.push(`${url}: alt="${m[1]}"`);
+      }
+    }
+    expect(
+      bad,
+      `These images claim to be a named real place:\n${bad.join("\n")}\n` +
+        `The photography is generated until the real shoot lands, so an alt must ` +
+        `describe the scene ("A neighbourhood park with a playground") rather ` +
+        `than name a landmark it is not.`,
+    ).toEqual([]);
+  });
 });

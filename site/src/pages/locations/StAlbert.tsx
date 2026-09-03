@@ -15,7 +15,9 @@ import {
   Home, Sparkles, Truck, SprayCan, Bath, UtensilsCrossed,
   Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail
 } from "lucide-react";
-import stAlbertLandmark from "@/assets/gallery/st-albert-landmark.webp";
+// Was st-albert-landmark.webp: a generated "St. Albert Farmers' Market"
+// whose sign reads "FARMS MAKT / SIT. ALBERT" under a dozen US flags.
+import stAlbertHome from "@/assets/gallery/family-clean-home-edmonton.webp";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CoverageChips from "@/components/CoverageChips";
 
@@ -170,8 +172,8 @@ export default function StAlbert() {
             </div>
             <div className="flex-shrink-0 w-full lg:w-[500px]">
               <img width={896} height={672}
-                src={stAlbertLandmark}
-                alt="St. Albert Farmers' Market landmark in St. Albert, Alberta"
+                src={stAlbertHome}
+                alt="A family in a living room with clean floors and clear surfaces"
                 className="rounded-2xl shadow-2xl w-full h-auto object-cover border-2 border-white/10"
               loading="eager"
                   {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
