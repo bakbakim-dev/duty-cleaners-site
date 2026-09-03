@@ -214,9 +214,13 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
                           <span className="text-white/80 text-sm">Alberta, Canada</span>
                         </div>
                       </div>
+                      {/* Was a flat "5★". The real figure is 4.9, and this page
+                          prints it three lines above. */}
                       <div className="flex items-center gap-1 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full">
                         <Star className="w-4 h-4 text-accent fill-accent" />
-                        <span className="font-bold text-sm">5★</span>
+                        <span className="font-bold text-sm">
+                          {CITY_PROOF.edmonton.googleRating} · {CITY_PROOF.edmonton.googleReviewCount} reviews
+                        </span>
                       </div>
                     </div>
 
@@ -263,9 +267,13 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
                           <span className="text-white/80 text-sm">Alberta, Canada</span>
                         </div>
                       </div>
+                      {/* Was a flat "5★". The real figure is 4.9, and this page
+                          prints it three lines above. */}
                       <div className="flex items-center gap-1 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full">
                         <Star className="w-4 h-4 text-accent fill-accent" />
-                        <span className="font-bold text-sm">5★</span>
+                        <span className="font-bold text-sm">
+                          {CITY_PROOF.calgary.googleRating} · {CITY_PROOF.calgary.googleReviewCount} reviews
+                        </span>
                       </div>
                     </div>
 
@@ -327,7 +335,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
                 step: "03",
                 icon: Heart,
                 title: "Relax & Enjoy Your Space",
-                desc: "Come home to a fresh, spotless space — backed by our 100% satisfaction guarantee."
+                desc: `Come home to a fresh, spotless space. If anything was missed, tell us within ${POLICY.guaranteeWindowHours} hours and we come back and put it right.`
               }].map((step, i) => (
                 <div key={i} className="group relative" style={{ perspective: "1000px" }}>
                   <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-8 text-center h-full transition-all duration-500 ease-out group-hover:-translate-y-2 group-hover:scale-[1.02] group-hover:border-accent/40" style={{ transformStyle: "preserve-3d" }}>

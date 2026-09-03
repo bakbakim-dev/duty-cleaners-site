@@ -572,4 +572,51 @@ describe("price CTAs reach the price", () => {
         `proof.ts holds it null.`,
     ).toEqual([]);
   });
+
+  /**
+   * Ratings rounded up to five.
+   *
+   * proof.ts records the real figure as 4.9 and carries the history: the site
+   * once said "Five-Star Rated" on 170 pages, which rounded 4.9 into a number
+   * the business has not earned. That sweep fixed the phrase and missed two
+   * "5★" badges in BrandHome, which then printed five stars three lines below
+   * "4.9 on Google" on /locations/.
+   *
+   * /reviews/ is exempt: it quotes customers verbatim and two real reviewers
+   * wrote "5★" themselves. Editing a quoted review to satisfy a guard would be
+   * misquoting a real person.
+   */
+  const ROUNDED_RATING = [
+    /\b5\u2605/,
+    /\b5\u2606/,
+    /five-star rated/i,
+    /\b5(?:\.0)? out of 5\b/i,
+    /\brated 5(?:\.0)? on google/i,
+  ];
+
+  /** Quotes real reviewers verbatim, so their own words stand. */
+  const RATING_EXEMPT = new Set(["/reviews/"]);
+
+  it("never rounds the 4.9 Google rating up to five", () => {
+    const pages = allPages();
+    if (pages.length === 0) return;
+    const bad: string[] = [];
+    for (const url of pages) {
+      if (RATING_EXEMPT.has(url)) continue;
+      const text = mainText(url);
+      for (const pattern of ROUNDED_RATING) {
+        const hit = pattern.exec(text);
+        if (hit)
+          bad.push(
+            `${url}: "${text.slice(Math.max(0, hit.index - 40), hit.index + 40).trim()}"`,
+          );
+      }
+    }
+    expect(
+      bad,
+      `These pages round the rating up to five:\n${bad.join("\n")}\n` +
+        `The real figure is CITY_PROOF.<city>.googleRating (4.9), and RATING_CLAIM ` +
+        `holds the sourced phrase. Use those instead of a star count.`,
+    ).toEqual([]);
+  });
 });
