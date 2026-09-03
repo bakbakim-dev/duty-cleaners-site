@@ -22,6 +22,8 @@ export function buildServiceSchema(input: {
   city: "edmonton" | "calgary";
   /** Lowest real price a customer can book this at, if the page states one. */
   offerFrom?: number;
+  /** Any condition the price depends on, e.g. that it is an add-on. */
+  offerNote?: string;
 }) {
   const cityName = input.city === "edmonton" ? "Edmonton" : "Calgary";
   return {
@@ -50,7 +52,10 @@ export function buildServiceSchema(input: {
             availability: "https://schema.org/InStock",
             // Every figure is derived from bk-config by the caller; nothing here
             // is hand-typed, so it cannot drift from what BookingKoala charges.
-            description: `From ${input.offerFrom} CAD, before 5% GST.`,
+            // offerNote carries any condition the price depends on. Wall
+            // washing is an add-on, and a rich result showing a bare
+            // "$39.99" would advertise a visit that cannot be booked.
+            description: `From ${input.offerFrom} CAD, before 5% GST.${input.offerNote ? ` ${input.offerNote}` : ""}`,
           },
         }
       : {}),

@@ -15,6 +15,10 @@ import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import calgaryPostConstructionBeforeAfter from "@/assets/gallery/calgary-post-construction-before-after.webp";
 import CityCrossLink from "@/components/CityCrossLink";
 
+import { startingPrice, formatPrice } from "@/data/pricing";
+/* The figure /services/ already publishes for this service, from bk-config. */
+const startingPriceLabel = formatPrice(startingPrice("post-construction"));
+
 const includedServices = [
   { icon: Wind, title: "Fine Dust & Debris Removal", desc: "Drywall and construction dust wiped from baseboards, vents, window ledges, trim, and floors — no fine residue left behind." },
   { icon: Sparkles, title: "Kitchen & Bathroom Cleaning", desc: "Inside and outside of cabinets and drawers, countertops, sinks, tubs, showers, and the exterior of new appliances detailed and sanitized." },
@@ -38,7 +42,7 @@ const whyChooseUs = [
   { icon: Sparkles, title: "Attention to Detail", desc: "We hand-wipe ledges, tracks, vents, and trim where dust quietly settles after construction." },
   { icon: Wrench, title: "Professional Equipment", desc: "High-performance vacuums, microfiber cleaning systems, and surface-safe products designed for post-renovation cleaning." },
   { icon: Heart, title: "Satisfaction Guarantee", desc: "Not happy with an area? Let us know within 24 hours and we'll re-clean it free of charge." },
-  { icon: DollarSign, title: "Transparent Pricing", desc: "Clear starting estimates based on square footage and scope — no hidden fees." }
+  { icon: DollarSign, title: "Transparent Pricing", desc: `Starts at ${startingPriceLabel} and is set by square footage and scope — quoted before you book, no hidden fees.` }
 ];
 
 const faqs = [

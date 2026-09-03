@@ -174,6 +174,9 @@ export default function EdmontonPricing() {
               Most homes are priced flat by size — you see your number before you book, plus 5% GST, and it doesn’t go up because a clean took longer.
             </p>
             <p className="text-lg text-white/90 mb-10">
+              The figures below are for an apartment or condo. A bungalow adds $15 and a townhouse or two-storey house adds $50, because there are stairs and more floor to cover — the quote asks which you have and shows the difference before you book.
+            </p>
+            <p className="text-lg text-white/90 mb-10">
               If a flat rate doesn’t suit your job or your budget, we’ll quote you hourly instead — and tell you which option costs you less. Condition, pets and add-ons can change the final number.
             </p>
 

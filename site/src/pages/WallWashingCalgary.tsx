@@ -170,7 +170,7 @@ export default function WallWashingCalgary() {
           })}
         </script>
         <script type="application/ld+json">
-          {JSON.stringify(buildServiceSchema({ name: "Wall Washing and Wall Cleaning", description: "Professional wall and baseboard washing in Calgary. Professional products, customer-rated cleaners, no-obligation quote.", path: "/wall-washing-wall-cleaning-calgary", city: "calgary", offerFrom: WALL_FROM }))}
+          {JSON.stringify(buildServiceSchema({ name: "Wall Washing and Wall Cleaning", description: "Professional wall and baseboard washing in Calgary. Professional products, customer-rated cleaners, no-obligation quote.", path: "/wall-washing-wall-cleaning-calgary", city: "calgary", offerFrom: WALL_FROM, offerNote: "Added to a standard, deep or move-out clean; not sold as a standalone visit." }))}
         </script>
       </Helmet>
       <Navigation city="calgary" />
