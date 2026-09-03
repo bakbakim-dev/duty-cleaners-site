@@ -29,6 +29,10 @@ function Chip({ name, to }: CityLocation) {
 /**
  * "Covering all of {City}" — full neighbourhood + surrounding-community chip
  * grid that internal-links to every location page (silo strategy).
+ *
+ * Every chip is in the DOM. The "show all" control only toggles visibility, so
+ * the link equity reaches all of them whether or not anyone presses it. This
+ * used to slice the array to 18 and the docblock above was simply wrong.
  */
 export default function CityCoverageGrid({
   city,
@@ -37,7 +41,11 @@ export default function CityCoverageGrid({
   viewAllTo = "/locations",
 }: CityCoverageGridProps) {
   const [expanded, setExpanded] = useState(false);
-  const shown = expanded ? neighbourhoods : neighbourhoods.slice(0, PREVIEW_COUNT);
+  // Every chip renders. The overflow is hidden with CSS rather than sliced out
+  // of the array, because slicing meant 110 of the 166 location pages had no
+  // link at all from the two strongest URLs on the domain — the button that
+  // reveals them is a button, and Googlebot does not click buttons. The
+  // component's own docblock had been claiming the opposite.
   const hiddenCount = neighbourhoods.length - PREVIEW_COUNT;
 
   return (
@@ -55,8 +63,13 @@ export default function CityCoverageGrid({
         {city} Neighborhoods
       </p>
       <div className="flex flex-wrap gap-2.5">
-        {shown.map((loc) => (
-          <Chip key={loc.to} {...loc} />
+        {neighbourhoods.map((loc, index) => (
+          <span
+            key={loc.to}
+            className={index < PREVIEW_COUNT || expanded ? "contents" : "hidden"}
+          >
+            <Chip {...loc} />
+          </span>
         ))}
         {hiddenCount > 0 && (
           <button

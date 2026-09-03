@@ -534,6 +534,13 @@ export interface QuoteResult {
   /** Dollars saved per ongoing visit versus the first clean. */
   savings: number;
   discountPct: number;
+  /**
+   * True when the basket holds an extra BookingKoala charges on the first
+   * visit only — a deep-clean package, an oven, a fridge. The recurring
+   * price excludes it, and the panel has to say so or the drop between the
+   * two numbers looks like a far bigger discount than the frequency gives.
+   */
+  firstVisitExtras: boolean;
   /** True when this service can only be honestly estimated. */
   isEstimate: boolean;
   /** True when no online figure is honest at all. */
@@ -588,13 +595,34 @@ export function calculateQuote(input: QuoteInput): QuoteResult {
   const addOnTotal = chosen.reduce((total, addOn) => total + addOn.price, 0);
 
   // BookingKoala's verified formula:
-  //   subtotal = bedrooms + full baths + half baths + home type + extras
-  //   recurring = subtotal x (1 - frequency discount)
+  //   subtotal  = bedrooms + full baths + half baths + home type + extras
+  //   recurring = discountable part x (1 - frequency discount) + the rest
+  //
+  // Two flags on every extra decide what "the rest" is, and until now both were
+  // computed from bk-config and then never read — so the funnel discounted
+  // everything, including the Deep Cleaning package BookingKoala charges once
+  // and exempts from frequency discounts. A 3-bedroom weekly plan with that
+  // package quoted $265.03 a visit when the real recurring price is $153.04,
+  // for a service that would not be performed after visit one.
+  //
+  //   firstVisitOnly      charged on visit 1 only  -> absent from a recurring visit
+  //   exemptFromDiscount  recurs, but at full price -> added after the discount
   const subtotal = base + addOnTotal;
   const firstClean = money(subtotal);
 
   const recurring = service.supportsRecurring && frequency.discount > 0;
-  const ongoing = recurring ? money(subtotal * (1 - frequency.discount)) : null;
+  const recurringAddOns = chosen.filter((addOn) => !addOn.firstVisitOnly);
+  const discountable =
+    base +
+    recurringAddOns
+      .filter((addOn) => !addOn.exemptFromDiscount)
+      .reduce((total, addOn) => total + addOn.price, 0);
+  const undiscounted = recurringAddOns
+    .filter((addOn) => addOn.exemptFromDiscount)
+    .reduce((total, addOn) => total + addOn.price, 0);
+  const ongoing = recurring
+    ? money(discountable * (1 - frequency.discount) + undiscounted)
+    : null;
 
 
   const spread = service.estimateSpread ?? 0;
@@ -604,6 +632,7 @@ export function calculateQuote(input: QuoteInput): QuoteResult {
     ongoing,
     savings: ongoing !== null ? money(firstClean - ongoing) : 0,
     discountPct: recurring ? Math.round(frequency.discount * 100) : 0,
+    firstVisitExtras: chosen.some((addOn) => addOn.firstVisitOnly),
     isEstimate: !service.exactPricing,
     quoteOnly: Boolean(service.quoteOnly),
     rangeLow: money(firstClean * (1 - spread)),

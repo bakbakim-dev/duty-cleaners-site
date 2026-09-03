@@ -76,6 +76,18 @@ export default function PricePanel({
     </div>
   );
 
+  /* A first-visit-only extra — the deep-clean package, an oven, a fridge — is
+     charged once and never on a recurring visit. Without saying so, the drop
+     from first clean to ongoing reads as a far bigger discount than the
+     frequency actually gives: a 3-bedroom weekly plan with the deep package
+     goes $331.29 to $153.04, which is not 20%. */
+  const firstVisitNote = ongoing !== null && quote.firstVisitExtras ? (
+    <p className="mt-2 text-sm text-fine-print">
+      Your deep-clean extras are charged on the first visit only, so they are not in the
+      per-visit price below.
+    </p>
+  ) : null;
+
 
 
   if (variant === "compact") {
@@ -145,7 +157,7 @@ export default function PricePanel({
             </p>
           </div>
         )}
-        <div className="hidden sm:block">{pills}</div>
+        <div className="hidden sm:block">{firstVisitNote}{pills}</div>
       </div>
     );
   }
@@ -198,6 +210,7 @@ export default function PricePanel({
       )}
 
       <p className="mt-4 border-t border-border pt-4 text-sm font-semibold text-muted-foreground">{itemLine}</p>
+      {firstVisitNote}
       {pills}
 
       {quote.isEstimate && (
