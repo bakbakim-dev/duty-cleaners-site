@@ -44,8 +44,8 @@ export function commercialFaqs(city: "Edmonton" | "Calgary", phone: string) {
       a: "No. Recurring schedules are the most common arrangement because they keep the same cleaners on your site, but there is no lock-in period and no cancellation penalty. If you would rather start with a single deep clean before committing to a schedule, that is a normal way to begin.",
     },
     {
-      q: "Are your cleaners vetted and insured?",
-      a: "Every cleaner is reference-checked before their first job and rated by the customer after every visit — those ratings decide who keeps working for us. Duty Cleaners has been operating in Alberta since 2017. For contracts that require specific insurance certificates or security clearances, ask when you book and we will confirm what we can provide in writing.",
+      q: "How are your cleaners vetted, and what about insurance?",
+      a: "Every cleaner is reference-checked before their first job and rated by the customer after every visit — those ratings decide who keeps working for us. Duty Cleaners has been operating in Alberta since 2017. On insurance we do not make blanket coverage claims, because that is a legally specific statement and it should not be made loosely. If your contract requires particular certificates, coverage limits or security clearances, raise it before you sign and we will confirm in writing what we can provide for your site.",
     },
     {
       q: "Will the same team clean our premises each visit?",
