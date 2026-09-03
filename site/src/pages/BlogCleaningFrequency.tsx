@@ -62,7 +62,7 @@ const factors = [
   {
     icon: DollarSign,
     title: "Budget",
-    description: `A monthly visit costs least per month. A weekly one costs least per visit, because recurring plans are discounted from the second clean on: ${FREQUENCY_DISCOUNTS}. On a ${STANDARD_EXAMPLE.base} standard clean that works out to ${STANDARD_EXAMPLE.perVisit}. Decide which of the two numbers is the one your budget actually feels.`
+    description: `A monthly visit costs least per month. A weekly one costs least per visit, because recurring plans are discounted from the second clean on: ${FREQUENCY_DISCOUNTS}. On a ${STANDARD_EXAMPLE.base} standard clean that works out to ${STANDARD_EXAMPLE.perVisit}. All before 5% GST. Decide which of the two numbers is the one your budget actually feels.`
   }
 ];
 

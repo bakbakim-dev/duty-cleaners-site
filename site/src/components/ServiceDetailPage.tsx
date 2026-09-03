@@ -1,3 +1,4 @@
+import { GST_RATE } from "@/data/pricing";
 import { canonicalForPath, canonicalUrlForPath } from "@/data/legacy-urls";
 import { schemaAddressFor, BRANCH_ID, BRANCH_IDENTITY } from "@/data/proof";
 import { POLICY } from "@/data/policy";
@@ -457,8 +458,15 @@ const ServiceDetailPage = ({
                 </div>
               ))}
             </div>
+            {/* /pricing/ said "before 5% GST" three times; these pages, which are
+                where search actually lands, said it nowhere while printing a full
+                price ladder. It belongs in the template so no future service page
+                can ship a ladder without it. */}
+            <p className="text-center text-sm text-muted-foreground mt-8 max-w-2xl mx-auto">
+              All prices are in Canadian dollars before {Math.round(GST_RATE * 100)}% GST.
+            </p>
             {pricingNote && (
-              <p className="text-center text-sm text-muted-foreground mt-8 max-w-2xl mx-auto">{pricingNote}</p>
+              <p className="text-center text-sm text-muted-foreground mt-3 max-w-2xl mx-auto">{pricingNote}</p>
             )}
             <div className="text-center mt-6">
               <Link

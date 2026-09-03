@@ -657,4 +657,36 @@ describe("price CTAs reach the price", () => {
         `than name a landmark it is not.`,
     ).toEqual([]);
   });
+
+  /**
+   * Price lists that never mention tax.
+   *
+   * /pricing/ said "before 5% GST" three times while the four pages search
+   * actually lands on — deep, standard and recurring cleaning, and /services/
+   * — printed a full ladder and said it nowhere. policy.ts: "Every quoted
+   * figure is before tax. GST of 5% is added on top." A $485 five-bedroom deep
+   * clean bills at $509.25, first seen inside the booking form.
+   *
+   * Three figures is the threshold: a page mentioning one price in passing is
+   * not a price list.
+   */
+  it("any page listing prices says they exclude GST", () => {
+    const pages = allPages();
+    if (pages.length === 0) return;
+    const bad: string[] = [];
+    for (const url of pages) {
+      const text = mainText(url);
+      const prices = text.match(/\$\d{2,4}(?:\.\d\d)?/g) ?? [];
+      if (prices.length >= 3 && !/\bGST\b/.test(text)) {
+        bad.push(`${url}: ${prices.length} prices, no mention of GST`);
+      }
+    }
+    expect(
+      bad,
+      `These pages list prices without saying they exclude tax:\n${bad.join("\n")}\n` +
+        `policy.ts: every quoted figure is before tax, GST of 5% on top. Add the ` +
+        `line beside the prices — ServiceDetailPage already renders one for any ` +
+        `page using its pricing ladder.`,
+    ).toEqual([]);
+  });
 });

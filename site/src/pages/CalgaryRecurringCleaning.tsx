@@ -21,12 +21,12 @@ export default function CalgaryRecurringCleaning() {
       quoteService="recurring-cleaning"
       phone="(403) 768-1341"
       phoneHref="tel:4037681341"
-      seoTitle="Recurring Cleaning Calgary | Weekly, Bi-Weekly & Monthly"
-      seoDescription="Recurring house cleaning in Calgary. Weekly (20% off), bi-weekly (15% off), or monthly (10% off) scheduled cleaning from vetted professionals."
+      seoTitle="Recurring Cleaning Calgary | Weekly, Bi-Weekly & Every 4 Weeks"
+      seoDescription="Recurring house cleaning in Calgary. Weekly (20% off), bi-weekly (15% off), or every-4-weeks (10% off) scheduled cleaning from vetted professionals."
       canonical="https://dutycleaners.ca/calgary/recurring-cleaning"
       heroHeading={<>Recurring Cleaning in <AccentGold>Calgary</AccentGold></>}
-      heroSubheading="Scheduled weekly, bi-weekly, or monthly cleaning to keep your home consistently clean and comfortable — with discounts on every recurring visit."
-      heroBadges={["Weekly 20% Off", "Bi-Weekly 15% Off", "Monthly 10% Off"]}
+      heroSubheading="Scheduled weekly, bi-weekly, or every-4-weeks cleaning to keep your home consistently clean and comfortable — with discounts on every recurring visit."
+      heroBadges={["Weekly 20% Off", "Bi-Weekly 15% Off", "Every 4 Weeks 10% Off"]}
       heroImage={heroImage}
       heroImageAlt="Bright, tidy Calgary living room maintained with recurring cleaning service"
       overviewEyebrow="Service Overview"
@@ -47,7 +47,7 @@ export default function CalgaryRecurringCleaning() {
         "Recurring maintenance cleaning on your schedule",
         "Kitchen, bathrooms, and living areas cleaned",
         "Floors vacuumed and mopped",
-        "Flexible weekly, bi-weekly, or monthly scheduling",
+        "Flexible weekly, bi-weekly, or every-4-weeks scheduling",
         "Dusting of all accessible surfaces and furniture",
         "Bathrooms scrubbed and sanitized",
         "Mirrors and glass surfaces polished",
@@ -60,7 +60,7 @@ export default function CalgaryRecurringCleaning() {
         { name: "Bedrooms", tasks: 3, sample: "dusting surfaces and vacuuming under beds" },
       ]}
       pricingBySize={TIERS}
-      pricingNote="Rates shown are one-time standard pricing, which is what your first clean costs. From the second visit on, recurring plans save 20% weekly · 15% bi-weekly · 10% monthly."
+      pricingNote="Rates shown are one-time standard pricing, which is what your first clean costs. From the second visit on, recurring plans save 20% weekly · 15% bi-weekly · 10% every 4 weeks."
       fromPrice={TIERS[0].price}
       extras={featuredExtraRows()}
       notIncluded={[
@@ -73,7 +73,7 @@ export default function CalgaryRecurringCleaning() {
       ]}
       faqs={[
         { q: "How often should I book in Calgary specifically?", a: "Most Calgary households find the answer changes with the season. Because the city cycles above and below freezing all winter rather than staying frozen, road sand and de-icer come indoors continuously from about October to April — so homes that are comfortable monthly through summer often move to bi-weekly once the chinooks start. Homes with a dog, a garage entry or young children usually feel it first. There is no contract, so you can change the cadence whenever you like." },
-        { q: "How much do I save with recurring cleaning?", a: "Your first clean is charged at the standard one-time rate. From your second visit onward you save 20% on weekly, 15% on bi-weekly and 10% on monthly cleanings, compared to one-time pricing." },
+        { q: "How much do I save with recurring cleaning?", a: "Your first clean is charged at the standard one-time rate. From your second visit onward you save 20% on weekly, 15% on bi-weekly and 10% on every-4-weeks cleanings, compared to one-time pricing." },
         { q: "Can I change or skip a scheduled cleaning?", a: `Yes, and there is no long-term contract — you can change, skip or pause a recurring schedule at any time. We ask for at least ${POLICY.cancellationNoticeHours} hours' notice so the slot can go to someone else. Inside that window there is a ${POLICY.cancellationFee} fee, and if the team arrives and cannot get in, the visit is charged at ${POLICY.lockoutFee}.` },
         { q: "Will I have the same cleaner each visit?", a: "We do our best to send the same cleaning team for each visit so they become familiar with your home and preferences. However, in cases such as emergencies, sick days, or scheduled leave, we may send a different trusted team. If you prefer the same cleaners each time and have flexibility with scheduling, we can also adjust your appointment to a day when your regular team is available." },
         { q: "Do I need to be home during the cleaning?", a: "No. Most recurring clients provide a lockbox code, smart-lock access, or leave keys in a safe spot. We'll lock up after we're done." },
@@ -81,7 +81,7 @@ export default function CalgaryRecurringCleaning() {
         { q: "What if I only need a single cleaning?", a: "If you'd prefer a one-time appointment, our standard or deep cleaning service are great fit." },
       ]}
       ctaHeading={<>Set it. Forget it. <AccentGold>Stay spotless.</AccentGold></>}
-      ctaDescription="Lock in ongoing savings and a consistently clean home with weekly, bi-weekly, or monthly visits from vetted pros."
+      ctaDescription="Lock in ongoing savings and a consistently clean home with weekly, bi-weekly, or every-4-weeks visits from vetted pros."
       galleryImages={[
         { src: kitchenImage, alt: "Spotless Calgary kitchen maintained by recurring cleaning service" },
         { src: livingRoomImage, alt: "Bright, consistently clean Calgary living room" },

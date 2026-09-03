@@ -1,3 +1,4 @@
+import { GST_RATE } from "@/data/pricing";
 import { RATING_CLAIM } from "@/data/proof";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import Navigation from "@/components/Navigation";
@@ -42,6 +43,9 @@ import {
 
 /* Every published figure comes from the BookingKoala config snapshot. */
 const from = (value: number) => `from ${formatPrice(value)}`;
+
+/** These cards print four prices and said nothing about tax. */
+const GST_LINE = `Starting prices, before ${Math.round(GST_RATE * 100)}% GST.`;
 const RECURRING_FROM = calculateQuote({
   service: "standard",
   homeType: null,
@@ -356,6 +360,8 @@ export default function EdmontonServices() {
               <ServiceCard key={service.title} service={service} />
             ))}
           </div>
+          {/* Four prices on this page and, until now, nothing about tax. */}
+          <p className="text-center text-sm text-muted-foreground mt-8">{GST_LINE}</p>
         </div>
       </section>
 
