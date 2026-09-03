@@ -298,6 +298,33 @@ Deno.serve(async (req) => {
       result = { ok: false, status: 0, error: String(error) };
     }
 
+    // The contact form's Message is free text with nowhere to go in FIELD_MAP,
+    // so it used to be dropped here. GHL keeps notes on their own endpoint.
+    // Best-effort: the contact is already saved, and a failed note is not a
+    // reason to report a failed submission.
+    if (result.ok && result.contactId && payload.notes?.trim()) {
+      try {
+        const noteRes = await ghlFetch(
+          `/contacts/${result.contactId}/notes`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ body: payload.notes.trim() }),
+          },
+          token
+        );
+        if (!noteRes.ok) {
+          console.error(
+            "[ghl-quote] note failed",
+            noteRes.status,
+            (await noteRes.text()).slice(0, 300)
+          );
+        }
+      } catch (error) {
+        console.error("[ghl-quote] note failed", String(error));
+      }
+    }
+
     if (row?.id) {
       await supabase
         .from("quote_leads")
