@@ -36,7 +36,7 @@ export default function CalgaryDeepCleaning() {
       includedSubheading="Every inch of your home is addressed — including the spots usually missed."
       included={[
         { icon: UtensilsCrossed, title: "Kitchen Detail Clean", description: "Degreasing stovetops, range hoods, exterior of appliances, cabinet fronts, backsplash, and sanitizing all prep surfaces." },
-        { icon: Bath, title: "Bathroom Deep Scrub", description: "Detailed dusting of fans, vents, and accessible high and low areas throughout the home." },
+        { icon: Bath, title: "Bathroom Deep Scrub", description: "Tile, grout and shower glass detailed, soap scum and mineral build-up removed from tubs and fixtures, toilets scrubbed inside and out, vanities and mirrors polished." },
         { icon: Layers, title: "Edges & Details", description: "Hand-wiping baseboards, door frames, light switches, outlet covers, vents, and corners that collect dust." },
         { icon: Sparkles, title: "Full Dust Reset", description: "Detailed dusting of fans, vents, and accessible high and low areas throughout the home." },
       ]}

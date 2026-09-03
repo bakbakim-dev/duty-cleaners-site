@@ -1,3 +1,6 @@
+import { useLocation } from "react-router-dom";
+import { cityProofFor } from "@/data/proof";
+import { quoteHrefFor } from "@/lib/quote-link";
 import Navigation from "@/components/Navigation";
 import { NOT_INCLUDED } from "@/data/policy";
 import Footer from "@/components/Footer";
@@ -204,6 +207,8 @@ const ExclusionItem = ({ text }: { text: string }) => (
 );
 
 export default function WhatsIncluded() {
+  const { pathname } = useLocation();
+  const cityProof = cityProofFor(pathname);
   const standardItems = [
     { icon: Sparkles, text: "Wipe down & dust all surfaces and furniture" },
     { icon: Droplets, text: "Vacuum and mop all floors and carpets" },
@@ -366,7 +371,7 @@ export default function WhatsIncluded() {
             <CleaningTypeCard
               icon={Truck}
               title="Move In/Out Clean"
-              description="Get your full deposit back or start fresh in your new home. Our most thorough service."
+              description="Cleaned to the standard a move-out inspection looks for. Our most thorough service."
               items={moveOutItems}
               index={2}
             />
@@ -527,16 +532,16 @@ export default function WhatsIncluded() {
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Button size="lg" className="bg-accent hover:bg-accent/90 text-white h-12 px-8" asChild>
-                <Link to="/contact-us/">
+                {/* The line above promises an instant quote and no phone call;
+                    this used to open the 24-hour contact inbox. */}
+                <a href={quoteHrefFor(pathname)}>
                   <Calculator className="mr-2 w-5 h-5" />
-                  Get Free Estimate
-                </Link>
+                  See My Instant Price
+                </a>
               </Button>
               <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 h-12 px-8" asChild>
-                <a href="tel:4037681341">
-                  <Phone className="mr-2 w-5 h-5" />
-                  (403) 768-1341
-                </a>
+                <a href={cityProof.phoneLink}>
+                  <Phone className="mr-2 w-5 h-5" />{cityProof.phone}</a>
               </Button>
             </div>
           </div>
@@ -552,7 +557,7 @@ export default function WhatsIncluded() {
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">100% Satisfaction Guarantee</h2>
             <p className="text-muted-foreground text-lg mb-2">
-              Join hundreds of happy clients each month.
+              Every clean is backed by our 24-hour make-it-right promise.
             </p>
             <p className="text-muted-foreground mb-8">
               We stand behind the quality of our staff. If you're not 100% satisfied with your cleaning,

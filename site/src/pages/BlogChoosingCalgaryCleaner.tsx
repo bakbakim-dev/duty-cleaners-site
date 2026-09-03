@@ -31,7 +31,9 @@ const WHAT_TO_CHECK = [
   {
     title: "Vetted, consistent cleaners",
     good: "The company screens who they send into your home, and you can request the same cleaner for recurring visits.",
-    bad: "No mention of background checks, or a different unnamed contractor every time.",
+    // Was "No mention of background checks" — which flagged this company,
+    // since policy.ts records reference checks, not background checks.
+    bad: "No answer on how cleaners are screened, or a different unnamed contractor every time.",
   },
   {
     title: "A clear written scope",
