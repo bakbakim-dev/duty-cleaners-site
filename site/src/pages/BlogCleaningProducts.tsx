@@ -338,7 +338,7 @@ export default function BlogCleaningProducts() {
                 </div>
 
                 <div className="p-6 bg-secondary/10 rounded-xl border border-secondary/20">
-                  <h4 className="font-bold text-foreground mb-2">Bedrooms, living areas and floors</h4>
+                  <h3 className="font-bold text-foreground mb-2">Bedrooms, living areas and floors</h3>
                   <p className="text-muted-foreground text-sm">
                     Almost entirely the all-purpose cleaner and dry microfibre. Dust before you
                     vacuum, not after, and work top to bottom so anything you dislodge lands on a

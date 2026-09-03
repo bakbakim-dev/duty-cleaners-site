@@ -56,10 +56,28 @@ const ANCESTOR_OVERRIDES: Record<string, string> = {
   "/edmonton": "/", // the Edmonton city root IS the homepage
 };
 
+/**
+ * Four blog posts kept their WordPress URLs, which sit at the site root rather
+ * than under /blog/. Path slicing therefore gave them "Home › How Much Does A
+ * House Cleaning Cost" while every /blog/* post got the Blog crumb — on pages
+ * that carry a "Back to Blog" link the breadcrumb did not acknowledge. The
+ * crumb is injected here rather than by moving the URLs, because those URLs are
+ * the canonical ones and carry the incoming links.
+ */
+const BLOG_POSTS_AT_ROOT = new Set([
+  "/how-much-does-a-house-cleaning-cost",
+  "/how-often-should-a-cleaning-service-clean-my-house",
+  "/cleaning-with-vinegar-and-baking-soda",
+  "/the-top-5-must-have-cleaning-products-for-a-spotless-home",
+]);
+
 // Generate breadcrumbs from current path
 function generateBreadcrumbs(pathname: string): BreadcrumbItem[] {
   const segments = pathname.split("/").filter(Boolean);
   const breadcrumbs: BreadcrumbItem[] = [{ label: "Home", href: "/" }];
+  if (BLOG_POSTS_AT_ROOT.has(`/${segments.join("/")}`)) {
+    breadcrumbs.push({ label: "Blog", href: "/blog/" });
+  }
   
   let currentPath = "";
   

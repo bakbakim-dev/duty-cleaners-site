@@ -10,12 +10,33 @@ import { Calendar, Clock, ArrowLeft, Home, Users, PawPrint, Briefcase, DollarSig
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
+import { FREQUENCIES, flatRateFromPrice, formatPrice } from "@/data/pricing";
 
 import heroImage from "@/assets/blog/cleaning-frequency-hero.webp";
 import familyImage from "@/assets/blog/family-household.webp";
 import petsImage from "@/assets/blog/pets-home.webp";
 import professionalImage from "@/assets/blog/professional-cleaning.webp";
 import calendarImage from "@/assets/blog/cleaning-calendar.webp";
+
+/** Read from BookingKoala so this article cannot quote a stale discount. */
+const RECURRING = FREQUENCIES.filter((frequency) => frequency.discount > 0).sort(
+  (a, b) => b.discount - a.discount,
+);
+const FREQUENCY_DISCOUNTS = RECURRING.map(
+  (frequency) => `${Math.round(frequency.discount * 100)}% ${frequency.label.toLowerCase()}`,
+).join(", ");
+// Each price carries its own frequency word. A bare "$123.99 / $131.74 /
+// $139.49" makes the reader map three numbers onto three plans from position.
+const STANDARD_EXAMPLE = {
+  base: formatPrice(flatRateFromPrice()),
+  perVisit: RECURRING.map((frequency, index) => {
+    const price = formatPrice(
+      Math.round(flatRateFromPrice() * (1 - frequency.discount) * 100) / 100,
+    );
+    const plan = frequency.label.toLowerCase();
+    return index === RECURRING.length - 1 ? `or ${price} ${plan}` : `${price} ${plan}`;
+  }).join(", "),
+};
 
 const factors = [
   {
@@ -41,7 +62,7 @@ const factors = [
   {
     icon: DollarSign,
     title: "Budget",
-    description: "Ultimately, how often you choose to get your house cleaned depends on what you can afford. Hiring a professional house cleaning is indeed an investment. Monthly cleans tend to be the most affordable option, while weekly service may be more cost-effective if you have a large and busy household."
+    description: `A monthly visit costs least per month. A weekly one costs least per visit, because recurring plans are discounted from the second clean on: ${FREQUENCY_DISCOUNTS}. On a ${STANDARD_EXAMPLE.base} standard clean that works out to ${STANDARD_EXAMPLE.perVisit}. Decide which of the two numbers is the one your budget actually feels.`
   }
 ];
 
@@ -50,13 +71,13 @@ const frequencyOptions = [
     title: "Weekly Cleaning",
     ideal: "Busy households with kids and pets, larger homes, seniors or disabled individuals",
     description: "Weekly cleaning is the best option for busy households that need consistent upkeep and maintenance. This is especially true if you have kids and pets at home. If your home is on the larger side, weekly cleaning is definitely something you should look into. The cleaning covers the surfaces of the home as well as the high traffic areas of the house.",
-    benefit: "Most cleaning companies offer higher recurring discounts for this type of service because it requires a much higher level of commitment from them."
+    benefit: `The more often a home is cleaned, the less there is to clean each time, which is why weekly carries the largest discount: ${FREQUENCY_DISCOUNTS}, applied from your second visit on.`
   },
   {
     title: "Bi-Weekly Cleaning",
     ideal: "Young couples, individuals who do regular tidying, medium-sized homes",
     description: "Biweekly cleanings are the most popular and ideal for those who want to keep their homes tidy but don't feel the need for frequent weekly cleanings. If you're a young couple or someone who can still do general tidying or regular cleaning then bi-weekly service may be the perfect fit for you.",
-    benefit: "Generally speaking, a bi-weekly house cleaning is sufficient for most homes. It allows you to maintain a level of cleanliness between the weekly deep cleanings, while also freeing up your time and energy to focus on other important tasks."
+    benefit: "Two weeks is long enough that a visit feels like a reset, and short enough that dust and kitchen grease never get ahead of you. It is the plan most recurring customers choose."
   },
   {
     title: "Monthly Cleaning",
@@ -171,7 +192,7 @@ export default function BlogCleaningFrequency() {
               {/* Introduction */}
               <div className="prose prose-lg max-w-none mb-12">
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Having a tidy home is aesthetically pleasing and important for our mental and physical health, yet not all of us can find the time or energy to clean each day, right? That's why most of us consider hiring cleaning services to help us with household cleaning chores. A lot of professional cleaning providers offer <Link to="/edmonton/recurring-cleaning/" className="text-primary hover:underline font-medium">weekly, biweekly, and monthly home cleaning services</Link> which we can choose based on our needs and budget — and if budget is the deciding factor, our guide to <Link to="/how-much-does-a-house-cleaning-cost/" className="text-primary hover:underline font-medium">what house cleaning costs</Link> breaks the numbers down.
+                  The question is rarely whether the house needs cleaning. It is how many hours a month you want back, and what those hours cost at each frequency. Most cleaning providers offer <Link to="/edmonton/recurring-cleaning/" className="text-primary hover:underline font-medium">weekly, biweekly, and monthly home cleaning services</Link> which we can choose based on our needs and budget — and if budget is the deciding factor, our guide to <Link to="/how-much-does-a-house-cleaning-cost/" className="text-primary hover:underline font-medium">what house cleaning costs</Link> breaks the numbers down.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed mt-4">
                   But how often do we need professional cleanings for our homes? Is once a week too much? Is bi-weekly enough? Or does monthly service make more sense timewise and financially? Well, the answer to these questions depends on many factors.
@@ -320,7 +341,7 @@ export default function BlogCleaningFrequency() {
                   Finding the Right Frequency for You
                 </h2>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Your home is a place where you should feel relaxed and at peace, it's your oasis! A clean space goes a long way in creating that environment. But knowing how often to get your home cleaned can be tough, especially when weighing factors like budget and time constraints. Keep these things in mind as you consider what's best for you and your home.
+                  Pick the frequency by how fast your home actually gets untidy, not by the one that sounds most responsible. A plan you quietly resent is a plan you cancel, and you can change frequency or stop at any time without a contract.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed mt-4">
                   No matter what frequency of cleaning service you choose, finding a reliable house cleaning service that can meet your needs is essential for peace of mind and maintaining a healthy home environment.
@@ -333,7 +354,7 @@ export default function BlogCleaningFrequency() {
                   Ready to Book Your Cleaning Service?
                 </h3>
                 <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                  If you are looking for professional house cleaning services perfect for your home, Duty Cleaners serves Edmonton, Calgary and the surrounding communities. Request a quote.
+                  Duty Cleaners serves Edmonton, Calgary and the surrounding communities. Pick a frequency, see the price for your home size, and pay only after the clean is done.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link to="/#quote">

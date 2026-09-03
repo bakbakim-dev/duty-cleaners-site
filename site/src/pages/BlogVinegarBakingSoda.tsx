@@ -18,7 +18,7 @@ import laundryImage from "@/assets/blog/laundry-natural-cleaning.webp";
 const whatToClean = [
   {
     title: "Kitchen Sink",
-    description: "Did you know that the kitchen sink carries more bacteria than the toilet and garbage can? For the sink, sprinkle baking soda on the surface before scrubbing and rinsing it off. Soak paper towels in distilled white vinegar and let them line the sink for 20 minutes before wiping the cover down."
+    description: "A sink that looks clean still holds a film around the drain and the overflow. Sprinkle baking soda on the surface, scrub, and rinse it off. Soak paper towels in distilled white vinegar and let them line the sink for 20 minutes before wiping the cover down."
   },
   {
     title: "Clogged Drains and Garbage Disposals",
@@ -26,7 +26,7 @@ const whatToClean = [
   },
   {
     title: "Faucets",
-    description: "Get sparking clean faucets by making a baking soda paste: add a tablespoon of baking soda and water with the same amount of vinegar. Use the paste to cover all chrome areas of the sink. Let it remain for at least 15 minutes. After that, scrub those areas and buff them to get the sparkle."
+    description: "Wrap the tap in a paper towel soaked in white vinegar and leave it 15 minutes to soften the scale. Peel the towel away, then scrub with a paste of baking soda and a little water, rinse, and buff dry with a cloth. One after the other, not mixed together."
   },
   {
     title: "Refrigerator",
@@ -34,11 +34,11 @@ const whatToClean = [
   },
   {
     title: "Bathroom Surfaces",
-    description: "Mix 1 and 2/3 cups of baking soda and a half cup of liquid soap in a bowl. Mix half a cup of water with 2 tablespoons of white vinegar. Combine them and stir thoroughly to remove any lumps. Put the mixture into a spray bottle and shake well. Spray the mixture on your bathroom surfaces and use a nylon-backed sponge to scrub it. Rinse all surfaces with water."
+    description: "Sprinkle baking soda over the tub and tiles, scrub with a damp nylon-backed sponge, and rinse. Then spray the glass and chrome with half white vinegar, half water and wipe dry. Two steps, one after the other — in the same bottle they cancel out and you are spraying salty water."
   },
   {
     title: "Showerheads",
-    description: "If your showerhead is clogged with minerals, vinegar can help clear it. Mix 1 cup of vinegar and one quart of water to make a cleaning solution. Let the showerhead soak in the mixture for 15 minutes. Afterward, rinse it off before replacing the showerhead."
+    description: "If your showerhead is clogged with minerals, vinegar can help clear it. Mix 1 cup of vinegar into a litre of water. Let the showerhead soak in the mixture for 15 minutes. Afterward, rinse it off before replacing the showerhead."
   },
   {
     title: "Toilet Bowl",
@@ -61,7 +61,7 @@ const whatNotToClean = [
   },
   {
     title: "Mirrors",
-    description: "Products with an acidic component can damage the backing of mirrors and should, therefore, never use vinegar to remove stubborn stains."
+    description: "Vinegar can creep under the edge of a mirror and attack the silvered backing, so keep it off them. Use a plain glass cleaner, or warm water and a drop of dish soap, then buff dry with a microfibre cloth."
   },
   {
     title: "Marble, Granite, or Stone Counters",
@@ -217,9 +217,9 @@ export default function BlogVinegarBakingSoda() {
                     </p>
                   </div>
                   <div className="p-6 bg-secondary/10 rounded-xl border border-secondary/20">
-                    <h4 className="font-bold text-foreground mb-2">🍶 Vinegar (Acid)</h4>
+                    <h3 className="font-bold text-foreground mb-2">🍶 Vinegar (Acid)</h3>
                     <p className="text-muted-foreground text-sm">
-                      Vinegar is an acid that can break down minerals – including hard water stains. By combining it with baking soda, you can make your home sparkling clean in no time.
+                      Vinegar is a weak acid, so it dissolves the mineral scale that hard Alberta water leaves on taps, shower glass and kettles. Use it on its own and rinse afterwards — it does that job better alone than neutralised by baking soda.
                     </p>
                   </div>
                 </div>

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-import { standardTierRows, deepCleanTierRows, moveInOutTierRows } from "@/data/pricing";
+import { standardTierRows, deepCleanTierRows, moveInOutTierRows, FREQUENCIES } from "@/data/pricing";
+import { POLICY } from "@/data/policy";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -25,7 +26,9 @@ const cleaningTypes = [
   {
     title: "Deep Cleanings",
     description: "Intensive cleaning of all surfaces with special attention to hard-to-reach areas like interior of appliances and cabinets. Takes longer to complete.",
-    priceRange: "$200 - $400"
+    // Floor was $200, which put it above this page's own "$170-$200 for a
+    // small 1-bedroom deep clean" two sections down.
+    priceRange: "$170 - $400"
   },
   {
     title: "Move-in/Move-out Cleanings",
@@ -38,6 +41,12 @@ const cleaningTypes = [
     priceRange: "$0.10 - $0.50/sq ft"
   }
 ];
+
+/** Straight from BookingKoala, so the article cannot quote a stale discount. */
+const FREQUENCY_DISCOUNTS = FREQUENCIES.filter((frequency) => frequency.discount > 0)
+  .sort((a, b) => b.discount - a.discount)
+  .map((frequency) => `${Math.round(frequency.discount * 100)}% ${frequency.label.toLowerCase()}`)
+  .join(", ");
 
 const pricingFactors = [
   {
@@ -53,7 +62,7 @@ const pricingFactors = [
   {
     icon: Clock3,
     title: "Frequency of Service",
-    description: "Weekly cleanings may be $160/visit, while bi-weekly could be $180/visit. More frequent service = lower per-visit cost."
+    description: `More frequent service means a lower price per visit, because a home cleaned often is faster to clean each time. Ours are discounted from the second visit on: ${FREQUENCY_DISCOUNTS}.`
   },
   {
     icon: MapPin,
@@ -225,18 +234,6 @@ export default function BlogHouseCleaningCost() {
                   rates — not a statistical survey, and not a quote. What any given company charges
                   depends on your home, its condition and where you live.
                 </p>
-                <p className="text-sm text-muted-foreground leading-relaxed mt-3">
-                  For what <em>we</em> charge, see our{" "}
-                  <a href="/pricing/" className="text-primary underline">
-                    Edmonton pricing
-                  </a>{" "}
-                  and{" "}
-                  <a href="/calgary/pricing/" className="text-primary underline">
-                    Calgary pricing
-                  </a>{" "}
-                  pages. Those figures come straight from our live booking system, and are the ones
-                  you will actually be charged — before 5% GST.
-                </p>
               </div>
 
               {/* Types of Cleaners */}
@@ -282,7 +279,7 @@ export default function BlogHouseCleaningCost() {
                 </div>
 
                 <p className="text-muted-foreground mb-6">
-                  There are two types of charges for home cleaning services: the <strong>hourly rate</strong> and the <strong>flat rate</strong>. House cleaning prices range from $120 to $235 on average but the cost may differ depending on the level of cleaning needed.
+                  There are two types of charges for home cleaning services: the <strong>hourly rate</strong> and the <strong>flat rate</strong>. What you pay depends far more on the size and state of the home than on which company you call — the ranges below cover most Canadian cities.
                 </p>
 
                 <div className="grid md:grid-cols-2 gap-6 mb-8">
@@ -294,13 +291,13 @@ export default function BlogHouseCleaningCost() {
                     <ul className="text-muted-foreground text-sm space-y-2">
                       <li>• 2-bedroom apartment: <strong>$40-$65/hour</strong> per cleaner</li>
                       <li>• Larger homes with more rooms: <strong>$70-$80/hour</strong> per cleaner</li>
-                      <li>• Professional companies usually have minimum hours (e.g., 3 hours for $210)</li>
+                      <li>• Professional companies usually have minimum hours (e.g., a 3-hour minimum, so $150–$195 for that 2-bedroom)</li>
                     </ul>
                   </div>
                   <div className="p-6 bg-accent/10 rounded-xl border border-accent/20">
                     <div className="flex items-center gap-2 mb-3">
                       <DollarSign className="h-5 w-5 text-accent-foreground" />
-                      <h4 className="font-bold text-foreground">Flat Rate</h4>
+                      <h3 className="font-bold text-foreground">Flat Rate</h3>
                     </div>
                     <ul className="text-muted-foreground text-sm space-y-2">
                       <li>• Based on the size of your home</li>
@@ -378,14 +375,14 @@ export default function BlogHouseCleaningCost() {
                   <div className="p-5 bg-destructive/10 rounded-xl border border-destructive/20">
                     <h3 className="font-semibold text-foreground mb-2">⚠️ Late Cancellation Fees</h3>
                     <p className="text-muted-foreground text-sm">
-                      Many companies charge fees for last-minute cancellations. Some may charge 50%-60% of the service cost, while others may require a flat rate of $50-$75. Always ask about cancellation policies when booking.
+                      Ask any company for two numbers before you book: what a late cancellation costs, and what happens if the cleaner arrives and cannot get in. Ours are {POLICY.cancellationFee} inside {POLICY.cancellationNoticeHours} hours, and {POLICY.lockoutFee} for a lockout.
                     </p>
                   </div>
                   
                   <div className="p-5 bg-muted/30 rounded-xl border">
-                    <h4 className="font-semibold text-foreground mb-2">📋 Getting an Accurate Estimate</h4>
+                    <h3 className="font-semibold text-foreground mb-2">You should not need an estimate visit</h3>
                     <p className="text-muted-foreground text-sm">
-                      The best way to get an accurate estimate for your specific situation is to contact a local cleaning company and schedule an estimate. During this estimate, they will take all pricing factors into account to give you an exact quote.
+                      A company that prices by home size can show you the number before you book. Ours takes about a minute to see, and it is the figure you pay, before 5% GST, whether the clean runs long or not. Treat &ldquo;we&rsquo;ll assess it on arrival&rdquo; as a reason to ask more questions, not a courtesy.
                     </p>
                   </div>
                 </div>
@@ -397,17 +394,17 @@ export default function BlogHouseCleaningCost() {
                   See My Instant Price Today
                 </h3>
                 <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                  Ready to find out how much professional cleaning will cost for your home? Contact Duty Cleaners for a free, no-obligation quote. We serve Alberta with transparent, competitive pricing.
+                  Answer a few questions about your home and the price is on screen. Nothing is charged until the clean is done.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link to="/">
-                    <Button size="lg" className="w-full sm:w-auto">
-                      See My Instant Price
+                  <Link to="/#quote">
+                    <Button size="lg" variant="accent" className="w-full sm:w-auto min-h-[52px] text-base font-bold">
+                      See My Instant Price — Edmonton
                     </Button>
                   </Link>
-                  <Link to="/cleaning-services-calgary/">
-                    <Button size="lg" variant="outline" className="w-full sm:w-auto">
-                      See My Instant Price
+                  <Link to="/cleaning-services-calgary/#quote">
+                    <Button size="lg" variant="outline" className="w-full sm:w-auto min-h-[52px] text-base font-semibold">
+                      See My Instant Price — Calgary
                     </Button>
                   </Link>
                 </div>
