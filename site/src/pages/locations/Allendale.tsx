@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -315,6 +316,8 @@ export default function Allendale() {
           "University rentals thread through the area, bringing turnover cleans each spring — end-of-term work that concentrates on kitchens, bathrooms and the scuffs of moving day. Owner-occupied homes are classic small bungalows dense with original trim.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

@@ -1,3 +1,5 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -340,6 +342,18 @@ export default function TuxedoPark() {
             </AnimatedSection>
           </div>
         </section>
+
+      <NearbyNeighbourhoods />
+
+      <LocalMarketNote
+        eyebrow="Street level"
+        heading="Centre Street through the middle"
+        paragraphs={[
+          "Centre Street runs north to south straight through this community rather than along an edge, and the Trans-Canada closes the south side. That leaves a lot of frontage on moving traffic for somewhere annexed in 1910. Homes on those blocks carry a road film on exterior glass and door hardware that returns well before anything indoors needs attention, while the interior streets hold their finish from one visit to the next.",
+          "Just over half the buildings are condominium or apartment, and about the same share of the housing is rented, so suite work and turnover cleans make up more of the week here than in the detached pockets either side. Green Line construction on 16 Avenue North began in 2024, and while it runs, where the dust settles moves with the detours.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -323,6 +324,8 @@ export default function Kilkenny() {
           "The neighbourhood's border arterials — 82 Street on one side, 66 Street traffic nearby — bring the north side's constant grit, while the interior crescents stay quiet. Which street a Kilkenny home faces changes its entry workload more than its size does, and it is worth saying so when booking.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Kilkenny" />

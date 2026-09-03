@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -323,6 +324,8 @@ export default function Holyrood() {
           "Mill Creek Ravine is a short drive west rather than out the back door, so what actually drives the seasonal pattern here is Holyrood's own mature boulevard canopy: seed fluff drifting in through June screens, leaf litter walked in every October, and dry-spell dust on sills. The Valley Line LRT along 85 Street — Holyrood's western edge, with the Holyrood stop at 93 Avenue — added construction dust for years, and much of it is still working out of older ductwork.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Holyrood" />

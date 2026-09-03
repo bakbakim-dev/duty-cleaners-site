@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -278,6 +279,8 @@ export default function SpruceGrove() {
           "Between the 2016 and 2021 censuses the count went from 34,066 residents to 37,645, and a jump that size arrives as new houses. Freshly finished homes hold drywall fines in ductwork and return-air grilles long after possession day, so on a first clean the vents come before any general surface. Do the room first and the furnace puts the whole lot back through it.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

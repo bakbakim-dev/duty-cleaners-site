@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -323,6 +324,8 @@ export default function Casselman() {
           "Sitting a short reach from Manning Drive and the Clareview transit corridors, the area lives with steady arterial dust, and its playing fields add spring mud season to the calendar. The practical read: entries and stair runs first, everything else after.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Casselman" />

@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -290,6 +291,8 @@ export default function Glastonbury() {
           "The Anthony Henday's proximity delivers ring-road grit on the wind, and Lewis Farms' big-box retail keeps local traffic steady. Homes backing the utility corridor get the strongest dust exposure and their window tracks fill first.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

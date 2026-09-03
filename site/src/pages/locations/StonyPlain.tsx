@@ -1,3 +1,5 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import LocationPricing from "@/components/LocationPricing";
@@ -180,6 +182,17 @@ export default function StonyPlain() {
           </div>
         </div>
       </section>
+
+      <NearbyNeighbourhoods />
+
+      <LocalMarketNote
+        eyebrow="What we see"
+        heading="Murals on the old downtown"
+        paragraphs={[
+          "The old downtown here is painted — dozens of murals covering the town's own history — and the heritage buildings behind them are the reason the interiors run older than the newer subdivisions suggest. Original wood, plaster and period tile need a gentler method than a modern finish does: damp and wrung out, no abrasive pad, and time given to the material rather than pressure applied to it.",
+          "The town shares a boundary with Spruce Grove and is otherwise wrapped by Parkland County, so open country starts a short way past the last streets in most directions. That is a wind exposure rather than a traffic one, and it lands on window screens and the outward face of the glass rather than on floors.",
+        ]}
+      />
 
       <LocationPricing />
 

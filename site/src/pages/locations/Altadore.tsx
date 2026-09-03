@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -333,6 +334,8 @@ export default function Altadore() {
           "Dog traffic is the neighbourhood's signature: River Park and Sandy Beach put paws on floors year-round, and the mud weeks after thaw are the heavy season. Entry mats, stair carpets and the first metres of hardwood earn most of the attention in an Altadore clean.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

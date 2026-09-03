@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -314,6 +315,8 @@ export default function Beaumont() {
           "A village from 1973, a town from 1980, and a city only since 2019 — the population rose by a fifth between the 2016 and 2021 censuses alone. Most of what we clean is the product of that run: large, recent family houses where the difficulty is arithmetic, not grime. More bathrooms, more floor, more glass than the street frontage suggests. The honest quote here is about scale.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

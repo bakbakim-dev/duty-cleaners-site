@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -323,6 +324,8 @@ export default function Belmont() {
           "The neighbourhood sits off 137 Avenue with steady traffic feeding the retail strip, so road grit rides in year-round rather than only in winter. Entry mats and the first two metres of hallway take the wear, and in homes near the avenue the front-facing sills pick up a grey film noticeably faster than the back of the house.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Belmont" />

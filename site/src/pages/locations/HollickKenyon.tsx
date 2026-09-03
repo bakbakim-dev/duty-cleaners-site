@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -323,6 +324,8 @@ export default function HollickKenyon() {
           "The neighbourhood's schools and pocket parks keep family traffic steady through the garage-mudroom route, and 167 Avenue's retail strip adds errand-run comings and goings. Winter is the heavy season — rink bags and boot slush through the same mudroom that handles cleats in June.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Hollick-Kenyon" />

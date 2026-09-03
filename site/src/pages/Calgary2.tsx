@@ -159,7 +159,6 @@ export default function Calgary2() {
     // block was one of two stragglers still missing postalCode after the
     // provider-node sweep.
     address: schemaAddressFor("calgary"),
-    url: "https://dutycleaners.ca/cleaning-services-calgary/",
     hasMap: "https://www.google.com/maps?cid=6193344199307583189",
     sameAs: [...BRANCH_PROFILES.calgary],
     areaServed: [

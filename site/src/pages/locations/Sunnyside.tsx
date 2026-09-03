@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -355,6 +356,8 @@ export default function Sunnyside() {
           "Above grade it is heritage-scale work: original casings, stained glass here and there, radiators that gather dust in fins a cloth cannot reach without a brush. The walk to Kensington's shops keeps front entries busy year-round, and bike traffic off the river path adds chain-grease marks to entry floors no other neighbourhood produces as reliably.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

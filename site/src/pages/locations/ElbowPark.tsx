@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -333,6 +334,8 @@ export default function ElbowPark() {
           "The Elbow River borders the district, and flood-aware basements — rebuilt after 2013 with sumps and monitored humidity — deserve their seasonal checks. River-path traffic and the walk to the Glencoe Club keep front entries in gentle constant use; mature elms overhead run the full pollen-to-leaf calendar.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

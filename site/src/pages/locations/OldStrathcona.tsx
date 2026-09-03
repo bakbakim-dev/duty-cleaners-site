@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -274,6 +275,8 @@ export default function OldStrathcona() {
           "These are also the blocks that host the Fringe each August — the oldest and largest festival of its kind in North America, staged in and around Old Strathcona. Residents near the venues spend that stretch with visitors coming and going off the street, and a hundred-year-old floor registers every bit of it. Mats at each door and a dry sweep before anything wet goes down are worth more here than any product.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

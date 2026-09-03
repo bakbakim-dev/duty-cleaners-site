@@ -7,7 +7,7 @@
  * prefix is stripped before the origin is applied — otherwise the staging base
  * would leak into the emitted markup.
  */
-const SITE_ORIGIN = "https://dutycleaners.ca";
+export const SITE_ORIGIN = "https://dutycleaners.ca";
 
 export function absoluteAssetUrl(assetPath: string): string {
   const base = import.meta.env.BASE_URL || "/";

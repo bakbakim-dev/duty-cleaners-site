@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -323,6 +324,8 @@ export default function BonnieDoon() {
           "Mill Creek Ravine borders the west side, and ravine-edge homes live with the valley's seasons indoors: June poplar fluff through screens, October leaf tracking, and the fine dry silt that valley winds lift in August. Screen and track clearing is a scheduled need here, not an occasional extra.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Bonnie Doon" />

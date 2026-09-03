@@ -36,11 +36,11 @@ export const CITY_PROOF: Record<"edmonton" | "calgary", CityProof> = {
     address: "18615 71 Ave NW, Edmonton, AB",
     streetAddress: "18615 71 Ave NW",
     postalCode: "T5T 2V9",
-    // Read from the live Google Reviews widget embedded on the legacy site's
-    // /reviews/ page (dutycleaners.ca), captured 2026-08-24. Reconfirm before
-    // launch in case the count has moved since.
+    // Read directly from the Google listing on 2026-09-01, reached through the
+    // CID pinned in google-listings.ts (8192121191672692049) — not from the
+    // legacy site's embedded widget, which lagged the real count by 12.
     googleRating: 4.9,
-    googleReviewCount: 224,
+    googleReviewCount: 236,
   },
   calgary: {
     city: "Calgary",
@@ -49,8 +49,9 @@ export const CITY_PROOF: Record<"edmonton" | "calgary", CityProof> = {
     address: "2835 37 Street SW #24, Calgary, AB",
     streetAddress: "2835 37 Street SW #24",
     postalCode: "T3E 3B3",
-    googleRating: null, // TODO-OWNER
-    googleReviewCount: null, // TODO-OWNER
+    // Same source and date as Edmonton, via CID 6193344199307583189.
+    googleRating: 4.9,
+    googleReviewCount: 51,
   },
 };
 

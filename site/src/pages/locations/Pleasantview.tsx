@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -324,6 +325,8 @@ export default function Pleasantview() {
           "Southgate station and its transit centre sit a few blocks south of the southwest corner, below where 111 Street meets 51 Avenue, which puts a walking commute within reach of these streets. Walking commutes bring the street indoors. From first snow through spring breakup that means road salt and sand at the door, and salt left to dry will dull a finish, so entry floors and the runner beyond them get weekly attention, not monthly.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Pleasantview" />

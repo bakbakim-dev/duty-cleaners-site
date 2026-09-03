@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -355,6 +356,8 @@ export default function DalhousieCalgary() {
           "Dalhousie's southern edge runs along Crowchild Trail, where the CTrain station sits in the median with a 760-stall park-and-ride beside the shopping centre. Homes on the station side see more sidewalk grit at the door, and the chinook cycle keeps that grit coming from November to April — melted, re-sanded, and tracked in again. Homes on the station side see more sidewalk grit at the door, and the chinook cycle keeps that grit coming from November to April — melted, re-sanded, and tracked in again.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

@@ -9,7 +9,8 @@ import SkipLink from "./components/SkipLink";
 
 import QuoteOverlay from "./components/QuoteOverlay";
 import { QuoteOverlayProvider } from "./hooks/use-quote-overlay";
-import { HelmetProvider } from "react-helmet-async";
+import { Helmet, HelmetProvider } from "react-helmet-async";
+import { SITE_ORIGIN } from "@/lib/seo";
 import Edmonton2 from "./pages/Edmonton2";
 // Only the "/" homepage (Edmonton) stays eager — Calgary loads on demand so it
 // no longer weighs down every first visit.
@@ -235,6 +236,22 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <HelmetProvider>
+      {/*
+        Site-wide social image defaults.
+
+        These used to sit as static tags in index.html, which meant a page could
+        never override them: react-helmet-async only manages the tags it creates,
+        so a page adding its own og:image produced TWO og:image tags rather than
+        replacing the default. Owning them here lets the article pages supply
+        their own hero while every other page still inherits this one.
+      */}
+      <Helmet>
+        <meta property="og:image" content={`${SITE_ORIGIN}/og-image.jpg`} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Duty Cleaners — house cleaning in Edmonton and Calgary, made simple" />
+        <meta name="twitter:image" content={`${SITE_ORIGIN}/og-image.jpg`} />
+      </Helmet>
       <TooltipProvider>
         <Toaster />
         <Sonner />

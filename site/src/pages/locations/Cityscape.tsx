@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -355,6 +356,8 @@ export default function Cityscape() {
           "The community's west edge is Métis Trail and its south edge is Airport Trail, with the airport lands directly across it, so arterial dust rides the wind year-round, and ongoing construction on neighbouring phases keeps site dust in circulation. Window tracks on the development-facing side fill fastest and tell you which way the current build is., and ongoing construction on neighbouring phases keeps site dust in circulation. Window tracks on the development-facing side fill fastest and tell you which way the current build is.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

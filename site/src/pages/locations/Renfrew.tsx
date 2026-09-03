@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -355,6 +356,8 @@ export default function Renfrew() {
           "The hillside itself works against clean floors. Runoff crosses walks on every thaw, and the chinook cycle means thaw happens all winter — grit arrives at Renfrew doors wet, dries into film, and grinds into entry hardwood. Homes near the Nose Creek slope get the strongest version of this and deserve entry-first cleans.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

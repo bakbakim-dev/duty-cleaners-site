@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -323,6 +324,8 @@ export default function Glenwood() {
           "Stony Plain Road defines the north edge and 156 Street the east, and the Valley Line West LRT runs down that 156 Street edge to the Glenwood/Sherwood stop: construction seasons have left dust in older homes' ducts, and the corridor's bus-and-rail traffic keeps a steady fine grit on east-facing sills. Meadowlark's shops keep the south end's foot traffic constant.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Glenwood" />

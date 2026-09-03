@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -355,6 +356,8 @@ export default function VarsityCalgary() {
           "With Market Mall inside Varsity Village and the University of Calgary campus along the community's southern edge, the neighbourhood hosts shift-work households and student suites in unusual numbers, which means access and scheduling matter as much as scrubbing: keyed entries, quiet daytime cleans for night-shift sleepers, and turnover-grade attention in the rental suites., which means access and scheduling matter as much as scrubbing: keyed entries, quiet daytime cleans for night-shift sleepers, and turnover-grade attention in the rental suites.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

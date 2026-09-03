@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -323,6 +324,8 @@ export default function Miller() {
           "The neighbourhood borders stormwater greens and pathway links, and households here skew young-family: more occupants, more footwear rotations, more washable surfaces touched at hip height and below. Fingerprint bands on stair rails, switch plates and appliance fronts are the visible difference a clean makes.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Miller" />

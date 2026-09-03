@@ -1,3 +1,5 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -321,6 +323,17 @@ export default function SherwoodPark() {
           </AnimatedSection>
         </div>
       </section>
+
+      <NearbyNeighbourhoods />
+
+      <LocalMarketNote
+        eyebrow="On the ground"
+        heading="A hamlet of seventy-five thousand"
+        paragraphs={[
+          "Sherwood Park is officially a hamlet, which is a strange label for 75,000 people — the province recognises its urban service area as the equivalent of a city, and Strathcona County runs it. It began in 1953 as Campbelltown and took its present name three years later, so the oldest streets are now seventy years old while the outer edges are still being finished. Both ends turn up on the same week's schedule.",
+          "Refinery Row lies immediately west, and the shift patterns that come with it are the thing worth telling us at booking. Plant rotations put people asleep during the day, and the room order is easy to change when we know. It costs nothing to work outward from the far end of the house instead of the near one.",
+        ]}
+      />
 
       <LocationPricing />
 

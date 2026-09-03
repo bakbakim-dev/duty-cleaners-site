@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -324,6 +325,8 @@ export default function Belvedere() {
           "The stock itself is compact post-war with original hardwood common under later flooring, and Fort Road's revitalization keeps construction cycles coming to the area's spine. Transit-oriented redevelopment around the station adds periodic site dust to the east blocks.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Belvedere" />

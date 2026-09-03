@@ -1,3 +1,5 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { buildLocationSchema } from "@/lib/location-schema";
@@ -307,6 +309,17 @@ export default function Glenora() {
             </AnimatedSection>
           </div>
         </section>
+
+      <NearbyNeighbourhoods />
+
+      <LocalMarketNote
+        eyebrow="Ground truth"
+        heading="Government House and the ravine edge"
+        paragraphs={[
+          "Nine homes in ten here were standing by 1970, and the south edge is not a street at all — it drops into the river valley and MacKinnon Ravine. Two consequences follow. Interiors of that age carry plaster, deep milled trim and original hardwood, none of which take a saturated mop; and the ravine sends leaf litter, seed and spring mud up to the doors that face it.",
+          "The other surprise is the housing mix. Three quarters is detached, but a full fifth sits in high-rise apartments, mostly along the Groat Road side by Government House. That is two different jobs on one street grid: a century house wants slow dry work on trim and radiators, while a tower suite is a compact kitchen, a bathroom fan and balcony glass that can only be reached from inside.",
+        ]}
+      />
 
       <LocationPricing />
 

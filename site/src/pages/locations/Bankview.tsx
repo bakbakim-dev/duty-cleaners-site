@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -355,6 +356,8 @@ export default function Bankview() {
           "The walk-up share means many homes are compact suites where kitchens and bathrooms sit close together — humidity and cooking films overlap, and ventilation is often a single fan doing both jobs. Small-space cleans here are dense work, out of proportion to their square footage.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

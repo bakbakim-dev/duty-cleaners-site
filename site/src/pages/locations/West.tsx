@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -355,6 +356,8 @@ export default function West() {
           "Elevation matters too — the west side climbs toward the foothills, and upslope communities take more wind-driven dust and faster snowmelt cycles than the valley floor. Mountain-facing glass is the west district's showcase surface, and streak-free work there is what owners actually see.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

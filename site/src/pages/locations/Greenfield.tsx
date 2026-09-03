@@ -1,3 +1,5 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import { buildLocationSchema } from "@/lib/location-schema";
@@ -96,6 +98,17 @@ export default function Greenfield() {
             </div>
           </div>
         </section>
+
+      <NearbyNeighbourhoods />
+
+      <LocalMarketNote
+        eyebrow="On the ground"
+        heading="Built in one decade, kept ever since"
+        paragraphs={[
+          "Seventy-seven per cent of these houses went up in the 1960s and another fifth in the 1970s, so the whole neighbourhood reaches the same wear points at the same time. Kitchens and bathrooms of that vintage that have never been redone are the slow rooms: original tile grout that has gone porous, tub surrounds where staining sits in the material rather than on it, and cabinet interiors that want emptying rather than wiping.",
+          "Ninety-two per cent of it is detached, which means whole-home visits rather than suites — more floor area per stop, more separate rooms, more trim. The neighbourhood was renamed from Petrolia for Herbert Greenfield, premier in the early 1920s, and the old Petrolia shopping centre still anchors the east side toward 111 Street.",
+        ]}
+      />
 
       <LocationPricing />
 

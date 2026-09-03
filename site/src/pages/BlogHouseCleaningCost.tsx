@@ -98,6 +98,10 @@ export default function BlogHouseCleaningCost() {
         <meta property="og:title" content="How Much Does House Cleaning Cost? | Duty Cleaners" />
         <meta property="og:description" content="Discover house cleaning costs in Canada. Learn about hourly rates, flat rates, and factors affecting professional cleaning service prices in Alberta." />
         <meta name="twitter:card" content="summary_large_image" />
+        {/* This post's own hero, so a share card shows the article rather
+            than the generic site image. */}
+        <meta property="og:image" content={absoluteAssetUrl(heroImage)} />
+        <meta name="twitter:image" content={absoluteAssetUrl(heroImage)} />
         <meta name="twitter:title" content="How Much Does House Cleaning Cost? | Duty Cleaners" />
         <meta name="twitter:description" content="Discover house cleaning costs in Canada. Learn about hourly rates, flat rates, and factors affecting professional cleaning service prices in Alberta." />
         <meta property="og:type" content="article" />

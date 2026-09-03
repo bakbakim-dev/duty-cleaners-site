@@ -98,6 +98,10 @@ export default function BlogChoosingCleaningCompany() {
         <link rel="canonical" href="https://dutycleaners.ca/blog/choosing-cleaning-company/" />
         <meta property="og:title" content="How to Choose a Cleaning Company | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
+        {/* This post's own hero, so a share card shows the article rather
+            than the generic site image. */}
+        <meta property="og:image" content={absoluteAssetUrl(heroImage)} />
+        <meta name="twitter:image" content={absoluteAssetUrl(heroImage)} />
         <meta name="twitter:title" content="How to Choose a Cleaning Company | Duty Cleaners" />
         <meta name="twitter:description" content="How to choose the perfect cleaning company — assessing your needs, checking credentials, comparing services." />
         <meta property="og:description" content="How to choose the perfect cleaning company — assessing your needs, checking credentials, comparing services." />

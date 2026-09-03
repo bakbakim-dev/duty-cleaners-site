@@ -167,7 +167,6 @@ export default function Edmonton2() {
       postalCode: "T5T 2V9",
       addressCountry: "CA"
     },
-    url: "https://dutycleaners.ca/",
     hasMap: "https://www.google.com/maps?cid=8192121191672692049",
     sameAs: [...BRANCH_PROFILES.edmonton],
     areaServed: [

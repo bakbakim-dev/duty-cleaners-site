@@ -1,3 +1,5 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -266,6 +268,17 @@ export default function Morinville() {
           </AnimatedSection>
         </div>
       </section>
+
+      <NearbyNeighbourhoods />
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="The church that reopened in 2025"
+        paragraphs={[
+          "Founded in 1892 by the Oblate priest Jean-Baptiste Morin, who brought French settlers north from Edmonton, this town kept its parish at the centre of it. St. Jean Baptiste church went up in 1907, was named a historic site in 1975, burned on 30 June 2021 and reopened rebuilt in December 2025. A town that has been settled that long has housing from every decade since, which is the practical fact for us.",
+          "About 34 km up Highway 2 from the city, with farmland close on every side, this is high open country rather than a sheltered grid. Wind carries field soil to the newest streets in the dry months, and it settles on sills, in screen mesh and on the top edges of doors — the flat surfaces a routine pass tends to skip.",
+        ]}
+      />
 
       <LocationPricing />
 

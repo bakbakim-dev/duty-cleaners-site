@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -355,6 +356,8 @@ export default function LowerMountRoyal() {
           "Seventeenth Avenue's restaurant strip runs the district's northern edge, and its foot traffic, patio seasons and delivery cycles keep sidewalk grit constant at every entry. Balconies over the avenue collect street dust at a pace quiet residential blocks never see.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -323,6 +324,8 @@ export default function Ottewell() {
           "The community's mature canopy is among the densest in the southeast, and homes back onto schoolyards and green strips that generate season-long tracking — spring mud from the fields, summer playground sand, autumn leaves. Back entrances here work harder than front doors and are the first place a visit should start.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Ottewell" />

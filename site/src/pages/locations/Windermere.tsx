@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -308,6 +309,8 @@ export default function Windermere() {
           "The west and northwest edge is the North Saskatchewan valley, so a good number of lots face open sky rather than another house. At Edmonton's latitude the afternoon sun comes in low across that opening, and at that angle a single wet pass dries into visible lines, so west glass gets a dry buff after the wash - and outside work waits for the city's spring sweep, which does not start until April, rather than fighting road sand in March.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

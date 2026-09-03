@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -242,6 +243,8 @@ export default function MardaLoop() {
           "The new builds' pale wide-plank floors and glass rail panels show every mark and film, making streak-free work the visible measure of a clean; the older homes are the opposite job, small and dense with original trim. Garrison Woods' paths feed steady stroller-and-dog traffic through it all.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

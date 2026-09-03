@@ -1,3 +1,5 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -340,6 +342,18 @@ export default function HighlandPark() {
             </AnimatedSection>
           </div>
         </section>
+
+      <NearbyNeighbourhoods />
+
+      <LocalMarketNote
+        eyebrow="Neighbourhood notes"
+        heading="Golf course north, cemetery southwest"
+        paragraphs={[
+          "Two large pieces of open ground shape this place: the Highland golf course across the northern section and Queens Park Cemetery in the southwest corner. Open grass on two flanks means seed heads through late summer and a mowing season's worth of fine organic dust, and it lands on patio glass and screens rather than on floors. Screens here repay coming out and being washed properly rather than wiped in place.",
+          "The community dates to 1946, but almost half the buildings now are condominium or apartment and roughly two thirds of the housing is rented. That mix produces two rhythms at once — long-settled owners on the older detached streets, and suites turning over against a possession date — and they need different amounts of time booked for the same square footage.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

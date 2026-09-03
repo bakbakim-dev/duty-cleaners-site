@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -317,6 +318,8 @@ export default function Montrose() {
           "Roughly two-thirds of the housing went up before 1961, a fifth of it before 1946. Main floors of that age are small by modern standards, and living space has spread downward over the decades. The work moves with it: a stairwell, a lower-level bathroom and a finished basement room can take longer than the kitchen does.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

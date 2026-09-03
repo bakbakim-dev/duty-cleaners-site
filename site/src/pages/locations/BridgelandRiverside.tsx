@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -355,6 +356,8 @@ export default function BridgelandRiverside() {
           "The condo share is high for an inner neighbourhood, and condo cleans have their own shape: balcony door tracks facing downtown wind, galley kitchens that film with cooking residue faster than open suburban plans, and shared-hallway dust that migrates in at the threshold.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

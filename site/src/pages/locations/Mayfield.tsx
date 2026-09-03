@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -324,6 +325,8 @@ export default function Mayfield() {
           "Seven of every ten homes here went up between 1946 and 1960, and most are single-family detached. In houses of that vintage the main floor is compact and quick to work through, while the basement below — laundry, storage, a rec room finished at some later date — is effectively a second floor that can go months without a turn. Deep cleans in Mayfield often spend longer downstairs than up.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Mayfield" />

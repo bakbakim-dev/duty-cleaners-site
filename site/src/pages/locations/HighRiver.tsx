@@ -1,3 +1,5 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -282,6 +284,18 @@ export default function HighRiver() {
             </AnimatedSection>
           </div>
         </section>
+
+      <NearbyNeighbourhoods />
+
+      <LocalMarketNote
+        eyebrow="Ground truth"
+        heading="What the 2013 flood rebuilt"
+        paragraphs={[
+          "The Highwood River runs through the middle of this town and has come over its banks repeatedly — 1995, 2005, and most destructively in June 2013, when thousands were evacuated and three people died. The rebuild that followed is the fact that matters indoors: a great many homes here carry finishes and lower levels that are barely a decade old inside a townsite that is far older, and the two want different handling.",
+          "It sits about 68 km south of the city where highways 2 and 23 meet, and the film crews that have worked here since Heartland began in 2007 are a genuine part of the local calendar. Basements stay the part of a house worth checking properly rather than leaving to the last ten minutes, particularly the backs of storage rooms.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

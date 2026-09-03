@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, Suspense, lazy } from "react";
 import { Helmet } from "react-helmet-async";
@@ -314,6 +315,8 @@ export default function Delton() {
           "The 97 Street corridor on the west edge and the CN tracks along the north put steady fine grit on the neighbourhood, heaviest on the west and north blocks. Older furnaces pushing through original ducting redistribute it, so register grilles and cold-air returns here deserve wiping on every visit, not just deep cleans. Older furnaces pushing through original ducting redistribute it, so register grilles and cold-air returns here deserve wiping on every visit, not just deep cleans.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

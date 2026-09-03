@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -343,6 +344,8 @@ export default function Bannerman() {
           "The build-out was quick: better than three quarters of the housing dates to the 1970s and almost all the rest to the 1980s. Fewer than half the homes are detached; over a third are row houses, and most of the remainder are rented apartments in buildings under five storeys. A round here concentrates in an entry, a kitchen and one bathroom instead of spreading across a main floor, and where tile is original, grout wants patience over pressure.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Bannerman" />

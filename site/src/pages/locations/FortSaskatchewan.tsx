@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -354,6 +355,8 @@ export default function FortSaskatchewan() {
           "Growth here has been steep and long: roughly 2,600 residents in the mid-1950s, more than 27,000 by 2021. Southfort and Westpark were laid out generations after the older streets near the 1875 fort site, so the work swings between move-in cleans in houses nobody has lived in yet and long-settled homes where a storage room has to be emptied before it can be cleaned at all.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

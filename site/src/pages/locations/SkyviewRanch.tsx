@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -355,6 +356,8 @@ export default function SkyviewRanch() {
           "Airport approaches and Métis Trail put steady fine dust on the wind, and phases still building nearby keep site grit in rotation. The tell is always the same: window tracks on the side facing the active phase fill first, and garage-entry mudrooms carry nearly all the family's tracking.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

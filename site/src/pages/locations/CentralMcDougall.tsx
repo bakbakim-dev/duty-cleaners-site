@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -324,6 +325,8 @@ export default function CentralMcDougall() {
           "The Royal Alexandra Hospital sits inside the neighbourhood boundaries, with the Metro Line's Kingsway/Royal Alex station on the north side of Kingsway at its door and a nine-bay transit centre on 111 Avenue. When a household here works hospital shifts, the clean has to fit around sleep: quiet-hours requests, vacuuming sequenced to keep noise off one bedroom, and afternoon starts instead of the usual morning slot.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Central McDougall" />

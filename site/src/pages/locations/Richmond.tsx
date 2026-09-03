@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -355,6 +356,8 @@ export default function Richmond() {
           "The new infills themselves clean differently: three storeys of stairs, roof-top deck doors that funnel wind-blown dust straight into top-floor mains, and pale wide-plank floors that show every footprint. The older bungalows that remain are the opposite job — small, dense with original trim, and slower per square metre than their size suggests.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

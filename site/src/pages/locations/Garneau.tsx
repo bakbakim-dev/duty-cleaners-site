@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -276,6 +277,8 @@ export default function Garneau() {
           "109 Street runs straight through the middle of the neighbourhood, lined with high-rise and low-rise blocks that are mostly rented, largely to students, which is why the calendar here runs on possession dates rather than weekly slots. At the north edge, along Saskatchewan Drive, suites look out over the river valley with nothing in the way, and those windows are the whole outlook of the suite, which is why they are the surface both a tenant and a landlord check first.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

@@ -1,3 +1,4 @@
+import { absoluteAssetUrl } from "@/lib/seo";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { modifiedFor } from "@/data/post-dates";
@@ -133,6 +134,10 @@ export default function BlogCleaningProducts() {
         <meta property="og:title" content={`${title} | Duty Cleaners`} />
         <meta property="og:description" content={description} />
         <meta name="twitter:card" content="summary_large_image" />
+        {/* This post's own hero, so a share card shows the article rather
+            than the generic site image. */}
+        <meta property="og:image" content={absoluteAssetUrl(heroImage)} />
+        <meta name="twitter:image" content={absoluteAssetUrl(heroImage)} />
         <meta name="twitter:title" content={`${title} | Duty Cleaners`} />
         <meta name="twitter:description" content={description} />
         <meta property="og:type" content="article" />

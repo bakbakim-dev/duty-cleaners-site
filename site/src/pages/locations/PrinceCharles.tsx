@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -324,6 +325,8 @@ export default function PrinceCharles() {
           "The homes are wartime and 1950s stock, compact with original trim, and The homes are wartime and 1950s stock — seven in ten built between 1946 and 1960 — compact, with original trim and small dense rooms that take longer per square foot than their footprint suggests. 118 Avenue runs the whole south edge — bending into Kingsway at the neighbourhood's southeast corner — and adds the usual arterial grit to the blocks that front it.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Prince Charles" />

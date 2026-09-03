@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -355,6 +356,8 @@ export default function HillhurstCalgary() {
           "Infill construction is continuous here, so most blocks have an active site nearby pushing cut-lumber and drywall dust across property lines. Homes mid-renovation-zone need track and sill clearing every visit, and pale heritage window putty shows that dust faster than modern frames.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

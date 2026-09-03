@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -323,6 +324,8 @@ export default function MattBerry() {
           "Access runs through the attached garage for nearly every household, so the mudroom corridor absorbs the tracking that front entries elsewhere take. Hollick-Kenyon's shops sit close enough that errands stay on foot in good weather, keeping front walks and steps in light but steady use.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Matt Berry" />

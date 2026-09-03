@@ -1,3 +1,5 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -254,6 +256,18 @@ export default function Mission() {
             </AnimatedSection>
           </div>
         </section>
+
+      <NearbyNeighbourhoods />
+
+      <LocalMarketNote
+        eyebrow="Neighbourhood notes"
+        heading="Rouleauville, annexed in 1907"
+        paragraphs={[
+          "This was the Village of Rouleauville before Calgary took it in in 1907, a French-speaking Catholic settlement whose institutions are still standing: St. Mary's School dates to 1885 and the cathedral to 1912. Housing that has stood that long has usually been divided, re-divided and re-plumbed, and the giveaway indoors is layered paint on deep trim profiles and radiators with fins no vacuum head reaches.",
+          "The Elbow has been over its banks here more than once, in 1929 and again in June 2013. Lower levels on the streets nearest the water are the part of a house worth checking rather than assuming — corners, baseboards and the backs of storage rooms hold damp and dust longer than anything upstairs. Up on 4 Street the restaurant frontage brings its own traffic to the doors above it.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

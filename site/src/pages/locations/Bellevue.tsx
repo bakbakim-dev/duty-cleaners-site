@@ -1,3 +1,5 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -299,6 +301,17 @@ export default function Bellevue() {
             </AnimatedSection>
           </div>
         </section>
+
+      <NearbyNeighbourhoods />
+
+      <LocalMarketNote
+        eyebrow="Local knowledge"
+        heading="Wartime houses above the valley"
+        paragraphs={[
+          "Building here was essentially finished by 1960, and better than a fifth of the houses predate the end of the Second World War. Ninety-six per cent are detached and three quarters are owner-occupied, which makes this long-run maintenance work on finishes people intend to keep rather than the reset a turnover needs. Softwood floors and painted trim of that age grey under standing water, so the wet work stays wrung out.",
+          "The south boundary is the river valley itself and Wayne Gretzky Drive runs the west side. Those are two very different neighbours: the valley sends organic litter and spring mud to the doors facing it, while the arterial throws winter sanding grit at the houses on its flank. Which side a home sits on decides which of the two it fights.",
+        ]}
+      />
 
       <LocationPricing />
 

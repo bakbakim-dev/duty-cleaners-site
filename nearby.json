@@ -1,0 +1,3908 @@
+{
+ "SherwoodPark": {
+  "canon": "/cleaning-services-sherwood-park/",
+  "file": "src\\pages\\locations/SherwoodPark.tsx",
+  "near": [
+   {
+    "comp": "Larkspur",
+    "canon": "/locations/larkspur-edmonton/"
+   },
+   {
+    "comp": "Tamarack",
+    "canon": "/locations/tamarack-edmonton/"
+   },
+   {
+    "comp": "Ottewell",
+    "canon": "/locations/ottewell-edmonton/"
+   },
+   {
+    "comp": "Holyrood",
+    "canon": "/locations/holyrood-edmonton/"
+   },
+   {
+    "comp": "Capilano",
+    "canon": "/locations/capilano-edmonton/"
+   }
+  ]
+ },
+ "StAlbert": {
+  "canon": "/cleaning-services-st-albert/",
+  "file": "src\\pages\\locations/StAlbert.tsx",
+  "near": [
+   {
+    "comp": "Rapperswill",
+    "canon": "/locations/rapperswill-edmonton/"
+   },
+   {
+    "comp": "CastleDowns",
+    "canon": "/locations/castle-downs/"
+   },
+   {
+    "comp": "Dovercourt",
+    "canon": "/locations/dovercourt-edmonton/"
+   },
+   {
+    "comp": "Griesbach",
+    "canon": "/locations/griesbach-edmonton/"
+   },
+   {
+    "comp": "Sherbrooke",
+    "canon": "/locations/sherbrooke-edmonton/"
+   }
+  ]
+ },
+ "Windermere": {
+  "canon": "/cleaning-services-windermere/",
+  "file": "src\\pages\\locations/Windermere.tsx",
+  "near": [
+   {
+    "comp": "Ambleside",
+    "canon": "/locations/ambleside-edmonton/"
+   },
+   {
+    "comp": "Terwillegar",
+    "canon": "/locations/terwillegar/"
+   },
+   {
+    "comp": "Summerside",
+    "canon": "/locations/summerside/"
+   },
+   {
+    "comp": "Riverbend",
+    "canon": "/locations/riverbend/"
+   },
+   {
+    "comp": "AspenGardens",
+    "canon": "/locations/aspen-gardens-edmonton/"
+   }
+  ]
+ },
+ "StonyPlain": {
+  "canon": "/cleaning-services-stony-plain/",
+  "file": "src\\pages\\locations/StonyPlain.tsx",
+  "near": [
+   {
+    "comp": "SpruceGrove",
+    "canon": "/cleaning-services-spruce-grove/"
+   }
+  ]
+ },
+ "Devon": {
+  "canon": "/cleaning-services-devon/",
+  "file": "src\\pages\\locations/Devon.tsx",
+  "near": [
+   {
+    "comp": "Windermere",
+    "canon": "/cleaning-services-windermere/"
+   }
+  ]
+ },
+ "SpruceGrove": {
+  "canon": "/cleaning-services-spruce-grove/",
+  "file": "src\\pages\\locations/SpruceGrove.tsx",
+  "near": [
+   {
+    "comp": "StonyPlain",
+    "canon": "/cleaning-services-stony-plain/"
+   }
+  ]
+ },
+ "Beaumont": {
+  "canon": "/cleaning-services-beaumont/",
+  "file": "src\\pages\\locations/Beaumont.tsx",
+  "near": [
+   {
+    "comp": "Laurel",
+    "canon": "/locations/laurel-edmonton/"
+   }
+  ]
+ },
+ "TurnerValley": {
+  "canon": "/locations/turner-valley/",
+  "file": "src\\pages\\locations/TurnerValley.tsx",
+  "near": [
+   {
+    "comp": "BlackDiamond",
+    "canon": "/locations/black-diamond/"
+   }
+  ]
+ },
+ "BlackDiamond": {
+  "canon": "/locations/black-diamond/",
+  "file": "src\\pages\\locations/BlackDiamond.tsx",
+  "near": [
+   {
+    "comp": "TurnerValley",
+    "canon": "/locations/turner-valley/"
+   }
+  ]
+ },
+ "Allendale": {
+  "canon": "/locations/allendale/",
+  "file": "src\\pages\\locations/Allendale.tsx",
+  "near": [
+   {
+    "comp": "Pleasantview",
+    "canon": "/locations/pleasantview/"
+   },
+   {
+    "comp": "OldStrathcona",
+    "canon": "/locations/old-strathcona/"
+   },
+   {
+    "comp": "QueenAlexandra",
+    "canon": "/locations/queen-alexandra-edmonton/"
+   },
+   {
+    "comp": "Hazeldean",
+    "canon": "/locations/hazeldean/"
+   },
+   {
+    "comp": "Garneau",
+    "canon": "/locations/garneau/"
+   }
+  ]
+ },
+ "Grovenor": {
+  "canon": "/locations/grovenor/",
+  "file": "src\\pages\\locations/Grovenor.tsx",
+  "near": [
+   {
+    "comp": "Glenora",
+    "canon": "/locations/glenora-edmonton/"
+   },
+   {
+    "comp": "Canora",
+    "canon": "/locations/canora-edmonton/"
+   },
+   {
+    "comp": "Westmount",
+    "canon": "/locations/westmount-edmonton/"
+   },
+   {
+    "comp": "Mayfield",
+    "canon": "/locations/mayfield-edmonton/"
+   },
+   {
+    "comp": "Inglewood",
+    "canon": "/locations/inglewood/"
+   }
+  ]
+ },
+ "Lauderdale": {
+  "canon": "/locations/lauderdale/",
+  "file": "src\\pages\\locations/Lauderdale.tsx",
+  "near": [
+   {
+    "comp": "Rosslyn",
+    "canon": "/locations/rosslyn-edmonton/"
+   },
+   {
+    "comp": "Glengarry",
+    "canon": "/locations/glengarry-edmonton/"
+   },
+   {
+    "comp": "Sherbrooke",
+    "canon": "/locations/sherbrooke-edmonton/"
+   },
+   {
+    "comp": "Griesbach",
+    "canon": "/locations/griesbach-edmonton/"
+   },
+   {
+    "comp": "PrinceCharles",
+    "canon": "/locations/prince-charles-edmonton/"
+   }
+  ]
+ },
+ "Pleasantview": {
+  "canon": "/locations/pleasantview/",
+  "file": "src\\pages\\locations/Pleasantview.tsx",
+  "near": [
+   {
+    "comp": "Allendale",
+    "canon": "/locations/allendale/"
+   },
+   {
+    "comp": "Brookside",
+    "canon": "/locations/brookside-edmonton/"
+   },
+   {
+    "comp": "QueenAlexandra",
+    "canon": "/locations/queen-alexandra-edmonton/"
+   },
+   {
+    "comp": "Greenfield",
+    "canon": "/locations/greenfield-edmonton/"
+   },
+   {
+    "comp": "OldStrathcona",
+    "canon": "/locations/old-strathcona/"
+   }
+  ]
+ },
+ "CastleDowns": {
+  "canon": "/locations/castle-downs/",
+  "file": "src\\pages\\locations/CastleDowns.tsx",
+  "near": [
+   {
+    "comp": "Rapperswill",
+    "canon": "/locations/rapperswill-edmonton/"
+   },
+   {
+    "comp": "Griesbach",
+    "canon": "/locations/griesbach-edmonton/"
+   },
+   {
+    "comp": "EauxClaires",
+    "canon": "/locations/eaux-claires-edmonton/"
+   },
+   {
+    "comp": "LagoLindo",
+    "canon": "/locations/lago-lindo-edmonton/"
+   },
+   {
+    "comp": "Rosslyn",
+    "canon": "/locations/rosslyn-edmonton/"
+   }
+  ]
+ },
+ "Inglewood": {
+  "canon": "/locations/inglewood/",
+  "file": "src\\pages\\locations/Inglewood.tsx",
+  "near": [
+   {
+    "comp": "Woodcroft",
+    "canon": "/locations/woodcroft-edmonton/"
+   },
+   {
+    "comp": "Westmount",
+    "canon": "/locations/westmount-edmonton/"
+   },
+   {
+    "comp": "Dovercourt",
+    "canon": "/locations/dovercourt-edmonton/"
+   },
+   {
+    "comp": "Mayfield",
+    "canon": "/locations/mayfield-edmonton/"
+   },
+   {
+    "comp": "Glenora",
+    "canon": "/locations/glenora-edmonton/"
+   }
+  ]
+ },
+ "Delton": {
+  "canon": "/locations/delton/",
+  "file": "src\\pages\\locations/Delton.tsx",
+  "near": [
+   {
+    "comp": "Glengarry",
+    "canon": "/locations/glengarry-edmonton/"
+   },
+   {
+    "comp": "Evansdale",
+    "canon": "/locations/evansdale-edmonton/"
+   },
+   {
+    "comp": "Delwood",
+    "canon": "/locations/delwood-edmonton/"
+   },
+   {
+    "comp": "Eastwood",
+    "canon": "/locations/eastwood-edmonton/"
+   },
+   {
+    "comp": "PrinceCharles",
+    "canon": "/locations/prince-charles-edmonton/"
+   }
+  ]
+ },
+ "SpruceAvenue": {
+  "canon": "/locations/spruce-avenue/",
+  "file": "src\\pages\\locations/SpruceAvenue.tsx",
+  "near": [
+   {
+    "comp": "CentralMcDougall",
+    "canon": "/locations/central-mcdougall-edmonton/"
+   },
+   {
+    "comp": "PrinceCharles",
+    "canon": "/locations/prince-charles-edmonton/"
+   },
+   {
+    "comp": "McCauley",
+    "canon": "/locations/mccauley-edmonton/"
+   },
+   {
+    "comp": "Delton",
+    "canon": "/locations/delton/"
+   },
+   {
+    "comp": "Riverdale",
+    "canon": "/locations/riverdale-edmonton/"
+   }
+  ]
+ },
+ "Londonderry": {
+  "canon": "/locations/londonderry/",
+  "file": "src\\pages\\locations/Londonderry.tsx",
+  "near": [
+   {
+    "comp": "Kilkenny",
+    "canon": "/locations/kilkenny-edmonton/"
+   },
+   {
+    "comp": "Northmount",
+    "canon": "/locations/northmount-edmonton/"
+   },
+   {
+    "comp": "MapleRidge",
+    "canon": "/locations/maple-ridge-edmonton/"
+   },
+   {
+    "comp": "York",
+    "canon": "/locations/york-edmonton/"
+   },
+   {
+    "comp": "Balwin",
+    "canon": "/locations/balwin-edmonton/"
+   }
+  ]
+ },
+ "Hazeldean": {
+  "canon": "/locations/hazeldean/",
+  "file": "src\\pages\\locations/Hazeldean.tsx",
+  "near": [
+   {
+    "comp": "OldStrathcona",
+    "canon": "/locations/old-strathcona/"
+   },
+   {
+    "comp": "Allendale",
+    "canon": "/locations/allendale/"
+   },
+   {
+    "comp": "Avonmore",
+    "canon": "/locations/avonmore-edmonton/"
+   },
+   {
+    "comp": "QueenAlexandra",
+    "canon": "/locations/queen-alexandra-edmonton/"
+   },
+   {
+    "comp": "BonnieDoon",
+    "canon": "/locations/bonnie-doon-edmonton/"
+   }
+  ]
+ },
+ "Montrose": {
+  "canon": "/locations/montrose/",
+  "file": "src\\pages\\locations/Montrose.tsx",
+  "near": [
+   {
+    "comp": "Bellevue",
+    "canon": "/locations/bellevue-edmonton/"
+   },
+   {
+    "comp": "Belvedere",
+    "canon": "/locations/belvedere-edmonton/"
+   },
+   {
+    "comp": "Eastwood",
+    "canon": "/locations/eastwood-edmonton/"
+   },
+   {
+    "comp": "Abbottsfield",
+    "canon": "/locations/abbottsfield-edmonton/"
+   },
+   {
+    "comp": "Balwin",
+    "canon": "/locations/balwin-edmonton/"
+   }
+  ]
+ },
+ "Bannerman": {
+  "canon": "/locations/bannerman/",
+  "file": "src\\pages\\locations/Bannerman.tsx",
+  "near": [
+   {
+    "comp": "Clareview",
+    "canon": "/locations/clareview/"
+   },
+   {
+    "comp": "Hairsine",
+    "canon": "/locations/hairsine-edmonton/"
+   },
+   {
+    "comp": "Hermitage",
+    "canon": "/locations/hermitage-edmonton/"
+   },
+   {
+    "comp": "HollickKenyon",
+    "canon": "/locations/hollick-kenyon-edmonton/"
+   },
+   {
+    "comp": "Belmont",
+    "canon": "/locations/belmont-edmonton/"
+   }
+  ]
+ },
+ "McConachie": {
+  "canon": "/locations/mcconachie-edmonton/",
+  "file": "src\\pages\\locations/McConachie.tsx",
+  "near": [
+   {
+    "comp": "Schonsee",
+    "canon": "/locations/schonsee-edmonton/"
+   },
+   {
+    "comp": "MattBerry",
+    "canon": "/locations/matt-berry-edmonton/"
+   },
+   {
+    "comp": "Ozerna",
+    "canon": "/locations/ozerna-edmonton/"
+   },
+   {
+    "comp": "Brintnell",
+    "canon": "/locations/brintnell-edmonton/"
+   },
+   {
+    "comp": "HollickKenyon",
+    "canon": "/locations/hollick-kenyon-edmonton/"
+   }
+  ]
+ },
+ "Balwin": {
+  "canon": "/locations/balwin-edmonton/",
+  "file": "src\\pages\\locations/Balwin.tsx",
+  "near": [
+   {
+    "comp": "Delwood",
+    "canon": "/locations/delwood-edmonton/"
+   },
+   {
+    "comp": "MapleRidge",
+    "canon": "/locations/maple-ridge-edmonton/"
+   },
+   {
+    "comp": "Evansdale",
+    "canon": "/locations/evansdale-edmonton/"
+   },
+   {
+    "comp": "Kilkenny",
+    "canon": "/locations/kilkenny-edmonton/"
+   },
+   {
+    "comp": "Montrose",
+    "canon": "/locations/montrose/"
+   }
+  ]
+ },
+ "Capilano": {
+  "canon": "/locations/capilano-edmonton/",
+  "file": "src\\pages\\locations/Capilano.tsx",
+  "near": [
+   {
+    "comp": "BeaconHeights",
+    "canon": "/locations/beacon-heights-edmonton/"
+   },
+   {
+    "comp": "Bellevue",
+    "canon": "/locations/bellevue-edmonton/"
+   },
+   {
+    "comp": "Abbottsfield",
+    "canon": "/locations/abbottsfield-edmonton/"
+   },
+   {
+    "comp": "Montrose",
+    "canon": "/locations/montrose/"
+   },
+   {
+    "comp": "Ottewell",
+    "canon": "/locations/ottewell-edmonton/"
+   }
+  ]
+ },
+ "Bellevue": {
+  "canon": "/locations/bellevue-edmonton/",
+  "file": "src\\pages\\locations/Bellevue.tsx",
+  "near": [
+   {
+    "comp": "Montrose",
+    "canon": "/locations/montrose/"
+   },
+   {
+    "comp": "Eastwood",
+    "canon": "/locations/eastwood-edmonton/"
+   },
+   {
+    "comp": "BeaconHeights",
+    "canon": "/locations/beacon-heights-edmonton/"
+   },
+   {
+    "comp": "Riverdale",
+    "canon": "/locations/riverdale-edmonton/"
+   },
+   {
+    "comp": "Capilano",
+    "canon": "/locations/capilano-edmonton/"
+   }
+  ]
+ },
+ "Secord": {
+  "canon": "/locations/secord-edmonton/",
+  "file": "src\\pages\\locations/Secord.tsx",
+  "near": [
+   {
+    "comp": "LewisEstates",
+    "canon": "/locations/lewis-estates/"
+   },
+   {
+    "comp": "Glastonbury",
+    "canon": "/locations/glastonbury/"
+   },
+   {
+    "comp": "Glenwood",
+    "canon": "/locations/glenwood-edmonton/"
+   },
+   {
+    "comp": "Mayfield",
+    "canon": "/locations/mayfield-edmonton/"
+   },
+   {
+    "comp": "Canora",
+    "canon": "/locations/canora-edmonton/"
+   }
+  ]
+ },
+ "Hairsine": {
+  "canon": "/locations/hairsine-edmonton/",
+  "file": "src\\pages\\locations/Hairsine.tsx",
+  "near": [
+   {
+    "comp": "Hermitage",
+    "canon": "/locations/hermitage-edmonton/"
+   },
+   {
+    "comp": "Clareview",
+    "canon": "/locations/clareview/"
+   },
+   {
+    "comp": "Kildare",
+    "canon": "/locations/kildare-edmonton/"
+   },
+   {
+    "comp": "Casselman",
+    "canon": "/locations/casselman-edmonton/"
+   },
+   {
+    "comp": "York",
+    "canon": "/locations/york-edmonton/"
+   }
+  ]
+ },
+ "PrinceCharles": {
+  "canon": "/locations/prince-charles-edmonton/",
+  "file": "src\\pages\\locations/PrinceCharles.tsx",
+  "near": [
+   {
+    "comp": "Glengarry",
+    "canon": "/locations/glengarry-edmonton/"
+   },
+   {
+    "comp": "SpruceAvenue",
+    "canon": "/locations/spruce-avenue/"
+   },
+   {
+    "comp": "Sherbrooke",
+    "canon": "/locations/sherbrooke-edmonton/"
+   },
+   {
+    "comp": "Delton",
+    "canon": "/locations/delton/"
+   },
+   {
+    "comp": "Lauderdale",
+    "canon": "/locations/lauderdale/"
+   }
+  ]
+ },
+ "Mayfield": {
+  "canon": "/locations/mayfield-edmonton/",
+  "file": "src\\pages\\locations/Mayfield.tsx",
+  "near": [
+   {
+    "comp": "Inglewood",
+    "canon": "/locations/inglewood/"
+   },
+   {
+    "comp": "Woodcroft",
+    "canon": "/locations/woodcroft-edmonton/"
+   },
+   {
+    "comp": "Glenora",
+    "canon": "/locations/glenora-edmonton/"
+   },
+   {
+    "comp": "Grovenor",
+    "canon": "/locations/grovenor/"
+   },
+   {
+    "comp": "Westmount",
+    "canon": "/locations/westmount-edmonton/"
+   }
+  ]
+ },
+ "Rapperswill": {
+  "canon": "/locations/rapperswill-edmonton/",
+  "file": "src\\pages\\locations/Rapperswill.tsx",
+  "near": [
+   {
+    "comp": "CastleDowns",
+    "canon": "/locations/castle-downs/"
+   },
+   {
+    "comp": "Griesbach",
+    "canon": "/locations/griesbach-edmonton/"
+   },
+   {
+    "comp": "LagoLindo",
+    "canon": "/locations/lago-lindo-edmonton/"
+   },
+   {
+    "comp": "EauxClaires",
+    "canon": "/locations/eaux-claires-edmonton/"
+   },
+   {
+    "comp": "Rosslyn",
+    "canon": "/locations/rosslyn-edmonton/"
+   }
+  ]
+ },
+ "Westmount": {
+  "canon": "/locations/westmount-edmonton/",
+  "file": "src\\pages\\locations/Westmount.tsx",
+  "near": [
+   {
+    "comp": "Inglewood",
+    "canon": "/locations/inglewood/"
+   },
+   {
+    "comp": "Woodcroft",
+    "canon": "/locations/woodcroft-edmonton/"
+   },
+   {
+    "comp": "Glenora",
+    "canon": "/locations/glenora-edmonton/"
+   },
+   {
+    "comp": "Grovenor",
+    "canon": "/locations/grovenor/"
+   },
+   {
+    "comp": "CentralMcDougall",
+    "canon": "/locations/central-mcdougall-edmonton/"
+   }
+  ]
+ },
+ "McCauley": {
+  "canon": "/locations/mccauley-edmonton/",
+  "file": "src\\pages\\locations/McCauley.tsx",
+  "near": [
+   {
+    "comp": "BoyleStreet",
+    "canon": "/locations/boyle-street-edmonton/"
+   },
+   {
+    "comp": "Riverdale",
+    "canon": "/locations/riverdale-edmonton/"
+   },
+   {
+    "comp": "CentralMcDougall",
+    "canon": "/locations/central-mcdougall-edmonton/"
+   },
+   {
+    "comp": "Downtown",
+    "canon": "/locations/downtown-edmonton/"
+   },
+   {
+    "comp": "SpruceAvenue",
+    "canon": "/locations/spruce-avenue/"
+   }
+  ]
+ },
+ "CentralMcDougall": {
+  "canon": "/locations/central-mcdougall-edmonton/",
+  "file": "src\\pages\\locations/CentralMcDougall.tsx",
+  "near": [
+   {
+    "comp": "SpruceAvenue",
+    "canon": "/locations/spruce-avenue/"
+   },
+   {
+    "comp": "McCauley",
+    "canon": "/locations/mccauley-edmonton/"
+   },
+   {
+    "comp": "Downtown",
+    "canon": "/locations/downtown-edmonton/"
+   },
+   {
+    "comp": "BoyleStreet",
+    "canon": "/locations/boyle-street-edmonton/"
+   },
+   {
+    "comp": "Riverdale",
+    "canon": "/locations/riverdale-edmonton/"
+   }
+  ]
+ },
+ "Brookside": {
+  "canon": "/locations/brookside-edmonton/",
+  "file": "src\\pages\\locations/Brookside.tsx",
+  "near": [
+   {
+    "comp": "AspenGardens",
+    "canon": "/locations/aspen-gardens-edmonton/"
+   },
+   {
+    "comp": "Greenfield",
+    "canon": "/locations/greenfield-edmonton/"
+   },
+   {
+    "comp": "Pleasantview",
+    "canon": "/locations/pleasantview/"
+   },
+   {
+    "comp": "Riverbend",
+    "canon": "/locations/riverbend/"
+   },
+   {
+    "comp": "Allendale",
+    "canon": "/locations/allendale/"
+   }
+  ]
+ },
+ "Kildare": {
+  "canon": "/locations/kildare-edmonton/",
+  "file": "src\\pages\\locations/Kildare.tsx",
+  "near": [
+   {
+    "comp": "York",
+    "canon": "/locations/york-edmonton/"
+   },
+   {
+    "comp": "Casselman",
+    "canon": "/locations/casselman-edmonton/"
+   },
+   {
+    "comp": "Hairsine",
+    "canon": "/locations/hairsine-edmonton/"
+   },
+   {
+    "comp": "MapleRidge",
+    "canon": "/locations/maple-ridge-edmonton/"
+   },
+   {
+    "comp": "Ozerna",
+    "canon": "/locations/ozerna-edmonton/"
+   }
+  ]
+ },
+ "Ambleside": {
+  "canon": "/locations/ambleside-edmonton/",
+  "file": "src\\pages\\locations/Ambleside.tsx",
+  "near": [
+   {
+    "comp": "Windermere",
+    "canon": "/cleaning-services-windermere/"
+   },
+   {
+    "comp": "Terwillegar",
+    "canon": "/locations/terwillegar/"
+   },
+   {
+    "comp": "Riverbend",
+    "canon": "/locations/riverbend/"
+   },
+   {
+    "comp": "Summerside",
+    "canon": "/locations/summerside/"
+   },
+   {
+    "comp": "AspenGardens",
+    "canon": "/locations/aspen-gardens-edmonton/"
+   }
+  ]
+ },
+ "Abbottsfield": {
+  "canon": "/locations/abbottsfield-edmonton/",
+  "file": "src\\pages\\locations/Abbottsfield.tsx",
+  "near": [
+   {
+    "comp": "Belvedere",
+    "canon": "/locations/belvedere-edmonton/"
+   },
+   {
+    "comp": "McLeod",
+    "canon": "/locations/mcleod-edmonton/"
+   },
+   {
+    "comp": "Montrose",
+    "canon": "/locations/montrose/"
+   },
+   {
+    "comp": "Belmont",
+    "canon": "/locations/belmont-edmonton/"
+   },
+   {
+    "comp": "BeaconHeights",
+    "canon": "/locations/beacon-heights-edmonton/"
+   }
+  ]
+ },
+ "Griesbach": {
+  "canon": "/locations/griesbach-edmonton/",
+  "file": "src\\pages\\locations/Griesbach.tsx",
+  "near": [
+   {
+    "comp": "Rosslyn",
+    "canon": "/locations/rosslyn-edmonton/"
+   },
+   {
+    "comp": "Northmount",
+    "canon": "/locations/northmount-edmonton/"
+   },
+   {
+    "comp": "Lauderdale",
+    "canon": "/locations/lauderdale/"
+   },
+   {
+    "comp": "EauxClaires",
+    "canon": "/locations/eaux-claires-edmonton/"
+   },
+   {
+    "comp": "CastleDowns",
+    "canon": "/locations/castle-downs/"
+   }
+  ]
+ },
+ "Eastwood": {
+  "canon": "/locations/eastwood-edmonton/",
+  "file": "src\\pages\\locations/Eastwood.tsx",
+  "near": [
+   {
+    "comp": "Riverdale",
+    "canon": "/locations/riverdale-edmonton/"
+   },
+   {
+    "comp": "Bellevue",
+    "canon": "/locations/bellevue-edmonton/"
+   },
+   {
+    "comp": "Montrose",
+    "canon": "/locations/montrose/"
+   },
+   {
+    "comp": "Delton",
+    "canon": "/locations/delton/"
+   },
+   {
+    "comp": "Delwood",
+    "canon": "/locations/delwood-edmonton/"
+   }
+  ]
+ },
+ "Sherbrooke": {
+  "canon": "/locations/sherbrooke-edmonton/",
+  "file": "src\\pages\\locations/Sherbrooke.tsx",
+  "near": [
+   {
+    "comp": "Lauderdale",
+    "canon": "/locations/lauderdale/"
+   },
+   {
+    "comp": "Rosslyn",
+    "canon": "/locations/rosslyn-edmonton/"
+   },
+   {
+    "comp": "Glengarry",
+    "canon": "/locations/glengarry-edmonton/"
+   },
+   {
+    "comp": "PrinceCharles",
+    "canon": "/locations/prince-charles-edmonton/"
+   },
+   {
+    "comp": "Dovercourt",
+    "canon": "/locations/dovercourt-edmonton/"
+   }
+  ]
+ },
+ "Canora": {
+  "canon": "/locations/canora-edmonton/",
+  "file": "src\\pages\\locations/Canora.tsx",
+  "near": [
+   {
+    "comp": "Grovenor",
+    "canon": "/locations/grovenor/"
+   },
+   {
+    "comp": "Glenora",
+    "canon": "/locations/glenora-edmonton/"
+   },
+   {
+    "comp": "Westmount",
+    "canon": "/locations/westmount-edmonton/"
+   },
+   {
+    "comp": "Mayfield",
+    "canon": "/locations/mayfield-edmonton/"
+   },
+   {
+    "comp": "Inglewood",
+    "canon": "/locations/inglewood/"
+   }
+  ]
+ },
+ "Avonmore": {
+  "canon": "/locations/avonmore-edmonton/",
+  "file": "src\\pages\\locations/Avonmore.tsx",
+  "near": [
+   {
+    "comp": "BonnieDoon",
+    "canon": "/locations/bonnie-doon-edmonton/"
+   },
+   {
+    "comp": "Holyrood",
+    "canon": "/locations/holyrood-edmonton/"
+   },
+   {
+    "comp": "Hazeldean",
+    "canon": "/locations/hazeldean/"
+   },
+   {
+    "comp": "Ottewell",
+    "canon": "/locations/ottewell-edmonton/"
+   },
+   {
+    "comp": "OldStrathcona",
+    "canon": "/locations/old-strathcona/"
+   }
+  ]
+ },
+ "Dovercourt": {
+  "canon": "/locations/dovercourt-edmonton/",
+  "file": "src\\pages\\locations/Dovercourt.tsx",
+  "near": [
+   {
+    "comp": "Woodcroft",
+    "canon": "/locations/woodcroft-edmonton/"
+   },
+   {
+    "comp": "Inglewood",
+    "canon": "/locations/inglewood/"
+   },
+   {
+    "comp": "Sherbrooke",
+    "canon": "/locations/sherbrooke-edmonton/"
+   },
+   {
+    "comp": "Mayfield",
+    "canon": "/locations/mayfield-edmonton/"
+   },
+   {
+    "comp": "PrinceCharles",
+    "canon": "/locations/prince-charles-edmonton/"
+   }
+  ]
+ },
+ "Downtown": {
+  "canon": "/locations/downtown-edmonton/",
+  "file": "src\\pages\\locations/Downtown.tsx",
+  "near": [
+   {
+    "comp": "BoyleStreet",
+    "canon": "/locations/boyle-street-edmonton/"
+   },
+   {
+    "comp": "CentralMcDougall",
+    "canon": "/locations/central-mcdougall-edmonton/"
+   },
+   {
+    "comp": "McCauley",
+    "canon": "/locations/mccauley-edmonton/"
+   },
+   {
+    "comp": "Riverdale",
+    "canon": "/locations/riverdale-edmonton/"
+   },
+   {
+    "comp": "SpruceAvenue",
+    "canon": "/locations/spruce-avenue/"
+   }
+  ]
+ },
+ "Belvedere": {
+  "canon": "/locations/belvedere-edmonton/",
+  "file": "src\\pages\\locations/Belvedere.tsx",
+  "near": [
+   {
+    "comp": "McLeod",
+    "canon": "/locations/mcleod-edmonton/"
+   },
+   {
+    "comp": "Abbottsfield",
+    "canon": "/locations/abbottsfield-edmonton/"
+   },
+   {
+    "comp": "Montrose",
+    "canon": "/locations/montrose/"
+   },
+   {
+    "comp": "MapleRidge",
+    "canon": "/locations/maple-ridge-edmonton/"
+   },
+   {
+    "comp": "Hermitage",
+    "canon": "/locations/hermitage-edmonton/"
+   }
+  ]
+ },
+ "Greenfield": {
+  "canon": "/locations/greenfield-edmonton/",
+  "file": "src\\pages\\locations/Greenfield.tsx",
+  "near": [
+   {
+    "comp": "Brookside",
+    "canon": "/locations/brookside-edmonton/"
+   },
+   {
+    "comp": "Pleasantview",
+    "canon": "/locations/pleasantview/"
+   },
+   {
+    "comp": "Allendale",
+    "canon": "/locations/allendale/"
+   },
+   {
+    "comp": "AspenGardens",
+    "canon": "/locations/aspen-gardens-edmonton/"
+   },
+   {
+    "comp": "Hazeldean",
+    "canon": "/locations/hazeldean/"
+   }
+  ]
+ },
+ "BoyleStreet": {
+  "canon": "/locations/boyle-street-edmonton/",
+  "file": "src\\pages\\locations/BoyleStreet.tsx",
+  "near": [
+   {
+    "comp": "Downtown",
+    "canon": "/locations/downtown-edmonton/"
+   },
+   {
+    "comp": "McCauley",
+    "canon": "/locations/mccauley-edmonton/"
+   },
+   {
+    "comp": "CentralMcDougall",
+    "canon": "/locations/central-mcdougall-edmonton/"
+   },
+   {
+    "comp": "Riverdale",
+    "canon": "/locations/riverdale-edmonton/"
+   },
+   {
+    "comp": "SpruceAvenue",
+    "canon": "/locations/spruce-avenue/"
+   }
+  ]
+ },
+ "Ottewell": {
+  "canon": "/locations/ottewell-edmonton/",
+  "file": "src\\pages\\locations/Ottewell.tsx",
+  "near": [
+   {
+    "comp": "Holyrood",
+    "canon": "/locations/holyrood-edmonton/"
+   },
+   {
+    "comp": "BonnieDoon",
+    "canon": "/locations/bonnie-doon-edmonton/"
+   },
+   {
+    "comp": "Avonmore",
+    "canon": "/locations/avonmore-edmonton/"
+   },
+   {
+    "comp": "Capilano",
+    "canon": "/locations/capilano-edmonton/"
+   },
+   {
+    "comp": "BeaconHeights",
+    "canon": "/locations/beacon-heights-edmonton/"
+   }
+  ]
+ },
+ "BeaconHeights": {
+  "canon": "/locations/beacon-heights-edmonton/",
+  "file": "src\\pages\\locations/BeaconHeights.tsx",
+  "near": [
+   {
+    "comp": "Capilano",
+    "canon": "/locations/capilano-edmonton/"
+   },
+   {
+    "comp": "Bellevue",
+    "canon": "/locations/bellevue-edmonton/"
+   },
+   {
+    "comp": "Abbottsfield",
+    "canon": "/locations/abbottsfield-edmonton/"
+   },
+   {
+    "comp": "Montrose",
+    "canon": "/locations/montrose/"
+   },
+   {
+    "comp": "Belvedere",
+    "canon": "/locations/belvedere-edmonton/"
+   }
+  ]
+ },
+ "Riverdale": {
+  "canon": "/locations/riverdale-edmonton/",
+  "file": "src\\pages\\locations/Riverdale.tsx",
+  "near": [
+   {
+    "comp": "McCauley",
+    "canon": "/locations/mccauley-edmonton/"
+   },
+   {
+    "comp": "Eastwood",
+    "canon": "/locations/eastwood-edmonton/"
+   },
+   {
+    "comp": "BoyleStreet",
+    "canon": "/locations/boyle-street-edmonton/"
+   },
+   {
+    "comp": "Bellevue",
+    "canon": "/locations/bellevue-edmonton/"
+   },
+   {
+    "comp": "CentralMcDougall",
+    "canon": "/locations/central-mcdougall-edmonton/"
+   }
+  ]
+ },
+ "QueenAlexandra": {
+  "canon": "/locations/queen-alexandra-edmonton/",
+  "file": "src\\pages\\locations/QueenAlexandra.tsx",
+  "near": [
+   {
+    "comp": "OldStrathcona",
+    "canon": "/locations/old-strathcona/"
+   },
+   {
+    "comp": "Garneau",
+    "canon": "/locations/garneau/"
+   },
+   {
+    "comp": "Allendale",
+    "canon": "/locations/allendale/"
+   },
+   {
+    "comp": "Hazeldean",
+    "canon": "/locations/hazeldean/"
+   },
+   {
+    "comp": "Pleasantview",
+    "canon": "/locations/pleasantview/"
+   }
+  ]
+ },
+ "BonnieDoon": {
+  "canon": "/locations/bonnie-doon-edmonton/",
+  "file": "src\\pages\\locations/BonnieDoon.tsx",
+  "near": [
+   {
+    "comp": "Avonmore",
+    "canon": "/locations/avonmore-edmonton/"
+   },
+   {
+    "comp": "Holyrood",
+    "canon": "/locations/holyrood-edmonton/"
+   },
+   {
+    "comp": "Hazeldean",
+    "canon": "/locations/hazeldean/"
+   },
+   {
+    "comp": "Ottewell",
+    "canon": "/locations/ottewell-edmonton/"
+   },
+   {
+    "comp": "OldStrathcona",
+    "canon": "/locations/old-strathcona/"
+   }
+  ]
+ },
+ "Glenora": {
+  "canon": "/locations/glenora-edmonton/",
+  "file": "src\\pages\\locations/Glenora.tsx",
+  "near": [
+   {
+    "comp": "Grovenor",
+    "canon": "/locations/grovenor/"
+   },
+   {
+    "comp": "Canora",
+    "canon": "/locations/canora-edmonton/"
+   },
+   {
+    "comp": "Mayfield",
+    "canon": "/locations/mayfield-edmonton/"
+   },
+   {
+    "comp": "Westmount",
+    "canon": "/locations/westmount-edmonton/"
+   },
+   {
+    "comp": "Inglewood",
+    "canon": "/locations/inglewood/"
+   }
+  ]
+ },
+ "Glenwood": {
+  "canon": "/locations/glenwood-edmonton/",
+  "file": "src\\pages\\locations/Glenwood.tsx",
+  "near": [
+   {
+    "comp": "LewisEstates",
+    "canon": "/locations/lewis-estates/"
+   },
+   {
+    "comp": "Secord",
+    "canon": "/locations/secord-edmonton/"
+   },
+   {
+    "comp": "Canora",
+    "canon": "/locations/canora-edmonton/"
+   },
+   {
+    "comp": "Glastonbury",
+    "canon": "/locations/glastonbury/"
+   },
+   {
+    "comp": "Glenora",
+    "canon": "/locations/glenora-edmonton/"
+   }
+  ]
+ },
+ "Evansdale": {
+  "canon": "/locations/evansdale-edmonton/",
+  "file": "src\\pages\\locations/Evansdale.tsx",
+  "near": [
+   {
+    "comp": "Delwood",
+    "canon": "/locations/delwood-edmonton/"
+   },
+   {
+    "comp": "Balwin",
+    "canon": "/locations/balwin-edmonton/"
+   },
+   {
+    "comp": "Delton",
+    "canon": "/locations/delton/"
+   },
+   {
+    "comp": "Kilkenny",
+    "canon": "/locations/kilkenny-edmonton/"
+   },
+   {
+    "comp": "Northmount",
+    "canon": "/locations/northmount-edmonton/"
+   }
+  ]
+ },
+ "Belmont": {
+  "canon": "/locations/belmont-edmonton/",
+  "file": "src\\pages\\locations/Belmont.tsx",
+  "near": [
+   {
+    "comp": "Hermitage",
+    "canon": "/locations/hermitage-edmonton/"
+   },
+   {
+    "comp": "Abbottsfield",
+    "canon": "/locations/abbottsfield-edmonton/"
+   },
+   {
+    "comp": "McLeod",
+    "canon": "/locations/mcleod-edmonton/"
+   },
+   {
+    "comp": "Clareview",
+    "canon": "/locations/clareview/"
+   },
+   {
+    "comp": "Belvedere",
+    "canon": "/locations/belvedere-edmonton/"
+   }
+  ]
+ },
+ "Casselman": {
+  "canon": "/locations/casselman-edmonton/",
+  "file": "src\\pages\\locations/Casselman.tsx",
+  "near": [
+   {
+    "comp": "Kildare",
+    "canon": "/locations/kildare-edmonton/"
+   },
+   {
+    "comp": "York",
+    "canon": "/locations/york-edmonton/"
+   },
+   {
+    "comp": "Ozerna",
+    "canon": "/locations/ozerna-edmonton/"
+   },
+   {
+    "comp": "HollickKenyon",
+    "canon": "/locations/hollick-kenyon-edmonton/"
+   },
+   {
+    "comp": "Hairsine",
+    "canon": "/locations/hairsine-edmonton/"
+   }
+  ]
+ },
+ "Brintnell": {
+  "canon": "/locations/brintnell-edmonton/",
+  "file": "src\\pages\\locations/Brintnell.tsx",
+  "near": [
+   {
+    "comp": "HollickKenyon",
+    "canon": "/locations/hollick-kenyon-edmonton/"
+   },
+   {
+    "comp": "MattBerry",
+    "canon": "/locations/matt-berry-edmonton/"
+   },
+   {
+    "comp": "Ozerna",
+    "canon": "/locations/ozerna-edmonton/"
+   },
+   {
+    "comp": "Miller",
+    "canon": "/locations/miller-edmonton/"
+   },
+   {
+    "comp": "Casselman",
+    "canon": "/locations/casselman-edmonton/"
+   }
+  ]
+ },
+ "Holyrood": {
+  "canon": "/locations/holyrood-edmonton/",
+  "file": "src\\pages\\locations/Holyrood.tsx",
+  "near": [
+   {
+    "comp": "Ottewell",
+    "canon": "/locations/ottewell-edmonton/"
+   },
+   {
+    "comp": "BonnieDoon",
+    "canon": "/locations/bonnie-doon-edmonton/"
+   },
+   {
+    "comp": "Avonmore",
+    "canon": "/locations/avonmore-edmonton/"
+   },
+   {
+    "comp": "Capilano",
+    "canon": "/locations/capilano-edmonton/"
+   },
+   {
+    "comp": "BeaconHeights",
+    "canon": "/locations/beacon-heights-edmonton/"
+   }
+  ]
+ },
+ "Delwood": {
+  "canon": "/locations/delwood-edmonton/",
+  "file": "src\\pages\\locations/Delwood.tsx",
+  "near": [
+   {
+    "comp": "Evansdale",
+    "canon": "/locations/evansdale-edmonton/"
+   },
+   {
+    "comp": "Balwin",
+    "canon": "/locations/balwin-edmonton/"
+   },
+   {
+    "comp": "Delton",
+    "canon": "/locations/delton/"
+   },
+   {
+    "comp": "MapleRidge",
+    "canon": "/locations/maple-ridge-edmonton/"
+   },
+   {
+    "comp": "Eastwood",
+    "canon": "/locations/eastwood-edmonton/"
+   }
+  ]
+ },
+ "HollickKenyon": {
+  "canon": "/locations/hollick-kenyon-edmonton/",
+  "file": "src\\pages\\locations/HollickKenyon.tsx",
+  "near": [
+   {
+    "comp": "Brintnell",
+    "canon": "/locations/brintnell-edmonton/"
+   },
+   {
+    "comp": "MattBerry",
+    "canon": "/locations/matt-berry-edmonton/"
+   },
+   {
+    "comp": "Ozerna",
+    "canon": "/locations/ozerna-edmonton/"
+   },
+   {
+    "comp": "Miller",
+    "canon": "/locations/miller-edmonton/"
+   },
+   {
+    "comp": "Casselman",
+    "canon": "/locations/casselman-edmonton/"
+   }
+  ]
+ },
+ "Glengarry": {
+  "canon": "/locations/glengarry-edmonton/",
+  "file": "src\\pages\\locations/Glengarry.tsx",
+  "near": [
+   {
+    "comp": "Lauderdale",
+    "canon": "/locations/lauderdale/"
+   },
+   {
+    "comp": "Delton",
+    "canon": "/locations/delton/"
+   },
+   {
+    "comp": "PrinceCharles",
+    "canon": "/locations/prince-charles-edmonton/"
+   },
+   {
+    "comp": "Rosslyn",
+    "canon": "/locations/rosslyn-edmonton/"
+   },
+   {
+    "comp": "Sherbrooke",
+    "canon": "/locations/sherbrooke-edmonton/"
+   }
+  ]
+ },
+ "Hermitage": {
+  "canon": "/locations/hermitage-edmonton/",
+  "file": "src\\pages\\locations/Hermitage.tsx",
+  "near": [
+   {
+    "comp": "Belmont",
+    "canon": "/locations/belmont-edmonton/"
+   },
+   {
+    "comp": "Hairsine",
+    "canon": "/locations/hairsine-edmonton/"
+   },
+   {
+    "comp": "McLeod",
+    "canon": "/locations/mcleod-edmonton/"
+   },
+   {
+    "comp": "Clareview",
+    "canon": "/locations/clareview/"
+   },
+   {
+    "comp": "Belvedere",
+    "canon": "/locations/belvedere-edmonton/"
+   }
+  ]
+ },
+ "LewisEstates": {
+  "canon": "/locations/lewis-estates/",
+  "file": "src\\pages\\locations/LewisEstates.tsx",
+  "near": [
+   {
+    "comp": "Secord",
+    "canon": "/locations/secord-edmonton/"
+   },
+   {
+    "comp": "Glastonbury",
+    "canon": "/locations/glastonbury/"
+   },
+   {
+    "comp": "Glenwood",
+    "canon": "/locations/glenwood-edmonton/"
+   },
+   {
+    "comp": "Canora",
+    "canon": "/locations/canora-edmonton/"
+   },
+   {
+    "comp": "Ambleside",
+    "canon": "/locations/ambleside-edmonton/"
+   }
+  ]
+ },
+ "Glastonbury": {
+  "canon": "/locations/glastonbury/",
+  "file": "src\\pages\\locations/Glastonbury.tsx",
+  "near": [
+   {
+    "comp": "LewisEstates",
+    "canon": "/locations/lewis-estates/"
+   },
+   {
+    "comp": "Secord",
+    "canon": "/locations/secord-edmonton/"
+   },
+   {
+    "comp": "Glenwood",
+    "canon": "/locations/glenwood-edmonton/"
+   },
+   {
+    "comp": "Ambleside",
+    "canon": "/locations/ambleside-edmonton/"
+   },
+   {
+    "comp": "Riverbend",
+    "canon": "/locations/riverbend/"
+   }
+  ]
+ },
+ "Clareview": {
+  "canon": "/locations/clareview/",
+  "file": "src\\pages\\locations/Clareview.tsx",
+  "near": [
+   {
+    "comp": "Bannerman",
+    "canon": "/locations/bannerman/"
+   },
+   {
+    "comp": "Hairsine",
+    "canon": "/locations/hairsine-edmonton/"
+   },
+   {
+    "comp": "Hermitage",
+    "canon": "/locations/hermitage-edmonton/"
+   },
+   {
+    "comp": "Belmont",
+    "canon": "/locations/belmont-edmonton/"
+   },
+   {
+    "comp": "HollickKenyon",
+    "canon": "/locations/hollick-kenyon-edmonton/"
+   }
+  ]
+ },
+ "LagoLindo": {
+  "canon": "/locations/lago-lindo-edmonton/",
+  "file": "src\\pages\\locations/LagoLindo.tsx",
+  "near": [
+   {
+    "comp": "EauxClaires",
+    "canon": "/locations/eaux-claires-edmonton/"
+   },
+   {
+    "comp": "Schonsee",
+    "canon": "/locations/schonsee-edmonton/"
+   },
+   {
+    "comp": "CastleDowns",
+    "canon": "/locations/castle-downs/"
+   },
+   {
+    "comp": "Griesbach",
+    "canon": "/locations/griesbach-edmonton/"
+   },
+   {
+    "comp": "McConachie",
+    "canon": "/locations/mcconachie-edmonton/"
+   }
+  ]
+ },
+ "Summerside": {
+  "canon": "/locations/summerside/",
+  "file": "src\\pages\\locations/Summerside.tsx",
+  "near": [
+   {
+    "comp": "Terwillegar",
+    "canon": "/locations/terwillegar/"
+   },
+   {
+    "comp": "Riverbend",
+    "canon": "/locations/riverbend/"
+   },
+   {
+    "comp": "Greenfield",
+    "canon": "/locations/greenfield-edmonton/"
+   },
+   {
+    "comp": "Windermere",
+    "canon": "/cleaning-services-windermere/"
+   },
+   {
+    "comp": "Brookside",
+    "canon": "/locations/brookside-edmonton/"
+   }
+  ]
+ },
+ "Terwillegar": {
+  "canon": "/locations/terwillegar/",
+  "file": "src\\pages\\locations/Terwillegar.tsx",
+  "near": [
+   {
+    "comp": "Summerside",
+    "canon": "/locations/summerside/"
+   },
+   {
+    "comp": "Riverbend",
+    "canon": "/locations/riverbend/"
+   },
+   {
+    "comp": "Ambleside",
+    "canon": "/locations/ambleside-edmonton/"
+   },
+   {
+    "comp": "AspenGardens",
+    "canon": "/locations/aspen-gardens-edmonton/"
+   },
+   {
+    "comp": "Windermere",
+    "canon": "/cleaning-services-windermere/"
+   }
+  ]
+ },
+ "Riverbend": {
+  "canon": "/locations/riverbend/",
+  "file": "src\\pages\\locations/Riverbend.tsx",
+  "near": [
+   {
+    "comp": "AspenGardens",
+    "canon": "/locations/aspen-gardens-edmonton/"
+   },
+   {
+    "comp": "Terwillegar",
+    "canon": "/locations/terwillegar/"
+   },
+   {
+    "comp": "Brookside",
+    "canon": "/locations/brookside-edmonton/"
+   },
+   {
+    "comp": "Ambleside",
+    "canon": "/locations/ambleside-edmonton/"
+   },
+   {
+    "comp": "Greenfield",
+    "canon": "/locations/greenfield-edmonton/"
+   }
+  ]
+ },
+ "Garneau": {
+  "canon": "/locations/garneau/",
+  "file": "src\\pages\\locations/Garneau.tsx",
+  "near": [
+   {
+    "comp": "QueenAlexandra",
+    "canon": "/locations/queen-alexandra-edmonton/"
+   },
+   {
+    "comp": "OldStrathcona",
+    "canon": "/locations/old-strathcona/"
+   },
+   {
+    "comp": "Allendale",
+    "canon": "/locations/allendale/"
+   },
+   {
+    "comp": "Pleasantview",
+    "canon": "/locations/pleasantview/"
+   },
+   {
+    "comp": "Hazeldean",
+    "canon": "/locations/hazeldean/"
+   }
+  ]
+ },
+ "OldStrathcona": {
+  "canon": "/locations/old-strathcona/",
+  "file": "src\\pages\\locations/OldStrathcona.tsx",
+  "near": [
+   {
+    "comp": "QueenAlexandra",
+    "canon": "/locations/queen-alexandra-edmonton/"
+   },
+   {
+    "comp": "Garneau",
+    "canon": "/locations/garneau/"
+   },
+   {
+    "comp": "Allendale",
+    "canon": "/locations/allendale/"
+   },
+   {
+    "comp": "Hazeldean",
+    "canon": "/locations/hazeldean/"
+   },
+   {
+    "comp": "Pleasantview",
+    "canon": "/locations/pleasantview/"
+   }
+  ]
+ },
+ "Chestermere": {
+  "canon": "/locations/chestermere/",
+  "file": "src\\pages\\locations/Chestermere.tsx",
+  "near": [
+   {
+    "comp": "Marlborough",
+    "canon": "/locations/marlborough/"
+   },
+   {
+    "comp": "ForestLawn",
+    "canon": "/locations/forest-lawn-calgary/"
+   }
+  ]
+ },
+ "AspenGardens": {
+  "canon": "/locations/aspen-gardens-edmonton/",
+  "file": "src\\pages\\locations/AspenGardens.tsx",
+  "near": [
+   {
+    "comp": "Brookside",
+    "canon": "/locations/brookside-edmonton/"
+   },
+   {
+    "comp": "Riverbend",
+    "canon": "/locations/riverbend/"
+   },
+   {
+    "comp": "Pleasantview",
+    "canon": "/locations/pleasantview/"
+   },
+   {
+    "comp": "Greenfield",
+    "canon": "/locations/greenfield-edmonton/"
+   },
+   {
+    "comp": "Allendale",
+    "canon": "/locations/allendale/"
+   }
+  ]
+ },
+ "Tuscany": {
+  "canon": "/locations/tuscany/",
+  "file": "src\\pages\\locations/Tuscany.tsx",
+  "near": [
+   {
+    "comp": "ArbourLake",
+    "canon": "/locations/arbour-lake/"
+   },
+   {
+    "comp": "ScenicAcres",
+    "canon": "/locations/scenic-acres/"
+   },
+   {
+    "comp": "BownessCalgary",
+    "canon": "/locations/bowness-calgary/"
+   },
+   {
+    "comp": "DalhousieCalgary",
+    "canon": "/locations/dalhousie-calgary/"
+   },
+   {
+    "comp": "Montgomery",
+    "canon": "/locations/montgomery-calgary/"
+   }
+  ]
+ },
+ "Kensington": {
+  "canon": "/locations/kensington/",
+  "file": "src\\pages\\locations/Kensington.tsx",
+  "near": [
+   {
+    "comp": "HillhurstCalgary",
+    "canon": "/locations/hillhurst-calgary/"
+   },
+   {
+    "comp": "Sunnyside",
+    "canon": "/locations/sunnyside-calgary/"
+   },
+   {
+    "comp": "DowntownWestEnd",
+    "canon": "/locations/downtown-west-end-calgary/"
+   },
+   {
+    "comp": "Sunalta",
+    "canon": "/locations/sunalta-calgary/"
+   },
+   {
+    "comp": "EauClaire",
+    "canon": "/locations/eau-claire-calgary/"
+   }
+  ]
+ },
+ "ArbourLake": {
+  "canon": "/locations/arbour-lake/",
+  "file": "src\\pages\\locations/ArbourLake.tsx",
+  "near": [
+   {
+    "comp": "ScenicAcres",
+    "canon": "/locations/scenic-acres/"
+   },
+   {
+    "comp": "BownessCalgary",
+    "canon": "/locations/bowness-calgary/"
+   },
+   {
+    "comp": "Montgomery",
+    "canon": "/locations/montgomery-calgary/"
+   },
+   {
+    "comp": "Tuscany",
+    "canon": "/locations/tuscany/"
+   },
+   {
+    "comp": "DalhousieCalgary",
+    "canon": "/locations/dalhousie-calgary/"
+   }
+  ]
+ },
+ "ScenicAcres": {
+  "canon": "/locations/scenic-acres/",
+  "file": "src\\pages\\locations/ScenicAcres.tsx",
+  "near": [
+   {
+    "comp": "ArbourLake",
+    "canon": "/locations/arbour-lake/"
+   },
+   {
+    "comp": "BownessCalgary",
+    "canon": "/locations/bowness-calgary/"
+   },
+   {
+    "comp": "Montgomery",
+    "canon": "/locations/montgomery-calgary/"
+   },
+   {
+    "comp": "DalhousieCalgary",
+    "canon": "/locations/dalhousie-calgary/"
+   },
+   {
+    "comp": "Tuscany",
+    "canon": "/locations/tuscany/"
+   }
+  ]
+ },
+ "SkyviewRanch": {
+  "canon": "/locations/skyview-ranch/",
+  "file": "src\\pages\\locations/SkyviewRanch.tsx",
+  "near": [
+   {
+    "comp": "Cityscape",
+    "canon": "/locations/cityscape/"
+   },
+   {
+    "comp": "SaddleRidge",
+    "canon": "/locations/saddle-ridge/"
+   },
+   {
+    "comp": "HuntingtonHills",
+    "canon": "/locations/huntington-hills-calgary/"
+   },
+   {
+    "comp": "Thorncliffe",
+    "canon": "/locations/thorncliffe-calgary/"
+   }
+  ]
+ },
+ "Cityscape": {
+  "canon": "/locations/cityscape/",
+  "file": "src\\pages\\locations/Cityscape.tsx",
+  "near": [
+   {
+    "comp": "SkyviewRanch",
+    "canon": "/locations/skyview-ranch/"
+   },
+   {
+    "comp": "SaddleRidge",
+    "canon": "/locations/saddle-ridge/"
+   },
+   {
+    "comp": "HuntingtonHills",
+    "canon": "/locations/huntington-hills-calgary/"
+   },
+   {
+    "comp": "Thorncliffe",
+    "canon": "/locations/thorncliffe-calgary/"
+   },
+   {
+    "comp": "Greenview",
+    "canon": "/locations/greenview-calgary/"
+   }
+  ]
+ },
+ "Marlborough": {
+  "canon": "/locations/marlborough/",
+  "file": "src\\pages\\locations/Marlborough.tsx",
+  "near": [
+   {
+    "comp": "ForestLawn",
+    "canon": "/locations/forest-lawn-calgary/"
+   },
+   {
+    "comp": "InglewoodCalgary",
+    "canon": "/locations/inglewood-calgary/"
+   },
+   {
+    "comp": "BridgelandRiverside",
+    "canon": "/locations/bridgeland-riverside-calgary/"
+   },
+   {
+    "comp": "Ramsay",
+    "canon": "/locations/ramsay-calgary/"
+   },
+   {
+    "comp": "Renfrew",
+    "canon": "/locations/renfrew-calgary/"
+   }
+  ]
+ },
+ "SaddleRidge": {
+  "canon": "/locations/saddle-ridge/",
+  "file": "src\\pages\\locations/SaddleRidge.tsx",
+  "near": [
+   {
+    "comp": "Cityscape",
+    "canon": "/locations/cityscape/"
+   },
+   {
+    "comp": "SkyviewRanch",
+    "canon": "/locations/skyview-ranch/"
+   },
+   {
+    "comp": "HuntingtonHills",
+    "canon": "/locations/huntington-hills-calgary/"
+   },
+   {
+    "comp": "Marlborough",
+    "canon": "/locations/marlborough/"
+   },
+   {
+    "comp": "Thorncliffe",
+    "canon": "/locations/thorncliffe-calgary/"
+   }
+  ]
+ },
+ "Mission": {
+  "canon": "/locations/mission/",
+  "file": "src\\pages\\locations/Mission.tsx",
+  "near": [
+   {
+    "comp": "CliffBungalow",
+    "canon": "/locations/cliff-bungalow-calgary/"
+   },
+   {
+    "comp": "Erlton",
+    "canon": "/locations/erlton-calgary/"
+   },
+   {
+    "comp": "Beltline",
+    "canon": "/locations/beltline-calgary/"
+   },
+   {
+    "comp": "RideauPark",
+    "canon": "/locations/rideau-park-calgary/"
+   },
+   {
+    "comp": "VictoriaPark",
+    "canon": "/locations/victoria-park-calgary/"
+   }
+  ]
+ },
+ "MountRoyal": {
+  "canon": "/locations/mount-royal/",
+  "file": "src\\pages\\locations/MountRoyal.tsx",
+  "near": [
+   {
+    "comp": "ElbowPark",
+    "canon": "/locations/elbow-park-calgary/"
+   },
+   {
+    "comp": "Roxboro",
+    "canon": "/locations/roxboro-calgary/"
+   },
+   {
+    "comp": "LowerMountRoyal",
+    "canon": "/locations/lower-mount-royal-calgary/"
+   },
+   {
+    "comp": "MardaLoop",
+    "canon": "/locations/marda-loop/"
+   },
+   {
+    "comp": "Bankview",
+    "canon": "/locations/bankview-calgary/"
+   }
+  ]
+ },
+ "AspenWoods": {
+  "canon": "/locations/aspen-woods/",
+  "file": "src\\pages\\locations/AspenWoods.tsx",
+  "near": [
+   {
+    "comp": "Wildwood",
+    "canon": "/locations/wildwood-calgary/"
+   },
+   {
+    "comp": "Montgomery",
+    "canon": "/locations/montgomery-calgary/"
+   },
+   {
+    "comp": "SpruceCliff",
+    "canon": "/locations/spruce-cliff-calgary/"
+   },
+   {
+    "comp": "BownessCalgary",
+    "canon": "/locations/bowness-calgary/"
+   },
+   {
+    "comp": "West",
+    "canon": "/locations/west-calgary/"
+   }
+  ]
+ },
+ "MardaLoop": {
+  "canon": "/locations/marda-loop/",
+  "file": "src\\pages\\locations/MardaLoop.tsx",
+  "near": [
+   {
+    "comp": "Altadore",
+    "canon": "/locations/altadore-calgary/"
+   },
+   {
+    "comp": "ElbowPark",
+    "canon": "/locations/elbow-park-calgary/"
+   },
+   {
+    "comp": "MountRoyal",
+    "canon": "/locations/mount-royal/"
+   },
+   {
+    "comp": "Bankview",
+    "canon": "/locations/bankview-calgary/"
+   },
+   {
+    "comp": "Richmond",
+    "canon": "/locations/richmond-calgary/"
+   }
+  ]
+ },
+ "Mahogany": {
+  "canon": "/locations/mahogany/",
+  "file": "src\\pages\\locations/Mahogany.tsx",
+  "near": [
+   {
+    "comp": "AuburnBay",
+    "canon": "/locations/auburn-bay/"
+   },
+   {
+    "comp": "Cranston",
+    "canon": "/locations/cranston/"
+   },
+   {
+    "comp": "Ogden",
+    "canon": "/locations/ogden-calgary/"
+   },
+   {
+    "comp": "Southwood",
+    "canon": "/locations/southwood-calgary/"
+   }
+  ]
+ },
+ "AuburnBay": {
+  "canon": "/locations/auburn-bay/",
+  "file": "src\\pages\\locations/AuburnBay.tsx",
+  "near": [
+   {
+    "comp": "Mahogany",
+    "canon": "/locations/mahogany/"
+   },
+   {
+    "comp": "Cranston",
+    "canon": "/locations/cranston/"
+   },
+   {
+    "comp": "Southwood",
+    "canon": "/locations/southwood-calgary/"
+   }
+  ]
+ },
+ "InglewoodCalgary": {
+  "canon": "/locations/inglewood-calgary/",
+  "file": "src\\pages\\locations/InglewoodCalgary.tsx",
+  "near": [
+   {
+    "comp": "Ramsay",
+    "canon": "/locations/ramsay-calgary/"
+   },
+   {
+    "comp": "EastVillage",
+    "canon": "/locations/east-village-calgary/"
+   },
+   {
+    "comp": "BridgelandRiverside",
+    "canon": "/locations/bridgeland-riverside-calgary/"
+   },
+   {
+    "comp": "VictoriaPark",
+    "canon": "/locations/victoria-park-calgary/"
+   },
+   {
+    "comp": "ForestLawn",
+    "canon": "/locations/forest-lawn-calgary/"
+   }
+  ]
+ },
+ "Cranston": {
+  "canon": "/locations/cranston/",
+  "file": "src\\pages\\locations/Cranston.tsx",
+  "near": [
+   {
+    "comp": "AuburnBay",
+    "canon": "/locations/auburn-bay/"
+   },
+   {
+    "comp": "Mahogany",
+    "canon": "/locations/mahogany/"
+   },
+   {
+    "comp": "Southwood",
+    "canon": "/locations/southwood-calgary/"
+   },
+   {
+    "comp": "Ogden",
+    "canon": "/locations/ogden-calgary/"
+   },
+   {
+    "comp": "Mayfair",
+    "canon": "/locations/mayfair-calgary/"
+   }
+  ]
+ },
+ "Woodcroft": {
+  "canon": "/locations/woodcroft-edmonton/",
+  "file": "src\\pages\\locations/Woodcroft.tsx",
+  "near": [
+   {
+    "comp": "Inglewood",
+    "canon": "/locations/inglewood/"
+   },
+   {
+    "comp": "Westmount",
+    "canon": "/locations/westmount-edmonton/"
+   },
+   {
+    "comp": "Dovercourt",
+    "canon": "/locations/dovercourt-edmonton/"
+   },
+   {
+    "comp": "Mayfield",
+    "canon": "/locations/mayfield-edmonton/"
+   },
+   {
+    "comp": "PrinceCharles",
+    "canon": "/locations/prince-charles-edmonton/"
+   }
+  ]
+ },
+ "Kilkenny": {
+  "canon": "/locations/kilkenny-edmonton/",
+  "file": "src\\pages\\locations/Kilkenny.tsx",
+  "near": [
+   {
+    "comp": "Londonderry",
+    "canon": "/locations/londonderry/"
+   },
+   {
+    "comp": "Northmount",
+    "canon": "/locations/northmount-edmonton/"
+   },
+   {
+    "comp": "Evansdale",
+    "canon": "/locations/evansdale-edmonton/"
+   },
+   {
+    "comp": "Balwin",
+    "canon": "/locations/balwin-edmonton/"
+   },
+   {
+    "comp": "Delwood",
+    "canon": "/locations/delwood-edmonton/"
+   }
+  ]
+ },
+ "Miller": {
+  "canon": "/locations/miller-edmonton/",
+  "file": "src\\pages\\locations/Miller.tsx",
+  "near": [
+   {
+    "comp": "Brintnell",
+    "canon": "/locations/brintnell-edmonton/"
+   },
+   {
+    "comp": "MattBerry",
+    "canon": "/locations/matt-berry-edmonton/"
+   },
+   {
+    "comp": "HollickKenyon",
+    "canon": "/locations/hollick-kenyon-edmonton/"
+   },
+   {
+    "comp": "Ozerna",
+    "canon": "/locations/ozerna-edmonton/"
+   },
+   {
+    "comp": "Bannerman",
+    "canon": "/locations/bannerman/"
+   }
+  ]
+ },
+ "MattBerry": {
+  "canon": "/locations/matt-berry-edmonton/",
+  "file": "src\\pages\\locations/MattBerry.tsx",
+  "near": [
+   {
+    "comp": "Brintnell",
+    "canon": "/locations/brintnell-edmonton/"
+   },
+   {
+    "comp": "Ozerna",
+    "canon": "/locations/ozerna-edmonton/"
+   },
+   {
+    "comp": "HollickKenyon",
+    "canon": "/locations/hollick-kenyon-edmonton/"
+   },
+   {
+    "comp": "Miller",
+    "canon": "/locations/miller-edmonton/"
+   },
+   {
+    "comp": "McConachie",
+    "canon": "/locations/mcconachie-edmonton/"
+   }
+  ]
+ },
+ "Ozerna": {
+  "canon": "/locations/ozerna-edmonton/",
+  "file": "src\\pages\\locations/Ozerna.tsx",
+  "near": [
+   {
+    "comp": "MattBerry",
+    "canon": "/locations/matt-berry-edmonton/"
+   },
+   {
+    "comp": "Brintnell",
+    "canon": "/locations/brintnell-edmonton/"
+   },
+   {
+    "comp": "Casselman",
+    "canon": "/locations/casselman-edmonton/"
+   },
+   {
+    "comp": "HollickKenyon",
+    "canon": "/locations/hollick-kenyon-edmonton/"
+   },
+   {
+    "comp": "Kildare",
+    "canon": "/locations/kildare-edmonton/"
+   }
+  ]
+ },
+ "McLeod": {
+  "canon": "/locations/mcleod-edmonton/",
+  "file": "src\\pages\\locations/McLeod.tsx",
+  "near": [
+   {
+    "comp": "Belvedere",
+    "canon": "/locations/belvedere-edmonton/"
+   },
+   {
+    "comp": "Abbottsfield",
+    "canon": "/locations/abbottsfield-edmonton/"
+   },
+   {
+    "comp": "Hermitage",
+    "canon": "/locations/hermitage-edmonton/"
+   },
+   {
+    "comp": "MapleRidge",
+    "canon": "/locations/maple-ridge-edmonton/"
+   },
+   {
+    "comp": "Belmont",
+    "canon": "/locations/belmont-edmonton/"
+   }
+  ]
+ },
+ "BrentwoodCalgary": {
+  "canon": "/locations/brentwood-calgary/",
+  "file": "src\\pages\\locations/BrentwoodCalgary.tsx",
+  "near": [
+   {
+    "comp": "VarsityCalgary",
+    "canon": "/locations/varsity-calgary/"
+   },
+   {
+    "comp": "DalhousieCalgary",
+    "canon": "/locations/dalhousie-calgary/"
+   },
+   {
+    "comp": "Montgomery",
+    "canon": "/locations/montgomery-calgary/"
+   },
+   {
+    "comp": "CapitolHillCalgary",
+    "canon": "/locations/capitol-hill-calgary/"
+   },
+   {
+    "comp": "ScenicAcres",
+    "canon": "/locations/scenic-acres/"
+   }
+  ]
+ },
+ "VarsityCalgary": {
+  "canon": "/locations/varsity-calgary/",
+  "file": "src\\pages\\locations/VarsityCalgary.tsx",
+  "near": [
+   {
+    "comp": "BrentwoodCalgary",
+    "canon": "/locations/brentwood-calgary/"
+   },
+   {
+    "comp": "DalhousieCalgary",
+    "canon": "/locations/dalhousie-calgary/"
+   },
+   {
+    "comp": "Montgomery",
+    "canon": "/locations/montgomery-calgary/"
+   },
+   {
+    "comp": "CapitolHillCalgary",
+    "canon": "/locations/capitol-hill-calgary/"
+   },
+   {
+    "comp": "Wildwood",
+    "canon": "/locations/wildwood-calgary/"
+   }
+  ]
+ },
+ "DalhousieCalgary": {
+  "canon": "/locations/dalhousie-calgary/",
+  "file": "src\\pages\\locations/DalhousieCalgary.tsx",
+  "near": [
+   {
+    "comp": "BrentwoodCalgary",
+    "canon": "/locations/brentwood-calgary/"
+   },
+   {
+    "comp": "VarsityCalgary",
+    "canon": "/locations/varsity-calgary/"
+   },
+   {
+    "comp": "ScenicAcres",
+    "canon": "/locations/scenic-acres/"
+   },
+   {
+    "comp": "Montgomery",
+    "canon": "/locations/montgomery-calgary/"
+   },
+   {
+    "comp": "BownessCalgary",
+    "canon": "/locations/bowness-calgary/"
+   }
+  ]
+ },
+ "BownessCalgary": {
+  "canon": "/locations/bowness-calgary/",
+  "file": "src\\pages\\locations/BownessCalgary.tsx",
+  "near": [
+   {
+    "comp": "ScenicAcres",
+    "canon": "/locations/scenic-acres/"
+   },
+   {
+    "comp": "ArbourLake",
+    "canon": "/locations/arbour-lake/"
+   },
+   {
+    "comp": "Montgomery",
+    "canon": "/locations/montgomery-calgary/"
+   },
+   {
+    "comp": "DalhousieCalgary",
+    "canon": "/locations/dalhousie-calgary/"
+   },
+   {
+    "comp": "VarsityCalgary",
+    "canon": "/locations/varsity-calgary/"
+   }
+  ]
+ },
+ "CapitolHillCalgary": {
+  "canon": "/locations/capitol-hill-calgary/",
+  "file": "src\\pages\\locations/CapitolHillCalgary.tsx",
+  "near": [
+   {
+    "comp": "MountPleasant",
+    "canon": "/locations/mount-pleasant-calgary/"
+   },
+   {
+    "comp": "Sunnyside",
+    "canon": "/locations/sunnyside-calgary/"
+   },
+   {
+    "comp": "TuxedoPark",
+    "canon": "/locations/tuxedo-park-calgary/"
+   },
+   {
+    "comp": "Kensington",
+    "canon": "/locations/kensington/"
+   },
+   {
+    "comp": "HillhurstCalgary",
+    "canon": "/locations/hillhurst-calgary/"
+   }
+  ]
+ },
+ "HillhurstCalgary": {
+  "canon": "/locations/hillhurst-calgary/",
+  "file": "src\\pages\\locations/HillhurstCalgary.tsx",
+  "near": [
+   {
+    "comp": "Kensington",
+    "canon": "/locations/kensington/"
+   },
+   {
+    "comp": "Sunnyside",
+    "canon": "/locations/sunnyside-calgary/"
+   },
+   {
+    "comp": "DowntownWestEnd",
+    "canon": "/locations/downtown-west-end-calgary/"
+   },
+   {
+    "comp": "Sunalta",
+    "canon": "/locations/sunalta-calgary/"
+   },
+   {
+    "comp": "EauClaire",
+    "canon": "/locations/eau-claire-calgary/"
+   }
+  ]
+ },
+ "Thorncliffe": {
+  "canon": "/locations/thorncliffe-calgary/",
+  "file": "src\\pages\\locations/Thorncliffe.tsx",
+  "near": [
+   {
+    "comp": "HighlandPark",
+    "canon": "/locations/highland-park-calgary/"
+   },
+   {
+    "comp": "Greenview",
+    "canon": "/locations/greenview-calgary/"
+   },
+   {
+    "comp": "HuntingtonHills",
+    "canon": "/locations/huntington-hills-calgary/"
+   },
+   {
+    "comp": "MountPleasant",
+    "canon": "/locations/mount-pleasant-calgary/"
+   },
+   {
+    "comp": "CapitolHillCalgary",
+    "canon": "/locations/capitol-hill-calgary/"
+   }
+  ]
+ },
+ "HuntingtonHills": {
+  "canon": "/locations/huntington-hills-calgary/",
+  "file": "src\\pages\\locations/HuntingtonHills.tsx",
+  "near": [
+   {
+    "comp": "Thorncliffe",
+    "canon": "/locations/thorncliffe-calgary/"
+   },
+   {
+    "comp": "HighlandPark",
+    "canon": "/locations/highland-park-calgary/"
+   },
+   {
+    "comp": "Greenview",
+    "canon": "/locations/greenview-calgary/"
+   },
+   {
+    "comp": "MountPleasant",
+    "canon": "/locations/mount-pleasant-calgary/"
+   },
+   {
+    "comp": "CapitolHillCalgary",
+    "canon": "/locations/capitol-hill-calgary/"
+   }
+  ]
+ },
+ "ForestLawn": {
+  "canon": "/locations/forest-lawn-calgary/",
+  "file": "src\\pages\\locations/ForestLawn.tsx",
+  "near": [
+   {
+    "comp": "Marlborough",
+    "canon": "/locations/marlborough/"
+   },
+   {
+    "comp": "InglewoodCalgary",
+    "canon": "/locations/inglewood-calgary/"
+   },
+   {
+    "comp": "Ramsay",
+    "canon": "/locations/ramsay-calgary/"
+   },
+   {
+    "comp": "BridgelandRiverside",
+    "canon": "/locations/bridgeland-riverside-calgary/"
+   },
+   {
+    "comp": "EastVillage",
+    "canon": "/locations/east-village-calgary/"
+   }
+  ]
+ },
+ "Ogden": {
+  "canon": "/locations/ogden-calgary/",
+  "file": "src\\pages\\locations/Ogden.tsx",
+  "near": [
+   {
+    "comp": "WindsorPark",
+    "canon": "/locations/windsor-park-calgary/"
+   },
+   {
+    "comp": "Mayfair",
+    "canon": "/locations/mayfair-calgary/"
+   },
+   {
+    "comp": "StanleyPark",
+    "canon": "/locations/stanley-park-calgary/"
+   },
+   {
+    "comp": "Manchester",
+    "canon": "/locations/manchester-calgary/"
+   },
+   {
+    "comp": "MeadowlarkPark",
+    "canon": "/locations/meadowlark-park-calgary/"
+   }
+  ]
+ },
+ "Southwood": {
+  "canon": "/locations/southwood-calgary/",
+  "file": "src\\pages\\locations/Southwood.tsx",
+  "near": [
+   {
+    "comp": "Mayfair",
+    "canon": "/locations/mayfair-calgary/"
+   },
+   {
+    "comp": "MeadowlarkPark",
+    "canon": "/locations/meadowlark-park-calgary/"
+   },
+   {
+    "comp": "WindsorPark",
+    "canon": "/locations/windsor-park-calgary/"
+   },
+   {
+    "comp": "Ogden",
+    "canon": "/locations/ogden-calgary/"
+   },
+   {
+    "comp": "Lakeview",
+    "canon": "/locations/lakeview-calgary/"
+   }
+  ]
+ },
+ "Lakeview": {
+  "canon": "/locations/lakeview-calgary/",
+  "file": "src\\pages\\locations/Lakeview.tsx",
+  "near": [
+   {
+    "comp": "Altadore",
+    "canon": "/locations/altadore-calgary/"
+   },
+   {
+    "comp": "MardaLoop",
+    "canon": "/locations/marda-loop/"
+   },
+   {
+    "comp": "KillarneyGlengarry",
+    "canon": "/locations/killarney-glengarry-calgary/"
+   },
+   {
+    "comp": "Richmond",
+    "canon": "/locations/richmond-calgary/"
+   },
+   {
+    "comp": "MeadowlarkPark",
+    "canon": "/locations/meadowlark-park-calgary/"
+   }
+  ]
+ },
+ "Beltline": {
+  "canon": "/locations/beltline-calgary/",
+  "file": "src\\pages\\locations/Beltline.tsx",
+  "near": [
+   {
+    "comp": "CliffBungalow",
+    "canon": "/locations/cliff-bungalow-calgary/"
+   },
+   {
+    "comp": "Mission",
+    "canon": "/locations/mission/"
+   },
+   {
+    "comp": "LowerMountRoyal",
+    "canon": "/locations/lower-mount-royal-calgary/"
+   },
+   {
+    "comp": "Erlton",
+    "canon": "/locations/erlton-calgary/"
+   },
+   {
+    "comp": "VictoriaPark",
+    "canon": "/locations/victoria-park-calgary/"
+   }
+  ]
+ },
+ "EastVillage": {
+  "canon": "/locations/east-village-calgary/",
+  "file": "src\\pages\\locations/EastVillage.tsx",
+  "near": [
+   {
+    "comp": "VictoriaPark",
+    "canon": "/locations/victoria-park-calgary/"
+   },
+   {
+    "comp": "Ramsay",
+    "canon": "/locations/ramsay-calgary/"
+   },
+   {
+    "comp": "BridgelandRiverside",
+    "canon": "/locations/bridgeland-riverside-calgary/"
+   },
+   {
+    "comp": "Mission",
+    "canon": "/locations/mission/"
+   },
+   {
+    "comp": "Beltline",
+    "canon": "/locations/beltline-calgary/"
+   }
+  ]
+ },
+ "DowntownWestEnd": {
+  "canon": "/locations/downtown-west-end-calgary/",
+  "file": "src\\pages\\locations/DowntownWestEnd.tsx",
+  "near": [
+   {
+    "comp": "HillhurstCalgary",
+    "canon": "/locations/hillhurst-calgary/"
+   },
+   {
+    "comp": "Kensington",
+    "canon": "/locations/kensington/"
+   },
+   {
+    "comp": "Sunnyside",
+    "canon": "/locations/sunnyside-calgary/"
+   },
+   {
+    "comp": "LowerMountRoyal",
+    "canon": "/locations/lower-mount-royal-calgary/"
+   },
+   {
+    "comp": "EauClaire",
+    "canon": "/locations/eau-claire-calgary/"
+   }
+  ]
+ },
+ "EauClaire": {
+  "canon": "/locations/eau-claire-calgary/",
+  "file": "src\\pages\\locations/EauClaire.tsx",
+  "near": [
+   {
+    "comp": "DowntownWestEnd",
+    "canon": "/locations/downtown-west-end-calgary/"
+   },
+   {
+    "comp": "CrescentHeights",
+    "canon": "/locations/crescent-heights-calgary/"
+   },
+   {
+    "comp": "Sunnyside",
+    "canon": "/locations/sunnyside-calgary/"
+   },
+   {
+    "comp": "Beltline",
+    "canon": "/locations/beltline-calgary/"
+   },
+   {
+    "comp": "HillhurstCalgary",
+    "canon": "/locations/hillhurst-calgary/"
+   }
+  ]
+ },
+ "Sunnyside": {
+  "canon": "/locations/sunnyside-calgary/",
+  "file": "src\\pages\\locations/Sunnyside.tsx",
+  "near": [
+   {
+    "comp": "HillhurstCalgary",
+    "canon": "/locations/hillhurst-calgary/"
+   },
+   {
+    "comp": "Kensington",
+    "canon": "/locations/kensington/"
+   },
+   {
+    "comp": "DowntownWestEnd",
+    "canon": "/locations/downtown-west-end-calgary/"
+   },
+   {
+    "comp": "EauClaire",
+    "canon": "/locations/eau-claire-calgary/"
+   },
+   {
+    "comp": "CrescentHeights",
+    "canon": "/locations/crescent-heights-calgary/"
+   }
+  ]
+ },
+ "BridgelandRiverside": {
+  "canon": "/locations/bridgeland-riverside-calgary/",
+  "file": "src\\pages\\locations/BridgelandRiverside.tsx",
+  "near": [
+   {
+    "comp": "EastVillage",
+    "canon": "/locations/east-village-calgary/"
+   },
+   {
+    "comp": "Renfrew",
+    "canon": "/locations/renfrew-calgary/"
+   },
+   {
+    "comp": "Ramsay",
+    "canon": "/locations/ramsay-calgary/"
+   },
+   {
+    "comp": "VictoriaPark",
+    "canon": "/locations/victoria-park-calgary/"
+   },
+   {
+    "comp": "CrescentHeights",
+    "canon": "/locations/crescent-heights-calgary/"
+   }
+  ]
+ },
+ "CrescentHeights": {
+  "canon": "/locations/crescent-heights-calgary/",
+  "file": "src\\pages\\locations/CrescentHeights.tsx",
+  "near": [
+   {
+    "comp": "TuxedoPark",
+    "canon": "/locations/tuxedo-park-calgary/"
+   },
+   {
+    "comp": "EauClaire",
+    "canon": "/locations/eau-claire-calgary/"
+   },
+   {
+    "comp": "Renfrew",
+    "canon": "/locations/renfrew-calgary/"
+   },
+   {
+    "comp": "Sunnyside",
+    "canon": "/locations/sunnyside-calgary/"
+   },
+   {
+    "comp": "BridgelandRiverside",
+    "canon": "/locations/bridgeland-riverside-calgary/"
+   }
+  ]
+ },
+ "Renfrew": {
+  "canon": "/locations/renfrew-calgary/",
+  "file": "src\\pages\\locations/Renfrew.tsx",
+  "near": [
+   {
+    "comp": "BridgelandRiverside",
+    "canon": "/locations/bridgeland-riverside-calgary/"
+   },
+   {
+    "comp": "CrescentHeights",
+    "canon": "/locations/crescent-heights-calgary/"
+   },
+   {
+    "comp": "TuxedoPark",
+    "canon": "/locations/tuxedo-park-calgary/"
+   },
+   {
+    "comp": "EastVillage",
+    "canon": "/locations/east-village-calgary/"
+   },
+   {
+    "comp": "EauClaire",
+    "canon": "/locations/eau-claire-calgary/"
+   }
+  ]
+ },
+ "Sunalta": {
+  "canon": "/locations/sunalta-calgary/",
+  "file": "src\\pages\\locations/Sunalta.tsx",
+  "near": [
+   {
+    "comp": "SunaltaWest",
+    "canon": "/locations/sunalta-west-calgary/"
+   },
+   {
+    "comp": "Scarboro",
+    "canon": "/locations/scarboro-calgary/"
+   },
+   {
+    "comp": "Bankview",
+    "canon": "/locations/bankview-calgary/"
+   },
+   {
+    "comp": "Shaganappi",
+    "canon": "/locations/shaganappi-calgary/"
+   },
+   {
+    "comp": "DowntownWestEnd",
+    "canon": "/locations/downtown-west-end-calgary/"
+   }
+  ]
+ },
+ "Shaganappi": {
+  "canon": "/locations/shaganappi-calgary/",
+  "file": "src\\pages\\locations/Shaganappi.tsx",
+  "near": [
+   {
+    "comp": "Scarboro",
+    "canon": "/locations/scarboro-calgary/"
+   },
+   {
+    "comp": "Richmond",
+    "canon": "/locations/richmond-calgary/"
+   },
+   {
+    "comp": "KillarneyGlengarry",
+    "canon": "/locations/killarney-glengarry-calgary/"
+   },
+   {
+    "comp": "West",
+    "canon": "/locations/west-calgary/"
+   },
+   {
+    "comp": "Sunalta",
+    "canon": "/locations/sunalta-calgary/"
+   }
+  ]
+ },
+ "KillarneyGlengarry": {
+  "canon": "/locations/killarney-glengarry-calgary/",
+  "file": "src\\pages\\locations/KillarneyGlengarry.tsx",
+  "near": [
+   {
+    "comp": "Richmond",
+    "canon": "/locations/richmond-calgary/"
+   },
+   {
+    "comp": "SpruceCliff",
+    "canon": "/locations/spruce-cliff-calgary/"
+   },
+   {
+    "comp": "Shaganappi",
+    "canon": "/locations/shaganappi-calgary/"
+   },
+   {
+    "comp": "Scarboro",
+    "canon": "/locations/scarboro-calgary/"
+   },
+   {
+    "comp": "West",
+    "canon": "/locations/west-calgary/"
+   }
+  ]
+ },
+ "Richmond": {
+  "canon": "/locations/richmond-calgary/",
+  "file": "src\\pages\\locations/Richmond.tsx",
+  "near": [
+   {
+    "comp": "KillarneyGlengarry",
+    "canon": "/locations/killarney-glengarry-calgary/"
+   },
+   {
+    "comp": "Scarboro",
+    "canon": "/locations/scarboro-calgary/"
+   },
+   {
+    "comp": "Shaganappi",
+    "canon": "/locations/shaganappi-calgary/"
+   },
+   {
+    "comp": "Bankview",
+    "canon": "/locations/bankview-calgary/"
+   },
+   {
+    "comp": "SunaltaWest",
+    "canon": "/locations/sunalta-west-calgary/"
+   }
+  ]
+ },
+ "Tamarack": {
+  "canon": "/locations/tamarack-edmonton/",
+  "file": "src\\pages\\locations/Tamarack.tsx",
+  "near": [
+   {
+    "comp": "Larkspur",
+    "canon": "/locations/larkspur-edmonton/"
+   },
+   {
+    "comp": "Laurel",
+    "canon": "/locations/laurel-edmonton/"
+   },
+   {
+    "comp": "SherwoodPark",
+    "canon": "/cleaning-services-sherwood-park/"
+   },
+   {
+    "comp": "Ottewell",
+    "canon": "/locations/ottewell-edmonton/"
+   },
+   {
+    "comp": "Holyrood",
+    "canon": "/locations/holyrood-edmonton/"
+   }
+  ]
+ },
+ "Laurel": {
+  "canon": "/locations/laurel-edmonton/",
+  "file": "src\\pages\\locations/Laurel.tsx",
+  "near": [
+   {
+    "comp": "Tamarack",
+    "canon": "/locations/tamarack-edmonton/"
+   },
+   {
+    "comp": "Larkspur",
+    "canon": "/locations/larkspur-edmonton/"
+   },
+   {
+    "comp": "Hazeldean",
+    "canon": "/locations/hazeldean/"
+   },
+   {
+    "comp": "Greenfield",
+    "canon": "/locations/greenfield-edmonton/"
+   },
+   {
+    "comp": "Avonmore",
+    "canon": "/locations/avonmore-edmonton/"
+   }
+  ]
+ },
+ "Larkspur": {
+  "canon": "/locations/larkspur-edmonton/",
+  "file": "src\\pages\\locations/Larkspur.tsx",
+  "near": [
+   {
+    "comp": "Tamarack",
+    "canon": "/locations/tamarack-edmonton/"
+   },
+   {
+    "comp": "Laurel",
+    "canon": "/locations/laurel-edmonton/"
+   },
+   {
+    "comp": "Ottewell",
+    "canon": "/locations/ottewell-edmonton/"
+   },
+   {
+    "comp": "Holyrood",
+    "canon": "/locations/holyrood-edmonton/"
+   },
+   {
+    "comp": "Avonmore",
+    "canon": "/locations/avonmore-edmonton/"
+   }
+  ]
+ },
+ "MapleRidge": {
+  "canon": "/locations/maple-ridge-edmonton/",
+  "file": "src\\pages\\locations/MapleRidge.tsx",
+  "near": [
+   {
+    "comp": "Balwin",
+    "canon": "/locations/balwin-edmonton/"
+   },
+   {
+    "comp": "York",
+    "canon": "/locations/york-edmonton/"
+   },
+   {
+    "comp": "Delwood",
+    "canon": "/locations/delwood-edmonton/"
+   },
+   {
+    "comp": "McLeod",
+    "canon": "/locations/mcleod-edmonton/"
+   },
+   {
+    "comp": "Kildare",
+    "canon": "/locations/kildare-edmonton/"
+   }
+  ]
+ },
+ "York": {
+  "canon": "/locations/york-edmonton/",
+  "file": "src\\pages\\locations/York.tsx",
+  "near": [
+   {
+    "comp": "Kildare",
+    "canon": "/locations/kildare-edmonton/"
+   },
+   {
+    "comp": "Casselman",
+    "canon": "/locations/casselman-edmonton/"
+   },
+   {
+    "comp": "MapleRidge",
+    "canon": "/locations/maple-ridge-edmonton/"
+   },
+   {
+    "comp": "Hairsine",
+    "canon": "/locations/hairsine-edmonton/"
+   },
+   {
+    "comp": "Londonderry",
+    "canon": "/locations/londonderry/"
+   }
+  ]
+ },
+ "EauxClaires": {
+  "canon": "/locations/eaux-claires-edmonton/",
+  "file": "src\\pages\\locations/EauxClaires.tsx",
+  "near": [
+   {
+    "comp": "LagoLindo",
+    "canon": "/locations/lago-lindo-edmonton/"
+   },
+   {
+    "comp": "Griesbach",
+    "canon": "/locations/griesbach-edmonton/"
+   },
+   {
+    "comp": "Northmount",
+    "canon": "/locations/northmount-edmonton/"
+   },
+   {
+    "comp": "Schonsee",
+    "canon": "/locations/schonsee-edmonton/"
+   },
+   {
+    "comp": "Londonderry",
+    "canon": "/locations/londonderry/"
+   }
+  ]
+ },
+ "Schonsee": {
+  "canon": "/locations/schonsee-edmonton/",
+  "file": "src\\pages\\locations/Schonsee.tsx",
+  "near": [
+   {
+    "comp": "McConachie",
+    "canon": "/locations/mcconachie-edmonton/"
+   },
+   {
+    "comp": "LagoLindo",
+    "canon": "/locations/lago-lindo-edmonton/"
+   },
+   {
+    "comp": "EauxClaires",
+    "canon": "/locations/eaux-claires-edmonton/"
+   },
+   {
+    "comp": "Ozerna",
+    "canon": "/locations/ozerna-edmonton/"
+   },
+   {
+    "comp": "Londonderry",
+    "canon": "/locations/londonderry/"
+   }
+  ]
+ },
+ "Northmount": {
+  "canon": "/locations/northmount-edmonton/",
+  "file": "src\\pages\\locations/Northmount.tsx",
+  "near": [
+   {
+    "comp": "Kilkenny",
+    "canon": "/locations/kilkenny-edmonton/"
+   },
+   {
+    "comp": "Londonderry",
+    "canon": "/locations/londonderry/"
+   },
+   {
+    "comp": "Griesbach",
+    "canon": "/locations/griesbach-edmonton/"
+   },
+   {
+    "comp": "Evansdale",
+    "canon": "/locations/evansdale-edmonton/"
+   },
+   {
+    "comp": "Rosslyn",
+    "canon": "/locations/rosslyn-edmonton/"
+   }
+  ]
+ },
+ "Rosslyn": {
+  "canon": "/locations/rosslyn-edmonton/",
+  "file": "src\\pages\\locations/Rosslyn.tsx",
+  "near": [
+   {
+    "comp": "Lauderdale",
+    "canon": "/locations/lauderdale/"
+   },
+   {
+    "comp": "Griesbach",
+    "canon": "/locations/griesbach-edmonton/"
+   },
+   {
+    "comp": "Glengarry",
+    "canon": "/locations/glengarry-edmonton/"
+   },
+   {
+    "comp": "Sherbrooke",
+    "canon": "/locations/sherbrooke-edmonton/"
+   },
+   {
+    "comp": "Northmount",
+    "canon": "/locations/northmount-edmonton/"
+   }
+  ]
+ },
+ "Bankview": {
+  "canon": "/locations/bankview-calgary/",
+  "file": "src\\pages\\locations/Bankview.tsx",
+  "near": [
+   {
+    "comp": "SunaltaWest",
+    "canon": "/locations/sunalta-west-calgary/"
+   },
+   {
+    "comp": "Sunalta",
+    "canon": "/locations/sunalta-calgary/"
+   },
+   {
+    "comp": "Scarboro",
+    "canon": "/locations/scarboro-calgary/"
+   },
+   {
+    "comp": "Richmond",
+    "canon": "/locations/richmond-calgary/"
+   },
+   {
+    "comp": "MountRoyal",
+    "canon": "/locations/mount-royal/"
+   }
+  ]
+ },
+ "LowerMountRoyal": {
+  "canon": "/locations/lower-mount-royal-calgary/",
+  "file": "src\\pages\\locations/LowerMountRoyal.tsx",
+  "near": [
+   {
+    "comp": "Beltline",
+    "canon": "/locations/beltline-calgary/"
+   },
+   {
+    "comp": "CliffBungalow",
+    "canon": "/locations/cliff-bungalow-calgary/"
+   },
+   {
+    "comp": "Mission",
+    "canon": "/locations/mission/"
+   },
+   {
+    "comp": "MountRoyal",
+    "canon": "/locations/mount-royal/"
+   },
+   {
+    "comp": "DowntownWestEnd",
+    "canon": "/locations/downtown-west-end-calgary/"
+   }
+  ]
+ },
+ "Ramsay": {
+  "canon": "/locations/ramsay-calgary/",
+  "file": "src\\pages\\locations/Ramsay.tsx",
+  "near": [
+   {
+    "comp": "EastVillage",
+    "canon": "/locations/east-village-calgary/"
+   },
+   {
+    "comp": "VictoriaPark",
+    "canon": "/locations/victoria-park-calgary/"
+   },
+   {
+    "comp": "BridgelandRiverside",
+    "canon": "/locations/bridgeland-riverside-calgary/"
+   },
+   {
+    "comp": "InglewoodCalgary",
+    "canon": "/locations/inglewood-calgary/"
+   },
+   {
+    "comp": "Mission",
+    "canon": "/locations/mission/"
+   }
+  ]
+ },
+ "Erlton": {
+  "canon": "/locations/erlton-calgary/",
+  "file": "src\\pages\\locations/Erlton.tsx",
+  "near": [
+   {
+    "comp": "RideauPark",
+    "canon": "/locations/rideau-park-calgary/"
+   },
+   {
+    "comp": "Mission",
+    "canon": "/locations/mission/"
+   },
+   {
+    "comp": "CliffBungalow",
+    "canon": "/locations/cliff-bungalow-calgary/"
+   },
+   {
+    "comp": "Roxboro",
+    "canon": "/locations/roxboro-calgary/"
+   },
+   {
+    "comp": "Parkhill",
+    "canon": "/locations/parkhill-calgary/"
+   }
+  ]
+ },
+ "VictoriaPark": {
+  "canon": "/locations/victoria-park-calgary/",
+  "file": "src\\pages\\locations/VictoriaPark.tsx",
+  "near": [
+   {
+    "comp": "EastVillage",
+    "canon": "/locations/east-village-calgary/"
+   },
+   {
+    "comp": "Mission",
+    "canon": "/locations/mission/"
+   },
+   {
+    "comp": "Ramsay",
+    "canon": "/locations/ramsay-calgary/"
+   },
+   {
+    "comp": "CliffBungalow",
+    "canon": "/locations/cliff-bungalow-calgary/"
+   },
+   {
+    "comp": "Erlton",
+    "canon": "/locations/erlton-calgary/"
+   }
+  ]
+ },
+ "West": {
+  "canon": "/locations/west-calgary/",
+  "file": "src\\pages\\locations/West.tsx",
+  "near": [
+   {
+    "comp": "SpruceCliff",
+    "canon": "/locations/spruce-cliff-calgary/"
+   },
+   {
+    "comp": "Shaganappi",
+    "canon": "/locations/shaganappi-calgary/"
+   },
+   {
+    "comp": "KillarneyGlengarry",
+    "canon": "/locations/killarney-glengarry-calgary/"
+   },
+   {
+    "comp": "Wildwood",
+    "canon": "/locations/wildwood-calgary/"
+   },
+   {
+    "comp": "Scarboro",
+    "canon": "/locations/scarboro-calgary/"
+   }
+  ]
+ },
+ "ElbowPark": {
+  "canon": "/locations/elbow-park-calgary/",
+  "file": "src\\pages\\locations/ElbowPark.tsx",
+  "near": [
+   {
+    "comp": "MountRoyal",
+    "canon": "/locations/mount-royal/"
+   },
+   {
+    "comp": "Roxboro",
+    "canon": "/locations/roxboro-calgary/"
+   },
+   {
+    "comp": "MardaLoop",
+    "canon": "/locations/marda-loop/"
+   },
+   {
+    "comp": "RideauPark",
+    "canon": "/locations/rideau-park-calgary/"
+   },
+   {
+    "comp": "Altadore",
+    "canon": "/locations/altadore-calgary/"
+   }
+  ]
+ },
+ "Altadore": {
+  "canon": "/locations/altadore-calgary/",
+  "file": "src\\pages\\locations/Altadore.tsx",
+  "near": [
+   {
+    "comp": "MardaLoop",
+    "canon": "/locations/marda-loop/"
+   },
+   {
+    "comp": "ElbowPark",
+    "canon": "/locations/elbow-park-calgary/"
+   },
+   {
+    "comp": "MountRoyal",
+    "canon": "/locations/mount-royal/"
+   },
+   {
+    "comp": "MeadowlarkPark",
+    "canon": "/locations/meadowlark-park-calgary/"
+   },
+   {
+    "comp": "Richmond",
+    "canon": "/locations/richmond-calgary/"
+   }
+  ]
+ },
+ "CliffBungalow": {
+  "canon": "/locations/cliff-bungalow-calgary/",
+  "file": "src\\pages\\locations/CliffBungalow.tsx",
+  "near": [
+   {
+    "comp": "Mission",
+    "canon": "/locations/mission/"
+   },
+   {
+    "comp": "Beltline",
+    "canon": "/locations/beltline-calgary/"
+   },
+   {
+    "comp": "Erlton",
+    "canon": "/locations/erlton-calgary/"
+   },
+   {
+    "comp": "LowerMountRoyal",
+    "canon": "/locations/lower-mount-royal-calgary/"
+   },
+   {
+    "comp": "RideauPark",
+    "canon": "/locations/rideau-park-calgary/"
+   }
+  ]
+ },
+ "RideauPark": {
+  "canon": "/locations/rideau-park-calgary/",
+  "file": "src\\pages\\locations/RideauPark.tsx",
+  "near": [
+   {
+    "comp": "Erlton",
+    "canon": "/locations/erlton-calgary/"
+   },
+   {
+    "comp": "Roxboro",
+    "canon": "/locations/roxboro-calgary/"
+   },
+   {
+    "comp": "Mission",
+    "canon": "/locations/mission/"
+   },
+   {
+    "comp": "CliffBungalow",
+    "canon": "/locations/cliff-bungalow-calgary/"
+   },
+   {
+    "comp": "Parkhill",
+    "canon": "/locations/parkhill-calgary/"
+   }
+  ]
+ },
+ "Roxboro": {
+  "canon": "/locations/roxboro-calgary/",
+  "file": "src\\pages\\locations/Roxboro.tsx",
+  "near": [
+   {
+    "comp": "RideauPark",
+    "canon": "/locations/rideau-park-calgary/"
+   },
+   {
+    "comp": "Erlton",
+    "canon": "/locations/erlton-calgary/"
+   },
+   {
+    "comp": "ElbowPark",
+    "canon": "/locations/elbow-park-calgary/"
+   },
+   {
+    "comp": "MountRoyal",
+    "canon": "/locations/mount-royal/"
+   },
+   {
+    "comp": "Mission",
+    "canon": "/locations/mission/"
+   }
+  ]
+ },
+ "Parkhill": {
+  "canon": "/locations/parkhill-calgary/",
+  "file": "src\\pages\\locations/Parkhill.tsx",
+  "near": [
+   {
+    "comp": "StanleyPark",
+    "canon": "/locations/stanley-park-calgary/"
+   },
+   {
+    "comp": "RideauPark",
+    "canon": "/locations/rideau-park-calgary/"
+   },
+   {
+    "comp": "Erlton",
+    "canon": "/locations/erlton-calgary/"
+   },
+   {
+    "comp": "Roxboro",
+    "canon": "/locations/roxboro-calgary/"
+   },
+   {
+    "comp": "Manchester",
+    "canon": "/locations/manchester-calgary/"
+   }
+  ]
+ },
+ "StanleyPark": {
+  "canon": "/locations/stanley-park-calgary/",
+  "file": "src\\pages\\locations/StanleyPark.tsx",
+  "near": [
+   {
+    "comp": "Parkhill",
+    "canon": "/locations/parkhill-calgary/"
+   },
+   {
+    "comp": "Manchester",
+    "canon": "/locations/manchester-calgary/"
+   },
+   {
+    "comp": "RideauPark",
+    "canon": "/locations/rideau-park-calgary/"
+   },
+   {
+    "comp": "Roxboro",
+    "canon": "/locations/roxboro-calgary/"
+   },
+   {
+    "comp": "Erlton",
+    "canon": "/locations/erlton-calgary/"
+   }
+  ]
+ },
+ "Manchester": {
+  "canon": "/locations/manchester-calgary/",
+  "file": "src\\pages\\locations/Manchester.tsx",
+  "near": [
+   {
+    "comp": "StanleyPark",
+    "canon": "/locations/stanley-park-calgary/"
+   },
+   {
+    "comp": "WindsorPark",
+    "canon": "/locations/windsor-park-calgary/"
+   },
+   {
+    "comp": "Parkhill",
+    "canon": "/locations/parkhill-calgary/"
+   },
+   {
+    "comp": "MeadowlarkPark",
+    "canon": "/locations/meadowlark-park-calgary/"
+   },
+   {
+    "comp": "ElbowPark",
+    "canon": "/locations/elbow-park-calgary/"
+   }
+  ]
+ },
+ "WindsorPark": {
+  "canon": "/locations/windsor-park-calgary/",
+  "file": "src\\pages\\locations/WindsorPark.tsx",
+  "near": [
+   {
+    "comp": "MeadowlarkPark",
+    "canon": "/locations/meadowlark-park-calgary/"
+   },
+   {
+    "comp": "Manchester",
+    "canon": "/locations/manchester-calgary/"
+   },
+   {
+    "comp": "Mayfair",
+    "canon": "/locations/mayfair-calgary/"
+   },
+   {
+    "comp": "StanleyPark",
+    "canon": "/locations/stanley-park-calgary/"
+   },
+   {
+    "comp": "Parkhill",
+    "canon": "/locations/parkhill-calgary/"
+   }
+  ]
+ },
+ "MeadowlarkPark": {
+  "canon": "/locations/meadowlark-park-calgary/",
+  "file": "src\\pages\\locations/MeadowlarkPark.tsx",
+  "near": [
+   {
+    "comp": "WindsorPark",
+    "canon": "/locations/windsor-park-calgary/"
+   },
+   {
+    "comp": "Mayfair",
+    "canon": "/locations/mayfair-calgary/"
+   },
+   {
+    "comp": "Manchester",
+    "canon": "/locations/manchester-calgary/"
+   },
+   {
+    "comp": "StanleyPark",
+    "canon": "/locations/stanley-park-calgary/"
+   },
+   {
+    "comp": "Altadore",
+    "canon": "/locations/altadore-calgary/"
+   }
+  ]
+ },
+ "Mayfair": {
+  "canon": "/locations/mayfair-calgary/",
+  "file": "src\\pages\\locations/Mayfair.tsx",
+  "near": [
+   {
+    "comp": "MeadowlarkPark",
+    "canon": "/locations/meadowlark-park-calgary/"
+   },
+   {
+    "comp": "WindsorPark",
+    "canon": "/locations/windsor-park-calgary/"
+   },
+   {
+    "comp": "Manchester",
+    "canon": "/locations/manchester-calgary/"
+   },
+   {
+    "comp": "StanleyPark",
+    "canon": "/locations/stanley-park-calgary/"
+   },
+   {
+    "comp": "Altadore",
+    "canon": "/locations/altadore-calgary/"
+   }
+  ]
+ },
+ "Scarboro": {
+  "canon": "/locations/scarboro-calgary/",
+  "file": "src\\pages\\locations/Scarboro.tsx",
+  "near": [
+   {
+    "comp": "Shaganappi",
+    "canon": "/locations/shaganappi-calgary/"
+   },
+   {
+    "comp": "SunaltaWest",
+    "canon": "/locations/sunalta-west-calgary/"
+   },
+   {
+    "comp": "Sunalta",
+    "canon": "/locations/sunalta-calgary/"
+   },
+   {
+    "comp": "Bankview",
+    "canon": "/locations/bankview-calgary/"
+   },
+   {
+    "comp": "Richmond",
+    "canon": "/locations/richmond-calgary/"
+   }
+  ]
+ },
+ "SunaltaWest": {
+  "canon": "/locations/sunalta-west-calgary/",
+  "file": "src\\pages\\locations/SunaltaWest.tsx",
+  "near": [
+   {
+    "comp": "Sunalta",
+    "canon": "/locations/sunalta-calgary/"
+   },
+   {
+    "comp": "Bankview",
+    "canon": "/locations/bankview-calgary/"
+   },
+   {
+    "comp": "Scarboro",
+    "canon": "/locations/scarboro-calgary/"
+   },
+   {
+    "comp": "Shaganappi",
+    "canon": "/locations/shaganappi-calgary/"
+   },
+   {
+    "comp": "Richmond",
+    "canon": "/locations/richmond-calgary/"
+   }
+  ]
+ },
+ "SpruceCliff": {
+  "canon": "/locations/spruce-cliff-calgary/",
+  "file": "src\\pages\\locations/SpruceCliff.tsx",
+  "near": [
+   {
+    "comp": "KillarneyGlengarry",
+    "canon": "/locations/killarney-glengarry-calgary/"
+   },
+   {
+    "comp": "West",
+    "canon": "/locations/west-calgary/"
+   },
+   {
+    "comp": "Shaganappi",
+    "canon": "/locations/shaganappi-calgary/"
+   },
+   {
+    "comp": "Richmond",
+    "canon": "/locations/richmond-calgary/"
+   },
+   {
+    "comp": "Wildwood",
+    "canon": "/locations/wildwood-calgary/"
+   }
+  ]
+ },
+ "Wildwood": {
+  "canon": "/locations/wildwood-calgary/",
+  "file": "src\\pages\\locations/Wildwood.tsx",
+  "near": [
+   {
+    "comp": "SpruceCliff",
+    "canon": "/locations/spruce-cliff-calgary/"
+   },
+   {
+    "comp": "West",
+    "canon": "/locations/west-calgary/"
+   },
+   {
+    "comp": "KillarneyGlengarry",
+    "canon": "/locations/killarney-glengarry-calgary/"
+   },
+   {
+    "comp": "Shaganappi",
+    "canon": "/locations/shaganappi-calgary/"
+   },
+   {
+    "comp": "Richmond",
+    "canon": "/locations/richmond-calgary/"
+   }
+  ]
+ },
+ "Montgomery": {
+  "canon": "/locations/montgomery-calgary/",
+  "file": "src\\pages\\locations/Montgomery.tsx",
+  "near": [
+   {
+    "comp": "BownessCalgary",
+    "canon": "/locations/bowness-calgary/"
+   },
+   {
+    "comp": "VarsityCalgary",
+    "canon": "/locations/varsity-calgary/"
+   },
+   {
+    "comp": "ScenicAcres",
+    "canon": "/locations/scenic-acres/"
+   },
+   {
+    "comp": "DalhousieCalgary",
+    "canon": "/locations/dalhousie-calgary/"
+   },
+   {
+    "comp": "BrentwoodCalgary",
+    "canon": "/locations/brentwood-calgary/"
+   }
+  ]
+ },
+ "Greenview": {
+  "canon": "/locations/greenview-calgary/",
+  "file": "src\\pages\\locations/Greenview.tsx",
+  "near": [
+   {
+    "comp": "HighlandPark",
+    "canon": "/locations/highland-park-calgary/"
+   },
+   {
+    "comp": "MountPleasant",
+    "canon": "/locations/mount-pleasant-calgary/"
+   },
+   {
+    "comp": "TuxedoPark",
+    "canon": "/locations/tuxedo-park-calgary/"
+   },
+   {
+    "comp": "Thorncliffe",
+    "canon": "/locations/thorncliffe-calgary/"
+   },
+   {
+    "comp": "CrescentHeights",
+    "canon": "/locations/crescent-heights-calgary/"
+   }
+  ]
+ },
+ "HighlandPark": {
+  "canon": "/locations/highland-park-calgary/",
+  "file": "src\\pages\\locations/HighlandPark.tsx",
+  "near": [
+   {
+    "comp": "Thorncliffe",
+    "canon": "/locations/thorncliffe-calgary/"
+   },
+   {
+    "comp": "Greenview",
+    "canon": "/locations/greenview-calgary/"
+   },
+   {
+    "comp": "MountPleasant",
+    "canon": "/locations/mount-pleasant-calgary/"
+   },
+   {
+    "comp": "CapitolHillCalgary",
+    "canon": "/locations/capitol-hill-calgary/"
+   },
+   {
+    "comp": "TuxedoPark",
+    "canon": "/locations/tuxedo-park-calgary/"
+   }
+  ]
+ },
+ "TuxedoPark": {
+  "canon": "/locations/tuxedo-park-calgary/",
+  "file": "src\\pages\\locations/TuxedoPark.tsx",
+  "near": [
+   {
+    "comp": "CrescentHeights",
+    "canon": "/locations/crescent-heights-calgary/"
+   },
+   {
+    "comp": "MountPleasant",
+    "canon": "/locations/mount-pleasant-calgary/"
+   },
+   {
+    "comp": "Renfrew",
+    "canon": "/locations/renfrew-calgary/"
+   },
+   {
+    "comp": "EauClaire",
+    "canon": "/locations/eau-claire-calgary/"
+   },
+   {
+    "comp": "Greenview",
+    "canon": "/locations/greenview-calgary/"
+   }
+  ]
+ },
+ "MountPleasant": {
+  "canon": "/locations/mount-pleasant-calgary/",
+  "file": "src\\pages\\locations/MountPleasant.tsx",
+  "near": [
+   {
+    "comp": "CapitolHillCalgary",
+    "canon": "/locations/capitol-hill-calgary/"
+   },
+   {
+    "comp": "TuxedoPark",
+    "canon": "/locations/tuxedo-park-calgary/"
+   },
+   {
+    "comp": "Greenview",
+    "canon": "/locations/greenview-calgary/"
+   },
+   {
+    "comp": "HighlandPark",
+    "canon": "/locations/highland-park-calgary/"
+   },
+   {
+    "comp": "CrescentHeights",
+    "canon": "/locations/crescent-heights-calgary/"
+   }
+  ]
+ }
+}

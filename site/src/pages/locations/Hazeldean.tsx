@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -248,6 +249,8 @@ export default function Hazeldean() {
           "The east boundary is Mill Creek Ravine, where the paved path north of 67 Avenue runs on the old rail bed and the dirt side trails off it turn to mud after the melt — April soil and August soil arrive at the same door looking nothing alike. Indoors, three houses in four date from between the war's end and 1960 and barely one in fifteen from after 1970, so post-construction work here means renovation dust in an occupied house, not an empty shell.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

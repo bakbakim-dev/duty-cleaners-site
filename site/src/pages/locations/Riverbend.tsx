@@ -1,3 +1,5 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -287,6 +289,17 @@ export default function Riverbend() {
             </AnimatedSection>
           </div>
         </section>
+
+      <NearbyNeighbourhoods />
+
+      <LocalMarketNote
+        eyebrow="From the route"
+        heading="Ravine on two sides"
+        paragraphs={[
+          "Whitemud Creek Ravine wraps the east and south, and the North Saskatchewan closes the north, so this area has more edge against wild land than almost anywhere else in the southwest. Households back onto trees rather than another row of rooftops. What comes through the door is organic and seasonal: thaw mud in spring, poplar fluff in June, and leaf fall that runs from September until the snow holds.",
+          "The area was laid out under a 1972 district plan, so the housing is a generation younger than the inner-city stock and the finishes are different in kind — sealed counters, engineered flooring, tub and shower surrounds that stain rather than soil. Those want a mild product and time, not pressure, and a back entry that takes the ravine traffic wants attention before anything else does.",
+        ]}
+      />
 
       <LocationPricing />
 

@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -355,6 +356,8 @@ export default function VictoriaPark() {
           "The housing is dense — condo towers and townhomes over retained heritage rows — and tower living concentrates cleans into kitchens, baths and balcony thresholds. Balconies facing the grounds collect event dust and rail-corridor grit both; their door tracks are the single most demanding surface in the quarter.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

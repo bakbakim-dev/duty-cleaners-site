@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -323,6 +324,8 @@ export default function AspenGardens() {
           "Ravine adjacency sets the calendar: heavy pollen weeks off the aspen and spruce, needle drop through fall, and wildlife-carried debris at grade. Homes on the ravine lots need screen and threshold attention on a rhythm street-side homes never do.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Aspen Gardens" />

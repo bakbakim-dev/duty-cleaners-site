@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -307,6 +308,8 @@ export default function McConachie() {
           "Anthony Henday Drive runs the north edge and then angles southeast, so the last streets on that side face it twice. The windows and sills on those two exposures fill faster than anywhere else in the house — road film through the wet months, fine dust through the dry ones — and they are worth putting on a shorter cycle than the rest.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

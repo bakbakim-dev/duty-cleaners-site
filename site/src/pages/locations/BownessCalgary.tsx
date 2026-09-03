@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -355,6 +356,8 @@ export default function BownessCalgary() {
           "Bowness Park draws city-wide traffic through the neighbourhood all summer and skating season, and Bowness Road and 16 Avenue feed steady traffic grit onto local streets. Between park visitors and river-path cyclists, entry floors here work harder than the neighbourhood's quiet reputation suggests.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -323,6 +324,8 @@ export default function Ozerna() {
           "The lake path draws walkers year-round, and homes backing the pond get waterfowl-season debris on decks and rear thresholds — a back-entry workload the street-facing homes never see. Winter flips it: rink season on nearby ponds brings skate-bag slush through the garage entry instead.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Ozerna" />

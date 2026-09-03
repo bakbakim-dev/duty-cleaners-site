@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -355,6 +356,8 @@ export default function Sunalta() {
           "The West LRT runs the neighbourhood's edge on elevated track, and Bow Trail's traffic sits just north — between them, Sunalta's ambient grit level is among the inner city's highest. Balconies, sills and entry floors on the corridor sides need the most frequent passes.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

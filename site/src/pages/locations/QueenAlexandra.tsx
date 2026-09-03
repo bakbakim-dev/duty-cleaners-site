@@ -1,3 +1,5 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import { lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
 import { buildLocationSchema } from "@/lib/location-schema";
@@ -94,6 +96,17 @@ const QueenAlexandra = () => {
             </div>
           </div>
         </section>
+
+      <NearbyNeighbourhoods />
+
+      <LocalMarketNote
+        eyebrow="What we see"
+        heading="Four fifths of it is rented"
+        paragraphs={[
+          "Eight of every ten homes between Whyte Avenue and 70 Avenue are rented, and just over half the stock is low-rise walk-up apartments rather than houses. That shapes the calendar more than the method: possession dates cluster at month end, and a suite handed back gets the oven, the fridge seals and every cabinet interior whether the last tenant opened them or not.",
+          "Whyte Avenue closes the north side, which is the busiest pedestrian strip in the city outside downtown. Ground-floor suites and the first buildings in off the avenue take what the sidewalk carries — grit through winter, dust through summer, and a film on street-facing glass that comes back faster than anything the household itself produces.",
+        ]}
+      />
 
       <LocationPricing />
 

@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -324,6 +325,8 @@ export default function Sherbrooke() {
           "The Yellowhead's truck traffic runs close enough that north-facing sills carry a constant fine grey film, renewed faster than the neighbourhood's quiet interior streets would suggest. St. Albert Trail's commuter flow does the same for the west edge — which side a home faces decides its dusting rhythm.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Sherbrooke" />

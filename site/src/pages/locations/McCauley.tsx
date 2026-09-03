@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -324,6 +325,8 @@ export default function McCauley() {
           "The southeast edge is the old Canadian National cut, now carrying the Capital Line past Stadium station, and 111 Avenue does the same job along the north. Blocks near either edge take a fine dark grit, and a century house gives it somewhere to land: deep painted casings, moulded baseboards, the tops of every door frame. Flat modern trim would shed most of it.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="McCauley" />

@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -324,6 +325,8 @@ export default function Eastwood() {
           "Eastwood is split by 122 Avenue, and the two halves have different edges. Only the smaller pocket north of that line runs up to the Yellowhead Trail corridor; the larger southern portion reaches 118 Avenue, with a jagged eastern boundary that follows Fort Road in places and the CN Rail right-of-way in others. Where a home backs onto that corridor, the film on outward-facing glass is the job — and screens come out to be washed, not wiped in place.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Eastwood" />

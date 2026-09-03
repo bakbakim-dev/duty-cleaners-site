@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -323,6 +324,8 @@ export default function BeaconHeights() {
           "Beacon Heights is tableland, not valley - 118 Avenue is its southern edge, with Beverly Heights sitting between it and the river bank - so the seasonal load comes from the neighbourhood's own mature canopy and back lanes rather than from valley wind. Jubilee Park, opened in 1955 on the old Beverly coal mine entrance, anchors the green space, and autumn leaf tracking off the older street trees is the reliable heavy season: entry mats, window tracks and the first stretch of flooring carry it.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Beacon Heights" />

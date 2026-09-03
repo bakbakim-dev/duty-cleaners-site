@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -355,6 +356,8 @@ export default function Erlton() {
           "The housing runs heavily to condominiums and apartments — about seven buildings in ten — with a scatter of heritage survivors among them, so most cleans here are suite-scale: compact kitchens, in-suite laundry, and balcony glass that collects Macleod Trail film between visits. River-path cyclists and MNP Centre traffic keep entries busy year-round, and Macleod Trail bisects the community north to south, so glass and balcony rails on the Macleod side carry visible traffic film between visits — the tell-tale surfaces on every Erlton clean.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

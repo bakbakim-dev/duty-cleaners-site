@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -324,6 +325,8 @@ export default function Downtown() {
           "Not all of it is glass, though. The 104 Street blocks in the Warehouse District hold residential conversions of early-1900s warehouse buildings, and those units bring exposed brick, timber beams and sometimes original concrete floors — porous, often unsealed, and easily marked by anything acidic or aggressively wet. Same neighbourhood, opposite methods: one job is dust control, the other is restraint with moisture.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Downtown" />

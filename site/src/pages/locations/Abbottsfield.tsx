@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -324,6 +325,8 @@ export default function Abbottsfield() {
           "The neighbourhood sits against Abbottsfield Road's transit loop with the river valley's Rundle Park a walk east, so entries collect both bus-stop grit and valley debris in season. Units facing the road show sill film first; units facing the green get the leaf-and-pollen calendar instead.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Abbottsfield" />

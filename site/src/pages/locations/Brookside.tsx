@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -324,6 +325,8 @@ export default function Brookside() {
           "Just over half the homes were finished in the 1960s and two in five in the 1970s, with the last of them in the early 1980s — one build era, then nothing. More than four in five are single-detached, and where kitchens and baths are still original that means period tile and grout, and painted wood that has been recoated more than once. Those surfaces reward low-moisture work; pressure and strong solvents strip the finish before the dirt.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Brookside" />

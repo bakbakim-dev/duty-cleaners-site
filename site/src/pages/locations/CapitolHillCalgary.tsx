@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -355,6 +356,8 @@ export default function CapitolHillCalgary() {
           "Confederation Park's toboggan slopes and pathways feed winter traffic through the neighbourhood's north side, and 16 Avenue's Trans-Canada traffic dusts the south edge constantly. Which edge a home sits on decides whether its heavy season is winter tracking or year-round arterial grit.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

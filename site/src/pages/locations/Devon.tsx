@@ -1,3 +1,5 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -344,6 +346,17 @@ export default function Devon() {
           </AnimatedSection>
         </div>
       </section>
+
+      <NearbyNeighbourhoods />
+
+      <LocalMarketNote
+        eyebrow="Ground truth"
+        heading="Planned in one go, in 1947"
+        paragraphs={[
+          "Imperial Oil built this town from nothing after the Leduc No. 1 well came in on 13 February 1947, and it was the first community in Canada approved by a regional planning commission. A place laid out all at once ages all at once: the original streets share a build era, a floor plan vocabulary and a set of finishes, so the same rooms reach the same wear points across whole blocks rather than house by house.",
+          "The townsite sits on the south bank of the North Saskatchewan about 26 km southwest of Edmonton, with the river valley and its trail network immediately below. Households backing that edge bring the valley home — mud through the thaw, seed and pollen in early summer — and it concentrates at whichever door faces the slope.",
+        ]}
+      />
 
       <LocationPricing />
 

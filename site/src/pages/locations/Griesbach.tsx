@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -199,6 +200,8 @@ export default function Griesbach() {
           "The northeast corner is still being framed, so the streets nearest it take sawdust and drywall silt off the wind, while the finished streets round Patricia Lake shed their own out of ducts and closets for a year or two. Either way it lands on flat horizontals - the tops of door casings, fan blades, the shoulders of baseboards - where a routine wipe-down never reaches.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

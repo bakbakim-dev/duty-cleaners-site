@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -292,6 +293,8 @@ export default function CastleDowns() {
           "The district's arterials — 97 Street, 153 Avenue, Castle Downs Road — box every pocket in traffic, so no home is far from arterial dust. The practical difference between addresses is which arterial they face; booking notes that say so get a better-targeted first visit.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

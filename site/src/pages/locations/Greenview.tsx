@@ -1,3 +1,5 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -340,6 +342,18 @@ export default function Greenview() {
             </AnimatedSection>
           </div>
         </section>
+
+      <NearbyNeighbourhoods />
+
+      <LocalMarketNote
+        eyebrow="On the ground"
+        heading="Industrial park on the Deerfoot side"
+        paragraphs={[
+          "Greenview Industrial Park adjoins this community along Deerfoot Trail, and the airport lands sit off the northeast. Between them they set the indoor conditions: a coarse, dark particulate that arrives on the wind rather than on shoes, and shows up first in window channels, on screen mesh and along the sills of whichever elevation faces the yards. It is abrasive, so it gets lifted rather than dragged across glass.",
+          "Nearly half the buildings are condominium or apartment and about two thirds of the housing is rented — high enough that move-outs are a normal part of the month rather than an occasional job. The community only exists in its own right since 1991, when the older Thorncliffe/Greenview area was split in two.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

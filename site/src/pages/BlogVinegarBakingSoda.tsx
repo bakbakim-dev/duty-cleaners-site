@@ -90,6 +90,10 @@ export default function BlogVinegarBakingSoda() {
         <meta property="og:title" content="Cleaning with Vinegar and Baking Soda | Duty Cleaners" />
         <meta property="og:description" content="Learn how to clean your home naturally with vinegar and baking soda. Safe, effective tips for kitchen, bathroom and laundry from Duty Cleaners." />
         <meta name="twitter:card" content="summary_large_image" />
+        {/* This post's own hero, so a share card shows the article rather
+            than the generic site image. */}
+        <meta property="og:image" content={absoluteAssetUrl(heroImage)} />
+        <meta name="twitter:image" content={absoluteAssetUrl(heroImage)} />
         <meta name="twitter:title" content="Cleaning with Vinegar and Baking Soda | Duty Cleaners" />
         <meta name="twitter:description" content="Learn how to clean your home naturally with vinegar and baking soda. Safe, effective tips for kitchen, bathroom and laundry from Duty Cleaners." />
         <meta property="og:type" content="article" />

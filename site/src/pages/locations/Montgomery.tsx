@@ -1,3 +1,5 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -340,6 +342,18 @@ export default function Montgomery() {
             </AnimatedSection>
           </div>
         </section>
+
+      <NearbyNeighbourhoods />
+
+      <LocalMarketNote
+        eyebrow="From the route"
+        heading="A town until 1963"
+        paragraphs={[
+          "Montgomery ran its own affairs until 1963 — a town in 1957, a village a year later, then amalgamated into the city — and it still reads as a separate place, with the Bow River closing both the south and the west. Only about one building in nine is a condominium or apartment, so this is mostly whole houses, and a third of the housing is rented, which puts a steady run of possession-date work alongside the recurring visits.",
+          "The Alberta Children's Hospital sits inside the community and Market Mall closes the north with 32 Avenue. Hospital rotations are the practical detail: enough households here work nights that we ask about sleeping hours at booking, because the order rooms get done in costs nothing to change and the vacuum is the part that carries.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

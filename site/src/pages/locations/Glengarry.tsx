@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -323,6 +324,8 @@ export default function Glengarry() {
           "With Northgate a few blocks off and 97 Street carrying constant traffic, the neighbourhood's western edge lives with arterial dust the quieter crescents never see. Winters make it worse — the 97 Street corridor is gritted heavily, and that sand migrates into every entryway within a block or two of it.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Glengarry" />

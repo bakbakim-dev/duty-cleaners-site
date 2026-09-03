@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -297,6 +298,8 @@ export default function Terwillegar() {
           "Detached houses account for four in five addresses, with duplexes, row housing and low-rise condominiums making up most of the rest, so the work is whole homes rather than units — more floor area per stop, fewer shared entries. Laminate flooring and acrylic tub surrounds are the usual finishes in homes of this vintage, and both rule out a wet mop and an abrasive pad, so the safe default on a first visit is damp cloths and a question about the finish.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

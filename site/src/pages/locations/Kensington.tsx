@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -257,6 +258,8 @@ export default function Kensington() {
           "Tenth Street and Kensington Road run one of the city's busiest cafe strips straight through the district, and the C-Train station keeps foot traffic constant from morning to last call. Entries and front windows near the strip carry sidewalk grit year-round; a block uphill toward Riley Park, the pace and the dust both drop off noticeably.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

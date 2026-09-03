@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -244,6 +245,8 @@ export default function Cranston() {
           "The community's family skew shows indoors as mudroom-first living through the attached garage, bonus rooms over garages with their cold-wall dust lines, and Century Hall's rink-and-splash-park seasons tracking through in boots and sandals by turn. Seton's shops next door keep weekend traffic close to home.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

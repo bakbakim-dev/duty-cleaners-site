@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -324,6 +325,8 @@ export default function Westmount() {
           "124 Street runs the heritage area's eastern edge and doubles as Westmount's shopping and gallery strip; 111 Avenue carries arterial traffic across the top. Houses fronting either take the film a busy road leaves - a grey haze on exterior glass and door hardware that returns faster than it does a block in. Two streets deeper, on the quiet interior blocks, the same surfaces hold their finish from one clean to the next.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Westmount" />

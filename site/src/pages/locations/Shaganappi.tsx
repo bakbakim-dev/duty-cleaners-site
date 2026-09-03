@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -355,6 +356,8 @@ export default function Shaganappi() {
           "The Blue Line runs along the neighbourhood's edge and the golf course sits below it; homes near the LRT pick up platform grit and the constant fine dust of Bow Trail, while the course side deals with summer pollen drift off the fairways. West-facing windows on this slope also take the full force of chinook winds, which drive dust into every seal.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

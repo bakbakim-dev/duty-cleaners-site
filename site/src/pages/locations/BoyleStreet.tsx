@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -324,6 +325,8 @@ export default function BoyleStreet() {
           "Three of the four boundaries are hard ones. Ground falls away to the river valley on the south along Grierson Hill and Rowland Road, the LRT corridor runs the north edge, and 97 Street closes it off to the west; only 82 Street on the east is an ordinary street. Winter sand and road grit arrive on shoes rather than on the wind, so entry mats, thresholds and hallway-side floors are what refill first in a suite here.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Boyle Street" />

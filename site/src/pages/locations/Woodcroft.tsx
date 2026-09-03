@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -323,6 +324,8 @@ export default function Woodcroft() {
           "The Westmount shopping district and 111 Avenue's bus corridors keep the neighbourhood's south edge busy, while Coronation Park's sports fields feed weekend traffic through the west side. Homes between the two collect entry wear from both directions — a mid-block Woodcroft house cleans differently front and back.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Woodcroft" />

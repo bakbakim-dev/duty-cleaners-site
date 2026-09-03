@@ -88,6 +88,34 @@ const StatCard = ({ icon: Icon, value, label }: {icon: React.ElementType;value: 
  */
 const reviews = [
 {
+  name: "Meredith Shewchuk",
+  location: "Edmonton",
+  rating: 5,
+  date: "June 2026",
+  text: "We've been getting our house cleaned every 4 weeks and it has been great! Communication is wonderful, our cleaner always shows up on time, is super talented and professional and does an amazing job cleaning!"
+},
+{
+  name: "Patrick",
+  location: "Edmonton",
+  rating: 5,
+  date: "April 2026",
+  text: "Been using Duty Cleaners here in Edmonton once a month for nearly a year now. Very good service and I appreciate they can come at the same time/day each time which suits my schedule"
+},
+{
+  name: "Fadase A.",
+  location: "Calgary",
+  rating: 5,
+  date: "January 2026",
+  text: "Thank you for cleaning my house today. It feels so clean. The two ladies did a wonderful job and listened to me."
+},
+{
+  name: "Christian J.",
+  location: "Calgary",
+  rating: 5,
+  date: "September 2025",
+  text: "I had one of their cleaners come in today and did an awesome job. Efficient, attention to detail and very friendly. She was awesome. And everything was done right the first time just the way you want it."
+},
+{
   name: "Linny 84",
   location: "Edmonton",
   rating: 5,

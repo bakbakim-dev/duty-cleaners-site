@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -309,6 +310,8 @@ export default function Londonderry() {
           "A shopping centre has anchored the southeast corner since 1972, where 137 Avenue meets 66 Street; 82 Street closes the west side and 153 Avenue the north. Homes fronting those roads collect the winter sanding heavy traffic throws off — grey grit at the entry mat, in the door tracks, along the baseboards nearest the front hall. Interior blocks, set back behind a full depth of housing, show noticeably less of it.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -324,6 +325,8 @@ export default function Hairsine() {
           "Victoria Trail's traffic runs the neighbourhood's flank and the river valley sits just beyond it, so window tracks on the trail side collect fine road dust while valley winds deliver the season's pollen and leaf fragments. The court interiors, sheltered from both, stay noticeably cleaner between visits.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Hairsine" />

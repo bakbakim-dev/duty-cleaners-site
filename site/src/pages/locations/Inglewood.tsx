@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -323,6 +324,8 @@ export default function Inglewood() {
           "Along this stretch Groat Road is a plain surface arterial rather than the parkway it becomes further south, so suites on that frontage collect winter sand at the entries and a road film on balcony glass. On the east there is no street: the boundary is the abandoned Canadian National right-of-way. So the Groat Road suites get the balcony glass and the entries, and the rail side gets the screens.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Inglewood" />

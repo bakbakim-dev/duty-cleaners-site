@@ -1,3 +1,5 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -340,6 +342,18 @@ export default function Wildwood() {
             </AnimatedSection>
           </div>
         </section>
+
+      <NearbyNeighbourhoods />
+
+      <LocalMarketNote
+        eyebrow="What we see here"
+        heading="Bungalows between a park and an expressway"
+        paragraphs={[
+          "Edworthy Park and the Bow close the north side and Bow Trail runs six lanes along the south, which is an unusual pair of neighbours for a street of bungalows. The park end sends needle litter, trail mud and cottonwood down the back lanes; the expressway end throws winter sanding grit at the front. A house takes one or the other depending on which way it faces, rarely both.",
+          "Ninety-four per cent of the homes are single detached, most of them on wide lots with rear laneways, and the community was established in 1956. Rear-lane access means the back door is the working entrance, so the mudroom and the run of floor inside it do more work than the front hall ever will.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

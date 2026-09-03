@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -324,6 +325,8 @@ export default function Lauderdale() {
           "The neighbourhood sits between 97 Street's commercial strip and the airport lands' redevelopment, so construction seasons come and go on its edges. When Blatchford's build phases run, south-facing tracks and sills carry the evidence; between phases, Lauderdale is among the lowest-dust pockets in the north.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Lauderdale" />

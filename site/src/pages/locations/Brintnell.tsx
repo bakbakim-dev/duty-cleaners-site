@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -323,6 +324,8 @@ export default function Brintnell() {
           "Being new also means the neighbourhood is still close to its construction years — vents, closet shelving and the tops of kitchen cabinets keep producing fine drywall dust well after possession. Homes near the retail on Manning Drive add delivery-traffic grit at the front walk to that mix.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Brintnell" />

@@ -1,3 +1,5 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -340,6 +342,17 @@ export default function Leduc() {
           </AnimatedSection>
         </div>
       </section>
+
+      <NearbyNeighbourhoods />
+
+      <LocalMarketNote
+        eyebrow="From the route"
+        heading="A city built beside an airport"
+        paragraphs={[
+          "Leduc sits 33 km south of Edmonton and directly beside the international airport, and a good share of the households we clean work to a rotation rather than a weekday. Somebody may be asleep at two in the afternoon. Tell us which room and the order the house gets done in changes at no cost — it is the vacuum, not the schedule, that has to move.",
+          "The city has grown hard since the 1947 oil strike that carries its name, past 34,000 at the last census, so the housing runs from post-war bungalows near the old core to subdivisions finished in the last few years. Those two ends want opposite handling: painted softwood and original tile on one, sealed stone and engineered plank on the other.",
+        ]}
+      />
 
       <LocationPricing />
 

@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -355,6 +356,8 @@ export default function Ramsay() {
           "Inside, this is century-home territory: plaster, fir, steep narrow stairs and basements that were never meant to be living space but often are now. Low-clearance basement suites concentrate humidity and dust both, and their window wells collect what the hill sheds.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

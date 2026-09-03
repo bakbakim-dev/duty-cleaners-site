@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -242,6 +243,8 @@ export default function SaddleRidge() {
           "Saddletowne's LRT and plaza anchor daily life, and the northeast's wind carries fine dust off Métis Trail and the airport lands to west-facing sills. Ongoing construction on the community's growing edges keeps site grit in rotation — window tracks tell you which phase is building.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

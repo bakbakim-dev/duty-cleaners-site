@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -242,6 +243,8 @@ export default function Marlborough() {
           "The mall and its transit exchange anchor the neighbourhood's daily traffic, and Memorial Drive's flow adds arterial grit to the southern blocks. Homes near the exchange collect more entry wear; the interior crescents keep the quieter rhythm of long-settled streets.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

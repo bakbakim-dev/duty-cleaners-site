@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import { canonicalUrlForPath } from "@/data/legacy-urls";
 import { standardTierRows, deepCleanTierRows, moveInOutTierRows, addOnFromPrice, formatPrice } from "@/data/pricing";
 import { TRAVEL_FEE_KEY } from "@/data/addon-table";
@@ -339,6 +340,8 @@ export default function LocationPageTemplate({
           </AnimatedSection>
         </div>
       </section>
+
+      <NearbyNeighbourhoods />
 
       {localNote && (
         <LocalMarketNote

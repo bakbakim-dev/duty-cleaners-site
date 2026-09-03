@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -355,6 +356,8 @@ export default function BrentwoodCalgary() {
           "Owner-occupied homes are classic mid-century: hardwood under carpet, plaster ceilings, original vanities whose porcelain and chrome reward polishing. Brentwood Village and the LRT station keep pedestrian traffic steady, and homes along the walking routes to campus see more front-entry grit than the crescents behind them.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

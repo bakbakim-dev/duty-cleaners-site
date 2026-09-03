@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -324,6 +325,8 @@ export default function Dovercourt() {
           "Inside, the stock is classic post-war: oak floors under later carpet, plaster walls, single-pane storms on some homes still. Those storm windows double the glass surfaces and their between-pane cavities collect a winter's worth of condensation grime that only a seasonal deep clean reaches.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Dovercourt" />

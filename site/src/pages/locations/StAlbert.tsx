@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -315,6 +316,8 @@ export default function StAlbert() {
           "A citywide canopy average lumps developed, developing and undeveloped land into one number, so it describes no particular street. Riverside, one of the city's newest communities, sits on the west side by Big Lake, its boulevard trees years from filling in. Those homes trade screen debris for unshaded south and west glass that collects street dust with no canopy to slow it.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

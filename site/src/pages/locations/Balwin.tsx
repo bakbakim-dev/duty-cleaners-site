@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -309,6 +310,8 @@ export default function Balwin() {
           "The south side ends at 127 Avenue, with the rail and industrial land of the Yellowhead corridor beyond it, so the quiet interior streets and the exposed edge are a few blocks apart. Winter sand off an arterial travels on tires and boots more than on wind. In a walk-up it lands on the shared stairs and the landing first, which is why entrance mats in these buildings earn their keep.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

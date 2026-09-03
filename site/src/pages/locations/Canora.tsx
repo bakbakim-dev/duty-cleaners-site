@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -324,6 +325,8 @@ export default function Canora() {
           "Tenure shapes the rest of the work. About 68% of occupied dwellings are rented, roughly half the stock is apartments and another 28% duplex or fourplex, and seven of every eight buildings went up between the end of the Second World War and 1980. That mix puts more move-outs on the calendar here than in owner-occupied pockets: a suite handed back on possession day gets the oven, the fridge seals and the closet shelves whether anyone used them or not.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Canora" />

@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -355,6 +356,8 @@ export default function KillarneyGlengarry() {
           "The 17 Avenue and 26 Avenue corridors carry the area's traffic, and active infill sites keep construction dust circulating block by block. Homes beside a build need track and sill work every visit until the lot next door is landscaped — a temporary but real season that can last a year.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

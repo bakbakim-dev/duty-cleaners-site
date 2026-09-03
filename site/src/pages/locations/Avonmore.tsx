@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -324,6 +325,8 @@ export default function Avonmore() {
           "The Argyll velodrome and park draw sports traffic through summer, and the area's original bungalows keep first-generation hardwood that shows both dust and care instantly. It is a neighbourhood where a good clean is unusually visible.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Avonmore" />

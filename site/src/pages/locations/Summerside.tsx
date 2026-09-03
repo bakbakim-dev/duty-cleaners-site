@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -323,6 +324,8 @@ export default function Summerside() {
           "The housing is 2000s two-storey stock with garage-entry mudrooms carrying nearly all traffic, and great-room ceilings holding dust at height. Winters flip the lake's role — rink season brings skate bags and boot slush through the same mudroom that handled sand in August.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Summerside" />

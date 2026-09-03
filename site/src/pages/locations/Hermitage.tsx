@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -323,6 +324,8 @@ export default function Hermitage() {
           "Housing is a 1970s-80s blend of townhouse rows and detached homes, and the townhouse share matters: shared-wall homes ventilate differently, holding cooking films and pet dander longer in still corners. Kitchens in the rows generally need degreasing more often than the detached homes a street over.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Hermitage" />

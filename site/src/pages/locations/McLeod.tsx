@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -323,6 +324,8 @@ export default function McLeod() {
           "The area's schools and rinks make it one of the northeast's higher-traffic family pockets through winter — gear bags, skate blades and boot slush arrive daily from October to March. Rubber-backed runners and entry tile take a beating, and the salt haze they collect needs a proper rinse rather than a dry mop.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="McLeod" />

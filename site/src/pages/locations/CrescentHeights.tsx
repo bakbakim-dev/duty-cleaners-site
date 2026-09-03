@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -355,6 +356,8 @@ export default function CrescentHeights() {
           "The bluff position over downtown is the other factor: exposure. Wind off the escarpment drives dust against the south faces, and the walking traffic drawn by the crescent viewpoints keeps sidewalk grit constant at front steps. South-facing sills and entry floors are the tell-tale surfaces on every visit.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

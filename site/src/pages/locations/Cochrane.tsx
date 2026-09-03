@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -291,6 +292,8 @@ export default function Cochrane() {
         ]}
         accent="calgary"
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

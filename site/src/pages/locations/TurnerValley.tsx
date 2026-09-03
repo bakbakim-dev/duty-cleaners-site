@@ -1,3 +1,5 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -307,6 +309,18 @@ export default function TurnerValley() {
             </AnimatedSection>
           </div>
         </section>
+
+      <NearbyNeighbourhoods />
+
+      <LocalMarketNote
+        eyebrow="From the route"
+        heading="Dingman's well, 1914"
+        paragraphs={[
+          "A.W. Dingman struck wet gas here on 14 May 1914, and for three decades afterwards this field was the largest producer in the British Empire. The gas plant ran until 1985. What that leaves is a small townsite with housing from every phase of a century-long boom and bust, so a street can hold a 1920s worker's cottage and a house finished last year, and the two need almost nothing in common from a visit.",
+          "The town sits about 60 km southwest of the city on Highway 22, high enough that chinooks run through all winter. Each thaw turns a dry week's dust into wet grit on the same boots, and it arrives at the door rather than drifting in — which is why mudrooms and the first stretch of hard floor get their own pass here.",
+        ]}
+        accent="calgary"
+      />
 
       <LocationPricing />
 

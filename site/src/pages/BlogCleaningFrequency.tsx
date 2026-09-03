@@ -91,6 +91,10 @@ export default function BlogCleaningFrequency() {
         <meta property="og:title" content="How Often Should You Get Your House Cleaned? | Duty Cleaners" />
         <meta property="og:description" content="Learn how often you should hire a cleaning service - weekly, bi-weekly, or monthly. An expert guide to choosing the right cleaning frequency." />
         <meta name="twitter:card" content="summary_large_image" />
+        {/* This post's own hero, so a share card shows the article rather
+            than the generic site image. */}
+        <meta property="og:image" content={absoluteAssetUrl(heroImage)} />
+        <meta name="twitter:image" content={absoluteAssetUrl(heroImage)} />
         <meta name="twitter:title" content="How Often Should You Get Your House Cleaned? | Duty Cleaners" />
         <meta name="twitter:description" content="Learn how often you should hire a cleaning service - weekly, bi-weekly, or monthly. An expert guide to choosing the right cleaning frequency." />
         <meta property="og:type" content="article" />

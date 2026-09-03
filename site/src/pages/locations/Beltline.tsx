@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -355,6 +356,8 @@ export default function Beltline() {
         ]}
         accent="calgary"
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
 

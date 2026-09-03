@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -324,6 +325,8 @@ export default function Secord() {
           "The north edge is Stony Plain Road carrying Highway 16A — a through route to Stony Plain rather than a residential street — and Winterburn Industrial Area West sits directly across it. Winterburn Road, 215 Street, closes the east side. Secord's structure plan was adopted in 2007 and building has not finished, so lots on the newer streets still meet gravel and clay. Most of the real work is at the doors and on the glass that faces the open side.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Secord" />

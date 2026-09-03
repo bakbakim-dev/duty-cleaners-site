@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -324,6 +325,8 @@ export default function Kildare() {
           "About half the housing dates from the 1960s and another three in ten from the 1970s. At the 2005 municipal count roughly a quarter of dwellings were row houses, and they are not spread evenly — a large row-house development takes up the northwest corner. Those units are narrow and vertical, so kitchen, bathroom and stairwell absorb most of the daily wear while floor area stays small. A visit here is spent on those three rooms rather than on floor area.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Kildare" />

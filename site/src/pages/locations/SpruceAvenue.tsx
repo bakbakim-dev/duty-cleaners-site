@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -319,6 +320,8 @@ export default function SpruceAvenue() {
           "Kingsway's traffic and the hospital district's constant coming-and-going keep the area's ambient grit high, and NAIT's proximity adds student-rental turnover cleans to the local mix — end-of-lease work that runs closer to move-out standard than maintenance.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Spruce Avenue" />

@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -323,6 +324,8 @@ export default function Evansdale() {
           "The neighbourhood's schools and rink traffic define its calendar, and 97 Street's retail edge adds arterial grit to homes on the west blocks. Winter is the heavy season — boot slush, gear bags and rink sand from October through March — and entry systems earn most of the attention.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Evansdale" />

@@ -1,3 +1,4 @@
+import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet-async";
@@ -323,6 +324,8 @@ export default function Delwood() {
           "Streets here are lined with mature elm and ash, which is lovely shade in July and a workload the rest of the year: elm samaras in spring, canopy dust in summer, and leaf fragments tracked across floors from September until the first hard snow. Window tracks on the tree side of a Delwood house need clearing twice as often as the sunny side.",
         ]}
       />
+
+      <NearbyNeighbourhoods />
 
       <LocationPricing />
         <HonestReviewLink city="Edmonton" area="Delwood" />
