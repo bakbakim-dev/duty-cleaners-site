@@ -260,6 +260,13 @@ export const SERVICES: ServicePricing[] = [
     hours: "Varies by site",
     exactPricing: false,
     quoteOnly: true,
+    // DISAGREES WITH THE PAGE. /commercial-cleaning/ tells prospects the work
+    // is quoted per hour ("you get an hourly rate and the expected visit
+    // length before anything is booked") and argues the case against pricing
+    // by floor area. This record says square footage. The note renders
+    // nowhere today because commercial is not self-serve, so no page
+    // contradicts itself — but whoever quotes a walkthrough works from one of
+    // the two. TODO-OWNER: confirm which is real, then make both match.
     rateNote: "Charged by square footage — we confirm the rate after a quick walkthrough.",
     // Priced per site, so BookingKoala's recurring discounts do not apply here.
     supportsRecurring: false,

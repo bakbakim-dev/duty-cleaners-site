@@ -186,7 +186,7 @@ export default function CommercialCleaning() {
               <div className="max-w-3xl mx-auto text-center">
                 <span className="text-accent font-semibold text-sm uppercase tracking-wide">About Our Service</span>
                 <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-6">
-                  Edmonton's Premier Commercial Cleaning
+                  Commercial cleaning in Edmonton, scoped in writing
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Edmonton businesses need clean, well-maintained spaces to provide a welcoming environment for clients 
@@ -243,12 +243,12 @@ export default function CommercialCleaning() {
               </div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                <FeatureItem icon={Shield} title="Customer-Rated Cleaners" description="Every cleaner is reference-checked before working in a customer’s home." />
-                <FeatureItem icon={Award} title="Experienced Professionals" description="Years of experience in commercial cleaning with specialized training for different industries." />
+                <FeatureItem icon={Shield} title="Customer-Rated Cleaners" description="Every cleaner is reference-checked before their first job and rated after every visit. Those ratings decide who keeps working on your site." />
+                <FeatureItem icon={Award} title="Experienced Professionals" description="Cleaning in Alberta since 2017. For contracts needing specific insurance certificates or security clearances, ask at the walkthrough and we confirm in writing what we can provide." />
                 <FeatureItem icon={CalendarCheck} title="Flexible Scheduling" description="We work around your business hours with options for weekend cleanings." />
                 <FeatureItem icon={ThumbsUp} title="100% Satisfaction Guaranteed" description="If you're not happy with our service, we’ll come back free of charge. Simply let us know within 24 hours after your cleaning, and we’ll make it right." />
                 <FeatureItem icon={Star} title="Transparent Pricing" description="Upfront, honest pricing with no hidden fees. We provide detailed quotes and work within your budget." />
-                <FeatureItem icon={Leaf} title="Safe Quality Products" description="Professional cleaning products suited to commercial environments and gentle on surfaces." />
+                <FeatureItem icon={Leaf} title="Safe Quality Products" description="Teams arrive with everything the agreed scope needs. If your site requires a particular disinfectant or a low-odour option, name it at the walkthrough and we work to it." />
               </div>
             </div>
           </section>
