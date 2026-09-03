@@ -94,6 +94,9 @@ function generateBreadcrumbs(pathname: string): BreadcrumbItem[] {
 import { displayNameFor } from "@/data/place-names";
 
 const PROPER_CASE: Record<string, string> = {
+  // "faqs" title-cases to "Faqs", which is not how the acronym is written
+  // anywhere else on the site (the <title> says "FAQs").
+  Faqs: "FAQs",
   Mcconachie: "McConachie",
   Mccauley: "McCauley",
   Mcleod: "McLeod",

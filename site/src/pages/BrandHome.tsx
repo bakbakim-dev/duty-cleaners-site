@@ -19,7 +19,10 @@ const stats = [{
   icon: Clock
 }, {
   value: HOMES_CLEANED.alberta,
-  label: "Homes Cleaned",
+  // The scope word is load-bearing: 4,000+ is Edmonton and 5,000+ is Alberta,
+  // so a bare "Homes Cleaned" makes the two figures look like a contradiction
+  // wherever both appear (they do, on /locations/).
+  label: "Alberta Homes Cleaned",
   icon: HomeIcon
 }, {
   value: RATING_CLAIM,
@@ -164,7 +167,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
               label: "4.9 on Google"
             }, {
               icon: Users,
-              label: "5,000+ Homes Cleaned"
+              label: `${HOMES_CLEANED.alberta} Alberta homes cleaned`
             }].map((badge, i) => <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                   <badge.icon className="w-4 h-4 text-accent" />
                   <span className="text-white/90 text-sm font-medium">{badge.label}</span>

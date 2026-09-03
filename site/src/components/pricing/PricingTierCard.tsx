@@ -1,19 +1,24 @@
 import { Button } from "@/components/ui/button";
 import { Home } from "lucide-react";
-import { Link } from "react-router-dom";
-import { canonicalForPath } from "@/data/legacy-urls";
+import { useLocation } from "react-router-dom";
+import { quoteHrefFor } from "@/lib/quote-link";
 
 interface PricingTierCardProps {
   beds: string;
   price: string;
   buttonVariant?: "edmonton" | "calgary" | "accent";
-  /** Where the row CTA goes; defaults to the contact page. */
+  /** Where the row CTA goes; defaults to the instant-price funnel. */
   ctaHref?: string;
   /** Small line under the price, e.g. the Standard + package breakdown. */
   note?: string;
 }
 
-const PricingTierCard = ({ beds, price, ctaHref = canonicalForPath("/contact"), note }: PricingTierCardProps) => {
+const PricingTierCard = ({ beds, price, ctaHref, note }: PricingTierCardProps) => {
+  // This button says "See My Instant Price". It defaulted to the contact form,
+  // so ten of them on each pricing page sent the highest-intent visitor on the
+  // site to a message box instead of the price they were promised.
+  const { pathname } = useLocation();
+  const href = ctaHref ?? quoteHrefFor(pathname);
   return (
     <div className="group" style={{ perspective: "1000px" }}>
       <div
@@ -30,7 +35,7 @@ const PricingTierCard = ({ beds, price, ctaHref = canonicalForPath("/contact"), 
           className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-semibold shadow-md hover:shadow-lg transition-all"
           asChild
         >
-          <Link to={ctaHref}>See My Instant Price</Link>
+          <a href={href}>See My Instant Price</a>
         </Button>
       </div>
     </div>

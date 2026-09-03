@@ -37,13 +37,13 @@ const mainLocations = [
   {
     name: "Edmonton",
     rating: RATING_CLAIM,
-    reviews: `${HOMES_CLEANED.edmonton} homes cleaned`,
+    reviews: `${HOMES_CLEANED.edmonton} Edmonton homes cleaned`,
     phone: "780-913-6565",
     phoneHref: "tel:7809136565",
     address: "18615 71 Ave NW",
     addressLine2: "Edmonton, AB T5T 2V9",
     experience: `Serving Alberta since ${COMPANY.foundedYear}`,
-    homesCleaned: "4,000+ Homes Cleaned",
+    homesCleaned: `${HOMES_CLEANED.edmonton} Edmonton homes cleaned`,
     neighbourhoods: [
       { name: "Glenora", link: "/locations/glenora-edmonton/" },
       { name: "Westmount", link: "/locations/westmount-edmonton/" },

@@ -1,3 +1,5 @@
+import { useLocation } from "react-router-dom";
+import { quoteHrefFor } from "@/lib/quote-link";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -94,6 +96,7 @@ const faqItems = [
 ];
 
 export default function CalgaryPricing() {
+  const { pathname } = useLocation();
   const { ref: heroRef } = useScrollAnimation();
   const { ref: tabsRef } = useScrollAnimation();
   const { ref: addOnsRef } = useScrollAnimation();
@@ -152,7 +155,7 @@ export default function CalgaryPricing() {
               <Calculator className="w-10 h-10 text-accent" />
             </div>
 
-            <h1 className="display-serif text-3xl md:text-5xl font-bold mb-6 leading-tight text-white">
+            <h1 className="display-serif text-3xl md:text-5xl font-bold mb-6 leading-tight text-balance text-white">
               Calgary cleaning prices that{" "}
               <span className="text-accent">fit the job</span>
             </h1>
@@ -441,10 +444,10 @@ export default function CalgaryPricing() {
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Button className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold shadow-md hover:shadow-lg transition-all" asChild>
-                    <Link to="/contact-us/">
+                    <a href={quoteHrefFor(pathname)}>
                       <CalendarClock className="w-5 h-5 mr-2" />
                       Book Your Cleaning
-                    </Link>
+                    </a>
                   </Button>
                   <Button className="bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-all" asChild>
                     <a href="tel:4037681341">

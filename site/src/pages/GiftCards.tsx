@@ -1,3 +1,4 @@
+import { HOMES_CLEANED } from "@/data/proof";
 import { RATING_CLAIM } from "@/data/proof";
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
@@ -114,7 +115,7 @@ export default function GiftCards() {
               <div className="flex flex-wrap items-center justify-center gap-4 mb-10">
                 {[
                   { icon: Star, label: RATING_CLAIM },
-                  { icon: Users, label: "5,000+ Homes Cleaned" },
+                  { icon: Users, label: `${HOMES_CLEANED.alberta} Alberta homes cleaned` },
                   { icon: BadgeCheck, label: "Satisfaction Guaranteed" },
                 ].map((badge, i) => (
                   <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">

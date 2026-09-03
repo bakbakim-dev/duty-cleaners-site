@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Percent } from "lucide-react";
-import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { quoteHrefFor } from "@/lib/quote-link";
 
 interface RecurringDiscountCardProps {
   percentage: string;
@@ -10,6 +11,7 @@ interface RecurringDiscountCardProps {
 }
 
 const RecurringDiscountCard = ({ percentage, title, savings, isPopular = false }: RecurringDiscountCardProps) => {
+  const { pathname } = useLocation();
   return (
     <div className="group" style={{ perspective: "1000px" }}>
       <div
@@ -34,7 +36,8 @@ const RecurringDiscountCard = ({ percentage, title, savings, isPopular = false }
           className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-semibold shadow-md hover:shadow-lg transition-all"
           asChild
         >
-          <Link to="/contact-us/">Get Started</Link>
+          {/* Starting a recurring plan means pricing it, not emailing about it. */}
+          <a href={quoteHrefFor(pathname)}>Get Started</a>
         </Button>
       </div>
     </div>

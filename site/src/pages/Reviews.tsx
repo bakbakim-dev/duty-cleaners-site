@@ -1,3 +1,4 @@
+import { HOMES_CLEANED } from "@/data/proof";
 import heroReviews from "@/assets/hero-reviews-testimonials.webp";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -241,7 +242,7 @@ export default function Reviews() {
           {/* Stats Row */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 max-w-4xl mx-auto">
             <StatCard icon={Star} value="4.9" label="Rating on Google" />
-            <StatCard icon={ThumbsUp} value="5,000+" label="Homes Cleaned" />
+            <StatCard icon={ThumbsUp} value={HOMES_CLEANED.alberta} label="Alberta Homes Cleaned" />
             {/* Was value="100%" label="Satisfaction Rate". A "rate" reads as a measured
             outcome, and nothing measures it -- proof.ts has rebookRate: null. It also
             sat directly above "4.9 out of 5" on this page, which refutes it: a 4.9 mean

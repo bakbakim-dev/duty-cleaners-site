@@ -179,10 +179,12 @@ export default function CalgaryMoveInOut() {
               Skip the phone tag. Tell us your home size, condition, and move-out date — get personalized, all-inclusive pricing instantly. Backed by our 100% satisfaction guarantee and 24-hour re-clean promise.
             </p>
             <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-10 py-6 h-auto font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5" asChild>
-              <Link to="/contact-us/">
+              {/* The heading above promises an instant price and "no phone call
+                  required"; this used to open the contact form. */}
+              <a href="#quote">
                 <Calculator className="w-5 h-5 mr-2" />
-                See Pricing & Availability
-              </Link>
+                See My Instant Price
+              </a>
             </Button>
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground mt-4">
               <span>⚡ Instant pricing</span>
