@@ -1,3 +1,5 @@
+import { CITY_PROOF } from "@/data/proof";
+import { RATING_CLAIM } from "@/data/proof";
 import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect } from "react";
@@ -59,7 +61,7 @@ const services = [
 
 const whyUsItems = [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
-  { icon: Star, title: "4.9 on Google", description: "Trusted by thousands of Calgary families with verified Google reviews." },
+  { icon: Star, title: RATING_CLAIM, description: `${CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount} reviews across Edmonton and Calgary, and every one of them is on our Google listing.` },
   { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability. We work around your busy urban lifestyle." },
   { icon: Leaf, title: "High Quality Cleaning Supplies", description: "We bring everything the job needs. Tell us about any sensitivities, or products you would rather we used, and we will work to them." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners skilled with both character homes and modern finishes." },

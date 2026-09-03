@@ -527,4 +527,49 @@ describe("price CTAs reach the price", () => {
         `conversation — and its buttons do not use this wording.`,
     ).toEqual([]);
   });
+
+  /**
+   * Volume claims the business cannot source.
+   *
+   * proof.ts keeps the customer total null on purpose and says so in a comment:
+   * never a made-up total. Four separate phrasings had leaked past it anyway —
+   * "hundreds of happy clients each month", "thousands of satisfied customers",
+   * "trusted by thousands of Alberta families" on 150 location pages, and
+   * "thousands of Edmonton and Calgary homes a year", which the site's own
+   * 5,000-since-2017 figure puts at roughly 700.
+   *
+   * "Verified Google reviews" is here for a different reason: Google does not
+   * verify reviews, so the phrase claims a check nobody performed.
+   *
+   * Scoped counts read from proof.ts ("5,000+ Alberta homes cleaned") are fine
+   * and are what these were replaced with — the pattern only matches the vague
+   * plural, which is the form that cannot be checked.
+   */
+  const UNSOURCED_VOLUME = [
+    /\bthousands of\b/i,
+    /\bhundreds of (?:happy|satisfied)\b/i,
+    /\bmost trusted\b/i,
+    /verified google reviews/i,
+  ];
+
+  it("publishes no volume claim the business cannot source", () => {
+    const pages = allPages();
+    if (pages.length === 0) return;
+    const bad: string[] = [];
+    for (const url of pages) {
+      const raw = html(url).replace(/<script[\s\S]*?<\/script>/g, " ");
+      const text = raw.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ");
+      for (const pattern of UNSOURCED_VOLUME) {
+        const hit = pattern.exec(text);
+        if (hit) bad.push(`${url}: "${text.slice(Math.max(0, hit.index - 30), hit.index + 50).trim()}"`);
+      }
+    }
+    expect(
+      bad,
+      `These pages claim a volume nobody can check:\n${bad.join("\n")}\n` +
+        `Use a scoped figure from proof.ts (HOMES_CLEANED, CITY_PROOF.googleReviewCount) ` +
+        `or drop the claim. The owner has not confirmed a customer total, which is why ` +
+        `proof.ts holds it null.`,
+    ).toEqual([]);
+  });
 });

@@ -235,7 +235,9 @@ export default function BlogCleaningProducts() {
                   collection grows one bottle at a time.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed mt-4">
-                  Our cleaners work in thousands of Edmonton and Calgary homes a year, and they do
+                  {/* Was "thousands of homes a year", which the site's own figure refutes:
+                      5,000+ homes since 2017 is about 700 a year. */}
+                  Our cleaners work in Edmonton and Calgary homes every day, and they do
                   not carry a dozen bottles. They carry five things. The reason is not cost — it is
                   that five well-chosen products cover essentially every household surface, and
                   carrying more means carrying duplicates.

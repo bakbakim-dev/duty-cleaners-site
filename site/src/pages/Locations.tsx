@@ -1,3 +1,4 @@
+import { CITY_PROOF } from "@/data/proof";
 import { COMPANY, HOMES_CLEANED, RATING_CLAIM } from "@/data/proof";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -66,7 +67,7 @@ const mainLocations = [
     phone: "(403) 768-1341",
     phoneHref: "tel:4037681341",
     address: "2835 37 Street SW #24",
-    addressLine2: "Calgary, Alberta",
+    addressLine2: `Calgary, AB ${CITY_PROOF.calgary.postalCode}`,
     experience: `Serving Alberta since ${COMPANY.foundedYear}`,
     homesCleaned: "1,000+ Homes Cleaned",
     neighbourhoods: [

@@ -1,3 +1,5 @@
+import { addOnFromPrice, formatPrice } from "@/data/pricing";
+import { addOnTableRows, TRAVEL_FEE_KEY } from "@/data/addon-table";
 import { useLocation } from "react-router-dom";
 import { cityProofFor } from "@/data/proof";
 import { quoteHrefFor } from "@/lib/quote-link";
@@ -49,6 +51,15 @@ import {
 
 // Cleaning service card component
 type MatrixLevel = "yes" | "addon" | "no";
+
+/** The pricing pages publish the same rows from the same BookingKoala data.
+ *  The last two are charges rather than choices, so they are split out. */
+const NON_OPTIONAL = new Set(["Homes with pets"]);
+const OPTIONAL_EXTRAS = addOnTableRows("edmonton").filter(
+  (row) => !NON_OPTIONAL.has(row.service) && !/travel fee/i.test(row.service),
+);
+const PET_FEE = formatPrice(addOnFromPrice("standard", "must-choose-if-you-have-pets") ?? 0);
+const TRAVEL_FEE = formatPrice(addOnFromPrice("standard", TRAVEL_FEE_KEY) ?? 0);
 
 const MatrixCell = ({ level }: { level: MatrixLevel }) => {
   if (level === "yes") {
@@ -445,7 +456,11 @@ export default function WhatsIncluded() {
           </div>
 
           <p className="mt-4 text-center text-xs text-muted-foreground">
-            Add-ons can be included with any clean — just mention them when booking.
+            {/* "Just mention them when booking" implied a conversation and hid
+                that every add-on has a price. They are tick-boxes in the form,
+                and the total updates as you tick them. */}
+            Every add-on is a tick-box in the booking form, with its price beside it. The total
+            updates as you choose, so you see it before you commit.
           </p>
         </div>
       </section>
@@ -477,19 +492,29 @@ export default function WhatsIncluded() {
             <span className="text-accent font-semibold text-sm uppercase tracking-wide">Extras</span>
             <h2 className="text-3xl md:text-4xl font-bold mt-2">Available Add-Ons</h2>
             <p className="text-muted-foreground mt-4 max-w-xl mx-auto">
-              Customize your cleaning with these optional extras.
+              Add any of these to a standard or deep clean. Prices are per visit, before 5% GST,
+              and every one is shown in the booking form before you commit.
             </p>
           </div>
 
           <div className="flex flex-wrap gap-4 justify-center max-w-4xl mx-auto">
-            <ExtraBadge icon={DoorOpen} text="Inside Windows" />
-            <ExtraBadge icon={Blinds} text="Wiping Blinds" />
-            <ExtraBadge icon={Paintbrush} text="Spot/Wall Washing" />
-            <ExtraBadge icon={Warehouse} text="Basement Cleaning" />
-            <ExtraBadge icon={Home} text="Garage & Balcony Sweeping" />
-            <ExtraBadge icon={Sparkles} text="De-cluttering" />
-            <ExtraBadge icon={Home} text="Baseboards, Doors, Light Switches, Wall Outlets & Vent Covers" />
+            {/* Was seven hand-typed badges while the pricing pages published
+                twelve extras read from BookingKoala — the list left out inside
+                oven, inside fridge and inside cabinets, which are the three
+                customers ask about most. Same source now, so the two pages
+                cannot disagree, and each badge carries its price. */}
+            {OPTIONAL_EXTRAS.map((row) => (
+              <ExtraBadge key={row.service} icon={Sparkles} text={`${row.service} — ${row.standard}`} />
+            ))}
           </div>
+
+          {/* Two charges are not optional, so they cannot sit in a list headed
+              "add any of these". A pet owner cannot decline the pet charge. */}
+          <p className="text-muted-foreground text-sm mt-8 max-w-2xl mx-auto text-center">
+            Two charges are not optional and are added for you: {PET_FEE} per visit for a home with
+            pets, and {TRAVEL_FEE} for an address outside Edmonton or Calgary city limits. Both show on
+            your quote before you book.
+          </p>
         </div>
       </section>
 

@@ -1,3 +1,6 @@
+import { useLocation } from "react-router-dom";
+import { Calculator } from "lucide-react";
+import { quoteHrefFor } from "@/lib/quote-link";
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -181,6 +184,7 @@ const GIFT_CARD_DESIGN_LABELS: Record<string, string> = {
 };
 
 export default function Contact() {
+  const { pathname } = useLocation();
   const [searchParams] = useSearchParams();
   // Gift-card visitors arrive with their choice already made — carry it into
   // the form instead of making them retype it.
@@ -347,11 +351,20 @@ export default function Contact() {
             </h1>
             
             <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-8">
-              Have questions about our cleaning services? Ready to book? We're here to help with friendly, personalized support.
+              Ready to book? See your price and pick a time in about a minute. If you would rather
+              ask something first, call either office or send the form below and we reply within 24 hours.
             </p>
 
             <div className="flex flex-wrap justify-center gap-4">
+              {/* The line above says "Ready to book?" and this page had no way to
+                  book — two phone numbers and a 24-hour inbox. */}
               <Button size="lg" className="bg-accent hover:bg-accent/90 text-white h-12 px-6" asChild>
+                <a href={quoteHrefFor(pathname)}>
+                  <Calculator className="mr-2 w-5 h-5" />
+                  See My Instant Price
+                </a>
+              </Button>
+              <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 h-12 px-6" asChild>
                 <a href="tel:7809136565">
                   <Phone className="mr-2 w-5 h-5" />
                   Call Edmonton
@@ -384,7 +397,7 @@ export default function Contact() {
               city="Edmonton"
               phone="(780) 913-6565"
               email="Support@dutycleaners.ca"
-              address="18615 71 Ave NW, Edmonton, AB T5T 2V9"
+              address={`${CITY_PROOF.edmonton.streetAddress}, Edmonton, AB ${CITY_PROOF.edmonton.postalCode}`}
               hours="Mon–Sat: 8:00am–8:00pm
 Sun: 9:00am–3:00pm"
               linkTo="/"
@@ -393,7 +406,7 @@ Sun: 9:00am–3:00pm"
               city="Calgary"
               phone="(403) 768-1341"
               email="Support@dutycleaners.ca"
-              address="2835 37 Street SW #24, Calgary, Alberta"
+              address={`${CITY_PROOF.calgary.streetAddress}, Calgary, AB ${CITY_PROOF.calgary.postalCode}`}
               hours="Mon–Sat: 8:00am–8:00pm
 Sun: 9:00am–3:00pm"
               linkTo={canonicalForPath("/calgary")}
@@ -546,13 +559,13 @@ Sun: 9:00am–3:00pm"
                     />
                     <FeatureHighlight 
                       icon={Users} 
-                      title="Friendly Team" 
-                      description="Our support staff are trained to help with any questions."
+                      title="One Call, Either City" 
+                      description="Edmonton and Calgary are answered by the same team, Mon-Sat 8am-8pm and Sun 9am-3pm."
                     />
                     <FeatureHighlight 
                       icon={Shield} 
-                      title="No Pressure" 
-                      description="We're here to help, not push a sale. Take your time!"
+                      title="Nothing to Pay Up Front" 
+                      description="Booking takes no deposit and no card. You pay after the clean is done."
                     />
                   </div>
                 </div>

@@ -11,10 +11,10 @@ export const POST_MODIFIED: Readonly<Record<string, string>> = {
   "/blog/cleaning-schedule": "2026-09-02",
   "/blog/cleaning-services-calgary": "2026-09-03",
   "/blog/spotless-home-tips": "2026-08-28",
-  "/cleaning-with-vinegar-and-baking-soda": "2026-09-02",
-  "/how-much-does-a-house-cleaning-cost": "2026-09-02",
-  "/how-often-should-a-cleaning-service-clean-my-house": "2026-09-02",
-  "/the-top-5-must-have-cleaning-products-for-a-spotless-home": "2026-09-02",
+  "/cleaning-with-vinegar-and-baking-soda": "2026-09-03",
+  "/how-much-does-a-house-cleaning-cost": "2026-09-03",
+  "/how-often-should-a-cleaning-service-clean-my-house": "2026-09-03",
+  "/the-top-5-must-have-cleaning-products-for-a-spotless-home": "2026-09-03",
 };
 
 /**

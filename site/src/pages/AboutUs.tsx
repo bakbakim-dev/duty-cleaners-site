@@ -1,3 +1,5 @@
+import { POLICY } from "@/data/policy";
+import { HOMES_CLEANED } from "@/data/proof";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -62,19 +64,20 @@ export default function AboutUs() {
             <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-6">Our Story</h2>
             <div className="prose prose-lg max-w-none text-muted-foreground space-y-4">
               <p>
-                At Duty Cleaners, we understand that your home is a reflection of you, and we’re here to keep it
-                sparkling clean. Serving homes across Alberta, our team of highly skilled cleaning professionals is
-                dedicated to providing top-notch house cleaning services tailored to your needs.
+                Letting someone into your home is the part people actually hesitate over, so here is
+                how it works. You see the price before you book. The cleaner who arrives has been
+                reference-checked, and you rate them afterwards — those ratings decide who keeps
+                working for us.
               </p>
               <p>
-                Since 2017, we’ve been transforming homes across Alberta with our professional and reliable cleaning
-                services. What started as a small family business has grown into a trusted name serving
-                thousands of satisfied customers across the province.
+                We have been cleaning Alberta homes since 2017. What started as a small family business
+                now runs out of two offices, Edmonton and Calgary, and has cleaned{" "}
+                {HOMES_CLEANED.alberta} homes between them.
               </p>
               <p>
-                We offer customizable cleaning plans to fit your unique requirements, ensuring every corner of your home
-                gets the attention it deserves. With our 100% satisfaction guarantee, you can trust that we'll exceed
-                your expectations every time.
+                If something gets missed, tell us within {POLICY.guaranteeWindowHours} hours and we come
+                back and put it right at no additional charge. That is the whole of the guarantee, and it
+                is the same one whichever page you read it on.
               </p>
             </div>
           </div>
@@ -86,14 +89,14 @@ export default function AboutUs() {
         <div className="container mx-auto px-4">
           <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-4">Our Journey</h2>
           <p className="text-center text-muted-foreground mb-14 max-w-2xl mx-auto">
-            From a small family business to one of Alberta's most trusted cleaning teams.
+            One family business, two cities, and a promise that has not changed since 2017.
           </p>
           <div className="relative max-w-5xl mx-auto">
             <div className="absolute left-[7px] top-2 bottom-2 w-0.5 bg-brand-gold/40 md:left-0 md:right-0 md:top-[7px] md:bottom-auto md:h-0.5 md:w-auto" aria-hidden="true" />
             <div className="grid gap-10 md:grid-cols-4 md:gap-6">
               {[
                 { title: "Where we started", text: "A small family business with one simple promise: treat every home like our own." },
-                { title: "4,000+ Edmonton homes", text: "Word of mouth made us one of Edmonton's most trusted cleaning teams." },
+                { title: `${HOMES_CLEANED.edmonton} Edmonton homes`, text: "Repeat customers and word of mouth carried the Edmonton branch, one neighbourhood at a time." },
                 { title: "Calgary, here we come", text: "The same vetted cleaners, transparent pricing, and guarantee — now in Calgary and surrounding communities." },
                 { title: "Today", text: "Two cities, cleaners who are reference-checked before their first job and customer-rated after every visit, and the same promise every time." },
               ].map((step, index) => (
@@ -136,15 +139,21 @@ export default function AboutUs() {
                 icon: Users,
                 iconWrap: "bg-rose-600",
                 iconColor: "text-secondary",
-                title: "Vetted Professional Cleaners You Can Trust",
-                text: "All our cleaners are thoroughly vetted to provide exceptional service, giving you peace of mind every time.",
+                // Was "Vetted Professional Cleaners You Can Trust", which repeated the
+                // card directly above it and the Duty Clean Promise section above that.
+                title: "You Do Not Have to Be Home",
+                text: "Tell us how to get in — a key, a lockbox, a buzzer code, a neighbour — and we clean around your day. If you would rather be there, that works too.",
               },
               {
                 icon: Sparkles,
                 iconWrap: "bg-primary/10",
                 iconColor: "text-primary",
                 title: "All Cleaning Supplies & Equipment Provided",
-                text: "Our professional cleaners arrive fully equipped with premium products and top-tier equipment, so you don't have to worry about providing a thing.",
+                // "Premium products and top-tier equipment" implies one company-chosen kit.
+                // Cleaners work as contractors and bring their own, which /join-the-team/
+                // states plainly. What is true — and better — is that you supply nothing
+                // and can ask for particular products.
+                text: "Cleaners arrive with their own supplies and equipment, so you provide nothing. If you need particular products used — an allergy, a pet, sealed stone, a septic system — say so when you book and we pass it to the cleaner.",
               },
               {
                 icon: Clock,
@@ -157,8 +166,10 @@ export default function AboutUs() {
                 icon: Award,
                 iconWrap: "bg-green-400",
                 iconColor: "text-secondary",
-                title: "100% Satisfaction Guarantee",
-                text: "If you're not happy with our service, we’ll come back free of charge. Simply let us know within 24 hours after your cleaning, and we’ll make it right.",
+                // The Duty Clean Promise section above calls this the Make-It-Right
+                // Guarantee. One page, one name.
+                title: "Make-It-Right Guarantee",
+                text: `If something was missed, tell us within ${POLICY.guaranteeWindowHours} hours and we come back and put it right at no additional charge.`,
               },
             ].map((card, index) => {
               const CardIcon = card.icon;
@@ -208,7 +219,7 @@ export default function AboutUs() {
             Ready to Experience the Duty Cleaners Difference?
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Join thousands of satisfied customers across Alberta. Get your free quote today!
+            See the price for your home before you decide anything, and pay only after the clean is done.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-white text-primary hover:bg-white/90" asChild>

@@ -97,7 +97,9 @@ const requirements = [
   {
     icon: FileCheck,
     title: "BN Registered",
-    description: "Be BN registered. You can register for one in under 15 minutes."
+    // "BN" was unexplained, and it is the requirement that tells an applicant
+    // this is contract work rather than employment.
+    description: "Cleaners work as independent contractors, so you need a CRA Business Number. Registering for one takes about 15 minutes and is free."
   },
   {
     icon: Car,
@@ -131,7 +133,7 @@ const faqs = [
   {
     value: "pay",
     question: "What does the position pay?",
-    answer: "The pay is based on the number of jobs you complete per pay period, with earnings varying accordingly. We offer competitive rates that reward hard work and efficiency."
+    answer: "Pay is per job completed rather than per hour, so what you earn in a pay period depends on how many jobs you take and how efficiently you work. Ask for the current per-job rates for your city when we call you — we will give you the actual numbers before you commit to anything."
   },
   {
     value: "hours",
@@ -151,7 +153,7 @@ const faqs = [
   {
     value: "next-steps",
     question: "I already applied, now what?",
-    answer: "Great! We are reviewing your submission. If you haven't heard from us within 2-5 business days, we encourage you to follow up and give us a call at (780) 913-6565."
+    answer: "We review every application and contact qualified applicants within 24-48 hours — the same window quoted above. If two full business days have passed and you have heard nothing, call us at (780) 913-6565 and we will check on it."
   }
 ];
 

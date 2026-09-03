@@ -1,3 +1,5 @@
+import { POLICY } from "@/data/policy";
+import { CITY_PROOF } from "@/data/proof";
 import { useLocation } from "react-router-dom";
 import { quoteHrefFor } from "@/lib/quote-link";
 import type { ReactNode } from "react";
@@ -52,31 +54,33 @@ const services = [{
   title: "Recurring Service",
   desc: "Save up to 20% with regular cleaning schedules"
 }];
+const REVIEW_TOTAL = CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount;
+
 const whyChooseUs = [{
   icon: Shield,
   title: "Pay After Your Clean",
-  desc: "Every cleaner is reference-checked before working in a customer’s home."
+  desc: "No deposit and no card to book. You pay once the clean is done and you have seen it."
 }, {
   icon: Star,
-  title: "4.9 on Google",
-  desc: "Our reputation speaks for itself. Trusted by thousands of satisfied clients across Alberta."
+  title: RATING_CLAIM,
+  desc: `${REVIEW_TOTAL} reviews across Edmonton and Calgary, and the newest are always on our reviews page.`
 }, {
   icon: Award,
-  title: "Vetted Professionals You Can Trust",
-  desc: "Our cleaning team are thoroughly vetted to ensure the highest standards of quality and reliability."
+  title: "Reference-Checked, Then Rated by You",
+  desc: "Every cleaner is reference-checked before their first job, then rated by the customer after every visit. Those ratings decide who keeps cleaning for us."
 }, {
   icon: Sparkles,
   title: "All Cleaning Supplies & Equipment Provided",
-  desc: "Our cleaners come fully equipped with all cleaning products and equipment."
+  desc: "Cleaners arrive with everything they need, so you provide nothing. Tell us if you want particular products used."
 }, {
   icon: Clock,
   title: "Flexible Scheduling",
-  desc: "We offer convenient scheduling options to fit your routine, including weekdays and weekends. Book a time that works best for you."
+  desc: "Weekdays and weekends, and you pick the time in the booking form rather than waiting for a call back."
 }, {
   icon: BadgeCheck,
-    title: "100% Satisfaction Guarantee",
-    desc: "If you're not happy with our service, let us know within 24 hours and we will come back free of charge."
-  }];
+  title: "Make-It-Right Guarantee",
+  desc: `If something was missed, tell us within ${POLICY.guaranteeWindowHours} hours and we come back and put it right at no additional charge.`
+}];
 interface BrandHomeProps {
   hideFooter?: boolean;
 }
@@ -487,7 +491,8 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
                 </div>
                 <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Ready for a Spotless Home?</h2>
                 <p className="text-lg text-white/90 mb-8 leading-relaxed max-w-2xl mx-auto">
-                  Join thousands of satisfied customers across Alberta. Book your professional cleaning service today and experience the Duty Cleaners difference.
+                  See the price for your home size before you book, choose a time that suits you, and pay
+                  once the clean is done.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">

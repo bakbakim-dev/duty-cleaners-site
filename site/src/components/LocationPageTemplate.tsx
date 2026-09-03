@@ -1,3 +1,5 @@
+import { CITY_PROOF } from "@/data/proof";
+import { RATING_CLAIM } from "@/data/proof";
 import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import { canonicalUrlForPath } from "@/data/legacy-urls";
 import { standardTierRows, deepCleanTierRows, moveInOutTierRows, addOnFromPrice, formatPrice } from "@/data/pricing";
@@ -136,7 +138,7 @@ const services = (place: string) => [
 
 const whyUsItems = (place: string) => [
   { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
-  { icon: Star, title: "4.9 on Google", description: "Trusted by thousands of Alberta families with verified Google reviews." },
+  { icon: Star, title: RATING_CLAIM, description: `${CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount} reviews across Edmonton and Calgary, and every one of them is on our Google listing.` },
   { icon: Clock, title: "Flexible Scheduling", description: pickV(place, 3, ["Same-day and next-day availability in {p}. We work around your busy life.","Same-day and next-day slots when the schedule allows. We work around your busy life.","Same-day and next-day openings most weeks. We work around your busy life.","Same-day and next-day availability, schedule permitting. We work around your busy life."]) },
   // "and the planet" is an environmental-benefit claim. Since the June 2024
   // Competition Act amendments those require substantiation on an internationally

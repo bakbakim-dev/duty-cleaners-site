@@ -1,3 +1,4 @@
+import { CITY_PROOF } from "@/data/proof";
 import { HOMES_CLEANED } from "@/data/proof";
 import heroReviews from "@/assets/hero-reviews-testimonials.webp";
 import Navigation from "@/components/Navigation";
@@ -46,9 +47,11 @@ const ReviewCard = ({ review, index }: {review: typeof reviews[0];index: number;
               <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
               )}
             </div>
-            <div className="flex items-center gap-1 text-xs text-green-600">
+            {/* Was a green "Verified" tick on every card. Google does not verify
+                reviews and neither did we; the source is the honest claim. */}
+            <div className="flex items-center gap-1 text-xs text-muted-foreground">
               <CheckCircle2 className="w-3.5 h-3.5" />
-              <span>Verified</span>
+              <span>Google review</span>
             </div>
           </div>
 
@@ -236,7 +239,7 @@ export default function Reviews() {
               )}
               <span className="text-2xl font-bold text-white ml-2">4.9 on Google</span>
             </div>
-            <p className="text-white/90 text-sm">Verified Google reviews from Alberta homeowners</p>
+            <p className="text-white/90 text-sm">Google reviews from Edmonton and Calgary homeowners</p>
           </div>
 
           {/* Stats Row */}
@@ -295,7 +298,7 @@ export default function Reviews() {
                 </svg>
               </div>
 
-              <h2 className="text-3xl font-bold text-foreground mb-2">Verified Google Reviews</h2>
+              <h2 className="text-3xl font-bold text-foreground mb-2">Our Google Reviews</h2>
               <div className="flex items-center justify-center gap-2 my-4">
                 <span className="text-5xl font-bold text-foreground">4.9</span>
                 <div className="flex flex-col items-start">
@@ -307,7 +310,7 @@ export default function Reviews() {
                   <span className="text-muted-foreground text-xs mt-1">out of 5</span>
                 </div>
               </div>
-              <p className="text-muted-foreground mb-2">Verified Google reviews</p>
+              <p className="text-muted-foreground mb-2">{CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount} reviews across both cities</p>
               <p className="text-muted-foreground text-xs flex items-center justify-center gap-1">
                 <Shield className="w-3 h-3" />
                 Powered by Google
