@@ -14,9 +14,16 @@ export default function BeforeAfterGallery({ city }: { city: "Edmonton" | "Calga
   return (
     <section className="band band-white band-hairline" aria-label={`Before and after cleans in ${city}`}>
       <div className="container mx-auto px-4">
+        {/* The heading has to follow the state. With no pairs supplied, this
+            said "Real {city} homes, real results" directly above a card
+            explaining that the real set has not been photographed yet. */}
         <div className="mb-10 text-center">
           <span className="text-sm font-semibold uppercase tracking-wide text-accent">Before &amp; After</span>
-          <h2 className="display-serif display-2 mt-2 text-foreground">Real {city} homes, real results</h2>
+          <h2 className="display-serif display-2 mt-2 text-foreground">
+            {pairs.length === 0
+              ? `Before and after, from real ${city} cleans`
+              : `Real ${city} homes, real results`}
+          </h2>
         </div>
 
         <div ref={reveal.ref} className={`motion-reveal mx-auto max-w-5xl ${reveal.className}`}>

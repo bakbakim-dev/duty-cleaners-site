@@ -280,18 +280,20 @@ export default function Edmonton2() {
           <div className="container mx-auto px-4">
             <div className="grid gap-10 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,2fr)] lg:gap-14">
               <div className="lg:sticky lg:top-28 lg:self-start">
-                <Eyebrow>Our Work</Eyebrow>
-                <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Real Edmonton Homes</h2>
+                <Eyebrow>The standard</Eyebrow>
+                {/* Was "Real Edmonton Homes" over the AI-generated set, directly
+                    above a block saying the real before/afters are not shot yet. */}
+                <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">What a finished clean looks like</h2>
               </div>
 
               <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
                 {[
-                  { src: galleryPostKitchen, alt: "Spotless post-cleaning kitchen in an Edmonton home with polished countertops and stainless appliances", label: "Post-Cleaning Kitchen", tag: "Result" },
-                  { src: galleryOvenBA, alt: "Before and after oven deep cleaning by Duty Cleaners Edmonton", label: "Oven Deep Clean", tag: "Before / After" },
-                  { src: galleryToiletBA, alt: "Before and after bathroom toilet sanitization in an Edmonton home", label: "Bathroom Sanitization", tag: "Before / After" },
-                  { src: galleryStoveDetail, alt: "Detailed stovetop and backsplash cleaning in an Edmonton kitchen", label: "Stovetop & Backsplash", tag: "Detail" },
-                  { src: galleryStoveBA, alt: "Before and after stove and kitchen cleaning transformation in Edmonton", label: "Kitchen Transformation", tag: "Before / After" },
-                  { src: galleryModernKitchen, alt: "Move-out cleaning result in a modern Edmonton condo kitchen", label: "Move-Out Clean", tag: "Result" },
+                  { src: galleryPostKitchen, alt: "A kitchen at the end of a clean: countertops cleared and wiped, sink and taps polished, appliance fronts free of marks", label: "Kitchen", tag: "Kitchen" },
+                  { src: galleryOvenBA, alt: "An oven interior after the inside-oven add-on: racks, door glass and floor of the cavity degreased", label: "Inside the oven", tag: "Add-on" },
+                  { src: galleryToiletBA, alt: "A toilet scrubbed inside and out, including the base and the hinges where build-up collects", label: "Bathroom", tag: "Bathroom" },
+                  { src: galleryStoveDetail, alt: "A stovetop and backsplash with cooking film removed, grates and burner rings degreased", label: "Stovetop", tag: "Deep clean" },
+                  { src: galleryStoveBA, alt: "A range and the wall behind it after degreasing, with no film left on the surround", label: "Range and surround", tag: "Deep clean" },
+                  { src: galleryModernKitchen, alt: "A condo kitchen cleaned to move-out standard, cabinet interiors and drawers emptied and wiped", label: "Move-out", tag: "Move-out" },
                 ].map((photo, index) => (
                   <figure
                     key={index}

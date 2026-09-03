@@ -291,7 +291,9 @@ export default function Calgary2() {
             <div className="grid gap-10 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,2fr)] lg:gap-14">
               <div className="lg:sticky lg:top-28 lg:self-start">
                 <Eyebrow>Our Work</Eyebrow>
-                <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Real Calgary Homes</h2>
+                {/* Was "Real Calgary Homes" over the AI-generated set, directly above a
+                    block saying the real before/afters are not shot yet. */}
+                <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">What a finished clean looks like</h2>
                 <p className="text-muted-foreground mt-3">
                   See the homes we’ve cleaned and the results we deliver for homeowners across the city.
                 </p>
@@ -301,11 +303,11 @@ export default function Calgary2() {
             <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[180px] md:auto-rows-[220px] gap-4">
 
               {[
-                { src: gallerySpotlessKitchen, alt: "Spotless Calgary kitchen with stainless appliances after a Duty Cleaners visit", label: "Spotless Kitchen", tag: "Result", className: "col-span-2 row-span-2" },
-                { src: galleryOvenBA, alt: "Before and after oven deep cleaning by Duty Cleaners Calgary", label: "Oven Deep Clean", tag: "Before / After", className: "col-span-2 row-span-2" },
-                { src: galleryBathroomDeep, alt: "Sparkling Calgary bathroom after a deep clean", label: "Bathroom Deep Clean", tag: "Result", className: "col-span-2 md:col-span-1 row-span-1" },
-                { src: galleryKitchenBA, alt: "Before and after kitchen transformation in a Calgary home", label: "Kitchen Transformation", tag: "Before / After", className: "col-span-2 md:col-span-2 row-span-1" },
-                { src: galleryToiletBA, alt: "Before and after bathroom toilet sanitization in a Calgary home", label: "Toilet Sanitization", tag: "Before / After", className: "col-span-2 md:col-span-1 row-span-1" },
+                { src: gallerySpotlessKitchen, alt: "A kitchen at the end of a clean: countertops cleared and wiped, sink and taps polished, appliance fronts free of marks", label: "Kitchen", tag: "Kitchen", className: "col-span-2 row-span-2" },
+                { src: galleryOvenBA, alt: "An oven interior after the inside-oven add-on: racks, door glass and floor of the cavity degreased", label: "Inside the oven", tag: "Add-on", className: "col-span-2 row-span-2" },
+                { src: galleryBathroomDeep, alt: "A bathroom after a deep clean, with soap scum off the glass and mineral build-up off the fixtures", label: "Bathroom", tag: "Deep clean", className: "col-span-2 md:col-span-1 row-span-1" },
+                { src: galleryKitchenBA, alt: "A range and the wall behind it after degreasing, with no film left on the surround", label: "Range and surround", tag: "Deep clean", className: "col-span-2 md:col-span-2 row-span-1" },
+                { src: galleryToiletBA, alt: "A toilet scrubbed inside and out, including the base and the hinges where build-up collects", label: "Bathroom", tag: "Bathroom", className: "col-span-2 md:col-span-1 row-span-1" },
                 
               ].map((photo, index) => (
                 <figure key={index} className={`group relative rounded-xl overflow-hidden bg-muted shadow-sm hover:shadow-xl transition-all duration-300 ${photo.className}`}>

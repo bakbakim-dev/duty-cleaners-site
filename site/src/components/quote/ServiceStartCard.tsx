@@ -117,7 +117,7 @@ export default function ServiceStartCard({
             </div>
 
             <h2 className="display-serif mt-2.5 text-2xl font-bold leading-snug text-brand-navy">
-              What kind of clean do you need?
+              What type of clean do you need?
             </h2>
             <p className="mt-1.5 text-sm leading-relaxed text-fine-print">
               Choose a starting point — you&rsquo;ll see the price before you book.
