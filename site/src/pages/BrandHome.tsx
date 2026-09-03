@@ -1,3 +1,5 @@
+import { useLocation } from "react-router-dom";
+import { quoteHrefFor } from "@/lib/quote-link";
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -89,6 +91,7 @@ const Shell = ({ standalone, children }: { standalone: boolean; children: ReactN
   standalone ? <main id="main-content" tabIndex={-1}>{children}</main> : <>{children}</>;
 
 export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
+  const { pathname } = useLocation();
   // Embedded usage (Locations page) already renders that page's <h1>.
   const HeroHeading = hideFooter ? "h2" : "h1";
   const {
@@ -339,10 +342,12 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
 
             <div className="text-center">
               <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold text-base h-14 px-8 shadow-lg hover:shadow-xl transition-all">
-                <Link to="/contact-us/">
+                {/* Closes "How it works", whose step 03 is "See your price".
+                    It used to open the 24-hour contact inbox instead. */}
+                <a href={quoteHrefFor(pathname)}>
                   Book Your Cleaning
                   <ArrowRight className="w-5 h-5 ml-2" />
-                </Link>
+                </a>
               </Button>
             </div>
           </div>

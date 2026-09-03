@@ -104,11 +104,14 @@ const services: Service[] = [
   {
     title: "Deep Cleaning",
     description: "Thorough cleaning for spring cleaning or special occasions.",
+    // Was four bullets: two copied verbatim from the Standard card above and
+    // one repeating another inside this card. These are the four scope items
+    // the deep-cleaning page itself publishes.
     features: [
-      "Vacuuming and mopping of all floors, including carpet vacuuming",
-      "Kitchen cleaned (counters, sink, appliance and cabinets exteriors ONLY)",
-      "Floors mopped and vacuumed",
-      "Baseboards, doors, light switches, wall outlets, and outside vent covers"
+      "Everything in a standard clean, plus the build-up a regular visit skips",
+      "Tile, grout and shower glass scrubbed; tubs and fixtures descaled",
+      "Stovetops, range hoods and cabinet fronts degreased",
+      "Baseboards, door frames, switches, outlets and vent covers hand-wiped"
     ],
     price: DEEP_FROM,
     link: "/calgary/deep-cleaning/",
@@ -118,7 +121,9 @@ const services: Service[] = [
   },
   {
     title: "Move-In/Move-Out Cleaning",
-    description: "Complete cleaning to get your deposit back or prepare your new home for move-in.",
+    // The guarantee page states plainly that we do not guarantee the damage
+    // deposit comes back, because a landlord decides that, not us.
+    description: "Cleaned to the standard a move-out inspection looks for, or ready to move into.",
     features: [
       "All deep cleaning tasks",
       "Inside all cabinets, drawers, and the kitchen walls",

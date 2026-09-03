@@ -1,3 +1,4 @@
+import { POLICY } from "@/data/policy";
 import { useLocation } from "react-router-dom";
 import { quoteHrefFor } from "@/lib/quote-link";
 import LocalMarketNote from "@/components/LocalMarketNote";
@@ -91,7 +92,10 @@ const faqItems = [
   { value: "supplies", question: "Are there discounts if I provide my own cleaning supplies?", answer: "We bring all professional-grade cleaning supplies and equipment at no extra cost. While we don't offer discounts for providing your own supplies, we're happy to use specific products you prefer at your request." },
   { value: "recurring", question: "Do you offer recurring service discounts?", answer: "Yes! We offer substantial discounts for recurring services: 20% off for weekly cleaning, 15% off for bi-weekly cleaning, and 10% off for monthly cleaning. These discounts apply to standard and deep cleaning services. Your first clean is at the standard one-time rate — the discount starts from your second visit and applies to every visit after that." },
   { value: "pricing-types", question: "What's the difference between Hourly Cleaning and flat-rate pricing?", answer: `Hourly Cleaning (${formatPrice(HOURLY_RATE)}/hour per cleaner) is flexible and ideal for one-time needs or focusing on specific areas. Our hourly service has a minimum of 3 hours for 1 cleaner or 2 hours for 2 cleaners. Flat-rate pricing offers predictable costs based on your home size and service type, with comprehensive cleaning included. Most customers prefer flat-rate for its transparency and value.` },
-  { value: "hidden-fees", question: "Are there any hidden fees?", answer: "Inside Edmonton and Calgary city limits there is no trip fee and no diagnostic fee. Addresses outside city limits carry a $29.99 travel fee, which you see on your quote before you book. Estimates are based on the details you give when booking; uncommon condition-based adjustments may apply if a home needs substantially more time or work than expected." },
+  // A FAQ with this title has to name the charges customers call hidden. Both
+  // are published on /terms/ and both read from POLICY, so this answer can
+  // never drift away from the terms it summarises.
+  { value: "hidden-fees", question: "Are there any hidden fees?", answer: `Three charges exist and here they all are. Cancelling or rescheduling inside ${POLICY.cancellationNoticeHours} hours is ${POLICY.cancellationFee}. If the team arrives and cannot get in, the visit is charged at ${POLICY.lockoutFee}. Addresses outside Edmonton and Calgary city limits carry a $29.99 travel fee, shown on your quote before you book. Inside city limits there is no trip fee and no diagnostic fee. Estimates are based on the details you give when booking; uncommon condition-based adjustments may apply if a home needs substantially more time or work than expected.` },
   { value: "satisfaction", question: "What if I'm not satisfied with the cleaning?", answer: "We offer 100% satisfaction guarantee. If you're not completely happy with our service, let us know within 24 hours and we'll come back to re-clean the areas of concern at no additional cost. Your satisfaction is our commitment." },
 ];
 

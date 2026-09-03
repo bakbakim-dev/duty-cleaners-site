@@ -506,7 +506,12 @@ describe("price CTAs reach the price", () => {
       const raw = html(url).replace(/<script[\s\S]*?<\/script>/g, " ");
       const main = /<main\b[^>]*>([\s\S]*?)<\/main>/.exec(raw);
       if (!main) continue;
-      for (const m of main[1].matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]{0,160}?)<\/a>/g)) {
+      // Strip icons before measuring. A CTA with an inline <svg> arrow renders
+      // an anchor body well past a short cap, and one such button ("Book Your
+      // Cleaning", closing the how-it-works section on /locations/) hid from an
+      // earlier version of this guard for exactly that reason.
+      const body = main[1].replace(/<svg[\s\S]*?<\/svg>/g, " ");
+      for (const m of body.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]{0,400}?)<\/a>/g)) {
         const href = m[1];
         const text = m[2].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
         if (PROMISES_A_PRICE.test(text) && CANNOT_PRICE.test(href)) {
