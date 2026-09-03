@@ -30,13 +30,34 @@ const AnimatedSection = ({ children, className = "" }: { children: React.ReactNo
   );
 };
 
-const ServiceCard = ({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: string }) => (
+const ServiceCard = ({
+  icon: Icon,
+  title,
+  description,
+  to,
+  linkText,
+}: {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  /** Absent on the two room-level cards, which have no page of their own. */
+  to?: string;
+  linkText?: string;
+}) => (
   <div className="group bg-white rounded-xl border border-border p-6 transition-all duration-500 ease-out hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-xl" style={{ transformStyle: "preserve-3d" }}>
     <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 transition-transform duration-300 group-hover:rotate-12">
       <Icon className="w-6 h-6 text-primary" />
     </div>
     <h3 className="text-lg font-bold text-foreground mb-2">{title}</h3>
     <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
+    {to && linkText && (
+      <Link
+        to={to}
+        className="mt-4 inline-flex min-h-[44px] items-center font-semibold text-primary transition-colors hover:text-accent"
+      >
+        {linkText}
+      </Link>
+    )}
   </div>
 );
 
@@ -51,10 +72,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning for a spotless, fresh reset in one visit." },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Every corner, baseboard, and hidden surface, cleaned top to bottom." },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Inspection-grade detail for moving out or settling in." },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared properly after renos and handovers." },
+  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning for a spotless, fresh reset in one visit.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Hazeldean" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "Every corner, baseboard, and hidden surface, cleaned top to bottom.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Hazeldean" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Inspection-grade detail for moving out or settling in.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Hazeldean" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared properly after renos and handovers.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Hazeldean" },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
   { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
 ];

@@ -31,13 +31,34 @@ const AnimatedSection = ({ children, className = "" }: { children: React.ReactNo
   );
 };
 
-const ServiceCard = ({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: string }) => (
+const ServiceCard = ({
+  icon: Icon,
+  title,
+  description,
+  to,
+  linkText,
+}: {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  /** Absent on the two room-level cards, which have no page of their own. */
+  to?: string;
+  linkText?: string;
+}) => (
   <div className="group bg-white rounded-xl border border-border p-6 transition-all duration-500 ease-out hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-xl" style={{ transformStyle: "preserve-3d" }}>
     <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 transition-transform duration-300 group-hover:rotate-12">
       <Icon className="w-6 h-6 text-primary" />
     </div>
     <h3 className="text-lg font-bold text-foreground mb-2">{title}</h3>
     <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
+    {to && linkText && (
+      <Link
+        to={to}
+        className="mt-4 inline-flex min-h-[44px] items-center font-semibold text-primary transition-colors hover:text-accent"
+      >
+        {linkText}
+      </Link>
+    )}
   </div>
 );
 
@@ -52,10 +73,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your home spotless and fresh year-round." },
-  { icon: Sparkles, title: "Deep Cleaning", description: "A full top-to-bottom reset — corners, baseboards, and the surfaces regular visits skip." },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Move-day cleaning done to the standard landlords check for." },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust and debris cleared after a renovation or a new build." },
+  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your home spotless and fresh year-round.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in St. Albert" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "A full top-to-bottom reset — corners, baseboards, and the surfaces regular visits skip.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in St. Albert" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Move-day cleaning done to the standard landlords check for.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in St. Albert" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust and debris cleared after a renovation or a new build.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in St. Albert" },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
   { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
 ];

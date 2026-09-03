@@ -30,13 +30,34 @@ const AnimatedSection = ({ children, className = "" }: { children: React.ReactNo
   );
 };
 
-const ServiceCard = ({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: string }) => (
+const ServiceCard = ({
+  icon: Icon,
+  title,
+  description,
+  to,
+  linkText,
+}: {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  /** Absent on the two room-level cards, which have no page of their own. */
+  to?: string;
+  linkText?: string;
+}) => (
   <div className="group bg-white rounded-xl border border-border p-6 transition-all duration-500 ease-out hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-xl" style={{ transformStyle: "preserve-3d" }}>
     <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 transition-transform duration-300 group-hover:rotate-12">
       <Icon className="w-6 h-6 text-primary" />
     </div>
     <h3 className="text-lg font-bold text-foreground mb-2">{title}</h3>
     <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
+    {to && linkText && (
+      <Link
+        to={to}
+        className="mt-4 inline-flex min-h-[44px] items-center font-semibold text-primary transition-colors hover:text-accent"
+      >
+        {linkText}
+      </Link>
+    )}
   </div>
 );
 
@@ -51,10 +72,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "Weekly or bi-weekly upkeep that keeps your Wildwood bungalow fresh and dust-free." },
-  { icon: Sparkles, title: "Deep Cleaning", description: "A complete top-to-bottom reset reaching baseboards, vents, and overlooked corners." },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Smooth move-day cleans for sellers, buyers, and renters across the SW." },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Fine dust and debris removal after renovations, additions, or new builds." },
+  { icon: Home, title: "Standard Cleaning", description: "Weekly or bi-weekly upkeep that keeps your Wildwood bungalow fresh and dust-free.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Wildwood" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "A complete top-to-bottom reset reaching baseboards, vents, and overlooked corners.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Wildwood" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Smooth move-day cleans for sellers, buyers, and renters across the SW.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Wildwood" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Fine dust and debris removal after renovations, additions, or new builds.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Wildwood" },
   { icon: Bath, title: "Bathroom Sanitization", description: "Sparkling tile and glass — disinfected and refreshed." },
   { icon: Building2, title: "Commercial Cleaning", description: "Reliable office and small business cleaning across the Wildwood area." },
 ];

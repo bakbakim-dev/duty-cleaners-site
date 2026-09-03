@@ -33,7 +33,20 @@ const AnimatedSection = ({ children, className = "" }: { children: React.ReactNo
   );
 };
 
-const ServiceCard = ({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: string }) => (
+const ServiceCard = ({
+  icon: Icon,
+  title,
+  description,
+  to,
+  linkText,
+}: {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  /** Absent on the two room-level cards, which have no page of their own. */
+  to?: string;
+  linkText?: string;
+}) => (
   <div
     className="group bg-white rounded-xl border border-border p-6 transition-all duration-500 ease-out hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-xl"
     style={{ transformStyle: "preserve-3d" }}
@@ -43,6 +56,14 @@ const ServiceCard = ({ icon: Icon, title, description }: { icon: React.ElementTy
     </div>
     <h3 className="text-lg font-bold text-foreground mb-2">{title}</h3>
     <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
+    {to && linkText && (
+      <Link
+        to={to}
+        className="mt-4 inline-flex min-h-[44px] items-center font-semibold text-primary transition-colors hover:text-accent"
+      >
+        {linkText}
+      </Link>
+    )}
   </div>
 );
 
@@ -60,10 +81,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning that resets the whole home, room by room." },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning of your Hairsine home — every corner, baseboard, and hidden surface." },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Inspection-grade detail for moving out or settling in." },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around Hairsine." },
+  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning that resets the whole home, room by room.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Hairsine" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning of your Hairsine home — every corner, baseboard, and hidden surface.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Hairsine" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Inspection-grade detail for moving out or settling in.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Hairsine" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around Hairsine.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Hairsine" },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
   { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
 ];

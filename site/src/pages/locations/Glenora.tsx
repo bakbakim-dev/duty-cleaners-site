@@ -31,7 +31,20 @@ const AnimatedSection = ({ children, className = "" }: { children: React.ReactNo
   );
 };
 
-const ServiceCard = ({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: string }) => (
+const ServiceCard = ({
+  icon: Icon,
+  title,
+  description,
+  to,
+  linkText,
+}: {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  /** Absent on the two room-level cards, which have no page of their own. */
+  to?: string;
+  linkText?: string;
+}) => (
   <div
     className="group bg-white rounded-xl border border-border p-6 transition-all duration-500 ease-out hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-xl"
     style={{ transformStyle: "preserve-3d" }}
@@ -41,6 +54,14 @@ const ServiceCard = ({ icon: Icon, title, description }: { icon: React.ElementTy
     </div>
     <h3 className="text-lg font-bold text-foreground mb-2">{title}</h3>
     <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
+    {to && linkText && (
+      <Link
+        to={to}
+        className="mt-4 inline-flex min-h-[44px] items-center font-semibold text-primary transition-colors hover:text-accent"
+      >
+        {linkText}
+      </Link>
+    )}
   </div>
 );
 
@@ -58,9 +79,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Glenora home welcoming and fresh every week." },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Every corner, baseboard, and hidden surface, cleaned top to bottom." },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth Glenora move — leave or arrive to a pristine home." },
+  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Glenora home welcoming and fresh every week.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Glenora" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "Every corner, baseboard, and hidden surface, cleaned top to bottom.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Glenora" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth Glenora move — leave or arrive to a pristine home.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Glenora" },
   { icon: HardHat, title: "Post-Construction Cleanup", description: "Construction dust cleared properly after renos and handovers." },
   { icon: Building2, title: "Office & Commercial Cleaning", description: "A clean workspace promotes productivity. We cater to businesses of all sizes in Glenora." },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },

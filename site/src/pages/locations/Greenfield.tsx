@@ -184,6 +184,37 @@ export default function Greenfield() {
         </section>
 
         {/* CTA Section */}
+        {/* The other 163 location pages route to the service pages through their
+            card grid; these two have a bespoke layout and were the only ones
+            left with no path into the services at all. */}
+        <section className="py-10 px-4">
+          <div className="container mx-auto max-w-4xl">
+            <h2 className="text-2xl font-bold mb-4 text-foreground">Cleaning services in Greenfield</h2>
+            <ul className="grid gap-3 sm:grid-cols-2">
+              <li>
+                <Link to="/edmonton/regular-cleaning/" className="font-semibold text-primary hover:text-accent">
+                  Standard cleaning in Greenfield
+                </Link>
+              </li>
+              <li>
+                <Link to="/edmonton/deep-cleaning/" className="font-semibold text-primary hover:text-accent">
+                  Deep cleaning in Greenfield
+                </Link>
+              </li>
+              <li>
+                <Link to="/move-out-cleaning-edmonton/" className="font-semibold text-primary hover:text-accent">
+                  Move-out cleaning in Greenfield
+                </Link>
+              </li>
+              <li>
+                <Link to="/post-construction-cleaning/" className="font-semibold text-primary hover:text-accent">
+                  Post-construction cleaning in Greenfield
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </section>
+
         <section className="py-16 px-4 bg-primary/5">
           <div className="container mx-auto max-w-4xl text-center">
             <h3 className="text-2xl font-bold mb-4 text-foreground">

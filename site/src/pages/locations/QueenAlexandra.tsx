@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import { lazy, Suspense } from "react";
@@ -185,6 +186,36 @@ const QueenAlexandra = () => {
                 We stand behind the quality of our staff. If you're not 100% satisfied with your cleaning, we'll come back and re-clean it at no additional charge, as long as we’re informed within 24 hours after the cleaning.
               </p>
             </div>
+          </div>
+        </section>
+
+        {/* Bespoke layout with no services grid — this was one of two location
+            pages with no path into the service pages at all. */}
+        <section className="py-10 px-4">
+          <div className="container mx-auto max-w-4xl">
+            <h2 className="text-2xl font-bold mb-4 text-foreground">Cleaning services in Queen Alexandra</h2>
+            <ul className="grid gap-3 sm:grid-cols-2">
+              <li>
+                <Link to="/edmonton/regular-cleaning/" className="font-semibold text-primary hover:text-accent">
+                  Standard cleaning in Queen Alexandra
+                </Link>
+              </li>
+              <li>
+                <Link to="/edmonton/deep-cleaning/" className="font-semibold text-primary hover:text-accent">
+                  Deep cleaning in Queen Alexandra
+                </Link>
+              </li>
+              <li>
+                <Link to="/move-out-cleaning-edmonton/" className="font-semibold text-primary hover:text-accent">
+                  Move-out cleaning in Queen Alexandra
+                </Link>
+              </li>
+              <li>
+                <Link to="/post-construction-cleaning/" className="font-semibold text-primary hover:text-accent">
+                  Post-construction cleaning in Queen Alexandra
+                </Link>
+              </li>
+            </ul>
           </div>
         </section>
 

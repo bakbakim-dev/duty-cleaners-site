@@ -30,13 +30,34 @@ const AnimatedSection = ({ children, className = "" }: { children: React.ReactNo
   );
 };
 
-const ServiceCard = ({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: string }) => (
+const ServiceCard = ({
+  icon: Icon,
+  title,
+  description,
+  to,
+  linkText,
+}: {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  /** Absent on the two room-level cards, which have no page of their own. */
+  to?: string;
+  linkText?: string;
+}) => (
   <div className="group bg-white rounded-xl border border-border p-6 transition-all duration-500 ease-out hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-xl" style={{ transformStyle: "preserve-3d" }}>
     <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 transition-transform duration-300 group-hover:rotate-12">
       <Icon className="w-6 h-6 text-primary" />
     </div>
     <h3 className="text-lg font-bold text-foreground mb-2">{title}</h3>
     <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
+    {to && linkText && (
+      <Link
+        to={to}
+        className="mt-4 inline-flex min-h-[44px] items-center font-semibold text-primary transition-colors hover:text-accent"
+      >
+        {linkText}
+      </Link>
+    )}
   </div>
 );
 
@@ -51,10 +72,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning for busy Montgomery families and professionals." },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Detailed, deep-down cleans that hit every overlooked corner of your home." },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Move-in and move-out cleans aligned to your possession date." },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Renovation and new-build cleanup that removes drywall dust and debris." },
+  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning for busy Montgomery families and professionals.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Montgomery" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "Detailed, deep-down cleans that hit every overlooked corner of your home.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Montgomery" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Move-in and move-out cleans aligned to your possession date.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Montgomery" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Renovation and new-build cleanup that removes drywall dust and debris.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Montgomery" },
   { icon: Bath, title: "Bathroom Sanitization", description: "Bathroom deep cleans with full disinfection of high-touch surfaces." },
   { icon: Building2, title: "Commercial Cleaning", description: "Office, clinic, and retail cleaning along Bowness Road and 16th Ave." },
 ];
