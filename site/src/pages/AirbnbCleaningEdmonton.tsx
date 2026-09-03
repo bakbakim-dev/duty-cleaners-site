@@ -326,7 +326,7 @@ const AirbnbCleaningEdmonton = () => {
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle className="w-4 h-4 text-accent" />
-              <span>Hourly Service — 3 Hour Minimum Per Cleaner</span>
+              <span>{formatPrice(HOURLY_RATE)} per cleaner-hour — 3-hour minimum, or 2 hours with two cleaners</span>
             </div>
           </div>
         </div>

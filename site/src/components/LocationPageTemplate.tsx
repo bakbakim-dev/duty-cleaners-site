@@ -121,25 +121,34 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 
-/** Deterministic 0-3 from the place name — drives copy-variant rotation. */
-const variantOf = (place: string) =>
-  place.split("").reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, 7) % 4;
-const pickV = (place: string, salt: number, v: string[]) =>
-  v[(variantOf(place) + salt) % v.length].replace("{p}", place);
+/*
+ * There used to be a copy-spinner here: `variantOf` hashed the place name to
+ * 0-3 and `pickV` picked one of four paraphrases for nine slots across all 166
+ * location pages, five of them inside FAQPage JSON-LD. The variants said the
+ * same thing in different words, so no reader was better off for which one they
+ * got — the rotation existed to make the pages look unlike each other to a
+ * crawler, which is what Google's scaled-content-abuse policy describes. Only
+ * variant 0 even interpolated the place name, so three quarters of the "local"
+ * copy was not local.
+ *
+ * These pages carry researched local notes; that is what makes them worth
+ * having. Repeating one clear service description across sibling pages is
+ * ordinary and fine. Do not reintroduce a spinner.
+ */
 
-const services = (place: string) => [
+const services = () => [
   { icon: Home, title: "Standard House Cleaning", description: "Weekly or bi-weekly maintenance to keep your home spotless and fresh year-round." },
-  { icon: Sparkles, title: "Deep Cleaning", description: pickV(place, 0, ["Thorough top-to-bottom cleaning of your {p} home — every corner, baseboard, and hidden surface.","A full top-to-bottom reset — corners, baseboards, and the surfaces regular visits skip.","Every corner, baseboard, and hidden surface, cleaned top to bottom.","Top-to-bottom detail that reaches what weekly cleaning never does."]) },
-  { icon: Truck, title: "Move In/Out Cleaning", description: pickV(place, 1, ["Detailed cleaning for a smooth {p} move — leave or arrive to a pristine home.","Detailed cleaning for moving day — leave or arrive to a pristine home.","Inspection-grade detail for moving out or settling in.","Move-day cleaning done to the standard landlords check for."]) },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: pickV(place, 2, ["Expert dust and debris removal after renovations or new builds around {p}.","Dust and debris cleared after renovations or new builds.","Construction dust cleared properly after renos and handovers.","Post-renovation dust and debris, professionally removed."]) },
+  { icon: Sparkles, title: "Deep Cleaning", description: "A full top-to-bottom reset — corners, baseboards, and the surfaces a regular visit skips." },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Move-day cleaning done to the standard a move-out inspection looks for." },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust and debris cleared after a renovation or a new build." },
   { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
   { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
 ];
 
-const whyUsItems = (place: string) => [
-  { icon: Shield, title: "Customer-Rated Cleaners", description: "Every cleaner is reference-checked before working in a customer’s home." },
+const whyUsItems = () => [
+  { icon: Shield, title: "Reference-Checked, Then Rated by You", description: "Every cleaner is reference-checked before their first job, then rated by the customer after every visit. Those ratings decide who keeps cleaning for us." },
   { icon: Star, title: RATING_CLAIM, description: `${CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount} reviews across Edmonton and Calgary, and every one of them is on our Google listing.` },
-  { icon: Clock, title: "Flexible Scheduling", description: pickV(place, 3, ["Same-day and next-day availability in {p}. We work around your busy life.","Same-day and next-day slots when the schedule allows. We work around your busy life.","Same-day and next-day openings most weeks. We work around your busy life.","Same-day and next-day availability, schedule permitting. We work around your busy life."]) },
+  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day slots when the schedule allows, including weekends." },
   // "and the planet" is an environmental-benefit claim. Since the June 2024
   // Competition Act amendments those require substantiation on an internationally
   // recognised methodology, and private applications to the Tribunal have been
@@ -149,7 +158,7 @@ const whyUsItems = (place: string) => [
   // The family-and-pets half is kept: it describes handling, not an environmental
   // benefit, and matches what the FAQ already tells customers.
   { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
-  { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
+  { icon: Users, title: "Experienced Cleaners", description: "Every cleaner comes with paid professional cleaning experience before their first job with us — it is one of the things we check." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
 ];
 
@@ -192,23 +201,23 @@ export default function LocationPageTemplate({
   const faqs = [
     {
       question: "How long does an initial cleaning take?",
-      answer: `We work to a checklist, not a clock. ${pickV(city, 1, ["Your {p} team stays until","Your team stays until","The crew stays until","Your cleaners stay until"])} every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
+      answer: `We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
     },
     {
       question: `What cleaning services does Duty Cleaners offer in ${city}?`,
-      answer: `${pickV(city, 0, ["Around {p} we offer the full range:","The full service menu is available here:","Every service we run can be booked locally:","Households here can book any of the following:"])}\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `Every service we run can be booked here:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
-      answer: `${pickV(city, 1, ["Yes — customers in {p} on a recurring schedule save:","Yes. A recurring schedule earns a standing discount:","Yes — the discount grows with visit frequency:","Yes, recurring visits cost less every time:"])}\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+      answer: `Yes. From the second visit on, a recurring schedule saves:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `${pickV(city, 2, ["In {p}, a deep clean adds to the standard package:","A deep clean layers these onto the standard visit:","Beyond the standard scope, deep cleaning covers:","The deep package extends the standard clean with:"])}\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+      answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
     },
     {
       question: "What is your 100% satisfaction guarantee policy?",
-      answer: `If you're not 100% satisfied, call us within 24 hours and ${pickV(city, 3, ["we'll come back to your {p} home and make it right","we'll return and make it right","we'll come back and put it right","we'll re-clean the missed areas"])} — at no extra cost!`
+      answer: `If you're not 100% satisfied, call us within 24 hours and we'll come back and put it right — at no extra cost!`
     }
   ];
   const faqJsonLd = {
@@ -388,7 +397,7 @@ export default function LocationPageTemplate({
           </AnimatedSection>
           <AnimatedSection>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {services(city).map((s, i) => (
+              {services().map((s, i) => (
                 <ServiceCard key={i} {...s} />
               ))}
             </div>
@@ -413,7 +422,7 @@ export default function LocationPageTemplate({
           </AnimatedSection>
           <AnimatedSection>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {whyUsItems(city).map((item, i) => (
+              {whyUsItems().map((item, i) => (
                 <WhyUsCard key={i} {...item} />
               ))}
             </div>

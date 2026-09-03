@@ -99,14 +99,29 @@ describe("every location page is localized to its own place", () => {
 
 describe("no two location pages read as raw near-duplicates", () => {
   /**
-   * Overlap coefficient (shared / smaller) on raw lowercased 8-grams of
-   * <main>. 60% is where the sweep landed after interpolation + notes; the
-   * worst pair today is below it. Template blocks legitimately shared (price
-   * facts, guarantee, FAQ structure) fit under this ceiling only because each
-   * page also carries interpolated names and unique local prose — remove
-   * either and this fails.
+   * Overlap coefficient (shared / smaller) on raw lowercased 8-grams of <main>.
+   *
+   * WHY THIS MOVED FROM 0.6 TO 0.7. The old comment here said the 60% ceiling
+   * held "only because each page also carries interpolated names and unique
+   * local prose — remove either and this fails". Part of that variation was not
+   * prose at all: LocationPageTemplate ran a copy-spinner that hashed the place
+   * name and picked one of four paraphrases for nine slots. The paraphrases said
+   * the same thing in different words, so they bought nothing for a reader and
+   * existed to make 166 pages look unlike each other to a crawler. Removing it
+   * let the real template share show through, and the worst pair went from just
+   * under 60% to 64%.
+   *
+   * 64% overlap between two location pages is not a defect. What overlaps is
+   * the shared furniture — service cards, the guarantee, FAQ structure, service
+   * areas — and repeating that across sibling pages is ordinary for a local
+   * service business. The ceiling sits at 0.70: above today's worst pair, far
+   * below the 90%+ a genuinely duplicated page reaches.
+   *
+   * The check that actually enforces the intent is the one below this: every
+   * page must carry a substantial body of text found on no other location page.
+   * A ratio can be gamed by paraphrase; a unique-content floor cannot.
    */
-  const CEILING = 0.6;
+  const CEILING = 0.7;
 
   it("no pair reaches the ceiling", () => {
     if (!locs.length) return;
@@ -131,5 +146,48 @@ describe("no two location pages read as raw near-duplicates", () => {
       }
     }
     expect(bad.slice(0, 10)).toEqual([]);
+  }, 120_000);
+
+  /**
+   * Every location page must say something no other location page says.
+   *
+   * This is what the overlap ceiling was really proxying for, stated
+   * directly. A page can only pass by carrying its own researched local
+   * note — the shared template contributes nothing here, because template
+   * text appears on 150+ pages and is excluded by definition.
+   *
+   * Measured today: every one of the 153 pages carries between 304 and 682
+   * 8-grams found nowhere else, median 404, on pages of roughly 880 total.
+   * The floor of 250 sits below the thinnest page so it catches a real
+   * regression — a page shipped with the template and no note — rather than
+   * flagging normal variation.
+   */
+  const UNIQUE_FLOOR = 250;
+
+  it("every location page carries content unique to it", () => {
+    if (!locs.length) return;
+    const grams = new Map<string, Set<string>>();
+    for (const { url } of locs) {
+      const w = mainText(read(url)).toLowerCase().split(" ");
+      const g = new Set<string>();
+      for (let i = 0; i + 8 <= w.length; i++) g.add(w.slice(i, i + 8).join(" "));
+      grams.set(url, g);
+    }
+    const seen = new Map<string, number>();
+    for (const g of grams.values())
+      for (const s of g) seen.set(s, (seen.get(s) ?? 0) + 1);
+    const thin: string[] = [];
+    for (const [url, g] of grams) {
+      let own = 0;
+      for (const s of g) if (seen.get(s) === 1) own++;
+      if (own < UNIQUE_FLOOR) thin.push(`${url}: ${own} unique 8-grams`);
+    }
+    expect(
+      thin,
+      `These location pages are mostly template:\n${thin.join("\n")}\n` +
+        `Each needs its own researched local note — what the homes there are ` +
+        `actually like and what that means for cleaning them. Do not solve it ` +
+        `by paraphrasing the template; that is what the removed copy-spinner did.`,
+    ).toEqual([]);
   }, 120_000);
 });
