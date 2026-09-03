@@ -47,7 +47,7 @@ const trustItems = [
   },
   {
     icon: HeartHandshake,
-    label: "Make-It-Right Guarantee",
+    label: "100% Satisfaction Guarantee",
     detail: "If something was missed, tell us within 24 hours and we'll return to make it right — at no charge.",
   },
 ];

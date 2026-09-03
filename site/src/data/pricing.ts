@@ -241,11 +241,15 @@ export const SERVICES: ServicePricing[] = [
     hours: "2–4 hrs",
     exactPricing: false,
     estimateSpread: 0.2,
-    rateNote: "Hourly service at $65 per hour, per cleaner.",
+    // $60, confirmed by the owner 2026-09-03. It was hand-typed at $65 while
+    // BookingKoala's only hourly service is named "$60 Per Hour/ Per Cleaner";
+    // the booking system was right. Every figure on the Airbnb pages derives
+    // from HOURLY_RATE, so this is the only place it is written.
+    rateNote: "Hourly service at $60 per hour, per cleaner.",
     supportsRecurring: false,
     asksHomeSize: true,
     selfServe: false,
-    source: { industryId: 28, serviceCategoryId: 16, model: "hourly", hourlyRate: 65 },
+    source: { industryId: 28, serviceCategoryId: 16, model: "hourly", hourlyRate: 60 },
   },
   {
     id: "commercial",
@@ -260,13 +264,8 @@ export const SERVICES: ServicePricing[] = [
     hours: "Varies by site",
     exactPricing: false,
     quoteOnly: true,
-    // DISAGREES WITH THE PAGE. /commercial-cleaning/ tells prospects the work
-    // is quoted per hour ("you get an hourly rate and the expected visit
-    // length before anything is booked") and argues the case against pricing
-    // by floor area. This record says square footage. The note renders
-    // nowhere today because commercial is not self-serve, so no page
-    // contradicts itself — but whoever quotes a walkthrough works from one of
-    // the two. TODO-OWNER: confirm which is real, then make both match.
+    // Confirmed by the owner 2026-09-03: per square foot. The commercial pages
+    // used to argue for hourly pricing against this record; they now agree.
     rateNote: "Charged by square footage — we confirm the rate after a quick walkthrough.",
     // Priced per site, so BookingKoala's recurring discounts do not apply here.
     supportsRecurring: false,

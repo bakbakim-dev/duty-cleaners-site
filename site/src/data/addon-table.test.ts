@@ -16,7 +16,12 @@ describe("derived add-on table", () => {
       for (const row of rows) {
         expect(row.service.length).toBeGreaterThan(0);
         expect(row.standard).toMatch(/\$|Included/);
-        expect(row.moveInOut).toMatch(/\$|Included/);
+        // "Not offered" is the third legal answer, and it exists because the
+        // other two are opposites: a move-out already cleans inside the fridge
+        // and cabinets, but it is cleaned empty, so de-cluttering is not a
+        // service it can carry. Printing "Included" for both cases told a
+        // move-out customer to expect something they would never get.
+        expect(row.moveInOut).toMatch(/\$|Included|Not offered/);
       }
     }
   });

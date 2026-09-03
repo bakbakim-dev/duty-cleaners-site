@@ -8,9 +8,11 @@ import { addOnFromPrice, addOnsFor, formatPrice } from "@/data/pricing";
  * the BookingKoala extra key (the slugified extra name), which is the same key
  * the quote funnel and the booking hand-off use.
  *
- * A move-in/out clean already covers several of these tasks, so where the
- * extra does not exist on that service we say "Included" instead of inventing
- * a price for it.
+ * A move-in/out clean already covers several of these tasks, so where the extra
+ * does not exist on that service we say "Included" instead of inventing a price
+ * for it. The exception is an extra the service does not offer at all — see
+ * `notOnMoveInOut` — because "Included" and "not available" are opposite
+ * answers and the reader cannot tell them apart from a blank.
  */
 
 interface AddOnTableRow {
@@ -27,6 +29,13 @@ interface AddOnSpec {
   label: string;
   /** Suffix appended to the price, e.g. "/set". */
   unit?: string;
+  /**
+   * The extra does not exist on move-in/out because the service does not offer
+   * it, not because it is already covered. Without this the absent-means-
+   * included rule below printed "Included" and a move-out customer expected a
+   * service they were never going to get.
+   */
+  notOnMoveInOut?: boolean;
 }
 
 const ROWS: AddOnSpec[] = [
@@ -40,7 +49,10 @@ const ROWS: AddOnSpec[] = [
   { key: "sweep-only-of-garage-or-balcony", label: "Balcony / garage sweep" },
   { key: "finished-basement", label: "Finished basement" },
   { key: "unfinished-basement-sweep", label: "Unfinished basement sweep" },
-  { key: "de-cluttering-or-organizing-per-hour", label: "De-cluttering or organizing", unit: "/hr" },
+  // Confirmed by the owner: not offered on a move-out, and the reason is the
+  // service itself — a move-out is cleaned empty, so there is nothing to
+  // de-clutter.
+  { key: "de-cluttering-or-organizing-per-hour", label: "De-cluttering or organizing", unit: "/hr", notOnMoveInOut: true },
   { key: "must-choose-if-you-have-pets", label: "Homes with pets" },
 ];
 
@@ -63,7 +75,10 @@ export function addOnTableRows(city: "edmonton" | "calgary"): AddOnTableRow[] {
       {
         service: spec.label,
         standard: priceCell(standard, spec.unit),
-        moveInOut: priceCell(moveInOut, spec.unit),
+        // Absent from move-in/out means one of two things, and the table used to
+        // print "Included" for both. Fridge, oven and cabinets really are
+        // covered by that service; de-cluttering simply is not offered on it.
+        moveInOut: spec.notOnMoveInOut ? "Not offered" : priceCell(moveInOut, spec.unit),
       },
     ];
   });

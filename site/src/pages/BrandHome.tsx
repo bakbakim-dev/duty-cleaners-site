@@ -34,7 +34,7 @@ const stats = [{
   icon: Star
 }, {
   value: "24-Hour",
-  label: "Make-It-Right Guarantee",
+  label: "100% Satisfaction Guarantee",
   icon: Heart
 }];
 const services = [{
@@ -78,7 +78,9 @@ const whyChooseUs = [{
   desc: "Weekdays and weekends, and you pick the time in the booking form rather than waiting for a call back."
 }, {
   icon: BadgeCheck,
-  title: "Make-It-Right Guarantee",
+  // The owner keeps this name. What matters is that the terms travel with it,
+  // which is what was actually missing.
+  title: "100% Satisfaction Guarantee",
   desc: `If something was missed, tell us within ${POLICY.guaranteeWindowHours} hours and we come back and put it right at no additional charge.`
 }];
 interface BrandHomeProps {

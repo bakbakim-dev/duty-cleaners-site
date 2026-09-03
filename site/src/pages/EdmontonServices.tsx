@@ -331,7 +331,7 @@ export default function EdmontonServices() {
               </div>
               <div className="flex items-center gap-2 text-white/90">
                 <Heart className="w-5 h-5 text-accent" />
-                <span className="text-sm">24-Hour Make-It-Right Guarantee</span>
+                <span className="text-sm">100% Satisfaction Guarantee</span>
               </div>
               <div className="flex items-center gap-2 text-white/90">
                 <Star className="w-5 h-5 text-accent" />

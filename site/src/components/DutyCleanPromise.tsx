@@ -25,7 +25,7 @@ const pillars: Pillar[] = [
   },
   {
     icon: RotateCcw,
-    title: "Make-It-Right Guarantee",
+    title: "100% Satisfaction Guarantee",
     desc: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge.",
   },
 ];

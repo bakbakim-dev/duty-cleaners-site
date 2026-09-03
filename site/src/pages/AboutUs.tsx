@@ -166,9 +166,8 @@ export default function AboutUs() {
                 icon: Award,
                 iconWrap: "bg-green-400",
                 iconColor: "text-secondary",
-                // The Duty Clean Promise section above calls this the Make-It-Right
-                // Guarantee. One page, one name.
-                title: "Make-It-Right Guarantee",
+                // One page, one name — and the owner keeps this one.
+                title: "100% Satisfaction Guarantee",
                 text: `If something was missed, tell us within ${POLICY.guaranteeWindowHours} hours and we come back and put it right at no additional charge.`,
               },
             ].map((card, index) => {

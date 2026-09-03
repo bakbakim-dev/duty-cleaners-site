@@ -1,3 +1,4 @@
+import { POLICY } from "@/data/policy";
 import CityCrossLink from "@/components/CityCrossLink";
 import { buildServiceSchema } from "@/lib/service-schema";
 import { useEffect, useState } from "react";
@@ -94,6 +95,7 @@ const faqs = [
   { q: "How long does a move out cleaning take?", a: "We work to the move-out checklist rather than a set number of hours. Your team stays until every task is complete, and your flat rate does not change based on how long that takes. We confirm your arrival window at booking." },
   { q: "Do I need to clean before you arrive?", a: "No pre-cleaning required, but the home must be fully empty — all furniture, belongings, and garbage removed — so our team can deep-clean every surface, including inside cabinets, closets, and behind appliances." },
   { q: "Is move out cleaning required to get my damage deposit back?", a: "Most Edmonton lease agreements require the unit returned in 'reasonably clean' condition, and professional move out cleaning is the most reliable way to meet inspection standards. Our service is built specifically around landlord and property-manager checklists." },
+  { q: "Do you guarantee I'll get my damage deposit back?", a: `While we cannot control a landlord's decision, the clean is done to the standard a move-out inspection looks for. If the inspection cites cleaning, tell us within ${POLICY.guaranteeWindowHours} hours of the walkthrough and we return to put it right at no additional cost — the same window as every other clean we do.` },
   { q: "Do you clean inside appliances and cabinets?", a: "Yes — inside the oven, microwave, fridge, freezer, dishwasher, and the inside of every cabinet and drawer are all included in our standard move out / move in cleaning." },
   { q: "What's the difference between regular cleaning and move out cleaning?", a: "Regular cleaning maintains an occupied home week to week. Move out (and move in) cleaning is a one-time, far more detailed service that addresses built-up grime, hidden surfaces, inside appliances, baseboards, vents, and every storage space — the level of detail required for inspections and turnovers." },
   { q: "Do you bring your own cleaning supplies?", a: "Yes — we bring all supplies, equipment, and can use products you prefer on request. You only need to ensure water and electricity are still active at the property." },

@@ -169,7 +169,7 @@ export default function Reviews() {
             sat directly above "4.9 out of 5" on this page, which refutes it: a 4.9 mean
             necessarily includes customers who rated below five. This states the promise
             the company actually honours instead. */}
-            <StatCard icon={Award} value="24-Hour" label="Make-It-Right Guarantee" />
+            <StatCard icon={Award} value="24-Hour" label="100% Satisfaction Guarantee" />
             <StatCard icon={Heart} value="2017" label="Serving Alberta Since" />
           </div>
         </div>

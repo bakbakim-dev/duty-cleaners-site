@@ -133,12 +133,12 @@ export default function Shaganappi() {
     <>
       <Helmet>
         <title>House Cleaning in Shaganappi, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Book house cleaning in Shaganappi, Calgary in about 60 seconds. Reference-checked cleaners and a 24-hour make-it-right guarantee." />
+        <meta name="description" content="Book house cleaning in Shaganappi, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
         <meta property="og:title" content="House Cleaning in Shaganappi, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Shaganappi, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Book house cleaning in Shaganappi, Calgary in about 60 seconds. Reference-checked cleaners and a 24-hour make-it-right guarantee." />
-        <meta property="og:description" content="Book house cleaning in Shaganappi, Calgary in about 60 seconds. Reference-checked cleaners and a 24-hour make-it-right guarantee." />
+        <meta name="twitter:description" content="Book house cleaning in Shaganappi, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta property="og:description" content="Book house cleaning in Shaganappi, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/shaganappi-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/shaganappi-calgary/" />

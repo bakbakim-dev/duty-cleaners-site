@@ -34,7 +34,7 @@ export function commercialFaqs(city: "Edmonton" | "Calgary", phone: string) {
   return [
     {
       q: `How much does commercial cleaning cost in ${city}?`,
-      a: `Commercial work is quoted per hour rather than at a flat rate, because two premises of the same square footage rarely take the same time — a call centre and a dental clinic have very different requirements. We walk the space (or review a floor plan), agree the scope and frequency, and give you an hourly rate and an expected visit length in writing before anything is booked. Call ${phone} to arrange the walkthrough.`,
+      a: `Commercial work is priced per square foot of the area actually cleaned, and the rate is set at the walkthrough rather than off a floor plan — because two premises of the same size rarely take the same time. A call centre and a dental clinic have very different requirements, and washroom count, floor type and foot traffic all move the rate. You get that rate and the expected visit length in writing before anything is booked. Call ${phone} to arrange the walkthrough.`,
     },
     {
       q: "Can you clean outside our business hours?",
@@ -147,16 +147,17 @@ export default function CommercialDepth({ city, phone, phoneLink }: CommercialDe
               How commercial pricing works
             </h2>
             <p className="text-muted-foreground max-w-[65ch] leading-relaxed">
-              Residential cleans are priced flat by home size. Commercial work is not, and any company
-              that quotes a building sight-unseen is guessing. Two premises with identical floor area
-              can differ by hours once you account for washroom count, floor type, foot traffic and how
-              much of the space is actually cleaned each visit.
+              Residential cleans are priced flat by home size. Commercial work is priced per square
+              foot of the area actually cleaned — but the rate comes from a walkthrough, not from a
+              floor plan, because any company that quotes a building sight-unseen is guessing. Two
+              premises with identical floor area can differ by hours once you account for washroom
+              count, floor type, foot traffic and how much of the space is cleaned each visit.
             </p>
 
             <div className="mt-8 grid gap-5 md:grid-cols-3">
               {[
                 { n: "01", t: "Walkthrough", d: `We visit the premises in ${city} — or review a floor plan for a straightforward space — and agree exactly what is in scope.` },
-                { n: "02", t: "Written quote", d: "You get an hourly rate and the expected visit length before anything is booked. No deposit, and nothing is charged to hold a slot." },
+                { n: "02", t: "Written quote", d: "You get the rate per square foot and the expected visit length before anything is booked. No deposit, and nothing is charged to hold a slot." },
                 { n: "03", t: "Schedule and review", d: "We start on the agreed cadence, then check in after the first few visits and adjust the scope or timing if reality differs from the plan." },
               ].map(({ n, t, d }) => (
                 <div key={n} className="bg-card border border-border p-6">

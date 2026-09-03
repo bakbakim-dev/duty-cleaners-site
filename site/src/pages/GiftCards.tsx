@@ -105,7 +105,7 @@ export default function GiftCards() {
               </h1>
               <p className="text-xl md:text-2xl text-white/85 mb-3 leading-relaxed">
                 Give Them a Cleaning Gift Card Backed by Our{" "}
-                <strong className="text-white">24-Hour Make-It-Right Guarantee</strong>
+                <strong className="text-white">100% Satisfaction Guarantee</strong>
               </p>
               <p className="text-lg text-white/90 mb-10">
                 So They Can Relax While We Take Care of Everything!
@@ -307,7 +307,7 @@ export default function GiftCards() {
                 <InfoCard
                   icon={Shield}
                   iconColor="text-accent"
-                  title="24-Hour Make-It-Right Guarantee"
+                  title="100% Satisfaction Guarantee"
                   variant="highlight"
                   items={[]}
                   footerText="Every gift card cleaning is backed by our satisfaction guarantee. If the recipient isn't 100% happy, we'll re-clean for free—as long as we are informed within 24 hours after the service."

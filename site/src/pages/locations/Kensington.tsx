@@ -95,12 +95,12 @@ export default function Kensington() {
     <>
       <Helmet>
         <title>House Cleaners in Kensington, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Book house cleaning in Kensington, Calgary in about 60 seconds. Reference-checked cleaners and a 24-hour make-it-right guarantee." />
+        <meta name="description" content="Book house cleaning in Kensington, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
         <meta property="og:title" content="House Cleaners in Kensington, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Kensington, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Book house cleaning in Kensington, Calgary in about 60 seconds. Reference-checked cleaners and a 24-hour make-it-right guarantee." />
-        <meta property="og:description" content="Book house cleaning in Kensington, Calgary in about 60 seconds. Reference-checked cleaners and a 24-hour make-it-right guarantee." />
+        <meta name="twitter:description" content="Book house cleaning in Kensington, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta property="og:description" content="Book house cleaning in Kensington, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/kensington/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/kensington/" />
