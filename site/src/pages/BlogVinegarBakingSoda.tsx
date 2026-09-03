@@ -1,3 +1,4 @@
+import { modifiedOr, publishedFor } from "@/data/post-published";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -104,8 +105,8 @@ export default function BlogVinegarBakingSoda() {
           "headline": "Cleaning with Vinegar and Baking Soda: Complete Guide",
           "description": "Learn how to clean your home naturally with vinegar and baking soda. Safe, effective cleaning tips for kitchen, bathroom, laundry and more from Duty Cleaners Edmonton.",
           "image": absoluteAssetUrl(heroImage),
-          "datePublished": "2026-01-25",
-          "dateModified": modifiedFor("/cleaning-with-vinegar-and-baking-soda", "2026-01-25"),
+          ...(publishedFor("/cleaning-with-vinegar-and-baking-soda") ? { datePublished: publishedFor("/cleaning-with-vinegar-and-baking-soda") } : {}),
+          "dateModified": modifiedOr("/cleaning-with-vinegar-and-baking-soda"),
           "author": ARTICLE_AUTHOR,
           "publisher": ARTICLE_PUBLISHER,
           "mainEntityOfPage": canonicalUrlForPath("/cleaning-with-vinegar-and-baking-soda")

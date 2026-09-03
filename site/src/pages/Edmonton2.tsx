@@ -1,3 +1,4 @@
+import LocalMarketNote from "@/components/LocalMarketNote";
 import { BRANCH_PROFILES, BRANCH_IDENTITY } from "@/data/proof";
 import { useEffect, useState } from "react";
 import { EDMONTON_REVIEWS } from "@/data/reviews";
@@ -249,6 +250,23 @@ export default function Edmonton2() {
            ]}
          />
 
+
+        {/*
+          Mirrors Calgary's note, which sat on that page alone. Every claim here
+          is already made in the same terms across the fact-checked location
+          pages — Edmonton's winter holds rather than thawing repeatedly, so the
+          grit arrives in one March load instead of all season.
+        */}
+        <LocalMarketNote
+          accent="primary"
+          eyebrow="Cleaning in Edmonton"
+          heading="What an Edmonton house actually needs, and when"
+          paragraphs={[
+            "Edmonton's winter holds. Where Calgary thaws and refreezes all season, the roads here stay frozen, so the sand and de-icer that go down in November largely stay outside until the melt — and then arrive at the door in one heavy load through March and early April. That timing is the useful part: entryways, stair treads and the first two metres of hallway take the whole winter's worth at once, which is why spring is when Edmonton homes book a deep clean rather than a standard one, and why a February visit is mostly maintenance.",
+            "The housing stock splits the work in two. The mature core — Glenora, Westmount, Old Strathcona, Garneau — is largely pre-war and early post-war: original trim, deeper window sills, more door frames, and rooms divided rather than open, all of which take longer per square metre than the floor area suggests. The newer edges in the southwest and southeast, Windermere, Terwillegar, Summerside and Glastonbury, are larger and faster to clean per square metre, but a home in its first year or two is still shedding construction dust from vents and closet shelves. The same bedroom count can be two quite different jobs, so describe the home rather than only its size.",
+            "We clean across Edmonton and the surrounding communities — St. Albert, Sherwood Park, Spruce Grove, Leduc, Beaumont, Fort Saskatchewan, Stony Plain, Morinville and Devon — with no trip fee inside the city itself. Prices are identical to Calgary's; there is no city premium, and every figure is before 5% GST. If you are not sure whether your home needs a standard clean or a deep one, the booking form asks when it was last properly cleaned and recommends from your answer.",
+          ]}
+        />
 
         {/* Social proof first — momentum before persuasion */}
         <RecentActivityStrip city="Edmonton" reviews={googleReviews} />

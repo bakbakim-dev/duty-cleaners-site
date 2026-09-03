@@ -1,3 +1,4 @@
+import { modifiedOr, publishedFor } from "@/data/post-published";
 import { useEffect } from "react";
 import { standardTierRows, deepCleanTierRows, moveInOutTierRows, FREQUENCIES } from "@/data/pricing";
 import { POLICY } from "@/data/policy";
@@ -121,8 +122,8 @@ export default function BlogHouseCleaningCost() {
           "headline": "How Much Does House Cleaning Cost? Complete Pricing Guide",
           "description": "Discover house cleaning costs in Canada. Learn about hourly rates, flat rates, and factors affecting professional cleaning service prices in Alberta.",
           "image": absoluteAssetUrl(heroImage),
-          "datePublished": "2026-01-25",
-          "dateModified": modifiedFor("/how-much-does-a-house-cleaning-cost", "2026-01-25"),
+          ...(publishedFor("/how-much-does-a-house-cleaning-cost") ? { datePublished: publishedFor("/how-much-does-a-house-cleaning-cost") } : {}),
+          "dateModified": modifiedOr("/how-much-does-a-house-cleaning-cost"),
           "author": ARTICLE_AUTHOR,
           "publisher": ARTICLE_PUBLISHER,
           "mainEntityOfPage": canonicalUrlForPath("/how-much-does-a-house-cleaning-cost")

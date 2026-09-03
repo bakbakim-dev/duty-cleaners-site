@@ -1,9 +1,21 @@
+import { FREQUENCIES } from "@/data/pricing";
 import { Link } from "react-router-dom";
 import { canonicalForPath } from "@/data/legacy-urls";
-import { ArrowRight, ExternalLink, HardHat, Home, KeyRound, Sparkles, Truck } from "lucide-react";
+import { ArrowRight, ExternalLink, HardHat, Home, KeyRound, Repeat, Sparkles, Truck } from "lucide-react";
 import { Accent } from "@/components/Accent";
 import Eyebrow from "@/components/Eyebrow";
 import useRevealOnScroll from "@/hooks/use-reveal-on-scroll";
+
+/**
+ * The discounts, read from bk-config. They are the reason to choose a
+ * recurring plan, so the card leads with them rather than describing the
+ * cadence in the abstract.
+ */
+const RECURRING_PITCH = `Same cleaner on a schedule, and from the second visit you save ${FREQUENCIES
+  .filter((frequency) => frequency.discount > 0)
+  .sort((a, b) => b.discount - a.discount)
+  .map((frequency) => `${Math.round(frequency.discount * 100)}% ${frequency.label.toLowerCase()}`)
+  .join(", ")}.`;
 
 interface CityServicesChapterProps {
   city: "Edmonton" | "Calgary";
@@ -124,6 +136,31 @@ export default function CityServicesChapter({
           </div>
           <span className="inline-flex items-center font-semibold text-accent-on-dark transition-transform duration-300 group-hover:translate-x-1">
             Explore move-in/out cleaning <ArrowRight className="ml-1.5 h-4 w-4" aria-hidden="true" />
+          </span>
+        </Link>
+
+        {/*
+          Recurring was missing from this page entirely — the highest-lifetime-
+          value service and the biggest price lever the business has, present in
+          the homepage meta description and then nowhere in its body but a
+          footer link. It gets a slim card beside post-construction, with the
+          discounts, because the discount is the whole proposition.
+        */}
+        <Link
+          to={canonicalForPath(`${basePath}/recurring-cleaning`)}
+          className="motion-lift paper-rule card-warm group mt-6 flex items-center gap-4 border bg-white p-5 md:p-6"
+        >
+          <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-accent/10">
+            <Repeat className="h-6 w-6 text-accent" aria-hidden="true" />
+          </div>
+          <div className="flex-1">
+            <h3 className="font-bold">Recurring</h3>
+            <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
+              {RECURRING_PITCH}
+            </p>
+          </div>
+          <span className="hidden items-center text-sm font-semibold text-accent transition-transform duration-300 group-hover:translate-x-1 sm:inline-flex">
+            Explore recurring cleaning <ExternalLink className="ml-1 h-4 w-4" aria-hidden="true" />
           </span>
         </Link>
 

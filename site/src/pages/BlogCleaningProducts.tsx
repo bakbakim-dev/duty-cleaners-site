@@ -1,3 +1,4 @@
+import { modifiedOr, publishedFor } from "@/data/post-published";
 import { absoluteAssetUrl } from "@/lib/seo";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
@@ -148,8 +149,8 @@ export default function BlogCleaningProducts() {
           headline: title,
           description,
           image: "https://dutycleaners.ca/og-image.jpg",
-          datePublished: "2026-08-23",
-          dateModified: modifiedFor("/the-top-5-must-have-cleaning-products-for-a-spotless-home", "2026-08-23"),
+          ...(publishedFor("/the-top-5-must-have-cleaning-products-for-a-spotless-home") ? { datePublished: publishedFor("/the-top-5-must-have-cleaning-products-for-a-spotless-home") } : {}),
+          dateModified: modifiedOr("/the-top-5-must-have-cleaning-products-for-a-spotless-home"),
           author: { "@type": "Organization", name: "Duty Cleaners", url: "https://dutycleaners.ca/" },
           publisher: {
             "@type": "Organization",

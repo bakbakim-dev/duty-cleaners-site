@@ -1,3 +1,4 @@
+import { modifiedOr, publishedFor } from "@/data/post-published";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -144,8 +145,8 @@ export default function BlogCleaningSchedule() {
           "headline": "A Cleaning Schedule That Actually Holds Up",
           "description": "Create a realistic cleaning schedule with daily, weekly, and monthly tasks. Expert tips from Duty Cleaners to keep your home clean without the stress.",
           "image": absoluteAssetUrl(heroImage),
-          "datePublished": "2026-01-20",
-          "dateModified": modifiedFor("/blog/cleaning-schedule", "2026-01-20"),
+          ...(publishedFor("/blog/cleaning-schedule") ? { datePublished: publishedFor("/blog/cleaning-schedule") } : {}),
+          "dateModified": modifiedOr("/blog/cleaning-schedule"),
           "author": ARTICLE_AUTHOR,
           "publisher": ARTICLE_PUBLISHER,
           "mainEntityOfPage": canonicalUrlForPath("/blog/cleaning-schedule")

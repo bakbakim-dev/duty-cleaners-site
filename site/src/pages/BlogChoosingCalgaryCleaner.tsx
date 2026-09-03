@@ -1,3 +1,4 @@
+import { modifiedOr, publishedFor } from "@/data/post-published";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -98,8 +99,8 @@ export default function BlogChoosingCalgaryCleaner() {
           headline: title,
           description,
           image: "https://dutycleaners.ca/og-image.jpg",
-          datePublished: "2026-08-24",
-          dateModified: modifiedFor("/blog/cleaning-services-calgary", "2026-08-24"),
+          ...(publishedFor("/blog/cleaning-services-calgary") ? { datePublished: publishedFor("/blog/cleaning-services-calgary") } : {}),
+          dateModified: modifiedOr("/blog/cleaning-services-calgary"),
           author: { "@type": "Organization", name: "Duty Cleaners", url: "https://dutycleaners.ca/" },
           publisher: {
             "@type": "Organization",

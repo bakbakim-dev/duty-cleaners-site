@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+import { canonicalForPath } from "@/data/legacy-urls";
+import { FREQUENCIES } from "@/data/pricing";
 import { useLocation } from "react-router-dom";
 import { quoteHrefFor } from "@/lib/quote-link";
 import { Button } from "@/components/ui/button";
@@ -45,6 +48,16 @@ const ROWS = [
 
 const COLUMNS = ["1-2 Bedroom", "3 Bedroom", "4+ Bedroom"];
 
+
+/** Discounts read from bk-config, so this line cannot quote a stale rate. */
+const RECURRING_SAVINGS = FREQUENCIES.filter((frequency) => frequency.discount > 0)
+  .sort((a, b) => b.discount - a.discount)
+  .map((frequency) => `${Math.round(frequency.discount * 100)}% ${frequency.label.toLowerCase()}`)
+  .join(", ");
+
+/** Same city resolution the quote link uses, so both agree on every route. */
+const cityBase = (pathname: string) =>
+  quoteHrefFor(pathname).startsWith("/cleaning-services-calgary") ? "/calgary" : "/edmonton";
 
 const CityPricingTable = () => {
   const { pathname } = useLocation();
@@ -139,6 +152,22 @@ const CityPricingTable = () => {
             </div>
           ))}
         </div>
+
+        {/*
+          The recurring discount belongs directly under the price anchoring,
+          because it is the largest number on this page and it was not on this
+          page at all. A 3-bedroom standard at $232 becomes $185.60 weekly.
+        */}
+        <p className="mt-6 text-center text-sm text-white/90 max-w-[62ch] mx-auto">
+          Booking regularly? From your second visit you save {RECURRING_SAVINGS}. The first clean is
+          charged at the standard one-time rate.{" "}
+          <Link
+            to={canonicalForPath(`${cityBase(pathname)}/recurring-cleaning`)}
+            className="font-semibold text-accent-on-dark underline-offset-2 hover:underline"
+          >
+            See recurring cleaning
+          </Link>
+        </p>
 
         <div className="text-center mt-8">
           <Button

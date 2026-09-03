@@ -1,3 +1,4 @@
+import { modifiedOr, publishedFor } from "@/data/post-published";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { modifiedFor } from "@/data/post-dates";
@@ -104,8 +105,8 @@ export default function BlogSpotlessHomeTips() {
           headline: title,
           description,
           image: "https://dutycleaners.ca/og-image.jpg",
-          datePublished: "2026-08-24",
-          dateModified: modifiedFor("/blog/spotless-home-tips", "2026-08-24"),
+          ...(publishedFor("/blog/spotless-home-tips") ? { datePublished: publishedFor("/blog/spotless-home-tips") } : {}),
+          dateModified: modifiedOr("/blog/spotless-home-tips"),
           author: { "@type": "Organization", name: "Duty Cleaners", url: "https://dutycleaners.ca/" },
           publisher: {
             "@type": "Organization",

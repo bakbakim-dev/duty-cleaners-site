@@ -104,9 +104,30 @@ export default function CityConversionIntro({
           style={{ objectPosition: heroPosition ?? "center" }}
         />
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-          {/* Ink wash from the left so type stays legible over a bright room. */}
+          {/*
+            Ink wash so type stays legible over a bright room.
+
+            TWO WASHES, because one gradient cannot serve both layouts. The
+            horizontal one below was drawn for the lg two-column hero, where the
+            text sits in the dark left third and the gradient reaches transparent
+            under the quote card. When the grid stacks, the text spans the full
+            width and runs straight past that stop: measured at 375px, the H1 box
+            ends at 359px while the wash is fully transparent from 278px — 82px
+            of the headline over the bare photograph.
+
+            Below lg the wash therefore runs top-to-bottom across the full width,
+            which is the axis the stacked layout actually needs.
+          */}
           <div
-            className="absolute inset-0"
+            className="absolute inset-0 lg:hidden"
+            style={{
+              background: soft
+                ? "linear-gradient(180deg, hsla(213,52%,16%,0.72) 0%, hsla(213,50%,18%,0.62) 45%, hsla(213,50%,18%,0.52) 100%)"
+                : "linear-gradient(180deg, hsla(213,52%,14%,0.88) 0%, hsla(213,50%,16%,0.78) 45%, hsla(213,50%,16%,0.68) 100%)",
+            }}
+          />
+          <div
+            className="absolute inset-0 hidden lg:block"
             style={{
               background: soft
                 ? "linear-gradient(97deg, hsla(213,52%,18%,0.58) 0%, hsla(213,50%,20%,0.40) 30%, hsla(210,40%,25%,0.16) 52%, transparent 74%)"

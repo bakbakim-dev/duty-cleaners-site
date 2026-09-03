@@ -1,3 +1,4 @@
+import { modifiedOr, publishedFor } from "@/data/post-published";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -116,8 +117,8 @@ export default function BlogChoosingCleaningCompany() {
           // previous values (2024-06-01 / 2026-07-02) contradicted both. The
           // old image URL pointed at /blog/... which is not a served path.
           image: absoluteAssetUrl(heroImage),
-          datePublished: "2026-01-27",
-          dateModified: modifiedFor("/blog/choosing-cleaning-company", "2026-01-27"),
+          ...(publishedFor("/blog/choosing-cleaning-company") ? { datePublished: publishedFor("/blog/choosing-cleaning-company") } : {}),
+          dateModified: modifiedOr("/blog/choosing-cleaning-company"),
           author: ARTICLE_AUTHOR,
           publisher: ARTICLE_PUBLISHER,
           mainEntityOfPage: canonicalUrlForPath("/blog/choosing-cleaning-company")
