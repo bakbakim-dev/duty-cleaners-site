@@ -1,3 +1,4 @@
+import { getListing } from "@/lib/google-listings";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import Navigation from "@/components/Navigation";
 import { buildServiceSchema } from "@/lib/service-schema";
@@ -390,8 +391,8 @@ export default function CalgaryPostConstruction() {
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {[
               { icon: Phone, title: "Give us a call", desc: "We're here to answer your questions!", action: "(403) 768-1341", href: "tel:4037681341" },
-              { icon: MapPin, title: "Our office", desc: "2835 37 Street SW #24\nCalgary, AB", action: "Get Directions", href: "https://maps.app.goo.gl/vM1BgjC6i8wbMnX97" },
-              { icon: Clock, title: "Hours of operation", desc: "Mon-Sat: 8am–8pm\nSun: 9am–3pm", action: "Reviews", href: "https://maps.app.goo.gl/vM1BgjC6i8wbMnX97" },
+              { icon: MapPin, title: "Our office", desc: "2835 37 Street SW #24\nCalgary, AB", action: "Get Directions", href: getListing("calgary").url },
+              { icon: Clock, title: "Hours of operation", desc: "Mon-Sat: 8am–8pm\nSun: 9am–3pm", action: "Reviews", href: getListing("calgary").reviewsUrl },
             ].map((card, index) => (
               <AnimatedSection key={index}>
                 <div

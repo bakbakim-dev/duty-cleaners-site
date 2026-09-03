@@ -149,12 +149,17 @@ export const PAYMENT_TERMS = [
 /** How a quote can change. Consistent across both pricing pages and the FAQ. */
 export const PRICING_TERMS = [
   "Published prices are starting estimates based on the details you give us — home size, number of bathrooms, and the add-ons you choose.",
-  // Scope matters: a $29.99 travel fee DOES apply outside city limits, and an
-  // unscoped "no trip fees" line was shipping inside FAQPage JSON-LD.
-  "No trip fee or diagnostic fee inside Edmonton and Calgary city limits.",
+  // Scope matters: a travel fee DOES apply outside city limits, and an unscoped
+  // "no trip fees" line was shipping inside FAQPage JSON-LD. Naming the amount
+  // matters too — /terms/ is a binding document and /locations/ promotes
+  // nineteen communities that all sit outside those limits.
+  "No trip fee or diagnostic fee inside Edmonton and Calgary city limits. Outside them, a travel fee applies: $29.99 for home cleaning, $50 for post-construction.",
+  // Compulsory, not an add-on: BookingKoala's extra is literally named "Must
+  // choose if you have pets", and it recurs on every visit.
+  "Homes with pets are charged $19.99 per visit. It appears on your quote before you book.",
   "Most homes are priced flat by size. Your flat rate does not change because a clean took longer than expected.",
   "If the home turns out to need substantially more work than described — heavy build-up, far more glass or cabinetry than stated — the team will explain what they found and your options before continuing.",
-  "Recurring discounts of 20% weekly, 15% bi-weekly and 10% monthly apply from your second visit. The first clean is charged at the standard one-time rate.",
+  "Recurring discounts of 20% weekly, 15% bi-weekly and 10% every four weeks apply from your second visit. The first clean is charged at the standard one-time rate.",
   "Hourly service has a minimum of 3 hours for one cleaner, or 2 hours for two cleaners.",
 ] as const;
 

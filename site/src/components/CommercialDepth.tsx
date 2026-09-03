@@ -1,3 +1,4 @@
+import { POLICY } from "@/data/policy";
 import { Link } from "react-router-dom";
 import { CheckCircle2, Clock, ClipboardList, Building2, Sparkles } from "lucide-react";
 
@@ -41,7 +42,9 @@ export function commercialFaqs(city: "Edmonton" | "Calgary", phone: string) {
     },
     {
       q: "Do we need to sign a long-term contract?",
-      a: "No. Recurring schedules are the most common arrangement because they keep the same cleaners on your site, but there is no lock-in period and no cancellation penalty. If you would rather start with a single deep clean before committing to a schedule, that is a normal way to begin.",
+      // Was "no cancellation penalty", inside FAQPage schema, against a policy of
+      // $50 inside 24 hours. The real point — no lock-in — survives intact.
+      a: `No. Recurring schedules are the most common arrangement because they keep the same cleaners on your site, but there is no lock-in period and no penalty for ending the schedule. Individual visits follow the same notice rule as everyone else: ${POLICY.cancellationNoticeHours} hours to move or cancel one, ${POLICY.cancellationFee} inside that. If you would rather start with a single deep clean before committing to a schedule, that is a normal way to begin.`,
     },
     {
       q: "How are your cleaners vetted, and what about insurance?",

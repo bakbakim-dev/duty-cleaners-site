@@ -1,3 +1,4 @@
+import { getListing } from "@/lib/google-listings";
 import { withTrailingSlash } from "@/data/legacy-urls";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import Navigation from "@/components/Navigation";
@@ -490,7 +491,7 @@ export default function WallWashingCalgary() {
                     <p className="text-muted-foreground text-sm"><strong>Mon–Sat:</strong> 8am – 8pm</p>
                     <p className="text-muted-foreground text-sm mb-3"><strong>Sunday:</strong> 9am – 3pm</p>
                     <a
-                      href="https://maps.app.goo.gl/vM1BgjC6i8wbMnX97"
+                      href={getListing("calgary").reviewsUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-primary font-semibold hover:underline"
