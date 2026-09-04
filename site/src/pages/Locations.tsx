@@ -81,7 +81,12 @@ const mainLocations = [
       // them correctly.
       { name: "Aspen Woods", link: "/locations/aspen-woods/" },
       { name: "Cranston", link: "/locations/cranston/" },
-      { name: "Inglewood", link: "/locations/inglewood-calgary/" },
+      // Both cities have an Inglewood, and this page lists both cities side
+      // by side — three chips reading "Inglewood" pointing at two different
+      // neighbourhoods. Each page titles itself "Inglewood, Calgary" or
+      // "Inglewood, Edmonton"; the links now say the same. Elsewhere the
+      // page's own city supplies the context, so the bare name is fine there.
+      { name: "Inglewood, Calgary", link: "/locations/inglewood-calgary/" },
       { name: "Bowness", link: "/locations/bowness-calgary/" },
       { name: "Marda Loop", link: "/locations/marda-loop/" },
       { name: "Beltline", link: "/locations/beltline-calgary/" },
@@ -108,7 +113,7 @@ const edmontonRegionCities = [
 // Edmonton neighbourhoods
 const edmontonNeighborhoods = [
   { name: "Castle Downs", link: "/locations/castle-downs/" },
-  { name: "Inglewood", link: "/locations/inglewood/" },
+  { name: "Inglewood, Edmonton", link: "/locations/inglewood/" },
   { name: "Delton", link: "/locations/delton/" },
   { name: "Allendale", link: "/locations/allendale/" },
   { name: "Londonderry", link: "/locations/londonderry/" },
@@ -218,7 +223,7 @@ const calgaryNeighborhoods = [
   { name: "Marda Loop", link: "/locations/marda-loop/" },
   { name: "Mahogany", link: "/locations/mahogany/" },
   { name: "Auburn Bay", link: "/locations/auburn-bay/" },
-  { name: "Inglewood", link: "/locations/inglewood-calgary/" },
+  { name: "Inglewood, Calgary", link: "/locations/inglewood-calgary/" },
   { name: "Cranston", link: "/locations/cranston/" },
   { name: "Brentwood", link: "/locations/brentwood-calgary/" },
   { name: "Varsity", link: "/locations/varsity-calgary/" },
