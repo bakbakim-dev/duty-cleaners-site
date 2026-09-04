@@ -175,7 +175,7 @@ export default function BlogHouseCleaningCost() {
                   src={heroImage}
                   alt="Professional house cleaner with cleaning supplies and pricing checklist"
                   className="w-full h-full object-cover"
-                />
+                 loading="eager" fetchPriority="high"/>
               </div>
             </div>
           </div>
@@ -276,7 +276,7 @@ export default function BlogHouseCleaningCost() {
                     src={apartmentImage}
                     alt="Clean modern apartment living room"
                     className="w-full h-full object-cover"
-                  />
+                   loading="lazy" decoding="async"/>
                 </div>
 
                 <p className="text-muted-foreground mb-6">
@@ -340,14 +340,14 @@ export default function BlogHouseCleaningCost() {
                       src={deepCleanImage}
                       alt="Professional cleaner deep cleaning kitchen appliances"
                       className="w-full h-full object-cover"
-                    />
+                     loading="lazy" decoding="async"/>
                   </div>
                   <div className="aspect-video rounded-xl overflow-hidden">
                     <img width={1024} height={1024}
                       src={suppliesImage}
                       alt="Professional cleaning supplies and equipment"
                       className="w-full h-full object-cover"
-                    />
+                     loading="lazy" decoding="async"/>
                   </div>
                 </div>
 

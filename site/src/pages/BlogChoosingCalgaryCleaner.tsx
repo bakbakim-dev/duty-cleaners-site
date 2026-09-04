@@ -169,7 +169,7 @@ export default function BlogChoosingCalgaryCleaner() {
                   src={heroImage}
                   alt="Calgary skyline, home to Duty Cleaners' Calgary cleaning team"
                   className="w-full h-full object-cover"
-                />
+                 loading="eager" fetchPriority="high"/>
               </div>
             </div>
           </div>
@@ -221,7 +221,7 @@ export default function BlogChoosingCalgaryCleaner() {
                     src={teamImage}
                     alt="Duty Cleaners' Calgary cleaning team"
                     className="w-full h-full object-cover"
-                  />
+                   loading="lazy" decoding="async"/>
                 </div>
                 <h2 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">
                   How we handle it

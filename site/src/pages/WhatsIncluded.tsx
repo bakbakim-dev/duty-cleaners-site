@@ -310,7 +310,7 @@ export default function WhatsIncluded() {
           src={heroBg}
           alt="Freshly cleaned open-plan living space covered by the standard checklist"
           className="absolute inset-0 w-full h-full object-cover opacity-40"
-        />
+         loading="eager" fetchPriority="high"/>
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-brand-navy/80" />
         {/* Decorative elements */}

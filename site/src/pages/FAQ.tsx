@@ -382,7 +382,7 @@ export default function FAQ() {
           src={heroFaqLivingRoom}
           alt="Freshly cleaned living room after a Duty Cleaners visit"
           className="absolute inset-0 w-full h-full object-cover"
-        />
+         loading="eager" fetchPriority="high"/>
         <div className="absolute inset-0 bg-gradient-to-br from-brand-navy/85 via-brand-navy/75 to-brand-navy/85" />
         {/* Decorative blur elements */}
         <div className="absolute top-10 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl" />

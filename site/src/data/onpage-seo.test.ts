@@ -227,3 +227,82 @@ describe("on-page SEO", () => {
     expect(bad, `Head essentials missing:\n${bad.join("\n")}`).toEqual([]);
   });
 });
+
+describe("image loading priority", () => {
+  /**
+   * Which image a page paints first is the one thing on the page that Core Web
+   * Vitals measures directly, and the browser cannot work it out on its own —
+   * it has to be told.
+   *
+   * The audit found the site half-way there: 89 pages gave their hero
+   * loading="eager" fetchPriority="high" and 47 did not, and 26 images sitting
+   * three or four sections down the page were still fetched eagerly, competing
+   * with the paint the visitor was waiting on.
+   *
+   * The rule these tests pin has two halves, and the first matters more than
+   * the second: an image that another image already precedes is never the LCP
+   * element, so it is safe to defer — while deferring the hero is the one
+   * change that makes LCP actively worse. That asymmetry is why "first <img>
+   * with at most one <section> before it" is the definition of a hero here,
+   * and why everything else is required to be lazy.
+   *
+   * Getting this wrong once already: an earlier pass keyed off "first <img> in
+   * the source FILE", which is not the same thing — in four files a card
+   * component is declared above the page body, so the file's first image is the
+   * card and the real hero is further down. Those four heroes came out lazy.
+   * The check below runs on the built page, where that distinction does not
+   * exist.
+   */
+  const imgs = (main: string) => [...main.matchAll(/<img\b([^>]*)>/gi)];
+  const mainOf = (html: string) => {
+    const m = /<main\b[^>]*>([\s\S]*?)<\/main>/.exec(noScripts(html));
+    return m ? m[1] : null;
+  };
+
+  it("every hero image is eager and high priority", () => {
+    const bad: string[] = [];
+    for (const { url, html } of pages()) {
+      const main = mainOf(html);
+      if (!main) continue;
+      const all = imgs(main);
+      if (all.length === 0) continue;
+      const first = all[0];
+      const sectionsBefore = (main.slice(0, first.index ?? 0).match(/<section/g) ?? []).length;
+      if (sectionsBefore > 1) continue; // the first image is genuinely deep in the page
+      const loading = attr(first[1], "loading");
+      const priority = attr(first[1], "fetchpriority");
+      if (loading !== "eager" || priority !== "high") {
+        bad.push(`${url}: loading=${loading ?? "(none)"} fetchpriority=${priority ?? "(none)"}`);
+      }
+    }
+    expect(
+      bad,
+      `These pages do not tell the browser to prioritise their largest image:\n${bad.join("\n")}\n` +
+        `A hero wants loading="eager" fetchPriority="high". Lazy is the worst ` +
+        `of the three — it defers the very paint LCP is measuring.`,
+    ).toEqual([]);
+  });
+
+  it("images below the hero are lazy", () => {
+    // BrandHome renders the homepage's own hero, and /locations/ embeds
+    // BrandHome whole at the foot of its directory. The image is correctly
+    // eager on / and merely early on /locations/; making it lazy would trade a
+    // real regression on the homepage for a marginal gain on one other page.
+    const ALLOWED = new Set(["/locations/"]);
+    const bad: string[] = [];
+    for (const { url, html } of pages()) {
+      const main = mainOf(html);
+      if (!main || ALLOWED.has(url)) continue;
+      for (const m of imgs(main).slice(1)) {
+        if (attr(m[1], "loading") !== "lazy") {
+          bad.push(`${url}: ${(attr(m[1], "src") ?? "?").split("/").pop()}`);
+        }
+      }
+    }
+    expect(
+      bad,
+      `These images are below the hero but still fetched eagerly:\n${bad.join("\n")}\n` +
+        `They compete for bandwidth with the image the visitor is waiting to see.`,
+    ).toEqual([]);
+  });
+});

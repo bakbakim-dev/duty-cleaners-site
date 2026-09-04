@@ -49,6 +49,13 @@ export default function BlogPostCard({ title, excerpt, category, date, readTime,
               src={image}
               alt={title}
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              /* Nine of these render on /blog/, and the page has its own hero
+                 image above the grid which is already eager and high priority.
+                 So no card is the LCP element — every one of them sits at least
+                 two sections down — and none should compete with the paint the
+                 visitor is actually waiting on. All lazy. */
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute top-4 left-4">
               <span className="inline-flex items-center gap-1.5 text-xs font-semibold bg-white/90 backdrop-blur-sm text-primary px-3 py-1.5 rounded-full shadow-sm">

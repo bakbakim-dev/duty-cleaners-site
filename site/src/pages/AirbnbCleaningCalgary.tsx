@@ -279,7 +279,7 @@ const AirbnbCleaningCalgary = () => {
           src={heroBg}
           alt="Guest-ready short-term rental living room in Calgary after a turnover clean"
           className="absolute inset-0 w-full h-full object-cover opacity-25"
-        />
+         loading="eager" fetchPriority="high"/>
         <div className="absolute inset-0 bg-gradient-to-b from-brand-navy/80 via-brand-navy/70 to-brand-navy/90" />
         <div className="absolute top-20 left-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl" />
         <div className="absolute bottom-10 right-10 w-96 h-96 bg-calgary/20 rounded-full blur-3xl" />

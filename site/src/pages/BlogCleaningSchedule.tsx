@@ -198,7 +198,7 @@ export default function BlogCleaningSchedule() {
                   src={heroImage}
                   alt="Woman cleaning kitchen counter in a bright, organized home"
                   className="w-full h-full object-cover"
-                />
+                 loading="eager" fetchPriority="high"/>
               </div>
             </div>
           </div>
@@ -229,7 +229,7 @@ export default function BlogCleaningSchedule() {
                     src={bedroomImage}
                     alt="Neatly made bed with fresh white linens in a cozy bedroom"
                     className="w-full h-full object-cover"
-                  />
+                   loading="lazy" decoding="async"/>
                 </div>
 
                 <p className="text-muted-foreground mb-6">
@@ -257,7 +257,7 @@ export default function BlogCleaningSchedule() {
                     src={dishwasherImage}
                     alt="Open dishwasher loaded with clean dishes"
                     className="w-full h-full object-cover"
-                  />
+                   loading="lazy" decoding="async"/>
                 </div>
               </div>
 
@@ -272,7 +272,7 @@ export default function BlogCleaningSchedule() {
                     src={floorImage}
                     alt="Person mopping hardwood floor in a bright living room"
                     className="w-full h-full object-cover"
-                  />
+                   loading="lazy" decoding="async"/>
                 </div>
 
                 <p className="text-muted-foreground mb-6">
@@ -309,7 +309,7 @@ export default function BlogCleaningSchedule() {
                     src={bathroomImage}
                     alt="Clean modern bathroom with sparkling white tiles"
                     className="w-full h-full object-cover"
-                  />
+                   loading="lazy" decoding="async"/>
                 </div>
 
                 <p className="text-muted-foreground mb-6">

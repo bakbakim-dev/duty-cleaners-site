@@ -300,7 +300,7 @@ export default function EdmontonServices() {
           src={edmontonHero}
           alt="Edmonton cleaning professional"
           className="absolute inset-0 w-full h-full object-cover opacity-40"
-        />
+         loading="eager" fetchPriority="high"/>
         <div className="absolute inset-0 bg-gradient-to-b from-brand-navy/70 via-brand-navy/60 to-brand-navy/80" />
         {/* Decorative Elements */}
         <div className="absolute top-0 left-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />

@@ -236,7 +236,7 @@ export default function Blog() {
             width={1920}
             height={1088}
             className="absolute inset-0 w-full h-full object-cover opacity-25"
-          />
+           loading="eager" fetchPriority="high"/>
           <div className="absolute inset-0 bg-gradient-to-br from-brand-navy/85 via-brand-navy/75 to-brand-navy/90 pointer-events-none" />
           <div className="absolute top-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2" />
           <div className="absolute bottom-0 left-0 w-72 h-72 bg-primary/10 rounded-full blur-3xl -translate-x-1/3 translate-y-1/3" />

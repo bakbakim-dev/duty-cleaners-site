@@ -180,7 +180,7 @@ export default function BlogCleaningFrequency() {
                   src={heroImage}
                   alt="Professional cleaner vacuuming a modern living room"
                   className="w-full h-full object-cover"
-                />
+                 loading="eager" fetchPriority="high"/>
               </div>
             </div>
           </div>
@@ -227,7 +227,7 @@ export default function BlogCleaningFrequency() {
                     src={familyImage}
                     alt="Family with children playing in a clean living room"
                     className="w-full h-full object-cover"
-                  />
+                   loading="lazy" decoding="async"/>
                 </div>
 
                 <div className="space-y-6">
@@ -258,7 +258,7 @@ export default function BlogCleaningFrequency() {
                     src={petsImage}
                     alt="Golden retriever dog lying on a clean wooden floor"
                     className="w-full h-full object-cover"
-                  />
+                   loading="lazy" decoding="async"/>
                 </div>
                 <p className="text-center text-muted-foreground mt-4 italic">
                   Pets add joy to our homes but also require more frequent cleaning to manage shedding and dander.
@@ -302,7 +302,7 @@ export default function BlogCleaningFrequency() {
                     src={professionalImage}
                     alt="Professional cleaner wiping down kitchen counters"
                     className="w-full h-full object-cover"
-                  />
+                   loading="lazy" decoding="async"/>
                 </div>
 
                 <p className="text-muted-foreground mb-8">
@@ -332,7 +332,7 @@ export default function BlogCleaningFrequency() {
                     src={calendarImage}
                     alt="Cleaning schedule calendar on a desk"
                     className="w-full h-full object-cover"
-                  />
+                   loading="lazy" decoding="async"/>
                 </div>
               </div>
 

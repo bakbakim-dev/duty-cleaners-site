@@ -130,7 +130,7 @@ export default function Reviews() {
           className="absolute inset-0 w-full h-full object-cover"
           width={1920}
           height={1080}
-        />
+         loading="eager" fetchPriority="high"/>
         {/* Navy gradient overlay for text readability */}
         <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/90 via-brand-navy/70 to-brand-navy/40" />
         {/* Decorative blur elements */}

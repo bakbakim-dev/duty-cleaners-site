@@ -231,7 +231,7 @@ export default function EdmontonMoveInOut() {
                   width={500}
                   height={500}
                   className="lg:w-[500px] w-full rounded-2xl shadow-2xl"
-                />
+                 loading="eager" fetchPriority="high"/>
               </div>
             </div>
           </div>

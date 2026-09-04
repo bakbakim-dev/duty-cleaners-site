@@ -87,7 +87,7 @@ export default function GiftCards() {
             width={1920}
             height={1080}
             className="absolute inset-0 w-full h-full object-cover opacity-40 pointer-events-none"
-          />
+           loading="eager" fetchPriority="high"/>
           <div className="absolute inset-0 bg-gradient-to-b from-brand-navy/85 via-brand-navy/70 to-brand-navy/90 pointer-events-none" />
           {/* Decorative blur orbs */}
           <div className="absolute top-10 left-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl pointer-events-none" />

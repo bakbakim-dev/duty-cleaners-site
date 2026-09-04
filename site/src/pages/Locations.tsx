@@ -445,7 +445,7 @@ export default function Locations() {
           src={heroAlbertaMap}
           alt="Calgary skyline showing the iconic city tower and downtown"
           className="absolute inset-0 w-full h-full object-cover object-center opacity-40 pointer-events-none"
-        />
+         loading="eager" fetchPriority="high"/>
         <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/90 via-brand-navy/75 to-brand-navy/90" />
 
         {/* Decorative Elements */}

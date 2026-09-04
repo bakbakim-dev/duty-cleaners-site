@@ -158,7 +158,7 @@ export default function BlogVinegarBakingSoda() {
                   src={heroImage}
                   alt="Baking soda and white vinegar on a clean kitchen counter - natural cleaning supplies"
                   className="w-full h-full object-cover"
-                />
+                 loading="eager" fetchPriority="high"/>
               </div>
             </div>
           </div>
@@ -237,7 +237,7 @@ export default function BlogVinegarBakingSoda() {
                     src={sinkImage}
                     alt="Hands with yellow gloves scrubbing kitchen sink with baking soda paste"
                     className="w-full h-full object-cover"
-                  />
+                   loading="lazy" decoding="async"/>
                 </div>
 
                 <p className="text-muted-foreground mb-6">
@@ -313,14 +313,14 @@ export default function BlogVinegarBakingSoda() {
                       src={bathroomImage}
                       alt="Clean modern bathroom with sparkling chrome faucet"
                       className="w-full h-full object-cover"
-                    />
+                     loading="lazy" decoding="async"/>
                   </div>
                   <div className="aspect-video rounded-xl overflow-hidden">
                     <img width={1024} height={1024}
                       src={laundryImage}
                       alt="Clean laundry room with washing machine and natural cleaning supplies"
                       className="w-full h-full object-cover"
-                    />
+                     loading="lazy" decoding="async"/>
                   </div>
                 </div>
               </div>

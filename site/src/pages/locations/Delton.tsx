@@ -204,6 +204,7 @@ export default function Delton() {
                   alt="Professional cleaner vacuuming a living room in Delton, Edmonton"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   loading="eager"
+                  fetchPriority="high"
                 />
               </div>
             </div>

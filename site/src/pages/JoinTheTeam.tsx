@@ -356,7 +356,7 @@ export default function JoinTheTeam() {
             src={heroCleanersSmiling}
             alt="Smiling professional cleaners"
             className="absolute inset-0 w-full h-full object-cover opacity-30"
-          />
+           loading="eager" fetchPriority="high"/>
           <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/85 via-brand-navy/75 to-brand-navy/90" />
           {/* Decorative Elements */}
           <div className="absolute top-0 left-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />

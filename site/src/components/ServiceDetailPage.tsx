@@ -321,7 +321,7 @@ const ServiceDetailPage = ({
                   src={heroImage}
                   alt={heroImageAlt ?? ""}
                   className="w-full h-[500px] object-cover rounded-2xl shadow-2xl border-4 border-white/10"
-                />
+                 loading="eager" fetchPriority="high"/>
               </div>
             )}
           </div>

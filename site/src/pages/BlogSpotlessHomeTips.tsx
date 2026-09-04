@@ -174,7 +174,7 @@ export default function BlogSpotlessHomeTips() {
                   src={heroImage}
                   alt="A tidy, well-organized living space in an Alberta home"
                   className="w-full h-full object-cover"
-                />
+                 loading="eager" fetchPriority="high"/>
               </div>
             </div>
           </div>
@@ -274,7 +274,7 @@ export default function BlogSpotlessHomeTips() {
                       src={bedroomImage}
                       alt="A clean, well-organized bedroom"
                       className="w-full h-full object-cover"
-                    />
+                     loading="lazy" decoding="async"/>
                   </div>
                   <div className="aspect-video rounded-xl overflow-hidden">
                     <img
@@ -283,7 +283,7 @@ export default function BlogSpotlessHomeTips() {
                       src={floorImage}
                       alt="Freshly cleaned hardwood floor"
                       className="w-full h-full object-cover"
-                    />
+                     loading="lazy" decoding="async"/>
                   </div>
                 </div>
                 <div className="space-y-4">

@@ -226,7 +226,7 @@ export default function WallWashingEdmonton() {
                 src={cleanWallsPhoto}
                 alt="Professionally cleaned walls in an Edmonton home"
                 className="rounded-2xl shadow-2xl w-full h-auto object-cover"
-              />
+               loading="eager" fetchPriority="high"/>
             </div>
           </div>
         </div>

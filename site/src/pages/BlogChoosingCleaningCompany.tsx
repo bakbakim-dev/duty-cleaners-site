@@ -139,7 +139,7 @@ export default function BlogChoosingCleaningCompany() {
               src={heroImage}
               alt="Professional cleaning team greeting homeowner"
               className="w-full h-full object-cover"
-            />
+             loading="eager" fetchPriority="high"/>
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
           </div>
           <div className="container mx-auto px-4 -mt-32 relative z-10">
@@ -212,7 +212,7 @@ export default function BlogChoosingCleaningCompany() {
                   src={credentialsImage}
                   alt="Professional cleaning company credentials and certifications"
                   className="w-full rounded-xl shadow-lg"
-                />
+                 loading="lazy" decoding="async"/>
                 <p className="text-sm text-muted-foreground text-center mt-3">
                   Look for proper licensing, screening practices, and certifications when evaluating cleaning companies
                 </p>
@@ -278,7 +278,7 @@ export default function BlogChoosingCleaningCompany() {
                   src={reviewsImage}
                   alt="Customer reading positive reviews online"
                   className="w-full rounded-xl shadow-lg"
-                />
+                 loading="lazy" decoding="async"/>
                 <p className="text-sm text-muted-foreground text-center mt-3">
                   Reading reviews helps you understand real customer experiences before making a decision
                 </p>

@@ -204,7 +204,7 @@ export default function EdmontonMarchOut() {
           width={1920}
           height={1080}
           className="absolute inset-0 w-full h-full object-cover opacity-25"
-        />
+         loading="eager" fetchPriority="high"/>
         <div className="absolute inset-0 bg-gradient-to-b from-brand-navy/85 via-brand-navy/70 to-brand-navy/90" />
         <div className="absolute top-20 left-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl" />
         <div className="container mx-auto max-w-4xl text-center relative z-10">

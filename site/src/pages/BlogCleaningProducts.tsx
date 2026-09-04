@@ -218,7 +218,7 @@ export default function BlogCleaningProducts() {
                   src={heroImage}
                   alt="A small set of cleaning products and microfibre cloths arranged on a clean kitchen counter"
                   className="w-full h-full object-cover"
-                />
+                 loading="eager" fetchPriority="high"/>
               </div>
             </div>
           </div>
@@ -311,7 +311,7 @@ export default function BlogCleaningProducts() {
                         src={kitchenImage}
                         alt="Clean kitchen counters and stovetop after a professional cleaning"
                         className="w-full h-full object-cover"
-                      />
+                       loading="lazy" decoding="async"/>
                     </div>
                     <h3 className="font-bold text-foreground mb-2">Kitchen</h3>
                     <p className="text-muted-foreground text-sm">
@@ -329,7 +329,7 @@ export default function BlogCleaningProducts() {
                         src={bathroomImage}
                         alt="Sparkling clean bathroom sink, mirror and tiled surfaces"
                         className="w-full h-full object-cover"
-                      />
+                       loading="lazy" decoding="async"/>
                     </div>
                     <h3 className="font-bold text-foreground mb-2">Bathroom</h3>
                     <p className="text-muted-foreground text-sm">
@@ -388,7 +388,7 @@ export default function BlogCleaningProducts() {
                     src={flatlayImage}
                     alt="Cleaning supplies laid out flat: spray bottles, microfibre cloths and baking soda"
                     className="w-full h-full object-cover"
-                  />
+                   loading="lazy" decoding="async"/>
                 </div>
                 <div className="p-6 bg-primary/10 rounded-xl border border-primary/20">
                   <div className="flex items-start gap-3">

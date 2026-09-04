@@ -186,7 +186,7 @@ export default function EdmontonPostConstruction() {
                 src={postConstructionBeforeAfter}
                 alt="Newly built interior after a post-construction clean, drywall dust removed from floors, sills and fixtures"
                 className="rounded-2xl shadow-2xl w-full h-auto object-cover"
-              />
+               loading="eager" fetchPriority="high"/>
             </div>
           </div>
         </div>
