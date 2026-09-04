@@ -336,7 +336,7 @@ export default function StonyPlain() {
             </div>
             <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-xl">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d38000.0!2d-114.01!3d53.53!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x539ff70e3f41d2ad%3A0x4399e4bfc1b1e30d!2sStony%20Plain%2C%20AB!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d38000.0!2d-114.00487!3d53.52899!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x539ff70e3f41d2ad%3A0x4399e4bfc1b1e30d!2sStony%20Plain%2C%20AB!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca"
                 width="100%"
                 height="450"
                 style={{ border: 0 }}

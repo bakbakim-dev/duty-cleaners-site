@@ -289,7 +289,7 @@ export default function Hazeldean() {
                 <div className="rounded-xl overflow-hidden shadow-lg border border-border">
                   <iframe
                     title="Hazeldean Edmonton Map"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9456.5!2d-113.4878!3d53.5089!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a0220c1b5a1b5d%3A0x0!2sHazeldean%2C+Edmonton%2C+AB!5e0!3m2!1sen!2sca!4v1700000000000"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9456.5!2d-113.47734!3d53.50423!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a0220c1b5a1b5d%3A0x0!2sHazeldean%2C+Edmonton%2C+AB!5e0!3m2!1sen!2sca!4v1700000000000"
                     width="100%"
                     height="400"
                     style={{ border: 0 }}

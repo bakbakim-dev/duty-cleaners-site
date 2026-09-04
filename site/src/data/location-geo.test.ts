@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { readFileSync, existsSync, readdirSync } from "node:fs";
+import { readFileSync, existsSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { LOCATION_GEO, geoFor } from "./location-geo";
 
@@ -165,5 +165,81 @@ describe("location pages emit GeoCoordinates", () => {
       seen.set(key, u);
     }
     expect(dupes).toEqual([]);
+  });
+});
+
+describe("each map embed is centred on the place its page describes", () => {
+  /**
+   * Every location page publishes GeoCoordinates in its schema and, separately,
+   * hard-codes a Google Maps embed URL whose centre is baked into the `pb=`
+   * parameter as !2d<lng>!3d<lat>. Nothing kept the two agreeing, and 14 of the
+   * 42 had drifted more than a kilometre apart.
+   *
+   * The worst was Langdon: schema at -113.67936, embed at -113.95 — 19 km west,
+   * out of the hamlet and toward Calgary's eastern edge. Bannerman was 6.0 km
+   * out and Turner Valley 5.8 km.
+   *
+   * This is easy to miss twice over. The embed is stripped from the prerendered
+   * HTML — the build reports "stripped baked map tiles from 57 pages" — so it
+   * does not appear in dist and a crawl of the built site cannot see it. It
+   * still ships to real visitors, who get a map of somewhere else.
+   *
+   * The schema coordinate is the authority: it is generated, and the nearby-
+   * neighbour distances are computed from it. The embed follows it.
+   */
+  const SRC = join(__dirname, "..", "pages", "locations");
+  const EMBED = /maps\/embed\?pb=[^"]*?!2d(-?[\d.]+)!3d(-?[\d.]+)/;
+  const CANON = /"https:\/\/dutycleaners\.ca\/(?:locations\/)?([a-z0-9-]+)\/?"/;
+
+  /** Great-circle distance in kilometres. */
+  function km(lat1: number, lon1: number, lat2: number, lon2: number): number {
+    const R = 6371;
+    const dLat = ((lat2 - lat1) * Math.PI) / 180;
+    const dLon = ((lon2 - lon1) * Math.PI) / 180;
+    const a =
+      Math.sin(dLat / 2) ** 2 +
+      Math.cos((lat1 * Math.PI) / 180) * Math.cos((lat2 * Math.PI) / 180) * Math.sin(dLon / 2) ** 2;
+    return 2 * R * Math.asin(Math.sqrt(a));
+  }
+
+  it("no embed sits more than 500 m from its page's own coordinates", () => {
+    if (!existsSync(DIST) || !existsSync(SRC)) return;
+    // slug -> the coordinates that page publishes in its schema
+    const geo = new Map<string, [number, number]>();
+    const walk = (dir: string) => {
+      for (const e of readdirSync(dir)) {
+        const p = join(dir, e);
+        if (!statSync(p).isDirectory()) continue;
+        const idx = join(p, "index.html");
+        if (existsSync(idx)) {
+          const m = /"latitude":\s*"?(-?[\d.]+)"?,\s*"longitude":\s*"?(-?[\d.]+)"?/.exec(
+            readFileSync(idx, "utf-8"),
+          );
+          if (m) geo.set(e, [Number(m[1]), Number(m[2])]);
+        }
+        walk(p);
+      }
+    };
+    walk(DIST);
+
+    const bad: string[] = [];
+    for (const file of readdirSync(SRC)) {
+      if (!file.endsWith(".tsx")) continue;
+      const src = readFileSync(join(SRC, file), "utf-8");
+      const e = EMBED.exec(src);
+      const c = CANON.exec(src);
+      if (!e || !c) continue;
+      const coords = geo.get(c[1]);
+      if (!coords) continue;
+      const d = km(coords[0], coords[1], Number(e[2]), Number(e[1]));
+      if (d > 0.5) bad.push(`${file}: embed is ${d.toFixed(1)} km from the page's own GeoCoordinates`);
+    }
+    expect(
+      bad,
+      `Map embeds pointing somewhere other than the page's place:\n${bad.join("\n")}\n` +
+        `Set !2d/!3d from the page's own latitude/longitude. Note the embed is ` +
+        `stripped from dist by the prerenderer, so this cannot be caught by ` +
+        `crawling the built site — it only ships to real visitors.`,
+    ).toEqual([]);
   });
 });

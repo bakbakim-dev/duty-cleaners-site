@@ -289,7 +289,7 @@ export default function Balwin() {
               <div className="max-w-4xl mx-auto rounded-xl overflow-hidden shadow-lg border border-border">
                 <iframe
                   title="Balwin Edmonton Map"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9448.5!2d-113.47!3d53.58!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a0245e2f1c1c1d%3A0x5a3e5b5e5b5e5b5e!2sBalwin%2C+Edmonton%2C+AB!5e0!3m2!1sen!2sca!4v1700000000000"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9448.5!2d-113.45468!3d53.58834!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a0245e2f1c1c1d%3A0x5a3e5b5e5b5e5b5e!2sBalwin%2C+Edmonton%2C+AB!5e0!3m2!1sen!2sca!4v1700000000000"
                   width="100%"
                   height="400"
                   style={{ border: 0 }}

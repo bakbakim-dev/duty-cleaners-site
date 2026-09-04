@@ -288,7 +288,7 @@ export default function Bellevue() {
               </div>
               <div className="max-w-4xl mx-auto rounded-xl overflow-hidden shadow-lg border border-border">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9444.5!2d-113.4600!3d53.5650!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a0224e7f0b0f0d%3A0x0!2sBellevue%2C+Edmonton%2C+AB!5e0!3m2!1sen!2sca!4v1700000000000"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9444.5!2d-113.44485!3d53.56474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a0224e7f0b0f0d%3A0x0!2sBellevue%2C+Edmonton%2C+AB!5e0!3m2!1sen!2sca!4v1700000000000"
                   width="100%"
                   height="400"
                   style={{ border: 0 }}

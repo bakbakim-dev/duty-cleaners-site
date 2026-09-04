@@ -281,7 +281,7 @@ export default function FortSaskatchewan() {
             </div>
             <div className="max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-xl">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d75200.0!2d-113.23!3d53.71!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a03e0e0bffffff%3A0x9a3a0e0e0bffffff!2sFort+Saskatchewan%2C+AB!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d75200.0!2d-113.21489!3d53.71286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a03e0e0bffffff%3A0x9a3a0e0e0bffffff!2sFort+Saskatchewan%2C+AB!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca"
                 width="100%"
                 height="450"
                 style={{ border: 0 }}

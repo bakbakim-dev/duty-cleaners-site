@@ -357,7 +357,7 @@ export default function TurnerValley() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25456.0!2d-114.282!3d50.726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53717b3e3b3b3b3b%3A0x0!2sTurner%20Valley%2C%20AB!5e0!3m2!1sen!2sca!4v1700000000000"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25456.0!2d-114.27927!3d50.67417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53717b3e3b3b3b3b%3A0x0!2sTurner%20Valley%2C%20AB!5e0!3m2!1sen!2sca!4v1700000000000"
                   width="100%"
                   height="450"
                   style={{ border: 0 }}

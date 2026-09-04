@@ -247,7 +247,7 @@ export default function Mission() {
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-6">Mission Service Area</h2>
                 <div className="rounded-2xl overflow-hidden shadow-xl">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20081.0!2d-114.0728!3d51.0375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x537170f3f2c7f4a3%3A0x9f1b6a8a8b0f1234!2sMission%2C+Calgary%2C+AB!5e0!3m2!1sen!2sca!4v1700000000000"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20081.0!2d-114.06780!3d51.03750!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x537170f3f2c7f4a3%3A0x9f1b6a8a8b0f1234!2sMission%2C+Calgary%2C+AB!5e0!3m2!1sen!2sca!4v1700000000000"
                     width="100%"
                     height="450"
                     style={{ border: 0 }}

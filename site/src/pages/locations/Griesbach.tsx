@@ -324,7 +324,7 @@ export default function Griesbach() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18886.5!2d-113.49!3d53.58!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a023e3f7e9e5e7%3A0x4c3b0b0b0b0b0b0b!2sGriesbach%2C%20Edmonton%2C%20AB!5e0!3m2!1sen!2sca!4v1700000000000"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18886.5!2d-113.50440!3d53.60676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a023e3f7e9e5e7%3A0x4c3b0b0b0b0b0b0b!2sGriesbach%2C%20Edmonton%2C%20AB!5e0!3m2!1sen!2sca!4v1700000000000"
                   width="100%"
                   height="450"
                   style={{ border: 0 }}

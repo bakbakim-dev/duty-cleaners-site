@@ -348,7 +348,7 @@ export default function McConachie() {
                 <div className="rounded-2xl overflow-hidden border border-border shadow-lg">
                   <iframe
                     title="McConachie Edmonton Map"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18876.5!2d-113.46!3d53.62!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a0244e1c1bccf7%3A0x4c0a6b1e6f2d8e9a!2sMcConachie%2C+Edmonton%2C+AB!5e0!3m2!1sen!2sca!4v1700000000000"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18876.5!2d-113.43013!3d53.63504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a0244e1c1bccf7%3A0x4c0a6b1e6f2d8e9a!2sMcConachie%2C+Edmonton%2C+AB!5e0!3m2!1sen!2sca!4v1700000000000"
                     width="100%"
                     height="400"
                     style={{ border: 0 }}

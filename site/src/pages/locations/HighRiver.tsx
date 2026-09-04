@@ -275,7 +275,7 @@ export default function HighRiver() {
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-6">High River Service Area</h2>
                 <div className="rounded-2xl overflow-hidden shadow-xl">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25400!2d-113.875!3d50.58!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x537376e1e10b7b0d%3A0x1096b3f2a2b6e7c7!2sHigh+River%2C+AB!5e0!3m2!1sen!2sca!4v1700000000000"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25400!2d-113.87093!3d50.58019!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x537376e1e10b7b0d%3A0x1096b3f2a2b6e7c7!2sHigh+River%2C+AB!5e0!3m2!1sen!2sca!4v1700000000000"
                     width="100%"
                     height="450"
                     style={{ border: 0 }}
