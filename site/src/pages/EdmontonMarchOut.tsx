@@ -201,8 +201,8 @@ export default function EdmontonMarchOut() {
         <img
           src={heroBg}
           alt="Emptied Edmonton military home cleaned to march-out inspection standard"
-          width={1920}
-          height={1080}
+          width={1024}
+          height={1024}
           className="absolute inset-0 w-full h-full object-cover opacity-25"
          loading="eager" fetchPriority="high"/>
         <div className="absolute inset-0 bg-gradient-to-b from-brand-navy/85 via-brand-navy/70 to-brand-navy/90" />

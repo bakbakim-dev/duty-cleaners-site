@@ -172,8 +172,8 @@ export default function EdmontonPricing() {
         <img
           src={heroPricingCleaner}
           alt="Professional cleaner wiping kitchen counter in a bright modern home"
-          width={1920}
-          height={1088}
+          width={1280}
+          height={725}
           className="absolute inset-0 w-full h-full object-cover opacity-25"
          loading="eager" fetchPriority="high"/>
         <div className="absolute inset-0 bg-gradient-to-br from-brand-navy/85 via-brand-navy/75 to-brand-navy/90 pointer-events-none" />

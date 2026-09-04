@@ -190,8 +190,8 @@ export default function Cranston() {
                 <img
                   src={calgaryBathroom}
                   alt="A sanitised bathroom after a Duty Cleaners visit in Calgary"
-                  width={600}
-                  height={400}
+                  width={800}
+                  height={800}
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   loading="eager"
                   {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />

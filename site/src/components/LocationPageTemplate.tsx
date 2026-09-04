@@ -288,8 +288,8 @@ export default function LocationPageTemplate({
         <img
           src={heroFamilyBedroom}
           alt={`Freshly cleaned bedroom in a ${city} home`}
-          width={1920}
-          height={1280}
+          width={1280}
+          height={853}
           className="absolute inset-0 w-full h-full object-cover opacity-25"
           loading="eager"
           fetchPriority="high"

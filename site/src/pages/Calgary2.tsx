@@ -394,16 +394,22 @@ export default function Calgary2() {
                 slots={[
                   {
                     src: galleryHappyPlace,
+                    width: 1080,
+                    height: 1920,
                     alt: "Morning light across a tidied Calgary living room",
                     caption: "Morning light — the front rooms",
                   },
                   {
                     src: galleryCalgaryMoveOut,
+                    width: 800,
+                    height: 800,
                     alt: "Cleaned Calgary entryway floor after a winter week",
                     caption: "Chinook season — the entryway",
                   },
                   {
                     src: galleryCalgaryWindow,
+                    width: 800,
+                    height: 800,
                     alt: "Cleaned window and sill detail in a Calgary home",
                     caption: "Spring — window and sill detail",
                   },

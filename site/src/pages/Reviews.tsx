@@ -128,8 +128,8 @@ export default function Reviews() {
           src={heroReviews}
           alt="Clean modern home interior"
           className="absolute inset-0 w-full h-full object-cover"
-          width={1920}
-          height={1080}
+          width={1536}
+          height={1024}
          loading="eager" fetchPriority="high"/>
         {/* Navy gradient overlay for text readability */}
         <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/90 via-brand-navy/70 to-brand-navy/40" />

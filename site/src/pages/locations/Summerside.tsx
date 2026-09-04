@@ -213,8 +213,8 @@ export default function Summerside() {
                   src={heroImg}
                   alt="Professional cleaner inside a Summerside, Edmonton lake community home"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
-                  width={1024}
-                  height={1024}
+                  width={896}
+                  height={672}
                 loading="eager"
                   {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
               </div>

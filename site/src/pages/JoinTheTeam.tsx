@@ -352,7 +352,7 @@ export default function JoinTheTeam() {
         {/* Hero Section */}
         <section className="relative py-24 bg-brand-navy overflow-hidden">
           {/* Background Image */}
-          <img width={1920} height={1080}
+          <img width={1280} height={720}
             src={heroCleanersSmiling}
             alt="Smiling professional cleaners"
             className="absolute inset-0 w-full h-full object-cover opacity-30"

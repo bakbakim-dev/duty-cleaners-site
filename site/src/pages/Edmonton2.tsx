@@ -406,16 +406,22 @@ export default function Edmonton2() {
                 slots={[
                   {
                     src: galleryLivingRoom,
+                    width: 1024,
+                    height: 1024,
                     alt: "Morning light across a tidied Edmonton living room",
                     caption: "Morning light — the front rooms",
                   },
                   {
                     src: galleryMoveOutClean,
+                    width: 1024,
+                    height: 1024,
                     alt: "Cleaned Edmonton entryway floor after a winter week",
                     caption: "Snow season — the entryway",
                   },
                   {
                     src: galleryWindowDetail,
+                    width: 800,
+                    height: 800,
                     alt: "Cleaned window and sill detail in an Edmonton home",
                     caption: "Spring — window and sill detail",
                   },

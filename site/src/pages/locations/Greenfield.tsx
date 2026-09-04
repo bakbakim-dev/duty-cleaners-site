@@ -122,8 +122,8 @@ export default function Greenfield() {
               <img
                 src={greenfieldCleanHome}
                 alt="A freshly cleaned family living space in an Edmonton home"
-                width={1200}
-                height={800}
+                width={1024}
+                height={1024}
                 className="w-full h-auto object-cover"
                 loading="lazy"
                 decoding="async"

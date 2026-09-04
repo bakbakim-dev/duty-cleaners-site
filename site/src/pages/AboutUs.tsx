@@ -34,8 +34,8 @@ export default function AboutUs() {
         <img
           src={heroCleaningLadies}
           alt="Professional Duty Cleaners team smiling in a clean home"
-          width={1920}
-          height={1280}
+          width={1280}
+          height={853}
           className="absolute inset-0 w-full h-full object-cover opacity-25"
          loading="eager" fetchPriority="high"/>
         <div className="absolute inset-0 bg-gradient-to-b from-brand-navy/80 via-brand-navy/70 to-brand-navy/90" />

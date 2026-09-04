@@ -213,8 +213,8 @@ export default function BlogCleaningProducts() {
 
               <div className="aspect-video rounded-2xl overflow-hidden mb-12">
                 <img
-                  width={1920}
-                  height={1080}
+                  width={1280}
+                  height={725}
                   src={heroImage}
                   alt="A small set of cleaning products and microfibre cloths arranged on a clean kitchen counter"
                   className="w-full h-full object-cover"
@@ -307,7 +307,7 @@ export default function BlogCleaningProducts() {
                     <div className="aspect-video rounded-xl overflow-hidden mb-4">
                       <img
                         width={1024}
-                        height={576}
+                        height={1024}
                         src={kitchenImage}
                         alt="Clean kitchen counters and stovetop after a professional cleaning"
                         className="w-full h-full object-cover"
@@ -384,7 +384,7 @@ export default function BlogCleaningProducts() {
                 <div className="aspect-video rounded-xl overflow-hidden mb-6">
                   <img
                     width={1024}
-                    height={576}
+                    height={1024}
                     src={flatlayImage}
                     alt="Cleaning supplies laid out flat: spray bottles, microfibre cloths and baking soda"
                     className="w-full h-full object-cover"

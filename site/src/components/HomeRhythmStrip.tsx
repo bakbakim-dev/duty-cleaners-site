@@ -5,6 +5,15 @@ export interface HomeRhythmSlot {
   alt: string;
   /** Short seasonal caption, e.g. "Snow season — the mudroom". */
   caption: string;
+  /**
+   * The photo's real intrinsic size. This used to be hard-coded as 640x480 for
+   * every slot, which was the wrong SHAPE for all six photos that pass through
+   * here — one of them is 1080x1920, portrait, and was being declared as 4:3
+   * landscape. The CSS fixes the rendered height either way, so nothing moved,
+   * but the browser was being told the wrong ratio to reserve.
+   */
+  width: number;
+  height: number;
 }
 
 /**
@@ -26,8 +35,8 @@ export default function HomeRhythmStrip({ slots, className = "" }: { slots: Home
               alt={slot.alt}
               loading="lazy"
               decoding="async"
-              width={640}
-              height={480}
+              width={slot.width}
+              height={slot.height}
               className={`motion-image-reveal h-48 w-full object-cover md:h-64 ${reveal.className}`}
               style={{ transitionDelay: `${idx * 60}ms` }}
             />

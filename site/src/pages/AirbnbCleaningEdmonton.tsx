@@ -275,7 +275,7 @@ const AirbnbCleaningEdmonton = () => {
 
       {/* Hero Section */}
       <section className="relative py-20 px-4 bg-brand-navy overflow-hidden">
-        <img width={1920} height={1080}
+        <img width={1280} height={720}
           src={heroBg}
           alt="Guest-ready short-term rental living room in Edmonton after a turnover clean"
           className="absolute inset-0 w-full h-full object-cover opacity-25"

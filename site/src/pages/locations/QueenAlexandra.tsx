@@ -121,8 +121,8 @@ const QueenAlexandra = () => {
               <img
                 src={strathconaCleanHome}
                 alt="A Duty Cleaners cleaner finishing a home in the Old Strathcona area, just north of Queen Alexandra"
-                width={1200}
-                height={800}
+                width={896}
+                height={672}
                 className="w-full h-auto object-cover"
                 loading="lazy"
                 decoding="async"

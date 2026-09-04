@@ -192,7 +192,7 @@ export default function StAlbert() {
               </div>
             </div>
             <div className="flex-shrink-0 w-full lg:w-[500px]">
-              <img width={896} height={672}
+              <img width={1024} height={1024}
                 src={stAlbertHome}
                 alt="A family in a living room with clean floors and clear surfaces"
                 className="rounded-2xl shadow-2xl w-full h-auto object-cover border-2 border-white/10"

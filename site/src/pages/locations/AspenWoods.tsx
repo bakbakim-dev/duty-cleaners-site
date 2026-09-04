@@ -190,8 +190,8 @@ export default function AspenWoods() {
                 <img
                   src={calgaryLivingRoom}
                   alt="A tidy, freshly cleaned Calgary living room"
-                  width={600}
-                  height={400}
+                  width={800}
+                  height={800}
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   loading="eager"
                   {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />

@@ -190,8 +190,8 @@ export default function InglewoodCalgary() {
                 <img
                   src={calgaryCleanHome}
                   alt="A freshly cleaned Calgary living space"
-                  width={600}
-                  height={400}
+                  width={1024}
+                  height={768}
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   loading="eager"
                   {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />

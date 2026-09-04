@@ -306,3 +306,64 @@ describe("image loading priority", () => {
     ).toEqual([]);
   });
 });
+
+describe("declared image dimensions match the file", () => {
+  /**
+   * width and height on an <img> exist so the browser can reserve the right box
+   * before the bytes arrive. Declaring the wrong SHAPE is worse than declaring
+   * nothing: the page lays out around a box of the wrong proportions and then
+   * reflows everything under it when the real image lands.
+   *
+   * 20 tags were wrong when this was written. The worst declared 640x480 —
+   * landscape, 4:3 — for a photo that is 1080x1920, portrait. Several square
+   * 800x800 and 1024x1024 photos were declared as 600x400. Most came from one
+   * shared strip component that hard-coded a single size for every photo handed
+   * to it, so the numbers described the component rather than the image.
+   *
+   * The ratio is what matters, not the exact pixels — a correctly-shaped box at
+   * half scale reserves the same space — so that is what this compares.
+   */
+  function webpSize(file: string): { w: number; h: number } | null {
+    let buf: Buffer;
+    try {
+      buf = readFileSync(file);
+    } catch {
+      return null;
+    }
+    if (buf.length < 30 || buf.toString("ascii", 0, 4) !== "RIFF") return null;
+    const fmt = buf.toString("ascii", 12, 16);
+    if (fmt === "VP8X") return { w: buf.readUIntLE(24, 3) + 1, h: buf.readUIntLE(27, 3) + 1 };
+    if (fmt === "VP8L") {
+      const b = buf.readUInt32LE(21);
+      return { w: (b & 0x3fff) + 1, h: ((b >> 14) & 0x3fff) + 1 };
+    }
+    if (fmt === "VP8 ") return { w: buf.readUInt16LE(26) & 0x3fff, h: buf.readUInt16LE(28) & 0x3fff };
+    return null;
+  }
+
+  it("no image declares an aspect ratio its file does not have", () => {
+    const bad: string[] = [];
+    const sizes = new Map<string, { w: number; h: number } | null>();
+    for (const { url, html } of pages()) {
+      for (const m of noScripts(html).matchAll(/<img\b([^>]*)>/gi)) {
+        const w = Number(attr(m[1], "width"));
+        const h = Number(attr(m[1], "height"));
+        const src = attr(m[1], "src");
+        if (!w || !h || !src || !src.endsWith(".webp")) continue;
+        const file = join(DIST, src.replace(/^\//, ""));
+        if (!sizes.has(file)) sizes.set(file, webpSize(file));
+        const real = sizes.get(file);
+        if (!real || !real.w || !real.h) continue;
+        if (Math.abs(w / h - real.w / real.h) > 0.02) {
+          bad.push(`${url}: ${src.split("/").pop()} declared ${w}x${h}, file is ${real.w}x${real.h}`);
+        }
+      }
+    }
+    expect(
+      [...new Set(bad)],
+      `These images declare a box the wrong shape:\n${[...new Set(bad)].join("\n")}\n` +
+        `The browser reserves that shape, then reflows the page under it when ` +
+        `the real image arrives. Take the numbers from the file.`,
+    ).toEqual([]);
+  });
+});

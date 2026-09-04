@@ -216,8 +216,8 @@ export default function BlogChoosingCalgaryCleaner() {
               <div className="mb-16">
                 <div className="aspect-video rounded-xl overflow-hidden mb-6">
                   <img
-                    width={1024}
-                    height={576}
+                    width={1536}
+                    height={1024}
                     src={teamImage}
                     alt="Duty Cleaners' Calgary cleaning team"
                     className="w-full h-full object-cover"

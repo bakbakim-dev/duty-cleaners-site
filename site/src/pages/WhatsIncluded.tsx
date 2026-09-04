@@ -306,7 +306,7 @@ export default function WhatsIncluded() {
       {/* Hero Section - Dark Navy */}
       <section className="relative text-white overflow-hidden">
         {/* Background image */}
-        <img width={1920} height={1080}
+        <img width={1280} height={720}
           src={heroBg}
           alt="Freshly cleaned open-plan living space covered by the standard checklist"
           className="absolute inset-0 w-full h-full object-cover opacity-40"
