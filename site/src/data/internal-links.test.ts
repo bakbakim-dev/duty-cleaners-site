@@ -134,3 +134,56 @@ describe("location pages feed the service pages", () => {
     ).toEqual([]);
   });
 });
+
+describe('anchors describe where they go', () => {
+  /**
+   * An anchor that names a service has to link to that service.
+   *
+   * The first version of this check ignored anchors over 60 characters, on the
+   * theory that long ones were card wrappers rather than editorial links. That
+   * theory hid the defect: both city homepages had a card headed Deep Cleaning
+   * whose CTA read "Explore deep cleaning" and whose link went to /services/,
+   * and because the whole card was the anchor it ran to 217 characters — over
+   * the cap, so it was never examined. The two faults concealed each other.
+   *
+   * No length cap now. The anchor is matched on the service it names.
+   */
+  const NAMES: ReadonlyArray<readonly [RegExp, RegExp]> = [
+    [/\bdeep clean(ing)?\b/i, /deep-cleaning/],
+    [/\brecurring clean(ing)?\b/i, /recurring-cleaning/],
+    [/\bmove[- ]?(in|out)\b/i, /move-out-cleaning-|move-in-move-out/],
+    [/\bpost[- ]construction\b/i, /post-construction/],
+    [/\bwall wash(ing)?\b/i, /wall-washing/],
+    [/\bairbnb\b/i, /airbnb/],
+  ];
+
+  it('no anchor names one service and links to another', () => {
+    const pages = [...locationPages(), '/', '/cleaning-services-calgary/'];
+    if (pages.length === 0) return;
+    const bad: string[] = [];
+    for (const url of pages) {
+      let body: string;
+      try {
+        body = mainHtml(url).replace(/<svg[\s\S]*?<\/svg>/g, ' ');
+      } catch {
+        continue;
+      }
+      for (const a of body.matchAll(/<a\b[^>]*href="(\/[^"]*)"[^>]*>([\s\S]*?)<\/a>/g)) {
+        const href = a[1];
+        const text = a[2].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+        for (const [names, goes] of NAMES) {
+          if (names.test(text) && !goes.test(href)) {
+            bad.push(`${url}: "${text.slice(0, 52)}" -> ${href}`);
+            break;
+          }
+        }
+      }
+    }
+    expect(
+      bad,
+      `These anchors name a service and link somewhere else:\n${bad.join('\n')}\n` +
+        `An anchor is a promise about the destination. Point it at the page it ` +
+        `names, or rename it.`,
+    ).toEqual([]);
+  });
+});

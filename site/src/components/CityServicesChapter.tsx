@@ -57,8 +57,7 @@ export default function CityServicesChapter({
 
         <div className="mt-10 grid gap-6 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] lg:gap-8">
           {/* Oversized warm-paper panel */}
-          <Link
-            to={canonicalForPath(`${basePath}/services`)}
+          <div
             className="motion-lift paper-rule card-warm group relative flex flex-col overflow-hidden border bg-white"
           >
             <div className="relative h-56 w-full overflow-hidden md:h-72 lg:h-80">
@@ -79,15 +78,17 @@ export default function CityServicesChapter({
                 A maintenance clean for kitchens, bathrooms, bedrooms, floors, dusting, and surfaces.
                 Best for homes that need regular upkeep.
               </p>
-              <span className="mt-5 inline-flex items-center font-semibold text-primary transition-transform duration-300 group-hover:translate-x-1">
-                Explore standard cleaning <ArrowRight className="ml-1.5 h-4 w-4" aria-hidden="true" />
-              </span>
+              <Link
+                  to={canonicalForPath(`${basePath}/regular-cleaning`)}
+                  className="mt-5 inline-flex items-center font-semibold text-primary transition-transform duration-300 group-hover:translate-x-1 after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                >
+                  Explore standard cleaning <ArrowRight className="ml-1.5 h-4 w-4" aria-hidden="true" />
+              </Link>
             </div>
-          </Link>
+          </div>
 
           {/* Vertical photo panel */}
-          <Link
-            to={canonicalForPath(`${basePath}/services`)}
+          <div
             className="motion-lift paper-rule card-warm group relative flex min-h-[420px] flex-col overflow-hidden border bg-white"
           >
             <div className="relative flex-1 overflow-hidden">
@@ -108,17 +109,19 @@ export default function CityServicesChapter({
                 A more detailed top-to-bottom clean for built-up dust, grime, baseboards, bathrooms,
                 kitchens, and hard-to-reach areas.
               </p>
-              <span className="mt-3 inline-flex items-center text-sm font-semibold text-primary transition-transform duration-300 group-hover:translate-x-1">
-                Explore deep cleaning <ExternalLink className="ml-1 h-4 w-4" aria-hidden="true" />
-              </span>
+              <Link
+                  to={canonicalForPath(`${basePath}/deep-cleaning`)}
+                  className="mt-3 inline-flex items-center text-sm font-semibold text-primary transition-transform duration-300 group-hover:translate-x-1 after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                >
+                  Explore deep cleaning <ExternalLink className="ml-1 h-4 w-4" aria-hidden="true" />
+              </Link>
             </div>
-          </Link>
+          </div>
         </div>
 
         {/* Full-width deep-ink band */}
-        <Link
-          to={canonicalForPath(`${basePath}/move-in-move-out-cleaning`)}
-          className="surface-ink motion-lift card-warm group mt-6 flex flex-col gap-6 p-6 md:flex-row md:items-center md:p-8"
+        <div
+          className="surface-ink motion-lift card-warm group mt-6 flex flex-col gap-6 p-6 md:flex-row md:items-center md:p-8 relative"
         >
           <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-brand-navy-foreground/10">
             <Truck className="h-7 w-7 text-accent-on-dark" aria-hidden="true" />
@@ -134,10 +137,13 @@ export default function CityServicesChapter({
               Keys in, keys out — timed around your walkthrough.
             </p>
           </div>
-          <span className="inline-flex items-center font-semibold text-accent-on-dark transition-transform duration-300 group-hover:translate-x-1">
-            Explore move-in/out cleaning <ArrowRight className="ml-1.5 h-4 w-4" aria-hidden="true" />
-          </span>
-        </Link>
+          <Link
+              to={canonicalForPath(`${basePath}/move-in-move-out-cleaning`)}
+              className="inline-flex items-center font-semibold text-accent-on-dark transition-transform duration-300 group-hover:translate-x-1 after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            >
+              Explore move-in/out cleaning <ArrowRight className="ml-1.5 h-4 w-4" aria-hidden="true" />
+          </Link>
+        </div>
 
         {/*
           Recurring was missing from this page entirely — the highest-lifetime-
@@ -146,9 +152,8 @@ export default function CityServicesChapter({
           footer link. It gets a slim card beside post-construction, with the
           discounts, because the discount is the whole proposition.
         */}
-        <Link
-          to={canonicalForPath(`${basePath}/recurring-cleaning`)}
-          className="motion-lift paper-rule card-warm group mt-6 flex items-center gap-4 border bg-white p-5 md:p-6"
+        <div
+          className="motion-lift paper-rule card-warm group mt-6 flex items-center gap-4 border bg-white p-5 md:p-6 relative"
         >
           <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-accent/10">
             <Repeat className="h-6 w-6 text-accent" aria-hidden="true" />
@@ -159,15 +164,17 @@ export default function CityServicesChapter({
               {RECURRING_PITCH}
             </p>
           </div>
-          <span className="hidden items-center text-sm font-semibold text-accent transition-transform duration-300 group-hover:translate-x-1 sm:inline-flex">
-            Explore recurring cleaning <ExternalLink className="ml-1 h-4 w-4" aria-hidden="true" />
-          </span>
-        </Link>
+          <Link
+              to={canonicalForPath(`${basePath}/recurring-cleaning`)}
+              className="hidden items-center text-sm font-semibold text-accent transition-transform duration-300 group-hover:translate-x-1 sm:inline-flex after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            >
+              Explore recurring cleaning <ExternalLink className="ml-1 h-4 w-4" aria-hidden="true" />
+          </Link>
+        </div>
 
         {/* Slim paper card */}
-        <Link
-          to={canonicalForPath(`${basePath}/post-construction-cleaning`)}
-          className="motion-lift paper-rule card-warm group mt-6 flex items-center gap-4 border bg-white p-5 md:p-6"
+        <div
+          className="motion-lift paper-rule card-warm group mt-6 flex items-center gap-4 border bg-white p-5 md:p-6 relative"
         >
           <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-primary/10">
             <HardHat className="h-6 w-6 text-primary" aria-hidden="true" />
@@ -178,10 +185,13 @@ export default function CityServicesChapter({
               Dust and debris removal after renovations or constructions.
             </p>
           </div>
-          <span className="hidden items-center text-sm font-semibold text-primary transition-transform duration-300 group-hover:translate-x-1 sm:inline-flex">
-            Explore post-construction <ExternalLink className="ml-1 h-4 w-4" aria-hidden="true" />
-          </span>
-        </Link>
+          <Link
+              to={canonicalForPath(`${basePath}/post-construction-cleaning`)}
+              className="hidden items-center text-sm font-semibold text-primary transition-transform duration-300 group-hover:translate-x-1 sm:inline-flex after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            >
+              Explore post-construction <ExternalLink className="ml-1 h-4 w-4" aria-hidden="true" />
+          </Link>
+        </div>
 
         <div className="mt-10 text-center">
           <Link
