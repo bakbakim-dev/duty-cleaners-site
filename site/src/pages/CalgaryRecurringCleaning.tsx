@@ -17,7 +17,7 @@ export default function CalgaryRecurringCleaning() {
   return (
     <ServiceDetailPage
       city="calgary"
-      crossCity={{ city: "Edmonton", to: "/edmonton/recurring-cleaning/", description: "Weekly and bi-weekly cleaning schedules for Edmonton homes." }}
+      crossCity={{ city: "Edmonton", to: "/edmonton/recurring-cleaning/", description: "Weekly and bi-weekly cleaning schedules for Edmonton homes.", linkText: "Recurring cleaning in Edmonton" }}
       quoteService="recurring-cleaning"
       phone="(403) 768-1341"
       phoneHref="tel:4037681341"
