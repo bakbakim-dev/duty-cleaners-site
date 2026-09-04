@@ -136,15 +136,15 @@ export default function CastleDowns() {
     <>
       <Helmet>
         <title>House Cleaning in Castle Downs, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Castle Downs, Edmonton. Serving families near Beaumaris Lake, Castle Downs Park & more. Local cleaners you can trust." />
+        <meta name="description" content="Professional house cleaning in Castle Downs, Edmonton. Serving families near Beaumaris Lake, Castle Downs Park & more." />
         <link rel="canonical" href="https://dutycleaners.ca/locations/castle-downs/" />
         <meta property="og:title" content="House Cleaning in Castle Downs, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Castle Downs, Edmonton. Serving families near Beaumaris Lake, Castle Downs Park & more. Local cleaners you can trust." />
+        <meta property="og:description" content="Professional house cleaning in Castle Downs, Edmonton. Serving families near Beaumaris Lake, Castle Downs Park & more." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/castle-downs/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Castle Downs, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Castle Downs, Edmonton. Serving families near Beaumaris Lake, Castle Downs Park & more. Local cleaners you can trust." />
+        <meta name="twitter:description" content="Professional house cleaning in Castle Downs, Edmonton. Serving families near Beaumaris Lake, Castle Downs Park & more." />
         <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Castle Downs Edmonton", city: "edmonton", url: "https://dutycleaners.ca/locations/castle-downs", areaServed: "Castle Downs, Edmonton, AB" }))}</script>
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>

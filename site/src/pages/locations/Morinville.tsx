@@ -128,15 +128,15 @@ export default function Morinville() {
     <div className="min-h-screen">
       <Helmet>
         <title>House Cleaning Morinville, AB | Duty Cleaners</title>
-        <meta name="description" content="Reliable house cleaning in Morinville, near St. Jean Baptiste Church and the Leisure Centre. Flat-rate quotes in 60 seconds, and you pay after the clean." />
+        <meta name="description" content="House cleaning in Morinville, near St. Jean Baptiste Church and the Leisure Centre. Flat-rate quotes in 60 seconds; you pay after the clean." />
         <link rel="canonical" href="https://dutycleaners.ca/cleaning-services-morinville/" />
         <meta property="og:title" content="House Cleaning Morinville, AB | Duty Cleaners" />
-        <meta property="og:description" content="Reliable house cleaning in Morinville, near St. Jean Baptiste Church and the Leisure Centre. Flat-rate quotes in 60 seconds, and you pay after the clean." />
+        <meta property="og:description" content="House cleaning in Morinville, near St. Jean Baptiste Church and the Leisure Centre. Flat-rate quotes in 60 seconds; you pay after the clean." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/cleaning-services-morinville/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Morinville, AB | Duty Cleaners" />
-        <meta name="twitter:description" content="Reliable house cleaning in Morinville, near St. Jean Baptiste Church and the Leisure Centre. Flat-rate quotes in 60 seconds, and you pay after the clean." />
+        <meta name="twitter:description" content="House cleaning in Morinville, near St. Jean Baptiste Church and the Leisure Centre. Flat-rate quotes in 60 seconds; you pay after the clean." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Morinville, AB", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-morinville", areaServed: "Morinville, AB" }))}</script>

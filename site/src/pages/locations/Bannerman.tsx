@@ -157,7 +157,7 @@ export default function Bannerman() {
     <>
       <Helmet>
         <title>Bannerman, Edmonton House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Bannerman, Edmonton. Serving families near Bannerman Park, Bannerman School, Hermitage Park & more. Local cleaners you can trust." />
+        <meta name="description" content="Professional house cleaning in Bannerman, Edmonton. Serving families near Bannerman Park, Bannerman School, Hermitage Park & more." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Bannerman, Edmonton",
@@ -169,12 +169,12 @@ export default function Bannerman() {
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/bannerman/" />
         <meta property="og:title" content="Bannerman, Edmonton House Cleaning | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Bannerman, Edmonton. Serving families near Bannerman Park, Bannerman School, Hermitage Park & more. Local cleaners you can trust." />
+        <meta property="og:description" content="Professional house cleaning in Bannerman, Edmonton. Serving families near Bannerman Park, Bannerman School, Hermitage Park & more." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/bannerman/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Bannerman, Edmonton House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Bannerman, Edmonton. Serving families near Bannerman Park, Bannerman School, Hermitage Park & more. Local cleaners you can trust." />
+        <meta name="twitter:description" content="Professional house cleaning in Bannerman, Edmonton. Serving families near Bannerman Park, Bannerman School, Hermitage Park & more." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 

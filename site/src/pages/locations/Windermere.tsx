@@ -136,15 +136,15 @@ export default function Windermere() {
     <div className="min-h-screen">
       <Helmet>
         <title>House Cleaning Windermere, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="House cleaning in Windermere, southwest Edmonton — near Currents of Windermere, Keswick and Ambleside. Flat-rate quotes and cleaners rated after every visit." />
+        <meta name="description" content="House cleaning in Windermere, southwest Edmonton, near Currents of Windermere, Keswick and Ambleside. Flat-rate quotes, rated cleaners." />
         <link rel="canonical" href="https://dutycleaners.ca/cleaning-services-windermere/" />
         <meta property="og:title" content="House Cleaning Windermere, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="House cleaning in Windermere, southwest Edmonton — near Currents of Windermere, Keswick and Ambleside. Flat-rate quotes and cleaners rated after every visit." />
+        <meta property="og:description" content="House cleaning in Windermere, southwest Edmonton, near Currents of Windermere, Keswick and Ambleside. Flat-rate quotes, rated cleaners." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/cleaning-services-windermere/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Windermere, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning in Windermere, southwest Edmonton — near Currents of Windermere, Keswick and Ambleside. Flat-rate quotes and cleaners rated after every visit." />
+        <meta name="twitter:description" content="House cleaning in Windermere, southwest Edmonton, near Currents of Windermere, Keswick and Ambleside. Flat-rate quotes, rated cleaners." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Windermere Edmonton", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-windermere", areaServed: "Windermere, Edmonton, AB" }))}</script>

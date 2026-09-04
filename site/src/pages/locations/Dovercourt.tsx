@@ -139,7 +139,7 @@ export default function Dovercourt() {
     <>
       <Helmet>
         <title>House Cleaning in Dovercourt, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Dovercourt, Edmonton. Trusted local cleaners serving Dovercourt homes with reliable, customer-rated cleaning service." />
+        <meta name="description" content="Professional house cleaning in Dovercourt, Edmonton. Trusted local cleaners, customer-rated, serving Dovercourt homes." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Dovercourt, Edmonton",
@@ -152,12 +152,12 @@ export default function Dovercourt() {
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/dovercourt-edmonton/" />
         <meta property="og:title" content="House Cleaning in Dovercourt, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Dovercourt, Edmonton. Trusted local cleaners serving Dovercourt homes with reliable, customer-rated cleaning service." />
+        <meta property="og:description" content="Professional house cleaning in Dovercourt, Edmonton. Trusted local cleaners, customer-rated, serving Dovercourt homes." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/dovercourt-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Dovercourt, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Dovercourt, Edmonton. Trusted local cleaners serving Dovercourt homes with reliable, customer-rated cleaning service." />
+        <meta name="twitter:description" content="Professional house cleaning in Dovercourt, Edmonton. Trusted local cleaners, customer-rated, serving Dovercourt homes." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 

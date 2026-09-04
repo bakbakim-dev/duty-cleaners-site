@@ -114,12 +114,12 @@ export default function MountRoyal() {
     <>
       <Helmet>
         <title>Mount Royal, Calgary House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="Premium house cleaning in Mount Royal, Calgary. Experienced with heritage homes and fine finishes. 100% satisfaction guaranteed. Call (403) 768-1341." />
+        <meta name="description" content="Premium house cleaning in Mount Royal, Calgary. Experienced with heritage homes and fine finishes. 100% satisfaction guaranteed." />
         <meta property="og:title" content="Mount Royal, Calgary House Cleaning | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Mount Royal, Calgary House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="Premium house cleaning in Mount Royal, Calgary. Experienced with heritage homes and fine finishes. 100% satisfaction guaranteed. Call (403) 768-1341." />
-        <meta property="og:description" content="Premium house cleaning in Mount Royal, Calgary. Experienced with heritage homes and fine finishes. 100% satisfaction guaranteed. Call (403) 768-1341." />
+        <meta name="twitter:description" content="Premium house cleaning in Mount Royal, Calgary. Experienced with heritage homes and fine finishes. 100% satisfaction guaranteed." />
+        <meta property="og:description" content="Premium house cleaning in Mount Royal, Calgary. Experienced with heritage homes and fine finishes. 100% satisfaction guaranteed." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/mount-royal/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/mount-royal/" />

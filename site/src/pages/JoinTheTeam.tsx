@@ -284,16 +284,16 @@ export default function JoinTheTeam() {
         <title>Cleaning Jobs Edmonton & Calgary | Duty Cleaners Careers</title>
         <meta
           name="description"
-          content="Join the Duty Cleaners team! Flexible schedules, competitive pay, and consistent work. Apply today for cleaning positions in Edmonton and Calgary."
+          content="Join the Duty Cleaners team. Flexible schedules, competitive pay and consistent work. Cleaning positions in Edmonton and Calgary."
         />
         <link rel="canonical" href="https://dutycleaners.ca/join-the-team/" />
         <meta property="og:title" content="Cleaning Jobs Edmonton & Calgary | Duty Cleaners Careers" />
-        <meta property="og:description" content="Join the Duty Cleaners team! Flexible schedules, competitive pay, and consistent work. Apply today for cleaning positions in Edmonton and Calgary." />
+        <meta property="og:description" content="Join the Duty Cleaners team. Flexible schedules, competitive pay and consistent work. Cleaning positions in Edmonton and Calgary." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/join-the-team/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Cleaning Jobs Edmonton & Calgary | Duty Cleaners Careers" />
-        <meta name="twitter:description" content="Join the Duty Cleaners team! Flexible schedules, competitive pay, and consistent work. Apply today for cleaning positions in Edmonton and Calgary." />
+        <meta name="twitter:description" content="Join the Duty Cleaners team. Flexible schedules, competitive pay and consistent work. Cleaning positions in Edmonton and Calgary." />
         {/* Mirrors the FAQ accordion rendered on this page. */}
         <script type="application/ld+json">
           {JSON.stringify({

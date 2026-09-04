@@ -131,15 +131,15 @@ export default function Devon() {
     <div className="min-h-screen">
       <Helmet>
         <title>House Cleaning Devon, AB | Duty Cleaners</title>
-        <meta name="description" content="Trusted house cleaning in Devon, from Voyageur Park to the river valley trails. See your flat price in 60 seconds — no phone call, pay after your clean." />
+        <meta name="description" content="Trusted house cleaning in Devon, from Voyageur Park to the river valley trails. See your flat price in 60 seconds." />
         <link rel="canonical" href="https://dutycleaners.ca/cleaning-services-devon/" />
         <meta property="og:title" content="House Cleaning Devon, AB | Duty Cleaners" />
-        <meta property="og:description" content="Trusted house cleaning in Devon, from Voyageur Park to the river valley trails. See your flat price in 60 seconds — no phone call, pay after your clean." />
+        <meta property="og:description" content="Trusted house cleaning in Devon, from Voyageur Park to the river valley trails. See your flat price in 60 seconds." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/cleaning-services-devon/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Devon, AB | Duty Cleaners" />
-        <meta name="twitter:description" content="Trusted house cleaning in Devon, from Voyageur Park to the river valley trails. See your flat price in 60 seconds — no phone call, pay after your clean." />
+        <meta name="twitter:description" content="Trusted house cleaning in Devon, from Voyageur Park to the river valley trails. See your flat price in 60 seconds." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Devon, AB", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-devon", areaServed: "Devon, AB" }))}</script>

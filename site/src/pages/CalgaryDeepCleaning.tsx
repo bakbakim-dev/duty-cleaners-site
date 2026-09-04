@@ -23,7 +23,7 @@ export default function CalgaryDeepCleaning() {
       phone="(403) 768-1341"
       phoneHref="tel:4037681341"
       seoTitle="Deep Cleaning Services Calgary | Duty Cleaners"
-      seoDescription="Detailed deep cleaning in Calgary: baseboards, switches, vents, appliance exteriors and built-up grime removed. Miss something? We re-clean it within 24 hours."
+      seoDescription="Deep cleaning in Calgary: baseboards, switches, vents, appliance exteriors and built-up grime removed. We re-clean any miss within 24 hours."
       canonical="https://dutycleaners.ca/calgary/deep-cleaning"
       heroHeading={<>Deep Cleaning Services in <AccentGold>Calgary</AccentGold></>}
       heroSubheading="A meticulous top-to-bottom reset for the areas regular cleaning never reaches."

@@ -136,15 +136,15 @@ export default function StonyPlain() {
     <div className="min-h-screen">
       <Helmet>
         <title>House Cleaning Stony Plain, AB | Duty Cleaners</title>
-        <meta name="description" content="Trusted house cleaning in Stony Plain, home of the downtown murals. Flat-rate standard, deep and move-out cleans — quoted online, paid after the work is done." />
+        <meta name="description" content="Trusted house cleaning in Stony Plain, home of the downtown murals. Flat-rate standard, deep and move-out cleans." />
         <link rel="canonical" href="https://dutycleaners.ca/cleaning-services-stony-plain/" />
         <meta property="og:title" content="House Cleaning Stony Plain, AB | Duty Cleaners" />
-        <meta property="og:description" content="Trusted house cleaning in Stony Plain, home of the downtown murals. Flat-rate standard, deep and move-out cleans — quoted online, paid after the work is done." />
+        <meta property="og:description" content="Trusted house cleaning in Stony Plain, home of the downtown murals. Flat-rate standard, deep and move-out cleans." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/cleaning-services-stony-plain/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Stony Plain, AB | Duty Cleaners" />
-        <meta name="twitter:description" content="Trusted house cleaning in Stony Plain, home of the downtown murals. Flat-rate standard, deep and move-out cleans — quoted online, paid after the work is done." />
+        <meta name="twitter:description" content="Trusted house cleaning in Stony Plain, home of the downtown murals. Flat-rate standard, deep and move-out cleans." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Stony Plain, AB", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-stony-plain", areaServed: "Stony Plain, AB" }))}</script>

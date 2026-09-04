@@ -131,15 +131,15 @@ export default function FortSaskatchewan() {
     <div className="min-h-screen">
       <Helmet>
         <title>House Cleaning Fort Saskatchewan, AB | Duty Cleaners</title>
-        <meta name="description" content="House cleaning in Fort Saskatchewan — serving homes near Legacy Park, the Fort Heritage Precinct and Dow Centennial Centre. Flat rates, vetted cleaners." />
+        <meta name="description" content="House cleaning in Fort Saskatchewan — serving homes near Legacy Park, the Fort Heritage Precinct and Dow Centennial Centre." />
         <link rel="canonical" href="https://dutycleaners.ca/cleaning-services-fort-saskatchewan/" />
         <meta property="og:title" content="House Cleaning Fort Saskatchewan, AB | Duty Cleaners" />
-        <meta property="og:description" content="House cleaning in Fort Saskatchewan — serving homes near Legacy Park, the Fort Heritage Precinct and Dow Centennial Centre. Flat rates, vetted cleaners." />
+        <meta property="og:description" content="House cleaning in Fort Saskatchewan — serving homes near Legacy Park, the Fort Heritage Precinct and Dow Centennial Centre." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/cleaning-services-fort-saskatchewan/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Fort Saskatchewan, AB | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning in Fort Saskatchewan — serving homes near Legacy Park, the Fort Heritage Precinct and Dow Centennial Centre. Flat rates, vetted cleaners." />
+        <meta name="twitter:description" content="House cleaning in Fort Saskatchewan — serving homes near Legacy Park, the Fort Heritage Precinct and Dow Centennial Centre." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Fort Saskatchewan, AB", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-fort-saskatchewan", areaServed: "Fort Saskatchewan, AB" }))}</script>

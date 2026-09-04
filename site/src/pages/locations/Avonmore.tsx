@@ -139,7 +139,7 @@ export default function Avonmore() {
     <>
       <Helmet>
         <title>Avonmore, Edmonton House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Avonmore, Edmonton. Trusted local cleaners serving Avonmore homes with reliable, customer-rated cleaning service." />
+        <meta name="description" content="Professional house cleaning in Avonmore, Edmonton. Trusted local cleaners, customer-rated, serving Avonmore homes." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Avonmore, Edmonton",
@@ -152,12 +152,12 @@ export default function Avonmore() {
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/avonmore-edmonton/" />
         <meta property="og:title" content="Avonmore, Edmonton House Cleaning | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Avonmore, Edmonton. Trusted local cleaners serving Avonmore homes with reliable, customer-rated cleaning service." />
+        <meta property="og:description" content="Professional house cleaning in Avonmore, Edmonton. Trusted local cleaners, customer-rated, serving Avonmore homes." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/avonmore-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Avonmore, Edmonton House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Avonmore, Edmonton. Trusted local cleaners serving Avonmore homes with reliable, customer-rated cleaning service." />
+        <meta name="twitter:description" content="Professional house cleaning in Avonmore, Edmonton. Trusted local cleaners, customer-rated, serving Avonmore homes." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 

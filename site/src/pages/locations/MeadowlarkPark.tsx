@@ -154,12 +154,12 @@ export default function MeadowlarkPark() {
     <>
       <Helmet>
         <title>House Cleaners in Meadowlark Park, Calgary | Duty Cleaners</title>
-        <meta name="description" content="House cleaning in Meadowlark Park, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
+        <meta name="description" content="House cleaning in Meadowlark Park, Calgary. See your price before you book, pay after the clean, and we re-clean misses within 24 hours." />
         <meta property="og:title" content="House Cleaners in Meadowlark Park, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Meadowlark Park, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning in Meadowlark Park, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
-        <meta property="og:description" content="House cleaning in Meadowlark Park, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
+        <meta name="twitter:description" content="House cleaning in Meadowlark Park, Calgary. See your price before you book, pay after the clean, and we re-clean misses within 24 hours." />
+        <meta property="og:description" content="House cleaning in Meadowlark Park, Calgary. See your price before you book, pay after the clean, and we re-clean misses within 24 hours." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/meadowlark-park-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/meadowlark-park-calgary/" />

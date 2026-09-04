@@ -133,15 +133,15 @@ export default function StAlbert() {
     <div className="min-h-screen">
       <Helmet>
         <title>House Cleaning St. Albert, AB | Duty Cleaners</title>
-        <meta name="description" content="House cleaning in St. Albert — serving Lacombe Park, Erin Ridge, Grandin and homes along the Sturgeon River. Flat-rate pricing and reference-checked cleaners." />
+        <meta name="description" content="House cleaning in St. Albert — Lacombe Park, Erin Ridge, Grandin and homes along the Sturgeon River. Flat-rate, reference-checked cleaners." />
         <link rel="canonical" href="https://dutycleaners.ca/cleaning-services-st-albert/" />
         <meta property="og:title" content="House Cleaning St. Albert, AB | Duty Cleaners" />
-        <meta property="og:description" content="House cleaning in St. Albert — serving Lacombe Park, Erin Ridge, Grandin and homes along the Sturgeon River. Flat-rate pricing and reference-checked cleaners." />
+        <meta property="og:description" content="House cleaning in St. Albert — Lacombe Park, Erin Ridge, Grandin and homes along the Sturgeon River. Flat-rate, reference-checked cleaners." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/cleaning-services-st-albert/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning St. Albert, AB | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning in St. Albert — serving Lacombe Park, Erin Ridge, Grandin and homes along the Sturgeon River. Flat-rate pricing and reference-checked cleaners." />
+        <meta name="twitter:description" content="House cleaning in St. Albert — Lacombe Park, Erin Ridge, Grandin and homes along the Sturgeon River. Flat-rate, reference-checked cleaners." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - St. Albert, AB", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-st-albert", areaServed: "St. Albert, AB" }))}</script>

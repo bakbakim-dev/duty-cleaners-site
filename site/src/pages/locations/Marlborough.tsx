@@ -114,12 +114,12 @@ export default function Marlborough() {
     <>
       <Helmet>
         <title>Marlborough, Calgary House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Marlborough, Calgary. Established NE community near Marlborough Mall & Memorial Drive. 100% satisfaction guaranteed." />
+        <meta name="description" content="Professional house cleaning in Marlborough, Calgary. Established NE community near Marlborough Mall & Memorial Drive." />
         <meta property="og:title" content="Marlborough, Calgary House Cleaning | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Marlborough, Calgary House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Marlborough, Calgary. Established NE community near Marlborough Mall & Memorial Drive. 100% satisfaction guaranteed." />
-        <meta property="og:description" content="Professional house cleaning in Marlborough, Calgary. Established NE community near Marlborough Mall & Memorial Drive. 100% satisfaction guaranteed." />
+        <meta name="twitter:description" content="Professional house cleaning in Marlborough, Calgary. Established NE community near Marlborough Mall & Memorial Drive." />
+        <meta property="og:description" content="Professional house cleaning in Marlborough, Calgary. Established NE community near Marlborough Mall & Memorial Drive." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/marlborough/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/marlborough/" />

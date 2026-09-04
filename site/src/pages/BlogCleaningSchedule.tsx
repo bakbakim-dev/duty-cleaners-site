@@ -125,25 +125,25 @@ export default function BlogCleaningSchedule() {
         <title>A Cleaning Schedule That Actually Holds Up | Duty Cleaners</title>
         <meta
           name="description"
-          content="Create a realistic cleaning schedule with daily, weekly, and monthly tasks. Expert tips from Duty Cleaners to keep your home clean without the stress."
+          content="A realistic cleaning schedule with daily, weekly and monthly tasks, so your home stays clean without the weekend blitz."
         />
         <link rel="canonical" href="https://dutycleaners.ca/blog/cleaning-schedule/" />
         <meta property="og:title" content="A Cleaning Schedule That Actually Holds Up | Duty Cleaners" />
-        <meta property="og:description" content="Create a realistic cleaning schedule with daily, weekly, and monthly tasks. Expert tips from Duty Cleaners to keep your home clean without the stress." />
+        <meta property="og:description" content="A realistic cleaning schedule with daily, weekly and monthly tasks, so your home stays clean without the weekend blitz." />
         <meta name="twitter:card" content="summary_large_image" />
         {/* This post's own hero, so a share card shows the article rather
             than the generic site image. */}
         <meta property="og:image" content={absoluteAssetUrl(heroImage)} />
         <meta name="twitter:image" content={absoluteAssetUrl(heroImage)} />
         <meta name="twitter:title" content="A Cleaning Schedule That Actually Holds Up | Duty Cleaners" />
-        <meta name="twitter:description" content="Create a realistic cleaning schedule with daily, weekly, and monthly tasks. Expert tips from Duty Cleaners to keep your home clean without the stress." />
+        <meta name="twitter:description" content="A realistic cleaning schedule with daily, weekly and monthly tasks, so your home stays clean without the weekend blitz." />
         <meta property="og:type" content="article" />
         <meta property="og:url" content="https://dutycleaners.ca/blog/cleaning-schedule/" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Article",
           "headline": "A Cleaning Schedule That Actually Holds Up",
-          "description": "Create a realistic cleaning schedule with daily, weekly, and monthly tasks. Expert tips from Duty Cleaners to keep your home clean without the stress.",
+          "description": "A realistic cleaning schedule with daily, weekly and monthly tasks, so your home stays clean without the weekend blitz.",
           "image": absoluteAssetUrl(heroImage),
           ...(publishedFor("/blog/cleaning-schedule") ? { datePublished: publishedFor("/blog/cleaning-schedule") } : {}),
           "dateModified": modifiedOr("/blog/cleaning-schedule"),

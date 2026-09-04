@@ -21,8 +21,8 @@ export default function EdmontonRecurringCleaning() {
       quoteService="recurring-cleaning"
       phone="(780) 913-6565"
       phoneHref="tel:7809136565"
-      seoTitle="Recurring Cleaning Edmonton | Weekly, Bi-Weekly & Every 4 Weeks"
-      seoDescription="Recurring house cleaning in Edmonton. Weekly (20% off), bi-weekly (15% off), or every-4-weeks (10% off) scheduled cleaning from vetted professionals."
+      seoTitle="Recurring Cleaning Edmonton | Weekly to Every 4 Weeks"
+      seoDescription="Recurring house cleaning in Edmonton. Weekly 20% off, bi-weekly 15% off, every 4 weeks 10% off, from vetted professionals."
       canonical="https://dutycleaners.ca/edmonton/recurring-cleaning"
       heroHeading={<>Recurring Cleaning in <AccentGold>Edmonton</AccentGold></>}
       heroSubheading="Scheduled weekly, bi-weekly, or every-4-weeks cleaning to keep your home consistently clean and comfortable — with discounts on every recurring visit."

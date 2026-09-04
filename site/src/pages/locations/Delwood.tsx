@@ -139,7 +139,7 @@ export default function Delwood() {
     <>
       <Helmet>
         <title>House Cleaners in Delwood, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Delwood, Edmonton. Trusted local cleaners serving north Edmonton families. Customer-rated cleaners, rated 4.9 on Google." />
+        <meta name="description" content="House cleaning in Delwood, Edmonton. Trusted local cleaners serving north Edmonton families. Customer-rated cleaners, rated 4.9 on Google." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Delwood, Edmonton",
@@ -152,12 +152,12 @@ export default function Delwood() {
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/delwood-edmonton/" />
         <meta property="og:title" content="House Cleaners in Delwood, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Delwood, Edmonton. Trusted local cleaners serving north Edmonton families. Customer-rated cleaners, rated 4.9 on Google." />
+        <meta property="og:description" content="House cleaning in Delwood, Edmonton. Trusted local cleaners serving north Edmonton families. Customer-rated cleaners, rated 4.9 on Google." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/delwood-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Delwood, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Delwood, Edmonton. Trusted local cleaners serving north Edmonton families. Customer-rated cleaners, rated 4.9 on Google." />
+        <meta name="twitter:description" content="House cleaning in Delwood, Edmonton. Trusted local cleaners serving north Edmonton families. Customer-rated cleaners, rated 4.9 on Google." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 

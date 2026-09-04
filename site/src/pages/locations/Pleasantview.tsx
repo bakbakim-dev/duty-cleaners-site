@@ -139,7 +139,7 @@ export default function Pleasantview() {
     <>
       <Helmet>
         <title>House Cleaning in Pleasantview, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Pleasantview, Edmonton. Trusted local cleaners serving Pleasantview homes with reliable, customer-rated cleaning service." />
+        <meta name="description" content="Professional house cleaning in Pleasantview, Edmonton. Trusted local cleaners, customer-rated, serving Pleasantview homes." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Pleasantview, Edmonton",
@@ -152,12 +152,12 @@ export default function Pleasantview() {
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/pleasantview/" />
         <meta property="og:title" content="House Cleaning in Pleasantview, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Pleasantview, Edmonton. Trusted local cleaners serving Pleasantview homes with reliable, customer-rated cleaning service." />
+        <meta property="og:description" content="Professional house cleaning in Pleasantview, Edmonton. Trusted local cleaners, customer-rated, serving Pleasantview homes." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/pleasantview/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Pleasantview, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Pleasantview, Edmonton. Trusted local cleaners serving Pleasantview homes with reliable, customer-rated cleaning service." />
+        <meta name="twitter:description" content="Professional house cleaning in Pleasantview, Edmonton. Trusted local cleaners, customer-rated, serving Pleasantview homes." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 

@@ -77,15 +77,15 @@ export default function CommercialCleaningCalgary() {
     <>
       <Helmet>
         <title>Commercial Cleaning Services Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional commercial cleaning services in Calgary. Offices, warehouses, retail, medical facilities & more. Pay after your clean. Get a free estimate today!" />
+        <meta name="description" content="Professional commercial cleaning services in Calgary. Offices, warehouses, retail, medical facilities & more. Pay after your clean." />
         <link rel="canonical" href="https://dutycleaners.ca/commercial-cleaning-services-calgary/" />
         <meta property="og:title" content="Commercial Cleaning Services Calgary | Duty Cleaners" />
-        <meta property="og:description" content="Professional commercial cleaning services in Calgary. Offices, warehouses, retail, medical facilities & more. Pay after your clean. Get a free estimate today!" />
+        <meta property="og:description" content="Professional commercial cleaning services in Calgary. Offices, warehouses, retail, medical facilities & more. Pay after your clean." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/commercial-cleaning-services-calgary/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Commercial Cleaning Services Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional commercial cleaning services in Calgary. Offices, warehouses, retail, medical facilities & more. Pay after your clean. Get a free estimate today!" />
+        <meta name="twitter:description" content="Professional commercial cleaning services in Calgary. Offices, warehouses, retail, medical facilities & more. Pay after your clean." />
         {/* These pages carried no structured data at all. Service ties the
             offering to the city LocalBusiness node; FAQPage mirrors the Q&A
             rendered further down the page. */}

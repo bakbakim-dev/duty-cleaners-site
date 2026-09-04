@@ -359,7 +359,7 @@ export default function FAQ() {
     <div className="min-h-screen bg-background">
       <Helmet>
         <title>House Cleaning FAQs – Edmonton & Calgary | Duty Cleaners</title>
-        <meta name="description" content="Find answers to common questions about Duty Cleaners' house cleaning services in Edmonton and Calgary. Pricing, scheduling, services, and more." />
+        <meta name="description" content="Find answers to common questions about Duty Cleaners' house cleaning services in Edmonton and Calgary. Pricing, scheduling, services." />
         <meta name="keywords" content="cleaning FAQ, house cleaning questions, Edmonton cleaning, Calgary cleaning, cleaning service hours" />
         <link rel="canonical" href="https://dutycleaners.ca/faqs/" />
         <meta property="og:title" content="House Cleaning FAQs – Edmonton & Calgary | Duty Cleaners" />

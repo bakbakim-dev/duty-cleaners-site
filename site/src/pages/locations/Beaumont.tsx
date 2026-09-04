@@ -130,15 +130,15 @@ export default function Beaumont() {
     <div className="min-h-screen">
       <Helmet>
         <title>House Cleaning Beaumont, AB | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Beaumont — from Four Seasons Park to the shops along 50th Avenue. Flat-rate pricing, vetted cleaners, pay after your clean." />
+        <meta name="description" content="House cleaning in Beaumont — from Four Seasons Park to the shops along 50th Avenue. Flat-rate pricing, vetted cleaners, pay after your clean." />
         <link rel="canonical" href="https://dutycleaners.ca/cleaning-services-beaumont/" />
         <meta property="og:title" content="House Cleaning Beaumont, AB | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Beaumont — from Four Seasons Park to the shops along 50th Avenue. Flat-rate pricing, vetted cleaners, pay after your clean." />
+        <meta property="og:description" content="House cleaning in Beaumont — from Four Seasons Park to the shops along 50th Avenue. Flat-rate pricing, vetted cleaners, pay after your clean." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/cleaning-services-beaumont/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Beaumont, AB | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Beaumont — from Four Seasons Park to the shops along 50th Avenue. Flat-rate pricing, vetted cleaners, pay after your clean." />
+        <meta name="twitter:description" content="House cleaning in Beaumont — from Four Seasons Park to the shops along 50th Avenue. Flat-rate pricing, vetted cleaners, pay after your clean." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Beaumont, AB", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-beaumont", areaServed: "Beaumont, AB" }))}</script>

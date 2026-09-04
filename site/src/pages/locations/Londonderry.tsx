@@ -113,7 +113,7 @@ export default function Londonderry() {
     <>
       <Helmet>
         <title>Londonderry, Edmonton House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Londonderry, Edmonton. Serving families near Londonderry Mall, Evansdale Park & M.E. LaZerte. Local cleaners you can trust." />
+        <meta name="description" content="Professional house cleaning in Londonderry, Edmonton. Serving families near Londonderry Mall, Evansdale Park & M.E. LaZerte." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Londonderry, Edmonton",
@@ -138,12 +138,12 @@ export default function Londonderry() {
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/londonderry/" />
         <meta property="og:title" content="Londonderry, Edmonton House Cleaning | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Londonderry, Edmonton. Serving families near Londonderry Mall, Evansdale Park & M.E. LaZerte. Local cleaners you can trust." />
+        <meta property="og:description" content="Professional house cleaning in Londonderry, Edmonton. Serving families near Londonderry Mall, Evansdale Park & M.E. LaZerte." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/londonderry/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Londonderry, Edmonton House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Londonderry, Edmonton. Serving families near Londonderry Mall, Evansdale Park & M.E. LaZerte. Local cleaners you can trust." />
+        <meta name="twitter:description" content="Professional house cleaning in Londonderry, Edmonton. Serving families near Londonderry Mall, Evansdale Park & M.E. LaZerte." />
       </Helmet>
 
       <div className="min-h-screen">

@@ -131,15 +131,15 @@ export default function Leduc() {
     <div className="min-h-screen">
       <Helmet>
         <title>House Cleaning Leduc, AB | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Leduc, from Telford Lake to Fred Johns Park. Standard, deep and move-out cleans at a flat price you see before booking." />
+        <meta name="description" content="House cleaning in Leduc, from Telford Lake to Fred Johns Park. Standard, deep and move-out cleans at a flat price you see before booking." />
         <link rel="canonical" href="https://dutycleaners.ca/cleaning-services-leduc/" />
         <meta property="og:title" content="House Cleaning Leduc, AB | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Leduc, from Telford Lake to Fred Johns Park. Standard, deep and move-out cleans at a flat price you see before booking." />
+        <meta property="og:description" content="House cleaning in Leduc, from Telford Lake to Fred Johns Park. Standard, deep and move-out cleans at a flat price you see before booking." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/cleaning-services-leduc/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Leduc, AB | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Leduc, from Telford Lake to Fred Johns Park. Standard, deep and move-out cleans at a flat price you see before booking." />
+        <meta name="twitter:description" content="House cleaning in Leduc, from Telford Lake to Fred Johns Park. Standard, deep and move-out cleans at a flat price you see before booking." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Leduc, AB", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-leduc", areaServed: "Leduc, AB" }))}</script>

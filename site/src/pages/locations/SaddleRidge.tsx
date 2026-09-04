@@ -114,12 +114,12 @@ export default function SaddleRidge() {
     <>
       <Helmet>
         <title>House Cleaners in Saddle Ridge, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Saddle Ridge, Calgary. Family-friendly NE community near Prairie Winds Park & Genesis Centre. 100% satisfaction guaranteed." />
+        <meta name="description" content="Professional house cleaning in Saddle Ridge, Calgary. Family-friendly NE community near Prairie Winds Park & Genesis Centre." />
         <meta property="og:title" content="House Cleaners in Saddle Ridge, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Saddle Ridge, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Saddle Ridge, Calgary. Family-friendly NE community near Prairie Winds Park & Genesis Centre. 100% satisfaction guaranteed." />
-        <meta property="og:description" content="Professional house cleaning in Saddle Ridge, Calgary. Family-friendly NE community near Prairie Winds Park & Genesis Centre. 100% satisfaction guaranteed." />
+        <meta name="twitter:description" content="Professional house cleaning in Saddle Ridge, Calgary. Family-friendly NE community near Prairie Winds Park & Genesis Centre." />
+        <meta property="og:description" content="Professional house cleaning in Saddle Ridge, Calgary. Family-friendly NE community near Prairie Winds Park & Genesis Centre." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/saddle-ridge/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/saddle-ridge/" />

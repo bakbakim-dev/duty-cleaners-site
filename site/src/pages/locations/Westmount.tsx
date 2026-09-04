@@ -139,7 +139,7 @@ export default function Westmount() {
     <>
       <Helmet>
         <title>House Cleaners in Westmount, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Westmount, Edmonton. Trusted local cleaners serving Westmount homes with reliable, customer-rated cleaning service." />
+        <meta name="description" content="Professional house cleaning in Westmount, Edmonton. Trusted local cleaners, customer-rated, serving Westmount homes." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Westmount, Edmonton",
@@ -152,12 +152,12 @@ export default function Westmount() {
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/westmount-edmonton/" />
         <meta property="og:title" content="House Cleaners in Westmount, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Westmount, Edmonton. Trusted local cleaners serving Westmount homes with reliable, customer-rated cleaning service." />
+        <meta property="og:description" content="Professional house cleaning in Westmount, Edmonton. Trusted local cleaners, customer-rated, serving Westmount homes." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/westmount-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Westmount, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Westmount, Edmonton. Trusted local cleaners serving Westmount homes with reliable, customer-rated cleaning service." />
+        <meta name="twitter:description" content="Professional house cleaning in Westmount, Edmonton. Trusted local cleaners, customer-rated, serving Westmount homes." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 

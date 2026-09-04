@@ -129,7 +129,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
         <>
           <Helmet>
             <title>Professional House Cleaning Across Alberta | Duty Cleaners</title>
-            <meta name="description" content="Alberta's most trusted cleaning service. Professional house cleaning in Edmonton and Calgary. Pay after your clean. Customer-rated cleaners. Book today!" />
+            <meta name="description" content="Alberta's most trusted cleaning service. Professional house cleaning in Edmonton and Calgary. Pay after your clean. Customer-rated cleaners." />
           </Helmet>
           <Navigation />
         </>

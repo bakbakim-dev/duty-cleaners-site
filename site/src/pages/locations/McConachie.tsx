@@ -131,7 +131,7 @@ export default function McConachie() {
     <>
       <Helmet>
         <title>House Cleaners in McConachie, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in McConachie, Edmonton. Serving families near McConachie Park, 167 Avenue & Manning Town Centre. Local cleaners you can trust." />
+        <meta name="description" content="Professional house cleaning in McConachie, Edmonton. Serving families near McConachie Park, 167 Avenue & Manning Town Centre." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – McConachie",
@@ -144,12 +144,12 @@ export default function McConachie() {
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/mcconachie-edmonton/" />
         <meta property="og:title" content="House Cleaners in McConachie, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in McConachie, Edmonton. Serving families near McConachie Park, 167 Avenue & Manning Town Centre. Local cleaners you can trust." />
+        <meta property="og:description" content="Professional house cleaning in McConachie, Edmonton. Serving families near McConachie Park, 167 Avenue & Manning Town Centre." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/mcconachie-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in McConachie, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in McConachie, Edmonton. Serving families near McConachie Park, 167 Avenue & Manning Town Centre. Local cleaners you can trust." />
+        <meta name="twitter:description" content="Professional house cleaning in McConachie, Edmonton. Serving families near McConachie Park, 167 Avenue & Manning Town Centre." />
       </Helmet>
 
       <div className="min-h-screen">

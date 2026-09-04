@@ -131,15 +131,15 @@ export default function SpruceGrove() {
     <div className="min-h-screen">
       <Helmet>
         <title>House Cleaning Spruce Grove, AB | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Spruce Grove, 11 km west of Edmonton. Standard, deep and move-out cleaning at a flat rate — see your price before you book." />
+        <meta name="description" content="Professional house cleaning in Spruce Grove, 11 km west of Edmonton. Standard, deep and move-out cleaning at a flat rate." />
         <link rel="canonical" href="https://dutycleaners.ca/cleaning-services-spruce-grove/" />
         <meta property="og:title" content="House Cleaning Spruce Grove, AB | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Spruce Grove, 11 km west of Edmonton. Standard, deep and move-out cleaning at a flat rate — see your price before you book." />
+        <meta property="og:description" content="Professional house cleaning in Spruce Grove, 11 km west of Edmonton. Standard, deep and move-out cleaning at a flat rate." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/cleaning-services-spruce-grove/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Spruce Grove, AB | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Spruce Grove, 11 km west of Edmonton. Standard, deep and move-out cleaning at a flat rate — see your price before you book." />
+        <meta name="twitter:description" content="Professional house cleaning in Spruce Grove, 11 km west of Edmonton. Standard, deep and move-out cleaning at a flat rate." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Spruce Grove, AB", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-spruce-grove", areaServed: "Spruce Grove, AB" }))}</script>

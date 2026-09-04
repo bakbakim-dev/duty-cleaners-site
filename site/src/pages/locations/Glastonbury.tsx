@@ -136,15 +136,15 @@ export default function Glastonbury() {
     <>
       <Helmet>
         <title>House Cleaners in Glastonbury, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Glastonbury, Edmonton. Beautiful homes, welcoming community near The Grange. Local cleaners you can trust. Get instant pricing!" />
+        <meta name="description" content="Professional house cleaning in Glastonbury, Edmonton. Beautiful homes, welcoming community near The Grange. Local cleaners you can trust." />
         <link rel="canonical" href="https://dutycleaners.ca/locations/glastonbury/" />
         <meta property="og:title" content="House Cleaners in Glastonbury, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Glastonbury, Edmonton. Beautiful homes, welcoming community near The Grange. Local cleaners you can trust. Get instant pricing!" />
+        <meta property="og:description" content="Professional house cleaning in Glastonbury, Edmonton. Beautiful homes, welcoming community near The Grange. Local cleaners you can trust." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/glastonbury/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Glastonbury, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Glastonbury, Edmonton. Beautiful homes, welcoming community near The Grange. Local cleaners you can trust. Get instant pricing!" />
+        <meta name="twitter:description" content="Professional house cleaning in Glastonbury, Edmonton. Beautiful homes, welcoming community near The Grange. Local cleaners you can trust." />
         <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Glastonbury Edmonton", city: "edmonton", url: "https://dutycleaners.ca/locations/glastonbury", areaServed: "Glastonbury, Edmonton, AB" }))}</script>
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>

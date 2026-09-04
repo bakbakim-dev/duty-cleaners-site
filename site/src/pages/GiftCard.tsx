@@ -66,7 +66,7 @@ export default function GiftCard() {
         <title>Duty Cleaners Gift Cards | Give a Clean Home in Alberta</title>
         <meta
           name="description"
-          content="Buy a Duty Cleaners gift card online. Choose any amount, add a message, and it arrives by email right away or on a date you pick. Edmonton & Calgary."
+          content="Buy a Duty Cleaners gift card online. Choose any amount, add a message, and it arrives by email right away or on a date you pick."
         />
         <link rel="canonical" href="https://dutycleaners.ca/gift-card/" />
         <meta property="og:title" content="Duty Cleaners Gift Cards | Give a Clean Home in Alberta" />

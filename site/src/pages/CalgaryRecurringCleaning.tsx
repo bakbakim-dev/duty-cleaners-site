@@ -21,8 +21,8 @@ export default function CalgaryRecurringCleaning() {
       quoteService="recurring-cleaning"
       phone="(403) 768-1341"
       phoneHref="tel:4037681341"
-      seoTitle="Recurring Cleaning Calgary | Weekly, Bi-Weekly & Every 4 Weeks"
-      seoDescription="Recurring house cleaning in Calgary. Weekly (20% off), bi-weekly (15% off), or every-4-weeks (10% off) scheduled cleaning from vetted professionals."
+      seoTitle="Recurring Cleaning Calgary | Weekly to Every 4 Weeks"
+      seoDescription="Recurring house cleaning in Calgary. Weekly 20% off, bi-weekly 15% off, every 4 weeks 10% off, from vetted professionals."
       canonical="https://dutycleaners.ca/calgary/recurring-cleaning"
       heroHeading={<>Recurring Cleaning in <AccentGold>Calgary</AccentGold></>}
       heroSubheading="Scheduled weekly, bi-weekly, or every-4-weeks cleaning to keep your home consistently clean and comfortable — with discounts on every recurring visit."

@@ -116,12 +116,12 @@ export default function AspenWoods() {
     <>
       <Helmet>
         <title>House Cleaners in Aspen Woods, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Premium house cleaning in Aspen Woods, Calgary. Experienced with luxury homes and fine finishes. 100% satisfaction guaranteed. Call (403) 768-1341." />
+        <meta name="description" content="Premium house cleaning in Aspen Woods, Calgary. Experienced with luxury homes and fine finishes. 100% satisfaction guaranteed." />
         <meta property="og:title" content="House Cleaners in Aspen Woods, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Aspen Woods, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Premium house cleaning in Aspen Woods, Calgary. Experienced with luxury homes and fine finishes. 100% satisfaction guaranteed. Call (403) 768-1341." />
-        <meta property="og:description" content="Premium house cleaning in Aspen Woods, Calgary. Experienced with luxury homes and fine finishes. 100% satisfaction guaranteed. Call (403) 768-1341." />
+        <meta name="twitter:description" content="Premium house cleaning in Aspen Woods, Calgary. Experienced with luxury homes and fine finishes. 100% satisfaction guaranteed." />
+        <meta property="og:description" content="Premium house cleaning in Aspen Woods, Calgary. Experienced with luxury homes and fine finishes. 100% satisfaction guaranteed." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/aspen-woods/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/aspen-woods/" />

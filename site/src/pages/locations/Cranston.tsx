@@ -116,12 +116,12 @@ export default function Cranston() {
     <>
       <Helmet>
         <title>House Cleaning Services in Cranston, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Cranston, Calgary. Family-friendly community with Century Hall amenities. 100% satisfaction guaranteed. Call (403) 768-1341." />
+        <meta name="description" content="Professional house cleaning in Cranston, Calgary. Family-friendly community with Century Hall amenities. 100% satisfaction guaranteed." />
         <meta property="og:title" content="House Cleaning Services in Cranston, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services in Cranston, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Cranston, Calgary. Family-friendly community with Century Hall amenities. 100% satisfaction guaranteed. Call (403) 768-1341." />
-        <meta property="og:description" content="Professional house cleaning in Cranston, Calgary. Family-friendly community with Century Hall amenities. 100% satisfaction guaranteed. Call (403) 768-1341." />
+        <meta name="twitter:description" content="Professional house cleaning in Cranston, Calgary. Family-friendly community with Century Hall amenities. 100% satisfaction guaranteed." />
+        <meta property="og:description" content="Professional house cleaning in Cranston, Calgary. Family-friendly community with Century Hall amenities. 100% satisfaction guaranteed." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/cranston/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/cranston/" />

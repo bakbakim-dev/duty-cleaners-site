@@ -139,7 +139,7 @@ export default function Abbottsfield() {
     <>
       <Helmet>
         <title>Abbottsfield, Edmonton House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Abbottsfield, Edmonton. Trusted local cleaners serving Abbottsfield homes with reliable, customer-rated cleaning service." />
+        <meta name="description" content="Professional house cleaning in Abbottsfield, Edmonton. Trusted local cleaners, customer-rated, serving Abbottsfield homes." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Abbottsfield, Edmonton",
@@ -152,12 +152,12 @@ export default function Abbottsfield() {
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/abbottsfield-edmonton/" />
         <meta property="og:title" content="Abbottsfield, Edmonton House Cleaning | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Abbottsfield, Edmonton. Trusted local cleaners serving Abbottsfield homes with reliable, customer-rated cleaning service." />
+        <meta property="og:description" content="Professional house cleaning in Abbottsfield, Edmonton. Trusted local cleaners, customer-rated, serving Abbottsfield homes." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/abbottsfield-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Abbottsfield, Edmonton House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Abbottsfield, Edmonton. Trusted local cleaners serving Abbottsfield homes with reliable, customer-rated cleaning service." />
+        <meta name="twitter:description" content="Professional house cleaning in Abbottsfield, Edmonton. Trusted local cleaners, customer-rated, serving Abbottsfield homes." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 

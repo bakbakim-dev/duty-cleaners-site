@@ -217,15 +217,15 @@ export default function Edmonton2() {
   return <>
       <Helmet>
         <title>House Cleaning Services Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Book trusted house cleaning services in Edmonton. Standard, deep, move-out, and recurring cleaning with customer-rated cleaners. Get an instant quote online." />
+        <meta name="description" content="Book trusted house cleaning services in Edmonton. Standard, deep, move-out, and recurring cleaning with customer-rated cleaners." />
         <link rel="canonical" href="https://dutycleaners.ca/" />
         <meta property="og:title" content="House Cleaning Services Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Book trusted house cleaning services in Edmonton. Standard, deep, move-out, and recurring cleaning with customer-rated cleaners. Get an instant quote online." />
+        <meta property="og:description" content="Book trusted house cleaning services in Edmonton. Standard, deep, move-out, and recurring cleaning with customer-rated cleaners." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Book trusted house cleaning services in Edmonton. Standard, deep, move-out, and recurring cleaning with customer-rated cleaners. Get an instant quote online." />
+        <meta name="twitter:description" content="Book trusted house cleaning services in Edmonton. Standard, deep, move-out, and recurring cleaning with customer-rated cleaners." />
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>

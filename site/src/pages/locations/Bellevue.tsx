@@ -137,17 +137,17 @@ export default function Bellevue() {
     <>
       <Helmet>
         <title>House Cleaners in Bellevue, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Bellevue, Edmonton. Serving families near Borden Park, Commonwealth Stadium & the river valley. Local cleaners you can trust." />
+        <meta name="description" content="Professional house cleaning in Bellevue, Edmonton. Serving families near Borden Park, Commonwealth Stadium & the river valley." />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/bellevue-edmonton/" />
         <meta property="og:title" content="House Cleaners in Bellevue, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Bellevue, Edmonton. Serving families near Borden Park, Commonwealth Stadium & the river valley. Local cleaners you can trust." />
+        <meta property="og:description" content="Professional house cleaning in Bellevue, Edmonton. Serving families near Borden Park, Commonwealth Stadium & the river valley." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/bellevue-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Bellevue, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Bellevue, Edmonton. Serving families near Borden Park, Commonwealth Stadium & the river valley. Local cleaners you can trust." />
+        <meta name="twitter:description" content="Professional house cleaning in Bellevue, Edmonton. Serving families near Borden Park, Commonwealth Stadium & the river valley." />
       </Helmet>
 
       <div className="min-h-screen">

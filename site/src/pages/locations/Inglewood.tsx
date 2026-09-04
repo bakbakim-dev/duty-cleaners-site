@@ -139,7 +139,7 @@ export default function Inglewood() {
     <>
       <Helmet>
         <title>House Cleaning in Inglewood, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Inglewood, Edmonton. Serving homes near Westmount Centre, 124 Street & Inglewood School. Local cleaners you can trust." />
+        <meta name="description" content="Professional house cleaning in Inglewood, Edmonton. Serving homes near Westmount Centre, 124 Street & Inglewood School." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Inglewood, Edmonton",
@@ -151,12 +151,12 @@ export default function Inglewood() {
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/inglewood/" />
         <meta property="og:title" content="House Cleaning in Inglewood, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Inglewood, Edmonton. Serving homes near Westmount Centre, 124 Street & Inglewood School. Local cleaners you can trust." />
+        <meta property="og:description" content="Professional house cleaning in Inglewood, Edmonton. Serving homes near Westmount Centre, 124 Street & Inglewood School." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/inglewood/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Inglewood, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Inglewood, Edmonton. Serving homes near Westmount Centre, 124 Street & Inglewood School. Local cleaners you can trust." />
+        <meta name="twitter:description" content="Professional house cleaning in Inglewood, Edmonton. Serving homes near Westmount Centre, 124 Street & Inglewood School." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 

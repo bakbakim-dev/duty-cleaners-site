@@ -130,15 +130,15 @@ export default function SherwoodPark() {
     <div className="min-h-screen">
       <Helmet>
         <title>House Cleaning Sherwood Park, AB | Duty Cleaners</title>
-        <meta name="description" content="House cleaning across Sherwood Park — Broadmoor, Emerald Hills, Lakeland Ridge and beyond. Vetted cleaners, flat pricing, and a 24-hour make-it-right promise." />
+        <meta name="description" content="House cleaning across Sherwood Park — Broadmoor, Emerald Hills, Lakeland Ridge. Vetted cleaners, flat pricing, 24-hour make-it-right promise." />
         <link rel="canonical" href="https://dutycleaners.ca/cleaning-services-sherwood-park/" />
         <meta property="og:title" content="House Cleaning Sherwood Park, AB | Duty Cleaners" />
-        <meta property="og:description" content="House cleaning across Sherwood Park — Broadmoor, Emerald Hills, Lakeland Ridge and beyond. Vetted cleaners, flat pricing, and a 24-hour make-it-right promise." />
+        <meta property="og:description" content="House cleaning across Sherwood Park — Broadmoor, Emerald Hills, Lakeland Ridge. Vetted cleaners, flat pricing, 24-hour make-it-right promise." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/cleaning-services-sherwood-park/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Sherwood Park, AB | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning across Sherwood Park — Broadmoor, Emerald Hills, Lakeland Ridge and beyond. Vetted cleaners, flat pricing, and a 24-hour make-it-right promise." />
+        <meta name="twitter:description" content="House cleaning across Sherwood Park — Broadmoor, Emerald Hills, Lakeland Ridge. Vetted cleaners, flat pricing, 24-hour make-it-right promise." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Sherwood Park, AB", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-sherwood-park", areaServed: "Sherwood Park, AB" }))}</script>

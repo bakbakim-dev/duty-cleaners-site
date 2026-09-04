@@ -78,7 +78,7 @@ export default function BlogChoosingCalgaryCleaner() {
   // term. The slug is a preserved legacy URL and deliberately unchanged.
   const title = "How to Choose a Cleaning Company in Calgary";
   const description =
-    "A practical buyer's guide to hiring a house cleaning service in Calgary — what separates a reliable company from a risky one, and what to check before you book.";
+    "A practical buyer's guide to hiring a house cleaning service in Calgary: what separates a reliable company from a risky one, and what to check first.";
 
   return (
     <>

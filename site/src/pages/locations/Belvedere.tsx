@@ -139,7 +139,7 @@ export default function Belvedere() {
     <>
       <Helmet>
         <title>House Cleaners in Belvedere, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Belvedere, Edmonton. Trusted local cleaners serving Belvedere homes with reliable, customer-rated cleaning service." />
+        <meta name="description" content="Professional house cleaning in Belvedere, Edmonton. Trusted local cleaners, customer-rated, serving Belvedere homes." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Belvedere, Edmonton",
@@ -152,12 +152,12 @@ export default function Belvedere() {
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/belvedere-edmonton/" />
         <meta property="og:title" content="House Cleaners in Belvedere, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Belvedere, Edmonton. Trusted local cleaners serving Belvedere homes with reliable, customer-rated cleaning service." />
+        <meta property="og:description" content="Professional house cleaning in Belvedere, Edmonton. Trusted local cleaners, customer-rated, serving Belvedere homes." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/belvedere-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Belvedere, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Belvedere, Edmonton. Trusted local cleaners serving Belvedere homes with reliable, customer-rated cleaning service." />
+        <meta name="twitter:description" content="Professional house cleaning in Belvedere, Edmonton. Trusted local cleaners, customer-rated, serving Belvedere homes." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
