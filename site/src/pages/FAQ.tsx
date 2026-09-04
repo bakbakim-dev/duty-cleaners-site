@@ -327,7 +327,11 @@ const FAQCategoryCard = ({ category, categoryIndex }: { category: FAQCategory; c
               <AccordionItem key={i} value={`item-${categoryIndex}-${i}`} className="border-border/50">
                 <AccordionTrigger className="text-left text-foreground hover:text-primary transition-colors text-[15px] py-4">
                   <span className="flex items-baseline gap-3">
-                    <span className="shrink-0 text-sm font-bold text-brand-gold">{String(i + 1).padStart(2, "0")}</span>
+                    {/* text-brand-gold is 4.74:1 on the navy bands and correct there, but
+                        these numbers sit on the near-white accordion — 2.30:1 at 14px,
+                        against the 4.5:1 AA needs. --gold-ink is the same hue built for
+                        light surfaces and already wired as a utility. */}
+                    <span className="shrink-0 text-sm font-bold text-gold-ink">{String(i + 1).padStart(2, "0")}</span>
                     <span>{item.question}</span>
                   </span>
                 </AccordionTrigger>
