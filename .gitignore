@@ -12,3 +12,6 @@ site/.tmpaudit/
 # Audit subagents dump page text beside the source; never part of the site.
 site/dist_*.txt
 dist_*.txt
+
+# Local Netlify folder
+.netlify
