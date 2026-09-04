@@ -1,3 +1,4 @@
+import { CITY_PROOF } from "@/data/proof";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, useState } from "react";
 import { CALGARY_REVIEWS } from "@/data/reviews";
@@ -153,7 +154,7 @@ export default function Calgary2() {
     parentOrganization: { "@id": "https://dutycleaners.ca/#org" },
     image: "https://dutycleaners.ca/og-image.jpg",
     logo: "https://dutycleaners.ca/logo.png",
-    telephone: "+1-403-768-1341",
+    telephone: CITY_PROOF.calgary.phoneE164,
     email: "support@dutycleaners.ca",
     // One authority for the entity's address (data/proof.ts) — this inline
     // block was one of two stragglers still missing postalCode after the

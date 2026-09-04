@@ -1,3 +1,4 @@
+import { CITY_PROOF } from "@/data/proof";
 import { BRANCH_ID, BRANCH_IDENTITY } from "@/data/proof";
 import React from "react";
 import { Helmet } from "react-helmet-async";
@@ -142,7 +143,7 @@ const serviceSchema = {
     "@id": BRANCH_ID.edmonton,
     name: BRANCH_IDENTITY.edmonton.name,
     url: BRANCH_IDENTITY.edmonton.url,
-    telephone: "+1-780-913-6565",
+    telephone: CITY_PROOF.edmonton.phoneE164,
     address: {
       "@type": "PostalAddress",
       streetAddress: "18615 71 Ave NW",

@@ -1,3 +1,4 @@
+import { CITY_PROOF } from "@/data/proof";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { BRANCH_PROFILES, BRANCH_IDENTITY } from "@/data/proof";
 import { useEffect, useState } from "react";
@@ -158,7 +159,7 @@ export default function Edmonton2() {
     parentOrganization: { "@id": "https://dutycleaners.ca/#org" },
     image: "https://dutycleaners.ca/og-image.jpg",
     logo: "https://dutycleaners.ca/logo.png",
-    telephone: "+1-780-913-6565",
+    telephone: CITY_PROOF.edmonton.phoneE164,
     email: "support@dutycleaners.ca",
     address: {
       "@type": "PostalAddress",

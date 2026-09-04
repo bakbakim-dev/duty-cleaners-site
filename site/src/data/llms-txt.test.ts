@@ -229,3 +229,50 @@ describe("retired claims stay retired", () => {
     });
   }
 });
+
+describe("llms.txt describes the frequencies the business actually sells", () => {
+  /**
+   * Both files told machine readers the recurring options were "weekly,
+   * bi-weekly, or monthly", and that the third tier was "10% off monthly".
+   *
+   * Monthly is not a thing this business sells. BookingKoala's own config —
+   * bk-config.json, the vendor's export and the authority for what can be
+   * booked — lists `every_4_weeks`; the pricing block renders "Every 4 Weeks
+   * 10% Off"; the service pages are titled "Weekly to Every 4 Weeks". The
+   * difference is not cosmetic: monthly is 12 visits a year and every four
+   * weeks is 13, so the annual cost implied by "monthly" is a month's cleaning
+   * short.
+   *
+   * These files exist to be quoted verbatim by machine readers, which makes a
+   * wrong frequency worse here than in prose a human would skim past. The
+   * existing tests in this file check the links and the price tiers; nothing
+   * checked the words around them.
+   */
+  const full = readFileSync(join(ROOT, "public", "llms-full.txt"), "utf-8");
+
+  it("neither file offers a monthly schedule", () => {
+    const hits: string[] = [];
+    for (const [name, text] of [["llms.txt", llms], ["llms-full.txt", full]] as const) {
+      text.split("\n").forEach((line, i) => {
+        if (/\bmonthly\b/i.test(line)) hits.push(`${name}:${i + 1}  ${line.trim()}`);
+      });
+    }
+    expect(
+      hits,
+      `These lines offer a monthly clean:\n${hits.join("\n")}\n` +
+        `The bookable frequencies are weekly, bi-weekly and every 4 weeks — ` +
+        `bk-config.json says every_4_weeks and the pricing block renders ` +
+        `"Every 4 Weeks 10% Off". Monthly is 12 visits a year, every 4 weeks ` +
+        `is 13; quoting the wrong one misstates the annual cost.`,
+    ).toEqual([]);
+  });
+
+  it("both files name every 4 weeks as the third frequency", () => {
+    for (const [name, text] of [["llms.txt", llms], ["llms-full.txt", full]] as const) {
+      expect(
+        /every[- ]4[- ]weeks/i.test(text),
+        `${name} lists recurring discounts but never names the every-4-weeks tier.`,
+      ).toBe(true);
+    }
+  });
+});

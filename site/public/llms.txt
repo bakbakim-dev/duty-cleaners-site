@@ -34,7 +34,7 @@ Transparent flat-rate pricing by home size. Recurring customers save 10–20% de
 - Standard Cleaning: from $155 (1 bedroom) to $305 (5+ bedrooms)
 - Deep Cleaning: from $255 (1 bedroom) to $485 (5+ bedrooms)
 - Move-In / Move-Out Cleaning: from $284 (1 bedroom) to $539 (5+ bedrooms)
-- Recurring discounts: 20% weekly, 15% bi-weekly, 10% monthly, applied from the second visit
+- Recurring discounts: 20% weekly, 15% bi-weekly, 10% every 4 weeks, applied from the second visit
 - First clean is charged at the standard one-time rate
 - Post-Construction and Airbnb cleaning: quoted by scope
 - Travel fee: a $29.99 travel fee is added to cleaning bookings OUTSIDE Edmonton and Calgary proper. It applies to the surrounding communities — St. Albert, Sherwood Park, Spruce Grove, Leduc, Beaumont, Fort Saskatchewan, Stony Plain, Morinville and Devon near Edmonton; Airdrie, Chestermere, Cochrane, Okotoks, High River, Strathmore, Crossfield, Langdon and Diamond Valley (formerly the separate towns of Black Diamond and Turner Valley) near Calgary — and is charged by postal code at booking. There is no trip fee inside Edmonton or Calgary. Post-construction cleaning carries a $50 travel fee instead.
@@ -43,13 +43,13 @@ Transparent flat-rate pricing by home size. Recurring customers save 10–20% de
 
 ## Services
 
-- [Standard Cleaning (Edmonton)](https://dutycleaners.ca/edmonton/regular-cleaning/): Recurring weekly, bi-weekly, or monthly home cleaning
+- [Standard Cleaning (Edmonton)](https://dutycleaners.ca/edmonton/regular-cleaning/): Recurring weekly, bi-weekly, or every-4-weeks home cleaning
 - [Deep Cleaning (Edmonton)](https://dutycleaners.ca/edmonton/deep-cleaning/): Top-to-bottom reset for homes needing extra attention
 - [Move In/Out Cleaning (Edmonton)](https://dutycleaners.ca/move-out-cleaning-edmonton/): Detailed cleaning for empty homes during moves
 - [Recurring Cleaning (Edmonton)](https://dutycleaners.ca/edmonton/recurring-cleaning/): Scheduled maintenance cleaning with discounts
 - [Post-Construction Cleaning (Edmonton)](https://dutycleaners.ca/post-construction-cleaning/): Dust and debris removal after renovations
 - [Airbnb Cleaning (Edmonton)](https://dutycleaners.ca/edmonton/airbnb-cleaning/): Short-term rental turnover cleaning
-- [Standard Cleaning (Calgary)](https://dutycleaners.ca/calgary/regular-cleaning/): Recurring weekly, bi-weekly, or monthly home cleaning
+- [Standard Cleaning (Calgary)](https://dutycleaners.ca/calgary/regular-cleaning/): Recurring weekly, bi-weekly, or every-4-weeks home cleaning
 - [Deep Cleaning (Calgary)](https://dutycleaners.ca/calgary/deep-cleaning/): Top-to-bottom reset for homes needing extra attention
 - [Move In/Out Cleaning (Calgary)](https://dutycleaners.ca/move-out-cleaning-calgary/): Detailed cleaning for empty homes during moves
 - [Recurring Cleaning (Calgary)](https://dutycleaners.ca/calgary/recurring-cleaning/): Scheduled maintenance cleaning with discounts

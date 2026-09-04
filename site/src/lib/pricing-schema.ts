@@ -1,3 +1,4 @@
+import { CITY_PROOF } from "@/data/proof";
 import { schemaAddressFor, BRANCH_ID, BRANCH_IDENTITY } from "@/data/proof";
 
 interface PriceRow {
@@ -15,12 +16,12 @@ interface PricingSchemaInput {
 const CITY_META = {
   edmonton: {
     locality: "Edmonton",
-    telephone: "+1-780-913-6565",
+    telephone: CITY_PROOF.edmonton.phoneE164,
     url: "https://dutycleaners.ca/pricing/",
   },
   calgary: {
     locality: "Calgary",
-    telephone: "+1-403-768-1341",
+    telephone: CITY_PROOF.calgary.phoneE164,
     url: "https://dutycleaners.ca/calgary/pricing",
   },
 } as const;

@@ -291,7 +291,7 @@ export default function Contact() {
                 url: BRANCH_IDENTITY[key as "edmonton" | "calgary"].url,
                 parentOrganization: { "@id": ORG_ID },
                 sameAs: [...BRANCH_PROFILES[key as "edmonton" | "calgary"]],
-                telephone: office.phoneLink.replace("tel:", "+1-"),
+                telephone: office.phoneE164,
                 email: SUPPORT_EMAIL,
                 // One authority (data/proof.ts) — the split-on-comma inline
                 // version carried no postalCode.

@@ -1,3 +1,4 @@
+import { CITY_PROOF } from "@/data/proof";
 import { POLICY } from "@/data/policy";
 import CityCrossLink from "@/components/CityCrossLink";
 import { buildServiceSchema } from "@/lib/service-schema";
@@ -133,7 +134,7 @@ export default function EdmontonMoveInOut() {
     "@type": "LocalBusiness",
     "@id": BRANCH_ID.edmonton,
     name: BRANCH_IDENTITY.edmonton.name,
-    telephone: "+1-780-913-6565",
+    telephone: CITY_PROOF.edmonton.phoneE164,
     email: "support@dutycleaners.ca",
     address: schemaAddressFor("edmonton"),
     url: BRANCH_IDENTITY.edmonton.url,

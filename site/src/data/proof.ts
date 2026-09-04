@@ -10,6 +10,17 @@ export interface CityProof {
   city: "Edmonton" | "Calgary";
   phone: string;
   phoneLink: string;
+  /**
+   * The same number in E.164, for schema.org `telephone`.
+   *
+   * It lives here because it was hard-coded in eight other files and one of
+   * them drifted: /contact-us/ built its value as
+   * `phoneLink.replace("tel:", "+1-")`, which yields "+1-7809136565" — no
+   * separators, unlike the "+1-780-913-6565" on the other 208 pages. Both
+   * described the SAME entity, https://dutycleaners.ca/#edmonton, so the graph
+   * asserted one business with two different phone numbers.
+   */
+  phoneE164: string;
   address: string;
   /**
    * Structured NAP parts, for schema. An AuditSpur build audit found 175 pages
@@ -33,6 +44,7 @@ export const CITY_PROOF: Record<"edmonton" | "calgary", CityProof> = {
     city: "Edmonton",
     phone: "(780) 913-6565",
     phoneLink: "tel:7809136565",
+    phoneE164: "+1-780-913-6565",
     address: "18615 71 Ave NW, Edmonton, AB",
     streetAddress: "18615 71 Ave NW",
     postalCode: "T5T 2V9",
@@ -46,6 +58,7 @@ export const CITY_PROOF: Record<"edmonton" | "calgary", CityProof> = {
     city: "Calgary",
     phone: "(403) 768-1341",
     phoneLink: "tel:4037681341",
+    phoneE164: "+1-403-768-1341",
     address: "2835 37 Street SW #24, Calgary, AB",
     streetAddress: "2835 37 Street SW #24",
     postalCode: "T3E 3B3",

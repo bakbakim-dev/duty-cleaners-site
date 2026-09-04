@@ -1,3 +1,4 @@
+import { CITY_PROOF } from "@/data/proof";
 import { POLICY } from "@/data/policy";
 import CityCrossLink from "@/components/CityCrossLink";
 import { Helmet } from "react-helmet-async";
@@ -39,7 +40,7 @@ const branchSchema = () => {
     "@type": "LocalBusiness",
     "@id": BRANCH_ID.calgary,
     name: BRANCH_IDENTITY.calgary.name,
-    telephone: "+1-403-768-1341",
+    telephone: CITY_PROOF.calgary.phoneE164,
     email: "support@dutycleaners.ca",
     address: schemaAddressFor("calgary"),
     url: BRANCH_IDENTITY.calgary.url,

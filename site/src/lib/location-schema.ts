@@ -1,3 +1,4 @@
+import { CITY_PROOF } from "@/data/proof";
 // Shared LocalBusiness + HouseCleaning JSON-LD builder for all location pages.
 // Single source of truth for NAP, hours, and schema shape — individual pages
 // only supply their name, URL, and (optionally) geo, priceRange, description.
@@ -22,8 +23,8 @@ export interface LocationSchemaInput {
 }
 
 const CITY_CONTACT = {
-  edmonton: { telephone: "+1-780-913-6565", locality: "Edmonton" },
-  calgary: { telephone: "+1-403-768-1341", locality: "Calgary" },
+  edmonton: { telephone: CITY_PROOF.edmonton.phoneE164, locality: "Edmonton" },
+  calgary: { telephone: CITY_PROOF.calgary.phoneE164, locality: "Calgary" },
 } as const;
 
 
