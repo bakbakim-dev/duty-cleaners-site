@@ -191,3 +191,66 @@ describe("no two location pages read as raw near-duplicates", () => {
     ).toEqual([]);
   }, 120_000);
 });
+
+describe("the nearby-areas heading names its neighbourhood", () => {
+  /**
+   * This section used to pick one of six headings and one of six blurbs by
+   * hashing the page's path, so the same block read six different ways across
+   * 155 pages. The comment in the component said plainly what that was for:
+   * fixed copy "pushed three page pairs to 60% raw overlap", and the hash had
+   * already been swapped from h*31 to FNV-1a because the old one "put
+   * /locations/larkspur-edmonton/ and /locations/schonsee-edmonton/ on the SAME
+   * heading and the SAME blurb".
+   *
+   * It was spun copy — six ways of saying "here are some nearby areas", written
+   * to move a metric rather than to tell a reader anything. The same practice
+   * was removed from the location template for the same reason.
+   *
+   * It also bought almost nothing. Measured across all 13,695 location-page
+   * pairs before and after removal: worst pair 43.7% -> 43.8%, median 18.9% ->
+   * 19.2%, and zero pairs above 60% either way. The rotation was defending a
+   * 70% ceiling it was never within 26 points of.
+   *
+   * Naming the place is strictly better: genuinely different on every page
+   * because the place is different, and it does keyword work the old headings
+   * never did.
+   */
+  it("every page with the section heads it with its own place name", () => {
+    if (!existsSync(DIST)) return;
+    const bad: string[] = [];
+    const headings = new Set<string>();
+    let withSection = 0;
+    for (const { url } of locationUrls()) {
+      let html: string;
+      try {
+        html = read(url);
+      } catch {
+        continue;
+      }
+      const m = /<h2 id="nearby-heading"[^>]*>([\s\S]*?)<\/h2>/.exec(html);
+      if (!m) continue;
+      withSection++;
+      const text = m[1].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
+      headings.add(text);
+      const slug = url.replace(/\/+$/, "").split("/").pop()!;
+      const first = displayNameFor(slug).split(" ")[0];
+      if (first && !text.toLowerCase().includes(first.toLowerCase())) {
+        bad.push(`${url}: "${text}" does not name ${first}`);
+      }
+    }
+    expect(
+      bad,
+      `These nearby-areas headings do not name their own place:\n${bad.join("\n")}\n` +
+        `A heading interchangeable between neighbourhoods is spun copy — it was ` +
+        `six hash-rotated variants before, and it measurably bought nothing.`,
+    ).toEqual([]);
+    // A rotation pool would collapse this number; naming the place cannot.
+    if (withSection > 20) {
+      expect(
+        headings.size,
+        `${withSection} pages carry the nearby-areas section but only ${headings.size} ` +
+          `distinct headings ship. That is a rotation pool, not localized copy.`,
+      ).toBeGreaterThan(withSection * 0.8);
+    }
+  });
+});

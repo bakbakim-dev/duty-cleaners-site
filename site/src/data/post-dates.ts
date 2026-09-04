@@ -7,7 +7,7 @@
 
 /** Post path (no trailing slash) -> ISO date the post was last revised. */
 export const POST_MODIFIED: Readonly<Record<string, string>> = {
-  "/blog/choosing-cleaning-company": "2026-09-03",
+  "/blog/choosing-cleaning-company": "2026-09-04",
   "/blog/cleaning-schedule": "2026-09-03",
   "/blog/cleaning-services-calgary": "2026-09-03",
   "/blog/spotless-home-tips": "2026-09-03",

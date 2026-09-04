@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { MapPin } from "lucide-react";
 import { canonicalForPath } from "@/data/legacy-urls";
-import { nearbyFor } from "@/data/nearby";
+import { nearbyFor, placeNameFor } from "@/data/nearby";
 
 /**
  * Links out to the five closest sibling location pages.
@@ -20,55 +20,35 @@ import { nearbyFor } from "@/data/nearby";
  * render nothing rather than a misleading list.
  */
 /**
- * The block ships on 165 pages, so a single fixed heading and paragraph would
- * add ~40 identical words to every one of them. That is exactly the shared-text
- * mass the duplicate-content guard exists to catch — and it did: adding this
- * section with fixed copy pushed three page pairs to 60% raw overlap. The copy
- * therefore rotates deterministically by path, the same way the location
- * template's other shared slots do.
+ * WHY THERE IS NO COPY ROTATION HERE ANY MORE
+ *
+ * This block used to pick one of six headings and one of six blurbs by hashing
+ * the page's path, so the same section read six different ways across 155
+ * pages. The comment that stood here said why: fixed copy "pushed three page
+ * pairs to 60% raw overlap", and the hash was later changed from h*31 to FNV-1a
+ * because the old one "put /locations/larkspur-edmonton/ and
+ * /locations/schonsee-edmonton/ on the SAME heading and the SAME blurb".
+ *
+ * That is spun copy. It was not written to serve a reader — six ways of saying
+ * "here are some nearby areas" tell nobody anything — it was written to move a
+ * duplication metric, which is the practice src/data/localization.test.ts
+ * already forbids elsewhere in this codebase and which the location template
+ * had its own spinner removed for.
+ *
+ * The heading now names the neighbourhood. That is better on both counts: it is
+ * genuinely different text on every page, because the place really is
+ * different, and it does keyword work that "A few minutes from here" never did.
+ * The shared mass it costs is one short blurb. Measured after the change, the
+ * worst location-page pair sits well inside the 0.70 ceiling that guard
+ * enforces.
  */
-const HEADINGS = [
-  "We clean the streets either side of here too",
-  "The next neighbourhoods over",
-  "Where else our crews are working",
-  "Just past the boundary",
-  "Nearest areas on the same route",
-  "A few minutes from here",
-] as const;
-
-// Short on purpose: this ships on 165 pages, so every word here is a word
-// those pages share. The links carry the value; the sentence only frames them.
-const BLURBS = [
-  "Same crews, same flat rates by home size.",
-  "On a boundary? The quote is identical either way.",
-  "All within a few minutes, all priced the same.",
-  "Pricing does not change from one to the next.",
-  "Pick whichever is nearest — the rate is the same.",
-  "Same price sheet applies across all of them.",
-] as const;
-
-/** Stable per-path index, so a page always renders the same variant. */
-function variantFor(path: string, pool: number): number {
-  // FNV-1a: the previous h*31 hash put /locations/larkspur-edmonton/ and
-  // /locations/schonsee-edmonton/ on the SAME heading and the SAME blurb, which
-  // was enough shared text to tip that already-similar pair over the 60% raw
-  // duplication ceiling.
-  let h = 0x811c9dc5;
-  for (let i = 0; i < path.length; i++) {
-    h ^= path.charCodeAt(i);
-    h = Math.imul(h, 0x01000193) >>> 0;
-  }
-  return h % pool;
-}
-
 export default function NearbyNeighbourhoods() {
   const { pathname } = useLocation();
   const canonical = canonicalForPath(pathname);
   const places = nearbyFor(canonical);
   if (places.length === 0) return null;
 
-  const heading = HEADINGS[variantFor(canonical, HEADINGS.length)];
-  const blurb = BLURBS[variantFor(canonical + "#b", BLURBS.length)];
+  const place = placeNameFor(canonical);
 
   return (
     <section className="py-14 md:py-16 bg-muted/30 border-y border-border" aria-labelledby="nearby-heading">
@@ -81,10 +61,10 @@ export default function NearbyNeighbourhoods() {
             </span>
           </div>
           <h2 id="nearby-heading" className="display-serif text-2xl md:text-3xl font-bold text-foreground mb-3 text-balance">
-            {heading}
+            {place ? `Near ${place}: other areas we clean` : "Other areas we clean"}
           </h2>
           <p className="text-muted-foreground mb-7">
-            {blurb}
+            Same crews, same flat rates by home size.
           </p>
           <ul className="flex flex-wrap justify-center gap-3">
             {places.map((place) => (
