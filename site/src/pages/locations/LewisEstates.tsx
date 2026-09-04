@@ -17,7 +17,7 @@ export default function LewisEstates() {
           "West-end homes of this era tend toward larger footprints with more bathrooms than an older inner-city house, and bathrooms are the slowest rooms per square metre in any home. That is worth flagging when you book.",
         ],
       }}
-        phone="780-913-6565"
+        phone="(780) 913-6565"
         phoneLink="tel:7809136565"
       />
     </>

@@ -16,7 +16,7 @@ export default function Northmount() {
           "The 97 Street and Yellowhead Trail corridors nearby keep road grit moving through the area all winter, and mature tree-lined avenues add pollen in spring and leaf litter in autumn.",
         ],
       }}
-      phone="780-913-6565"
+      phone="(780) 913-6565"
       phoneLink="tel:7809136565"
     />
   );

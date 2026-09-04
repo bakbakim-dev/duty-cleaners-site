@@ -16,7 +16,7 @@ export default function Larkspur() {
           "The wetlands nearby and the Ellerslie Road and Anthony Henday corridors round it out: wet plant matter and mud in spring and autumn, road grit through the winter, both concentrated at entryways.",
         ],
       }}
-      phone="780-913-6565"
+      phone="(780) 913-6565"
       phoneLink="tel:7809136565"
     />
   );

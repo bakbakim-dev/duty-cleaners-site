@@ -202,7 +202,7 @@ export default function SatisfactionGuarantee() {
                 <div className="space-y-2">
                   <a href="tel:7809136565" className="flex items-center gap-2 text-accent hover:underline">
                     <Phone className="w-5 h-5" />
-                    Edmonton: 780-913-6565
+                    Edmonton: (780) 913-6565
                   </a>
                   <a href="tel:4037681341" className="flex items-center gap-2 text-accent hover:underline">
                     <Phone className="w-5 h-5" />

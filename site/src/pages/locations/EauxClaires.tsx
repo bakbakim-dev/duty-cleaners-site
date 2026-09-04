@@ -16,7 +16,7 @@ export default function EauxClaires() {
           "The homes match their era — more separate rooms than a modern open-plan build, and more trim, door frames and sills to hand-wipe than the square footage suggests. It is worth describing the layout when you book, not just the bedroom count.",
         ],
       }}
-      phone="780-913-6565"
+      phone="(780) 913-6565"
       phoneLink="tel:7809136565"
     />
   );

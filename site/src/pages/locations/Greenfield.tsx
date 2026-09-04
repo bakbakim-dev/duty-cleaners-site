@@ -91,9 +91,9 @@ export default function Greenfield() {
               <Button size="lg" className="text-lg px-8" asChild>
                 <a href="#quote">GET INSTANT PRICE</a>
               </Button>
-              <a href="tel:780-913-6565" className="flex items-center gap-2 text-lg font-semibold text-primary hover:text-primary/80 transition-colors">
+              <a href="tel:7809136565" className="flex items-center gap-2 text-lg font-semibold text-primary hover:text-primary/80 transition-colors">
                 <Phone className="w-5 h-5" />
-                780-913-6565
+                (780) 913-6565
               </a>
             </div>
           </div>

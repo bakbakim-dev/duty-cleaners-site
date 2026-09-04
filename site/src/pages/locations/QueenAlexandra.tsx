@@ -88,9 +88,9 @@ const QueenAlexandra = () => {
                   <a href="#quote">GET INSTANT PRICE</a>
                 </Button>
                 <Button size="lg" variant="outline" asChild>
-                  <a href="tel:780-913-6565">
+                  <a href="tel:7809136565">
                     <Phone className="mr-2 h-5 w-5" />
-                    780-913-6565
+                    (780) 913-6565
                   </a>
                 </Button>
               </div>

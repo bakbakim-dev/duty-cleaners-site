@@ -16,7 +16,7 @@ export default function York() {
           "The 66 Street and Manning Drive corridors put road grit through the area all winter, and because Edmonton holds its cold, that grit arrives dry and works into carpet edges and along baseboards rather than melting away. Flat rates by home size, no trip fee, and the figure you see before booking is the figure you pay.",
         ],
       }}
-      phone="780-913-6565"
+      phone="(780) 913-6565"
       phoneLink="tel:7809136565"
     />
   );

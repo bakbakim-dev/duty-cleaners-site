@@ -16,7 +16,7 @@ export default function Tamarack() {
           "The parks and wetlands are the other half of it. Green space at the end of the street is good for a family and hard on a floor: mud and plant matter in spring and autumn, road grit off the Anthony Henday all winter, and both of them concentrate in the entry and the first metre of floor.",
         ],
       }}
-      phone="780-913-6565"
+      phone="(780) 913-6565"
       phoneLink="tel:7809136565"
     />
   );

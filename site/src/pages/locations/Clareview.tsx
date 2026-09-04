@@ -16,7 +16,7 @@ export default function Clareview() {
           "Transit access also makes this an area with more rental turnover than average, and move-in and move-out cleaning is a distinct service priced against what landlords actually inspect — inside appliances, inside every cabinet and drawer, and the storage spaces.",
         ],
       }}
-      phone="780-913-6565"
+      phone="(780) 913-6565"
       phoneLink="tel:7809136565"
     />
   );

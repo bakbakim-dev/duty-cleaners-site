@@ -166,7 +166,7 @@ export default function Morinville() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
                   <a href="tel:7809136565">
-                    <Phone className="mr-2 w-5 h-5" />780-913-6565
+                    <Phone className="mr-2 w-5 h-5" />(780) 913-6565
                   </a>
                 </Button>
                 <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
@@ -415,7 +415,7 @@ export default function Morinville() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
                 <a href="tel:7809136565">
-                  <Phone className="mr-2 w-5 h-5" />Call 780-913-6565
+                  <Phone className="mr-2 w-5 h-5" />Call (780) 913-6565
                 </a>
               </Button>
               <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>

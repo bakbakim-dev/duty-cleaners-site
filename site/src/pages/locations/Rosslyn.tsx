@@ -16,7 +16,7 @@ export default function Rosslyn() {
           "The 97 Street and Yellowhead Trail corridors put road grit through the neighbourhood all winter, arriving dry because the cold here holds rather than thawing, and Rosslyn Park and the mature streets add pollen and leaf fall in their seasons.",
         ],
       }}
-      phone="780-913-6565"
+      phone="(780) 913-6565"
       phoneLink="tel:7809136565"
     />
   );

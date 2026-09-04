@@ -344,7 +344,7 @@ export default function BlogChoosingCleaningCompany() {
                     <Button size="lg" variant="secondary" asChild className="text-primary">
                       <a href="tel:7809136565" className="flex items-center gap-2">
                         <Phone className="h-5 w-5" />
-                        Edmonton: 780-913-6565
+                        Edmonton: (780) 913-6565
                       </a>
                     </Button>
                     <Button size="lg" variant="secondary" asChild className="text-primary">

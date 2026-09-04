@@ -182,7 +182,7 @@ export default function QuoteRedirect() {
           href="tel:7809136565"
           className="min-h-12 inline-flex items-center justify-center rounded bg-accent px-6 py-3 font-bold text-accent-foreground hover:bg-accent/90"
         >
-          Call 780-913-6565
+          Call (780) 913-6565
         </a>
       </div>
     );

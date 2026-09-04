@@ -16,7 +16,7 @@ export default function LagoLindo() {
           "The homes here are established rather than new, so they tend to have more separate rooms and more trim, door frames and sills to hand-wipe than a modern build of the same footprint. That is worth mentioning when you book, because layout affects how long a clean takes more than bedroom count alone does.",
         ],
       }}
-      phone="780-913-6565"
+      phone="(780) 913-6565"
       phoneLink="tel:7809136565"
     />
   );

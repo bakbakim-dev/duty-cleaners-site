@@ -16,7 +16,7 @@ export default function MapleRidge() {
           "Whitemud Drive and the Anthony Henday bracket the area, so winter road grit is a constant from November through April, and Mill Woods Town Centre keeps a steady flow through the neighbourhood.",
         ],
       }}
-      phone="780-913-6565"
+      phone="(780) 913-6565"
       phoneLink="tel:7809136565"
     />
   );

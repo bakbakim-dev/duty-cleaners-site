@@ -50,7 +50,7 @@ export default function AboutUs() {
                 <a href="#quote">See My Instant Price</a>
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10" asChild>
-                <a href="tel:7809136565">Call 780-913-6565</a>
+                <a href="tel:7809136565">Call (780) 913-6565</a>
               </Button>
             </div>
           </div>

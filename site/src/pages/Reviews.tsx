@@ -281,7 +281,7 @@ export default function Reviews() {
                   className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-accent text-accent-foreground font-semibold rounded-lg hover:bg-accent/90 transition-colors shadow-lg">
                   
                   <Phone className="w-4 h-4" />
-                  Edmonton: 780-913-6565
+                  Edmonton: (780) 913-6565
                 </a>
                 <a
                   href="tel:4037681341"

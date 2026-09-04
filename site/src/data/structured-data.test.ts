@@ -213,3 +213,68 @@ describe("structured data", () => {
     ).toEqual([]);
   });
 });
+
+describe("NAP consistency in what the visitor sees", () => {
+  /**
+   * The schema was not the only place the number appeared in two shapes. The
+   * rendered pages carried "(780) 913-6565" 370 times and a bare
+   * "780-913-6565" 310 times, while Calgary was always "(403) 768-1341" — one
+   * business, two house styles for one of its two branches. The site-wide
+   * cause was Navigation.tsx, which wrote both numbers out by hand and gave
+   * only Calgary its parentheses:
+   *
+   *   const phone = city === "calgary" ? "(403) 768-1341" : "780-913-6565";
+   *
+   * Four tel: hrefs were hyphenated where the other 400 were bare digits.
+   *
+   * Name, address and phone are the three things a local listing is matched
+   * on. Presenting one of them two ways is the inconsistency that costs
+   * nothing to avoid and is invisible until someone counts.
+   */
+  const DISPLAY = [CITY_PROOF.edmonton.phone, CITY_PROOF.calgary.phone];
+  const TEL = [CITY_PROOF.edmonton.phoneLink, CITY_PROOF.calgary.phoneLink];
+  const PHONE_LIKE = /\(?\b(?:780|403)\)?[\s.-]?\d{3}[\s.-]?\d{4}/g;
+
+  const visible = (html: string) =>
+    html
+      .replace(/<script[\s\S]*?<\/script>/g, " ")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/&amp;/g, "&")
+      .replace(/\s+/g, " ");
+
+  it("every phone number a visitor reads is in the canonical format", () => {
+    const bad = new Map<string, string[]>();
+    for (const { url, html } of pages()) {
+      for (const m of visible(html).matchAll(PHONE_LIKE)) {
+        if (DISPLAY.includes(m[0])) continue;
+        if (!bad.has(m[0])) bad.set(m[0], []);
+        const where = bad.get(m[0])!;
+        if (where.length < 4 && !where.includes(url)) where.push(url);
+      }
+    }
+    const lines = [...bad.entries()].map(([v, urls]) => `"${v}" on ${urls.join(", ")}`);
+    expect(
+      lines,
+      `Phone numbers shown in a format other than the canonical one:\n${lines.join("\n")}\n` +
+        `The two are "${DISPLAY[0]}" and "${DISPLAY[1]}", both in data/proof.ts.`,
+    ).toEqual([]);
+  });
+
+  it("every tel: href uses the canonical link", () => {
+    const bad = new Map<string, string[]>();
+    for (const { url, html } of pages()) {
+      for (const m of html.matchAll(/href="(tel:[^"]*)"/g)) {
+        if (TEL.includes(m[1])) continue;
+        if (!bad.has(m[1])) bad.set(m[1], []);
+        const where = bad.get(m[1])!;
+        if (where.length < 4 && !where.includes(url)) where.push(url);
+      }
+    }
+    const lines = [...bad.entries()].map(([v, urls]) => `"${v}" on ${urls.join(", ")}`);
+    expect(
+      lines,
+      `tel: hrefs that are not the canonical link:\n${lines.join("\n")}\n` +
+        `Use CITY_PROOF[city].phoneLink.`,
+    ).toEqual([]);
+  });
+});

@@ -243,7 +243,7 @@ export default function EdmontonPricing() {
               <Button size="lg" className="bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 text-lg px-8 py-6 h-auto font-semibold transition-all duration-300" asChild>
                 <a href="tel:7809136565">
                   <Phone className="w-5 h-5 mr-2" />
-                  780-913-6565
+                  (780) 913-6565
                 </a>
               </Button>
             </div>
@@ -646,7 +646,7 @@ export default function EdmontonPricing() {
               <Button size="lg" className="bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 text-lg px-8 py-6 h-auto font-semibold transition-all duration-300" asChild>
                 <a href="tel:7809136565">
                   <Phone className="w-5 h-5 mr-2" />
-                  Edmonton: 780-913-6565
+                  Edmonton: (780) 913-6565
                 </a>
               </Button>
             </div>

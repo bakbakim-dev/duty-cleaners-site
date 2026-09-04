@@ -252,7 +252,7 @@ export default function Terms() {
                     href="tel:7809136565"
                     className="inline-flex items-center gap-2 text-accent hover:underline"
                   >
-                    <Phone className="w-4 h-4" /> Edmonton: 780-913-6565
+                    <Phone className="w-4 h-4" /> Edmonton: (780) 913-6565
                   </a>
                   <a
                     href="tel:4037681341"

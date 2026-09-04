@@ -39,7 +39,7 @@ const mainLocations = [
     name: "Edmonton",
     rating: RATING_CLAIM,
     reviews: `${HOMES_CLEANED.edmonton} Edmonton homes cleaned`,
-    phone: "780-913-6565",
+    phone: "(780) 913-6565",
     phoneHref: "tel:7809136565",
     address: "18615 71 Ave NW",
     addressLine2: "Edmonton, AB T5T 2V9",

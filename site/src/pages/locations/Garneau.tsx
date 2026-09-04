@@ -175,7 +175,7 @@ export default function Garneau() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
-                    <a href="tel:7809136565"><Phone className="mr-2 w-5 h-5" />780-913-6565</a>
+                    <a href="tel:7809136565"><Phone className="mr-2 w-5 h-5" />(780) 913-6565</a>
                   </Button>
                   <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
                     <a href="#quote">See My Instant Price</a>
@@ -358,7 +358,7 @@ export default function Garneau() {
               <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">Get your free quote today and experience the Duty Cleaners difference!</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
-                  <a href="tel:7809136565"><Phone className="mr-2 w-5 h-5" />Call 780-913-6565</a>
+                  <a href="tel:7809136565"><Phone className="mr-2 w-5 h-5" />Call (780) 913-6565</a>
                 </Button>
                 <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
                   <a href="#quote"><Mail className="mr-2 w-5 h-5" />See My Instant Price</a>

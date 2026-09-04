@@ -16,7 +16,7 @@ export default function Laurel() {
           "Then there is the Anthony Henday. Living close to a ring road means fine road grit riding in on tyres and shoes all winter, and unlike snow it does not melt away — it grinds into floor finish and settles along baseboards. We work Laurel regularly and price it exactly as any other Edmonton address: flat by home size, no trip fee, and the figure you see before booking is the figure you pay.",
         ],
       }}
-      phone="780-913-6565"
+      phone="(780) 913-6565"
       phoneLink="tel:7809136565"
     />
   );

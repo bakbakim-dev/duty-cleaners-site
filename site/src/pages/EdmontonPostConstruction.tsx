@@ -171,7 +171,7 @@ export default function EdmontonPostConstruction() {
                 <Button asChild size="lg" className="bg-white/95 text-brand-navy hover:bg-white text-lg px-8">
                   <a href="tel:7809136565">
                     <Phone className="mr-2 w-5 h-5" />
-                    780-913-6565
+                    (780) 913-6565
                   </a>
                 </Button>
               </div>
@@ -384,7 +384,7 @@ export default function EdmontonPostConstruction() {
           </AnimatedSection>
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {[
-              { icon: Phone, title: "Give us a call", desc: "We're here to answer your questions!", action: "780-913-6565", href: "tel:7809136565" },
+              { icon: Phone, title: "Give us a call", desc: "We're here to answer your questions!", action: "(780) 913-6565", href: "tel:7809136565" },
               { icon: MapPin, title: "Our office", desc: "18615 71 Ave NW\nEdmonton, AB", action: "Get Directions", href: getListing("edmonton").url },
               { icon: Clock, title: "Hours of operation", desc: "Mon-Sat: 8am–8pm\nSun: 9am–3pm", action: "Reviews", href: getListing("edmonton").reviewsUrl },
             ].map((card, index) => (

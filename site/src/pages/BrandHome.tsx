@@ -228,7 +228,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
 
                     <div className="flex items-center gap-2 mb-5 text-white/90">
                       <Phone className="w-4 h-4" />
-                      <span className="font-semibold text-white">780-913-6565</span>
+                      <span className="font-semibold text-white">(780) 913-6565</span>
                     </div>
 
                     <div className="space-y-2 mb-6">
@@ -525,7 +525,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-10 py-6 h-auto font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5" asChild>
                     <a href="tel:7809136565">
                       <Phone className="w-5 h-5 mr-2" />
-                      Edmonton: 780-913-6565
+                      Edmonton: (780) 913-6565
                     </a>
                   </Button>
                   <Button size="lg" className="bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 text-lg px-10 py-6 h-auto font-semibold transition-all duration-300" asChild>

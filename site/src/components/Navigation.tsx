@@ -1,3 +1,4 @@
+import { CITY_PROOF } from "@/data/proof";
 import { quoteHrefFor } from "@/lib/quote-link";
 import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -205,8 +206,12 @@ export default function Navigation({ city }: NavigationProps) {
 
 
 
-  const phone = city === "calgary" ? "(403) 768-1341" : "780-913-6565";
-  const phoneLink = city === "calgary" ? "tel:4037681341" : "tel:7809136565";
+  // Both were written out by hand here, and they disagreed: Calgary got
+  // parentheses and Edmonton did not, on every page of the site. proof.ts is
+  // the NAP authority — read it rather than restating the number.
+  const branch = CITY_PROOF[city === "calgary" ? "calgary" : "edmonton"];
+  const phone = branch.phone;
+  const phoneLink = branch.phoneLink;
   // NOTE: cityPath composes MODERN routes (/edmonton/pricing). Several of
   // those have a preserved legacy canonical (/pricing), so every link built
   // from it is resolved through canonicalForPath — otherwise the sitewide nav

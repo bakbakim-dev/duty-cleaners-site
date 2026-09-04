@@ -16,7 +16,7 @@ export default function Schonsee() {
           "Winter brings the other half. The 97 Street and Anthony Henday corridors put road grit on every tyre and boot in the area, and because Edmonton holds its cold rather than thawing and refreezing, that grit arrives dry and stays put along baseboards and in carpet edges.",
         ],
       }}
-      phone="780-913-6565"
+      phone="(780) 913-6565"
       phoneLink="tel:7809136565"
     />
   );

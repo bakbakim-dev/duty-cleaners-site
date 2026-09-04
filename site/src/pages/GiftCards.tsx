@@ -339,7 +339,7 @@ export default function GiftCards() {
               </Button>
               <p className="mt-8 text-white/80">
                 Questions? Call us at{" "}
-                <a href="tel:7809136565" className="text-brand-gold hover:underline font-medium">780-913-6565</a>{" "}
+                <a href="tel:7809136565" className="text-brand-gold hover:underline font-medium">(780) 913-6565</a>{" "}
                 (Edmonton) or{" "}
                 <a href="tel:4037681341" className="text-brand-gold hover:underline font-medium">(403) 768-1341</a>{" "}
                 (Calgary)
