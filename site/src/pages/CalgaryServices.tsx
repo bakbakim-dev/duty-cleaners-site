@@ -241,12 +241,12 @@ function ServiceCard({ service }: { service: Service }) {
         <div className="text-xl font-bold mb-4 text-primary">
           {service.price}
         </div>
-        <Link to={service.link}>
-          <Button className="w-full group/btn bg-primary hover:bg-primary/90 text-primary-foreground">
+        <Button className="w-full group/btn bg-primary hover:bg-primary/90 text-primary-foreground" asChild>
+          <Link to={service.link}>
             {service.linkText}
             <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
-          </Button>
-        </Link>
+          </Link>
+        </Button>
       </div>
     </div>
   );

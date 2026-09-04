@@ -145,12 +145,12 @@ export default function BlogCleaningFrequency() {
         {/* Hero Section */}
         <section className="relative pt-24 pb-16">
           <div className="container mx-auto px-4">
-            <Link to="/blog/">
-              <Button variant="ghost" className="mb-6">
+            <Button variant="ghost" className="mb-6" asChild>
+              <Link to="/blog/">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Blog
-              </Button>
-            </Link>
+              </Link>
+            </Button>
             
             <div className="max-w-4xl mx-auto">
               <div className="flex items-center gap-4 mb-6 text-sm text-muted-foreground">
@@ -358,16 +358,16 @@ export default function BlogCleaningFrequency() {
                   Duty Cleaners serves Edmonton, Calgary and the surrounding communities. Pick a frequency, see the price for your home size, and pay only after the clean is done.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link to="/#quote">
-                    <Button size="lg" variant="accent" className="w-full sm:w-auto min-h-[52px] text-base font-bold">
+                  <Button size="lg" variant="accent" className="w-full sm:w-auto min-h-[52px] text-base font-bold" asChild>
+                    <Link to="/#quote">
                       See My Instant Price — Edmonton
-                    </Button>
-                  </Link>
-                  <Link to="/cleaning-services-calgary/#quote">
-                    <Button size="lg" variant="outline" className="w-full sm:w-auto min-h-[52px] text-base font-semibold">
+                    </Link>
+                  </Button>
+                  <Button size="lg" variant="outline" className="w-full sm:w-auto min-h-[52px] text-base font-semibold" asChild>
+                    <Link to="/cleaning-services-calgary/#quote">
                       See My Instant Price — Calgary
-                    </Button>
-                  </Link>
+                    </Link>
+                  </Button>
                 </div>
               </div>
             </div>

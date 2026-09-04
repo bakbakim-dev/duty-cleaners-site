@@ -198,14 +198,14 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
 
             <div className="grid md:grid-cols-2 gap-8">
               {/* Edmonton Card */}
-              <Link to="/" className="group block" style={{
+              <div className="group block" style={{
               perspective: "1000px"
             }}>
-                <div className="bg-brand-navy rounded-2xl p-8 text-white transition-all duration-500 ease-out group-hover:-translate-y-2 group-hover:shadow-xl group-hover:scale-[1.02] relative overflow-hidden border border-white/10" style={{
+                <div className="bg-brand-navy rounded-2xl text-white transition-all duration-500 ease-out group-hover:-translate-y-2 group-hover:shadow-xl group-hover:scale-[1.02] relative overflow-hidden border border-white/10" style={{
                 transformStyle: "preserve-3d"
               }}>
                   <div className="absolute top-0 right-0 w-40 h-40 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
-                  <div className="relative z-10">
+                  <div className="relative z-10 p-8">
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center gap-3">
                         <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center transition-transform duration-500 group-hover:rotate-6">
@@ -242,23 +242,31 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
                       </div>
                     </div>
 
-                    <Button className="w-full bg-accent text-accent-foreground hover:bg-accent/90 font-semibold text-base h-12 shadow-md hover:shadow-lg transition-all">
-                      View Services
-                      <ArrowRight className="w-5 h-5 ml-2" />
+                    <Button
+                      asChild
+                      className="w-full bg-accent text-accent-foreground hover:bg-accent/90 font-semibold text-base h-12 shadow-md hover:shadow-lg transition-all"
+                    >
+                      <Link
+                        to="/"
+                        className="after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                      >
+                        View Edmonton services
+                        <ArrowRight className="w-5 h-5 ml-2" />
+                      </Link>
                     </Button>
                   </div>
                 </div>
-              </Link>
+              </div>
 
               {/* Calgary Card */}
-              <Link to="/cleaning-services-calgary/" className="group block" style={{
+              <div className="group block" style={{
               perspective: "1000px"
             }}>
-                <div className="bg-brand-navy rounded-2xl p-8 text-white transition-all duration-500 ease-out group-hover:-translate-y-2 group-hover:shadow-xl group-hover:scale-[1.02] relative overflow-hidden border border-white/10" style={{
+                <div className="bg-brand-navy rounded-2xl text-white transition-all duration-500 ease-out group-hover:-translate-y-2 group-hover:shadow-xl group-hover:scale-[1.02] relative overflow-hidden border border-white/10" style={{
                 transformStyle: "preserve-3d"
               }}>
                   <div className="absolute bottom-0 left-0 w-40 h-40 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
-                  <div className="relative z-10">
+                  <div className="relative z-10 p-8">
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center gap-3">
                         <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center transition-transform duration-500 group-hover:rotate-6">
@@ -295,13 +303,21 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
                       </div>
                     </div>
 
-                    <Button className="w-full bg-accent text-accent-foreground hover:bg-accent/90 font-semibold text-base h-12 shadow-md hover:shadow-lg transition-all">
-                      View Services
-                      <ArrowRight className="w-5 h-5 ml-2" />
+                    <Button
+                      asChild
+                      className="w-full bg-accent text-accent-foreground hover:bg-accent/90 font-semibold text-base h-12 shadow-md hover:shadow-lg transition-all"
+                    >
+                      <Link
+                        to="/cleaning-services-calgary/"
+                        className="after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                      >
+                        View Calgary services
+                        <ArrowRight className="w-5 h-5 ml-2" />
+                      </Link>
                     </Button>
                   </div>
                 </div>
-              </Link>
+              </div>
             </div>
           </div>
         </div>

@@ -573,11 +573,11 @@ export default function CalgaryMoveInOut() {
             <p className="text-muted-foreground mb-6">
               For the most accurate pricing, use our online calculator or contact us for a custom quote tailored to your specific needs.
             </p>
-            <a href="#quote">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-white">
+            <Button size="lg" className="bg-primary hover:bg-primary/90 text-white" asChild>
+              <a href="#quote">
                 See My Instant Price
-              </Button>
-            </a>
+              </a>
+            </Button>
           </div>
         </div>
       </section>

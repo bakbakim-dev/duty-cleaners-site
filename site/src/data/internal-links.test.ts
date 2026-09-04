@@ -187,3 +187,104 @@ describe('anchors describe where they go', () => {
     ).toEqual([]);
   });
 });
+
+describe("an anchor is one link with one thing to say", () => {
+  /** Every prerendered page, so a new card pattern cannot land unguarded. */
+  function allPages(): string[] {
+    if (!existsSync(DIST)) return [];
+    const out: string[] = [];
+    const walk = (dir: string, url: string) => {
+      let entries: string[];
+      try {
+        entries = readdirSync(dir);
+      } catch {
+        return;
+      }
+      if (entries.includes("index.html")) out.push(url);
+      for (const e of entries) {
+        const p = join(dir, e);
+        try {
+          if (statSync(p).isDirectory()) walk(p, `${url}${e}/`);
+        } catch {
+          /* skip */
+        }
+      }
+    };
+    walk(DIST, "/");
+    return out;
+  }
+
+  const noScripts = (s: string) => s.replace(/<script[\s\S]*?<\/script>/g, " ");
+
+  /**
+   * A card that wraps its whole self in one <Link> makes the anchor the heading,
+   * the body copy, the metadata and the CTA run together. Eight links out of
+   * /blog/ ran 239-290 characters each and every one of them arrived at a
+   * different article under a near-identical wall of text; the two city cards on
+   * /locations/ were 117 each. That is the single clearest statement a page makes
+   * about what sits at the other end, spent on nothing.
+   *
+   * The fix throughout is the same: the card is a div, the heading or the CTA is
+   * the anchor, and an ::after stretches it over the card so the click target is
+   * unchanged. 65 characters is generous — the real distribution has a median of
+   * 12 and a 90th percentile of 34, so this only catches a card wrapper.
+   */
+  it("no in-body anchor swallows a whole card", () => {
+    const pages = allPages();
+    if (pages.length === 0) return;
+    const long: string[] = [];
+    for (const url of pages) {
+      let body: string;
+      try {
+        body = noScripts(html(url));
+      } catch {
+        continue;
+      }
+      const m = /<main\b[^>]*>([\s\S]*?)<\/main>/.exec(body);
+      if (!m) continue;
+      const inner = m[1].replace(/<svg[\s\S]*?<\/svg>/g, " ");
+      for (const a of inner.matchAll(/<a\b[^>]*href="(\/[^"#?]*)"[^>]*>([\s\S]*?)<\/a>/g)) {
+        const text = a[2].replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+        if (text.length > 65) long.push(`${url}: ${text.length} chars -> ${a[1]}\n    "${text.slice(0, 90)}…"`);
+      }
+    }
+    expect(
+      long,
+      `These anchors are a whole card rather than a description of the destination:\n${long.join("\n")}\n` +
+        `Put the anchor on the heading or the CTA and stretch it over the card ` +
+        `with after:absolute after:inset-0 — the card stays clickable and the ` +
+        `link says what it links to.`,
+    ).toEqual([]);
+  });
+
+  /**
+   * `<Link to="..."><Button>See Deep Cleaning</Button></Link>` ships a real
+   * <button> inside the <a>. Interactive content cannot nest: the parser is
+   * required to recover, and the recovery can leave the button a sibling of the
+   * anchor rather than its child — at which point a perfectly good link is no
+   * longer a link. 48 of these shipped across 12 pages.
+   *
+   * The project already has the idiom: <Button asChild> puts the styling on the
+   * child so one <a> ships.
+   */
+  it("no link contains a button element", () => {
+    const pages = allPages();
+    if (pages.length === 0) return;
+    const nested: string[] = [];
+    for (const url of pages) {
+      let s: string;
+      try {
+        s = noScripts(html(url));
+      } catch {
+        continue;
+      }
+      const n = (s.match(/<a\b[^>]*>(?:(?!<\/a>)[\s\S])*?<button/g) ?? []).length;
+      if (n) nested.push(`${url}: ${n}`);
+    }
+    expect(
+      nested,
+      `These pages nest a <button> inside an <a>:\n${nested.join("\n")}\n` +
+        `Use <Button asChild><Link …>…</Link></Button> so a single anchor ships.`,
+    ).toEqual([]);
+  });
+});

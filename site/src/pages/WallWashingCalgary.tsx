@@ -207,17 +207,17 @@ export default function WallWashingCalgary() {
                 {WALL_PRICE_LINE}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <a href="#quote">
-                  <Button size="lg" variant="accent" className="w-full sm:w-auto text-base px-8">
+                <Button size="lg" variant="accent" className="w-full sm:w-auto text-base px-8" asChild>
+                  <a href="#quote">
                     See My Instant Price
-                  </Button>
-                </a>
-                <a href="tel:4037681341">
-                  <Button size="lg" variant="outline" className="w-full sm:w-auto text-base border-white/30 text-white hover:bg-white/10">
+                  </a>
+                </Button>
+                <Button size="lg" variant="outline" className="w-full sm:w-auto text-base border-white/30 text-white hover:bg-white/10" asChild>
+                  <a href="tel:4037681341">
                     <Phone className="w-4 h-4 mr-2" />
                     (403) 768-1341
-                  </Button>
-                </a>
+                  </a>
+                </Button>
               </div>
             </div>
             <div className="flex-shrink-0 w-full lg:w-[500px]">
@@ -435,9 +435,9 @@ export default function WallWashingCalgary() {
               <p className="text-white/90 mb-8 max-w-xl mx-auto">
                 We stand behind the quality of our staff. If you're not 100% satisfied with your cleaning, we'll come back and re-clean it at no additional charge, as long as we're informed within 24 hours after the cleaning.
               </p>
-              <Link to="/about-us/">
-                <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10">About Duty Cleaners</Button>
-              </Link>
+              <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10" asChild>
+                <Link to="/about-us/">About Duty Cleaners</Link>
+              </Button>
             </div>
           </AnimatedSection>
         </div>
@@ -518,15 +518,15 @@ export default function WallWashingCalgary() {
               Professional wall cleaning for a cleaner, brighter home. Get an instant estimate or call our team now.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact-us/">
-                <Button size="lg" variant="accent" className="w-full sm:w-auto text-base px-8">Get Instant Estimate</Button>
-              </Link>
-              <a href="tel:4037681341">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto text-base border-white/30 text-white hover:bg-white/10">
+              <Button size="lg" variant="accent" className="w-full sm:w-auto text-base px-8" asChild>
+                <Link to="/contact-us/">Get Instant Estimate</Link>
+              </Button>
+              <Button size="lg" variant="outline" className="w-full sm:w-auto text-base border-white/30 text-white hover:bg-white/10" asChild>
+                <a href="tel:4037681341">
                   <Phone className="w-4 h-4 mr-2" />
                   Call Now
-                </Button>
-              </a>
+                </a>
+              </Button>
             </div>
           </AnimatedSection>
         </div>

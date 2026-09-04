@@ -136,12 +136,12 @@ export default function BlogSpotlessHomeTips() {
         {/* Hero */}
         <section className="relative pt-24 pb-16">
           <div className="container mx-auto px-4">
-            <Link to="/blog/">
-              <Button variant="ghost" className="mb-6">
+            <Button variant="ghost" className="mb-6" asChild>
+              <Link to="/blog/">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Blog
-              </Button>
-            </Link>
+              </Link>
+            </Button>
 
             <div className="max-w-4xl mx-auto">
               <div className="flex items-center gap-4 mb-6 text-sm text-muted-foreground">
@@ -333,24 +333,36 @@ export default function BlogSpotlessHomeTips() {
               <div className="mb-16">
                 <h2 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">Keep reading</h2>
                 <div className="grid sm:grid-cols-2 gap-4">
-                  <Link
-                    to="/the-top-5-must-have-cleaning-products-for-a-spotless-home/"
-                    className="block p-5 border border-border rounded-xl bg-card hover:border-accent transition-colors"
+                  <div
+                    className="relative p-5 border border-border rounded-xl bg-card transition-colors hover:border-accent"
                   >
-                    <h3 className="font-bold text-foreground">The Top 5 Must-Have Cleaning Products</h3>
+                    <h3 className="font-bold text-foreground">
+                      <Link
+                        to="/the-top-5-must-have-cleaning-products-for-a-spotless-home/"
+                        className="after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                      >
+                        The Top 5 Must-Have Cleaning Products
+                      </Link>
+                    </h3>
                     <p className="text-muted-foreground text-sm mt-1">
                       The five products our cleaners actually carry — and what you can stop buying.
                     </p>
-                  </Link>
-                  <Link
-                    to="/blog/cleaning-schedule/"
-                    className="block p-5 border border-border rounded-xl bg-card hover:border-accent transition-colors"
+                  </div>
+                  <div
+                    className="relative p-5 border border-border rounded-xl bg-card transition-colors hover:border-accent"
                   >
-                    <h3 className="font-bold text-foreground">A Cleaning Schedule That Actually Holds Up</h3>
+                    <h3 className="font-bold text-foreground">
+                      <Link
+                        to="/blog/cleaning-schedule/"
+                        className="after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                      >
+                        A Cleaning Schedule That Actually Holds Up
+                      </Link>
+                    </h3>
                     <p className="text-muted-foreground text-sm mt-1">
                       A more detailed breakdown of the three-tier schedule above.
                     </p>
-                  </Link>
+                  </div>
                 </div>
               </div>
 
@@ -365,16 +377,16 @@ export default function BlogSpotlessHomeTips() {
                   about 60 seconds, and pay only after the clean is done.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link to="/#quote">
-                    <Button size="lg" variant="accent" className="w-full sm:w-auto min-h-[52px] text-base font-bold">
+                  <Button size="lg" variant="accent" className="w-full sm:w-auto min-h-[52px] text-base font-bold" asChild>
+                    <Link to="/#quote">
                       See My Instant Price — Edmonton
-                    </Button>
-                  </Link>
-                  <Link to="/cleaning-services-calgary/#quote">
-                    <Button size="lg" variant="outline" className="w-full sm:w-auto min-h-[52px] text-base font-semibold">
+                    </Link>
+                  </Button>
+                  <Button size="lg" variant="outline" className="w-full sm:w-auto min-h-[52px] text-base font-semibold" asChild>
+                    <Link to="/cleaning-services-calgary/#quote">
                       See My Instant Price — Calgary
-                    </Button>
-                  </Link>
+                    </Link>
+                  </Button>
                 </div>
               </div>
             </div>
