@@ -435,6 +435,36 @@ export default function LocationPageTemplate({
               ))}
             </div>
           </AnimatedSection>
+          {region === "calgary" && (
+            <AnimatedSection>
+              {/* Up-link to the city hub, Calgary only.
+                  Both hubs receive 8 editorial in-body links from the whole
+                  site — the "217 vs 13" gap a naive count shows is breadcrumbs,
+                  which sit inside <main>. The difference that matters is what
+                  each hub IS: Edmonton's is the homepage, already fed by every
+                  nav, footer and breadcrumb on 209 pages, while Calgary's is a
+                  subpage that ranked 24.8 for "cleaning services calgary"
+                  against Edmonton's 6.3 on the same query and comparable
+                  impressions. Linking Edmonton pages to the homepage would buy
+                  nothing; linking Calgary's 77 neighbourhood pages to their hub
+                  is the support it does not have.
+
+                  isOwnMunicipality keeps the sentence true: Airdrie, Okotoks
+                  and the rest are separate towns, not Calgary neighbourhoods. */}
+              <p className="mt-10 text-center text-muted-foreground">
+                {isOwnMunicipality
+                  ? `We clean ${city} and the wider Calgary area — see `
+                  : `${city} is one of the Calgary neighbourhoods we clean — see `}
+                <Link
+                  to={canonicalForPath("/cleaning-services-calgary")}
+                  className="text-primary underline underline-offset-2"
+                >
+                  house cleaning services in Calgary
+                </Link>
+                {" for the full picture."}
+              </p>
+            </AnimatedSection>
+          )}
         </div>
       </section>
 

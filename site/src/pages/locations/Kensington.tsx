@@ -307,6 +307,23 @@ export default function Kensington() {
                 ))}
               </div>
             </AnimatedSection>
+            <AnimatedSection>
+              {/* Up-link to the city hub. /cleaning-services-calgary/ is a
+                  subpage, unlike Edmonton's hub which is the homepage, so it is
+                  the one that actually needs internal support: it ranked 24.8
+                  for "cleaning services calgary" against Edmonton's 6.3 on the
+                  identical query, on comparable impressions. */}
+              <p className="mt-10 text-center text-muted-foreground">
+                {"Kensington is one of the Calgary neighbourhoods we clean — see "}
+                <Link
+                  to="/cleaning-services-calgary/"
+                  className="text-primary underline underline-offset-2"
+                >
+                  house cleaning services in Calgary
+                </Link>
+                {" for the full picture."}
+              </p>
+            </AnimatedSection>
           </div>
         </section>
 
