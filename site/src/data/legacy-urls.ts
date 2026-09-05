@@ -209,6 +209,26 @@ export const LEGACY_URLS: LegacyUrl[] = [
   // Same post as /8102/...-does-not-overwhelm-you, under the pre-numbering
   // slug that spells it "doesnt".
   { legacy: "/a-house-cleaning-schedule-that-doesnt-overwhelm-you", target: "/blog/cleaning-schedule", mode: "redirect", impressions: 0 },
+
+  // ---------------------------------------------------------------------
+  // Second pass over the Coverage exports (2026-09-05), after pulling every
+  // drilldown rather than just "Page with redirect". Two more families, found
+  // by grepping EVERY export for the family prefix instead of fixing the rows
+  // that happened to appear in one bucket -- which is how leduc and two
+  // /services-pricing/ children were missed the first time.
+  //
+  // /cleaning-services-for-<place>-ab has exactly seven members across all
+  // exports; six are above, this is the seventh.
+  { legacy: "/cleaning-services-for-leduc-ab", target: "/cleaning-services-leduc", mode: "redirect", impressions: 0 },
+
+  // /services-pricing/ was a whole WordPress section that nothing mapped. The
+  // children each mirror a service that still exists; the parent was the index.
+  { legacy: "/services-pricing", target: "/services", mode: "redirect", impressions: 0 },
+  { legacy: "/services-pricing/post-construction-cleaning", target: "/post-construction-cleaning", mode: "redirect", impressions: 0 },
+  { legacy: "/services-pricing/wall-washing-wall-cleaning", target: "/wall-washing-wall-cleaning", mode: "redirect", impressions: 0 },
+  { legacy: "/services-pricing/commercial-cleaning-edmonton", target: "/commercial-cleaning", mode: "redirect", impressions: 0 },
+  { legacy: "/services-pricing/move-in-move-out", target: "/move-out-cleaning-edmonton", mode: "redirect", impressions: 0 },
+  { legacy: "/services-pricing/cleaning-services-fort-saskatchewan", target: "/cleaning-services-fort-saskatchewan", mode: "redirect", impressions: 0 },
 ];
 
 /** legacy path -> modern route, for the routes we serve at the old URL. */
