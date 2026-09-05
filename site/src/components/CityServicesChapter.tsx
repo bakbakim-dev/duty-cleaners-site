@@ -1,7 +1,7 @@
 import { FREQUENCIES } from "@/data/pricing";
 import { Link } from "react-router-dom";
 import { canonicalForPath } from "@/data/legacy-urls";
-import { ArrowRight, ExternalLink, HardHat, Home, KeyRound, Repeat, Sparkles, Truck } from "lucide-react";
+import { ArrowRight, Building2, ExternalLink, HardHat, Home, KeyRound, Repeat, Sparkles, Truck } from "lucide-react";
 import { Accent } from "@/components/Accent";
 import Eyebrow from "@/components/Eyebrow";
 import useRevealOnScroll from "@/hooks/use-reveal-on-scroll";
@@ -190,6 +190,38 @@ export default function CityServicesChapter({
               className="hidden items-center text-sm font-semibold text-primary transition-transform duration-300 group-hover:translate-x-1 sm:inline-flex after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               Explore post-construction <ExternalLink className="ml-1 h-4 w-4" aria-hidden="true" />
+          </Link>
+        </div>
+
+        {/* Commercial. The chapter listed five services and omitted this one,
+            on the page that is the entry point for the whole city — while
+            /commercial-cleaning-services-calgary/ earns 136,659 impressions and
+            /commercial-cleaning/ another 147,030 across its URLs. It was
+            reachable only from the services index.
+
+            The path is written out rather than composed from basePath: Calgary's
+            route is /calgary/commercial-cleaning (canonical
+            /commercial-cleaning-services-calgary/), but Edmonton's has no
+            /edmonton/ prefix at all — it is simply /commercial-cleaning/. */}
+        <div
+          className="motion-lift paper-rule card-warm group mt-6 flex items-center gap-4 border bg-white p-5 md:p-6 relative"
+        >
+          <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-primary/10">
+            <Building2 className="h-6 w-6 text-primary" aria-hidden="true" />
+          </div>
+          <div className="flex-1">
+            <h3 className="font-bold">Commercial &amp; Office</h3>
+            <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
+              Offices, retail, warehouses and medical space, scoped in writing after a walkthrough.
+            </p>
+          </div>
+          <Link
+            to={canonicalForPath(
+              basePath === "/calgary" ? "/calgary/commercial-cleaning" : "/commercial-cleaning",
+            )}
+            className="hidden items-center text-sm font-semibold text-primary transition-transform duration-300 group-hover:translate-x-1 sm:inline-flex after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          >
+            Explore commercial cleaning <ExternalLink className="ml-1 h-4 w-4" aria-hidden="true" />
           </Link>
         </div>
 
