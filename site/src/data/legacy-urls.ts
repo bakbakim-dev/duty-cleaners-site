@@ -192,6 +192,23 @@ export const LEGACY_URLS: LegacyUrl[] = [
   { legacy: "/author/lokkom", target: "/blog", mode: "redirect", impressions: 0 },
   { legacy: "/category/cleaning-services", target: "/blog", mode: "redirect", impressions: 0 },
   { legacy: "/category/house-cleaning", target: "/blog", mode: "redirect", impressions: 0 },
+  // ---------------------------------------------------------------------
+  // From the Coverage export (2026-09-05), not Performance. These URLs earn
+  // no impressions, so the impressions-derived map above never saw them --
+  // but Google crawls them on the live site and files them under "Page with
+  // redirect", which means WordPress redirects them today and the rebuild
+  // would 404 them instead. Two families, each already half-covered:
+  // /cleaning-services-for-<place>-ab (fort-saskatchewan was in, five were
+  // not) and /services/<service> (deep-cleaning was the one gap).
+  { legacy: "/cleaning-services-for-sherwood-park-ab", target: "/cleaning-services-sherwood-park", mode: "redirect", impressions: 0 },
+  { legacy: "/cleaning-services-for-st-albert-ab", target: "/cleaning-services-st-albert", mode: "redirect", impressions: 0 },
+  { legacy: "/cleaning-services-for-spruce-grove-ab", target: "/cleaning-services-spruce-grove", mode: "redirect", impressions: 0 },
+  { legacy: "/cleaning-services-for-devon-ab", target: "/cleaning-services-devon", mode: "redirect", impressions: 0 },
+  { legacy: "/cleaning-services-for-morinville-ab", target: "/cleaning-services-morinville", mode: "redirect", impressions: 0 },
+  { legacy: "/services/deep-cleaning", target: "/edmonton/deep-cleaning", mode: "redirect", impressions: 0 },
+  // Same post as /8102/...-does-not-overwhelm-you, under the pre-numbering
+  // slug that spells it "doesnt".
+  { legacy: "/a-house-cleaning-schedule-that-doesnt-overwhelm-you", target: "/blog/cleaning-schedule", mode: "redirect", impressions: 0 },
 ];
 
 /** legacy path -> modern route, for the routes we serve at the old URL. */

@@ -12,7 +12,7 @@ export const POST_MODIFIED: Readonly<Record<string, string>> = {
   "/blog/cleaning-services-calgary": "2026-09-04",
   "/blog/spotless-home-tips": "2026-09-04",
   "/cleaning-with-vinegar-and-baking-soda": "2026-09-04",
-  "/how-much-does-a-house-cleaning-cost": "2026-09-03",
+  "/how-much-does-a-house-cleaning-cost": "2026-09-05",
   "/how-often-should-a-cleaning-service-clean-my-house": "2026-09-04",
   "/the-top-5-must-have-cleaning-products-for-a-spotless-home": "2026-09-03",
 };
