@@ -1,19 +1,5 @@
-import { CITY_PROOF } from "@/data/proof";
-import { RATING_CLAIM } from "@/data/proof";
-import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
-import LocalMarketNote from "@/components/LocalMarketNote";
-import { useEffect, lazy, Suspense } from "react";
-import { Helmet } from "react-helmet-async";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
-import Breadcrumbs from "@/components/Breadcrumbs";
-import { Button } from "@/components/ui/button";
-import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-import { Link } from "react-router-dom";
 import {
-  Phone, CheckCircle2, Star, Shield, Clock, Award,
-  Home, Sparkles, Truck, SprayCan, Bath, UtensilsCrossed,
-  Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail
+  CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import { useEffect, lazy, Suspense } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import {   Phone, CheckCircle2, Star, Shield, Clock, Award, Home, Sparkles, Truck, SprayCan, Bath, UtensilsCrossed, Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail, PaintRoller
 } from "lucide-react";
 import heroImg from "@/assets/gallery/mayfield-cleaner.webp";
 import { buildLocationSchema } from "@/lib/location-schema";
@@ -85,7 +71,7 @@ const services = [
   { icon: Sparkles, title: "Deep Cleaning", description: "A full top-to-bottom reset — corners, baseboards, and the surfaces regular visits skip.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Mayfield" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Move-day cleaning done to the standard landlords check for.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Mayfield" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around Mayfield.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Mayfield" },
-  { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
+  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Mayfield" },
   { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
 ];
 

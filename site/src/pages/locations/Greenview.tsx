@@ -1,20 +1,5 @@
-import { CITY_PROOF } from "@/data/proof";
-import { RATING_CLAIM } from "@/data/proof";
-import LocalMarketNote from "@/components/LocalMarketNote";
-import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
-import { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
-import Breadcrumbs from "@/components/Breadcrumbs";
-import { Button } from "@/components/ui/button";
-import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-import { Link } from "react-router-dom";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import {
-  Phone, CheckCircle2, Star, Shield, Clock, Award,
-  Home, Sparkles, Truck, SprayCan, Bath, Building2,
-  Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail
+  CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import LocalMarketNote from "@/components/LocalMarketNote"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import { useEffect } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"; import {   Phone, CheckCircle2, Star, Shield, Clock, Award, Home, Sparkles, Truck, SprayCan, Bath, Building2, Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail, PaintRoller
 } from "lucide-react";
 import cleanHomeImg from "@/assets/gallery/neighborhoods/greenview.webp";
 import { buildLocationSchema } from "@/lib/location-schema";
@@ -76,7 +61,7 @@ const services = [
   { icon: Sparkles, title: "Deep Cleaning", description: "Periodic deep cleans for spring resets and seasonal refreshes.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Greenview" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Stress-free move cleans coordinated with your moving timeline.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Greenview" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust and debris cleanup for renos and basement developments.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Greenview" },
-  { icon: Bath, title: "Bathroom Sanitization", description: "Thorough bathroom cleaning and sanitization." },
+  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Greenview" },
   { icon: Building2, title: "Commercial Cleaning", description: "Commercial cleaning for offices and clinics along Centre Street N." },
 ];
 

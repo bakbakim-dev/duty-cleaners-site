@@ -19,7 +19,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { ArrowRight,
   Phone, CheckCircle2, Star, Shield, Clock, Award,
   Home, Sparkles, Truck, SprayCan, Bath, UtensilsCrossed,
-  Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail
+  Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail, PaintRoller
 } from "lucide-react";
 
 interface LocationPageProps {
@@ -163,15 +163,24 @@ const services = (place: string, region: "edmonton" | "calgary") => {
   const moveOut = region === "edmonton" ? "/move-out-cleaning-edmonton" : "/move-out-cleaning-calgary";
   const postCon =
     region === "edmonton" ? "/post-construction-cleaning" : "/post-construction-cleaning-calgary";
+  const wallWashing =
+    region === "edmonton" ? "/wall-washing-wall-cleaning" : "/wall-washing-wall-cleaning-calgary";
   return [
   { icon: Home, title: "Standard House Cleaning", description: "Weekly or bi-weekly maintenance to keep your home spotless and fresh year-round.", to: canonicalForPath(`/${city}/regular-cleaning`), linkText: `Standard cleaning in ${place}` },
   { icon: Sparkles, title: "Deep Cleaning", description: "A full top-to-bottom reset — corners, baseboards, and the surfaces a regular visit skips.", to: canonicalForPath(`/${city}/deep-cleaning`), linkText: `Deep cleaning in ${place}` },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Move-day cleaning done to the standard a move-out inspection looks for.", to: canonicalForPath(moveOut), linkText: `Move-out cleaning in ${place}` },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust and debris cleared after a renovation or a new build.", to: canonicalForPath(postCon), linkText: `Post-construction cleaning in ${place}` },
-  { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
-  // No page of its own. An anchor pointing at /whats-included/ would not
-  // describe that page, and pointing it at deep cleaning would hand one target
-  // three of the six cards on every location page. Left as a description.
+  // Wall washing has a real page in both cities and was the only service on the
+  // menu with no card here, so the 166 location pages sent it exactly ONE
+  // in-body link between them against 88-91 for every linked sibling. Nav and
+  // footer reached it, but none of the geo-qualified body support that carries
+  // the local signal for the rest of the menu.
+  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: canonicalForPath(wallWashing), linkText: `Wall washing in ${place}` },
+  // Bathroom sanitization gave up its slot: it is a task inside a standard or
+  // deep clean rather than a bookable service, it is described on
+  // /whats-included/, and the grid holds exactly six (2x3 and 3x2 both divide
+  // it; a seventh card would sit alone on a row). The 150 location pages that
+  // inline their own copy of this array were changed the same way.
   { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
   ];
 };

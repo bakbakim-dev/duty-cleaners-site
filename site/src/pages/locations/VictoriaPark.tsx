@@ -1,20 +1,5 @@
-import { CITY_PROOF } from "@/data/proof";
-import { RATING_CLAIM } from "@/data/proof";
-import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
-import LocalMarketNote from "@/components/LocalMarketNote";
-import { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
-import Breadcrumbs from "@/components/Breadcrumbs";
-import { Button } from "@/components/ui/button";
-import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-import { Link } from "react-router-dom";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import {
-  Phone, CheckCircle2, Star, Shield, Clock, Award,
-  Home, Sparkles, Truck, SprayCan, Bath, Building2,
-  Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail
+  CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import { useEffect } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"; import {   Phone, CheckCircle2, Star, Shield, Clock, Award, Home, Sparkles, Truck, SprayCan, Bath, Building2, Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail, PaintRoller
 } from "lucide-react";
 import cleanHomeImg from "@/assets/gallery/neighborhoods/victoria-park.webp";
 import { buildLocationSchema } from "@/lib/location-schema";
@@ -76,7 +61,7 @@ const services = [
   { icon: Sparkles, title: "Deep Cleaning", description: "Top-to-bottom detail that reaches what weekly cleaning never does.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Victoria Park" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth Victoria Park move — leave or arrive to a pristine home.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Victoria Park" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Victoria Park.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Victoria Park" },
-  { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
+  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Victoria Park" },
   { icon: Building2, title: "Commercial Cleaning", description: "Professional office and commercial space cleaning for Victoria Park businesses of all sizes." },
 ];
 

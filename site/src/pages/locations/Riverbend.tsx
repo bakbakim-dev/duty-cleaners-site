@@ -1,19 +1,5 @@
-import { CITY_PROOF } from "@/data/proof";
-import { RATING_CLAIM } from "@/data/proof";
-import LocalMarketNote from "@/components/LocalMarketNote";
-import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
-import { useEffect, lazy, Suspense } from "react";
-import { Helmet } from "react-helmet-async";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
-import Breadcrumbs from "@/components/Breadcrumbs";
-import { Button } from "@/components/ui/button";
-import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-import { Link } from "react-router-dom";
 import {
-  Phone, CheckCircle2, Star, Shield, Clock, Award,
-  Home, Sparkles, Truck, Building2, HardHat, Bath,
-  Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail
+  CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import LocalMarketNote from "@/components/LocalMarketNote"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import { useEffect, lazy, Suspense } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import {   Phone, CheckCircle2, Star, Shield, Clock, Award, Home, Sparkles, Truck, Building2, HardHat, Bath, Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail, PaintRoller
 } from "lucide-react";
 import riverbendCleanerImg from "@/assets/gallery/riverbend-cleaner-family-room.webp";
 import { buildLocationSchema } from "@/lib/location-schema";
@@ -80,7 +66,7 @@ const services = [
   { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for smooth transitions in Riverbend's active real estate market.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Riverbend" },
   { icon: HardHat, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations to established homes." },
   { icon: Building2, title: "Office & Commercial Cleaning", description: "Professional workspace cleaning for businesses near Southgate Centre." },
-  { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
+  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Riverbend" },
 ];
 
 const whyUsItems = [

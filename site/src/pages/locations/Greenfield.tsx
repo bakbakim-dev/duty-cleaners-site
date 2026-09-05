@@ -211,6 +211,11 @@ export default function Greenfield() {
                   Post-construction cleaning in Greenfield
                 </Link>
               </li>
+              <li>
+                <Link to="/wall-washing-wall-cleaning/" className="font-semibold text-primary hover:text-accent">
+                  Wall washing in Greenfield
+                </Link>
+              </li>
             </ul>
           </div>
         </section>

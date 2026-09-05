@@ -16,9 +16,17 @@ import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import calgaryPostConstructionBeforeAfter from "@/assets/gallery/calgary-post-construction-before-after.webp";
 import CityCrossLink from "@/components/CityCrossLink";
 
-import { startingPrice, formatPrice } from "@/data/pricing";
+import { startingPrice, formatPrice, sqftTierOptions } from "@/data/pricing";
 /* The figure /services/ already publishes for this service, from bk-config. */
 const startingPriceLabel = formatPrice(startingPrice("post-construction"));
+/* And the top of the real ladder. "Starts at $550" is true but anchors a
+   visitor at the floor of a nine-tier table that reaches $1,900 — and the
+   new-build communities this page names (Windermere, Keswick, Glenridding
+   Ravine) are 1,800-2,800 sq ft homes, which sit at $750-$1,100, not $550.
+   Quoting a floor beside the words "no hidden fees" is how a page sets up its
+   own quote call to disappoint. Derived, so it cannot drift from bk-config. */
+const sqftTiers = sqftTierOptions("post-construction");
+const topPriceLabel = formatPrice(sqftTiers[sqftTiers.length - 1]?.price ?? 0);
 
 const includedServices = [
   { icon: Wind, title: "Fine Dust & Debris Removal", desc: "Drywall and construction dust wiped from baseboards, vents, window ledges, trim, and floors — no fine residue left behind." },
@@ -43,7 +51,7 @@ const whyChooseUs = [
   { icon: Sparkles, title: "Attention to Detail", desc: "We hand-wipe ledges, tracks, vents, and trim where dust quietly settles after construction." },
   { icon: Wrench, title: "Professional Equipment", desc: "High-performance vacuums, microfiber cleaning systems, and surface-safe products designed for post-renovation cleaning." },
   { icon: Heart, title: "Satisfaction Guarantee", desc: "Not happy with an area? Let us know within 24 hours and we'll re-clean it free of charge." },
-  { icon: DollarSign, title: "Transparent Pricing", desc: `Starts at ${startingPriceLabel} and is set by square footage and scope — quoted before you book, no hidden fees.` }
+  { icon: DollarSign, title: "Transparent Pricing", desc: `${startingPriceLabel} to ${topPriceLabel}, set by square footage and scope — you see your number before you book, and it is the number you pay.` }
 ];
 
 const faqs = [

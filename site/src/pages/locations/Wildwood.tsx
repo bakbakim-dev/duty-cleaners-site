@@ -1,20 +1,5 @@
-import { CITY_PROOF } from "@/data/proof";
-import { RATING_CLAIM } from "@/data/proof";
-import LocalMarketNote from "@/components/LocalMarketNote";
-import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
-import { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
-import Breadcrumbs from "@/components/Breadcrumbs";
-import { Button } from "@/components/ui/button";
-import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-import { Link } from "react-router-dom";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import {
-  Phone, CheckCircle2, Star, Shield, Clock, Award,
-  Home, Sparkles, Truck, SprayCan, Bath, Building2,
-  Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail
+  CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import LocalMarketNote from "@/components/LocalMarketNote"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import { useEffect } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"; import {   Phone, CheckCircle2, Star, Shield, Clock, Award, Home, Sparkles, Truck, SprayCan, Bath, Building2, Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail, PaintRoller
 } from "lucide-react";
 import cleanHomeImg from "@/assets/gallery/neighborhoods/wildwood.webp";
 import { buildLocationSchema } from "@/lib/location-schema";
@@ -76,7 +61,7 @@ const services = [
   { icon: Sparkles, title: "Deep Cleaning", description: "A complete top-to-bottom reset reaching baseboards, vents, and overlooked corners.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Wildwood" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Smooth move-day cleans for sellers, buyers, and renters across the SW.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Wildwood" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Fine dust and debris removal after renovations, additions, or new builds.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Wildwood" },
-  { icon: Bath, title: "Bathroom Sanitization", description: "Sparkling tile and glass — disinfected and refreshed." },
+  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Wildwood" },
   { icon: Building2, title: "Commercial Cleaning", description: "Reliable office and small business cleaning across the Wildwood area." },
 ];
 

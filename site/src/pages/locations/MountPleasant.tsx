@@ -1,20 +1,5 @@
-import { CITY_PROOF } from "@/data/proof";
-import { RATING_CLAIM } from "@/data/proof";
-import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
-import LocalMarketNote from "@/components/LocalMarketNote";
-import { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
-import Breadcrumbs from "@/components/Breadcrumbs";
-import { Button } from "@/components/ui/button";
-import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-import { Link } from "react-router-dom";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import {
-  Phone, CheckCircle2, Star, Shield, Clock, Award,
-  Home, Sparkles, Truck, SprayCan, Bath, Building2,
-  Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail
+  CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import { useEffect } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"; import {   Phone, CheckCircle2, Star, Shield, Clock, Award, Home, Sparkles, Truck, SprayCan, Bath, Building2, Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail, PaintRoller
 } from "lucide-react";
 import cleanHomeImg from "@/assets/gallery/neighborhoods/mount-pleasant.webp";
 import { buildLocationSchema } from "@/lib/location-schema";
@@ -76,7 +61,7 @@ const services = [
   { icon: Sparkles, title: "Deep Cleaning", description: "Detailed seasonal deep cleans that reset every room.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Mount Pleasant" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Move cleans for buyers, sellers, and renters across the area.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Mount Pleasant" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Post-construction cleanup for the area's many infills and renos.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Mount Pleasant" },
-  { icon: Bath, title: "Bathroom Sanitization", description: "Thorough bathroom cleaning and sanitization." },
+  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Mount Pleasant" },
   { icon: Building2, title: "Commercial Cleaning", description: "Local business cleaning along 16th Ave and 4th Street NW." },
 ];
 

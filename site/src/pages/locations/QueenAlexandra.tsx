@@ -215,6 +215,11 @@ const QueenAlexandra = () => {
                   Post-construction cleaning in Queen Alexandra
                 </Link>
               </li>
+              <li>
+                <Link to="/wall-washing-wall-cleaning/" className="font-semibold text-primary hover:text-accent">
+                  Wall washing in Queen Alexandra
+                </Link>
+              </li>
             </ul>
           </div>
         </section>

@@ -1,20 +1,5 @@
-import { CITY_PROOF } from "@/data/proof";
-import { RATING_CLAIM } from "@/data/proof";
-import LocalMarketNote from "@/components/LocalMarketNote";
-import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
-import { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
-import { buildLocationSchema } from "@/lib/location-schema";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
-import Breadcrumbs from "@/components/Breadcrumbs";
-import { Button } from "@/components/ui/button";
-import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-import { Link } from "react-router-dom";
 import {
-  Phone, CheckCircle2, Star, Shield, Clock, Award,
-  Home, Sparkles, Truck, Building2, HardHat, Bath,
-  Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail
+  CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import LocalMarketNote from "@/components/LocalMarketNote"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import { useEffect } from "react"; import { Helmet } from "react-helmet-async"; import { buildLocationSchema } from "@/lib/location-schema"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import {   Phone, CheckCircle2, Star, Shield, Clock, Award, Home, Sparkles, Truck, Building2, HardHat, Bath, Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail, PaintRoller
 } from "lucide-react";
 import glenoraCleanerImg from "@/assets/gallery/glenora-cleaner-living-room.webp";
 import HonestReviewLink from "@/components/HonestReviewLink";
@@ -84,7 +69,7 @@ const services = [
   { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth Glenora move — leave or arrive to a pristine home.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Glenora" },
   { icon: HardHat, title: "Post-Construction Cleanup", description: "Construction dust cleared properly after renos and handovers." },
   { icon: Building2, title: "Office & Commercial Cleaning", description: "A clean workspace promotes productivity. We cater to businesses of all sizes in Glenora." },
-  { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
+  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Glenora" },
 ];
 
 const whyUsItems = [

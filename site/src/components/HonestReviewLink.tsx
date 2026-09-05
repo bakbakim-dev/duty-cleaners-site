@@ -14,8 +14,10 @@ interface HonestReviewLinkProps {
  * name and an invented quote attributed to that specific neighbourhood — e.g.
  * "— Marie" on the Abbottsfield page, "Owen Bolton, Bannerman Resident" on the
  * Bannerman page. None of it is real: EDMONTON_REVIEWS and CALGARY_REVIEWS in
- * src/data/reviews.ts are both empty arrays, so there was no source for these
- * quotes — they were written, not collected. A fabricated customer review
+ * src/data/reviews.ts were empty arrays at the time, so there was no source for
+ * these quotes — they were written, not collected. (Those arrays are populated
+ * now, with real Google reviews, but none is neighbourhood-specific, so this
+ * component's reasoning still holds for location pages.) A fabricated review
  * attached to a real, named business is a genuine problem, not a style choice,
  * so every instance is replaced with this: a link to the real review count.
  */

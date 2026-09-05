@@ -1,20 +1,5 @@
-import { CITY_PROOF } from "@/data/proof";
-import { RATING_CLAIM } from "@/data/proof";
-import LocalMarketNote from "@/components/LocalMarketNote";
-import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
-import { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
-import Breadcrumbs from "@/components/Breadcrumbs";
-import { Button } from "@/components/ui/button";
-import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-import { Link } from "react-router-dom";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import {
-  Phone, CheckCircle2, Star, Shield, Clock, Award,
-  Home, Sparkles, Truck, SprayCan, Bath, Building2,
-  Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail
+  CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import LocalMarketNote from "@/components/LocalMarketNote"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import { useEffect } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"; import {   Phone, CheckCircle2, Star, Shield, Clock, Award, Home, Sparkles, Truck, SprayCan, Bath, Building2, Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail, PaintRoller
 } from "lucide-react";
 import { buildLocationSchema } from "@/lib/location-schema";
 import CoverageChips from "@/components/CoverageChips";
@@ -75,7 +60,7 @@ const services = [
   { icon: Sparkles, title: "Deep Cleaning", description: "Comprehensive cleaning of the house — every baseboard, corner, and detail thoroughly addressed.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Mission" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed turnover cleans for renters, owners, and landlords across Mission's condos and character homes.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Mission" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris removal after renovations in Mission's heritage homes and modern builds.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Mission" },
-  { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfection of showers, tubs, toilets, and tiles." },
+  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Mission" },
   { icon: Building2, title: "Commercial Cleaning", description: "Professional cleaning for 4th Street SW boutiques, cafés, and offices of all sizes." },
 ];
 

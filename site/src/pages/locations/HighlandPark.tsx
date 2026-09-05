@@ -1,20 +1,5 @@
-import { CITY_PROOF } from "@/data/proof";
-import { RATING_CLAIM } from "@/data/proof";
-import LocalMarketNote from "@/components/LocalMarketNote";
-import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
-import { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
-import Breadcrumbs from "@/components/Breadcrumbs";
-import { Button } from "@/components/ui/button";
-import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-import { Link } from "react-router-dom";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import {
-  Phone, CheckCircle2, Star, Shield, Clock, Award,
-  Home, Sparkles, Truck, SprayCan, Bath, Building2,
-  Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail
+  CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import LocalMarketNote from "@/components/LocalMarketNote"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import { useEffect } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"; import {   Phone, CheckCircle2, Star, Shield, Clock, Award, Home, Sparkles, Truck, SprayCan, Bath, Building2, Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail, PaintRoller
 } from "lucide-react";
 import cleanHomeImg from "@/assets/gallery/neighborhoods/highland-park.webp";
 import { buildLocationSchema } from "@/lib/location-schema";
@@ -76,7 +61,7 @@ const services = [
   { icon: Sparkles, title: "Deep Cleaning", description: "Top-to-bottom deep cleans ideal for spring or post-holiday resets.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Highland Park" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Move-in and move-out cleans for buyers, sellers, and renters.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Highland Park" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Post-reno dust removal for the area's many infill projects.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Highland Park" },
-  { icon: Bath, title: "Bathroom Sanitization", description: "Detailed bathroom sanitization with disinfected tubs, showers, sinks, and tiles." },
+  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Highland Park" },
   { icon: Building2, title: "Commercial Cleaning", description: "Commercial cleaning for nearby small businesses and clinics." },
 ];
 

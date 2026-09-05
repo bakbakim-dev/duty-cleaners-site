@@ -1,4 +1,4 @@
-import { schemaAddressFor, BRANCH_PROFILES, ORG_ID, BRANCH_ID, BRANCH_IDENTITY } from "@/data/proof";
+import { schemaAddressFor, BRANCH_PROFILES, ORG_ID, BRANCH_ID, BRANCH_IDENTITY, CITY_PROOF } from "@/data/proof";
 import { canonicalUrlForPath } from "@/data/legacy-urls";
 
 /**
@@ -40,6 +40,12 @@ export function buildServiceSchema(input: {
       name: BRANCH_IDENTITY[input.city].name,
       url: BRANCH_IDENTITY[input.city].url,
       address: schemaAddressFor(input.city),
+      // On wall-washing (both cities) and post-construction this nested provider
+      // is the ONLY LocalBusiness node the page emits, so leaving the phone off
+      // published a business with no way to call it on three money pages.
+      // structured-data.test.ts never saw it: nodesOf() walks top-level blocks
+      // and @graph arrays, and does not recurse into provider.
+      telephone: CITY_PROOF[input.city].phoneE164,
       parentOrganization: { "@id": ORG_ID },
       sameAs: [...BRANCH_PROFILES[input.city]],
     },

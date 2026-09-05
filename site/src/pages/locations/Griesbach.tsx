@@ -1,21 +1,5 @@
-import { CITY_PROOF } from "@/data/proof";
-import { RATING_CLAIM } from "@/data/proof";
-import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
-import LocalMarketNote from "@/components/LocalMarketNote";
-import { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
-import { buildLocationSchema } from "@/lib/location-schema";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
-import LocationPricing from "@/components/LocationPricing";
-import Breadcrumbs from "@/components/Breadcrumbs";
-import { Button } from "@/components/ui/button";
-import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-import { Link } from "react-router-dom";
 import {
-  Phone, CheckCircle2, Star, Shield, Clock, Award,
-  Home, Sparkles, Truck, SprayCan, Bath, UtensilsCrossed,
-  Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail, TreePine
+  CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import { useEffect } from "react"; import { Helmet } from "react-helmet-async"; import { buildLocationSchema } from "@/lib/location-schema"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import LocationPricing from "@/components/LocationPricing"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import {   Phone, CheckCircle2, Star, Shield, Clock, Award, Home, Sparkles, Truck, SprayCan, Bath, UtensilsCrossed, Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail, TreePine, PaintRoller
 } from "lucide-react";
 import griesbachLandmark from "@/assets/gallery/griesbach-landmark.webp";
 import HonestReviewLink from "@/components/HonestReviewLink";
@@ -82,7 +66,7 @@ const services = [
   { icon: Sparkles, title: "Deep Cleaning", description: "Every corner, baseboard, and hidden surface, cleaned top to bottom.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Griesbach" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Move-day cleaning done to the standard landlords check for.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Griesbach" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Post-renovation dust and debris, professionally removed.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Griesbach" },
-  { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
+  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Griesbach" },
   { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
 ];
 

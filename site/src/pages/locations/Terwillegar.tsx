@@ -1,19 +1,5 @@
-import { CITY_PROOF } from "@/data/proof";
-import { RATING_CLAIM } from "@/data/proof";
-import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
-import LocalMarketNote from "@/components/LocalMarketNote";
-import { useEffect, lazy, Suspense } from "react";
-import { Helmet } from "react-helmet-async";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
-import Breadcrumbs from "@/components/Breadcrumbs";
-import { Button } from "@/components/ui/button";
-import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-import { Link } from "react-router-dom";
 import {
-  Phone, CheckCircle2, Star, Shield, Clock, Award,
-  Home, Sparkles, Truck, Building2, HardHat, Bath,
-  Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail
+  CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import { useEffect, lazy, Suspense } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import {   Phone, CheckCircle2, Star, Shield, Clock, Award, Home, Sparkles, Truck, Building2, HardHat, Bath, Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail, PaintRoller
 } from "lucide-react";
 import terwillegarCleanerImg from "@/assets/gallery/terwillegar-cleaner-bathroom.webp";
 import { buildLocationSchema } from "@/lib/location-schema";
@@ -80,7 +66,7 @@ const services = [
   { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for smooth transitions in Terwillegar's active real estate market.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Terwillegar" },
   { icon: HardHat, title: "Post-Construction Cleanup", description: "Dust and debris cleared after renovations or new builds." },
   { icon: Building2, title: "Office & Commercial Cleaning", description: "A clean workspace promotes productivity for Terwillegar's local businesses." },
-  { icon: Bath, title: "Bathroom Sanitization", description: "Deep scrubbing and disinfecting of showers, tubs, toilets, and tiles." },
+  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Terwillegar" },
 ];
 
 const whyUsItems = [

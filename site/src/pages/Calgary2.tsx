@@ -47,6 +47,14 @@ import galleryCalgaryWindow from "@/assets/gallery/calgary-window-cleaning.webp"
 import gallerySpotlessKitchen from "@/assets/gallery/calgary-spotless-kitchen.webp";
 import galleryBathroomDeep from "@/assets/gallery/calgary-bathroom-deep.webp";
 import galleryToiletBA from "@/assets/gallery/calgary-toilet-ba.webp";
+import { standardTierRows, moveInOutTierRows } from "@/data/pricing";
+
+/* The schema priceRange, derived. It was hand-typed as "$155-$539+" here and
+   "$155-$539" on the twin — numerically right today, inconsistent with each
+   other, and exactly the pattern EdmontonMoveInOut.tsx:126 already calls out:
+   a figure that stays put while the real prices move. Floor is the cheapest
+   standard clean, ceiling the dearest move-out, both straight from bk-config. */
+const PRICE_RANGE = `${standardTierRows()[0].price}-${moveInOutTierRows()[moveInOutTierRows().length - 1].price}`;
 
 // Counter card for room counts
 const CounterCard = ({
@@ -166,7 +174,7 @@ export default function Calgary2() {
       "Calgary", "Airdrie", "Cochrane", "Okotoks", "Chestermere", "Strathmore",
       "High River", "Langdon", "Crossfield",
     ].map((name) => ({ "@type": "City", name })),
-    priceRange: "$155-$539",
+    priceRange: PRICE_RANGE,
     openingHours: ["Mo-Sa 08:00-20:00", "Su 09:00-15:00"],
     openingHoursSpecification: [
       {

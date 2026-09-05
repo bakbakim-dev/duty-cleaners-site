@@ -55,7 +55,12 @@ const branchSchema = () => {
 const faqs = [
   { q: 'Do I need to be home during the move out cleaning?', a: "No, you don't need to be present. Just provide access to the home, and we'll lock up after we finish. Many clients prefer to schedule their move out cleaning after they've already relocated to their new home." },
   { q: 'How long does move out cleaning take in Calgary?', a: "We work to the move-out checklist rather than a set number of hours. Your team stays until every task is complete, and your flat rate does not change based on how long it takes. We'll confirm your arrival window when you book." },
-  { q: 'Should I clean before you arrive?', a: 'For move in and move out cleaning, the home must be completely empty before our team arrives — that includes all personal belongings, furniture, and trash. This ensures we can deliver a thorough, top-to-bottom clean without obstacles.' },
+  // Was "the home must be completely empty", which is not the policy. /faqs/
+  // carries the real, graduated answer and Edmonton's twin was corrected to
+  // match it (EdmontonMoveInOut.tsx). Calgary kept shipping the stricter
+  // version, so Calgary visitors were being told they had to do more than
+  // Edmonton visitors on the identical question — and told something untrue.
+  { q: 'Should I clean before you arrive?', a: 'No pre-cleaning required. What matters is how much is still in the home: the emptier it is, the more of it we can reach, and a move-out is priced to clean inside cabinets, closets and appliances. A few pieces of furniture we do not have to work around are fine. If the home is still fully furnished and the cupboards and closets are full, a move-out is not the right service — we would book it as a deep clean with whatever add-ons it needs, and we will tell you that rather than turn up and improvise.' },
   // Confirmed by the owner: the return visit is honoured, inside the same
   // 24-hour window as everything else. It used to read as open-ended, which
   // the guarantee does not cover, and Edmonton made no promise at all.

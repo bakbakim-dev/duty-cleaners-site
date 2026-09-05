@@ -21,9 +21,12 @@ import { getListing, openGoogleListing } from "@/lib/google-listings";
  * kind).
  *
  * No testimonials are added here. EDMONTON_REVIEWS / CALGARY_REVIEWS in
- * src/data/reviews.ts are both empty — there are no real quotes on file to
- * use, and inventing customer testimonials is not something to do. The honest
- * substitute is a direct link to the real Google review count.
+ * src/data/reviews.ts WERE both empty when this was written — that is no
+ * longer true (reviews.ts was rewritten; see its "WHY ONE LIST" header), and
+ * EDMONTON_REVIEWS now carries real, named, dated move-out quotes. The link to
+ * the Google review count stays because it is honest and cheap, but the reason
+ * recorded here for having no quote is stale: surfacing a real one is now
+ * possible and would be stronger. Inventing one still is not.
  */
 
 interface MoveOutDepthProps {

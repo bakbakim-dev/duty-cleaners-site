@@ -63,7 +63,7 @@ function cityOf(url: string): "edmonton" | "calgary" {
 }
 
 const SERVICE_HREF =
-  /href="(\/(?:edmonton|calgary)\/(?:regular|deep|recurring)-cleaning\/|\/move-out-cleaning-(?:edmonton|calgary)\/|\/post-construction-cleaning(?:-calgary)?\/)"/g;
+  /href="(\/(?:edmonton|calgary)\/(?:regular|deep|recurring)-cleaning\/|\/move-out-cleaning-(?:edmonton|calgary)\/|\/post-construction-cleaning(?:-calgary)?\/|\/wall-washing-wall-cleaning(?:-calgary)?\/)"/g;
 
 describe("location pages feed the service pages", () => {
   it("every location page links to at least one service page from its body", () => {
@@ -286,5 +286,44 @@ describe("an anchor is one link with one thing to say", () => {
       `These pages nest a <button> inside an <a>:\n${nested.join("\n")}\n` +
         `Use <Button asChild><Link …>…</Link></Button> so a single anchor ships.`,
     ).toEqual([]);
+  });
+});
+
+/**
+ * Every service on the menu must earn body support from the location tier, not
+ * just nav and footer.
+ *
+ * Wall washing had exactly ONE in-body inbound link sitewide — from /services/
+ * — against 88-91 for every sibling service, because the six service cards on
+ * the location pages linked four services and wall washing was not one of them.
+ * It was reachable, so nothing failed; it simply received none of the
+ * geo-qualified body support that carries the local signal for the rest of the
+ * menu. SERVICE_HREF did not match it either, so no guard could see it.
+ *
+ * The floor is deliberately well under the ~77 Calgary pages that exist, so a
+ * page being retired does not fail this — only a service losing its card does.
+ */
+describe("every linked service has real body support", () => {
+  const FLOOR = 40;
+  const TARGETS = [
+    "/move-out-cleaning-edmonton/",
+    "/post-construction-cleaning/",
+    "/wall-washing-wall-cleaning/",
+    "/wall-washing-wall-cleaning-calgary/",
+  ];
+
+  it("each is linked in-body from at least " + FLOOR + " pages", () => {
+    for (const target of TARGETS) {
+      const sources = locationPages().filter((url) => {
+        // <nav> inside <main> is the breadcrumb; it is navigation, not an
+        // editorial link, and counting it inflates every page by one.
+        const body = mainHtml(url).replace(/<nav[\s\S]*?<\/nav>/g, " ");
+        return body.includes(`href="${target}"`);
+      });
+      expect(
+        sources.length,
+        `${target} is linked in-body from only ${sources.length} pages; it has lost its service card`,
+      ).toBeGreaterThanOrEqual(FLOOR);
+    }
   });
 });
