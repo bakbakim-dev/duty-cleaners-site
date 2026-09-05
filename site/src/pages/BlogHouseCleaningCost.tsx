@@ -27,14 +27,16 @@ const cleaningTypes = [
   {
     title: "Deep Cleanings",
     description: "Intensive cleaning of all surfaces with special attention to hard-to-reach areas like interior of appliances and cabinets. Takes longer to complete.",
-    // Floor was $200, which put it above this page's own "$170-$200 for a
-    // small 1-bedroom deep clean" two sections down.
-    priceRange: "$170 - $400"
+    // Both ends bracket our own published deep range ($255-$485). A market
+    // range that stops below what we charge anchors the reader low and then
+    // surprises them at the quote, which is what "$170 - $400" did.
+    priceRange: "$200 - $550"
   },
   {
     title: "Move-in/Move-out Cleanings",
     description: "More thorough than general cleanings. Includes washing walls and windows, scrubbing hard surfaces. For homes 600-2,400 sq ft.",
-    priceRange: "$130 - $500"
+    // Ours run $284-$539, so the ceiling has to clear $539.
+    priceRange: "$130 - $600"
   },
   {
     title: "Post-Construction Cleanings",
@@ -53,7 +55,7 @@ const pricingFactors = [
   {
     icon: Home,
     title: "Size of House",
-    description: "Companies typically charge by square footage. A 2-bedroom apartment (800 sq ft) may cost ~$180 for deep cleaning, while a 4-bedroom home (2,000 sq ft) can cost $350+."
+    description: "Companies typically charge by square footage. A 2-bedroom apartment (800 sq ft) may cost ~$325 for deep cleaning, while a 4-bedroom home (2,000 sq ft) can cost $400+."
   },
   {
     icon: Users,
@@ -302,7 +304,7 @@ export default function BlogHouseCleaningCost() {
                     </div>
                     <ul className="text-muted-foreground text-sm space-y-2">
                       <li>• Based on the size of your home</li>
-                      <li>• Small 1-bedroom apartment: <strong>$170-$200</strong> for deep cleaning</li>
+                      <li>• Small 1-bedroom apartment: <strong>$200-$300</strong> for deep cleaning</li>
                       <li>• Larger 4-bedroom house: <strong>$400+</strong></li>
                     </ul>
                   </div>

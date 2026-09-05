@@ -157,3 +157,79 @@ describe("the cost guide's first-party price claims", () => {
     }
   });
 });
+
+/**
+ * The market figures on the cost guide are hand-typed, and they should be: they
+ * describe what cleaning costs in Canada, which is not something bk-config
+ * knows. But four of them had drifted below what we actually charge for the
+ * same service at the same size — a "$170-$200" small deep clean against a real
+ * $255, "~$180" for a 2-bedroom deep against $315, and card ranges for deep and
+ * move-out that stopped at $400 and $500 against real ceilings of $485 and $539.
+ *
+ * That is not a false claim about the market. It is worse for the business than
+ * one: the page anchors the reader at a number, and then the quote asks for
+ * more. This pins the one rule that has to hold — a market range the guide
+ * states for a service we sell must contain our published prices for it.
+ */
+
+/** "$200 - $550" -> [200, 550]; "$400+" -> [400, Infinity]; "~$325" -> [325, 325]. */
+const money = (text: string): [number, number] => {
+  const found = (text.match(/\$[\d,]+/g) ?? []).map((m) => Number(m.slice(1).replace(/,/g, "")));
+  if (!found.length) return [NaN, NaN];
+  // "$400+" and "$350+" are open-ended, so they cannot understate the top.
+  return [found[0], /\+/.test(text) ? Infinity : found[found.length - 1]];
+};
+
+const dollars = (rows: { price: string }[]) => rows.map((r) => Number(r.price.slice(1).replace(/,/g, "")));
+
+describe("the cost guide's market figures still contain our own prices", () => {
+  const guideSource = () => readFileSync(join(PAGES_DIR, "BlogHouseCleaningCost.tsx"), "utf-8");
+
+  it("each service card quotes a range that brackets our tiers end to end", () => {
+    const block = guideSource().match(/const cleaningTypes = \[([\s\S]*?)\n\];/)?.[1];
+    expect(block, "the cleaningTypes cards are gone").toBeTruthy();
+    const cards: Record<string, string> = {};
+    for (const m of block!.matchAll(/title: "([^"]+)"[\s\S]*?priceRange: "([^"]+)"/g)) cards[m[1]] = m[2];
+    expect(Object.keys(cards).length).toBeGreaterThanOrEqual(4);
+
+    // Post-construction is priced per square foot, so it has no tier to compare.
+    const cases: Array<[string, { price: string }[]]> = [
+      ["General Cleanings", standardTierRows()],
+      ["Deep Cleanings", deepCleanTierRows()],
+      ["Move-in/Move-out Cleanings", moveInOutTierRows()],
+    ];
+    for (const [title, rows] of cases) {
+      const stated = cards[title];
+      expect(stated, `the "${title}" card is gone`).toBeTruthy();
+      const [lo, hi] = money(stated);
+      const ours = dollars(rows);
+      const cheapest = Math.min(...ours);
+      const dearest = Math.max(...ours);
+      expect(lo, `"${title}: ${stated}" starts above our own $${cheapest}`).toBeLessThanOrEqual(cheapest);
+      expect(hi, `"${title}: ${stated}" stops below our own $${dearest}`).toBeGreaterThanOrEqual(dearest);
+    }
+  });
+
+  it("the size-specific deep-clean figures clear our price at that size", () => {
+    const src = guideSource();
+    const deep = dollars(deepCleanTierRows());
+    const cases = [
+      {
+        what: "the 1-bedroom flat-rate example",
+        pattern: /Small 1-bedroom apartment: <strong>([^<]+)<\/strong> for deep cleaning/,
+        ours: deep[0],
+      },
+      {
+        what: "the 2-bedroom square-footage example",
+        pattern: /A 2-bedroom apartment \(800 sq ft\) may cost ([^,]+) for deep cleaning/,
+        ours: deep[1],
+      },
+    ];
+    for (const { what, pattern, ours } of cases) {
+      const found = src.match(pattern);
+      expect(found, `${what} has been reworded; re-point this guard at it`).toBeTruthy();
+      const [, top] = money(found![1]);
+      expect(top, `${what} reads "${found![1].trim()}", under our own $${ours}`).toBeGreaterThanOrEqual(ours);
+    }
+  });
+});
