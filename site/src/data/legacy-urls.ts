@@ -221,14 +221,40 @@ export const LEGACY_URLS: LegacyUrl[] = [
   // exports; six are above, this is the seventh.
   { legacy: "/cleaning-services-for-leduc-ab", target: "/cleaning-services-leduc", mode: "redirect", impressions: 0 },
 
-  // /services-pricing/ was a whole WordPress section that nothing mapped. The
-  // children each mirror a service that still exists; the parent was the index.
+  // /services-pricing/ was a WordPress section only PARTLY mapped: the two
+  // children that earn impressions were already above, the rest were not.
+  // Grepping every export for the prefix found the whole family; these are the
+  // four that were genuinely missing, verified 404 on the preview first.
   { legacy: "/services-pricing", target: "/services", mode: "redirect", impressions: 0 },
   { legacy: "/services-pricing/post-construction-cleaning", target: "/post-construction-cleaning", mode: "redirect", impressions: 0 },
   { legacy: "/services-pricing/wall-washing-wall-cleaning", target: "/wall-washing-wall-cleaning", mode: "redirect", impressions: 0 },
-  { legacy: "/services-pricing/commercial-cleaning-edmonton", target: "/commercial-cleaning", mode: "redirect", impressions: 0 },
-  { legacy: "/services-pricing/move-in-move-out", target: "/move-out-cleaning-edmonton", mode: "redirect", impressions: 0 },
   { legacy: "/services-pricing/cleaning-services-fort-saskatchewan", target: "/cleaning-services-fort-saskatchewan", mode: "redirect", impressions: 0 },
+  // ---------------------------------------------------------------------
+  // Dead marketing slugs from the Coverage "Not found (404)" bucket. These
+  // already 404 on WordPress, so nothing is being lost today and nothing here
+  // is a migration regression — it is salvage. Old campaign and keyword URLs
+  // are the kind that still sit in directories, an old GBP post or a printed
+  // flyer, and a 301 costs one line where a 404 costs the visitor.
+  //
+  // Targets are chosen by what the slug promised, not by convenience: the two
+  // "how to choose" slugs go to the post that actually answers that, and the
+  // WordPress "-2" duplicate-slug artefacts go to the real service pages.
+  { legacy: "/home", target: "/", mode: "redirect", impressions: 0 },
+  { legacy: "/house-cleaning-edmonton", target: "/", mode: "redirect", impressions: 0 },
+  { legacy: "/maid-service-edmonton", target: "/", mode: "redirect", impressions: 0 },
+  { legacy: "/duty-cleaners-edmonton", target: "/", mode: "redirect", impressions: 0 },
+  { legacy: "/best-residential-cleaning-edmonton-services", target: "/", mode: "redirect", impressions: 0 },
+  // The AMP child 404s too, and AMP pages are the ones most likely to still be
+  // linked from an aggregator that never revisited.
+  { legacy: "/best-residential-cleaning-edmonton-services/amp", target: "/", mode: "redirect", impressions: 0 },
+  { legacy: "/professional-maid-service", target: "/services", mode: "redirect", impressions: 0 },
+  { legacy: "/choose-professional-maid-service", target: "/blog/choosing-cleaning-company", mode: "redirect", impressions: 0 },
+  { legacy: "/choose-best-cleaning-professionals-edmonton-offers", target: "/blog/choosing-cleaning-company", mode: "redirect", impressions: 0 },
+  { legacy: "/office-commercial-cleaning-2", target: "/commercial-cleaning", mode: "redirect", impressions: 0 },
+  { legacy: "/post-construction-2", target: "/post-construction-cleaning", mode: "redirect", impressions: 0 },
+  { legacy: "/regular-house-cleaning-2", target: "/edmonton/regular-cleaning", mode: "redirect", impressions: 0 },
+  // Sibling of /booking-page, which already lands on /pricing.
+  { legacy: "/homepage/booking", target: "/pricing", mode: "redirect", impressions: 0 },
 ];
 
 /** legacy path -> modern route, for the routes we serve at the old URL. */

@@ -88,6 +88,33 @@ describe("legacy URL families stay complete", () => {
     }
   });
 
+  it("no redirect in the whole map lands on another redirect", () => {
+    // Promoted from the family check above once the map was measured hop-free
+    // at 168 entries. A chained 301 is not fatal — Google follows up to five —
+    // but every hop is latency the visitor pays and a place for a later edit to
+    // break the middle link. Hand-adding salvage redirects one export at a time
+    // is exactly how chains appear, so the whole map is held to it, not just
+    // the entries added that way.
+    const destinations = new Map(
+      LEGACY_URLS.filter((entry) => entry.mode === "redirect").map((entry) => [entry.legacy, entry.target]),
+    );
+    const chained = LEGACY_URLS.filter(
+      (entry) => entry.mode === "redirect" && destinations.has(entry.target),
+    ).map((entry) => `${entry.legacy} -> ${entry.target} -> ${destinations.get(entry.target)}`);
+    expect(chained, `${chained.length} redirect(s) hop twice`).toEqual([]);
+  });
+
+  it("no entry redirects to itself, and none is mapped twice", () => {
+    const seen = new Set<string>();
+    const duplicated: string[] = [];
+    for (const entry of LEGACY_URLS) {
+      expect(entry.target, `${entry.legacy} points at itself`).not.toBe(entry.legacy);
+      if (seen.has(entry.legacy)) duplicated.push(entry.legacy);
+      seen.add(entry.legacy);
+    }
+    expect(duplicated, `mapped more than once: ${duplicated.join(", ")}`).toEqual([]);
+  });
+
   it("the generated _redirects actually carries every member", () => {
     if (!existsSync(REDIRECTS)) return; // unbuilt tree; the source guards above still run
     const rules = readFileSync(REDIRECTS, "utf-8");
