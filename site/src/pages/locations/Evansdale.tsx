@@ -235,10 +235,10 @@ export default function Evansdale() {
                   </p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/search/Evansdale+School+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Evansdale School</a>,
-                    steps from <a href="https://www.google.com/maps/place/Northgate+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Northgate Centre</a>,
-                    minutes from <a href="https://www.google.com/maps/search/Evansdale+Community+League/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Evansdale Community League</a>,
-                    or close to <a href="https://www.google.com/maps/place/97+St+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">97 Street</a>,
+                    <a href="https://www.google.com/maps/search/Evansdale+School+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Evansdale School</a>,
+                    steps from <a href="https://www.google.com/maps/place/Northgate+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Northgate Centre</a>,
+                    minutes from <a href="https://www.google.com/maps/search/Evansdale+Community+League/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Evansdale Community League</a>,
+                    or close to <a href="https://www.google.com/maps/place/97+St+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">97 Street</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

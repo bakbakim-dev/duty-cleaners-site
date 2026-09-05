@@ -221,13 +221,13 @@ export default function CastleDowns() {
                   </p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Beaumaris+Lake/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Beaumaris Lake</a>,
+                    <a href="https://www.google.com/maps/place/Beaumaris+Lake/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Beaumaris Lake</a>,
                     steps from{" "}
-                    <a href="https://www.google.com/maps/place/Castle+Downs+Park/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Castle Downs Park</a>,
+                    <a href="https://www.google.com/maps/place/Castle+Downs+Park/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Castle Downs Park</a>,
                     close to{" "}
-                    <a href="https://www.google.com/maps/place/Castle+Downs+YMCA/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Castle Downs YMCA</a>,
+                    <a href="https://www.google.com/maps/place/Castle+Downs+YMCA/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Castle Downs YMCA</a>,
                     or along{" "}
-                    <a href="https://www.google.com/maps/place/153+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">153 Avenue</a>,
+                    <a href="https://www.google.com/maps/place/153+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">153 Avenue</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

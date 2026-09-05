@@ -235,10 +235,10 @@ export default function Summerside() {
                   </p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/search/Summerside+Beach+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Summerside Lake</a>,
-                    steps from <a href="https://www.google.com/maps/search/Summerside+Community+Centre+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Summerside Community Centre</a>,
-                    minutes from <a href="https://www.google.com/maps/place/Ellerslie+Rd+SW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Ellerslie Road</a>,
-                    or close to <a href="https://www.google.com/maps/place/91+St+SW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">91 Street</a>,
+                    <a href="https://www.google.com/maps/search/Summerside+Beach+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Summerside Lake</a>,
+                    steps from <a href="https://www.google.com/maps/search/Summerside+Community+Centre+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Summerside Community Centre</a>,
+                    minutes from <a href="https://www.google.com/maps/place/Ellerslie+Rd+SW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Ellerslie Road</a>,
+                    or close to <a href="https://www.google.com/maps/place/91+St+SW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">91 Street</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

@@ -224,22 +224,22 @@ export default function HighRiver() {
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>
                     High River is a charming town just south of Calgary along{" "}
-                    <a href="https://www.google.com/maps/place/Highway+2,+Alberta/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Highway 2</a>,
+                    <a href="https://www.google.com/maps/place/Highway+2,+Alberta/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Highway 2</a>,
                     known for its scenic beauty and rich history along the{" "}
-                    <a href="https://www.google.com/maps/place/Highwood+River/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Highwood River</a>.
+                    <a href="https://www.google.com/maps/place/Highwood+River/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Highwood River</a>.
                     Whether your home is near the beloved{" "}
-                    <a href="https://www.google.com/maps/place/Museum+of+the+Highwood/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Museum of the Highwood</a>,
+                    <a href="https://www.google.com/maps/place/Museum+of+the+Highwood/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Museum of the Highwood</a>,
                     close to the scenic{" "}
-                    <a href="https://www.google.com/maps/place/George+Lane+Memorial+Park/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">George Lane Memorial Park</a>,
+                    <a href="https://www.google.com/maps/place/George+Lane+Memorial+Park/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">George Lane Memorial Park</a>,
                     or in the family-friendly neighbourhoods near{" "}
-                    <a href="https://www.google.com/maps/place/Sheppard+Family+Park,+High+River,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Sheppard Family Park</a>,
+                    <a href="https://www.google.com/maps/place/Sheppard+Family+Park,+High+River,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Sheppard Family Park</a>,
                     our team knows High River well and is ready to keep your home spotless.
                   </p>
                   <p>
                     From the established streets of{" "}
-                    <a href="https://www.google.com/maps/place/Hampton+Hills,+High+River,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Hampton Hills</a>{" "}
+                    <a href="https://www.google.com/maps/place/Hampton+Hills,+High+River,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Hampton Hills</a>{" "}
                     to the welcoming community of{" "}
-                    <a href="https://www.google.com/maps/place/Montrose,+High+River,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Montrose</a>,
+                    <a href="https://www.google.com/maps/place/Montrose,+High+River,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Montrose</a>,
                     we provide flexible scheduling and cleaning suited to every household in High River. Fans of the TV show <em>Heartland</em> love calling this town home!
                   </p>
                 </div>
@@ -387,7 +387,7 @@ export default function HighRiver() {
               </Link>
             <p className="mt-6 text-sm text-muted-foreground">
               Run a business in High River? We also handle{" "}
-              <Link to="/commercial-cleaning-services-calgary/" className="text-primary hover:underline font-medium">
+              <Link to="/commercial-cleaning-services-calgary/" className="text-primary underline underline-offset-2 font-medium">
                 commercial and office cleaning across the Calgary region
               </Link>.
             </p>

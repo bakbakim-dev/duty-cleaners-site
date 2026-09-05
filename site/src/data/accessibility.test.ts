@@ -69,14 +69,24 @@ describe("links in prose are not distinguished by colour alone", () => {
         // so the first version of this check skipped every case it existed to
         // catch and passed while the defect was still on the page.
         const tokens = cls.split(/\s+/);
-        if (!tokens.includes("text-accent")) continue;
+        // Any link colour, not one named token. Keying this on "text-accent"
+        // is what let 357 landmark links on 86 location pages through: they use
+        // text-primary, measure 1.02:1 against the prose around them, and were
+        // the same failure under a different colour. The behaviour is the rule,
+        // not the palette entry.
+        if (!tokens.some((t) => /^text-(accent|primary|secondary|brand-[a-z]+)$/.test(t))) continue;
         if (tokens.includes("underline")) continue; // persistent underline
         if (tokens.some((t) => t === "font-semibold" || t === "font-bold")) continue; // weight distinguishes it
         // 1.4.1 is about a link *inside a block of text*. A flex row is its own
         // line — the contact links on /satisfaction-guarantee/ are one per row
         // with a phone icon beside them, which is both a different layout and a
         // non-colour cue. Those are not the failure; a link mid-sentence is.
-        if (tokens.some((t) => t === "inline-flex" || t === "flex" || t === "rounded-full")) continue;
+        if (
+          tokens.some(
+            (t) => t === "inline-flex" || t === "flex" || t === "inline-block" || t === "rounded-full",
+          )
+        )
+          continue;
         if (tokens.some((t) => t === "hover:underline")) bad.push(`${url}: class="${cls.slice(0, 70)}"`);
       }
     }

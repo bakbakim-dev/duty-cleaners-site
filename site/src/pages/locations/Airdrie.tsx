@@ -224,20 +224,20 @@ export default function Airdrie() {
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>
                     Airdrie is a thriving city just north of Calgary along{" "}
-                    <a href="https://www.google.com/maps/place/Queen+Elizabeth+II+Hwy,+Alberta/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Queen Elizabeth II Highway</a>,
+                    <a href="https://www.google.com/maps/place/Queen+Elizabeth+II+Hwy,+Alberta/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Queen Elizabeth II Highway</a>,
                     known for its welcoming community and fast-growing neighbourhoods. Whether your home is near the iconic{" "}
-                    <a href="https://www.google.com/maps/place/Nose+Creek+Park,+Airdrie,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Nose Creek Park</a>{" "}
+                    <a href="https://www.google.com/maps/place/Nose+Creek+Park,+Airdrie,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Nose Creek Park</a>{" "}
                     (home of Canada's largest free outdoor Festival of Lights), close to the{" "}
-                    <a href="https://www.google.com/maps/place/Iron+Horse+Park,+Airdrie,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Iron Horse Park</a>,
+                    <a href="https://www.google.com/maps/place/Iron+Horse+Park,+Airdrie,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Iron Horse Park</a>,
                     or in one of the newer developments near{" "}
-                    <a href="https://www.google.com/maps/place/East+Lake+Regional+Park,+Airdrie,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">East Lake Regional Park</a>,
+                    <a href="https://www.google.com/maps/place/East+Lake+Regional+Park,+Airdrie,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">East Lake Regional Park</a>,
                     our team knows Airdrie well and is ready to keep your home spotless.
                   </p>
                   <p>
                     From the established streets of{" "}
-                    <a href="https://www.google.com/maps/place/Luxstone,+Airdrie,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Luxstone</a>{" "}
+                    <a href="https://www.google.com/maps/place/Luxstone,+Airdrie,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Luxstone</a>{" "}
                     to the family-friendly community of{" "}
-                    <a href="https://www.google.com/maps/place/Coopers+Crossing,+Airdrie,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Coopers Crossing</a>,
+                    <a href="https://www.google.com/maps/place/Coopers+Crossing,+Airdrie,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Coopers Crossing</a>,
                     we provide flexible scheduling and cleaning suited to every household in Airdrie.
                   </p>
                 </div>
@@ -385,7 +385,7 @@ export default function Airdrie() {
               </Link>
             <p className="mt-6 text-sm text-muted-foreground">
               Run a business in Airdrie? We also handle{" "}
-              <Link to="/commercial-cleaning-services-calgary/" className="text-primary hover:underline font-medium">
+              <Link to="/commercial-cleaning-services-calgary/" className="text-primary underline underline-offset-2 font-medium">
                 commercial and office cleaning across the Calgary region
               </Link>.
             </p>

@@ -206,15 +206,15 @@ export default function Capilano() {
                   </p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Capilano+Mall/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Capilano Mall</a>,
+                    <a href="https://www.google.com/maps/place/Capilano+Mall/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Capilano Mall</a>,
                     steps from{" "}
-                    <a href="https://www.google.com/maps/place/Gold+Bar+Park/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Gold Bar Park</a>,
+                    <a href="https://www.google.com/maps/place/Gold+Bar+Park/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Gold Bar Park</a>,
                     close to{" "}
-                    <a href="https://www.google.com/maps/place/Capilano+Community+League/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Capilano Community League</a>,
+                    <a href="https://www.google.com/maps/place/Capilano+Community+League/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Capilano Community League</a>,
                     near{" "}
-                    <a href="https://www.google.com/maps/place/Hardisty+School/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Hardisty School</a>,
+                    <a href="https://www.google.com/maps/place/Hardisty+School/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Hardisty School</a>,
                     or along{" "}
-                    <a href="https://www.google.com/maps/place/Capilano+Park/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Capilano Park</a>,
+                    <a href="https://www.google.com/maps/place/Capilano+Park/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Capilano Park</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

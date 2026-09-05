@@ -235,10 +235,10 @@ export default function MattBerry() {
                   </p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/search/Matt+Berry+Park+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Matt Berry Park</a>,
-                    steps from <a href="https://www.google.com/maps/place/Manning+Dr,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Manning Drive</a>,
-                    minutes from <a href="https://www.google.com/maps/place/167+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">167 Avenue</a>,
-                    or close to <a href="https://www.google.com/maps/place/Manning+Town+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Manning Town Centre</a>,
+                    <a href="https://www.google.com/maps/search/Matt+Berry+Park+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Matt Berry Park</a>,
+                    steps from <a href="https://www.google.com/maps/place/Manning+Dr,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Manning Drive</a>,
+                    minutes from <a href="https://www.google.com/maps/place/167+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">167 Avenue</a>,
+                    or close to <a href="https://www.google.com/maps/place/Manning+Town+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Manning Town Centre</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

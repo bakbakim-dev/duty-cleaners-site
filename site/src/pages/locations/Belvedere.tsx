@@ -233,13 +233,13 @@ export default function Belvedere() {
                   <p>Belvedere is a long-established northeast Edmonton community with character bungalows, easy LRT access and a warm, neighbourly feel. It's a place where people know their neighbours — and where reliable local service really matters.</p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Belvedere+LRT+Station+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Belvedere LRT Station</a>,
+                    <a href="https://www.google.com/maps/place/Belvedere+LRT+Station+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Belvedere LRT Station</a>,
                     steps from{" "}
-                    <a href="https://www.google.com/maps/place/Belvedere+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Belvedere Park</a>,
+                    <a href="https://www.google.com/maps/place/Belvedere+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Belvedere Park</a>,
                     close to{" "}
-                    <a href="https://www.google.com/maps/place/Coliseum+Inn+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Coliseum Inn</a>,
+                    <a href="https://www.google.com/maps/place/Coliseum+Inn+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Coliseum Inn</a>,
                     or near{" "}
-                    <a href="https://www.google.com/maps/place/Yellowhead+Trail+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Yellowhead Trail</a>,
+                    <a href="https://www.google.com/maps/place/Yellowhead+Trail+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Yellowhead Trail</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

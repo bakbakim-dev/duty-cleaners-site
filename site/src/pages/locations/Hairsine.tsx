@@ -233,13 +233,13 @@ export default function Hairsine() {
                   <p>Hairsine is a tight-knit Clareview-area neighbourhood with family homes, walkable parks and easy LRT access. With its quiet streets and welcoming community vibe, it's a place where reliable, personal service really matters — and that's exactly what we bring.</p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Hairsine+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Hairsine Park</a>,
+                    <a href="https://www.google.com/maps/place/Hairsine+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Hairsine Park</a>,
                     steps from{" "}
-                    <a href="https://www.google.com/maps/place/Clareview+Recreation+Centre+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Clareview Recreation Centre</a>,
+                    <a href="https://www.google.com/maps/place/Clareview+Recreation+Centre+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Clareview Recreation Centre</a>,
                     close to{" "}
-                    <a href="https://www.google.com/maps/place/Clareview+LRT+Station+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Clareview LRT Station</a>,
+                    <a href="https://www.google.com/maps/place/Clareview+LRT+Station+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Clareview LRT Station</a>,
                     or near{" "}
-                    <a href="https://www.google.com/maps/place/Victoria+Trail+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Victoria Trail</a>,
+                    <a href="https://www.google.com/maps/place/Victoria+Trail+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Victoria Trail</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

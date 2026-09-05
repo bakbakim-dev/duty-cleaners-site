@@ -212,21 +212,21 @@ export default function Beaumont() {
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>
                   Beaumont is a vibrant and fast-growing community just south of Edmonton, celebrated for its rich French-Canadian heritage, beautiful parks, and family-friendly atmosphere. Whether your home is near the popular{" "}
-                  <a href="https://www.google.com/maps/place/Four+Seasons+Park,+Beaumont,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                  <a href="https://www.google.com/maps/place/Four+Seasons+Park,+Beaumont,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
                     Four Seasons Park
                   </a>{" "}
                   or along the scenic trails by{" "}
-                  <a href="https://www.google.com/maps/place/Beaumont+Community+Centre,+Beaumont,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                  <a href="https://www.google.com/maps/place/Beaumont+Community+Centre,+Beaumont,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
                     Ken Nicol Regional Park
                   </a>, our team knows the area and delivers spotless results every time.
                 </p>
                 <p>
                   Families living near{" "}
-                  <a href="https://www.google.com/maps/place/Centre+Communautaire+Beaumont+Community+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                  <a href="https://www.google.com/maps/place/Centre+Communautaire+Beaumont+Community+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
                     Beaumont Community Centre
                   </a>{" "}
                   or enjoying the shops along{" "}
-                  <a href="https://www.google.com/maps/place/50+Ave,+Beaumont,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                  <a href="https://www.google.com/maps/place/50+Ave,+Beaumont,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
                     50th Avenue
                   </a>{" "}
                   deserve a home that's just as clean and inviting as the community around them. We proudly serve families throughout Beaumont and surrounding areas like Leduc, Nisku, and South Edmonton.
@@ -321,7 +321,7 @@ export default function Beaumont() {
             </Link>
             <p className="mt-6 text-sm text-muted-foreground">
               Run a business in Beaumont? We also handle{" "}
-              <Link to="/commercial-cleaning/" className="text-primary hover:underline font-medium">
+              <Link to="/commercial-cleaning/" className="text-primary underline underline-offset-2 font-medium">
                 commercial and office cleaning across the Edmonton region
               </Link>.
             </p>

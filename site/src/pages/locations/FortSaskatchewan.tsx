@@ -213,32 +213,32 @@ export default function FortSaskatchewan() {
               <div className="prose prose-lg text-muted-foreground max-w-none space-y-4">
                 <p>
                   Fort Saskatchewan is a vibrant city on the banks of the North Saskatchewan River, known for its rich history, family-friendly parks, and tight-knit community. Whether your home overlooks{" "}
-                  <a href="https://www.google.com/maps/place/Legacy+Park,+Fort+Saskatchewan,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                  <a href="https://www.google.com/maps/place/Legacy+Park,+Fort+Saskatchewan,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
                     Legacy Park
                   </a>{" "}
                   or sits near the scenic trails along the{" "}
-                  <a href="https://www.google.com/maps/place/North+Saskatchewan+River/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                  <a href="https://www.google.com/maps/place/North+Saskatchewan+River/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
                     North Saskatchewan River Valley
                   </a>, our team knows your neighbourhood and delivers spotless results every time.
                 </p>
                 <p>
                   Families spending weekends at the{" "}
-                  <a href="https://www.google.com/maps/place/Fort+Saskatchewan+Dow+Centennial+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                  <a href="https://www.google.com/maps/place/Fort+Saskatchewan+Dow+Centennial+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
                     Dow Centennial Centre
                   </a>{" "}
                   or enjoying summer events at the{" "}
-                  <a href="https://www.google.com/maps/place/Fort+Heritage+Precinct,+Fort+Saskatchewan,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                  <a href="https://www.google.com/maps/place/Fort+Heritage+Precinct,+Fort+Saskatchewan,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
                     Fort Heritage Precinct
                   </a>{" "}
                   deserve a home that's just as clean and welcoming as the community around them. We bring professional products and meticulous attention to detail to every Fort Saskatchewan home we service.
                 </p>
                 <p>
                   From the charming streets near{" "}
-                  <a href="https://www.google.com/maps/place/Turner+Park,+Fort+Saskatchewan,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                  <a href="https://www.google.com/maps/place/Turner+Park,+Fort+Saskatchewan,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
                     Turner Park
                   </a>{" "}
                   to the growing communities along{" "}
-                  <a href="https://www.google.com/maps/place/99+Ave,+Fort+Saskatchewan,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                  <a href="https://www.google.com/maps/place/99+Ave,+Fort+Saskatchewan,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
                     99 Avenue
                   </a>, Duty Cleaners is proud to keep Fort Saskatchewan homes sparkling.
                 </p>
@@ -361,7 +361,7 @@ export default function FortSaskatchewan() {
             </Link>
             <p className="mt-6 text-sm text-muted-foreground">
               Run a business in Fort Saskatchewan? We also handle{" "}
-              <Link to="/commercial-cleaning/" className="text-primary hover:underline font-medium">
+              <Link to="/commercial-cleaning/" className="text-primary underline underline-offset-2 font-medium">
                 commercial and office cleaning across the Edmonton region
               </Link>.
             </p>

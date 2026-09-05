@@ -233,13 +233,13 @@ export default function Secord() {
                   <p>Secord is one of west Edmonton's fastest-growing family neighbourhoods, with modern homes, new schools and excellent access to Anthony Henday Drive. Families here are busy raising kids and building careers — so we make cleaning the easy part of the week.</p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Webber+Greens+Drive+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Webber Greens Drive</a>,
+                    <a href="https://www.google.com/maps/place/Webber+Greens+Drive+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Webber Greens Drive</a>,
                     steps from{" "}
-                    <a href="https://www.google.com/maps/place/Secord+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Secord Park</a>,
+                    <a href="https://www.google.com/maps/place/Secord+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Secord Park</a>,
                     close to{" "}
-                    <a href="https://www.google.com/maps/place/Anthony+Henday+Drive+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Anthony Henday Drive</a>,
+                    <a href="https://www.google.com/maps/place/Anthony+Henday+Drive+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Anthony Henday Drive</a>,
                     or near{" "}
-                    <a href="https://www.google.com/maps/place/Lewis+Estates+Town+Centre+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Lewis Estates Town Centre</a>,
+                    <a href="https://www.google.com/maps/place/Lewis+Estates+Town+Centre+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Lewis Estates Town Centre</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

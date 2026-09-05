@@ -212,13 +212,13 @@ export default function Balwin() {
                   </p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Zoie+Gardens+Park/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Zoie Gardens Park</a>,
+                    <a href="https://www.google.com/maps/place/Zoie+Gardens+Park/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Zoie Gardens Park</a>,
                     close to{" "}
-                    <a href="https://www.google.com/maps/place/Princeton+School,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Princeton School</a>,
+                    <a href="https://www.google.com/maps/place/Princeton+School,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Princeton School</a>,
                     steps from{" "}
-                    <a href="https://www.google.com/maps/place/132+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">132 Avenue</a>,
+                    <a href="https://www.google.com/maps/place/132+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">132 Avenue</a>,
                     or a short drive to{" "}
-                    <a href="https://www.google.com/maps/place/Northgate+Centre,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Northgate Centre</a>,
+                    <a href="https://www.google.com/maps/place/Northgate+Centre,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Northgate Centre</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

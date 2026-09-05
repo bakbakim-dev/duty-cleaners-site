@@ -230,10 +230,10 @@ export default function Terwillegar() {
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Residential Cleaning in Terwillegar</h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
                   <p>
-                    Terwillegar is truly a gem in Southwest Edmonton, offering the best of both worlds — urban convenience and natural beauty. With direct access to <a href="https://www.google.com/maps/search/Terwillegar+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">Terwillegar Park</a> and the North Saskatchewan River Valley, this neighbourhood attracts families, outdoor enthusiasts, and anyone who values a connection to nature.
+                    Terwillegar is truly a gem in Southwest Edmonton, offering the best of both worlds — urban convenience and natural beauty. With direct access to <a href="https://www.google.com/maps/search/Terwillegar+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">Terwillegar Park</a> and the North Saskatchewan River Valley, this neighbourhood attracts families, outdoor enthusiasts, and anyone who values a connection to nature.
                   </p>
                   <p>
-                    Whether you live near the park trails or in a newer build along <a href="https://www.google.com/maps/search/Terwillegar+Drive+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">Terwillegar Drive</a>, we bring a personal, attentive approach to each visit. Our team handles everything from mudroom messes to spotless living spaces with care.
+                    Whether you live near the park trails or in a newer build along <a href="https://www.google.com/maps/search/Terwillegar+Drive+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">Terwillegar Drive</a>, we bring a personal, attentive approach to each visit. Our team handles everything from mudroom messes to spotless living spaces with care.
                   </p>
                 </div>
               </div>

@@ -233,13 +233,13 @@ export default function Grovenor() {
                   <p>Grovenor is a beautiful pocket of west Edmonton known for its early-1900s character homes, mature elms and short walks to Glenora's shops and trails. Whether you live in a restored bungalow or a tucked-away infill, we bring the same detailed care to every visit.</p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Grovenor+Community+League+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Grovenor Community League</a>,
+                    <a href="https://www.google.com/maps/place/Grovenor+Community+League+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Grovenor Community League</a>,
                     steps from{" "}
-                    <a href="https://www.google.com/maps/place/Stony+Plain+Road+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Stony Plain Road</a>,
+                    <a href="https://www.google.com/maps/place/Stony+Plain+Road+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Stony Plain Road</a>,
                     close to{" "}
-                    <a href="https://www.google.com/maps/place/Coronation+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Coronation Park</a>,
+                    <a href="https://www.google.com/maps/place/Coronation+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Coronation Park</a>,
                     or near{" "}
-                    <a href="https://www.google.com/maps/place/142+Street+NW+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">142 Street NW</a>,
+                    <a href="https://www.google.com/maps/place/142+Street+NW+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">142 Street NW</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

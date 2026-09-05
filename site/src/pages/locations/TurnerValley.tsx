@@ -250,9 +250,9 @@ export default function TurnerValley() {
                 <div className="prose prose-lg max-w-none text-muted-foreground">
                   <p>
                     Turner Valley sits in the foothills of the Canadian Rockies, known for its rich history and stunning natural surroundings. From the scenic trails along the{" "}
-                    <a href="https://maps.google.com/?q=Sheep+River,+Turner+Valley,+AB" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">Sheep River</a>
+                    <a href="https://maps.google.com/?q=Sheep+River,+Turner+Valley,+AB" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">Sheep River</a>
                     {" "}to the historic{" "}
-                    <a href="https://maps.google.com/?q=Turner+Valley+Gas+Plant,+AB" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">Turner Valley Gas Plant</a>,
+                    <a href="https://maps.google.com/?q=Turner+Valley+Gas+Plant,+AB" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">Turner Valley Gas Plant</a>,
                     this town offers a peaceful lifestyle with easy access to nature.
                   </p>
                   <p className="mt-4">
@@ -324,7 +324,7 @@ export default function TurnerValley() {
               </Link>
             <p className="mt-6 text-sm text-muted-foreground">
               Run a business in Turner Valley? We also handle{" "}
-              <Link to="/commercial-cleaning-services-calgary/" className="text-primary hover:underline font-medium">
+              <Link to="/commercial-cleaning-services-calgary/" className="text-primary underline underline-offset-2 font-medium">
                 commercial and office cleaning across the Calgary region
               </Link>.
             </p>

@@ -233,13 +233,13 @@ export default function Rapperswill() {
                   <p>Rapperswill is a newer northwest Edmonton community with a young family vibe, parks at every turn and easy access to Anthony Henday Drive. With its modern homes and connected streets, it's the perfect spot for busy households who want their weekends back.</p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Rapperswill+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Rapperswill Park</a>,
+                    <a href="https://www.google.com/maps/place/Rapperswill+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Rapperswill Park</a>,
                     steps from{" "}
-                    <a href="https://www.google.com/maps/place/Anthony+Henday+Drive+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Anthony Henday Drive</a>,
+                    <a href="https://www.google.com/maps/place/Anthony+Henday+Drive+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Anthony Henday Drive</a>,
                     close to{" "}
-                    <a href="https://www.google.com/maps/place/137+Avenue+NW+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">137 Avenue NW</a>,
+                    <a href="https://www.google.com/maps/place/137+Avenue+NW+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">137 Avenue NW</a>,
                     or near{" "}
-                    <a href="https://www.google.com/maps/place/CFB+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">CFB Edmonton</a>,
+                    <a href="https://www.google.com/maps/place/CFB+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">CFB Edmonton</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

@@ -235,10 +235,10 @@ export default function BeaconHeights() {
                   </p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Concordia+University+of+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Concordia University</a>,
-                    steps from <a href="https://www.google.com/maps/place/Rundle+Park/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Rundle Park</a>,
-                    minutes from <a href="https://www.google.com/maps/search/Beacon+Heights+School+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Beacon Heights School</a>,
-                    or close to <a href="https://www.google.com/maps/place/Yellowhead+Trail,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Yellowhead Trail</a>,
+                    <a href="https://www.google.com/maps/place/Concordia+University+of+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Concordia University</a>,
+                    steps from <a href="https://www.google.com/maps/place/Rundle+Park/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Rundle Park</a>,
+                    minutes from <a href="https://www.google.com/maps/search/Beacon+Heights+School+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Beacon Heights School</a>,
+                    or close to <a href="https://www.google.com/maps/place/Yellowhead+Trail,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Yellowhead Trail</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

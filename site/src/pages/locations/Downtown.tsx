@@ -233,13 +233,13 @@ export default function Downtown() {
                   <p>Downtown Edmonton blends urban energy with great everyday living — high-rise condos, walkable streets and a buzzing food and arts scene. Whether you live near Rogers Place, in the Ice District, or in a beautifully renovated loft along Jasper Avenue, we make it easy to keep your space pristine.</p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Rogers+Place+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Rogers Place</a>,
+                    <a href="https://www.google.com/maps/place/Rogers+Place+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Rogers Place</a>,
                     steps from{" "}
-                    <a href="https://www.google.com/maps/place/Ice+District+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Ice District</a>,
+                    <a href="https://www.google.com/maps/place/Ice+District+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Ice District</a>,
                     close to{" "}
-                    <a href="https://www.google.com/maps/place/Jasper+Avenue+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Jasper Avenue</a>,
+                    <a href="https://www.google.com/maps/place/Jasper+Avenue+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Jasper Avenue</a>,
                     or near{" "}
-                    <a href="https://www.google.com/maps/place/Sir+Winston+Churchill+Square+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Churchill Square</a>,
+                    <a href="https://www.google.com/maps/place/Sir+Winston+Churchill+Square+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Churchill Square</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

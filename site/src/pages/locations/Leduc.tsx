@@ -213,28 +213,28 @@ export default function Leduc() {
               <div className="prose prose-lg text-muted-foreground max-w-none space-y-4">
                 <p>
                   Leduc is a thriving city just south of Edmonton, known for its welcoming community, growing neighbourhoods, and convenient access to the Edmonton International Airport. Whether your home is near{" "}
-                  <a href="https://www.google.com/maps/place/Fred+Johns+Park,+Leduc,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                  <a href="https://www.google.com/maps/place/Fred+Johns+Park,+Leduc,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
                     Fred Johns Park
                   </a>{" "}
                   or close to the shops along{" "}
-                  <a href="https://www.google.com/maps/place/50+Ave,+Leduc,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                  <a href="https://www.google.com/maps/place/50+Ave,+Leduc,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
                     50th Avenue
                   </a>, our team knows the area and delivers spotless results every time.
                 </p>
                 <p>
                   Families enjoying the trails around{" "}
-                  <a href="https://www.google.com/maps/place/Telford+Lake,+Leduc,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                  <a href="https://www.google.com/maps/place/Telford+Lake,+Leduc,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
                     Telford Lake
                   </a>{" "}
                   or spending weekends at the{" "}
-                  <a href="https://www.google.com/maps/place/Leduc+Recreation+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                  <a href="https://www.google.com/maps/place/Leduc+Recreation+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
                     Leduc Recreation Centre
                   </a>{" "}
                   deserve a home that's just as clean and inviting as the community around them. We bring professional products and meticulous attention to detail to every Leduc home we service.
                 </p>
                 <p>
                   From the established streets near{" "}
-                  <a href="https://www.google.com/maps/place/William+F.+Lede+Park,+Leduc,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                  <a href="https://www.google.com/maps/place/William+F.+Lede+Park,+Leduc,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
                     William F. Lede Park
                   </a>{" "}
                   to the newer developments in Southfork and Bridgeport, Duty Cleaners is proud to keep Leduc homes sparkling.
@@ -357,7 +357,7 @@ export default function Leduc() {
             </Link>
             <p className="mt-6 text-sm text-muted-foreground">
               Run a business in Leduc? We also handle{" "}
-              <Link to="/commercial-cleaning/" className="text-primary hover:underline font-medium">
+              <Link to="/commercial-cleaning/" className="text-primary underline underline-offset-2 font-medium">
                 commercial and office cleaning across the Edmonton region
               </Link>.
             </p>

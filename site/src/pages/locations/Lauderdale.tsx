@@ -233,13 +233,13 @@ export default function Lauderdale() {
                   <p>Lauderdale is a quiet north Edmonton neighbourhood with mature trees, post-war bungalows and a warm, neighbourly feel. With its close-knit streets and convenient access to the Yellowhead, it's a perfect family pocket — and we're proud to be its trusted local cleaning team.</p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Lauderdale+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Lauderdale Park</a>,
+                    <a href="https://www.google.com/maps/place/Lauderdale+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Lauderdale Park</a>,
                     steps from{" "}
-                    <a href="https://www.google.com/maps/place/Lauderdale+Community+League+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Lauderdale Community League</a>,
+                    <a href="https://www.google.com/maps/place/Lauderdale+Community+League+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Lauderdale Community League</a>,
                     close to{" "}
-                    <a href="https://www.google.com/maps/place/127+Street+NW+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">127 Street NW</a>,
+                    <a href="https://www.google.com/maps/place/127+Street+NW+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">127 Street NW</a>,
                     or near{" "}
-                    <a href="https://www.google.com/maps/place/Yellowhead+Trail+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Yellowhead Trail</a>,
+                    <a href="https://www.google.com/maps/place/Yellowhead+Trail+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Yellowhead Trail</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

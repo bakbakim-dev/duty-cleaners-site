@@ -224,17 +224,17 @@ export default function Okotoks() {
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>
                     Okotoks is a town on the{" "}
-                    <a href="https://www.google.com/maps/place/Sheep+River,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Sheep River</a>,
+                    <a href="https://www.google.com/maps/place/Sheep+River,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Sheep River</a>,
                     just south of Calgary. Known for its small-town charm and vibrant community, it's home to landmarks like the famous{" "}
-                    <a href="https://www.google.com/maps/place/Big+Rock+(Okotoks+Erratic)/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Okotoks Erratic (Big Rock)</a>{" "}
+                    <a href="https://www.google.com/maps/place/Big+Rock+(Okotoks+Erratic)/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Okotoks Erratic (Big Rock)</a>{" "}
                     — one of the world's largest glacial erratics — and the scenic{" "}
-                    <a href="https://www.google.com/maps/place/Sheep+River+Provincial+Park/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Sheep River Provincial Park</a>.
+                    <a href="https://www.google.com/maps/place/Sheep+River+Provincial+Park/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Sheep River Provincial Park</a>.
                   </p>
                   <p>
                     From the family-friendly streets of{" "}
-                    <a href="https://www.google.com/maps/place/Cimarron,+Okotoks,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Cimarron</a>{" "}
+                    <a href="https://www.google.com/maps/place/Cimarron,+Okotoks,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Cimarron</a>{" "}
                     to the eco-conscious community of{" "}
-                    <a href="https://www.google.com/maps/place/Drake+Landing,+Okotoks,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Drake Landing</a>,
+                    <a href="https://www.google.com/maps/place/Drake+Landing,+Okotoks,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Drake Landing</a>,
                     our team knows Okotoks well and provides flexible scheduling and cleaning suited to every household.
                   </p>
                 </div>
@@ -382,7 +382,7 @@ export default function Okotoks() {
               </Link>
             <p className="mt-6 text-sm text-muted-foreground">
               Run a business in Okotoks? We also handle{" "}
-              <Link to="/commercial-cleaning-services-calgary/" className="text-primary hover:underline font-medium">
+              <Link to="/commercial-cleaning-services-calgary/" className="text-primary underline underline-offset-2 font-medium">
                 commercial and office cleaning across the Calgary region
               </Link>.
             </p>

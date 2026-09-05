@@ -216,18 +216,18 @@ export default function Garneau() {
                 <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
                   <p>
                     Garneau is a walkable neighbourhood between the{" "}
-                    <a href="https://www.google.com/maps/place/University+of+Alberta/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">University of Alberta</a>{" "}
+                    <a href="https://www.google.com/maps/place/University+of+Alberta/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">University of Alberta</a>{" "}
                     and the scenic{" "}
-                    <a href="https://www.google.com/maps/place/North+Saskatchewan+River+Valley/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">North Saskatchewan River Valley</a>.
+                    <a href="https://www.google.com/maps/place/North+Saskatchewan+River+Valley/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">North Saskatchewan River Valley</a>.
                     Known for its beautiful tree-lined streets, heritage homes, and a close-knit academic community, Garneau offers an ideal blend of urban convenience and residential tranquility.
                   </p>
                   <p>
                     Whether you're in a family home near{" "}
-                    <a href="https://www.google.com/maps/place/Garneau+School/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Garneau School</a>,
+                    <a href="https://www.google.com/maps/place/Garneau+School/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Garneau School</a>,
                     an apartment along{" "}
-                    <a href="https://www.google.com/maps/place/109+Street,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">109 Street</a>,
+                    <a href="https://www.google.com/maps/place/109+Street,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">109 Street</a>,
                     or near the iconic{" "}
-                    <a href="https://www.google.com/maps/place/Garneau+Theatre/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Garneau Theatre</a>,
+                    <a href="https://www.google.com/maps/place/Garneau+Theatre/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Garneau Theatre</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

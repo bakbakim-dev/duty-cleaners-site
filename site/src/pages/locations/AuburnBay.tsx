@@ -229,21 +229,21 @@ export default function AuburnBay() {
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>
                     Auburn Bay is a vibrant lake community located in the southeast quadrant of Calgary, centered around a{" "}
-                    <a href="https://www.google.com/maps/place/Auburn+Bay,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">43-acre lake with a private beach</a>,
+                    <a href="https://www.google.com/maps/place/Auburn+Bay,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">43-acre lake with a private beach</a>,
                     making it one of Calgary's most desirable neighbourhoods for families and active individuals who love waterfront living.
                   </p>
                   <p>
                     The community features a diverse range of homes and exclusive access to the{" "}
-                    <a href="https://www.google.com/maps/place/Auburn+House,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Auburn House</a>,
+                    <a href="https://www.google.com/maps/place/Auburn+House,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Auburn House</a>,
                     a 14,000 sq ft residents' facility with a gymnasium and banquet room, beside a private lake used for skating in winter. Residents also enjoy proximity to the{" "}
-                    <a href="https://www.google.com/maps/place/South+Health+Campus,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">South Health Campus</a>{" "}
+                    <a href="https://www.google.com/maps/place/South+Health+Campus,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">South Health Campus</a>{" "}
                     and excellent schools.
                   </p>
                   <p>
                     With easy access to{" "}
-                    <a href="https://www.google.com/maps/place/Stoney+Trail,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Stoney Trail</a>{" "}
+                    <a href="https://www.google.com/maps/place/Stoney+Trail,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Stoney Trail</a>{" "}
                     and{" "}
-                    <a href="https://www.google.com/maps/place/Deerfoot+Trail,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Deerfoot Trail</a>,
+                    <a href="https://www.google.com/maps/place/Deerfoot+Trail,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Deerfoot Trail</a>,
                     Auburn Bay offers the perfect balance of suburban tranquility and urban convenience. After enjoying a day at the beach or skating on the frozen lake, let Duty Cleaners keep your home sparkling clean.
                   </p>
                 </div>

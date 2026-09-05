@@ -240,13 +240,13 @@ export default function Bannerman() {
                   </p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Bannerman+Park,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Bannerman Park</a>,
+                    <a href="https://www.google.com/maps/place/Bannerman+Park,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Bannerman Park</a>,
                     steps from{" "}
-                    <a href="https://www.google.com/maps/place/Bannerman+School,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Bannerman School</a>,
+                    <a href="https://www.google.com/maps/place/Bannerman+School,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Bannerman School</a>,
                     close to{" "}
-                    <a href="https://www.google.com/maps/place/Hermitage+Park,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Hermitage Park</a>,
+                    <a href="https://www.google.com/maps/place/Hermitage+Park,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Hermitage Park</a>,
                     or along{" "}
-                    <a href="https://www.google.com/maps/place/144+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">144 Avenue</a>,
+                    <a href="https://www.google.com/maps/place/144+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">144 Avenue</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                   <p>

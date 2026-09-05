@@ -216,23 +216,23 @@ export default function Tuscany() {
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>
                     Tuscany is a family-oriented community in Calgary's northwest, near{" "}
-                    <a href="https://www.google.com/maps/place/Crowfoot+Crossing,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Crowfoot Crossing</a>.
+                    <a href="https://www.google.com/maps/place/Crowfoot+Crossing,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Crowfoot Crossing</a>.
                     Known for its tree-lined streets, stunning views of the{" "}
-                    <a href="https://www.google.com/maps/place/Rocky+Mountains/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Rocky Mountains</a>,
+                    <a href="https://www.google.com/maps/place/Rocky+Mountains/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Rocky Mountains</a>,
                     and excellent schools, Tuscany is a truly special place to call home.
                   </p>
                   <p>
                     The community offers abundant green spaces and pathways, with easy access to the{" "}
-                    <a href="https://www.google.com/maps/place/Tuscany+Club,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Tuscany Club</a>{" "}
+                    <a href="https://www.google.com/maps/place/Tuscany+Club,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Tuscany Club</a>{" "}
                     and nearby{" "}
-                    <a href="https://www.google.com/maps/place/Bowmont+Natural+Environment+Park,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Bowmont Park</a>.
+                    <a href="https://www.google.com/maps/place/Bowmont+Natural+Environment+Park,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Bowmont Park</a>.
                     Families appreciate the strong sense of community and the convenience of the{" "}
-                    <a href="https://www.google.com/maps/place/Crowfoot+Station,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Crowfoot LRT station</a>{" "}
+                    <a href="https://www.google.com/maps/place/Crowfoot+Station,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Crowfoot LRT station</a>{" "}
                     for quick access to downtown Calgary.
                   </p>
                   <p>
                     Whether you have a spacious family home overlooking the mountains or a comfortable townhouse near{" "}
-                    <a href="https://www.google.com/maps/place/12+Mile+Coulee+Rd+NW,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">12 Mile Coulee Road</a>,
+                    <a href="https://www.google.com/maps/place/12+Mile+Coulee+Rd+NW,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">12 Mile Coulee Road</a>,
                     our team provides flexible scheduling and cleaning suited to every household in Tuscany.
                   </p>
                 </div>

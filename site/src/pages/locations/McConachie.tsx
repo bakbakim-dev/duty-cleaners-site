@@ -214,13 +214,13 @@ export default function McConachie() {
                   </p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/McConachie+Park/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">McConachie Park</a>,
+                    <a href="https://www.google.com/maps/place/McConachie+Park/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">McConachie Park</a>,
                     close to{" "}
-                    <a href="https://www.google.com/maps/place/Christ+the+King+School+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Christ the King Elementary</a>,
+                    <a href="https://www.google.com/maps/place/Christ+the+King+School+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Christ the King Elementary</a>,
                     steps from{" "}
-                    <a href="https://www.google.com/maps/place/Manning+Town+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Manning Town Centre</a>,
+                    <a href="https://www.google.com/maps/place/Manning+Town+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Manning Town Centre</a>,
                     or along{" "}
-                    <a href="https://www.google.com/maps/place/167+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">167 Avenue</a>,
+                    <a href="https://www.google.com/maps/place/167+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">167 Avenue</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

@@ -224,13 +224,13 @@ export default function Allendale() {
                   </p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Allendale+Park/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Allendale Park</a>,
+                    <a href="https://www.google.com/maps/place/Allendale+Park/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Allendale Park</a>,
                     steps from{" "}
-                    <a href="https://www.google.com/maps/place/Gateway+Blvd+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Gateway Boulevard</a>,
+                    <a href="https://www.google.com/maps/place/Gateway+Blvd+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Gateway Boulevard</a>,
                     close to{" "}
-                    <a href="https://www.google.com/maps/place/Allendale+Community+League/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Allendale Community League Hall</a>,
+                    <a href="https://www.google.com/maps/place/Allendale+Community+League/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Allendale Community League Hall</a>,
                     or along{" "}
-                    <a href="https://www.google.com/maps/place/109+St+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">109 Street</a>,
+                    <a href="https://www.google.com/maps/place/109+St+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">109 Street</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

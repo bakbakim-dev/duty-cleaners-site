@@ -159,7 +159,7 @@ export default function BlogChoosingCalgaryCleaner() {
               <p className="text-xl text-muted-foreground mb-8">
                 Calgary has no shortage of cleaning companies. The difference between a good one and a
                 risky one usually shows up in four specific places — here's what to check before you
-                book <Link to="/cleaning-services-calgary/" className="text-primary hover:underline font-medium">house cleaning services in Calgary</Link>.
+                book <Link to="/cleaning-services-calgary/" className="text-primary underline underline-offset-2 font-medium">house cleaning services in Calgary</Link>.
               </p>
 
               <div className="aspect-video rounded-2xl overflow-hidden mb-12">

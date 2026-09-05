@@ -230,10 +230,10 @@ export default function Riverbend() {
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Residential Cleaning in Riverbend</h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
                   <p>
-                    Riverbend is one of Southwest Edmonton's most treasured neighbourhoods, known for its mature trees, established homes, and incredible sense of community. For decades, families have chosen Riverbend for its proximity to <a href="https://www.google.com/maps/search/Southgate+Centre+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">Southgate Centre</a>, excellent schools, and beautiful parks.
+                    Riverbend is one of Southwest Edmonton's most treasured neighbourhoods, known for its mature trees, established homes, and incredible sense of community. For decades, families have chosen Riverbend for its proximity to <a href="https://www.google.com/maps/search/Southgate+Centre+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">Southgate Centre</a>, excellent schools, and beautiful parks.
                   </p>
                   <p>
-                    Whether you live in a classic family home near <a href="https://www.google.com/maps/search/Brander+Gardens+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">Brander Gardens</a> or a well-kept property along <a href="https://www.google.com/maps/search/Riverbend+Road+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">Riverbend Road</a>, we bring experience with mature homes and a personal, attentive approach to every visit.
+                    Whether you live in a classic family home near <a href="https://www.google.com/maps/search/Brander+Gardens+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">Brander Gardens</a> or a well-kept property along <a href="https://www.google.com/maps/search/Riverbend+Road+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">Riverbend Road</a>, we bring experience with mature homes and a personal, attentive approach to every visit.
                   </p>
                 </div>
               </div>

@@ -212,13 +212,13 @@ export default function Bellevue() {
                   </p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Borden+Park,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Borden Park</a>,
+                    <a href="https://www.google.com/maps/place/Borden+Park,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Borden Park</a>,
                     steps from{" "}
-                    <a href="https://www.google.com/maps/place/Commonwealth+Stadium,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Commonwealth Stadium</a>,
+                    <a href="https://www.google.com/maps/place/Commonwealth+Stadium,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Commonwealth Stadium</a>,
                     close to{" "}
-                    <a href="https://www.google.com/maps/place/Eastglen+Leisure+Centre,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Eastglen Leisure Centre</a>,
+                    <a href="https://www.google.com/maps/place/Eastglen+Leisure+Centre,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Eastglen Leisure Centre</a>,
                     or along{" "}
-                    <a href="https://www.google.com/maps/place/112+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">112 Avenue</a>,
+                    <a href="https://www.google.com/maps/place/112+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">112 Avenue</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

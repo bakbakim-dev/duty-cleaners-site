@@ -216,16 +216,16 @@ export default function OldStrathcona() {
                 <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
                   <p>
                     Old Strathcona is one of Edmonton's most beloved and culturally rich neighbourhoods. Known for its historic{" "}
-                    <a href="https://www.google.com/maps/place/Whyte+Avenue,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Whyte Avenue</a>,
+                    <a href="https://www.google.com/maps/place/Whyte+Avenue,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Whyte Avenue</a>,
                     eclectic mix of boutiques, cafes, live music venues, and the famous{" "}
-                    <a href="https://www.google.com/maps/place/Old+Strathcona+Farmers'+Market/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Old Strathcona Farmers' Market</a>,
+                    <a href="https://www.google.com/maps/place/Old+Strathcona+Farmers'+Market/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Old Strathcona Farmers' Market</a>,
                     this district is a hub of creativity and community spirit.
                   </p>
                   <p>
                     Whether you live in a charming heritage home along the tree-lined streets, a modern condo near the{" "}
-                    <a href="https://www.google.com/maps/place/Walterdale+Bridge,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Walterdale Bridge</a>,
+                    <a href="https://www.google.com/maps/place/Walterdale+Bridge,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Walterdale Bridge</a>,
                     or an apartment close to the{" "}
-                    <a href="https://www.google.com/maps/place/ATB+Financial+Arts+Barns/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Arts Barns</a>,
+                    <a href="https://www.google.com/maps/place/ATB+Financial+Arts+Barns/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Arts Barns</a>,
                     we bring a personal, attentive approach to every visit. We understand the unique character of Old Strathcona homes and treat each one with care.
                   </p>
                 </div>

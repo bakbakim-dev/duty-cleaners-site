@@ -224,11 +224,11 @@ export default function Langdon() {
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>
                     Langdon is a charming hamlet just east of Calgary, known for its rural character and growing family community. Whether your home is near the popular{" "}
-                    <a href="https://www.google.com/maps/place/Langdon+Community+Association/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Langdon Community Centre</a>,
+                    <a href="https://www.google.com/maps/place/Langdon+Community+Association/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Langdon Community Centre</a>,
                     close to the scenic{" "}
-                    <a href="https://www.google.com/maps/place/Boulder+Creek+Golf+Club/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Boulder Creek Golf Club</a>,
+                    <a href="https://www.google.com/maps/place/Boulder+Creek+Golf+Club/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Boulder Creek Golf Club</a>,
                     or near the welcoming{" "}
-                    <a href="https://www.google.com/maps/place/Langdon+Library/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Langdon Library</a>,
+                    <a href="https://www.google.com/maps/place/Langdon+Library/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Langdon Library</a>,
                     our team knows Langdon well and is ready to keep your home spotless.
                   </p>
                   <p>
@@ -379,7 +379,7 @@ export default function Langdon() {
               </Link>
             <p className="mt-6 text-sm text-muted-foreground">
               Run a business in Langdon? We also handle{" "}
-              <Link to="/commercial-cleaning-services-calgary/" className="text-primary hover:underline font-medium">
+              <Link to="/commercial-cleaning-services-calgary/" className="text-primary underline underline-offset-2 font-medium">
                 commercial and office cleaning across the Calgary region
               </Link>.
             </p>

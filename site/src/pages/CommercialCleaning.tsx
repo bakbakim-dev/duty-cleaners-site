@@ -313,7 +313,7 @@ export default function CommercialCleaning() {
                   </Button>
                 </div>
                 <p className="text-sm text-muted-foreground mt-6">
-                  Also serving: <Link to="/commercial-cleaning-services-calgary/" className="text-primary hover:underline font-medium">Calgary Commercial Cleaning</Link>
+                  Also serving: <Link to="/commercial-cleaning-services-calgary/" className="text-primary underline underline-offset-2 font-medium">Calgary Commercial Cleaning</Link>
                 </p>
               </div>
             </div>

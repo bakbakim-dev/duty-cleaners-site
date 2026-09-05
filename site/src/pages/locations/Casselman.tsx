@@ -235,10 +235,10 @@ export default function Casselman() {
                   </p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/search/Casselman+Park+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Casselman Park</a>,
-                    steps from <a href="https://www.google.com/maps/place/153+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">153 Avenue</a>,
-                    minutes from <a href="https://www.google.com/maps/place/Manning+Town+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Manning Crossing</a>,
-                    or close to <a href="https://www.google.com/maps/place/Anthony+Henday+Drive/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Anthony Henday Drive</a>,
+                    <a href="https://www.google.com/maps/search/Casselman+Park+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Casselman Park</a>,
+                    steps from <a href="https://www.google.com/maps/place/153+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">153 Avenue</a>,
+                    minutes from <a href="https://www.google.com/maps/place/Manning+Town+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Manning Crossing</a>,
+                    or close to <a href="https://www.google.com/maps/place/Anthony+Henday+Drive/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Anthony Henday Drive</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

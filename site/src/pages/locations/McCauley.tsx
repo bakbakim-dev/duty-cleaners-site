@@ -233,13 +233,13 @@ export default function McCauley() {
                   <p>McCauley is one of Edmonton's most culturally rich neighbourhoods, home to Little Italy, Chinatown, and a wonderful mix of historic homes. With its beloved Italian Centre Shop, Giovanni Caboto Park and incredible community spirit, McCauley has a soul all its own — and we feel lucky to serve it.</p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Giovanni+Caboto+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Giovanni Caboto Park</a>,
+                    <a href="https://www.google.com/maps/place/Giovanni+Caboto+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Giovanni Caboto Park</a>,
                     steps from{" "}
-                    <a href="https://www.google.com/maps/place/Italian+Centre+Shop+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Italian Centre Shop</a>,
+                    <a href="https://www.google.com/maps/place/Italian+Centre+Shop+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Italian Centre Shop</a>,
                     close to{" "}
-                    <a href="https://www.google.com/maps/place/Sacred+Heart+Church+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Sacred Heart Church</a>,
+                    <a href="https://www.google.com/maps/place/Sacred+Heart+Church+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Sacred Heart Church</a>,
                     or near{" "}
-                    <a href="https://www.google.com/maps/place/95+Street+NW+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">95 Street NW</a>,
+                    <a href="https://www.google.com/maps/place/95+Street+NW+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">95 Street NW</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

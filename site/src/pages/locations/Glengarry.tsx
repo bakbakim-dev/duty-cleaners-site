@@ -235,10 +235,10 @@ export default function Glengarry() {
                   </p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/search/Glengarry+Park+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Glengarry Park</a>,
-                    steps from <a href="https://www.google.com/maps/place/Northgate+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Northgate Centre</a>,
-                    minutes from <a href="https://www.google.com/maps/place/97+St+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">97 Street</a>,
-                    or close to <a href="https://www.google.com/maps/place/132+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">132 Avenue</a>,
+                    <a href="https://www.google.com/maps/search/Glengarry+Park+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Glengarry Park</a>,
+                    steps from <a href="https://www.google.com/maps/place/Northgate+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Northgate Centre</a>,
+                    minutes from <a href="https://www.google.com/maps/place/97+St+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">97 Street</a>,
+                    or close to <a href="https://www.google.com/maps/place/132+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">132 Avenue</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

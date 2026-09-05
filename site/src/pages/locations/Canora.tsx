@@ -233,13 +233,13 @@ export default function Canora() {
                   <p>Canora is a hidden west Edmonton gem just south of Stony Plain Road, with quiet streets, vintage bungalows and a relaxed community feel. With nearby parks and quick access to downtown along Stony Plain Road, it's a peaceful pocket that families love to call home.</p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Canora+Community+League+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Canora Community League</a>,
+                    <a href="https://www.google.com/maps/place/Canora+Community+League+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Canora Community League</a>,
                     steps from{" "}
-                    <a href="https://www.google.com/maps/place/Canora+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Canora Park</a>,
+                    <a href="https://www.google.com/maps/place/Canora+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Canora Park</a>,
                     close to{" "}
-                    <a href="https://www.google.com/maps/place/Stony+Plain+Road+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Stony Plain Road</a>,
+                    <a href="https://www.google.com/maps/place/Stony+Plain+Road+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Stony Plain Road</a>,
                     or near{" "}
-                    <a href="https://www.google.com/maps/place/156+Street+NW+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">156 Street NW</a>,
+                    <a href="https://www.google.com/maps/place/156+Street+NW+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">156 Street NW</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

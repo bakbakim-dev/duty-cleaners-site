@@ -483,7 +483,7 @@ export default function LocationPageTemplate({
               Run a business in {city}? We also handle{" "}
               <Link
                 to={region === "calgary" ? "/commercial-cleaning-services-calgary/" : "/commercial-cleaning/"}
-                className="text-primary hover:underline font-medium"
+                className="text-primary underline underline-offset-2 font-medium"
               >
                 commercial and office cleaning across the {regionLabel} region
               </Link>

@@ -210,14 +210,14 @@ export default function InglewoodCalgary() {
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>
                     Inglewood is Calgary's oldest neighbourhood, established in 1875, and has transformed into one of the city's most vibrant communities. Known for its thriving arts scene, antique shops, and independent boutiques along{" "}
-                    <a href="https://www.google.com/maps/search/9+Avenue+SE+Inglewood+Calgary" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">9th Avenue SE</a>,
+                    <a href="https://www.google.com/maps/search/9+Avenue+SE+Inglewood+Calgary" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">9th Avenue SE</a>,
                     this historic area attracts artists, young professionals, and families who appreciate character and creativity.
                   </p>
                   <p>
                     From heritage homes near the{" "}
-                    <a href="https://www.google.com/maps/place/Inglewood+Bird+Sanctuary,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Inglewood Bird Sanctuary</a>{" "}
+                    <a href="https://www.google.com/maps/place/Inglewood+Bird+Sanctuary,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Inglewood Bird Sanctuary</a>{" "}
                     to modern loft conversions and beautiful pathways along the{" "}
-                    <a href="https://www.google.com/maps/search/Bow+River+pathway+Inglewood+Calgary" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Bow River</a>,
+                    <a href="https://www.google.com/maps/search/Bow+River+pathway+Inglewood+Calgary" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Bow River</a>,
                     we provide flexible scheduling and cleaning suited to every unique home in this eclectic community.
                   </p>
                 </div>

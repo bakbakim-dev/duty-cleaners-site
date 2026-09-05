@@ -233,13 +233,13 @@ export default function BoyleStreet() {
                   <p>Boyle Street is one of Edmonton's oldest and most fascinating neighbourhoods — a blend of historic brick buildings, modern condos and a creative community spirit. With Chinatown, Rogers Place and the Quarters all nearby, this is a neighbourhood with real character, and we love serving the people who call it home.</p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Rogers+Place+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Rogers Place</a>,
+                    <a href="https://www.google.com/maps/place/Rogers+Place+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Rogers Place</a>,
                     steps from{" "}
-                    <a href="https://www.google.com/maps/place/Chinatown+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Chinatown</a>,
+                    <a href="https://www.google.com/maps/place/Chinatown+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Chinatown</a>,
                     close to{" "}
-                    <a href="https://www.google.com/maps/place/The+Quarters+Downtown+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">The Quarters</a>,
+                    <a href="https://www.google.com/maps/place/The+Quarters+Downtown+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">The Quarters</a>,
                     or near{" "}
-                    <a href="https://www.google.com/maps/place/Jasper+Avenue+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Jasper Avenue</a>,
+                    <a href="https://www.google.com/maps/place/Jasper+Avenue+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Jasper Avenue</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

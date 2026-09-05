@@ -233,13 +233,13 @@ export default function Eastwood() {
                   <p>Eastwood blends history with a fresh creative energy. With its mix of heritage homes, walkable streets, and proximity to Northlands and Borden Park, the neighbourhood has personality at every corner. We're a familiar face on these streets, helping busy households stay tidy and welcoming.</p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Clarke+Stadium+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Clarke Stadium</a>,
+                    <a href="https://www.google.com/maps/place/Clarke+Stadium+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Clarke Stadium</a>,
                     steps from{" "}
-                    <a href="https://www.google.com/maps/place/Borden+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Borden Park</a>,
+                    <a href="https://www.google.com/maps/place/Borden+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Borden Park</a>,
                     close to{" "}
-                    <a href="https://www.google.com/maps/place/Eastwood+Community+League+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Eastwood Community League</a>,
+                    <a href="https://www.google.com/maps/place/Eastwood+Community+League+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Eastwood Community League</a>,
                     or near{" "}
-                    <a href="https://www.google.com/maps/place/118+Avenue+NW+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">118 Avenue NW</a>,
+                    <a href="https://www.google.com/maps/place/118+Avenue+NW+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">118 Avenue NW</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

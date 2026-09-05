@@ -224,20 +224,20 @@ export default function Cochrane() {
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>
                     Cochrane is a town in the Rocky Mountain foothills, just west of Calgary along{" "}
-                    <a href="https://www.google.com/maps/place/Highway+1A,+Cochrane,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Highway 1A</a>.
+                    <a href="https://www.google.com/maps/place/Highway+1A,+Cochrane,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Highway 1A</a>.
                     Whether your home is near the iconic{" "}
-                    <a href="https://www.google.com/maps/place/Cochrane+Ranche+Historic+Site/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Cochrane Ranche Historic Site</a>,
+                    <a href="https://www.google.com/maps/place/Cochrane+Ranche+Historic+Site/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Cochrane Ranche Historic Site</a>,
                     close to the scenic{" "}
-                    <a href="https://www.google.com/maps/place/Glenbow+Ranch+Provincial+Park/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Glenbow Ranch Provincial Park</a>,
+                    <a href="https://www.google.com/maps/place/Glenbow+Ranch+Provincial+Park/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Glenbow Ranch Provincial Park</a>,
                     or enjoying views from the family-friendly{" "}
-                    <a href="https://www.google.com/maps/place/Mitford+Park,+Cochrane,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Mitford Park</a>,
+                    <a href="https://www.google.com/maps/place/Mitford+Park,+Cochrane,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Mitford Park</a>,
                     our team knows Cochrane well and is ready to keep your home spotless.
                   </p>
                   <p>
                     From the established community of{" "}
-                    <a href="https://www.google.com/maps/place/Sunset+Ridge,+Cochrane,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Sunset Ridge</a>{" "}
+                    <a href="https://www.google.com/maps/place/Sunset+Ridge,+Cochrane,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Sunset Ridge</a>{" "}
                     to the vibrant neighbourhood of{" "}
-                    <a href="https://www.google.com/maps/place/Fireside,+Cochrane,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Fireside</a>,
+                    <a href="https://www.google.com/maps/place/Fireside,+Cochrane,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Fireside</a>,
                     we provide flexible scheduling and cleaning suited to every household in Cochrane.
                   </p>
                 </div>
@@ -385,7 +385,7 @@ export default function Cochrane() {
               </Link>
             <p className="mt-6 text-sm text-muted-foreground">
               Run a business in Cochrane? We also handle{" "}
-              <Link to="/commercial-cleaning-services-calgary/" className="text-primary hover:underline font-medium">
+              <Link to="/commercial-cleaning-services-calgary/" className="text-primary underline underline-offset-2 font-medium">
                 commercial and office cleaning across the Calgary region
               </Link>.
             </p>

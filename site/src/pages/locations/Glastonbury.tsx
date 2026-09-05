@@ -221,11 +221,11 @@ export default function Glastonbury() {
                   </p>
                   <p>
                     Whether your home overlooks{" "}
-                    <a href="https://www.google.com/maps/place/The+Grange+at+Lendrum/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">The Grange</a>,
+                    <a href="https://www.google.com/maps/place/The+Grange+at+Lendrum/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">The Grange</a>,
                     sits near{" "}
-                    <a href="https://www.google.com/maps/place/Patricia+Ravine/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Patricia Ravine</a>,
+                    <a href="https://www.google.com/maps/place/Patricia+Ravine/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Patricia Ravine</a>,
                     or borders the scenic trails along{" "}
-                    <a href="https://www.google.com/maps/place/Wedgewood+Ravine,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Wedgewood Ravine</a>,
+                    <a href="https://www.google.com/maps/place/Wedgewood+Ravine,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Wedgewood Ravine</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

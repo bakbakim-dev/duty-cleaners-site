@@ -233,13 +233,13 @@ export default function Sherbrooke() {
                   <p>Sherbrooke is a quiet, mature north Edmonton neighbourhood with mid-century homes, tree-lined streets and a friendly small-community feel. Many residents have been here for decades — and we love being the trusted local team that keeps their homes feeling fresh.</p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Sherbrooke+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Sherbrooke Park</a>,
+                    <a href="https://www.google.com/maps/place/Sherbrooke+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Sherbrooke Park</a>,
                     steps from{" "}
-                    <a href="https://www.google.com/maps/place/Sherbrooke+Community+League+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Sherbrooke Community League</a>,
+                    <a href="https://www.google.com/maps/place/Sherbrooke+Community+League+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Sherbrooke Community League</a>,
                     close to{" "}
-                    <a href="https://www.google.com/maps/place/Princess+Elizabeth+Avenue+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Princess Elizabeth Avenue</a>,
+                    <a href="https://www.google.com/maps/place/Princess+Elizabeth+Avenue+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Princess Elizabeth Avenue</a>,
                     or near{" "}
-                    <a href="https://www.google.com/maps/place/Yellowhead+Trail+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Yellowhead Trail</a>,
+                    <a href="https://www.google.com/maps/place/Yellowhead+Trail+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Yellowhead Trail</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

@@ -235,10 +235,10 @@ export default function Woodcroft() {
                   </p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/search/Woodcroft+Library+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Woodcroft Library</a>,
-                    steps from <a href="https://www.google.com/maps/place/Coronation+Park/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Coronation Park</a>,
-                    minutes from <a href="https://www.google.com/maps/place/Groat+Rd,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Groat Road</a>,
-                    or close to <a href="https://www.google.com/maps/place/111+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">111 Avenue</a>,
+                    <a href="https://www.google.com/maps/search/Woodcroft+Library+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Woodcroft Library</a>,
+                    steps from <a href="https://www.google.com/maps/place/Coronation+Park/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Coronation Park</a>,
+                    minutes from <a href="https://www.google.com/maps/place/Groat+Rd,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Groat Road</a>,
+                    or close to <a href="https://www.google.com/maps/place/111+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">111 Avenue</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

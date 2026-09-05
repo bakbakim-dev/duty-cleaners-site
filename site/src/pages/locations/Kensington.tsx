@@ -214,15 +214,15 @@ export default function Kensington() {
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>
                     Kensington is one of Calgary's most beloved neighbourhoods, offering a vibrant village atmosphere just minutes from downtown. Located near{" "}
-                    <a href="https://www.google.com/maps/place/SAIT,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">SAIT</a>{" "}
+                    <a href="https://www.google.com/maps/place/SAIT,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">SAIT</a>{" "}
                     and the beautiful{" "}
-                    <a href="https://www.google.com/maps/place/Bow+River+Pathway,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Bow River pathways</a>,
+                    <a href="https://www.google.com/maps/place/Bow+River+Pathway,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Bow River pathways</a>,
                     this community is known for its walkable streets lined with charming boutiques, cozy cafes, and locally-owned restaurants along{" "}
-                    <a href="https://www.google.com/maps/place/Kensington+Rd+NW,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Kensington Road</a>.
+                    <a href="https://www.google.com/maps/place/Kensington+Rd+NW,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Kensington Road</a>.
                   </p>
                   <p>
                     From the heritage homes near{" "}
-                    <a href="https://www.google.com/maps/place/Riley+Park,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Riley Park</a>{" "}
+                    <a href="https://www.google.com/maps/place/Riley+Park,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Riley Park</a>{" "}
                     to modern condos overlooking the river, we provide flexible scheduling and cleaning suited to every household in this vibrant inner-city community.
                   </p>
                 </div>

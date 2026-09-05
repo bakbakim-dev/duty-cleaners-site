@@ -208,14 +208,14 @@ export default function Marlborough() {
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>
                     Marlborough is an established residential community in northeast Calgary, known for its multicultural character and convenient location. Near the popular{" "}
-                    <a href="https://www.google.com/maps/place/Marlborough+Mall,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Marlborough Mall</a>{" "}
+                    <a href="https://www.google.com/maps/place/Marlborough+Mall,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Marlborough Mall</a>{" "}
                     shopping centre and with excellent access to Memorial Drive, the community offers a vibrant and diverse lifestyle.
                   </p>
                   <p>
                     The neighbourhood features mature trees, well-maintained parks, and excellent transit via the{" "}
-                    <a href="https://www.google.com/maps/search/Marlborough+CTrain+Station+Calgary" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Marlborough CTrain station</a>.
+                    <a href="https://www.google.com/maps/search/Marlborough+CTrain+Station+Calgary" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Marlborough CTrain station</a>.
                     Whether you live near{" "}
-                    <a href="https://www.google.com/maps/search/Penbrooke+Meadows+Calgary" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Penbrooke Meadows</a>{" "}
+                    <a href="https://www.google.com/maps/search/Penbrooke+Meadows+Calgary" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Penbrooke Meadows</a>{" "}
                     or close to the mall, we deliver thorough cleaning tailored to every household.
                   </p>
                 </div>

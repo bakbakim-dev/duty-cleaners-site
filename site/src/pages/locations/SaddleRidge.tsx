@@ -208,14 +208,14 @@ export default function SaddleRidge() {
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>
                     Saddle Ridge is a thriving residential community in northeast Calgary, one of the city's largest and most diverse neighbourhoods. Families enjoy the popular{" "}
-                    <a href="https://www.google.com/maps/place/Prairie+Winds+Park,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Prairie Winds Park</a>{" "}
+                    <a href="https://www.google.com/maps/place/Prairie+Winds+Park,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Prairie Winds Park</a>{" "}
                     with its playgrounds, spray park, and walking paths — one of Calgary's largest community parks.
                   </p>
                   <p>
                     Residents also benefit from the{" "}
-                    <a href="https://www.google.com/maps/place/Genesis+Centre,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Genesis Centre</a>{" "}
+                    <a href="https://www.google.com/maps/place/Genesis+Centre,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Genesis Centre</a>{" "}
                     recreation facility and easy access to{" "}
-                    <a href="https://www.google.com/maps/place/CrossIron+Mills,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">CrossIron Mills</a>{" "}
+                    <a href="https://www.google.com/maps/place/CrossIron+Mills,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">CrossIron Mills</a>{" "}
                     outlet mall. Whether you have a spacious family home or a cozy townhouse, we deliver thorough cleaning tailored to your household.
                   </p>
                 </div>

@@ -233,13 +233,13 @@ export default function Abbottsfield() {
                   <p>Abbottsfield is a welcoming, multicultural northeast Edmonton community with a strong sense of identity. With easy LRT access, riverside trails and a real community spirit, it's home to a wonderful mix of long-time residents and new neighbours. We're proud to clean for the families who keep it vibrant.</p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Abbottsfield+Mall+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Abbottsfield Mall</a>,
+                    <a href="https://www.google.com/maps/place/Abbottsfield+Mall+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Abbottsfield Mall</a>,
                     steps from{" "}
-                    <a href="https://www.google.com/maps/place/Rundle+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Rundle Park</a>,
+                    <a href="https://www.google.com/maps/place/Rundle+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Rundle Park</a>,
                     close to{" "}
-                    <a href="https://www.google.com/maps/place/Abbottsfield+Recreation+Centre+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Abbottsfield Recreation Centre</a>,
+                    <a href="https://www.google.com/maps/place/Abbottsfield+Recreation+Centre+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Abbottsfield Recreation Centre</a>,
                     or near{" "}
-                    <a href="https://www.google.com/maps/place/Victoria+Trail+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Victoria Trail</a>,
+                    <a href="https://www.google.com/maps/place/Victoria+Trail+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Victoria Trail</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

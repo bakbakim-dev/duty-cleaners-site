@@ -233,13 +233,13 @@ export default function Dovercourt() {
                   <p>Dovercourt is a quiet north-central Edmonton neighbourhood with character bungalows, mature trees and a welcoming community vibe. Its proximity to Westmount and easy access to downtown make it a favourite for families and professionals alike.</p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Dovercourt+Elementary+School+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Dovercourt School</a>,
+                    <a href="https://www.google.com/maps/place/Dovercourt+Elementary+School+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Dovercourt School</a>,
                     steps from{" "}
-                    <a href="https://www.google.com/maps/place/Dovercourt+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Dovercourt Park</a>,
+                    <a href="https://www.google.com/maps/place/Dovercourt+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Dovercourt Park</a>,
                     close to{" "}
-                    <a href="https://www.google.com/maps/place/Westmount+Shopping+Centre" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Westmount Shopping Centre</a>,
+                    <a href="https://www.google.com/maps/place/Westmount+Shopping+Centre" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Westmount Shopping Centre</a>,
                     or near{" "}
-                    <a href="https://www.google.com/maps/place/Groat+Road+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Groat Road</a>,
+                    <a href="https://www.google.com/maps/place/Groat+Road+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Groat Road</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

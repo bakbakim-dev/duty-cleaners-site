@@ -212,16 +212,16 @@ export default function SherwoodPark() {
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>
                   Sherwood Park is one of Alberta's largest and most vibrant communities, known for its family-friendly neighbourhoods and excellent amenities. Whether your home is near{" "}
-                  <a href="https://www.google.com/maps/place/Broadmoor+Lake+Park,+Sherwood+Park,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Broadmoor Lake Park</a>{" "}
+                  <a href="https://www.google.com/maps/place/Broadmoor+Lake+Park,+Sherwood+Park,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Broadmoor Lake Park</a>{" "}
                   or just steps from the state-of-the-art{" "}
-                  <a href="https://www.google.com/maps/place/Millennium+Place,+Sherwood+Park,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Millennium Place</a>,
+                  <a href="https://www.google.com/maps/place/Millennium+Place,+Sherwood+Park,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Millennium Place</a>,
                   our team knows the area and delivers cleaning that fits your lifestyle.
                 </p>
                 <p>
                   With easy access to{" "}
-                  <a href="https://www.google.com/maps/place/Sherwood+Park+Mall,+Sherwood+Park,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Sherwood Park Mall</a>{" "}
+                  <a href="https://www.google.com/maps/place/Sherwood+Park+Mall,+Sherwood+Park,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Sherwood Park Mall</a>{" "}
                   and proximity to the scenic{" "}
-                  <a href="https://www.google.com/maps/place/Heritage+Hills+Park,+Sherwood+Park,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Heritage Hills Park</a>,
+                  <a href="https://www.google.com/maps/place/Heritage+Hills+Park,+Sherwood+Park,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Heritage Hills Park</a>,
                   Sherwood Park is a community we serve regularly. We proudly clean homes throughout Sherwood Park and surrounding areas like Summerside, Emerald Hills, and Lakeland Ridge.
                 </p>
               </div>
@@ -338,7 +338,7 @@ export default function SherwoodPark() {
             </Link>
             <p className="mt-6 text-sm text-muted-foreground">
               Run a business in Sherwood Park? We also handle{" "}
-              <Link to="/commercial-cleaning/" className="text-primary hover:underline font-medium">
+              <Link to="/commercial-cleaning/" className="text-primary underline underline-offset-2 font-medium">
                 commercial and office cleaning across the Edmonton region
               </Link>.
             </p>

@@ -216,19 +216,19 @@ export default function Mahogany() {
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>
                     Mahogany is a stunning master-planned community in southeast Calgary, home to the spectacular{" "}
-                    <a href="https://www.google.com/maps/place/Mahogany+Lake,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">63-acre freshwater lake</a>
+                    <a href="https://www.google.com/maps/place/Mahogany+Lake,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">63-acre freshwater lake</a>
                     —the largest in Calgary. With private beaches, boating, and year-round activities, it's one of the city's most desirable places to live.
                   </p>
                   <p>
                     Residents enjoy access to the{" "}
-                    <a href="https://www.google.com/maps/place/Mahogany+Beach+Club,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Mahogany Beach Club</a>,
+                    <a href="https://www.google.com/maps/place/Mahogany+Beach+Club,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Mahogany Beach Club</a>,
                     extensive pathway systems, and natural wetlands that provide a peaceful retreat. The community features beautiful homes ranging from single-family residences to townhomes, all designed with modern amenities.
                   </p>
                   <p>
                     With excellent schools, shopping at nearby{" "}
-                    <a href="https://www.google.com/maps/place/Seton,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Seton</a>,
+                    <a href="https://www.google.com/maps/place/Seton,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Seton</a>,
                     and quick access to{" "}
-                    <a href="https://www.google.com/maps/place/Stoney+Trail,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Stoney Trail</a>,
+                    <a href="https://www.google.com/maps/place/Stoney+Trail,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Stoney Trail</a>,
                     Mahogany attracts families and active individuals who appreciate resort-style living. Let Duty Cleaners keep your home sparkling so you can focus on enjoying this exceptional community.
                   </p>
                 </div>

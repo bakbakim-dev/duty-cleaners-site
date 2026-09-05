@@ -235,10 +235,10 @@ export default function Ottewell() {
                   </p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/search/Hardisty+School+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Hardisty School</a>,
-                    steps from <a href="https://www.google.com/maps/place/Capilano+Mall/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Capilano Mall</a>,
-                    minutes from <a href="https://www.google.com/maps/search/Goldstick+Park+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Goldstick Park</a>,
-                    or close to <a href="https://www.google.com/maps/place/98+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">98 Avenue</a>,
+                    <a href="https://www.google.com/maps/search/Hardisty+School+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Hardisty School</a>,
+                    steps from <a href="https://www.google.com/maps/place/Capilano+Mall/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Capilano Mall</a>,
+                    minutes from <a href="https://www.google.com/maps/search/Goldstick+Park+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Goldstick Park</a>,
+                    or close to <a href="https://www.google.com/maps/place/98+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">98 Avenue</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

@@ -235,10 +235,10 @@ export default function Ozerna() {
                   </p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/search/Ozerna+Park+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Ozerna Park</a>,
-                    steps from <a href="https://www.google.com/maps/place/Manning+Dr,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Manning Drive</a>,
-                    minutes from <a href="https://www.google.com/maps/place/153+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">153 Avenue</a>,
-                    or close to <a href="https://www.google.com/maps/place/Manning+Town+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Manning Town Centre</a>,
+                    <a href="https://www.google.com/maps/search/Ozerna+Park+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Ozerna Park</a>,
+                    steps from <a href="https://www.google.com/maps/place/Manning+Dr,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Manning Drive</a>,
+                    minutes from <a href="https://www.google.com/maps/place/153+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">153 Avenue</a>,
+                    or close to <a href="https://www.google.com/maps/place/Manning+Town+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Manning Town Centre</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

@@ -233,13 +233,13 @@ export default function Kildare() {
                   <p>Kildare is one of northeast Edmonton's most family-friendly neighbourhoods, with mature trees, winding streets and a tight-knit community feel. From the 1970s-era split-levels to the larger updated homes nearby, every house has its own personality — and our team treats each one with the care it deserves.</p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Kildare+Community+League+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Kildare Community League</a>,
+                    <a href="https://www.google.com/maps/place/Kildare+Community+League+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Kildare Community League</a>,
                     steps from{" "}
-                    <a href="https://www.google.com/maps/place/Kildare+Elementary+School+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Kildare School</a>,
+                    <a href="https://www.google.com/maps/place/Kildare+Elementary+School+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Kildare School</a>,
                     close to{" "}
-                    <a href="https://www.google.com/maps/place/Londonderry+Mall" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Londonderry Mall</a>,
+                    <a href="https://www.google.com/maps/place/Londonderry+Mall" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Londonderry Mall</a>,
                     or near{" "}
-                    <a href="https://www.google.com/maps/place/144+Avenue+NW+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">144 Avenue NW</a>,
+                    <a href="https://www.google.com/maps/place/144+Avenue+NW+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">144 Avenue NW</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

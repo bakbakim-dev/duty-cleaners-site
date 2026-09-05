@@ -224,13 +224,13 @@ export default function Delton() {
                   </p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/97+St+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">97 Street</a>,
+                    <a href="https://www.google.com/maps/place/97+St+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">97 Street</a>,
                     steps from{" "}
-                    <a href="https://www.google.com/maps/place/Norwood+Square/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Norwood Square</a>,
+                    <a href="https://www.google.com/maps/place/Norwood+Square/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Norwood Square</a>,
                     close to{" "}
-                    <a href="https://www.google.com/maps/place/Delton+School/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Delton School</a>,
+                    <a href="https://www.google.com/maps/place/Delton+School/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Delton School</a>,
                     or along{" "}
-                    <a href="https://www.google.com/maps/place/122+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">122 Avenue</a>,
+                    <a href="https://www.google.com/maps/place/122+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">122 Avenue</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

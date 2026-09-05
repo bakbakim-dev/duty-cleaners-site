@@ -215,21 +215,21 @@ export default function StAlbert() {
               <div className="prose prose-lg text-muted-foreground max-w-none space-y-4">
                 <p>
                   St. Albert is one of the most desirable communities in the Edmonton metro area, known for its beautiful trails, vibrant arts scene, and family-friendly neighbourhoods. Whether your home is near{" "}
-                  <a href="https://www.google.com/maps/place/Red+Willow+Park,+St.+Albert,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                  <a href="https://www.google.com/maps/place/Red+Willow+Park,+St.+Albert,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
                     Red Willow Park
                   </a>{" "}
                   or just steps from the popular{" "}
-                  <a href="https://www.google.com/maps/place/St.+Albert+Farmers'+Market/@53.6307,-113.6278,17z/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                  <a href="https://www.google.com/maps/place/St.+Albert+Farmers'+Market/@53.6307,-113.6278,17z/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
                     St. Albert Farmers' Market
                   </a>, our team knows the area and delivers spotless results every time.
                 </p>
                 <p>
                   Families living close to{" "}
-                  <a href="https://www.google.com/maps/place/Servus+Place/@53.6383,-113.6214,17z/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                  <a href="https://www.google.com/maps/place/Servus+Place/@53.6383,-113.6214,17z/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
                     Servus Place
                   </a>{" "}
                   or enjoying the trails along the{" "}
-                  <a href="https://www.google.com/maps/place/Sturgeon+River,+St.+Albert,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                  <a href="https://www.google.com/maps/place/Sturgeon+River,+St.+Albert,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
                     Sturgeon River
                   </a>{" "}
                   deserve a home that's just as clean and inviting as the community around them. We bring professional products and meticulous attention to detail to every St. Albert home we service.
@@ -324,7 +324,7 @@ export default function StAlbert() {
             </Link>
             <p className="mt-6 text-sm text-muted-foreground">
               Run a business in St. Albert? We also handle{" "}
-              <Link to="/commercial-cleaning/" className="text-primary hover:underline font-medium">
+              <Link to="/commercial-cleaning/" className="text-primary underline underline-offset-2 font-medium">
                 commercial and office cleaning across the Edmonton region
               </Link>.
             </p>

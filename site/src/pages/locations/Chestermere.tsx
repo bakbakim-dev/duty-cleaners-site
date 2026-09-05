@@ -224,21 +224,21 @@ export default function Chestermere() {
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>
                     Chestermere is a beautiful lakeside city just east of Calgary, centered around the iconic{" "}
-                    <a href="https://www.google.com/maps/place/Chestermere+Lake/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Chestermere Lake</a>,
+                    <a href="https://www.google.com/maps/place/Chestermere+Lake/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Chestermere Lake</a>,
                     known for boating, paddleboarding, and family-friendly beaches. Whether your home overlooks the lake
                     in{" "}
-                    <a href="https://www.google.com/maps/place/Kinniburgh,+Chestermere,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Kinniburgh</a>,
+                    <a href="https://www.google.com/maps/place/Kinniburgh,+Chestermere,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Kinniburgh</a>,
                     is near the scenic pathways of{" "}
-                    <a href="https://www.google.com/maps/place/John+Peake+Park,+Chestermere,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">John Peake Park</a>,
+                    <a href="https://www.google.com/maps/place/John+Peake+Park,+Chestermere,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">John Peake Park</a>,
                     or in one of the newer developments around{" "}
-                    <a href="https://www.google.com/maps/place/Dawson's+Landing,+Chestermere,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Dawson's Landing</a>,
+                    <a href="https://www.google.com/maps/place/Dawson's+Landing,+Chestermere,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Dawson's Landing</a>,
                     our team knows Chestermere well and is ready to keep your home spotless.
                   </p>
                   <p>
                     From the established neighbourhoods of{" "}
-                    <a href="https://www.google.com/maps/place/Westmere,+Chestermere,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Westmere</a>{" "}
+                    <a href="https://www.google.com/maps/place/Westmere,+Chestermere,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Westmere</a>{" "}
                     to the growing community of{" "}
-                    <a href="https://www.google.com/maps/place/Rainbow+Falls,+Chestermere,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Rainbow Falls</a>,
+                    <a href="https://www.google.com/maps/place/Rainbow+Falls,+Chestermere,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Rainbow Falls</a>,
                     we provide flexible scheduling and cleaning suited to every lakeside household.
                   </p>
                 </div>
@@ -386,7 +386,7 @@ export default function Chestermere() {
               </Link>
             <p className="mt-6 text-sm text-muted-foreground">
               Run a business in Chestermere? We also handle{" "}
-              <Link to="/commercial-cleaning-services-calgary/" className="text-primary hover:underline font-medium">
+              <Link to="/commercial-cleaning-services-calgary/" className="text-primary underline underline-offset-2 font-medium">
                 commercial and office cleaning across the Calgary region
               </Link>.
             </p>

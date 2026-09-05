@@ -219,13 +219,13 @@ export default function Montrose() {
                   </p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Santa+Rosa+Park,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Santa Rosa Park</a>,
+                    <a href="https://www.google.com/maps/place/Santa+Rosa+Park,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Santa Rosa Park</a>,
                     steps from{" "}
-                    <a href="https://www.google.com/maps/place/Montrose+Park,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Montrose Park</a>,
+                    <a href="https://www.google.com/maps/place/Montrose+Park,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Montrose Park</a>,
                     close to{" "}
-                    <a href="https://www.google.com/maps/place/Eastglen+Leisure+Centre,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Eastglen Leisure Centre</a>,
+                    <a href="https://www.google.com/maps/place/Eastglen+Leisure+Centre,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Eastglen Leisure Centre</a>,
                     or along{" "}
-                    <a href="https://www.google.com/maps/place/Wayne+Gretzky+Dr,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Wayne Gretzky Drive</a>,
+                    <a href="https://www.google.com/maps/place/Wayne+Gretzky+Dr,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Wayne Gretzky Drive</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

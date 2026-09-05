@@ -233,13 +233,13 @@ export default function Mayfield() {
                   <p>Mayfield is a vibrant, well-connected west Edmonton neighbourhood with a mix of original post-war bungalows and beautifully updated homes. With Mayfield Common, the West End Christmas Market and easy access to the Yellowhead Trail, it's a neighbourhood that mixes convenience with community.</p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Mayfield+Common+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Mayfield Common</a>,
+                    <a href="https://www.google.com/maps/place/Mayfield+Common+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Mayfield Common</a>,
                     steps from{" "}
-                    <a href="https://www.google.com/maps/place/Mayfield+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Mayfield Park</a>,
+                    <a href="https://www.google.com/maps/place/Mayfield+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Mayfield Park</a>,
                     close to{" "}
-                    <a href="https://www.google.com/maps/place/Stony+Plain+Road+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Stony Plain Road</a>,
+                    <a href="https://www.google.com/maps/place/Stony+Plain+Road+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Stony Plain Road</a>,
                     or near{" "}
-                    <a href="https://www.google.com/maps/place/Yellowhead+Trail+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Yellowhead Trail</a>,
+                    <a href="https://www.google.com/maps/place/Yellowhead+Trail+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Yellowhead Trail</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

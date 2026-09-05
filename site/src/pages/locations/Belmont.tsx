@@ -235,10 +235,10 @@ export default function Belmont() {
                   </p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/search/Belmont+School+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Belmont School</a>,
-                    steps from <a href="https://www.google.com/maps/place/Hermitage+Park/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Hermitage Park</a>,
-                    minutes from <a href="https://www.google.com/maps/place/Manning+Dr,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Manning Drive</a>,
-                    or close to <a href="https://www.google.com/maps/place/Victoria+Trail,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Victoria Trail</a>,
+                    <a href="https://www.google.com/maps/search/Belmont+School+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Belmont School</a>,
+                    steps from <a href="https://www.google.com/maps/place/Hermitage+Park/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Hermitage Park</a>,
+                    minutes from <a href="https://www.google.com/maps/place/Manning+Dr,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Manning Drive</a>,
+                    or close to <a href="https://www.google.com/maps/place/Victoria+Trail,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Victoria Trail</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

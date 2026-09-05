@@ -235,10 +235,10 @@ export default function Holyrood() {
                   </p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/search/Holyrood+Elementary+School+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Holyrood School</a>,
-                    steps from <a href="https://www.google.com/maps/place/Mill+Creek+Ravine+Park/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Mill Creek Ravine</a>,
-                    minutes from <a href="https://www.google.com/maps/place/Bonnie+Doon+Shopping+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Bonnie Doon Centre</a>,
-                    or close to <a href="https://www.google.com/maps/place/85+St+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">85 Street</a>,
+                    <a href="https://www.google.com/maps/search/Holyrood+Elementary+School+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Holyrood School</a>,
+                    steps from <a href="https://www.google.com/maps/place/Mill+Creek+Ravine+Park/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Mill Creek Ravine</a>,
+                    minutes from <a href="https://www.google.com/maps/place/Bonnie+Doon+Shopping+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Bonnie Doon Centre</a>,
+                    or close to <a href="https://www.google.com/maps/place/85+St+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">85 Street</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

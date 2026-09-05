@@ -233,13 +233,13 @@ export default function Ambleside() {
                   <p>Ambleside is one of southwest Edmonton's most desirable neighbourhoods, with new-build estate homes, tree-lined boulevards and easy access to Anthony Henday Drive. It's a place where families come to settle and grow — and we're proud to help keep their homes looking their best.</p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Currents+of+Windermere+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Currents of Windermere</a>,
+                    <a href="https://www.google.com/maps/place/Currents+of+Windermere+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Currents of Windermere</a>,
                     steps from{" "}
-                    <a href="https://www.google.com/maps/place/Ambleside+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Ambleside Park</a>,
+                    <a href="https://www.google.com/maps/place/Ambleside+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Ambleside Park</a>,
                     close to{" "}
-                    <a href="https://www.google.com/maps/place/Anthony+Henday+Drive+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Anthony Henday Drive</a>,
+                    <a href="https://www.google.com/maps/place/Anthony+Henday+Drive+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Anthony Henday Drive</a>,
                     or near{" "}
-                    <a href="https://www.google.com/maps/place/Windermere+Boulevard+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Windermere Boulevard</a>,
+                    <a href="https://www.google.com/maps/place/Windermere+Boulevard+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Windermere Boulevard</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

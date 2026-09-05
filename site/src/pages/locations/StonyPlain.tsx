@@ -373,7 +373,7 @@ export default function StonyPlain() {
             </Link>
             <p className="mt-6 text-sm text-muted-foreground">
               Run a business in Stony Plain? We also handle{" "}
-              <Link to="/commercial-cleaning/" className="text-primary hover:underline font-medium">
+              <Link to="/commercial-cleaning/" className="text-primary underline underline-offset-2 font-medium">
                 commercial and office cleaning across the Edmonton region
               </Link>.
             </p>

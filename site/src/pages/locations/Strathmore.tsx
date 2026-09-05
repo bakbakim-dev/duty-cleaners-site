@@ -225,20 +225,20 @@ export default function Strathmore() {
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>
                     Strathmore is a charming town just 40 minutes east of Calgary along the{" "}
-                    <a href="https://www.google.com/maps/place/Trans-Canada+Hwy,+Alberta/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Trans-Canada Highway</a>,
+                    <a href="https://www.google.com/maps/place/Trans-Canada+Hwy,+Alberta/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Trans-Canada Highway</a>,
                     known for its friendly community spirit and rural charm. Whether your home is near the popular{" "}
-                    <a href="https://www.google.com/maps/place/Kinsmen+Park,+Strathmore,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Kinsmen Park</a>{" "}
+                    <a href="https://www.google.com/maps/place/Kinsmen+Park,+Strathmore,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Kinsmen Park</a>{" "}
                     trail system, close to the{" "}
-                    <a href="https://www.google.com/maps/place/Strathmore+Golf+Club,+Strathmore,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Strathmore Golf Club</a>,
+                    <a href="https://www.google.com/maps/place/Strathmore+Golf+Club,+Strathmore,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Strathmore Golf Club</a>,
                     or in one of the newer developments near{" "}
-                    <a href="https://www.google.com/maps/place/Strathmore+Aquatic+Centre,+Strathmore,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Strathmore Aquatic Centre</a>,
+                    <a href="https://www.google.com/maps/place/Strathmore+Aquatic+Centre,+Strathmore,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Strathmore Aquatic Centre</a>,
                     our team knows Strathmore well and is ready to keep your home spotless.
                   </p>
                   <p>
                     From the established streets of Westmount to the family-friendly community of Heritage Heights,
                     we provide flexible scheduling and cleaning suited to every household in Strathmore.
                     Don't miss the annual{" "}
-                    <a href="https://www.google.com/maps/place/Strathmore+Stampede+Grounds,+Strathmore,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Strathmore Stampede</a>
+                    <a href="https://www.google.com/maps/place/Strathmore+Stampede+Grounds,+Strathmore,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Strathmore Stampede</a>
                     — one of Canada's largest rodeos — while we take care of the cleaning at home.
                   </p>
                 </div>
@@ -386,7 +386,7 @@ export default function Strathmore() {
               </Link>
             <p className="mt-6 text-sm text-muted-foreground">
               Run a business in Strathmore? We also handle{" "}
-              <Link to="/commercial-cleaning-services-calgary/" className="text-primary hover:underline font-medium">
+              <Link to="/commercial-cleaning-services-calgary/" className="text-primary underline underline-offset-2 font-medium">
                 commercial and office cleaning across the Calgary region
               </Link>.
             </p>

@@ -213,32 +213,32 @@ export default function Devon() {
               <div className="prose prose-lg text-muted-foreground max-w-none space-y-4">
                 <p>
                   Devon is a town on the banks of the North Saskatchewan River, celebrated for its natural beauty and welcoming small-town atmosphere. Whether your home is near the stunning{" "}
-                  <a href="https://www.google.com/maps/place/Devon+Voyageur+Park/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                  <a href="https://www.google.com/maps/place/Devon+Voyageur+Park/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
                     Voyageur Park
                   </a>{" "}
                   or close to the trails at the{" "}
-                  <a href="https://www.google.com/maps/place/Devon+River+Valley+Trail/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                  <a href="https://www.google.com/maps/place/Devon+River+Valley+Trail/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
                     Devon River Valley Trail
                   </a>, our team knows the area and delivers spotless results every time.
                 </p>
                 <p>
                   Families who enjoy weekends at the{" "}
-                  <a href="https://www.google.com/maps/place/Devon+Community+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                  <a href="https://www.google.com/maps/place/Devon+Community+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
                     Devon Community Centre
                   </a>{" "}
                   or taking the kids to{" "}
-                  <a href="https://www.google.com/maps/place/Lions+Campground,+Devon,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                  <a href="https://www.google.com/maps/place/Lions+Campground,+Devon,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
                     Lions Park & Campground
                   </a>{" "}
                   deserve a home that's just as clean and inviting as the community around them. We bring professional products and meticulous attention to detail to every Devon home we service.
                 </p>
                 <p>
                   From the established streets along{" "}
-                  <a href="https://www.google.com/maps/place/Athabasca+Ave,+Devon,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                  <a href="https://www.google.com/maps/place/Athabasca+Ave,+Devon,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
                     Athabasca Avenue
                   </a>{" "}
                   to the quiet crescents near the{" "}
-                  <a href="https://www.google.com/maps/place/Devon+Golf+and+Conference+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                  <a href="https://www.google.com/maps/place/Devon+Golf+and+Conference+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
                     Devon Golf & Conference Centre
                   </a>, Duty Cleaners is proud to keep Devon homes sparkling.
                 </p>
@@ -361,7 +361,7 @@ export default function Devon() {
             </Link>
             <p className="mt-6 text-sm text-muted-foreground">
               Run a business in Devon? We also handle{" "}
-              <Link to="/commercial-cleaning/" className="text-primary hover:underline font-medium">
+              <Link to="/commercial-cleaning/" className="text-primary underline underline-offset-2 font-medium">
                 commercial and office cleaning across the Edmonton region
               </Link>.
             </p>

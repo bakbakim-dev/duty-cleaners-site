@@ -233,13 +233,13 @@ export default function Westmount() {
                   <p>Westmount is one of Edmonton's most beloved historic neighbourhoods, full of grand early-1900s homes, tree-lined streets and the buzzing 124 Street arts district. From original mansions to modern infills, the homes here have character — and we treat each one with the care it deserves.</p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/124+Street+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">124 Street</a>,
+                    <a href="https://www.google.com/maps/place/124+Street+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">124 Street</a>,
                     steps from{" "}
-                    <a href="https://www.google.com/maps/place/Westmount+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Westmount Park</a>,
+                    <a href="https://www.google.com/maps/place/Westmount+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Westmount Park</a>,
                     close to{" "}
-                    <a href="https://www.google.com/maps/place/Westmount+Shopping+Centre" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Westmount Shopping Centre</a>,
+                    <a href="https://www.google.com/maps/place/Westmount+Shopping+Centre" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Westmount Shopping Centre</a>,
                     or near{" "}
-                    <a href="https://www.google.com/maps/place/Groat+Road+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Groat Road</a>,
+                    <a href="https://www.google.com/maps/place/Groat+Road+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Groat Road</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

@@ -233,13 +233,13 @@ export default function Brookside() {
                   <p>Brookside is a peaceful, mature southwest Edmonton neighbourhood backing onto the Whitemud Creek ravine. With its winding streets, gorgeous trees and proximity to the river valley trails, it's a slice of nature inside the city — and we love keeping its homes feeling just as fresh.</p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Whitemud+Creek+Ravine+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Whitemud Creek Ravine</a>,
+                    <a href="https://www.google.com/maps/place/Whitemud+Creek+Ravine+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Whitemud Creek Ravine</a>,
                     steps from{" "}
-                    <a href="https://www.google.com/maps/place/Brookside+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Brookside Park</a>,
+                    <a href="https://www.google.com/maps/place/Brookside+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Brookside Park</a>,
                     close to{" "}
-                    <a href="https://www.google.com/maps/place/Saddleback+Road+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Saddleback Road</a>,
+                    <a href="https://www.google.com/maps/place/Saddleback+Road+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Saddleback Road</a>,
                     or near{" "}
-                    <a href="https://www.google.com/maps/place/Riverbend+Square+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Riverbend Square</a>,
+                    <a href="https://www.google.com/maps/place/Riverbend+Square+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Riverbend Square</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

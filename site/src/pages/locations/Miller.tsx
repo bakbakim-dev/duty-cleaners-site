@@ -235,10 +235,10 @@ export default function Miller() {
                   </p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/search/Miller+Park+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Miller Park</a>,
-                    steps from <a href="https://www.google.com/maps/place/Anthony+Henday+Drive/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Anthony Henday Drive</a>,
-                    minutes from <a href="https://www.google.com/maps/place/Manning+Town+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Manning Town Centre</a>,
-                    or close to <a href="https://www.google.com/maps/place/18+St+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">18 Street</a>,
+                    <a href="https://www.google.com/maps/search/Miller+Park+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Miller Park</a>,
+                    steps from <a href="https://www.google.com/maps/place/Anthony+Henday+Drive/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Anthony Henday Drive</a>,
+                    minutes from <a href="https://www.google.com/maps/place/Manning+Town+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Manning Town Centre</a>,
+                    or close to <a href="https://www.google.com/maps/place/18+St+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">18 Street</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

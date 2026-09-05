@@ -233,13 +233,13 @@ export default function CentralMcDougall() {
                   <p>Central McDougall is a lively inner-city neighbourhood that blends a strong student community with longtime families and modern condo developments. With MacEwan University, Kingsway Mall and the Royal Alexandra Hospital all close by, life here moves quickly — and we help keep your home a calm, clean retreat.</p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/MacEwan+University+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">MacEwan University</a>,
+                    <a href="https://www.google.com/maps/place/MacEwan+University+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">MacEwan University</a>,
                     steps from{" "}
-                    <a href="https://www.google.com/maps/place/Kingsway+Mall+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Kingsway Mall</a>,
+                    <a href="https://www.google.com/maps/place/Kingsway+Mall+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Kingsway Mall</a>,
                     close to{" "}
-                    <a href="https://www.google.com/maps/place/Royal+Alexandra+Hospital+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Royal Alexandra Hospital</a>,
+                    <a href="https://www.google.com/maps/place/Royal+Alexandra+Hospital+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Royal Alexandra Hospital</a>,
                     or near{" "}
-                    <a href="https://www.google.com/maps/place/107+Avenue+NW+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">107 Avenue NW</a>,
+                    <a href="https://www.google.com/maps/place/107+Avenue+NW+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">107 Avenue NW</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

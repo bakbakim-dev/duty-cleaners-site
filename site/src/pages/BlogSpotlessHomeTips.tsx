@@ -254,7 +254,7 @@ export default function BlogSpotlessHomeTips() {
                 </ul>
                 <p className="text-muted-foreground leading-relaxed">
                   If you're building this from scratch, our own{" "}
-                  <Link to="/whats-included/" className="text-primary hover:underline font-medium">
+                  <Link to="/whats-included/" className="text-primary underline underline-offset-2 font-medium">
                     cleaning checklist
                   </Link>{" "}
                   is a reasonable starting template — it's the same breakdown our crews work from.
@@ -308,7 +308,7 @@ export default function BlogSpotlessHomeTips() {
                   to sit for a few minutes before wiping or vacuuming does most of the work. And always
                   test any cleaning solution on a hidden patch first if the surface is delicate — the
                   full method is in{" "}
-                  <Link to="/cleaning-with-vinegar-and-baking-soda/" className="text-primary hover:underline font-medium">
+                  <Link to="/cleaning-with-vinegar-and-baking-soda/" className="text-primary underline underline-offset-2 font-medium">
                     Cleaning with Vinegar and Baking Soda
                   </Link>.
                 </p>

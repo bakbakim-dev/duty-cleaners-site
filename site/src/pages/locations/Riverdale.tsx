@@ -235,10 +235,10 @@ export default function Riverdale() {
                   </p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/search/Riverdale+Park+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Riverdale Park</a>,
-                    steps from <a href="https://www.google.com/maps/place/Louise+McKinney+Riverfront+Park/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Louise McKinney Riverfront Park</a>,
-                    minutes from <a href="https://www.google.com/maps/place/Dawson+Park/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Dawson Park</a>,
-                    or close to <a href="https://www.google.com/maps/place/Rowland+Rd,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Rowland Road</a>,
+                    <a href="https://www.google.com/maps/search/Riverdale+Park+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Riverdale Park</a>,
+                    steps from <a href="https://www.google.com/maps/place/Louise+McKinney+Riverfront+Park/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Louise McKinney Riverfront Park</a>,
+                    minutes from <a href="https://www.google.com/maps/place/Dawson+Park/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Dawson Park</a>,
+                    or close to <a href="https://www.google.com/maps/place/Rowland+Rd,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Rowland Road</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

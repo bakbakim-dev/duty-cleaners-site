@@ -210,20 +210,20 @@ export default function Morinville() {
               <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                 <p>
                   Morinville is a charming town just north of Edmonton along{" "}
-                  <a href="https://www.google.com/maps/place/Highway+2,+Alberta/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Highway 2</a>,
+                  <a href="https://www.google.com/maps/place/Highway+2,+Alberta/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Highway 2</a>,
                   known for its strong community spirit and family-friendly atmosphere. Whether your home is near the historic{" "}
-                  <a href="https://www.google.com/maps/place/St.+Jean+Baptiste+Church,+Morinville,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">St. Jean Baptiste Church</a>,
+                  <a href="https://www.google.com/maps/place/St.+Jean+Baptiste+Church,+Morinville,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">St. Jean Baptiste Church</a>,
                   close to{" "}
-                  <a href="https://www.google.com/maps/place/Morinville+Leisure+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Morinville Leisure Centre</a>,
+                  <a href="https://www.google.com/maps/place/Morinville+Leisure+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Morinville Leisure Centre</a>,
                   or along the trails near{" "}
-                  <a href="https://www.google.com/maps/place/Lakeview+Park,+Morinville,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Lakeview Park</a>,
+                  <a href="https://www.google.com/maps/place/Lakeview+Park,+Morinville,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Lakeview Park</a>,
                   our team knows the area and is ready to keep your home spotless.
                 </p>
                 <p>
                   From the newer developments off{" "}
-                  <a href="https://www.google.com/maps/place/100+Avenue,+Morinville,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">100 Avenue</a>{" "}
+                  <a href="https://www.google.com/maps/place/100+Avenue,+Morinville,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">100 Avenue</a>{" "}
                   to the established homes near{" "}
-                  <a href="https://www.google.com/maps/place/Notre+Dame+Elementary+School,+Morinville,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Notre Dame Elementary</a>,
+                  <a href="https://www.google.com/maps/place/Notre+Dame+Elementary+School,+Morinville,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Notre Dame Elementary</a>,
                   we provide flexible scheduling and cleaning suited to every household in Morinville.
                 </p>
               </div>
@@ -370,7 +370,7 @@ export default function Morinville() {
             </Link>
             <p className="mt-6 text-sm text-muted-foreground">
               Run a business in Morinville? We also handle{" "}
-              <Link to="/commercial-cleaning/" className="text-primary hover:underline font-medium">
+              <Link to="/commercial-cleaning/" className="text-primary underline underline-offset-2 font-medium">
                 commercial and office cleaning across the Edmonton region
               </Link>.
             </p>

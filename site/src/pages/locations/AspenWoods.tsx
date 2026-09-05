@@ -210,14 +210,14 @@ export default function AspenWoods() {
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>
                     Aspen Woods is an upscale residential community in southwest Calgary, known for its luxurious estate homes and stunning mountain views. Near the popular{" "}
-                    <a href="https://www.google.com/maps/place/Aspen+Landing+Shopping+Centre,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Aspen Landing</a>{" "}
+                    <a href="https://www.google.com/maps/place/Aspen+Landing+Shopping+Centre,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Aspen Landing</a>{" "}
                     shopping centre with upscale retailers and fine dining, this master-planned community offers an exceptional quality of life.
                   </p>
                   <p>
                     Many homes back onto natural ravines and parks, offering privacy and direct access to an extensive pathway system. Whether you own a sprawling estate near the{" "}
-                    <a href="https://www.google.com/maps/search/Aspen+Woods+ravine+Calgary" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">ravine trails</a>{" "}
+                    <a href="https://www.google.com/maps/search/Aspen+Woods+ravine+Calgary" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">ravine trails</a>{" "}
                     or a luxury residence near{" "}
-                    <a href="https://www.google.com/maps/search/West+Springs+Calgary" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">West Springs</a>,
+                    <a href="https://www.google.com/maps/search/West+Springs+Calgary" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">West Springs</a>,
                     we provide premium cleaning suited to every household.
                   </p>
                 </div>

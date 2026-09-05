@@ -235,10 +235,10 @@ export default function Brintnell() {
                   </p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/search/Brintnell+School+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Brintnell School</a>,
-                    steps from <a href="https://www.google.com/maps/place/Manning+Town+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Manning Town Centre</a>,
-                    minutes from <a href="https://www.google.com/maps/place/167+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">167 Avenue</a>,
-                    or close to <a href="https://www.google.com/maps/place/50+St+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">50 Street</a>,
+                    <a href="https://www.google.com/maps/search/Brintnell+School+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Brintnell School</a>,
+                    steps from <a href="https://www.google.com/maps/place/Manning+Town+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Manning Town Centre</a>,
+                    minutes from <a href="https://www.google.com/maps/place/167+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">167 Avenue</a>,
+                    or close to <a href="https://www.google.com/maps/place/50+St+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">50 Street</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

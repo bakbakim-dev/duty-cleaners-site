@@ -233,13 +233,13 @@ export default function Pleasantview() {
                   <p>Pleasantview is a leafy, well-loved south Edmonton neighbourhood with a mid-century soul and a young modern energy. With easy access to Southgate Centre, the LRT and the University of Alberta, it's where many families and academics put down roots — and we love being part of their week.</p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Pleasantview+Community+League+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Pleasantview Community League</a>,
+                    <a href="https://www.google.com/maps/place/Pleasantview+Community+League+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Pleasantview Community League</a>,
                     steps from{" "}
-                    <a href="https://www.google.com/maps/place/Southgate+Centre+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Southgate Centre</a>,
+                    <a href="https://www.google.com/maps/place/Southgate+Centre+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Southgate Centre</a>,
                     close to{" "}
-                    <a href="https://www.google.com/maps/place/University+of+Alberta" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">University of Alberta</a>,
+                    <a href="https://www.google.com/maps/place/University+of+Alberta" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">University of Alberta</a>,
                     or near{" "}
-                    <a href="https://www.google.com/maps/place/South+Campus%2FFort+Edmonton+Park+Station,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">South Campus/Fort Edmonton Park LRT</a>,
+                    <a href="https://www.google.com/maps/place/South+Campus%2FFort+Edmonton+Park+Station,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">South Campus/Fort Edmonton Park LRT</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

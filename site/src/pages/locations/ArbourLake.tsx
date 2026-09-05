@@ -231,18 +231,18 @@ export default function ArbourLake() {
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>
                     Arbour Lake is one of Calgary's most welcoming lakeside communities, located just off{" "}
-                    <a href="https://www.google.com/maps/place/Stoney+Trail,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Stoney Trail NW</a>.
+                    <a href="https://www.google.com/maps/place/Stoney+Trail,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Stoney Trail NW</a>.
                     This neighbourhood is famous for its{" "}
-                    <a href="https://www.google.com/maps/place/Arbour+Lake,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">private lake and beach</a>,
+                    <a href="https://www.google.com/maps/place/Arbour+Lake,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">private lake and beach</a>,
                     which provides residents with a resort-like lifestyle right in the city. Families love the year-round activities, from summer swimming and beach volleyball to winter skating on the frozen lake.
                   </p>
                   <p>
                     With excellent schools, beautiful parks, and easy access to shopping at nearby{" "}
-                    <a href="https://www.google.com/maps/place/Crowfoot+Crossing,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Crowfoot Crossing</a>{" "}
+                    <a href="https://www.google.com/maps/place/Crowfoot+Crossing,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Crowfoot Crossing</a>{" "}
                     and{" "}
-                    <a href="https://www.google.com/maps/place/Market+Mall,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Market Mall</a>,
+                    <a href="https://www.google.com/maps/place/Market+Mall,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Market Mall</a>,
                     Arbour Lake offers the perfect balance of suburban tranquility and urban convenience. Whether you're enjoying a sunny day at the beach or participating in community events at the{" "}
-                    <a href="https://www.google.com/maps/place/Arbour+Lake+Community+Association,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Arbour Lake Community Centre</a>,
+                    <a href="https://www.google.com/maps/place/Arbour+Lake+Community+Association,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Arbour Lake Community Centre</a>,
                     let Duty Cleaners keep your home spotless so you can make the most of it.
                   </p>
                 </div>

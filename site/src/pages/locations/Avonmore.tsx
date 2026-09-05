@@ -233,13 +233,13 @@ export default function Avonmore() {
                   <p>Avonmore is a charming southeast Edmonton neighbourhood beloved for its mature trees, friendly streets and walkable proximity to Bonnie Doon and Old Strathcona. With its mix of original 1950s bungalows and beautifully renovated homes, it has a warmth that feels truly local.</p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Avonmore+School+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Avonmore School</a>,
+                    <a href="https://www.google.com/maps/place/Avonmore+School+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Avonmore School</a>,
                     steps from{" "}
-                    <a href="https://www.google.com/maps/place/Avonmore+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Avonmore Park</a>,
+                    <a href="https://www.google.com/maps/place/Avonmore+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Avonmore Park</a>,
                     close to{" "}
-                    <a href="https://www.google.com/maps/place/Bonnie+Doon+Shopping+Centre" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Bonnie Doon Shopping Centre</a>,
+                    <a href="https://www.google.com/maps/place/Bonnie+Doon+Shopping+Centre" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Bonnie Doon Shopping Centre</a>,
                     or near{" "}
-                    <a href="https://www.google.com/maps/place/Mill+Creek+Ravine+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Mill Creek Ravine</a>,
+                    <a href="https://www.google.com/maps/place/Mill+Creek+Ravine+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Mill Creek Ravine</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

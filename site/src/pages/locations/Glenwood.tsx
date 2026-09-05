@@ -235,10 +235,10 @@ export default function Glenwood() {
                   </p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Glenwood+Park,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Glenwood Park</a>,
-                    steps from <a href="https://www.google.com/maps/place/Stony+Plain+Rd,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Stony Plain Road</a>,
-                    minutes from <a href="https://www.google.com/maps/search/Glenwood+Elementary+School+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Glenwood Elementary School</a>,
-                    or close to <a href="https://www.google.com/maps/place/156+St+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">156 Street</a>,
+                    <a href="https://www.google.com/maps/place/Glenwood+Park,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Glenwood Park</a>,
+                    steps from <a href="https://www.google.com/maps/place/Stony+Plain+Rd,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Stony Plain Road</a>,
+                    minutes from <a href="https://www.google.com/maps/search/Glenwood+Elementary+School+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Glenwood Elementary School</a>,
+                    or close to <a href="https://www.google.com/maps/place/156+St+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">156 Street</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

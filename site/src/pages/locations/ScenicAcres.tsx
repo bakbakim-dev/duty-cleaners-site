@@ -231,16 +231,16 @@ export default function ScenicAcres() {
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>
                     Scenic Acres is one of Calgary's most peaceful and established neighbourhoods, located in the northwest, close to the{" "}
-                    <a href="https://www.google.com/maps/place/Twelve+Mile+Coulee+Natural+Environment+Park,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Twelve Mile Coulee</a>.
+                    <a href="https://www.google.com/maps/place/Twelve+Mile+Coulee+Natural+Environment+Park,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Twelve Mile Coulee</a>.
                     This community is perfect for nature lovers, offering immediate access to some of the city's most scenic trails and green spaces. Residents enjoy watching wildlife, hiking through natural prairies, and taking in stunning views of the city and mountains.
                   </p>
                   <p>
                     The neighbourhood has a friendly, family-oriented atmosphere with excellent schools, quiet streets, and mature trees. Conveniently located near{" "}
-                    <a href="https://www.google.com/maps/place/Crowfoot+Crossing,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Crowfoot Crossing</a>{" "}
+                    <a href="https://www.google.com/maps/place/Crowfoot+Crossing,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Crowfoot Crossing</a>{" "}
                     and with easy access to the{" "}
-                    <a href="https://www.google.com/maps/place/Crowfoot+Station,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Crowfoot LRT Station</a>,
+                    <a href="https://www.google.com/maps/place/Crowfoot+Station,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Crowfoot LRT Station</a>,
                     Scenic Acres provides all the amenities you need while maintaining its tranquil, nature-focused character. After a day of exploring{" "}
-                    <a href="https://www.google.com/maps/place/Scenic+Acres+Community+Association,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Scenic Acres Community Centre</a>{" "}
+                    <a href="https://www.google.com/maps/place/Scenic+Acres+Community+Association,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Scenic Acres Community Centre</a>{" "}
                     or the nearby trails, let Duty Cleaners take care of your home so you can relax in a spotless space.
                   </p>
                 </div>

@@ -235,10 +235,10 @@ export default function Delwood() {
                   </p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/search/Delwood+School+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Delwood School</a>,
-                    steps from <a href="https://www.google.com/maps/place/Yellowhead+Trail,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Yellowhead Trail</a>,
-                    minutes from <a href="https://www.google.com/maps/place/Northgate+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Northtown Mall</a>,
-                    or close to <a href="https://www.google.com/maps/place/82+St+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">82 Street</a>,
+                    <a href="https://www.google.com/maps/search/Delwood+School+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Delwood School</a>,
+                    steps from <a href="https://www.google.com/maps/place/Yellowhead+Trail,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Yellowhead Trail</a>,
+                    minutes from <a href="https://www.google.com/maps/place/Northgate+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Northtown Mall</a>,
+                    or close to <a href="https://www.google.com/maps/place/82+St+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">82 Street</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

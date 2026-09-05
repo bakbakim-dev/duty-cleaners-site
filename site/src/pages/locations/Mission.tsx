@@ -216,18 +216,18 @@ export default function Mission() {
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>
                     Mission is one of Calgary's most beloved inner-city neighbourhoods, tucked along the{" "}
-                    <a href="https://www.google.com/maps/place/Elbow+River,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Elbow River</a>{" "}
+                    <a href="https://www.google.com/maps/place/Elbow+River,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Elbow River</a>{" "}
                     just south of downtown. Known for its character homes, modern condos, and the lively energy of{" "}
-                    <a href="https://www.google.com/maps/place/4+St+SW,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">4th Street SW</a>,
+                    <a href="https://www.google.com/maps/place/4+St+SW,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">4th Street SW</a>,
                     Mission balances urban convenience with a true neighbourhood feel.
                   </p>
                   <p>
                     Residents enjoy walkable access to the boutiques and restaurants of 4th Street, the green expanse of{" "}
-                    <a href="https://www.google.com/maps/place/Lindsay+Park,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Lindsay Park</a>,
+                    <a href="https://www.google.com/maps/place/Lindsay+Park,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Lindsay Park</a>,
                     and the riverside pathways that wind toward downtown. The community sits steps from the iconic{" "}
-                    <a href="https://www.google.com/maps/place/Stampede+Park,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Stampede Park</a>{" "}
+                    <a href="https://www.google.com/maps/place/Stampede+Park,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Stampede Park</a>{" "}
                     and the{" "}
-                    <a href="https://www.google.com/maps/place/MNP+Community+%26+Sport+Centre,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">MNP Community &amp; Sport Centre</a>.
+                    <a href="https://www.google.com/maps/place/MNP+Community+%26+Sport+Centre,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">MNP Community &amp; Sport Centre</a>.
                   </p>
                   <p>
                     Whether you live in a heritage home on a tree-lined street or a modern high-rise overlooking the river, our team provides flexible scheduling and professional cleaning solutions designed for Mission's unique mix of households.

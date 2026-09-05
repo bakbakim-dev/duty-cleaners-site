@@ -191,13 +191,13 @@ export default function Hazeldean() {
                   </p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Mill+Creek+Ravine+Park/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Mill Creek Ravine</a>,
+                    <a href="https://www.google.com/maps/place/Mill+Creek+Ravine+Park/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Mill Creek Ravine</a>,
                     steps from{" "}
-                    <a href="https://www.google.com/maps/place/Donnan+Park/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Donnan Park</a>,
+                    <a href="https://www.google.com/maps/place/Donnan+Park/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Donnan Park</a>,
                     close to{" "}
-                    <a href="https://www.google.com/maps/place/Hazeldean+Elementary+School/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Hazeldean Elementary</a>,
+                    <a href="https://www.google.com/maps/place/Hazeldean+Elementary+School/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Hazeldean Elementary</a>,
                     or along{" "}
-                    <a href="https://www.google.com/maps/place/75+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">75 Avenue</a>,
+                    <a href="https://www.google.com/maps/place/75+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">75 Avenue</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

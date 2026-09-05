@@ -218,18 +218,18 @@ export default function Windermere() {
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>
                   Windermere is one of southwest Edmonton's most sought-after communities, known for its beautiful homes, family-friendly atmosphere, and proximity to nature. Whether your home overlooks{" "}
-                  <a href="https://www.google.com/maps/place/Windermere+Lake,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Windermere Lake</a>{" "}
+                  <a href="https://www.google.com/maps/place/Windermere+Lake,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Windermere Lake</a>{" "}
                   or sits along the scenic trails near{" "}
-                  <a href="https://www.google.com/maps/place/Whitemud+Creek+Ravine/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Whitemud Creek Ravine</a>,
+                  <a href="https://www.google.com/maps/place/Whitemud+Creek+Ravine/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Whitemud Creek Ravine</a>,
                   our team knows the neighbourhood and delivers cleaning that matches the standard of your home.
                 </p>
                 <p>
                   From the shops and restaurants at{" "}
-                  <a href="https://www.google.com/maps/place/Currents+of+Windermere/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Currents of Windermere</a>{" "}
+                  <a href="https://www.google.com/maps/place/Currents+of+Windermere/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Currents of Windermere</a>{" "}
                   to the green spaces around{" "}
-                  <a href="https://www.google.com/maps/place/Windermere+Dog+Park,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Windermere Dog Park</a>{" "}
+                  <a href="https://www.google.com/maps/place/Windermere+Dog+Park,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Windermere Dog Park</a>{" "}
                   and the nearby{" "}
-                  <a href="https://www.google.com/maps/place/Anthony+Henday+Drive/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Anthony Henday Drive</a>,
+                  <a href="https://www.google.com/maps/place/Anthony+Henday+Drive/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Anthony Henday Drive</a>,
                   we're familiar with the area and ready to fit seamlessly into your schedule. We proudly serve families throughout Windermere and surrounding communities like Ambleside, Keswick, and Jagare Ridge.
                 </p>
               </div>

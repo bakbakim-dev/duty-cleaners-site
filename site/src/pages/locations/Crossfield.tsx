@@ -224,18 +224,18 @@ export default function Crossfield() {
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>
                     Crossfield is a charming small town located just north of Airdrie along{" "}
-                    <a href="https://www.google.com/maps/place/Queen+Elizabeth+II+Hwy,+Alberta/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Queen Elizabeth II Highway</a>,
+                    <a href="https://www.google.com/maps/place/Queen+Elizabeth+II+Hwy,+Alberta/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Queen Elizabeth II Highway</a>,
                     known for its welcoming community spirit and scenic prairie landscapes. Whether your home is near the popular{" "}
-                    <a href="https://www.google.com/maps/place/Banta+Park,+Crossfield,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Banta Park</a>,
+                    <a href="https://www.google.com/maps/place/Banta+Park,+Crossfield,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Banta Park</a>,
                     close to the{" "}
-                    <a href="https://www.google.com/maps/place/Crossfield+Municipal+Library,+Crossfield,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Crossfield Municipal Library</a>,
+                    <a href="https://www.google.com/maps/place/Crossfield+Municipal+Library,+Crossfield,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Crossfield Municipal Library</a>,
                     or near the{" "}
-                    <a href="https://www.google.com/maps/place/Collicutt+Siding+Golf+Club,+Crossfield,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Collicutt Siding Golf Club</a>,
+                    <a href="https://www.google.com/maps/place/Collicutt+Siding+Golf+Club,+Crossfield,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Collicutt Siding Golf Club</a>,
                     our team knows Crossfield well and is ready to keep your home spotless.
                   </p>
                   <p>
                     From the established homes along{" "}
-                    <a href="https://www.google.com/maps/place/Railway+St,+Crossfield,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Railway Avenue</a>{" "}
+                    <a href="https://www.google.com/maps/place/Railway+St,+Crossfield,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Railway Avenue</a>{" "}
                     to the newer developments in Mountain View Estates,
                     we provide flexible scheduling and cleaning suited to every household in Crossfield.
                   </p>
@@ -384,7 +384,7 @@ export default function Crossfield() {
               </Link>
             <p className="mt-6 text-sm text-muted-foreground">
               Run a business in Crossfield? We also handle{" "}
-              <Link to="/commercial-cleaning-services-calgary/" className="text-primary hover:underline font-medium">
+              <Link to="/commercial-cleaning-services-calgary/" className="text-primary underline underline-offset-2 font-medium">
                 commercial and office cleaning across the Calgary region
               </Link>.
             </p>

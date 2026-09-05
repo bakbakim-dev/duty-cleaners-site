@@ -220,13 +220,13 @@ export default function Londonderry() {
                   </p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Londonderry+Mall/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Londonderry Mall</a>,
+                    <a href="https://www.google.com/maps/place/Londonderry+Mall/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Londonderry Mall</a>,
                     steps from{" "}
-                    <a href="https://www.google.com/maps/place/Evansdale+Park/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Evansdale Park</a>,
+                    <a href="https://www.google.com/maps/place/Evansdale+Park/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Evansdale Park</a>,
                     close to{" "}
-                    <a href="https://www.google.com/maps/place/M.E.+LaZerte+High+School/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">M.E. LaZerte High School</a>,
+                    <a href="https://www.google.com/maps/place/M.E.+LaZerte+High+School/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">M.E. LaZerte High School</a>,
                     or along{" "}
-                    <a href="https://www.google.com/maps/place/137+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">137 Avenue</a>,
+                    <a href="https://www.google.com/maps/place/137+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">137 Avenue</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

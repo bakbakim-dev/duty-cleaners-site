@@ -208,14 +208,14 @@ export default function MardaLoop() {
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>
                     Marda Loop is a vibrant inner-city neighbourhood in southwest Calgary, named after the historic streetcar loop that once operated here. The community is centred around the bustling{" "}
-                    <a href="https://www.google.com/maps/search/33rd+Avenue+SW+Calgary" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">33rd Avenue SW</a>{" "}
+                    <a href="https://www.google.com/maps/search/33rd+Avenue+SW+Calgary" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">33rd Avenue SW</a>{" "}
                     shopping district, featuring an eclectic mix of independent boutiques, restaurants, and cafés.
                   </p>
                   <p>
                     Residents enjoy excellent walkability, proximity to{" "}
-                    <a href="https://www.google.com/maps/search/River+Park+Calgary" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">River Park</a>{" "}
+                    <a href="https://www.google.com/maps/search/River+Park+Calgary" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">River Park</a>{" "}
                     and the{" "}
-                    <a href="https://www.google.com/maps/search/Elbow+River+pathway+Calgary" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Elbow River pathway system</a>.
+                    <a href="https://www.google.com/maps/search/Elbow+River+pathway+Calgary" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Elbow River pathway system</a>.
                     Whether you live in a charming 1940s bungalow or a stylish modern infill, we provide thorough cleaning tailored to every home style.
                   </p>
                 </div>

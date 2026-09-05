@@ -210,14 +210,14 @@ export default function Cranston() {
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>
                     Cranston is a thriving master-planned community in southeast Calgary, centered around the impressive{" "}
-                    <a href="https://www.google.com/maps/search/Century+Hall+Cranston+Calgary" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Century Hall</a>,
+                    <a href="https://www.google.com/maps/search/Century+Hall+Cranston+Calgary" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Century Hall</a>,
                     a 22,000 sq ft residents-only facility with a gymnasium, hockey rink, tennis courts, splash park and activity rooms. With over 13 km of pathways and beautiful natural areas along{" "}
-                    <a href="https://www.google.com/maps/place/Fish+Creek+Provincial+Park,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Fish Creek Provincial Park</a>,
+                    <a href="https://www.google.com/maps/place/Fish+Creek+Provincial+Park,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Fish Creek Provincial Park</a>,
                     it's one of Calgary's most sought-after family neighbourhoods.
                   </p>
                   <p>
                     Whether you live in a spacious estate on the ridge with panoramic views or a cozy townhome near the{" "}
-                    <a href="https://www.google.com/maps/search/Seton+Urban+District+Calgary" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Seton Urban District</a>,
+                    <a href="https://www.google.com/maps/search/Seton+Urban+District+Calgary" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Seton Urban District</a>,
                     we provide flexible scheduling and cleaning suited to every household.
                   </p>
                 </div>

@@ -208,14 +208,14 @@ export default function MountRoyal() {
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>
                     Mount Royal is one of Calgary's most prestigious neighbourhoods, established in the early 1900s and renowned for its stately heritage homes and tree-lined streets. Close to{" "}
-                    <a href="https://www.google.com/maps/place/17+Avenue+SW,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">17th Avenue SW</a>{" "}
+                    <a href="https://www.google.com/maps/place/17+Avenue+SW,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">17th Avenue SW</a>{" "}
                     and the historic{" "}
-                    <a href="https://www.google.com/maps/search/Mount+Royal+Park+Calgary" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Mount Royal Park</a>,
+                    <a href="https://www.google.com/maps/search/Mount+Royal+Park+Calgary" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Mount Royal Park</a>,
                     this community offers stunning views of the downtown skyline and Rocky Mountains.
                   </p>
                   <p>
                     Many homes feature grand Tudor and Georgian revival architecture with heritage designations. Whether you own an elegant mansion near{" "}
-                    <a href="https://www.google.com/maps/search/Elbow+Park+Calgary" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Elbow Park</a>{" "}
+                    <a href="https://www.google.com/maps/search/Elbow+Park+Calgary" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Elbow Park</a>{" "}
                     or a refined estate in Upper Mount Royal, we provide premium cleaning suited to heritage properties and fine finishes.
                   </p>
                 </div>

@@ -354,7 +354,7 @@ export default function BlogVinegarBakingSoda() {
                   Trust the Cleaning Professionals
                 </h3>
                 <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                  Are you trying to figure out which cleaners are best for your home? Leave the cleaning to us! The professionals at Duty Cleaners will ensure your home is thoroughly clean with our top-of-the-line products — and when vinegar and baking soda have met their match, our <Link to="/edmonton/deep-cleaning/" className="text-primary hover:underline font-medium">deep cleaning service</Link> handles the built-up grime they can’t. No matter your preference – natural remedies or professional-grade solutions – our cleaners will work with you to ensure your needs are met.
+                  Are you trying to figure out which cleaners are best for your home? Leave the cleaning to us! The professionals at Duty Cleaners will ensure your home is thoroughly clean with our top-of-the-line products — and when vinegar and baking soda have met their match, our <Link to="/edmonton/deep-cleaning/" className="text-primary underline underline-offset-2 font-medium">deep cleaning service</Link> handles the built-up grime they can’t. No matter your preference – natural remedies or professional-grade solutions – our cleaners will work with you to ensure your needs are met.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button size="lg" variant="accent" className="w-full sm:w-auto min-h-[52px] text-base font-bold" asChild>

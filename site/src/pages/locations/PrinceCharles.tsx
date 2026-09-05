@@ -233,13 +233,13 @@ export default function PrinceCharles() {
                   <p>Prince Charles is a quiet, mature north Edmonton neighbourhood with original post-war bungalows, leafy streets and a strong community spirit. It's a place where people stay for decades — and where we love being a familiar, friendly part of the routine.</p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Prince+Charles+School+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Prince Charles School</a>,
+                    <a href="https://www.google.com/maps/place/Prince+Charles+School+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Prince Charles School</a>,
                     steps from{" "}
-                    <a href="https://www.google.com/maps/place/Coronation+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Coronation Park</a>,
+                    <a href="https://www.google.com/maps/place/Coronation+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Coronation Park</a>,
                     close to{" "}
-                    <a href="https://www.google.com/maps/place/Westwood+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Westwood Park</a>,
+                    <a href="https://www.google.com/maps/place/Westwood+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Westwood Park</a>,
                     or near{" "}
-                    <a href="https://www.google.com/maps/place/132+Avenue+NW+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">132 Avenue NW</a>,
+                    <a href="https://www.google.com/maps/place/132+Avenue+NW+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">132 Avenue NW</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>

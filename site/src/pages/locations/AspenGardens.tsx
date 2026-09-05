@@ -235,10 +235,10 @@ export default function AspenGardens() {
                   </p>
                   <p>
                     Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/search/Aspen+Gardens+Park+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Aspen Gardens Park</a>,
-                    steps from <a href="https://www.google.com/maps/place/Whitemud+Dr,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Whitemud Drive</a>,
-                    minutes from <a href="https://www.google.com/maps/place/Snow+Valley+Ski+Club/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Snow Valley Ski Club</a>,
-                    or close to <a href="https://www.google.com/maps/place/Riverbend,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Riverbend</a>,
+                    <a href="https://www.google.com/maps/search/Aspen+Gardens+Park+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Aspen Gardens Park</a>,
+                    steps from <a href="https://www.google.com/maps/place/Whitemud+Dr,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Whitemud Drive</a>,
+                    minutes from <a href="https://www.google.com/maps/place/Snow+Valley+Ski+Club/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Snow Valley Ski Club</a>,
+                    or close to <a href="https://www.google.com/maps/place/Riverbend,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Riverbend</a>,
                     we bring a personal, attentive approach to every visit.
                   </p>
                 </div>
