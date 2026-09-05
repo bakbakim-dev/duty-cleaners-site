@@ -151,6 +151,47 @@ describe("location pages emit GeoCoordinates", () => {
     expect(missing, "location pages with no GeoCoordinates").toEqual([]);
   });
 
+  /**
+   * The coordinates say what AREA is served, not where the business sits.
+   *
+   * They used to hang off the LocalBusiness node beside an address naming the
+   * Edmonton or Calgary office, so /cleaning-services-leduc/ published a
+   * business at 18615 71 Ave NW, Edmonton with a pin 30 km away. schema.org's
+   * `geo` on a LocalBusiness is where that business IS, and one address shared
+   * across 153 pages with the pin varying per page is the shape Google's
+   * local-search guidance describes for location-page schemes. On areaServed
+   * the identical numbers are simply true.
+   */
+  it("puts the coordinates on areaServed, never on the business node", () => {
+    const urls = locationUrls();
+    if (!urls.length) return;
+    const onBusiness: string[] = [];
+    const missingOnArea: string[] = [];
+    for (const url of urls) {
+      const html = read(url);
+      for (const block of html.matchAll(
+        /<script[^>]+application\/ld\+json[^>]*>([\s\S]*?)<\/script>/g,
+      )) {
+        let parsed: unknown;
+        try {
+          parsed = JSON.parse(block[1]);
+        } catch {
+          continue;
+        }
+        for (const node of Array.isArray(parsed) ? parsed : [parsed]) {
+          if (!node || typeof node !== "object") continue;
+          const record = node as Record<string, unknown>;
+          if (!String(record["@type"] ?? "").includes("LocalBusiness")) continue;
+          if (record.geo) onBusiness.push(url);
+          const area = record.areaServed as Record<string, unknown> | undefined;
+          if (!area?.geo) missingOnArea.push(url);
+        }
+      }
+    }
+    expect(onBusiness, "coordinates back on the business node").toEqual([]);
+    expect(missingOnArea, "areaServed carries no coordinates").toEqual([]);
+  });
+
   it("no two location pages share a pin", () => {
     const urls = locationUrls();
     if (!urls.length) return;

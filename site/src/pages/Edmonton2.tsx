@@ -37,6 +37,11 @@ import { quoteCtaLabel, useQuoteProgress } from "@/lib/quote-progress";
 import { Suspense, lazy } from "react";
 const EdmontonServiceAreaMap = lazy(() => import("@/components/EdmontonServiceAreaMap"));
 import edmontonHeroRoom from "@/assets/hero-room-edmonton-manus.webp";
+import edmontonHeroRoom640 from "@/assets/hero-room-edmonton-manus-640w.webp";
+import edmontonHeroRoom960 from "@/assets/hero-room-edmonton-manus-960w.webp";
+import edmontonHeroRoom1280 from "@/assets/hero-room-edmonton-manus-1280w.webp";
+import edmontonHeroRoom1920 from "@/assets/hero-room-edmonton-manus-1920w.webp";
+
 import galleryLivingRoom from "@/assets/gallery/living-room-clean.webp";
 import galleryMoveOutClean from "@/assets/gallery/move-out-clean.webp";
 import galleryWindowDetail from "@/assets/gallery/window-cleaning.webp";
@@ -53,6 +58,17 @@ import galleryStoveBA from "@/assets/gallery/dc-stove-before-after.webp";
 import galleryModernKitchen from "@/assets/gallery/dc-modern-kitchen.webp";
 import galleryToiletBA from "@/assets/gallery/dc-toilet-before-after.webp";
 import { standardTierRows, moveInOutTierRows } from "@/data/pricing";
+
+/* Width-descriptor set for the hero, the LCP element on this page. Without
+   it a phone pulled the same 1920px file as a desktop: hero-room-edmonton-manus at 1920w against
+   the 640w variant a phone actually needs. sizes is 100vw because the hero
+   is full-bleed. */
+const HERO_SRCSET = [
+  `${edmontonHeroRoom640} 640w`,
+  `${edmontonHeroRoom960} 960w`,
+  `${edmontonHeroRoom1280} 1280w`,
+  `${edmontonHeroRoom1920} 1920w`,
+].join(", ");
 
 /* The schema priceRange, derived. It was hand-typed as "$155-$539+" here and
    "$155-$539" on the twin — numerically right today, inconsistent with each
@@ -249,6 +265,7 @@ export default function Edmonton2() {
            phone="(780) 913-6565"
            phoneLink="tel:7809136565"
            heroImage={edmontonHeroRoom}
+           heroSrcSet={HERO_SRCSET}
            heroAlt="Bright, freshly cleaned Edmonton living room with sunlight across the floor"
            heroPosition="center"
            heroScrim="soft"

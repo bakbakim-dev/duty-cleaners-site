@@ -367,3 +367,38 @@ describe("declared image dimensions match the file", () => {
     ).toEqual([]);
   });
 });
+
+/**
+ * The two full-bleed hero images are the LCP element on the site's two highest
+ * value pages, and they shipped a single 1920x1080 file to every device — the
+ * homepage's was 177 KB where the 640w variant a phone actually needs is 25 KB.
+ *
+ * The preload hint has to carry the same set. Without imagesrcset the browser
+ * preloads the full-width file, then the img element picks a narrower one, and
+ * the page downloads both.
+ */
+describe("the hub heroes are responsive", () => {
+  const HUBS = ["/", "/cleaning-services-calgary/"];
+
+  it("each hero has a srcset, sizes, and a matching preload hint", () => {
+    const built = pages();
+    if (!built.length) return;
+    for (const url of HUBS) {
+      const page = built.find((p) => p.url === url);
+      expect(page, `${url} is not in the build`).toBeTruthy();
+      const html = page!.html;
+
+      const hero = /<img[^>]+fetchpriority="high"[^>]*>/.exec(html);
+      expect(hero, `${url} has no high-priority hero image`).toBeTruthy();
+      expect(hero![0], `${url} hero has no srcset`).toMatch(/srcset="[^"]*\d+w/);
+      expect(hero![0], `${url} hero has no sizes`).toMatch(/sizes="/);
+
+      const preload = /<link[^>]+rel="preload"[^>]+as="image"[^>]*>/.exec(html);
+      expect(preload, `${url} has no image preload`).toBeTruthy();
+      expect(
+        preload![0],
+        `${url} preloads one fixed hero while the img offers a srcset — the browser will fetch both`,
+      ).toMatch(/imagesrcset="[^"]*\d+w/);
+    }
+  });
+});

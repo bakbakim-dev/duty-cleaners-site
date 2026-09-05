@@ -19,6 +19,16 @@ interface CityConversionIntroProps {
   phoneLink: string;
   /** Full-bleed room photo behind the hero scrim. */
   heroImage: string;
+  /**
+   * Width-descriptor srcset for the hero, e.g. "…-640w.webp 640w, …".
+   *
+   * The hero is the LCP element on the two highest-value pages, and without
+   * this a phone downloaded the same 1920px file a desktop did — 177 KB on the
+   * homepage where the 640w variant is 25 KB. Optional so callers without
+   * variants keep working; the preload hint below carries the same set, or a
+   * browser would preload the full-width file and then use a narrower one.
+   */
+  heroSrcSet?: string;
   /** Decorative background — leave empty unless the room carries meaning. */
   heroAlt?: string;
   /** CSS object-position for the hero crop, e.g. "center 60%". */
@@ -65,6 +75,7 @@ export default function CityConversionIntro({
   phone,
   phoneLink,
   heroImage,
+  heroSrcSet,
   heroAlt,
   heroPosition,
   heroScrim = "strong",
@@ -90,10 +101,16 @@ export default function CityConversionIntro({
             than a static hint in index.html) keeps Edmonton and Calgary each
             preloading their own image instead of the wrong one. */}
         <Helmet>
-          <link rel="preload" as="image" href={heroImage} />
+          <link
+            rel="preload"
+            as="image"
+            href={heroImage}
+            {...(heroSrcSet ? { imagesrcset: heroSrcSet, imagesizes: "100vw" } : {})}
+          />
         </Helmet>
         <img
           src={heroImage}
+          {...(heroSrcSet ? { srcSet: heroSrcSet, sizes: "100vw" } : {})}
           alt={heroAlt ?? ""}
           loading="eager"
           decoding="async"

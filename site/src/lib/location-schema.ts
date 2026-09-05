@@ -70,35 +70,29 @@ export function buildLocationSchema(input: LocationSchemaInput) {
     // postal — which is a LocalBusiness that can't be matched to its GBP
     // listing or its citations.
     address: schemaAddressFor(input.city),
+    /*
+      The coordinates belong HERE, on the place served, not on the business.
+
+      They used to sit on the LocalBusiness node itself, beside an address that
+      names the Edmonton or Calgary office — so /cleaning-services-leduc/
+      published a business claiming to be at 18615 71 Ave NW, Edmonton with a
+      pin 30 km away in Leduc. schema.org's `geo` on a LocalBusiness is where
+      that business IS; a node whose address and coordinates disagree is
+      internally contradictory, and address-shared-geo-varies across 153 pages
+      is precisely the shape Google's local-search guidance describes when it
+      talks about location-page schemes. Attached to areaServed the same
+      numbers say what was always meant: this is the area we serve.
+    */
     areaServed: {
       "@type": "Place",
       name: input.areaServed ?? `${contact.locality}, AB`,
+      ...(() => {
+        const geo = input.geo ?? geoFor(input.url);
+        return geo
+          ? { geo: { "@type": "GeoCoordinates", latitude: geo.latitude, longitude: geo.longitude } }
+          : {};
+      })(),
     },
-    /*
-      86 of the 153 location pages emitted no GeoCoordinates — every Edmonton
-      page and the 7 Calgary satellite towns — because `geo` is optional and
-      only the Calgary neighbourhood pages passed it. 47 of those already
-      RENDERED real coordinates in their <LocationMap center={[lat,lng]}/> and
-      simply never handed them to this builder; the remaining 51 had none
-      anywhere, and were left empty rather than given a guessed pin.
-
-      Those 51 are now sourced from OpenStreetMap and live in
-      data/location-geo.ts. Resolving the fallback HERE rather than at 51 call
-      sites means a page cannot forget to pass it, and an explicit `geo` still
-      wins — so the pages that carry their own inline coordinates are unchanged.
-    */
-    ...(() => {
-      const geo = input.geo ?? geoFor(input.url);
-      return geo
-        ? {
-            geo: {
-              "@type": "GeoCoordinates",
-              latitude: geo.latitude,
-              longitude: geo.longitude,
-            },
-          }
-        : {};
-    })(),
     ...(input.priceRange ? { priceRange: input.priceRange } : {}),
     openingHours: ["Mo-Sa 08:00-20:00", "Su 09:00-15:00"],
     openingHoursSpecification: [

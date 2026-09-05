@@ -37,6 +37,11 @@ import { quoteCtaLabel, useQuoteProgress } from "@/lib/quote-progress";
 import { Suspense, lazy } from "react";
 const CalgaryServiceAreaMap = lazy(() => import("@/components/CalgaryServiceAreaMap"));
 import calgaryHeroRoom from "@/assets/hero-room-calgary.webp";
+import calgaryHeroRoom640 from "@/assets/hero-room-calgary-640w.webp";
+import calgaryHeroRoom960 from "@/assets/hero-room-calgary-960w.webp";
+import calgaryHeroRoom1280 from "@/assets/hero-room-calgary-1280w.webp";
+import calgaryHeroRoom1920 from "@/assets/hero-room-calgary-1920w.webp";
+
 
 import galleryOvenBA from "@/assets/gallery/calgary-oven-ba.webp";
 import galleryKitchenBA from "@/assets/gallery/calgary-kitchen-ba.webp";
@@ -48,6 +53,17 @@ import gallerySpotlessKitchen from "@/assets/gallery/calgary-spotless-kitchen.we
 import galleryBathroomDeep from "@/assets/gallery/calgary-bathroom-deep.webp";
 import galleryToiletBA from "@/assets/gallery/calgary-toilet-ba.webp";
 import { standardTierRows, moveInOutTierRows } from "@/data/pricing";
+
+/* Width-descriptor set for the hero, the LCP element on this page. Without
+   it a phone pulled the same 1920px file as a desktop: hero-room-calgary at 1920w against
+   the 640w variant a phone actually needs. sizes is 100vw because the hero
+   is full-bleed. */
+const HERO_SRCSET = [
+  `${calgaryHeroRoom640} 640w`,
+  `${calgaryHeroRoom960} 960w`,
+  `${calgaryHeroRoom1280} 1280w`,
+  `${calgaryHeroRoom1920} 1920w`,
+].join(", ");
 
 /* The schema priceRange, derived. It was hand-typed as "$155-$539+" here and
    "$155-$539" on the twin — numerically right today, inconsistent with each
@@ -246,6 +262,7 @@ export default function Calgary2() {
            phone="(403) 768-1341"
            phoneLink="tel:4037681341"
            heroImage={calgaryHeroRoom}
+           heroSrcSet={HERO_SRCSET}
            heroAlt="Bright, freshly cleaned Calgary living room with sunlight across the floor"
            heroPosition="center 58%"
            processImages={[
