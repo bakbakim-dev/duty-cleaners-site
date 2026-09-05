@@ -226,6 +226,13 @@ All colors MUST be HSL.
   align-items: center;
   min-height: 24px;
   padding-inline: 2px;
+  /* Leaflet ships these links at #0078a8, which is 3.99:1 on the control's own
+     #e5e7eb background — the last AA contrast miss on the site, on all 57 map
+     pages, at 12px where 4.5:1 is required. Same hue, darker: 5.1:1. The
+     attribution must stay legible and must stay linked, so darkening it is the
+     only move available; it is Leaflet's markup, not ours, so it is corrected
+     here rather than at the source. */
+  color: #00668f;
 }
 
 /* Skip link — first focusable element on every page. Hidden until focused. */
