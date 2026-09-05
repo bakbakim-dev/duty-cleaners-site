@@ -41,7 +41,17 @@ export default function LocationMap({ center, label, zoom = 13 }: LocationMapPro
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
 
-    L.marker(center, { icon })
+    L.marker(center, {
+      icon,
+      // Leaflet gives a marker keyboard focus by default and renders it as
+      // role="button". Without `alt` it is a focusable control with no
+      // accessible name — a screen reader announces "button" and nothing
+      // else. The multi-pin service-area maps avoid this by opting out of
+      // the tab order entirely (interactive: false, keyboard: false); this
+      // marker is the page's one real pin, so it gets a name instead.
+      alt: label,
+      title: label,
+    })
       .addTo(map)
       .bindPopup(`<strong>${label}</strong>`)
       .openPopup();

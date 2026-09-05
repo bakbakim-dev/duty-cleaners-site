@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <sitemap><loc>https://dutycleaners.ca/sitemap-main.xml</loc></sitemap>
-  <sitemap><loc>https://dutycleaners.ca/sitemap-locations-edmonton.xml</loc></sitemap>
-  <sitemap><loc>https://dutycleaners.ca/sitemap-locations-calgary.xml</loc></sitemap>
-  <sitemap><loc>https://dutycleaners.ca/sitemap-blog.xml</loc></sitemap>
+  <sitemap><loc>https://dutycleaners.ca/sitemap-main.xml</loc><lastmod>2026-09-04</lastmod></sitemap>
+  <sitemap><loc>https://dutycleaners.ca/sitemap-locations-edmonton.xml</loc><lastmod>2026-09-04</lastmod></sitemap>
+  <sitemap><loc>https://dutycleaners.ca/sitemap-locations-calgary.xml</loc><lastmod>2026-09-04</lastmod></sitemap>
+  <sitemap><loc>https://dutycleaners.ca/sitemap-blog.xml</loc><lastmod>2026-09-04</lastmod></sitemap>
 </sitemapindex>

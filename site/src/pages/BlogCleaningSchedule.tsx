@@ -352,12 +352,12 @@ export default function BlogCleaningSchedule() {
                   to cut tasks rather than to try harder — a short list you follow beats a
                   complete one you abandon in February. If the weekly tier is the part that
                   keeps slipping, that is the tier most people hand over first:{" "}
-                  <Link to={canonicalForPath("/edmonton/recurring-cleaning")} className="text-accent hover:underline">
+                  <Link to={canonicalForPath("/edmonton/recurring-cleaning")} className="text-accent underline underline-offset-2">
                     recurring cleaning
                   </Link>{" "}
                   covers exactly that band of work on a fixed cadence, and the daily habits stay
                   yours. What a visit includes is set out on{" "}
-                  <Link to={canonicalForPath("/whats-included")} className="text-accent hover:underline">
+                  <Link to={canonicalForPath("/whats-included")} className="text-accent underline underline-offset-2">
                     what's included
                   </Link>
                   .

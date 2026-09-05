@@ -35,7 +35,13 @@ export default function LondonderryMap() {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
 
-    L.marker([53.59, -113.46], { icon })
+    L.marker([53.59, -113.46], {
+      icon,
+      // Leaflet focuses markers by default and renders them role="button";
+      // without a name a screen reader announces "button" and nothing else.
+      alt: "Londonderry, Edmonton",
+      title: "Londonderry, Edmonton",
+    })
       .addTo(map)
       .bindPopup("<strong>Londonderry, Edmonton</strong>")
       .openPopup();

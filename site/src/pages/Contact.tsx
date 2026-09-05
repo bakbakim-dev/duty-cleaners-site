@@ -650,14 +650,14 @@ Sun: 9:00am–3:00pm"
             <ul className="space-y-3 text-muted-foreground">
               <li>
                 <strong className="text-foreground">What's actually included?</strong>{" "}
-                <Link to={canonicalForPath("/whats-included")} className="text-accent hover:underline">
+                <Link to={canonicalForPath("/whats-included")} className="text-accent underline underline-offset-2">
                   The full scope list
                 </Link>{" "}
                 covers every service and, just as usefully, what falls outside it.
               </li>
               <li>
                 <strong className="text-foreground">Do I need to do anything first?</strong>{" "}
-                <Link to={canonicalForPath("/prepare")} className="text-accent hover:underline">
+                <Link to={canonicalForPath("/prepare")} className="text-accent underline underline-offset-2">
                   How to prepare
                 </Link>{" "}
                 is short — mostly it is about access, pets, and the few things that stop a team
@@ -665,7 +665,7 @@ Sun: 9:00am–3:00pm"
               </li>
               <li>
                 <strong className="text-foreground">Can I buy this for someone else?</strong>{" "}
-                <Link to={canonicalForPath("/gift-card")} className="text-accent hover:underline">
+                <Link to={canonicalForPath("/gift-card")} className="text-accent underline underline-offset-2">
                   Gift cards
                 </Link>{" "}
                 have no expiry date and no maximum value, and the balance carries over if a
@@ -674,14 +674,14 @@ Sun: 9:00am–3:00pm"
               <li>
                 <strong className="text-foreground">What if something was missed?</strong> Tell us
                 within 24 hours and we return and re-clean it free —{" "}
-                <Link to={canonicalForPath("/satisfaction-guarantee")} className="text-accent hover:underline">
+                <Link to={canonicalForPath("/satisfaction-guarantee")} className="text-accent underline underline-offset-2">
                   the guarantee
                 </Link>{" "}
                 sets out exactly what that covers.
               </li>
               <li>
                 <strong className="text-foreground">Are you hiring?</strong> Often, in both cities.{" "}
-                <Link to={canonicalForPath("/join-the-team")} className="text-accent hover:underline">
+                <Link to={canonicalForPath("/join-the-team")} className="text-accent underline underline-offset-2">
                   Join the team
                 </Link>{" "}
                 is the place to apply — please don't use the form above for job enquiries, as it

@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest";
 import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { CITY_PROOF } from "./proof";
+import { POST_PUBLISHED } from "./post-published";
 
 /**
  * Structured-data guards, from the six-dimension site audit.
@@ -275,6 +276,49 @@ describe("NAP consistency in what the visitor sees", () => {
       lines,
       `tel: hrefs that are not the canonical link:\n${lines.join("\n")}\n` +
         `Use CITY_PROOF[city].phoneLink.`,
+    ).toEqual([]);
+  });
+});
+
+describe("no page invents a publication date", () => {
+  /**
+   * Four posts kept their WordPress URLs. Their Article schema used to claim a
+   * January 2026 datePublished, which post-published.ts records as false — the
+   * mirrored copies reference wp-content/uploads/2024/08, so they were live
+   * well before that. Those four are `null` there, meaning "unknown", and the
+   * Article nodes correctly omit the field.
+   *
+   * The blog index did not. It derived datePublished from the card's display
+   * string instead of the authority, so it kept asserting the exact dates the
+   * project had already decided were untrue: the same false claim removed from
+   * one place and left in another.
+   *
+   * This guard is the reason to state the rule once: a URL POST_PUBLISHED marks
+   * null must not carry a datePublished anywhere in the built markup. An
+   * omitted date costs a minor signal; a false one is a false statement in
+   * structured data.
+   */
+  it("a post with an unknown publish date declares none, on any page", () => {
+    const unknown = Object.entries(POST_PUBLISHED)
+      .filter(([, v]) => v === null)
+      .map(([path]) => `https://dutycleaners.ca${path}/`);
+    if (unknown.length === 0) return;
+    const bad: string[] = [];
+    for (const { url, html } of pages()) {
+      for (const n of nodesOf(html)) {
+        const target = typeof n.url === "string" ? n.url : null;
+        if (!target || !n.datePublished) continue;
+        if (unknown.includes(target)) {
+          bad.push(`${url} declares datePublished=${String(n.datePublished)} for ${target}`);
+        }
+      }
+    }
+    expect(
+      [...new Set(bad)],
+      `These assert a publication date the site records as unknown:\n${[...new Set(bad)].join("\n")}\n` +
+        `POST_PUBLISHED holds null for those URLs precisely because the real ` +
+        `date could not be recovered. Omit the field until the owner reads it ` +
+        `out of the WordPress admin.`,
     ).toEqual([]);
   });
 });

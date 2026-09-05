@@ -173,7 +173,7 @@ export default function SatisfactionGuarantee() {
                 That is a different process from this one and it has its own deadline.{" "}
                 {POLICY.liabilityNote} The full terms, including cancellation, lockout and
                 liability, are set out on our{" "}
-                <Link to={canonicalForPath("/terms")} className="text-accent hover:underline">
+                <Link to={canonicalForPath("/terms")} className="text-accent underline underline-offset-2">
                   terms of service
                 </Link>
                 .
@@ -184,11 +184,11 @@ export default function SatisfactionGuarantee() {
                 Most re-cleans we are called back for trace to a mismatch between what was booked
                 and what the home needed — a standard clean booked for a home that wanted a deep
                 one, or an add-on everyone assumed was included. Two pages head that off:{" "}
-                <Link to={canonicalForPath("/whats-included")} className="text-accent hover:underline">
+                <Link to={canonicalForPath("/whats-included")} className="text-accent underline underline-offset-2">
                   what's included
                 </Link>{" "}
                 lists the scope of each service and what falls outside it, and{" "}
-                <Link to={canonicalForPath("/prepare")} className="text-accent hover:underline">
+                <Link to={canonicalForPath("/prepare")} className="text-accent underline underline-offset-2">
                   how to prepare
                 </Link>{" "}
                 covers the few things that stop a team getting to a surface at all.

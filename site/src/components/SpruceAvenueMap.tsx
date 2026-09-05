@@ -35,7 +35,13 @@ export default function SpruceAvenueMap() {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
 
-    L.marker([53.565, -113.49], { icon })
+    L.marker([53.565, -113.49], {
+      icon,
+      // Leaflet focuses markers by default and renders them role="button";
+      // without a name a screen reader announces "button" and nothing else.
+      alt: "Spruce Avenue, Edmonton",
+      title: "Spruce Avenue, Edmonton",
+    })
       .addTo(map)
       .bindPopup("<strong>Spruce Avenue, Edmonton</strong>")
       .openPopup();

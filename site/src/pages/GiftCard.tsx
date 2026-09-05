@@ -308,15 +308,15 @@ export default function GiftCard() {
                   A card does not have to cover a whole clean to be useful — the balance comes off
                   whatever they book, and they pay the difference. If you would rather it cover a
                   full service outright, the tables on our{" "}
-                  <Link to={canonicalForPath("/pricing")} className="text-accent hover:underline">
+                  <Link to={canonicalForPath("/pricing")} className="text-accent underline underline-offset-2">
                     Edmonton
                   </Link>{" "}
                   and{" "}
-                  <Link to={canonicalForPath("/calgary/pricing")} className="text-accent hover:underline">
+                  <Link to={canonicalForPath("/calgary/pricing")} className="text-accent underline underline-offset-2">
                     Calgary
                   </Link>{" "}
                   pricing pages give the exact figure by home size, and{" "}
-                  <Link to={canonicalForPath("/whats-included")} className="text-accent hover:underline">
+                  <Link to={canonicalForPath("/whats-included")} className="text-accent underline underline-offset-2">
                     what's included
                   </Link>{" "}
                   shows what each service actually covers. All published prices are before 5% GST,

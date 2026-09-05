@@ -196,10 +196,20 @@ for (const [file, paths] of children) {
   writeFileSync(resolve("public", file), urlset(paths));
 }
 
+// Each child carries the newest lastmod of the URLs inside it. Without it the
+// index says only "here are four files", and a crawler has to fetch all four to
+// find out that three are unchanged. lastmodFor is the same per-URL function
+// the urlsets use, so the index cannot disagree with its own children.
+const indexLastmod = (paths: readonly string[]): string =>
+  paths.map(lastmodFor).sort().at(-1) ?? lastmodFor("/");
+
 const index = [
   `<?xml version="1.0" encoding="UTF-8"?>`,
   `<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`,
-  ...children.map(([file]) => `  <sitemap><loc>${BASE_URL}/${file}</loc></sitemap>`),
+  ...children.map(
+    ([file, paths]) =>
+      `  <sitemap><loc>${BASE_URL}/${file}</loc><lastmod>${indexLastmod(paths)}</lastmod></sitemap>`,
+  ),
   `</sitemapindex>`,
   ``,
 ].join("\n");

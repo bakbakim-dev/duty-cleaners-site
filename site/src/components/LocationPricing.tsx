@@ -100,13 +100,13 @@ export default function LocationPricing({ place }: LocationPricingProps) {
             For {name} homes on a{" "}
             <Link
               to={canonicalForPath(`/${city.toLowerCase()}/recurring-cleaning`)}
-              className="text-accent hover:underline"
+              className="text-accent underline underline-offset-2"
             >
               recurring schedule in {name}
             </Link>{" "}
             the discount is 20% weekly, 15% bi-weekly and 10% every four weeks from the second clean.
             Your first clean is charged at the standard one-time rate. The{" "}
-            <Link to={canonicalForPath(pricingPath)} className="text-accent hover:underline">
+            <Link to={canonicalForPath(pricingPath)} className="text-accent underline underline-offset-2">
               full {city} price list
             </Link>{" "}
             breaks every tier down by bedroom count and lists the add-ons.

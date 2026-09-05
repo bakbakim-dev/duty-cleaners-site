@@ -305,6 +305,14 @@
 /locations/cochrane  /cleaning-services-cochrane/  301!
 /sitemaps.xml/  /sitemap.xml  301!
 /sitemaps.xml  /sitemap.xml  301!
+/post-sitemap1.xml/  /sitemap.xml  301!
+/post-sitemap1.xml  /sitemap.xml  301!
+/page-sitemap1.xml/  /sitemap.xml  301!
+/page-sitemap1.xml  /sitemap.xml  301!
+/category-sitemap1.xml/  /sitemap.xml  301!
+/category-sitemap1.xml  /sitemap.xml  301!
+/post_tag-sitemap1.xml/  /sitemap.xml  301!
+/post_tag-sitemap1.xml  /sitemap.xml  301!
 
 # Real routes that must resolve but are not indexable.
 /book/  /spa-shell.html  200

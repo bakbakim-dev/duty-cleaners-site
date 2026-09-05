@@ -524,7 +524,7 @@ const AirbnbCleaningCalgary = () => {
               Most hosts settle into a predictable number within the first two or three
               turnovers, and we will tell you what that looks like for your property after
               the first clean. If you would rather have a flat rate by home size, our{" "}
-              <Link to={canonicalForPath("/calgary/pricing")} className="text-accent hover:underline">
+              <Link to={canonicalForPath("/calgary/pricing")} className="text-accent underline underline-offset-2">
                 standard cleaning prices
               </Link>{" "}
               apply to short-term rentals too.

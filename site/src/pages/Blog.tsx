@@ -1,3 +1,4 @@
+import { publishedFor } from "@/data/post-published";
 import { useEffect, useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -195,7 +196,16 @@ export default function Blog() {
           blogPost: blogPosts
             .filter((p) => p.slug)
             .map((p) => {
-              const published = isoDate(p.date);
+              // NOT isoDate(p.date). Four of these posts kept their WordPress
+              // URLs and their card still shows a January 2026 date that
+              // post-published.ts records as false — the mirrored copies
+              // reference wp-content/uploads/2024/08, so they were live well
+              // before that. Their Article nodes already omit datePublished for
+              // that reason; this index was still asserting the false date, so
+              // the same untruth was removed from one place and left in
+              // another. POST_PUBLISHED is the authority: null means unknown,
+              // and unknown means the field is omitted.
+              const published = publishedFor(p.slug!);
               return {
                 "@type": "BlogPosting",
                 headline: p.title,

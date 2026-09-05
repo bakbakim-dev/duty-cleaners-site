@@ -103,6 +103,20 @@ for (const p of APP_ONLY_ROUTES) if (real.has(p)) add(p, "/spa-shell.html", "200
 // the DNS flips until Google re-reads robots.txt.
 add("/sitemaps.xml", "/sitemap.xml", "301!");
 
+// The Yoast index at /sitemaps.xml lists four CHILD sitemaps, and those are
+// separate URLs Google has crawled in their own right. Verified live on
+// dutycleaners.ca while the WordPress site is still up: all four return 200
+// today. Redirecting only the parent leaves them to 404 at cutover, which is
+// how a crawler loses its record of the URLs it already knows.
+for (const child of [
+  "/post-sitemap1.xml",
+  "/page-sitemap1.xml",
+  "/category-sitemap1.xml",
+  "/post_tag-sitemap1.xml",
+]) {
+  add(child, "/sitemap.xml", "301!");
+}
+
 // Invariant 3: no chains.
 const sources = new Set(rules.filter((r) => r.code !== "200").map((r) => r.from.replace(/\/+$/, "")));
 const chains = rules.filter((r) => r.code !== "200" && sources.has(r.to.replace(/\/+$/, "")));

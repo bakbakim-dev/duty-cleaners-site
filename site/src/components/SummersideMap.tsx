@@ -42,10 +42,20 @@ export default function SummersideMap() {
     ];
 
     markers.forEach((m) => {
-      L.marker(m.pos, { icon }).addTo(map).bindPopup(`<strong>${m.label}</strong>`);
+      // Named, not silenced: each pin is a real place and its label is
+      // already to hand. Leaflet focuses markers by default and renders
+      // them role="button", so without this they are unnamed controls.
+      L.marker(m.pos, { icon, alt: m.label, title: m.label })
+        .addTo(map)
+        .bindPopup(`<strong>${m.label}</strong>`);
     });
 
-    markers[0] && L.marker(markers[0].pos, { icon }).openPopup();
+    markers[0] &&
+      L.marker(markers[0].pos, {
+        icon,
+        alt: markers[0].label,
+        title: markers[0].label,
+      }).openPopup();
 
     return () => {
       map.stop();
