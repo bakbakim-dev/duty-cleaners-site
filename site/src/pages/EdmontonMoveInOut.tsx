@@ -29,6 +29,7 @@ import windowCleaning from "@/assets/gallery/window-cleaning.webp";
 
 // Animated section wrapper
 import MoveOutDepth from "@/components/MoveOutDepth";
+import MoveOutServiceAreas from "@/components/MoveOutServiceAreas";
 import { moveInOutTierRows } from "@/data/pricing";
 import { schemaAddressFor, BRANCH_ID, ORG_ID, RATING_CLAIM, BRANCH_IDENTITY } from "@/data/proof";
 
@@ -463,7 +464,9 @@ export default function EdmontonMoveInOut() {
             </Button>
           </div>
         )}
-        </main>
+        <MoveOutServiceAreas city="Edmonton" />
+
+      </main>
 
         <section className="pb-16">
 

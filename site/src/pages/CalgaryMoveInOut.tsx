@@ -18,6 +18,7 @@ import { CheckCircle2, Phone, Home, Shield, Star, Clock, DollarSign, Award, MapP
 import { Link } from "react-router-dom";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import MoveOutDepth from "@/components/MoveOutDepth";
+import MoveOutServiceAreas from "@/components/MoveOutServiceAreas";
 import { moveInOutTierRows, addOnFromPrice, formatPrice } from "@/data/pricing";
 import { TRAVEL_FEE_KEY } from "@/data/addon-table";
 import { buildServiceSchema } from "@/lib/service-schema";
@@ -528,30 +529,7 @@ export default function CalgaryMoveInOut() {
         </div>
       </section>
 
-      {/* Service Areas */}
-      <section className="py-20 bg-muted/20">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-4">
-            Move Out Cleaning Services Throughout Calgary
-          </h2>
-          <p className="text-center text-muted-foreground mb-12">
-            Our professional move out cleaning teams serve all neighbourhoods across Calgary and surrounding areas
-          </p>
-
-          <div className="bg-white rounded-xl p-8 shadow-md">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {['Downtown Calgary', 'Beltline', 'Kensington', 'Inglewood', 'Brentwood', 'McKenzie Towne', 'Varsity', 'Bridgeland', 'Marda Loop', 'Mahogany', 'Auburn Bay', 'Cranston', 'Airdrie', 'Cochrane', 'Okotoks'].map(area => <div key={area} className="flex items-center gap-2 text-sm">
-                  <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
-                  <span>{area}</span>
-                </div>)}
-            </div>
-
-            <p className="text-center text-muted-foreground mt-8 pt-6 border-t">
-              Don't see your neighbourhood listed? <Link to="/contact-us/" className="text-primary font-semibold hover:underline">Contact us!</Link> We likely serve your area and can provide professional move out cleaning services throughout the Calgary region.
-            </p>
-          </div>
-        </div>
-      </section>
+      <MoveOutServiceAreas city="Calgary" />
 
       {/* Pricing */}
       <section className="py-20 bg-white">
