@@ -24,6 +24,13 @@ export default defineConfig(({ mode }) => ({
           if (!id.includes("node_modules")) return;
           if (id.includes("recharts") || id.includes("d3-")) return "charts";
           if (id.includes("embla-carousel")) return "carousel";
+          // Radix Select is the heaviest piece of the set — it drags in Portal,
+          // FocusScope, DismissableLayer and the positioning engine — and only
+          // /contact/ and /join-the-team/ use it. Lumped in with the rest it rode
+          // along on all 209 pages, because accordion and slot put the shared
+          // chunk in the entry graph. Split so the 207 pages that never render a
+          // select stop paying for one.
+          if (id.includes("@radix-ui/react-select")) return "radix-select";
           if (id.includes("@radix-ui")) return "radix";
           if (id.includes("react-hook-form") || id.includes("zod")) return "forms";
           if (id.includes("leaflet")) return "leaflet";

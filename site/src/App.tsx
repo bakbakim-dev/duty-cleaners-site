@@ -1,7 +1,4 @@
 import { Suspense, lazy } from "react";
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
@@ -252,9 +249,12 @@ const App = () => (
         <meta property="og:image:alt" content="Duty Cleaners — house cleaning in Edmonton and Calgary, made simple" />
         <meta name="twitter:image" content={`${SITE_ORIGIN}/og-image.jpg`} />
       </Helmet>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
+      {/* Toaster, Sonner and TooltipProvider were mounted here and rendered
+          nothing: no file outside components/ui calls toast() or useToast,
+          and no <Tooltip> exists anywhere in the app. Their only effect was
+          to make @radix-ui a static import of the entry chunk, so every page
+          downloaded 231 KB to render three empty providers. */}
+      <>
         {/* BASE_URL is "/" in dev and on the real domain; on the GitHub Pages
             staging preview it is the repo subpath, which the router needs. */}
         <BrowserRouter basename={import.meta.env.BASE_URL}>
@@ -632,7 +632,7 @@ const App = () => (
         </Suspense>
         </QuoteOverlayProvider>
       </BrowserRouter>
-    </TooltipProvider>
+    </>
     </HelmetProvider>
   </QueryClientProvider>
 );
