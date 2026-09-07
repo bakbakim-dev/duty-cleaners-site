@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
-import { standardTierRows, deepCleanTierRows, moveInOutTierRows, featuredExtraRows } from "./pricing";
+import { standardTierRows, deepCleanTierRows, moveInOutTierRows, featuredExtraRows, FREQUENCIES } from "./pricing";
 import { POLICY } from "./policy";
 
 /**
@@ -231,5 +231,44 @@ describe("the cost guide's market figures still contain our own prices", () => {
       const [, top] = money(found![1]);
       expect(top, `${what} reads "${found![1].trim()}", under our own $${ours}`).toBeGreaterThanOrEqual(ours);
     }
+  });
+});
+
+/**
+ * The recurring tiers are named the way BookingKoala sells them.
+ *
+ * The 10% tier is "Every 4 Weeks" in bk-config — 13 visits a year. Seven
+ * strings across the two pricing pages and /faqs/ called it "monthly", which is
+ * 12, and the difference is a whole extra visit the customer did not agree to.
+ * The discount cards said "Monthly Cleaning" while the booking form the CTA
+ * hands them to says "Every 4 Weeks", so the label changed under them mid-flow.
+ *
+ * Scoped to the DISCOUNT tiers on purpose: the blog legitimately discusses
+ * monthly cleaning as a habit, and nothing here should stop it.
+ */
+describe("recurring tiers are named the way the booking system sells them", () => {
+  const PAGES = ["EdmontonPricing.tsx", "CalgaryPricing.tsx", "FAQ.tsx"];
+
+  it("no page calls a recurring DISCOUNT tier 'monthly'", () => {
+    const tier = FREQUENCIES.find((f) => f.discount === 0.1);
+    expect(tier, "no 10% frequency in bk-config any more").toBeTruthy();
+    expect(tier!.label).toBe("Every 4 Weeks");
+
+    const offenders: string[] = [];
+    for (const page of PAGES) {
+      const src = readFileSync(join(PAGES_DIR, page), "utf-8");
+      for (const line of src.split(/\r?\n/)) {
+        if (!/monthly/i.test(line)) continue;
+        // A discount context is what matters: a percentage, the word discount,
+        // or a RecurringDiscountCard title.
+        if (/%|discount|RecurringDiscountCard/i.test(line)) {
+          offenders.push(`${page}: ${line.trim().slice(0, 96)}`);
+        }
+      }
+    }
+    expect(
+      offenders,
+      `these call the ${tier!.label} tier "monthly"; the booking form the CTA leads to does not`,
+    ).toEqual([]);
   });
 });

@@ -216,7 +216,7 @@ export default function EdmontonPricing() {
               In Edmonton, a standard clean runs {priceSpan(standardPricing)} depending on home
               size, a deep clean {priceSpan(deepPricing)}, and a move-in or move-out clean{" "}
               {priceSpan(moveInOutPricing)}. All figures are flat rates in Canadian dollars before
-              5% GST. Recurring visits save 20% weekly, 15% bi-weekly and 10% monthly from the
+              5% GST. Recurring visits save 20% weekly, 15% bi-weekly and 10% every four weeks from the
               second clean.
             </p>
 
@@ -259,7 +259,7 @@ export default function EdmontonPricing() {
         paragraphs={[
           "Our prices are identical in Edmonton and Calgary — there is no city premium and no trip fee within either city. What varies is which service a given home actually needs. Edmonton's heating season runs unbroken from roughly October to April, and a furnace that never stops moves duct dust onto the tops of doors, along ceiling lines and behind furniture for months. A home booked in early spring after that run often needs the deep clean rather than the standard one, and it is cheaper to hear that up front than to book the wrong tier.",
           "The housing stock swings the number as much as anything. Older homes through Oliver, Garneau and Strathcona carry original trim, radiators and more hand-cleaned surface than their square footage implies, so they sit at the slower end of their tier. Newer builds in Windermere, Keswick or Laurel are quicker for the same size — unless construction dust is still working out of the vents and closet shelves, which is normal for a year or two after possession.",
-          "Every figure here is before tax; 5% GST is added on top. Recurring discounts of 20% weekly, 15% bi-weekly and 10% monthly apply from the second visit, with the first clean charged at the one-time rate. If a home turns out to need substantially more work than it was described as needing, the team explains what they found and the options before carrying on — not afterwards on the invoice.",
+          "Every figure here is before tax; 5% GST is added on top. Recurring discounts of 20% weekly, 15% bi-weekly and 10% every four weeks apply from the second visit, with the first clean charged at the one-time rate. If a home turns out to need substantially more work than it was described as needing, the team explains what they found and the options before carrying on — not afterwards on the invoice.",
         ]}
       />
 
@@ -439,7 +439,7 @@ export default function EdmontonPricing() {
             <div className="grid md:grid-cols-3 gap-6 mb-8">
               <RecurringDiscountCard percentage="20%" title="Weekly Cleaning" />
               <RecurringDiscountCard percentage="15%" title="Bi-weekly Cleaning" isPopular />
-              <RecurringDiscountCard percentage="10%" title="Monthly Cleaning" />
+              <RecurringDiscountCard percentage="10%" title="Every 4 Weeks" />
             </div>
 
             <p className="text-center text-sm text-white/80 max-w-2xl mx-auto">

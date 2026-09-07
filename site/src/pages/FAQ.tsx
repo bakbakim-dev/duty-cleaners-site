@@ -262,7 +262,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "Do you offer discounts for recurring services?",
-        answer: "Yes — recurring schedules unlock ongoing savings: 20% off weekly visits, 15% off bi-weekly visits, and 10% off monthly visits. Commercial contracts may qualify for additional rates.",
+        answer: "Yes — recurring schedules unlock ongoing savings: 20% off weekly visits, 15% off bi-weekly visits, and 10% off every-four-weeks visits. Commercial contracts may qualify for additional rates.",
       },
       {
         question: "Do you offer gift cards?",

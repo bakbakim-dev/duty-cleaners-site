@@ -205,7 +205,7 @@ export default function CalgaryPricing() {
               In Calgary, a standard clean runs {priceSpan(standardPricing)} depending on home
               size, a deep clean {priceSpan(deepPricing)}, and a move-in or move-out clean{" "}
               {priceSpan(moveInOutPricing)}. All figures are flat rates in Canadian dollars before
-              5% GST. Recurring visits save 20% weekly, 15% bi-weekly and 10% monthly from the
+              5% GST. Recurring visits save 20% weekly, 15% bi-weekly and 10% every four weeks from the
               second clean.
             </p>
 
@@ -252,7 +252,7 @@ export default function CalgaryPricing() {
         paragraphs={[
           "Our prices are the same in Calgary as in Edmonton — we do not charge a city premium, and there is no trip fee inside either city. What differs is which service a Calgary home usually needs, and that is where the real cost difference shows up. Because the chinooks keep putting the roads through melt-and-grit cycles all winter, sand and de-icer accumulate along baseboards and carpet edges in a way that a standard clean is not scoped to remove. Booked in late winter, a Calgary home is more likely to genuinely need the deep clean than the standard one.",
           "Home type moves the number more than neighbourhood does. A Beltline or Mission condo is small in square footage but heavy on glass, tracks and balcony seals, so it prices lower than a suburban house but takes longer per square foot than the tier suggests. A newer place in Mahogany, Seton or Livingston is the reverse — larger and quicker, unless it is still shedding construction dust from the vents and closet shelves, which is common for a year or two after possession.",
-          "Everything quoted here is before tax; 5% GST is added on top. Recurring discounts of 20% weekly, 15% bi-weekly and 10% monthly start from your second visit, and the first clean is charged at the one-time rate. If the home turns out to need substantially more work than described, the team explains what they found and your options before continuing rather than adjusting the bill afterwards.",
+          "Everything quoted here is before tax; 5% GST is added on top. Recurring discounts of 20% weekly, 15% bi-weekly and 10% every four weeks start from your second visit, and the first clean is charged at the one-time rate. If the home turns out to need substantially more work than described, the team explains what they found and your options before continuing rather than adjusting the bill afterwards.",
         ]}
       />
 
@@ -431,7 +431,7 @@ export default function CalgaryPricing() {
             <div className="grid md:grid-cols-3 gap-6 mb-8">
               <RecurringDiscountCard percentage="20%" title="Weekly Cleaning" />
               <RecurringDiscountCard percentage="15%" title="Bi-weekly Cleaning" isPopular />
-              <RecurringDiscountCard percentage="10%" title="Monthly Cleaning" />
+              <RecurringDiscountCard percentage="10%" title="Every 4 Weeks" />
             </div>
 
             <p className="text-center text-sm text-white/80 max-w-2xl mx-auto">
