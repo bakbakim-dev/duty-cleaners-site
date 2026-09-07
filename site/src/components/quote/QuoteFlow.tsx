@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { type KeyboardEvent as ReactKeyboardEvent, useEffect, useMemo, useRef, useState } from "react";
 import { AlertTriangle, ArrowLeft, ArrowRight, Check, Loader2, Mail, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -191,8 +191,35 @@ function NumberChips({
     <fieldset>
       <legend className="text-base font-semibold text-foreground">{legend}</legend>
       <div className="mt-2 flex flex-wrap gap-2" role="radiogroup" aria-label={legend}>
-        {options.map((option) => {
+        {options.map((option, index) => {
           const active = option.value === value;
+          /*
+            A role="radiogroup" is a single tab stop whose members are chosen
+            with the arrow keys — that is the contract a screen reader announces
+            and the one a keyboard user is told to expect. Every chip here was
+            separately tabbable and the arrows did nothing, so choosing "5+
+            bedrooms" meant five tab presses and the group behaved like a row of
+            buttons wearing radio semantics.
+
+            Roving tabindex: the selected chip is the only one in the tab order,
+            or the first when nothing is chosen yet.
+          */
+          const selectedIndex = options.findIndex((candidate) => candidate.value === value);
+          const focusIndex = selectedIndex === -1 ? 0 : selectedIndex;
+          const move = (delta: number, event: ReactKeyboardEvent<HTMLButtonElement>) => {
+            event.preventDefault();
+            const next = (index + delta + options.length) % options.length;
+            onChange(options[next].value);
+            const group = event.currentTarget.parentElement;
+            const target = group?.children[next] as HTMLElement | undefined;
+            target?.focus();
+          };
+          const onKeyDown = (event: ReactKeyboardEvent<HTMLButtonElement>) => {
+            if (event.key === "ArrowRight" || event.key === "ArrowDown") move(1, event);
+            else if (event.key === "ArrowLeft" || event.key === "ArrowUp") move(-1, event);
+            else if (event.key === "Home") move(-index, event);
+            else if (event.key === "End") move(options.length - 1 - index, event);
+          };
           /* "3 Bedrooms (Under 1700sqft)" → big "3"; the sqft cap moves to the
              caption under the row when one is requested. */
           const match = option.label.match(/^(\d+)\D*(?:\((.+)\))?/);
@@ -206,6 +233,8 @@ function NumberChips({
               aria-checked={active}
               name={name}
               onClick={() => onChange(option.value)}
+              onKeyDown={onKeyDown}
+              tabIndex={index === focusIndex ? 0 : -1}
               aria-label={option.label}
               className={`min-h-[48px] min-w-[56px] rounded-sm border px-3 py-1.5 text-lg font-bold transition-colors ${
                 active

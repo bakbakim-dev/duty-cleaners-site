@@ -534,13 +534,13 @@ export default function WallWashingEdmonton() {
           </AnimatedSection>
         </div>
       </section>
-      </main>
-
       <section className="pb-16">
         <div className="container mx-auto px-4">
           <CityCrossLink city="Calgary" to="/wall-washing-wall-cleaning-calgary/" description="Wall washing and wall cleaning for Calgary homes." />
         </div>
       </section>
+      </main>
+
 
       <Footer />
     </div>

@@ -598,13 +598,13 @@ const AirbnbCleaningCalgary = () => {
           </div>
         </div>
       </section>
-      </main>
-
       <section className="pb-16">
         <div className="container mx-auto px-4">
           <CityCrossLink city="Edmonton" to="/edmonton/airbnb-cleaning/" description="Airbnb turnover cleaning for Edmonton short-term rentals." />
         </div>
       </section>
+      </main>
+
 
       <Footer />
     </div>

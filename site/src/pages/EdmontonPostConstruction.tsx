@@ -451,13 +451,13 @@ export default function EdmontonPostConstruction() {
           </AnimatedSection>
         </div>
       </section>
-      </main>
-
       <section className="pb-16">
         <div className="container mx-auto px-4">
           <CityCrossLink city="Calgary" to="/post-construction-cleaning-calgary/" description="Post-construction cleaning for newly built and renovated Calgary homes." />
         </div>
       </section>
+      </main>
+
 
       <Footer />
     </div>
