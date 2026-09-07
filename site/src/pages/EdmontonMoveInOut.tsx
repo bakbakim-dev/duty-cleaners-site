@@ -139,7 +139,10 @@ export default function EdmontonMoveInOut() {
     email: "support@dutycleaners.ca",
     address: schemaAddressFor("edmonton"),
     url: BRANCH_IDENTITY.edmonton.url,
-    priceRange: `${moveRows[0]?.price}-${moveRows[moveRows.length - 1]?.price}+`,
+    /* No priceRange here. This node shares BRANCH_ID with the hub, which
+       publishes the site-wide band, and a second value on the same @id made
+       one business advertise two different ranges. The move-out band belongs
+       to the SERVICE, and MoveOutDepth already renders the tier table. */
     openingHours: ["Mo-Sa 08:00-20:00", "Su 09:00-15:00"],
     parentOrganization: { "@id": ORG_ID },
   };

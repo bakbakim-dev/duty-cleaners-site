@@ -62,7 +62,10 @@ const branchSchema = () => {
     email: "support@dutycleaners.ca",
     address: schemaAddressFor("calgary"),
     url: BRANCH_IDENTITY.calgary.url,
-    priceRange: `${rows[0]?.price}-${rows[rows.length - 1]?.price}+`,
+    /* No priceRange here. This node shares BRANCH_ID with the Calgary hub,
+       which publishes the site-wide band, and a second value on the same @id
+       made one business advertise two different ranges. The move-out band
+       belongs to the SERVICE; the tier table on the page carries it. */
     openingHours: ["Mo-Sa 08:00-20:00", "Su 09:00-15:00"],
     parentOrganization: { "@id": ORG_ID },
   };

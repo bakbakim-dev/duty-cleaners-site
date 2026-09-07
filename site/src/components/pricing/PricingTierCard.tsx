@@ -32,7 +32,7 @@ const PricingTierCard = ({ beds, price, ctaHref, note }: PricingTierCardProps) =
         <div className="text-3xl font-bold text-accent">{price}</div>
         {note ? <p className="mb-4 mt-1 text-xs text-muted-foreground">{note}</p> : <div className="mb-4" />}
         <Button
-          className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-semibold shadow-md hover:shadow-lg transition-all"
+          className="h-auto min-h-10 w-full whitespace-normal py-2 leading-tight bg-accent hover:bg-accent/90 text-accent-foreground font-semibold shadow-md hover:shadow-lg transition-all"
           asChild
         >
           <a href={href}>See My Instant Price</a>
