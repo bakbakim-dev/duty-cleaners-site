@@ -29,6 +29,16 @@ export interface ServicePolicy {
   cancellationNoticeHours: Confirmed<number> | Unconfirmed;
   cancellationFee: Confirmed<string> | Unconfirmed;
   lockoutFee: Confirmed<string> | Unconfirmed;
+  /**
+   * Charge for supplying eco-friendly products instead of the standard range.
+   *
+   * It lives here rather than in bk-config because it is NOT a BookingKoala
+   * extra — there is no eco or green-products row at any price, and nothing in
+   * the config costs $15. The office arranges it, historically over the phone.
+   */
+  ecoProductsFee: Confirmed<string> | Unconfirmed;
+  /** How that charge is arranged, since it cannot be selected at checkout. */
+  ecoProductsHowToRequest: Confirmed<string> | Unconfirmed;
   damageClaimWindowHours: Confirmed<number> | Unconfirmed;
   liabilityNote: Confirmed<string> | Unconfirmed;
   /** What happens when WE move a booking. */
@@ -83,6 +93,20 @@ export const POLICY: ServicePolicy = {
    * explicitly told they need not be home.
    */
   lockoutFee: "half the cost of the scheduled service",
+
+  /**
+   * Confirmed by the owner (2026-09-07): a real charge the office quotes by
+   * phone. It is deliberately absent from the BookingKoala booking form, so
+   * anything the site says about it must also say how to ask for it — a
+   * customer who reads "$15 add-on" and then cannot find it at checkout has
+   * been told something true in a way that reads as a mistake.
+   *
+   * This is why the figure is not derived: published-prices.test.ts bans dollar
+   * literals on the service pages precisely so prices come from one place, and
+   * for a charge BookingKoala does not carry, that place is here.
+   */
+  ecoProductsFee: "$15",
+  ecoProductsHowToRequest: "ask when you book and the office adds it",
 
   /**
    * Confirmed by the owner. Neither the current site nor the legacy mirror had
