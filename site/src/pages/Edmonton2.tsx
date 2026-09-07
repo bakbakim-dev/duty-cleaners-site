@@ -214,7 +214,7 @@ export default function Edmonton2() {
   };
   const faqs = [{
     question: "Do you serve all areas of Edmonton?",
-    answer: "Yes! Our Edmonton cleaning teams serve all quadrants (NW, NE, SW, SE, Central) and surrounding communities within a 30km radius including St. Albert, Sherwood Park, Spruce Grove, Leduc, Fort Saskatchewan, and Beaumont."
+    answer: "Yes! Our Edmonton cleaning teams serve all quadrants (NW, NE, SW, SE, Central) and the surrounding communities, including St. Albert, Sherwood Park, Spruce Grove, Leduc, Fort Saskatchewan, Beaumont, Stony Plain, Morinville and Devon."
   }, {
     question: "How do Edmonton winters affect your cleaning service?",
     answer: "Our Edmonton cleaning professionals work year-round! We account for Alberta winter conditions by scheduling buffer time for traffic and weather delays."
@@ -422,7 +422,7 @@ export default function Edmonton2() {
                 <Eyebrow>Coverage</Eyebrow>
                 <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Edmonton Service Areas</h2>
                 <p className="text-muted-foreground mt-4 prose-column leading-relaxed">
-                  We proudly serve Edmonton and surrounding communities within a 30km radius.
+                  We proudly serve Edmonton and the surrounding communities listed below.
                 </p>
                 <p className="text-muted-foreground mt-3 prose-column leading-relaxed">
                   Boot trays in March, windows in June — we clean the way homes are actually lived in here.

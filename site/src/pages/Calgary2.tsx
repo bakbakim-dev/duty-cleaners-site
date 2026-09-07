@@ -205,7 +205,7 @@ export default function Calgary2() {
   };
   const faqs = [{
     question: "Do you serve all areas of Calgary?",
-    answer: "Yes! Our Calgary cleaning teams serve all quadrants (NW, NE, SW, SE, Downtown) and surrounding communities within a 30km radius including Airdrie, Cochrane, Okotoks, Chestermere, and surrounding areas."
+    answer: "Yes! Our Calgary cleaning teams serve all quadrants (NW, NE, SW, SE, Downtown) and the surrounding communities, including Airdrie, Chestermere, Langdon, Cochrane, Okotoks, Strathmore, Crossfield, High River and Diamond Valley."
   }, {
     question: "How do Calgary winters affect your cleaning service?",
     answer: "Our Calgary cleaning professionals work year-round! We account for Alberta winter conditions by scheduling buffer time for traffic and weather delays."
@@ -409,7 +409,7 @@ export default function Calgary2() {
                 <Eyebrow>Coverage</Eyebrow>
                 <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Calgary Service Areas</h2>
                 <p className="text-muted-foreground mt-4 max-w-[55ch] leading-relaxed">
-                  We proudly serve Calgary and surrounding communities within a 30km radius.
+                  We proudly serve Calgary and the surrounding communities listed below.
                 </p>
                 <p className="text-muted-foreground mt-3 max-w-[55ch] leading-relaxed">
                   Chinook dust in the entryway, sun through the front windows — we clean the way homes
