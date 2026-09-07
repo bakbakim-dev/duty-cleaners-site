@@ -23,6 +23,7 @@ import dirtyWallBefore from "@/assets/wall-washing/dirty-wall-before.webp";
 import stainCloseup from "@/assets/wall-washing/stain-closeup.webp";
 import { Helmet } from "react-helmet-async";
 import CityCrossLink from "@/components/CityCrossLink";
+import { CITY_PROOF } from "@/data/proof";
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -151,16 +152,16 @@ export default function WallWashingCalgary() {
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>Wall Washing Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional wall and baseboard washing in Calgary. Professional products, customer-rated cleaners, no-obligation quote." />
+        <title>Wall Washing & Wall Cleaning Calgary | Duty Cleaners</title>
+        <meta name="description" content="Wall washing and wall cleaning in Calgary — scuffs, handprints and cooking film off painted walls. Added to a standard, deep or move-out clean." />
         <link rel="canonical" href="https://dutycleaners.ca/wall-washing-wall-cleaning-calgary/" />
-        <meta property="og:title" content="Wall Washing Calgary | Duty Cleaners" />
-        <meta property="og:description" content="Professional wall and baseboard washing in Calgary. Professional products, customer-rated cleaners, no-obligation quote." />
+        <meta property="og:title" content="Wall Washing & Wall Cleaning Calgary | Duty Cleaners" />
+        <meta property="og:description" content="Wall washing and wall cleaning in Calgary — scuffs, handprints and cooking film off painted walls. Added to a standard, deep or move-out clean." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/wall-washing-wall-cleaning-calgary/" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Wall Washing Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional wall and baseboard washing in Calgary. Professional products, customer-rated cleaners, no-obligation quote." />
+        <meta name="twitter:title" content="Wall Washing & Wall Cleaning Calgary | Duty Cleaners" />
+        <meta name="twitter:description" content="Wall washing and wall cleaning in Calgary — scuffs, handprints and cooking film off painted walls. Added to a standard, deep or move-out clean." />
         {/* Mirrors the FAQ rendered on this page. Generated from the same
             `faqs` array, so the markup can never drift from the copy. */}
         <script type="application/ld+json">
@@ -175,7 +176,7 @@ export default function WallWashingCalgary() {
           })}
         </script>
         <script type="application/ld+json">
-          {JSON.stringify(buildServiceSchema({ name: "Wall Washing and Wall Cleaning", description: "Professional wall and baseboard washing in Calgary. Professional products, customer-rated cleaners, no-obligation quote.", path: "/wall-washing-wall-cleaning-calgary", city: "calgary", offerFrom: WALL_FROM, offerNote: "Added to a standard, deep or move-out clean; not sold as a standalone visit." }))}
+          {JSON.stringify(buildServiceSchema({ name: "Wall Washing and Wall Cleaning", description: "Wall washing and wall cleaning in Calgary — scuffs, handprints and cooking film off painted walls. Added to a standard, deep or move-out clean.", path: "/wall-washing-wall-cleaning-calgary", city: "calgary", offerFrom: WALL_FROM, offerNote: "Added to a standard, deep or move-out clean; not sold as a standalone visit." }))}
         </script>
       </Helmet>
       <Navigation city="calgary" />
@@ -430,7 +431,9 @@ export default function WallWashingCalgary() {
                   ))}
                 </div>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">Join 100's of Happy Clients a Month</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
+                Rated {CITY_PROOF.calgary.googleRating} on Google across {CITY_PROOF.calgary.googleReviewCount} Calgary reviews
+              </h2>
               <p className="text-xl font-semibold text-accent mb-6">100% Satisfaction Guarantee</p>
               <p className="text-white/90 mb-8 max-w-xl mx-auto">
                 We stand behind the quality of our staff. If you're not 100% satisfied with your cleaning, we'll come back and re-clean it at no additional charge, as long as we're informed within 24 hours after the cleaning.
@@ -519,7 +522,7 @@ export default function WallWashingCalgary() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" variant="accent" className="w-full sm:w-auto text-base px-8" asChild>
-                <Link to="/contact-us/">Get Instant Estimate</Link>
+                <a href="#quote">Get Instant Estimate</a>
               </Button>
               <Button size="lg" variant="outline" className="w-full sm:w-auto text-base border-white/30 text-white hover:bg-white/10" asChild>
                 <a href="tel:4037681341">

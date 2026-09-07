@@ -493,7 +493,18 @@ describe("price CTAs reach the price", () => {
    * difference between a guard that protects the funnel and one that would
    * push honest copy into the wrong place.
    */
-  const PROMISES_A_PRICE = /instant price|instant quote|see pricing|book your cleaning/i;
+  /*
+    "instant estimate" was the hole: both wall-washing pages shipped a closing
+    CTA reading "Get Instant Estimate" pointed at /contact-us/, while the hero
+    CTA on the same page opened the instant-price overlay — the page
+    contradicted itself and the guard could not see it, because it matched
+    "instant price" and "instant quote" but not the third synonym.
+
+    "free estimate" is deliberately NOT here. Commercial and post-construction
+    are quoted after a walkthrough and honestly say so; a contact form is the
+    right destination for those.
+  */
+  const PROMISES_A_PRICE = /instant (price|quote|estimate)|see pricing|book your cleaning/i;
 
   /** Destinations that cannot show a price. */
   const CANNOT_PRICE = /contact-us|#contact-form/;
