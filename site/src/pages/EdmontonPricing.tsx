@@ -1,5 +1,6 @@
 import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
 import { addOnFromPrice } from "@/data/pricing";
+import { TRAVEL_FEE_KEY } from "@/data/addon-table";
 import { POLICY } from "@/data/policy";
 import { useLocation } from "react-router-dom";
 import { quoteHrefFor } from "@/lib/quote-link";
@@ -53,6 +54,11 @@ const HOME_TYPE_EXTRA = {
 };
 
 const PET_FEE = formatPrice(addOnFromPrice("standard", "must-choose-if-you-have-pets") ?? 0);
+/* Derived for the same reason PET_FEE is: this sentence is the page's own
+   answer to "are there any hidden fees", and a hand-typed figure inside it is
+   the one most likely to be read as authoritative and the least likely to be
+   noticed when BookingKoala moves. */
+const TRAVEL_FEE = formatPrice(addOnFromPrice("standard", TRAVEL_FEE_KEY) ?? 0);
 
 const standardPricing = standardTierRows();
 
@@ -114,7 +120,7 @@ const faqItems = [
   // A FAQ with this title has to name the charges customers call hidden. Both
   // are published on /terms/ and both read from POLICY, so this answer can
   // never drift away from the terms it summarises.
-  { value: "hidden-fees", question: "Are there any hidden fees?", answer: `No. Here is every charge that is not the price on the card. A home with pets adds ${PET_FEE} to each visit, because paw prints and shedding add time. Addresses outside Edmonton and Calgary city limits carry a $29.99 travel fee; inside city limits there is no trip fee and no diagnostic fee. Cancelling or rescheduling inside ${POLICY.cancellationNoticeHours} hours is ${POLICY.cancellationFee}, and if the team arrives and cannot get in, the visit is charged at ${POLICY.lockoutFee}. Every one of those appears on your quote before you book. Anything else you add is optional and priced in the table above. Estimates are based on the details you give when booking; uncommon condition-based adjustments may apply if a home needs substantially more time or work than expected.` },
+  { value: "hidden-fees", question: "Are there any hidden fees?", answer: `No. Here is every charge that is not the price on the card. A home with pets adds ${PET_FEE} to each visit, because paw prints and shedding add time. Addresses outside Edmonton and Calgary city limits carry a ${TRAVEL_FEE} travel fee; inside city limits there is no trip fee and no diagnostic fee. Cancelling or rescheduling inside ${POLICY.cancellationNoticeHours} hours is ${POLICY.cancellationFee}, and if the team arrives and cannot get in, the visit is charged at ${POLICY.lockoutFee}. Every one of those appears on your quote before you book. Anything else you add is optional and priced in the table above — except eco-friendly products at ${POLICY.ecoProductsFee}, which are not on the booking form, so ${POLICY.ecoProductsHowToRequest}. Estimates are based on the details you give when booking; uncommon condition-based adjustments may apply if a home needs substantially more time or work than expected.` },
   { value: "satisfaction", question: "What if I'm not satisfied with the cleaning?", answer: "We offer 100% satisfaction guarantee. If you're not completely happy with our service, let us know within 24 hours and we'll come back to re-clean the areas of concern at no additional cost. Your satisfaction is our commitment." },
 ];
 
