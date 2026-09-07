@@ -406,7 +406,7 @@ export default function EdmontonMoveInOut() {
               <div className="space-y-4">
                 {faqs.map((faq, i) => (
                   <div key={i} className="bg-white rounded-xl border border-border overflow-hidden transition-all duration-300 hover:shadow-md">
-                    <button onClick={() => setOpenFAQ(openFAQ === i ? null : i)} className="w-full flex items-center justify-between p-5 text-left font-semibold">
+                    <button type="button" onClick={() => setOpenFAQ(openFAQ === i ? null : i)} aria-expanded={openFAQ === i} className="w-full flex items-center justify-between p-5 text-left font-semibold">
                       <span>{faq.q}</span>
                       {openFAQ === i ? <ChevronUp className="w-5 h-5 text-muted-foreground flex-shrink-0" /> : <ChevronDown className="w-5 h-5 text-muted-foreground flex-shrink-0" />}
                     </button>

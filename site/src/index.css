@@ -103,7 +103,10 @@ All colors MUST be HSL.
 
     /* Softer borders */
     --border: 210 15% 88%;
-    --input: 210 15% 90%;
+    /* 3.11:1 against the white field. Was 90%, which measured 1.26:1 — the
+       funnel's name/email/phone boxes were bounded by a line most people
+       cannot see, and WCAG 1.4.11 asks 3:1 of a control's boundary. */
+    --input: 210 15% 58%;
     --ring: 192 70% 35%;
 
     --radius: 0.5rem;

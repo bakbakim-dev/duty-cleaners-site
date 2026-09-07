@@ -395,7 +395,7 @@ export default function Edmonton2() {
 
               <div className="space-y-4">
                 {faqs.map((faq, index) => <div key={index} className="bg-white rounded-xl border border-border overflow-hidden transition-colors hover:border-brand-gold/60">
-                    <button onClick={() => toggleFAQ(index)} className="w-full flex items-center justify-between gap-3 p-5 text-left hover:bg-secondary/30 transition-colors">
+                    <button type="button" onClick={() => toggleFAQ(index)} aria-expanded={openFAQ === index} className="w-full flex items-center justify-between gap-3 p-5 text-left hover:bg-secondary/30 transition-colors">
                       <span className="flex items-baseline gap-3">
                         <span className="shrink-0 text-sm font-bold text-gold-ink">{String(index + 1).padStart(2, "0")}</span>
                         <span className="font-semibold pr-4">{faq.question}</span>

@@ -2,7 +2,7 @@ import { formatPrice } from "@/data/pricing";
 import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
 import { GST_RATE } from "@/data/pricing";
 import { canonicalForPath, canonicalUrlForPath } from "@/data/legacy-urls";
-import { schemaAddressFor, BRANCH_ID, BRANCH_IDENTITY } from "@/data/proof";
+import { schemaAddressFor, BRANCH_ID, BRANCH_IDENTITY, CITY_PROOF } from "@/data/proof";
 import { POLICY } from "@/data/policy";
 import CityCrossLink from "@/components/CityCrossLink";
 import { useState, useEffect, type ReactNode } from "react";
@@ -176,7 +176,11 @@ const ServiceDetailPage = ({
       // drifting url — the duplication the branch @id exists to prevent.
       "@id": BRANCH_ID[city],
       name: BRANCH_IDENTITY[city].name,
-      telephone: phone,
+      /* The E.164 form, not the display string. This node shares its @id with
+         the branch described everywhere else, and writing "(780) 913-6565"
+         here made one entity claim two different telephone values across the
+         graph. The visible tel: link still uses the display prop. */
+      telephone: CITY_PROOF[city].phoneE164,
       url: BRANCH_IDENTITY[city].url,
       // One authority for the entity's address (data/proof.ts). This provider
       // node used to carry none — on every service×city page, ~165 of the 175
