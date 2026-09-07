@@ -322,3 +322,59 @@ describe("no page invents a publication date", () => {
     ).toEqual([]);
   });
 });
+
+/**
+ * A Service that states a price must state the price the page states.
+ *
+ * Post-construction shipped a Service node with NO offer at all while the page
+ * showed "$550 to $1,900" — machines saw a service with no price on the money
+ * page whose whole problem is that it does not convert. Wall washing shipped
+ * the opposite failure: a scalar 39.99 for a band that reaches 234.99, so a
+ * rich result would have advertised the floor as the whole story.
+ *
+ * schema.org has priceSpecification for exactly this. The rule is that a
+ * visible band and a scalar price cannot coexist.
+ */
+describe("service offers match the band the page publishes", () => {
+  it("no Service quotes a scalar price where its page shows a range", () => {
+    const built = pages();
+    if (!built.length) return;
+
+    const offenders: string[] = [];
+    for (const { url, html } of built) {
+      for (const node of nodesOf(html)) {
+        if (node["@type"] !== "Service") continue;
+        const offer = node.offers as Record<string, unknown> | undefined;
+        if (!offer) continue;
+
+        const spec = offer.priceSpecification as Record<string, unknown> | undefined;
+        if (spec) {
+          const min = Number(spec.minPrice);
+          const max = Number(spec.maxPrice);
+          if (!(max > min)) offenders.push(`${url}: priceSpecification ${min}-${max} is not a range`);
+          continue;
+        }
+        // A scalar price is only honest when the page shows one figure. If the
+        // visible copy states "X to Y", the node must carry both.
+        const scalar = Number(offer.price);
+        if (!Number.isFinite(scalar)) continue;
+        // Plain string scanning on purpose. The first version of this built the
+        // pattern in a template literal, where \$ and \d collapse to $ and d —
+        // it compiled to "$39.99[^<]{0,40}?to $d" and could never match, so the
+        // branch looked like coverage and was not.
+        const needle = `$${scalar}`;
+        let showsBand = false;
+        let at = html.indexOf(needle);
+        while (at !== -1 && !showsBand) {
+          const window = html.slice(at + needle.length, at + needle.length + 40);
+          if (!window.includes("<") && / to \$\d/.test(window)) showsBand = true;
+          at = html.indexOf(needle, at + 1);
+        }
+        if (showsBand) {
+          offenders.push(`${url}: Service offers a flat ${scalar} while the page shows a range from it`);
+        }
+      }
+    }
+    expect(offenders, "a Service advertises a floor as though it were the price").toEqual([]);
+  });
+});

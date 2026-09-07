@@ -136,7 +136,7 @@ export default function EdmontonPostConstruction() {
           })}
         </script>
         <script type="application/ld+json">
-          {JSON.stringify(buildServiceSchema({ name: "Post-Construction Cleaning", description: "Final-stage post-construction cleaning in Edmonton for newly built and renovated homes. Remove drywall dust, smudges, and contractor residue.", path: "/post-construction-cleaning", city: "edmonton" }))}
+          {JSON.stringify(buildServiceSchema({ name: "Post-Construction Cleaning", description: "Final-stage post-construction cleaning in Edmonton for newly built and renovated homes. Remove drywall dust, smudges, and contractor residue.", path: "/post-construction-cleaning", city: "edmonton", offerFrom: Number(startingPriceLabel.replace(/[^0-9.]/g, "")), offerTo: Number(topPriceLabel.replace(/[^0-9.]/g, "")), offerNote: "Set by square footage and scope; quoted before booking." }))}
         </script>
       </Helmet>
 

@@ -22,6 +22,8 @@ export function buildServiceSchema(input: {
   city: "edmonton" | "calgary";
   /** Lowest real price a customer can book this at, if the page states one. */
   offerFrom?: number;
+  /** Top of the published range. Emits a priceSpecification instead of a scalar. */
+  offerTo?: number;
   /** Any condition the price depends on, e.g. that it is an add-on. */
   offerNote?: string;
 }) {
@@ -53,15 +55,38 @@ export function buildServiceSchema(input: {
       ? {
           offers: {
             "@type": "Offer",
-            price: input.offerFrom,
             priceCurrency: "CAD",
             availability: "https://schema.org/InStock",
+            /*
+              A scalar `price` states one number as THE price. That is right for
+              a single figure and wrong for a published band: post-construction
+              runs $550 to $1,900 by square footage, and wall washing $39.99 to
+              $234.99 by scope, so a bare minimum advertises a job most readers
+              cannot have at that price. Where the caller gives a top, emit a
+              priceSpecification carrying both ends — which is what schema.org
+              provides for exactly this, and what stops a rich result quoting
+              the floor as the whole story.
+            */
+            ...(input.offerTo !== undefined
+              ? {
+                  priceSpecification: {
+                    "@type": "PriceSpecification",
+                    minPrice: input.offerFrom,
+                    maxPrice: input.offerTo,
+                    priceCurrency: "CAD",
+                  },
+                }
+              : { price: input.offerFrom }),
             // Every figure is derived from bk-config by the caller; nothing here
             // is hand-typed, so it cannot drift from what BookingKoala charges.
             // offerNote carries any condition the price depends on. Wall
             // washing is an add-on, and a rich result showing a bare
             // "$39.99" would advertise a visit that cannot be booked.
-            description: `From ${input.offerFrom} CAD, before 5% GST.${input.offerNote ? ` ${input.offerNote}` : ""}`,
+            description: `${
+              input.offerTo !== undefined
+                ? `${input.offerFrom} to ${input.offerTo} CAD`
+                : `From ${input.offerFrom} CAD`
+            }, before 5% GST.${input.offerNote ? ` ${input.offerNote}` : ""}`,
           },
         }
       : {}),

@@ -176,7 +176,7 @@ export default function WallWashingCalgary() {
           })}
         </script>
         <script type="application/ld+json">
-          {JSON.stringify(buildServiceSchema({ name: "Wall Washing and Wall Cleaning", description: "Wall washing and wall cleaning in Calgary — scuffs, handprints and cooking film off painted walls. Added to a standard, deep or move-out clean.", path: "/wall-washing-wall-cleaning-calgary", city: "calgary", offerFrom: WALL_FROM, offerNote: "Added to a standard, deep or move-out clean; not sold as a standalone visit." }))}
+          {JSON.stringify(buildServiceSchema({ name: "Wall Washing and Wall Cleaning", description: "Wall washing and wall cleaning in Calgary — scuffs, handprints and cooking film off painted walls. Added to a standard, deep or move-out clean.", path: "/wall-washing-wall-cleaning-calgary", city: "calgary", offerFrom: WALL_FROM, offerTo: WALL_FULL_MAX, offerNote: "Added to a standard, deep or move-out clean; not sold as a standalone visit." }))}
         </script>
       </Helmet>
       <Navigation city="calgary" />
