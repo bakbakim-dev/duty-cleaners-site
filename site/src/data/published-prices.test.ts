@@ -28,10 +28,18 @@ const derived = () => [
 
 describe("published prices are derived, not typed", () => {
   it("the six service detail pages contain no dollar literals", () => {
+    // Move-out and post-construction were never in this list, so the Calgary
+    // move-out page hand-typed its three price cards and the travel fee for as
+    // long as they happened to stay correct, while its Edmonton twin derived
+    // the same numbers. Edmonton advertised a "$15 add-on" for eco-friendly
+    // products that bk-config has no extra for at any price — the same shape as
+    // the unbookable baseboards row the test below already bans.
     const pages = [
       "EdmontonRegularCleaning", "CalgaryRegularCleaning",
       "EdmontonRecurringCleaning", "CalgaryRecurringCleaning",
       "EdmontonDeepCleaning", "CalgaryDeepCleaning",
+      "EdmontonMoveInOut", "CalgaryMoveInOut",
+      "EdmontonPostConstruction", "CalgaryPostConstruction",
     ];
     for (const page of pages) {
       const src = readFileSync(join(PAGES_DIR, `${page}.tsx`), "utf-8");
@@ -75,13 +83,28 @@ describe("published prices are derived, not typed", () => {
   });
 
   it("no other page under src/pages hand-types a service price", () => {
-    // Advisory sweep: blog/cost-guide pages legitimately discuss market rates,
-    // so this only asserts the service pages stay clean as new ones are added.
+    /*
+      This used to assert only that some service pages EXIST — it counted files
+      and checked the tier helpers returned something, so it passed no matter
+      what those files contained. It was the sweep meant to catch a new service
+      page arriving with typed prices, and it could not have.
+
+      Blog and cost-guide pages legitimately discuss market rates, so they stay
+      out; every city service page is now actually read.
+    */
     const serviceLike = readdirSync(PAGES_DIR).filter((f) =>
       /^(Edmonton|Calgary)(Regular|Recurring|Deep|MoveInOut|PostConstruction)/.test(f),
     );
-    expect(serviceLike.length).toBeGreaterThanOrEqual(6);
-    expect(derived().length).toBeGreaterThan(0);
+    expect(serviceLike.length).toBeGreaterThanOrEqual(10);
+
+    const offenders: string[] = [];
+    for (const page of serviceLike) {
+      const src = readFileSync(join(PAGES_DIR, page), "utf-8");
+      const code = src.replace(/\/\*[\s\S]*?\*\//g, "").replace(/^\s*\/\/.*$/gm, "");
+      const literals = code.match(/\$\d[\d,]*(\.\d{2})?/g) ?? [];
+      if (literals.length) offenders.push(`${page}: ${literals.join(", ")}`);
+    }
+    expect(offenders, "service pages hand-typing prices instead of deriving them").toEqual([]);
   });
 });
 

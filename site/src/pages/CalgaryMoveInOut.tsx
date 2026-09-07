@@ -18,9 +18,26 @@ import { CheckCircle2, Phone, Home, Shield, Star, Clock, DollarSign, Award, MapP
 import { Link } from "react-router-dom";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import MoveOutDepth from "@/components/MoveOutDepth";
-import { moveInOutTierRows } from "@/data/pricing";
+import { moveInOutTierRows, addOnFromPrice, formatPrice } from "@/data/pricing";
+import { TRAVEL_FEE_KEY } from "@/data/addon-table";
 import { buildServiceSchema } from "@/lib/service-schema";
 import { schemaAddressFor, BRANCH_ID, ORG_ID, RATING_CLAIM, BRANCH_IDENTITY } from "@/data/proof";
+
+/*
+  The three price cards and the travel fee were hand-typed. They happened to be
+  right, which is the dangerous version: the Edmonton twin derives the same
+  figures, so the next bk-config change would have moved one page and not the
+  other. published-prices.test.ts could not catch it because its page list
+  covers only the six service-detail pages and has never included move-out.
+*/
+const MOVE_ROWS = moveInOutTierRows();
+const MOVE_CARD_ONE = MOVE_ROWS[0]?.price ?? "";
+const MOVE_CARD_TWO_THREE = `${MOVE_ROWS[1]?.price ?? ""}-${MOVE_ROWS[2]?.price ?? ""}`;
+const MOVE_CARD_FOUR_PLUS = `${MOVE_ROWS[3]?.price ?? ""}+`;
+const TRAVEL_FEE_LABEL = (() => {
+  const value = addOnFromPrice("standard", TRAVEL_FEE_KEY);
+  return value === null ? "a travel fee" : formatPrice(value);
+})();
 
 // Derived, never hand-typed (published-prices.test.ts): the cheapest
 // move-in/out tier from bk-config is the honest floor.
@@ -473,7 +490,7 @@ export default function CalgaryMoveInOut() {
                 Starting rates depend on your home’s size, condition and the services you choose. Three
                 charges sit outside that: {POLICY.cancellationFee} for cancelling inside{" "}
                 {POLICY.cancellationNoticeHours} hours, {POLICY.lockoutFee} if we arrive and cannot get in,
-                and $29.99 for an address outside Calgary city limits. All three appear on your quote before
+                and {TRAVEL_FEE_LABEL} for an address outside Calgary city limits. All three appear on your quote before
                 you book, and every figure is before 5% GST.
               </p>
             </div>
@@ -550,7 +567,7 @@ export default function CalgaryMoveInOut() {
             <div className="bg-gradient-to-br from-primary/10 to-white border-2 border-primary/20 rounded-xl p-8 text-center hover:shadow-xl transition-shadow">
               <h3 className="text-xl font-bold mb-4">Studio/1 Bedroom</h3>
               <div className="mb-4">
-                <div className="text-4xl font-bold text-primary">$284</div>
+                <div className="text-4xl font-bold text-primary">{MOVE_CARD_ONE}</div>
                 <div className="text-sm text-muted-foreground">Starting at</div>
               </div>
               <p className="text-sm text-muted-foreground">Flat rate — full checklist</p>
@@ -559,7 +576,7 @@ export default function CalgaryMoveInOut() {
             <div className="bg-gradient-to-br from-blue-50 to-white border-2 border-blue-200 rounded-xl p-8 text-center hover:shadow-xl transition-shadow">
               <h3 className="text-xl font-bold mb-4">2-3 Bedrooms</h3>
               <div className="mb-4">
-                <div className="text-4xl font-bold text-blue-600">$361-$424</div>
+                <div className="text-4xl font-bold text-blue-600">{MOVE_CARD_TWO_THREE}</div>
                 <div className="text-sm text-muted-foreground">Starting at</div>
               </div>
               <p className="text-sm text-muted-foreground">Flat rate — full checklist</p>
@@ -568,7 +585,7 @@ export default function CalgaryMoveInOut() {
             <div className="bg-gradient-to-br from-accent/10 to-white border-2 border-accent/20 rounded-xl p-8 text-center hover:shadow-xl transition-shadow">
               <h3 className="text-xl font-bold mb-4">4+ Bedrooms</h3>
               <div className="mb-4">
-                <div className="text-4xl font-bold text-accent">$501+</div>
+                <div className="text-4xl font-bold text-accent">{MOVE_CARD_FOUR_PLUS}</div>
                 <div className="text-sm text-muted-foreground">Starting at</div>
               </div>
               <p className="text-sm text-muted-foreground">Flat rate — full checklist</p>
