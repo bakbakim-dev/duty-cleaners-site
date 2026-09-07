@@ -133,7 +133,7 @@ export default function Summerside() {
   url: "https://dutycleaners.ca/locations/summerside",
   areaServed: "Summerside, Edmonton, AB",
   description: "Professional house cleaning in Summerside, Edmonton. Trusted local cleaners serving south Edmonton families.",
-  geo: { latitude: "53.4375", longitude: "-113.546" },
+  geo: { latitude: "53.41764", longitude: "-113.45999" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/summerside/" />
@@ -295,7 +295,7 @@ export default function Summerside() {
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <Suspense fallback={<div className="w-full h-[400px] bg-muted animate-pulse rounded-2xl" />}>
-                  <LocationMap center={[53.4375, -113.546]} label="Summerside, Edmonton" />
+                  <LocationMap center={[53.41764, -113.45999]} label="Summerside, Edmonton" />
                 </Suspense>
               </div>
             </AnimatedSection>

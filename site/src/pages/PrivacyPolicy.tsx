@@ -151,8 +151,12 @@ export default function PrivacyPolicy() {
                   you to their booking form. See the section below on what travels with you.
                 </li>
                 <li>
-                  <strong>HighLevel</strong> — powers the quote request form embedded on some pages. What you
-                  type into that form is submitted to them and passed on to us.
+                  <strong>Supabase</strong> — the database behind our own quote relay. Everything you enter in
+                  the quote, contact and careers forms is written here first, before it reaches our CRM.
+                </li>
+                <li>
+                  <strong>HighLevel</strong> — our CRM. Nothing of theirs is embedded on this site any more;
+                  our relay sends your enquiry to them over their API once you submit it.
                 </li>
                 <li>
                   <strong>Google Maps</strong> — the service-area map embedded on many of our neighbourhood
@@ -179,8 +183,8 @@ export default function PrivacyPolicy() {
               <h2 className="text-2xl font-bold mb-4 text-foreground">Where Your Information Is Stored</h2>
               <p className="mb-8">
                 Duty Cleaners operates in Alberta, but two of the services we rely on are based in the
-                United States: BookingKoala, which runs our booking system, and HighLevel, which handles
-                quote enquiries. When you book or request a quote, the details you enter — including your
+                United States: BookingKoala, which runs our booking system, and HighLevel, which is our CRM.
+                Our own quote relay stores enquiries in Supabase before passing them on. When you book or request a quote, the details you enter — including your
                 name, address, phone number, email and any access instructions — are stored and processed
                 on servers outside Canada. While your information is in another country it is subject to
                 that country&rsquo;s laws, and may be accessible to its courts and government authorities.

@@ -59,9 +59,9 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
   "/cleaning-services-windermere/": [
     { name: "Ambleside", to: "/locations/ambleside-edmonton/" },
     { name: "Terwillegar", to: "/locations/terwillegar/" },
-    { name: "Summerside", to: "/locations/summerside/" },
     { name: "Riverbend", to: "/locations/riverbend/" },
     { name: "Aspen Gardens", to: "/locations/aspen-gardens-edmonton/" },
+    { name: "Brookside", to: "/locations/brookside-edmonton/" },
   ],
   "/locations/abbottsfield-edmonton/": [
     { name: "Belvedere", to: "/locations/belvedere-edmonton/" },
@@ -88,8 +88,8 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
     { name: "Windermere", to: "/cleaning-services-windermere/" },
     { name: "Terwillegar", to: "/locations/terwillegar/" },
     { name: "Riverbend", to: "/locations/riverbend/" },
-    { name: "Summerside", to: "/locations/summerside/" },
     { name: "Aspen Gardens", to: "/locations/aspen-gardens-edmonton/" },
+    { name: "Glastonbury", to: "/locations/glastonbury/" },
   ],
   "/locations/arbour-lake/": [
     { name: "Scenic Acres", to: "/locations/scenic-acres/" },
@@ -963,11 +963,11 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
     { name: "Erlton", to: "/locations/erlton-calgary/" },
   ],
   "/locations/summerside/": [
-    { name: "Terwillegar", to: "/locations/terwillegar/" },
-    { name: "Riverbend", to: "/locations/riverbend/" },
+    { name: "Laurel", to: "/locations/laurel-edmonton/" },
     { name: "Greenfield", to: "/locations/greenfield-edmonton/" },
-    { name: "Windermere", to: "/cleaning-services-windermere/" },
-    { name: "Brookside", to: "/locations/brookside-edmonton/" },
+    { name: "Terwillegar", to: "/locations/terwillegar/" },
+    { name: "Tamarack", to: "/locations/tamarack-edmonton/" },
+    { name: "Larkspur", to: "/locations/larkspur-edmonton/" },
   ],
   "/locations/sunalta-calgary/": [
     { name: "Sunalta West", to: "/locations/sunalta-west-calgary/" },
@@ -998,11 +998,11 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
     { name: "Holyrood", to: "/locations/holyrood-edmonton/" },
   ],
   "/locations/terwillegar/": [
-    { name: "Summerside", to: "/locations/summerside/" },
     { name: "Riverbend", to: "/locations/riverbend/" },
     { name: "Ambleside", to: "/locations/ambleside-edmonton/" },
     { name: "Aspen Gardens", to: "/locations/aspen-gardens-edmonton/" },
     { name: "Windermere", to: "/cleaning-services-windermere/" },
+    { name: "Brookside", to: "/locations/brookside-edmonton/" },
   ],
   "/locations/thorncliffe-calgary/": [
     { name: "Highland Park", to: "/locations/highland-park-calgary/" },
