@@ -52,7 +52,7 @@ const whyChooseUs = [
   { icon: Sparkles, title: "Attention to Detail", desc: "We hand-wipe ledges, tracks, vents, and trim where dust quietly settles after construction." },
   { icon: Wrench, title: "Professional Equipment", desc: "High-performance vacuums, microfiber cleaning systems, and surface-safe products designed for post-renovation cleaning." },
   { icon: Heart, title: "Satisfaction Guarantee", desc: "Not happy with an area? Let us know within 24 hours and we'll re-clean it free of charge." },
-  { icon: DollarSign, title: "Transparent Pricing", desc: `${startingPriceLabel} to ${topPriceLabel}, set by square footage and scope — you see your number before you book, and it is the number you pay.` }
+  { icon: DollarSign, title: "Transparent Pricing", desc: `${startingPriceLabel} to ${topPriceLabel}, before 5% GST, set by square footage and scope — you see your number before you book, and it is the number you pay.` }
 ];
 
 const faqs = [

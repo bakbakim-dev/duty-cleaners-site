@@ -187,7 +187,10 @@ export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: 
             <nav aria-label="Footer navigation">
               <FooterLink to="/about-us/">About Us</FooterLink>
               <FooterLink to="/locations/">All Locations</FooterLink>
-              <FooterLink to="/cleaning-services-leduc/">House Cleaning in Leduc</FooterLink>
+              {/* Leduc alone used to sit here, on all 209 pages including every
+                  Calgary one, with an exact-match anchor. Nine sibling towns had no
+                  such link and nothing explained the choice; /locations/ above
+                  reaches all ten. */}
               <FooterLink to={canonicalForPath(`/${city}/services`)}>Services</FooterLink>
               <FooterLink to={canonicalForPath(`/${city}/pricing`)}>Pricing</FooterLink>
               <FooterLink to="/reviews/">Reviews</FooterLink>

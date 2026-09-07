@@ -161,20 +161,20 @@ export default function EdmontonMoveInOut() {
     <>
       <Helmet>
         <title>Move Out & Move In Cleaning Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Inspection-ready move out cleaning Edmonton & move in cleaning services. End of tenancy cleaning trusted by landlords. Same-day available." />
+        <meta name="description" content="Inspection-ready move out and move in cleaning in Edmonton, built around landlord checklists. Same-day and next-day often available." />
         <meta name="keywords" content="move out cleaning Edmonton, move in cleaning Edmonton, end of tenancy cleaning Edmonton, move in ready cleaning, damage deposit cleaning Edmonton, move out cleaners Edmonton" />
         <link rel="canonical" href="https://dutycleaners.ca/move-out-cleaning-edmonton/" />
         <meta property="og:title" content="Move Out & Move In Cleaning Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Inspection-ready move out cleaning Edmonton & move in cleaning services. End of tenancy cleaning trusted by landlords. Same-day available." />
+        <meta property="og:description" content="Inspection-ready move out and move in cleaning in Edmonton, built around landlord checklists. Same-day and next-day often available." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/move-out-cleaning-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Move Out & Move In Cleaning Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Inspection-ready move out cleaning Edmonton & move in cleaning services. End of tenancy cleaning trusted by landlords. Same-day available." />
+        <meta name="twitter:description" content="Inspection-ready move out and move in cleaning in Edmonton, built around landlord checklists. Same-day and next-day often available." />
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
         <script type="application/ld+json">
-          {JSON.stringify(buildServiceSchema({ name: "Move Out and Move In Cleaning", description: "Inspection-ready move out cleaning Edmonton & move in cleaning services. End of tenancy cleaning trusted by landlords. Same-day available.", path: "/move-out-cleaning-edmonton", city: "edmonton" }))}
+          {JSON.stringify(buildServiceSchema({ name: "Move Out and Move In Cleaning", description: "Inspection-ready move out and move in cleaning in Edmonton, built around landlord checklists. Same-day and next-day often available.", path: "/move-out-cleaning-edmonton", city: "edmonton" }))}
         </script>
       </Helmet>
 
