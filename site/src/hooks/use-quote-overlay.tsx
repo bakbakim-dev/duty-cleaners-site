@@ -134,9 +134,24 @@ export function QuoteOverlayProvider({ children }: { children: ReactNode }) {
 
       event.preventDefault();
       const service = anchor.dataset.quoteService as ServiceId | undefined;
-      // CTAs can't carry a query string (they're #quote anchors), so the deep
-      // intent travels on a data attribute instead.
-      const intent: QuoteIntent = anchor.dataset.quoteIntent === "deep" ? "deep" : null;
+      /*
+        Read the intent from BOTH channels.
+
+        This used to read only the data attribute, on the stated grounds that
+        "CTAs can't carry a query string (they're #quote anchors)". Ten of them
+        do: the five Deep Cleaning tier cards on /pricing/ and the five on
+        /calgary/pricing/ ship href="/?intent=deep#quote". No page anywhere in
+        the build carries data-quote-intent, so every one of those clicks was
+        preventDefaulted — which also stops the URL changing, so QuoteFlow's own
+        URLSearchParams read never saw it either — and the visitor who clicked a
+        $255 deep-clean card was quoted the $155 standard tier, with the Deep
+        Cleaning package demoted to an optional add-on they had to find again
+        and the CRM lead written as intent: null.
+      */
+      const rawHref = anchor.getAttribute("href") ?? "";
+      const intentInHref = /[?&]intent=deep(?:[&#]|$)/.test(rawHref);
+      const intent: QuoteIntent =
+        anchor.dataset.quoteIntent === "deep" || intentInHref ? "deep" : null;
       openQuote(service, intent);
     };
 
