@@ -141,3 +141,44 @@ describe("map markers have an accessible name", () => {
     ).toEqual([]);
   });
 });
+
+/**
+ * The "What's included" checklist must not reserve desktop track widths on a
+ * phone.
+ *
+ * Its row grid was `grid-cols-[2.5rem_minmax(0,11rem)_minmax(0,1fr)]` with no
+ * responsive override, so 40px + 176px + 32px of gaps were reserved at every
+ * width. On a 375px phone that left the checklist 95px, and item text ran past
+ * the viewport edge — unreachable rather than scrollable, because the overflow
+ * landed on the document rather than a scroll container. Measured after the
+ * fix: 343px at 375 wide, 288px at 320, no clipped items at either.
+ *
+ * Guarded at source rather than in dist because the class list is what decides
+ * it, and Tailwind emits no marker in the HTML that distinguishes the two.
+ */
+describe("the included-services checklist collapses on small screens", () => {
+  it("does not reserve the desktop three-track grid below md", () => {
+    const src = readFileSync(
+      join(__dirname, "..", "components", "CityIncludedChapter.tsx"),
+      "utf-8",
+    );
+    const rows = [...src.matchAll(/className="([^"]*grid-cols-\[2\.5rem[^"]*)"/g)].map((m) => m[1]);
+    expect(rows.length, "the checklist row grid is gone; re-point this guard").toBeGreaterThan(0);
+    for (const cls of rows) {
+      const unprefixed = cls.match(/(?:^|\s)grid-cols-\[([^\]]*)\]/);
+      expect(
+        unprefixed,
+        `checklist row has no unprefixed grid-cols: ${cls}`,
+      ).toBeTruthy();
+      expect(
+        unprefixed![1].includes("11rem"),
+        "the checklist reserves the 11rem title track at ALL widths again; below md it leaves " +
+          "the item list under 100px and the text is clipped off-screen",
+      ).toBe(false);
+      expect(
+        /md:grid-cols-\[/.test(cls),
+        "the checklist row lost its md: grid override",
+      ).toBe(true);
+    }
+  });
+});

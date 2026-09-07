@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest";
 import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { standardTierRows, deepCleanTierRows, moveInOutTierRows } from "./pricing";
+import { BK_PRICE_OVERRIDES } from "./bk-price-overrides";
 
 /**
  * llms.txt exists for exactly one audience — machine readers that will not
@@ -226,6 +227,49 @@ describe("retired claims stay retired", () => {
     it(`${name} discloses the travel fee alongside its prices`, () => {
       expect(/\$\d/.test(text), `${name} should quote prices`).toBe(true);
       expect(/travel fee/i.test(text), `${name} quotes prices but never mentions the travel fee`).toBe(true);
+    });
+  }
+
+  /**
+   * The travel fee was the only compulsory charge these files disclosed, and it
+   * is the one that applies LEAST often — it needs an address outside the two
+   * metros. The two that apply everywhere were missing:
+   *
+   *   home type  every tier price in both files is an apartment-or-condo price;
+   *              a bungalow or basement suite adds $15, a townhouse $40 and a
+   *              two-storey house $55
+   *   pets       $19.99 on every visit, and policy.ts calls it "compulsory, not
+   *              an add-on" because BookingKoala's own extra is named "Must
+   *              choose if you have pets"
+   *
+   * So an assistant pricing a two-storey home with a pet from these files
+   * answered $155 where the real figure is $229.99 — understated by a third,
+   * on the surface that exists specifically to be quoted verbatim by machines.
+   *
+   * The amounts are read from BK_PRICE_OVERRIDES so the guard cannot pass
+   * against a stale figure typed into the files.
+   */
+  const HOME_TYPE_IDS = { bungalow: 54, basementSuite: 56, townhouse: 89, twoStorey: 90 };
+
+  for (const [name, text] of surfaces) {
+    it(`${name} discloses the home-type surcharges its tier prices exclude`, () => {
+      for (const [label, id] of Object.entries(HOME_TYPE_IDS)) {
+        const amount = BK_PRICE_OVERRIDES[id]?.price;
+        expect(amount, `no BK override for ${label} (id ${id})`).toBeGreaterThan(0);
+        expect(
+          text.includes(`$${amount}`),
+          `${name} never states the ${label} surcharge of $${amount}; a machine quoting a tier ` +
+            "price for that home type would understate it",
+        ).toBe(true);
+      }
+    });
+
+    it(`${name} discloses the per-visit pet charge`, () => {
+      expect(
+        /\$19\.99/.test(text),
+        `${name} quotes prices but never states the $19.99 pet charge, which policy.ts records ` +
+          "as compulsory rather than an add-on",
+      ).toBe(true);
     });
   }
 });

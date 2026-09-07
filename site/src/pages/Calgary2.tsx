@@ -53,6 +53,7 @@ import gallerySpotlessKitchen from "@/assets/gallery/calgary-spotless-kitchen.we
 import galleryBathroomDeep from "@/assets/gallery/calgary-bathroom-deep.webp";
 import galleryToiletBA from "@/assets/gallery/calgary-toilet-ba.webp";
 import { standardTierRows, moveInOutTierRows } from "@/data/pricing";
+import DeferUntilVisible from "@/components/DeferUntilVisible";
 
 /* Width-descriptor set for the hero, the LCP element on this page. Without
    it a phone pulled the same 1920px file as a desktop: hero-room-calgary at 1920w against
@@ -448,9 +449,14 @@ export default function Calgary2() {
             <CityCoverageGrid city="Calgary" neighbourhoods={calgaryNeighborhoods} surrounding={calgarySurrounding} />
 
             <div className="mt-10 max-w-5xl mx-auto">
-              <Suspense fallback={<div className="w-full h-[400px] rounded-xl bg-muted animate-pulse" />}>
-                <CalgaryServiceAreaMap />
-              </Suspense>
+              {/* The map is ~20,000px down the page. lazy() defers rendering
+                  but not loading, so without this gate every visitor pulled
+                  149KB of Leaflet and hit three tile origins on page load. */}
+              <DeferUntilVisible placeholder={<div className="w-full h-[400px] rounded-xl bg-muted animate-pulse" />}>
+                <Suspense fallback={<div className="w-full h-[400px] rounded-xl bg-muted animate-pulse" />}>
+                  <CalgaryServiceAreaMap />
+                </Suspense>
+              </DeferUntilVisible>
             </div>
 
           </div>
