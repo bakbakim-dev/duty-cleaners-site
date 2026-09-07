@@ -67,9 +67,22 @@ export default function QuoteOverlay() {
       if (event.key !== "Tab") return;
       const panel = panelRef.current;
       if (!panel) return;
-      const focusable = panel.querySelectorAll<HTMLElement>(
-        'a[href], button:not([disabled]), iframe, [tabindex]:not([tabindex="-1"])'
-      );
+      /*
+        Only VISIBLE elements can hold focus, and the panel's own header hides
+        two of its controls responsively — the "Back to {page}" button is
+        `hidden md:inline-flex`, so below 768px it is display:none while still
+        matching this selector. It was the first match, so Shift+Tab from the
+        top of the modal called .focus() on a display:none button, which does
+        nothing: focus stayed where it was or fell to the body, and the trap
+        leaked on every phone-width viewport. offsetParent is null for anything
+        with display:none on itself or an ancestor, which is exactly the set
+        that cannot take focus.
+      */
+      const focusable = Array.from(
+        panel.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), iframe, [tabindex]:not([tabindex="-1"])'
+        )
+      ).filter((el) => el.offsetParent !== null || el.getClientRects().length > 0);
       if (focusable.length === 0) return;
       const first = focusable[0];
       const last = focusable[focusable.length - 1];

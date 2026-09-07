@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest";
 import { readFileSync, existsSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { LOCATION_GEO, geoFor } from "./location-geo";
+import { calgarySurrounding, edmontonSurrounding } from "./city-locations";
 
 /**
  * Guards the coordinates.
@@ -283,4 +284,65 @@ describe("each map embed is centred on the place its page describes", () => {
         `crawling the built site — it only ships to real visitors.`,
     ).toEqual([]);
   });
+});
+
+/**
+ * A separate municipality is never labelled as part of the hub city.
+ *
+ * The homepage and Calgary hub marquees built one list from
+ * <city>Neighborhoods and <city>Surrounding and printed the hub city under
+ * every entry, so the two pages carrying 63.9% of site value rendered "Leduc
+ * Edmonton" and "Black Diamond Calgary". Leduc is its own city; Black Diamond
+ * is a town 60 km from Calgary. The data has always kept the two classes
+ * apart — only the component collapsed them.
+ *
+ * This asserts against the BUILT pages, because the defect is what ships, and
+ * it is the same false-geo class this repo has corrected 59 times.
+ */
+describe("separate municipalities are not labelled as the hub city", () => {
+  const DIST_ROOT = join(__dirname, "..", "..", "dist");
+  const HUBS = [
+    { url: "/", file: "index.html", city: "Edmonton", towns: edmontonSurrounding },
+    {
+      url: "/cleaning-services-calgary/",
+      file: join("cleaning-services-calgary", "index.html"),
+      city: "Calgary",
+      towns: calgarySurrounding,
+    },
+  ];
+
+  for (const hub of HUBS) {
+    it(`${hub.url} never prints "<town> ${hub.city}"`, () => {
+      const path = join(DIST_ROOT, hub.file);
+      if (!existsSync(path)) return; // unbuilt tree
+      const html = readFileSync(path, "utf-8");
+      const offenders = hub.towns
+        .map((town) => town.name)
+        .filter((name) => {
+          // The marquee renders the place as a link and the qualifier in the
+          // very next <span>. Look for that exact shape rather than mere
+          // co-occurrence — both names legitimately appear elsewhere on the
+          // page. Plain string scanning, so no regex escaping of place names
+          // with dots or dashes (St. Albert, Sherwood Park) is needed.
+          const anchorEnd = `>${name}</a>`;
+          let at = html.indexOf(anchorEnd);
+          while (at !== -1) {
+            const after = html.slice(at + anchorEnd.length, at + anchorEnd.length + 400);
+            if (after.startsWith("<span")) {
+              const open = after.indexOf(">");
+              const close = after.indexOf("</span>");
+              if (open !== -1 && close > open && after.slice(open + 1, close).trim() === hub.city) {
+                return true;
+              }
+            }
+            at = html.indexOf(anchorEnd, at + 1);
+          }
+          return false;
+        });
+      expect(
+        offenders,
+        `${hub.url} labels ${offenders.join(", ")} as part of ${hub.city}; they are separate municipalities`,
+      ).toEqual([]);
+    });
+  }
 });

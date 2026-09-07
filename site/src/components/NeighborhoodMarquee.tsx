@@ -18,14 +18,29 @@ interface NeighborhoodMarqueeProps {
  * visitor prefers reduced motion.
  */
 export default function NeighborhoodMarquee({ city }: NeighborhoodMarqueeProps) {
-  const places: CityLocation[] =
-    city === "Calgary"
-      ? [...calgaryNeighborhoods.slice(0, 9), ...calgarySurrounding.slice(0, 5)]
-      : [...edmontonNeighborhoods.slice(0, 9), ...edmontonSurrounding.slice(0, 5)];
+  /*
+    The two lists are NOT the same kind of place, and the marquee used to print
+    the hub city under both: "Leduc / Edmonton", "Black Diamond / Calgary".
+    Leduc is its own city with its own mayor, and Black Diamond is a town 60 km
+    from Calgary — labelling them as the hub city is a false geographic claim,
+    on the two pages that carry 63.9% of site value. This site has shipped 59
+    of those before, and the data already keeps the two classes apart; only
+    this component collapsed them.
+
+    Neighbourhoods keep the city as their qualifier because that is what they
+    are. Separate municipalities get the province instead, which is true of
+    both and still reads as a place line.
+  */
+  const neighbourhoods = city === "Calgary" ? calgaryNeighborhoods : edmontonNeighborhoods;
+  const surrounding = city === "Calgary" ? calgarySurrounding : edmontonSurrounding;
+  const places: Array<CityLocation & { qualifier: string }> = [
+    ...neighbourhoods.slice(0, 9).map((place) => ({ ...place, qualifier: city })),
+    ...surrounding.slice(0, 5).map((place) => ({ ...place, qualifier: "AB" })),
+  ];
 
   const run = (ariaHidden: boolean) => (
     <div className="flex w-max items-baseline" aria-hidden={ariaHidden || undefined}>
-      {places.map(({ name, to }) => (
+      {places.map(({ name, to, qualifier }) => (
         <span key={`${to}${ariaHidden ? "-b" : ""}`} className="flex items-baseline">
           <Link
             to={withTrailingSlash(to)}
@@ -35,7 +50,7 @@ export default function NeighborhoodMarquee({ city }: NeighborhoodMarqueeProps) 
             {name}
           </Link>
           <span className="display-serif whitespace-nowrap pr-6 text-lg italic text-muted-foreground md:text-2xl">
-            {city}
+            {qualifier}
           </span>
           <span className="px-4 text-brand-gold" aria-hidden="true">
             ✦
