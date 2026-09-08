@@ -6,7 +6,7 @@
   "scripts": {
     "predev": "bunx tsx scripts/generate-post-dates.ts && bunx tsx scripts/generate-sitemap.ts && bunx tsx scripts/generate-redirects.ts",
     "dev": "vite",
-    "prebuild": "bunx tsx scripts/generate-post-dates.ts && bunx tsx scripts/generate-sitemap.ts && bunx tsx scripts/generate-redirects.ts",
+    "prebuild": "bunx tsx scripts/generate-post-dates.ts && bunx tsx scripts/generate-sitemap.ts && bunx tsx scripts/generate-redirects.ts && bunx tsx scripts/generate-htaccess.ts",
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
@@ -16,7 +16,8 @@
     "prerender:all": "node scripts/prerender.mjs --all",
     "indexnow": "node scripts/indexnow.mjs",
     "deploy:preview": "node scripts/deploy.mjs preview",
-    "deploy:production": "node scripts/deploy.mjs production"
+    "deploy:production": "node scripts/deploy.mjs production",
+    "generate:htaccess": "bunx tsx scripts/generate-htaccess.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
