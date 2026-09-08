@@ -133,6 +133,7 @@ const faqs = [
   { q: "Do you remove mold from walls?", a: "We handle light surface mold and mildew cleaning. Severe or structural mold cases may require a specialized mold remediation company." },
   { q: "Do I need to move furniture?", a: "We recommend clearing access where possible to make sure we can reach the full wall, but our team can carefully work around furniture when needed." },
   { q: "Do you offer wall cleaning for rentals or move-outs?", a: "Yes — wall washing is one of the most-requested add-ons for move-out cleans and property refreshes before listing or new tenants." },
+  { q: "Do you clean ceilings in homes affected by smoke or nicotine?", a: "We generally do not clean very high areas like ceilings as part of our standard service. However, as long as the ceiling is safely reachable and not very high, we can attempt to clean flat ceilings for an additional charge, since this work can take significantly more time and effort. Please note: ceiling cleaning is considered an extra service, additional charges and time may apply, and we cannot guarantee full stain or odour removal. We do not clean popcorn ceilings and usually recommend replacement instead, especially in heavily smoke-damaged homes." },
 ];
 
 /** Cheapest bookable wall service, derived from bk-config — never typed. */

@@ -88,7 +88,7 @@ export default function LocationPricing({ place }: LocationPricingProps) {
             rates in Canadian dollars before 5% GST — the figure you see before booking is the
             figure you pay, and it does not go up because a clean took longer than expected.
             {isOwnMunicipality && TRAVEL_FEE !== null
-              ? ` Because ${name} sits outside our Edmonton and Calgary service areas, a ${TRAVEL_FEE} travel fee is added to bookings here.`
+              ? ` Because ${name} is outside Edmonton and Calgary city limits, a ${TRAVEL_FEE} travel fee is added to bookings here.`
               : ""}
           </p>
           <p className="text-muted-foreground text-lg leading-relaxed">

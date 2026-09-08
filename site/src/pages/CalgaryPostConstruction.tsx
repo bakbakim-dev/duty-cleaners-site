@@ -84,6 +84,14 @@ const faqs = [
     a: "No. Manufacturer stickers, plastic films on appliances, and window decals must be removed by the homeowner or contractor before our visit.",
   },
   {
+    q: "Do you clean inside appliances during post-renovation cleaning?",
+    a: "For post-renovation cleaning, we only clean the exterior of appliances. The interiors are not included in this service.",
+  },
+  {
+    q: "Can you clean a home that is not completely empty after renovations?",
+    a: "Construction debris and materials do have to be gone before we start — that part is not negotiable, because our team is not equipped to haul it and it hides the surfaces we are there to clean. Furniture is a different question: a renovated kitchen or bathroom in a home you still live in is normal work for us, and we clean around what is there. Tell us at booking what is still in the rooms and we will say plainly whether a post-construction clean is the right service or whether a deep clean fits better.",
+  },
+  {
     q: "Do you offer a satisfaction guarantee?",
     a: "Yes. If you're not satisfied with any area of your post-construction cleaning, contact us within 24 hours and we'll return to re-clean it free of charge.",
   },

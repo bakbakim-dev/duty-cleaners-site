@@ -90,7 +90,7 @@ const faqs = [
   },
   {
     q: "Can you clean a home that is not completely empty after renovations?",
-    a: "We require the home to be fully empty before performing post-renovation cleaning to ensure a thorough and safe clean. If the home will not be empty, please let us know during booking so we can recommend a more suitable service option.",
+    a: "Construction debris and materials do have to be gone before we start — that part is not negotiable, because our team is not equipped to haul it and it hides the surfaces we are there to clean. Furniture is a different question: a renovated kitchen or bathroom in a home you still live in is normal work for us, and we clean around what is there. Tell us at booking what is still in the rooms and we will say plainly whether a post-construction clean is the right service or whether a deep clean fits better.",
   },
   {
     q: "Do you offer a satisfaction guarantee?",

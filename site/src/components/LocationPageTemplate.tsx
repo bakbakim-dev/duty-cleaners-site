@@ -382,7 +382,7 @@ export default function LocationPageTemplate({
                 figure you see before booking is the figure you pay, and it does not go up because a clean
                 took longer than expected.
                 {isOwnMunicipality && TRAVEL_FEE !== null
-                  ? ` Because ${city} sits outside our Edmonton and Calgary service areas, a ${TRAVEL_FEE} travel fee is added to bookings here.`
+                  ? ` Because ${city} is outside Edmonton and Calgary city limits, a ${TRAVEL_FEE} travel fee is added to bookings here.`
                   : ""}
               </p>
               <p className="text-muted-foreground text-lg leading-relaxed">

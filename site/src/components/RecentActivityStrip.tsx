@@ -1,4 +1,5 @@
-import { Star, MapPin, BadgeCheck, ShieldCheck, ExternalLink } from "lucide-react";
+import { useState } from "react";
+import { Pause, Play, Star, MapPin, BadgeCheck, ShieldCheck, ExternalLink } from "lucide-react";
 import type { RecentCleanReview } from "@/components/CityRecentCleans";
 import { HOMES_CLEANED, RATING_CLAIM, CITY_PROOF } from "@/data/proof";
 import { getListing, openGoogleListing } from "@/lib/google-listings";
@@ -60,13 +61,32 @@ const RecentActivityStrip = ({ city, reviews }: RecentActivityStripProps) => {
       </div>
     );
   }
+  const [paused, setPaused] = useState(false);
   const items = [...reviews, ...reviews]; // duplicated for a seamless loop
 
   return (
+    /*
+      WCAG 2.2.2 is Level A: anything that moves by itself for more than five
+      seconds beside other content needs a control to stop it. Pausing on hover
+      was the only mechanism here, which is no mechanism at all for a keyboard
+      or touch user — and this strip sits directly above the quote form, so the
+      moving text is in view exactly while someone is trying to read and fill it.
+    */
     <div
-      className="marquee-hover-pause overflow-hidden border-y border-border bg-white py-3"
+      className={`marquee-hover-pause relative overflow-hidden border-y border-border bg-white py-3${
+        paused ? " marquee-paused" : ""
+      }`}
       aria-label={`Recent five-star cleans in ${city}`}
     >
+      <button
+        type="button"
+        onClick={() => setPaused((was) => !was)}
+        aria-pressed={paused}
+        className="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full border border-border bg-white/90 p-1.5 text-foreground shadow-sm transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+      >
+        {paused ? <Play className="h-3.5 w-3.5" aria-hidden="true" /> : <Pause className="h-3.5 w-3.5" aria-hidden="true" />}
+        <span className="sr-only">{paused ? "Resume the recent cleans strip" : "Pause the recent cleans strip"}</span>
+      </button>
       <div className="animate-marquee flex w-max items-center gap-3">
         {items.map((review, index) => (
           <span

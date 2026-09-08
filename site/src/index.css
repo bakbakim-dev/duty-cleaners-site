@@ -350,6 +350,8 @@ All colors MUST be HSL.
 
 .animate-marquee { animation: marquee-scroll 32s linear infinite; }
 .marquee-hover-pause:hover .animate-marquee { animation-play-state: paused; }
+/* The explicit control, for keyboard and touch users who have no hover. */
+.marquee-paused .animate-marquee { animation-play-state: paused; }
 
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee { animation: none; }
