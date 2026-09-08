@@ -5,6 +5,7 @@
  */
 
 import { cityFromPath } from "@/lib/city-from-path";
+import { confirm, type Confirmed, type Unconfirmed } from "./confirmed";
 
 export interface CityProof {
   city: "Edmonton" | "Calgary";
@@ -33,10 +34,10 @@ export interface CityProof {
    */
   streetAddress: string;
   postalCode: string;
-  /** TODO-OWNER: real Google rating (e.g. 4.8). */
-  googleRating: number | null;
-  /** TODO-OWNER: real Google review count. */
-  googleReviewCount: number | null;
+  /** The listing's rating, read from Google — never typed from memory. */
+  googleRating: Confirmed<number> | Unconfirmed;
+  /** The listing's review count, same source and date. */
+  googleReviewCount: Confirmed<number> | Unconfirmed;
 }
 
 export const CITY_PROOF: Record<"edmonton" | "calgary", CityProof> = {
@@ -51,8 +52,8 @@ export const CITY_PROOF: Record<"edmonton" | "calgary", CityProof> = {
     // Read directly from the Google listing on 2026-09-01, reached through the
     // CID pinned in google-listings.ts (8192121191672692049) — not from the
     // legacy site's embedded widget, which lagged the real count by 12.
-    googleRating: 4.9,
-    googleReviewCount: 236,
+    googleRating: confirm(4.9, { by: "google-listing", on: "2026-09-01", note: "CID 8192121191672692049" }),
+    googleReviewCount: confirm(236, { by: "google-listing", on: "2026-09-01", note: "CID 8192121191672692049" }),
   },
   calgary: {
     city: "Calgary",
@@ -63,8 +64,8 @@ export const CITY_PROOF: Record<"edmonton" | "calgary", CityProof> = {
     streetAddress: "2835 37 Street SW #24",
     postalCode: "T3E 3B3",
     // Same source and date as Edmonton, via CID 6193344199307583189.
-    googleRating: 4.9,
-    googleReviewCount: 51,
+    googleRating: confirm(4.9, { by: "google-listing", on: "2026-09-01", note: "CID 6193344199307583189" }),
+    googleReviewCount: confirm(51, { by: "google-listing", on: "2026-09-01", note: "CID 6193344199307583189" }),
   },
 };
 
@@ -98,11 +99,12 @@ export const COMPANY = {
   foundedYear: 2017,
   sinceLabel: "since 2017",
   /**
-   * Applicant acceptance rate. NOT published anywhere — the previous comment
-   * said it was, which would invite someone to trust it. Unconfirmed, so it
-   * stays out of the pages until the owner checks it against BookingKoala.
+   * Applicant acceptance rate. NOT published anywhere, and unconfirmed — the
+   * figure floated was "under 5%", which stays here as a note and nowhere
+   * else until the owner checks it against BookingKoala. It used to sit in
+   * this slot as a string, which is exactly the shape a page would render.
    */
-  applicantAcceptanceRate: "under 5%",
+  applicantAcceptanceRate: null as Confirmed<string> | Unconfirmed,
   /** TODO-OWNER: total cleans completed since 2017 (from BookingKoala). */
   totalCleans: null as number | null,
   /** TODO-OWNER: percentage of customers who rebook. */

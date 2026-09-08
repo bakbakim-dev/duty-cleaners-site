@@ -1,4 +1,4 @@
-import { addOnFromPrice, addOnsFor, formatPrice } from "@/data/pricing";
+import { addOnFromPrice, addOnsFor, bedroomOptions, formatPrice, sqftTierOptions, type ServiceId } from "@/data/pricing";
 
 /**
  * Published add-on table for the city pricing pages.
@@ -58,6 +58,23 @@ const ROWS: AddOnSpec[] = [
 
 export const TRAVEL_FEE_KEY =
   "outside-edmonton-calgary-surrounding-areas-travel-fee-do-not-select-this-if-you-live-inside-edmonton-calgary";
+
+/**
+ * The travel fee for a service, straight from bk-config, or null if that
+ * service carries none.
+ *
+ * Home services share TRAVEL_FEE_KEY, but post-construction has its own row
+ * under a different name ("... Travel fee $50 ..."), so this matches on the
+ * slug rather than a key. /terms/ used to hand-type both figures.
+ */
+export const travelFee = (service: ServiceId): number | null => {
+  const sizes = [...bedroomOptions(service), ...sqftTierOptions(service)].map((o) => o.id);
+  const prices = [null, ...sizes]
+    .flatMap((size) => addOnsFor(service, size))
+    .filter((addOn) => /travel-fee/.test(addOn.id))
+    .map((addOn) => addOn.price);
+  return prices.length ? Math.min(...prices) : null;
+};
 
 const priceCell = (value: number | null, unit?: string) =>
   value === null ? "Included" : `from ${formatPrice(value)}${unit ?? ""}`;

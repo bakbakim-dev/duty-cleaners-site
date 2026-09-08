@@ -1,7 +1,11 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
-import { POLICY } from "./policy";
+import { POLICY, PRICING_TERMS, SERVICE_TERMS } from "./policy";
+import { CITY_PROOF } from "./proof";
+import { confirm, PROVENANCE } from "./confirmed";
+import { travelFee } from "./addon-table";
+import { addOnFromPrice, formatPrice, FREQUENCIES } from "./pricing";
 
 /**
  * The satisfaction guarantee window drifted twice: it shipped as 24 hours on
@@ -82,5 +86,58 @@ describe("every policy value is settled", () => {
       .filter(([, v]) => v === null)
       .map(([k]) => k);
     expect(unset, `unconfirmed policy values: ${unset.join(", ")}`).toEqual([]);
+  });
+});
+
+/**
+ * Confirmed<T> used to be `type Confirmed<T> = T` — a comment with a type
+ * signature. These pin the branded version: every settled value carries who
+ * settled it and when, and the fees /terms/ states are bk-config's, not ours.
+ */
+describe("every confirmed value carries its provenance", () => {
+  it("records one provenance entry per settled policy value, plus the Google figures", () => {
+    const settled = Object.values(POLICY).filter((v) => v !== null).length;
+    const google = Object.values(CITY_PROOF).flatMap((c) => [c.googleRating, c.googleReviewCount]).filter((v) => v !== null).length;
+    expect(google).toBe(4);
+    // Registered at import time by confirm(); a value typed in without it
+    // would compile only by bypassing the brand, and would be missing here.
+    expect(PROVENANCE.length).toBe(settled + google);
+    for (const p of PROVENANCE) {
+      expect(p.on, `${String(p.value).slice(0, 30)} has no recorded date`).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      expect(["owner", "google-listing", "published-copy"]).toContain(p.by);
+    }
+  });
+
+  it("refuses a date nobody can look up", () => {
+    expect(() => confirm("x", { by: "owner", on: "2026-9-7" as never })).toThrow(/not an ISO date/);
+    expect(() => confirm("x", { by: "owner", on: "2026-13-40" })).toThrow(/not an ISO date/);
+  });
+
+  it("every dollar figure in policy.ts is either confirmed or derived", () => {
+    // A "$" on a line that is not a confirm() call is a hand-typed price in
+    // the file that exists to stop hand-typed prices. Comments are stripped
+    // first, so a note may still cite what a legacy page used to say.
+    const src = readFileSync(join(__dirname, "policy.ts"), "utf-8")
+      .replace(/\/\*[\s\S]*?\*\//g, "")
+      .replace(/^\s*\/\/.*$/gm, "");
+    const stray = src
+      .split(/\r?\n/)
+      .filter((line) => /\$\d/.test(line) && !/confirm\(/.test(line));
+    expect(stray, "hand-typed figures in policy.ts; derive them from pricing.ts or wrap them in confirm()").toEqual([]);
+  });
+
+  it("the terms quote bk-config's travel fees, pet charge and recurring discounts", () => {
+    const terms = [...PRICING_TERMS, ...SERVICE_TERMS].join("\n");
+    const home = travelFee("standard");
+    const post = travelFee("post-construction");
+    expect(home, "bk-config no longer carries a home travel fee").not.toBeNull();
+    expect(post, "bk-config no longer carries a post-construction travel fee").not.toBeNull();
+    expect(terms).toContain(`${formatPrice(home!)} for home cleaning`);
+    expect(terms).toContain(`${formatPrice(post!)} for post-construction`);
+    expect(terms).toContain(`${formatPrice(addOnFromPrice("standard", "must-choose-if-you-have-pets")!)} per visit`);
+    for (const f of FREQUENCIES.filter((f) => f.discount > 0)) {
+      expect(terms).toContain(`${Math.round(f.discount * 100)}% ${f.label.toLowerCase()}`);
+    }
+    expect(terms).toContain(`${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}`);
   });
 });

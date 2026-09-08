@@ -11,6 +11,10 @@
  *
  *     null  =  not confirmed by the owner. Do not render it. Do not guess.
  *
+ * and, since 2026-09-07, the other half of it is enforced by the compiler: a
+ * non-null value must be wrapped in confirm() with who settled it and when.
+ * See confirmed.ts. The date is the day the answer was recorded in this repo.
+ *
  * A null here is not an oversight — it marks a real business decision that has
  * never been made, or one the site currently answers two ways. Rendering a
  * plausible-sounding default would be inventing a commitment on the company's
@@ -18,10 +22,9 @@
  * section whose value is null.
  */
 
-/** A policy value that has been verified against the site's own published copy. */
-type Confirmed<T> = T;
-/** A policy value nobody has settled yet. Renders as nothing. */
-type Unconfirmed = null;
+import { confirm, type Confirmed, type Unconfirmed } from "./confirmed";
+import { addOnFromPrice, formatPrice, FREQUENCIES } from "./pricing";
+import { travelFee } from "./addon-table";
 
 export interface ServicePolicy {
   guaranteeWindowHours: Confirmed<number> | Unconfirmed;
@@ -64,7 +67,7 @@ export const POLICY: ServicePolicy = {
    * within 48 hours" line there is a DIFFERENT figure — how quickly we come
    * back, not how long a customer has to tell us. Leave it alone.
    */
-  guaranteeWindowHours: 24,
+  guaranteeWindowHours: confirm(24, { by: "owner", on: "2026-08-24" }),
 
   /**
    * Confirmed by the owner: photos help, but they are NOT a condition of the
@@ -77,22 +80,22 @@ export const POLICY: ServicePolicy = {
    * Anything that asks for photos must frame them as helpful, never as a
    * precondition.
    */
-  guaranteeRequiresPhotos: false,
+  guaranteeRequiresPhotos: confirm(false, { by: "owner", on: "2026-08-24" }),
 
   /**
    * Confirmed by the owner: 24 hours' notice, $50 inside that window. This
    * settles the conflict between the live "free reschedule or cancel" line and
    * the legacy FAQ's $50 fee — the legacy FAQ was right.
    */
-  cancellationNoticeHours: 24,
-  cancellationFee: "$50",
+  cancellationNoticeHours: confirm(24, { by: "owner", on: "2026-08-24" }),
+  cancellationFee: confirm("$50", { by: "owner", on: "2026-08-24" }),
 
   /**
    * Confirmed by the owner. Nothing had ever been published about a cleaner
    * arriving and being unable to get in, which mattered because customers are
    * explicitly told they need not be home.
    */
-  lockoutFee: "half the cost of the scheduled service",
+  lockoutFee: confirm("half the cost of the scheduled service", { by: "owner", on: "2026-08-24" }),
 
   /**
    * Confirmed by the owner (2026-09-07): a real charge the office quotes by
@@ -106,8 +109,8 @@ export const POLICY: ServicePolicy = {
    * literals on the service pages precisely so prices come from one place, and
    * for a charge BookingKoala does not carry, that place is here.
    */
-  ecoProductsFee: "$15",
-  ecoProductsHowToRequest: "ask when you book and the office adds it",
+  ecoProductsFee: confirm("$15", { by: "owner", on: "2026-09-07" }),
+  ecoProductsHowToRequest: confirm("ask when you book and the office adds it", { by: "owner", on: "2026-09-07" }),
 
   /**
    * Confirmed by the owner. Neither the current site nor the legacy mirror had
@@ -119,16 +122,18 @@ export const POLICY: ServicePolicy = {
    * not-at-fault branch is stated too, on purpose: a conditional remedy reads
    * as a dodge unless the other half of the condition is written down.
    */
-  damageClaimWindowHours: 24,
-  liabilityNote:
+  damageClaimWindowHours: confirm(24, { by: "owner", on: "2026-08-24" }),
+  liabilityNote: confirm(
     "If something is damaged or broken during a clean, send us photos or video within 24 hours so we can look into it while the details are still fresh. Reach us by phone or email; we will ask the team what happened and come back to you with what we find. Where we are at fault, we put it right — a credit, a repair, a replacement, reimbursing you, or taking it off the bill, whichever fits the damage, and we will talk it through with you before we settle on one. Where we find we are not at fault, we will tell you that plainly and explain why rather than leaving it open.",
+    { by: "owner", on: "2026-09-03" },
+  ),
 
   /**
    * Confirmed by the owner: Alberta. Neither the current site nor any of the 135
    * legacy pages had ever named a province or a forum, so a dispute had no
    * stated jurisdiction at all.
    */
-  governingProvince: "Alberta",
+  governingProvince: confirm("Alberta", { by: "owner", on: "2026-08-24" }),
 
   /**
    * Confirmed by the owner 2026-09-03. The cancellation terms ran entirely one
@@ -139,8 +144,10 @@ export const POLICY: ServicePolicy = {
    * earliest slot we have, and no fee if the new date does not suit, because a
    * 24-hour rule cannot fairly apply to a change we caused.
    */
-  ourCancellationNote:
+  ourCancellationNote: confirm(
     "Very occasionally we have to move a booking — a cleaner is ill, a vehicle will not start, or the roads are genuinely unsafe. We tell you as soon as we know, and we offer you the earliest slot we have; where we can move another job to keep you near your original date, we will. You are not charged for a visit we did not do, and if the new date does not suit you and you would rather cancel, there is no cancellation fee — the 24-hour rule does not apply to a change we caused. We do not pay compensation for a rescheduled clean, and we would rather say so here than have you find out at the time.",
+    { by: "owner", on: "2026-09-03" },
+  ),
 
 
   /**
@@ -149,7 +156,7 @@ export const POLICY: ServicePolicy = {
    * removed. This is also the safer side of Alberta's Consumer Protection Act,
    * which restricts expiry on gift cards sold for consideration.
    */
-  giftCardExpiryMonths: "none",
+  giftCardExpiryMonths: confirm("none", { by: "owner", on: "2026-08-24" }),
 
   /**
    * Confirmed by the owner: no ceiling. The legacy site published a $2,000 CAD
@@ -166,15 +173,17 @@ export const POLICY: ServicePolicy = {
    * claims not to have. If either is ever switched on, this constant and the
    * gift card pages must change with it.
    */
-  giftCardMaxValue: "none",
+  giftCardMaxValue: confirm("none", { by: "owner", on: "2026-08-24" }),
 
   /**
    * Confirmed by the owner: reference-checked only. The legacy site's "fully
    * licensed, insured and bonded" claim is NOT reinstated — it is legally
    * meaningful and is not the true position. Do not reintroduce it.
    */
-  insuranceClaim:
+  insuranceClaim: confirm(
     "Every cleaner is reference-checked before their first job, and rated by the customer after every visit. Those ratings decide who we keep sending.",
+    { by: "owner", on: "2026-08-24" },
+  ),
 };
 
 /* ---------------------------------------------------------------------------
@@ -182,6 +191,22 @@ export const POLICY: ServicePolicy = {
    published and consistent across the site, so rendering them states nothing
    new — it only puts them in one place.
 --------------------------------------------------------------------------- */
+
+/**
+ * The figures below come from bk-config, not from here. /terms/ is a binding
+ * document, and it hand-typed the travel fee, the pet charge and the three
+ * recurring discounts — the same drift published-prices.test.ts bans on every
+ * page, in the one file that is supposed to be the source.
+ */
+const money = (value: number | null) => (value === null ? "a fee quoted when you book" : formatPrice(value));
+
+/** "20% weekly, 15% bi-weekly and 10% every 4 weeks", from the live tiers. */
+const recurringDiscounts = () => {
+  const tiers = FREQUENCIES.filter((f) => f.discount > 0)
+    .sort((a, b) => b.discount - a.discount)
+    .map((f) => `${Math.round(f.discount * 100)}% ${f.label.toLowerCase()}`);
+  return `${tiers.slice(0, -1).join(", ")} and ${tiers.at(-1)}`;
+};
 
 /** When payment is taken. Consistent across the FAQ, pricing pages and funnel. */
 export const PAYMENT_TERMS = [
@@ -199,13 +224,13 @@ export const PRICING_TERMS = [
   // "no trip fees" line was shipping inside FAQPage JSON-LD. Naming the amount
   // matters too — /terms/ is a binding document and /locations/ promotes
   // nineteen communities that all sit outside those limits.
-  "No trip fee or diagnostic fee inside Edmonton and Calgary city limits. Outside them, a travel fee applies: $29.99 for home cleaning, $50 for post-construction.",
+  `No trip fee or diagnostic fee inside Edmonton and Calgary city limits. Outside them, a travel fee applies: ${money(travelFee("standard"))} for home cleaning, ${money(travelFee("post-construction"))} for post-construction.`,
   // Compulsory, not an add-on: BookingKoala's extra is literally named "Must
   // choose if you have pets", and it recurs on every visit.
-  "Homes with pets are charged $19.99 per visit — paw prints, nose marks on glass and shed hair add real time in every room. It appears on your quote before you book, and litter boxes and animal waste stay outside what we handle.",
+  `Homes with pets are charged ${money(addOnFromPrice("standard", "must-choose-if-you-have-pets"))} per visit — paw prints, nose marks on glass and shed hair add real time in every room. It appears on your quote before you book, and litter boxes and animal waste stay outside what we handle.`,
   "Most homes are priced flat by size. Your flat rate does not change because a clean took longer than expected.",
   "If the home turns out to need substantially more work than described — heavy build-up, far more glass or cabinetry than stated — the team will explain what they found and your options before continuing.",
-  "Recurring discounts of 20% weekly, 15% bi-weekly and 10% every four weeks apply from your second visit. The first clean is charged at the standard one-time rate.",
+  `Recurring discounts of ${recurringDiscounts()} apply from your second visit. The first clean is charged at the standard one-time rate.`,
   "Hourly service has a minimum of 3 hours for one cleaner, or 2 hours for two cleaners.",
 ] as const;
 
@@ -232,7 +257,7 @@ export const NOT_INCLUDED = [
 /** Access, scheduling and what we bring. Consistent across the FAQ and Prepare. */
 export const SERVICE_TERMS = [
   "You do not need to be home. Most customers leave a key, a lockbox code, or smart-lock access, and we lock up when we finish.",
-  "We bring all cleaning supplies and equipment. Eco-friendly products are available on request as a $15 add-on.",
+  `We bring all cleaning supplies and equipment. Eco-friendly products are available for ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}.`,
   "Running water is required. Some tasks, including vacuuming, may not be possible without electricity.",
   "Tell us about pets, parking, how to get in, and any rooms to skip when you book — the booking form asks for each of these.",
   "Our operating hours are Monday to Saturday 8:00 AM to 8:00 PM, and Sunday 9:00 AM to 3:00 PM.",
@@ -246,10 +271,3 @@ export const SERVICE_TERMS = [
  * up, and "we'll confirm your window when you book" answers nothing.
  */
 export const ARRIVAL_WINDOWS = ["9:00 – 10:00 AM", "12:00 – 1:00 PM", "3:00 – 4:00 PM"] as const;
-
-/**
- * Eco-friendly products are a chargeable upgrade, not a free swap. The FAQ said
- * "ask when booking and we'll use them", which read as free; the legacy
- * move-out page correctly called it an add-on.
- */
-export const ECO_PRODUCTS_ADDON = "$15" as const;

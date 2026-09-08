@@ -432,10 +432,16 @@ const addOnKey = (name: string) =>
  */
 export const addOnsFor = (id: ServiceId, bedroomVariableId: number | null): AddOn[] => {
   const { source } = getService(id);
+  // BookingKoala writes `[0]` for "every category" and "every size". The
+  // home industry never uses it, so nothing there noticed — but every
+  // post-construction, Airbnb and office extra does, and all of them were
+  // filtered out. /terms/ had been hand-typing the post-construction travel
+  // fee because this could not read it.
+  const forAll = (ids: number[] | undefined) => !ids || ids.length === 0 || ids.includes(0);
   const extras = industry(source.industryId).extras.filter(
     (extra) =>
       extra.status !== 0 &&
-      (extra.service_categories ?? []).includes(source.serviceCategoryId) &&
+      (forAll(extra.service_categories) || (extra.service_categories ?? []).includes(source.serviceCategoryId)) &&
       (extra.prices_ml?.[0] ?? 0) > 0
   );
 
@@ -444,7 +450,7 @@ export const addOnsFor = (id: ServiceId, bedroomVariableId: number | null): AddO
   extras.forEach((extra) => {
     const targets = extra.variables ?? [];
     const matchesSize =
-      bedroomVariableId === null || targets.length === 0 || targets.includes(bedroomVariableId);
+      bedroomVariableId === null || forAll(targets) || targets.includes(bedroomVariableId);
     if (!matchesSize) return;
 
     const key = addOnKey(extra.name);
