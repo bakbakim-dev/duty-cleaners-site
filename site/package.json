@@ -17,7 +17,8 @@
     "indexnow": "node scripts/indexnow.mjs",
     "deploy:preview": "node scripts/deploy.mjs preview",
     "deploy:production": "node scripts/deploy.mjs production",
-    "generate:htaccess": "bunx tsx scripts/generate-htaccess.ts"
+    "generate:htaccess": "bunx tsx scripts/generate-htaccess.ts",
+    "prove": "bunx tsx scripts/prove-guards.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
