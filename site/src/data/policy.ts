@@ -96,7 +96,8 @@ export const POLICY: ServicePolicy = {
 
   /**
    * Confirmed by the owner (2026-09-07): a real charge the office quotes by
-   * phone. It is deliberately absent from the BookingKoala booking form, so
+   * phone, and it applies to EVERY service, not just the page that first
+   * mentioned it. It is deliberately absent from the BookingKoala booking form, so
    * anything the site says about it must also say how to ask for it — a
    * customer who reads "$15 add-on" and then cannot find it at checkout has
    * been told something true in a way that reads as a mistake.

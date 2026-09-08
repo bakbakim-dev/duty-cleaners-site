@@ -58,6 +58,10 @@ const PayloadSchema = z.object({
   page_url: z.string().max(2000).optional(),
   submitted_at: z.string().max(40).optional(),
   source: z.string().max(120).optional(),
+  /* Anti-abuse, both optional so an older client keeps working. */
+  website: z.string().max(200).optional(),   // honeypot; humans never fill it
+  formOpenedAt: z.number().optional(),        // ms epoch when the form mounted
+  turnstileToken: z.string().max(4000).optional(),
   /** Free-text message from the contact form; kept in the stored payload. */
   notes: z.string().max(2000).optional(),
   /** "deep" when the visitor entered through a Deep Cleaning CTA. */
@@ -73,6 +77,58 @@ type Payload = z.infer<typeof PayloadSchema>;
 const hits = new Map<string, number[]>();
 const RATE_WINDOW_MS = 60_000;
 const RATE_MAX = 8;
+
+/* ---------------------------------------------------------------- *
+ * Abuse controls.
+ *
+ * The rate limit above is per-isolate and dies with the isolate, so across a
+ * warm pool the real ceiling is far above 8/min, and rotating IPs defeats it
+ * outright. Every accepted call writes a row AND upserts a CRM contact, so the
+ * cost of abuse is paid in a poisoned CRM, not just in database rows.
+ *
+ * Three layers, cheapest first, none of which asks a real customer to do
+ * anything:
+ *
+ *   origin     the funnel is same-origin; a browser attacker cannot forge this
+ *   honeypot   a field CSS hides and humans never see, so anything in it is a bot
+ *   dwell      a real person cannot read and complete this form in under 3s
+ *
+ * Turnstile is the fourth and only one needing an account: set TURNSTILE_SECRET
+ * and it is enforced; leave it unset and it is skipped, so this deploys safely
+ * before the keys exist.
+ * ---------------------------------------------------------------- */
+const ALLOWED_ORIGINS = [
+  "https://dutycleaners.ca",
+  "https://www.dutycleaners.ca",
+  "https://dutycleaners-preview.netlify.app",
+];
+const MIN_DWELL_MS = 3_000;
+
+function originAllowed(req: Request) {
+  const origin = req.headers.get("origin");
+  // Non-browser callers send no Origin. Those are not the abuse vector this
+  // stops, and blocking them would break server-side testing.
+  if (!origin) return true;
+  return ALLOWED_ORIGINS.includes(origin) || origin.startsWith("http://localhost");
+}
+
+async function turnstileOk(token: string | undefined, ip: string) {
+  const secret = Deno.env.get("TURNSTILE_SECRET");
+  if (!secret) return true; // not configured yet
+  if (!token) return false;
+  try {
+    const res = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ secret, response: token, remoteip: ip }),
+    });
+    const body = await res.json();
+    return body.success === true;
+  } catch {
+    // Never let an outage at Cloudflare stop a real lead reaching the CRM.
+    return true;
+  }
+}
 
 function rateLimited(key: string) {
   const now = Date.now();
@@ -167,11 +223,28 @@ async function upsertContact(payload: Payload, token: string) {
     }))
     .filter((entry) => entry.field_value !== "");
 
-  const tags = ["instant-quote"];
-  if (payload.city) tags.push(payload.city.toLowerCase());
-  if (payload.stage === "confirm") tags.push("quote-confirmed");
-  // Deep-clean intent: Standard + the Deep Cleaning package at booking.
-  if (payload.intent === "deep") tags.push("deep-intent");
+  /*
+    A job applicant is not a sales lead.
+
+    Every submission used to get "instant-quote" regardless of where it came
+    from, so people applying through /join-the-team/ landed in the CRM carrying
+    the tag the quote funnel uses as its marker. Any workflow keyed on that tag
+    would send cleaning quotes and follow-up marketing to someone who asked for
+    a job — commercial messages without consent, which is a CASL problem, and a
+    purpose-limitation problem under PIPA besides.
+
+    Careers submissions now carry one tag of their own and none of the sales
+    ones: no city, no quote-confirmed, no deep-intent, nothing a quote
+    automation can match on.
+  */
+  const isCareers = payload.source === "careers-application";
+  const tags = isCareers ? ["careers-applicant"] : ["instant-quote"];
+  if (!isCareers) {
+    if (payload.city) tags.push(payload.city.toLowerCase());
+    if (payload.stage === "confirm") tags.push("quote-confirmed");
+    // Deep-clean intent: Standard + the Deep Cleaning package at booking.
+    if (payload.intent === "deep") tags.push("deep-intent");
+  }
 
   const body = JSON.stringify({
     locationId: LOCATION_ID,
@@ -237,6 +310,9 @@ Deno.serve(async (req) => {
       req.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
       req.headers.get("cf-connecting-ip") ??
       "unknown";
+    if (!originAllowed(req)) {
+      return json({ ok: false, status: 403, error: "forbidden origin" }, 403);
+    }
     if (rateLimited(ip)) {
       return json({ ok: false, status: 429, error: "rate limited" });
     }
@@ -246,6 +322,22 @@ Deno.serve(async (req) => {
       return json({ ok: false, status: 400, error: parsed.error.flatten().fieldErrors }, 400);
     }
     const payload = parsed.data;
+
+    /*
+      Silent rejections. A bot gets the same shape of answer a success gives,
+      so probing tells it nothing about which control caught it — and a real
+      customer can never see these, because the honeypot is hidden and nobody
+      completes this form in three seconds.
+    */
+    if (payload.website && payload.website.trim() !== "") {
+      return json({ ok: true, status: 202 });
+    }
+    if (payload.formOpenedAt && Date.now() - payload.formOpenedAt < MIN_DWELL_MS) {
+      return json({ ok: true, status: 202 });
+    }
+    if (!(await turnstileOk(payload.turnstileToken, ip))) {
+      return json({ ok: false, status: 403, error: "verification failed" }, 403);
+    }
 
     const token = Deno.env.get("GHL_PI_TOKEN");
     const supabase = createClient(

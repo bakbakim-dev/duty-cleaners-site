@@ -55,6 +55,14 @@ export interface SubmitResult {
 const stageFor = (payload: Partial<QuotePayload>): "lead" | "confirm" =>
   "first_clean_price" in payload || "recurring_price" in payload ? "confirm" : "lead";
 
+/*
+  When this module was first evaluated — close enough to when the visitor
+  arrived to serve as a dwell reference. The relay rejects submissions that
+  complete in under three seconds, which no person reading the form can do and
+  most scripted posts will.
+*/
+const LOADED_AT = Date.now();
+
 export async function submitQuote(payload: Partial<QuotePayload>): Promise<SubmitResult> {
   try {
     const response = await fetch(`${FUNCTIONS_URL}/ghl-quote`, {
@@ -70,6 +78,11 @@ export async function submitQuote(payload: Partial<QuotePayload>): Promise<Submi
         ...payload,
         stage: stageFor(payload),
         tracking: getStoredTracking(),
+        // Anti-abuse. The honeypot stays empty for anyone using a browser; the
+        // timestamp lets the relay reject instant submissions. Neither asks the
+        // customer for anything, and neither blocks a real lead if omitted.
+        website: "",
+        formOpenedAt: LOADED_AT,
       }),
     });
 

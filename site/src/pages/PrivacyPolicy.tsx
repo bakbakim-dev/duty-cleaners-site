@@ -195,10 +195,10 @@ export default function PrivacyPolicy() {
               <h2 className="text-2xl font-bold mb-4 text-foreground">How Long We Keep It</h2>
               <p className="mb-8">
                 We keep customer records for as long as you are a customer and for seven years afterwards,
-                which is the period Canadian tax and business records rules require. Quote enquiries that
-                never become bookings are kept for two years. After those periods we delete the records or
-                remove anything that identifies you. You can ask us to delete your information sooner and
-                we will, unless we are required to keep it.
+                which is the period Canadian tax and business records rules require. Beyond that we do not
+                delete on a timer: quote enquiries and customer records stay in our systems until you ask us
+                to remove them. Ask, and we will delete your information unless a law requires us to keep
+                it &mdash; email our Privacy Officer at the address below and we will confirm when it is done.
               </p>
 
               <h2 className="text-2xl font-bold mb-4 text-foreground">Who Is Responsible, and How to Complain</h2>
