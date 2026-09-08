@@ -3,6 +3,7 @@ import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { standardTierRows, deepCleanTierRows, moveInOutTierRows, featuredExtraRows, FREQUENCIES } from "./pricing";
 import { POLICY } from "./policy";
+import { giftCardGuide, GIFT_CARD_AMOUNTS } from "./gift-cards";
 
 /**
  * Guards the rule pricing.ts already stated but nothing enforced: published
@@ -19,35 +20,105 @@ import { POLICY } from "./policy";
 
 const PAGES_DIR = join(__dirname, "..", "pages");
 
-/** Every price a visitor can read, per service, straight from bk-config. */
-const derived = () => [
-  ...standardTierRows().map((r) => r.price),
-  ...deepCleanTierRows().map((r) => r.price),
-  ...featuredExtraRows().map((r) => r.price.replace(/^from /, "")),
-];
+/**
+ * Pages allowed to contain a dollar literal, each with the reason it is not a
+ * price we charge. Everything else under src/pages is denied by default.
+ *
+ * This replaces two allowlists-in-reverse: a hand-typed list of ten service
+ * pages, and a filename regex for "service-like" pages. Both only ever looked
+ * where a price had already gone wrong. The 63 Calgary location pages each
+ * hand-typed `priceRange: "$155-$539"` into their LocalBusiness schema for as
+ * long as it happened to match bk-config; the FAQ, Allendale and Delton typed
+ * the $50 cancellation fee; the gift-card page typed a $350 label that a
+ * 3-bedroom deep clean ($372) could not be bought with. None of those files
+ * matched either list, so none were read.
+ *
+ * To add an entry here, write down why the figure is not something bk-config
+ * or policy.ts knows. "It happens to be correct today" is not a reason — that
+ * was true of every figure above on the day it was typed.
+ */
+const ALLOWED_LITERALS: Record<string, string> = {
+  "BlogHouseCleaningCost.tsx":
+    "quotes what cleaning costs across Canada, which is market data, not our price list; " +
+    "the bracketing guard below keeps those ranges from undercutting our own tiers",
+  "BlogCleaningProducts.tsx":
+    "the ~$60 is the retail cost of a household's supply kit at a grocery chain, not a service we sell",
+};
+
+/** Source with comments removed, so an explanatory note may cite a historical figure. */
+const stripComments = (src: string) =>
+  src.replace(/\/\*[\s\S]*?\*\//g, "").replace(/^\s*\/\/.*$/gm, "");
+
+const DOLLAR_LITERAL = /\$\d[\d,]*(\.\d{2})?/g;
+
+/** Every .tsx under src/pages, recursively, as a path relative to PAGES_DIR. */
+function pageFiles(dir = PAGES_DIR, prefix = ""): string[] {
+  const out: string[] = [];
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    if (entry.isDirectory()) out.push(...pageFiles(join(dir, entry.name), `${prefix}${entry.name}/`));
+    else if (entry.name.endsWith(".tsx")) out.push(`${prefix}${entry.name}`);
+  }
+  return out;
+}
 
 describe("published prices are derived, not typed", () => {
-  it("the six service detail pages contain no dollar literals", () => {
-    // Move-out and post-construction were never in this list, so the Calgary
-    // move-out page hand-typed its three price cards and the travel fee for as
-    // long as they happened to stay correct, while its Edmonton twin derived
-    // the same numbers. Edmonton advertised a "$15 add-on" for eco-friendly
-    // products that bk-config has no extra for at any price — the same shape as
-    // the unbookable baseboards row the test below already bans.
-    const pages = [
-      "EdmontonRegularCleaning", "CalgaryRegularCleaning",
-      "EdmontonRecurringCleaning", "CalgaryRecurringCleaning",
-      "EdmontonDeepCleaning", "CalgaryDeepCleaning",
-      "EdmontonMoveInOut", "CalgaryMoveInOut",
-      "EdmontonPostConstruction", "CalgaryPostConstruction",
-    ];
-    for (const page of pages) {
-      const src = readFileSync(join(PAGES_DIR, `${page}.tsx`), "utf-8");
-      // Strip comments first, so an explanatory note may cite a historical
-      // figure without tripping the guard.
-      const code = src.replace(/\/\*[\s\S]*?\*\//g, "").replace(/^\s*\/\/.*$/gm, "");
-      const literals = code.match(/\$\d[\d,]*(\.\d{2})?/g) ?? [];
-      expect(literals, `${page}.tsx hand-types ${literals.join(", ")}`).toEqual([]);
+  it("no page under src/pages hand-types a dollar figure unless it says why", () => {
+    const files = pageFiles();
+    // A sweep that finds nothing to read has failed silently before; make sure
+    // this one saw the whole site — the hubs, the services, and the locations.
+    expect(files.length, "the sweep did not find the site's pages").toBeGreaterThan(150);
+    expect(files, "the location pages are no longer under src/pages/locations").toContain("locations/Sunalta.tsx");
+
+    const offenders: string[] = [];
+    for (const file of files) {
+      const base = file.split("/").pop()!;
+      if (ALLOWED_LITERALS[base]) continue;
+      const literals = stripComments(readFileSync(join(PAGES_DIR, file), "utf-8")).match(DOLLAR_LITERAL) ?? [];
+      if (literals.length) offenders.push(`${file}: ${literals.join(", ")}`);
+    }
+    expect(
+      offenders,
+      "hand-typed figures; derive them from pricing.ts or policy.ts, or add the file to " +
+        "ALLOWED_LITERALS with a reason it is not a price we charge",
+    ).toEqual([]);
+  });
+
+  it("every allowlisted page still contains the literal it is excused for", () => {
+    // An allowlist entry that no longer matches anything is a hole waiting for
+    // the next hand-typed price. Drop the entry when the literal goes.
+    for (const [file, reason] of Object.entries(ALLOWED_LITERALS)) {
+      expect(reason.length, `${file} is allowlisted without a reason`).toBeGreaterThan(40);
+      const literals = stripComments(readFileSync(join(PAGES_DIR, file), "utf-8")).match(DOLLAR_LITERAL) ?? [];
+      expect(literals.length, `${file} no longer has a dollar literal; remove its allowlist entry`).toBeGreaterThan(0);
+    }
+  });
+
+  it("each gift card label promises only what its amount pays for", () => {
+    // "$350 — best for a full house deep clean or move-in/move-out" shipped
+    // while a 3-bedroom deep clean was $372. The labels are now computed from
+    // the tiers; this checks the computation against the tables directly.
+    const dollars = (s: string) => Number(s.replace(/[^0-9.]/g, ""));
+    const priced = giftCardGuide().filter((g) => g.amount !== "Custom");
+    expect(priced).toHaveLength(GIFT_CARD_AMOUNTS.length);
+    for (const { amount, description } of priced) {
+      const budget = dollars(amount);
+      expect(description, `${amount} label names no home size`).toMatch(/\d\+?-? ?bedroom/);
+      const tables: Array<[string, { beds: string; price: string }[]]> = [
+        ["deep clean", deepCleanTierRows()],
+        ["move-in/move-out clean", moveInOutTierRows()],
+        ["standard clean", standardTierRows()],
+      ];
+      for (const [service, rows] of tables) {
+        const m = description.match(new RegExp(`${service} of a (\\d\\+?)[- ]bedroom`));
+        if (!m) continue;
+        const beds = m[1];
+        const row = rows.find((r) => r.beds.startsWith(beds));
+        expect(row, `${amount}: no ${service} tier for ${beds} bedroom`).toBeTruthy();
+        expect(dollars(row!.price), `${amount} claims a ${beds}-bedroom ${service} it cannot pay for`).toBeLessThanOrEqual(budget);
+        // And it must be the LARGEST such home, or the label undersells the card.
+        const next = rows[rows.indexOf(row!) + 1];
+        if (next) expect(dollars(next.price), `${amount} could cover the ${next.beds} ${service} too`).toBeGreaterThan(budget);
+      }
     }
   });
 
@@ -80,31 +151,6 @@ describe("published prices are derived, not typed", () => {
     // bk-config prices this $39.99 (1BR) to $179.99 (5+BR). A flat number here
     // is wrong at both ends of the range, which is exactly what shipped.
     expect(windows?.price).toBe("from $39.99");
-  });
-
-  it("no other page under src/pages hand-types a service price", () => {
-    /*
-      This used to assert only that some service pages EXIST — it counted files
-      and checked the tier helpers returned something, so it passed no matter
-      what those files contained. It was the sweep meant to catch a new service
-      page arriving with typed prices, and it could not have.
-
-      Blog and cost-guide pages legitimately discuss market rates, so they stay
-      out; every city service page is now actually read.
-    */
-    const serviceLike = readdirSync(PAGES_DIR).filter((f) =>
-      /^(Edmonton|Calgary)(Regular|Recurring|Deep|MoveInOut|PostConstruction)/.test(f),
-    );
-    expect(serviceLike.length).toBeGreaterThanOrEqual(10);
-
-    const offenders: string[] = [];
-    for (const page of serviceLike) {
-      const src = readFileSync(join(PAGES_DIR, page), "utf-8");
-      const code = src.replace(/\/\*[\s\S]*?\*\//g, "").replace(/^\s*\/\/.*$/gm, "");
-      const literals = code.match(/\$\d[\d,]*(\.\d{2})?/g) ?? [];
-      if (literals.length) offenders.push(`${page}: ${literals.join(", ")}`);
-    }
-    expect(offenders, "service pages hand-typing prices instead of deriving them").toEqual([]);
   });
 });
 

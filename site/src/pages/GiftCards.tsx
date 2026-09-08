@@ -13,6 +13,7 @@ import InfoCard from "@/components/gift-cards/InfoCard";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import giftCardsHero from "@/assets/gift-cards-hero.webp";
+import { giftCardGuide } from "@/data/gift-cards";
 import {
   Gift, Heart, PartyPopper, Sparkles, Clock, CreditCard,
   Send, Shield, Snowflake, Award, HeartHandshake, Home,
@@ -32,12 +33,7 @@ const giftCardDesigns = [
 // Gift cards are purchased through our BookingKoala storefront.
 const GIFT_CARD_PURCHASE_URL = "https://dutycleaners.bookingkoala.com/gift-card";
 
-const buyingGuide = [
-  { amount: "$165", description: "Perfect for a one-bedroom apartment standard clean" },
-  { amount: "$250", description: "Ideal for a two-bedroom home standard clean" },
-  { amount: "$350", description: "Best for a full house deep clean or move-in/move-out" },
-  { amount: "Custom", description: "Choose any amount that fits your budget" },
-];
+const buyingGuide = giftCardGuide();
 
 const howItWorksSteps = [
   { icon: CreditCard, step: "1", title: "Choose Amount", description: "Select how much you'd like for the gift card" },

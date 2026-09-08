@@ -7,6 +7,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
+import { sitePriceRange } from "@/data/pricing";
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
   return (
@@ -82,7 +83,7 @@ const structuredData = buildLocationSchema({
   city: "calgary",
   url: "https://dutycleaners.ca/locations/strathmore",
   areaServed: "Strathmore, AB",
-  priceRange: "$155-$539",
+  priceRange: sitePriceRange(),
   geo: { latitude: "51.0378", longitude: "-113.4001" },
 });
 

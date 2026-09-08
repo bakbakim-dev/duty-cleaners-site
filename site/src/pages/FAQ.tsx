@@ -58,7 +58,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "What is your cancellation policy?",
-        answer: "We ask for at least 24 hours' notice to change or cancel a clean, so we can offer the slot to someone else. Cancelling or rescheduling inside 24 hours is charged $50. There is no long-term contract, and you can change or pause a recurring schedule at any time.",
+        answer: `We ask for at least 24 hours' notice to change or cancel a clean, so we can offer the slot to someone else. Cancelling or rescheduling inside 24 hours is charged ${POLICY.cancellationFee}. There is no long-term contract, and you can change or pause a recurring schedule at any time.`,
       },
       {
         // The cancellation answer above is entirely about what the customer
@@ -288,7 +288,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "Do you bring supplies?",
-        answer: "Yes — all supplies and equipment. Prefer eco-friendly products? Ask when booking and we can use them for a $15 add-on.",
+        answer: `Yes — all supplies and equipment. Prefer eco-friendly products? Ask when booking and we can use them for ${POLICY.ecoProductsFee} — ${POLICY.ecoProductsHowToRequest}.`,
       },
       {
         question: "Which areas do you serve?",

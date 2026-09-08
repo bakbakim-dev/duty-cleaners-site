@@ -5,6 +5,7 @@ import { buildLocationSchema } from "@/lib/location-schema";
 import CoverageChips from "@/components/CoverageChips";
 import LocationPricing from "@/components/LocationPricing";
 import calgaryKitchen from "@/assets/gallery/calgary-kitchen-clean.webp";
+import { sitePriceRange } from "@/data/pricing";
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -103,7 +104,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Auburn Bay Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/auburn-bay",
-  priceRange: "$155-$539",
+  priceRange: sitePriceRange(),
   geo: { latitude: "50.8867", longitude: "-113.9725" },
 });
 

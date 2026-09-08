@@ -798,6 +798,19 @@ export const standardTierRows = () => serviceTierRows("standard");
 export const moveInOutTierRows = () => serviceTierRows("move-in-out");
 
 /**
+ * The site-wide published band: cheapest standard clean to dearest move-out.
+ *
+ * Both hubs derived this inline, and 63 Calgary location pages hand-typed it
+ * as "$155-$539" in their LocalBusiness schema — which meant the next
+ * bk-config change would have moved two pages and left 63 quoting yesterday's
+ * band. One helper, so every priceRange on the site is the same expression.
+ */
+export const sitePriceRange = () => {
+  const move = moveInOutTierRows();
+  return `${standardTierRows()[0]?.price ?? ""}-${move[move.length - 1]?.price ?? ""}`;
+};
+
+/**
  * The add-on shelf published on the service detail pages.
  *
  * These used to be hand-typed on six pages and had drifted badly: interior

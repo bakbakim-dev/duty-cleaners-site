@@ -6,6 +6,7 @@ import { buildLocationSchema } from "@/lib/location-schema";
 import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
+import { sitePriceRange } from "@/data/pricing";
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
   return (
@@ -126,7 +127,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - East Village Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/east-village-calgary",
-  priceRange: "$155-$539",
+  priceRange: sitePriceRange(),
   geo: { latitude: "51.0460", longitude: "-114.0510" },
 });
 

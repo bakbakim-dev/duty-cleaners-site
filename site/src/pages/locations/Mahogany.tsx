@@ -5,6 +5,7 @@ import { buildLocationSchema } from "@/lib/location-schema";
 import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
+import { sitePriceRange } from "@/data/pricing";
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
   return (
@@ -102,7 +103,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Mahogany Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/mahogany",
-  priceRange: "$155-$539",
+  priceRange: sitePriceRange(),
   geo: { latitude: "50.9142", longitude: "-113.9517" },
 });
 

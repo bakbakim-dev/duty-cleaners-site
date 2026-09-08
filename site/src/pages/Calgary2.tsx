@@ -52,7 +52,7 @@ import galleryCalgaryWindow from "@/assets/gallery/calgary-window-cleaning.webp"
 import gallerySpotlessKitchen from "@/assets/gallery/calgary-spotless-kitchen.webp";
 import galleryBathroomDeep from "@/assets/gallery/calgary-bathroom-deep.webp";
 import galleryToiletBA from "@/assets/gallery/calgary-toilet-ba.webp";
-import { standardTierRows, moveInOutTierRows } from "@/data/pricing";
+import { sitePriceRange } from "@/data/pricing";
 import DeferUntilVisible from "@/components/DeferUntilVisible";
 
 /* Width-descriptor set for the hero, the LCP element on this page. Without
@@ -71,7 +71,6 @@ const HERO_SRCSET = [
    other, and exactly the pattern EdmontonMoveInOut.tsx:126 already calls out:
    a figure that stays put while the real prices move. Floor is the cheapest
    standard clean, ceiling the dearest move-out, both straight from bk-config. */
-const PRICE_RANGE = `${standardTierRows()[0].price}-${moveInOutTierRows()[moveInOutTierRows().length - 1].price}`;
 
 // Counter card for room counts
 const CounterCard = ({
@@ -191,7 +190,7 @@ export default function Calgary2() {
       "Calgary", "Airdrie", "Cochrane", "Okotoks", "Chestermere", "Strathmore",
       "High River", "Langdon", "Crossfield",
     ].map((name) => ({ "@type": "City", name })),
-    priceRange: PRICE_RANGE,
+    priceRange: sitePriceRange(),
     openingHours: ["Mo-Sa 08:00-20:00", "Su 09:00-15:00"],
     openingHoursSpecification: [
       {
