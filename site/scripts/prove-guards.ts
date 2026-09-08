@@ -63,7 +63,8 @@ type Outcome = { bit: boolean; detail: string };
 const vitestFailures = (guard: string): { failed: string[]; passed: boolean } => {
   const dir = mkdtempSync(join(tmpdir(), "prove-"));
   const out = join(dir, "result.json");
-  const r = spawnSync("bunx", ["vitest", "run", guard, "--reporter=json", `--outputFile=${out}`], {
+  // One command string: node warns (DEP0190) when an args array meets shell:true.
+  const r = spawnSync(`bunx vitest run "${guard}" --reporter=json --outputFile="${out}"`, {
     cwd: ROOT,
     encoding: "utf8",
     shell: true,
@@ -82,7 +83,7 @@ const vitestFailures = (guard: string): { failed: string[]; passed: boolean } =>
 };
 
 const tscFailure = (): { output: string; passed: boolean } => {
-  const r = spawnSync("bunx", ["tsc", "-p", "tsconfig.app.json", "--noEmit"], { cwd: ROOT, encoding: "utf8", shell: true });
+  const r = spawnSync("bunx tsc -p tsconfig.app.json --noEmit", { cwd: ROOT, encoding: "utf8", shell: true });
   return { output: (r.stdout ?? "") + (r.stderr ?? ""), passed: r.status === 0 };
 };
 
