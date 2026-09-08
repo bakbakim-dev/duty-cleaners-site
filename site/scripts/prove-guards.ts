@@ -18,10 +18,11 @@
 import { execSync, spawnSync } from "node:child_process";
 import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join, resolve } from "node:path";
+import { dirname, join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import { GUARD_PROOFS, type GuardProof } from "./guard-proofs";
 
-const ROOT = resolve(__dirname, "..");
+const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const args = process.argv.slice(2);
 const skipDist = args.includes("--no-dist");
 const filter = args.filter((a) => !a.startsWith("--"));
