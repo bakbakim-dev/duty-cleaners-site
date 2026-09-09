@@ -150,6 +150,14 @@ export const GUARD_PROOFS: GuardProof[] = [
     why: "Repoints one Apache rule so the two generated rule sets disagree.",
   },
   {
+    guard: "src/data/htaccess-parity.test.ts",
+    target: "public/.htaccess",
+    find: "  RewriteCond %{HTTPS} !=on\n  RewriteCond %{HTTP:X-Forwarded-Proto} !=https\n",
+    replace: "  RewriteCond %{HTTPS} !=on [OR]\n  RewriteCond %{HTTP:X-Forwarded-Proto} =http\n",
+    failing: "does not redirect a request that is already HTTPS behind the proxy",
+    why: "Restores the OR'd HTTPS conditions that loop behind a TLS-terminating proxy.",
+  },
+  {
     guard: "src/data/internal-links.test.ts",
     target: "dist/locations/allendale/index.html",
     find: 'hover:text-accent" href="/edmonton/deep-cleaning/"',

@@ -84,6 +84,28 @@ describe("the Apache and Netlify rule sets describe the same site", () => {
     ).toEqual([]);
   });
 
+  it("does not redirect a request that is already HTTPS behind the proxy", () => {
+    if (!present) return;
+    const text = readFileSync(join(PUBLIC, ".htaccess"), "utf-8");
+    // The HTTPS block is the RewriteConds immediately before the first
+    // https://dutycleaners.ca RewriteRule. Both must hold for the redirect to
+    // fire: an [OR] between "HTTPS not on" and a forwarded-proto check loops
+    // on any host that terminates TLS in front of Apache — Apache sees HTTPS
+    // off, the header says https, and every hop redirects to itself.
+    const at = text.indexOf("RewriteRule ^(.*)$ https://dutycleaners.ca/$1 [R=301,L]");
+    expect(at, "the HTTPS redirect is gone").toBeGreaterThan(-1);
+    const conds = text
+      .slice(0, at)
+      .split(/\r?\n/)
+      .map((l) => l.trim())
+      .filter((l) => l.startsWith("RewriteCond"))
+      .slice(-2);
+    expect(conds, "the HTTPS redirect must be guarded by exactly these two AND'd conditions").toEqual([
+      "RewriteCond %{HTTPS} !=on",
+      "RewriteCond %{HTTP:X-Forwarded-Proto} !=https",
+    ]);
+  });
+
   it("carries the security headers and does not quietly enable HSTS", () => {
     if (!present) return;
     const text = readFileSync(join(PUBLIC, ".htaccess"), "utf-8");

@@ -14,10 +14,13 @@ DirectoryIndex index.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # Canonical host and scheme. SiteGround terminates TLS before this runs, so
-  # HTTPS is checked via the forwarded header as well as the direct one.
-  RewriteCond %{HTTPS} !=on [OR]
-  RewriteCond %{HTTP:X-Forwarded-Proto} =http
+  # Canonical host and scheme. Redirect to HTTPS only when NEITHER signal says
+  # the request is already secure: both conditions must hold (Apache ANDs
+  # consecutive RewriteConds). An earlier version OR'd them, which loops behind
+  # a proxy that terminates TLS and leaves Apache seeing HTTPS off while
+  # X-Forwarded-Proto says https — every hop redirects to the URL it is on.
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !=https
   RewriteRule ^(.*)$ https://dutycleaners.ca/$1 [R=301,L]
   RewriteCond %{HTTP_HOST} ^www\.dutycleaners\.ca$ [NC]
   RewriteRule ^(.*)$ https://dutycleaners.ca/$1 [R=301,L]
