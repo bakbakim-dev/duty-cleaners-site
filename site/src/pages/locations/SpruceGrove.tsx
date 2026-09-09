@@ -60,7 +60,7 @@ const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Spruce Grove" },
   { icon: Sparkles, title: "Deep Cleaning", description: "A full top-to-bottom reset — corners, baseboards, and the surfaces regular visits skip.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Spruce Grove" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inspection-grade detail for moving out or settling in.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Spruce Grove" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Post-renovation dust and debris, professionally removed.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Spruce Grove" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after renovations and handovers.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Spruce Grove" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Spruce Grove" },
   { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
 ];
@@ -68,15 +68,15 @@ const services = [
 const whyUsItems = [
   { icon: Shield, title: "Reference-Checked, Then Rated by You", description: "Every cleaner is reference-checked before their first job, then rated by the customer after every visit. Those ratings decide who keeps cleaning for us." },
   { icon: Star, title: RATING_CLAIM, description: `${CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount} reviews across Edmonton and Calgary, and every one of them is on our Google listing.` },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day openings most weeks. We work around your busy life." },
+  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day openings most weeks." },
   { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
-  { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
+  { icon: Users, title: "Experienced Team", description: "Professional cleaners who work to the Duty Cleaners checklist." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
 ];
 
 const nearbyAreas = [
   "Stony Plain", "Parkland County", "Acheson", "Entwistle",
-  "Seba Beach", "Wabamun", "Edmonton", "Leduc"
+  "Seba Beach", "Wabamun", "Edmonton"
 ];
 
 export default function SpruceGrove() {
@@ -99,7 +99,7 @@ export default function SpruceGrove() {
     },
     {
       question: "What is your 100% satisfaction guarantee policy?",
-      answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back and put it right — at no extra cost!"
+      answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back and put it right — at no extra cost."
     }
   ];
   const faqJsonLd = {
@@ -197,8 +197,7 @@ export default function SpruceGrove() {
                 Things To Do In Spruce Grove
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
-                <p>Spruce Grove originated in 1891 when French and Scottish families established roots in this picturesque locale. Now home to around 35,000 inhabitants, this lively city has flourished into a thriving urban centre, all while maintaining a profound bond with its natural surroundings. Located just a mere 11 kilometres west of Edmonton, Spruce Grove offers residents the best of the serenity of rural living and the accessibility of urban conveniences. Spruce Grove offers many activities that combine community charm and natural beauty.</p>
-                <p>Start your tour with a visit to the Spruce Grove Grain Elevator Museum, where you can learn about the region's agricultural history and watch the last wooden grain elevator in the area. Then, you can enjoy nature at Jubilee Park, a serene oasis with lush greenery, walking trails, and a peaceful pond perfect for picnics or relaxing walks. For a fun-filled family outing, head to The Links at Spruce Grove, a picturesque golf course offering a challenging game amidst stunning views. Finally, complete your day with a visit to the Spruce Grove Art Gallery, showcasing a diverse collection of local artworks and providing an opportunity to appreciate the region's creative talent.</p>
+                <p>Spruce Grove dates from 1891, when French and Scottish families settled here, and it sits 11 kilometres west of Edmonton. At the Spruce Grove Grain Elevator Museum you can see the last wooden grain elevator in the area and read up on the region's farming history. Jubilee Park has walking trails and a pond, The Links at Spruce Grove is the golf course, and the Spruce Grove Art Gallery shows local artwork.</p>
               </div>
             </div>
           </AnimatedSection>

@@ -28,14 +28,14 @@ export default function EdmontonRegularCleaning() {
       heroImage={heroImage}
       heroImageAlt="Bright, tidy Edmonton living room after a standard cleaning visit"
       overviewEyebrow="Service Overview"
-      overviewHeading={<>A spotless home, <Accent>without lifting a finger.</Accent></>}
+      overviewHeading={<>One visit, every room, <Accent>one flat price.</Accent></>}
       overviewParagraphs={[
-        "Standard cleaning is a thorough one-time service designed to refresh your Edmonton home, making it hygienic, presentable, and comfortable. It's a single cleaning appointment focused on the areas you use most, removing dust, grime, and bacteria that build up over time. If you'd prefer ongoing upkeep, recurring cleaning plans are also available separately.",
-        "Your appointment covers the kitchen, bathrooms, bedrooms, and living areas — including dusting, vacuuming, mopping, sanitizing high-touch surfaces, and general surface cleaning throughout the home. Whether you need a reset before guests arrive or simply want your space professionally cleaned, our team delivers a high standard of cleanliness in a single visit.",
+        `A standard clean is one visit covering the kitchen, bathrooms, bedrooms and living areas: dusting, vacuuming, mopping, and high-touch surfaces wiped down. It is priced flat by home size, from ${TIERS[0].price} for a one-bedroom. If you want it kept up, the same clean on a weekly, bi-weekly or every-4-weeks schedule is discounted from the second visit; see our Edmonton recurring cleaning page.`,
+        "The microwave is cleaned inside and out; the inside of the oven and fridge are add-ons, and baseboards, vents, switches and other build-up belong to a deep clean.",
         "Our cleaners follow a detailed room-by-room checklist and bring all the supplies and equipment with them. To help us focus on cleaning, we ask that homes are reasonably prepared before arrival, including picking up clothing, toys, dishes, or excessive clutter. Small items may be lightly organized if it only takes 1–2 minutes, but our primary focus is professional cleaning rather than full decluttering or home organization services.",
       ]}
-      includedHeading="Comprehensive Standard Cleaning"
-      includedSubheading="Your one-time appointment covers the rooms and surfaces that matter most for a healthy, lived-in home."
+      includedHeading="What a standard clean covers"
+      includedSubheading="Kitchen, bathrooms, bedrooms and living areas, in one visit."
       included={[
         { icon: UtensilsCrossed, title: "Kitchen Cleaning", description: "Wipe-down of countertops, sinks, stovetop, exterior appliances, and cabinet fronts. Floors mopped and vacuumed." },
         { icon: Bath, title: "Bathroom Sanitization", description: "Toilets, tubs and showers scrubbed and sanitized, soap scum off the tile and glass, mirrors and vanities polished, floors washed." },
@@ -55,13 +55,12 @@ export default function EdmontonRegularCleaning() {
         "Trash emptied",
       ]}
       roomTasks={[
-        { name: "Kitchen", tasks: 4, sample: "countertops, stovetop, and sink" },
-        { name: "Bathrooms", tasks: 4, sample: "sanitizing toilets, tubs, and showers" },
-        { name: "Living Areas", tasks: 4, sample: "dusting, vacuuming, and mopping" },
+        { name: "Kitchen", tasks: 4, sample: "countertops, stovetop and sink" },
+        { name: "Bathrooms", tasks: 4, sample: "sanitizing toilets, tubs and showers" },
+        { name: "Living Areas", tasks: 4, sample: "dusting, vacuuming and mopping" },
         { name: "Bedrooms", tasks: 3, sample: "dusting surfaces and vacuuming under beds" },
       ]}
       pricingBySize={TIERS}
-      pricingNote="Starting estimates are based on home size — final time and cost can vary with condition, bathrooms, and add-ons."
       fromPrice={TIERS[0].price}
       extras={featuredExtraRows()}
       notIncluded={[
@@ -76,7 +75,7 @@ export default function EdmontonRegularCleaning() {
         { q: "Does standard cleaning include cleaning the kitchen?", a: "Yes. We clean kitchen counters, sinks, exterior appliance surfaces, outside of the cupboards, and floors." },
         { q: "What's the difference between standard and deep cleaning?", a: "Standard cleaning refreshes a home that's already clean — dusting, vacuuming, mopping, and sanitizing high-use areas. Deep cleaning tackles built-up grime, baseboards, doors, light switches, wall outlets, and outside vents." },
         { q: "How long does a standard cleaning take?", a: "We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
-        { q: "How often should I schedule standard cleaning?", a: "Most Edmonton households book standard cleaning as needed — before events, seasonally, or whenever their home needs a refresh. For ongoing upkeep, many clients book every 2–4 weeks." },
+        { q: "How often should I schedule standard cleaning?", a: "A standard clean is a single visit, so book it when the home needs one. If you want it kept up, the recurring cleaning page has the same clean on a schedule: 20% off weekly, 15% off bi-weekly, and 10% off every 4 weeks, from the second visit on." },
         // Was "or leave the keys under the mat", inside FAQPage schema. A cleaning
         // company recommending that is advising customers into something most
         // home-insurance policies exclude, next to a policy charging half the
@@ -85,8 +84,8 @@ export default function EdmontonRegularCleaning() {
         { q: "Do I need to provide cleaning supplies?", a: "No — our team brings all cleaning supplies and equipment. If you would prefer we use specific products, tell us when you book." },
         { q: "What should I do to prepare?", a: "Please pick up any personal items you'd like put away and clear surfaces such as vanities, countertops, and other cluttered areas so our cleaners can work efficiently. You may also let us know any priority areas or spaces you would like us to focus on or skip." },
       ]}
-      ctaHeading={<>Ready for a spotless <AccentGold>Edmonton</AccentGold> home?</>}
-      ctaDescription="Book a one-time professional cleaning with vetted pros and a 100% satisfaction guarantee. Recurring plans available if you'd like ongoing maintenance."
+      ctaHeading={<>Standard cleaning in <AccentGold>Edmonton</AccentGold> from {TIERS[0].price}.</>}
+      ctaDescription="One visit, priced flat by home size. Nothing is charged when you book; your card is charged once the clean is complete. Discounts for a weekly, bi-weekly or every-4-weeks schedule are on the recurring cleaning page."
       galleryImages={[
         { src: kitchenImage, alt: "Clean, tidy kitchen after standard cleaning service in Edmonton" },
         { src: livingRoomImage, alt: "Freshly cleaned Edmonton bathroom with tidy shelves and polished surfaces" },

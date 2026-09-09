@@ -54,8 +54,8 @@ export default function JudgmentFree({ image = defaultRoom, alt = "Sunlit living
             <div>
               <p className="text-base leading-relaxed text-foreground md:text-lg">
                 You don&rsquo;t need to tidy before we arrive, apologize for the state of anything, or
-                explain yourself. Our cleaners show up, do the work, and leave you with a home that
-                feels like yours again. No photos, no commentary, no raised eyebrows. If it&rsquo;s
+                explain yourself. The cleaners do the work and leave. No photos, no commentary, no raised
+                eyebrows. If it&rsquo;s
                 been a while, that&rsquo;s exactly the kind of job we&rsquo;re good at. Describe the
                 home as it is — clear information helps, and no apology is needed.
               </p>

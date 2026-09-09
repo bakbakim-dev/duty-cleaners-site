@@ -430,7 +430,7 @@ const ServiceDetailPage = ({
                   <p className="text-brand-gold font-bold text-2xl">{room.tasks} tasks</p>
                   <h3 className="font-bold text-lg mt-1">{room.name}</h3>
                   <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
-                    Including {room.sample}, and more.
+                    Including {room.sample}.
                   </p>
                 </div>
               ))}
@@ -568,7 +568,7 @@ const ServiceDetailPage = ({
               Frequently asked questions
             </h2>
             <p className="text-muted-foreground text-center mb-12">
-              Everything {cityName} homeowners ask before booking
+              Questions people ask before they book
             </p>
             <div className="space-y-4">
               {faqs.map((faq, index) => (

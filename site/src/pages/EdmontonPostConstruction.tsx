@@ -48,10 +48,10 @@ const excludedServices = [
 
 const whyChooseUs = [
   { icon: Calendar, title: "Flexible Scheduling", desc: "Weekday and weekend appointments available, subject to availability, to work around your move-in date or project completion." },
-  { icon: Shield, title: "Pay After Your Clean", desc: "Customer-rated Edmonton cleaners who work to a post-construction checklist from start to finish." },
-  { icon: Sparkles, title: "Attention to Detail", desc: "We hand-wipe ledges, tracks, vents, and trim where dust quietly settles after construction." },
-  { icon: Wrench, title: "Professional Equipment", desc: "High-performance vacuums, microfiber cleaning systems, and surface-safe products designed for post-renovation cleaning." },
-  { icon: Heart, title: "Satisfaction Guarantee", desc: "Not happy with an area? Let us know within 24 hours and we'll re-clean it free of charge." },
+  { icon: Shield, title: "Pay After Your Clean", desc: "Nothing is charged when you book. The day before your appointment a temporary hold confirms the card is valid, and no money moves. Your card is charged once the clean is complete." },
+  { icon: Sparkles, title: "Ledges, Tracks and Vents", desc: "We hand-wipe ledges, tracks, vents, and trim, which is where dust settles after construction." },
+  { icon: Wrench, title: "Professional Equipment", desc: "We bring the vacuums, cloths and products; you do not supply anything." },
+  { icon: Heart, title: "Satisfaction Guarantee", desc: "Tell us within 24 hours about any area you are not happy with and we re-clean it free of charge." },
   { icon: DollarSign, title: "Transparent Pricing", desc: `${startingPriceLabel} to ${topPriceLabel}, before 5% GST, set by square footage and scope — you see your number before you book, and it is the number you pay.` }
 ];
 
@@ -70,7 +70,7 @@ const faqs = [
   },
   {
     q: "How is post-construction cleaning different from a regular deep clean?",
-    a: "Post-construction cleaning targets the fine construction dust that settles on every surface — including inside cabinets, drawers, vents, and window tracks — as well as light paint splatters, smudges, and residue left behind by tradespeople. It is significantly more detailed and intensive than a standard deep clean.",
+    a: "Post-construction cleaning targets the fine construction dust that settles on every surface, including inside cabinets, drawers, vents, and window tracks, as well as light paint splatters, smudges, and residue left behind by tradespeople. A deep clean does not open every cabinet and drawer, wipe inside the vents, clear the window tracks, or lift paint flecks and adhesive residue off glass and fixtures. This one does.",
   },
   {
     q: "How long does a post-construction cleaning take?",
@@ -170,7 +170,7 @@ export default function EdmontonPostConstruction() {
                 Final-stage move-in cleaning for newly built and freshly renovated Edmonton homes — completed projects only, ready for handover.
               </p>
               <p className="text-base md:text-lg text-white/90 max-w-3xl mb-8">
-                We remove fine drywall dust, smudges, and contractor residue from cabinets, windows, baseboards, and floors so your home looks brand new the moment you walk in.
+                We remove fine drywall dust, smudges, and contractor residue from cabinets, windows, baseboards, and floors.
               </p>
               <div className="flex flex-wrap gap-4 justify-center lg:justify-start mb-10">
                 <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-white text-lg px-8">
@@ -215,12 +215,12 @@ export default function EdmontonPostConstruction() {
         <AnimatedSection>
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Why You Need Professional Post-Construction Cleaning</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">What is left behind after the trades leave</h2>
               <p className="text-lg text-muted-foreground mb-4">
-                Even after the trades have packed up and the last tool has been put away, a freshly built or renovated Edmonton home is anything but clean. Drywall dust settles on baseboards, vents, counters, window ledges, and floors. Fine particles work their way into cabinets and drawers. Smudges, fingerprints, and adhesive residue cling to windows, mirrors, and new fixtures.
+                Drywall dust settles on baseboards, vents, counters, window ledges, and floors. Fine particles work their way into cabinets and drawers. Smudges, fingerprints, and adhesive residue cling to windows, mirrors, and new fixtures.
               </p>
               <p className="text-lg text-muted-foreground mb-4">
-                At Duty Cleaners Edmonton, we specialize in <strong>final-stage post-construction cleaning</strong> — the detailed move-in cleaning performed once construction is fully complete and the space is empty of debris. Whether it's a brand-new build, a kitchen or bathroom remodel, a basement renovation, or a full home refresh, we make your property genuinely move-in ready.
+                At Duty Cleaners Edmonton, we do <strong>final-stage post-construction cleaning</strong>: the move-in clean performed once construction is complete and the space is empty of debris. That covers new builds, kitchen and bathroom remodels, basement renovations and whole-home refreshes.
               </p>
               <p className="text-lg text-muted-foreground mb-8">
                 <strong>Important:</strong> we do not provide rough construction cleanup, debris hauling, or active job-site cleaning. Our service begins after your contractor has finished and removed all materials.
@@ -243,7 +243,7 @@ export default function EdmontonPostConstruction() {
               What's Included
             </h2>
             <p className="text-center text-white/90 mb-12 max-w-2xl mx-auto">
-              Our comprehensive post-construction cleaning covers every detail to make your space shine.
+              Six parts of the clean: dust, kitchen, bathrooms, floors, interior glass, and the doors, handles and switches everyone touches.
             </p>
           </AnimatedSection>
           <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-6">
@@ -273,10 +273,7 @@ export default function EdmontonPostConstruction() {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Why Edmonton Homeowners Choose Duty Cleaners</h2>
-            <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-              From flexible scheduling to a backed satisfaction guarantee — every detail is built around delivering a truly move-in ready finish.
-            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Why Edmonton Homeowners Choose Duty Cleaners</h2>
           </AnimatedSection>
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {whyChooseUs.map((item, index) => (
@@ -306,7 +303,7 @@ export default function EdmontonPostConstruction() {
               We provide <strong>final-stage post-construction cleaning only</strong>. To set clear expectations, here's what falls outside our scope:
             </p>
             <p className="text-center text-sm text-muted-foreground mb-12 max-w-2xl mx-auto italic">
-              Need rough cleanup or debris removal? Please coordinate that with your contractor before our team arrives.
+              Rough cleanup and debris removal are your contractor's job, and they have to be done before our team arrives.
             </p>
           </AnimatedSection>
           <div className="max-w-3xl mx-auto space-y-4">
@@ -337,7 +334,7 @@ export default function EdmontonPostConstruction() {
                 We stand behind the quality of our staff. If you're not 100% satisfied with your cleaning, we'll come back and re-clean it at no additional charge, as long as we’re informed within 24 hours after the cleaning.
               </p>
               <p className="text-base text-white/90 mb-8">
-                Every Edmonton post-construction job is reviewed against a detailed checklist before we leave — from cabinet interiors and window tracks to baseboards — so the home truly feels brand new.
+                Every Edmonton post-construction job is checked against the checklist before we leave: cabinet interiors, window tracks, baseboards.
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
                 <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-white">
@@ -392,7 +389,7 @@ export default function EdmontonPostConstruction() {
           </AnimatedSection>
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {[
-              { icon: Phone, title: "Give us a call", desc: "We're here to answer your questions!", action: "(780) 913-6565", href: "tel:7809136565" },
+              { icon: Phone, title: "Give us a call", desc: "Questions before you book", action: "(780) 913-6565", href: "tel:7809136565" },
               { icon: MapPin, title: "Our office", desc: "18615 71 Ave NW\nEdmonton, AB", action: "Get Directions", href: getListing("edmonton").url },
               { icon: Clock, title: "Hours of operation", desc: "Mon-Sat: 8am–8pm\nSun: 9am–3pm", action: "Reviews", href: getListing("edmonton").reviewsUrl },
             ].map((card, index) => (

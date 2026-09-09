@@ -335,7 +335,7 @@ export default function Parkhill() {
                 </div>
                 <div>
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Sparkling Bathrooms, Spotless Kitchens, Stress-Free Days</h2>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Bathrooms, kitchens and floors, done properly</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
                     Our vetted cleaners treat your home with care, attention, and the same standards we'd want in our own. Walk in to fresh air, gleaming surfaces, and that quiet feeling of <em>everything in its place</em>.
                   </p>

@@ -97,12 +97,12 @@ export default function LocationPricing({ place }: LocationPricingProps) {
                 site-wide; the anchor carries the place name so 165 of them do
                 not arrive under one repeated string. "Monthly" corrected here
                 too — BookingKoala's frequency is Every 4 Weeks. */}
-            For {name} homes on a{" "}
+            On a{" "}
             <Link
               to={canonicalForPath(`/${city.toLowerCase()}/recurring-cleaning`)}
               className="text-accent underline underline-offset-2"
             >
-              recurring schedule
+              recurring schedule in {name}
             </Link>{" "}
             the discount is 20% weekly, 15% bi-weekly and 10% every four weeks from the second clean.
             Your first clean is charged at the standard one-time rate. The{" "}

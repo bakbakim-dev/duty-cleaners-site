@@ -61,7 +61,7 @@ const services = [
   { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Garneau home fresh and inviting year-round.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Garneau" },
   { icon: Sparkles, title: "Deep Cleaning", description: "Comprehensive cleaning of the house, reaching every corner, baseboard, and hidden surface.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Garneau" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Perfect for students and families transitioning — leave or arrive to a pristine home.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Garneau" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris removal after renovations or constructions in the area.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Garneau" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Drywall and construction dust after a renovation or a new build in the area.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Garneau" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Garneau" },
   { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
 ];

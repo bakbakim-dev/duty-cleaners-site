@@ -62,7 +62,7 @@ const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in St. Albert" },
   { icon: Sparkles, title: "Deep Cleaning", description: "A full top-to-bottom reset — corners, baseboards, and the surfaces regular visits skip.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in St. Albert" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Move-day cleaning done to the standard landlords check for.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in St. Albert" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust and debris cleared after a renovation or a new build.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in St. Albert" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or a new build.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in St. Albert" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in St. Albert" },
   { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
 ];
@@ -70,9 +70,9 @@ const services = [
 const whyUsItems = [
   { icon: Shield, title: "Reference-Checked, Then Rated by You", description: "Every cleaner is reference-checked before their first job, then rated by the customer after every visit. Those ratings decide who keeps cleaning for us." },
   { icon: Star, title: RATING_CLAIM, description: `${CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount} reviews across Edmonton and Calgary, and every one of them is on our Google listing.` },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day slots when the schedule allows. Albert. We work around your busy life." },
+  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day slots when the schedule allows." },
   { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
-  { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
+  { icon: Users, title: "Experienced Team", description: "Cleaners trained to the Duty Cleaners checklist, and rated by you after every visit." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
 ];
 
@@ -101,7 +101,7 @@ export default function StAlbert() {
     },
     {
       question: "What is your 100% satisfaction guarantee policy?",
-      answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back and put it right — at no extra cost!"
+      answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back and put it right — at no extra cost."
     }
   ];
   const faqJsonLd = {
@@ -196,29 +196,29 @@ export default function StAlbert() {
             <div className="max-w-4xl mx-auto">
               <span className="text-primary text-sm font-semibold tracking-wider uppercase">About the Neighbourhood</span>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                Cleaning Services Tailored to St. Albert Living
+                House cleaning in St. Albert
               </h2>
               <div className="prose prose-lg text-muted-foreground max-w-none space-y-4">
                 <p>
-                  St. Albert is one of the most desirable communities in the Edmonton metro area, known for its beautiful trails, vibrant arts scene, and family-friendly neighbourhoods. Whether your home is near{" "}
-                  <a href="https://www.google.com/maps/place/Red+Willow+Park,+St.+Albert,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
-                    Red Willow Park
-                  </a>{" "}
-                  or just steps from the popular{" "}
-                  <a href="https://www.google.com/maps/place/St.+Albert+Farmers'+Market/@53.6307,-113.6278,17z/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
-                    St. Albert Farmers' Market
-                  </a>, our team knows the area and delivers spotless results every time.
-                </p>
-                <p>
-                  Families living close to{" "}
-                  <a href="https://www.google.com/maps/place/Servus+Place/@53.6383,-113.6214,17z/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
-                    Servus Place
-                  </a>{" "}
-                  or enjoying the trails along the{" "}
+                  St. Albert sits on the{" "}
                   <a href="https://www.google.com/maps/place/Sturgeon+River,+St.+Albert,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
                     Sturgeon River
                   </a>{" "}
-                  deserve a home that's just as clean and inviting as the community around them. We bring professional products and meticulous attention to detail to every St. Albert home we service.
+                  just northwest of Edmonton. We clean homes across the city, from the streets around{" "}
+                  <a href="https://www.google.com/maps/place/Red+Willow+Park,+St.+Albert,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
+                    Red Willow Park
+                  </a>{" "}
+                  and{" "}
+                  <a href="https://www.google.com/maps/place/Servus+Place/@53.6383,-113.6214,17z/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
+                    Servus Place
+                  </a>{" "}
+                  to the blocks near the{" "}
+                  <a href="https://www.google.com/maps/place/St.+Albert+Farmers'+Market/@53.6307,-113.6278,17z/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
+                    St. Albert Farmers' Market
+                  </a>.
+                </p>
+                <p>
+                  Every spring the elms on the older streets drop seed that mats into window screens and sliding-door channels, then comes indoors on shoes for weeks.
                 </p>
               </div>
             </div>
@@ -233,11 +233,10 @@ export default function StAlbert() {
             <div className="max-w-4xl mx-auto">
               <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Life</span>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                Things To Do In St. Albert
+                Around St. Albert
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
-                <p>Founded in 1861 as a Catholic mission, St. Albert distinguishes itself by being Alberta's oldest non-fortified, peaceful settlement. With a population of over 66,000, this vibrant city is currently the second-largest city in Edmonton Metropolitan Region. Its picturesque location, just northwest of Edmonton, offers a serene escape from the bustle of the city while remaining conveniently close. St. Albert's commitment to preserving its past is evident in landmarks such as Father Lacombe Chapel, a provincial historic site that showcases the region's missionary roots.</p>
-                <p>If you are into art, you'll find the perfect place at the Art Gallery of St. Albert, which has a diverse range of local and international artworks, providing a glimpse into the city's vibrant art scene. To enjoy the natural beauty of St. Albert, the Lois Hole Centennial Provincial Park is a sprawling parkland with picturesque trails, picnic spots, and serene views of Big Lake. For a delightful shopping experience, head to the St. Albert Farmers' Market, where you can browse a wide range of fresh produce, handmade crafts, and delectable treats while enjoying a lively atmosphere.</p>
+                <p>St. Albert began in 1861 as a Catholic mission, and Father Lacombe Chapel is a provincial historic site from that period. Lois Hole Centennial Provincial Park runs along Big Lake on the west side of the city. The Art Gallery of St. Albert shows local and international work, and the St. Albert Farmers' Market sells produce and crafts.</p>
               </div>
             </div>
           </AnimatedSection>
@@ -324,7 +323,7 @@ export default function StAlbert() {
         heading="Elm seeds on the old streets"
         paragraphs={[
           "St. Albert took New Town status on 1 January 1957, and the council plan behind it laid out four neighbourhoods, Braeside, Mission and Sturgeon Heights among them. Those streets carry much of the city's mature canopy today. Elms are a common boulevard tree on those older streets, and every spring they drop papery samaras that mat into window screens and sliding-door channels, then ride indoors on shoes for weeks.",
-          "A citywide canopy average lumps developed, developing and undeveloped land into one number, so it describes no particular street. Riverside, one of the city's newest communities, sits on the west side by Big Lake, its boulevard trees years from filling in. Those homes trade screen debris for unshaded south and west glass that collects street dust with no canopy to slow it.",
+          "Riverside, one of the city's newest communities, sits on the west side by Big Lake, its boulevard trees years from filling in. Those homes trade screen debris for unshaded south and west glass that collects street dust with no canopy to slow it.",
         ]}
       />
 

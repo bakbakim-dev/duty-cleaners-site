@@ -1,3 +1,4 @@
+import { POLICY } from "@/data/policy";
 import { formatPrice } from "@/data/pricing";
 import { addOnFromPrice } from "@/data/pricing";
 import ServiceDetailPage from "@/components/ServiceDetailPage";
@@ -13,12 +14,14 @@ import heroImage from "@/assets/gallery/calgary-kitchen-clean.webp";
 const addOnLabel = (key: string) => formatPrice(addOnFromPrice("standard", key) ?? 0);
 
 const TIERS = deepCleanTierRows().map((row) => ({ size: row.beds, price: row.price }));
+/** The one-bedroom row, with its standard and package halves, for the price FAQ. */
+const DEEP = deepCleanTierRows()[0];
 
 export default function CalgaryDeepCleaning() {
   return (
     <ServiceDetailPage
       city="calgary"
-      crossCity={{ city: "Edmonton", to: "/edmonton/deep-cleaning/", description: "The same top-to-bottom deep clean, delivered by our Edmonton team.", linkText: "Deep cleaning in Edmonton" }}
+      crossCity={{ city: "Edmonton", to: "/edmonton/deep-cleaning/", description: "The same deep clean, delivered by our Edmonton team.", linkText: "Deep cleaning in Edmonton" }}
       quoteService="deep-cleaning"
       phone="(403) 768-1341"
       phoneHref="tel:4037681341"
@@ -26,18 +29,18 @@ export default function CalgaryDeepCleaning() {
       seoDescription="Deep cleaning in Calgary: baseboards, switches, vents, appliance exteriors and built-up grime removed. We re-clean any miss within 24 hours."
       canonical="https://dutycleaners.ca/calgary/deep-cleaning"
       heroHeading={<>Deep Cleaning Services in <AccentGold>Calgary</AccentGold></>}
-      heroSubheading="A meticulous top-to-bottom reset for the areas regular cleaning never reaches."
+      heroSubheading="Everything in a standard clean, plus what a standard clean does not reach: baseboards and door frames, switches and outlet covers, vents and ceiling fans, tile and shower glass, the stovetop and range hood degreased. Inside the oven and fridge on request."
       heroBadges={["Top-to-Bottom Detail", "All Supplies Brought For You", "100% Satisfaction Guarantee"]}
       heroImage={heroImage}
-      heroImageAlt="Sparkling Calgary kitchen after a professional deep cleaning"
+      heroImageAlt="Calgary kitchen after a deep clean"
       overviewEyebrow="Service Overview"
       overviewHeading={<>The reset regular cleaning <Accent>can't reach.</Accent></>}
       overviewParagraphs={[
-        "Deep cleaning is a comprehensive, detail-driven reset of your home. It goes far beyond the surfaces touched during a regular visit — addressing built-up dust, grease, soap scum, and grime in the places that accumulate quietly over months.",
+        `A deep clean is the full standard checklist with the deep-clean package on top, priced flat by home size and starting at ${TIERS[0].price} for a one-bedroom.`,
         "Calgary homes collect that build-up differently than most. Sitting at the foot of the Rockies, the city thaws and refreezes all winter long, so roads are gritted, melted and gritted again rather than staying frozen through to spring. That sand and de-icer does not stop at the door. It works along baseboards, into carpet edges, down the sides of stair treads and under furniture — and by February it is somewhere a vacuum no longer reaches. A deep clean is what actually takes it back out.",
         "The rest depends on where you live. In a Beltline or Eau Claire condo the work concentrates on window tracks, balcony door channels and the fine dust that a dry, windy city drives into every seal. In a newer home out in Mahogany, Cranston or Seton it is usually construction dust, which keeps resurfacing from vents, closet shelves and the tops of doors for a year or two after handover. Our team works methodically from top to bottom, room by room — scrubbing baseboards and door frames, hand-wiping switches and outlet covers, degreasing stovetops and range hoods, and detailing tile and shower glass.",
       ]}
-      includedHeading="Detailed Top-to-Bottom Cleaning"
+      includedHeading="What a deep clean adds"
       includedSubheading="The places a weekly visit never reaches, room by room."
       included={[
         { icon: UtensilsCrossed, title: "Kitchen Detail Clean", description: "Degreasing stovetops, range hoods, exterior of appliances, cabinet fronts, backsplash, and sanitizing all prep surfaces." },
@@ -65,7 +68,6 @@ export default function CalgaryDeepCleaning() {
         { name: "Bedrooms & Living", tasks: 4, sample: "dusting high and low areas" },
       ]}
       pricingBySize={TIERS}
-      pricingNote="Starting estimates are based on home size — final time and cost can vary with condition, bathrooms, and add-ons."
       fromPrice={TIERS[0].price}
       extras={featuredExtraRows()}
       notIncluded={[
@@ -91,19 +93,19 @@ export default function CalgaryDeepCleaning() {
         { q: "Is there a best time of year for a deep clean in Calgary?", a: "Early spring is the most popular, because it clears out a full winter of road sand and de-icer at once — Calgary thaws and refreezes on chinooks all season, so entryways and baseboards collect grit continuously rather than staying frozen over. Late autumn is the other good window, resetting the house before that cycle starts. Both book up quickly, so give us a week or two of notice if you can." },
         { q: "Can I book deep cleaning for only certain areas?", a: "Yes, you may request deep cleaning for specific areas, such as bathrooms, kitchen, basement, or main floor only." },
         { q: "Should I declutter before deep cleaning?", a: "Yes, we recommend removing clutter before the appointment so our team can focus on cleaning surfaces properly." },
-        { q: "Is deep cleaning more expensive than standard cleaning?", a: "Yes, deep cleaning usually costs more because it requires more time, detail, and effort." },
+        { q: "Is deep cleaning more expensive than standard cleaning?", a: `Yes, by the price of the deep-clean package. For a one-bedroom that is ${DEEP.packagePrice}: ${DEEP.price} for the deep clean against ${DEEP.standard} for a standard clean. The table above lists every home size.` },
         { q: "Does deep cleaning remove mold or mildew?", a: "We may wipe light surface mildew if safe, but we do not provide mold remediation or remove heavy mold." },
-        { q: "When should I book a deep cleaning?", a: "Book a deep clean for a seasonal refresh, before guests arrive, after a renovation, after a long stretch without service, or as your first visit before starting a recurring schedule." },
+        { q: "When should I book a deep cleaning?", a: "Early spring or late autumn are the Calgary windows, as above; the other common reasons are guests, a renovation, a long gap without service, or a first visit before starting a recurring schedule." },
         { q: "How long does a deep cleaning take?", a: "We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
         { q: "How is deep cleaning different from regular cleaning?", a: "Regular cleaning maintains an already-clean home. Deep cleaning tackles built-up grime, detailed edges, baseboards, and the areas that aren't included in every visit." },
         { q: "Do I need to prepare anything?", a: "Please pick up any personal items you'd like put away and clear surfaces such as vanities, countertops, and other cluttered areas so our cleaners can work efficiently. You may also let us know any priority areas or spaces you would like us to focus on or skip." },
-        { q: "Are your products safe for kids and pets?", a: "Tell us about any sensitivities, or products you would rather we used, and we will work to them — just let us know when booking." },
+        { q: "Are your products safe for kids and pets?", a: `We bring standard professional products. If anyone in the house has a sensitivity, or there is a product you would rather we did not use, say so when you book. Eco-friendly products are available for ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}.` },
         { q: "How often should I get a deep cleaning?", a: "Most homes benefit from a deep clean every 3–6 months, with regular maintenance cleaning in between." },
       ]}
-      ctaHeading={<>Give your home the <AccentGold>full reset.</AccentGold></>}
-      ctaDescription="Reset your home with a thorough, detail-driven cleaning. Flexible scheduling and a satisfaction guarantee on every visit."
+      ctaHeading={<>Deep cleaning in <AccentGold>Calgary</AccentGold> from {TIERS[0].price}.</>}
+      ctaDescription={`Priced flat by home size, starting at ${TIERS[0].price} for a one-bedroom. Anything missed is re-cleaned at no charge if you tell us within ${POLICY.guaranteeWindowHours} hours.`}
       galleryImages={[
-        { src: heroImage, alt: "Sparkling Calgary kitchen after a professional deep cleaning" },
+        { src: heroImage, alt: "Calgary kitchen after a deep clean" },
       ]}
     />
   );

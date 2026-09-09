@@ -60,7 +60,7 @@ const services = [
   { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Marda Loop home spotless and inviting.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Marda Loop" },
   { icon: Sparkles, title: "Deep Cleaning", description: "Comprehensive cleaning of the house — perfect for character bungalows and modern infills alike.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Marda Loop" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for smooth transitions in Marda Loop's active real estate market.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Marda Loop" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris removal after renovations or constructions in your home.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Marda Loop" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Drywall and construction dust after a renovation or a new build in your home.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Marda Loop" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Marda Loop" },
   { icon: Building2, title: "Commercial Cleaning", description: "Professional cleaning for shops and businesses along 33rd Avenue and surrounding streets." },
 ];

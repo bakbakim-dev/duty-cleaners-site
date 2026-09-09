@@ -16,7 +16,7 @@ const personas: Persona[] = [
     label: "For packed schedules",
     title: "Busy Professionals",
     desc: () =>
-      "Come home to a clean house after a long workday. We handle the cleaning ahead of time so you can relax and enjoy your evenings and weekends stress-free.",
+      "Come home to a clean house after a long workday. We handle the cleaning ahead of time so your evenings and weekends are your own.",
   },
   {
     icon: Baby,

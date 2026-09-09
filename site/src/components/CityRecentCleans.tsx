@@ -201,7 +201,7 @@ export default function CityRecentCleans({ city, reviews, reviewsTo = "/reviews/
             Recent five-star cleans in <Accent>{city}</Accent>
           </h2>
           <p className="text-muted-foreground mt-3 max-w-[55ch] leading-relaxed">
-            Real homes, real results — straight from the {city} customers who booked them.
+            Recent reviews, quoted as {city} customers posted them on Google.
           </p>
         </div>
 

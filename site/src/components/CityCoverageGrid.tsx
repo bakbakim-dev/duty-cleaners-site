@@ -55,7 +55,7 @@ export default function CityCoverageGrid({
           Covering all of <Accent>{city}</Accent>
         </h3>
         <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
-          Vetted cleaners in every corner of the city — and the communities around it.
+          Reference-checked cleaners across the city and the communities around it.
         </p>
       </div>
 

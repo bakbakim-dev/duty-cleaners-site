@@ -94,7 +94,7 @@ const landmarks = [
   {
     "title": "Crowfoot YMCA",
     "url": "https://www.google.com/maps/place/Crowfoot+YMCA,+Calgary,+AB/",
-    "description": "State-of-the-art fitness facility for the whole family"
+    "description": "Fitness facility for the whole family"
   }
 ];
 

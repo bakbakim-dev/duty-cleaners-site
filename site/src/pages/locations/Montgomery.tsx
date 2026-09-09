@@ -335,7 +335,7 @@ export default function Montgomery() {
                 </div>
                 <div>
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Spotless Home Without Lifting a Finger</h2>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Every room, one flat price</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
                     Our Montgomery clients love coming home to a kitchen that gleams, bathrooms that sparkle, and that unmistakable feeling of a job done right. We sweat the small stuff so you don't have to.
                   </p>

@@ -59,7 +59,7 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Morinville" },
   { icon: Sparkles, title: "Deep Cleaning", description: "A full top-to-bottom reset — corners, baseboards, and the surfaces regular visits skip.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Morinville" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth Morinville move — leave or arrive to a pristine home.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Morinville" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for moving day, on the way out or the way in.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Morinville" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared properly after renos and handovers.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Morinville" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Morinville" },
   { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
@@ -68,9 +68,9 @@ const services = [
 const whyUsItems = [
   { icon: Shield, title: "Reference-Checked, Then Rated by You", description: "Every cleaner is reference-checked before their first job, then rated by the customer after every visit. Those ratings decide who keeps cleaning for us." },
   { icon: Star, title: RATING_CLAIM, description: `${CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount} reviews across Edmonton and Calgary, and every one of them is on our Google listing.` },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day slots when the schedule allows. We work around your busy life." },
+  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day slots when the schedule allows." },
   { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
-  { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
+  { icon: Users, title: "Experienced Team", description: "Professional cleaners who work to the Duty Cleaners checklist." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
 ];
 
@@ -96,7 +96,7 @@ export default function Morinville() {
     },
     {
       question: "What is your 100% satisfaction guarantee policy?",
-      answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back and put it right — at no extra cost!"
+      answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back and put it right — at no extra cost."
     }
   ];
   const faqJsonLd = {
@@ -175,7 +175,7 @@ export default function Morinville() {
             <div className="flex-shrink-0 w-full lg:w-[500px]">
               <img width={1024} height={672}
                 src={morinvilleHome}
-                alt="A charming residential home in Morinville, Alberta"
+                alt="A residential home in Morinville, Alberta"
                 className="rounded-2xl shadow-2xl w-full h-auto object-cover"
               loading="eager"
                   {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
@@ -191,26 +191,22 @@ export default function Morinville() {
             <div className="max-w-4xl mx-auto">
               <span className="text-primary text-sm font-semibold tracking-wider uppercase">About the Neighbourhood</span>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                Cleaning Services Tailored to Morinville Living
+                House cleaning in Morinville
               </h2>
               <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                 <p>
-                  Morinville is a charming town just north of Edmonton along{" "}
-                  <a href="https://www.google.com/maps/place/Highway+2,+Alberta/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Highway 2</a>,
-                  known for its strong community spirit and family-friendly atmosphere. Whether your home is near the historic{" "}
-                  <a href="https://www.google.com/maps/place/St.+Jean+Baptiste+Church,+Morinville,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">St. Jean Baptiste Church</a>,
-                  close to{" "}
-                  <a href="https://www.google.com/maps/place/Morinville+Leisure+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Morinville Leisure Centre</a>,
-                  or along the trails near{" "}
-                  <a href="https://www.google.com/maps/place/Lakeview+Park,+Morinville,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Lakeview Park</a>,
-                  our team knows the area and is ready to keep your home spotless.
-                </p>
-                <p>
-                  From the newer developments off{" "}
+                  Morinville is north of Edmonton on{" "}
+                  <a href="https://www.google.com/maps/place/Highway+2,+Alberta/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Highway 2</a>.
+                  We clean homes across the town, from{" "}
+                  <a href="https://www.google.com/maps/place/St.+Jean+Baptiste+Church,+Morinville,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">St. Jean Baptiste Church</a>,{" "}
+                  <a href="https://www.google.com/maps/place/Morinville+Leisure+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Morinville Leisure Centre</a>{" "}
+                  and{" "}
+                  <a href="https://www.google.com/maps/place/Lakeview+Park,+Morinville,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Lakeview Park</a>{" "}
+                  to the newer streets off{" "}
                   <a href="https://www.google.com/maps/place/100+Avenue,+Morinville,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">100 Avenue</a>{" "}
-                  to the established homes near{" "}
-                  <a href="https://www.google.com/maps/place/Notre+Dame+Elementary+School,+Morinville,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Notre Dame Elementary</a>,
-                  we provide flexible scheduling and cleaning suited to every household in Morinville.
+                  and the older homes near{" "}
+                  <a href="https://www.google.com/maps/place/Notre+Dame+Elementary+School,+Morinville,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Notre Dame Elementary</a>.
+                  In the dry months wind carries field soil in from the farmland around the town, and it settles on sills and screens.
                 </p>
               </div>
             </div>
@@ -228,8 +224,7 @@ export default function Morinville() {
                 Things To Do In Morinville
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
-                <p>Morinville is a charming town with rich history, a tight-knit community, and a scenic setting. Its roots trace back to the late 1800s when Jean Baptiste Morin and French-speaking immigrants established the area. With a population of around 10,000, Morinville provides a serene escape just north of Edmonton while offering easy access to urban amenities. Morinville's strong community spirit and pride in its heritage are evident in its historic buildings, such as the iconic St.</p>
-                <p>Jean Baptiste Church, which stands as a testament to the town's cultural roots. Begin your exploration by visiting the renowned Morinville Museum, where the town's history is on display and artefacts. For a cultural experience, catch a performance at the Morinville Community Cultural Centre, a vibrant venue hosting live theatre productions, concerts, and art exhibitions. Finally, delight your taste buds at Bistro Di Madre Piccola, a cosy and inviting Italian bistro known for its flavorful dishes and warm hospitality.</p>
+                <p>Morinville dates from the late 1800s, when Jean Baptiste Morin and French-speaking settlers took up land here, and St. Jean Baptiste Church is its historic landmark. The Morinville Museum holds the town's history and artefacts. The Morinville Community Cultural Centre hosts theatre, concerts and art exhibitions.</p>
               </div>
             </div>
           </AnimatedSection>
@@ -285,7 +280,7 @@ export default function Morinville() {
         heading="The church that reopened in 2025"
         paragraphs={[
           "Founded in 1892 by the Oblate priest Jean-Baptiste Morin, who brought French settlers north from Edmonton, this town kept its parish at the centre of it. St. Jean Baptiste church went up in 1907, was named a historic site in 1975, burned on 30 June 2021 and reopened rebuilt in December 2025. A town that has been settled that long has housing from every decade since, which is the practical fact for us.",
-          "About 34 km up Highway 2 from the city, with farmland close on every side, this is high open country rather than a sheltered grid. Wind carries field soil to the newest streets in the dry months, and it settles on sills, in screen mesh and on the top edges of doors — the flat surfaces a routine pass tends to skip.",
+          "About 34 km up Highway 2 from the city, with farmland close on every side, this is high open country rather than a sheltered grid. Wind carries field soil to the newest streets in the dry months, and it comes to rest where a routine pass tends not to look: window sills, the mesh of the screens, the top edge of a door.",
         ]}
       />
 

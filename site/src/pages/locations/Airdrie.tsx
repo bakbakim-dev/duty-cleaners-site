@@ -59,20 +59,20 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning for a spotless, fresh reset in one visit.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Airdrie" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Every corner, baseboard, and hidden surface, cleaned top to bottom.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Airdrie" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for moving day — leave or arrive to a pristine home.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Airdrie" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Airdrie.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Airdrie" },
+  { icon: Home, title: "Standard Cleaning", description: "A one-time clean of the whole home, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Airdrie" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "Corners, baseboards and the surfaces a regular visit skips, cleaned top to bottom.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Airdrie" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for moving day, on the way out or the way in.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Airdrie" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after renovations and new builds in Airdrie.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Airdrie" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Airdrie" },
-  { icon: Building2, title: "Commercial Cleaning", description: "Professional office and commercial space cleaning for Airdrie businesses of all sizes." },
+  { icon: Building2, title: "Commercial Cleaning", description: "Office and commercial cleaning for Airdrie businesses." },
 ];
 
 const whyUsItems = [
   { icon: Shield, title: "Reference-Checked, Then Rated by You", description: "Every cleaner is reference-checked before their first job, then rated by the customer after every visit. Those ratings decide who keeps cleaning for us." },
   { icon: Star, title: RATING_CLAIM, description: `${CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount} reviews across Edmonton and Calgary, and every one of them is on our Google listing.` },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability, schedule permitting. We work around your busy life." },
+  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability, schedule permitting." },
   { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
-  { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
+  { icon: Users, title: "Experienced Team", description: "Professional cleaners who work to the Duty Cleaners checklist." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
 ];
 
@@ -109,7 +109,7 @@ export default function Airdrie() {
     },
     {
       question: "What is your 100% satisfaction guarantee policy?",
-      answer: "If you're not 100% satisfied, call us within 24 hours and we'll return and make it right — at no extra cost!"
+      answer: "If you're not 100% satisfied, call us within 24 hours and we'll return and make it right — at no extra cost."
     }
   ];
   const faqJsonLd = {
@@ -127,12 +127,12 @@ export default function Airdrie() {
     <>
       <Helmet>
         <title>House Cleaning Services in Airdrie, AB | Duty Cleaners</title>
-        <meta name="description" content="Professional cleaners serving Airdrie. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="description" content="House cleaning in Airdrie. Flat rates by home size, reference-checked and customer-rated cleaners, pay after your clean." />
         <meta property="og:title" content="House Cleaning Services in Airdrie, AB | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services in Airdrie, AB | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional cleaners serving Airdrie. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
-        <meta property="og:description" content="Professional cleaners serving Airdrie. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="twitter:description" content="House cleaning in Airdrie. Flat rates by home size, reference-checked and customer-rated cleaners, pay after your clean." />
+        <meta property="og:description" content="House cleaning in Airdrie. Flat rates by home size, reference-checked and customer-rated cleaners, pay after your clean." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/cleaning-services-airdrie/" />
         <link rel="canonical" href="https://dutycleaners.ca/cleaning-services-airdrie/" />
@@ -162,7 +162,7 @@ export default function Airdrie() {
                   Professional House Cleaning in Airdrie
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Trusted house cleaning services in Airdrie, AB. Customer-rated cleaners loved by local families — from Coopers Crossing to Bayside.
+                  Trusted house cleaning services in Airdrie, AB. Customer-rated cleaners from Coopers Crossing to Bayside.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -206,26 +206,22 @@ export default function Airdrie() {
               <div className="max-w-4xl mx-auto">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">About the Neighbourhood</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                  Cleaning Services Tailored to Airdrie Living
+                  House cleaning in Airdrie
                 </h2>
                 <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                   <p>
-                    Airdrie is a thriving city just north of Calgary along{" "}
-                    <a href="https://www.google.com/maps/place/Queen+Elizabeth+II+Hwy,+Alberta/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Queen Elizabeth II Highway</a>,
-                    known for its welcoming community and fast-growing neighbourhoods. Whether your home is near the iconic{" "}
-                    <a href="https://www.google.com/maps/place/Nose+Creek+Park,+Airdrie,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Nose Creek Park</a>{" "}
-                    (home of Canada's largest free outdoor Festival of Lights), close to the{" "}
-                    <a href="https://www.google.com/maps/place/Iron+Horse+Park,+Airdrie,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Iron Horse Park</a>,
-                    or in one of the newer developments near{" "}
-                    <a href="https://www.google.com/maps/place/East+Lake+Regional+Park,+Airdrie,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">East Lake Regional Park</a>,
-                    our team knows Airdrie well and is ready to keep your home spotless.
-                  </p>
-                  <p>
-                    From the established streets of{" "}
+                    Airdrie is north of Calgary on the{" "}
+                    <a href="https://www.google.com/maps/place/Queen+Elizabeth+II+Hwy,+Alberta/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Queen Elizabeth II Highway</a>.
+                    We clean homes across the city, from{" "}
+                    <a href="https://www.google.com/maps/place/Nose+Creek+Park,+Airdrie,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Nose Creek Park</a>,{" "}
+                    <a href="https://www.google.com/maps/place/Iron+Horse+Park,+Airdrie,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Iron Horse Park</a>{" "}
+                    and{" "}
+                    <a href="https://www.google.com/maps/place/East+Lake+Regional+Park,+Airdrie,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">East Lake Regional Park</a>{" "}
+                    to{" "}
                     <a href="https://www.google.com/maps/place/Luxstone,+Airdrie,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Luxstone</a>{" "}
-                    to the family-friendly community of{" "}
-                    <a href="https://www.google.com/maps/place/Coopers+Crossing,+Airdrie,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Coopers Crossing</a>,
-                    we provide flexible scheduling and cleaning suited to every household in Airdrie.
+                    and{" "}
+                    <a href="https://www.google.com/maps/place/Coopers+Crossing,+Airdrie,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Coopers Crossing</a>.
+                    The tap water is bought from Calgary and is hard, so shower glass and chrome here go cloudy rather than dirty, and cloudy comes off with a mild acid, not a scrub.
                   </p>
                 </div>
               </div>
@@ -243,8 +239,7 @@ export default function Airdrie() {
                 Things To Do In Airdrie
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
-                <p>Located just north of Calgary, Airdrie is a dynamic city within Alberta’s Calgary Metropolitan Region. Originally established as a railway village in the late 1800s, Airdrie has blossomed into a thriving community with a population of over 80,000 residents. Despite its rapid growth, Airdrie has retained its friendly, small-town atmosphere while offering all the amenities of urban life. One of Airdrie’s standout features is its vibrant community events, like the famous Airdrie Festival of Lights, Canada’s largest free outdoor light display, held annually in Nose Creek Park.</p>
-                <p>For those who love the outdoors, Iron Horse Park offers miniature train rides that are perfect for family fun, while nature enthusiasts can explore scenic trails and serene views at East Lake Regional Park. Shopping lovers can visit the Airdrie Farmers Market to enjoy local produce and handcrafted goods. For dining, the restaurants along Main Street offer plenty of choice, from casual family spots to locally sourced menus.</p>
+                <p>Airdrie began as a railway village in the late 1800s and is now part of the Calgary Metropolitan Region. Nose Creek Park hosts the Airdrie Festival of Lights each year, Iron Horse Park runs miniature train rides, and East Lake Regional Park has walking trails. The Airdrie Farmers Market sells local produce, and the restaurants are along Main Street.</p>
               </div>
             </div>
           </AnimatedSection>
@@ -298,7 +293,7 @@ export default function Airdrie() {
         heading="Cloudy glass, not dirty glass"
         paragraphs={[
           "No treatment plant operates here. The water arrives already treated, bought from the City of Calgary and held in local reservoirs before it reaches a tap — and the published hardness at that supplier's two plants never drops below about 140 milligrams per litre in any quarter. So shower glass, kettle elements and chrome go cloudy rather than grubby. Scale ignores scrubbing. It answers to a mild acid and a few minutes of patience.",
-          "A 2012 annexation brought in 12,640 acres from Rocky View County, land banked to carry growth all the way to 2062. That is four decades of city edge with a build site somewhere along it. Downwind of an active phase, what collects in window tracks and on patio doors is gypsum and saw dust — light, dry and abrasive. Lift it off dry. Wiping it across glass is how glass gets scratched.",
+          "A 2012 annexation brought in 12,640 acres from Rocky View County, land banked to carry growth all the way to 2062. That is four decades of city edge with a build site somewhere along it. Downwind of an active phase, what collects in window tracks and on patio doors is gypsum and sawdust — light, dry and abrasive. Lift it off dry. Wiping it across glass is how glass gets scratched.",
         ]}
         accent="calgary"
       />

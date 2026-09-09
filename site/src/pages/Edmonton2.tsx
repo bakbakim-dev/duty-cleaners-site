@@ -213,16 +213,16 @@ export default function Edmonton2() {
   };
   const faqs = [{
     question: "Do you serve all areas of Edmonton?",
-    answer: "Yes! Our Edmonton cleaning teams serve all quadrants (NW, NE, SW, SE, Central) and the surrounding communities, including St. Albert, Sherwood Park, Spruce Grove, Leduc, Fort Saskatchewan, Beaumont, Stony Plain, Morinville and Devon."
+    answer: "Yes. We clean in all quadrants (NW, NE, SW, SE, Central) and the surrounding communities, including St. Albert, Sherwood Park, Spruce Grove, Leduc, Fort Saskatchewan, Beaumont, Stony Plain, Morinville and Devon."
   }, {
     question: "How do Edmonton winters affect your cleaning service?",
-    answer: "Our Edmonton cleaning professionals work year-round! We account for Alberta winter conditions by scheduling buffer time for traffic and weather delays."
+    answer: "Our Edmonton cleaners work year-round. In winter we schedule buffer time for traffic and weather delays."
   }, {
     question: "Do you clean high-rise condos in downtown Edmonton?",
-    answer: "Absolutely! Our Edmonton team is experienced with high-rise building protocols, parking passes, and building access requirements in Oliver, Downtown, and along Jasper Avenue."
+    answer: "Yes. Our Edmonton team cleans high-rise condos in Oliver, Downtown and along Jasper Avenue, and knows the building protocols, parking passes and access requirements that come with them."
   }, {
     question: "Do you offer same-day cleaning service in Edmonton?",
-    answer: "Yes, subject to availability! Our Edmonton cleaning crews understand that life gets busy. Call us and we'll do our best to accommodate same-day or next-day requests."
+    answer: "Sometimes. Same-day and next-day slots depend on the schedule; call and we will tell you what is open."
   }, {
     question: "What cleaning products do you use?",
     answer: "Our teams arrive with all supplies and equipment included. If there is a product line you prefer — or one you want us to avoid — note it on your booking and we will work to it."
@@ -270,7 +270,7 @@ export default function Edmonton2() {
            heroPosition="center"
            heroScrim="soft"
            processImages={[
-             { src: galleryPostKitchen, alt: "Spotless Edmonton kitchen after a professional cleaning" },
+             { src: galleryPostKitchen, alt: "Edmonton kitchen after a professional cleaning" },
              { src: galleryLivingRoom, alt: "Tidy Edmonton living room after a Duty Cleaners visit" },
              { src: galleryModernKitchen, alt: "Fresh Edmonton home kitchen after a detailed cleaning" },
            ]}
@@ -286,7 +286,7 @@ export default function Edmonton2() {
         <LocalMarketNote
           accent="primary"
           eyebrow="Cleaning in Edmonton"
-          heading="What an Edmonton house actually needs, and when"
+          heading="What an Edmonton house needs, and when"
           paragraphs={[
             "Edmonton's winter holds. Where Calgary thaws and refreezes all season, the roads here stay frozen, so the sand and de-icer that go down in November largely stay outside until the melt — and then arrive at the door in one heavy load through March and early April. That timing is the useful part: entryways, stair treads and the first two metres of hallway take the whole winter's worth at once, which is why spring is when Edmonton homes book a deep clean rather than a standard one, and why a February visit is mostly maintenance.",
             "The housing stock splits the work in two. The mature core — Glenora, Westmount, Old Strathcona, Garneau — is largely pre-war and early post-war: original trim, deeper window sills, more door frames, and rooms divided rather than open, all of which take longer per square metre than the floor area suggests. The newer edges in the southwest and southeast, Windermere, Terwillegar, Summerside and Glastonbury, are larger and faster to clean per square metre, but a home in its first year or two is still shedding construction dust from vents and closet shelves. The same bedroom count can be two quite different jobs, so describe the home rather than only its size.",
@@ -421,10 +421,10 @@ export default function Edmonton2() {
                 <Eyebrow>Coverage</Eyebrow>
                 <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Edmonton Service Areas</h2>
                 <p className="text-muted-foreground mt-4 prose-column leading-relaxed">
-                  We proudly serve Edmonton and the surrounding communities listed below.
+                  We clean in Edmonton and the communities listed below.
                 </p>
                 <p className="text-muted-foreground mt-3 prose-column leading-relaxed">
-                  Boot trays in March, windows in June — we clean the way homes are actually lived in here.
+                  Boot trays in March, windows in June. We clean the way homes are lived in here.
                 </p>
                 <ThresholdLine className="mt-6 max-w-[220px]" />
               </div>
@@ -498,8 +498,8 @@ export default function Edmonton2() {
               <ul className="mt-8 grid gap-4 sm:grid-cols-3">
                 {[
                   { icon: BadgeCheck, title: "We confirm your price", text: "You see the full quote before anything is booked." },
-                  { icon: Users, title: "We match a vetted pro", text: "A reference-checked cleaner is assigned to your home." },
-                  { icon: CalendarCheck, title: "We arrive on time", text: "Your pro shows up as scheduled, ready to clean." },
+                  { icon: Users, title: "We assign your cleaner", text: "A reference-checked cleaner is assigned to your home." },
+                  { icon: CalendarCheck, title: "We arrive on time", text: "Your cleaner arrives as scheduled, with supplies and equipment." },
                 ].map(({ icon: Icon, title, text }) => (
                   <li key={title} className="rounded-xl border border-border bg-card p-5 text-center">
                     <Icon className="mx-auto h-6 w-6 text-accent" aria-hidden="true" />
@@ -516,7 +516,7 @@ export default function Edmonton2() {
           <CityCrossLink
             city="Calgary"
             to="/cleaning-services-calgary/"
-            description="House cleaning rated 4.9 on Google for Calgary and surrounding communities, with the same vetted pros and transparent pricing."
+            description="House cleaning rated 4.9 on Google for Calgary and surrounding communities, at the same prices and with the same reference-checked cleaners."
           />
         </div>
 

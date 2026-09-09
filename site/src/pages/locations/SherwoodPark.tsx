@@ -68,9 +68,9 @@ const services = [
 const whyUsItems = [
   { icon: Shield, title: "Reference-Checked, Then Rated by You", description: "Every cleaner is reference-checked before their first job, then rated by the customer after every visit. Those ratings decide who keeps cleaning for us." },
   { icon: Star, title: RATING_CLAIM, description: `${CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount} reviews across Edmonton and Calgary, and every one of them is on our Google listing.` },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability, schedule permitting. We work around your busy life." },
+  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day slots when the schedule allows." },
   { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
-  { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
+  { icon: Users, title: "Experienced Team", description: "Cleaners trained to the Duty Cleaners checklist, and rated by you after every visit." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
 ];
 
@@ -98,7 +98,7 @@ export default function SherwoodPark() {
     },
     {
       question: "What is your 100% satisfaction guarantee policy?",
-      answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back and put it right — at no extra cost!"
+      answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back and put it right — at no extra cost."
     }
   ];
   const faqJsonLd = {
@@ -149,7 +149,7 @@ export default function SherwoodPark() {
                 Professional House Cleaning in Sherwood Park
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                Top-rated house cleaning services in Sherwood Park. Same-day service available near Broadmoor Lake Park, Millennium Place, and all Sherwood Park neighbourhoods.
+                House cleaning in Sherwood Park, rated {RATING_CLAIM}. Same-day slots when the schedule allows, from Broadmoor Lake Park to Millennium Place and across the hamlet.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -193,22 +193,22 @@ export default function SherwoodPark() {
             <div className="max-w-4xl mx-auto">
               <span className="text-primary text-sm font-semibold tracking-wider uppercase">About the Neighbourhood</span>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                Cleaning Services Tailored to Sherwood Park Living
+                House cleaning in Sherwood Park
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>
-                  Sherwood Park is one of Alberta's largest and most vibrant communities, known for its family-friendly neighbourhoods and excellent amenities. Whether your home is near{" "}
+                  Sherwood Park is a hamlet in Strathcona County, just east of Edmonton, with Refinery Row on its west edge. We clean homes across it, from{" "}
                   <a href="https://www.google.com/maps/place/Broadmoor+Lake+Park,+Sherwood+Park,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Broadmoor Lake Park</a>{" "}
-                  or just steps from the state-of-the-art{" "}
-                  <a href="https://www.google.com/maps/place/Millennium+Place,+Sherwood+Park,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Millennium Place</a>,
-                  our team knows the area and delivers cleaning that fits your lifestyle.
+                  and{" "}
+                  <a href="https://www.google.com/maps/place/Millennium+Place,+Sherwood+Park,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Millennium Place</a>{" "}
+                  to{" "}
+                  <a href="https://www.google.com/maps/place/Sherwood+Park+Mall,+Sherwood+Park,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Sherwood Park Mall</a>{" "}
+                  and{" "}
+                  <a href="https://www.google.com/maps/place/Heritage+Hills+Park,+Sherwood+Park,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Heritage Hills Park</a>,
+                  and in Summerside, Emerald Hills and Lakeland Ridge.
                 </p>
                 <p>
-                  With easy access to{" "}
-                  <a href="https://www.google.com/maps/place/Sherwood+Park+Mall,+Sherwood+Park,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Sherwood Park Mall</a>{" "}
-                  and proximity to the scenic{" "}
-                  <a href="https://www.google.com/maps/place/Heritage+Hills+Park,+Sherwood+Park,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Heritage Hills Park</a>,
-                  Sherwood Park is a community we serve regularly. We proudly clean homes throughout Sherwood Park and surrounding areas like Summerside, Emerald Hills, and Lakeland Ridge.
+                  Plant rotations put people asleep during the day. Tell us at booking and the room order changes at no cost.
                 </p>
               </div>
             </div>
@@ -223,11 +223,10 @@ export default function SherwoodPark() {
             <div className="max-w-4xl mx-auto">
               <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Life</span>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                Things To Do In Sherwood Park
+                Around Sherwood Park
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
-                <p>Sherwood Park, located in Strathcona County, has everything you can expect from a hamlet: natural beauty, community spirit, and rich history. Established in 1955, Sherwood Park has blossomed into a vibrant place to become one of Canada's largest hamlets, offering a close-knit community experience with a strong sense of identity while providing residents with all the amenities you can find in a city. As you explore the area, you'll be enchanted by the lush green spaces, such as the expansive Strathcona Science Provincial Park, offering picturesque trails and tranquil lakes.</p>
-                <p>Sherwood Park is also home to numerous historical sites that shed light on its past, including the Strathcona County Museum and Archives, which covers the region's pioneer history. For a dose of culture, catch a performance at Festival Place, a renowned venue that hosts a diverse array of live concerts, theatre productions, and dance performances. End your day with a visit to La Patrona, a vibrant Mexican restaurant renowned for its authentic flavours, lively atmosphere, and warm hospitality.</p>
+                <p>Strathcona Science Provincial Park has trails and lakes. The Strathcona County Museum and Archives covers the county's pioneer history. Festival Place hosts concerts, theatre and dance.</p>
               </div>
             </div>
           </AnimatedSection>

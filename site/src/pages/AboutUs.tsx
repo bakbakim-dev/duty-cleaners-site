@@ -215,7 +215,7 @@ export default function AboutUs() {
       <section className="py-20 bg-brand-navy">
         <div className="container mx-auto px-4 text-center">
           <h2 className="display-serif text-3xl md:text-4xl font-bold text-white mb-6">
-            Ready to Experience the Duty Cleaners Difference?
+            Book a clean, or call and ask us anything first
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
             See the price for your home before you decide anything, and pay only after the clean is done.

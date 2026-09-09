@@ -60,7 +60,7 @@ const services = [
   { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your prestigious Mount Royal home spotless and elegant.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Mount Royal" },
   { icon: Sparkles, title: "Deep Cleaning", description: "Comprehensive cleaning of the house — ideal for heritage homes with intricate details and fine finishes.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Mount Royal" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for smooth transitions in Mount Royal's premium real estate market.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Mount Royal" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris removal after renovations or constructions in your heritage property.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Mount Royal" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Drywall and construction dust after a renovation or a new build in your heritage property.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Mount Royal" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Mount Royal" },
   { icon: Building2, title: "Commercial Cleaning", description: "Professional cleaning for businesses and offices in the Mount Royal area." },
 ];

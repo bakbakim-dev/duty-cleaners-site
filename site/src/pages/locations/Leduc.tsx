@@ -59,8 +59,8 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Leduc" },
   { icon: Sparkles, title: "Deep Cleaning", description: "Top-to-bottom detail that reaches what weekly cleaning never does.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Leduc" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for moving day — leave or arrive to a pristine home.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Leduc" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Post-renovation dust and debris, professionally removed.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Leduc" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Move-day cleaning done to the standard landlords check for.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Leduc" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or a new build.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Leduc" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Leduc" },
   { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
 ];
@@ -68,9 +68,9 @@ const services = [
 const whyUsItems = [
   { icon: Shield, title: "Reference-Checked, Then Rated by You", description: "Every cleaner is reference-checked before their first job, then rated by the customer after every visit. Those ratings decide who keeps cleaning for us." },
   { icon: Star, title: RATING_CLAIM, description: `${CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount} reviews across Edmonton and Calgary, and every one of them is on our Google listing.` },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability, schedule permitting. We work around your busy life." },
+  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day slots when the schedule allows." },
   { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
-  { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
+  { icon: Users, title: "Experienced Team", description: "Cleaners trained to the Duty Cleaners checklist, and rated by you after every visit." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
 ];
 
@@ -99,7 +99,7 @@ export default function Leduc() {
     },
     {
       question: "What is your 100% satisfaction guarantee policy?",
-      answer: "If you're not 100% satisfied, call us within 24 hours and we'll re-clean the missed areas — at no extra cost!"
+      answer: "If you're not 100% satisfied, call us within 24 hours and we'll re-clean the missed areas — at no extra cost."
     }
   ];
   const faqJsonLd = {
@@ -150,7 +150,7 @@ export default function Leduc() {
                 Professional House Cleaning in Leduc
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto lg:mx-0 leading-relaxed">
-                Top-rated house cleaning services in Leduc. Thorough cleaning with all supplies included.
+                House cleaning in Leduc, rated {RATING_CLAIM}. All supplies included.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -194,36 +194,32 @@ export default function Leduc() {
             <div className="max-w-4xl mx-auto">
               <span className="text-primary text-sm font-semibold tracking-wider uppercase">About the Neighbourhood</span>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                Cleaning Services Tailored to Leduc Living
+                House cleaning in Leduc
               </h2>
               <div className="prose prose-lg text-muted-foreground max-w-none space-y-4">
                 <p>
-                  Leduc is a thriving city just south of Edmonton, known for its welcoming community, growing neighbourhoods, and convenient access to the Edmonton International Airport. Whether your home is near{" "}
-                  <a href="https://www.google.com/maps/place/Fred+Johns+Park,+Leduc,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
-                    Fred Johns Park
-                  </a>{" "}
-                  or close to the shops along{" "}
-                  <a href="https://www.google.com/maps/place/50+Ave,+Leduc,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
-                    50th Avenue
-                  </a>, our team knows the area and delivers spotless results every time.
-                </p>
-                <p>
-                  Families enjoying the trails around{" "}
-                  <a href="https://www.google.com/maps/place/Telford+Lake,+Leduc,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
-                    Telford Lake
-                  </a>{" "}
-                  or spending weekends at the{" "}
-                  <a href="https://www.google.com/maps/place/Leduc+Recreation+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
-                    Leduc Recreation Centre
-                  </a>{" "}
-                  deserve a home that's just as clean and inviting as the community around them. We bring professional products and meticulous attention to detail to every Leduc home we service.
-                </p>
-                <p>
-                  From the established streets near{" "}
+                  Leduc is 33 km south of Edmonton, beside the Edmonton International Airport. We clean across the city, from the established streets near{" "}
                   <a href="https://www.google.com/maps/place/William+F.+Lede+Park,+Leduc,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
                     William F. Lede Park
                   </a>{" "}
-                  to the newer developments in Southfork and Bridgeport, Duty Cleaners is proud to keep Leduc homes sparkling.
+                  and{" "}
+                  <a href="https://www.google.com/maps/place/Fred+Johns+Park,+Leduc,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
+                    Fred Johns Park
+                  </a>{" "}
+                  to the newer ones in Southfork and Bridgeport, and around{" "}
+                  <a href="https://www.google.com/maps/place/Telford+Lake,+Leduc,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
+                    Telford Lake
+                  </a>, the{" "}
+                  <a href="https://www.google.com/maps/place/Leduc+Recreation+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
+                    Leduc Recreation Centre
+                  </a>{" "}
+                  and the shops on{" "}
+                  <a href="https://www.google.com/maps/place/50+Ave,+Leduc,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
+                    50th Avenue
+                  </a>.
+                </p>
+                <p>
+                  Many households here work a rotation rather than a weekday. Tell us at booking if someone will be asleep and the room order changes at no cost.
                 </p>
               </div>
             </div>
@@ -238,10 +234,10 @@ export default function Leduc() {
             <div className="max-w-4xl mx-auto">
               <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Life</span>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                Things To Do In Leduc
+                Around Leduc
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
-                <p>Leduc is a city that seamlessly intertwines the warmth of a small-town atmosphere with the vast array of opportunities found in larger urban centres. Leduc also boasts a rich history rooted in agriculture, oil, and gas, which is celebrated at the Leduc #1 Energy Discovery Centre, where you can explore the city's pivotal role in the energy industry. If you want to take a stroll, get to the beautiful Telford Lake Park (named after the city's founder), where you can enjoy a serene waterfront oasis with walking trails, picnic areas, and a beach. Go for an immersive cultural experience, and attend a performance at the Maclab Centre for the Performing Arts, a state-of-the-art venue hosting diverse theatrical productions. Lastly, end your day savouring a craft beer at Rig Hand Distillery, a local hotspot renowned for its unique brews and friendly atmosphere.</p>
+                <p>The Leduc #1 Energy Discovery Centre covers the 1947 oil strike the city is known for. Telford Lake Park has walking trails, picnic areas and a beach. The Maclab Centre for the Performing Arts hosts theatre.</p>
               </div>
             </div>
           </AnimatedSection>

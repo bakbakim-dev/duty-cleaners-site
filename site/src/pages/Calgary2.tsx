@@ -204,16 +204,16 @@ export default function Calgary2() {
   };
   const faqs = [{
     question: "Do you serve all areas of Calgary?",
-    answer: "Yes! Our Calgary cleaning teams serve all quadrants (NW, NE, SW, SE, Downtown) and the surrounding communities, including Airdrie, Chestermere, Langdon, Cochrane, Okotoks, Strathmore, Crossfield, High River and Diamond Valley."
+    answer: "Yes. We clean in all quadrants (NW, NE, SW, SE, Downtown) and the surrounding communities, including Airdrie, Chestermere, Langdon, Cochrane, Okotoks, Strathmore, Crossfield, High River and Diamond Valley."
   }, {
     question: "How do Calgary winters affect your cleaning service?",
-    answer: "Our Calgary cleaning professionals work year-round! We account for Alberta winter conditions by scheduling buffer time for traffic and weather delays."
+    answer: "Our Calgary cleaners work year-round. In winter we schedule buffer time for traffic and weather delays."
   }, {
     question: "Do you clean high-rise condos in downtown Calgary?",
-    answer: "Absolutely! Our Calgary team is experienced with high-rise building protocols, parking passes, and building access requirements in Beltline, Downtown, and along 17th Avenue."
+    answer: "Yes. Our Calgary team cleans high-rise condos in the Beltline, Downtown and along 17th Avenue, and knows the building protocols, parking passes and access requirements that come with them."
   }, {
     question: "Do you offer same-day cleaning service in Calgary?",
-    answer: "Yes, subject to availability! Our Calgary cleaning crews understand that life gets busy. Call us and we'll do our best to accommodate same-day or next-day requests."
+    answer: "Sometimes. Same-day and next-day slots depend on the schedule; call and we will tell you what is open."
   }, {
     question: "What cleaning products do you use?",
     answer: "We bring all cleaning supplies and equipment, and we can use specific products you prefer — just tell us when you book."
@@ -266,7 +266,7 @@ export default function Calgary2() {
            heroAlt="Bright, freshly cleaned Calgary living room with sunlight across the floor"
            heroPosition="center 58%"
            processImages={[
-             { src: gallerySpotlessKitchen, alt: "Spotless Calgary kitchen after a professional cleaning" },
+             { src: gallerySpotlessKitchen, alt: "Calgary kitchen after a professional cleaning" },
              { src: galleryHappyPlace, alt: "Duty Cleaners cleaning result in a welcoming Calgary home" },
              { src: galleryKitchenBA, alt: "Fresh Calgary kitchen after a detailed cleaning" },
            ]}
@@ -276,10 +276,10 @@ export default function Calgary2() {
         <LocalMarketNote
           accent="calgary"
           eyebrow="Cleaning in Calgary"
-          heading="What a Calgary house actually needs, and when"
+          heading="What a Calgary house needs, and when"
           paragraphs={[
             "Calgary is hard on floors and easy on nothing. Because the chinooks keep pushing the city above freezing and back down again, the roads are gritted, melted and gritted again rather than staying frozen through to spring — so sand and de-icer arrive at the door repeatedly from November to April instead of once. It works along baseboards, into carpet edges, down the sides of stair treads and under furniture, and by February it is past the point a vacuum reaches. That is the single most common reason a Calgary home books a deep clean rather than a standard one.",
-            "The city's quadrant split is a genuine planning difference, not just an address convention, and it shows up in the work. Inner-city Beltline, Mission, Kensington and Inglewood are mostly condos and older infill: small in square footage, heavy on window tracks, balcony seals and the fine dust a dry, windy city drives into every gap. The newer edges — Mahogany, Seton and Cranston in the deep south, Livingston and Cornerstone in the north — are larger, faster homes still shedding construction dust from vents and closet shelves for a year or two after possession.",
+            "The city's quadrant split is a planning difference, and it shows up in the work. Inner-city Beltline, Mission, Kensington and Inglewood are mostly condos and older infill: small in square footage, heavy on window tracks, balcony seals and the fine dust a dry, windy city drives into every gap. The newer edges — Mahogany, Seton and Cranston in the deep south, Livingston and Cornerstone in the north — are larger, faster homes still shedding construction dust from vents and closet shelves for a year or two after possession.",
             "We serve the city and the ring of towns around it, including Airdrie, Cochrane, Okotoks and Chestermere, with no trip fee inside Calgary itself. Prices are the same here as in Edmonton — there is no city premium — and every figure quoted is before the 5% GST. If you are not sure whether your home needs a standard or a deep clean, describe it on the phone and we will tell you which is the cheaper honest answer.",
           ]}
         />
@@ -305,7 +305,7 @@ export default function Calgary2() {
           city="Calgary"
           basePath="/calgary"
           featureImage={gallerySpotlessKitchen}
-          featureImageAlt="Spotless Calgary kitchen after a standard Duty Cleaners visit"
+          featureImageAlt="Calgary kitchen after a standard Duty Cleaners visit"
           deepImage={galleryCalgaryOvenBA}
           deepImageAlt="Oven before and after a Calgary deep clean"
         />
@@ -320,9 +320,6 @@ export default function Calgary2() {
                 {/* Was "Real Calgary Homes" over the AI-generated set, directly above a
                     block saying the real before/afters are not shot yet. */}
                 <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">What a finished clean looks like</h2>
-                <p className="text-muted-foreground mt-3">
-                  See the homes we’ve cleaned and the results we deliver for homeowners across the city.
-                </p>
               </div>
 
             {/* Photo Gallery - Polished Bento Grid */}
@@ -408,11 +405,11 @@ export default function Calgary2() {
                 <Eyebrow>Coverage</Eyebrow>
                 <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Calgary Service Areas</h2>
                 <p className="text-muted-foreground mt-4 max-w-[55ch] leading-relaxed">
-                  We proudly serve Calgary and the surrounding communities listed below.
+                  We clean in Calgary and the communities listed below.
                 </p>
                 <p className="text-muted-foreground mt-3 max-w-[55ch] leading-relaxed">
-                  Chinook dust in the entryway, sun through the front windows — we clean the way homes
-                  are actually lived in here.
+                  Chinook dust in the entryway, sun through the front windows. We clean the way homes
+                  are lived in here.
                 </p>
                 <ThresholdLine className="mt-6 max-w-[220px]" />
               </div>
@@ -487,8 +484,8 @@ export default function Calgary2() {
               <ul className="mt-8 grid gap-4 sm:grid-cols-3">
                 {[
                   { icon: BadgeCheck, title: "We confirm your price", text: "You see the full quote before anything is booked." },
-                  { icon: Users, title: "We match a vetted pro", text: "A reference-checked cleaner is assigned to your home." },
-                  { icon: CalendarCheck, title: "We arrive on time", text: "Your pro shows up as scheduled, ready to clean." },
+                  { icon: Users, title: "We assign your cleaner", text: "A reference-checked cleaner is assigned to your home." },
+                  { icon: CalendarCheck, title: "We arrive on time", text: "Your cleaner arrives as scheduled, with supplies and equipment." },
                 ].map(({ icon: Icon, title, text }) => (
                   <li key={title} className="rounded-xl border border-border bg-card p-5 text-center">
                     <Icon className="mx-auto h-6 w-6 text-accent" aria-hidden="true" />
@@ -504,7 +501,7 @@ export default function Calgary2() {
           <CityCrossLink
             city="Edmonton"
             to="/"
-            description="House cleaning rated 4.9 on Google for Edmonton and surrounding communities, with the same vetted pros and transparent pricing."
+            description="House cleaning rated 4.9 on Google for Edmonton and surrounding communities, at the same prices and with the same reference-checked cleaners."
           />
         </div>
 

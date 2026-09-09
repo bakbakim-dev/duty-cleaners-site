@@ -1,3 +1,4 @@
+import { POLICY } from "@/data/policy";
 import { formatPrice } from "@/data/pricing";
 import { addOnFromPrice } from "@/data/pricing";
 import ServiceDetailPage from "@/components/ServiceDetailPage";
@@ -13,12 +14,14 @@ import heroImage from "@/assets/gallery/kitchen-deep-clean.webp";
 const addOnLabel = (key: string) => formatPrice(addOnFromPrice("standard", key) ?? 0);
 
 const TIERS = deepCleanTierRows().map((row) => ({ size: row.beds, price: row.price }));
+/** The one-bedroom row, with its standard and package halves, for the price FAQ. */
+const DEEP = deepCleanTierRows()[0];
 
 export default function EdmontonDeepCleaning() {
   return (
     <ServiceDetailPage
       city="edmonton"
-      crossCity={{ city: "Calgary", to: "/calgary/deep-cleaning/", description: "The same top-to-bottom deep clean, delivered by our Calgary team.", linkText: "Deep cleaning in Calgary" }}
+      crossCity={{ city: "Calgary", to: "/calgary/deep-cleaning/", description: "The same deep clean, delivered by our Calgary team.", linkText: "Deep cleaning in Calgary" }}
       quoteService="deep-cleaning"
       phone="(780) 913-6565"
       phoneHref="tel:7809136565"
@@ -26,18 +29,18 @@ export default function EdmontonDeepCleaning() {
       seoDescription="Deep cleaning in Edmonton: baseboards, switches, vents, appliance exteriors and built-up grime removed. We re-clean any miss within 24 hours."
       canonical="https://dutycleaners.ca/edmonton/deep-cleaning"
       heroHeading={<>Deep Cleaning Services in <AccentGold>Edmonton</AccentGold></>}
-      heroSubheading="A meticulous top-to-bottom reset for the areas regular cleaning never reaches."
+      heroSubheading="Everything in a standard clean, plus the build-up a standard clean does not reach: baseboards, door frames, switches and outlet covers, vents and ceiling fans, tile and shower glass, and the stovetop and range hood degreased. Inside the oven and fridge on request."
       heroBadges={["Top-to-Bottom Detail", "All Supplies Brought For You", "100% Satisfaction Guarantee"]}
       heroImage={heroImage}
-      heroImageAlt="Sparkling Edmonton kitchen after a professional deep cleaning"
+      heroImageAlt="Edmonton kitchen after a deep clean"
       overviewEyebrow="Service Overview"
       overviewHeading={<>The reset regular cleaning <Accent>can't reach.</Accent></>}
       overviewParagraphs={[
-        "Deep cleaning is a comprehensive, detail-driven reset of your home. It goes far beyond the surfaces touched during a regular visit — addressing built-up dust, grease, soap scum, and grime in the places that quietly collect dirt over months of use.",
+        `A deep clean is the standard checklist plus the deep-clean package, priced flat by home size from ${TIERS[0].price} for a one-bedroom.`,
         "Edmonton earns its deep cleans the hard way. Unlike cities that thaw mid-winter, this one freezes in November and stays frozen — so five months of sanded roads, salted parkade floors, and boot grit accumulate in one long season, then all of it lets go at once in the March melt. Entryways, stair runners, and the first three feet of every hallway take the worst of it, and by spring there is a layer of fine grit worked into carpet edges and along baseboards that weekly vacuuming no longer lifts. Meanwhile the furnace has been running since October, drying the air and circulating fine dust onto ceiling fans, vent covers, and the tops of door frames.",
         "What the work looks like depends on the house. In the mature, elm-lined neighbourhoods near the river valley — Westmount, Ritchie, Old Strathcona — older bungalows and character homes have original trim, radiators, and decades of paint layers that hold dust in every profile edge. In a Summerside or Windermere new build it is usually construction dust still resurfacing from vents and closet shelves a year after possession. And in an Oliver or Downtown tower, the job concentrates on window tracks, balcony door channels, and the film that settles on high-rise glass. Our team works top to bottom, room by room — scrubbing baseboards and door frames, hand-wiping switches and outlet covers, degreasing stovetops and range hoods, and detail-cleaning bathrooms.",
       ]}
-      includedHeading="Detailed Top-to-Bottom Cleaning"
+      includedHeading="What a deep clean adds"
       includedSubheading="The places a weekly visit never reaches, room by room."
       included={[
         { icon: UtensilsCrossed, title: "Kitchen Detail Clean", description: "Degreasing stovetops, range hoods, exterior of appliances, cabinet fronts, backsplash, and sanitizing all prep surfaces." },
@@ -65,7 +68,6 @@ export default function EdmontonDeepCleaning() {
         { name: "Bedrooms & Living", tasks: 4, sample: "dusting high and low areas" },
       ]}
       pricingBySize={TIERS}
-      pricingNote="Starting estimates are based on home size — final time and cost can vary with condition, bathrooms, and add-ons."
       fromPrice={TIERS[0].price}
       extras={featuredExtraRows()}
       notIncluded={[
@@ -90,19 +92,19 @@ export default function EdmontonDeepCleaning() {
       faqs={[
         { q: "Can I book deep cleaning for only certain areas?", a: "Yes, you may request deep cleaning for specific areas, such as bathrooms, kitchen, basement, or main floor only." },
         { q: "Should I declutter before deep cleaning?", a: "Yes, we recommend removing clutter before the appointment so our team can focus on cleaning surfaces properly." },
-        { q: "Is deep cleaning more expensive than standard cleaning?", a: "Yes, deep cleaning usually costs more because it requires more time, detail, and effort." },
+        { q: "Is deep cleaning more expensive than standard cleaning?", a: `Yes. A one-bedroom deep clean is ${DEEP.price} against ${DEEP.standard} for a standard clean, and the ${DEEP.packagePrice} difference is the deep-clean package: baseboards, trim, switches, vents, fans and the kitchen degrease. The full table by home size is on this page.` },
         { q: "Does deep cleaning remove mold or mildew?", a: "We may wipe light surface mildew if safe, but we do not provide mold remediation or remove heavy mold." },
         { q: "When should I book a deep cleaning?", a: "In Edmonton the single best time is the spring melt, when a whole winter of sanding grit comes off boots and paws in the space of three weeks — late March and April bookings clear it before it grinds into floors. Fall, just before the furnace season closes the windows for six months, is a close second. Beyond that: before guests, after a renovation, after a long stretch without service, or as a first visit before starting a recurring schedule." },
         { q: "How long does a deep cleaning take?", a: "We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
         { q: "How is deep cleaning different from regular cleaning?", a: "Regular cleaning maintains an already-clean home. Deep cleaning tackles built-up grime, detailed edges, baseboards, and the areas that aren't included in every visit." },
         { q: "Do I need to prepare anything?", a: "Please pick up any personal items you'd like put away and clear surfaces such as vanities, countertops, and other cluttered areas so our cleaners can work efficiently. You may also let us know any priority areas or spaces you would like us to focus on or skip." },
-        { q: "Are your products safe for kids and pets?", a: "Tell us about any sensitivities, or products you would rather we used, and we will work to them — just let us know when booking." },
+        { q: "Are your products safe for kids and pets?", a: `We bring our own standard professional products. Tell us about any sensitivities, or anything you would rather we did not use, when you book. Eco-friendly products are available for ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}.` },
         { q: "How often should I get a deep cleaning?", a: "Most homes benefit from a deep clean every 3–6 months, with regular maintenance cleaning in between." },
       ]}
-      ctaHeading={<>Give your home the <AccentGold>full reset.</AccentGold></>}
-      ctaDescription="Reset your home with a thorough, detail-driven cleaning. Flexible scheduling and a satisfaction guarantee on every visit."
+      ctaHeading={<>Deep cleaning in <AccentGold>Edmonton</AccentGold> from {TIERS[0].price}.</>}
+      ctaDescription={`Flat rate by home size, from ${TIERS[0].price} for a one-bedroom. Tell us within ${POLICY.guaranteeWindowHours} hours about anything missed and we come back and re-clean it at no charge.`}
       galleryImages={[
-        { src: heroImage, alt: "Sparkling Edmonton kitchen after a professional deep cleaning" },
+        { src: heroImage, alt: "Edmonton kitchen after a deep clean" },
       ]}
     />
   );

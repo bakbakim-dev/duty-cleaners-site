@@ -99,12 +99,12 @@ const addOnServices = addOnTableRows("calgary");
 
 
 const pricingFactors = [
-  { icon: Ruler, title: "Size of the house", desc: "Larger homes require more time and effort" },
-  { icon: Bath, title: "Number of bathrooms & bedrooms", desc: "More rooms = more comprehensive cleaning" },
-  { icon: Wrench, title: "Type of service required", desc: "Standard, deep, or move-out cleaning" },
-  { icon: Sparkles, title: "Add-on services", desc: "Inside fridge, inside oven, inside the cabinets, windows, blinds, baseboards, walls, etc." },
-  { icon: CalendarClock, title: "Frequency of cleaning", desc: "Recurring services get discounts up to 20%" },
-  { icon: DollarSign, title: "Type of pricing", desc: "Hourly Cleaning or flat-rate options available" },
+  { icon: Ruler, title: "Type of home", desc: `The table is for an apartment or condo. A bungalow or basement suite adds ${HOME_TYPE_EXTRA.bungalow}, a townhouse ${HOME_TYPE_EXTRA.townhouse}, a two-storey house ${HOME_TYPE_EXTRA.twoStorey}.` },
+  { icon: Bath, title: "Bedrooms and bathrooms", desc: "The flat rate is set by bedroom count; the quote asks how many bathrooms there are and prices them in." },
+  { icon: Wrench, title: "Type of service", desc: "Standard, deep, or move-in/out. A deep clean is the standard rate plus the Deep Cleaning package for that home size." },
+  { icon: Sparkles, title: "Add-ons", desc: "Inside the fridge, oven and cabinets, interior windows, blinds, baseboards and walls, each priced in the table above." },
+  { icon: CalendarClock, title: "Frequency", desc: "20% off weekly, 15% off bi-weekly and 10% off every 4 weeks, from the second visit." },
+  { icon: DollarSign, title: "Flat rate or hourly", desc: `Flat by home size, or ${formatPrice(HOURLY_RATE)} per hour per cleaner for partial and unusual jobs.` },
 ];
 
 const faqItems = [
@@ -113,12 +113,12 @@ const faqItems = [
   { value: "duration", question: "How long does a typical house cleaning take?", answer: "We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes. Deep cleaning and move-in/out services cover more tasks than a standard clean." },
   { value: "supplies", question: "Are there discounts if I provide my own cleaning supplies?", answer: "We bring all professional-grade cleaning supplies and equipment at no extra cost. While we don't offer discounts for providing your own supplies, we're happy to use specific products you prefer at your request." },
   { value: "recurring", question: "Do you offer recurring service discounts?", answer: "Yes: 20% off weekly, 15% off bi-weekly and 10% off every four weeks. The discount starts from your second visit — the first is at the one-time rate — and then applies to every visit after that. If you start with a deep clean, the deep-cleaning portion is charged once on that first visit and is not discounted; the recurring visits after it are standard cleans at the discounted rate." },
-  { value: "pricing-types", question: "What's the difference between Hourly Cleaning and flat-rate pricing?", answer: `Hourly Cleaning (${formatPrice(HOURLY_RATE)}/hour per cleaner) is flexible and ideal for one-time needs or focusing on specific areas. Our hourly service has a minimum of 3 hours for 1 cleaner or 2 hours for 2 cleaners. Flat-rate pricing offers predictable costs based on your home size and service type, with comprehensive cleaning included. Most customers prefer flat-rate for its transparency and value.` },
+  { value: "pricing-types", question: "What's the difference between Hourly Cleaning and flat-rate pricing?", answer: `A flat rate is fixed by home size and service type, and it does not change if the clean takes longer than expected. Hourly Cleaning (${formatPrice(HOURLY_RATE)}/hour per cleaner) is for partial or unusual jobs: a few rooms, a one-off task list, or a home that does not fit a size tier. The minimum hourly booking is 3 hours for 1 cleaner or 2 hours for 2 cleaners.` },
   // A FAQ with this title has to name the charges customers call hidden. Both
   // are published on /terms/ and both read from POLICY, so this answer can
   // never drift away from the terms it summarises.
   { value: "hidden-fees", question: "Are there any hidden fees?", answer: `No. Here is every charge that is not the price on the card. A home with pets adds ${PET_FEE} to each visit, because paw prints and shedding add time. Addresses outside Edmonton and Calgary city limits carry a ${TRAVEL_FEE} travel fee; inside city limits there is no trip fee and no diagnostic fee. Cancelling or rescheduling inside ${POLICY.cancellationNoticeHours} hours is ${POLICY.cancellationFee}, and if the team arrives and cannot get in, the visit is charged at ${POLICY.lockoutFee}. Every one of those appears on your quote before you book. Anything else you add is optional and priced in the table above — except eco-friendly products at ${POLICY.ecoProductsFee}, which are not on the booking form, so ${POLICY.ecoProductsHowToRequest}. Estimates are based on the details you give when booking; uncommon condition-based adjustments may apply if a home needs substantially more time or work than expected.` },
-  { value: "satisfaction", question: "What if I'm not satisfied with the cleaning?", answer: "We offer 100% satisfaction guarantee. If you're not completely happy with our service, let us know within 24 hours and we'll come back to re-clean the areas of concern at no additional cost. Your satisfaction is our commitment." },
+  { value: "satisfaction", question: "What if I'm not satisfied with the cleaning?", answer: `We offer a 100% satisfaction guarantee. If something was missed, let us know within ${POLICY.guaranteeWindowHours} hours and we will come back and re-clean those areas at no additional cost.` },
 ];
 
 export default function CalgaryPricing() {
@@ -376,7 +376,7 @@ export default function CalgaryPricing() {
             <div className="text-center mb-12">
               <span className="text-accent font-semibold text-sm uppercase tracking-wider">Customize Your Clean</span>
               <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-4">Additional Services</h2>
-              <p className="text-lg text-muted-foreground">Add-ons to enhance your cleaning experience</p>
+              <p className="text-lg text-muted-foreground">Add-ons, priced per visit</p>
             </div>
 
             <div
@@ -413,7 +413,7 @@ export default function CalgaryPricing() {
                   <Home className="w-6 h-6 text-accent" />
                 </div>
                 <h3 className="text-xl font-bold mb-1">Office Cleaning</h3>
-                <p className="text-sm text-muted-foreground mb-3">Professional office cleaning services</p>
+                <p className="text-sm text-muted-foreground mb-3">Office cleaning, billed by the hour.</p>
                 <div className="text-4xl font-bold text-accent mb-1">{formatPrice(HOURLY_RATE)}/hour</div>
                 <p className="text-sm text-muted-foreground">Per cleaner · Flexible scheduling</p>
               </div>
@@ -460,7 +460,7 @@ export default function CalgaryPricing() {
             <div className="text-center mb-12">
               <span className="text-accent font-semibold text-sm uppercase tracking-wider">Good to Know</span>
               <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-4">Factors That Affect Final Pricing</h2>
-              <p className="text-lg text-muted-foreground">Every home is unique—here's what influences your quote</p>
+              <p className="text-lg text-muted-foreground">What changes the price</p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-5 mb-10">
@@ -477,11 +477,10 @@ export default function CalgaryPricing() {
                   <div className="w-11 h-11 bg-white/10 rounded-lg flex items-center justify-center">
                     <Shield className="w-5 h-5 text-accent" />
                   </div>
-                   <h3 className="text-xl font-bold text-white">Clear Pricing, Thoughtful Service</h3>
+                   <h3 className="text-xl font-bold text-white">The price before the booking</h3>
                  </div>
                  <p className="text-white/90 leading-relaxed mb-6 max-w-2xl">
-                   Get an estimate before booking tailored to your cleaning needs. We do not charge trip or diagnostic fees, and uncommon condition-based adjustments are considered only when a home requires substantially more time or work than expected.
-
+                   You see the price before you book, and your card is charged once the clean is complete. There is no trip or diagnostic fee inside city limits. The number moves only when a home needs substantially more time or work than it was described as needing, and the team tells you before continuing.
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Button className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold shadow-md hover:shadow-lg transition-all" asChild>
@@ -517,10 +516,10 @@ export default function CalgaryPricing() {
               <PricingOptionCard
                 icon={Clock}
                 title="Hourly Cleaning"
-                description="Ideal for one-off cleaning needs or focusing on specific areas of your home. This flexible package lets you customize the cleaning by selecting only the tasks you want done."
+                description="For partial or unusual jobs: a few rooms, a one-off task list, or a home that does not fit a size tier. You set what gets done and pay for the time it takes."
                 price={`${formatPrice(HOURLY_RATE)}/hour`}
                 priceLabel="Per cleaner"
-                features={["Flexible and customizable", "Focus on your priority areas", "Pay only for time used", "Great for one-time needs"]}
+                features={["Minimum booking: 1 cleaner for 3 hours or 2 cleaners for 2 hours", "You set the task list and the order", "Billed by the hour, per cleaner"]}
                 buttonText="Book Hourly Service"
               />
               <PricingOptionCard
@@ -568,8 +567,8 @@ export default function CalgaryPricing() {
             </div>
 
             <p className="text-center text-white/90 leading-relaxed max-w-2xl mx-auto mb-8">
-              Simply complete our quick online form, choose your service, and receive an instant quote before confirming
-              your booking. <strong className="text-white">Duty Cleaners will take care of everything!</strong>
+              Fill in the online form and choose a service; the price shows before you confirm anything.{" "}
+              <strong className="text-white">Nothing is charged when you book.</strong>
             </p>
 
             <div className="text-center">
@@ -631,7 +630,7 @@ export default function CalgaryPricing() {
             </div>
             <h2 className="display-serif text-3xl md:text-4xl font-bold mb-4 text-white">Ready to Get Started?</h2>
             <p className="text-lg text-white/75 mb-8 leading-relaxed">
-              Get your instant quote now or call us for personalized service
+              See your price online, or call and we will quote it over the phone.
             </p>
 
             <div className="flex flex-wrap justify-center gap-4 mb-10">

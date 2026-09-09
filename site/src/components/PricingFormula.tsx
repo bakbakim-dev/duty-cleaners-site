@@ -27,7 +27,7 @@ export default function PricingFormula({ city }: PricingFormulaProps) {
           <span className="text-accent font-semibold text-sm uppercase tracking-wider">Transparent Pricing</span>
           <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">How Pricing Works</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Every {city} estimate is shaped by clear service factors, so you know what goes into your cleaning plan.
+            Five things set a {city} price, and you see the total before you book.
           </p>
         </div>
 

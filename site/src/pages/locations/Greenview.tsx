@@ -60,7 +60,7 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning for busy Greenview households.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Greenview" },
   { icon: Sparkles, title: "Deep Cleaning", description: "Periodic deep cleans for spring resets and seasonal refreshes.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Greenview" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Stress-free move cleans coordinated with your moving timeline.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Greenview" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Move cleans scheduled around your moving date.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Greenview" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust and debris cleanup for renos and basement developments.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Greenview" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Greenview" },
   { icon: Building2, title: "Commercial Cleaning", description: "Commercial cleaning for offices and clinics along Centre Street N." },

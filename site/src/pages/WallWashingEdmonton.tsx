@@ -92,39 +92,37 @@ const edmontonLocations = [
 ];
 
 const wallProblems = [
-  { icon: Utensils, title: "Food & drink stains", description: "Splatters, spills and dried-on splashes around dining and play areas on wall surfaces." },
-  { icon: HandMetal, title: "Handprints & smudges", description: "On hallways, entry areas, and other high-traffic wall surfaces." },
-  { icon: Wind, title: "Dust & cobweb buildup", description: "Settled dust on flat paint and cobwebs in wall corners and along ceiling edges." },
-  { icon: Cigarette, title: "Nicotine & smoke residue", description: "Yellow tar film that dulls paint and traps odour on wall surfaces." },
-  { icon: Droplets, title: "Dirt & grime buildup", description: "General hand oils, pet contact and everyday wear on painted wall surfaces." },
+  { icon: Wind, title: "Furnace dust film", description: "The grey deposit above every register and along the ceiling line that a duster spreads rather than removes." },
+  { icon: Utensils, title: "Cooking film", description: "The sticky layer that spreads past the backsplash onto the surrounding wall and holds whatever lands on it." },
+  { icon: HandMetal, title: "Handprints & scuffs", description: "Around switches, along hallways and up the stairwell, where hands and bags touch the wall." },
+  { icon: Droplets, title: "Salt & grit at the entry", description: "Splash marks and grit to about knee height beside the door and along the stairwell." },
+  { icon: Cigarette, title: "Nicotine & smoke residue", description: "Yellow tar film that dulls the paint. It fades with washing; full removal is not promised." },
   { icon: Sparkles, title: "Light mold & mildew spots", description: "Surface treatment for minor spots on bathroom and humid-area walls." },
-  { icon: Cloud, title: "Trapped odours", description: "Lingering smells from cooking, smoke or pets absorbed into wall surfaces." },
-  { icon: Home, title: "General discoloration", description: "Gradual yellowing and dulling of wall paint that makes a room feel tired." },
 ];
 
 const includedItems = [
-  { icon: Brush, title: "Full wall surface cleaning", description: "Safe methods for most painted interior wall surfaces." },
-  { icon: Sparkles, title: "Stain, smudge & mark removal", description: "Targeted treatment for spots, smudges, and marks on wall surfaces." },
-  { icon: Wind, title: "Dust & cobweb removal", description: "Wall surfaces and interior corners." },
-  { icon: Droplets, title: "Spot treatment for grime & gentle mildew", description: "Built-up dirt and grime on wall surfaces, especially in high-touch areas. Light surface cleaning on bathroom and humid-area walls where suitable." },
+  { icon: Brush, title: "Full wall wash", description: "Every painted wall in the rooms you book, washed top to bottom." },
+  { icon: Sparkles, title: "Stain, smudge & mark removal", description: "Spots, smudges and marks worked on one at a time before the wall is washed." },
+  { icon: Wind, title: "Cobweb removal", description: "Corners and the ceiling line, before the wall itself is washed." },
+  { icon: Droplets, title: "Spot treatment for grime & gentle mildew", description: "Built-up grime around switches and door frames, and light surface mildew on bathroom walls where the paint allows it." },
   { icon: Cigarette, title: "Nicotine & tar stain treatment", description: "Targeted cleaning to reduce yellow nicotine and tar buildup on walls in smoked-in homes." },
-  { icon: Shield, title: "Paint-ready wall cleaning", description: "We also clean walls to be ready for painting by removing dust, residue, and surface buildup for a clean starting surface." },
+  { icon: Shield, title: "Paint-ready wall cleaning", description: "Dust, residue and film taken off so primer and paint go onto a clean wall." },
 ];
 
 const steps = [
   { icon: ClipboardCheck, title: "Request a quote", description: "Tell us about your home, rooms and the wall condition you'd like cleaned." },
-  { icon: Search, title: "We assess the walls", description: "On arrival, our team reviews your wall surfaces and determines the right approach for each room." },
-  { icon: Brush, title: "Professional wall cleaning", description: "We treat stains, dust, grime and odour on wall surfaces with safe, proven methods." },
-  { icon: ThumbsUp, title: "Final walkthrough", description: "We walk through with you to make sure every wall surface meets your standards." },
+  { icon: Search, title: "We assess the walls", description: "On arrival the team checks the paint finish in each room. Very flat or delicate finishes get a gentler spot-clean." },
+  { icon: Brush, title: "We wash the walls", description: "By hand, top to bottom, with products suited to painted surfaces. Marks are worked on first, then the whole wall." },
+  { icon: ThumbsUp, title: "Final walkthrough", description: "We walk the rooms with you before we leave. Anything missed and reported within 24 hours is re-cleaned free." },
 ];
 
 const whyUs = [
-  { icon: Sparkles, title: "Restores wall brightness", description: "Bring back the original color and clean look of your interior." },
-  { icon: Shield, title: "Removes buildup others miss", description: "We target stains, grime and residue most general cleans skip." },
-  { icon: Home, title: "Improves home appearance", description: "Cleaner walls instantly make every room feel newer and brighter." },
+  { icon: Sparkles, title: "What comes off", description: "Cooking film, nicotine, handprints, scuffs and the grey furnace-dust film." },
+  { icon: Shield, title: "What stays", description: "The paint finish. Very flat or delicate paint limits how hard a mark can be worked, and some stains only fade." },
+  { icon: Home, title: "When to book it", description: "Before painting, after a tenant moves out, or with a move-out clean." },
   { icon: Droplets, title: "Safe interior wall methods", description: "Products and techniques suited to painted surfaces." },
   { icon: ThumbsUp, title: "Satisfaction guarantee", description: "We'll re-clean any missed area at no charge within 24 hours." },
-  { icon: Star, title: "Trusted across Edmonton", description: "Rated 4.9 on Google by homeowners across the Edmonton region." },
+  { icon: Star, title: "Trusted across Edmonton", description: `Rated ${CITY_PROOF.edmonton.googleRating} on Google by homeowners across the Edmonton region.` },
 ];
 
 const faqs = [
@@ -203,7 +201,7 @@ export default function WallWashingEdmonton() {
                 Wall Washing & Cleaning <span className="text-accent">Edmonton</span>
               </h1>
               <p className="text-lg text-white/80 mb-10 leading-relaxed max-w-2xl">
-                Restore the look and feel of your home with professional wall washing. We remove stains, smudges, buildup and trapped odours — leaving your walls visibly brighter and your air noticeably fresher.
+                Painted walls washed by hand. Scuffs, handprints, cooking film and the grey band along the stairwell come off without stripping the finish.
               </p>
               <p className="text-lg text-white/90 mb-10 leading-relaxed max-w-2xl">
                 {WALL_PRICE_LINE}
@@ -260,7 +258,7 @@ export default function WallWashingEdmonton() {
               <ResultCard src={dirtyWallBefore} caption="Dirty walls before cleaning" />
               <ResultCard src={livingRoomWalls} caption="Living room wall refresh" />
               <ResultCard src={stainCloseup} caption="Close-up stain removal" />
-              <ResultCard src={hallwayClean} caption="Hallway wall transformation" />
+              <ResultCard src={hallwayClean} caption="Hallway wall after washing" />
               <ResultCard src={kitchenGrease} caption="Kitchen wall grease removal" />
               <ResultCard src={wallStainRemoval} caption="Smudge & handprint clean-up" />
             </div>
@@ -277,10 +275,10 @@ export default function WallWashingEdmonton() {
                 <span className="text-accent font-semibold text-sm uppercase tracking-wider">Common Issues</span>
                 <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Common Issues We Fix</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Walls collect more than you think. Here's what our wall washing service tackles in Edmonton homes:
+                  What ends up on Edmonton walls, and what we are booked to take off.
                 </p>
               </div>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {wallProblems.map((p, i) => (
                   <ProblemCard key={i} icon={p.icon} title={p.title} description={p.description} />
                 ))}
@@ -301,9 +299,6 @@ export default function WallWashingEdmonton() {
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">
                   What's Included in Our Wall Washing
                 </h2>
-                <p className="text-white/90 max-w-2xl mx-auto">
-                  A full, focused wall service designed to restore the look of your interior — not just a quick wipe.
-                </p>
               </div>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {includedItems.map((item, i) => (
@@ -462,7 +457,7 @@ export default function WallWashingEdmonton() {
                       <Phone className="w-6 h-6 text-primary" />
                     </div>
                     <h3 className="font-semibold text-lg mb-2">Give Us a Call</h3>
-                    <p className="text-muted-foreground text-sm mb-3">We're here to answer your questions!</p>
+                    <p className="text-muted-foreground text-sm mb-3">Questions before you book</p>
                     <a href="tel:7809136565" className="text-primary font-semibold hover:underline">(780) 913-6565</a>
                   </CardContent>
                 </Card>
@@ -516,9 +511,9 @@ export default function WallWashingEdmonton() {
         </div>
         <div className="container mx-auto px-4 relative z-10 text-center">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Restore the Look of Your Walls Today</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Add wall washing to your next clean</h2>
             <p className="text-white/90 mb-8 max-w-xl mx-auto">
-              Professional wall cleaning for a cleaner, brighter home. Get an instant estimate or call our team now.
+              Spot cleaning from {formatPrice(WALL_FROM)} and a full wash from {formatPrice(WALL_FULL)}, by home size, before GST. Nothing is charged until the clean is done.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" variant="accent" className="w-full sm:w-auto text-base px-8" asChild>

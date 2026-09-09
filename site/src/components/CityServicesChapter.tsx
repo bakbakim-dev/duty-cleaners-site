@@ -182,7 +182,7 @@ export default function CityServicesChapter({
           <div className="flex-1">
             <h3 className="font-bold">Post-Construction</h3>
             <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
-              Dust and debris removal after renovations or constructions.
+              Drywall and construction dust after a renovation or a new build.
             </p>
           </div>
           <Link

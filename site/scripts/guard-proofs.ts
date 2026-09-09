@@ -252,8 +252,8 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/rendered-quality.test.ts",
     target: "dist/cleaning-services-st-albert/index.html",
-    find: "St. Albert distinguishes itself by being Alberta",
-    replace: "St Albert distinguishes itself by being Alberta",
+    find: "St. Albert began in 1861 as a Catholic mission",
+    replace: "St Albert began in 1861 as a Catholic mission",
     failing: "no banned grammar artifact appears on any rendered page",
     why: "Reintroduces the de-slugged 'St Albert' in rendered prose.",
     dist: true,
@@ -261,8 +261,8 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/service-radius.test.ts",
     target: "dist/index.html",
-    find: "We proudly serve Edmonton and the surrounding communities listed below.",
-    replace: "We proudly serve Edmonton and the surrounding communities within a 30km radius.",
+    find: "We clean in Edmonton and the communities listed below.",
+    replace: "We clean in Edmonton and the communities within a 30km radius.",
     failing: "no built page states a radius its own coordinates contradict",
     why: "States a 30 km radius that location-geo.ts contradicts (Stony Plain is 33.8 km out).",
     dist: true,
@@ -301,6 +301,22 @@ export const GUARD_PROOFS: GuardProof[] = [
     why: "Breaks the CID / Place ID pairing a review link depends on.",
   },
 
+  {
+    guard: "src/data/copy-quality.test.ts",
+    target: "src/components/CityCoverageGrid.tsx",
+    find: "Reference-checked cleaners across the city and the communities around it.",
+    replace: "Say goodbye to dirt. Reference-checked cleaners across the city and the communities around it.",
+    failing: "no page or component carries filler that was only ever template noise",
+    why: "Reintroduces a stock closer on a hub component that 146 pages render.",
+  },
+  {
+    guard: "src/data/copy-quality.test.ts",
+    target: "src/pages/locations/Leduc.tsx",
+    find: "Many households here work a rotation rather than a weekday.",
+    replace: "Leduc is a thriving city. Many households here work a rotation rather than a weekday.",
+    failing: "the money pages carry none of the brochure vocabulary",
+    why: "Puts the brochure register back on the town page where a reader lands first.",
+  },
   // ---- and this registry itself ------------------------------------------
   {
     guard: "src/data/guard-proofs.test.ts",

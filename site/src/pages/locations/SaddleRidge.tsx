@@ -60,7 +60,7 @@ const services = [
   { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Saddle Ridge home consistently clean and fresh.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Saddle Ridge" },
   { icon: Sparkles, title: "Deep Cleaning", description: "Comprehensive cleaning of the house — perfect for seasonal refreshes and thorough sanitization.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Saddle Ridge" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for smooth transitions in Saddle Ridge's growing residential market.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Saddle Ridge" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris removal after renovations or constructions in your home.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Saddle Ridge" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Drywall and construction dust after a renovation or a new build in your home.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Saddle Ridge" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Saddle Ridge" },
   { icon: Building2, title: "Commercial Cleaning", description: "Professional cleaning for businesses near the Genesis Centre and surrounding area." },
 ];

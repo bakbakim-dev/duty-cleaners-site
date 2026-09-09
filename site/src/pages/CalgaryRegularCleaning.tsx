@@ -28,14 +28,14 @@ export default function CalgaryRegularCleaning() {
       heroImage={heroImage}
       heroImageAlt="Bright, tidy Calgary living room after a standard cleaning visit"
       overviewEyebrow="Service Overview"
-      overviewHeading={<>A spotless home, <Accent>without lifting a finger.</Accent></>}
+      overviewHeading={<>One visit, <Accent>priced flat by home size.</Accent></>}
       overviewParagraphs={[
-        "Regular cleaning keeps your home consistently comfortable without the effort falling to you. It covers the surfaces that matter week to week — kitchen, bathrooms, floors, and the living spaces you actually use.",
+        `A standard clean is a single visit: kitchen, bathrooms, floors, bedrooms and the living spaces you use, dusted, vacuumed, mopped and wiped down. It is priced flat by home size from ${TIERS[0].price} for a one-bedroom, and the rate holds if the visit runs long.`,
         "In Calgary that job is mostly a losing battle with dust, and the reason is geography. The city is dry, it is windy, and it sits where the prairie meets the foothills, so fine grit stays in the air far more of the year than it does further north. Add a winter that thaws and refreezes on a chinook rather than staying locked in, and entryways take a beating from October through April as road sand and de-icer come in on boots, over and over.",
-        "That is why a steady rhythm beats an occasional blitz here. Regular visits keep the grit from ever becoming build-up: floors and entry areas get cleared before anything sets, bathrooms stay ahead of hard-water marks, and the kitchen never reaches the point of needing a full degrease. Whether that is a downtown condo or a family home in Tuscany or Auburn Bay, the same principle holds — it is far less work to stay ahead of a Calgary winter than to recover from one.",
+        "The cheaper way to stay ahead of that, in a downtown condo or a family home in Tuscany or Auburn Bay, is the same clean on a schedule; the Calgary recurring cleaning page lists the weekly, bi-weekly and every-4-weeks discounts.",
       ]}
-      includedHeading="Comprehensive Standard Cleaning"
-      includedSubheading="Your one-time appointment covers the rooms and surfaces that matter most for a healthy, lived-in home."
+      includedHeading="What a standard clean covers"
+      includedSubheading="Kitchen, bathrooms, bedrooms, floors and living areas, in one visit."
       included={[
         { icon: UtensilsCrossed, title: "Kitchen Cleaning", description: "Wipe-down of countertops, sinks, stovetop, exterior appliances, and cabinet fronts. Floors mopped and vacuumed." },
         { icon: Bath, title: "Bathroom Sanitization", description: "Toilets, tubs and showers scrubbed and sanitized, soap scum off the tile and glass, mirrors and vanities polished, floors washed." },
@@ -55,13 +55,12 @@ export default function CalgaryRegularCleaning() {
         "Trash emptied",
       ]}
       roomTasks={[
-        { name: "Kitchen", tasks: 4, sample: "countertops, stovetop, and sink" },
-        { name: "Bathrooms", tasks: 4, sample: "sanitizing toilets, tubs, and showers" },
-        { name: "Living Areas", tasks: 4, sample: "dusting, vacuuming, and mopping" },
+        { name: "Kitchen", tasks: 4, sample: "countertops, stovetop and sink" },
+        { name: "Bathrooms", tasks: 4, sample: "sanitizing toilets, tubs and showers" },
+        { name: "Living Areas", tasks: 4, sample: "dusting, vacuuming and mopping" },
         { name: "Bedrooms", tasks: 3, sample: "dusting surfaces and vacuuming under beds" },
       ]}
       pricingBySize={TIERS}
-      pricingNote="Starting estimates are based on home size — final time and cost can vary with condition, bathrooms, and add-ons."
       fromPrice={TIERS[0].price}
       extras={featuredExtraRows()}
       notIncluded={[
@@ -73,11 +72,11 @@ export default function CalgaryRegularCleaning() {
         "Garages, patios, and outdoor areas (winter safety)",
       ]}
       faqs={[
-        { q: "Why does my Calgary home get dusty so quickly?", a: "Calgary is dry, windy, and sits where the prairie meets the foothills, so fine grit stays airborne far more of the year than it does further north. Through winter it is compounded by road sand and de-icer coming in on boots every time a chinook melts things off. It is not a sign you are doing anything wrong — it is why a steady cleaning rhythm works better here than an occasional big effort." },
+        { q: "Why does my Calgary home get dusty so quickly?", a: "Dry air and wind keep fine grit airborne here for most of the year, and in winter road sand comes in on boots each time a chinook melts the streets. It is not something you are doing wrong; a standard clean takes it back off the floors, sills and entryway in one visit." },
         { q: "Does standard cleaning include cleaning the kitchen?", a: "Yes. We clean kitchen counters, sinks, exterior appliance surfaces, outside of the cupboards, and floors." },
         { q: "What's the difference between standard and deep cleaning?", a: "Standard cleaning refreshes a home that's already clean — dusting, vacuuming, mopping, and sanitizing high-use areas. Deep cleaning tackles built-up grime, baseboards, doors, light switches, wall outlets, and outside vents." },
         { q: "How long does a standard cleaning take?", a: "We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
-        { q: "How often should I schedule standard cleaning?", a: "Most Calgary households book standard cleaning as needed — before events, seasonally, or whenever their home needs a refresh. For ongoing upkeep, many clients book every 2–4 weeks." },
+        { q: "How often should I schedule standard cleaning?", a: "One standard clean is one visit; book it when the house needs it. To keep it up, the Calgary recurring cleaning page has the same clean on a schedule at 20% off weekly, 15% off bi-weekly and 10% off every 4 weeks, from the second visit on." },
         // Was "or leave the keys under the mat", inside FAQPage schema. A cleaning
         // company recommending that is advising customers into something most
         // home-insurance policies exclude, next to a policy charging half the
@@ -86,10 +85,10 @@ export default function CalgaryRegularCleaning() {
         { q: "Do I need to provide cleaning supplies?", a: "No — our team brings all cleaning supplies and equipment. If you would prefer we use specific products, tell us when you book." },
         { q: "What should I do to prepare?", a: "Please pick up any personal items you'd like put away and clear surfaces such as vanities, countertops, and other cluttered areas so our cleaners can work efficiently. You may also let us know any priority areas or spaces you would like us to focus on or skip." },
       ]}
-      ctaHeading={<>Ready for a spotless <AccentGold>Calgary</AccentGold> home?</>}
-      ctaDescription="Book a one-time professional cleaning with vetted pros and a 100% satisfaction guarantee. Recurring plans available if you'd like ongoing maintenance."
+      ctaHeading={<>Standard cleaning in <AccentGold>Calgary</AccentGold> from {TIERS[0].price}.</>}
+      ctaDescription="A single visit at a flat rate by home size. Nothing is charged when you book and your card is charged once the clean is complete. If you want the house kept ahead of a Calgary winter, the recurring cleaning page has the schedule discounts."
       galleryImages={[
-        { src: kitchenImage, alt: "Spotless Calgary kitchen after standard cleaning service" },
+        { src: kitchenImage, alt: "Calgary kitchen after a standard clean" },
         { src: livingRoomImage, alt: "Bright, freshly cleaned Calgary living room" },
         { src: cleanerImage, alt: "Professional cleaner wiping surfaces in a Calgary home" },
       ]}

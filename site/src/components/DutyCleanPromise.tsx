@@ -11,12 +11,12 @@ const pillars: Pillar[] = [
   {
     icon: BadgeCheck,
     title: "Earned Trust, Every Visit",
-    desc: "Every cleaner is reference-checked before their first job — then rated by the customer after every single clean. Those ratings decide who keeps cleaning for us. Trust isn't something our cleaners claim; it's something they earn at every visit.",
+    desc: "Every cleaner is reference-checked before their first job, then rated by the customer after every clean. Those ratings decide who keeps cleaning for us.",
   },
   {
     icon: HeartHandshake,
     title: "Judgment-Free, Always",
-    desc: "Some homes have gotten away from people — after an illness, a hard season, or just a busy year. We clean without commentary. No photos, no lectures, no raised eyebrows.",
+    desc: "You do not need to tidy before we arrive or explain the state of anything. Describe the home as it is on the booking form and the team arrives briefed. The jobs we do not take on are biohazards and infestations: bodily fluids, animal waste, mould remediation, pests and rodents.",
   },
   {
     icon: Receipt,

@@ -30,12 +30,24 @@ import windowCleaning from "@/assets/gallery/window-cleaning.webp";
 // Animated section wrapper
 import MoveOutDepth from "@/components/MoveOutDepth";
 import MoveOutServiceAreas from "@/components/MoveOutServiceAreas";
-import { moveInOutTierRows } from "@/data/pricing";
+import { moveInOutTierRows, formatPrice } from "@/data/pricing";
+import { travelFee } from "@/data/addon-table";
 import { schemaAddressFor, BRANCH_ID, ORG_ID, RATING_CLAIM, BRANCH_IDENTITY } from "@/data/proof";
 
 // Derived, never hand-typed (published-prices.test.ts): the cheapest
 // move-in/out tier from bk-config is the honest floor.
 const moveInOutFromPrice = () => moveInOutTierRows()[0]?.price ?? "";
+const moveInOutTopPrice = () => moveInOutTierRows().at(-1)?.price ?? "";
+const moveInOutTravelFee = () => formatPrice(travelFee("move-in-out") ?? 0);
+
+/**
+ * Title and description are built once so the <title>, og:, twitter: and the
+ * Service schema all say the same thing. The from-price is derived, so the
+ * title moves when bk-config does; the width guard in onpage-seo.test.ts
+ * keeps it inside a desktop snippet.
+ */
+const PAGE_TITLE = `Move Out Cleaning Edmonton from ${moveInOutFromPrice()} | Duty Cleaners`;
+const META_DESCRIPTION = `Move-out cleaning in Edmonton from ${moveInOutFromPrice()} plus GST, fixed by home size. Done to the inspection checklist, re-cleaned free within ${POLICY.guaranteeWindowHours} hours. Book online.`;
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -76,35 +88,42 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: LucideIcon; title
 
 // Neighborhood link pill
 
+// What a move-out clean covers, room by room. Every line matches the
+// move-in/out column on /whats-included/ and the add-on rows in bk-config.
 const services = [
-  { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Degreasing stovetops, range hoods, and backsplashes; scrubbing countertops, sinks, and faucets; cleaning inside and outside of cabinets, drawers, oven, microwave, and fridge; sanitizing every food-prep surface." },
-  { icon: Bath, title: "Bathroom Sanitization", description: "Disinfecting toilets, tubs, showers, sinks, and tiles; removing soap scum, hard water stains, and mineral buildup; polishing mirrors, glass, and high-touch handles for an inspection-ready shine." },
-  { icon: Home, title: "Living Areas & Bedrooms", description: "Vacuuming and mopping all floors; wiping baseboards, door frames, light switches, outlets, and vents; dusting ceiling fans and window sills; cleaning inside closets, drawers, and storage spaces." },
-  { icon: Package, title: "Optional Add-Ons", description: "Inside window cleaning, blind and track detailing, wall washing, full basement cleaning, garage and balcony sweeping, interior wall spot-cleaning, and appliance pull-outs available on request." },
+  { icon: UtensilsCrossed, title: "Kitchen", description: "Stovetop, grates, range hood and backsplash degreased. Counters, sink and taps scrubbed. Inside and outside the oven, microwave and fridge, and inside all cabinets and drawers." },
+  { icon: Bath, title: "Bathrooms", description: "Toilets, tubs and showers scrubbed and sanitized. Soap scum and hard-water scale taken off tile, glass and taps. Mirrors, counters, vanities and cabinet fronts wiped, and the inside of the vanity cabinets." },
+  { icon: Home, title: "Living areas and bedrooms", description: "All floors vacuumed and mopped. Baseboards, doors, door frames, light switches, outlets and vent covers wiped. Ceiling fan blades where safely reachable, window sills and tracks, and the inside of closets and built-in storage." },
+  { icon: Package, title: "Add-ons on the booking form", description: "Interior windows, window blinds by the set, spot or full wall washing, a finished or unfinished basement, and a sweep of the garage or balcony. Each has its own price on the booking form and is added only if you choose it." },
 ];
 
+// One verifiable fact per card. Sources: policy.ts (insuranceClaim,
+// guaranteeRequiresPhotos, ecoProductsFee, PAYMENT_TERMS, SERVICE_TERMS)
+// and pricing.ts (flat rate by size).
 const whyUsItems = [
-  { icon: DollarSign, title: "Deposit Protection Standard", description: "Inspection-ready cleaning calibrated to the standards Edmonton landlords, property managers, and rental agencies expect — designed to maximize your damage deposit return." },
-  { icon: Home, title: "Move-In Ready Freshness", description: "We eliminate built-up dust, pet dander, allergens, and lingering odors left by previous tenants so your new Edmonton home feels genuinely fresh from day one." },
-  { icon: Clock, title: "Availability & Service Areas", description: "We offer weekday and weekend move-in / move-out cleaning across Edmonton, Sherwood Park, St. Albert, Spruce Grove, Leduc, and Beaumont, based on availability." },
-  { icon: Sparkles, title: "Pro-Grade Tools & Supplies", description: "High-quality equipment and professional cleaning products suited to move-in and move-out standards." },
-  { icon: Shield, title: "Reference-Checked & Customer-Rated", description: `Reference-checked cleaners trained specifically on end-of-tenancy checklists, equipped with all supplies — eco-friendly products for ${POLICY.ecoProductsFee}, ${POLICY.ecoProductsHowToRequest}.` },
-  { icon: Award, title: "24-Hour Re-Clean Guarantee", description: "If anything is missed, let us know within 24 hours and we'll return to make it right — completely free of charge." },
+  { icon: Shield, title: "Reference-checked, rated after every visit", description: "Every cleaner is reference-checked before their first job and rated by the customer after every visit. Those ratings decide who we keep sending." },
+  { icon: DollarSign, title: "Flat rate by home size", description: "The price is set by bedrooms and bathrooms when you book. It does not rise if the clean takes longer than expected, and it does not change on the day." },
+  { icon: Award, title: `${POLICY.guaranteeWindowHours}-hour re-clean`, description: `If the inspection or your own walkthrough finds something missed, tell us within ${POLICY.guaranteeWindowHours} hours and we return to put it right at no charge. Photos help but are not required.` },
+  { icon: Package, title: "Supplies included", description: "The crew brings the products, the vacuum and the step ladder. You need the water left on, and power for the vacuum." },
+  { icon: Leaf, title: `Eco products for ${POLICY.ecoProductsFee}`, description: `Eco-friendly products are available for ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}.` },
+  { icon: Clock, title: "Pay after the clean", description: "Nothing is charged when you book. A temporary hold goes on your card the day before, and the charge goes through once the clean is complete." },
 ];
 
+// Feeds the FAQPage schema as well as the accordion. Every figure is derived.
 const faqs = [
-  { q: "What is included in move out cleaning in Edmonton?", a: "A complete top-to-bottom deep clean: kitchen degreasing (stovetop, range hood, backsplash, inside oven, microwave, fridge), inside cabinets and drawers, full bathroom sanitization (soap scum, hard water, tile), all floors, baseboards, door frames, light switches, vents, window sills, and inside closets and storage spaces." },
-  { q: "How long does a move out cleaning take?", a: "We work to the move-out checklist rather than a set number of hours. Your team stays until every task is complete, and your flat rate does not change based on how long that takes. We confirm your arrival window at booking." },
+  { q: "How much does move out cleaning cost in Edmonton?", a: `A move-out clean is ${moveInOutFromPrice()} for a one-bedroom and ${moveInOutTopPrice()} for a home with five or more bedrooms, before 5% GST. The price is fixed by bedrooms and bathrooms when you book. Add-ons such as interior windows or a finished basement are priced on the booking form, and addresses outside Edmonton city limits carry a ${moveInOutTravelFee()} travel fee.` },
+  { q: "How long does a move out clean take?", a: "We work to a checklist, not a clock. The crew stays until each item on the move-out list is done, and the flat rate does not change because it took longer. You get an arrival window when you book rather than an exact time." },
+  { q: "Do I need to be there?", a: `No. Most customers leave a key in a lockbox or with the property manager, or give us a buzzer code. We lock up when we finish. If the crew arrives and cannot get in, the lockout fee is ${POLICY.lockoutFee}, so check that the access you give us works.` },
+  { q: "Are the oven and fridge interiors included?", a: "Yes. Inside the oven, fridge and microwave, and inside all cabinets, drawers and closets, are part of a move-out clean at no extra charge. On a standard or deep clean they are add-ons; on a move-out they are the point of the service. The crew does not move anything over 25 pounds, so the oven and fridge stay where they are." },
+  { q: "What if the landlord finds something at the inspection?", a: `Tell us within ${POLICY.guaranteeWindowHours} hours and we come back to put it right at no charge. Photos help but are not a condition. We cannot decide what a landlord does with the deposit, so the promise is the re-clean, not the deposit.` },
+  { q: "Can you clean the same day I hand over the keys?", a: "Sometimes. Where the schedule has room, a clean the morning of the handover is possible; book as soon as you have the date. The safer plan is the day before, which leaves time for a walkthrough of your own." },
   // Was "the home must be fully empty", which contradicted the graduated answer
   // on /faqs/ — the one that is actually the policy. A few pieces of furniture
   // are fine; a fully furnished home is a deep clean, not a move-out.
-  { q: "Do I need to clean before you arrive?", a: "No pre-cleaning required. What matters is how much is still in the home: the emptier it is, the more of it we can reach, and a move-out is priced to clean inside cabinets, closets and appliances. A few pieces of furniture we do not have to work around are fine. If the home is still fully furnished and the cupboards and closets are full, a move-out is not the right service — we would book it as a deep clean with whatever add-ons it needs, and we will tell you that rather than turn up and improvise." },
-  { q: "Is move out cleaning required to get my damage deposit back?", a: "Most Edmonton lease agreements require the unit returned in 'reasonably clean' condition, and professional move out cleaning is the most reliable way to meet inspection standards. Our service is built specifically around landlord and property-manager checklists." },
-  { q: "Do you guarantee I'll get my damage deposit back?", a: `While we cannot control a landlord's decision, the clean is done to the standard a move-out inspection looks for. If the inspection cites cleaning, tell us within ${POLICY.guaranteeWindowHours} hours of the walkthrough and we return to put it right at no additional cost — the same window as every other clean we do.` },
-  { q: "Do you clean inside appliances and cabinets?", a: "Yes — inside the oven, microwave, fridge, freezer, dishwasher, and the inside of every cabinet and drawer are all included in our standard move out / move in cleaning." },
-  { q: "What's the difference between regular cleaning and move out cleaning?", a: "Regular cleaning maintains an occupied home week to week. Move out (and move in) cleaning is a one-time, far more detailed service that addresses built-up grime, hidden surfaces, inside appliances, baseboards, vents, and every storage space — the level of detail required for inspections and turnovers." },
-  { q: "Do you bring your own cleaning supplies?", a: "Yes — we bring all supplies, equipment, and can use products you prefer on request. You only need to ensure water and electricity are still active at the property." },
-  { q: "Do I need to be home during the cleaning?", a: "Most clients leave a key in a mailbox, lockbox, or provide a buzzer code. We lock up when we finish and confirm completion by phone." },
+  { q: "What should I do before you arrive?", a: "Take your belongings out, including whatever is in the cabinets and closets, because a move-out is priced to clean inside them. Leave the water and power on until the clean is done; running water is required, and the vacuum needs electricity. A few pieces of furniture are fine. A fully furnished home with full cupboards is a deep clean, not a move-out, and we will say so rather than turn up and improvise." },
+  { q: "Do you do move-in cleaning too?", a: "Yes. Move-in cleaning is the same checklist on the home you are moving into, best done in the gap between getting the keys and the moving truck while the rooms are empty. It is priced the same way, by home size, plus 5% GST." },
+  { q: "Is there a travel fee?", a: `Not inside Edmonton city limits. Outside them, including Sherwood Park, St. Albert, Spruce Grove, Leduc and Beaumont, a ${moveInOutTravelFee()} travel fee is added to the booking.` },
+  { q: "What is the cancellation policy?", a: `Give us ${POLICY.cancellationNoticeHours} hours' notice to cancel or move a booking at no charge. Inside ${POLICY.cancellationNoticeHours} hours the fee is ${POLICY.cancellationFee}. If we have to move a booking, there is no fee to you and we offer the earliest slot we have.` },
 ];
 
 export default function EdmontonMoveInOut() {
@@ -142,14 +161,13 @@ export default function EdmontonMoveInOut() {
     /* No priceRange here. This node shares BRANCH_ID with the hub, which
        publishes the site-wide band, and a second value on the same @id made
        one business advertise two different ranges. The move-out band belongs
-       to the SERVICE, and MoveOutDepth already renders the tier table. */
+       to the SERVICE, and the price list below renders the tier table. */
     openingHours: ["Mo-Sa 08:00-20:00", "Su 09:00-15:00"],
     parentOrganization: { "@id": ORG_ID },
   };
 
-  // The FAQ section below already renders these eight Q&As — this mirrors
-  // them so the FAQPage schema (previously absent from this page) matches
-  // visible content exactly.
+  // The FAQ section below renders these ten Q&As — this mirrors them so the
+  // FAQPage schema matches visible content exactly.
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -163,21 +181,21 @@ export default function EdmontonMoveInOut() {
   return (
     <>
       <Helmet>
-        <title>Move Out & Move In Cleaning Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Inspection-ready move out and move in cleaning in Edmonton, built around landlord checklists. Same-day and next-day often available." />
-        <meta name="keywords" content="move out cleaning Edmonton, move in cleaning Edmonton, end of tenancy cleaning Edmonton, move in ready cleaning, damage deposit cleaning Edmonton, move out cleaners Edmonton" />
+        <title>{PAGE_TITLE}</title>
+        <meta name="description" content={META_DESCRIPTION} />
+        <meta name="keywords" content="move out cleaning Edmonton, move in cleaning Edmonton, end of tenancy cleaning Edmonton, move out cleaners Edmonton, move out cleaning price list Edmonton, apartment move out cleaning Edmonton" />
         <link rel="canonical" href="https://dutycleaners.ca/move-out-cleaning-edmonton/" />
-        <meta property="og:title" content="Move Out & Move In Cleaning Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Inspection-ready move out and move in cleaning in Edmonton, built around landlord checklists. Same-day and next-day often available." />
+        <meta property="og:title" content={PAGE_TITLE} />
+        <meta property="og:description" content={META_DESCRIPTION} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/move-out-cleaning-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Move Out & Move In Cleaning Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Inspection-ready move out and move in cleaning in Edmonton, built around landlord checklists. Same-day and next-day often available." />
+        <meta name="twitter:title" content={PAGE_TITLE} />
+        <meta name="twitter:description" content={META_DESCRIPTION} />
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
         <script type="application/ld+json">
-          {JSON.stringify(buildServiceSchema({ name: "Move Out and Move In Cleaning", description: "Inspection-ready move out and move in cleaning in Edmonton, built around landlord checklists. Same-day and next-day often available.", path: "/move-out-cleaning-edmonton", city: "edmonton" }))}
+          {JSON.stringify(buildServiceSchema({ name: "Move Out and Move In Cleaning", description: META_DESCRIPTION, path: "/move-out-cleaning-edmonton", city: "edmonton" }))}
         </script>
       </Helmet>
 
@@ -194,13 +212,22 @@ export default function EdmontonMoveInOut() {
             <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-10">
               <div className="flex-1 text-center lg:text-left">
                 <h1 className="display-serif text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-white">
-                  Move Out & Move In Cleaning in Edmonton
+                  Move Out Cleaning in Edmonton
                 </h1>
-                <p className="text-xl md:text-2xl mb-8 text-white/85">
-                  Secure Your Deposit & Start Fresh with Expert Cleaning{" "}
-                  — flat-rate from {moveInOutFromPrice()} by home size, plus 5% GST.
+                <p className="text-xl md:text-2xl mb-6 text-white/85">
+                  From {moveInOutFromPrice()} plus 5% GST, fixed by home size before you book.
                 </p>
-                
+                {/* The answer to the search, above the fold: what it is, what it
+                    costs, what is in it, the guarantee, and how to book. */}
+                <p className="text-base md:text-lg mb-8 text-white/80 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                  A move-out clean is the one-time clean an empty home gets before the keys change hands,
+                  done to the checklist a landlord or buyer walks through. Inside the oven, fridge,
+                  microwave, cabinets, drawers and closets are included, along with baseboards, switches,
+                  vents and all floors. If the inspection finds something we missed, tell us within{" "}
+                  {POLICY.guaranteeWindowHours} hours and we come back at no charge. Book online with the
+                  home size and your handover date. Nothing is charged until the clean is done.
+                </p>
+
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent hover:bg-accent/90 text-white text-lg px-8 h-14" asChild>
                     <a href="#quote">See My Instant Price</a>
@@ -216,11 +243,11 @@ export default function EdmontonMoveInOut() {
                 <div className="flex flex-wrap justify-center lg:justify-start gap-6 text-white/90">
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5" />
-                    <span className="font-medium">100% Satisfaction Guarantee</span>
+                    <span className="font-medium">{POLICY.guaranteeWindowHours}-hour re-clean guarantee</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5" />
-                    <span className="font-medium">Trusted by Edmonton Landlords</span>
+                    <span className="font-medium">Nothing charged until the clean is done</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5" />
@@ -232,7 +259,7 @@ export default function EdmontonMoveInOut() {
               <div className="flex-shrink-0">
                 <img
                   src={familyCleanHome}
-                  alt="Spotless Edmonton home after professional move-out cleaning"
+                  alt="Empty Edmonton living room cleaned for a move-out inspection"
                   width={500}
                   height={500}
                   className="lg:w-[500px] w-full rounded-2xl shadow-2xl"
@@ -250,7 +277,7 @@ export default function EdmontonMoveInOut() {
                 <span className="text-accent font-semibold text-sm uppercase tracking-wide">Get Started</span>
                 <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-3">See My Instant Price in Under 60 Seconds</h2>
                 <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
-                  Skip the phone tag. Tell us your home size, condition, and move-out date — get personalized, all-inclusive pricing instantly. Backed by our 100% satisfaction guarantee and 24-hour re-clean promise.
+                  Enter the bedrooms, the bathrooms and the date you hand over the keys. The figure you see is the flat rate for the clean before 5% GST, and it is the figure you pay however long the job takes.
                 </p>
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-10 py-6 h-auto font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5" asChild>
                   {/* The heading above promises an instant price and "no phone call
@@ -270,23 +297,36 @@ export default function EdmontonMoveInOut() {
           </div>
         </section>
 
-        {/* Introduction / Service Explanation */}
+        {/* End of tenancy: the inspection, the deposit, and Edmonton's turnover calendar */}
         <section className="py-16 bg-background">
           <div className="container mx-auto px-4 max-w-4xl">
             <AnimatedSection>
               <div className="text-center mb-8">
-                <span className="text-accent font-semibold text-sm uppercase tracking-wide">About the Service</span>
-                <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Detailed, Inspection-Ready Move In / Move Out Cleaning in Edmonton</h2>
+                <span className="text-accent font-semibold text-sm uppercase tracking-wide">Damage Deposit</span>
+                <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">End of tenancy cleaning and your damage deposit</h2>
               </div>
               <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
                 <p>
-                  Moving is one of life's most stressful events — deep cleaning shouldn't add to it. Our <strong>move out cleaning Edmonton</strong> service is a one-time, top-to-bottom deep clean designed specifically for end-of-tenancy turnovers, home sales, and pre-move-in resets across Edmonton, Sherwood Park, St. Albert, Spruce Grove, Leduc, and Beaumont.
+                  End of tenancy cleaning in Edmonton is judged at one moment: the move-out inspection. Under
+                  Alberta's Residential Tenancies Act the landlord completes a move-out inspection report with
+                  the tenant, and the security deposit, the damage deposit in everyday use, must be returned
+                  within 10 days after the tenant moves out. That report is where a landlord notes cleaning, so
+                  our <strong>move out cleaners in Edmonton</strong> clean to the inspection checklist rather
+                  than to how the home looks from the doorway.
                 </p>
                 <p>
-                  We tackle everything routine cleaning leaves behind: <strong>built-up grease</strong> on stovetops, range hoods, and kitchen backsplashes; the inside of <strong>cabinets, drawers, closets, and storage spaces</strong>; <strong>baseboards, door frames, light switches</strong>, and other high-touch areas; <strong>soap scum, hard water stains, and bathroom buildup</strong>; and the layers of <strong>dust, dander, allergens, and lingering odors</strong> left behind by previous tenants or vacated homes.
+                  We do not promise the deposit comes back; that decision is the landlord's. What we promise is
+                  the checklist: inside the oven and fridge, inside the cabinets, drawers and closets, baseboards,
+                  switches, vents, window sills and tracks, bathrooms scrubbed, and the floors mopped last. If the
+                  walkthrough finds something missed, tell us within {POLICY.guaranteeWindowHours} hours and we
+                  return to put it right at no charge.
                 </p>
                 <p>
-                  Whether you need <strong>move in cleaning Edmonton</strong> to make a new home truly move-in ready, or end-of-tenancy cleaning to maximize your damage deposit return, every job follows a detailed landlord and property-manager checklist — the level of detail required for inspections, walk-throughs, and turnovers.
+                  Most Edmonton tenancies turn over at month-end, and the last weeks of April and August are the
+                  busiest, when leases around the university in Garneau, Strathcona and Oliver change hands at
+                  the same time. Book the clean as soon as you have the handover date, because the day before
+                  and the day of the move fill first. Basement suites under older bungalows and family homes
+                  moving in or out of Griesbach get the same checklist and the same flat rate by size.
                 </p>
               </div>
             </AnimatedSection>
@@ -299,7 +339,7 @@ export default function EdmontonMoveInOut() {
             <AnimatedSection>
               <div className="text-center mb-12">
                 <span className="text-accent font-semibold text-sm uppercase tracking-wide">What's Included</span>
-                <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Comprehensive Move In & Move Out Cleaning</h2>
+                <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">What a move-out clean in Edmonton includes</h2>
                 <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">Cleaned to the standard a move-out inspection looks for, room by room.</p>
               </div>
             </AnimatedSection>
@@ -309,6 +349,12 @@ export default function EdmontonMoveInOut() {
                   <ServiceCard key={i} icon={s.icon} title={s.title} description={s.description} index={i} />
                 ))}
               </div>
+              <p className="text-sm text-muted-foreground max-w-3xl mx-auto mt-8 text-center leading-relaxed">
+                Not included: exterior windows, carpet steam cleaning, furnace and duct cleaning, anything
+                beyond the reach of a 3-step ladder, and moving anything over 25 pounds. Garages and balconies
+                are a sweep of the floor only, booked as an add-on. The full list is on{" "}
+                <Link to="/whats-included/" className="text-primary underline underline-offset-4">what's included</Link>.
+              </p>
             </AnimatedSection>
           </div>
         </section>
@@ -318,29 +364,29 @@ export default function EdmontonMoveInOut() {
           <div className="container mx-auto px-4 max-w-6xl">
             <AnimatedSection>
               <div className="text-center mb-8">
-                <span className="text-accent font-semibold text-sm uppercase tracking-wide">The Difference</span>
-                <h2 className="display-serif text-2xl md:text-3xl font-bold mt-2">See the Inspection-Ready Detail</h2>
+                <span className="text-accent font-semibold text-sm uppercase tracking-wide">The Inspection</span>
+                <h2 className="display-serif text-2xl md:text-3xl font-bold mt-2">Where a move-out inspection looks</h2>
               </div>
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="rounded-xl overflow-hidden shadow-lg group">
-                  <img width={1024} height={1024} src={kitchenDeepClean} alt="Spotless Edmonton kitchen after move-out cleaning" className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+                  <img width={1024} height={1024} src={kitchenDeepClean} alt="Empty Edmonton kitchen after a move-out clean" className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
                   <div className="p-4 bg-white">
-                    <h3 className="font-bold mb-1">Degreased Kitchens</h3>
-                    <p className="text-sm text-muted-foreground">Stovetops, range hoods, backsplashes, and inside every appliance.</p>
+                    <h3 className="font-bold mb-1">Kitchens</h3>
+                    <p className="text-sm text-muted-foreground">Grease off the hood and backsplash, inside the oven and fridge, cabinets wiped out once they are empty.</p>
                   </div>
                 </div>
                 <div className="rounded-xl overflow-hidden shadow-lg group">
-                  <img width={1024} height={1024} src={bathroomClean} alt="Sanitized bathroom with polished tile in Edmonton" className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+                  <img width={1024} height={1024} src={bathroomClean} alt="Bathroom tile and glass after a move-out clean in Edmonton" className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
                   <div className="p-4 bg-white">
-                    <h3 className="font-bold mb-1">Bathroom Transformations</h3>
-                    <p className="text-sm text-muted-foreground">Soap scum, hard water stains, and high-touch areas restored.</p>
+                    <h3 className="font-bold mb-1">Bathrooms</h3>
+                    <p className="text-sm text-muted-foreground">Soap scum off the glass, scale off the taps, tile and grout scrubbed, the toilet inside and out.</p>
                   </div>
                 </div>
                 <div className="rounded-xl overflow-hidden shadow-lg group">
-                  <img width={1024} height={1024} src={livingRoomClean} alt="Move-in ready Edmonton living room professionally cleaned" className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+                  <img width={1024} height={1024} src={livingRoomClean} alt="Empty Edmonton living room cleaned for move-in" className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
                   <div className="p-4 bg-white">
-                    <h3 className="font-bold mb-1">Move-In Ready Rooms</h3>
-                    <p className="text-sm text-muted-foreground">Baseboards, vents, light switches, and inside closets all detailed.</p>
+                    <h3 className="font-bold mb-1">Rooms and closets</h3>
+                    <p className="text-sm text-muted-foreground">Baseboards, vents, switches and the inside of the closets, then the floors last so nobody walks on them.</p>
                   </div>
                 </div>
               </div>
@@ -348,24 +394,28 @@ export default function EdmontonMoveInOut() {
           </div>
         </section>
 
-        {/* Lifestyle Band */}
+        {/* Move-in cleaning */}
         <section className="py-16 bg-background">
           <div className="container mx-auto px-4 max-w-6xl">
             <AnimatedSection>
               <div className="grid lg:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={1024} src={moveOutClean} alt="Edmonton family moving into a clean, fresh home" className="w-full h-[420px] object-cover" loading="lazy" />
+                  <img width={1024} height={1024} src={moveOutClean} alt="Family carrying boxes into a cleaned Edmonton home" className="w-full h-[420px] object-cover" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-accent font-semibold text-sm uppercase tracking-wide">Move-In Ready</span>
-                  <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-4">Walk Into a Truly Fresh Home</h2>
+                  <span className="text-accent font-semibold text-sm uppercase tracking-wide">Move-In Cleaning</span>
+                  <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-4">Move-in cleaning for the home you are moving into</h2>
                   <p className="text-muted-foreground leading-relaxed mb-4">
-                    A previous tenant's "clean" rarely meets your standards. Our move in cleaning Edmonton service strips away years of hidden dust, kitchen grease, bathroom buildup, and lingering odors so the first night in your new home feels like a brand-new build — not someone else's leftovers.
+                    Move-in cleaning is the same checklist run on the home you are moving into, before the
+                    boxes arrive. An empty home is the only time the inside of the cabinets, the closet shelves
+                    and the floor along the baseboards are all reachable at once, so it is done before the
+                    furniture goes in, not after. Book it for the gap between getting the keys and the moving
+                    truck if you can.
                   </p>
                   <ul className="space-y-2 text-muted-foreground">
-                    <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" /><span>Professional cleaning team assigned based on the size and needs of the home</span></li>
-                    <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" /><span>High-quality equipment and professional cleaning products</span></li>
-                    <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" /><span>Move-out cleaning checklist designed to meet landlord inspection standards your landlord will love</span></li>
+                    <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" /><span>Same flat rate by home size as a move-out, plus 5% GST</span></li>
+                    <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" /><span>Inside the oven, fridge, microwave, cabinets, drawers and closets included</span></li>
+                    <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" /><span>Leaving one home and taking the keys to another: book both, each priced by its own size</span></li>
                   </ul>
                 </div>
               </div>
@@ -373,7 +423,82 @@ export default function EdmontonMoveInOut() {
           </div>
         </section>
 
-        <MoveOutDepth city="Edmonton" />
+        {/* Apartments, condos and houses */}
+        <section className="py-16 bg-secondary/30">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <AnimatedSection>
+              <div className="text-center mb-8">
+                <span className="text-accent font-semibold text-sm uppercase tracking-wide">Home Types</span>
+                <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Apartments, condos and houses</h2>
+              </div>
+              <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
+                <p>
+                  <strong className="text-foreground">Apartment move out cleaning.</strong> Tell us how the crew
+                  gets in: a buzzer code, a fob, or a key left with the building manager. Where the building
+                  books the elevator or limits parkade access to a move-out window, give us the times and we
+                  schedule inside them. The price is set by bedroom count, so a one-bedroom apartment is the
+                  first row on the price list.
+                </p>
+                <p>
+                  <strong className="text-foreground">Condos.</strong> The same checklist and the same access
+                  questions. In-suite laundry machines are wiped down on the outside. A balcony is a sweep
+                  only, added on the booking form, and the railings and outside glass are not cleaned.
+                </p>
+                <p>
+                  <strong className="text-foreground">Houses and basement suites.</strong> Houses are priced by
+                  bedrooms and bathrooms, with a finished basement or a basement suite added on the booking
+                  form so the crew's time matches the home. A garage is a sweep of the floor only. If a basement
+                  suite is changing hands on its own, book it as the size it is, not the size of the house
+                  above it.
+                </p>
+              </div>
+            </AnimatedSection>
+          </div>
+        </section>
+
+        {/* Price list — rendered here rather than by MoveOutDepth so the heading
+            carries the cost query and the travel-fee line sits beside the table. */}
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4">
+            <AnimatedSection>
+              <div className="mx-auto max-w-3xl text-center">
+                <span className="text-accent font-semibold text-sm uppercase tracking-wide">Price List</span>
+                <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-4 text-foreground">Move out cleaning cost in Edmonton</h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  The move-out cleaning price list, before 5% GST. The rate is fixed by bedrooms and
+                  bathrooms when you book, and it does not rise if the clean takes longer than expected.
+                </p>
+              </div>
+
+              <div className="mx-auto mt-10 max-w-2xl overflow-hidden border border-border">
+                <table className="w-full">
+                  <thead className="bg-brand-navy text-brand-navy-foreground">
+                    <tr>
+                      <th className="py-3 px-5 text-left text-sm font-bold">Home size</th>
+                      <th className="py-3 px-5 text-right text-sm font-bold">Starting price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {moveRows.map((r, i) => (
+                      <tr key={r.beds} className={i % 2 ? "bg-secondary/20" : "bg-card"}>
+                        <td className="py-3 px-5 text-foreground">{r.beds}</td>
+                        <td className="py-3 px-5 text-right font-bold text-foreground">from {r.price}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p className="mx-auto mt-4 max-w-2xl text-center text-sm text-muted-foreground leading-relaxed">
+                What changes the price: the number of bedrooms and bathrooms, add-ons you choose such as
+                interior windows or a finished basement, and a {moveInOutTravelFee()} travel fee for addresses
+                outside Edmonton city limits. What does not: how long the crew is there. Your quote lists each
+                line before you book, and nothing is charged until the clean is done.
+              </p>
+            </AnimatedSection>
+          </div>
+        </section>
+
+        <MoveOutDepth city="Edmonton" showPricing={false} />
 
         {/* Why Choose Us — Dark */}
         <section className="py-16 bg-brand-navy relative overflow-hidden">
@@ -383,7 +508,7 @@ export default function EdmontonMoveInOut() {
               <div className="text-center mb-12">
                 <span className="text-accent font-semibold text-sm uppercase tracking-wide">Why Us</span>
                 <h2 className="display-serif text-3xl md:text-4xl font-bold text-white mt-2">Why Edmonton Families Choose Duty Cleaners</h2>
-                <p className="text-white/90 mt-3 max-w-2xl mx-auto">Trusted by hundreds of families, landlords, and property managers across Edmonton.</p>
+                <p className="text-white/90 mt-3 max-w-2xl mx-auto">Six terms of the booking, each written down before the crew arrives.</p>
               </div>
             </AnimatedSection>
             <AnimatedSection>
@@ -402,7 +527,7 @@ export default function EdmontonMoveInOut() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-accent font-semibold text-sm uppercase tracking-wide">FAQ</span>
-                <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Frequently Asked Questions</h2>
+                <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Move-out cleaning questions</h2>
               </div>
             </AnimatedSection>
             <AnimatedSection>
@@ -435,10 +560,12 @@ export default function EdmontonMoveInOut() {
           <div className="container mx-auto px-4 relative z-10 text-center">
             <AnimatedSection>
               <h2 className="display-serif text-3xl md:text-4xl font-bold text-white mb-6">
-                Book Your Edmonton Move Out Cleaning Today
+                Book move-out cleaning in Edmonton
               </h2>
               <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
-                Don't let cleaning add to your moving stress — leave it to the pros! Flexible scheduling and guaranteed results.
+                From {moveInOutFromPrice()} plus 5% GST, fixed by home size. Nothing is charged until the clean
+                is done, and if the inspection finds something missed we come back within{" "}
+                {POLICY.guaranteeWindowHours} hours at no charge.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>

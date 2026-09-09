@@ -61,7 +61,7 @@ const services = [
   { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning that leaves your Auburn Bay home spotless and fresh.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Auburn Bay" },
   { icon: Sparkles, title: "Deep Cleaning", description: "Comprehensive cleaning of the house — every corner, baseboard, and hidden surface.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Auburn Bay" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for smooth transitions — leave or arrive to a pristine lakeside home.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Auburn Bay" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris removal after renovations or constructions in Auburn Bay.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Auburn Bay" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Drywall and construction dust after a renovation or a new build in Auburn Bay.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Auburn Bay" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Auburn Bay" },
   { icon: Building2, title: "Commercial Cleaning", description: "Professional office and commercial space cleaning for Auburn Bay businesses of all sizes." },
 ];

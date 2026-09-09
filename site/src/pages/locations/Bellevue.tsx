@@ -104,7 +104,7 @@ export default function Bellevue() {
       {
         "@type": "Question",
         name: "How do I know I can trust your cleaners in Bellevue?",
-        acceptedAnswer: { "@type": "Answer", text: "Our cleaners are carefully vetted, professional, and consistent. Many of our Bellevue clients appreciate that they see familiar faces. That builds trust and makes every cleaning feel comfortable and stress-free." },
+        acceptedAnswer: { "@type": "Answer", text: "Our cleaners are carefully vetted, professional, and consistent. Many of our Bellevue clients appreciate that they see familiar faces. That builds trust and makes every cleaning feel comfortable." },
       },
       {
         "@type": "Question",
@@ -336,7 +336,7 @@ export default function Bellevue() {
                 <Accordion type="single" collapsible className="w-full">
                   <AccordionItem value="item-1">
                     <AccordionTrigger className="text-left">How do I know I can trust your cleaners in Bellevue?</AccordionTrigger>
-                    <AccordionContent>Our cleaners are carefully vetted, professional, and consistent. Many of our Bellevue clients appreciate that they see familiar faces. That builds trust and makes every cleaning feel comfortable and stress-free.</AccordionContent>
+                    <AccordionContent>Our cleaners are carefully vetted, professional, and consistent. Many of our Bellevue clients appreciate that they see familiar faces. That builds trust and makes every cleaning feel comfortable.</AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="item-2">
                     <AccordionTrigger className="text-left">How much does it cost to get started?</AccordionTrigger>

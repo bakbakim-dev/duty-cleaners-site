@@ -60,7 +60,7 @@ const services = [
   { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to bring the whole home back to baseline.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Mahogany" },
   { icon: Sparkles, title: "Deep Cleaning", description: "Comprehensive cleaning of the house reaching every corner, baseboard, and hidden surface.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Mahogany" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for smooth transitions — leave or arrive to a pristine lakeside home.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Mahogany" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris removal after renovations or constructions in Mahogany.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Mahogany" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Drywall and construction dust after a renovation or a new build in Mahogany.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Mahogany" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Mahogany" },
   { icon: Building2, title: "Commercial Cleaning", description: "Professional office and commercial space cleaning for Mahogany businesses of all sizes." },
 ];

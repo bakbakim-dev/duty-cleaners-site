@@ -55,16 +55,16 @@ export default function GiftCards() {
     <>
       <Helmet>
         <title>Cleaning Gift Cards | Give the Gift of a Sparkling Home | Duty Cleaners</title>
-        <meta name="description" content="Give the perfect gift - a professional house cleaning gift card. 100% stress-free guarantee. Redeemable anytime in Edmonton & Calgary." />
+        <meta name="description" content="Give the perfect gift - a professional house cleaning gift card. 100% satisfaction guarantee. Redeemable anytime in Edmonton & Calgary." />
         {/* Near-duplicate of /gift-card (the linked page) — consolidate signals there. */}
         <link rel="canonical" href="https://dutycleaners.ca/gift-card/" />
         <meta property="og:title" content="Cleaning Gift Cards | Give the Gift of a Sparkling Home | Duty Cleaners" />
-        <meta property="og:description" content="Give the perfect gift - a professional house cleaning gift card. 100% stress-free guarantee. Redeemable anytime in Edmonton & Calgary." />
+        <meta property="og:description" content="Give the perfect gift - a professional house cleaning gift card. 100% satisfaction guarantee. Redeemable anytime in Edmonton & Calgary." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/gift-cards/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Cleaning Gift Cards | Give the Gift of a Sparkling Home | Duty Cleaners" />
-        <meta name="twitter:description" content="Give the perfect gift - a professional house cleaning gift card. 100% stress-free guarantee. Redeemable anytime in Edmonton & Calgary." />
+        <meta name="twitter:description" content="Give the perfect gift - a professional house cleaning gift card. 100% satisfaction guarantee. Redeemable anytime in Edmonton & Calgary." />
       </Helmet>
 
       <div className="min-h-screen">
