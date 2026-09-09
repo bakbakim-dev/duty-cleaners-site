@@ -112,7 +112,7 @@ export default function Glenora() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `In Glenora, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+      answer: `In Glenora, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
     },
     {
       question: "What is your 100% satisfaction guarantee policy?",

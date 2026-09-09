@@ -701,7 +701,7 @@ Sun: 9:00am–3:00pm"
           <Sparkles className="w-12 h-12 text-accent mx-auto mb-4" />
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready for a Spotless Home?</h2>
           <p className="text-white/80 max-w-xl mx-auto mb-8">
-            Book your cleaning today and experience the Duty Cleaners difference. No contracts, no hidden fees.
+            See your flat rate before you book. No contracts, and nothing is charged until the clean is done.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button size="lg" className="bg-accent hover:bg-accent/90 text-white h-12 px-8" asChild>

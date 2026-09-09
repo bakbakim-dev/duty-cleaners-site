@@ -166,7 +166,7 @@ const services = (place: string, region: "edmonton" | "calgary") => {
   const wallWashing =
     region === "edmonton" ? "/wall-washing-wall-cleaning" : "/wall-washing-wall-cleaning-calgary";
   return [
-  { icon: Home, title: "Standard House Cleaning", description: "Weekly or bi-weekly maintenance to keep your home spotless and fresh year-round.", to: canonicalForPath(`/${city}/regular-cleaning`), linkText: `Standard cleaning in ${place}` },
+  { icon: Home, title: "Standard House Cleaning", description: "Kitchen, bathrooms, floors and living areas at a flat rate by home size, once or on a schedule.", to: canonicalForPath(`/${city}/regular-cleaning`), linkText: `Standard cleaning in ${place}` },
   { icon: Sparkles, title: "Deep Cleaning", description: "A full top-to-bottom reset — corners, baseboards, and the surfaces a regular visit skips.", to: canonicalForPath(`/${city}/deep-cleaning`), linkText: `Deep cleaning in ${place}` },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Move-day cleaning done to the standard a move-out inspection looks for.", to: canonicalForPath(moveOut), linkText: `Move-out cleaning in ${place}` },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust and debris cleared after a renovation or a new build.", to: canonicalForPath(postCon), linkText: `Post-construction cleaning in ${place}` },
@@ -253,7 +253,7 @@ export default function LocationPageTemplate({
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned\n• And more!`
+      answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
     },
     {
       question: "What is your 100% satisfaction guarantee policy?",
@@ -563,7 +563,7 @@ export default function LocationPageTemplate({
               Ready for a Spotless Home in {city}?
             </h2>
             <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
-              Get your free quote today and experience the Duty Cleaners difference!
+              See your flat rate before you book. Nothing is charged until the clean is done.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
