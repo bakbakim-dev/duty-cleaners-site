@@ -1,5 +1,4 @@
 import { Suspense, lazy } from "react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import SkipLink from "./components/SkipLink";
@@ -228,10 +227,9 @@ const HighlandPark = lazy(() => import("./pages/locations/HighlandPark"));
 const TuxedoPark = lazy(() => import("./pages/locations/TuxedoPark"));
 const MountPleasant = lazy(() => import("./pages/locations/MountPleasant"));
 
-const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
+  <>
     <HelmetProvider>
       {/*
         Site-wide social image defaults.
@@ -634,7 +632,7 @@ const App = () => (
       </BrowserRouter>
     </>
     </HelmetProvider>
-  </QueryClientProvider>
+  </>
 );
 
 export default App;

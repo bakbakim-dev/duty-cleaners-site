@@ -164,6 +164,13 @@ async function renderRoute(route) {
     const beforeTiles = out.length;
     out = out.replace(/<img\b[^>]*\bsrc="https:\/\/[a-c]\.tile\.openstreetmap\.org\/[^"]*"[^>]*>/g, "");
     if (out.length !== beforeTiles) strippedTiles++;
+    // The map components are lazy behind a visibility gate, but the headless
+    // render scrolls nothing and the gate's geometry fallback still fires, so
+    // Vite's preload helper injects <link rel="modulepreload"> for Leaflet and
+    // the map chunk into <head>, and --dump-dom freezes them. Left in, every
+    // visitor would preload 42 KB of map code before reading a word. Strip
+    // them: the lazy import fetches the same chunks when the map is reached.
+    out = out.replace(/<link rel="modulepreload"[^>]*href="\/assets\/(?:leaflet|[A-Za-z]+MapImpl)-[^"]*"[^>]*>\s*/g, "");
     // Leaflet's baked popup close button is href="#close" — an id no page has.
     // Leaflet re-renders the popup on hydration, so the frozen anchor is inert;
     // neutralise the fragment rather than ship a link that lands nowhere.

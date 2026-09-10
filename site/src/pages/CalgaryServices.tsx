@@ -350,7 +350,7 @@ export default function CalgaryServices() {
 
       {/* Hero Section */}
       <section className="relative py-20 bg-brand-navy overflow-hidden">
-        <img width={1920} height={1080}
+        <img width={1600} height={900}
           src={calgaryHero}
           alt="Calgary skyline"
           className="absolute inset-0 w-full h-full object-cover opacity-40"

@@ -20,28 +20,15 @@ export default defineConfig(({ mode }) => ({
       output: {
         // Keep heavy libraries out of the entry chunk so the first paint of the
         // homepage ships less JavaScript. Routes that need them pull their own.
-        manualChunks(id: string) {
-          if (!id.includes("node_modules")) return;
-          if (id.includes("recharts") || id.includes("d3-")) return "charts";
-          if (id.includes("embla-carousel")) return "carousel";
-          // Radix Select is the heaviest piece of the set — it drags in Portal,
-          // FocusScope, DismissableLayer and the positioning engine — and only
-          // /contact/ and /join-the-team/ use it. Lumped in with the rest it rode
-          // along on all 209 pages, because accordion and slot put the shared
-          // chunk in the entry graph. Split so the 207 pages that never render a
-          // select stop paying for one.
-          if (id.includes("@radix-ui/react-select")) return "radix-select";
-          if (id.includes("@radix-ui")) return "radix";
-          if (id.includes("react-hook-form") || id.includes("zod")) return "forms";
-          if (id.includes("leaflet")) return "leaflet";
-          // NOTE: react / react-dom / scheduler are deliberately NOT split into
-          // their own chunk. Doing so broke every route at runtime (the vendor
-          // chunk initialised before React was defined, so the app rendered a
-          // blank page and prerendering failed on all 208 routes). The entry
-          // chunk keeps them.
-          if (id.includes("@tanstack")) return "query";
-          if (id.includes("react-helmet")) return "helmet";
-        },
+        // No manual chunks. Every named chunk this config ever had let Rollup
+        // hoist a shared module into it and then add that chunk to the entry's
+        // imports: react-dom rode in the Radix-Select chunk, react/jsx-runtime
+        // in the carousel chunk, and a "leaflet" chunk was preloaded by all
+        // 209 pages although only the map components import it. Rollup's
+        // default splitting does the right thing here: a library lands in the
+        // chunk of the route that imports it, and a library several routes
+        // share gets a chunk of its own that only those routes import.
+        manualChunks: undefined,
       },
     },
   },

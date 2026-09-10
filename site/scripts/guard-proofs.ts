@@ -326,6 +326,15 @@ export const GUARD_PROOFS: GuardProof[] = [
     why: "Strips the price hook from a money-page title, the click-through defect the audit found on 20 pages.",
     dist: true,
   },
+  {
+    guard: "src/data/page-weight.test.ts",
+    target: "src/data/page-weight.test.ts",
+    find: "  js_gzip_kb: 170,",
+    replace: "  js_gzip_kb: 17,",
+    failing: "scripts total under 17 KB gzipped",
+    why: "Asset names are hashed per build, so the proof tightens the budget and shows the measurement is real: every page's scripts weigh more than 17 KB.",
+    // The target is the guard itself, but the guard only measures a built site.
+  },
   // ---- and this registry itself ------------------------------------------
   {
     guard: "src/data/guard-proofs.test.ts",

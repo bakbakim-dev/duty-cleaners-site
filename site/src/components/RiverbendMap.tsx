@@ -1,75 +1,26 @@
-import { useEffect, useRef } from "react";
-import L from "leaflet";
-import "leaflet/dist/leaflet.css";
+import { lazy, Suspense } from "react";
+import DeferUntilVisible from "@/components/DeferUntilVisible";
 
-const pinSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="44" viewBox="0 0 32 44">
-  <path d="M16 0C7.16 0 0 7.16 0 16c0 12 16 28 16 28s16-16 16-28C32 7.16 24.84 0 16 0z" fill="#1a365d" stroke="#fff" stroke-width="2"/>
-  <circle cx="16" cy="14" r="12" fill="#fff" opacity="0.9"/>
-  <circle cx="16" cy="14" r="9" fill="#1a365d"/>
-</svg>`;
+/**
+ * Lazy shell for RiverbendMap. The map itself, and Leaflet with it (42 KB gzipped),
+ * loads only once the map's placeholder is near the viewport. Every map on
+ * the site sits below the fold, so no page pays for Leaflet in its first
+ * paint, and a page that is never scrolled that far never fetches it.
+ */
+const Impl = lazy(() => import("./RiverbendMapImpl"));
 
-const icon = L.divIcon({
-  html: pinSvg,
-  className: "",
-  iconSize: [32, 44],
-  iconAnchor: [16, 44],
-  popupAnchor: [0, -40],
-});
+const Placeholder = () => <div className="min-h-[320px] w-full rounded-xl bg-muted/40" aria-hidden="true" />;
 
-export default function RiverbendMap() {
-  const mapRef = useRef<HTMLDivElement>(null);
-  const mapInstance = useRef<L.Map | null>(null);
+// Some maps take no props; Parameters<>[0] is then undefined, which cannot be spread, so it becomes an empty object type.
+type Params = Parameters<(typeof import("./RiverbendMapImpl"))["default"]>;
+type Props = Params extends [infer P] ? (P extends object ? P : Record<never, never>) : Record<never, never>;
 
-  useEffect(() => {
-    if (!mapRef.current || mapInstance.current) return;
-
-    const map = L.map(mapRef.current, {
-      center: [53.478, -113.555],
-      zoom: 14,
-      scrollWheelZoom: false,
-    });
-
-    mapInstance.current = map;
-
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    }).addTo(map);
-
-    const markers = [
-      { pos: [53.478, -113.555] as [number, number], label: "Riverbend, Edmonton" },
-      { pos: [53.475, -113.545] as [number, number], label: "Southgate Centre" },
-      { pos: [53.482, -113.560] as [number, number], label: "Brander Gardens" },
-    ];
-
-    markers.forEach((m) => {
-      // Named, not silenced: each pin is a real place and its label is
-      // already to hand. Leaflet focuses markers by default and renders
-      // them role="button", so without this they are unnamed controls.
-      L.marker(m.pos, { icon, alt: m.label, title: m.label })
-        .addTo(map)
-        .bindPopup(`<strong>${m.label}</strong>`);
-    });
-
-    markers[0] &&
-      L.marker(markers[0].pos, {
-        icon,
-        alt: markers[0].label,
-        title: markers[0].label,
-      }).openPopup();
-
-    return () => {
-      map.stop();
-      map.off();
-      map.remove();
-      mapInstance.current = null;
-    };
-  }, []);
-
+export default function RiverbendMap(props: Props) {
   return (
-    <div
-      ref={mapRef}
-      className="w-full h-[400px] z-0 rounded-2xl"
-      style={{ background: "#e5e7eb" }}
-    />
+    <DeferUntilVisible placeholder={<Placeholder />}>
+      <Suspense fallback={<Placeholder />}>
+        <Impl {...props} />
+      </Suspense>
+    </DeferUntilVisible>
   );
 }

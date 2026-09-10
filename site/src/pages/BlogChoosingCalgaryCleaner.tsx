@@ -164,8 +164,8 @@ export default function BlogChoosingCalgaryCleaner() {
 
               <div className="aspect-video rounded-2xl overflow-hidden mb-12">
                 <img
-                  width={1920}
-                  height={1080}
+                  width={1600}
+                  height={900}
                   src={heroImage}
                   alt="Calgary skyline, home to Duty Cleaners' Calgary cleaning team"
                   className="w-full h-full object-cover"
