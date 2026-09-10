@@ -136,7 +136,7 @@ export default function StonyPlain() {
   const faqs = [
     {
       question: "Does house cleaning in Stony Plain include a travel fee?",
-      answer: `It does, because Stony Plain is outside Edmonton city limits. The travel fee is ${TRAVEL_FEE} on a standard, deep or move-out booking and ${PC_TRAVEL_FEE} on a post-construction one, added at booking and included in the total you confirm. Beyond that fee the price is built exactly as it is for an Edmonton address: the same flat rate for the same size of home, ${PET_FEE} a visit if the home has pets, and the home-type step above an apartment or condo, ${HOME_TYPE.bungalow} for a bungalow or basement suite, ${HOME_TYPE.townhouse} for a townhouse, ${HOME_TYPE.twoStorey} for a two-storey house.`
+      answer: `It does, because Stony Plain is outside Edmonton city limits. The travel fee is ${TRAVEL_FEE} on a standard, deep or move-out booking and ${PC_TRAVEL_FEE} on a post-construction one, added at booking and included in the total you confirm. Beyond that fee the price is built exactly as it is for an Edmonton address: the same flat rate for the same size of home, ${PET_FEE} a visit if the home has pets, and the home-type charge on top of the apartment or condo rate, ${HOME_TYPE.bungalow} for a bungalow or basement suite, ${HOME_TYPE.townhouse} for a townhouse, ${HOME_TYPE.twoStorey} for a two-storey house.`
     },
     {
       question: "How soon can you come out to Stony Plain?",

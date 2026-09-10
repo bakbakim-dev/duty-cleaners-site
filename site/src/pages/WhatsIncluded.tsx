@@ -89,7 +89,7 @@ const FAQS = [
   },
   {
     q: "What happens if something on the checklist was missed?",
-    a: `Tell us within ${POLICY.guaranteeWindowHours} hours and we come back and re-clean it at no charge. The checklist on this page is what the guarantee is measured against.`,
+    a: `Tell us within ${POLICY.guaranteeWindowHours} hours and we come back and re-clean what was missed at no charge. The guarantee is measured against the checklist for the service you booked, whether that is the standard, deep or move-out list.`,
   },
 ];
 

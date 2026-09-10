@@ -379,6 +379,37 @@ export const GUARD_PROOFS: GuardProof[] = [
     failing: "every image asset is at most 10 KB",
     why: "Asset names are hashed per build, so the proof tightens the cap: it shows the scan really reads every image in dist, not an empty list.",
   },
+  // ---- FAQ answers are lifted alone --------------------------------------
+  // One proof per banned term, each putting back a sentence that really
+  // shipped inside FAQPage markup.
+  {
+    guard: "src/data/faq-answers.test.ts",
+    target: "dist/calgary/deep-cleaning/index.html",
+    find: 'Those are apartment or condo rates before GST."}',
+    replace: 'The table above lists every home size."}',
+    failing: "no FAQ answer points at the rest of its page",
+    why: "Restores the audited Calgary deep-clean answer, which sent a lifted reader to a table above it they cannot see.",
+    dist: true,
+  },
+  {
+    guard: "src/data/faq-answers.test.ts",
+    target: "dist/services/index.html",
+    find: '"text":"No. Every price we quote in Edmonton,',
+    replace: '"text":"No. Every figure on this page,',
+    failing: "no FAQ answer points at the rest of its page",
+    why: "Restores the audited GST answer, which named no price and pointed at this page instead.",
+    dist: true,
+  },
+  {
+    guard: "src/data/faq-answers.test.ts",
+    target: "dist/how-much-does-a-house-cleaning-cost/index.html",
+    find: '."}},{"@type":"Question","name":"How much does a move-out clean cost?"',
+    replace: '. The table below shows what that does to each tier."}},{"@type":"Question","name":"How much does a move-out clean cost?"',
+    failing: "no FAQ answer points at the rest of its page",
+    why: "Restores the cost guide's recurring-table pointer, so the third banned word is seen to fail as well.",
+    dist: true,
+  },
+
   // ---- and this registry itself ------------------------------------------
   {
     guard: "src/data/guard-proofs.test.ts",

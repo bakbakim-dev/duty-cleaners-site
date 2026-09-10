@@ -101,7 +101,7 @@ const CONTACT_FAQS: { q: string; a: string; more: { to: string; label: string } 
   },
   {
     q: "Are you hiring?",
-    a: "Often, in both cities. Cleaners work as contractors with their own vehicle and equipment. Apply through the join-the-team page rather than the form on this page, which routes to booking.",
+    a: "Often, in both cities. Cleaners work as contractors with their own vehicle and equipment. Apply through the join-the-team page rather than the contact form, which routes to booking.",
     more: { to: "/join-the-team", label: "Join the team" },
   },
 ];

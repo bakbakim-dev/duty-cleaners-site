@@ -22,6 +22,8 @@ const TIERS = ROWS.map((row) => ({ size: row.beds, price: row.price }));
 const DEEP = ROWS[0];
 /** The three-bedroom row, for the worked example. */
 const DEEP3 = ROWS[2];
+/** The largest row, so the price FAQ can give the top of the range itself. */
+const DEEP5 = ROWS[ROWS.length - 1];
 /** Travel fee for an address outside Edmonton city limits, from bk-config. */
 const TRAVEL = formatPrice(travelFee("standard") ?? 0);
 const REVIEWS = CITY_PROOF.edmonton.googleReviewCount;
@@ -123,7 +125,7 @@ export default function EdmontonDeepCleaning() {
       fromPrice={TIERS[0].price}
       extras={featuredExtraRows()}
       notIncluded={[
-        // The list was all safety exclusions — 25 lb, ladders, mold. The four
+        // The list was all safety exclusions — 25 lb, ladders, mould. The four
         // below are scope, and they are what customers actually assume a deep
         // clean covers: the commonest disputes in this trade, on the page where
         // someone is about to spend several hundred dollars. Prices are derived
@@ -136,7 +138,7 @@ export default function EdmontonDeepCleaning() {
         "Wall washing — a separate service, not part of the deep package",
         "Moving heavy items over 25 lbs",
         "Outdoor or exterior window cleaning",
-        "Mold remediation, bodily fluids, or pest removal",
+        "Mould remediation, bodily fluids, or pest removal",
         "Areas beyond the reach of a 3-step ladder",
         "Light bulbs and fragile fixtures",
         "Garages, patios, and outdoor areas (winter safety)",
@@ -144,7 +146,7 @@ export default function EdmontonDeepCleaning() {
       faqs={[
         { q: "Can I book deep cleaning for only certain areas?", a: "Yes. Name the rooms on the booking and the deep-clean package goes to those: the bathrooms, the kitchen, the main floor, a basement that has been shut up since October. The rest of the home still gets the standard checklist in the same visit, so no room is skipped, and the quote shows both halves before you confirm." },
         { q: "Should I declutter before deep cleaning?", a: "No. You do not need to clean before the team comes; clear counters and floors get cleaned and cluttered ones get worked around; decluttering and organising are a separate hourly add-on. On a deep clean the trade-off is easy to see, because the package is trim, edges and surfaces: a baseboard behind a stack of storage bins is a baseboard nobody can reach." },
-        { q: "Is deep cleaning more expensive than standard cleaning?", a: `Yes. A one-bedroom deep clean is ${DEEP.price} against ${DEEP.standard} for a standard clean, and the ${DEEP.packagePrice} difference is the deep-clean package: baseboards, trim, switches, vents, fans and the kitchen degrease. The full table by home size is on this page.` },
+        { q: "Is deep cleaning more expensive than standard cleaning?", a: `Yes. A one-bedroom deep clean is ${DEEP.price} against ${DEEP.standard} for a standard clean, and the ${DEEP.packagePrice} difference is the deep-clean package: baseboards, trim, switches, vents, fans and the kitchen degrease. The package grows with the home, so a five-bedroom deep clean is ${DEEP5.price} against ${DEEP5.standard} for a standard clean. Those figures are for an apartment or condo, before GST.` },
         { q: "Does a deep clean remove mould or mildew?", a: "No. Mould remediation is a different trade, and it is not what a deep clean buys. Light mildew on shower grout or caulking is wiped when it is safe to. Past that we stop, tell you where it is and what it looks like, and leave it to somebody equipped for it." },
         { q: "When should I book a deep cleaning?", a: "In Edmonton the single best time is the spring melt, when a whole winter of sanding grit comes off boots and paws in the space of three weeks — late March and April bookings clear it before it grinds into floors. Fall, just before the furnace season closes the windows for six months, is a close second. Beyond that: before guests, after a renovation, after a long stretch without service, or as a first visit before starting a recurring schedule." },
         { q: "How long does a deep cleaning take?", a: "We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },

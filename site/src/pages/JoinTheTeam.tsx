@@ -153,7 +153,7 @@ const faqs = [
   {
     value: "next-steps",
     question: "I already applied, now what?",
-    answer: "We review every application and contact qualified applicants within 24-48 hours — the same window quoted above. If two full business days have passed and you have heard nothing, call us at (780) 913-6565 and we will check on it."
+    answer: "We review every application and contact qualified applicants within 24-48 hours. If two full business days have passed and you have heard nothing, call us at (780) 913-6565 and we will check on it."
   }
 ];
 

@@ -327,7 +327,7 @@ const faqs = [
   },
   {
     q: "Do the prices include GST?",
-    a: `No. Every figure on this page is before tax, and ${GST_PCT} GST is added on top. Nothing is charged when you book. The day before the visit a temporary hold confirms the card, and it is charged once the clean is complete. Visa, Mastercard, American Express, debit and e-transfer are accepted.`,
+    a: `No. Every price we quote in Edmonton, whether the flat rate for a home, an add-on, the pet charge or the travel fee outside city limits, is before tax, and ${GST_PCT} GST is added on top. Nothing is charged when you book. The day before the visit a temporary hold confirms the card, and it is charged once the clean is complete. Visa, Mastercard, American Express, debit and e-transfer are accepted.`,
   },
   {
     q: "How do the recurring discounts work?",

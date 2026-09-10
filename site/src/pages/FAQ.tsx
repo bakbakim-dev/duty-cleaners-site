@@ -30,7 +30,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "Do you make beds during standard cleaning?",
-        answer: "Bed-making is not included in our standard cleaning service; however, if you let us know in advance, we will go above and beyond for you. Just ensure that the bedding is prepared when we arrive.",
+        answer: "Bed-making is not included in our standard cleaning service, but if you let us know in advance, we will make the beds for you. Just ensure that the bedding is prepared when we arrive.",
       },
       {
         question: "What's the difference between standard and deep cleaning?",
@@ -117,8 +117,8 @@ const faqCategories: FAQCategory[] = [
         answer: "Yes, deep cleaning usually costs more because it requires more time, detail, and effort.",
       },
       {
-        question: "Does deep cleaning remove mold or mildew?",
-        answer: "We may wipe light surface mildew if safe, but we do not provide mold remediation or remove heavy mold.",
+        question: "Does deep cleaning remove mould or mildew?",
+        answer: "We may wipe light surface mildew if safe, but we do not provide mould remediation or remove heavy mould.",
       },
       {
         question: "What does a deep cleaning include?",

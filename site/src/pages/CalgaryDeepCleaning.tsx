@@ -23,6 +23,8 @@ const DEEP = ROWS[0];
 /** The two- and four-bedroom rows, for the worked examples. */
 const DEEP2 = ROWS[1];
 const DEEP4 = ROWS[3];
+/** The largest row, so the price FAQ can state the top of the range itself. */
+const DEEP5 = ROWS[ROWS.length - 1];
 /** Travel fee for an address outside Calgary city limits, from bk-config. */
 const TRAVEL = formatPrice(travelFee("standard") ?? 0);
 const REVIEWS = CITY_PROOF.calgary.googleReviewCount;
@@ -128,7 +130,7 @@ export default function CalgaryDeepCleaning() {
       fromPrice={TIERS[0].price}
       extras={featuredExtraRows()}
       notIncluded={[
-        // The list was all safety exclusions — 25 lb, ladders, mold. The four
+        // The list was all safety exclusions — 25 lb, ladders, mould. The four
         // below are scope, and they are what customers actually assume a deep
         // clean covers: the commonest disputes in this trade, on the page where
         // someone is about to spend several hundred dollars. Prices are derived
@@ -141,7 +143,7 @@ export default function CalgaryDeepCleaning() {
         "Wall washing, which is its own service rather than part of the package",
         "Furniture and anything else over 25 lbs stays where it is",
         "Exterior windows and any outdoor work",
-        "Mold remediation, bodily fluids and pest removal",
+        "Mould remediation, bodily fluids and pest removal",
         "Anything higher than a 3-step ladder reaches",
         "Light bulbs, chandeliers and fragile fixtures",
         "Garages, patios and balconies (a balcony sweep is an add-on)",
@@ -150,7 +152,7 @@ export default function CalgaryDeepCleaning() {
         { q: "Is there a best time of year for a deep clean in Calgary?", a: "Early spring is the most popular, because it clears out a full winter of road sand and de-icer at once. Calgary thaws and refreezes on chinooks all season, so entryways and baseboards collect grit continuously rather than staying frozen over. Late autumn is the other good window, resetting the house before that cycle starts. Both book up quickly, so give us a week or two of notice if you can." },
         { q: "Can I have only part of the house deep cleaned?", a: "Yes. Tell us which rooms when you book: the bathrooms only, the kitchen only, the main floor, or the basement. The rest of the house can have the standard clean on the same visit." },
         { q: "How should I get the house ready?", a: "You do not need to clean before the team comes; clear counters and floors get cleaned and cluttered ones get worked around; decluttering and organising are a separate hourly add-on. It costs you more on a deep clean than on a standard one, because the package is surfaces, baseboards and trim: nobody can wipe a baseboard behind a row of boxes or degrease a stovetop under a drying rack. If a room should be skipped, say so on the booking." },
-        { q: "Is deep cleaning more expensive than standard cleaning?", a: `Yes, by the price of the deep-clean package. For a one-bedroom that is ${DEEP.packagePrice}: ${DEEP.price} for the deep clean against ${DEEP.standard} for a standard clean. The table above lists every home size.` },
+        { q: "Is deep cleaning more expensive than standard cleaning?", a: `Yes, by the price of the deep-clean package. For a one-bedroom that is ${DEEP.packagePrice}: ${DEEP.price} for the deep clean against ${DEEP.standard} for a standard clean. The package rises with each bedroom, to ${DEEP5.packagePrice} on a five-bedroom home, where a deep clean is ${DEEP5.price} against ${DEEP5.standard}. Those are apartment or condo rates before GST.` },
         { q: "Will the team deal with mould in the shower?", a: "Light surface mildew on grout or caulking gets wiped where it is safe to. Anything heavier is mould remediation, which is a different trade, and we will tell you so rather than scrub at it." },
         { q: "How long will a Calgary deep clean take?", a: "We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
         { q: "What does a deep clean do that a standard clean does not?", a: "The standard clean keeps a kept-up home kept up: floors, bathrooms, kitchen surfaces, dusting. The deep-clean package goes to what those visits pass over, the baseboards and door frames, the switch plates and outlet covers, the vents and fans, the tile and shower glass, and the range hood and stovetop grease. It is the reset; the standard visits are the maintenance." },

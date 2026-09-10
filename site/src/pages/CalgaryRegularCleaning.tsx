@@ -169,7 +169,7 @@ export default function CalgaryRegularCleaning() {
       notIncluded={[
         "Furniture and anything else over 25 lbs stays where it is",
         "Exterior windows and any outdoor work",
-        "Mold remediation, bodily fluids and pest removal",
+        "Mould remediation, bodily fluids and pest removal",
         "Anything higher than a 3-step ladder reaches",
         "Light bulbs, chandeliers and fragile fixtures",
         "Garages, patios and balconies (a balcony sweep is an add-on)",

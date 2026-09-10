@@ -242,7 +242,7 @@ export const NOT_INCLUDED = [
   "Anything beyond the reach of a 3-step ladder",
   "Light bulbs and fragile lighting fixtures, including chandeliers",
   "Bodily fluids, animal waste, and cat litter boxes — a health call rather than a time one; the pet charge covers the extra time pets add everywhere else in the home",
-  "Mold remediation and heavy mold removal — we may wipe light surface mildew where it is safe to do so",
+  "Mould remediation and heavy mould removal — we may wipe light surface mildew where it is safe to do so",
   "Pest or rodent removal",
   "Garages, patios and other outdoor areas",
   "Carpet steam cleaning and upholstery cleaning",

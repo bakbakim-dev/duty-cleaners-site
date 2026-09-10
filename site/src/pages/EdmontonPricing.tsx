@@ -62,6 +62,9 @@ const PET_FEE = formatPrice(addOnFromPrice("standard", "must-choose-if-you-have-
    the one most likely to be read as authoritative and the least likely to be
    noticed when BookingKoala moves. */
 const TRAVEL_FEE = formatPrice(addOnFromPrice("standard", TRAVEL_FEE_KEY) ?? 0);
+/* The add-on that answer gives as its example. It is lifted out of the page on
+   its own, so it states a price rather than pointing at the add-on table. */
+const OVEN_FEE = formatPrice(addOnFromPrice("standard", "inside-oven") ?? 0);
 
 const standardPricing = standardTierRows();
 
@@ -180,7 +183,9 @@ const faqItems = [
   // A FAQ with this title has to name the charges customers call hidden. Both
   // are published on /terms/ and both read from POLICY, so this answer can
   // never drift away from the terms it summarises.
-  { value: "hidden-fees", question: "Are there any hidden fees?", answer: `No. Here is every charge that is not the price on the card. A home with pets adds ${PET_FEE} to each visit, because paw prints and shedding add time. Addresses outside Edmonton and Calgary city limits carry a ${TRAVEL_FEE} travel fee; inside city limits there is no trip fee and no diagnostic fee. Cancelling or rescheduling inside ${POLICY.cancellationNoticeHours} hours is ${POLICY.cancellationFee}, and if the team arrives and cannot get in, the visit is charged at ${POLICY.lockoutFee}. Every one of those appears on your quote before you book. Anything else you add is optional and priced in the table above, except eco-friendly products at ${POLICY.ecoProductsFee}, which are not on the booking form, so ${POLICY.ecoProductsHowToRequest}. The flat rate itself does not change because a clean took longer. It changes only if the home needs substantially more work than it was described as needing, and the team explains what they found before continuing.` },
+  // It is also lifted on its own from the FAQPage markup, so it names the
+  // home-type charges and an add-on's price instead of "the table above".
+  { value: "hidden-fees", question: "Are there any hidden fees?", answer: `No. The quote shows every charge added to the flat rate for your home size before you book: a bungalow, townhouse or two-storey house adds ${HOME_TYPE_EXTRA.bungalow}, ${HOME_TYPE_EXTRA.townhouse} or ${HOME_TYPE_EXTRA.twoStorey} to the apartment or condo rate, a home with pets adds ${PET_FEE} a visit, and an address outside Edmonton and Calgary city limits adds a ${TRAVEL_FEE} travel fee to a home clean, with no trip or diagnostic fee inside them. Cancelling or rescheduling inside ${POLICY.cancellationNoticeHours} hours is ${POLICY.cancellationFee}, and if the team arrives and cannot get in, the visit is charged at ${POLICY.lockoutFee}. Add-ons such as the inside of the oven at ${OVEN_FEE} are optional, each a tick-box on the booking form with its price beside it, except eco-friendly products at ${POLICY.ecoProductsFee}, which are not on the form, so ${POLICY.ecoProductsHowToRequest}. The flat rate does not change because a clean took longer; it changes only if the home needs substantially more work than it was described as needing, and the team explains what they found before continuing.` },
   { value: "satisfaction", question: "What if I'm not satisfied with the cleaning?", answer: `Tell us within ${POLICY.guaranteeWindowHours} hours and we come back and re-clean the areas that were missed at no additional cost. That is the whole guarantee: no form to fill in and no photos required.` },
 ];
 

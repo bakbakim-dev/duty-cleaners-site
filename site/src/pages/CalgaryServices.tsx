@@ -307,7 +307,7 @@ const faqs = [
   },
   {
     q: "Are Calgary prices shown with or without GST?",
-    a: `Without. Add ${GST_PCT} GST to any figure on this page. You are not charged at booking; a temporary hold checks the card the day before, and the charge goes through when the clean is finished. Visa, Mastercard, American Express, debit and e-transfer all work.`,
+    a: `Without. GST of ${GST_PCT} goes on top of every figure we quote in Calgary: the flat rate for the home, any add-on, the pet charge, and the travel fee to Airdrie, Cochrane and the other towns outside city limits. You are not charged at booking; a temporary hold checks the card the day before, and the charge goes through when the clean is finished. Visa, Mastercard, American Express, debit and e-transfer all work.`,
   },
   {
     q: "How much do I save by booking recurring cleaning?",

@@ -175,7 +175,7 @@ export default function EdmontonRegularCleaning() {
       notIncluded={[
         "Moving heavy items over 25 lbs",
         "Outdoor or exterior window cleaning",
-        "Mold remediation, bodily fluids, or pest removal",
+        "Mould remediation, bodily fluids, or pest removal",
         "Areas beyond the reach of a 3-step ladder",
         "Light bulbs and fragile fixtures",
         "Garages, patios, and outdoor areas (winter safety)",

@@ -73,6 +73,9 @@ const FREQUENCY_DISCOUNTS = [...RECURRING]
   .map((frequency) => `${Math.round(frequency.discount * 100)}% ${frequency.label.toLowerCase()}`)
   .join(", ");
 
+/** The largest recurring discount, so the Calgary answer can show what it does to a real price. */
+const DEEPEST = RECURRING[RECURRING.length - 1];
+
 const PET_FEE = formatPrice(addOnFromPrice("standard", "must-choose-if-you-have-pets") ?? 0);
 const OVEN_FEE = formatPrice(addOnFromPrice("standard", "inside-oven") ?? 0);
 const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
@@ -164,7 +167,7 @@ const SECTIONS = [
     id: "calgary",
     h2: "Calgary house cleaning prices by home size",
     q: "How much does house cleaning cost in Calgary?",
-    a: `Calgary uses the same price list as Edmonton: ${COST_SPANS.standard} for a standard clean by bedroom count, before GST. Booked weekly, bi-weekly or every 4 weeks, the visit is discounted ${FREQUENCY_DISCOUNTS} from the second clean on, and the table below shows what that does to each tier.`,
+    a: `Calgary uses the same price list as Edmonton: ${COST_SPANS.standard} for a standard clean by bedroom count, before GST. Booked weekly, bi-weekly or every 4 weeks, the visit is discounted ${FREQUENCY_DISCOUNTS} from the second clean on. On a ${DEEPEST.label.toLowerCase()} plan that takes a 1-bedroom home from ${STANDARD[0].price} to ${ongoingPrice(PRICING_TIERS[0], DEEPEST.id)} a visit, and five or more bedrooms from ${last(STANDARD).price} to ${ongoingPrice(last(PRICING_TIERS), DEEPEST.id)}.`,
   },
   {
     id: "move-out",
