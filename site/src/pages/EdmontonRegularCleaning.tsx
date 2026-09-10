@@ -1,5 +1,9 @@
+import { Link } from "react-router-dom";
 import ServiceDetailPage from "@/components/ServiceDetailPage";
-import { standardTierRows, featuredExtraRows } from "@/data/pricing";
+import { standardTierRows, featuredExtraRows, formatPrice, addOnFromPrice, FREQUENCIES } from "@/data/pricing";
+import { travelFee } from "@/data/addon-table";
+import { POLICY } from "@/data/policy";
+import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
 import { Accent, AccentGold } from "@/components/Accent";
 import { Home, Bath, UtensilsCrossed } from "lucide-react";
 import heroImage from "@/assets/gallery/family-clean-home-edmonton.webp";
@@ -11,28 +15,94 @@ import cleanerImage from "@/assets/gallery/westmount-cleaner-kitchen.webp";
 // here is what let this page drift out of step with /pricing and with what
 // BookingKoala actually charges.
 const TIERS = standardTierRows().map((row) => ({ size: row.beds, price: row.price }));
+const FROM = TIERS[0].price;
+const THREE_BED = TIERS[2].price;
+/** Travel fee for an address outside Edmonton city limits, from bk-config. */
+const TRAVEL = formatPrice(travelFee("standard") ?? 0);
+const PET_FEE = addOnFromPrice("standard", "must-choose-if-you-have-pets");
+const pct = (discount: number) => `${Math.round(discount * 100)}%`;
+const WEEKLY = FREQUENCIES.find((f) => f.discount === 0.2);
+const BIWEEKLY = FREQUENCIES.find((f) => f.discount === 0.15);
+const FOUR_WEEKS = FREQUENCIES.find((f) => f.discount === 0.1);
+const REVIEWS = CITY_PROOF.edmonton.googleReviewCount;
 
 export default function EdmontonRegularCleaning() {
   return (
     <ServiceDetailPage
       city="edmonton"
+      crossCity={{ city: "Calgary", to: "/calgary/regular-cleaning/", description: "The same standard clean, priced the same way, from our Calgary team.", linkText: "Standard cleaning in Calgary" }}
       quoteService="regular-cleaning"
       phone="(780) 913-6565"
       phoneHref="tel:7809136565"
-      seoTitle="Standard Cleaning & Maid Service Edmonton | Duty Cleaners"
-      seoDescription="Standard house cleaning in Edmonton. One-time thorough cleaning from vetted professionals. We re-clean any miss within 24 hours."
+      seoTitle={`Standard Cleaning & Maid Service Edmonton from ${FROM}`}
+      seoDescription={`Standard house cleaning in Edmonton from ${FROM}, flat by home size. One visit, full checklist, nothing charged until the clean is done.`}
       canonical="https://dutycleaners.ca/edmonton/regular-cleaning"
       heroHeading={<>Standard Cleaning Services in <AccentGold>Edmonton</AccentGold></>}
-      heroSubheading="A one-time professional cleaning appointment for busy households — recurring plans available if you'd like ongoing maintenance."
-      heroBadges={["Vetted Professionals", "All Supplies Brought For You", "100% Satisfaction Guarantee"]}
+      heroSubheading={`One visit covering the kitchen, bathrooms, bedrooms and living areas, priced flat by home size from ${FROM} for a one-bedroom. If you want it kept up, the same clean on a schedule is discounted from the second visit.`}
+      heroBadges={["Reference-Checked Cleaners", "All Supplies Brought For You", "100% Satisfaction Guarantee"]}
       heroImage={heroImage}
       heroImageAlt="Bright, tidy Edmonton living room after a standard cleaning visit"
       overviewEyebrow="Service Overview"
       overviewHeading={<>One visit, every room, <Accent>one flat price.</Accent></>}
       overviewParagraphs={[
-        `A standard clean is one visit covering the kitchen, bathrooms, bedrooms and living areas: dusting, vacuuming, mopping, and high-touch surfaces wiped down. It is priced flat by home size, from ${TIERS[0].price} for a one-bedroom. If you want it kept up, the same clean on a weekly, bi-weekly or every-4-weeks schedule is discounted from the second visit; see our Edmonton recurring cleaning page.`,
-        "The microwave is cleaned inside and out; the inside of the oven and fridge are add-ons, and baseboards, vents, switches and other build-up belong to a deep clean.",
-        "Our cleaners follow a detailed room-by-room checklist and bring all the supplies and equipment with them. To help us focus on cleaning, we ask that homes are reasonably prepared before arrival, including picking up clothing, toys, dishes, or excessive clutter. Small items may be lightly organized if it only takes 1–2 minutes, but our primary focus is professional cleaning rather than full decluttering or home organization services.",
+        <>
+          A standard clean is one visit covering the kitchen, bathrooms, bedrooms and living areas: dusting, vacuuming,
+          mopping, and high-touch surfaces wiped down. It is priced flat by home size, from {FROM} for a one-bedroom;{" "}
+          <Link to="/pricing/">the full Edmonton price list</Link> has every size. If you want it kept up, the same clean
+          on a weekly, bi-weekly or every-4-weeks schedule is discounted from the second visit; see{" "}
+          <Link to="/edmonton/recurring-cleaning/">recurring cleaning in Edmonton</Link>.
+        </>,
+        <>
+          The microwave is cleaned inside and out. The inside of the oven and fridge are add-ons, and baseboards, vents,
+          switches and other build-up belong to a <Link to="/edmonton/deep-cleaning/">deep clean in Edmonton</Link>.
+        </>,
+        "Our cleaners follow a room-by-room checklist and bring all the supplies and equipment. We ask that the home is reasonably prepared before arrival: clothing, toys, dishes and clutter picked up. Small items may be put away if it takes a minute or two, but the visit is cleaning, not decluttering or organising.",
+      ]}
+      sections={[
+        {
+          heading: "Maid service in Edmonton: what people mean, and what it costs",
+          body: (
+            <>
+              <p>
+                Maid service, house cleaning and standard cleaning are the same thing on this site. A cleaner or a team
+                comes to the house, works through the kitchen, bathrooms, bedrooms and living areas from a checklist, and
+                leaves. Nobody lives in and nobody bills by the hour. The price is flat by home size, {FROM} for a
+                one-bedroom and {THREE_BED} for a three-bedroom before GST, and it does not move if the visit runs long.
+              </p>
+              <p>
+                What changes the figure is the home, not the day. Bedrooms and bathrooms set the base rate; a bungalow,
+                townhouse or two-storey house adds a home-type charge on top of the apartment price; add-ons such as the
+                inside of the oven are priced per item.
+                {PET_FEE !== null
+                  ? ` Homes with pets carry a ${formatPrice(PET_FEE)} charge per visit, shown on the quote before you book.`
+                  : ""}
+              </p>
+              <p>
+                If what you want is a maid on a schedule rather than a single visit, that is recurring cleaning: the same
+                checklist, {WEEKLY ? pct(WEEKLY.discount) : ""} off weekly, {BIWEEKLY ? pct(BIWEEKLY.discount) : ""} off
+                bi-weekly and {FOUR_WEEKS ? pct(FOUR_WEEKS.discount) : ""} off every 4 weeks, from the second visit on.
+              </p>
+            </>
+          ),
+        },
+        {
+          heading: "House cleaning in Edmonton and the towns around it",
+          body: (
+            <>
+              <p>
+                Inside Edmonton city limits there is no travel fee. St. Albert, Sherwood Park and Spruce Grove sit outside
+                the limits, so a visit there carries a travel fee of {TRAVEL}, listed on the quote before you book. Each
+                has its own page: <Link to="/cleaning-services-st-albert/">St. Albert house cleaners</Link>,{" "}
+                <Link to="/cleaning-services-sherwood-park/">house cleaning in Sherwood Park</Link> and{" "}
+                <Link to="/cleaning-services-spruce-grove/">cleaning services in Spruce Grove</Link>.
+              </p>
+              <p>
+                Everything else we do in the city, with a starting price beside each one, is on{" "}
+                <Link to="/services/">all Edmonton cleaning services and prices</Link>.
+              </p>
+            </>
+          ),
+        },
       ]}
       includedHeading="What a standard clean covers"
       includedSubheading="Kitchen, bathrooms, bedrooms and living areas, in one visit."
@@ -61,7 +131,7 @@ export default function EdmontonRegularCleaning() {
         { name: "Bedrooms", tasks: 3, sample: "dusting surfaces and vacuuming under beds" },
       ]}
       pricingBySize={TIERS}
-      fromPrice={TIERS[0].price}
+      fromPrice={FROM}
       extras={featuredExtraRows()}
       notIncluded={[
         "Moving heavy items over 25 lbs",
@@ -72,6 +142,7 @@ export default function EdmontonRegularCleaning() {
         "Garages, patios, and outdoor areas (winter safety)",
       ]}
       faqs={[
+        { q: "Is this the same as a maid service?", a: "Yes. Maid service, housekeeping and standard cleaning all describe the same visit here: a checklist clean of the kitchen, bathrooms, bedrooms and living areas at a flat rate by home size. We do not place live-in or hourly maids. If you want the visit repeated, book it as recurring cleaning and the discount applies from the second visit." },
         { q: "Does standard cleaning include cleaning the kitchen?", a: "Yes. We clean kitchen counters, sinks, exterior appliance surfaces, outside of the cupboards, and floors." },
         { q: "What's the difference between standard and deep cleaning?", a: "Standard cleaning refreshes a home that's already clean — dusting, vacuuming, mopping, and sanitizing high-use areas. Deep cleaning tackles built-up grime, baseboards, doors, light switches, wall outlets, and outside vents." },
         { q: "How long does a standard cleaning take?", a: "We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
@@ -84,7 +155,26 @@ export default function EdmontonRegularCleaning() {
         { q: "Do I need to provide cleaning supplies?", a: "No — our team brings all cleaning supplies and equipment. If you would prefer we use specific products, tell us when you book." },
         { q: "What should I do to prepare?", a: "Please pick up any personal items you'd like put away and clear surfaces such as vanities, countertops, and other cluttered areas so our cleaners can work efficiently. You may also let us know any priority areas or spaces you would like us to focus on or skip." },
       ]}
-      ctaHeading={<>Standard cleaning in <AccentGold>Edmonton</AccentGold> from {TIERS[0].price}.</>}
+      closingSections={[
+        {
+          heading: "Before you book a standard clean in Edmonton",
+          body: (
+            <>
+              <p>
+                Nothing is charged when you book. A temporary hold goes on the card the day before, and the charge goes
+                through once the clean is complete. If something was missed, tell us within {POLICY.guaranteeWindowHours}{" "}
+                hours and the team comes back to re-clean it at no charge.
+              </p>
+              <p>
+                Our Edmonton team is rated {RATING_CLAIM}{REVIEWS ? ` across ${REVIEWS} reviews` : ""};{" "}
+                <Link to="/reviews/">read the reviews</Link> before you decide, then compare every home size on{" "}
+                <Link to="/pricing/">the Edmonton price list</Link>.
+              </p>
+            </>
+          ),
+        },
+      ]}
+      ctaHeading={<>Standard cleaning in <AccentGold>Edmonton</AccentGold> from {FROM}.</>}
       ctaDescription="One visit, priced flat by home size. Nothing is charged when you book; your card is charged once the clean is complete. Discounts for a weekly, bi-weekly or every-4-weeks schedule are on the recurring cleaning page."
       galleryImages={[
         { src: kitchenImage, alt: "Clean, tidy kitchen after standard cleaning service in Edmonton" },

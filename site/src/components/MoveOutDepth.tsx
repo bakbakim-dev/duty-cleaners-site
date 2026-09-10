@@ -136,8 +136,9 @@ export default function MoveOutDepth({ city, showPricing = true }: MoveOutDepthP
               ))}
             </span>
             <p className="mt-3 text-foreground">
-              Move-out cleaning affects a deposit you don't get a second chance at — read what actual
-              {` ${city}`} customers said before booking.
+              Move-out cleaning affects a deposit you do not get a second chance at.{" "}
+              <Link to="/reviews/" className="font-semibold text-primary underline underline-offset-4">Read the reviews</Link>{" "}
+              from {city} customers before booking, or go straight to the Google listing.
             </p>
             <a
               href={listing.reviewsUrl}

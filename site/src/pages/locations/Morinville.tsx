@@ -6,6 +6,24 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
+import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice } from "@/data/pricing";
+import { travelFee } from "@/data/addon-table";
+import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
+
+// Prices come from bk-config through pricing.ts; the page types none.
+const STANDARD = standardTierRows();
+const DEEP = deepCleanTierRows();
+const MOVE = moveInOutTierRows();
+const STANDARD_FROM = STANDARD[0].price;
+const STANDARD_TO = STANDARD[STANDARD.length - 1].price;
+const DEEP_FROM = DEEP[0].price;
+const DEEP_TO = DEEP[DEEP.length - 1].price;
+const MOVE_FROM = MOVE[0].price;
+const MOVE_TO = MOVE[MOVE.length - 1].price;
+const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
+const PAGE_TITLE = `House Cleaning Morinville from ${STANDARD_FROM} | Duty Cleaners`;
+const META_DESCRIPTION = `House cleaning in Morinville from ${STANDARD_FROM}, near St. Jean Baptiste Church and the Leisure Centre. A flat rate by home size, and you pay after the clean.`;
+
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
   return (
@@ -77,26 +95,31 @@ const whyUsItems = [
 const nearbyAreas = ["St. Albert", "Legal", "Bon Accord", "Gibbons", "Sturgeon County", "Cardiff", "Rivière Qui Barre", "Namao"];
 
 export default function Morinville() {
-  const faqs = [
+  const faqs: { question: string; answer: string; link?: { to: string; text: string } }[] = [
     {
-      question: "How long does an initial cleaning take?",
+      question: "Is there a travel fee in Morinville?",
+      answer: `Yes. Morinville is about 34 km up Highway 2 from Edmonton and outside its city limits, so a ${TRAVEL_FEE} travel fee goes on every home-cleaning booking here. The clean itself is priced at the same flat rate as an Edmonton home of the same size.`
+    },
+    {
+      question: "What does a standard clean in Morinville cost?",
+      answer: `${STANDARD_FROM} for a one-bedroom and ${STANDARD_TO} for five bedrooms or more, with each size in between priced flat, before the travel fee and 5% GST. With the deep clean package the range is ${DEEP_FROM} to ${DEEP_TO}. Recurring visits are discounted from the second clean: 20% weekly, 15% every two weeks, 10% every four weeks.`
+    },
+    {
+      question: "Do you come out to Morinville same-day?",
+      answer: `When the schedule allows. Same-day and next-day slots open up; call ${CITY_PROOF.edmonton.phone} and ask what is free. Arrival is inside a window of ${ARRIVAL_WINDOWS[0]}, ${ARRIVAL_WINDOWS[1]} or ${ARRIVAL_WINDOWS[2]}, and you do not need to be home if there is a key or a code.`
+    },
+    {
+      question: "Do you do move-out cleaning in Morinville?",
+      answer: `Yes. A move-in or move-out clean is ${MOVE_FROM} to ${MOVE_TO} by home size plus the travel fee, and the inside of the oven, fridge and cabinets is included rather than added on. Book it for the day after the furniture leaves, not the same day.`,
+      link: { to: "/move-out-cleaning-edmonton/", text: "Move-out cleaning for Morinville and Edmonton" }
+    },
+    {
+      question: "Do you bring supplies out to Morinville?",
+      answer: `Yes, all of them, on every visit. Eco-friendly products are available for ${POLICY.ecoProductsFee}; ${POLICY.ecoProductsHowToRequest}. Running water is the one thing the house has to provide.`
+    },
+    {
+      question: "How long does a first clean in Morinville take?",
       answer: `We work to a checklist, not a clock. The crew stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
-    },
-    {
-      question: "What cleaning services does Duty Cleaners offer in Morinville?",
-      answer: `Every service we run can be booked locally:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
-    },
-    {
-      question: "Do you offer discounts?",
-      answer: `Yes — customers in Morinville on a recurring schedule save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
-    },
-    {
-      question: "What's included in a deep cleaning?",
-      answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
-    },
-    {
-      question: "What is your 100% satisfaction guarantee policy?",
-      answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back and put it right — at no extra cost."
     }
   ];
   const faqJsonLd = {
@@ -113,16 +136,16 @@ export default function Morinville() {
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>House Cleaning Morinville, AB | Duty Cleaners</title>
-        <meta name="description" content="House cleaning in Morinville, near St. Jean Baptiste Church and the Leisure Centre. Flat-rate quotes in 60 seconds; you pay after the clean." />
+        <title>{PAGE_TITLE}</title>
+        <meta name="description" content={META_DESCRIPTION} />
         <link rel="canonical" href="https://dutycleaners.ca/cleaning-services-morinville/" />
-        <meta property="og:title" content="House Cleaning Morinville, AB | Duty Cleaners" />
-        <meta property="og:description" content="House cleaning in Morinville, near St. Jean Baptiste Church and the Leisure Centre. Flat-rate quotes in 60 seconds; you pay after the clean." />
+        <meta property="og:title" content={PAGE_TITLE} />
+        <meta property="og:description" content={META_DESCRIPTION} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/cleaning-services-morinville/" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning Morinville, AB | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning in Morinville, near St. Jean Baptiste Church and the Leisure Centre. Flat-rate quotes in 60 seconds; you pay after the clean." />
+        <meta name="twitter:title" content={PAGE_TITLE} />
+        <meta name="twitter:description" content={META_DESCRIPTION} />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Morinville, AB", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-morinville", areaServed: "Morinville, AB" }))}</script>
@@ -147,7 +170,7 @@ export default function Morinville() {
                 Professional House Cleaning in Morinville
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                Professional house cleaning services in Morinville. Customer-rated cleaners trusted by local families.
+                Standard cleans in Morinville from {STANDARD_FROM}, deep cleans from {DEEP_FROM}, priced flat by home size. Rated {RATING_CLAIM} by the customers who fill in the rating after each visit.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -208,6 +231,12 @@ export default function Morinville() {
                   <a href="https://www.google.com/maps/place/Notre+Dame+Elementary+School,+Morinville,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Notre Dame Elementary</a>.
                   In the dry months wind carries field soil in from the farmland around the town, and it settles on sills and screens.
                 </p>
+                <p>
+                  The same Edmonton crews work as{" "}
+                  <Link to="/cleaning-services-st-albert/" className="text-primary underline underline-offset-2">St. Albert house cleaners</Link>{" "}
+                  between here and the city. A suite let to visitors can be booked as{" "}
+                  <Link to="/edmonton/airbnb-cleaning/" className="text-primary underline underline-offset-2">Airbnb cleaning in Edmonton</Link>, with the travel fee added.
+                </p>
               </div>
             </div>
           </AnimatedSection>
@@ -221,10 +250,10 @@ export default function Morinville() {
             <div className="max-w-4xl mx-auto">
               <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Life</span>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                Things To Do In Morinville
+                Around Morinville
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
-                <p>Morinville dates from the late 1800s, when Jean Baptiste Morin and French-speaking settlers took up land here, and St. Jean Baptiste Church is its historic landmark. The Morinville Museum holds the town's history and artefacts. The Morinville Community Cultural Centre hosts theatre, concerts and art exhibitions.</p>
+                <p>Morinville dates from the late 1800s, when Jean Baptiste Morin and French-speaking settlers took up land here. St. Jean Baptiste Church is the landmark. The Morinville Museum holds the town's records, and the Morinville Community Cultural Centre hosts theatre and concerts.</p>
               </div>
             </div>
           </AnimatedSection>
@@ -265,7 +294,7 @@ export default function Morinville() {
                 Morinville & Surrounding Areas
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                We proudly serve Morinville and the surrounding Sturgeon County communities.
+                Morinville and the Sturgeon County communities around it, on the same flat rates and the same travel fee.
               </p>
             </div>
             <CoverageChips areas={nearbyAreas} />
@@ -296,7 +325,8 @@ export default function Morinville() {
                 Cleaning Services for Morinville Homes
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                From routine upkeep to deep cleans and move-outs — every service a home needs.
+                Standard, deep, move-out, post-construction and wall washing, each priced flat by home size. The add-ons and the checklists are on the page for{" "}
+                <Link to="/services/" className="text-primary underline underline-offset-2 font-medium">all Edmonton cleaning services and prices</Link>.
               </p>
             </div>
           </AnimatedSection>
@@ -318,10 +348,12 @@ export default function Morinville() {
             <div className="text-center mb-14">
               <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
               <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">
-                Why Morinville Residents Choose Duty Cleaners
+                Morinville house cleaners you rate after every visit
               </h2>
               <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                Trusted by families across the Edmonton region for reliable, thorough cleaning.
+                A rating from the customer closes every clean, and the ratings decide who is sent back. You can{" "}
+                <Link to="/reviews/" className="text-white underline underline-offset-2 font-medium">read the reviews</Link>{" "}
+                before you decide.
               </p>
             </div>
           </AnimatedSection>
@@ -341,10 +373,18 @@ export default function Morinville() {
           <AnimatedSection>
             <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
             <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
-              Proudly Serving Morinville & Surrounding Areas
+              Cleaning services in Morinville and the towns around Edmonton
             </h2>
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-              We provide professional house cleaning services throughout Morinville and nearby communities in the Edmonton region.
+              Near Morinville, the other communities we clean from the Edmonton office are{" "}
+              <Link to="/cleaning-services-st-albert/" className="text-primary underline underline-offset-2 font-medium">house cleaning in St. Albert</Link>{" "}
+              on the way in,{" "}
+              <Link to="/cleaning-services-spruce-grove/" className="text-primary underline underline-offset-2 font-medium">cleaning services in Spruce Grove</Link>{" "}
+              to the west,{" "}
+              <Link to="/cleaning-services-sherwood-park/" className="text-primary underline underline-offset-2 font-medium">Sherwood Park house cleaners</Link>{" "}
+              to the east and a{" "}
+              <Link to="/cleaning-services-leduc/" className="text-primary underline underline-offset-2 font-medium">Leduc cleaning company</Link>{" "}
+              at the south end by the airport. Every one is outside Edmonton city limits, so the {TRAVEL_FEE} travel fee is the same in each.
             </p>
             <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
               View All Service Areas →
@@ -373,7 +413,15 @@ export default function Morinville() {
                   {faqs.map((faq, index) => (
                     <AccordionItem key={index} value={`item-${index}`}>
                       <AccordionTrigger className="text-left font-semibold">{faq.question}</AccordionTrigger>
-                      <AccordionContent className="text-muted-foreground whitespace-pre-line">{faq.answer}</AccordionContent>
+                      <AccordionContent className="text-muted-foreground whitespace-pre-line">
+                        {faq.answer}
+                        {faq.link && (
+                          <>
+                            {" "}
+                            <Link to={faq.link.to} className="text-primary underline underline-offset-2 font-medium">{faq.link.text}</Link>
+                          </>
+                        )}
+                      </AccordionContent>
                     </AccordionItem>
                   ))}
                 </Accordion>
@@ -388,7 +436,7 @@ export default function Morinville() {
         <div className="container mx-auto px-4 relative z-10 text-center">
           <AnimatedSection>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Ready for a Spotless Home in Morinville?
+              Book house cleaning in Morinville
             </h2>
             <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
               See your flat rate before you book. Nothing is charged until the clean is done.

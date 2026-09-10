@@ -1,8 +1,11 @@
+import { Link } from "react-router-dom";
 import { POLICY } from "@/data/policy";
 import { formatPrice } from "@/data/pricing";
 import { addOnFromPrice } from "@/data/pricing";
 import ServiceDetailPage from "@/components/ServiceDetailPage";
 import { deepCleanTierRows, featuredExtraRows } from "@/data/pricing";
+import { travelFee } from "@/data/addon-table";
+import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
 import { Accent, AccentGold } from "@/components/Accent";
 import { Sparkles, Bath, UtensilsCrossed, Layers } from "lucide-react";
 import heroImage from "@/assets/gallery/kitchen-deep-clean.webp";
@@ -13,9 +16,15 @@ import heroImage from "@/assets/gallery/kitchen-deep-clean.webp";
 /** Cheapest published price for an add-on, straight from bk-config. */
 const addOnLabel = (key: string) => formatPrice(addOnFromPrice("standard", key) ?? 0);
 
-const TIERS = deepCleanTierRows().map((row) => ({ size: row.beds, price: row.price }));
+const ROWS = deepCleanTierRows();
+const TIERS = ROWS.map((row) => ({ size: row.beds, price: row.price }));
 /** The one-bedroom row, with its standard and package halves, for the price FAQ. */
-const DEEP = deepCleanTierRows()[0];
+const DEEP = ROWS[0];
+/** The three-bedroom row, for the worked example. */
+const DEEP3 = ROWS[2];
+/** Travel fee for an address outside Edmonton city limits, from bk-config. */
+const TRAVEL = formatPrice(travelFee("standard") ?? 0);
+const REVIEWS = CITY_PROOF.edmonton.googleReviewCount;
 
 export default function EdmontonDeepCleaning() {
   return (
@@ -25,20 +34,60 @@ export default function EdmontonDeepCleaning() {
       quoteService="deep-cleaning"
       phone="(780) 913-6565"
       phoneHref="tel:7809136565"
-      seoTitle="Deep Cleaning Services Edmonton | Duty Cleaners"
-      seoDescription="Deep cleaning in Edmonton: baseboards, switches, vents, appliance exteriors and built-up grime removed. We re-clean any miss within 24 hours."
+      seoTitle={`Deep Cleaning Services Edmonton from ${TIERS[0].price} | Duty Cleaners`}
+      seoDescription={`Deep cleaning in Edmonton from ${TIERS[0].price}: baseboards, switches, vents, tile and shower glass, kitchen degreased. We re-clean any miss within 24 hours.`}
       canonical="https://dutycleaners.ca/edmonton/deep-cleaning"
       heroHeading={<>Deep Cleaning Services in <AccentGold>Edmonton</AccentGold></>}
-      heroSubheading="Everything in a standard clean, plus the build-up a standard clean does not reach: baseboards, door frames, switches and outlet covers, vents and ceiling fans, tile and shower glass, and the stovetop and range hood degreased. Inside the oven and fridge on request."
+      heroSubheading={`Everything in a standard clean, plus the build-up a standard clean does not reach: baseboards, door frames, switches and outlet covers, vents and ceiling fans, tile and shower glass, and the stovetop and range hood degreased. Flat by home size from ${TIERS[0].price}. Inside the oven and fridge on request.`}
       heroBadges={["Top-to-Bottom Detail", "All Supplies Brought For You", "100% Satisfaction Guarantee"]}
       heroImage={heroImage}
       heroImageAlt="Edmonton kitchen after a deep clean"
       overviewEyebrow="Service Overview"
       overviewHeading={<>The reset regular cleaning <Accent>can't reach.</Accent></>}
       overviewParagraphs={[
-        `A deep clean is the standard checklist plus the deep-clean package, priced flat by home size from ${TIERS[0].price} for a one-bedroom.`,
-        "Edmonton earns its deep cleans the hard way. Unlike cities that thaw mid-winter, this one freezes in November and stays frozen — so five months of sanded roads, salted parkade floors, and boot grit accumulate in one long season, then all of it lets go at once in the March melt. Entryways, stair runners, and the first three feet of every hallway take the worst of it, and by spring there is a layer of fine grit worked into carpet edges and along baseboards that weekly vacuuming no longer lifts. Meanwhile the furnace has been running since October, drying the air and circulating fine dust onto ceiling fans, vent covers, and the tops of door frames.",
-        "What the work looks like depends on the house. In the mature, elm-lined neighbourhoods near the river valley — Westmount, Ritchie, Old Strathcona — older bungalows and character homes have original trim, radiators, and decades of paint layers that hold dust in every profile edge. In a Summerside or Windermere new build it is usually construction dust still resurfacing from vents and closet shelves a year after possession. And in an Oliver or Downtown tower, the job concentrates on window tracks, balcony door channels, and the film that settles on high-rise glass. Our team works top to bottom, room by room — scrubbing baseboards and door frames, hand-wiping switches and outlet covers, degreasing stovetops and range hoods, and detail-cleaning bathrooms.",
+        <>
+          A deep clean is the <Link to="/edmonton/regular-cleaning/">standard cleaning checklist</Link> plus the
+          deep-clean package, priced flat by home size from {TIERS[0].price} for a one-bedroom.
+        </>,
+        "Edmonton earns its deep cleans the hard way. Unlike cities that thaw mid-winter, this one freezes in November and stays frozen, so five months of sanded roads, salted parkade floors and boot grit accumulate in one long season, then all of it lets go at once in the March melt. Entryways, stair runners and the first three feet of every hallway take the worst of it, and by spring there is a layer of fine grit worked into carpet edges and along baseboards that weekly vacuuming no longer lifts. Meanwhile the furnace has been running since October, drying the air and circulating fine dust onto ceiling fans, vent covers and the tops of door frames.",
+        "What the work looks like depends on the house. In the mature, elm-lined neighbourhoods near the river valley, Westmount, Ritchie and Old Strathcona, older bungalows and character homes have original trim, radiators and decades of paint layers that hold dust in every profile edge. In a Summerside or Windermere new build it is usually construction dust still resurfacing from vents and closet shelves a year after possession. In an Oliver or Downtown tower the job concentrates on window tracks, balcony door channels and the film that settles on high-rise glass. Our team works top to bottom, room by room: scrubbing baseboards and door frames, hand-wiping switches and outlet covers, degreasing stovetops and range hoods, and detail-cleaning bathrooms.",
+      ]}
+      sections={[
+        {
+          heading: "Deep house cleaning in Edmonton, priced by home size",
+          body: (
+            <>
+              <p>
+                The price is the standard rate for the home plus the deep-clean package for that size, and both halves
+                come from the same price list. A one-bedroom is {DEEP.price}: {DEEP.standard} for the standard clean
+                and {DEEP.packagePrice} for the package. A three-bedroom is {DEEP3.price}: {DEEP3.standard} plus{" "}
+                {DEEP3.packagePrice}. The package grows with the bedroom count because the trim, the doors and the
+                switch plates do.
+              </p>
+              <p>
+                Those figures are for an apartment or condo before GST; a bungalow, townhouse or two-storey house adds
+                the home-type charge shown in the table below, and the inside of the oven, the fridge and the cabinets
+                are priced per item. The standard rates on their own, for every home size, are on{" "}
+                <Link to="/pricing/">the full Edmonton price list</Link>.
+              </p>
+            </>
+          ),
+        },
+        {
+          heading: "Deep cleaning outside Edmonton: Fort Saskatchewan, Stony Plain and Morinville",
+          body: (
+            <>
+              <p>
+                Inside Edmonton city limits there is no travel fee. Fort Saskatchewan, Stony Plain and Morinville are
+                outside them, and a deep clean there carries a travel fee of {TRAVEL}, shown on the quote before you
+                book. Each town has its own page:{" "}
+                <Link to="/cleaning-services-fort-saskatchewan/">house cleaning in Fort Saskatchewan</Link>,{" "}
+                <Link to="/cleaning-services-stony-plain/">Stony Plain house cleaners</Link> and{" "}
+                <Link to="/cleaning-services-morinville/">cleaning services in Morinville</Link>.
+              </p>
+            </>
+          ),
+        },
       ]}
       includedHeading="What a deep clean adds"
       includedSubheading="The places a weekly visit never reaches, room by room."
@@ -100,6 +149,27 @@ export default function EdmontonDeepCleaning() {
         { q: "Do I need to prepare anything?", a: "Please pick up any personal items you'd like put away and clear surfaces such as vanities, countertops, and other cluttered areas so our cleaners can work efficiently. You may also let us know any priority areas or spaces you would like us to focus on or skip." },
         { q: "Are your products safe for kids and pets?", a: `We bring our own standard professional products. Tell us about any sensitivities, or anything you would rather we did not use, when you book. Eco-friendly products are available for ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}.` },
         { q: "How often should I get a deep cleaning?", a: "Most homes benefit from a deep clean every 3–6 months, with regular maintenance cleaning in between." },
+      ]}
+      closingSections={[
+        {
+          heading: "After the deep clean",
+          body: (
+            <>
+              <p>
+                The usual next step is the standard checklist on a schedule, so the build-up does not come back:{" "}
+                <Link to="/edmonton/recurring-cleaning/">recurring cleaning in Edmonton</Link> is 20% off
+                weekly, 15% off bi-weekly and 10% off every 4 weeks from the second visit. A one-off{" "}
+                <Link to="/edmonton/regular-cleaning/">standard clean in Edmonton</Link> works too. Walls are their own
+                service: <Link to="/wall-washing-wall-cleaning/">wall washing in Edmonton</Link>.
+              </p>
+              <p>
+                Our Edmonton team is rated {RATING_CLAIM}{REVIEWS ? ` across ${REVIEWS} reviews` : ""};{" "}
+                <Link to="/reviews/">read the reviews</Link>. Everything we do in the city, with a starting price
+                beside each, is on <Link to="/services/">all Edmonton cleaning services and prices</Link>.
+              </p>
+            </>
+          ),
+        },
       ]}
       ctaHeading={<>Deep cleaning in <AccentGold>Edmonton</AccentGold> from {TIERS[0].price}.</>}
       ctaDescription={`Flat rate by home size, from ${TIERS[0].price} for a one-bedroom. Tell us within ${POLICY.guaranteeWindowHours} hours about anything missed and we come back and re-clean it at no charge.`}

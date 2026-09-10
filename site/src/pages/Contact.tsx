@@ -20,11 +20,72 @@ import {
 import { Phone, Mail, MapPin, Clock, CheckCircle2, MessageSquare, Sparkles, Heart, Shield, Star, Building2, Users, LucideIcon, Send } from "lucide-react";
 import { Link, useSearchParams } from "react-router-dom";
 import { canonicalForPath } from "@/data/legacy-urls";
-import { ARRIVAL_WINDOWS } from "@/data/policy";
+import { ARRIVAL_WINDOWS, POLICY } from "@/data/policy";
+import { formatPrice } from "@/data/pricing";
+import { travelFee } from "@/data/addon-table";
 import { submitQuote } from "@/lib/quote-submit";
 import { toast } from "sonner";
 import { z } from "zod";
-import { CITY_PROOF, SUPPORT_EMAIL, schemaAddressFor, BRANCH_IDENTITY, BRANCH_PROFILES, ORG_ID } from "@/data/proof";
+import { CITY_PROOF, SUPPORT_EMAIL, schemaAddressFor, BRANCH_IDENTITY, BRANCH_PROFILES, ORG_ID, RATING_CLAIM } from "@/data/proof";
+
+const TITLE = "Contact Duty Cleaners | Edmonton & Calgary";
+const DESCRIPTION = `Contact Duty Cleaners in Edmonton or Calgary. Call ${CITY_PROOF.edmonton.phone} or ${CITY_PROOF.calgary.phone}, Mon-Sat 8am-8pm and Sun 9am-3pm, or send the form.`;
+
+const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
+
+/** The two offices keep the same hours; stated once so the schema and the cards agree. */
+const OPENING_HOURS = [
+  {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    opens: "08:00",
+    closes: "20:00",
+  },
+  {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: "Sunday",
+    opens: "09:00",
+    closes: "15:00",
+  },
+];
+
+/**
+ * The questions that decide whether someone needs to call at all. Each answer
+ * is the schema text; `more` is the page that carries the full version.
+ * Figures read from policy.ts and bk-config.
+ */
+const CONTACT_FAQS: { q: string; a: string; more: { to: string; label: string } }[] = [
+  {
+    q: "What is actually included in a clean?",
+    a: "A standard clean covers dusting, floors, kitchen surfaces and appliance exteriors, bathrooms, and inside the microwave. Deep adds baseboards, doors, switches, vents and fan blades; move-out adds inside the oven, fridge, cabinets and closets. Inside the oven and fridge are add-ons on the other two.",
+    more: { to: "/whats-included", label: "The full checklist, service by service" },
+  },
+  {
+    q: "Do I need to do anything before the cleaners arrive?",
+    a: "Not much. Tell us how to get in, where to park, whether there are pets, and any rooms to skip. Running water is required, and we bring every product and piece of equipment. Clearing counters and floors of belongings lets the team reach the surfaces.",
+    more: { to: "/prepare", label: "How to prepare" },
+  },
+  {
+    q: "Can I buy a clean for someone else?",
+    a: `Yes. Gift cards are sold in any amount with no maximum, they do not expire, and if a clean costs less than the card the balance stays on it for the next visit. If it costs more, the recipient pays the difference.`,
+    more: { to: "/gift-card", label: "Gift cards" },
+  },
+  {
+    q: "What if something was missed?",
+    a: `Tell us within ${POLICY.guaranteeWindowHours} hours of the clean and we come back and re-clean it at no additional charge. Photos help but are not a condition.`,
+    more: { to: "/satisfaction-guarantee", label: "The guarantee in full" },
+  },
+  {
+    q: "Which areas do you serve?",
+    a: `Edmonton, Calgary and the towns around each: St. Albert, Sherwood Park, Spruce Grove, Leduc and the rest of the Edmonton region; Airdrie, Cochrane, Okotoks and the rest of the Calgary region. Inside city limits there is no trip fee. Outside them a ${TRAVEL_FEE} travel fee is added per visit, shown on the quote before you book.`,
+    more: { to: "/locations", label: "Every area we serve" },
+  },
+  {
+    q: "Are you hiring?",
+    a: "Often, in both cities. Cleaners work as contractors with their own vehicle and equipment. Apply through the join-the-team page rather than the form on this page, which routes to booking.",
+    more: { to: "/join-the-team", label: "Join the team" },
+  },
+];
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
@@ -256,7 +317,7 @@ export default function Contact() {
         return;
       }
 
-      toast.success("Message sent! We'll get back to you within 24 hours.");
+      toast.success("Message sent. We reply within 24 hours.");
       setFormData({
         name: "",
         email: "",
@@ -271,59 +332,65 @@ export default function Contact() {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Contact Duty Cleaners | Edmonton & Calgary Cleaning Services</title>
-        <meta name="description" content="Contact Duty Cleaners for professional cleaning services in Alberta. Call (780) 913-6565 or (403) 768-1341. Available Mon-Sat 8am-8pm." />
+        <title>{TITLE}</title>
+        <meta name="description" content={DESCRIPTION} />
         <meta name="keywords" content="contact duty cleaners, cleaning services Edmonton, cleaning services Calgary, house cleaning contact" />
         <link rel="canonical" href="https://dutycleaners.ca/contact-us/" />
         {/* This page renders fully-authored NAP for both offices but carried no
             structured data at all. Both nodes use the same @id the rest of the
             site references, and every value reads from src/data/proof.ts so the
-            markup can never disagree with the visible address or phone. */}
+            markup can never disagree with the visible address or phone. Each
+            branch carries a ContactPoint and its PostalAddress; the FAQ block
+            further down is mirrored as FAQPage. */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
-            "@graph": (["edmonton", "calgary"] as const).map((key) => {
-              const office = CITY_PROOF[key];
-              return {
-                "@type": "LocalBusiness",
-                "@id": `https://dutycleaners.ca/#${key}`,
-                name: BRANCH_IDENTITY[key as "edmonton" | "calgary"].name,
-                url: BRANCH_IDENTITY[key as "edmonton" | "calgary"].url,
-                parentOrganization: { "@id": ORG_ID },
-                sameAs: [...BRANCH_PROFILES[key as "edmonton" | "calgary"]],
-                telephone: office.phoneE164,
-                email: SUPPORT_EMAIL,
-                // One authority (data/proof.ts) — the split-on-comma inline
-                // version carried no postalCode.
-                address: schemaAddressFor(
-                  office.city.toLowerCase() as "edmonton" | "calgary",
-                ),
-                areaServed: { "@type": "City", name: office.city },
-                openingHoursSpecification: [
-                  {
-                    "@type": "OpeningHoursSpecification",
-                    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-                    opens: "08:00",
-                    closes: "20:00",
+            "@graph": [
+              ...(["edmonton", "calgary"] as const).map((key) => {
+                const office = CITY_PROOF[key];
+                return {
+                  "@type": "LocalBusiness",
+                  "@id": `https://dutycleaners.ca/#${key}`,
+                  name: BRANCH_IDENTITY[key].name,
+                  url: BRANCH_IDENTITY[key].url,
+                  parentOrganization: { "@id": ORG_ID },
+                  sameAs: [...BRANCH_PROFILES[key]],
+                  telephone: office.phoneE164,
+                  email: SUPPORT_EMAIL,
+                  // One authority (data/proof.ts) — the split-on-comma inline
+                  // version carried no postalCode.
+                  address: schemaAddressFor(key),
+                  contactPoint: {
+                    "@type": "ContactPoint",
+                    contactType: "customer service",
+                    telephone: office.phoneE164,
+                    email: SUPPORT_EMAIL,
+                    areaServed: { "@type": "City", name: office.city },
+                    availableLanguage: "English",
+                    hoursAvailable: OPENING_HOURS,
                   },
-                  {
-                    "@type": "OpeningHoursSpecification",
-                    dayOfWeek: "Sunday",
-                    opens: "09:00",
-                    closes: "15:00",
-                  },
-                ],
-              };
-            }),
+                  areaServed: { "@type": "City", name: office.city },
+                  openingHoursSpecification: OPENING_HOURS,
+                };
+              }),
+              {
+                "@type": "FAQPage",
+                mainEntity: CONTACT_FAQS.map((faq) => ({
+                  "@type": "Question",
+                  name: faq.q,
+                  acceptedAnswer: { "@type": "Answer", text: faq.a },
+                })),
+              },
+            ],
           })}
         </script>
-        <meta property="og:title" content="Contact Duty Cleaners | Edmonton & Calgary Cleaning Services" />
-        <meta property="og:description" content="Contact Duty Cleaners for professional cleaning services in Alberta. Call (780) 913-6565 or (403) 768-1341. Available Mon-Sat 8am-8pm." />
+        <meta property="og:title" content={TITLE} />
+        <meta property="og:description" content={DESCRIPTION} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/contact-us/" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Contact Duty Cleaners | Edmonton & Calgary Cleaning Services" />
-        <meta name="twitter:description" content="Contact Duty Cleaners for professional cleaning services in Alberta. Call (780) 913-6565 or (403) 768-1341. Available Mon-Sat 8am-8pm." />
+        <meta name="twitter:title" content={TITLE} />
+        <meta name="twitter:description" content={DESCRIPTION} />
       </Helmet>
 
       <Navigation />
@@ -343,16 +410,17 @@ export default function Contact() {
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-sm mb-6">
               <MessageSquare className="w-4 h-4 text-accent" />
-              <span>We'd Love to Hear From You</span>
+              <span>Two offices, one phone team</span>
             </div>
-            
+
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-              Get In <span className="text-brand-gold">Touch</span>
+              Contact Duty Cleaners in <span className="text-brand-gold">Edmonton and Calgary</span>
             </h1>
-            
+
             <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-8">
-              Ready to book? See your price and pick a time in about a minute. If you would rather
-              ask something first, call either office or send the form below and we reply within 24 hours.
+              The fastest answer to most questions is the price itself, which takes about a minute
+              to see. For anything else, call either office or send the form below and we reply
+              within 24 hours.
             </p>
 
             <div className="flex flex-wrap justify-center gap-4">
@@ -388,7 +456,8 @@ export default function Contact() {
             <span className="text-accent font-semibold text-sm uppercase tracking-wide">Our Locations</span>
             <h2 className="text-3xl md:text-4xl font-bold mt-2">Two Offices Serving Alberta</h2>
             <p className="text-muted-foreground mt-3 max-w-xl mx-auto">
-              Conveniently located to serve homes and businesses across Alberta.
+              Both numbers are answered by the same team, Monday to Saturday 8:00 AM to 8:00 PM
+              and Sunday 9:00 AM to 3:00 PM. Rated {RATING_CLAIM} in each city.
             </p>
           </div>
 
@@ -422,11 +491,30 @@ Sun: 9:00am–3:00pm"
             <div className="grid lg:grid-cols-5 gap-12">
               {/* Left Column - Form */}
               <div className="lg:col-span-3">
+                {/* The page says the instant price is faster than the form, so
+                    the price comes first and the form second. */}
+                <div className="mb-8 rounded-2xl border-2 border-accent/30 bg-accent/10 p-6">
+                  <p className="text-lg font-semibold text-foreground">
+                    Booking, or wondering what it costs? Skip the form.
+                  </p>
+                  <p className="mt-1 text-muted-foreground">
+                    Answer a few questions about the home and the price is on screen in about a
+                    minute, before GST. Nothing is charged when you book.
+                  </p>
+                  <Button size="lg" className="mt-4 bg-accent hover:bg-accent/90 text-white h-12 px-6" asChild>
+                    <a href={quoteHrefFor(pathname)}>
+                      <Calculator className="mr-2 w-5 h-5" />
+                      See My Instant Price
+                    </a>
+                  </Button>
+                </div>
+
                 <div className="mb-8">
                   <span className="text-accent font-semibold text-sm uppercase tracking-wide">Send a Message</span>
-                  <h2 className="text-3xl md:text-4xl font-bold mt-2">We're Here to Help</h2>
+                  <h2 className="text-3xl md:text-4xl font-bold mt-2">Send a message to either office</h2>
                   <p className="text-muted-foreground mt-3">
-                    Have a question or need help with a booking? Send us a message and we'll get back to you within 24 hours.
+                    For questions the price cannot answer: an unusual home, a fixed inspection
+                    date, a gift card. We reply within 24 hours.
                   </p>
                 </div>
 
@@ -582,7 +670,8 @@ Sun: 9:00am–3:00pm"
                     </div>
                   </div>
                   <p className="text-muted-foreground text-sm leading-relaxed">
-                    We stand behind the quality of our staff. If you're not 100% satisfied with your cleaning, we'll come back and re-clean it at no additional charge, as long as we’re informed within 24 hours after the cleaning.
+                    If something was missed, tell us within {POLICY.guaranteeWindowHours} hours of the
+                    clean and we come back and re-clean it at no additional charge.
                   </p>
                 </div>
 
@@ -647,46 +736,17 @@ Sun: 9:00am–3:00pm"
             <h3 className="text-xl font-bold text-foreground mb-4">
               Questions we can answer without a phone call
             </h3>
-            <ul className="space-y-3 text-muted-foreground">
-              <li>
-                <strong className="text-foreground">What's actually included?</strong>{" "}
-                <Link to={canonicalForPath("/whats-included")} className="text-accent underline underline-offset-2">
-                  The full scope list
-                </Link>{" "}
-                covers every service and, just as usefully, what falls outside it.
-              </li>
-              <li>
-                <strong className="text-foreground">Do I need to do anything first?</strong>{" "}
-                <Link to={canonicalForPath("/prepare")} className="text-accent underline underline-offset-2">
-                  How to prepare
-                </Link>{" "}
-                is short — mostly it is about access, pets, and the few things that stop a team
-                reaching a surface at all.
-              </li>
-              <li>
-                <strong className="text-foreground">Can I buy this for someone else?</strong>{" "}
-                <Link to={canonicalForPath("/gift-card")} className="text-accent underline underline-offset-2">
-                  Gift cards
-                </Link>{" "}
-                have no expiry date and no maximum value, and the balance carries over if a
-                clean costs less than the card.
-              </li>
-              <li>
-                <strong className="text-foreground">What if something was missed?</strong> Tell us
-                within 24 hours and we return and re-clean it free —{" "}
-                <Link to={canonicalForPath("/satisfaction-guarantee")} className="text-accent underline underline-offset-2">
-                  the guarantee
-                </Link>{" "}
-                sets out exactly what that covers.
-              </li>
-              <li>
-                <strong className="text-foreground">Are you hiring?</strong> Often, in both cities.{" "}
-                <Link to={canonicalForPath("/join-the-team")} className="text-accent underline underline-offset-2">
-                  Join the team
-                </Link>{" "}
-                is the place to apply — please don't use the form above for job enquiries, as it
-                routes to booking.
-              </li>
+            {/* Rendered from CONTACT_FAQS, which also feeds the FAQPage markup
+                in <head>, so the two cannot drift. */}
+            <ul className="space-y-4 text-muted-foreground">
+              {CONTACT_FAQS.map((faq) => (
+                <li key={faq.q}>
+                  <strong className="text-foreground">{faq.q}</strong> {faq.a}{" "}
+                  <Link to={canonicalForPath(faq.more.to)} className="text-accent underline underline-offset-2">
+                    {faq.more.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -699,9 +759,18 @@ Sun: 9:00am–3:00pm"
         
         <div className="container mx-auto px-4 relative z-10 text-center">
           <Sparkles className="w-12 h-12 text-accent mx-auto mb-4" />
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready for a Spotless Home?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">See your Edmonton or Calgary price before you book</h2>
           <p className="text-white/80 max-w-xl mx-auto mb-8">
-            See your flat rate before you book. No contracts, and nothing is charged until the clean is done.
+            Flat rates by home size, no contracts, and nothing charged until the clean is done.
+            Not sure we cover your address?{" "}
+            <Link to="/locations/" className="text-accent underline underline-offset-2">
+              Every area we serve
+            </Link>{" "}
+            is listed, and you can{" "}
+            <Link to="/reviews/" className="text-accent underline underline-offset-2">
+              read the reviews
+            </Link>{" "}
+            from both cities first.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button size="lg" className="bg-accent hover:bg-accent/90 text-white h-12 px-8" asChild>

@@ -1,17 +1,20 @@
-import { REVIEWS } from "@/data/reviews";
-import { CITY_PROOF } from "@/data/proof";
+import { REVIEWS, type CityReview } from "@/data/reviews";
+import { CITY_PROOF, COMPANY, RATING_CLAIM } from "@/data/proof";
 import { HOMES_CLEANED } from "@/data/proof";
+import { POLICY } from "@/data/policy";
+import { quoteHrefFor } from "@/lib/quote-link";
 import heroReviews from "@/assets/hero-reviews-testimonials.webp";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { Star, Quote, Shield, Heart, Phone, MapPin, Sparkles, CheckCircle2, MessageSquare, ThumbsUp, Award } from "lucide-react";
+import { Star, Quote, Shield, Heart, Phone, MapPin, Calculator, CheckCircle2, MessageSquare, ThumbsUp, Award } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { GOOGLE_LISTINGS, openGoogleListing } from "@/lib/google-listings";
 import { Helmet } from "react-helmet-async";
+import { Link, useLocation } from "react-router-dom";
 
 
-const ReviewCard = ({ review, index }: {review: typeof reviews[0];index: number;}) => {
+const ReviewCard = ({ review, index }: {review: CityReview;index: number;}) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
 
   return (
@@ -19,11 +22,11 @@ const ReviewCard = ({ review, index }: {review: typeof reviews[0];index: number;
       ref={ref}
       className={`opacity-0 ${isVisible ? "animate-fade-slide-up" : ""}`}
       style={{ animationDelay: `${index * 100}ms`, animationFillMode: "forwards" }}>
-      
+
       <div
         className="bg-white rounded-xl p-6 border border-border shadow-sm relative group"
         style={{ perspective: "1000px", transformStyle: "preserve-3d" }}>
-        
+
         <div className="transition-all duration-500 ease-out group-hover:-translate-y-2 group-hover:shadow-xl group-hover:scale-[1.02]">
           <Quote className="absolute top-4 right-4 w-8 h-8 text-primary/15 transition-transform duration-500 group-hover:rotate-12" />
 
@@ -95,25 +98,101 @@ const StatCard = ({ icon: Icon, value, label }: {icon: React.ElementType;value: 
 // cannot drift apart. Add a review there, not here.
 const reviews = REVIEWS;
 
+/**
+ * Reviews grouped by the service the reviewer names. Where the text does not
+ * say which service it was, the review sits under its city. The grouping is
+ * read from the review's own words, never assigned by hand, so a new review
+ * added to reviews.ts lands in the right place.
+ */
+type GroupId = "move" | "recurring" | "post-construction" | "calgary" | "edmonton";
+
+const groupOf = (review: CityReview): GroupId => {
+  const text = review.text;
+  if (/move[- ]?(in|out)|moving out/i.test(text)) return "move";
+  if (/every 4 weeks|once a month|every month|weekly|bi-weekly/i.test(text)) return "recurring";
+  if (/post[- ]construction|reno\b|renovation/i.test(text)) return "post-construction";
+  return review.location.toLowerCase().startsWith("calgary") ? "calgary" : "edmonton";
+};
+
+const GROUPS: { id: GroupId; heading: string; intro: string; links: { to: string; label: string }[] }[] = [
+  {
+    id: "move",
+    heading: "Move-out cleaning reviews",
+    intro: "Cleaned empty, to the standard an inspection looks for: inside the oven, fridge, cabinets and closets, on top of the deep checklist.",
+    links: [
+      { to: "/move-out-cleaning-edmonton/", label: "move-out cleaning in Edmonton" },
+      { to: "/move-out-cleaning-calgary/", label: "move-out cleaning in Calgary" },
+    ],
+  },
+  {
+    id: "recurring",
+    heading: "Recurring cleaning reviews",
+    intro: "Weekly, bi-weekly or every 4 weeks, with the recurring discount applied from the second visit.",
+    links: [
+      { to: "/edmonton/recurring-cleaning/", label: "recurring cleaning in Edmonton" },
+      { to: "/calgary/recurring-cleaning/", label: "recurring cleaning in Calgary" },
+    ],
+  },
+  {
+    id: "post-construction",
+    heading: "Post-construction cleaning reviews",
+    intro: "Dust from a renovation settles on every surface in the house, so this clean is priced by floor area rather than bedroom count.",
+    links: [
+      { to: "/post-construction-cleaning/", label: "post-construction cleaning in Edmonton" },
+      { to: "/post-construction-cleaning-calgary/", label: "post-construction cleaning in Calgary" },
+    ],
+  },
+  {
+    id: "calgary",
+    heading: "Calgary house cleaning reviews",
+    intro: "Reviews from the Calgary office where the reviewer did not say which service they booked.",
+    links: [
+      { to: "/calgary/regular-cleaning/", label: "standard cleaning in Calgary" },
+      { to: "/calgary/deep-cleaning/", label: "deep cleaning in Calgary" },
+    ],
+  },
+  {
+    id: "edmonton",
+    heading: "Edmonton house cleaning reviews",
+    intro: "Reviews from the Edmonton office where the reviewer did not say which service they booked.",
+    links: [
+      { to: "/edmonton/regular-cleaning/", label: "standard cleaning in Edmonton" },
+      { to: "/edmonton/deep-cleaning/", label: "deep cleaning in Edmonton" },
+    ],
+  },
+];
+
+const TITLE = `Duty Cleaners Reviews | ${RATING_CLAIM}, Edmonton & Calgary`;
+const DESCRIPTION = `House cleaning rated ${CITY_PROOF.edmonton.googleRating} on Google in Edmonton and Calgary. Read what Alberta homeowners say about Duty Cleaners before you book.`;
 
 export default function Reviews() {
   // Title is owned by <Helmet> below. A useEffect that also set document.title
   // raced it with a *different* string ("Client Reviews" vs "Customer Reviews"),
   // so which one shipped depended on effect ordering.
+  const { pathname } = useLocation();
+  const reviewCount = CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount;
+  const grouped = GROUPS.map((group) => ({
+    ...group,
+    reviews: reviews.filter((review) => groupOf(review) === group.id),
+  })).filter((group) => group.reviews.length > 0);
 
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>Customer Reviews | Duty Cleaners Edmonton & Calgary</title>
-        <meta name="description" content="House cleaning rated 4.9 on Google in Edmonton and Calgary. Read what Alberta homeowners say about Duty Cleaners before you book." />
+        <title>{TITLE}</title>
+        <meta name="description" content={DESCRIPTION} />
         <link rel="canonical" href="https://dutycleaners.ca/reviews/" />
-        <meta property="og:title" content="Customer Reviews | Duty Cleaners Edmonton & Calgary" />
-        <meta property="og:description" content="House cleaning rated 4.9 on Google in Edmonton and Calgary. Read what Alberta homeowners say about Duty Cleaners before you book." />
+        <meta property="og:title" content={TITLE} />
+        <meta property="og:description" content={DESCRIPTION} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/reviews/" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Customer Reviews | Duty Cleaners Edmonton & Calgary" />
-        <meta name="twitter:description" content="House cleaning rated 4.9 on Google in Edmonton and Calgary. Read what Alberta homeowners say about Duty Cleaners before you book." />
+        <meta name="twitter:title" content={TITLE} />
+        <meta name="twitter:description" content={DESCRIPTION} />
+        {/* No AggregateRating or Review markup, on purpose. Google treats
+            self-serving review markup on a business's own site as a manual-
+            action risk, and the rating is checkable on the profiles linked
+            below instead. */}
       </Helmet>
       <Navigation />
       <main id="main-content" tabIndex={-1}>
@@ -141,60 +220,73 @@ export default function Reviews() {
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6 border border-white/10">
               <MessageSquare className="w-4 h-4 text-accent" />
-              <span className="text-white/90 text-sm font-medium">Real Stories from Real Clients</span>
+              <span className="text-white/90 text-sm font-medium">Quoted from Google, word for word</span>
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-              Customer Reviews
+              Duty Cleaners Reviews
             </h1>
             <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
-              Hear from homeowners across Alberta who trust Duty Cleaners to keep their spaces spotless.
+              Every review on this page is copied from our Google profiles in Edmonton and
+              Calgary without a word changed, and each profile is linked below so you can check.
             </p>
 
             <div className="flex items-center justify-center gap-2 mb-2">
               {[...Array(5)].map((_, i) =>
               <Star key={i} className="w-7 h-7 fill-yellow-400 text-yellow-400" />
               )}
-              <span className="text-2xl font-bold text-white ml-2">4.9 on Google</span>
+              <span className="text-2xl font-bold text-white ml-2">{RATING_CLAIM}</span>
             </div>
-            <p className="text-white/90 text-sm">Google reviews from Edmonton and Calgary homeowners</p>
+            <p className="text-white/90 text-sm">{reviewCount} Google reviews from Edmonton and Calgary homeowners</p>
           </div>
 
           {/* Stats Row */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 max-w-4xl mx-auto">
-            <StatCard icon={Star} value="4.9" label="Rating on Google" />
+            <StatCard icon={Star} value={String(CITY_PROOF.edmonton.googleRating)} label="Rating on Google" />
             <StatCard icon={ThumbsUp} value={HOMES_CLEANED.alberta} label="Alberta Homes Cleaned" />
             {/* Was value="100%" label="Satisfaction Rate". A "rate" reads as a measured
             outcome, and nothing measures it -- proof.ts has rebookRate: null. It also
             sat directly above "4.9 out of 5" on this page, which refutes it: a 4.9 mean
             necessarily includes customers who rated below five. This states the promise
             the company actually honours instead. */}
-            <StatCard icon={Award} value="24-Hour" label="100% Satisfaction Guarantee" />
-            <StatCard icon={Heart} value="2017" label="Serving Alberta Since" />
+            <StatCard icon={Award} value={`${POLICY.guaranteeWindowHours}-Hour`} label="100% Satisfaction Guarantee" />
+            <StatCard icon={Heart} value={String(COMPANY.foundedYear)} label="Serving Alberta Since" />
           </div>
         </div>
       </section>
 
-      {/* Reviews Section */}
+      {/* Reviews, grouped by the service the reviewer names */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-14">
-            <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-4">
-              <Sparkles className="w-4 h-4 text-primary" />
-              <span className="text-foreground text-sm font-medium">What the Community Says</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Stories from Our Community
-            </h2>
             <p className="text-muted-foreground text-lg leading-relaxed">
-              At Duty Cleaners, we don't just clean houses — we build lasting relationships. Our clients in Alberta trust us to treat their homes like our own.
+              Grouped by the service the reviewer describes, so you can read the ones about the
+              clean you are pricing. Where a review does not say, it sits under its city.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {reviews.map((review, index) =>
-            <ReviewCard key={index} review={review} index={index} />
-            )}
+          <div className="max-w-6xl mx-auto space-y-16">
+            {grouped.map((group) => (
+              <div key={group.id}>
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">{group.heading}</h2>
+                <p className="text-muted-foreground mb-8 max-w-3xl">
+                  {group.intro} Prices by home size are on{" "}
+                  {group.links.map((link, index) => (
+                    <span key={link.to}>
+                      <Link to={link.to} className="text-primary underline underline-offset-2">
+                        {link.label}
+                      </Link>
+                      {index < group.links.length - 1 ? " and " : "."}
+                    </span>
+                  ))}
+                </p>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {group.reviews.map((review, index) =>
+                  <ReviewCard key={review.name + review.date} review={review} index={index} />
+                  )}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -218,7 +310,7 @@ export default function Reviews() {
 
               <h2 className="text-3xl font-bold text-foreground mb-2">Our Google Reviews</h2>
               <div className="flex items-center justify-center gap-2 my-4">
-                <span className="text-5xl font-bold text-foreground">4.9</span>
+                <span className="text-5xl font-bold text-foreground">{CITY_PROOF.edmonton.googleRating}</span>
                 <div className="flex flex-col items-start">
                   <div className="flex gap-0.5">
                     {[...Array(5)].map((_, i) =>
@@ -228,7 +320,7 @@ export default function Reviews() {
                   <span className="text-muted-foreground text-xs mt-1">out of 5</span>
                 </div>
               </div>
-              <p className="text-muted-foreground mb-2">{CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount} reviews across both cities</p>
+              <p className="text-muted-foreground mb-2">{reviewCount} reviews across both cities</p>
               <p className="text-muted-foreground text-xs flex items-center justify-center gap-1">
                 <Shield className="w-3 h-3" />
                 Powered by Google
@@ -266,31 +358,54 @@ export default function Reviews() {
             <div className="absolute bottom-0 right-0 w-56 h-56 bg-accent/10 rounded-full blur-3xl" />
 
             <div className="relative z-10">
-              <Sparkles className="w-10 h-10 text-accent mx-auto mb-4" />
+              <Calculator className="w-10 h-10 text-accent mx-auto mb-4" />
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Ready to Join Our Happy Clients?
+                See your own price before you book
               </h2>
               <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
-                {CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount} reviews across
-                Edmonton and Calgary, averaging {CITY_PROOF.edmonton.googleRating}. See your own price in about a
-                minute, and pay after the clean.
+                {reviewCount} reviews across Edmonton and Calgary, averaging{" "}
+                {CITY_PROOF.edmonton.googleRating}. The price takes about a minute to see, and you
+                pay after the clean. The full tables are on{" "}
+                <Link to="/pricing/" className="text-accent underline underline-offset-2">
+                  the full Edmonton price list
+                </Link>{" "}
+                and{" "}
+                <Link to="/calgary/pricing/" className="text-accent underline underline-offset-2">
+                  Calgary house cleaning prices by home size
+                </Link>
+                , with{" "}
+                <Link to="/whats-included/" className="text-accent underline underline-offset-2">
+                  what's included
+                </Link>{" "}
+                spelled out per service.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
-                  href="tel:7809136565"
+                  href={quoteHrefFor(pathname)}
                   className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-accent text-accent-foreground font-semibold rounded-lg hover:bg-accent/90 transition-colors shadow-lg">
-                  
-                  <Phone className="w-4 h-4" />
-                  Edmonton: (780) 913-6565
+                  <Calculator className="w-4 h-4" />
+                  See My Instant Price
                 </a>
                 <a
-                  href="tel:4037681341"
+                  href={CITY_PROOF.edmonton.phoneLink}
                   className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-white text-brand-navy font-semibold rounded-lg hover:bg-white/90 transition-colors shadow-lg">
-                  
                   <Phone className="w-4 h-4" />
-                  Calgary: (403) 768-1341
+                  Edmonton: {CITY_PROOF.edmonton.phone}
+                </a>
+                <a
+                  href={CITY_PROOF.calgary.phoneLink}
+                  className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-white text-brand-navy font-semibold rounded-lg hover:bg-white/90 transition-colors shadow-lg">
+                  <Phone className="w-4 h-4" />
+                  Calgary: {CITY_PROOF.calgary.phone}
                 </a>
               </div>
+              <p className="mt-6 text-sm text-white/70">
+                A clean also works as a present:{" "}
+                <Link to="/gift-card/" className="text-accent underline underline-offset-2">
+                  give a clean as a gift
+                </Link>
+                .
+              </p>
             </div>
           </div>
         </div>
@@ -305,7 +420,7 @@ export default function Reviews() {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-              Cleaned with us recently?
+              Cleaned with us recently? Leave a review
             </h2>
             <p className="text-muted-foreground text-lg mb-8">
               Reviews are how most people find us, and they are the fairest test of whether we did the

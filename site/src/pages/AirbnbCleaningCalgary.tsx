@@ -1,4 +1,7 @@
-import { HOURLY_RATE, formatPrice } from "@/data/pricing";
+import { HOURLY_RATE, GST_RATE, formatPrice, withGst, FREQUENCIES } from "@/data/pricing";
+import { travelFee } from "@/data/addon-table";
+import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
+import { CITY_PROOF, RATING_CLAIM, COMPANY } from "@/data/proof";
 import { canonicalForPath } from "@/data/legacy-urls";
 import {
   CheckCircle,
@@ -10,16 +13,10 @@ import {
   Home,
   Phone,
   MapPin,
-  BedDouble,
-  Bath,
-  UtensilsCrossed,
-  Shirt,
-  Package,
-  Trash2,
   ClipboardCheck,
   KeyRound,
   Wand2,
-  PartyPopper,
+  DoorOpen,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { buildServiceSchema } from "@/lib/service-schema";
@@ -53,6 +50,27 @@ import gal6 from "@/assets/airbnb/turnover-entry.webp";
 import { Helmet } from "react-helmet-async";
 import CityCrossLink from "@/components/CityCrossLink";
 import LocalMarketNote from "@/components/LocalMarketNote";
+
+/* Every figure on this page derives from bk-config, policy.ts or proof.ts.
+   Nothing here is hand-typed. */
+const proof = CITY_PROOF.calgary;
+const RATE = formatPrice(HOURLY_RATE);
+const MIN_ONE = formatPrice(HOURLY_RATE * 3);
+const MIN_ONE_GST = formatPrice(withGst(HOURLY_RATE * 3));
+const MIN_TWO = formatPrice(HOURLY_RATE * 2 * 2);
+const FIVE_HOURS = formatPrice(HOURLY_RATE * 5);
+const GST_PCT = `${Math.round(GST_RATE * 100)}%`;
+const TRAVEL = travelFee("airbnb");
+const TRAVEL_LINE = TRAVEL === null ? "a travel fee we quote when you book" : `${formatPrice(TRAVEL)} in travel per visit`;
+const BIWEEKLY = FREQUENCIES.find((f) => f.id === "bi-weekly-every-2-weeks");
+const BIWEEKLY_PCT = BIWEEKLY ? `${Math.round(BIWEEKLY.discount * 100)}%` : "a";
+const GUARANTEE_HOURS = POLICY.guaranteeWindowHours;
+const HUB = canonicalForPath("/calgary");
+const PRICING = canonicalForPath("/calgary/pricing");
+const RECURRING = canonicalForPath("/calgary/recurring-cleaning");
+const SERVICES = canonicalForPath("/calgary/services");
+const TITLE = `Airbnb Cleaning Calgary from ${RATE}/hour | Duty Cleaners`;
+const DESCRIPTION = `Turnover cleaning for Calgary short-term rentals from ${RATE} per cleaner-hour. Stampede back-to-backs, linen resets and restocking, 3-hour minimum.`;
 
 const AnimatedSection = ({
   children,
@@ -98,30 +116,6 @@ const WhatWeCleanCard = ({
         {description}
       </p>
     </div>
-  </div>
-);
-
-const IncludedCard = ({
-  icon: Icon,
-  title,
-  description,
-  index,
-}: {
-  icon: React.ElementType;
-  title: string;
-  description: string;
-  index: number;
-}) => (
-  <div
-    className={`group bg-white rounded-xl border border-border p-6 transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.02] hover:shadow-xl ${
-      index % 2 === 0 ? "hover:translate-x-0.5" : "hover:-translate-x-0.5"
-    }`}
-  >
-    <div className="w-12 h-12 rounded-lg bg-calgary/10 flex items-center justify-center mb-4 transition-transform duration-300 group-hover:rotate-12">
-      <Icon className="w-6 h-6 text-calgary" />
-    </div>
-    <h3 className="text-lg font-bold text-foreground mb-2">{title}</h3>
-    <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
   </div>
 );
 
@@ -173,83 +167,96 @@ const StepCard = ({
 );
 
 const AirbnbCleaningCalgary = () => {
+  /* One list, in Calgary's own words. The page used to print the same six
+     items twice, once with photos and once with icons. */
   const whatWeClean = [
-    { image: imgBedroom, title: "Bedroom & Bed Making", description: "Hotel-style setup with crisp linens, dusted surfaces, and tidy nightstands." },
-    { image: imgBathroom, title: "Bathroom Deep Clean & Sanitization", description: "Disinfected toilets, sinks, tubs, and mirrors polished to a streak-free shine." },
-    { image: imgKitchen, title: "Kitchen Reset & Surface Cleaning", description: "Counters wiped, appliances cleaned, sink scrubbed, and trash removed." },
-    { image: imgLiving, title: "Living Area Refresh", description: "Vacuumed floors, dusted surfaces, and cushions arranged for guest arrival." },
-    { image: imgLaundry, title: "Laundry & Linen Service", description: "Laundry and linen changes are available, provided that the machines are ready to use and clean linens are prepared and accessible for the cleaners." },
-    { image: imgEssentials, title: "Restocking Guest Essentials", description: "Soap, shampoo, paper goods, and basics replenished if provided by host." },
-  ];
-
-  const includedServices = [
-    { icon: BedDouble, title: "Bedroom & Living Area Refresh", description: "Dusting, vacuuming, and neatly making beds with fresh linens." },
-    { icon: Bath, title: "Bathroom Deep Cleaning & Sanitization", description: "Toilets, sinks, tubs, and mirrors disinfected to a sparkling finish." },
-    { icon: UtensilsCrossed, title: "Kitchen Cleaning & Surface Wipe-Down", description: "Countertops, appliances, and sinks left spotless and guest-ready." },
-    { icon: Shirt, title: "Optional Laundry & Linen Service", description: "Laundry and linen changes are available, provided that the machines are ready to use and clean linens are prepared and accessible for the cleaners." },
-    { icon: Package, title: "Guest Essentials Restocking", description: "Soap, shampoo, and toilet paper replenished when supplied by host." },
-    { icon: Trash2, title: "Trash Removal & Final Tidy", description: "Bins emptied and the space left looking fresh and inviting." },
+    { image: imgBedroom, title: "Beds and bedrooms", description: "Sheets off, fresh set on from the linen you have left out, pillows plumped, nightstands and window sills dusted, floor vacuumed under the bed frame." },
+    { image: imgBathroom, title: "Bathrooms", description: "Toilet, sink, tub and shower disinfected, glass and taps wiped dry so they do not spot, drain cover cleared, towels replaced." },
+    { image: imgKitchen, title: "Kitchen", description: "Sink and counters scrubbed, stovetop and appliance fronts wiped, microwave interior cleaned, fridge checked for anything the last guest left." },
+    { image: imgLiving, title: "Living room and entry", description: "Gravel and grit vacuumed from the entry mat and floor edges, surfaces dusted, cushions and throws reset to the listing photo, remotes back in their place." },
+    { image: imgLaundry, title: "Laundry and linen", description: "Offered when the machines are ready to use and clean linens are prepared and accessible for the cleaners. With no spare set on site, the wash runs but the beds wait for it." },
+    { image: imgEssentials, title: "Restock and rubbish", description: "Toilet paper, soap and shampoo topped up from your own stock. Bins emptied, bags relined, garbage and recycling carried to the bins or the building's chute." },
   ];
 
   const howItWorks = [
-    { icon: ClipboardCheck, title: "Book Your Cleaning", description: "Request your turnover online or by phone in just a couple of minutes." },
-    { icon: KeyRound, title: "We Confirm Details & Access", description: "Share access instructions and any special notes for your property." },
-    { icon: Wand2, title: "Full Guest-Ready Reset", description: "Our team completes a top-to-bottom turnover to short-term rental standards." },
-    { icon: PartyPopper, title: "Ready for Your Next Guest", description: "Your Airbnb is clean, restocked, and staged for a five-star check-in." },
+    { icon: ClipboardCheck, title: "Give us the two times", description: "Checkout and next check-in. Book online or ring the Calgary line. On Stampede days, book the moment the platform confirms the stay." },
+    { icon: KeyRound, title: "Access and parking", description: "Lockbox, smart lock or a key with the concierge. In a downtown tower the visitor-parking rules matter as much as the door code, so note both." },
+    { icon: Wand2, title: "The same checklist every time", description: "The team works through the six areas above in a fixed order. Anything a guest left behind is bagged, labelled and mentioned in the report." },
+    { icon: DoorOpen, title: "Locked and reported", description: "You get a message when the unit is done, with a photo of anything you need to know about before the next guest arrives." },
   ];
 
   const whyChooseUs = [
-    { icon: Clock, title: "Fast & Reliable Turnovers", description: "Consistent same-window cleanings so your property is always ready on time." },
-    { icon: Star, title: "Trusted by Calgary Hosts", description: "Calgary Airbnb hosts and property managers rely on us for repeat turnovers." },
-    { icon: Calendar, title: "Flexible Scheduling", description: "We schedule based on availability — book in advance to lock in your preferred time." },
-    { icon: Shield, title: "Safe, Guest-Friendly Products", description: "Professional cleaning products suited to guest-ready turnovers." },
+    { icon: Clock, title: "Three arrival windows a day", description: `${ARRIVAL_WINDOWS.join(", ")}. An 11 o'clock checkout and a 4 o'clock check-in fits the midday window with room to spare; tell us both times and we place it.` },
+    { icon: Star, title: RATING_CLAIM, description: `The Calgary listing has ${proof.googleReviewCount} reviews behind that figure. Cleaners are reference-checked before their first job and rated by the customer after each one; the ratings decide who we keep sending.` },
+    { icon: Calendar, title: "Book one or book the season", description: "No contract. Nothing is charged at booking, the card is charged after the turnover, and a host who stops listing in October simply stops booking." },
+    { icon: Shield, title: "Supplies come with the team", description: `We bring products and equipment. If you want eco-friendly products in the unit it is ${POLICY.ecoProductsFee} a visit: ${POLICY.ecoProductsHowToRequest}.` },
   ];
 
   const gallery = [
-    { src: gal1, alt: "Spotless Calgary Airbnb kitchen reset" },
-    { src: gal2, alt: "Deep cleaned Airbnb bathroom in Calgary" },
-    { src: gal3, alt: "Calgary short-term rental kitchen before and after" },
-    { src: gal4, alt: "Clean Airbnb living area in northwest Calgary" },
-    { src: gal5, alt: "Calgary Airbnb cleaning before and after" },
-    { src: gal6, alt: "Calgary oven cleaned for short-term rental turnover" },
+    { src: gal1, alt: "Calgary Airbnb living room reset after a turnover" },
+    { src: gal2, alt: "Bed remade in a Calgary short-term rental" },
+    { src: gal3, alt: "Calgary Airbnb bathroom after a turnover clean" },
+    { src: gal4, alt: "Calgary short-term rental kitchen reset" },
+    { src: gal5, alt: "Dining area of a Calgary Airbnb after cleaning" },
+    { src: gal6, alt: "Calgary Airbnb entryway with grit vacuumed before check-in" },
   ];
 
   const faqs = [
     {
-      q: "Do you offer same-day Airbnb cleaning?",
-      a: "We offer flexible scheduling based on availability. We recommend booking in advance to secure your preferred time.",
+      q: "What does a Calgary Airbnb turnover cost?",
+      a: `${RATE} per cleaner per hour before ${GST_PCT} GST. The minimum booking is 3 hours with one cleaner (${MIN_ONE}) or 2 hours with two (${MIN_TWO}). After two or three visits we can tell you the number your unit usually lands on; it moves only when the guest count or the state of the place does.`,
     },
     {
-      q: "Do you handle laundry and linens?",
-      a: "Laundry and linen changes are available, provided that the machines are ready to use and clean linens are prepared and accessible for the cleaners.",
+      q: "Can I get a flat rate instead of hourly?",
+      a: "Yes. The standard cleaning rates on the Calgary price list are flat by home size and apply to a short-term rental as they would to any home. Hourly suits a unit whose condition swings from stay to stay; flat suits a host who wants the same line on every invoice.",
     },
     {
-      q: "Can you restock guest supplies?",
-      a: "Yes, if supplies are provided by the host.",
+      q: "Can you do a same-day turnover during Stampede?",
+      a: "If it is already booked, yes. If you are asking on the day, only when a team happens to be free, and in the first half of July that is rare. Every host in the city wants the same afternoon slot, so book each Stampede changeover as soon as the reservation lands.",
     },
     {
-      q: "Do I need to be home during cleaning?",
-      a: "No, most Airbnb hosts provide self-entry instructions.",
+      q: "Will you do the laundry?",
+      a: "Laundry and linen changes are available, provided that the machines are ready to use and clean linens are prepared and accessible for the cleaners. In a condo with a stacked washer, a second set of sheets and towels is what keeps a two-hour turnover at two hours.",
     },
     {
-      q: "What areas do you serve?",
-      a: "Calgary and surrounding areas, including Airdrie, Cochrane, Okotoks, Chestermere, and nearby communities.",
+      q: "Do you restock the unit?",
+      a: "From what you leave, yes. We do not shop for you. A labelled tote in a closet with paper goods, soap, coffee pods and dishwasher tablets, and a line in the booking notes saying where it is, is all it takes.",
+    },
+    {
+      q: "Do I have to meet the cleaners?",
+      a: `No. A lockbox or smart-lock code covers almost every Calgary host we work with. If the code fails and nobody can let the team in, the lockout fee is ${POLICY.lockoutFee}.`,
+    },
+    {
+      q: "Do you cover Airdrie, Cochrane and Chestermere?",
+      a: `Yes, at the same hourly rate plus ${TRAVEL_LINE}, because they sit outside Calgary city limits. Inside the limits there is no trip fee at all. The fee shows on the quote before you confirm.`,
+    },
+    {
+      q: "A guest complained about the clean. What now?",
+      a: `Send us the complaint within ${GUARANTEE_HOURS} hours of the turnover and we go back and re-clean what was missed at no charge. A photo from the guest helps but is not required. After ${GUARANTEE_HOURS} hours a new party has usually been in, and the guarantee cannot separate one stay from the next.`,
+    },
+    {
+      q: "The booking cancelled. Do I still pay for the clean?",
+      a: `Not if you tell us at least ${POLICY.cancellationNoticeHours} hours before the visit. Inside that window the cancellation fee is ${POLICY.cancellationFee}, so pass a platform cancellation on the moment you see it.`,
+    },
+    {
+      q: "I live in the unit and only list it for Stampede and ski season. What should I book?",
+      a: `Recurring cleaning for the months you are home and hourly turnovers for the guest weeks. The recurring plan takes ${BIWEEKLY_PCT} off every bi-weekly visit after the first, which is cheaper than paying by the hour for a home that is only ever lightly used.`,
     },
   ];
 
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Airbnb Cleaning Calgary | Turnover Service | Duty Cleaners</title>
-        <meta name="description" content="Turnover cleaning for Calgary short-term rentals — Stampede-week back-to-backs, guest-ready staging and linen resets, priced hourly." />
+        <title>{TITLE}</title>
+        <meta name="description" content={DESCRIPTION} />
         <link rel="canonical" href="https://dutycleaners.ca/airbnb-cleaning-services-calgary/" />
-        <meta property="og:title" content="Airbnb Cleaning Calgary | Turnover Service | Duty Cleaners" />
-        <meta property="og:description" content="Turnover cleaning for Calgary short-term rentals — Stampede-week back-to-backs, guest-ready staging and linen resets, priced hourly." />
+        <meta property="og:title" content={TITLE} />
+        <meta property="og:description" content={DESCRIPTION} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/airbnb-cleaning-services-calgary/" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Airbnb Cleaning Calgary | Turnover Service | Duty Cleaners" />
-        <meta name="twitter:description" content="Turnover cleaning for Calgary short-term rentals — Stampede-week back-to-backs, guest-ready staging and linen resets, priced hourly." />
+        <meta name="twitter:title" content={TITLE} />
+        <meta name="twitter:description" content={DESCRIPTION} />
         {/* Mirrors the FAQ rendered on this page. Generated from the same
             `faqs` array, so the markup can never drift from the copy. */}
         <script type="application/ld+json">
@@ -264,7 +271,7 @@ const AirbnbCleaningCalgary = () => {
           })}
         </script>
         <script type="application/ld+json">
-          {JSON.stringify(buildServiceSchema({ name: "Airbnb Turnover Cleaning", description: "Turnover cleaning for Calgary short-term rentals — Stampede-week back-to-backs, guest-ready staging and linen resets, priced hourly.", path: "/airbnb-cleaning-services-calgary", city: "calgary" }))}
+          {JSON.stringify(buildServiceSchema({ name: "Airbnb Turnover Cleaning", description: DESCRIPTION, path: "/airbnb-cleaning-services-calgary", city: "calgary" }))}
         </script>
       </Helmet>
       <Navigation city="calgary" />
@@ -287,46 +294,51 @@ const AirbnbCleaningCalgary = () => {
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
             <Home className="w-4 h-4 text-accent" />
             <span className="text-white/90 text-sm font-medium">
-              Short-Term Rental Specialists
+              Hourly turnovers for Calgary short-term rentals
             </span>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-white">
             Airbnb Cleaning Service in Calgary
           </h1>
           <p className="text-xl md:text-2xl mb-6 text-white/90 font-medium">
-            Guest-Ready Turnovers with Consistent Cleaning Quality
+            {RATE} per cleaner-hour plus GST, 3-hour minimum, {RATING_CLAIM}
           </p>
           <p className="text-lg mb-8 text-white/90 max-w-3xl mx-auto leading-relaxed">
-            Maximize your Calgary Airbnb bookings with a cleaning service built for short-term rentals.
-            We deliver spotless, fully sanitized turnovers so every guest walks into a five-star space.
+            A turnover here is the same six-area checklist whether the guest stayed one night on the way
+            to Banff or ten days for Stampede: beds remade with your linen, bathrooms and kitchen
+            disinfected, the entry cleared of gravel, your supplies topped up and the bins out. You are
+            billed for the hours it took, after it is done.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Button asChild size="lg" className="text-lg bg-accent text-accent-foreground hover:bg-accent/90">
-              <Link to="/contact-us/?topic=airbnb&city=calgary">Request a Callback</Link>
+              <Link to={PRICING}>See my price</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="text-lg border-white/20 text-white hover:bg-white/10">
-              <a href="tel:4037681341">
+              <Link to="/contact-us/?topic=airbnb&city=calgary">Request a callback</Link>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="text-lg border-white/20 text-white hover:bg-white/10">
+              <a href={proof.phoneLink}>
                 <Phone className="w-4 h-4 mr-2" />
-                Call Now
+                Call {proof.phone}
               </a>
             </Button>
           </div>
           <div className="flex flex-wrap justify-center gap-6 text-white/80 text-sm">
             <div className="flex items-center gap-2">
               <CheckCircle className="w-4 h-4 text-accent" />
-              <span>Flexible Scheduling Based on Availability</span>
+              <span>Card charged after the turnover, not before</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle className="w-4 h-4 text-accent" />
-              <span>No Long-Term Contracts</span>
+              <span>No contract</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle className="w-4 h-4 text-accent" />
-              <span>Guest-Ready Guarantee</span>
+              <span>Re-clean within {GUARANTEE_HOURS} hours if something was missed</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle className="w-4 h-4 text-accent" />
-              <span>{formatPrice(HOURLY_RATE)} per cleaner-hour — 3-hour minimum, or 2 hours with two cleaners</span>
+              <span>2-hour minimum with two cleaners</span>
             </div>
           </div>
         </div>
@@ -337,26 +349,27 @@ const AirbnbCleaningCalgary = () => {
         eyebrow="Calgary turnovers"
         heading="What running a short-term rental in Calgary actually demands"
         paragraphs={[
-          "Calgary's booking calendar is not evenly spread, and the cleaning schedule has to bend around it. Stampede lands in the first half of July and compresses a month of demand into ten days — hosts who normally see a turnover every few days suddenly need same-day back-to-backs, often with a checkout at 11 and a check-in at 4. Booking that window early matters more here than almost anywhere else in the province, because every host in the city wants the same afternoon slot.",
-          "The other rhythm is the mountains. A large share of Calgary stays are one- and two-night stopovers — guests landing at YYC, sleeping, and driving west to Banff or Canmore in the morning, or coming back the other way. Short stays mean more turnovers per month than a comparable property elsewhere, and they mean grit: ski boots, hiking gear and gravel from the Trans-Canada come in with every party, so entryways, tub bases and floor edges take the visible wear.",
-          "Then there is the licensing side. The City of Calgary requires a business licence to operate a short-term rental, and the inspection standards that come with it make a documented, repeatable cleaning routine worth having on paper — not just for guest reviews, but for the file. We work to a fixed checklist and can tell you exactly what was covered on any given turnover.",
+          "Calgary's booking calendar is not evenly spread, and the cleaning schedule has to bend around it. Stampede lands in the first half of July and compresses a month of demand into ten days. Hosts who normally see a turnover every few days suddenly need same-day back-to-backs, often with a checkout at 11 and a check-in at 4. Booking that window early matters more here than almost anywhere else in the province, because every host in the city wants the same afternoon slot.",
+          "The other rhythm is the mountains. A large share of Calgary stays are one- and two-night stopovers: guests landing at YYC, sleeping, and driving west to Banff or Canmore in the morning, or coming back the other way. Short stays mean more turnovers per month than a comparable property elsewhere, and they mean grit. Ski boots, hiking gear and gravel from the Trans-Canada come in with every party, so entryways, tub bases and floor edges take the visible wear.",
+          "Then there is the licensing side. The City of Calgary requires a business licence to operate a short-term rental, and the inspection standards that come with it make a documented, repeatable cleaning routine worth having on paper, for the file as much as for the reviews. We work to a fixed checklist and can tell you exactly what was covered on any given turnover.",
         ]}
       />
 
-      {/* What We Clean - Visual Grid */}
+      {/* What a turnover includes: one list, with photos */}
       <section className="py-20 px-4 bg-background">
         <AnimatedSection>
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 bg-calgary/10 rounded-full px-4 py-2 mb-4">
                 <Sparkles className="w-4 h-4 text-calgary" />
-                <span className="text-calgary text-sm font-medium">What We Clean</span>
+                <span className="text-calgary text-sm font-medium">Six areas, one order</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Every Corner of Your Calgary Airbnb
+                What a Calgary short-term rental turnover covers
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Hospitality-grade cleaning across every room your guests will see, touch, and remember.
+                The list does not change between a downtown one-bedroom and a suburban house. Dishes
+                are not part of it; laundry joins it when there is a machine and a spare set of linen.
               </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -368,40 +381,16 @@ const AirbnbCleaningCalgary = () => {
         </AnimatedSection>
       </section>
 
-      {/* What's Included */}
-      <section className="py-20 px-4 bg-secondary/30">
-        <AnimatedSection>
-          <div className="container mx-auto max-w-6xl">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                What's Included in Every Turnover
-              </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                Tailored to short-term rental standards so your property is always five-star ready.
-              </p>
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {includedServices.map((service, index) => (
-                <IncludedCard key={index} {...service} index={index} />
-              ))}
-            </div>
-            <p className="mt-8 text-center text-muted-foreground text-sm">
-              Need add-ons like dish washing? Just let us know.
-            </p>
-          </div>
-        </AnimatedSection>
-      </section>
-
       {/* How It Works */}
-      <section className="py-20 px-4 bg-background">
+      <section className="py-20 px-4 bg-secondary/30">
         <AnimatedSection>
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-14">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                How It Works
+                Booking a turnover between guests
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                A simple, host-friendly process from booking to check-in.
+                Two times, one door code, and the rest is ours.
               </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -409,6 +398,43 @@ const AirbnbCleaningCalgary = () => {
                 <StepCard key={i} step={i + 1} {...s} />
               ))}
             </div>
+          </div>
+        </AnimatedSection>
+      </section>
+
+      {/* Cost, with the worked minimum. The rate and the minimum both derive
+          from bk-config; this page never types a figure. */}
+      <section className="py-16 px-4 bg-background">
+        <AnimatedSection>
+          <div className="container mx-auto max-w-3xl">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+              Airbnb cleaning prices in Calgary, worked through
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              Every turnover is billed by the hour at {RATE} per cleaner, plus {GST_PCT} GST. A flat
+              rate would have to guess how the last guest left the place, and after a Stampede weekend
+              that guess is usually wrong in one direction. The minimum booking is 3 hours with one
+              cleaner or 2 hours with two, and two cleaners is the usual answer when the check-in is
+              the same afternoon as the checkout.
+            </p>
+            <div className="bg-card rounded-2xl border border-border p-6 mb-4">
+              <h3 className="font-bold text-foreground mb-3">Worked example: a two-bedroom condo downtown</h3>
+              <ul className="space-y-2 text-muted-foreground text-sm leading-relaxed">
+                <li>One cleaner, 3-hour minimum: 3 × {RATE} = <strong>{MIN_ONE}</strong> before GST, {MIN_ONE_GST} on the invoice.</li>
+                <li>Two cleaners at the 2-hour minimum for a same-day changeover: 4 cleaner-hours = <strong>{MIN_TWO}</strong> before GST, and the unit is done by early afternoon.</li>
+                <li>A detached house after a ten-day Stampede let, with laundry: closer to 5 cleaner-hours, {FIVE_HOURS} before GST.</li>
+                <li>A unit in Airdrie or Cochrane adds {TRAVEL_LINE}.</li>
+              </ul>
+            </div>
+            <p className="text-muted-foreground leading-relaxed">
+              By the third visit we can usually tell you the number your unit lands on. If you would
+              rather see a fixed figure first, the{" "}
+              <Link to={PRICING} className="text-accent underline underline-offset-2">
+                Calgary house cleaning prices by home size
+              </Link>{" "}
+              apply to a short-term rental as they do to any other home, and every one of them is before
+              GST with nothing charged until the clean is finished.
+            </p>
           </div>
         </AnimatedSection>
       </section>
@@ -422,11 +448,11 @@ const AirbnbCleaningCalgary = () => {
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-4">
                 <Star className="w-4 h-4 text-accent" />
                 <span className="text-white/90 text-sm font-medium">
-                  Why Hosts Choose Us
+                  How it is run
                 </span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Why Calgary Airbnb Hosts Choose Duty Cleaners
+                The terms Calgary Airbnb hosts book on
               </h2>
             </div>
             <div className="grid md:grid-cols-2 gap-6">
@@ -438,20 +464,65 @@ const AirbnbCleaningCalgary = () => {
         </AnimatedSection>
       </section>
 
+      {/* Where we go, and where the rest of the service sits */}
+      <section className="py-16 px-4 bg-background">
+        <AnimatedSection>
+          <div className="container mx-auto max-w-3xl">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+              Turnover coverage across Calgary and the two towns beside it
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              Inside Calgary city limits there is no trip fee, whichever quadrant the unit is in. Past the
+              limits the same crews add {TRAVEL_LINE}:{" "}
+              <Link to="/cleaning-services-airdrie/" className="text-accent underline underline-offset-2">
+                Airdrie house cleaners
+              </Link>{" "}
+              are dispatched from the Calgary office, and{" "}
+              <Link to="/cleaning-services-cochrane/" className="text-accent underline underline-offset-2">
+                house cleaning in Cochrane
+              </Link>{" "}
+              covers the units that fill up with Banff traffic on Friday nights.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              The turnover is one line on a longer menu. Duty Cleaners has done{" "}
+              <Link to={HUB} className="text-accent underline underline-offset-2">
+                Calgary house cleaning
+              </Link>{" "}
+              {COMPANY.sinceLabel}, and{" "}
+              <Link to={SERVICES} className="text-accent underline underline-offset-2">
+                every Calgary cleaning service, with starting prices
+              </Link>{" "}
+              sits on one page. If you occupy the unit yourself outside Stampede and ski season,{" "}
+              <Link to={RECURRING} className="text-accent underline underline-offset-2">
+                recurring cleaning in Calgary
+              </Link>{" "}
+              for your own months costs less than paying hourly for a lightly used home.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              The rating is not a slogan. There are{" "}
+              <Link to="/reviews/" className="text-accent underline underline-offset-2">
+                {proof.googleReviewCount} Google reviews
+              </Link>{" "}
+              on the Calgary listing, and you can read them before you book.
+            </p>
+          </div>
+        </AnimatedSection>
+      </section>
+
       {/* Guest-Ready Results Gallery */}
-      <section className="py-20 px-4 bg-background">
+      <section className="py-20 px-4 bg-secondary/30">
         <AnimatedSection>
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 bg-calgary/10 rounded-full px-4 py-2 mb-4">
                 <Sparkles className="w-4 h-4 text-calgary" />
-                <span className="text-calgary text-sm font-medium">Guest-Ready Results</span>
+                <span className="text-calgary text-sm font-medium">Before the next guest</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                What guest-ready looks like
+                A Calgary turnover, finished
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                The standard every Calgary turnover is cleaned to, before the next guest checks in.
+                Living room, bedroom, bathroom, kitchen, dining and entry, in the order the checklist runs.
               </p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
@@ -476,15 +547,15 @@ const AirbnbCleaningCalgary = () => {
       </section>
 
       {/* FAQ */}
-      <section className="py-20 px-4 bg-secondary/30">
+      <section className="py-20 px-4 bg-background">
         <AnimatedSection>
           <div className="container mx-auto max-w-3xl">
             <div className="text-center mb-10">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Airbnb Cleaning FAQs
+                Calgary Airbnb turnover questions
               </h2>
               <p className="text-muted-foreground">
-                Quick answers to the questions Calgary hosts ask most.
+                Price, Stampede scheduling, linen, the towns outside the limits, and what happens after a complaint.
               </p>
             </div>
             <div className="bg-card rounded-2xl border border-border p-2 md:p-4 shadow-sm">
@@ -505,65 +576,39 @@ const AirbnbCleaningCalgary = () => {
         </AnimatedSection>
       </section>
 
-      {/* Pricing basis — these pages carried no price signal at all. Airbnb
-          turnovers are hourly, so the honest figure is the rate and its
-          minimum, both derived from bk-config (never hand-typed). */}
-      <section className="py-16 px-4 bg-secondary/30">
-        <AnimatedSection>
-          <div className="container mx-auto max-w-3xl">
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-              What a turnover costs
-            </h2>
-            <p className="text-muted-foreground leading-relaxed mb-4">
-              Turnovers are priced hourly at {formatPrice(HOURLY_RATE)} per cleaner, before 5% GST,
-              because no two properties take the same time — a one-bedroom condo with a
-              stacked washer is a different job from a four-bedroom house with three
-              bathrooms. The minimum is 3 hours for one cleaner, or 2 hours for two.
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              Most hosts settle into a predictable number within the first two or three
-              turnovers, and we will tell you what that looks like for your property after
-              the first clean. If you would rather have a flat rate by home size, our{" "}
-              <Link to={canonicalForPath("/calgary/pricing")} className="text-accent underline underline-offset-2">
-                standard cleaning prices
-              </Link>{" "}
-              apply to short-term rentals too.
-            </p>
-          </div>
-        </AnimatedSection>
-      </section>
-
-      {/* Satisfaction Guarantee */}
-      <section className="py-20 px-4 bg-background">
+      {/* Guarantee and contact */}
+      <section className="py-20 px-4 bg-secondary/30">
         <AnimatedSection>
           <div className="container mx-auto max-w-4xl text-center">
             <div className="bg-card rounded-2xl border border-border p-10 shadow-sm">
               <Shield className="w-14 h-14 mx-auto mb-6 text-calgary" />
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
-                100% Satisfaction Guarantee
+                Missed something? We return within {GUARANTEE_HOURS} hours of hearing it
               </h2>
               <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-                We stand behind the quality of our staff. If you're not 100% satisfied with your cleaning,
-                we'll come back and re-clean it at no additional charge, as long as we're informed within
-                24 hours after the cleaning.
+                Report it inside {GUARANTEE_HOURS} hours of the turnover and the re-clean is free. A
+                guest's photo speeds things up but is not a condition of the guarantee. {POLICY.insuranceClaim}
               </p>
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="bg-muted/30 rounded-xl p-6 text-left">
-                  <h3 className="font-bold text-foreground mb-2">Trusted by Calgary Hosts</h3>
+                  <h3 className="font-bold text-foreground mb-2">When you pay</h3>
                   <p className="text-muted-foreground text-sm">
-                    Calgary Airbnb hosts and property managers rely on us for consistent turnovers.
+                    Booking costs nothing. A temporary hold checks the card the day before, and the
+                    charge goes through after the turnover. Visa, Mastercard, American Express, debit
+                    or e-transfer, all before {GST_PCT} GST.
                   </p>
                 </div>
                 <div className="bg-muted/30 rounded-xl p-6 text-left">
                   <div className="flex items-center gap-2 mb-2">
                     <MapPin className="w-4 h-4 text-calgary" />
-                    <h3 className="font-bold text-foreground">Contact Us</h3>
+                    <h3 className="font-bold text-foreground">Calgary office</h3>
                   </div>
                   <p className="text-muted-foreground text-sm mb-1">
-                    <strong>Call:</strong> (403) 768-1341
+                    <strong>Call:</strong>{" "}
+                    <a href={proof.phoneLink} className="text-accent underline underline-offset-2">{proof.phone}</a>
                   </p>
                   <p className="text-muted-foreground text-sm mb-1">
-                    <strong>Address:</strong> Calgary, AB
+                    <strong>Address:</strong> {proof.address}
                   </p>
                   <p className="text-muted-foreground text-sm">
                     <strong>Hours:</strong> Mon-Sat 8am–8pm | Sun 9am–3pm
@@ -580,19 +625,22 @@ const AirbnbCleaningCalgary = () => {
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-accent/10 rounded-full blur-3xl" />
         <div className="container mx-auto max-w-4xl text-center relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-            Get Your Airbnb Guest-Ready in Calgary
+            Get the Calgary unit turned over before check-in
           </h2>
           <p className="text-xl mb-8 text-white/80">
-            Reliable turnovers. Consistent quality. Flexible scheduling.
+            {RATE} per cleaner-hour plus GST. Checkout time, check-in time, door code.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="text-lg bg-accent text-accent-foreground hover:bg-accent/90">
-              <Link to="/contact-us/?topic=airbnb&city=calgary">Request a Callback</Link>
+              <Link to={PRICING}>See my price</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="text-lg border-white/20 text-white hover:bg-white/10">
-              <a href="tel:4037681341">
+              <Link to="/contact-us/?topic=airbnb&city=calgary">Request a callback</Link>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="text-lg border-white/20 text-white hover:bg-white/10">
+              <a href={proof.phoneLink}>
                 <Phone className="w-4 h-4 mr-2" />
-                Call (403) 768-1341
+                Call {proof.phone}
               </a>
             </Button>
           </div>

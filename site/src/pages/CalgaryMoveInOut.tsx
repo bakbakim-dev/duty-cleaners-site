@@ -690,11 +690,19 @@ export default function CalgaryMoveInOut() {
               What moves the price: the number of bathrooms, the add-ons you pick (inside windows,
               blinds, wall washing, a basement, a garage sweep), and a {TRAVEL_FEE_LABEL} travel fee
               for an address outside Calgary city limits. Airdrie, Cochrane, Okotoks and Chestermere
-              are outside; the city itself carries no travel fee.
+              are outside; the city itself carries no travel fee. The same checklist and the same
+              rows cover{" "}
+              <Link to="/cleaning-services-airdrie/" className="text-primary underline underline-offset-4">house cleaning in Airdrie</Link>{" "}
+              and{" "}
+              <Link to="/cleaning-services-cochrane/" className="text-primary underline underline-offset-4">house cleaning in Cochrane</Link>,
+              with the fee added on the quote.
             </p>
             <p>
               What does not move it: how long the clean takes. The rate on your quote is the rate
-              you pay, and a two-bedroom that takes an extra hour is still a two-bedroom.
+              you pay, and a two-bedroom that takes an extra hour is still a two-bedroom. To compare
+              a move-out against a standard or deep clean of the same home, the three sit side by
+              side on{" "}
+              <Link to="/calgary/pricing/" className="text-primary underline underline-offset-4">Calgary house cleaning prices by home size</Link>.
             </p>
           </div>
 
@@ -755,7 +763,9 @@ export default function CalgaryMoveInOut() {
 
           <p className="text-white/80">
             Same-day and next-day slots depend on the schedule. The day before the inspection is
-            the safest date to book.
+            the safest date to book. Once you are in the new place,{" "}
+            <Link to="/calgary/services/" className="text-white underline underline-offset-4">every Calgary cleaning service, with starting prices</Link>{" "}
+            is listed on one page.
           </p>
         </div>
       </section>

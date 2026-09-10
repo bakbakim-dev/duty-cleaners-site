@@ -8,6 +8,25 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
+import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice } from "@/data/pricing";
+import { travelFee } from "@/data/addon-table";
+import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
+
+// Every figure below is read from bk-config through pricing.ts; the page never
+// types a price of its own.
+const STANDARD = standardTierRows();
+const DEEP = deepCleanTierRows();
+const MOVE = moveInOutTierRows();
+const STANDARD_FROM = STANDARD[0].price;
+const STANDARD_TO = STANDARD[STANDARD.length - 1].price;
+const DEEP_FROM = DEEP[0].price;
+const DEEP_TO = DEEP[DEEP.length - 1].price;
+const MOVE_FROM = MOVE[0].price;
+const MOVE_TO = MOVE[MOVE.length - 1].price;
+const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
+const PAGE_TITLE = `House Cleaning St. Albert from ${STANDARD_FROM} | Duty Cleaners`;
+const META_DESCRIPTION = `House cleaning in St. Albert from ${STANDARD_FROM}: Lacombe Park, Erin Ridge, Grandin and the streets along the Sturgeon River. Flat rates, paid after the clean.`;
+
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
   return (
@@ -82,26 +101,31 @@ const nearbyAreas = [
 ];
 
 export default function StAlbert() {
-  const faqs = [
+  const faqs: { question: string; answer: string; link?: { to: string; text: string } }[] = [
     {
-      question: "How long does an initial cleaning take?",
+      question: "Is there a travel fee in St. Albert?",
+      answer: `Yes. St. Albert is outside Edmonton city limits, so a ${TRAVEL_FEE} travel fee is added to home-cleaning bookings here. It is the only extra: the flat rate for the clean itself is the same one Edmonton pays.`
+    },
+    {
+      question: "What does a standard clean in St. Albert cost?",
+      answer: `${STANDARD_FROM} for a one-bedroom home, rising by size to ${STANDARD_TO} for five or more bedrooms, before GST and the travel fee. A deep clean is ${DEEP_FROM} to ${DEEP_TO}. On a recurring schedule the discount is 20% weekly, 15% every two weeks and 10% every four weeks from the second visit.`
+    },
+    {
+      question: "Do you come out to St. Albert same-day?",
+      answer: `When the schedule allows. Same-day and next-day slots open up; call ${CITY_PROOF.edmonton.phone} and ask what is free. We book to an arrival window, ${ARRIVAL_WINDOWS[0]}, ${ARRIVAL_WINDOWS[1]} or ${ARRIVAL_WINDOWS[2]}, rather than an exact minute.`
+    },
+    {
+      question: "Do you do move-out cleaning in St. Albert?",
+      answer: `Yes. A move-in or move-out clean runs ${MOVE_FROM} to ${MOVE_TO} by home size, plus the travel fee, and the inside of the oven, fridge and cabinets is part of it rather than an add-on.`,
+      link: { to: "/move-out-cleaning-edmonton/", text: "Move-out cleaning in Edmonton and St. Albert" }
+    },
+    {
+      question: "Do you bring supplies?",
+      answer: `Yes, every product and every piece of equipment. Eco-friendly products are available for ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}. If there is something you would rather we used on a particular surface, leave it out and tell us.`
+    },
+    {
+      question: "How long does a first clean in St. Albert take?",
       answer: `We work to a checklist, not a clock. Your cleaners stay until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
-    },
-    {
-      question: "What cleaning services does Duty Cleaners offer in St. Albert?",
-      answer: `The full service menu is available here:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
-    },
-    {
-      question: "Do you offer discounts?",
-      answer: `Yes — customers in St. Albert on a recurring schedule save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
-    },
-    {
-      question: "What's included in a deep cleaning?",
-      answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
-    },
-    {
-      question: "What is your 100% satisfaction guarantee policy?",
-      answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back and put it right — at no extra cost."
     }
   ];
   const faqJsonLd = {
@@ -118,16 +142,16 @@ export default function StAlbert() {
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>House Cleaning St. Albert, AB | Duty Cleaners</title>
-        <meta name="description" content="House cleaning in St. Albert — Lacombe Park, Erin Ridge, Grandin and homes along the Sturgeon River. Flat-rate, reference-checked cleaners." />
+        <title>{PAGE_TITLE}</title>
+        <meta name="description" content={META_DESCRIPTION} />
         <link rel="canonical" href="https://dutycleaners.ca/cleaning-services-st-albert/" />
-        <meta property="og:title" content="House Cleaning St. Albert, AB | Duty Cleaners" />
-        <meta property="og:description" content="House cleaning in St. Albert — Lacombe Park, Erin Ridge, Grandin and homes along the Sturgeon River. Flat-rate, reference-checked cleaners." />
+        <meta property="og:title" content={PAGE_TITLE} />
+        <meta property="og:description" content={META_DESCRIPTION} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/cleaning-services-st-albert/" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning St. Albert, AB | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning in St. Albert — Lacombe Park, Erin Ridge, Grandin and homes along the Sturgeon River. Flat-rate, reference-checked cleaners." />
+        <meta name="twitter:title" content={PAGE_TITLE} />
+        <meta name="twitter:description" content={META_DESCRIPTION} />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - St. Albert, AB", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-st-albert", areaServed: "St. Albert, AB" }))}</script>
@@ -152,7 +176,7 @@ export default function StAlbert() {
                 Professional House Cleaning in St. Albert
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                Reliable house cleaning services in St. Albert. 100% satisfaction guaranteed.
+                Standard cleans in St. Albert from {STANDARD_FROM}, deep cleans from {DEEP_FROM}, priced flat by home size. Rated {RATING_CLAIM}, and you pay after the clean.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -220,6 +244,11 @@ export default function StAlbert() {
                 <p>
                   Every spring the elms on the older streets drop seed that mats into window screens and sliding-door channels, then comes indoors on shoes for weeks.
                 </p>
+                <p>
+                  The same crews carry on north for{" "}
+                  <Link to="/cleaning-services-morinville/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Morinville</Link>, and hosts letting a suite in St. Albert can book turnovers through{" "}
+                  <Link to="/edmonton/airbnb-cleaning/" className="text-primary underline underline-offset-2 font-medium">Airbnb cleaning in Edmonton</Link>.
+                </p>
               </div>
             </div>
           </AnimatedSection>
@@ -236,7 +265,7 @@ export default function StAlbert() {
                 Around St. Albert
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
-                <p>St. Albert began in 1861 as a Catholic mission, and Father Lacombe Chapel is a provincial historic site from that period. Lois Hole Centennial Provincial Park runs along Big Lake on the west side of the city. The Art Gallery of St. Albert shows local and international work, and the St. Albert Farmers' Market sells produce and crafts.</p>
+                <p>St. Albert began in 1861 as a Catholic mission; Father Lacombe Chapel is a provincial historic site from that period. Lois Hole Centennial Provincial Park runs along Big Lake on the west side of the city. The Art Gallery of St. Albert and the St. Albert Farmers' Market are both downtown.</p>
               </div>
             </div>
           </AnimatedSection>
@@ -253,7 +282,9 @@ export default function StAlbert() {
                 Cleaning Services for St. Albert Homes
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                From routine upkeep to deep cleans and move-outs — every service a home needs.
+                Standard, deep, move-out, post-construction and wall washing, each priced flat by home size. The list of{" "}
+                <Link to="/services/" className="text-primary underline underline-offset-2 font-medium">all Edmonton cleaning services and prices</Link>{" "}
+                covers the add-ons too.
               </p>
             </div>
           </AnimatedSection>
@@ -275,10 +306,12 @@ export default function StAlbert() {
             <div className="text-center mb-14">
               <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
               <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">
-                Why St. Albert Residents Choose Duty Cleaners
+                St. Albert house cleaners you rate after every visit
               </h2>
               <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                Reliable, detail-first cleaning families count on.
+                Every rating comes from a customer after a clean, and the ratings decide who keeps cleaning for us. You can{" "}
+                <Link to="/reviews/" className="text-white underline underline-offset-2 font-medium">read the reviews</Link>{" "}
+                before you book.
               </p>
             </div>
           </AnimatedSection>
@@ -298,10 +331,18 @@ export default function StAlbert() {
           <AnimatedSection>
             <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
             <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
-              Proudly Serving St. Albert & Surrounding Areas
+              Cleaning services in St. Albert and the towns around it
             </h2>
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-              We provide professional house cleaning services throughout St. Albert and nearby communities in the Edmonton region.
+              Near St. Albert, the other communities we clean on the same terms are{" "}
+              <Link to="/cleaning-services-morinville/" className="text-primary underline underline-offset-2 font-medium">Morinville</Link>{" "}
+              up the highway,{" "}
+              <Link to="/cleaning-services-sherwood-park/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Sherwood Park</Link>{" "}
+              east of the city,{" "}
+              <Link to="/cleaning-services-spruce-grove/" className="text-primary underline underline-offset-2 font-medium">cleaning services in Spruce Grove</Link>{" "}
+              to the west and a{" "}
+              <Link to="/cleaning-services-leduc/" className="text-primary underline underline-offset-2 font-medium">Leduc cleaning company</Link>{" "}
+              run by the same office in the south. All five sit outside Edmonton city limits, so the {TRAVEL_FEE} travel fee applies in each.
             </p>
             <CoverageChips areas={nearbyAreas} />
             <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
@@ -373,7 +414,15 @@ export default function StAlbert() {
                   {faqs.map((faq, index) => (
                     <AccordionItem key={index} value={`item-${index}`}>
                       <AccordionTrigger className="text-left font-semibold">{faq.question}</AccordionTrigger>
-                      <AccordionContent className="text-muted-foreground whitespace-pre-line">{faq.answer}</AccordionContent>
+                      <AccordionContent className="text-muted-foreground whitespace-pre-line">
+                        {faq.answer}
+                        {faq.link && (
+                          <>
+                            {" "}
+                            <Link to={faq.link.to} className="text-primary underline underline-offset-2 font-medium">{faq.link.text}</Link>
+                          </>
+                        )}
+                      </AccordionContent>
                     </AccordionItem>
                   ))}
                 </Accordion>
@@ -388,7 +437,7 @@ export default function StAlbert() {
         <div className="container mx-auto px-4 relative z-10 text-center">
           <AnimatedSection>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Ready for a Spotless Home in St. Albert?
+              Book house cleaning in St. Albert
             </h2>
             <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
               See your flat rate before you book. Nothing is charged until the clean is done.

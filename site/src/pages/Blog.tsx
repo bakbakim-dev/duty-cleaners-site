@@ -105,7 +105,7 @@ const blogPosts: BlogPost[] = [
     excerpt: "Understand the factors that affect professional house cleaning prices - from hourly rates to flat fees, and what you can expect to pay for different cleaning services.",
     category: "Pricing Guide",
     date: "January 25, 2026",
-    readTime: "12 min read",
+    readTime: "7 min read",
     image: houseCleaningCostHero,
     slug: "/how-much-does-a-house-cleaning-cost/"
   },
@@ -135,7 +135,7 @@ const blogPosts: BlogPost[] = [
     excerpt: "Divide and conquer! Create a realistic cleaning schedule with daily, weekly, and monthly tasks that fit your lifestyle without adding stress.",
     category: "Cleaning Tips",
     date: "January 20, 2026",
-    readTime: "12 min read",
+    readTime: "7 min read",
     image: cleaningScheduleHero,
     slug: "/blog/cleaning-schedule/"
   }

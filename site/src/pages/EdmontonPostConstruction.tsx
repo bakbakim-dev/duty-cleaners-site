@@ -8,13 +8,17 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import {
   Phone, Shield, Sparkles, Droplets, Wind, SprayCan,
-  Ban, Star, Clock, MapPin, CheckCircle2, Heart, Award,
+  Ban, Star, Clock, MapPin, CheckCircle2, Heart,
   Home, DollarSign, Calendar, Wrench
 } from "lucide-react";
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import postConstructionBeforeAfter from "@/assets/gallery/post-construction-before-after.webp";
 import CityCrossLink from "@/components/CityCrossLink";
+import { POLICY } from "@/data/policy";
+import { COMPANY, RATING_CLAIM } from "@/data/proof";
+import { travelFee } from "@/data/addon-table";
 
 import { startingPrice, formatPrice, sqftTierOptions } from "@/data/pricing";
 /* The figure /services/ already publishes for this service, from bk-config. */
@@ -27,6 +31,17 @@ const startingPriceLabel = formatPrice(startingPrice("post-construction"));
    own quote call to disappoint. Derived, so it cannot drift from bk-config. */
 const sqftTiers = sqftTierOptions("post-construction");
 const topPriceLabel = formatPrice(sqftTiers[sqftTiers.length - 1]?.price ?? 0);
+/* BookingKoala's tier names mix "sq/ft" and "SQFT"; the figures are the fact,
+   the suffix is presentation. */
+const tierLabel = (label: string) => label.replace(/\s*(sq\/ft|sqft)\s*$/i, " sq ft");
+/* Post-construction carries its own travel-fee row, larger than the home-
+   cleaning one. Read from bk-config, as /terms/ reads it. */
+const pcTravelFee = formatPrice(travelFee("post-construction") ?? 0);
+
+/* The title carries the derived floor and the payment term; the brand would
+   push it past 60 characters. */
+const PAGE_TITLE = `Post-Construction Cleaning Edmonton from ${startingPriceLabel} | Pay After`;
+const META_DESCRIPTION = `Post-construction cleaning in Edmonton from ${startingPriceLabel} by square footage. Drywall dust, smudges and contractor residue off new builds and renovations.`;
 
 const includedServices = [
   { icon: Wind, title: "Fine Dust & Debris Removal", desc: "Drywall and construction dust wiped from baseboards, vents, window ledges, trim, and floors — no fine residue left behind." },
@@ -51,11 +66,22 @@ const whyChooseUs = [
   { icon: Shield, title: "Pay After Your Clean", desc: "Nothing is charged when you book. The day before your appointment a temporary hold confirms the card is valid, and no money moves. Your card is charged once the clean is complete." },
   { icon: Sparkles, title: "Ledges, Tracks and Vents", desc: "We hand-wipe ledges, tracks, vents, and trim, which is where dust settles after construction." },
   { icon: Wrench, title: "Professional Equipment", desc: "We bring the vacuums, cloths and products; you do not supply anything." },
-  { icon: Heart, title: "Satisfaction Guarantee", desc: "Tell us within 24 hours about any area you are not happy with and we re-clean it free of charge." },
+  { icon: Heart, title: `${POLICY.guaranteeWindowHours}-Hour Re-Clean`, desc: `Tell us within ${POLICY.guaranteeWindowHours} hours about any area you are not happy with and we re-clean it free of charge.` },
   { icon: DollarSign, title: "Transparent Pricing", desc: `${startingPriceLabel} to ${topPriceLabel}, before 5% GST, set by square footage and scope — you see your number before you book, and it is the number you pay.` }
 ];
 
-const faqs = [
+/**
+ * `more` is a trailing sentence with a link, rendered after the answer and
+ * folded into the FAQPage text as plain words, so the markup and the visible
+ * answer still say the same thing.
+ */
+interface Faq {
+  q: string;
+  a: string;
+  more?: { lead: string; to: string; anchor: string };
+}
+
+const faqs: Faq[] = [
   {
     q: "What is final-stage post-construction cleaning?",
     a: "Final-stage post-construction cleaning is the detailed cleaning performed after all construction or renovation work is complete and the space is empty of debris. It removes fine drywall dust, smudges, fingerprints, and contractor residue so the home is move-in ready. We do not perform rough cleanup or work on active job sites.",
@@ -66,15 +92,16 @@ const faqs = [
   },
   {
     q: "Can you clean my Edmonton home after a kitchen or bathroom renovation?",
-    a: "Yes — renovation cleaning is one of our most requested services. We detail cabinets inside and out, sanitize tubs and tile, and remove drywall dust from surrounding areas.",
+    a: "Yes. Post-renovation cleaning of a single room is the same service on a smaller footprint. We detail cabinets inside and out, sanitize tubs and tile, and take the drywall dust off the rooms around the one that was worked on, because that is where it travelled.",
   },
   {
     q: "How is post-construction cleaning different from a regular deep clean?",
     a: "Post-construction cleaning targets the fine construction dust that settles on every surface, including inside cabinets, drawers, vents, and window tracks, as well as light paint splatters, smudges, and residue left behind by tradespeople. A deep clean does not open every cabinet and drawer, wipe inside the vents, clear the window tracks, or lift paint flecks and adhesive residue off glass and fixtures. This one does.",
+    more: { lead: "For a lived-in home with no building work, compare it with", to: "/edmonton/deep-cleaning/", anchor: "a deep clean in Edmonton" },
   },
   {
     q: "How long does a post-construction cleaning take?",
-    a: "Most Edmonton homes take between 4 and 10 hours depending on square footage, number of bathrooms, and how much fine dust remains. We'll give you a clear estimate before booking.",
+    a: "Most Edmonton homes take between 4 and 10 hours depending on square footage, number of bathrooms, and how much fine dust remains. The price is set by the square footage band before you book, and it does not change because the clean ran long.",
   },
   {
     q: "Do I need to be home during the cleaning?",
@@ -94,9 +121,12 @@ const faqs = [
   },
   {
     q: "Do you offer a satisfaction guarantee?",
-    a: "Yes. If you're not satisfied with any area of your post-construction cleaning, contact us within 24 hours and we'll return to re-clean it free of charge.",
+    a: `Yes. If any area of the post-construction clean is not right, tell us within ${POLICY.guaranteeWindowHours} hours and we return to re-clean it free of charge. Photos help the team find it and are not a condition.`,
   },
 ];
+
+/** The answer as the FAQPage schema carries it: the visible words, link flattened. */
+const faqText = (f: Faq) => (f.more ? `${f.a} ${f.more.lead} ${f.more.anchor}.` : f.a);
 
 function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -112,16 +142,16 @@ export default function EdmontonPostConstruction() {
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>Post-Construction Cleaning Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Final-stage post-construction cleaning in Edmonton for newly built and renovated homes. Remove drywall dust, smudges, and contractor residue." />
+        <title>{PAGE_TITLE}</title>
+        <meta name="description" content={META_DESCRIPTION} />
         <link rel="canonical" href="https://dutycleaners.ca/post-construction-cleaning/" />
-        <meta property="og:title" content="Post-Construction Cleaning Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Final-stage post-construction cleaning in Edmonton for newly built and renovated homes. Remove drywall dust, smudges, and contractor residue." />
+        <meta property="og:title" content={PAGE_TITLE} />
+        <meta property="og:description" content={META_DESCRIPTION} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/post-construction-cleaning/" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Post-Construction Cleaning Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Final-stage post-construction cleaning in Edmonton for newly built and renovated homes. Remove drywall dust, smudges, and contractor residue." />
+        <meta name="twitter:title" content={PAGE_TITLE} />
+        <meta name="twitter:description" content={META_DESCRIPTION} />
         {/* Mirrors the FAQ rendered on this page. Generated from the same
             `faqs` array, so the markup can never drift from the copy. */}
         <script type="application/ld+json">
@@ -131,12 +161,12 @@ export default function EdmontonPostConstruction() {
             mainEntity: faqs.map((f) => ({
               "@type": "Question",
               name: f.q,
-              acceptedAnswer: { "@type": "Answer", text: f.a },
+              acceptedAnswer: { "@type": "Answer", text: faqText(f) },
             })),
           })}
         </script>
         <script type="application/ld+json">
-          {JSON.stringify(buildServiceSchema({ name: "Post-Construction Cleaning", description: "Final-stage post-construction cleaning in Edmonton for newly built and renovated homes. Remove drywall dust, smudges, and contractor residue.", path: "/post-construction-cleaning", city: "edmonton", offerFrom: Number(startingPriceLabel.replace(/[^0-9.]/g, "")), offerTo: Number(topPriceLabel.replace(/[^0-9.]/g, "")), offerNote: "Set by square footage and scope; quoted before booking." }))}
+          {JSON.stringify(buildServiceSchema({ name: "Post-Construction Cleaning", description: META_DESCRIPTION, path: "/post-construction-cleaning", city: "edmonton", offerFrom: Number(startingPriceLabel.replace(/[^0-9.]/g, "")), offerTo: Number(topPriceLabel.replace(/[^0-9.]/g, "")), offerNote: "Set by square footage and scope; quoted before booking." }))}
         </script>
       </Helmet>
 
@@ -155,8 +185,8 @@ export default function EdmontonPostConstruction() {
             <div className="flex-1 text-center lg:text-left">
               <div className="inline-flex flex-wrap items-center gap-2 mb-6">
                 <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
-                  <Shield className="w-4 h-4 text-accent" />
-                  <span className="text-white/90 text-sm font-medium">Customer-Rated Cleaners</span>
+                  <Star className="w-4 h-4 text-accent" />
+                  <span className="text-white/90 text-sm font-medium">{RATING_CLAIM}</span>
                 </span>
                 <span className="inline-flex items-center gap-2 bg-accent/20 backdrop-blur-sm rounded-full px-4 py-2">
                   <Home className="w-4 h-4 text-accent" />
@@ -167,10 +197,12 @@ export default function EdmontonPostConstruction() {
                 Post-Construction Cleaning in <span className="text-accent">Edmonton, AB</span>
               </h1>
               <p className="text-xl md:text-2xl text-white/80 max-w-3xl mb-4">
-                Final-stage move-in cleaning for newly built and freshly renovated Edmonton homes — completed projects only, ready for handover.
+                From {startingPriceLabel} before 5% GST, priced by square footage. Final-stage cleaning for
+                newly built and freshly renovated Edmonton homes, once the last trade has left.
               </p>
               <p className="text-base md:text-lg text-white/90 max-w-3xl mb-8">
-                We remove fine drywall dust, smudges, and contractor residue from cabinets, windows, baseboards, and floors.
+                Fine drywall dust, smudges and contractor residue off cabinets, windows, baseboards and
+                floors. Nothing is charged until the clean is done.
               </p>
               <div className="flex flex-wrap gap-4 justify-center lg:justify-start mb-10">
                 <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-white text-lg px-8">
@@ -184,9 +216,9 @@ export default function EdmontonPostConstruction() {
                 </Button>
               </div>
               <div className="flex flex-wrap justify-center lg:justify-start gap-6 text-white/80">
-                <div className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-accent" /><span>Flexible Scheduling Available</span></div>
-                <div className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-accent" /><span>Satisfaction Guarantee</span></div>
-                <div className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-accent" /><span>Transparent Pricing</span></div>
+                <div className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-accent" /><span>Priced by square footage</span></div>
+                <div className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-accent" /><span>Pay after the clean</span></div>
+                <div className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-accent" /><span>{POLICY.guaranteeWindowHours}-hour re-clean</span></div>
               </div>
             </div>
             <div className="flex-shrink-0 w-full lg:w-[500px]">
@@ -206,7 +238,7 @@ export default function EdmontonPostConstruction() {
         paragraphs={[
           "The new-build volume here sits in the southwest and the west — Windermere, Keswick, Glenridding Ravine, Laurel and out toward Rosenthal and Edgemont. Like any active community, the lots around a finished home keep producing dust long after that home is done, so a final clean scheduled before the neighbouring builds are closed in gets partly undone. We would rather come after the last trade has left than be the reason you clean twice.",
           "Edmonton's build calendar is compressed by the winter in a way that changes the cleaning. Interior work carries on through the cold months with temporary heat running, and construction heaters push fine dust through a house continuously while every window stays sealed. It settles into the tops of door frames, closet shelves, and the inside of vents, and it keeps resurfacing for months after possession — which is why the first deep clean in a winter-finished Edmonton home almost never gets everything.",
-          "River valley lots come with an extra step. Builds on the ravine edges through the west end and the southwest sit on sandier ground, and that fine sand tracks in and gets into window channels and slider tracks where it grinds against new hardware. Clearing it out properly is slower than it looks, and skipping it is how a brand-new door starts sticking in its first year.",
+          "River valley lots come with an extra step. Builds on the ravine edges through the west end and the southwest sit on sandier ground, and that fine sand tracks in and gets into window channels and slider tracks where it grinds against new hardware. Clearing it out properly is slower than it looks, and skipping it is how a new door starts sticking in its first year.",
         ]}
       />
 
@@ -220,18 +252,51 @@ export default function EdmontonPostConstruction() {
                 Drywall dust settles on baseboards, vents, counters, window ledges, and floors. Fine particles work their way into cabinets and drawers. Smudges, fingerprints, and adhesive residue cling to windows, mirrors, and new fixtures.
               </p>
               <p className="text-lg text-muted-foreground mb-4">
-                At Duty Cleaners Edmonton, we do <strong>final-stage post-construction cleaning</strong>: the move-in clean performed once construction is complete and the space is empty of debris. That covers new builds, kitchen and bathroom remodels, basement renovations and whole-home refreshes.
+                At Duty Cleaners Edmonton, we do <strong>final-stage post-construction cleaning</strong>: the{" "}
+                <Link to="/move-out-cleaning-edmonton/" className="text-primary underline underline-offset-4">move-in clean</Link>{" "}
+                performed once construction is complete and the space is empty of debris. That covers new builds, kitchen and bathroom remodels, basement renovations and whole-home refreshes.
               </p>
-              <p className="text-lg text-muted-foreground mb-8">
+              <p className="text-lg text-muted-foreground mb-4">
                 <strong>Important:</strong> we do not provide rough construction cleanup, debris hauling, or active job-site cleaning. Our service begins after your contractor has finished and removed all materials.
               </p>
-              <a href="/contact-us/" className="inline-flex items-center gap-3 bg-accent/10 rounded-full px-6 py-3 hover:bg-accent/20 transition-colors cursor-pointer">
-                <Clock className="w-5 h-5 text-accent" />
-                <span className="text-accent font-semibold">Flexible Scheduling | Transparent Pricing</span>
-              </a>
             </div>
           </div>
         </AnimatedSection>
+      </section>
+
+      {/* Post-renovation cleaning, room by room */}
+      <section className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <AnimatedSection>
+            <div className="text-center mb-8">
+              <span className="text-accent font-semibold text-sm uppercase tracking-wide">Renovations</span>
+              <h2 className="text-3xl md:text-4xl font-bold mt-2">Post-renovation cleaning after a kitchen, bathroom or basement remodel</h2>
+            </div>
+            <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
+              <p>
+                <strong className="text-foreground">Kitchen remodel.</strong> The dust from a kitchen goes into
+                the new drawers before the drawers have anything in them. We wipe every cabinet and drawer
+                inside and out, the counters, the backsplash and the outside of the new appliances. The
+                appliance interiors are not part of this clean, and the film and stickers on them have to be
+                off before we arrive, because peeling them is not cleaning and we do not do it.
+              </p>
+              <p>
+                <strong className="text-foreground">Bathroom remodel.</strong> New tile carries a grout haze that
+                wiping spreads and washing removes. The tub, the shower glass, the mirror and the vanity are
+                cleaned for first use, and the dust that settled on the rooms either side of the bathroom is
+                taken off with it.
+              </p>
+              <p>
+                <strong className="text-foreground">Basement renovation.</strong> A basement is the job where the
+                dust does not stay put: the furnace draws it up and puts it through the rest of the house. Tell
+                us at booking whether the upstairs was lived in through the work. A basement suite finished to
+                rent out is the same clean; once it is furnished and guests start arriving, that becomes{" "}
+                <Link to="/edmonton/airbnb-cleaning/" className="text-primary underline underline-offset-4">turnover cleaning for short-term rentals</Link>,
+                which is priced by the hour rather than by square footage.
+              </p>
+            </div>
+          </AnimatedSection>
+        </div>
       </section>
 
       {/* What's Included Section */}
@@ -266,6 +331,57 @@ export default function EdmontonPostConstruction() {
               </AnimatedSection>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Price by square footage */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <AnimatedSection>
+            <div className="mx-auto max-w-3xl text-center">
+              <span className="text-accent font-semibold text-sm uppercase tracking-wide">Price List</span>
+              <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">What post-construction cleaning costs in Edmonton</h2>
+              <p className="text-muted-foreground leading-relaxed">
+                This is the one clean we price by square footage rather than by bedrooms, because the dust
+                does not care how the rooms are divided. Pick the band the finished space falls in and that
+                is the rate, before 5% GST. It does not rise if the clean runs long.
+              </p>
+            </div>
+            <div className="mx-auto mt-10 max-w-2xl overflow-hidden border border-border rounded-xl">
+              <table className="w-full">
+                <thead className="bg-brand-navy text-brand-navy-foreground">
+                  <tr>
+                    <th className="py-3 px-5 text-left text-sm font-bold">Finished space</th>
+                    <th className="py-3 px-5 text-right text-sm font-bold">Flat rate, before GST</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {sqftTiers.map((t, i) => (
+                    <tr key={t.id} className={i % 2 ? "bg-secondary/20" : "bg-card"}>
+                      <td className="py-3 px-5 text-foreground">{tierLabel(t.label)}</td>
+                      <td className="py-3 px-5 text-right font-bold text-foreground">{formatPrice(t.price)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="mx-auto mt-6 max-w-3xl text-muted-foreground leading-relaxed space-y-4">
+              <p>
+                What changes the figure: the square footage band, and whether the address is inside Edmonton
+                city limits. Outside them a post-construction clean carries a {pcTravelFee} travel fee, which is
+                what a new build in Leduc or Beaumont pays on top of the row above. The rest of what we do in
+                those towns is on their own pages:{" "}
+                <Link to="/cleaning-services-leduc/" className="text-primary underline underline-offset-4">house cleaning in Leduc</Link>,{" "}
+                <Link to="/cleaning-services-beaumont/" className="text-primary underline underline-offset-4">house cleaning in Beaumont</Link>{" "}
+                and{" "}
+                <Link to="/cleaning-services-st-albert/" className="text-primary underline underline-offset-4">St. Albert house cleaners</Link>.
+              </p>
+              <p>
+                Every other clean we do is priced by bedrooms and bathrooms instead; those rows are on{" "}
+                <Link to="/pricing/" className="text-primary underline underline-offset-4">the full Edmonton price list</Link>.
+              </p>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 
@@ -327,18 +443,21 @@ export default function EdmontonPostConstruction() {
             <div className="max-w-3xl mx-auto text-center">
               <div className="inline-flex items-center gap-2 bg-accent/20 rounded-full px-4 py-2 mb-6">
                 <Heart className="w-4 h-4 text-accent" />
-                <span className="text-accent text-sm font-semibold">TRUSTED ACROSS EDMONTON SINCE 2017</span>
+                <span className="text-accent text-sm font-semibold uppercase">Cleaning Edmonton homes {COMPANY.sinceLabel}</span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">100% Satisfaction Guarantee</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Re-cleaned within {POLICY.guaranteeWindowHours} hours if we missed a ledge</h2>
               <p className="text-lg text-white/90 mb-4">
-                We stand behind the quality of our staff. If you're not 100% satisfied with your cleaning, we'll come back and re-clean it at no additional charge, as long as we’re informed within 24 hours after the cleaning.
+                If any area of the clean is not right, tell us within {POLICY.guaranteeWindowHours} hours and we come
+                back to re-clean it at no charge. Photos help the team find it and are not a condition.
               </p>
               <p className="text-base text-white/90 mb-8">
-                Every Edmonton post-construction job is checked against the checklist before we leave: cabinet interiors, window tracks, baseboards.
+                Every Edmonton post-construction job is checked against the checklist before we leave: cabinet
+                interiors, window tracks, baseboards. The customers who booked it before you are on the{" "}
+                <Link to="/reviews/" className="text-white underline underline-offset-4">reviews page</Link>.
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
                 <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-white">
-                  <a href="#contact-form">Get a Free Estimate</a>
+                  <a href="#quote">See My Instant Price</a>
                 </Button>
                 <Button asChild size="lg" className="bg-white/10 hover:bg-white/20 text-white border border-white/20">
                   <a href="/about-us/">About Duty Cleaners</a>
@@ -372,6 +491,12 @@ export default function EdmontonPostConstruction() {
                     </AccordionTrigger>
                     <AccordionContent className="text-muted-foreground">
                       {faq.a}
+                      {faq.more && (
+                        <>
+                          {" "}{faq.more.lead}{" "}
+                          <Link to={faq.more.to} className="text-primary underline underline-offset-4">{faq.more.anchor}</Link>.
+                        </>
+                      )}
                     </AccordionContent>
                   </AccordionItem>
                 ))}
@@ -415,35 +540,25 @@ export default function EdmontonPostConstruction() {
         </div>
       </section>
 
-      {/* Contact Form Section */}
+      {/* Quote Section: one promise, the instant price */}
       <section id="contact-form" className="py-20 lg:py-12 bg-brand-navy relative overflow-hidden scroll-mt-20">
         <div className="absolute top-10 right-20 w-72 h-72 bg-accent/10 rounded-full blur-3xl" />
         <div className="container mx-auto px-4 relative z-10">
           <AnimatedSection>
-            <div className="max-w-6xl mx-auto lg:grid lg:grid-cols-5 lg:gap-10 lg:items-start">
-              <div className="lg:col-span-2 text-center lg:text-left mb-8 lg:mb-0 lg:pt-2">
-                <div className="inline-flex items-center gap-2 bg-accent/20 rounded-full px-4 py-2 mb-4">
-                  <Award className="w-4 h-4 text-accent" />
-                  <span className="text-accent text-sm font-semibold">Free, No-Obligation Quote</span>
-                </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">See My Instant Price</h2>
-                <p className="text-white/90">Fill out the form and we'll instantly email you a quote.</p>
-              </div>
-              <div id="quote-form" className="lg:col-span-3 max-w-3xl mx-auto w-full scroll-mt-20 bg-white rounded-2xl shadow-2xl p-6 md:p-8 text-center">
-                <p className="text-xl font-bold text-foreground">Your price in 60 seconds</p>
-                <p className="mt-2 text-muted-foreground">
-                  A few quick questions about the site — no obligation.
-                </p>
-                <a
-                  href="#quote"
-                  className="mt-6 inline-flex h-14 w-full items-center justify-center rounded-md bg-accent px-8 text-lg font-bold text-accent-foreground shadow-lg shadow-accent/30 transition-colors hover:bg-accent/90"
-                >
-                  Open the quote form
-                </a>
-                <p className="mt-3 text-sm text-muted-foreground">
-                  Opens full screen — nothing else in the way.
-                </p>
-              </div>
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">See My Instant Price</h2>
+              <p className="text-white/90 mb-8">
+                The form quotes by square footage. Pick the band the finished space falls in and the price is
+                on screen before you book; nothing is charged until the clean is done. The other cleans, with
+                their starting prices, are listed under{" "}
+                <Link to="/services/" className="text-white underline underline-offset-4">all Edmonton cleaning services and prices</Link>.
+              </p>
+              <a
+                href="#quote"
+                className="inline-flex h-14 items-center justify-center rounded-md bg-accent px-10 text-lg font-bold text-accent-foreground shadow-lg shadow-accent/30 transition-colors hover:bg-accent/90"
+              >
+                See My Instant Price
+              </a>
             </div>
           </AnimatedSection>
         </div>

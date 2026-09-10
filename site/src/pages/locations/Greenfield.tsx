@@ -226,7 +226,7 @@ export default function Greenfield() {
               Get an instant quote, without all the hassle.
             </h3>
             <Button size="lg" className="mb-8" asChild>
-              <a href="#quote">GET A FREE ESTIMATE</a>
+              <a href="#quote">See My Instant Price</a>
             </Button>
             <div className="space-y-4">
               <p className="text-lg font-semibold text-foreground">Trusted by Alberta families since 2017</p>
@@ -276,7 +276,7 @@ export default function Greenfield() {
               Call us today or request a free quote online. We'd love to add you to our growing list of Greenfield clients who value service that's close to home and easy to trust.
             </p>
             <Button size="lg" asChild>
-              <a href="#quote">GET A FREE ESTIMATE</a>
+              <a href="#quote">See My Instant Price</a>
             </Button>
           </div>
         </section>

@@ -47,7 +47,7 @@ const moveInOutTravelFee = () => formatPrice(travelFee("move-in-out") ?? 0);
  * keeps it inside a desktop snippet.
  */
 const PAGE_TITLE = `Move Out Cleaning Edmonton from ${moveInOutFromPrice()} | Duty Cleaners`;
-const META_DESCRIPTION = `Move-out cleaning in Edmonton from ${moveInOutFromPrice()} plus GST, fixed by home size. Done to the inspection checklist, re-cleaned free within ${POLICY.guaranteeWindowHours} hours. Book online.`;
+const META_DESCRIPTION = `Move-out and end of tenancy cleaning in Edmonton from ${moveInOutFromPrice()} plus GST, fixed by home size. Cleaned to the inspection list, re-cleaned free in ${POLICY.guaranteeWindowHours} hours.`;
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -220,8 +220,9 @@ export default function EdmontonMoveInOut() {
                 {/* The answer to the search, above the fold: what it is, what it
                     costs, what is in it, the guarantee, and how to book. */}
                 <p className="text-base md:text-lg mb-8 text-white/80 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                  A move-out clean is the one-time clean an empty home gets before the keys change hands,
-                  done to the checklist a landlord or buyer walks through. Inside the oven, fridge,
+                  A move-out clean, end of tenancy cleaning to a landlord, is the one-time clean an empty
+                  home gets before the keys change hands, done to the checklist a landlord or buyer walks
+                  through. Inside the oven, fridge,
                   microwave, cabinets, drawers and closets are included, along with baseboards, switches,
                   vents and all floors. If the inspection finds something we missed, tell us within{" "}
                   {POLICY.guaranteeWindowHours} hours and we come back at no charge. Book online with the
@@ -494,6 +495,14 @@ export default function EdmontonMoveInOut() {
                 outside Edmonton city limits. What does not: how long the crew is there. Your quote lists each
                 line before you book, and nothing is charged until the clean is done.
               </p>
+              <p className="mx-auto mt-4 max-w-2xl text-center text-sm text-muted-foreground leading-relaxed">
+                The travel fee covers the towns around the city, so{" "}
+                <Link to="/cleaning-services-sherwood-park/" className="text-primary underline underline-offset-4">house cleaning in Sherwood Park</Link>,{" "}
+                <Link to="/cleaning-services-st-albert/" className="text-primary underline underline-offset-4">house cleaning in St. Albert</Link> and{" "}
+                <Link to="/cleaning-services-leduc/" className="text-primary underline underline-offset-4">house cleaning in Leduc</Link>{" "}
+                are the same flat rate plus {moveInOutTravelFee()}. The standard and deep clean rows sit beside
+                these on <Link to="/pricing/" className="text-primary underline underline-offset-4">the full Edmonton price list</Link>.
+              </p>
             </AnimatedSection>
           </div>
         </section>
@@ -565,7 +574,10 @@ export default function EdmontonMoveInOut() {
               <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
                 From {moveInOutFromPrice()} plus 5% GST, fixed by home size. Nothing is charged until the clean
                 is done, and if the inspection finds something missed we come back within{" "}
-                {POLICY.guaranteeWindowHours} hours at no charge.
+                {POLICY.guaranteeWindowHours} hours at no charge. If the new home needs a clean too, or a
+                recurring one after that,{" "}
+                <Link to="/services/" className="text-white underline underline-offset-4">all Edmonton cleaning services and prices</Link>{" "}
+                are on one page.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>

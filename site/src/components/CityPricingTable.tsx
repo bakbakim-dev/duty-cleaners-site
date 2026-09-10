@@ -59,8 +59,33 @@ const RECURRING_SAVINGS = FREQUENCIES.filter((frequency) => frequency.discount >
 const cityBase = (pathname: string) =>
   quoteHrefFor(pathname).startsWith("/cleaning-services-calgary") ? "/calgary" : "/edmonton";
 
+/**
+ * The prose around the table, per city. The figures are the same in both
+ * cities by design (there is no city premium), so the words are where the two
+ * hubs stop repeating each other.
+ */
+const COPY = {
+  "/edmonton": {
+    heading: "Pricing that fits the job",
+    intro:
+      "Most homes are priced flat by size. You see your number before you book, plus 5% GST, and it does not go up because a clean took longer. If a flat rate does not suit your job or your budget, we quote you hourly instead and tell you which option costs you less.",
+    note: "Condition, pets and add-ons can change the final number, and your quote spells all of it out before you book.",
+    recurring: `Booking regularly? From your second visit you save ${RECURRING_SAVINGS}. The first clean is charged at the standard one-time rate.`,
+    after: "Answer a few quick questions and see your exact price. No phone call needed.",
+  },
+  "/calgary": {
+    heading: "What a clean costs in Calgary",
+    intro:
+      "Calgary prices are the same as Edmonton's: flat by home size, GST on top, and the figure does not climb because the team was slow. Where a flat rate is the wrong shape for the job, we quote by the hour and say which of the two comes out cheaper.",
+    note: "Pets, condition and add-ons move the number. The quote lists each one before you book, so the total is never a surprise on the day.",
+    recurring: `Book on a schedule and the discount starts on the second visit: ${RECURRING_SAVINGS}. The first clean is billed at the one-time rate.`,
+    after: "A few questions, then the exact figure for your home. Nobody needs to phone you.",
+  },
+} as const;
+
 const CityPricingTable = () => {
   const { pathname } = useLocation();
+  const copy = COPY[cityBase(pathname)];
   return (
   <section id="pricing" className="py-16 md:py-20 bg-brand-navy text-brand-navy-foreground">
     <div className="container mx-auto px-4">
@@ -69,17 +94,9 @@ const CityPricingTable = () => {
           <span className="text-accent-on-dark font-semibold text-sm uppercase tracking-wide">
             Pricing
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-2">Pricing that fits the job</h2>
-          <p className="text-white/90 mt-4 max-w-[65ch] mx-auto">
-            Most homes are priced flat by size — you see your number before you book, plus 5% GST,
-            and it doesn&rsquo;t go up because a clean took longer. If a flat rate doesn&rsquo;t suit
-            your job or your budget, we&rsquo;ll quote you hourly instead — and tell you which option
-            costs you less.
-          </p>
-          <p className="text-white/80 mt-3 max-w-[65ch] mx-auto text-sm">
-            Condition, pets and add-ons can change the final number, and your quote spells all of it
-            out before you book.
-          </p>
+          <h2 className="text-3xl md:text-4xl font-bold mt-2">{copy.heading}</h2>
+          <p className="text-white/90 mt-4 max-w-[65ch] mx-auto">{copy.intro}</p>
+          <p className="text-white/80 mt-3 max-w-[65ch] mx-auto text-sm">{copy.note}</p>
         </div>
 
         {/* Desktop: comparison table */}
@@ -159,8 +176,7 @@ const CityPricingTable = () => {
           page at all. A 3-bedroom standard at $232 becomes $185.60 weekly.
         */}
         <p className="mt-6 text-center text-sm text-white/90 max-w-[62ch] mx-auto">
-          Booking regularly? From your second visit you save {RECURRING_SAVINGS}. The first clean is
-          charged at the standard one-time rate.{" "}
+          {copy.recurring}{" "}
           <Link
             to={canonicalForPath(`${cityBase(pathname)}/recurring-cleaning`)}
             className="font-semibold text-accent-on-dark underline-offset-2 hover:underline"
@@ -177,9 +193,7 @@ const CityPricingTable = () => {
           >
             <a href={quoteHrefFor(pathname)}>See My Instant Price</a>
           </Button>
-          <p className="text-sm text-white/90 mt-4 max-w-[60ch] mx-auto">
-            Answer a few quick questions and see your exact price — no phone call needed.
-          </p>
+          <p className="text-sm text-white/90 mt-4 max-w-[60ch] mx-auto">{copy.after}</p>
         </div>
       </div>
     </div>

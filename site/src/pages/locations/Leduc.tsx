@@ -6,6 +6,24 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
+import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice } from "@/data/pricing";
+import { travelFee } from "@/data/addon-table";
+import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
+
+// Every price on this page is read from bk-config through pricing.ts.
+const STANDARD = standardTierRows();
+const DEEP = deepCleanTierRows();
+const MOVE = moveInOutTierRows();
+const STANDARD_FROM = STANDARD[0].price;
+const STANDARD_TO = STANDARD[STANDARD.length - 1].price;
+const DEEP_FROM = DEEP[0].price;
+const DEEP_TO = DEEP[DEEP.length - 1].price;
+const MOVE_FROM = MOVE[0].price;
+const MOVE_TO = MOVE[MOVE.length - 1].price;
+const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
+const PAGE_TITLE = `House Cleaning Leduc from ${STANDARD_FROM} | Duty Cleaners`;
+const META_DESCRIPTION = `House cleaning in Leduc from ${STANDARD_FROM}, Telford Lake to Fred Johns Park. Standard, deep and move-out cleans at a flat price you see before you book.`;
+
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
   return (
@@ -80,26 +98,31 @@ const nearbyAreas = [
 ];
 
 export default function Leduc() {
-  const faqs = [
+  const faqs: { question: string; answer: string; link?: { to: string; text: string } }[] = [
     {
-      question: "How long does an initial cleaning take?",
+      question: "Is there a travel fee in Leduc?",
+      answer: `Yes. Leduc is 33 km south of Edmonton and outside its city limits, so a ${TRAVEL_FEE} travel fee is added to each home-cleaning booking. The flat rate for the clean is the same as inside Edmonton; the fee is the only difference.`
+    },
+    {
+      question: "What does a standard clean in Leduc cost?",
+      answer: `From ${STANDARD_FROM} for a one-bedroom to ${STANDARD_TO} for five bedrooms or more, flat, before the travel fee and GST. Adding the deep clean package takes the range to ${DEEP_FROM} to ${DEEP_TO}. Book weekly and the second visit onward is 20% off; every two weeks is 15% off; every four weeks is 10% off.`
+    },
+    {
+      question: "Can you come to Leduc same-day?",
+      answer: `If the day has room, yes. Same-day and next-day slots turn up when the schedule allows; call ${CITY_PROOF.edmonton.phone} and ask. The team arrives in a window of ${ARRIVAL_WINDOWS[0]}, ${ARRIVAL_WINDOWS[1]} or ${ARRIVAL_WINDOWS[2]}, which matters in a city where someone is often asleep after a night shift.`
+    },
+    {
+      question: "Do you do move-out cleaning in Leduc?",
+      answer: `Yes. A move-in or move-out clean is ${MOVE_FROM} to ${MOVE_TO} by home size, plus the travel fee, and it covers the inside of the oven, the fridge and the cabinets without add-ons.`,
+      link: { to: "/move-out-cleaning-edmonton/", text: "Move-out cleaning in Leduc and Edmonton" }
+    },
+    {
+      question: "Do you bring supplies to Leduc?",
+      answer: `Yes, everything: products, cloths, vacuum and mop. Eco-friendly products are ${POLICY.ecoProductsFee} extra, and the way to get them is to ${POLICY.ecoProductsHowToRequest}. The post-war bungalows near the old core and the new builds in Southfork have different floors, and the kit covers both.`
+    },
+    {
+      question: "How long does a first clean in Leduc take?",
       answer: `We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
-    },
-    {
-      question: "What cleaning services does Duty Cleaners offer in Leduc?",
-      answer: `The full service menu is available here:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
-    },
-    {
-      question: "Do you offer discounts?",
-      answer: `Yes, recurring visits cost less every time:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
-    },
-    {
-      question: "What's included in a deep cleaning?",
-      answer: `In Leduc, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
-    },
-    {
-      question: "What is your 100% satisfaction guarantee policy?",
-      answer: "If you're not 100% satisfied, call us within 24 hours and we'll re-clean the missed areas — at no extra cost."
     }
   ];
   const faqJsonLd = {
@@ -116,16 +139,16 @@ export default function Leduc() {
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>House Cleaning Leduc, AB | Duty Cleaners</title>
-        <meta name="description" content="House cleaning in Leduc, from Telford Lake to Fred Johns Park. Standard, deep and move-out cleans at a flat price you see before booking." />
+        <title>{PAGE_TITLE}</title>
+        <meta name="description" content={META_DESCRIPTION} />
         <link rel="canonical" href="https://dutycleaners.ca/cleaning-services-leduc/" />
-        <meta property="og:title" content="House Cleaning Leduc, AB | Duty Cleaners" />
-        <meta property="og:description" content="House cleaning in Leduc, from Telford Lake to Fred Johns Park. Standard, deep and move-out cleans at a flat price you see before booking." />
+        <meta property="og:title" content={PAGE_TITLE} />
+        <meta property="og:description" content={META_DESCRIPTION} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/cleaning-services-leduc/" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning Leduc, AB | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning in Leduc, from Telford Lake to Fred Johns Park. Standard, deep and move-out cleans at a flat price you see before booking." />
+        <meta name="twitter:title" content={PAGE_TITLE} />
+        <meta name="twitter:description" content={META_DESCRIPTION} />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Leduc, AB", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-leduc", areaServed: "Leduc, AB" }))}</script>
@@ -150,7 +173,7 @@ export default function Leduc() {
                 Professional House Cleaning in Leduc
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto lg:mx-0 leading-relaxed">
-                House cleaning in Leduc, rated {RATING_CLAIM}. All supplies included.
+                House cleaning in Leduc, rated {RATING_CLAIM}. Standard cleans from {STANDARD_FROM}, deep cleans from {DEEP_FROM}, flat by home size, all supplies included.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -221,6 +244,10 @@ export default function Leduc() {
                 <p>
                   Many households here work a rotation rather than a weekday. Tell us at booking if someone will be asleep and the room order changes at no cost.
                 </p>
+                <p>
+                  Hosts in Leduc with a suite let to airport travellers can book turnovers as{" "}
+                  <Link to="/edmonton/airbnb-cleaning/" className="text-primary underline underline-offset-2 font-medium">Airbnb cleaning in Edmonton</Link>, with the travel fee added.
+                </p>
               </div>
             </div>
           </AnimatedSection>
@@ -254,7 +281,10 @@ export default function Leduc() {
                 Find Us in Leduc
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                We serve all of Leduc and surrounding communities including Nisku, Beaumont, and Devon.
+                We serve all of Leduc and the communities around it, including Nisku,{" "}
+                <Link to="/cleaning-services-beaumont/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Beaumont</Link>{" "}
+                and{" "}
+                <Link to="/cleaning-services-devon/" className="text-primary underline underline-offset-2 font-medium">Devon house cleaners</Link>.
               </p>
             </div>
             <div className="max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-xl">
@@ -283,7 +313,8 @@ export default function Leduc() {
                 Cleaning Services for Leduc Homes
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                From routine upkeep to deep cleans and move-outs — every service a home needs.
+                Standard, deep, move-out, post-construction and wall washing, each at a flat rate by home size. For the add-ons and every checklist, see{" "}
+                <Link to="/services/" className="text-primary underline underline-offset-2 font-medium">all Edmonton cleaning services and prices</Link>.
               </p>
             </div>
           </AnimatedSection>
@@ -305,10 +336,12 @@ export default function Leduc() {
             <div className="text-center mb-14">
               <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
               <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">
-                Why Leduc Residents Choose Duty Cleaners
+                A Leduc cleaning company that quotes before you book
               </h2>
               <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                Trusted locally for reliable, thorough cleaning.
+                The price is on screen before you confirm, nothing is charged until the clean is done, and the cleaner is rated by you afterwards.{" "}
+                <Link to="/reviews/" className="text-white underline underline-offset-2 font-medium">Read the reviews</Link>{" "}
+                those ratings add up to.
               </p>
             </div>
           </AnimatedSection>
@@ -328,10 +361,18 @@ export default function Leduc() {
           <AnimatedSection>
             <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
             <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
-              Proudly Serving Leduc & Surrounding Areas
+              Cleaning services in Leduc and the towns around Edmonton
             </h2>
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-              We provide professional house cleaning services throughout Leduc and nearby communities in the Edmonton region.
+              Near Leduc, the other communities we clean from the same Edmonton office are{" "}
+              <Link to="/cleaning-services-sherwood-park/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Sherwood Park</Link>{" "}
+              to the northeast,{" "}
+              <Link to="/cleaning-services-spruce-grove/" className="text-primary underline underline-offset-2 font-medium">cleaning services in Spruce Grove</Link>{" "}
+              to the northwest, and{" "}
+              <Link to="/cleaning-services-st-albert/" className="text-primary underline underline-offset-2 font-medium">St. Albert house cleaners</Link>{" "}
+              and{" "}
+              <Link to="/cleaning-services-morinville/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Morinville</Link>{" "}
+              on the far side of the city. All of them sit outside Edmonton city limits, so the {TRAVEL_FEE} travel fee Leduc pays applies there too.
             </p>
             <CoverageChips areas={nearbyAreas} />
             <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
@@ -374,7 +415,15 @@ export default function Leduc() {
                   {faqs.map((faq, index) => (
                     <AccordionItem key={index} value={`item-${index}`}>
                       <AccordionTrigger className="text-left font-semibold">{faq.question}</AccordionTrigger>
-                      <AccordionContent className="text-muted-foreground whitespace-pre-line">{faq.answer}</AccordionContent>
+                      <AccordionContent className="text-muted-foreground whitespace-pre-line">
+                        {faq.answer}
+                        {faq.link && (
+                          <>
+                            {" "}
+                            <Link to={faq.link.to} className="text-primary underline underline-offset-2 font-medium">{faq.link.text}</Link>
+                          </>
+                        )}
+                      </AccordionContent>
                     </AccordionItem>
                   ))}
                 </Accordion>
@@ -389,7 +438,7 @@ export default function Leduc() {
         <div className="container mx-auto px-4 relative z-10 text-center">
           <AnimatedSection>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Ready for a Spotless Home in Leduc?
+              See your Leduc price before you book
             </h2>
             <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
               See your flat rate before you book. Nothing is charged until the clean is done.

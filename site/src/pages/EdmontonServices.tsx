@@ -1,10 +1,19 @@
 import { GST_RATE } from "@/data/pricing";
-import { RATING_CLAIM } from "@/data/proof";
+import { RATING_CLAIM, CITY_PROOF, COMPANY } from "@/data/proof";
+import { POLICY } from "@/data/policy";
+import { travelFee } from "@/data/addon-table";
+import { canonicalForPath } from "@/data/legacy-urls";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import Navigation from "@/components/Navigation";
 import { buildServiceSchema } from "@/lib/service-schema";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import {
   Sparkles,
   ShieldCheck,
@@ -33,19 +42,23 @@ import edmontonHero from "@/assets/edmonton-hero-cleaner.webp";
 import { Helmet } from "react-helmet-async";
 import {
   deepCleanTierRows,
-  flatRateFromPrice,
   formatPrice,
   serviceTierRows,
+  standardTierRows,
   startingPrice,
   calculateQuote,
+  addOnFromPrice,
   DEFAULT_FREQUENCY,
+  FREQUENCIES,
+  HOURLY_RATE,
 } from "@/data/pricing";
 
 /* Every published figure comes from the BookingKoala config snapshot. */
 const from = (value: number) => `from ${formatPrice(value)}`;
 
 /** These cards print four prices and said nothing about tax. */
-const GST_LINE = `Starting prices, before ${Math.round(GST_RATE * 100)}% GST.`;
+const GST_PCT = `${Math.round(GST_RATE * 100)}%`;
+const GST_LINE = `Starting prices, before ${GST_PCT} GST.`;
 const RECURRING_FROM = calculateQuote({
   service: "standard",
   homeType: null,
@@ -55,10 +68,29 @@ const RECURRING_FROM = calculateQuote({
   addOns: [],
   frequency: DEFAULT_FREQUENCY,
 }).ongoing;
-const STANDARD_FROM = from(flatRateFromPrice());
-const DEEP_FROM = `from ${deepCleanTierRows()[0].price}`;
-const MOVE_FROM = `from ${serviceTierRows("move-in-out")[0].price}`;
+// The same helper /pricing/ uses, so the two pages cannot disagree by a cent.
+const STANDARD_PRICE = standardTierRows()[0].price;
+const STANDARD_FROM = `from ${STANDARD_PRICE}`;
+const DEEP_ROW = deepCleanTierRows()[0];
+const DEEP_FROM = `from ${DEEP_ROW.price}`;
+const MOVE_PRICE = serviceTierRows("move-in-out")[0].price;
+const MOVE_FROM = `from ${MOVE_PRICE}`;
 const POST_FROM = from(startingPrice("post-construction"));
+const HOURLY = formatPrice(HOURLY_RATE);
+const PET_FEE = addOnFromPrice("standard", "must-choose-if-you-have-pets");
+const PET_LINE = PET_FEE === null ? "a pet charge quoted when you book" : `${formatPrice(PET_FEE)} per visit`;
+const TRAVEL_HOME = travelFee("standard");
+const TRAVEL_POST = travelFee("post-construction");
+const money = (v: number | null) => (v === null ? "a fee quoted when you book" : formatPrice(v));
+const pct = (id: string) => {
+  const f = FREQUENCIES.find((x) => x.id === id);
+  return f ? `${Math.round(f.discount * 100)}%` : "";
+};
+const proof = CITY_PROOF.edmonton;
+const QUOTE = "/#quote";
+const PRICING = canonicalForPath("/pricing");
+const TITLE = `Cleaning Services Edmonton from ${STANDARD_PRICE} | Duty Cleaners`;
+const DESCRIPTION = "Standard, deep, recurring, move-in/out and post-construction cleaning in Edmonton. See your instant price in about 60 seconds.";
 
 
 type Service = {
@@ -76,11 +108,11 @@ type Service = {
 const services: Service[] = [
   {
     title: "Standard Cleaning",
-    description: "A thorough one-time cleaning for your home. Perfect for refreshing your space or maintaining cleanliness on your own schedule.",
+    description: "One visit, flat rate by home size. Kitchen, bathrooms, floors and dusting in every room, and the price does not move if it takes longer than planned.",
     features: [
       "All rooms dusted and vacuumed",
-      "Bathrooms properly cleaned and sanitized",
-      "Kitchen cleaned (counters, sink, appliance and cabinets exteriors ONLY)",
+      "Bathrooms properly cleaned and sanitised",
+      "Kitchen cleaned (counters, sink, appliance and cabinet exteriors only)",
       "Floors mopped and vacuumed"
     ],
     price: STANDARD_FROM,
@@ -92,9 +124,9 @@ const services: Service[] = [
   },
   {
     title: "Recurring Cleaning",
-    description: "Weekly, bi-weekly or every-4-weeks cleaning to keep your home consistently clean. Your first clean is the standard rate; from the second visit on you save 20% weekly, 15% bi-weekly and 10% every 4 weeks.",
+    description: `Weekly, bi-weekly or every-4-weeks cleaning on a standing booking. Your first clean is the standard rate; from the second visit on you save ${pct("weekly")} weekly, ${pct("bi-weekly-every-2-weeks")} bi-weekly and ${pct("every-4-weeks")} every 4 weeks.`,
     features: [
-      "Recurring maintenance cleaning",
+      "Same checklist as a standard clean, on a schedule",
       "Kitchen, bathrooms, and living areas cleaned",
       "Floors vacuumed and mopped"
     ],
@@ -108,7 +140,7 @@ const services: Service[] = [
   },
   {
     title: "Deep Cleaning",
-    description: "Thorough cleaning for spring cleaning or special occasions.",
+    description: "A standard clean plus the Deep Cleaning package: grout, descaling, degreasing and the trim a regular visit walks past.",
     // Was four bullets: two copied verbatim from the Standard card above and
     // one repeating another inside this card. These are the four scope items
     // the deep-cleaning page itself publishes.
@@ -143,9 +175,9 @@ const services: Service[] = [
   },
   {
     title: "Post-Construction Cleaning",
-    description: "After construction or renovation, our team provides a thorough final cleaning to ensure your space is move-in ready.",
+    description: "The fine dust a renovation leaves, cleared from walls, inside windows, baseboards and floors after the trades are out.",
     features: [
-      "Thorough dust removal",
+      "Drywall and sanding dust removed",
       "Cleaning of walls, inside windows, baseboards",
       "Vacuuming and mopping of all floors",
       "Final move-in ready detailing"
@@ -173,12 +205,12 @@ const services: Service[] = [
   },
   {
     title: "Wall Washing & Cleaning",
-    description: "Professional wall washing services to remove dirt, grime, stains, and restore your walls' vibrant appearance.",
+    description: "Walls washed by hand: handprints, cooking film, smoke residue and the grey line above the baseboard heater.",
     features: [
       "Remove handprints and smudges",
-      "Eliminate nicotine tar and smoke residue",
+      "Lift nicotine tar and smoke residue",
       "Clean dust and cobwebs",
-      "Restore wall color vibrancy"
+      "Prepare walls for painting or a sale"
     ],
     price: "Custom Pricing",
     link: "/wall-washing-wall-cleaning/",
@@ -188,14 +220,14 @@ const services: Service[] = [
   },
   {
     title: "Airbnb Cleaning Service",
-    description: "Fast turnover cleaning for short-term rentals & Airbnb hosts. Guest-ready results guaranteed.",
+    description: `Turnovers between guests for short-term rental hosts, billed by the hour at ${HOURLY} per cleaner with a 3-hour minimum.`,
     features: [
-      "Fast turnover cleaning",
-      "Laundry & linen reset",
-      "Guest-ready preparation",
-      "Quick turnaround scheduling"
+      "Beds remade with your linen",
+      "Laundry when the machines and a spare set are ready",
+      "Supplies restocked from your stock",
+      "Same checklist on every turnover"
     ],
-    price: "Hourly Cleaning",
+    price: `${HOURLY} per cleaner-hour`,
     link: "/edmonton/airbnb-cleaning/",
     linkText: "See Airbnb Cleaning Service",
     icon: BedDouble,
@@ -219,6 +251,35 @@ const services: Service[] = [
   }
 ];
 
+/* Answered from pricing.ts and policy.ts. Feeds the FAQPage JSON-LD below
+   and the accordion, from one array. */
+const faqs = [
+  {
+    q: "What is the difference between standard and deep cleaning?",
+    a: `Deep cleaning is a standard clean with the Deep Cleaning package added. The standard visit covers dusting, vacuuming, bathrooms, kitchen surfaces and floors. The package adds the build-up a regular visit does not touch: tile, grout and shower glass scrubbed, tubs and taps descaled, stovetop and cabinet fronts degreased, and baseboards, door frames, switches and vent covers wiped by hand. For a one-bedroom home the standard clean is ${DEEP_ROW.standard}, the package ${DEEP_ROW.packagePrice}, ${DEEP_ROW.price} together before GST.`,
+  },
+  {
+    q: "Is move-out cleaning the same as a deep clean?",
+    a: `No. Move-out cleaning includes every deep cleaning task and then goes where a landlord's inspection goes: inside every cabinet and drawer, inside the oven and fridge, the kitchen walls, and every floor including carpet. A one-bedroom home is ${MOVE_PRICE}, against ${DEEP_ROW.price} for a deep clean. Whether the damage deposit comes back is the landlord's decision, so we do not guarantee it; we clean to the list they inspect against.`,
+  },
+  {
+    q: "Do the prices include GST?",
+    a: `No. Every figure on this page is before tax, and ${GST_PCT} GST is added on top. Nothing is charged when you book. The day before the visit a temporary hold confirms the card, and it is charged once the clean is complete. Visa, Mastercard, American Express, debit and e-transfer are accepted.`,
+  },
+  {
+    q: "How do the recurring discounts work?",
+    a: `The first clean is charged at the standard one-time rate. From the second visit on, the discount depends on how often we come: ${pct("weekly")} weekly, ${pct("bi-weekly-every-2-weeks")} bi-weekly and ${pct("every-4-weeks")} every 4 weeks. There is no contract; if you stop, the standing booking stops with you.`,
+  },
+  {
+    q: "Is there a charge for pets?",
+    a: `Yes, ${PET_LINE}. Paw prints, nose marks on glass and shed hair add real time in every room, and the charge appears on your quote before you book. Litter boxes and animal waste stay outside what we handle.`,
+  },
+  {
+    q: "Is there a travel fee outside Edmonton?",
+    a: `Inside Edmonton city limits there is no trip fee. Outside them, in St. Albert, Sherwood Park, Spruce Grove, Leduc, Beaumont, Fort Saskatchewan, Stony Plain, Morinville or Devon, a travel fee applies: ${money(TRAVEL_HOME)} for home cleaning and ${money(TRAVEL_POST)} for post-construction. It shows on the quote before you confirm.`,
+  },
+];
+
 type ServiceLocal = Service;
 
 function ServiceCard({ service }: { service: ServiceLocal }) {
@@ -239,7 +300,8 @@ function ServiceCard({ service }: { service: ServiceLocal }) {
         <div className="w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 bg-primary/10">
           <Icon className="w-7 h-7 text-primary" />
         </div>
-        <h3 className="text-xl font-bold text-foreground">{service.title}</h3>
+        {/* Each service is a section of this page, so its name is an H2. */}
+        <h2 className="text-xl font-bold text-foreground">{service.title}</h2>
       </div>
 
       <p className="text-muted-foreground mb-6 leading-relaxed">
@@ -274,18 +336,30 @@ export default function EdmontonServices() {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Compare Our Edmonton Cleaning Services | Duty Cleaners</title>
-        <meta name="description" content="Standard, deep, recurring, move-in/out and post-construction cleaning in Edmonton. See your instant price in about 60 seconds." />
+        <title>{TITLE}</title>
+        <meta name="description" content={DESCRIPTION} />
         <link rel="canonical" href="https://dutycleaners.ca/services/" />
-        <meta property="og:title" content="Compare Our Edmonton Cleaning Services | Duty Cleaners" />
-        <meta property="og:description" content="Standard, deep, recurring, move-in/out and post-construction cleaning in Edmonton. See your instant price in about 60 seconds." />
+        <meta property="og:title" content={TITLE} />
+        <meta property="og:description" content={DESCRIPTION} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/services/" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Compare Our Edmonton Cleaning Services | Duty Cleaners" />
-        <meta name="twitter:description" content="Standard, deep, recurring, move-in/out and post-construction cleaning in Edmonton. See your instant price in about 60 seconds." />
+        <meta name="twitter:title" content={TITLE} />
+        <meta name="twitter:description" content={DESCRIPTION} />
         <script type="application/ld+json">
-          {JSON.stringify(buildServiceSchema({ name: "House Cleaning Services", description: "Standard, deep, recurring, move-in/out and post-construction cleaning in Edmonton. See your instant price in about 60 seconds.", path: "/services", city: "edmonton" }))}
+          {JSON.stringify(buildServiceSchema({ name: "House Cleaning Services", description: DESCRIPTION, path: "/services", city: "edmonton" }))}
+        </script>
+        {/* Generated from the same `faqs` array the accordion renders. */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((f) => ({
+              "@type": "Question",
+              name: f.q,
+              acceptedAnswer: { "@type": "Answer", text: f.a },
+            })),
+          })}
         </script>
       </Helmet>
       <Navigation city="edmonton" />
@@ -293,36 +367,52 @@ export default function EdmontonServices() {
       <div className="container mx-auto px-4 pt-4">
         <Breadcrumbs />
       </div>
-      
+
       {/* Hero Section */}
       <section className="relative py-20 bg-brand-navy overflow-hidden">
         <img width={1024} height={1024}
           src={edmontonHero}
-          alt="Edmonton cleaning professional"
+          alt="Duty Cleaners cleaner at work in an Edmonton home"
           className="absolute inset-0 w-full h-full object-cover opacity-40"
          loading="eager" fetchPriority="high"/>
         <div className="absolute inset-0 bg-gradient-to-b from-brand-navy/70 via-brand-navy/60 to-brand-navy/80" />
         {/* Decorative Elements */}
         <div className="absolute top-0 left-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
         <div className="absolute bottom-0 right-0 w-80 h-80 bg-primary/10 rounded-full blur-3xl translate-x-1/3 translate-y-1/3" />
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
               <Sparkles className="w-4 h-4 text-accent" />
-              <span className="text-white/90 text-sm font-medium">Professional Cleaning Services</span>
+              <span className="text-white/90 text-sm font-medium">{services.length} services, one price list</span>
             </div>
-            
+
             <h1 className="display-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
               Our Cleaning Services in{" "}
               <span className="text-accent">Edmonton</span>
             </h1>
-            
-            <p className="text-xl text-white/80 leading-relaxed mb-8">
-              Professional cleaning solutions for every need. All services include 
-              high-quality products and a satisfaction guarantee.
+
+            <p className="text-xl text-white/80 leading-relaxed mb-4">
+              Flat rates by home size {STANDARD_FROM} before GST, or {HOURLY} per cleaner-hour for
+              the jobs a size tier cannot describe. Rated {RATING_CLAIM} across Edmonton homes {COMPANY.sinceLabel}.
             </p>
-            
+            <p className="text-lg text-white/70 leading-relaxed mb-8">
+              Answer a few questions about the home and the quote form shows your price in about 60
+              seconds, before anything is booked.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+              <Button asChild size="lg" className="text-lg bg-accent text-accent-foreground hover:bg-accent/90">
+                <Link to={QUOTE}>See my instant price</Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="text-lg border-white/20 text-white hover:bg-white/10">
+                <a href={proof.phoneLink}>
+                  <Phone className="w-4 h-4 mr-2" />
+                  Call {proof.phone}
+                </a>
+              </Button>
+            </div>
+
             {/* Trust Badges */}
             <div className="flex flex-wrap justify-center gap-6">
               <div className="flex items-center gap-2 text-white/90">
@@ -331,7 +421,7 @@ export default function EdmontonServices() {
               </div>
               <div className="flex items-center gap-2 text-white/90">
                 <Heart className="w-5 h-5 text-accent" />
-                <span className="text-sm">100% Satisfaction Guarantee</span>
+                <span className="text-sm">{POLICY.guaranteeWindowHours}-hour re-clean guarantee</span>
               </div>
               <div className="flex items-center gap-2 text-white/90">
                 <Star className="w-5 h-5 text-accent" />
@@ -355,6 +445,15 @@ export default function EdmontonServices() {
       {/* Services Grid */}
       <section className="py-20 bg-secondary/30">
         <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center mb-12">
+            <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-4">
+              All Edmonton cleaning services and starting prices
+            </h2>
+            <p className="text-muted-foreground leading-relaxed">
+              Each card shows the lowest price a one-bedroom home books at, before {GST_PCT} GST. Larger
+              homes, pets and add-ons move the number, and the quote form shows the total before you commit.
+            </p>
+          </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto items-stretch">
             {services.map((service) => (
               <ServiceCard key={service.title} service={service} />
@@ -362,6 +461,113 @@ export default function EdmontonServices() {
           </div>
           {/* Four prices on this page and, until now, nothing about tax. */}
           <p className="text-center text-sm text-muted-foreground mt-8">{GST_LINE}</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+            <Button asChild size="lg" className="text-lg bg-accent text-accent-foreground hover:bg-accent/90">
+              <Link to={QUOTE}>See my instant price</Link>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="text-lg">
+              <Link to={PRICING}>Compare every price by home size</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* How to choose, and where the rest of the site sits */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-6">
+              How to choose between standard, deep, recurring and move-out cleaning
+            </h2>
+            <div className="space-y-5 text-muted-foreground leading-relaxed">
+              <p>
+                Start with the standard clean unless you can name what it would miss. It is priced flat by
+                home size, {STANDARD_FROM}, and the rate does not change if the team is there longer than
+                expected. If what you can name is grout, a scaled shower door, a greasy range hood or grey
+                baseboards, that is the Deep Cleaning package, and the honest way to buy it is once, then
+                drop back to standard visits.
+              </p>
+              <p>
+                Recurring cleaning is the standard clean on a standing booking, and it is the cheapest way to
+                keep a lived-in home at the same level: the first visit is charged at the one-time rate and
+                every visit after it is discounted by how often we come. It suits a family home, a rental you
+                manage for a long-term tenant, and a host who lives in the unit most of the year; for the guest
+                weeks,{" "}
+                <Link to="/edmonton/airbnb-cleaning/" className="text-accent underline underline-offset-2">
+                  Airbnb cleaning in Edmonton
+                </Link>{" "}
+                is billed by the hour instead.
+              </p>
+              <p>
+                Move-out cleaning is for a walk-through date. It is the deep clean plus the inside of every
+                cabinet, drawer and appliance, {MOVE_FROM}, and the deposit decision stays with the landlord.
+                Post-construction cleaning is a different job again: fine dust rather than dirt, {POST_FROM},
+                and it is worth booking after the trades have finished, not between them.
+              </p>
+              <p>
+                Every price here is on{" "}
+                <Link to={PRICING} className="text-accent underline underline-offset-2">
+                  the full Edmonton price list
+                </Link>{" "}
+                by home size, and {proof.googleReviewCount} Google reviews sit behind the rating; you can{" "}
+                <Link to="/reviews/" className="text-accent underline underline-offset-2">
+                  read before you decide
+                </Link>
+                . If the clean is for someone else, a parent after surgery or a friend with a newborn, you can{" "}
+                <Link to="/gift-card/" className="text-accent underline underline-offset-2">
+                  give a clean as a gift
+                </Link>{" "}
+                and let them pick the date.
+              </p>
+              <p>
+                All of it runs inside Edmonton city limits at the prices above, with no trip fee. The same
+                crews cover the towns around the city for a travel fee of {money(TRAVEL_HOME)} per home-cleaning
+                visit:{" "}
+                <Link to="/cleaning-services-st-albert/" className="text-accent underline underline-offset-2">
+                  house cleaning in St. Albert
+                </Link>
+                ,{" "}
+                <Link to="/cleaning-services-sherwood-park/" className="text-accent underline underline-offset-2">
+                  Sherwood Park house cleaners
+                </Link>{" "}
+                and{" "}
+                <Link to="/cleaning-services-spruce-grove/" className="text-accent underline underline-offset-2">
+                  cleaning services in Spruce Grove
+                </Link>{" "}
+                each have their own page with the same service list.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-20 bg-secondary/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center mb-10">
+              <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-4">
+                Standard, deep or move-out: the questions Edmonton callers ask
+              </h2>
+              <p className="text-muted-foreground">
+                Answered from the price list and the terms, not from a script.
+              </p>
+            </div>
+            <div className="bg-card rounded-2xl border border-border p-2 md:p-4 shadow-sm">
+              <Accordion type="single" collapsible className="w-full">
+                {faqs.map((f, i) => (
+                  <AccordionItem key={i} value={`item-${i}`} className="px-4">
+                    <AccordionTrigger className="text-left font-semibold text-foreground">
+                      {f.q}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground leading-relaxed">
+                      {f.a}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -370,7 +576,7 @@ export default function EdmontonServices() {
         {/* Decorative Elements */}
         <div className="absolute top-1/2 left-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
         <div className="absolute top-1/2 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2" />
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-4">
@@ -391,8 +597,8 @@ export default function EdmontonServices() {
                   </div>
                   <div>
                     <p className="text-sm text-white/80">Phone</p>
-                    <a href="tel:7809136565" className="font-semibold text-white hover:text-accent transition-colors">
-                      (780) 913-6565
+                    <a href={proof.phoneLink} className="font-semibold text-white hover:text-accent transition-colors">
+                      {proof.phone}
                     </a>
                   </div>
                 </div>
@@ -402,7 +608,7 @@ export default function EdmontonServices() {
                   </div>
                   <div>
                     <p className="text-sm text-white/80">Address</p>
-                    <p className="font-semibold text-white">18615 71 Ave NW, Edmonton, AB</p>
+                    <p className="font-semibold text-white">{proof.address}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4 group">
@@ -421,8 +627,8 @@ export default function EdmontonServices() {
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
               <h3 className="font-bold text-xl text-white mb-6">Quick Links</h3>
               <div className="space-y-4">
-                <Link 
-                  to="/pricing/" 
+                <Link
+                  to="/pricing/"
                   className="flex items-center gap-3 text-white/80 hover:text-accent transition-colors group"
                 >
                   <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:bg-accent/30">
@@ -431,8 +637,8 @@ export default function EdmontonServices() {
                   <span className="font-medium">View Pricing</span>
                   <ArrowRight className="w-4 h-4 ml-auto opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
                 </Link>
-                <Link 
-                  to="/reviews/" 
+                <Link
+                  to="/reviews/"
                   className="flex items-center gap-3 text-white/80 hover:text-accent transition-colors group"
                 >
                   <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:bg-accent/30">
@@ -441,8 +647,8 @@ export default function EdmontonServices() {
                   <span className="font-medium">Read Reviews</span>
                   <ArrowRight className="w-4 h-4 ml-auto opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
                 </Link>
-                <Link 
-                  to="/faqs/" 
+                <Link
+                  to="/faqs/"
                   className="flex items-center gap-3 text-white/80 hover:text-accent transition-colors group"
                 >
                   <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:bg-accent/30">
@@ -451,8 +657,8 @@ export default function EdmontonServices() {
                   <span className="font-medium">Full FAQ</span>
                   <ArrowRight className="w-4 h-4 ml-auto opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
                 </Link>
-                <Link 
-                  to="/about-us/" 
+                <Link
+                  to="/about-us/"
                   className="flex items-center gap-3 text-white/80 hover:text-accent transition-colors group"
                 >
                   <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:bg-accent/30">

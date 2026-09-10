@@ -14,6 +14,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import giftCardsHero from "@/assets/gift-cards-hero.webp";
 import { giftCardGuide } from "@/data/gift-cards";
+import { POLICY } from "@/data/policy";
 import {
   Gift, Heart, PartyPopper, Sparkles, Clock, CreditCard,
   Send, Shield, Snowflake, Award, HeartHandshake, Home,
@@ -21,13 +22,13 @@ import {
 } from "lucide-react";
 
 const giftCardDesigns = [
-  { id: "congratulations", name: "Congratulations", icon: PartyPopper, gradient: "from-orange-400 via-orange-500 to-amber-600", bgPattern: "bg-gradient-to-br", description: "Perfect for celebrating achievements and milestones" },
-  { id: "thank-you", name: "Thank You", icon: Heart, gradient: "from-teal-500 via-teal-600 to-cyan-700", bgPattern: "bg-gradient-to-br", description: "Show your gratitude with a sparkling clean home" },
-  { id: "happy-for-you", name: "Happy for You", icon: Sparkles, gradient: "from-teal-400 via-orange-400 to-amber-500", bgPattern: "bg-gradient-to-br", description: "Share joy and happiness with someone special" },
-  { id: "happy-holidays", name: "Happy Holidays", icon: Snowflake, gradient: "from-cyan-400 via-teal-500 to-teal-700", bgPattern: "bg-gradient-to-br", description: "Spread holiday cheer with the gift of a clean home" },
-  { id: "you-deserve-it", name: "You Deserve It", icon: Award, gradient: "from-amber-400 via-orange-500 to-orange-600", bgPattern: "bg-gradient-to-br", description: "Treat someone special to well-deserved relaxation" },
-  { id: "happy-anniversary", name: "Happy Anniversary", icon: HeartHandshake, gradient: "from-rose-400 via-pink-500 to-fuchsia-600", bgPattern: "bg-gradient-to-br", description: "Celebrate years of love with a sparkling clean home" },
-  { id: "new-home", name: "Housewarming", icon: Home, gradient: "from-emerald-400 via-teal-500 to-cyan-600", bgPattern: "bg-gradient-to-br", description: "Welcome them to their new home with a fresh start" },
+  { id: "congratulations", name: "Congratulations", icon: PartyPopper, gradient: "from-orange-400 via-orange-500 to-amber-600", bgPattern: "bg-gradient-to-br", description: "For a graduation, a promotion or a finish line" },
+  { id: "thank-you", name: "Thank You", icon: Heart, gradient: "from-teal-500 via-teal-600 to-cyan-700", bgPattern: "bg-gradient-to-br", description: "A thank-you that saves them an afternoon" },
+  { id: "happy-for-you", name: "Happy for You", icon: Sparkles, gradient: "from-teal-400 via-orange-400 to-amber-500", bgPattern: "bg-gradient-to-br", description: "For good news of any kind" },
+  { id: "happy-holidays", name: "Happy Holidays", icon: Snowflake, gradient: "from-cyan-400 via-teal-500 to-teal-700", bgPattern: "bg-gradient-to-br", description: "A clean home before the guests arrive, or after they leave" },
+  { id: "you-deserve-it", name: "Well Earned", icon: Award, gradient: "from-amber-400 via-orange-500 to-orange-600", bgPattern: "bg-gradient-to-br", description: "For someone who has been carrying more than their share" },
+  { id: "happy-anniversary", name: "Happy Anniversary", icon: HeartHandshake, gradient: "from-rose-400 via-pink-500 to-fuchsia-600", bgPattern: "bg-gradient-to-br", description: "A clean house instead of another set of glasses" },
+  { id: "new-home", name: "Housewarming", icon: Home, gradient: "from-emerald-400 via-teal-500 to-cyan-600", bgPattern: "bg-gradient-to-br", description: "A move-in clean before the boxes come off the truck" },
 ];
 
 // Gift cards are purchased through our BookingKoala storefront.
@@ -54,17 +55,17 @@ export default function GiftCards() {
   return (
     <>
       <Helmet>
-        <title>Cleaning Gift Cards | Give the Gift of a Sparkling Home | Duty Cleaners</title>
-        <meta name="description" content="Give the perfect gift - a professional house cleaning gift card. 100% satisfaction guarantee. Redeemable anytime in Edmonton & Calgary." />
+        <title>Cleaning Gift Cards | Duty Cleaners Edmonton & Calgary</title>
+        <meta name="description" content="A house cleaning gift card for Edmonton or Calgary, in any amount, with no expiry. Pick a design, add a message, and it is emailed to them." />
         {/* Near-duplicate of /gift-card (the linked page) — consolidate signals there. */}
         <link rel="canonical" href="https://dutycleaners.ca/gift-card/" />
-        <meta property="og:title" content="Cleaning Gift Cards | Give the Gift of a Sparkling Home | Duty Cleaners" />
-        <meta property="og:description" content="Give the perfect gift - a professional house cleaning gift card. 100% satisfaction guarantee. Redeemable anytime in Edmonton & Calgary." />
+        <meta property="og:title" content="Cleaning Gift Cards | Duty Cleaners Edmonton & Calgary" />
+        <meta property="og:description" content="A house cleaning gift card for Edmonton or Calgary, in any amount, with no expiry. Pick a design, add a message, and it is emailed to them." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/gift-cards/" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Cleaning Gift Cards | Give the Gift of a Sparkling Home | Duty Cleaners" />
-        <meta name="twitter:description" content="Give the perfect gift - a professional house cleaning gift card. 100% satisfaction guarantee. Redeemable anytime in Edmonton & Calgary." />
+        <meta name="twitter:title" content="Cleaning Gift Cards | Duty Cleaners Edmonton & Calgary" />
+        <meta name="twitter:description" content="A house cleaning gift card for Edmonton or Calgary, in any amount, with no expiry. Pick a design, add a message, and it is emailed to them." />
       </Helmet>
 
       <div className="min-h-screen">
@@ -96,15 +97,14 @@ export default function GiftCards() {
               </div>
 
               <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight text-white">
-                Know Someone Who Deserves a{" "}
-                <span className="text-accent">Sparkling Clean</span> Home?
+                House Cleaning <span className="text-accent">Gift Cards</span> for Edmonton and Calgary
               </h1>
               <p className="text-xl md:text-2xl text-white/85 mb-3 leading-relaxed">
-                Give Them a Cleaning Gift Card Backed by Our{" "}
-                <strong className="text-white">100% Satisfaction Guarantee</strong>
+                Any amount, emailed to them, backed by the same{" "}
+                <strong className="text-white">100% Satisfaction Guarantee</strong> as every clean
               </p>
               <p className="text-lg text-white/90 mb-10">
-                So They Can Relax While We Take Care of Everything!
+                They pick the service and the date. The balance does not expire.
               </p>
 
               {/* Trust badges */}
@@ -147,7 +147,7 @@ export default function GiftCards() {
                 <span className="text-accent font-semibold text-sm uppercase tracking-wider">Personalize Your Gift</span>
                 <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Choose Your Gift Card Design</h2>
                 <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  Select a beautiful design that matches the occasion and make it truly special
+                  Pick the design that fits the occasion.
                 </p>
               </div>
 
@@ -190,10 +190,10 @@ export default function GiftCards() {
               <div className="text-center mb-12">
                 <span className="text-brand-gold font-semibold text-sm uppercase tracking-wider">Simple &amp; Easy</span>
                 <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4 text-white">
-                  Give the Gift of a Sparkling Home
+                  Four steps to send a gift card
                 </h2>
                 <p className="text-lg text-white/90">
-                  Four simple steps to make someone's day brighter
+                  About two minutes, start to finish.
                 </p>
               </div>
 
@@ -216,8 +216,8 @@ export default function GiftCards() {
 
               <div className="text-center">
                 <p className="text-white/90 leading-relaxed max-w-2xl mx-auto">
-                  Simply fill in the amount, add the details of your loved one, and{" "}
-                  <strong className="text-white">we'll take care of sending them a gift card they can redeem at any time!</strong>
+                  Fill in the amount and the recipient's details, and{" "}
+                  <strong className="text-white">we email them a gift card they can redeem whenever they like.</strong>
                 </p>
               </div>
             </div>
@@ -230,12 +230,12 @@ export default function GiftCards() {
             <div className="max-w-3xl mx-auto">
               <div className="text-center mb-12">
                 <span className="text-accent font-semibold text-sm uppercase tracking-wider">Buying Guide</span>
-                <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Not Sure About the Amount?</h2>
+                <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Gift card amounts and what they cover</h2>
                 <p className="text-lg text-muted-foreground">
-                  Here's a handy guide to help you choose the perfect gift card value
+                  What each amount pays for in full, by home size, before 5% GST.
                 </p>
                 <p className="text-sm text-muted-foreground mt-3 italic">
-                  Please note: these are estimated amounts only and may vary based on the actual size and condition of the home.
+                  The exact figure depends on bedrooms, bathrooms and add-ons; the recipient sees it before they book.
                 </p>
               </div>
 
@@ -264,7 +264,7 @@ export default function GiftCards() {
               <div className="text-center mb-12">
                 <span className="text-accent font-semibold text-sm uppercase tracking-wider">Good to Know</span>
                 <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Important Information</h2>
-                <p className="text-lg text-muted-foreground">Everything you need to know about our gift cards</p>
+                <p className="text-lg text-muted-foreground">How the card is used, redeemed and covered.</p>
               </div>
 
               <div className="grid md:grid-cols-2 gap-6">
@@ -283,20 +283,18 @@ export default function GiftCards() {
                   iconColor="text-accent"
                   title="How to Redeem"
                   items={[
-                    { text: "Book online or call us and mention your gift card code" },
-                    { text: "Gift card balance applied manually during checkout" },
-                    { text: "No expiry date — the balance stays on the card until it is used" },
+                    { text: "Book online or call us and give the gift card code" },
+                    { text: "No expiry date. The balance stays on the card until it is used" },
                   ]}
                 />
 
                 <InfoCard
                   icon={Shield}
                   iconColor="text-muted-foreground"
-                  title="Important Notes"
+                  title="If the clean costs more, or less"
                   items={[
-                    { text: "Gift cards are non-refundable" },
-                    { text: "If service exceeds gift card value, pay the difference" },
-                    { text: "Cannot be combined with other promotions or discounts" },
+                    { text: "If the clean costs more than the card, the difference is paid at checkout" },
+                    { text: "If it costs less, the remaining balance stays on the card for the next visit" },
                   ]}
                 />
 
@@ -306,7 +304,7 @@ export default function GiftCards() {
                   title="100% Satisfaction Guarantee"
                   variant="highlight"
                   items={[]}
-                  footerText="Every gift card cleaning is backed by our satisfaction guarantee. If the recipient isn't 100% happy, we'll re-clean for free—as long as we are informed within 24 hours after the service."
+                  footerText={`A clean paid for with a gift card is covered the same way as any other. If something was missed, the recipient tells us within ${POLICY.guaranteeWindowHours} hours and we come back and re-clean it at no additional charge.`}
                   footerLink={{ text: "Learn more about our guarantee", href: "/satisfaction-guarantee/" }}
                 />
               </div>
@@ -323,9 +321,9 @@ export default function GiftCards() {
               <div className="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-6 rotate-3 hover:rotate-0 transition-transform duration-500">
                 <Sparkles className="w-8 h-8 text-accent" />
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Ready to Give the Perfect Gift?</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Send a gift card today</h2>
               <p className="text-lg text-white/75 mb-8 leading-relaxed">
-                Make someone's day with the gift of a sparkling clean home
+                Any amount, emailed straight away, no expiry.
               </p>
               <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-10 py-6 h-auto font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5" asChild>
                 <a href={GIFT_CARD_PURCHASE_URL} target="_blank" rel="noopener noreferrer">

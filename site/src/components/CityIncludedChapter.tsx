@@ -8,6 +8,22 @@ interface CityIncludedChapterProps {
   city: "Edmonton" | "Calgary";
 }
 
+/**
+ * The checklist itself is identical in both cities on purpose: the service is
+ * the same service. The heading and the caption are written per city so the
+ * Calgary hub does not repeat the Edmonton one word for word.
+ */
+const COPY = {
+  Edmonton: {
+    heading: "What a standard clean covers, room by room",
+    caption: "A consistent checklist our Edmonton cleaners follow on every visit, so nothing gets missed.",
+  },
+  Calgary: {
+    heading: "The Calgary checklist, room by room",
+    caption: "Same list in every Calgary home, every visit. The team works through it in order and stays until it is done, whatever the clock says.",
+  },
+} as const;
+
 const rooms = [
   {
     icon: ChefHat,
@@ -69,11 +85,9 @@ export default function CityIncludedChapter({ city }: CityIncludedChapterProps) 
           {/* Caption rail */}
           <div ref={heading.ref} className={`lg:sticky lg:top-28 lg:self-start ${heading.className}`}>
             <Eyebrow>What&rsquo;s Included</Eyebrow>
-            <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Every Clean, Done Right</h2>
+            <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">{COPY[city].heading}</h2>
             <span className={`rule-draw mt-4 ${heading.className}`} aria-hidden="true" />
-            <p className="mt-4 max-w-[45ch] leading-relaxed text-muted-foreground">
-              A consistent checklist our {city} cleaners follow on every visit, so nothing gets missed.
-            </p>
+            <p className="mt-4 max-w-[45ch] leading-relaxed text-muted-foreground">{COPY[city].caption}</p>
             <ThresholdLine className="mt-6 hidden max-w-[220px] lg:block" />
             <Link
               to="/whats-included/"

@@ -261,8 +261,8 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/service-radius.test.ts",
     target: "dist/index.html",
-    find: "We clean in Edmonton and the communities listed below.",
-    replace: "We clean in Edmonton and the communities within a 30km radius.",
+    find: "Reference-checked cleaners across the city and the communities around it.",
+    replace: "Reference-checked cleaners across the city and the communities within a 30km radius.",
     failing: "no built page states a radius its own coordinates contradict",
     why: "States a 30 km radius that location-geo.ts contradicts (Stony Plain is 33.8 km out).",
     dist: true,
@@ -270,8 +270,8 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/structured-data.test.ts",
     target: "dist/contact-us/index.html",
-    find: '"telephone":"+1-780-913-6565"',
-    replace: '"telephone":"+1-7809136565"',
+    find: '"https://x.com/Dutycleaners"],"telephone":"+1-780-913-6565"',
+    replace: '"https://x.com/Dutycleaners"],"telephone":"+1-7809136565"',
     failing: "every schema telephone is one of the two real numbers, in one format",
     why: "Reintroduces the unformatted E.164 that gave one @id two phone numbers.",
     dist: true,
@@ -316,6 +316,15 @@ export const GUARD_PROOFS: GuardProof[] = [
     replace: "Leduc is a thriving city. Many households here work a rotation rather than a weekday.",
     failing: "the money pages carry none of the brochure vocabulary",
     why: "Puts the brochure register back on the town page where a reader lands first.",
+  },
+  {
+    guard: "src/data/money-page-seo.test.ts",
+    target: "dist/move-out-cleaning-edmonton/index.html",
+    find: "<title>Move Out Cleaning Edmonton from $284 | Duty Cleaners</title>",
+    replace: "<title>Move Out Cleaning Edmonton | Duty Cleaners</title>",
+    failing: "title carries the query and a reason to click, under 60 characters",
+    why: "Strips the price hook from a money-page title, the click-through defect the audit found on 20 pages.",
+    dist: true,
   },
   // ---- and this registry itself ------------------------------------------
   {

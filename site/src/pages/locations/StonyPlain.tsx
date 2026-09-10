@@ -3,6 +3,23 @@ import {
 } from "lucide-react";
 import stonyPlainHome from "@/assets/gallery/stony-plain-home.webp";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice } from "@/data/pricing";
+import { travelFee } from "@/data/addon-table";
+import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
+
+// Every figure on this page is derived from bk-config or policy.ts.
+const STANDARD = standardTierRows();
+const STANDARD_FROM = STANDARD[0].price;
+const STANDARD_TOP = STANDARD[STANDARD.length - 1].price;
+const DEEP_FROM = deepCleanTierRows()[0].price;
+const MOVE = moveInOutTierRows();
+const MOVE_FROM = MOVE[0].price;
+const MOVE_TOP = MOVE[MOVE.length - 1].price;
+const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
+const REVIEW_COUNT = CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount;
+
+const PAGE_TITLE = `House Cleaning Stony Plain from ${STANDARD_FROM} | Duty Cleaners`;
+const PAGE_DESCRIPTION = `House cleaning in Stony Plain, home of the downtown murals: standard cleans from ${STANDARD_FROM}, flat by home size, rated ${RATING_CLAIM}. Pay after the clean.`;
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -56,8 +73,8 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Stony Plain" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Every corner, baseboard, and hidden surface, cleaned top to bottom.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Stony Plain" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for moving day — leave or arrive to a pristine home.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Stony Plain" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "Baseboards, ceiling fans, vents and switch plates, on top of the standard scope.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Stony Plain" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "The empty-house clean for handover day, appliance and cabinet interiors included.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Stony Plain" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared properly after renos and handovers.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Stony Plain" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Stony Plain" },
   { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
@@ -65,11 +82,11 @@ const services = [
 
 const whyUsItems = [
   { icon: Shield, title: "Reference-Checked, Then Rated by You", description: "Every cleaner is reference-checked before their first job, then rated by the customer after every visit. Those ratings decide who keeps cleaning for us." },
-  { icon: Star, title: RATING_CLAIM, description: `${CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount} reviews across Edmonton and Calgary, and every one of them is on our Google listing.` },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day openings most weeks. We work around your busy life." },
+  { icon: Star, title: RATING_CLAIM, description: `${REVIEW_COUNT} reviews across Edmonton and Calgary, and every one of them is on our Google listing.` },
+  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day openings most weeks, when a crew has room." },
   { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
-  { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
-  { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
+  { icon: Users, title: "Experienced Team", description: "Cleaners who work to the Duty Cleaners checklist and are rated by the customer after each visit." },
+  { icon: ThumbsUp, title: "Satisfaction Guarantee", description: `If something was missed, tell us within ${POLICY.guaranteeWindowHours} hours and we'll return to make it right — at no additional charge.` },
 ];
 
 const landmarks = [
@@ -86,24 +103,28 @@ const nearbyCommunities = ["Spruce Grove", "Parkland County", "Acheson", "Carvel
 export default function StonyPlain() {
   const faqs = [
     {
-      question: "How long does an initial cleaning take?",
-      answer: `We work to a checklist, not a clock. Your cleaners stay until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
+      question: "Does house cleaning in Stony Plain include a travel fee?",
+      answer: `It does, because Stony Plain is outside Edmonton city limits. The travel fee is ${TRAVEL_FEE} per booking, added at booking and included in the total you confirm. The rate for the clean itself is the same flat rate an Edmonton address pays for the same size of home.`
     },
     {
-      question: "What cleaning services does Duty Cleaners offer in Stony Plain?",
-      answer: `The full service menu is available here:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      question: "How soon can you come out to Stony Plain?",
+      answer: `Same-day when a crew has room, next-day more often, and a day or two out almost always. Phone the Edmonton office for a same-day answer. Crews arrive within one of three windows, ${ARRIVAL_WINDOWS.join(", ")}, and you do not need to be home if you leave a key or a code.`
     },
     {
-      question: "Do you offer discounts?",
-      answer: `Yes, recurring visits cost less every time:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+      question: "Do you do move-in and move-out cleaning in Stony Plain?",
+      answer: `Yes. Move-in and move-out cleans are ${MOVE_FROM} to ${MOVE_TOP} by bedroom count. The difference from a standard clean is the closed things: oven interior, fridge interior, and the inside of kitchen and bathroom cabinets, which are add-ons on a standard visit and part of the job on a move-out. The house needs to be empty first.`
     },
     {
-      question: "What's included in a deep cleaning?",
-      answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      question: "What is the price of a standard clean in Stony Plain?",
+      answer: `${STANDARD_FROM} for a one-bedroom, ${STANDARD_TOP} for five or more bedrooms, before GST, and the ${TRAVEL_FEE} travel fee on top. A deep clean of a one-bedroom is ${DEEP_FROM}. Book weekly and the standard price drops 20% from the second visit; bi-weekly drops it 15% and every four weeks drops it 10%.`
     },
     {
-      question: "What is your 100% satisfaction guarantee policy?",
-      answer: "If you're not 100% satisfied, call us within 24 hours and we'll re-clean the missed areas — at no extra cost!"
+      question: "Should I leave out cleaning supplies?",
+      answer: `Only if there is something particular you want used. Otherwise the crew brings its own products, cloths, mop and vacuum. Eco-friendly products are ${POLICY.ecoProductsFee} extra: ${POLICY.ecoProductsHowToRequest}. Running water is required, and vacuuming needs the power on.`
+    },
+    {
+      question: "What if I am not happy with part of the clean?",
+      answer: `Tell us within ${POLICY.guaranteeWindowHours} hours and we return to redo that part at no charge, and we do not ask for photos before we come. Cancelling inside ${POLICY.cancellationNoticeHours} hours costs ${POLICY.cancellationFee}; a lockout, where the crew arrives and cannot get in, is charged at ${POLICY.lockoutFee}.`
     }
   ];
   const faqJsonLd = {
@@ -120,16 +141,16 @@ export default function StonyPlain() {
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>House Cleaning Stony Plain, AB | Duty Cleaners</title>
-        <meta name="description" content="Trusted house cleaning in Stony Plain, home of the downtown murals. Flat-rate standard, deep and move-out cleans." />
+        <title>{PAGE_TITLE}</title>
+        <meta name="description" content={PAGE_DESCRIPTION} />
         <link rel="canonical" href="https://dutycleaners.ca/cleaning-services-stony-plain/" />
-        <meta property="og:title" content="House Cleaning Stony Plain, AB | Duty Cleaners" />
-        <meta property="og:description" content="Trusted house cleaning in Stony Plain, home of the downtown murals. Flat-rate standard, deep and move-out cleans." />
+        <meta property="og:title" content={PAGE_TITLE} />
+        <meta property="og:description" content={PAGE_DESCRIPTION} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/cleaning-services-stony-plain/" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning Stony Plain, AB | Duty Cleaners" />
-        <meta name="twitter:description" content="Trusted house cleaning in Stony Plain, home of the downtown murals. Flat-rate standard, deep and move-out cleans." />
+        <meta name="twitter:title" content={PAGE_TITLE} />
+        <meta name="twitter:description" content={PAGE_DESCRIPTION} />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Stony Plain, AB", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-stony-plain", areaServed: "Stony Plain, AB" }))}</script>
@@ -154,7 +175,7 @@ export default function StonyPlain() {
                 Professional House Cleaning in Stony Plain
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto lg:mx-0 leading-relaxed">
-                Trusted house cleaning services in Stony Plain. Customer-rated cleaners.
+                A standard clean in Stony Plain is {STANDARD_FROM} to {STANDARD_TOP} by bedroom count, and a deep clean starts at {DEEP_FROM}. Flat rates, shown before you book. Rated {RATING_CLAIM}.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -191,19 +212,6 @@ export default function StonyPlain() {
         </div>
       </section>
 
-      <NearbyNeighbourhoods />
-
-      <LocalMarketNote
-        eyebrow="What we see"
-        heading="Murals on the old downtown"
-        paragraphs={[
-          "The old downtown here is painted — dozens of murals covering the town's own history — and the heritage buildings behind them are the reason the interiors run older than the newer subdivisions suggest. Original wood, plaster and period tile need a gentler method than a modern finish does: damp and wrung out, no abrasive pad, and time given to the material rather than pressure applied to it.",
-          "The town shares a boundary with Spruce Grove and is otherwise wrapped by Parkland County, so open country starts a short way past the last streets in most directions. That is a wind exposure rather than a traffic one, and it lands on window screens and the outward face of the glass rather than on floors.",
-        ]}
-      />
-
-      <LocationPricing />
-
       {/* About the Neighbourhood */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
@@ -211,13 +219,16 @@ export default function StonyPlain() {
             <div className="max-w-4xl mx-auto">
               <span className="text-primary text-sm font-semibold tracking-wider uppercase">About the Neighbourhood</span>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                Cleaning Services Rooted in Stony Plain
+                House cleaning in Stony Plain, at a flat rate
               </h2>
               <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                Stony Plain is a charming town west of Edmonton known for its rich heritage, vibrant murals, and welcoming small-town feel. Whether you live near the shops along Main Street or in one of the newer developments on the edge of town, Duty Cleaners is proud to serve this community with reliable, professional cleaning.
+                Stony Plain is west of Edmonton, past Spruce Grove. We clean the older streets off Main Street and the newer developments on the edge of town at the same flat rate, set by bedroom count and shown before you book: from {STANDARD_FROM} for a one-bedroom. Stony Plain is outside Edmonton city limits, so a {TRAVEL_FEE} travel fee is added at booking.
               </p>
               <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-                Our team regularly works near landmarks like Heritage Park, Rotary Park, and the Multicultural Heritage Centre — so we're always just minutes away and ready to help keep your Stony Plain home looking its best.
+                Crews work around Heritage Park, Rotary Park and the Multicultural Heritage Centre most weeks. Each cleaner is reference-checked before a first job and rated by the customer after every visit; the rating across both cities is {RATING_CLAIM}, and{" "}
+                <Link to="/reviews/" className="text-primary underline underline-offset-2 font-medium">the reviews page</Link>{" "}
+                shows them unedited. For the whole menu with a starting price on each line, see{" "}
+                <Link to="/services/" className="text-primary underline underline-offset-2 font-medium">all the cleaning services we run in Edmonton</Link>.
               </p>
               <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
                 {landmarks.map((landmark, i) => (
@@ -239,18 +250,17 @@ export default function StonyPlain() {
         </div>
       </section>
 
-      {/* Things To Do */}
+      {/* Landmarks */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="max-w-4xl mx-auto">
               <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Life</span>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                Things To Do In Stony Plain
+                Around Stony Plain
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
-                <p>With a population of approximately 18,000, Stony Plain embraces its rich history, dating back to the late 1800s when European immigrants settled it. Unlike other cities, it has preserved its historic character through its well-preserved downtown core, adorned with colourful murals that depict the town's past.</p>
-                <p>Stony Plain stands out as a town that cherishes its roots while embracing the opportunities of the present. Begin your exploration by embarking on a self-guided tour of the town's nationwide famous murals, which adorn the buildings and depict the area's history and culture with captivating colors and storytelling. Keeping up with cultural activities, experience the creative atmosphere of the Multicultural Heritage Centre, where you can admire local artwork and participate in workshops that celebrate the diverse traditions of the community. Complete your day with a nice walk through the picturesque Shikaoi Park, admiring the serene gardens and finding inspiration amidst the natural beauty that surrounds you.</p>
+                <p>The town was settled in the late 1800s and the downtown core from that era still stands, painted with murals of the town's own history, and a self-guided tour of them starts downtown. The Multicultural Heritage Centre keeps the local artwork and runs the workshops; Shikaoi Park is the garden.</p>
               </div>
             </div>
           </AnimatedSection>
@@ -292,7 +302,7 @@ export default function StonyPlain() {
                 Why Stony Plain Residents Choose Duty Cleaners
               </h2>
               <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                Trusted locally for reliable, thorough cleaning.
+                The same terms on every visit.
               </p>
             </div>
           </AnimatedSection>
@@ -306,6 +316,45 @@ export default function StonyPlain() {
         </div>
       </section>
 
+      <LocationPricing />
+
+      {/* Which clean, and what it costs */}
+      <section className="py-16 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <AnimatedSection>
+            <div className="max-w-3xl mx-auto">
+              <span className="text-primary text-sm font-semibold tracking-wider uppercase">Choosing</span>
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mt-2 mb-6">
+                Which clean to book for a Stony Plain home
+              </h2>
+              <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
+                <p>
+                  An older house near the downtown murals, with original wood and plaster, is a standard clean from {STANDARD_FROM} done gently, and it is worth saying at booking that the finishes are period ones. A newer house on the edge of town that has never had a professional clean starts better with the deep clean from {DEEP_FROM}, so the baseboards and fan blades are done once before a standard schedule takes over. A handover needs{" "}
+                  <Link to="/move-out-cleaning-edmonton/" className="text-primary underline underline-offset-2 font-medium">move-in and move-out cleaning in Stony Plain</Link>, from {MOVE_FROM}, with the house empty.
+                </p>
+                <p>
+                  A suite let to visitors is a turnover between guests, priced by the hour; the{" "}
+                  <Link to="/edmonton/airbnb-cleaning/" className="text-primary underline underline-offset-2 font-medium">short-term rental cleaning in Edmonton</Link>{" "}
+                  page explains how that is booked. Every tier and add-on is listed under{" "}
+                  <Link to="/pricing/" className="text-primary underline underline-offset-2 font-medium">Edmonton cleaning prices for every bedroom count</Link>; add the {TRAVEL_FEE} travel fee for a Stony Plain address.
+                </p>
+              </div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      <LocalMarketNote
+        eyebrow="What we see"
+        heading="Murals on the old downtown"
+        paragraphs={[
+          "The old downtown here is painted — dozens of murals covering the town's own history — and the heritage buildings behind them are the reason the interiors run older than the newer subdivisions suggest. Original wood, plaster and period tile need a gentler method than a modern finish does: damp and wrung out, no abrasive pad, and time given to the material rather than pressure applied to it.",
+          "The town shares a boundary with Spruce Grove and is otherwise wrapped by Parkland County, so open country starts a short way past the last streets in most directions. That is a wind exposure rather than a traffic one, and it lands on window screens and the outward face of the glass rather than on floors.",
+        ]}
+      />
+
+      <NearbyNeighbourhoods />
+
       {/* Interactive Map */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
@@ -316,7 +365,7 @@ export default function StonyPlain() {
                 Our Stony Plain Service Area
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                We serve Stony Plain and surrounding Parkland County communities with professional cleaning services.
+                Stony Plain and the Parkland County communities around it.
               </p>
             </div>
             <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-xl">
@@ -341,10 +390,17 @@ export default function StonyPlain() {
           <AnimatedSection>
             <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
             <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
-              Proudly Serving Stony Plain & Surrounding Areas
+              Near Stony Plain: other communities we clean
             </h2>
-            <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-              We provide professional house cleaning services throughout Stony Plain and nearby communities in the Edmonton region.
+            <p className="text-muted-foreground mb-8 max-w-3xl mx-auto text-left md:text-center">
+              Stony Plain shares a boundary with Spruce Grove, so our{" "}
+              <Link to="/cleaning-services-spruce-grove/" className="text-primary underline underline-offset-2 font-medium">cleaning services in Spruce Grove</Link>{" "}
+              are the same crews on the same days. South of the river our{" "}
+              <Link to="/cleaning-services-devon/" className="text-primary underline underline-offset-2 font-medium">Devon house cleaners</Link>{" "}
+              cover the river town to the south, and we do{" "}
+              <Link to="/cleaning-services-beaumont/" className="text-primary underline underline-offset-2 font-medium">cleaning services in Beaumont</Link>{" "}
+              on the far side of the city. Northeast, we run{" "}
+              <Link to="/cleaning-services-fort-saskatchewan/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Fort Saskatchewan</Link>. All four are outside Edmonton city limits and carry the same {TRAVEL_FEE} travel fee as Stony Plain.
             </p>
             <div className="flex flex-wrap justify-center gap-3 mb-8">
               {nearbyCommunities.map((community, i) => (
@@ -374,7 +430,7 @@ export default function StonyPlain() {
               <div className="max-w-3xl mx-auto">
                 <div className="text-center mb-12">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">FAQ</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Frequently Asked Questions</h2>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Stony Plain house cleaning questions</h2>
                 </div>
                 <Accordion type="single" collapsible className="w-full">
                   {faqs.map((faq, index) => (
@@ -395,7 +451,7 @@ export default function StonyPlain() {
         <div className="container mx-auto px-4 relative z-10 text-center">
           <AnimatedSection>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Ready for a Spotless Home in Stony Plain?
+              Book house cleaning in Stony Plain
             </h2>
             <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
               See your flat rate before you book. Nothing is charged until the clean is done.

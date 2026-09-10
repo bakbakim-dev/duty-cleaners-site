@@ -2,12 +2,14 @@ import { getListing } from "@/lib/google-listings";
 import { withTrailingSlash } from "@/data/legacy-urls";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import Navigation from "@/components/Navigation";
-import { addOnMaxPrice, addOnFromPrice, formatPrice } from "@/data/pricing";
+import { addOnMaxPrice, addOnFromPrice, addOnsFor, bedroomOptions, formatPrice, PRICING_TIERS, standardTierRows } from "@/data/pricing";
+import { POLICY } from "@/data/policy";
+import { travelFee } from "@/data/addon-table";
 import { buildServiceSchema } from "@/lib/service-schema";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import {
-  CheckCircle, Phone, MapPin, Clock, Star, Shield, Sparkles, Droplets, Wind,
+  Phone, MapPin, Clock, Star, Shield, Sparkles, Droplets, Wind,
   HandMetal, Cigarette, Home, Utensils, Cloud, ClipboardCheck, Search, Brush, ThumbsUp,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -23,7 +25,7 @@ import dirtyWallBefore from "@/assets/wall-washing/dirty-wall-before.webp";
 import stainCloseup from "@/assets/wall-washing/stain-closeup.webp";
 import { Helmet } from "react-helmet-async";
 import CityCrossLink from "@/components/CityCrossLink";
-import { CITY_PROOF } from "@/data/proof";
+import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -101,37 +103,37 @@ const wallProblems = [
 ];
 
 const includedItems = [
-  { icon: Brush, title: "Full wall wash", description: "Painted drywall in every room you book, washed rather than wiped, top to bottom." },
-  { icon: Sparkles, title: "Stain, smudge & mark removal", description: "Spots, smudges and marks treated one at a time before the wash." },
-  { icon: Wind, title: "Cobweb removal", description: "Corners and the ceiling line first, then the wall." },
-  { icon: Droplets, title: "Spot treatment for grime", description: "Built-up grime around switches, door frames and the backsplash surround." },
-  { icon: Cloud, title: "Smoke & cooking residue", description: "The film smoke and cooking leave on a wall is washed off. We do not promise the smell goes with it." },
-  { icon: Shield, title: "Gentle mildew surface treatment", description: "Light surface cleaning on bathroom and humid-area walls where suitable." },
+  { icon: Brush, title: "The full wash", description: "Painted drywall in each room on the booking, washed with a damp cloth and a bucket, top of the wall to the baseboard." },
+  { icon: Sparkles, title: "Marks first", description: "Scuffs, handprints and the odd crayon line are worked one at a time before the wash, so the wash does not spread them." },
+  { icon: Wind, title: "Corners and the ceiling line", description: "Cobwebs and the furnace halo come down before the wall is touched, or they end up back on it." },
+  { icon: Droplets, title: "Hard-water haze", description: "The mineral film around the shower and behind the taps is dissolved, not scrubbed, so the paint underneath survives." },
+  { icon: Cloud, title: "Smoke and cooking film", description: "The film comes off the wall. The smell in the drywall may not, and we say so before you book rather than after." },
+  { icon: Shield, title: "Light mildew on bathroom walls", description: "Surface spots on humid-room walls are treated where the paint allows it. Anything in the drywall itself is a remediation job, not a wash." },
 ];
 
 const steps = [
-  { icon: ClipboardCheck, title: "Request a quote", description: "Tell us about your home, rooms and the wall condition you'd like cleaned." },
-  { icon: Search, title: "We assess the walls", description: "On arrival the team checks the paint finish room by room. Very flat or delicate finishes get a gentler spot-clean." },
-  { icon: Brush, title: "We wash the walls", description: "Washed rather than wiped, top to bottom, with products suited to painted surfaces. Marks first, then the whole wall." },
-  { icon: ThumbsUp, title: "Final walkthrough", description: "We walk the rooms with you before we leave. Anything missed and reported within 24 hours is re-cleaned free." },
+  { icon: ClipboardCheck, title: "Tick the wall add-on", description: "It sits on the booking form under the clean you are booking. Choose spot cleaning for the marks or the full wash for whole rooms, and the price for your home size appears beside it." },
+  { icon: Search, title: "Paint check on arrival", description: "The team tests an out-of-the-way patch in each room. Flat and matte finishes mark if they are rubbed, so those rooms get the lighter method and we tell you which ones." },
+  { icon: Brush, title: "Wash, room by room", description: "By hand, with a product suited to painted walls. Marks are worked first, then the whole wall in one pass so it dries without streaks." },
+  { icon: ThumbsUp, title: "Walk it with you", description: `We look at the rooms together before we leave. A mark we missed is re-cleaned at no charge if you tell us within ${POLICY.guaranteeWindowHours} hours.` },
 ];
 
 const whyUs = [
-  { icon: Sparkles, title: "What comes off", description: "Cooking film, nicotine, handprints, scuffs, hard-water haze and the static-held dust film." },
-  { icon: Shield, title: "What stays", description: "The paint finish. Very flat or delicate paint limits how hard a mark can be worked, and some stains only fade." },
-  { icon: Home, title: "When to book it", description: "After a tenant moves out, before a listing, or with a move-out clean." },
-  { icon: Droplets, title: "Safe interior wall methods", description: "Products and techniques suited to painted surfaces." },
-  { icon: ThumbsUp, title: "Satisfaction guarantee", description: "We'll re-clean any missed area at no charge within 24 hours." },
-  { icon: Star, title: "Trusted across Calgary", description: `Rated ${CITY_PROOF.calgary.googleRating} on Google by homeowners across the Calgary region.` },
+  { icon: Sparkles, title: "What washing removes", description: "The static-held film, the furnace halo, cooking film, hard-water haze, handprints and scuffs." },
+  { icon: Shield, title: "What it cannot promise", description: "That a nicotine wall goes back to white, or that a matte finish takes a hard scrub. Some marks fade rather than vanish, and we say which." },
+  { icon: Home, title: "When it earns its price", description: "Before a listing photo, before a repaint, and on a move-out, where the entry wall is the first thing the inspection sees." },
+  { icon: Droplets, title: "Bathroom walls", description: "Calgary water is hard, so the haze around the shower is on most of the bathroom walls we wash. It comes off with a mild acid, not force." },
+  { icon: ThumbsUp, title: `${POLICY.guaranteeWindowHours}-hour re-clean`, description: `A wall or a mark we missed is put right at no charge. Tell us within ${POLICY.guaranteeWindowHours} hours of the clean.` },
+  { icon: Star, title: "Rated by Calgary customers", description: `${CITY_PROOF.calgary.googleRating} on Google across ${CITY_PROOF.calgary.googleReviewCount} Calgary reviews.` },
 ];
 
 const faqs = [
-  { q: "Can all wall stains be removed?", a: "Most common stains like smudges, dirt, fingerprints and marks can be significantly improved or removed depending on severity, paint type and how long they've been there." },
-  { q: "Do you clean all types of painted walls?", a: "Yes, we use safe cleaning methods suitable for most interior painted surfaces. Very flat or delicate finishes may require a gentler spot-clean approach." },
-  { q: "Do you remove mold from walls?", a: "We handle light surface mold and mildew cleaning. Severe or structural mold cases may require a specialized mold remediation company." },
-  { q: "Do I need to move furniture?", a: "We recommend clearing access where possible to make sure we can reach the full wall, but our team can carefully work around furniture when needed." },
-  { q: "Do you offer wall cleaning for rentals or move-outs?", a: "Yes — wall washing is one of the most-requested add-ons for move-out cleans and property refreshes before listing or new tenants." },
-  { q: "Do you clean ceilings in homes affected by smoke or nicotine?", a: "We generally do not clean very high areas like ceilings as part of our standard service. However, as long as the ceiling is safely reachable and not very high, we can attempt to clean flat ceilings for an additional charge, since this work can take significantly more time and effort. Please note: ceiling cleaning is considered an extra service, additional charges and time may apply, and we cannot guarantee full stain or odour removal. We do not clean popcorn ceilings and usually recommend replacement instead, especially in heavily smoke-damaged homes." },
+  { q: "Can all wall stains be removed?", a: "No, and we will not tell you otherwise on the phone. Handprints, scuffs, the dust film and cooking grease come off. Nicotine fades but rarely disappears. A mark that has been on a matte wall for years may leave a shadow where the paint has taken the stain in. The team tells you at the paint check which kind you have." },
+  { q: "Do you clean all types of painted walls?", a: "Most of them. Eggshell, satin and semi-gloss take a proper wash. Flat and matte paint burnishes if it is rubbed, so those rooms get a lighter spot-clean and we say which rooms that was." },
+  { q: "Do you remove mold from walls?", a: "Surface mildew on a painted bathroom wall, yes. Mold that has grown into the drywall or the wall behind it, no; that is a remediation job, and washing the face of it hides the problem without fixing it. If we find that, we tell you and leave it alone." },
+  { q: "Do I need to move furniture?", a: "Move what you can. A wall behind a sofa gets washed to where we can reach without dragging the sofa, and we do not move anything over 25 pounds. Pictures and shelves come down before we arrive if you want the wall behind them done." },
+  { q: "Do you offer wall cleaning for rentals or move-outs?", a: "Yes. The wall add-on is on the move-out booking form as well as the standard one. The entry wall and the stairwell are what a Calgary landlord photographs first, so spot cleaning those two is the usual choice; the full wash is for a repaint or a listing." },
+  { q: "Do you clean ceilings in homes affected by smoke or nicotine?", a: "Not as part of the wall add-on. A flat ceiling that is reachable from a step ladder can be added for an extra charge agreed before the visit, and it takes longer than a wall of the same size. Popcorn ceilings are not cleaned and are usually replaced instead. Whichever ceiling it is, we do not promise the stain or the smell goes completely." },
 ];
 
 /** Cheapest bookable wall service, derived from bk-config — never typed. */
@@ -144,23 +146,46 @@ const WALL_FULL = addOnFromPrice("standard", "complete-inside-wall-washing") ?? 
  *  figure called a "flat rate" understated the large end by up to $115. */
 const WALL_SPOT_MAX = addOnMaxPrice("standard", "spot-cleaning-inside-walls") ?? 0;
 const WALL_FULL_MAX = addOnMaxPrice("standard", "complete-inside-wall-washing") ?? 0;
-const WALL_PRICE_LINE = `Wall washing is added to a standard, deep or move-out clean rather than booked on its own. Spot cleaning runs ${formatPrice(WALL_FROM)} to ${formatPrice(WALL_SPOT_MAX)} and a full top-to-bottom wash ${formatPrice(WALL_FULL)} to ${formatPrice(WALL_FULL_MAX)}, by home size, before 5% GST. Your exact figure is on the quote before you book.`;
+const WALL_PRICE_LINE = `Wall washing rides on a standard, deep or move-out clean; it is not a visit on its own. Spot cleaning is ${formatPrice(WALL_FROM)} to ${formatPrice(WALL_SPOT_MAX)} by home size and the full top-to-bottom wash ${formatPrice(WALL_FULL)} to ${formatPrice(WALL_FULL_MAX)}, both before 5% GST. The figure for your home is on the quote before you pay.`;
+
+/** Both wall extras at every published home size, plus the smallest bill each
+ *  can arrive on (a standard clean of that size with spot cleaning added).
+ *  Every figure is read from the bk-config rows the booking form prices from. */
+const STANDARD_ROWS = standardTierRows();
+const WALL_ROWS = PRICING_TIERS.map((tier, i) => {
+  const bedroomId = bedroomOptions("standard").find((b) => b.value === tier.beds)?.id ?? null;
+  const addOns = addOnsFor("standard", bedroomId);
+  const spot = addOns.find((a) => a.id === "spot-cleaning-inside-walls")?.price;
+  const full = addOns.find((a) => a.id === "complete-inside-wall-washing")?.price;
+  const standard = Number((STANDARD_ROWS[i]?.price ?? "").replace(/[^0-9.]/g, ""));
+  return {
+    beds: tier.label,
+    spot: spot === undefined ? "" : formatPrice(spot),
+    full: full === undefined ? "" : formatPrice(full),
+    withClean: spot === undefined || !standard ? "" : formatPrice(Math.round((standard + spot) * 100) / 100),
+  };
+});
+const STANDARD_FROM = STANDARD_ROWS[0]?.price ?? "";
+const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
+
+const PAGE_TITLE = `Wall Washing & Cleaning Calgary from ${formatPrice(WALL_FROM)} | Duty Cleaners`;
+const META_DESCRIPTION = `Wall washing in Calgary from ${formatPrice(WALL_FROM)}: static-held dust film, hard-water haze and cooking film washed off painted walls, added to any clean we do.`;
 
 export default function WallWashingCalgary() {
 
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>Wall Washing & Wall Cleaning Calgary | Duty Cleaners</title>
-        <meta name="description" content="Wall washing and wall cleaning in Calgary — scuffs, handprints and cooking film off painted walls. Added to a standard, deep or move-out clean." />
+        <title>{PAGE_TITLE}</title>
+        <meta name="description" content={META_DESCRIPTION} />
         <link rel="canonical" href="https://dutycleaners.ca/wall-washing-wall-cleaning-calgary/" />
-        <meta property="og:title" content="Wall Washing & Wall Cleaning Calgary | Duty Cleaners" />
-        <meta property="og:description" content="Wall washing and wall cleaning in Calgary — scuffs, handprints and cooking film off painted walls. Added to a standard, deep or move-out clean." />
+        <meta property="og:title" content={PAGE_TITLE} />
+        <meta property="og:description" content={META_DESCRIPTION} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/wall-washing-wall-cleaning-calgary/" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Wall Washing & Wall Cleaning Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Wall washing and wall cleaning in Calgary — scuffs, handprints and cooking film off painted walls. Added to a standard, deep or move-out clean." />
+        <meta name="twitter:title" content={PAGE_TITLE} />
+        <meta name="twitter:description" content={META_DESCRIPTION} />
         {/* Mirrors the FAQ rendered on this page. Generated from the same
             `faqs` array, so the markup can never drift from the copy. */}
         <script type="application/ld+json">
@@ -175,7 +200,7 @@ export default function WallWashingCalgary() {
           })}
         </script>
         <script type="application/ld+json">
-          {JSON.stringify(buildServiceSchema({ name: "Wall Washing and Wall Cleaning", description: "Wall washing and wall cleaning in Calgary — scuffs, handprints and cooking film off painted walls. Added to a standard, deep or move-out clean.", path: "/wall-washing-wall-cleaning-calgary", city: "calgary", offerFrom: WALL_FROM, offerTo: WALL_FULL_MAX, offerNote: "Added to a standard, deep or move-out clean; not sold as a standalone visit." }))}
+          {JSON.stringify(buildServiceSchema({ name: "Wall Washing and Wall Cleaning", description: META_DESCRIPTION, path: "/wall-washing-wall-cleaning-calgary", city: "calgary", offerFrom: WALL_FROM, offerTo: WALL_FULL_MAX, offerNote: "Added to a standard, deep or move-out clean; not sold as a standalone visit." }))}
         </script>
       </Helmet>
       <Navigation city="calgary" />
@@ -194,14 +219,14 @@ export default function WallWashingCalgary() {
           <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
             <div className="flex-1 text-center lg:text-left">
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
-                <Shield className="w-4 h-4 text-accent" />
-                <span className="text-white/90 text-sm font-medium">100% Satisfaction Guaranteed</span>
+                <Star className="w-4 h-4 text-accent" />
+                <span className="text-white/90 text-sm font-medium">{RATING_CLAIM}, a missed mark re-cleaned free within {POLICY.guaranteeWindowHours} hours</span>
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                 Wall Washing & Cleaning <span className="text-accent">Calgary</span>
               </h1>
               <p className="text-lg text-white/80 mb-10 leading-relaxed max-w-2xl">
-                Painted walls washed by hand. Scuffs, handprints, cooking film and the grey film a duster only moves around come off without stripping the finish.
+                Walls washed by hand, not wiped. The static-held dust film, the halo above the registers and the hard-water haze in the bathroom come off, and the paint finish stays.
               </p>
               <p className="text-lg text-white/90 mb-10 leading-relaxed max-w-2xl">
                 {WALL_PRICE_LINE}
@@ -223,7 +248,7 @@ export default function WallWashingCalgary() {
             <div className="flex-shrink-0 w-full lg:w-[500px]">
               <img width={1024} height={768}
                 src={livingRoomWalls}
-                alt="Professionally cleaned walls in a Calgary home"
+                alt="Washed living room walls in a Calgary home"
                 className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                loading="eager" fetchPriority="high"/>
             </div>
@@ -249,19 +274,19 @@ export default function WallWashingCalgary() {
             <div className="text-center mb-12 max-w-3xl mx-auto">
               <span className="text-accent font-semibold text-sm uppercase tracking-wider">What comes off</span>
               <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">
-                What wall cleaning actually takes off
+                What comes off a Calgary wall
               </h2>
               <p className="text-muted-foreground">
-                Scuffs, fingerprints around switches, cooking film above the stove, and the grey band that builds along a stairwell.
+                The dust film first, then the furnace halo, the haze in the bathroom, the cooking film beside the stove, and the handprints along the hallway.
               </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-              <ResultCard src={dirtyWallBefore} caption="Dirty walls before cleaning" />
-              <ResultCard src={livingRoomWalls} caption="Living room wall refresh" />
-              <ResultCard src={stainCloseup} caption="Close-up stain removal" />
-              <ResultCard src={hallwayClean} caption="Hallway wall after washing" />
-              <ResultCard src={kitchenGrease} caption="Kitchen wall grease removal" />
-              <ResultCard src={wallStainRemoval} caption="Smudge & handprint clean-up" />
+              <ResultCard src={dirtyWallBefore} caption="The grey film on a wall before washing" />
+              <ResultCard src={livingRoomWalls} caption="Living room walls after the full wash" />
+              <ResultCard src={stainCloseup} caption="One mark, worked out by hand" />
+              <ResultCard src={hallwayClean} caption="A hallway with the handprints gone" />
+              <ResultCard src={kitchenGrease} caption="Cooking film off the wall beside a stove" />
+              <ResultCard src={wallStainRemoval} caption="Scuffs along a stairwell, cleaned" />
             </div>
           </AnimatedSection>
         </div>
@@ -274,7 +299,7 @@ export default function WallWashingCalgary() {
             <div className="max-w-5xl mx-auto">
               <div className="text-center mb-12">
                 <span className="text-accent font-semibold text-sm uppercase tracking-wider">Common Issues</span>
-                <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Common Issues We Fix</h2>
+                <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">The six marks Calgary walls collect</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
                   The static-held dust film is the most common call in Calgary. These are the rest.
                 </p>
@@ -298,7 +323,7 @@ export default function WallWashingCalgary() {
               <div className="text-center mb-12">
                 <span className="text-accent font-semibold text-sm uppercase tracking-wider">Our Service</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">
-                  What's Included in Our Wall Washing
+                  What a Calgary wall wash includes
                 </h2>
               </div>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -325,14 +350,63 @@ export default function WallWashingCalgary() {
           <AnimatedSection>
             <div className="text-center mb-14 max-w-3xl mx-auto">
               <span className="text-accent font-semibold text-sm uppercase tracking-wider">Process</span>
-              <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">How Wall Cleaning Works</h2>
-              <p className="text-muted-foreground">Wall washing is an add-on, so it starts where your clean does:
-                tick it in the booking form and the price appears with it.</p>
+              <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">How wall washing is booked and done in Calgary</h2>
+              <p className="text-muted-foreground">There is no separate wall visit. The add-on goes on whichever clean you are booking, and the
+                walls in a room are done before that room's floor.</p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
               {steps.map((s, i) => (
                 <StepCard key={i} step={i + 1} icon={s.icon} title={s.title} description={s.description} />
               ))}
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* Cost by home size */}
+      <section className="py-16 md:py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <AnimatedSection>
+            <div className="max-w-3xl mx-auto">
+              <div className="text-center mb-8">
+                <span className="text-accent font-semibold text-sm uppercase tracking-wider">Price list</span>
+                <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">What wall washing costs in Calgary</h2>
+                <p className="text-muted-foreground">
+                  The add-on is priced by the size of the home on the booking, not by the number of walls,
+                  and the same row applies whether it rides on a standard, deep or move-out clean. The last
+                  column is the smallest bill it can arrive on: a standard clean of that size with spot
+                  cleaning added. All figures before 5% GST.
+                </p>
+              </div>
+              <div className="overflow-x-auto border border-border rounded-xl">
+                <table className="w-full">
+                  <thead className="bg-brand-navy text-brand-navy-foreground">
+                    <tr>
+                      <th className="py-3 px-4 text-left text-sm font-bold">Home size</th>
+                      <th className="py-3 px-4 text-right text-sm font-bold">Spot cleaning</th>
+                      <th className="py-3 px-4 text-right text-sm font-bold">Full wash</th>
+                      <th className="py-3 px-4 text-right text-sm font-bold">Standard clean + spot</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {WALL_ROWS.map((r, i) => (
+                      <tr key={r.beds} className={i % 2 ? "bg-secondary/20" : "bg-card"}>
+                        <td className="py-3 px-4 text-foreground">{r.beds}</td>
+                        <td className="py-3 px-4 text-right font-bold text-foreground">{r.spot}</td>
+                        <td className="py-3 px-4 text-right font-bold text-foreground">{r.full}</td>
+                        <td className="py-3 px-4 text-right text-foreground">{r.withClean}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p className="mt-6 text-muted-foreground leading-relaxed">
+                So the least a Calgary wall job can cost is a standard clean from {STANDARD_FROM} plus spot
+                wall cleaning from {formatPrice(WALL_FROM)}, before GST. A full wash of a one-bedroom on a
+                move-out is the move-out rate plus {formatPrice(WALL_FULL)}. The cleans themselves, and the
+                other add-ons, are on{" "}
+                <Link to="/calgary/pricing/" className="text-primary underline underline-offset-4">Calgary house cleaning prices by home size</Link>.
+              </p>
             </div>
           </AnimatedSection>
         </div>
@@ -344,8 +418,8 @@ export default function WallWashingCalgary() {
           <AnimatedSection>
             <div className="max-w-5xl mx-auto">
               <div className="text-center mb-12">
-                <span className="text-accent font-semibold text-sm uppercase tracking-wider">Why Choose Us</span>
-                <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Why Calgary Homeowners Choose Us</h2>
+                <span className="text-accent font-semibold text-sm uppercase tracking-wider">Plain terms</span>
+                <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">What you are paying for when you add the walls</h2>
               </div>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {whyUs.map((w, i) => (
@@ -370,9 +444,15 @@ export default function WallWashingCalgary() {
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-10">
                 <span className="text-accent font-semibold text-sm uppercase tracking-wider">Service Areas</span>
-                <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Where We Serve in Calgary</h2>
-                <p className="text-muted-foreground max-w-xl mx-auto">
-                  We offer professional wall cleaning to homeowners across Calgary and surrounding communities.
+                <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Wall washing across Calgary, Airdrie and Cochrane</h2>
+                <p className="text-muted-foreground max-w-2xl mx-auto">
+                  Inside Calgary city limits the price is the row above and nothing else. The towns around
+                  the city carry a {TRAVEL_FEE} travel fee on the clean the walls are added to, and two of them
+                  have their own pages:{" "}
+                  <Link to="/cleaning-services-airdrie/" className="text-primary underline underline-offset-4">house cleaning in Airdrie</Link>{" "}
+                  and{" "}
+                  <Link to="/cleaning-services-cochrane/" className="text-primary underline underline-offset-4">Cochrane house cleaners</Link>.
+                  The wash, and the row it is priced from, are the same in every one of them.
                 </p>
               </div>
               <div className="flex flex-wrap justify-center gap-3">
@@ -399,7 +479,7 @@ export default function WallWashingCalgary() {
             <div className="max-w-3xl mx-auto">
               <div className="text-center mb-10">
                 <span className="text-accent font-semibold text-sm uppercase tracking-wider">FAQ</span>
-                <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Wall Cleaning FAQs</h2>
+                <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Wall washing questions from Calgary customers</h2>
               </div>
               <Accordion type="single" collapsible className="bg-white rounded-xl border border-border px-6">
                 {faqs.map((f, i) => (
@@ -428,11 +508,15 @@ export default function WallWashingCalgary() {
                 </div>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
-                Rated {CITY_PROOF.calgary.googleRating} on Google across {CITY_PROOF.calgary.googleReviewCount} Calgary reviews
+                {CITY_PROOF.calgary.googleRating} on Google from {CITY_PROOF.calgary.googleReviewCount} Calgary reviews
               </h2>
-              <p className="text-xl font-semibold text-accent mb-6">100% Satisfaction Guarantee</p>
+              <p className="text-xl font-semibold text-accent mb-6">A missed mark is re-cleaned free</p>
               <p className="text-white/90 mb-8 max-w-xl mx-auto">
-                We stand behind the quality of our staff. If you're not 100% satisfied with your cleaning, we'll come back and re-clean it at no additional charge, as long as we're informed within 24 hours after the cleaning.
+                The Calgary listing carries fewer reviews than Edmonton's; the rating is the same. Tell us
+                within {POLICY.guaranteeWindowHours} hours about a wall we got wrong and it is put right at
+                no charge.{" "}
+                <Link to="/reviews/" className="text-white underline underline-offset-4">Read the reviews</Link>{" "}
+                from both cities before you decide.
               </p>
               <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10" asChild>
                 <Link to="/about-us/">About Duty Cleaners</Link>
@@ -449,7 +533,7 @@ export default function WallWashingCalgary() {
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-12">
                 <span className="text-accent font-semibold text-sm uppercase tracking-wider">Contact</span>
-                <h2 className="text-3xl md:text-4xl font-bold mt-2">Get in Touch</h2>
+                <h2 className="text-3xl md:text-4xl font-bold mt-2">The Calgary office</h2>
               </div>
               <div className="grid md:grid-cols-3 gap-6">
                 <Card className="text-center group transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
@@ -457,8 +541,8 @@ export default function WallWashingCalgary() {
                     <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:rotate-12">
                       <Phone className="w-6 h-6 text-primary" />
                     </div>
-                    <h3 className="font-semibold text-lg mb-2">Give Us a Call</h3>
-                    <p className="text-muted-foreground text-sm mb-3">Questions before you book</p>
+                    <h3 className="font-semibold text-lg mb-2">Phone</h3>
+                    <p className="text-muted-foreground text-sm mb-3">Ask about a paint finish or a stain before you book</p>
                     <a href="tel:4037681341" className="text-primary font-semibold hover:underline">(403) 768-1341</a>
                   </CardContent>
                 </Card>
@@ -468,7 +552,7 @@ export default function WallWashingCalgary() {
                     <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:rotate-12">
                       <MapPin className="w-6 h-6 text-primary" />
                     </div>
-                    <h3 className="font-semibold text-lg mb-2">Our Office</h3>
+                    <h3 className="font-semibold text-lg mb-2">Address</h3>
                     <p className="text-muted-foreground text-sm mb-3">2835 37 Street SW #24<br />Calgary, AB</p>
                     <a
                       href="https://www.google.com/maps/search/?api=1&query=2835+37+Street+SW+%2324+Calgary+AB"
@@ -486,7 +570,7 @@ export default function WallWashingCalgary() {
                     <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:rotate-12">
                       <Clock className="w-6 h-6 text-primary" />
                     </div>
-                    <h3 className="font-semibold text-lg mb-2">Hours of Operation</h3>
+                    <h3 className="font-semibold text-lg mb-2">Hours</h3>
                     <p className="text-muted-foreground text-sm"><strong>Mon–Sat:</strong> 8am – 8pm</p>
                     <p className="text-muted-foreground text-sm mb-3"><strong>Sunday:</strong> 9am – 3pm</p>
                     <a
@@ -495,7 +579,7 @@ export default function WallWashingCalgary() {
                       rel="noopener noreferrer"
                       className="text-primary font-semibold hover:underline"
                     >
-                      Reviews
+                      Google listing
                     </a>
                   </CardContent>
                 </Card>
@@ -512,18 +596,21 @@ export default function WallWashingCalgary() {
         </div>
         <div className="container mx-auto px-4 relative z-10 text-center">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Add wall washing to your next clean</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Book the walls with the next clean</h2>
             <p className="text-white/90 mb-8 max-w-xl mx-auto">
-              Spot cleaning from {formatPrice(WALL_FROM)} and a full wash from {formatPrice(WALL_FULL)}, by home size, before GST. Nothing is charged until the clean is done.
+              Spot cleaning from {formatPrice(WALL_FROM)}, the full wash from {formatPrice(WALL_FULL)}, on top of a
+              standard clean from {STANDARD_FROM}, all before GST and none of it charged until the clean is
+              done. The cleans it can ride on are listed with their starting prices under{" "}
+              <Link to="/calgary/services/" className="text-white underline underline-offset-4">every Calgary cleaning service, with starting prices</Link>.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" variant="accent" className="w-full sm:w-auto text-base px-8" asChild>
-                <a href="#quote">Get Instant Estimate</a>
+                <a href="#quote">See My Instant Price</a>
               </Button>
               <Button size="lg" variant="outline" className="w-full sm:w-auto text-base border-white/30 text-white hover:bg-white/10" asChild>
                 <a href="tel:4037681341">
                   <Phone className="w-4 h-4 mr-2" />
-                  Call Now
+                  Call (403) 768-1341
                 </a>
               </Button>
             </div>

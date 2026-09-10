@@ -10,6 +10,8 @@ interface CityCoverageGridProps {
   neighbourhoods: CityLocation[];
   surrounding: CityLocation[];
   viewAllTo?: string;
+  /** One line under the heading. Each hub writes its own so the two do not repeat each other. */
+  intro?: string;
 }
 
 const PREVIEW_COUNT = 18;
@@ -39,6 +41,7 @@ export default function CityCoverageGrid({
   neighbourhoods,
   surrounding,
   viewAllTo = "/locations",
+  intro = "Reference-checked cleaners across the city and the communities around it.",
 }: CityCoverageGridProps) {
   const [expanded, setExpanded] = useState(false);
   // Every chip renders. The overflow is hidden with CSS rather than sliced out
@@ -54,13 +57,11 @@ export default function CityCoverageGrid({
         <h3 className="text-2xl md:text-3xl font-bold">
           Covering all of <Accent>{city}</Accent>
         </h3>
-        <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
-          Reference-checked cleaners across the city and the communities around it.
-        </p>
+        <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">{intro}</p>
       </div>
 
       <p className="text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground mb-3">
-        {city} Neighborhoods
+        {city} Neighbourhoods
       </p>
       <div className="flex flex-wrap gap-2.5">
         {neighbourhoods.map((loc, index) => (

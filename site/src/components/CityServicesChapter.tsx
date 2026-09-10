@@ -11,11 +11,39 @@ import useRevealOnScroll from "@/hooks/use-reveal-on-scroll";
  * recurring plan, so the card leads with them rather than describing the
  * cadence in the abstract.
  */
-const RECURRING_PITCH = `Same cleaner on a schedule, and from the second visit you save ${FREQUENCIES
+const RECURRING_DISCOUNTS = FREQUENCIES
   .filter((frequency) => frequency.discount > 0)
   .sort((a, b) => b.discount - a.discount)
   .map((frequency) => `${Math.round(frequency.discount * 100)}% ${frequency.label.toLowerCase()}`)
-  .join(", ")}.`;
+  .join(", ");
+
+/**
+ * Card copy per city. The services and their links are identical; the words
+ * are not, because both hubs render this chapter and the money-page contract
+ * caps how much of the Calgary hub may repeat the Edmonton one.
+ */
+const COPY = {
+  Edmonton: {
+    heading: <>Pick the clean that fits the job in <Accent>Edmonton</Accent></>,
+    standard: "A maintenance clean for kitchens, bathrooms, bedrooms, floors, dusting, and surfaces. Best for homes that need regular upkeep.",
+    deep: "A more detailed top-to-bottom clean for built-up dust, grime, baseboards, bathrooms, kitchens, and hard-to-reach areas.",
+    move: "A detailed empty-home clean designed for move transitions, listing photos, tenant turnover, and landlord walkthroughs.",
+    moveNote: "Keys in, keys out: timed around your walkthrough.",
+    recurring: `Same cleaner on a schedule, and from the second visit you save ${RECURRING_DISCOUNTS}.`,
+    post: "Drywall and construction dust after a renovation or a new build.",
+    commercial: "Offices, retail, warehouses and medical space, scoped in writing after a walkthrough.",
+  },
+  Calgary: {
+    heading: <>Calgary services, from upkeep to <Accent>handover</Accent></>,
+    standard: "The upkeep visit: kitchen, bathrooms, bedrooms, floors and the dusting, worked from the same list every time. The right choice for a home that is already in reasonable shape.",
+    deep: "Standard plus the deep-clean package: baseboards, the film on tile and glass, the strip along the floor edge where chinook grit settles. The usual answer to a Calgary spring.",
+    move: "An empty-home clean for the handover, timed to the walkthrough: for tenants, landlords, sellers and the photos that go on the listing.",
+    moveNote: "Booked against the possession date, not the calendar month.",
+    recurring: `Same cleaner, set schedule, and from the second visit the discount applies: ${RECURRING_DISCOUNTS}.`,
+    post: "Fine dust from drywall and sanding, after a renovation or on possession of a new build.",
+    commercial: "Offices, retail and clinics, scoped in writing after a walkthrough.",
+  },
+} as const;
 
 interface CityServicesChapterProps {
   city: "Edmonton" | "Calgary";
@@ -43,15 +71,14 @@ export default function CityServicesChapter({
   deepImageAlt,
 }: CityServicesChapterProps) {
   const heading = useRevealOnScroll<HTMLDivElement>();
+  const copy = COPY[city];
 
   return (
     <section className="band band-white band-hairline">
       <div className="container mx-auto px-4">
         <div ref={heading.ref} className={`max-w-2xl ${heading.className}`}>
           <Eyebrow>Services</Eyebrow>
-          <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">
-            Our Top Services in <Accent>{city}</Accent>
-          </h2>
+          <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">{copy.heading}</h2>
           <span className={`rule-draw mt-4 ${heading.className}`} aria-hidden="true" />
         </div>
 
@@ -74,10 +101,7 @@ export default function CityServicesChapter({
                 <Sparkles className="h-7 w-7 text-primary" aria-hidden="true" />
               </div>
               <h3 className="display-serif text-2xl font-bold md:text-3xl">Standard Cleaning</h3>
-              <p className="mt-3 max-w-[52ch] text-muted-foreground leading-relaxed">
-                A maintenance clean for kitchens, bathrooms, bedrooms, floors, dusting, and surfaces.
-                Best for homes that need regular upkeep.
-              </p>
+              <p className="mt-3 max-w-[52ch] text-muted-foreground leading-relaxed">{copy.standard}</p>
               <Link
                   to={canonicalForPath(`${basePath}/regular-cleaning`)}
                   className="mt-5 inline-flex items-center font-semibold text-primary transition-transform duration-300 group-hover:translate-x-1 after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
@@ -105,10 +129,7 @@ export default function CityServicesChapter({
                 <Home className="h-6 w-6 text-primary" aria-hidden="true" />
               </div>
               <h3 className="font-bold">Deep Cleaning</h3>
-              <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">
-                A more detailed top-to-bottom clean for built-up dust, grime, baseboards, bathrooms,
-                kitchens, and hard-to-reach areas.
-              </p>
+              <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">{copy.deep}</p>
               <Link
                   to={canonicalForPath(`${basePath}/deep-cleaning`)}
                   className="mt-3 inline-flex items-center text-sm font-semibold text-primary transition-transform duration-300 group-hover:translate-x-1 after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
@@ -128,13 +149,10 @@ export default function CityServicesChapter({
           </div>
           <div className="flex-1">
             <h3 className="display-serif text-2xl font-bold">Move-In / Move-Out</h3>
-            <p className="mt-2 max-w-[60ch] leading-relaxed text-brand-navy-foreground/85">
-              A detailed empty-home clean designed for move transitions, listing photos, tenant
-              turnover, and landlord walkthroughs.
-            </p>
+            <p className="mt-2 max-w-[60ch] leading-relaxed text-brand-navy-foreground/85">{copy.move}</p>
             <p className="mt-3 inline-flex items-center gap-2 text-sm text-brand-navy-foreground/70">
               <KeyRound className="h-4 w-4" aria-hidden="true" />
-              Keys in, keys out — timed around your walkthrough.
+              {copy.moveNote}
             </p>
           </div>
           <Link
@@ -160,9 +178,7 @@ export default function CityServicesChapter({
           </div>
           <div className="flex-1">
             <h3 className="font-bold">Recurring</h3>
-            <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
-              {RECURRING_PITCH}
-            </p>
+            <p className="mt-1 text-sm text-muted-foreground leading-relaxed">{copy.recurring}</p>
           </div>
           <Link
               to={canonicalForPath(`${basePath}/recurring-cleaning`)}
@@ -181,9 +197,7 @@ export default function CityServicesChapter({
           </div>
           <div className="flex-1">
             <h3 className="font-bold">Post-Construction</h3>
-            <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
-              Drywall and construction dust after a renovation or a new build.
-            </p>
+            <p className="mt-1 text-sm text-muted-foreground leading-relaxed">{copy.post}</p>
           </div>
           <Link
               to={canonicalForPath(`${basePath}/post-construction-cleaning`)}
@@ -211,9 +225,7 @@ export default function CityServicesChapter({
           </div>
           <div className="flex-1">
             <h3 className="font-bold">Commercial &amp; Office</h3>
-            <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
-              Offices, retail, warehouses and medical space, scoped in writing after a walkthrough.
-            </p>
+            <p className="mt-1 text-sm text-muted-foreground leading-relaxed">{copy.commercial}</p>
           </div>
           <Link
             to={canonicalForPath(

@@ -1,8 +1,10 @@
-import { CITY_PROOF } from "@/data/proof";
+import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, useState } from "react";
 import { CALGARY_REVIEWS } from "@/data/reviews";
 import { schemaAddressFor, BRANCH_PROFILES, BRANCH_IDENTITY } from "@/data/proof";
+import { POLICY } from "@/data/policy";
+import { travelFee } from "@/data/addon-table";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -52,8 +54,46 @@ import galleryCalgaryWindow from "@/assets/gallery/calgary-window-cleaning.webp"
 import gallerySpotlessKitchen from "@/assets/gallery/calgary-spotless-kitchen.webp";
 import galleryBathroomDeep from "@/assets/gallery/calgary-bathroom-deep.webp";
 import galleryToiletBA from "@/assets/gallery/calgary-toilet-ba.webp";
-import { sitePriceRange } from "@/data/pricing";
+import {
+  sitePriceRange,
+  standardTierRows,
+  deepCleanTierRows,
+  moveInOutTierRows,
+  formatPrice,
+  FREQUENCIES,
+  HOURLY_RATE,
+} from "@/data/pricing";
 import DeferUntilVisible from "@/components/DeferUntilVisible";
+
+/*
+  Every figure in the prose below is read from bk-config or policy.ts; the
+  published-prices guard bans a typed dollar sign under src/pages. Prices are
+  the same as Edmonton's by design, so the words, not the numbers, are what
+  keep this page from being a copy of the homepage.
+*/
+const STANDARD = standardTierRows();
+const FROM_STANDARD = STANDARD[0]?.price ?? "";
+const FROM_STANDARD_3BED = STANDARD.find((row) => row.beds === "3 Bedroom")?.price ?? "";
+const FROM_DEEP = deepCleanTierRows()[0]?.price ?? "";
+const FROM_MOVE = moveInOutTierRows()[0]?.price ?? "";
+const AIRBNB_RATE = formatPrice(HOURLY_RATE);
+const RECURRING_DISCOUNTS = FREQUENCIES.filter((f) => f.discount > 0)
+  .sort((a, b) => b.discount - a.discount)
+  .map((f) => `${Math.round(f.discount * 100)}% ${f.label.toLowerCase()}`)
+  .join(", ");
+/** Outside city limits only; post-construction has its own row in bk-config. */
+const homeTravel = travelFee("standard");
+const postTravel = travelFee("post-construction");
+const HOME_TRAVEL_FEE = homeTravel === null ? "a travel fee quoted when you book" : `a ${formatPrice(homeTravel)} travel fee`;
+const POST_TRAVEL_FEE = postTravel === null ? "a fee quoted when you book" : formatPrice(postTravel);
+const CALGARY_REVIEW_COUNT = CITY_PROOF.calgary.googleReviewCount;
+/** The ring towns that are not linked by name in the coverage paragraph. */
+const OUTER_TOWNS = calgarySurrounding
+  .filter((town) => !["Airdrie", "Cochrane", "Okotoks", "Chestermere"].includes(town.name))
+  .map((town) => town.name);
+
+const PAGE_TITLE = `House Cleaning Calgary from ${FROM_STANDARD} | Pay After the Clean`;
+const PAGE_DESCRIPTION = "House cleaning services in Calgary. Pay after your clean, customer-rated cleaners, flexible scheduling. Get an instant quote in 60 seconds.";
 
 /* Width-descriptor set for the hero, the LCP element on this page. Without
    it a phone pulled the same 1920px file as a desktop: hero-room-calgary at 1920w against
@@ -202,21 +242,30 @@ export default function Calgary2() {
       { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "09:00", closes: "15:00" },
     ]
   };
+  // Written for Calgary, not copied from the homepage and re-labelled: the
+  // money-page contract measures how much of this page repeats the Edmonton
+  // hub, and FAQ answers ship inside FAQPage JSON-LD, so they count twice.
   const faqs = [{
-    question: "Do you serve all areas of Calgary?",
-    answer: "Yes. We clean in all quadrants (NW, NE, SW, SE, Downtown) and the surrounding communities, including Airdrie, Chestermere, Langdon, Cochrane, Okotoks, Strathmore, Crossfield, High River and Diamond Valley."
+    question: "Which parts of Calgary do you cover?",
+    answer: `All four quadrants and the centre, with no trip fee inside city limits. The towns around the city are covered too: Airdrie, Cochrane, Okotoks, Chestermere, ${OUTER_TOWNS.join(", ")}. Past the limits, home cleans carry ${HOME_TRAVEL_FEE}.`
   }, {
-    question: "How do Calgary winters affect your cleaning service?",
-    answer: "Our Calgary cleaners work year-round. In winter we schedule buffer time for traffic and weather delays."
+    question: "What does a house clean cost in Calgary?",
+    answer: `The same as in Edmonton. One bedroom and one bathroom: ${FROM_STANDARD}. Three bedrooms: ${FROM_STANDARD_3BED}. Deep cleans begin at ${FROM_DEEP} and move-outs at ${FROM_MOVE}, and all of it is before 5% GST. The form shows your exact figure before you pick a date.`
   }, {
-    question: "Do you clean high-rise condos in downtown Calgary?",
-    answer: "Yes. Our Calgary team cleans high-rise condos in the Beltline, Downtown and along 17th Avenue, and knows the building protocols, parking passes and access requirements that come with them."
+    question: "Does a chinook winter change how you clean?",
+    answer: "It changes what people book, not how we work. The grit that each thaw-and-refreeze brings in is why Calgary homes book a deep clean in late winter and standard visits the rest of the year. The teams work year-round; in winter we add buffer time for the roads."
   }, {
-    question: "Do you offer same-day cleaning service in Calgary?",
-    answer: "Sometimes. Same-day and next-day slots depend on the schedule; call and we will tell you what is open."
+    question: "Do you clean condos in the Beltline and downtown towers?",
+    answer: "Yes. The Calgary team cleans in the Beltline, Downtown, Eau Claire and along 17th Avenue, and is used to condo rules: signing in at the desk, visitor parking passes, and whatever the building needs for access. Put the building's requirements on the booking and the cleaner arrives knowing them."
   }, {
-    question: "What cleaning products do you use?",
-    answer: "We bring all cleaning supplies and equipment, and we can use specific products you prefer — just tell us when you book."
+    question: "Can I get a same-day clean in Calgary?",
+    answer: "Occasionally. It depends on what the day's schedule has open. Phone the Calgary line and we will say straight away rather than leave you waiting on a callback."
+  }, {
+    question: "Do I have to be there while you clean?",
+    answer: "No. A key, a lockbox code or a smart-lock code is how most Calgary customers handle it, and the team locks the door behind them. The water has to be on, and the vacuum needs an outlet."
+  }, {
+    question: "Whose products and equipment are used?",
+    answer: `Ours; the team brings everything. Eco-friendly products cost ${POLICY.ecoProductsFee} extra (${POLICY.ecoProductsHowToRequest}), and anything you would rather we did not use in the house goes on the booking note.`
   }];
   // Schema must mirror the FAQs actually rendered on the page.
   const faqSchema = {
@@ -232,16 +281,16 @@ export default function Calgary2() {
   const googleReviews = CALGARY_REVIEWS;
   return <>
       <Helmet>
-        <title>House Cleaning Services Calgary | Duty Cleaners</title>
-        <meta name="description" content="House cleaning services in Calgary. Pay after your clean, customer-rated cleaners, flexible scheduling. Get an instant quote in 60 seconds." />
+        <title>{PAGE_TITLE}</title>
+        <meta name="description" content={PAGE_DESCRIPTION} />
         <link rel="canonical" href="https://dutycleaners.ca/cleaning-services-calgary/" />
-        <meta property="og:title" content="House Cleaning Services Calgary | Duty Cleaners" />
-        <meta property="og:description" content="House cleaning services in Calgary. Pay after your clean, customer-rated cleaners, flexible scheduling. Get an instant quote in 60 seconds." />
+        <meta property="og:title" content={PAGE_TITLE} />
+        <meta property="og:description" content={PAGE_DESCRIPTION} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/cleaning-services-calgary/" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning Services Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning services in Calgary. Pay after your clean, customer-rated cleaners, flexible scheduling. Get an instant quote in 60 seconds." />
+        <meta name="twitter:title" content={PAGE_TITLE} />
+        <meta name="twitter:description" content={PAGE_DESCRIPTION} />
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
@@ -288,18 +337,18 @@ export default function Calgary2() {
         <RecentActivityStrip city="Calgary" reviews={googleReviews} />
 
 
-        <StatBand />
+        <StatBand city="Calgary" />
 
         <CityPricingTable />
 
-        <CostGuides />
+        <CostGuides city="Calgary" />
 
         <CityIncludedChapter city="Calgary" />
 
 
-        <DutyCleanPromise />
+        <DutyCleanPromise city="Calgary" />
 
-       <JudgmentFree image={judgmentRoom} alt="Calgary living room reset after a clean — lived-in, not staged" />
+       <JudgmentFree city="Calgary" image={judgmentRoom} alt="Calgary living room reset after a clean, lived-in rather than staged" />
 
         <CityServicesChapter
           city="Calgary"
@@ -309,6 +358,70 @@ export default function Calgary2() {
           deepImage={galleryCalgaryOvenBA}
           deepImageAlt="Oven before and after a Calgary deep clean"
         />
+
+        {/* The services in prose, with the from-prices, in Calgary's own
+            words. The cards above name the services; this says what each one
+            is and who in Calgary books it. */}
+        <section className="py-16 md:py-20 bg-background border-b border-border">
+          <div className="container mx-auto px-4">
+            <div className="mx-auto max-w-3xl">
+              <Eyebrow>By the job</Eyebrow>
+              <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Cleaning services in Calgary, by the job</h2>
+              <div className="mt-6 space-y-5 leading-relaxed text-muted-foreground">
+                <p>
+                  Four cleans cover nearly every Calgary booking. The standard clean is the upkeep visit, from{" "}
+                  {FROM_STANDARD} for a one-bedroom condo and {FROM_STANDARD_3BED} for a three-bedroom house; it is priced
+                  flat by size, so the number does not move if the team is slow. What the visit covers is on the{" "}
+                  <Link to="/calgary/regular-cleaning/" className="font-semibold text-primary hover:underline">Calgary standard cleaning page</Link>.
+                </p>
+                <p>
+                  Add the deep-clean package and it becomes a deep clean, from {FROM_DEEP}: baseboards, tile film, the
+                  strip along the floor edge where chinook grit settles. Most Calgary homes want one in late winter and
+                  standard visits the rest of the year. The room-by-room list is under{" "}
+                  <Link to="/calgary/deep-cleaning/" className="font-semibold text-primary hover:underline">Calgary deep cleaning</Link>.
+                </p>
+                <p>
+                  Move-out cleans start at {FROM_MOVE} and are timed to the walkthrough. Post-construction cleans are
+                  priced on floor area, for the dust a renovation leaves in every vent. Short-term rental hosts book{" "}
+                  <Link to="/airbnb-cleaning-services-calgary/" className="font-semibold text-primary hover:underline">turnover cleaning for Calgary Airbnbs</Link>{" "}
+                  by the hour, at {AIRBNB_RATE} per cleaner. Every service, with its starting price, is on{" "}
+                  <Link to="/calgary/services/" className="font-semibold text-primary hover:underline">the Calgary services page</Link>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-16 md:py-20 bg-secondary/30 border-b border-border">
+          <div className="container mx-auto px-4">
+            <div className="mx-auto max-w-3xl">
+              <Eyebrow>On repeat</Eyebrow>
+              <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Maid service in Calgary, on a schedule or once</h2>
+              <div className="mt-6 space-y-5 leading-relaxed text-muted-foreground">
+                <p>
+                  Ask for a maid service in Calgary and what you get is a standard clean on repeat: one cleaner who knows
+                  the house, the same checklist each time, every week, every two weeks or every four weeks. That is{" "}
+                  <Link to="/calgary/recurring-cleaning/" className="font-semibold text-primary hover:underline">recurring cleaning in Calgary</Link>,
+                  and the discount starts on visit two: {RECURRING_DISCOUNTS}.
+                </p>
+                <p>
+                  It works without a contract. The first clean is billed at the one-time rate, which is the same price as
+                  booking a{" "}
+                  <Link to="/calgary/regular-cleaning/" className="font-semibold text-primary hover:underline">single standard clean in Calgary</Link>,
+                  so nothing is lost by trying one visit and deciding later.
+                </p>
+                <p>
+                  For a house in Mahogany or Seton, a visit every two weeks keeps construction dust and boot-tray grit
+                  from building up between deep cleans; in a Beltline or Mission condo, every four weeks is often enough
+                  because there is less floor. Either way you need not be in: a lockbox code or a smart lock works, and
+                  the team locks up. If the clean is for somebody else,{" "}
+                  <Link to="/gift-card/" className="font-semibold text-primary hover:underline">a gift card</Link> covers any
+                  service and never expires.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* Real Calgary Homes — asymmetric split: sticky heading column left,
             bento mosaic right. */}
@@ -358,6 +471,34 @@ export default function Calgary2() {
 
         <CityRecentCleans city="Calgary" reviews={googleReviews} />
 
+        {/* Who turns up. Same facts as the homepage, from policy.ts and
+            proof.ts, said in Calgary's words with Calgary's review count. */}
+        <section className="py-16 md:py-20 bg-background border-b border-border">
+          <div className="container mx-auto px-4">
+            <div className="mx-auto max-w-3xl">
+              <Eyebrow>Who turns up</Eyebrow>
+              <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Calgary house cleaners you rate after every visit</h2>
+              <div className="mt-6 space-y-5 leading-relaxed text-muted-foreground">
+                <p>
+                  A cleaner's references are checked before their first Calgary job. Then the customer rates each
+                  visit, and that rating is what keeps a cleaner on our list. Low ratings mean we stop sending that
+                  cleaner; there is no other measure that overrides the customer.
+                </p>
+                <p>
+                  That is also why the guarantee is workable. Report a miss within {POLICY.guaranteeWindowHours} hours
+                  and a team returns to redo it, with no charge and no argument. Photos help the team find what was
+                  missed, but the return visit does not depend on them.
+                </p>
+                <p>
+                  Calgary customers have left {CALGARY_REVIEW_COUNT} Google reviews at {RATING_CLAIM}. The{" "}
+                  <Link to="/reviews/" className="font-semibold text-primary hover:underline">reviews page</Link> reprints
+                  them as posted, and the listing itself is a click away if you would rather check the source.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* FAQ — full-bleed tinted band + two-column split. */}
         <section className="py-16 md:py-20 bg-quote-shelf border-y border-quote-shelf-border">
           <div className="container mx-auto px-4">
@@ -405,11 +546,24 @@ export default function Calgary2() {
                 <Eyebrow>Coverage</Eyebrow>
                 <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Calgary Service Areas</h2>
                 <p className="text-muted-foreground mt-4 max-w-[55ch] leading-relaxed">
-                  We clean in Calgary and the communities listed below.
+                  Chinook dust in the entryway, sun through the front windows. We clean the way homes are lived in
+                  here, and there is no trip fee anywhere inside Calgary city limits.
+                </p>
+                {/* The towns outside the limits, linked in a sentence with the
+                    travel fee stated once. Okotoks and Chestermere live under
+                    /locations/; Airdrie and Cochrane keep their legacy URLs. */}
+                <p className="text-muted-foreground mt-3 max-w-[55ch] leading-relaxed">
+                  Beyond the limits the same teams do{" "}
+                  <Link to="/cleaning-services-airdrie/" className="font-semibold text-primary hover:underline">house cleaning in Airdrie</Link>, work as{" "}
+                  <Link to="/cleaning-services-cochrane/" className="font-semibold text-primary hover:underline">Cochrane house cleaners</Link>, and cover{" "}
+                  <Link to="/locations/okotoks/" className="font-semibold text-primary hover:underline">cleaning services in Okotoks</Link> and{" "}
+                  <Link to="/locations/chestermere/" className="font-semibold text-primary hover:underline">Chestermere house cleaning</Link>, with{" "}
+                  {HOME_TRAVEL_FEE} on a home clean and {POST_TRAVEL_FEE} on a post-construction job. The ring towns
+                  farther out are listed below.
                 </p>
                 <p className="text-muted-foreground mt-3 max-w-[55ch] leading-relaxed">
-                  Chinook dust in the entryway, sun through the front windows. We clean the way homes
-                  are lived in here.
+                  <Link to="/calgary/pricing/" className="font-semibold text-primary hover:underline">Calgary house cleaning prices by home size</Link>{" "}
+                  are on one page, and they match Edmonton's to the dollar.
                 </p>
                 <ThresholdLine className="mt-6 max-w-[220px]" />
               </div>
@@ -442,7 +596,12 @@ export default function Calgary2() {
 
 
             <NeighborhoodMarquee city="Calgary" />
-            <CityCoverageGrid city="Calgary" neighbourhoods={calgaryNeighborhoods} surrounding={calgarySurrounding} />
+            <CityCoverageGrid
+              city="Calgary"
+              neighbourhoods={calgaryNeighborhoods}
+              surrounding={calgarySurrounding}
+              intro="Every quadrant, the inner city, and the towns on the ring road and beyond it."
+            />
 
             <div className="mt-10 max-w-5xl mx-auto">
               {/* The map is ~20,000px down the page. lazy() defers rendering
@@ -464,9 +623,9 @@ export default function Calgary2() {
             <div className="mx-auto max-w-5xl">
               <div className="mb-8 text-center">
                 <span className="text-sm font-semibold uppercase tracking-[0.16em] text-accent">Your next step</span>
-                <h2 className="display-serif mt-3 text-3xl font-bold leading-tight text-foreground md:text-4xl">Get your instant price.</h2>
+                <h2 className="display-serif mt-3 text-3xl font-bold leading-tight text-foreground md:text-4xl">See the instant price for your Calgary home.</h2>
                 <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-muted-foreground">
-                  Answer a few questions to see your cleaning quote and choose the service that fits your home.
+                  A few questions, then the figure. Choose the service after you have seen the number, not before.
                 </p>
               </div>
 
@@ -475,7 +634,7 @@ export default function Calgary2() {
                 <div className="bg-card p-2 sm:p-4">
                   <ServiceStartCard phone="(403) 768-1341" phoneLink="tel:4037681341" />
                 </div>
-                <DirectContactPanel phone="(403) 768-1341" phoneLink="tel:4037681341" />
+                <DirectContactPanel city="Calgary" phone="(403) 768-1341" phoneLink="tel:4037681341" />
               </div>
 
 
@@ -483,9 +642,9 @@ export default function Calgary2() {
               {/* What happens next */}
               <ul className="mt-8 grid gap-4 sm:grid-cols-3">
                 {[
-                  { icon: BadgeCheck, title: "We confirm your price", text: "You see the full quote before anything is booked." },
-                  { icon: Users, title: "We assign your cleaner", text: "A reference-checked cleaner is assigned to your home." },
-                  { icon: CalendarCheck, title: "We arrive on time", text: "Your cleaner arrives as scheduled, with supplies and equipment." },
+                  { icon: BadgeCheck, title: "The price is confirmed", text: "The full quote is on screen before any date is booked." },
+                  { icon: Users, title: "A cleaner is assigned", text: "Reference-checked, and rated by the last Calgary customer they cleaned for." },
+                  { icon: CalendarCheck, title: "They arrive in the window", text: "With supplies and equipment; you do not stock anything." },
                 ].map(({ icon: Icon, title, text }) => (
                   <li key={title} className="rounded-xl border border-border bg-card p-5 text-center">
                     <Icon className="mx-auto h-6 w-6 text-accent" aria-hidden="true" />
@@ -501,7 +660,7 @@ export default function Calgary2() {
           <CityCrossLink
             city="Edmonton"
             to="/"
-            description="House cleaning rated 4.9 on Google for Edmonton and surrounding communities, at the same prices and with the same reference-checked cleaners."
+            description={`Edmonton house cleaning at the same prices, rated ${RATING_CLAIM}, with the same reference-checked cleaners and the same guarantee.`}
           />
         </div>
 

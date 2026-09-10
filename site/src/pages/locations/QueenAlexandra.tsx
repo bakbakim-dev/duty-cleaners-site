@@ -176,7 +176,7 @@ const QueenAlexandra = () => {
           <div className="container mx-auto max-w-4xl text-center space-y-6">
             <h2 className="text-3xl md:text-4xl font-bold">Get an instant quote, without all the hassle.</h2>
             <Button size="lg" asChild>
-              <a href="/contact-us/">GET A FREE ESTIMATE</a>
+              <a href="#quote">See My Instant Price</a>
             </Button>
             <div className="pt-8">
               <p className="text-sm text-muted-foreground mb-2">Serving Alberta homes</p>
@@ -257,7 +257,7 @@ const QueenAlexandra = () => {
               Give us a call or request a free quote today. We're right here in the neighbourhood—and ready when you are.
             </p>
             <Button size="lg" asChild>
-              <a href="/contact-us/">GET A FREE ESTIMATE</a>
+              <a href="#quote">See My Instant Price</a>
             </Button>
           </div>
         </section>

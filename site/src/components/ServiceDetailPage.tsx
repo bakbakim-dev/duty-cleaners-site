@@ -2,7 +2,7 @@ import { formatPrice } from "@/data/pricing";
 import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
 import { GST_RATE } from "@/data/pricing";
 import { canonicalForPath, canonicalUrlForPath } from "@/data/legacy-urls";
-import { schemaAddressFor, BRANCH_ID, BRANCH_IDENTITY, CITY_PROOF } from "@/data/proof";
+import { schemaAddressFor, BRANCH_ID, BRANCH_IDENTITY, CITY_PROOF, RATING_CLAIM } from "@/data/proof";
 import { POLICY } from "@/data/policy";
 import CityCrossLink from "@/components/CityCrossLink";
 import { useState, useEffect, type ReactNode } from "react";
@@ -46,6 +46,18 @@ export interface ExtraItem {
   price?: string;
 }
 
+/**
+ * A page-specific prose section: one H2 and whatever the page wants under it,
+ * usually two or three paragraphs with links. The money-page contract asks for
+ * H2s that carry the words people search, a local section, worked prices and
+ * body links to the price list, the services hub, the towns and the reviews.
+ * None of that is template material, so the template takes it as content.
+ */
+export interface ProseSection {
+  heading: ReactNode;
+  body: ReactNode;
+}
+
 interface ServiceDetailPageProps {
   /**
    * "Also serving" card for this service's other-city twin. Verified across all
@@ -66,7 +78,11 @@ interface ServiceDetailPageProps {
   heroImageAlt?: string;
   overviewEyebrow?: string;
   overviewHeading: ReactNode;
-  overviewParagraphs: string[];
+  overviewParagraphs: ReactNode[];
+  /** Rendered directly under the overview, before the checklist. */
+  sections?: ProseSection[];
+  /** Rendered after the FAQ, before the final call to action. */
+  closingSections?: ProseSection[];
   includedHeading: ReactNode;
   includedSubheading?: string;
   included: IncludedCard[];
@@ -147,6 +163,8 @@ const ServiceDetailPage = ({
   fromPrice,
   quoteService,
   crossCity,
+  sections,
+  closingSections,
 }: ServiceDetailPageProps) => {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const [showSticky, setShowSticky] = useState(false);
@@ -162,6 +180,7 @@ const ServiceDetailPage = ({
     : "";
   const quoteLink = `${quoteBase}${quoteQuery}#quote`;
   const pricingLink = canonicalForPath(city === "calgary" ? "/calgary/pricing" : "/edmonton/pricing");
+  const reviewCount = CITY_PROOF[city].googleReviewCount;
 
   const serviceSchema = {
     "@context": "https://schema.org",
@@ -318,6 +337,15 @@ const ServiceDetailPage = ({
                   </a>
                 </Button>
               </div>
+              {/* The sourced rating, from proof.ts, in the hero rather than 900
+                  words down in a sticky bar outside <main>. */}
+              <p className="mt-8 inline-flex items-center gap-2 text-sm text-white/85">
+                <Star className="w-4 h-4 text-brand-gold fill-brand-gold" aria-hidden="true" />
+                <span>
+                  {RATING_CLAIM}
+                  {reviewCount ? `, ${reviewCount} reviews for our ${cityName} team` : ""}
+                </span>
+              </p>
             </div>
             {heroImage && (
               <div className="hidden lg:block">
@@ -366,6 +394,21 @@ const ServiceDetailPage = ({
           </div>
         </div>
       </section>
+
+      {sections && sections.length > 0 && (
+        <section className="pb-16 md:pb-20">
+          <div className="container mx-auto px-4 max-w-4xl space-y-14">
+            {sections.map((section, i) => (
+              <div key={i}>
+                <h2 className="display-serif text-3xl md:text-4xl font-bold mb-6">{section.heading}</h2>
+                <div className="space-y-5 text-lg text-muted-foreground leading-relaxed [&_a]:font-semibold [&_a]:text-primary hover:[&_a]:text-accent">
+                  {section.body}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* What's Included */}
       <section className="py-16 md:py-20 bg-secondary/30">
@@ -498,7 +541,7 @@ const ServiceDetailPage = ({
         <section className="py-16 md:py-20">
           <div className="container mx-auto px-4 max-w-5xl">
             <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-12">
-              Want a little more? Just ask.
+              Add-ons, and what stays out of scope
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
               {extras && extras.length > 0 && (
@@ -581,6 +624,21 @@ const ServiceDetailPage = ({
                 />
               ))}
             </div>
+          </div>
+        </section>
+      )}
+
+      {closingSections && closingSections.length > 0 && (
+        <section className="py-16 md:py-20">
+          <div className="container mx-auto px-4 max-w-4xl space-y-14">
+            {closingSections.map((section, i) => (
+              <div key={i}>
+                <h2 className="display-serif text-3xl md:text-4xl font-bold mb-6">{section.heading}</h2>
+                <div className="space-y-5 text-lg text-muted-foreground leading-relaxed [&_a]:font-semibold [&_a]:text-primary hover:[&_a]:text-accent">
+                  {section.body}
+                </div>
+              </div>
+            ))}
           </div>
         </section>
       )}

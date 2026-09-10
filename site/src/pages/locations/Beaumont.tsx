@@ -1,11 +1,29 @@
 import {
-  CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import { Helmet } from "react-helmet-async"; import { buildLocationSchema } from "@/lib/location-schema"; import {   Phone, CheckCircle2, Star, Shield, Clock, Award, Home, Sparkles, Truck, SprayCan, Bath, UtensilsCrossed, Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail, PaintRoller
+  CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM, COMPANY } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import { Helmet } from "react-helmet-async"; import { buildLocationSchema } from "@/lib/location-schema"; import {   Phone, CheckCircle2, Star, Shield, Clock, Award, Home, Sparkles, Truck, SprayCan, Bath, UtensilsCrossed, Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail, PaintRoller
 } from "lucide-react";
 import beaumontLandmark from "@/assets/gallery/beaumont-landmark.webp";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CoverageChips from "@/components/CoverageChips";
+import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice } from "@/data/pricing";
+import { travelFee } from "@/data/addon-table";
+import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
 
 import LocationPricing from "@/components/LocationPricing";
+
+// Every figure on this page is derived from bk-config or policy.ts.
+const STANDARD = standardTierRows();
+const STANDARD_FROM = STANDARD[0].price;
+const STANDARD_TOP = STANDARD[STANDARD.length - 1].price;
+const DEEP_FROM = deepCleanTierRows()[0].price;
+const MOVE = moveInOutTierRows();
+const MOVE_FROM = MOVE[0].price;
+const MOVE_TOP = MOVE[MOVE.length - 1].price;
+const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
+const REVIEW_COUNT = CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount;
+
+const PAGE_TITLE = `House Cleaning Beaumont from ${STANDARD_FROM} | Duty Cleaners`;
+const PAGE_DESCRIPTION = `House cleaning in Beaumont from ${STANDARD_FROM}, flat by home size. Standard, deep and move-out cleans, rated ${RATING_CLAIM}. Pay after the clean.`;
+
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
   return (
@@ -57,21 +75,21 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning for a spotless, fresh reset in one visit.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Beaumont" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Every corner, baseboard, and hidden surface, cleaned top to bottom.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Beaumont" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Inspection-grade detail for moving out or settling in.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Beaumont" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Post-renovation dust and debris, professionally removed.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Beaumont" },
+  { icon: Home, title: "Standard Cleaning", description: "One visit, every room, one flat rate set by bedroom count.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Beaumont" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "Baseboards, fans, vents and the surfaces a standard visit does not reach.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Beaumont" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "The empty-house clean, done to the standard a landlord checks against.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Beaumont" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Drywall dust and site debris cleared after a renovation or a new build.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Beaumont" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Beaumont" },
   { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
 ];
 
 const whyUsItems = [
   { icon: Shield, title: "Reference-Checked, Then Rated by You", description: "Every cleaner is reference-checked before their first job, then rated by the customer after every visit. Those ratings decide who keeps cleaning for us." },
-  { icon: Star, title: RATING_CLAIM, description: `${CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount} reviews across Edmonton and Calgary, and every one of them is on our Google listing.` },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day slots when the schedule allows. We work around your busy life." },
+  { icon: Star, title: RATING_CLAIM, description: `${REVIEW_COUNT} reviews across Edmonton and Calgary, and every one of them is on our Google listing.` },
+  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day slots when the schedule allows." },
   { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
-  { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
-  { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
+  { icon: Users, title: "Experienced Team", description: "Cleaners trained to the Duty Cleaners checklist, and rated by you after every visit." },
+  { icon: ThumbsUp, title: "Satisfaction Guarantee", description: `If something was missed, tell us within ${POLICY.guaranteeWindowHours} hours and we'll return to make it right — at no additional charge.` },
 ];
 
 const nearbyAreas = [
@@ -81,24 +99,28 @@ const nearbyAreas = [
 export default function Beaumont() {
   const faqs = [
     {
-      question: "How long does an initial cleaning take?",
-      answer: `We work to a checklist, not a clock. Your Beaumont team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
+      question: "Is there a travel fee for house cleaning in Beaumont?",
+      answer: `Yes. Beaumont is outside Edmonton city limits, so a ${TRAVEL_FEE} travel fee is added to every booking here. It is added when you book, it is in the total before you confirm, and it is the same amount for a standard clean, a deep clean or a move-out.`
     },
     {
-      question: "What cleaning services does Duty Cleaners offer in Beaumont?",
-      answer: `Every service we run can be booked locally:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      question: "Can I get same-day cleaning in Beaumont?",
+      answer: `Sometimes. Same-day and next-day slots come up when a crew has room, and the office can tell you in one call whether today is one of those days. Arrival windows are ${ARRIVAL_WINDOWS.join(", ")}. Booking a day or two ahead is the reliable way to get the window you want.`
     },
     {
-      question: "Do you offer discounts?",
-      answer: `Yes — customers in Beaumont on a recurring schedule save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+      question: "Do you do move-out cleaning in Beaumont?",
+      answer: `Yes. A move-in or move-out clean in Beaumont is ${MOVE_FROM} to ${MOVE_TOP} depending on bedroom count, and it covers the empty house: inside the oven and fridge, inside cupboards and drawers, baseboards, and the marks a landlord or buyer walks in looking for. Book it for the day after the movers, once the rooms are clear.`
     },
     {
-      question: "What's included in a deep cleaning?",
-      answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      question: "How much does a standard clean cost in Beaumont?",
+      answer: `${STANDARD_FROM} for a one-bedroom up to ${STANDARD_TOP} for five or more bedrooms, before GST, plus the ${TRAVEL_FEE} travel fee. A deep clean starts at ${DEEP_FROM}. The rate is flat: it is set by the size of the home, not by how long the crew is there, and it does not change once you have booked.`
     },
     {
-      question: "What is your 100% satisfaction guarantee policy?",
-      answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back and put it right — at no extra cost!"
+      question: "Do I need to have cleaning supplies at the house?",
+      answer: `No. The crew brings its own products, cloths, mop and vacuum. If you would rather we used something you already own, leave it out and say so at booking. Eco-friendly products are available for ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}.`
+    },
+    {
+      question: "What happens if something gets missed?",
+      answer: `Tell us within ${POLICY.guaranteeWindowHours} hours and we come back and do that part again at no charge. No photos are needed. Cancellations need ${POLICY.cancellationNoticeHours} hours' notice; inside that window the fee is ${POLICY.cancellationFee}.`
     }
   ];
   const faqJsonLd = {
@@ -115,16 +137,16 @@ export default function Beaumont() {
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>House Cleaning Beaumont, AB | Duty Cleaners</title>
-        <meta name="description" content="House cleaning in Beaumont — from Four Seasons Park to the shops along 50th Avenue. Flat-rate pricing, vetted cleaners, pay after your clean." />
+        <title>{PAGE_TITLE}</title>
+        <meta name="description" content={PAGE_DESCRIPTION} />
         <link rel="canonical" href="https://dutycleaners.ca/cleaning-services-beaumont/" />
-        <meta property="og:title" content="House Cleaning Beaumont, AB | Duty Cleaners" />
-        <meta property="og:description" content="House cleaning in Beaumont — from Four Seasons Park to the shops along 50th Avenue. Flat-rate pricing, vetted cleaners, pay after your clean." />
+        <meta property="og:title" content={PAGE_TITLE} />
+        <meta property="og:description" content={PAGE_DESCRIPTION} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/cleaning-services-beaumont/" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning Beaumont, AB | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning in Beaumont — from Four Seasons Park to the shops along 50th Avenue. Flat-rate pricing, vetted cleaners, pay after your clean." />
+        <meta name="twitter:title" content={PAGE_TITLE} />
+        <meta name="twitter:description" content={PAGE_DESCRIPTION} />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Beaumont, AB", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-beaumont", areaServed: "Beaumont, AB" }))}</script>
@@ -149,7 +171,7 @@ export default function Beaumont() {
                 Professional House Cleaning in Beaumont
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                Reliable house cleaning services in Beaumont. Cleaning Alberta homes since 2017.
+                Flat-rate house cleaning in Beaumont from {STANDARD_FROM} for a one-bedroom, rated {RATING_CLAIM}. You see the price before you book and pay after the clean. Cleaning Alberta homes {COMPANY.sinceLabel}.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -193,29 +215,30 @@ export default function Beaumont() {
             <div className="max-w-4xl mx-auto">
               <span className="text-primary text-sm font-semibold tracking-wider uppercase">About the Neighbourhood</span>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                Cleaning Services Tailored to Beaumont Living
+                House cleaning in Beaumont, priced by home size
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>
-                  Beaumont is a vibrant and fast-growing community just south of Edmonton, celebrated for its rich French-Canadian heritage, beautiful parks, and family-friendly atmosphere. Whether your home is near the popular{" "}
+                  Beaumont is south of Edmonton, next to Nisku and Leduc. We clean homes across the city: around{" "}
                   <a href="https://www.google.com/maps/place/Four+Seasons+Park,+Beaumont,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
                     Four Seasons Park
-                  </a>{" "}
-                  or along the scenic trails by{" "}
+                  </a>,{" "}
                   <a href="https://www.google.com/maps/place/Beaumont+Community+Centre,+Beaumont,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
                     Ken Nicol Regional Park
-                  </a>, our team knows the area and delivers spotless results every time.
-                </p>
-                <p>
-                  Families living near{" "}
+                  </a>, the{" "}
                   <a href="https://www.google.com/maps/place/Centre+Communautaire+Beaumont+Community+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
                     Beaumont Community Centre
                   </a>{" "}
-                  or enjoying the shops along{" "}
+                  and the shops along{" "}
                   <a href="https://www.google.com/maps/place/50+Ave,+Beaumont,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
                     50th Avenue
-                  </a>{" "}
-                  deserve a home that's just as clean and inviting as the community around them. We proudly serve families throughout Beaumont and surrounding areas like Leduc, Nisku, and South Edmonton.
+                  </a>. The rate is flat and set by bedroom count, from {STANDARD_FROM} for a one-bedroom, and because Beaumont is outside Edmonton city limits a {TRAVEL_FEE} travel fee is added at booking. It is in the total before you confirm, not a surprise on the invoice afterwards.
+                </p>
+                <p>
+                  Every cleaner is reference-checked before a first job and rated by the customer after each visit; the ratings decide who we keep sending. Across both cities the rating is {RATING_CLAIM}, and you can{" "}
+                  <Link to="/reviews/" className="text-primary underline underline-offset-2 font-medium">read the reviews</Link>{" "}
+                  before you book. If you want the whole menu in one place, see{" "}
+                  <Link to="/services/" className="text-primary underline underline-offset-2 font-medium">all Edmonton cleaning services and prices</Link>.
                 </p>
               </div>
             </div>
@@ -223,18 +246,17 @@ export default function Beaumont() {
         </div>
       </section>
 
-      {/* Things To Do */}
+      {/* Landmarks */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="max-w-4xl mx-auto">
               <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Life</span>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                Things To Do In Beaumont
+                Around Beaumont
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
-                <p>Founded by French settlers as a small farming community, Beaumont (French for "beautiful hill") is now a beautiful city within the Edmonton Metropolitan Region of Alberta. With a population of over 21,000, this vibrant place still has its distinct small-town feeling while offering the amenities of an urban setting. Today, the downtown still resembles a French village, built with red brick walkways and picturesque architecture. Start your day in Beaumont on a delightful note by immersing yourself in a charming shopping experience. Pay a visit to the vibrant Beaumont Farmers Market, which showcases local produce and artisanal goods—soak up the lively community atmosphere that fills the air!</p>
-                <p>History enthusiasts can't miss the Beaumont & District Heritage Society, where you can learn about the region's heritage through engaging exhibits and artefacts. Do you like to enjoy nature? If so, you'll absolutely adore Four Seasons Park. The park offers plenty to do, including picturesque walking trails that wind through breathtaking scenery. Finally, satiate your hunger at Chartier, a delightful restaurant known for its delectable French-Canadian cuisine that perfectly blends rustic charm with modern elegance.</p>
+                <p>The landmarks we route by: St. Vital Church on the hill, the Beaumont Farmers Market, the Beaumont &amp; District Heritage Society, Four Seasons Park, and Chartier on the old main street. The downtown keeps its red brick walkways; most of the housing around it is newer than the street front suggests, and that matters more to a quote than the postcard does.</p>
               </div>
             </div>
           </AnimatedSection>
@@ -276,7 +298,7 @@ export default function Beaumont() {
                 Why Beaumont Residents Choose Duty Cleaners
               </h2>
               <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                Trusted locally for reliable, thorough cleaning.
+                The same terms on every visit, in Beaumont or anywhere else we go.
               </p>
             </div>
           </AnimatedSection>
@@ -296,10 +318,17 @@ export default function Beaumont() {
           <AnimatedSection>
             <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
             <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
-              Proudly Serving Beaumont & Surrounding Areas
+              Near Beaumont: other communities we clean
             </h2>
-            <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-              We provide professional house cleaning services throughout Beaumont and nearby communities in the Edmonton region.
+            <p className="text-muted-foreground mb-8 max-w-3xl mx-auto text-left md:text-center">
+              The same crews cover the towns around the city. We do{" "}
+              <Link to="/cleaning-services-devon/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Devon</Link>{" "}
+              to the west, and we are a{" "}
+              <Link to="/cleaning-services-leduc/" className="text-primary underline underline-offset-2 font-medium">Leduc cleaning company</Link>{" "}
+              as much as a Beaumont one, the two being next door. On the far side of Edmonton we run{" "}
+              <Link to="/cleaning-services-fort-saskatchewan/" className="text-primary underline underline-offset-2 font-medium">cleaning services in Fort Saskatchewan</Link>, and we send{" "}
+              <Link to="/cleaning-services-stony-plain/" className="text-primary underline underline-offset-2 font-medium">Stony Plain house cleaners</Link>{" "}
+              out past Spruce Grove. All of these are outside city limits, so all of them carry the same {TRAVEL_FEE} travel fee Beaumont does.
             </p>
             <CoverageChips areas={nearbyAreas} />
             <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
@@ -329,6 +358,33 @@ export default function Beaumont() {
 
       <LocationPricing />
 
+      {/* Which clean, and what it costs */}
+      <section className="py-16 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <AnimatedSection>
+            <div className="max-w-3xl mx-auto">
+              <span className="text-primary text-sm font-semibold tracking-wider uppercase">Choosing</span>
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mt-2 mb-6">
+                Which clean a Beaumont house usually needs
+              </h2>
+              <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
+                <p>
+                  A house that is kept up wants the standard clean, from {STANDARD_FROM}. A house that has gone a season without one, or has just come through a renovation, wants the deep clean from {DEEP_FROM}: the baseboards, the fan blades, the vent covers and the light switches are where that money goes. An empty house on handover day wants{" "}
+                  <Link to="/move-out-cleaning-edmonton/" className="text-primary underline underline-offset-2 font-medium">move-out cleaning in Beaumont</Link>, from {MOVE_FROM}, because a landlord or a buyer checks the inside of the oven and the cupboards, and a standard clean does not open them.
+                </p>
+                <p>
+                  Hosts with a suite or a whole house on a booking platform are a different job again, with a turnaround between guests rather than a schedule; that is priced by the hour and described on the{" "}
+                  <Link to="/edmonton/airbnb-cleaning/" className="text-primary underline underline-offset-2 font-medium">Airbnb cleaning in Edmonton</Link>{" "}
+                  page. Every tier by bedroom count, and every add-on, is on the{" "}
+                  <Link to="/pricing/" className="text-primary underline underline-offset-2 font-medium">Edmonton house cleaning prices by home size</Link>{" "}
+                  page. Add the {TRAVEL_FEE} travel fee to any of those figures for a Beaumont address.
+                </p>
+              </div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
       {/* Interactive Map */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
@@ -339,7 +395,7 @@ export default function Beaumont() {
                 Beaumont Service Area
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Explore our service coverage in the Beaumont area and surrounding Edmonton communities.
+                Beaumont and the Edmonton communities around it, on the map.
               </p>
             </div>
             <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -365,7 +421,7 @@ export default function Beaumont() {
               <div className="max-w-3xl mx-auto">
                 <div className="text-center mb-12">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">FAQ</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Frequently Asked Questions</h2>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Beaumont house cleaning questions</h2>
                 </div>
                 <Accordion type="single" collapsible className="w-full">
                   {faqs.map((faq, index) => (
@@ -386,7 +442,7 @@ export default function Beaumont() {
         <div className="container mx-auto px-4 relative z-10 text-center">
           <AnimatedSection>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Ready for a Spotless Home in Beaumont?
+              Book house cleaning in Beaumont
             </h2>
             <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
               See your flat rate before you book. Nothing is charged until the clean is done.

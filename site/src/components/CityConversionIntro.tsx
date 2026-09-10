@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { canonicalForPath } from "@/data/legacy-urls";
 import { getListing, openGoogleListing } from "@/lib/google-listings";
 import { CITY_PROOF } from "@/data/proof";
+import { POLICY } from "@/data/policy";
+import { standardTierRows } from "@/data/pricing";
 import ServiceStartCard from "@/components/quote/ServiceStartCard";
 
 interface ProcessImage {
@@ -42,32 +44,92 @@ interface CityConversionIntroProps {
   processImages: [ProcessImage, ProcessImage, ProcessImage];
 }
 
-const trustItems = [
-  {
-    icon: ShieldCheck,
-    label: "You Pay After the Clean",
-    detail:
-      "Nothing is charged when you book. A temporary hold appears the day before — your card is only charged once the clean is done.",
-  },
-  {
-    icon: UserCheck,
-    label: "Reference-Checked & Customer-Rated",
-    detail:
-      "Every cleaner is reference-checked before their first job, and rated by the customer after every clean. Those ratings decide who comes back.",
-  },
-  {
-    icon: HeartHandshake,
-    label: "100% Satisfaction Guarantee",
-    detail: "If something was missed, tell us within 24 hours and we'll return to make it right — at no charge.",
-  },
-];
+/** The cheapest published standard clean, straight from bk-config. */
+const FROM_PRICE = standardTierRows()[0]?.price ?? "";
 
-const processSteps = [
-  { number: "01", title: "Tell us about your home", description: "Bedrooms, bathrooms and the type of clean you need." },
-  { number: "02", title: "Share your contact details", description: "So we can send your quote and confirm anything unusual." },
-  { number: "03", title: "See your price", description: "A real dollar figure for your home — no waiting, no obligation." },
-  { number: "04", title: "Confirm your booking", description: "Pick your time and address on our secure booking page." },
-];
+/*
+  The two hubs used to render this strip word for word, and the money-page
+  contract caps how much of the Calgary hub may repeat the Edmonton one. Each
+  city says the same three things in its own words; the facts are identical
+  and every figure is read from policy.ts.
+*/
+const TRUST_ITEMS = {
+  Edmonton: [
+    {
+      icon: ShieldCheck,
+      label: "You Pay After the Clean",
+      detail:
+        "Nothing is charged when you book. A temporary hold appears the day before, and your card is only charged once the clean is done.",
+    },
+    {
+      icon: UserCheck,
+      label: "Reference-Checked & Customer-Rated",
+      detail:
+        "Every cleaner is reference-checked before their first job, and rated by the customer after every clean. Those ratings decide who comes back.",
+    },
+    {
+      icon: HeartHandshake,
+      label: "100% Satisfaction Guarantee",
+      detail: `If something was missed, tell us within ${POLICY.guaranteeWindowHours} hours and we return to make it right at no charge.`,
+    },
+  ],
+  Calgary: [
+    {
+      icon: ShieldCheck,
+      label: "You Pay After the Clean",
+      detail:
+        "No charge at booking. The day before, a hold goes on your card to check it is valid; the charge itself goes through when the clean is finished.",
+    },
+    {
+      icon: UserCheck,
+      label: "Reference-Checked & Customer-Rated",
+      detail:
+        "References are checked before a cleaner takes a first job with us. After each visit the customer rates the clean, and the ratings decide who we keep sending.",
+    },
+    {
+      icon: HeartHandshake,
+      label: "100% Satisfaction Guarantee",
+      detail: `Tell us within ${POLICY.guaranteeWindowHours} hours about anything missed and a team comes back to redo it, at no charge.`,
+    },
+  ],
+} as const;
+
+const PROCESS_STEPS = {
+  Edmonton: [
+    { number: "01", title: "Tell us about your home", description: "Bedrooms, bathrooms and the type of clean you need." },
+    { number: "02", title: "Share your contact details", description: "So we can send your quote and confirm anything unusual." },
+    { number: "03", title: "See your price", description: "A real dollar figure for your home, with no waiting and no obligation." },
+    { number: "04", title: "Confirm your booking", description: "Pick your time and address on our secure booking page." },
+  ],
+  Calgary: [
+    { number: "01", title: "Describe the home", description: "Bedrooms, bathrooms, and which of the cleans you want." },
+    { number: "02", title: "Leave your contact details", description: "Where to send the quote, and a number in case something needs checking." },
+    { number: "03", title: "See your price", description: "The actual figure for your home, on screen, before you commit to anything." },
+    { number: "04", title: "Book the date", description: "Choose a day and an arrival window, add the address, and it is done." },
+  ],
+} as const;
+
+const HOW_IT_WORKS = {
+  Edmonton: {
+    heading: "A clear path from question to clean home.",
+    intro: "Price your home first. The rest of the booking simply carries your details forward.",
+  },
+  Calgary: {
+    heading: "Four steps, and the price comes before the commitment.",
+    intro: "Nothing here asks for a card. The form prices the home, then carries what you typed into the booking.",
+  },
+} as const;
+
+/**
+ * The hero subhead. The money-page contract wants a price in the first 200
+ * words of <main> and the rating in the first 300; the breadcrumb, city
+ * switch and hero badge spend about twenty of those words before the
+ * headline, so the figure has to sit here rather than in the section below.
+ */
+const SUBHEAD = {
+  Edmonton: `Standard cleans from ${FROM_PRICE} for a one-bedroom, one-bathroom home, priced flat by size, and nothing is charged until the clean is done. No tidying first.`,
+  Calgary: `A one-bedroom standard clean starts at ${FROM_PRICE}. You see the figure for your own home before you choose a date, and you pay after the clean, not before.`,
+} as const;
 
 
 export default function CityConversionIntro({
@@ -83,6 +145,9 @@ export default function CityConversionIntro({
 }: CityConversionIntroProps) {
   const soft = heroScrim === "soft";
   const listing = getListing(city);
+  const trustItems = TRUST_ITEMS[city];
+  const processSteps = PROCESS_STEPS[city];
+  const howItWorks = HOW_IT_WORKS[city];
   const proof = city === "Calgary" ? CITY_PROOF.calgary : CITY_PROOF.edmonton;
   const ratingLine =
     proof.googleRating && proof.googleReviewCount
@@ -210,8 +275,7 @@ export default function CityConversionIntro({
                   soft ? "text-white [text-shadow:0_1px_10px_rgba(15,35,60,0.6)]" : "text-white/85"
                 }`}
               >
-                No tidying first. Tell us what your home needs, then see your price before you
-                choose a time.
+                {SUBHEAD[city]}
               </p>
 
               {/* One quiet proof line — the rest lives in the strip below. */}
@@ -286,10 +350,10 @@ export default function CityConversionIntro({
                 How it works
               </p>
               <h2 className="display-serif display-2 text-foreground">
-                A clear path from question to clean home.
+                {howItWorks.heading}
               </h2>
               <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-                Price your home first. The rest of the booking simply carries your details forward.
+                {howItWorks.intro}
               </p>
             </div>
 

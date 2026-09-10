@@ -5,7 +5,9 @@ import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Gift, Mail, Wallet, Phone, Check } from "lucide-react";
-import { standardTierRows, deepCleanTierRows } from "@/data/pricing";
+import { standardTierRows, deepCleanTierRows, moveInOutTierRows } from "@/data/pricing";
+import { POLICY } from "@/data/policy";
+import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
 import { Link } from "react-router-dom";
 import { canonicalForPath } from "@/data/legacy-urls";
 
@@ -19,23 +21,69 @@ const EMBED_MIN_HEIGHT = 1500;
 
 const points = [
   { icon: Gift, text: "Any amount you choose" },
-  { icon: Mail, text: "Delivered by email — no card to lose" },
+  { icon: Mail, text: "Delivered by email, so there is no card to lose" },
   { icon: Wallet, text: "Balance tracked automatically, use it across visits" },
 ];
 
 const steps = [
-  { title: "Choose an amount", text: "Any value you like — there is no minimum or maximum." },
+  { title: "Choose an amount", text: "Any value you like. There is no minimum or maximum." },
   { title: "Add your message", text: "Their name, a short note, and who it's from." },
   { title: "We email it", text: "Straight away, or on a date you pick." },
-  { title: "They book whenever", text: "No expiry pressure — the balance is tracked for them." },
+  { title: "They book whenever", text: "No expiry pressure. The balance is tracked for them." },
 ];
 
-const goodToKnow = [
-  "Use it on any of our cleaning services in Edmonton or Calgary.",
-  "No expiry date — the balance stays on the card until it is used.",
-  "If the balance doesn't cover the whole visit, they simply pay the difference.",
-  "Backed by our satisfaction guarantee: tell us within 24 hours after the clean and we re-clean at no additional charge.",
+// Prices are derived from the booking config, never hand-typed.
+const standard = standardTierRows();
+const deep = deepCleanTierRows();
+const move = moveInOutTierRows();
+const suggestions = [
+  { amount: standard[0]?.price ?? "", label: "A standard clean for a 1-bedroom home" },
+  { amount: standard[1]?.price ?? "", label: "A standard clean for a 2-bedroom home" },
+  { amount: deep[1]?.price ?? "", label: "A deep clean for a 2-bedroom home" },
 ];
+
+/**
+ * The "good to know" list, as questions. Expiry and maximum-value rules are
+ * read from policy.ts, not restated here: the legacy site published a
+ * six-month expiry and a $2,000 ceiling, and both were wrong. Feeds both the
+ * visible list and the FAQPage JSON-LD.
+ */
+const FAQS = [
+  {
+    q: "Where can the gift card be used?",
+    a: "On any of our home cleaning services in Edmonton or Calgary: standard, deep, move-in or move-out, post-construction and wall washing. The recipient picks the service and the date.",
+  },
+  {
+    q: "Does the gift card expire?",
+    a:
+      POLICY.giftCardExpiryMonths === "none"
+        ? "No. The balance stays on the card until it is used, however long that takes."
+        : `Yes, ${POLICY.giftCardExpiryMonths} months after purchase.`,
+  },
+  {
+    q: "What if the clean costs more, or less, than the card?",
+    a: `If the clean costs more, they pay the difference at checkout. If it costs less, the remaining balance stays on the card for the next visit. A ${standard[0]?.price ?? ""} card covers a 1-bedroom standard clean before GST; a ${move[move.length - 1]?.price ?? ""} card covers a 5-bedroom move-out.`,
+  },
+  {
+    q: "Is there a minimum or maximum amount?",
+    a:
+      POLICY.giftCardMaxValue === "none"
+        ? "No minimum and no maximum. Round numbers are fine, and so are odd ones sized to a specific clean."
+        : `No minimum. The maximum is ${POLICY.giftCardMaxValue}.`,
+  },
+  {
+    q: "Is a clean paid for with a gift card covered by the guarantee?",
+    a: `Yes, the same way as any other clean. If something was missed, the recipient tells us within ${POLICY.guaranteeWindowHours} hours and we come back and re-clean it at no additional charge.`,
+  },
+  {
+    q: "What if the card is lost?",
+    a: "The balance is tracked against the purchase, so call either office with the purchaser's name and we reissue it.",
+  },
+];
+
+const TITLE = "House Cleaning Gift Cards Edmonton & Calgary | Duty Cleaners";
+const DESCRIPTION =
+  "Buy a house cleaning gift card for Edmonton or Calgary. Any amount, no expiry, delivered by email right away or on a date you pick.";
 
 export default function GiftCard() {
   const [loaded, setLoaded] = useState(false);
@@ -50,35 +98,31 @@ export default function GiftCard() {
     document.body.appendChild(script);
   }, []);
 
-  // Prices are derived from the booking config, never hand-typed.
-  const standard = standardTierRows();
-  const deep = deepCleanTierRows();
-  const suggestions = [
-    { amount: standard[0]?.price ?? "", label: "A standard clean for a 1-bedroom home" },
-    { amount: standard[1]?.price ?? "", label: "A standard clean for a 2-bedroom home" },
-    { amount: deep[1]?.price ?? "", label: "A deep clean for a 2-bedroom home" },
-  ];
-
-
   return (
     <>
       <Helmet>
-        <title>Duty Cleaners Gift Cards | Give a Clean Home in Alberta</title>
-        <meta
-          name="description"
-          content="Buy a Duty Cleaners gift card online. Choose any amount, add a message, and it arrives by email right away or on a date you pick."
-        />
+        <title>{TITLE}</title>
+        <meta name="description" content={DESCRIPTION} />
         <link rel="canonical" href="https://dutycleaners.ca/gift-card/" />
-        <meta property="og:title" content="Duty Cleaners Gift Cards | Give a Clean Home in Alberta" />
-        <meta
-          property="og:description"
-          content="Give someone their weekend back. Any amount, delivered by email, redeemable across visits."
-        />
+        <meta property="og:title" content={TITLE} />
+        <meta property="og:description" content={DESCRIPTION} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/gift-card/" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Duty Cleaners Gift Cards | Give a Clean Home in Alberta" />
-        <meta name="twitter:description" content="Give someone their weekend back. Any amount, delivered by email, redeemable across visits." />
+        <meta name="twitter:title" content={TITLE} />
+        <meta name="twitter:description" content={DESCRIPTION} />
+        {/* Mirrors the "Gift certificate questions" list below. */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: FAQS.map((faq) => ({
+              "@type": "Question",
+              name: faq.q,
+              acceptedAnswer: { "@type": "Answer", text: faq.a },
+            })),
+          })}
+        </script>
       </Helmet>
 
       <div className="min-h-screen">
@@ -92,10 +136,11 @@ export default function GiftCard() {
         <section className="bg-brand-navy py-14 md:py-20">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-3xl text-center">
-              <h1 className="mb-5 text-3xl font-bold text-white md:text-5xl">Duty Cleaners Gift Cards</h1>
+              <h1 className="mb-5 text-3xl font-bold text-white md:text-5xl">House Cleaning Gift Cards for Edmonton and Calgary</h1>
               <p className="text-lg leading-relaxed text-white/85 md:text-xl">
                 Give someone their weekend back. Choose any amount, add a message, and it arrives by
-                email — right away or on a date you pick.
+                email, right away or on a date you pick. Redeemable on any clean from either office,
+                rated {RATING_CLAIM}.
               </p>
 
               <ul className="mt-8 grid gap-3 sm:grid-cols-3">
@@ -147,10 +192,10 @@ export default function GiftCard() {
         <section className="bg-muted/40 py-14 md:py-16">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-4xl">
-              <h2 className="mb-3 text-center text-2xl font-bold md:text-3xl">How much should I give?</h2>
+              <h2 className="mb-3 text-center text-2xl font-bold md:text-3xl">Gift card amounts that cover a whole clean</h2>
               <p className="mx-auto mb-8 max-w-2xl text-center text-base leading-relaxed text-muted-foreground">
-                Anything you like works — the balance is applied to whatever they book. These are the
-                usual starting points if you'd rather cover a whole visit.
+                Any amount works, because the balance is applied to whatever they book. These are
+                the usual starting points if you would rather cover a whole visit. All before 5% GST.
               </p>
               <ul className="grid gap-5 sm:grid-cols-3">
                 {suggestions.map((item) => (
@@ -167,7 +212,15 @@ export default function GiftCard() {
                 ))}
               </ul>
               <p className="mt-6 text-center text-base text-muted-foreground">
-                Prefer a round number? Any amount you choose is welcome.
+                The full tables by home size are on{" "}
+                <Link to={canonicalForPath("/pricing")} className="text-accent underline underline-offset-2">
+                  the full Edmonton price list
+                </Link>{" "}
+                and{" "}
+                <Link to={canonicalForPath("/calgary/pricing")} className="text-accent underline underline-offset-2">
+                  Calgary house cleaning prices by home size
+                </Link>
+                .
               </p>
             </div>
           </div>
@@ -179,7 +232,7 @@ export default function GiftCard() {
             <div className="mx-auto max-w-3xl">
               <h2 className="mb-2 text-center text-2xl font-bold md:text-3xl">Buy your gift card</h2>
               <p className="mb-8 text-center text-base leading-relaxed text-muted-foreground">
-                It takes about two minutes. You'll enter the amount, the recipient's details and your
+                It takes about two minutes. You enter the amount, the recipient's details and your
                 payment on the secure form below.
               </p>
 
@@ -227,11 +280,11 @@ export default function GiftCard() {
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-3xl text-center">
               <h2 className="mb-3 text-2xl font-bold text-white md:text-3xl">
-                Prefer not to do this online?
+                Order by phone instead
               </h2>
               <p className="mb-7 text-lg leading-relaxed text-white/85">
-                Call us and we'll set the gift card up for you over the phone. Mon–Sat 8AM–8PM,
-                Sun 9AM–3PM.
+                Call either office and we set the gift card up for you. Monday to Saturday 8:00 AM
+                to 8:00 PM, Sunday 9:00 AM to 3:00 PM.
               </p>
               <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
                 <Button
@@ -239,9 +292,9 @@ export default function GiftCard() {
                   className="min-h-[48px] w-full bg-accent px-8 text-base font-semibold text-accent-foreground hover:bg-accent/90 sm:w-auto"
                   asChild
                 >
-                  <a href="tel:7809136565">
+                  <a href={CITY_PROOF.edmonton.phoneLink}>
                     <Phone className="mr-2 h-5 w-5" aria-hidden="true" />
-                    Edmonton: (780) 913-6565
+                    Edmonton: {CITY_PROOF.edmonton.phone}
                   </a>
                 </Button>
                 <Button
@@ -249,9 +302,9 @@ export default function GiftCard() {
                   className="min-h-[48px] w-full bg-accent px-8 text-base font-semibold text-accent-foreground hover:bg-accent/90 sm:w-auto"
                   asChild
                 >
-                  <a href="tel:4037681341">
+                  <a href={CITY_PROOF.calgary.phoneLink}>
                     <Phone className="mr-2 h-5 w-5" aria-hidden="true" />
-                    Calgary: (403) 768-1341
+                    Calgary: {CITY_PROOF.calgary.phone}
                   </a>
                 </Button>
               </div>
@@ -259,37 +312,24 @@ export default function GiftCard() {
           </div>
         </section>
 
-        {/* Good to know */}
+        {/* Giving it well, and how much */}
         <section className="bg-background py-14 md:py-16">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-3xl">
-              <h2 className="mb-6 text-center text-2xl font-bold md:text-3xl">Good to know</h2>
-              <ul className="space-y-4">
-                {goodToKnow.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-base leading-relaxed">
-                    <Check className="mt-1 h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-
               {/*
                 309 words of main content, on a page asking someone to spend
                 money on behalf of a person who is not in the room. The gaps
                 below are the questions that actually stop that purchase, and
-                the page answered none of them. Expiry and maximum-value rules
-                are read from policy.ts, not restated here — the legacy site
-                published a six-month expiry and a $2,000 ceiling, and both were
-                wrong.
+                the page answered none of them.
               */}
-              <div className="mt-12 space-y-5 text-muted-foreground leading-relaxed">
-                <h3 className="text-xl font-bold text-foreground">
+              <div className="space-y-5 text-muted-foreground leading-relaxed">
+                <h2 className="text-2xl font-bold text-foreground md:text-3xl">
                   Giving a cleaning as a gift, without it landing wrong
-                </h3>
+                </h2>
                 <p>
                   The awkwardness is real and worth naming: a cleaning gift can read as a comment
                   on the state of someone's home. It almost never does when there is an obvious
-                  occasion attached to it — a new baby, a house move, a stretch of illness or
+                  occasion attached to it: a new baby, a house move, a stretch of illness or
                   recovery, a parent who has stopped managing stairs comfortably, or the week
                   either side of hosting a large family gathering. Those are the times people are
                   most relieved to be handed this and least likely to read anything into it.
@@ -297,15 +337,14 @@ export default function GiftCard() {
                 <p>
                   Two practical points that catch people out. The recipient has to be able to let
                   a cleaner in, so a gift for someone who travels constantly or works unpredictable
-                  shifts may sit unused for months — which is survivable here, because the card
-                  does not expire, but it is worth knowing. And they choose their own date and
-                  service; you are giving a balance, not booking an appointment on their behalf.
-                  If you want a specific day covered, book it yourself and pay for it directly
-                  instead.
+                  shifts may sit unused for months. That is survivable here, because the card does
+                  not expire, but it is worth knowing. And they choose their own date and service;
+                  you are giving a balance, not booking an appointment on their behalf. If you want
+                  a specific day covered, book it yourself and pay for it directly instead.
                 </p>
-                <h3 className="text-xl font-bold text-foreground">How much to put on it</h3>
+                <h2 className="text-2xl font-bold text-foreground md:text-3xl">How much to put on it</h2>
                 <p>
-                  A card does not have to cover a whole clean to be useful — the balance comes off
+                  A card does not have to cover a whole clean to be useful. The balance comes off
                   whatever they book, and they pay the difference. If you would rather it cover a
                   full service outright, the tables on our{" "}
                   <Link to={canonicalForPath("/pricing")} className="text-accent underline underline-offset-2">
@@ -323,10 +362,48 @@ export default function GiftCard() {
                   so a card sized to the sticker price will fall a little short of the final total.
                 </p>
                 <p>
-                  If a card is lost, we can look it up — the balance is tracked against the
-                  purchase, so call either office with the purchaser's name and we can reissue it.
+                  If you are not sure which service they would pick,{" "}
+                  <Link to="/services/" className="text-accent underline underline-offset-2">
+                    all Edmonton cleaning services and prices
+                  </Link>{" "}
+                  and{" "}
+                  <Link to="/calgary/services/" className="text-accent underline underline-offset-2">
+                    every Calgary cleaning service, with starting prices
+                  </Link>{" "}
+                  are one page each, and you can{" "}
+                  <Link to="/reviews/" className="text-accent underline underline-offset-2">
+                    read the reviews
+                  </Link>{" "}
+                  before you buy.
                 </p>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Good to know, as questions */}
+        <section className="bg-muted/40 py-14 md:py-16">
+          <div className="container mx-auto px-4">
+            <div className="mx-auto max-w-3xl">
+              <h2 className="mb-6 text-center text-2xl font-bold md:text-3xl">Gift certificate questions</h2>
+              <ul className="space-y-5">
+                {FAQS.map((faq) => (
+                  <li key={faq.q} className="flex items-start gap-3 text-base leading-relaxed">
+                    <Check className="mt-1 h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
+                    <span>
+                      <strong className="text-foreground">{faq.q}</strong>{" "}
+                      <span className="text-muted-foreground">{faq.a}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-8 text-center text-base text-muted-foreground">
+                Anything else,{" "}
+                <Link to="/contact-us/?topic=gift-card" className="text-accent underline underline-offset-2">
+                  ask either office
+                </Link>
+                .
+              </p>
             </div>
           </div>
         </section>

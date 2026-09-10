@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { Sparkles, Home, PlusCircle, Percent, MessageCircle, Tag, type LucideIcon } from "lucide-react";
+import { Sparkles, Home, Building2, PlusCircle, Percent, Tag, type LucideIcon } from "lucide-react";
 
 interface FormulaStep {
   icon: LucideIcon;
@@ -7,12 +7,14 @@ interface FormulaStep {
   desc: string;
 }
 
+/* The 10% tier is "Every 4 Weeks" in BookingKoala, thirteen visits a year.
+   This card used to call it "monthly", which is twelve. */
 const steps: FormulaStep[] = [
-  { icon: Sparkles, title: "Service Base Rate", desc: "Standard, deep, or move-in/out cleaning" },
-  { icon: Home, title: "Home Size", desc: "Priced simply by number of bedrooms" },
-  { icon: PlusCircle, title: "Optional Add-ons", desc: "Inside oven, fridge, windows & more — listed by service" },
-  { icon: Percent, title: "Recurring Discount", desc: "Save 10–20% on weekly, bi-weekly, or monthly cleans" },
-  { icon: MessageCircle, title: "Service Scope", desc: "Rooms, tasks, and add-ons selected for your visit" }
+  { icon: Sparkles, title: "Service", desc: "Standard, deep, or move-in/out. Deep is the standard rate plus a package sized to the home." },
+  { icon: Home, title: "Home size", desc: "Bedrooms pick the tier, then each bathroom is priced on top." },
+  { icon: Building2, title: "Home type", desc: "An apartment or condo is the base. A bungalow, townhouse or two-storey house adds a little for the stairs and extra floor." },
+  { icon: PlusCircle, title: "Add-ons", desc: "Inside the oven, the fridge, the cabinets, interior windows and the rest, each a fixed line per visit." },
+  { icon: Percent, title: "Frequency", desc: "20% off weekly, 15% off bi-weekly, 10% off every 4 weeks, from the second visit." },
 ];
 
 interface PricingFormulaProps {
@@ -24,10 +26,10 @@ export default function PricingFormula({ city }: PricingFormulaProps) {
     <section className="py-16 md:py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <span className="text-accent font-semibold text-sm uppercase tracking-wider">Transparent Pricing</span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">How Pricing Works</h2>
+          <span className="text-accent font-semibold text-sm uppercase tracking-wider">How the price is built</span>
+          <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">How a {city} cleaning price is put together</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Five things set a {city} price, and you see the total before you book.
+            Five things set a {city} price. The form asks for each one and shows the total before you book.
           </p>
         </div>
 
@@ -61,9 +63,9 @@ export default function PricingFormula({ city }: PricingFormulaProps) {
             <div className="w-12 h-12 rounded-xl bg-accent flex items-center justify-center mx-auto mb-3">
               <Tag className="w-6 h-6 text-accent-foreground" />
             </div>
-            <h3 className="font-bold text-white mb-1">Your Cleaning Plan</h3>
+            <h3 className="font-bold text-white mb-1">Your price</h3>
             <p className="text-xs text-white/90 leading-relaxed">
-              A clear outline built around your home’s size and cleaning priorities.
+              One figure, before 5% GST, shown before you confirm and charged after the clean.
             </p>
           </div>
         </div>

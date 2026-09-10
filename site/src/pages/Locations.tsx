@@ -1,5 +1,7 @@
 import { CITY_PROOF } from "@/data/proof";
 import { COMPANY, HOMES_CLEANED, RATING_CLAIM } from "@/data/proof";
+import { formatPrice } from "@/data/pricing";
+import { travelFee } from "@/data/addon-table";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -10,22 +12,21 @@ import { Link } from "react-router-dom";
 import { canonicalForPath, withTrailingSlash } from "@/data/legacy-urls";
 import heroAlbertaMap from "@/assets/hero-calgary-skyline.webp";
 import { Button } from "@/components/ui/button";
-import BrandHome from "./BrandHome";
 import {
   edmontonNeighborhoods as edmHoods,
   edmontonSurrounding as edmSurrounding,
   calgaryNeighborhoods as calHoods,
   calgarySurrounding as calSurrounding,
 } from "@/data/city-locations";
-import { 
-  Star, 
-  Phone, 
-  MapPin, 
-  CheckCircle2, 
-  Award, 
-  Users, 
-  SprayCan, 
-  Shield,
+import {
+  Star,
+  Phone,
+  MapPin,
+  CheckCircle2,
+  Award,
+  Users,
+  SprayCan,
+  Calculator,
   ArrowRight,
   Building2,
   Home,
@@ -33,16 +34,19 @@ import {
   WashingMachine
 } from "lucide-react";
 
+/** Charged per visit outside either city's limits; read from bk-config. */
+const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
+
 // Data for location cards
 const mainLocations = [
   {
     name: "Edmonton",
     rating: RATING_CLAIM,
     reviews: `${HOMES_CLEANED.edmonton} Edmonton homes cleaned`,
-    phone: "(780) 913-6565",
-    phoneHref: "tel:7809136565",
-    address: "18615 71 Ave NW",
-    addressLine2: "Edmonton, AB T5T 2V9",
+    phone: CITY_PROOF.edmonton.phone,
+    phoneHref: CITY_PROOF.edmonton.phoneLink,
+    address: CITY_PROOF.edmonton.streetAddress,
+    addressLine2: `Edmonton, AB ${CITY_PROOF.edmonton.postalCode}`,
     experience: `Serving Alberta since ${COMPANY.foundedYear}`,
     homesCleaned: `${HOMES_CLEANED.edmonton} Edmonton homes cleaned`,
     neighbourhoods: [
@@ -58,15 +62,16 @@ const mainLocations = [
       { name: "Garneau", link: "/locations/garneau/" },
     ],
     link: "/",
-    linkText: "View Edmonton Services"
+    linkText: "View Edmonton Services",
+    pricing: { to: "/pricing/", label: "the full Edmonton price list" },
   },
   {
     name: "Calgary",
     rating: RATING_CLAIM,
     reviews: `${HOMES_CLEANED.calgary} homes cleaned`,
-    phone: "(403) 768-1341",
-    phoneHref: "tel:4037681341",
-    address: "2835 37 Street SW #24",
+    phone: CITY_PROOF.calgary.phone,
+    phoneHref: CITY_PROOF.calgary.phoneLink,
+    address: CITY_PROOF.calgary.streetAddress,
     addressLine2: `Calgary, AB ${CITY_PROOF.calgary.postalCode}`,
     experience: `Serving Alberta since ${COMPANY.foundedYear}`,
     homesCleaned: `${HOMES_CLEANED.calgary} Calgary homes cleaned`,
@@ -92,16 +97,17 @@ const mainLocations = [
       { name: "Beltline", link: "/locations/beltline-calgary/" },
     ],
     link: canonicalForPath("/calgary"),
-    linkText: "View Calgary Services"
+    linkText: "View Calgary Services",
+    pricing: { to: "/calgary/pricing/", label: "Calgary house cleaning prices by home size" },
   }
 ];
 
-// Edmonton region cities
+// Edmonton region towns. Every one sits outside Edmonton city limits, which is
+// why Windermere — an Edmonton neighbourhood — no longer appears here.
 const edmontonRegionCities = [
   { name: "Morinville", link: "/cleaning-services-morinville/" },
   { name: "Sherwood Park", link: "/cleaning-services-sherwood-park/" },
   { name: "St. Albert", link: "/cleaning-services-st-albert/" },
-  { name: "Windermere", link: "/cleaning-services-windermere/" },
   { name: "Stony Plain", link: "/cleaning-services-stony-plain/" },
   { name: "Devon", link: "/cleaning-services-devon/" },
   { name: "Spruce Grove", link: "/cleaning-services-spruce-grove/" },
@@ -112,6 +118,7 @@ const edmontonRegionCities = [
 
 // Edmonton neighbourhoods
 const edmontonNeighborhoods = [
+  { name: "Windermere", link: "/cleaning-services-windermere/" },
   { name: "Castle Downs", link: "/locations/castle-downs/" },
   { name: "Inglewood, Edmonton", link: "/locations/inglewood/" },
   { name: "Delton", link: "/locations/delton/" },
@@ -283,17 +290,28 @@ const coverageByCity: Record<string, { neighbourhoods: number; surrounding: numb
   Calgary: { neighbourhoods: calHoods.length, surrounding: calSurrounding.length },
 };
 
+/** The services both offices sell, linked per city so a reader lands on the right price. */
+const SERVICE_LINKS = [
+  { service: "Standard cleaning", edmonton: "/edmonton/regular-cleaning/", calgary: "/calgary/regular-cleaning/" },
+  { service: "Recurring cleaning", edmonton: "/edmonton/recurring-cleaning/", calgary: "/calgary/recurring-cleaning/" },
+  { service: "Deep cleaning", edmonton: "/edmonton/deep-cleaning/", calgary: "/calgary/deep-cleaning/" },
+  { service: "Move-out cleaning", edmonton: "/move-out-cleaning-edmonton/", calgary: "/move-out-cleaning-calgary/" },
+  { service: "Post-construction cleaning", edmonton: "/post-construction-cleaning/", calgary: "/post-construction-cleaning-calgary/" },
+  { service: "Wall washing", edmonton: "/wall-washing-wall-cleaning/", calgary: "/wall-washing-wall-cleaning-calgary/" },
+  { service: "Airbnb cleaning", edmonton: "/edmonton/airbnb-cleaning/", calgary: "/airbnb-cleaning-services-calgary/" },
+];
+
 // Location Card Component
 function LocationCard({ location }: { location: typeof mainLocations[0] }) {
   const coverage = coverageByCity[location.name];
   const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${location.address}, ${location.addressLine2}`)}`;
   return (
-    <div 
+    <div
       className="group bg-brand-navy rounded-2xl shadow-lg p-8 text-white transition-all duration-500 ease-out hover:-translate-y-2 hover:shadow-2xl border border-white/10 relative overflow-hidden"
       style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
     >
       <div className="absolute top-0 right-0 w-40 h-40 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
-      
+
       {/* Header */}
       <div className="flex items-start justify-between mb-6 relative z-10">
         <div>
@@ -360,10 +378,10 @@ function LocationCard({ location }: { location: typeof mainLocations[0] }) {
 
       {/* Neighborhoods */}
       <div className="mb-6 relative z-10">
-        <h3 className="font-bold text-lg mb-3 text-white">Key Neighborhoods Served:</h3>
+        <h3 className="font-bold text-lg mb-3 text-white">Neighbourhoods served</h3>
         <div className="flex flex-wrap gap-2">
           {location.neighbourhoods.map(area => (
-            <Link 
+            <Link
               key={area.name}
               to={withTrailingSlash(area.link)}
               className="bg-white/5 text-white/90 border border-white/10 px-3 py-1.5 rounded-full text-sm font-medium transition-colors hover:bg-white/15 hover:text-white hover:underline"
@@ -373,6 +391,14 @@ function LocationCard({ location }: { location: typeof mainLocations[0] }) {
           ))}
         </div>
       </div>
+
+      <p className="mb-6 text-sm text-white/80 relative z-10">
+        Prices are flat by home size, before GST:{" "}
+        <Link to={location.pricing.to} className="text-accent underline underline-offset-2">
+          {location.pricing.label}
+        </Link>
+        .
+      </p>
 
       {/* CTA Button */}
       <Button asChild size="lg" className="w-full bg-accent text-accent-foreground hover:bg-accent/90 font-semibold text-base h-12 shadow-md hover:shadow-lg transition-all group/btn relative z-10">
@@ -385,31 +411,43 @@ function LocationCard({ location }: { location: typeof mainLocations[0] }) {
   );
 }
 
+/**
+ * Town anchors say what the destination is. Every one of these was a bare town
+ * name, so nothing on this page told a crawler the pages were about cleaning.
+ * The wording rotates so the anchors are not one string repeated 19 times.
+ */
+const TOWN_ANCHORS = [
+  (name: string) => `House cleaning in ${name}`,
+  (name: string) => `${name} house cleaners`,
+  (name: string) => `Cleaning services in ${name}`,
+  (name: string) => `${name} cleaning company`,
+];
+
 // Region Link Component
-function RegionLink({ name, link, variant = "edmonton" }: { name: string; link: string; variant?: "edmonton" | "calgary" }) {
-  const colorClasses = variant === "edmonton" 
+function RegionLink({ name, link, index, variant = "edmonton" }: { name: string; link: string; index: number; variant?: "edmonton" | "calgary" }) {
+  const colorClasses = variant === "edmonton"
     ? "bg-white/80 hover:bg-primary/10 border-primary/20 hover:border-primary text-foreground"
     : "bg-white/80 hover:bg-accent/10 border-accent/20 hover:border-accent text-foreground";
-  
+
   return (
-    <Link 
-      to={withTrailingSlash(link)} 
+    <Link
+      to={withTrailingSlash(link)}
       className={`group rounded-xl p-4 text-center transition-all duration-300 border ${colorClasses} hover:-translate-y-1 hover:shadow-md`}
     >
-      <h3 className="font-semibold">{name}</h3>
+      <h3 className="font-semibold">{TOWN_ANCHORS[index % TOWN_ANCHORS.length](name)}</h3>
     </Link>
   );
 }
 
-// Neighborhood Link Component  
+// Neighborhood Link Component
 function NeighborhoodLink({ name, link, variant = "edmonton" }: { name: string; link: string; variant?: "edmonton" | "calgary" }) {
   const colorClasses = variant === "edmonton"
     ? "hover:bg-primary/10 hover:border-primary/30 hover:text-primary"
     : "hover:bg-accent/10 hover:border-accent/30 hover:text-accent";
-  
+
   return (
-    <Link 
-      to={withTrailingSlash(link)} 
+    <Link
+      to={withTrailingSlash(link)}
       className={`bg-white/60 backdrop-blur-sm rounded-lg p-3 text-center transition-all duration-300 border border-white/50 ${colorClasses} hover:-translate-y-0.5`}
     >
       <h3 className="font-medium text-sm">{name}</h3>
@@ -417,20 +455,25 @@ function NeighborhoodLink({ name, link, variant = "edmonton" }: { name: string; 
   );
 }
 
+const TITLE = "House Cleaning Locations in Alberta | Duty Cleaners";
+const DESCRIPTION =
+  "House cleaning across Alberta: Edmonton, Calgary and the towns around each. No travel fee inside city limits; reference-checked cleaners.";
+
 export default function Locations() {
+  const calgaryQuote = `${canonicalForPath("/calgary")}#quote`;
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>House Cleaning Locations in Alberta | Duty Cleaners</title>
-        <meta name="description" content="Trusted house cleaning across Alberta: Edmonton, Calgary and surrounding towns. Reference-checked, customer-rated cleaners." />
+        <title>{TITLE}</title>
+        <meta name="description" content={DESCRIPTION} />
         <link rel="canonical" href="https://dutycleaners.ca/locations/" />
-        <meta property="og:title" content="House Cleaning Locations in Alberta | Duty Cleaners" />
-        <meta property="og:description" content="Trusted house cleaning across Alberta: Edmonton, Calgary and surrounding towns. Reference-checked, customer-rated cleaners." />
+        <meta property="og:title" content={TITLE} />
+        <meta property="og:description" content={DESCRIPTION} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning Locations in Alberta | Duty Cleaners" />
-        <meta name="twitter:description" content="Trusted house cleaning across Alberta: Edmonton, Calgary and surrounding towns. Reference-checked, customer-rated cleaners." />
+        <meta name="twitter:title" content={TITLE} />
+        <meta name="twitter:description" content={DESCRIPTION} />
       </Helmet>
       <Navigation />
       <main id="main-content" tabIndex={-1}>
@@ -440,10 +483,9 @@ export default function Locations() {
 
       {/* Hero Section */}
       <section className="relative py-20 bg-brand-navy overflow-hidden">
-        {/* Alberta Map Background */}
         <img width={1920} height={1080}
           src={heroAlbertaMap}
-          alt="Calgary skyline showing the iconic city tower and downtown"
+          alt="City skyline at dusk seen across the river, with downtown towers lit"
           className="absolute inset-0 w-full h-full object-cover object-center opacity-40 pointer-events-none"
          loading="eager" fetchPriority="high"/>
         <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/90 via-brand-navy/75 to-brand-navy/90" />
@@ -451,20 +493,21 @@ export default function Locations() {
         {/* Decorative Elements */}
         <div className="absolute top-0 left-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
         <div className="absolute bottom-0 right-0 w-80 h-80 bg-primary/10 rounded-full blur-3xl translate-x-1/3 translate-y-1/3" />
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
               <Building2 className="w-4 h-4 text-accent" />
               <span className="text-white/90 text-sm font-medium">Serving Alberta</span>
             </div>
-            
+
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
               Our Service <span className="text-accent">Locations</span>
             </h1>
-            
+
             <p className="text-xl text-white/80 leading-relaxed mb-10">
-              Professional House Cleaning Services Across Alberta
+              House cleaning in Edmonton, Calgary and the towns around each. Two offices, a price
+              list per city, and a travel fee only outside city limits.
             </p>
 
             {/* Trust Badges */}
@@ -475,7 +518,7 @@ export default function Locations() {
               </div>
               <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-5 py-3 rounded-full border border-white/20">
                 <Award className="w-5 h-5 text-accent" />
-                <span className="font-medium text-white">4.9 on Google</span>
+                <span className="font-medium text-white">{RATING_CLAIM}</span>
               </div>
               <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-5 py-3 rounded-full border border-white/20">
                 <Users className="w-5 h-5 text-accent" />
@@ -490,23 +533,26 @@ export default function Locations() {
                     business licence is probably real, but nothing in the repo
                     sources it, and in this trade "licensed" reads as the wider
                     claim. The founding year alone is backed. */}
-                <span className="font-medium text-white">Operating in Alberta Since 2017</span>
+                <span className="font-medium text-white">Operating in Alberta Since {COMPANY.foundedYear}</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Main Location Cards */}
+      {/* Main Location Cards. This page used to show the same two cards a
+          second time under "Choose Your Location", inside a pasted copy of the
+          homepage; the office block now appears once. */}
       <section className="py-20 bg-secondary/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Our Main Offices</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Two offices: Edmonton and Calgary</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Visit our offices for professional cleaning services
+              Call the office nearest you, or see your price online in about a minute. Nothing is
+              charged until the clean is done.
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {mainLocations.map(location => (
               <LocationCard key={location.name} location={location} />
@@ -515,10 +561,64 @@ export default function Locations() {
         </div>
       </section>
 
+      {/* Services, linked per city */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-10">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">The same services in both cities</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Each service has its own page per city, with the price by home size. Start with{" "}
+                <Link to="/services/" className="text-primary underline underline-offset-2">
+                  all Edmonton cleaning services and prices
+                </Link>{" "}
+                or{" "}
+                <Link to="/calgary/services/" className="text-primary underline underline-offset-2">
+                  every Calgary cleaning service, with starting prices
+                </Link>
+                , and check{" "}
+                <Link to="/whats-included/" className="text-primary underline underline-offset-2">
+                  what's included
+                </Link>{" "}
+                before you compare.
+              </p>
+            </div>
+            <div className="overflow-x-auto rounded-2xl border border-border bg-white">
+              <table className="w-full min-w-[520px] text-sm">
+                <thead>
+                  <tr className="bg-brand-navy text-white">
+                    <th scope="col" className="px-5 py-3 text-left font-semibold">Service</th>
+                    <th scope="col" className="px-5 py-3 text-left font-semibold">Edmonton</th>
+                    <th scope="col" className="px-5 py-3 text-left font-semibold">Calgary</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {SERVICE_LINKS.map((row) => (
+                    <tr key={row.service} className="border-t border-border/60">
+                      <th scope="row" className="px-5 py-3 text-left font-medium text-foreground">{row.service}</th>
+                      <td className="px-5 py-3">
+                        <Link to={row.edmonton} className="text-primary underline underline-offset-2">
+                          {row.service} in Edmonton
+                        </Link>
+                      </td>
+                      <td className="px-5 py-3">
+                        <Link to={row.calgary} className="text-primary underline underline-offset-2">
+                          {row.service} in Calgary
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Edmonton Region Cities */}
       <section className="py-20 bg-brand-navy relative overflow-hidden">
         <div className="absolute top-1/2 left-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-4">
@@ -527,13 +627,15 @@ export default function Locations() {
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Edmonton Region Cleaning Services</h2>
             <p className="text-white/90 max-w-3xl mx-auto">
-              Professional house cleaning services in Edmonton and surrounding communities
+              The towns around Edmonton, served from the Edmonton office. Every one of them sits
+              outside Edmonton city limits, so a {TRAVEL_FEE} travel fee is added per visit. It shows
+              on your quote before you book.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-6xl mx-auto">
-            {edmontonRegionCities.map(city => (
-              <RegionLink key={city.name} name={city.name} link={city.link} variant="edmonton" />
+            {edmontonRegionCities.map((city, index) => (
+              <RegionLink key={city.name} name={city.name} link={city.link} index={index} variant="edmonton" />
             ))}
           </div>
         </div>
@@ -543,19 +645,19 @@ export default function Locations() {
       <section className="py-20 bg-gradient-to-b from-secondary/30 to-secondary/10">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Edmonton Neighborhoods</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Edmonton Neighbourhoods</h2>
             <p className="text-muted-foreground max-w-3xl mx-auto">
-              We serve all Edmonton neighbourhoods with professional cleaning services
+              All inside city limits, so none of these carries a travel fee.
             </p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 max-w-6xl mx-auto">
             {edmontonNeighborhoods.map(neighbourhood => (
-              <NeighborhoodLink 
-                key={neighbourhood.name} 
-                name={neighbourhood.name} 
-                link={neighbourhood.link} 
-                variant="edmonton" 
+              <NeighborhoodLink
+                key={neighbourhood.name}
+                name={neighbourhood.name}
+                link={neighbourhood.link}
+                variant="edmonton"
               />
             ))}
           </div>
@@ -572,7 +674,9 @@ export default function Locations() {
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Our Service Area</h2>
             <p className="text-muted-foreground max-w-3xl mx-auto">
-              We proudly serve communities across Alberta’s main corridor between its two largest cities.
+              Both cities and the towns around each. Areas we do not currently serve: Red Deer.
+              If your address is not on this page, call and we will say plainly whether it is in
+              range.
             </p>
           </div>
 
@@ -587,7 +691,7 @@ export default function Locations() {
       {/* Calgary Region Cities */}
       <section className="py-20 bg-brand-navy relative overflow-hidden">
         <div className="absolute top-1/2 right-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2" />
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-4">
@@ -596,13 +700,15 @@ export default function Locations() {
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Calgary Region Cleaning Services</h2>
             <p className="text-white/90 max-w-3xl mx-auto">
-              Professional house cleaning services in Calgary and surrounding communities
+              The towns around Calgary, served from the Calgary office. All of them are outside
+              Calgary city limits, which adds the same {TRAVEL_FEE} travel fee per visit, shown on
+              the quote before you book.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-6xl mx-auto">
-            {calgaryRegionCities.map(city => (
-              <RegionLink key={city.name} name={city.name} link={city.link} variant="calgary" />
+            {calgaryRegionCities.map((city, index) => (
+              <RegionLink key={city.name} name={city.name} link={city.link} index={index} variant="calgary" />
             ))}
           </div>
         </div>
@@ -612,19 +718,19 @@ export default function Locations() {
       <section className="py-20 bg-gradient-to-b from-secondary/30 to-secondary/10">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Calgary Neighborhoods</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Calgary Neighbourhoods</h2>
             <p className="text-muted-foreground max-w-3xl mx-auto">
-              We serve all Calgary neighbourhoods with professional cleaning services
+              All inside city limits, so none of these carries a travel fee.
             </p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 max-w-6xl mx-auto">
             {calgaryNeighborhoods.map(neighbourhood => (
-              <NeighborhoodLink 
-                key={neighbourhood.name} 
-                name={neighbourhood.name} 
-                link={neighbourhood.link} 
-                variant="calgary" 
+              <NeighborhoodLink
+                key={neighbourhood.name}
+                name={neighbourhood.name}
+                link={neighbourhood.link}
+                variant="calgary"
               />
             ))}
           </div>
@@ -635,45 +741,63 @@ export default function Locations() {
       <section className="py-20 bg-brand-navy relative overflow-hidden">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-primary/10 rounded-full blur-3xl" />
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
-              <Shield className="w-4 h-4 text-accent" />
-              <span className="text-white/90 text-sm font-medium">Satisfaction Guaranteed</span>
+              <Star className="w-4 h-4 text-accent" />
+              <span className="text-white/90 text-sm font-medium">{RATING_CLAIM}</span>
             </div>
-            
+
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Ready to Experience a <span className="text-accent">Cleaner Home</span>?
+              See your price in Edmonton or Calgary
             </h2>
-            
+
             <p className="text-xl text-white/80 mb-10">
-              Book your professional cleaning service today and enjoy the comfort of a spotless home.
+              Pick your city, answer a few questions about the home, and the price is on screen
+              before you book. You can{" "}
+              <Link to="/reviews/" className="text-accent underline underline-offset-2">
+                read the reviews
+              </Link>{" "}
+              from both cities first, or{" "}
+              <Link to="/gift-card/" className="text-accent underline underline-offset-2">
+                give a clean as a gift
+              </Link>
+              .
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground">
-                <Link to="/">
-                  <Phone className="w-5 h-5 mr-2" />
-                  Book Edmonton
-                </Link>
+                <a href="/#quote">
+                  <Calculator className="w-5 h-5 mr-2" />
+                  See My Instant Price, Edmonton
+                </a>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10">
-                <Link to="/cleaning-services-calgary/">
-                  <Phone className="w-5 h-5 mr-2" />
-                  Book Calgary
-                </Link>
+                <a href={calgaryQuote}>
+                  <Calculator className="w-5 h-5 mr-2" />
+                  See My Instant Price, Calgary
+                </a>
               </Button>
             </div>
+            <p className="mt-8 text-white/80">
+              Or call:{" "}
+              <a href={CITY_PROOF.edmonton.phoneLink} className="text-accent underline underline-offset-2">
+                Edmonton {CITY_PROOF.edmonton.phone}
+              </a>{" "}
+              and{" "}
+              <a href={CITY_PROOF.calgary.phoneLink} className="text-accent underline underline-offset-2">
+                Calgary {CITY_PROOF.calgary.phone}
+              </a>
+              . Questions that are not about price go through{" "}
+              <Link to="/contact-us/" className="text-accent underline underline-offset-2">
+                the contact page
+              </Link>
+              .
+            </p>
           </div>
         </div>
       </section>
-
-      {/* Supporting brand content, below the directory it exists to support.
-          This used to render ABOVE everything, which pushed this page's real
-          <h1> behind ~20 marketing headings and made a directory page read as a
-          second homepage. Embedded mode renders no Helmet and no nav. */}
-      <BrandHome hideFooter />
       </main>
 
       <Footer />

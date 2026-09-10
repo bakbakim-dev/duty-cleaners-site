@@ -6,6 +6,24 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
+import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice } from "@/data/pricing";
+import { travelFee } from "@/data/addon-table";
+import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
+
+// Prices are read from bk-config through pricing.ts, never typed here.
+const STANDARD = standardTierRows();
+const DEEP = deepCleanTierRows();
+const MOVE = moveInOutTierRows();
+const STANDARD_FROM = STANDARD[0].price;
+const STANDARD_TO = STANDARD[STANDARD.length - 1].price;
+const DEEP_FROM = DEEP[0].price;
+const DEEP_TO = DEEP[DEEP.length - 1].price;
+const MOVE_FROM = MOVE[0].price;
+const MOVE_TO = MOVE[MOVE.length - 1].price;
+const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
+const PAGE_TITLE = `House Cleaning Sherwood Park from ${STANDARD_FROM} | Duty Cleaners`;
+const META_DESCRIPTION = `House cleaning across Sherwood Park from ${STANDARD_FROM}: Broadmoor, Emerald Hills and Lakeland Ridge. Flat rates by home size, paid after the clean.`;
+
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
   return (
@@ -75,30 +93,35 @@ const whyUsItems = [
 ];
 
 const nearbyAreas = [
-  "Summerside", "Clarkdale Meadows", "Lakeland Ridge", "Emerald Hills", "Broadmoor", "Nottingham", "Mills Haven", "Foxboro"
+  "Summerwood", "Clarkdale Meadows", "Lakeland Ridge", "Emerald Hills", "Broadmoor", "Nottingham", "Mills Haven", "Foxboro"
 ];
 
 export default function SherwoodPark() {
-  const faqs = [
+  const faqs: { question: string; answer: string; link?: { to: string; text: string } }[] = [
     {
-      question: "How long does an initial cleaning take?",
+      question: "Is there a travel fee in Sherwood Park?",
+      answer: `Yes. Sherwood Park is in Strathcona County, outside Edmonton city limits, so a ${TRAVEL_FEE} travel fee is added to each home-cleaning booking. Nothing else changes: the flat rate for the clean is the Edmonton rate.`
+    },
+    {
+      question: "What does a standard clean in Sherwood Park cost?",
+      answer: `A one-bedroom is ${STANDARD_FROM} and a home with five or more bedrooms is ${STANDARD_TO}, with the sizes between priced in steps. Add the travel fee and 5% GST. A deep clean runs ${DEEP_FROM} to ${DEEP_TO}, and a recurring schedule takes 20%, 15% or 10% off from the second visit depending on how often we come.`
+    },
+    {
+      question: "Can you come out to Sherwood Park same-day?",
+      answer: `Sometimes. Same-day and next-day slots depend on what the day's schedule has left; call ${CITY_PROOF.edmonton.phone} and ask. Bookings are made to an arrival window (${ARRIVAL_WINDOWS[0]}, ${ARRIVAL_WINDOWS[1]} or ${ARRIVAL_WINDOWS[2]}), and shift workers can name a room to leave until last.`
+    },
+    {
+      question: "Do you do move-out cleaning in Sherwood Park?",
+      answer: `Yes. Move-in and move-out cleans are ${MOVE_FROM} to ${MOVE_TO} by home size before the travel fee, and the oven, fridge and cabinet interiors are covered rather than added on.`,
+      link: { to: "/move-out-cleaning-edmonton/", text: "Move-out cleaning for Sherwood Park and Edmonton" }
+    },
+    {
+      question: "Do you bring your own supplies?",
+      answer: `Yes. The team arrives with all cleaning products and equipment. Eco-friendly products are ${POLICY.ecoProductsFee} extra: ${POLICY.ecoProductsHowToRequest}. If you prefer a particular product on a surface, a sealed stone counter for instance, leave it out with a note and the team uses it.`
+    },
+    {
+      question: "How long does a first clean in Sherwood Park take?",
       answer: `We work to a checklist, not a clock. Your Sherwood Park team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
-    },
-    {
-      question: "What cleaning services does Duty Cleaners offer in Sherwood Park?",
-      answer: `Every service we run can be booked locally:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
-    },
-    {
-      question: "Do you offer discounts?",
-      answer: `Yes — the discount grows with visit frequency:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
-    },
-    {
-      question: "What's included in a deep cleaning?",
-      answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
-    },
-    {
-      question: "What is your 100% satisfaction guarantee policy?",
-      answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back and put it right — at no extra cost."
     }
   ];
   const faqJsonLd = {
@@ -115,16 +138,16 @@ export default function SherwoodPark() {
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>House Cleaning Sherwood Park, AB | Duty Cleaners</title>
-        <meta name="description" content="House cleaning across Sherwood Park — Broadmoor, Emerald Hills, Lakeland Ridge. Vetted cleaners, flat pricing, 24-hour make-it-right promise." />
+        <title>{PAGE_TITLE}</title>
+        <meta name="description" content={META_DESCRIPTION} />
         <link rel="canonical" href="https://dutycleaners.ca/cleaning-services-sherwood-park/" />
-        <meta property="og:title" content="House Cleaning Sherwood Park, AB | Duty Cleaners" />
-        <meta property="og:description" content="House cleaning across Sherwood Park — Broadmoor, Emerald Hills, Lakeland Ridge. Vetted cleaners, flat pricing, 24-hour make-it-right promise." />
+        <meta property="og:title" content={PAGE_TITLE} />
+        <meta property="og:description" content={META_DESCRIPTION} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/cleaning-services-sherwood-park/" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning Sherwood Park, AB | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning across Sherwood Park — Broadmoor, Emerald Hills, Lakeland Ridge. Vetted cleaners, flat pricing, 24-hour make-it-right promise." />
+        <meta name="twitter:title" content={PAGE_TITLE} />
+        <meta name="twitter:description" content={META_DESCRIPTION} />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Sherwood Park, AB", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-sherwood-park", areaServed: "Sherwood Park, AB" }))}</script>
@@ -149,7 +172,7 @@ export default function SherwoodPark() {
                 Professional House Cleaning in Sherwood Park
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                House cleaning in Sherwood Park, rated {RATING_CLAIM}. Same-day slots when the schedule allows, from Broadmoor Lake Park to Millennium Place and across the hamlet.
+                House cleaning in Sherwood Park, rated {RATING_CLAIM}. Standard cleans from {STANDARD_FROM}, deep cleans from {DEEP_FROM}, flat by home size, from Broadmoor Lake Park to Millennium Place and across the hamlet.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -205,10 +228,14 @@ export default function SherwoodPark() {
                   <a href="https://www.google.com/maps/place/Sherwood+Park+Mall,+Sherwood+Park,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Sherwood Park Mall</a>{" "}
                   and{" "}
                   <a href="https://www.google.com/maps/place/Heritage+Hills+Park,+Sherwood+Park,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Heritage Hills Park</a>,
-                  and in Summerside, Emerald Hills and Lakeland Ridge.
+                  and in Summerwood, Emerald Hills and Lakeland Ridge.
                 </p>
                 <p>
                   Plant rotations put people asleep during the day. Tell us at booking and the room order changes at no cost.
+                </p>
+                <p>
+                  Hosts in Sherwood Park with a basement suite or a whole-home listing can book turnovers as{" "}
+                  <Link to="/edmonton/airbnb-cleaning/" className="text-primary underline underline-offset-2 font-medium">Airbnb cleaning in Edmonton</Link>; the same travel fee applies.
                 </p>
               </div>
             </div>
@@ -267,7 +294,9 @@ export default function SherwoodPark() {
                 Cleaning Services for Sherwood Park Homes
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                Upkeep, deep cleans, move-outs: the whole toolkit in one place.
+                Five services, each with a flat rate by home size. See{" "}
+                <Link to="/services/" className="text-primary underline underline-offset-2 font-medium">all Edmonton cleaning services and prices</Link>{" "}
+                for the add-ons and what each visit includes.
               </p>
             </div>
           </AnimatedSection>
@@ -289,10 +318,11 @@ export default function SherwoodPark() {
             <div className="text-center mb-14">
               <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
               <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">
-                Why Sherwood Park Residents Choose Duty Cleaners
+                Sherwood Park house cleaners you rate after every visit
               </h2>
               <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                Trusted locally for reliable, thorough cleaning.
+                The rating you leave after a clean decides who comes back. Before you book,{" "}
+                <Link to="/reviews/" className="text-white underline underline-offset-2 font-medium">read the reviews</Link>.
               </p>
             </div>
           </AnimatedSection>
@@ -312,10 +342,18 @@ export default function SherwoodPark() {
           <AnimatedSection>
             <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
             <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
-              Proudly Serving Sherwood Park & Surrounding Areas
+              Cleaning services in Sherwood Park and the towns around Edmonton
             </h2>
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-              We provide professional house cleaning services throughout Sherwood Park and nearby communities in the Edmonton region.
+              Near Sherwood Park, the other communities we clean from the Edmonton office are{" "}
+              <Link to="/cleaning-services-st-albert/" className="text-primary underline underline-offset-2 font-medium">St. Albert house cleaners</Link>{" "}
+              to the northwest,{" "}
+              <Link to="/cleaning-services-morinville/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Morinville</Link>{" "}
+              beyond it,{" "}
+              <Link to="/cleaning-services-spruce-grove/" className="text-primary underline underline-offset-2 font-medium">cleaning services in Spruce Grove</Link>{" "}
+              on the west side and a{" "}
+              <Link to="/cleaning-services-leduc/" className="text-primary underline underline-offset-2 font-medium">Leduc cleaning company</Link>{" "}
+              by the airport. Each is outside city limits, so each carries the same {TRAVEL_FEE} travel fee as Sherwood Park.
             </p>
             <CoverageChips areas={nearbyAreas} variant="compact" />
             <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
@@ -358,7 +396,15 @@ export default function SherwoodPark() {
                   {faqs.map((faq, index) => (
                     <AccordionItem key={index} value={`item-${index}`}>
                       <AccordionTrigger className="text-left font-semibold">{faq.question}</AccordionTrigger>
-                      <AccordionContent className="text-muted-foreground whitespace-pre-line">{faq.answer}</AccordionContent>
+                      <AccordionContent className="text-muted-foreground whitespace-pre-line">
+                        {faq.answer}
+                        {faq.link && (
+                          <>
+                            {" "}
+                            <Link to={faq.link.to} className="text-primary underline underline-offset-2 font-medium">{faq.link.text}</Link>
+                          </>
+                        )}
+                      </AccordionContent>
                     </AccordionItem>
                   ))}
                 </Accordion>
@@ -373,7 +419,7 @@ export default function SherwoodPark() {
         <div className="container mx-auto px-4 relative z-10 text-center">
           <AnimatedSection>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Ready for a Spotless Home in Sherwood Park?
+              See your Sherwood Park price before you book
             </h2>
             <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
               See your flat rate before you book. Nothing is charged until the clean is done.
