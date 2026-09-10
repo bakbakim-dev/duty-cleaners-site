@@ -6,12 +6,14 @@ import useRevealOnScroll from "@/hooks/use-reveal-on-scroll";
  * section is one honest line, not a heading, an icon and two paragraphs about
  * a photo shoot: that was sixty words of padding on the two pages where the
  * word count matters most, and it repeated verbatim on both.
+ *
+ * The line used to end "We do not publish stand-ins" while sitting directly
+ * under a six-photo mosaic of generated images on both hubs. The mosaic is
+ * gone; the line is the whole section again, and shorter.
  */
 const EMPTY_LINE = {
-  Edmonton:
-    "Before-and-after photos from Edmonton cleans go here once the homeowners have approved them. We do not publish stand-ins.",
-  Calgary:
-    "The Calgary before-and-after set is published once each homeowner has signed off on their photos. Until then this space stays blank rather than filled with stock images.",
+  Edmonton: "Before-and-after photos from Edmonton cleans go up here once the homeowners have approved them.",
+  Calgary: "Calgary before-and-after photos go up as each homeowner signs off on theirs.",
 } as const;
 
 export default function BeforeAfterGallery({ city }: { city: "Edmonton" | "Calgary" }) {

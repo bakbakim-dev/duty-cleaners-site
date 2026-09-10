@@ -15,6 +15,14 @@ import { canonicalUrlForPath } from "@/data/legacy-urls";
  * graph as the 154 location pages rather than describing a fresh anonymous
  * business each time.
  */
+/** One row of a published price table, exactly as the page prints it. */
+export interface ServiceOfferRow {
+  /** What the customer is choosing, e.g. "3 Bedroom". */
+  name: string;
+  /** The figure as rendered, e.g. "$424". Parsed, never re-typed. */
+  price: string;
+}
+
 export function buildServiceSchema(input: {
   name: string;
   description: string;
@@ -26,6 +34,27 @@ export function buildServiceSchema(input: {
   offerTo?: number;
   /** Any condition the price depends on, e.g. that it is an add-on. */
   offerNote?: string;
+  /**
+   * A published tier table — pass the same rows the page renders, e.g.
+   * `moveInOutTierRows().map((r) => ({ name: r.beds, price: r.price }))`.
+   *
+   * A page that prints five bookable prices and declares none of them leaves a
+   * rich result with nothing to show and an assistant with nothing to quote.
+   * This is the shape ServiceDetailPage already emits for the deep-cleaning
+   * and standard pages, so the bespoke pages now join them rather than
+   * inventing a second convention.
+   */
+  offerCatalog?: { name: string; rows: ServiceOfferRow[] };
+  /**
+   * For a service sold by the hour rather than by the job. `offerFrom` becomes
+   * a UnitPriceSpecification at this unit, and `minQuantity` becomes the
+   * eligibleQuantity floor — which is how a "3-hour minimum" is stated in
+   * schema.org rather than buried in prose a parser will not read.
+   *
+   * `code` is the UN/CEFACT code ("HUR" for an hour); `label` is how the
+   * generated description should read it ("per cleaner-hour").
+   */
+  offerUnit?: { code: string; label: string; minQuantity?: number };
 }) {
   const cityName = input.city === "edmonton" ? "Edmonton" : "Calgary";
   return {
@@ -67,26 +96,83 @@ export function buildServiceSchema(input: {
               provides for exactly this, and what stops a rich result quoting
               the floor as the whole story.
             */
-            ...(input.offerTo !== undefined
+            ...(input.offerUnit
               ? {
                   priceSpecification: {
-                    "@type": "PriceSpecification",
-                    minPrice: input.offerFrom,
-                    maxPrice: input.offerTo,
+                    "@type": "UnitPriceSpecification",
+                    price: input.offerFrom,
                     priceCurrency: "CAD",
+                    unitCode: input.offerUnit.code,
                   },
+                  ...(input.offerUnit.minQuantity !== undefined
+                    ? {
+                        eligibleQuantity: {
+                          "@type": "QuantitativeValue",
+                          minValue: input.offerUnit.minQuantity,
+                          unitCode: input.offerUnit.code,
+                        },
+                      }
+                    : {}),
                 }
-              : { price: input.offerFrom }),
+              : input.offerTo !== undefined
+                ? {
+                    priceSpecification: {
+                      "@type": "PriceSpecification",
+                      minPrice: input.offerFrom,
+                      maxPrice: input.offerTo,
+                      priceCurrency: "CAD",
+                    },
+                  }
+                : { price: input.offerFrom }),
             // Every figure is derived from bk-config by the caller; nothing here
             // is hand-typed, so it cannot drift from what BookingKoala charges.
             // offerNote carries any condition the price depends on. Wall
             // washing is an add-on, and a rich result showing a bare
             // "$39.99" would advertise a visit that cannot be booked.
             description: `${
-              input.offerTo !== undefined
-                ? `${input.offerFrom} to ${input.offerTo} CAD`
-                : `From ${input.offerFrom} CAD`
+              input.offerUnit
+                ? // The minimum is carried by eligibleQuantity above, and in
+                  // whatever offerNote the caller writes; repeating it here as a
+                  // bare number ("minimum 3") reads as an unfinished sentence.
+                  `${input.offerFrom} CAD ${input.offerUnit.label}`
+                : input.offerTo !== undefined
+                  ? `${input.offerFrom} to ${input.offerTo} CAD`
+                  : `From ${input.offerFrom} CAD`
             }, before 5% GST.${input.offerNote ? ` ${input.offerNote}` : ""}`,
+          },
+        }
+      : {}),
+    ...(input.offerCatalog && input.offerCatalog.rows.length > 0
+      ? {
+          hasOfferCatalog: {
+            "@type": "OfferCatalog",
+            name: input.offerCatalog.name,
+            itemListElement: input.offerCatalog.rows.map((row) => {
+              // The rows arrive as the strings the table prints ("$424",
+              // "$39.99 – $109.99"), so the figures in the markup and the
+              // figures on screen are the same characters. Commas are stripped
+              // because "$1,900" is one number, not two.
+              const numbers = (row.price.match(/\d[\d,]*(?:\.\d+)?/g) ?? []).map((n) =>
+                Number(n.replace(/,/g, "")),
+              );
+              return {
+                "@type": "Offer",
+                name: row.name,
+                priceCurrency: "CAD",
+                ...(numbers.length >= 2
+                  ? {
+                      priceSpecification: {
+                        "@type": "PriceSpecification",
+                        minPrice: Math.min(...numbers),
+                        maxPrice: Math.max(...numbers),
+                        priceCurrency: "CAD",
+                      },
+                    }
+                  : numbers.length === 1
+                    ? { price: numbers[0] }
+                    : {}),
+              };
+            }),
           },
         }
       : {}),

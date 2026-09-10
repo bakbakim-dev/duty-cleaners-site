@@ -18,7 +18,6 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import PricingTierCard from "@/components/pricing/PricingTierCard";
 import RecurringDiscountCard from "@/components/pricing/RecurringDiscountCard";
-import PricingFactorCard from "@/components/pricing/PricingFactorCard";
 import PricingOptionCard from "@/components/pricing/PricingOptionCard";
 import PricingFormula from "@/components/PricingFormula";
 import {
@@ -31,14 +30,15 @@ import {
   moveInOutTierRows,
   PRICING_TIERS,
   standardTierRows,
+  startingPrice,
 } from "@/data/pricing";
 import { addOnTableRows } from "@/data/addon-table";
 
 import heroPricingCleaner from "@/assets/hero-edmonton-pricing-cleaner.webp";
 import {
   CheckCircle2, Phone, Calculator, Sparkles, Shield, Clock,
-  Star, BadgeCheck, Home, Ruler, Bath, Wrench, CalendarClock,
-  DollarSign, HelpCircle, Award, Users, Info, MapPin, Receipt
+  Star, BadgeCheck, Home, CalendarClock,
+  HelpCircle, Award, Users, Info, MapPin, Receipt
 } from "lucide-react";
 import { COMPANY, RATING_CLAIM } from "@/data/proof";
 
@@ -72,6 +72,13 @@ const standardPricing = standardTierRows();
 const deepPricing = deepCleanTierRows();
 
 const moveInOutPricing = moveInOutTierRows();
+
+/**
+ * Post-construction is the one service on this site that is not priced by
+ * bedroom count, and this page never mentioned it. The floor of its
+ * square-footage ladder, read from bk-config like every other figure here.
+ */
+const POST_CONSTRUCTION_FROM = formatPrice(startingPrice("post-construction"));
 
 /**
  * The "from" figure for the title, the meta and the flat-rate card. It is the
@@ -156,14 +163,12 @@ const EDMONTON_TOWNS: { anchor: string; to: string }[] = [
   { anchor: "Stony Plain house cleaners", to: "/cleaning-services-stony-plain/" },
 ];
 
-const pricingFactors = [
-  { icon: Ruler, title: "Type of home", desc: `The table is for an apartment or condo. A bungalow or basement suite adds ${HOME_TYPE_EXTRA.bungalow}, a townhouse ${HOME_TYPE_EXTRA.townhouse}, a two-storey house ${HOME_TYPE_EXTRA.twoStorey}.` },
-  { icon: Bath, title: "Bedrooms and bathrooms", desc: "The flat rate is set by bedroom count; the quote asks how many bathrooms there are and prices them in." },
-  { icon: Wrench, title: "Type of service", desc: "Standard, deep, or move-in/out. A deep clean is the standard rate plus the Deep Cleaning package for that home size." },
-  { icon: Sparkles, title: "Add-ons", desc: "Inside the fridge, oven and cabinets, interior windows, blinds, baseboards and walls, each priced in the table above." },
-  { icon: CalendarClock, title: "Frequency", desc: "20% off weekly, 15% off bi-weekly and 10% off every 4 weeks, from the second visit." },
-  { icon: DollarSign, title: "Flat rate or hourly", desc: `Flat by home size, or ${formatPrice(HOURLY_RATE)} per hour per cleaner for partial and unusual jobs.` },
-];
+/* The six "what changes the price" cards used to sit here and again in the
+   section below the travel fee: home type, bedrooms and bathrooms, service,
+   add-ons and frequency are the five steps of the builder near the top of the
+   page, stated a second time in smaller type. The builder stays; the cards are
+   gone. The sixth card was the only one carrying a fact the builder does not —
+   flat rate against hourly — and that survives as a sentence. */
 
 const faqItems = [
   { value: "trust", question: "Can I trust my house cleaners?", answer: "Every cleaner is reference-checked before their first job, and every visit is rated by the customer afterwards. Those ratings decide who we send back." },
@@ -440,6 +445,15 @@ export default function EdmontonPricing() {
                     <PricingTierCard key={item.beds} beds={item.beds} price={item.price} />
                   ))}
                 </div>
+                <p className="text-center text-sm text-muted-foreground mt-8 max-w-2xl mx-auto">
+                  An empty home the trades have just left is the one clean these bedroom tiers do not
+                  price.{" "}
+                  <Link to="/post-construction-cleaning/" className="text-accent underline underline-offset-4 hover:text-accent/80">
+                    Post-construction cleaning in Edmonton
+                  </Link>{" "}
+                  goes by square footage instead, from {POST_CONSTRUCTION_FROM} for the smallest band,
+                  because drywall dust settles on every surface regardless of how many bedrooms there are.
+                </p>
               </TabsContent>
             </Tabs>
 
@@ -624,21 +638,16 @@ export default function EdmontonPricing() {
         </div>
       </section>
 
-      {/* Factors That Affect Pricing */}
+      {/* Flat rate against hourly, then the no-hidden-fees banner */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4" ref={factorsRef}>
           <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-12">
-              <span className="text-accent font-semibold text-sm uppercase tracking-wider">Good to know</span>
-              <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-4">What changes the cost of a clean</h2>
-              <p className="text-lg text-muted-foreground">Six things, and every one of them is on the form</p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-5 mb-10">
-              {pricingFactors.map((factor) => (
-                <PricingFactorCard key={factor.title} icon={factor.icon} title={factor.title} description={factor.desc} />
-              ))}
-            </div>
+            <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-10 text-center">
+              The five steps at the top of the page price a whole home, and a flat rate is what a whole
+              home costs. Ask for less than that, a few rooms or a one-off task list, and the job is
+              quoted hourly instead, at {formatPrice(HOURLY_RATE)} per hour per cleaner. Which of the
+              two costs less is set out further down.
+            </p>
 
             {/* No Hidden Fees Banner */}
             <div className="bg-brand-navy rounded-2xl p-8 md:p-10 border border-white/10 relative overflow-hidden">

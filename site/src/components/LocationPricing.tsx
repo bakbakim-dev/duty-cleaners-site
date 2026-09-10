@@ -10,6 +10,7 @@ import {
   addOnFromPrice,
   formatPrice,
 } from "@/data/pricing";
+import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
 import { TRAVEL_FEE_KEY } from "@/data/addon-table";
 import { edmontonSurrounding, calgarySurrounding } from "@/data/city-locations";
 
@@ -50,6 +51,28 @@ const TRAVEL_FEE = (() => {
   return v === null ? null : formatPrice(v);
 })();
 
+/**
+ * THE TRAVEL FEE WAS NOT THE ONLY COMPULSORY EXTRA, and this block said it was.
+ *
+ * A visitor read "flat rates ... the figure you see before booking is the
+ * figure you pay" followed by one fee that applies to a handful of towns, and
+ * reasonably concluded there was nothing else. There are two more, and both are
+ * chosen on the booking form rather than added later: the home-type surcharge
+ * (the published tables are priced for an apartment or condo) and BookingKoala
+ * extra 122, "Must choose if you have pets", which is billed on every visit.
+ * /pricing/ has always named all three. Omitting two of them on 139 location
+ * pages is the same drip-pricing shape the travel-fee line exists to avoid.
+ *
+ * Keyed by BK variable id, exactly as EdmontonPricing does it, so a price
+ * change in BookingKoala moves this sentence with it and cannot be re-typed.
+ */
+const HOME_TYPE_EXTRA = {
+  bungalow: formatPrice(BK_PRICE_OVERRIDES[54].price),
+  townhouse: formatPrice(BK_PRICE_OVERRIDES[89].price),
+  twoStorey: formatPrice(BK_PRICE_OVERRIDES[90].price),
+};
+const PET_FEE = formatPrice(addOnFromPrice("standard", "must-choose-if-you-have-pets") ?? 0);
+
 /** Route slugs for every place that is its own municipality, not a neighbourhood. */
 const SURROUNDING_SLUGS: ReadonlySet<string> = new Set(
   [...edmontonSurrounding, ...calgarySurrounding].map((entry) =>
@@ -86,10 +109,18 @@ export default function LocationPricing({ place }: LocationPricingProps) {
             A standard clean in {name} runs {PRICES.standard} depending on the size of your home, a deep
             clean {PRICES.deep}, and a move-in or move-out clean {PRICES.moveInOut}. Those are flat
             rates in Canadian dollars before 5% GST — the figure you see before booking is the
-            figure you pay, and it does not go up because a clean took longer than expected.
+            figure you pay, and it does not go up because a clean took longer than expected. Those
+            figures are for an apartment or condo: a bungalow or basement suite adds{" "}
+            {HOME_TYPE_EXTRA.bungalow}, a townhouse {HOME_TYPE_EXTRA.townhouse} and a two-storey house{" "}
+            {HOME_TYPE_EXTRA.twoStorey}, and a home with pets {PET_FEE} a visit.
+            {/* The fee is charged against the branch this page belongs to, so
+                that is the boundary to name. "outside Edmonton and Calgary city
+                limits" was true of the company and useless to the reader: an
+                Okotoks visitor was being told about Edmonton's boundary. */}
             {isOwnMunicipality && TRAVEL_FEE !== null
-              ? ` Because ${name} is outside Edmonton and Calgary city limits, a ${TRAVEL_FEE} travel fee is added to bookings here.`
+              ? ` Because ${name} is outside ${city} city limits, a ${TRAVEL_FEE} travel fee is added to bookings here.`
               : ""}
+            {" Every one of them shows on the quote before you book."}
           </p>
           <p className="text-muted-foreground text-lg leading-relaxed">
             {/* This sentence is about recurring cleaning and linked only to the

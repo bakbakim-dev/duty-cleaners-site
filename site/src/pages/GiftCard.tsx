@@ -50,8 +50,12 @@ const suggestions = [
  */
 const FAQS = [
   {
+    // The hero says "any clean", and this list is the page's own answer to what
+    // that means, so the two have to name the same set. It used to stop at wall
+    // washing and leave out the hourly short-term-rental turnovers the site
+    // sells on its two Airbnb pages.
     q: "Where can the gift card be used?",
-    a: "On any of our home cleaning services in Edmonton or Calgary: standard, deep, move-in or move-out, post-construction and wall washing. The recipient picks the service and the date.",
+    a: "On any of our home cleaning services in Edmonton or Calgary: standard, deep, move-in or move-out, post-construction, wall washing, and Airbnb and short-term rental turnovers, which are billed by the hour rather than by home size. The recipient picks the service and the date.",
   },
   {
     q: "Does the gift card expire?",
@@ -111,7 +115,7 @@ export default function GiftCard() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={TITLE} />
         <meta name="twitter:description" content={DESCRIPTION} />
-        {/* Mirrors the "Gift certificate questions" list below. */}
+        {/* Mirrors the "Gift card questions" list below. */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -385,7 +389,11 @@ export default function GiftCard() {
         <section className="bg-muted/40 py-14 md:py-16">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-3xl">
-              <h2 className="mb-6 text-center text-2xl font-bold md:text-3xl">Gift certificate questions</h2>
+              {/* "Gift certificate" was the only place on 209 pages where the
+                  product went by that name; nothing in the repository targets it
+                  as a query, and every answer under the heading says "gift
+                  card". One name. */}
+              <h2 className="mb-6 text-center text-2xl font-bold md:text-3xl">Gift card questions</h2>
               <ul className="space-y-5">
                 {FAQS.map((faq) => (
                   <li key={faq.q} className="flex items-start gap-3 text-base leading-relaxed">

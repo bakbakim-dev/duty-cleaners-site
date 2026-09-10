@@ -4,8 +4,10 @@ import {
 import beaumontLandmark from "@/assets/gallery/beaumont-landmark.webp";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CoverageChips from "@/components/CoverageChips";
-import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice } from "@/data/pricing";
+import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice, addOnFromPrice } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
+import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
+import { GOOGLE_LISTINGS } from "@/lib/google-listings";
 import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
 
 import LocationPricing from "@/components/LocationPricing";
@@ -19,10 +21,21 @@ const MOVE = moveInOutTierRows();
 const MOVE_FROM = MOVE[0].price;
 const MOVE_TOP = MOVE[MOVE.length - 1].price;
 const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
-const REVIEW_COUNT = CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount;
+// Post-construction carries its own travel-fee row in bk-config, at a higher amount.
+const PC_TRAVEL_FEE = formatPrice(travelFee("post-construction") ?? 0);
+// Charged for you rather than chosen, and charged inside the city too.
+const PET_FEE = formatPrice(addOnFromPrice("standard", "must-choose-if-you-have-pets") ?? 0);
+const HOME_TYPE = {
+  bungalow: formatPrice(BK_PRICE_OVERRIDES[54].price),
+  townhouse: formatPrice(BK_PRICE_OVERRIDES[89].price),
+  twoStorey: formatPrice(BK_PRICE_OVERRIDES[90].price),
+};
+const EDMONTON_LISTING = GOOGLE_LISTINGS.edmonton;
 
-const PAGE_TITLE = `House Cleaning Beaumont from ${STANDARD_FROM} | Duty Cleaners`;
-const PAGE_DESCRIPTION = `House cleaning in Beaumont from ${STANDARD_FROM}, flat by home size. Standard, deep and move-out cleans, rated ${RATING_CLAIM}. Pay after the clean.`;
+// "Beaumont" alone reads as the Texas city to a search engine, and most of this
+// page's impressions were for that one. Title and H1 both say Alberta now.
+const PAGE_TITLE = `House Cleaning Beaumont, AB from ${STANDARD_FROM} | Duty Cleaners`;
+const PAGE_DESCRIPTION = `House cleaning in Beaumont, Alberta from ${STANDARD_FROM}, flat by home size. Standard, deep and move-out cleans, rated ${RATING_CLAIM}. Pay after the clean.`;
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -64,13 +77,34 @@ const ServiceCard = ({
   </div>
 );
 
-const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: string }) => (
+const WhyUsCard = ({
+  icon: Icon,
+  title,
+  description,
+  link,
+}: {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  /** Present on the rating card, which cites the listing the count comes from. */
+  link?: { href: string; text: string };
+}) => (
   <div className="group bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center transition-all duration-500 ease-out hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-xl" style={{ transformStyle: "preserve-3d" }}>
     <div className="w-14 h-14 rounded-full bg-accent/20 flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:rotate-12">
       <Icon className="w-7 h-7 text-accent" />
     </div>
     <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
-    <p className="text-white/80 text-sm leading-relaxed">{description}</p>
+    <p className="text-white/80 text-sm leading-relaxed">
+      {description}
+      {link && (
+        <>
+          {" "}
+          <a href={link.href} target="_blank" rel="noopener noreferrer" className="text-white underline underline-offset-2 font-medium">
+            {link.text}
+          </a>
+        </>
+      )}
+    </p>
   </div>
 );
 
@@ -80,12 +114,12 @@ const services = [
   { icon: Truck, title: "Move In/Out Cleaning", description: "The empty-house clean, done to the standard a landlord checks against.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Beaumont" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Drywall dust and site debris cleared after a renovation or a new build.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Beaumont" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Beaumont" },
-  { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard clean on a repeat booking, from ${STANDARD_FROM}. From the second visit it is 20% off weekly, 15% every two weeks, 10% every four.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Beaumont" },
 ];
 
 const whyUsItems = [
   { icon: Shield, title: "Reference-Checked, Then Rated by You", description: "Every cleaner is reference-checked before their first job, then rated by the customer after every visit. Those ratings decide who keeps cleaning for us." },
-  { icon: Star, title: RATING_CLAIM, description: `${REVIEW_COUNT} reviews across Edmonton and Calgary, and every one of them is on our Google listing.` },
+  { icon: Star, title: RATING_CLAIM, description: `Beaumont bookings are rated on the Edmonton listing, and it holds ${CITY_PROOF.edmonton.googleReviewCount} reviews.`, link: { href: EDMONTON_LISTING.reviewsUrl, text: "See them on Google" } },
   { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day slots when the schedule allows." },
   { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Cleaners trained to the Duty Cleaners checklist, and rated by you after every visit." },
@@ -100,7 +134,7 @@ export default function Beaumont() {
   const faqs = [
     {
       question: "Is there a travel fee for house cleaning in Beaumont?",
-      answer: `Yes. Beaumont is outside Edmonton city limits, so a ${TRAVEL_FEE} travel fee is added to every booking here. It is added when you book, it is in the total before you confirm, and it is the same amount for a standard clean, a deep clean or a move-out.`
+      answer: `Yes. Beaumont is outside Edmonton city limits, so a ${TRAVEL_FEE} travel fee is added to a standard, deep or move-out booking here, and ${PC_TRAVEL_FEE} to a post-construction one. It goes on when you book and is in the total before you confirm. Compared with an Edmonton address that fee is the only difference. The flat rate does not change, and neither does the pet charge or the home-type surcharge: ${PET_FEE} a visit for a home with pets, and the step up from an apartment or condo, ${HOME_TYPE.bungalow} for a bungalow or basement suite, ${HOME_TYPE.townhouse} for a townhouse, ${HOME_TYPE.twoStorey} for a two-storey house.`
     },
     {
       question: "Can I get same-day cleaning in Beaumont?",
@@ -165,10 +199,10 @@ export default function Beaumont() {
             <div className="flex-1 text-center lg:text-left">
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-5 py-2 mb-6">
                 <MapPin className="w-4 h-4 text-accent" />
-                <span className="text-white/90 text-sm font-medium">Serving Beaumont, AB Region</span>
+                <span className="text-white/90 text-sm font-medium">Serving Beaumont, AB</span>
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                Professional House Cleaning in Beaumont
+                Professional House Cleaning in Beaumont, Alberta
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
                 Flat-rate house cleaning in Beaumont from {STANDARD_FROM} for a one-bedroom, rated {RATING_CLAIM}. You see the price before you book and pay after the clean. Cleaning Alberta homes {COMPANY.sinceLabel}.
@@ -317,11 +351,15 @@ export default function Beaumont() {
         <div className="container mx-auto px-4 text-center">
           <AnimatedSection>
             <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
+            {/* This used to be a second "Near Beaumont" H2, sitting a screen
+                away from the one <NearbyNeighbourhoods> renders. One of them
+                keeps that wording; this one names the service instead. */}
             <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
-              Near Beaumont: other communities we clean
+              Cleaning services in Beaumont and the towns around Edmonton
             </h2>
             <p className="text-muted-foreground mb-8 max-w-3xl mx-auto text-left md:text-center">
-              The same crews cover the towns around the city. We do{" "}
+              These are the crews behind our{" "}
+              <Link to="/" className="text-primary underline underline-offset-2 font-medium">house cleaning inside Edmonton</Link>, working outward through the towns on the same terms. We do{" "}
               <Link to="/cleaning-services-devon/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Devon</Link>{" "}
               to the west, and we are a{" "}
               <Link to="/cleaning-services-leduc/" className="text-primary underline underline-offset-2 font-medium">Leduc cleaning company</Link>{" "}

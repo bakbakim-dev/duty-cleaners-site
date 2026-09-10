@@ -8,8 +8,10 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
-import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice } from "@/data/pricing";
+import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice, addOnFromPrice } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
+import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
+import { GOOGLE_LISTINGS } from "@/lib/google-listings";
 import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
 
 // Every figure below is read from bk-config through pricing.ts; the page never
@@ -24,6 +26,18 @@ const DEEP_TO = DEEP[DEEP.length - 1].price;
 const MOVE_FROM = MOVE[0].price;
 const MOVE_TO = MOVE[MOVE.length - 1].price;
 const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
+// Post-construction sits on its own, higher travel-fee row in bk-config, so the
+// FAQ cannot say "one fee whatever you book" the way it used to.
+const PC_TRAVEL_FEE = formatPrice(travelFee("post-construction") ?? 0);
+// The two charges that are added for you rather than chosen. They apply inside
+// the city too, which is why the fee is the only *difference* and not the only extra.
+const PET_FEE = formatPrice(addOnFromPrice("standard", "must-choose-if-you-have-pets") ?? 0);
+const HOME_TYPE = {
+  bungalow: formatPrice(BK_PRICE_OVERRIDES[54].price),
+  townhouse: formatPrice(BK_PRICE_OVERRIDES[89].price),
+  twoStorey: formatPrice(BK_PRICE_OVERRIDES[90].price),
+};
+const EDMONTON_LISTING = GOOGLE_LISTINGS.edmonton;
 const PAGE_TITLE = `House Cleaning St. Albert from ${STANDARD_FROM} | Duty Cleaners`;
 const META_DESCRIPTION = `House cleaning in St. Albert from ${STANDARD_FROM}: Lacombe Park, Erin Ridge, Grandin and the streets along the Sturgeon River. Flat rates, paid after the clean.`;
 
@@ -67,13 +81,34 @@ const ServiceCard = ({
   </div>
 );
 
-const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: string }) => (
+const WhyUsCard = ({
+  icon: Icon,
+  title,
+  description,
+  link,
+}: {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  /** Present on the rating card, which cites the listing the count comes from. */
+  link?: { href: string; text: string };
+}) => (
   <div className="group bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center transition-all duration-500 ease-out hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-xl" style={{ transformStyle: "preserve-3d" }}>
     <div className="w-14 h-14 rounded-full bg-accent/20 flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:rotate-12">
       <Icon className="w-7 h-7 text-accent" />
     </div>
     <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
-    <p className="text-white/80 text-sm leading-relaxed">{description}</p>
+    <p className="text-white/80 text-sm leading-relaxed">
+      {description}
+      {link && (
+        <>
+          {" "}
+          <a href={link.href} target="_blank" rel="noopener noreferrer" className="text-white underline underline-offset-2 font-medium">
+            {link.text}
+          </a>
+        </>
+      )}
+    </p>
   </div>
 );
 
@@ -83,12 +118,12 @@ const services = [
   { icon: Truck, title: "Move In/Out Cleaning", description: "Move-day cleaning done to the standard landlords check for.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in St. Albert" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or a new build.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in St. Albert" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in St. Albert" },
-  { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard clean on a repeating schedule, from ${STANDARD_FROM}. The first visit is the one-time rate; after that it is 20% off weekly, 15% bi-weekly, 10% every four weeks.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning for St. Albert homes" },
 ];
 
 const whyUsItems = [
   { icon: Shield, title: "Reference-Checked, Then Rated by You", description: "Every cleaner is reference-checked before their first job, then rated by the customer after every visit. Those ratings decide who keeps cleaning for us." },
-  { icon: Star, title: RATING_CLAIM, description: `${CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount} reviews across Edmonton and Calgary, and every one of them is on our Google listing.` },
+  { icon: Star, title: RATING_CLAIM, description: `${CITY_PROOF.edmonton.googleReviewCount} reviews on the Edmonton listing, which is the listing a St. Albert booking is rated on.`, link: { href: EDMONTON_LISTING.reviewsUrl, text: "See the listing on Google" } },
   { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day slots when the schedule allows." },
   { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Cleaners trained to the Duty Cleaners checklist, and rated by you after every visit." },
@@ -104,7 +139,7 @@ export default function StAlbert() {
   const faqs: { question: string; answer: string; link?: { to: string; text: string } }[] = [
     {
       question: "Is there a travel fee in St. Albert?",
-      answer: `Yes. St. Albert is outside Edmonton city limits, so a ${TRAVEL_FEE} travel fee is added to home-cleaning bookings here. It is the only extra: the flat rate for the clean itself is the same one Edmonton pays.`
+      answer: `Yes. St. Albert is outside Edmonton city limits, so a ${TRAVEL_FEE} travel fee goes on a standard, deep or move-out booking here; a post-construction clean carries its own higher fee of ${PC_TRAVEL_FEE}. That fee is the only difference from an Edmonton address. The flat rate for the clean is the Edmonton rate, and the pet charge and the home-type surcharges apply here exactly as they do in the city: ${PET_FEE} a visit for a home with pets, and the step up from an apartment or condo, ${HOME_TYPE.bungalow} for a bungalow or basement suite, ${HOME_TYPE.townhouse} for a townhouse, ${HOME_TYPE.twoStorey} for a two-storey house.`
     },
     {
       question: "What does a standard clean in St. Albert cost?",
@@ -245,7 +280,8 @@ export default function StAlbert() {
                   Every spring the elms on the older streets drop seed that mats into window screens and sliding-door channels, then comes indoors on shoes for weeks.
                 </p>
                 <p>
-                  The same crews carry on north for{" "}
+                  These are the Edmonton crews. Same people, same checklist and same flat rate as our{" "}
+                  <Link to="/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Edmonton</Link>, with the travel fee added for a St. Albert address. They carry on north for{" "}
                   <Link to="/cleaning-services-morinville/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Morinville</Link>, and hosts letting a suite in St. Albert can book turnovers through{" "}
                   <Link to="/edmonton/airbnb-cleaning/" className="text-primary underline underline-offset-2 font-medium">Airbnb cleaning in Edmonton</Link>.
                 </p>
@@ -335,7 +371,7 @@ export default function StAlbert() {
             </h2>
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
               Near St. Albert, the other communities we clean on the same terms are{" "}
-              <Link to="/cleaning-services-morinville/" className="text-primary underline underline-offset-2 font-medium">Morinville</Link>{" "}
+              <Link to="/cleaning-services-morinville/" className="text-primary underline underline-offset-2 font-medium">Morinville house cleaners</Link>{" "}
               up the highway,{" "}
               <Link to="/cleaning-services-sherwood-park/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Sherwood Park</Link>{" "}
               east of the city,{" "}

@@ -39,12 +39,16 @@ const STEPS = [
   {
     icon: ClipboardCheck,
     title: "Tell us the home size and your date",
-    body: "Bedrooms, bathrooms, and whether it's a move-out, move-in, or both. Your price is calculated from that — the same flat rate whether the clean takes three hours or six.",
+    // Both move-out pages already state the flat rate in their own terms grid.
+    // This step used to say it a third time; it now says what the form does.
+    body: "Bedrooms, bathrooms, and whether it is a move-out, a move-in, or both. The quote is built from those three answers, and every add-on you tick appears on it as its own line.",
   },
   {
     icon: Sparkles,
     title: "We clean to the inspection standard",
-    body: "Every cabinet, drawer, appliance interior, baseboard, and light switch — the level of detail a landlord or buyer's walkthrough actually checks, not just the surfaces that are easy to reach.",
+    // Was a second copy of the includes list. The pages that render this
+    // component both print that list in full above it.
+    body: "The crew works down the move-out list rather than around the room, in the order an inspection reads it, with the floors left until last.",
   },
   {
     icon: KeyRound,

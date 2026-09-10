@@ -43,14 +43,17 @@ import { Helmet } from "react-helmet-async";
 import {
   deepCleanTierRows,
   formatPrice,
+  getFrequency,
+  homeTypeOptions,
   serviceTierRows,
-  standardTierRows,
   startingPrice,
   calculateQuote,
   addOnFromPrice,
   DEFAULT_FREQUENCY,
   FREQUENCIES,
   HOURLY_RATE,
+  PRICING_TIERS,
+  type FrequencyId,
 } from "@/data/pricing";
 
 /* Every published figure comes from the BookingKoala config snapshot. */
@@ -59,22 +62,53 @@ const from = (value: number) => `from ${formatPrice(value)}`;
 /** These cards print four prices and said nothing about tax. */
 const GST_PCT = `${Math.round(GST_RATE * 100)}%`;
 const GST_LINE = `Starting prices, before ${GST_PCT} GST.`;
-const RECURRING_FROM = calculateQuote({
-  service: "standard",
-  homeType: null,
-  bedrooms: 1,
-  bathrooms: 1,
-  halfBaths: 0,
-  addOns: [],
-  frequency: DEFAULT_FREQUENCY,
-}).ongoing;
-// The same helper /pricing/ uses, so the two pages cannot disagree by a cent.
-const STANDARD_PRICE = standardTierRows()[0].price;
+
+/**
+ * One rounding rule, and both halves of the recurring pair out of one helper.
+ *
+ * The card used to read "from $155, then $131.74": the base rounded to the
+ * whole dollar the way pricing.ts prints its tier tables, the derived figure
+ * not, so the reader's own arithmetic on the printed base — 155 x 0.85 is
+ * 131.75 — could not reproduce the number beside it. Every home price on this
+ * page now comes out of `homeSizes()`, at one frequency each, rounded once.
+ */
+const dollars = (value: number) => formatPrice(Math.round(value));
+
+/** Smallest, middle and largest published home — enough to price your own. */
+const pickThree = <T,>(rows: T[]): T[] => [rows[0], rows[2], rows[rows.length - 1]];
+const SHOWN_TIERS = pickThree(PRICING_TIERS);
+
+const homeSizes = (frequency: FrequencyId) =>
+  SHOWN_TIERS.map((tier) => {
+    const quote = calculateQuote({
+      service: "standard",
+      homeType: homeTypeOptions("standard")[0]?.id ?? null,
+      bedrooms: tier.beds,
+      bathrooms: tier.bathrooms,
+      halfBaths: tier.halfBaths,
+      addOns: [],
+      frequency,
+    });
+    return {
+      label: tier.label,
+      price: dollars(frequency === "one-time" ? quote.firstClean : quote.ongoing),
+    };
+  });
+
+const STANDARD_SIZES = homeSizes("one-time");
+const RECURRING_SIZES = homeSizes(DEFAULT_FREQUENCY);
+const DEFAULT_FREQ_LABEL = getFrequency(DEFAULT_FREQUENCY).label.toLowerCase();
+const STANDARD_PRICE = STANDARD_SIZES[0].price;
 const STANDARD_FROM = `from ${STANDARD_PRICE}`;
-const DEEP_ROW = deepCleanTierRows()[0];
+const RECURRING_PRICE = RECURRING_SIZES[0].price;
+const DEEP_ROWS = deepCleanTierRows();
+const DEEP_ROW = DEEP_ROWS[0];
 const DEEP_FROM = `from ${DEEP_ROW.price}`;
-const MOVE_PRICE = serviceTierRows("move-in-out")[0].price;
+const DEEP_SIZES = pickThree(DEEP_ROWS).map((row) => ({ label: row.beds, price: row.price }));
+const MOVE_ROWS = serviceTierRows("move-in-out");
+const MOVE_PRICE = MOVE_ROWS[0].price;
 const MOVE_FROM = `from ${MOVE_PRICE}`;
+const MOVE_SIZES = pickThree(MOVE_ROWS).map((row) => ({ label: row.beds, price: row.price }));
 const POST_FROM = from(startingPrice("post-construction"));
 const HOURLY = formatPrice(HOURLY_RATE);
 const PET_FEE = addOnFromPrice("standard", "must-choose-if-you-have-pets");
@@ -89,8 +123,20 @@ const pct = (id: string) => {
 const proof = CITY_PROOF.edmonton;
 const QUOTE = "/#quote";
 const PRICING = canonicalForPath("/pricing");
-const TITLE = `Cleaning Services Edmonton from ${STANDARD_PRICE} | Duty Cleaners`;
-const DESCRIPTION = "Standard, deep, recurring, move-in/out and post-construction cleaning in Edmonton. See your instant price in about 60 seconds.";
+/*
+ * This page is the priced menu, not the city landing page. It used to be
+ * titled "Cleaning Services Edmonton from $155" — the phrase the Edmonton hub
+ * at "/" has to own — and drew 78,000 impressions at position 25 for the
+ * trouble. The title now says what the page is: every service, priced.
+ */
+const TITLE = `All Edmonton Cleaning Services & Prices from ${STANDARD_PRICE}`;
+const DESCRIPTION = "Every Edmonton cleaning service on one page, with what each costs for a one-bedroom, three-bedroom and five-bedroom home, before GST.";
+
+/* The opening paragraph of the choosing guide. It sits above the cards; the
+   rest of the guide sits below them, where a reader who has already found the
+   price they came for will actually read it. */
+const GUIDE_OPENER =
+  "The honest short version: if the home is lived in and has been cleaned in the last month or two, standard cleaning is the right service and the cheapest one. Deep cleaning is for what standard cleaning cannot reach, and Edmonton generates that in its own way — the cold here holds rather than cycling, so the heating season runs unbroken from October to April. The furnace simply keeps going, and everything that moves through the ducts in those months settles on the tops of doors, along ceiling lines and behind furniture where nothing disturbs it.";
 
 
 type Service = {
@@ -98,6 +144,14 @@ type Service = {
   description: string;
   features: string[];
   price: string;
+  /**
+   * Three published home sizes. Every card used to price a one-bedroom and
+   * nothing else, so anyone with a family home had to open a second page to
+   * find out what their own house costs.
+   */
+  sizes?: { label: string; price: string }[];
+  /** What the three figures are, in one line. */
+  sizesNote?: string;
   link: string;
   linkText: string;
   icon: React.ComponentType<{ className?: string }>;
@@ -116,6 +170,8 @@ const services: Service[] = [
       "Floors mopped and vacuumed"
     ],
     price: STANDARD_FROM,
+    sizes: STANDARD_SIZES,
+    sizesNote: "One visit, by home size.",
     link: "/edmonton/regular-cleaning/",
     linkText: "See Standard Cleaning",
     icon: Home,
@@ -131,8 +187,11 @@ const services: Service[] = [
       "Floors vacuumed and mopped"
     ],
     // Both numbers, because BookingKoala charges the standard rate for the
-    // first clean and only applies the discount from the second visit.
-    price: `${STANDARD_FROM}, then ${formatPrice(RECURRING_FROM)}`,
+    // first clean and only applies the discount from the second visit. Both
+    // are rounded by `dollars`, so 155 x 0.85 lands where the card says it does.
+    price: `${STANDARD_FROM}, then ${RECURRING_PRICE} ${DEFAULT_FREQ_LABEL}`,
+    sizes: RECURRING_SIZES,
+    sizesNote: `Every visit after the first, on the ${DEFAULT_FREQ_LABEL} plan.`,
     link: "/edmonton/recurring-cleaning/",
     linkText: "See Recurring Cleaning",
     icon: Repeat,
@@ -151,6 +210,8 @@ const services: Service[] = [
       "Baseboards, door frames, switches, outlets and vent covers hand-wiped"
     ],
     price: DEEP_FROM,
+    sizes: DEEP_SIZES,
+    sizesNote: "Standard clean plus the Deep Cleaning package.",
     link: "/edmonton/deep-cleaning/",
     linkText: "See Deep Cleaning",
     icon: Sparkles,
@@ -168,6 +229,8 @@ const services: Service[] = [
       "Vacuuming and mopping of all floors, including carpet vacuuming"
     ],
     price: MOVE_FROM,
+    sizes: MOVE_SIZES,
+    sizesNote: "Empty home, inspection standard, by size.",
     link: "/move-out-cleaning-edmonton/",
     linkText: "See Move-In/Move-Out Cleaning",
     icon: Truck,
@@ -318,6 +381,21 @@ function ServiceCard({ service }: { service: ServiceLocal }) {
       </ul>
 
       <div className="pt-6 border-t border-border/50 mt-auto">
+        {service.sizes && (
+          <div className="mb-4">
+            <dl className="space-y-1.5">
+              {service.sizes.map((size) => (
+                <div key={size.label} className="flex items-baseline justify-between gap-3 text-sm">
+                  <dt className="text-muted-foreground">{size.label}</dt>
+                  <dd className="font-semibold text-foreground tabular-nums">{size.price}</dd>
+                </div>
+              ))}
+            </dl>
+            {service.sizesNote && (
+              <p className="pt-2 text-xs text-muted-foreground">{service.sizesNote}</p>
+            )}
+          </div>
+        )}
         <div className="text-xl font-bold mb-4 text-primary">
           {service.price}
         </div>
@@ -388,8 +466,8 @@ export default function EdmontonServices() {
             </div>
 
             <h1 className="display-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              Our Cleaning Services in{" "}
-              <span className="text-accent">Edmonton</span>
+              Every <span className="text-accent">Edmonton</span> cleaning service, with its
+              starting price
             </h1>
 
             <p className="text-xl text-white/80 leading-relaxed mb-4">
@@ -432,26 +510,22 @@ export default function EdmontonServices() {
         </div>
       </section>
 
-      <LocalMarketNote
-        eyebrow="Choosing a service in Edmonton"
-        heading="Which of these you actually need, and how Edmonton changes the answer"
-        paragraphs={[
-          "The honest short version: if the home is lived in and has been cleaned in the last month or two, standard cleaning is the right service and the cheapest one. Deep cleaning is for what standard cleaning cannot reach, and Edmonton generates that in its own way — the cold here holds rather than cycling, so the heating season runs unbroken from October to April. The furnace simply keeps going, and everything that moves through the ducts in those months settles on the tops of doors, along ceiling lines and behind furniture where nothing disturbs it.",
-          "Closed-up winters do the rest. With windows shut for five months, cooking vapour, fireplace soot and pet dander recirculate instead of venting, and they land as a film rather than as dust — which is why kitchens and the walls around them so often need more than a wipe by March. In older Oliver, Garneau and Strathcona homes with original trim and radiators there is more surface to hand-clean than the square footage suggests; in newer Windermere, Keswick or Laurel builds it is usually construction dust still working its way out of the vents.",
-          "Move-in and move-out cleaning is a separate service rather than a larger deep clean, priced against what landlords actually inspect: inside appliances, inside every cabinet and drawer, and the storage spaces. If you are working to a walk-through date, book that one. If you are unsure which fits, the instant quote asks a few questions about the home and tells you — or you can call and describe it and we will say which is the cheaper honest answer.",
-        ]}
-      />
-
-      {/* Services Grid */}
+      {/* Services Grid.
+          The list and the prices are what this page is searched for, so they
+          sit directly under the hero. The guide that used to run for three
+          paragraphs above them keeps its opening paragraph here and continues
+          below the cards. */}
       <section className="py-20 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-12">
-            <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-4">
-              All Edmonton cleaning services and starting prices
+          <div className="max-w-3xl mx-auto mb-12">
+            <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-4 text-center">
+              Standard, deep, move-out and recurring cleaning, priced by home size
             </h2>
+            <p className="text-muted-foreground leading-relaxed mb-4">{GUIDE_OPENER}</p>
             <p className="text-muted-foreground leading-relaxed">
-              Each card shows the lowest price a one-bedroom home books at, before {GST_PCT} GST. Larger
-              homes, pets and add-ons move the number, and the quote form shows the total before you commit.
+              Each card prices three of the five published sizes: a one-bedroom, a three-bedroom and
+              the five-or-more tier, all before {GST_PCT} GST. Pets, add-ons and the type of home
+              move the figure, and the quote form shows the total before you commit to anything.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto items-stretch">
@@ -471,6 +545,15 @@ export default function EdmontonServices() {
           </div>
         </div>
       </section>
+
+      <LocalMarketNote
+        eyebrow="Choosing a service in Edmonton"
+        heading="How an Edmonton winter decides between a standard and a deep clean"
+        paragraphs={[
+          "A closed-up Edmonton winter adds a second kind of dirt. With windows shut for five months, cooking vapour, fireplace soot and pet dander recirculate instead of venting, and they land as a film rather than as dust — which is why kitchens and the walls around them so often need more than a wipe by March. In older Oliver, Garneau and Strathcona homes with original trim and radiators there is more surface to hand-clean than the square footage suggests; in newer Windermere, Keswick or Laurel builds it is usually construction dust still working its way out of the vents.",
+          "Move-in and move-out cleaning is a separate service rather than a larger deep clean, priced against what landlords actually inspect: inside appliances, inside every cabinet and drawer, and the storage spaces. If you are working to a walk-through date, book that one. If you are unsure which fits, the instant quote asks a few questions about the home and tells you — or you can call and describe it and we will say which is the cheaper honest answer.",
+        ]}
+      />
 
       {/* How to choose, and where the rest of the site sits */}
       <section className="py-20 bg-background">

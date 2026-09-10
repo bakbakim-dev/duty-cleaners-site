@@ -102,7 +102,10 @@ const RecentActivityStrip = ({ city, reviews }: RecentActivityStripProps) => {
             {review.location}
             <span className="text-muted-foreground">· {review.date}</span>
             <BadgeCheck className="h-3.5 w-3.5 text-success" aria-hidden="true" />
-            <span className="text-muted-foreground">Verified on Google</span>
+            {/* Google publishes reviews; it does not verify them, and the
+                review cards further down the page already say "Posted on
+                Google". Two labels for one fact, one of them untrue. */}
+            <span className="text-muted-foreground">Posted on Google</span>
           </span>
         ))}
       </div>

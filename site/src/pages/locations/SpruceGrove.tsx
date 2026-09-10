@@ -6,8 +6,10 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
-import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice } from "@/data/pricing";
+import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice, addOnFromPrice } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
+import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
+import { GOOGLE_LISTINGS } from "@/lib/google-listings";
 import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
 
 // Figures come from bk-config through pricing.ts; nothing here is hand-typed.
@@ -21,6 +23,16 @@ const DEEP_TO = DEEP[DEEP.length - 1].price;
 const MOVE_FROM = MOVE[0].price;
 const MOVE_TO = MOVE[MOVE.length - 1].price;
 const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
+// Post-construction carries its own travel-fee row in bk-config, at a higher amount.
+const PC_TRAVEL_FEE = formatPrice(travelFee("post-construction") ?? 0);
+// Charged for you rather than chosen, and charged inside the city too.
+const PET_FEE = formatPrice(addOnFromPrice("standard", "must-choose-if-you-have-pets") ?? 0);
+const HOME_TYPE = {
+  bungalow: formatPrice(BK_PRICE_OVERRIDES[54].price),
+  townhouse: formatPrice(BK_PRICE_OVERRIDES[89].price),
+  twoStorey: formatPrice(BK_PRICE_OVERRIDES[90].price),
+};
+const EDMONTON_LISTING = GOOGLE_LISTINGS.edmonton;
 const PAGE_TITLE = `House Cleaning Spruce Grove from ${STANDARD_FROM} | Duty Cleaners`;
 const META_DESCRIPTION = `House cleaning in Spruce Grove from ${STANDARD_FROM}, 11 km west of Edmonton. Standard, deep and move-out cleans, flat by home size, paid after the visit.`;
 
@@ -64,13 +76,34 @@ const ServiceCard = ({
   </div>
 );
 
-const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: string }) => (
+const WhyUsCard = ({
+  icon: Icon,
+  title,
+  description,
+  link,
+}: {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  /** Present on the rating card, which cites the listing the count comes from. */
+  link?: { href: string; text: string };
+}) => (
   <div className="group bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center transition-all duration-500 ease-out hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-xl" style={{ transformStyle: "preserve-3d" }}>
     <div className="w-14 h-14 rounded-full bg-accent/20 flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:rotate-12">
       <Icon className="w-7 h-7 text-accent" />
     </div>
     <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
-    <p className="text-white/80 text-sm leading-relaxed">{description}</p>
+    <p className="text-white/80 text-sm leading-relaxed">
+      {description}
+      {link && (
+        <>
+          {" "}
+          <a href={link.href} target="_blank" rel="noopener noreferrer" className="text-white underline underline-offset-2 font-medium">
+            {link.text}
+          </a>
+        </>
+      )}
+    </p>
   </div>
 );
 
@@ -80,12 +113,12 @@ const services = [
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inspection-grade detail for moving out or settling in.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Spruce Grove" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after renovations and handovers.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Spruce Grove" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Spruce Grove" },
-  { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard clean booked to repeat, from ${STANDARD_FROM}. Weekly takes 20% off from the second visit, bi-weekly 15% and every four weeks 10%.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Spruce Grove" },
 ];
 
 const whyUsItems = [
   { icon: Shield, title: "Reference-Checked, Then Rated by You", description: "Every cleaner is reference-checked before their first job, then rated by the customer after every visit. Those ratings decide who keeps cleaning for us." },
-  { icon: Star, title: RATING_CLAIM, description: `${CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount} reviews across Edmonton and Calgary, and every one of them is on our Google listing.` },
+  { icon: Star, title: RATING_CLAIM, description: `The Edmonton listing carries ${CITY_PROOF.edmonton.googleReviewCount} of them, and a Spruce Grove clean is rated on that listing.`, link: { href: EDMONTON_LISTING.reviewsUrl, text: "Check it on Google" } },
   { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day openings most weeks." },
   { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners who work to the Duty Cleaners checklist." },
@@ -101,7 +134,7 @@ export default function SpruceGrove() {
   const faqs: { question: string; answer: string; link?: { to: string; text: string } }[] = [
     {
       question: "Is there a travel fee in Spruce Grove?",
-      answer: `Yes. Spruce Grove is its own city, outside Edmonton's limits, so home-cleaning bookings here carry a ${TRAVEL_FEE} travel fee on top of the flat rate. The flat rate itself is the same figure Edmonton pays for the same size of home.`
+      answer: `Yes. Spruce Grove is its own city, outside Edmonton's limits, so home-cleaning bookings here carry a ${TRAVEL_FEE} travel fee on top of the flat rate, and a post-construction booking carries the higher ${PC_TRAVEL_FEE} fee instead. Nothing else is priced differently from an Edmonton address. The flat rate is the same figure for the same size of home, and the pet charge and the home-type surcharges are added here on the same terms: ${PET_FEE} a visit where there are pets, and the step up from an apartment or condo, ${HOME_TYPE.bungalow} on a bungalow or basement suite, ${HOME_TYPE.townhouse} on a townhouse and ${HOME_TYPE.twoStorey} on a two-storey house.`
     },
     {
       question: "What does a standard clean cost in Spruce Grove?",
@@ -113,7 +146,7 @@ export default function SpruceGrove() {
     },
     {
       question: "Do you do move-out cleaning in Spruce Grove?",
-      answer: `Yes, and on a new build a move-in clean is often the better order: vents and grilles first, then surfaces. Move-in and move-out cleans run ${MOVE_FROM} to ${MOVE_TO} by home size plus the travel fee, with oven, fridge and cabinet interiors included.`,
+      answer: `Yes. Move-in and move-out cleans run ${MOVE_FROM} to ${MOVE_TO} by home size plus the travel fee, with oven, fridge and cabinet interiors included rather than added on. Book it once the rooms are clear; a cupboard with plates still in it cannot be cleaned inside.`,
       link: { to: "/move-out-cleaning-edmonton/", text: "Move-out cleaning, Edmonton and Spruce Grove" }
     },
     {
@@ -229,7 +262,8 @@ export default function SpruceGrove() {
                   <a href="https://www.google.com/maps/place/The+Links+at+Spruce+Grove/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">The Links at Spruce Grove</a>.
                 </p>
                 <p>
-                  A first visit here starts in one of two places. In a house finished recently it is the vents, before any surface. In an older one it is the sills and the screen mesh, where the county's field soil settles.
+                  The crews and the checklist are the ones behind our{" "}
+                  <Link to="/" className="text-primary underline underline-offset-2 font-medium">Edmonton house cleaning service</Link>. Only the travel fee changes for a Spruce Grove address.
                 </p>
                 <p>
                   Hosts in Spruce Grove letting a suite can book turnovers as{" "}
@@ -320,14 +354,14 @@ export default function SpruceGrove() {
               Cleaning services in Spruce Grove, Stony Plain and Parkland County
             </h2>
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Near Spruce Grove, the other communities we clean from the Edmonton office are{" "}
-              <Link to="/cleaning-services-st-albert/" className="text-primary underline underline-offset-2 font-medium">St. Albert house cleaners</Link>{" "}
+              Near Spruce Grove, the same Edmonton office runs{" "}
+              <Link to="/cleaning-services-st-albert/" className="text-primary underline underline-offset-2 font-medium">cleaning services in St. Albert</Link>{" "}
               and{" "}
-              <Link to="/cleaning-services-morinville/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Morinville</Link>{" "}
+              <Link to="/cleaning-services-morinville/" className="text-primary underline underline-offset-2 font-medium">a Morinville cleaning company</Link>{" "}
               to the north,{" "}
               <Link to="/cleaning-services-sherwood-park/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Sherwood Park</Link>{" "}
-              on the far side of the city and a{" "}
-              <Link to="/cleaning-services-leduc/" className="text-primary underline underline-offset-2 font-medium">Leduc cleaning company</Link>{" "}
+              on the far side of the city and{" "}
+              <Link to="/cleaning-services-leduc/" className="text-primary underline underline-offset-2 font-medium">Leduc house cleaners</Link>{" "}
               to the south. Like Spruce Grove, each is outside Edmonton city limits and carries the {TRAVEL_FEE} travel fee.
             </p>
             <CoverageChips areas={nearbyAreas} />

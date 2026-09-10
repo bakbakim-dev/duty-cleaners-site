@@ -162,32 +162,67 @@ describe("location pages emit GeoCoordinates", () => {
    * across 153 pages with the pin varying per page is the shape Google's
    * local-search guidance describes for location-page schemes. On areaServed
    * the identical numbers are simply true.
+   *
+   * THE BLIND SPOT THIS CLOSES
+   *
+   * This used to read only the TOP-LEVEL node of each block, and to look for a
+   * LocalBusiness there. That was true of the shape it was written against, and
+   * it stopped being true the moment the page node became a Service whose
+   * provider is the branch business: with no top-level LocalBusiness left, both
+   * assertions collapsed to "no matches" — which is also what a clean site
+   * looks like. It would have passed a page that put the pin straight back on
+   * the business node.
+   *
+   * So it walks every node in the graph, at any depth, and asks the two
+   * questions separately: no business node anywhere carries `geo`, and each
+   * page still declares the pin on an area it serves.
    */
   it("puts the coordinates on areaServed, never on the business node", () => {
     const urls = locationUrls();
     if (!urls.length) return;
+
+    type Node = Record<string, unknown>;
+    const nodesIn = (value: unknown, out: Node[] = []): Node[] => {
+      if (Array.isArray(value)) {
+        for (const item of value) nodesIn(item, out);
+        return out;
+      }
+      if (value && typeof value === "object") {
+        const record = value as Node;
+        if (record["@type"]) out.push(record);
+        for (const child of Object.values(record)) nodesIn(child, out);
+      }
+      return out;
+    };
+    const typesOf = (node: Node) =>
+      (Array.isArray(node["@type"]) ? node["@type"] : [node["@type"]]).map(String);
+
     const onBusiness: string[] = [];
     const missingOnArea: string[] = [];
     for (const url of urls) {
       const html = read(url);
+      const nodes: Node[] = [];
       for (const block of html.matchAll(
         /<script[^>]+application\/ld\+json[^>]*>([\s\S]*?)<\/script>/g,
       )) {
-        let parsed: unknown;
         try {
-          parsed = JSON.parse(block[1]);
+          nodesIn(JSON.parse(block[1]), nodes);
         } catch {
           continue;
         }
-        for (const node of Array.isArray(parsed) ? parsed : [parsed]) {
-          if (!node || typeof node !== "object") continue;
-          const record = node as Record<string, unknown>;
-          if (!String(record["@type"] ?? "").includes("LocalBusiness")) continue;
-          if (record.geo) onBusiness.push(url);
-          const area = record.areaServed as Record<string, unknown> | undefined;
-          if (!area?.geo) missingOnArea.push(url);
-        }
       }
+
+      for (const node of nodes) {
+        if (!typesOf(node).some((t) => t.includes("LocalBusiness"))) continue;
+        if (node.geo) onBusiness.push(url);
+      }
+
+      // The page still has to publish its pin, and it has to publish it as the
+      // area served — by whichever node describes the page.
+      const declaresArea = nodes.some(
+        (node) => (node.areaServed as Node | undefined)?.geo !== undefined,
+      );
+      if (!declaresArea) missingOnArea.push(url);
     }
     expect(onBusiness, "coordinates back on the business node").toEqual([]);
     expect(missingOnArea, "areaServed carries no coordinates").toEqual([]);

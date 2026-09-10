@@ -52,7 +52,9 @@ const excludedServices = [
   "Drywall offcuts, lumber, packaging and other debris are the contractor's to remove before we arrive",
   "No hauling or disposal of any kind",
   "Appliance film and window stickers stay on unless you or the builder take them off first",
-  "Nothing higher than a two-step stool reaches: no ladders, no scaffolding",
+  // The two-step stool was this page's own invention; policy.ts (NOT_INCLUDED)
+  // puts the limit at a 3-step ladder and the rest of the site follows it.
+  "The 3-step ladder the crew carries is the ceiling on height: no extension ladders, no scaffolding",
   "No exterior glass, pressure washing or outdoor surfaces",
 ];
 
@@ -97,6 +99,7 @@ const faqs: Faq[] = [
   {
     q: "How long does a post-construction cleaning take?",
     a: "Somewhere between 4 and 10 hours for most Calgary homes, set by the square footage, the number of bathrooms and how much dust is left. We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.",
+    more: { lead: "Once the house has stopped shedding dust, what it needs after that is", to: "/calgary/regular-cleaning/", anchor: "a standard house clean in Calgary" },
   },
   {
     q: "Do I need to be home during the cleaning?",
@@ -249,7 +252,10 @@ export default function CalgaryPostConstruction() {
                 Sanding dust does not fall; it drifts, and it lands on the top of every door frame, inside every
                 vent, along every window channel and in the drawers of the cabinets that were installed last week.
                 Tile leaves a grout haze. Painters leave flecks on the glass. Whoever fitted the fixtures left a
-                fingerprint on each one.
+                fingerprint on each one. The flecks come off the glass with the dust; a scuff on the paint itself
+                is a different job, and that one is{" "}
+                <Link to="/wall-washing-wall-cleaning-calgary/" className="text-primary underline underline-offset-4">wall washing in Calgary</Link>,
+                added to the clean and priced by home size.
               </p>
               <p className="text-lg text-muted-foreground mb-4">
                 The Calgary team does <strong>final-stage post-construction cleaning</strong>, the{" "}
@@ -432,6 +438,10 @@ export default function CalgaryPostConstruction() {
                 Downtown conversions are the exception to the table; they are quoted after a walk-through. Every
                 other clean is priced by bedrooms and bathrooms, and those rows are on{" "}
                 <Link to="/calgary/pricing/" className="text-primary underline underline-offset-4">Calgary house cleaning prices by home size</Link>.
+                A new house keeps releasing dust for months after possession, and if you would rather not chase
+                it,{" "}
+                <Link to="/calgary/recurring-cleaning/" className="text-primary underline underline-offset-4">a recurring clean in Calgary</Link>{" "}
+                is discounted from the second visit onward.
               </p>
             </div>
           </AnimatedSection>

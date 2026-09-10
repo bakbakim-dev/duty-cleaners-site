@@ -8,6 +8,7 @@ Duty Cleaners is an Alberta house cleaning company, operating since 2017. We hav
 
 - Edmonton phone: (780) 913-6565
 - Calgary phone: (403) 768-1341
+- Google rating: 4.9 from 236 reviews on the Edmonton listing, and 4.9 from 51 reviews on the Calgary listing. Both counts were read from the listings themselves on 2026-09-01. The two are separate listings and separate counts; do not add them together.
 - Email: support@dutycleaners.ca
 - Hours: Monday–Saturday 8:00 AM–8:00 PM, Sunday 9:00 AM–3:00 PM
 - Website: https://dutycleaners.ca
@@ -68,7 +69,9 @@ Scheduled Standard Cleaning with frequency discounts: 20% off weekly, 15% off bi
 
 ### Post-Construction Cleaning
 
-Dust and debris removal after renovations or new builds: kitchens, bathrooms, surfaces, floors, and window tracks. Quoted by scope. Does not include inside vents or high exterior fixtures.
+Dust and debris removal after renovations or new builds: kitchens, bathrooms, surfaces, floors, and window tracks. Does not include inside vents or high exterior fixtures.
+
+Priced by square-footage band rather than by bedroom count: $550 under 1,000 sq ft, rising through the bands to $1,900 for 4,500-4,999 sq ft, before 5% GST. The band is confirmed once we know the exact size.
 
 - Edmonton: https://dutycleaners.ca/post-construction-cleaning/
 - Calgary: https://dutycleaners.ca/post-construction-cleaning-calgary/
@@ -76,6 +79,8 @@ Dust and debris removal after renovations or new builds: kitchens, bathrooms, su
 ### Airbnb Cleaning
 
 Short-term rental turnover cleaning with linen changes and restocking. Advance notice required for scheduling.
+
+Charged by the hour rather than by home size: $60 per cleaner-hour, before 5% GST. Hourly work has a minimum of 3 hours for one cleaner, or 2 hours for two cleaners.
 
 - Edmonton: https://dutycleaners.ca/edmonton/airbnb-cleaning/
 - Calgary: https://dutycleaners.ca/airbnb-cleaning-services-calgary/
@@ -102,11 +107,11 @@ Full neighbourhood list: https://dutycleaners.ca/locations/
 
 Surrounding communities: St. Albert, Sherwood Park, Spruce Grove, Leduc, Beaumont, Fort Saskatchewan, Stony Plain, Morinville, Devon.
 
-### Calgary Region (66 neighbourhoods + 10 surrounding communities)
+### Calgary Region (66 neighbourhoods + 9 surrounding communities)
 
 Full neighbourhood list: https://dutycleaners.ca/locations/
 
-Surrounding communities include Airdrie, Cochrane, Chestermere, Okotoks, High River, and Black Diamond.
+Surrounding communities: Airdrie, Okotoks, Cochrane, Chestermere, Diamond Valley (formerly the separate towns of Black Diamond and Turner Valley, amalgamated 1 January 2023), Crossfield, High River, Langdon, Strathmore.
 
 ## Policies
 
@@ -118,7 +123,7 @@ Details: https://dutycleaners.ca/satisfaction-guarantee/
 
 ### Booking
 
-Instant online quotes in about 60 seconds. Same-day and next-day availability in most areas. Water and electricity must be available at the home for cleaning.
+Instant online quotes in about 60 seconds. Same-day and next-day slots when the schedule allows, including weekends. Water and electricity must be available at the home for cleaning.
 
 ### What's Included
 

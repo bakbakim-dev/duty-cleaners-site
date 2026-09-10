@@ -86,19 +86,28 @@ function generateBreadcrumbs(pathname: string): BreadcrumbItem[] {
     const isLast = index === segments.length - 1;
     
     // Format label - check mapping or format from segment
-    let label =
+    const label =
       routeLabels[segment] ||
       formatSegment(segment, breadcrumbs.map((b) => b.label));
-    
-    breadcrumbs.push({
-      label,
-      // Ancestor crumbs must point at the canonical URL — /calgary and
-      // /edmonton both 301, so an unresolved crumb sends every breadcrumb
-      // click (and the BreadcrumbList schema) through a redirect.
-      href: isLast
-        ? undefined
-        : ANCESTOR_OVERRIDES[currentPath] ?? resolvedLinkPath(currentPath),
-    });
+
+    // Ancestor crumbs must point at the canonical URL — /calgary and
+    // /edmonton both 301, so an unresolved crumb sends every breadcrumb
+    // click (and the BreadcrumbList schema) through a redirect.
+    const href = isLast
+      ? undefined
+      : ANCESTOR_OVERRIDES[currentPath] ?? resolvedLinkPath(currentPath);
+
+    // An ancestor that resolves to a URL already in the trail is not a step in
+    // the trail. The Edmonton city root IS the homepage (see
+    // ANCESTOR_OVERRIDES), so every /edmonton/* page published Home and
+    // Edmonton at the same href: two BreadcrumbList items pointing at one
+    // destination, claiming a level of hierarchy the site does not have. The
+    // visible trail and the JSON-LD are built from this one array, so dropping
+    // the crumb here keeps them saying the same thing. Calgary is untouched —
+    // /calgary resolves to /cleaning-services-calgary/, a page of its own.
+    if (href && breadcrumbs.some((b) => b.href === href)) return;
+
+    breadcrumbs.push({ label, href });
   });
   
   return breadcrumbs;

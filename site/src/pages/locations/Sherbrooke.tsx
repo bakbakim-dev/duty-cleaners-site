@@ -1,5 +1,7 @@
+import { getListing } from "@/lib/google-listings";
+import { standardTierRows, FREQUENCIES } from "@/data/pricing";
 import {
-  CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import { useEffect, lazy, Suspense } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import {   Phone, CheckCircle2, Star, Shield, Clock, Award, Home, Sparkles, Truck, SprayCan, Bath, UtensilsCrossed, Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail, PaintRoller
+  CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import { useEffect, lazy, Suspense } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import {   Phone, CheckCircle2, Star, Shield, Clock, Award, Home, Sparkles, Truck, SprayCan, Bath, Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail, PaintRoller
 } from "lucide-react";
 import heroImg from "@/assets/gallery/sherbrooke-cleaner.webp";
 import { buildLocationSchema } from "@/lib/location-schema";
@@ -53,7 +55,7 @@ const ServiceCard = ({
   </div>
 );
 
-const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: string }) => (
+const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: React.ReactNode }) => (
   <div
     className="group bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center transition-all duration-500 ease-out hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-xl"
     style={{ transformStyle: "preserve-3d" }}
@@ -66,18 +68,56 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
   </div>
 );
 
+/**
+ * The recurring card's figures, read from bk-config so this page cannot drift
+ * from what the booking form charges. The 10% tier is "Every 4 Weeks" there —
+ * thirteen visits a year, not twelve — so nothing here calls it monthly.
+ */
+const RECURRING_FROM = standardTierRows()[0].price;
+const pctOff = (bkId: number) =>
+  `${Math.round((FREQUENCIES.find((f) => f.bkId === bkId)?.discount ?? 0) * 100)}%`;
+const OFF_WEEKLY = pctOff(3);
+const OFF_BIWEEKLY = pctOff(4);
+const OFF_FOUR_WEEKLY = pctOff(2);
+
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning that leaves your Sherbrooke home spotless and fresh.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Sherbrooke" },
   { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning of your Sherbrooke home — every corner, baseboard, and hidden surface.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Sherbrooke" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inspection-grade detail for moving out or settling in.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Sherbrooke" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris cleared after renovations or new builds.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Sherbrooke" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Sherbrooke" },
-  { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
+  // The sixth card was "Kitchen Deep Clean": the only one with no price and
+  // no link, describing a service pricing.ts does not sell — appliance
+  // interiors are add-ons on a standard clean and included on a move-out one.
+  // Recurring cleaning is a real bookable frequency with its own page, and it
+  // was the only service on the menu with no card here.
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Sherbrooke" },
 ];
 
 const whyUsItems = [
   { icon: Shield, title: "Reference-Checked, Then Rated by You", description: "Every cleaner is reference-checked before their first job, then rated by the customer after every visit. Those ratings decide who keeps cleaning for us." },
-  { icon: Star, title: RATING_CLAIM, description: `${CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount} reviews across Edmonton and Calgary, and every one of them is on our Google listing.` },
+  // Was "287 reviews across Edmonton and Calgary" — a sum Google never
+  // reports, printed with no link, while this page's LocalBusiness node points
+  // at one listing showing a different number. Both the count and the link now
+  // come from that same listing.
+  {
+    icon: Star,
+    title: RATING_CLAIM,
+    description: (
+      <>
+        {CITY_PROOF.edmonton.googleReviewCount} reviews on our{" "}
+        <a
+          href={getListing(CITY_PROOF.edmonton.city).reviewsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-medium text-white underline underline-offset-2 hover:text-accent"
+        >
+          {CITY_PROOF.edmonton.city} Google listing
+        </a>
+        , which is where that rating is read from.
+      </>
+    ),
+  },
   { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day slots when the schedule allows. We work around your busy life." },
   { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
@@ -254,6 +294,24 @@ export default function Sherbrooke() {
                   <ServiceCard key={i} {...s} />
                 ))}
               </div>
+            </AnimatedSection>
+            <AnimatedSection>
+              {/* Up-link to the Edmonton hub, which is the homepage.
+                  The Calgary pages have carried the mirror of this sentence to their
+                  own hub since the link-graph audit; the Edmonton side never got it,
+                  on the reasoning that the homepage is already reached from every nav,
+                  footer and breadcrumb. Those are site furniture: they carry no anchor
+                  text worth having and sit outside the editorial body. The count was
+                  76 of 76 Calgary pages linking their hub in-body against 1 of 90 on
+                  the Edmonton side — for the page that has to hold "house cleaning
+                  edmonton". */}
+              <p className="mt-10 text-center text-muted-foreground">
+                {"Sherbrooke is one of the Edmonton neighbourhoods we clean — see "}
+                <Link to="/" className="text-primary underline underline-offset-2">
+                  house cleaning services in Edmonton
+                </Link>
+                {" for the full picture."}
+              </p>
             </AnimatedSection>
           </div>
         </section>

@@ -21,15 +21,26 @@ interface PricingFormulaProps {
   city: string;
 }
 
+/**
+ * "an Edmonton price", "a Calgary price".
+ *
+ * The template hard-coded "a", so both pricing pages shipped headings reading
+ * "How a Edmonton cleaning price is put together" — the article is chosen by
+ * the city name, and one of the two cities starts with a vowel.
+ */
+const articleFor = (place: string) => (/^[aeiou]/i.test(place.trim()) ? "an" : "a");
+
 export default function PricingFormula({ city }: PricingFormulaProps) {
+  const article = articleFor(city);
+
   return (
     <section className="py-16 md:py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <span className="text-accent font-semibold text-sm uppercase tracking-wider">How the price is built</span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">How a {city} cleaning price is put together</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">How {article} {city} cleaning price is put together</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Five things set a {city} price. The form asks for each one and shows the total before you book.
+            Five things set {article} {city} price. The form asks for each one and shows the total before you book.
           </p>
         </div>
 

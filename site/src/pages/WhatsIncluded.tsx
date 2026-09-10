@@ -1,5 +1,5 @@
 import { addOnFromPrice, deepCleanTierRows, formatPrice, moveInOutTierRows, standardTierRows } from "@/data/pricing";
-import { addOnTableRows, TRAVEL_FEE_KEY } from "@/data/addon-table";
+import { addOnTableRows, travelFee, TRAVEL_FEE_KEY } from "@/data/addon-table";
 import { useLocation } from "react-router-dom";
 import { CITY_PROOF, cityProofFor, RATING_CLAIM } from "@/data/proof";
 import { quoteHrefFor } from "@/lib/quote-link";
@@ -38,7 +38,7 @@ import {
 } from "lucide-react";
 
 // Cleaning service card component
-type MatrixLevel = "yes" | "addon" | "no";
+type MatrixLevel = "yes" | "addon" | "package" | "no";
 
 /** The pricing pages publish the same rows from the same BookingKoala data.
  *  The last two are charges rather than choices, so they are split out. */
@@ -48,6 +48,10 @@ const OPTIONAL_EXTRAS = addOnTableRows("edmonton").filter(
 );
 const PET_FEE = formatPrice(addOnFromPrice("standard", "must-choose-if-you-have-pets") ?? 0);
 const TRAVEL_FEE = formatPrice(addOnFromPrice("standard", TRAVEL_FEE_KEY) ?? 0);
+/* Post-construction carries its own travel-fee row in bk-config, larger than
+   the home-cleaning one, which is why this page can no longer publish a single
+   figure and call it the whole answer. Read the same way /terms/ reads it. */
+const POST_CONSTRUCTION_TRAVEL_FEE = formatPrice(travelFee("post-construction") ?? 0);
 const OVEN_FEE = formatPrice(addOnFromPrice("standard", "inside-oven") ?? 0);
 const FRIDGE_FEE = formatPrice(addOnFromPrice("standard", "inside-fridge") ?? 0);
 const CABINET_FEE = formatPrice(addOnFromPrice("standard", "inside-cabinets-kitchen-bathroom-only") ?? 0);
@@ -77,7 +81,7 @@ const FAQS = [
   },
   {
     q: "Do you charge extra outside Edmonton or Calgary city limits?",
-    a: `Inside the limits there is no trip fee. Outside them a ${TRAVEL_FEE} travel fee is added per visit, which covers St. Albert, Sherwood Park, Airdrie, Cochrane and the other surrounding towns. It shows on your quote before you book.`,
+    a: `Inside the limits there is no trip fee. Outside them a ${TRAVEL_FEE} travel fee is added per visit on a house clean, which covers St. Albert, Sherwood Park, Airdrie, Cochrane and the other surrounding towns. Post-construction cleaning is quoted from its own table and its travel fee is ${POST_CONSTRUCTION_TRAVEL_FEE}. Either way it shows on your quote before you book.`,
   },
   {
     q: "What is never included in a clean?",
@@ -103,6 +107,19 @@ const MatrixCell = ({ level }: { level: MatrixLevel }) => {
       <span className="inline-flex items-center gap-1.5 font-medium text-accent">
         <Plus className="h-4 w-4" aria-hidden="true" />
         Add-on
+      </span>
+    );
+  }
+  /* Two rows used to say "Add-on" here and could not be bought that way:
+     bk-config has no baseboard extra and no stovetop-detail extra at any price,
+     on any service. Both are inside the Deep Cleaning package, so on a standard
+     clean the package is the only route to them. "Add-on" pointed a customer at
+     a tick-box that does not exist in the booking form. */
+  if (level === "package") {
+    return (
+      <span className="inline-flex items-center gap-1.5 font-medium text-foreground">
+        <Plus className="h-4 w-4 text-brand-gold" aria-hidden="true" />
+        Deep package
       </span>
     );
   }
@@ -526,9 +543,9 @@ export default function WhatsIncluded() {
                   {
                     group: "Deeper attention",
                     rows: [
-                      { item: "Baseboards, doors, light switches, wall outlets & vent covers", standard: "addon", deep: "yes", move: "yes" },
+                      { item: "Baseboards, doors, light switches, wall outlets & vent covers", standard: "package", deep: "yes", move: "yes" },
                       { item: "Ceiling fan blades (safely reachable)", standard: "no", deep: "yes", move: "yes" },
-                      { item: "Detailed stovetop, grates & fridge top", standard: "addon", deep: "yes", move: "yes" },
+                      { item: "Detailed stovetop, grates & fridge top", standard: "package", deep: "yes", move: "yes" },
                     ],
                   },
                   {
@@ -553,6 +570,12 @@ export default function WhatsIncluded() {
                 and the total updates as you tick them. */}
             Every add-on is a tick-box in the booking form, with its price beside it. The total
             updates as you choose, so you see it before you commit.
+          </p>
+          <p className="mx-auto mt-3 max-w-2xl text-center text-xs text-muted-foreground">
+            Two rows say "Deep package" rather than "Add-on" because there is no tick-box for them:
+            baseboards and the detailed stovetop are sold only inside the Deep Cleaning package,
+            which adds {DEEP[0].packagePrice} to a 1-bedroom standard clean and{" "}
+            {last(DEEP).packagePrice} to a 5-bedroom.
           </p>
         </div>
       </section>
@@ -613,12 +636,18 @@ export default function WhatsIncluded() {
             .
           </p>
 
-          {/* Two charges are not optional, so they cannot sit in a list headed
-              "add any of these". A pet owner cannot decline the pet charge. */}
+          {/* These charges are not optional, so they cannot sit in a list headed
+              "add any of these". A pet owner cannot decline the pet charge. The
+              line used to name one travel fee and call the list complete;
+              bk-config holds two, and post-construction carries the larger. */}
           <p className="text-muted-foreground text-sm mt-4 max-w-2xl mx-auto text-center">
-            Two charges are not optional and are added for you: {PET_FEE} per visit for a home with
-            pets, and {TRAVEL_FEE} for an address outside Edmonton or Calgary city limits. Both show on
-            your quote before you book.
+            Some charges are not a choice and are added for you. A home with pets is {PET_FEE} a
+            visit. An address outside Edmonton or Calgary city limits carries a travel fee per visit:{" "}
+            {TRAVEL_FEE} on a house clean, and {POST_CONSTRUCTION_TRAVEL_FEE} on{" "}
+            <Link to="/post-construction-cleaning/" className="text-primary underline underline-offset-2">
+              post-construction cleaning in Edmonton
+            </Link>
+            , which is quoted from its own table. All of them show on your quote before you book.
           </p>
         </div>
       </section>

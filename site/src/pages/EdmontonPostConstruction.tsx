@@ -43,13 +43,16 @@ const pcTravelFee = formatPrice(travelFee("post-construction") ?? 0);
 const PAGE_TITLE = `Post-Construction Cleaning Edmonton from ${startingPriceLabel} | Pay After`;
 const META_DESCRIPTION = `Post-construction cleaning in Edmonton from ${startingPriceLabel} by square footage. Drywall dust, smudges and contractor residue off new builds and renovations.`;
 
+/* Card titles were Title Case service-brochure headings ("Fine Dust & Debris
+   Removal", "Kitchen Deep Cleaning") of the kind the Calgary twin was rewritten
+   out of. They now name the thing on the page rather than a service line. */
 const includedServices = [
-  { icon: Wind, title: "Fine Dust & Debris Removal", desc: "Drywall and construction dust wiped from baseboards, vents, window ledges, trim, and floors — no fine residue left behind." },
-  { icon: Sparkles, title: "Kitchen Deep Cleaning", desc: "Inside and outside of all cabinets and drawers, countertops, backsplashes, sinks, and the exterior of new appliances detailed and polished." },
-  { icon: Droplets, title: "Bathroom Cleaning", desc: "Tubs, showers, toilets, vanities, mirrors, and tile sanitized and polished — fully ready for first use after renovation." },
-  { icon: SprayCan, title: "Floor Deep Cleaning", desc: "Sweeping, vacuuming, and mopping of hardwood, tile, vinyl, and laminate to lift fine dust and contractor footprints." },
-  { icon: Shield, title: "Interior Window & Glass Cleaning", desc: "Smudges, fingerprints, paint flecks, and renovation residue removed from interior glass, mirrors, and glass doors." },
-  { icon: Wind, title: "Surface Disinfection", desc: "Doors, handles, light switches, baseboards, window sills, and reachable high-touch areas wiped and sanitized." },
+  { icon: Wind, title: "Where the drywall dust ends up", desc: "Off the baseboards, the vents, the window ledges, the trim and the floors, wiped and vacuumed rather than moved from one surface to the next." },
+  { icon: Sparkles, title: "Kitchen, inside the cabinets", desc: "Every cabinet and drawer inside and out, the counters, the backsplash, the sink, and the outside of the new appliances once their film is off." },
+  { icon: Droplets, title: "Bathrooms, for first use", desc: "Tubs, showers, toilets, vanities, mirrors and tile, with the grout haze new tile carries taken off rather than spread." },
+  { icon: SprayCan, title: "Floors, vacuumed before mopped", desc: "Hardwood, tile, vinyl and laminate. The grit is lifted first, because a mop grinds it into a floor that is a week old." },
+  { icon: Shield, title: "Windows and mirrors, indoors", desc: "Paint flecks and label adhesive come off first; polishing over either one is how a new pane gets scratched." },
+  { icon: Wind, title: "Doors, switches and sills", desc: "The handles and plates a trade opened all week, plus the baseboards and window sills below them, wiped and sanitized." },
 ];
 
 const excludedServices = [
@@ -57,17 +60,23 @@ const excludedServices = [
   "No removal of construction debris, drywall scraps, or leftover building materials",
   "No hauling, disposal, or large debris removal services",
   "No removal of plastics from new appliances, and no removal of stickers from windows, doors, or surfaces",
-  "No cleaning of areas requiring more than a two-step stool (no ladders or scaffolding)",
+  // Was "more than a two-step stool", a limit that appeared on this page and
+  // nowhere else. NOT_INCLUDED in policy.ts sets it at a 3-step ladder, which is
+  // what the crew carries and what every other page tells a customer.
+  "Anything beyond the reach of a 3-step ladder, which is what the crew carries: no extension ladders, no scaffolding",
   "No exterior window cleaning, pressure washing, or outdoor surface cleaning",
 ];
 
+/* "Flexible Scheduling", "Professional Equipment" and "Transparent Pricing"
+   were card titles that could sit on any cleaning company's page in any city.
+   Each now states the term it was standing in for. */
 const whyChooseUs = [
-  { icon: Calendar, title: "Flexible Scheduling", desc: "Weekday and weekend appointments available, subject to availability, to work around your move-in date or project completion." },
-  { icon: Shield, title: "Pay After Your Clean", desc: "Nothing is charged when you book. The day before your appointment a temporary hold confirms the card is valid, and no money moves. Your card is charged once the clean is complete." },
-  { icon: Sparkles, title: "Ledges, Tracks and Vents", desc: "We hand-wipe ledges, tracks, vents, and trim, which is where dust settles after construction." },
-  { icon: Wrench, title: "Professional Equipment", desc: "We bring the vacuums, cloths and products; you do not supply anything." },
-  { icon: Heart, title: `${POLICY.guaranteeWindowHours}-Hour Re-Clean`, desc: `Tell us within ${POLICY.guaranteeWindowHours} hours about any area you are not happy with and we re-clean it free of charge.` },
-  { icon: DollarSign, title: "Transparent Pricing", desc: `${startingPriceLabel} to ${topPriceLabel}, before 5% GST, set by square footage and scope — you see your number before you book, and it is the number you pay.` }
+  { icon: Calendar, title: "Booked around your possession date", desc: "Monday to Saturday 8:00 AM to 8:00 PM and Sunday 9:00 AM to 3:00 PM, subject to what is open. Give us the date the last trade finishes and we take the slot after it." },
+  { icon: Shield, title: "Pay after the clean", desc: "Nothing is charged when you book. The day before your appointment a temporary hold confirms the card is valid, and no money moves. Your card is charged once the clean is complete." },
+  { icon: Sparkles, title: "Ledges, tracks and vents by hand", desc: "The four places a post-construction clean is judged on, and the four a machine cannot do: ledges, window tracks, vent slots and the top edge of the trim." },
+  { icon: Wrench, title: "What the crew brings, what the site needs", desc: "Vacuums, cloths, products and the 3-step ladder come with the crew. The site has to have power and running water, which on a new build is worth confirming with the builder." },
+  { icon: Heart, title: `${POLICY.guaranteeWindowHours}-hour re-clean`, desc: "Tell us about any area you are not happy with, inside that window, and we re-clean it free of charge. Photos help the team find it and are not a condition." },
+  { icon: DollarSign, title: "The band is the price", desc: `${startingPriceLabel} to ${topPriceLabel}, before 5% GST, set by the square-footage band of the finished space. Nothing is added for a clean that runs long.` }
 ];
 
 /**
@@ -84,11 +93,11 @@ interface Faq {
 const faqs: Faq[] = [
   {
     q: "What is final-stage post-construction cleaning?",
-    a: "Final-stage post-construction cleaning is the detailed cleaning performed after all construction or renovation work is complete and the space is empty of debris. It removes fine drywall dust, smudges, fingerprints, and contractor residue so the home is move-in ready. We do not perform rough cleanup or work on active job sites.",
+    a: "The clean that goes in after the trades have finished and the material has gone. It takes the sanding dust out of the vents, the window channels and the new drawers, lifts the paint flecks and adhesive off the glass, and leaves the place fit to move into. It is neither rough cleanup nor a site clean: if a trade is still due back for something, the room is not ready for us.",
   },
   {
     q: "Do you remove construction debris or leftover materials?",
-    a: "No. We only handle final-stage cleaning of completed spaces. Drywall scraps, lumber, packaging, and other large debris must be removed by your contractor before our team arrives.",
+    a: "No, and it is not a question of price — the vans carry cleaning kit, not a trailer. Offcuts, packaging, old fixtures and the empty tins leave with whoever brought them. A room with material still stacked in it cannot be cleaned properly either, because half the floor and most of the trim are underneath it.",
   },
   {
     q: "Can you clean my Edmonton home after a kitchen or bathroom renovation?",
@@ -102,18 +111,19 @@ const faqs: Faq[] = [
   {
     q: "How long does a post-construction cleaning take?",
     a: "Most Edmonton homes take between 4 and 10 hours depending on square footage, number of bathrooms, and how much fine dust remains. The price is set by the square footage band before you book, and it does not change because the clean ran long.",
+    more: { lead: "Once the dust stops resurfacing, the home moves onto", to: "/edmonton/regular-cleaning/", anchor: "a standard house clean in Edmonton" },
   },
   {
     q: "Do I need to be home during the cleaning?",
-    a: "No. Many clients provide lockbox or contractor access. Our cleaners are reference-checked and customer-rated.",
+    a: `You do not need to be. Most of these jobs run on a code left in the booking notes, a key at the builder's site office, or whatever access the realtor has arranged — the only requirement is that it opens the door on the day, because if the crew cannot get in the lockout charge is ${POLICY.lockoutFee}. Every cleaner is reference-checked before a first job and rated by the customer afterwards.`,
   },
   {
     q: "Do you remove stickers from new windows and appliances?",
-    a: "No. Manufacturer stickers, plastic films on appliances, and window decals must be removed by the homeowner or contractor before our visit.",
+    a: "No. Peeling appliance film and scraping window decals is slow work and it is not cleaning; hurried, it leaves adhesive smears and scratches on glass nobody has used yet. Take them off before we come, or the crew cleans around them and tells you which ones it left.",
   },
   {
     q: "Do you clean inside appliances during post-renovation cleaning?",
-    a: "For post-renovation cleaning, we only clean the exterior of appliances. The interiors are not included in this service.",
+    a: "The outside is wiped down; the interiors are not on this list. Nothing has been cooked in a new oven yet. If it is a renovation in a house you have been living in and you want the oven and the fridge done inside, those are their own rows on the booking form and belong on a deep clean.",
   },
   {
     q: "Can you clean a home that is not completely empty after renovations?",
@@ -249,7 +259,9 @@ export default function EdmontonPostConstruction() {
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">What is left behind after the trades leave</h2>
               <p className="text-lg text-muted-foreground mb-4">
-                Drywall dust settles on baseboards, vents, counters, window ledges, and floors. Fine particles work their way into cabinets and drawers. Smudges, fingerprints, and adhesive residue cling to windows, mirrors, and new fixtures.
+                Drywall dust settles on baseboards, vents, counters, window ledges, and floors. Fine particles work their way into cabinets and drawers. Smudges, fingerprints, and adhesive residue cling to windows, mirrors, and new fixtures. Painted walls hold a film of the same dust, and where a trade has left a mark on the paint it wants washing rather than wiping —{" "}
+                <Link to="/wall-washing-wall-cleaning/" className="text-primary underline underline-offset-4">wall washing in Edmonton</Link>{" "}
+                is a separate add-on, priced by the size of the home.
               </p>
               <p className="text-lg text-muted-foreground mb-4">
                 At Duty Cleaners Edmonton, we do <strong>final-stage post-construction cleaning</strong>: the{" "}
@@ -305,7 +317,7 @@ export default function EdmontonPostConstruction() {
         <div className="container mx-auto px-4 relative z-10">
           <AnimatedSection>
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-white">
-              What's Included
+              What a post-construction clean covers in Edmonton
             </h2>
             <p className="text-center text-white/90 mb-12 max-w-2xl mx-auto">
               Six parts of the clean: dust, kitchen, bathrooms, floors, interior glass, and the doors, handles and switches everyone touches.
@@ -379,6 +391,9 @@ export default function EdmontonPostConstruction() {
               <p>
                 Every other clean we do is priced by bedrooms and bathrooms instead; those rows are on{" "}
                 <Link to="/pricing/" className="text-primary underline underline-offset-4">the full Edmonton price list</Link>.
+                A winter-finished house keeps bringing dust back up for months, and{" "}
+                <Link to="/edmonton/recurring-cleaning/" className="text-primary underline underline-offset-4">a recurring clean in Edmonton</Link>{" "}
+                carries a discount from the second visit, which is the cheaper way through that first year.
               </p>
             </div>
           </AnimatedSection>
@@ -389,7 +404,9 @@ export default function EdmontonPostConstruction() {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Why Edmonton Homeowners Choose Duty Cleaners</h2>
+            {/* Was "Why Edmonton Homeowners Choose Duty Cleaners", a heading that
+                promised a sales pitch and sat over six booking terms. */}
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">What is settled before an Edmonton crew arrives</h2>
           </AnimatedSection>
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {whyChooseUs.map((item, index) => (
@@ -414,9 +431,12 @@ export default function EdmontonPostConstruction() {
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">What We Don't Cover</h2>
+            {/* "What We Don't Cover" over "To set clear expectations, here's what
+                falls outside our scope" was the template at its plainest. */}
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Six jobs that are not ours</h2>
             <p className="text-center text-muted-foreground mb-4 max-w-2xl mx-auto">
-              We provide <strong>final-stage post-construction cleaning only</strong>. To set clear expectations, here's what falls outside our scope:
+              This is <strong>final-stage cleaning only</strong>. These six belong to the contractor or to
+              you, and a crew that turns up to find them undone cannot start:
             </p>
             <p className="text-center text-sm text-muted-foreground mb-12 max-w-2xl mx-auto italic">
               Rough cleanup and debris removal are your contractor's job, and they have to be done before our team arrives.
@@ -510,7 +530,7 @@ export default function EdmontonPostConstruction() {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Get In Touch</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Talk to the Edmonton office</h2>
           </AnimatedSection>
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {[

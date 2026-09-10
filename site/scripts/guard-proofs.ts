@@ -300,6 +300,14 @@ export const GUARD_PROOFS: GuardProof[] = [
     failing: "edmonton: the Place ID encodes the CID it is paired with",
     why: "Breaks the CID / Place ID pairing a review link depends on.",
   },
+  {
+    guard: "src/lib/schema-url.test.ts",
+    target: "src/lib/pricing-schema.ts",
+    find: 'url: canonicalUrlForPath("/calgary/pricing"),',
+    replace: 'url: "https://dutycleaners.ca/calgary/pricing",',
+    failing: "the pricing builder publishes a slash-canonical url for both cities",
+    why: "Retypes the Calgary pricing URL without its trailing slash, so the Service node names a 301.",
+  },
 
   {
     guard: "src/data/copy-quality.test.ts",
@@ -312,8 +320,12 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/copy-quality.test.ts",
     target: "src/pages/locations/Leduc.tsx",
-    find: "Many households here work a rotation rather than a weekday.",
-    replace: "Leduc is a thriving city. Many households here work a rotation rather than a weekday.",
+    // Was the About-section line "Many households here work a rotation rather
+    // than a weekday." That sentence said the page's one local insight for the
+    // second of three times and was cut; the insight now lives once, here, in
+    // the local note. The proof follows it.
+    find: "Leduc sits 33 km south of Edmonton and directly beside the international airport,",
+    replace: "Leduc is a thriving city. Leduc sits 33 km south of Edmonton and directly beside the international airport,",
     failing: "the money pages carry none of the brochure vocabulary",
     why: "Puts the brochure register back on the town page where a reader lands first.",
   },
@@ -334,6 +346,38 @@ export const GUARD_PROOFS: GuardProof[] = [
     failing: "scripts total under 17 KB gzipped",
     why: "Asset names are hashed per build, so the proof tightens the budget and shows the measurement is real: every page's scripts weigh more than 17 KB.",
     // The target is the guard itself, but the guard only measures a built site.
+  },
+  {
+    guard: "src/data/page-weight.test.ts",
+    target: "src/data/page-weight.test.ts",
+    find: "  image_kb: 100,",
+    replace: "  image_kb: 10,",
+    failing: "no body image is over 10 KB",
+    why: "Tightens the per-image cap the same way, proving the cap reads real bytes: the 133 KB body photo the total-image budget hid would land over any honest cap.",
+  },
+  {
+    guard: "src/data/page-weight.test.ts",
+    target: "src/data/page-weight.test.ts",
+    find: 'const HIDES_ON_PHONES = "hidden";',
+    replace: 'const HIDES_ON_PHONES = "relative";',
+    failing: "does not make a phone download a hero it never renders",
+    why: "Points the ancestor scan at a class every hero really does sit inside, so a scan that never walked the wrappers would still report nothing and be caught.",
+  },
+  {
+    guard: "src/data/page-weight.test.ts",
+    target: "src/data/page-weight.test.ts",
+    find: 'const REVEAL_HIDDEN = "opacity-0 translate-y-8";',
+    replace: 'const REVEAL_HIDDEN = "<main";',
+    failing: "ships no scroll-reveal wrapper still in its hidden start state",
+    why: "Points the search at a string every built page contains, so a check reading the wrong file — or no file — cannot pass by finding nothing.",
+  },
+  {
+    guard: "src/data/page-weight.test.ts",
+    target: "src/data/page-weight.test.ts",
+    find: "  const CAP_KB = 100;",
+    replace: "  const CAP_KB = 10;",
+    failing: "every image asset is at most 10 KB",
+    why: "Asset names are hashed per build, so the proof tightens the cap: it shows the scan really reads every image in dist, not an empty list.",
   },
   // ---- and this registry itself ------------------------------------------
   {

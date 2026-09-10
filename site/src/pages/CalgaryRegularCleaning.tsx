@@ -38,12 +38,15 @@ export default function CalgaryRegularCleaning() {
       phoneHref="tel:4037681341"
       seoTitle={`Standard Cleaning & Maid Service Calgary from ${FROM}`}
       seoDescription={`Standard house cleaning in Calgary from ${FROM}, flat by home size. Kitchen, bathrooms, bedrooms and floors in one visit; card charged only when it is done.`}
+      serviceName="Standard House Cleaning in Calgary"
       canonical="https://dutycleaners.ca/calgary/regular-cleaning"
       heroHeading={<>Standard Cleaning in <AccentGold>Calgary</AccentGold></>}
       heroSubheading={`Kitchen, bathrooms, bedrooms and floors in one visit, at a flat rate by home size that starts at ${FROM} for a one-bedroom. Put the same clean on a schedule and every visit after the first is discounted.`}
       heroBadges={["Reference-Checked Cleaners", "All Supplies Brought For You", "100% Satisfaction Guarantee"]}
       heroImage={heroImage}
       heroImageAlt="Bright, tidy Calgary living room after a standard cleaning visit"
+      heroImageWidth={800}
+      heroImageHeight={800}
       overviewEyebrow="Service Overview"
       overviewHeading={<>One visit, <Accent>priced flat by home size.</Accent></>}
       overviewParagraphs={[
@@ -117,6 +120,17 @@ export default function CalgaryRegularCleaning() {
                 and <Link to="/cleaning-services-cochrane/">Cochrane house cleaners</Link>.
               </p>
               <p>
+                Some jobs are not this one. A place being handed back to a landlord is{" "}
+                <Link to="/move-out-cleaning-calgary/">move-out cleaning in Calgary</Link>, on a price table of its own.
+                A basement or kitchen the trades have just finished with is{" "}
+                <Link to="/post-construction-cleaning-calgary/">post-construction cleaning</Link>, quoted against square
+                footage instead of bedrooms. Walls that have taken hands, boots and frying are{" "}
+                <Link to="/wall-washing-wall-cleaning-calgary/">wall washing in Calgary</Link>, a package added to a
+                clean rather than folded into it. A guest suite between bookings is{" "}
+                <Link to="/airbnb-cleaning-services-calgary/">short-term rental turnover cleaning</Link>, billed by the
+                hour.
+              </p>
+              <p>
                 The full menu is on <Link to="/calgary/services/">every Calgary cleaning service, with starting prices</Link>.
               </p>
             </>
@@ -169,7 +183,7 @@ export default function CalgaryRegularCleaning() {
         { q: "How often do Calgary homes need a standard clean?", a: "One visit is one visit; book it when the house needs it. Bi-weekly is the usual choice for keeping it up, and the recurring cleaning page has that schedule at 15% off, weekly at 20% off and every 4 weeks at 10% off, from the second visit on." },
         { q: "Can the team get in if I am at work?", a: "Yes. A lockbox is the arrangement we prefer; a smart-lock code, a garage code or a fob left with the concierge also works. Tell us which when you book so the team is not locked out, and they lock up on the way out." },
         { q: "Who supplies the products and the vacuum?", a: "We do. The team brings everything, including the vacuum. If there is a product you want used or avoided, say so when you book." },
-        { q: "How should I get the house ready?", a: "Pick up clothes, toys, dishes and anything else on the floors and counters so the team can clean the surfaces rather than clear them. If a room should be skipped, or one deserves extra time, note it on the booking." },
+        { q: "How should I get the house ready?", a: "You do not need to clean before the team comes; clear counters and floors get cleaned and cluttered ones get worked around; decluttering and organising are a separate hourly add-on. If a room should be skipped, or one deserves extra time, note it on the booking." },
       ]}
       closingSections={[
         {

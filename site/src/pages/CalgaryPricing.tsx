@@ -17,7 +17,6 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import PricingTierCard from "@/components/pricing/PricingTierCard";
 import RecurringDiscountCard from "@/components/pricing/RecurringDiscountCard";
-import PricingFactorCard from "@/components/pricing/PricingFactorCard";
 import PricingOptionCard from "@/components/pricing/PricingOptionCard";
 import PricingFormula from "@/components/PricingFormula";
 import {
@@ -30,12 +29,13 @@ import {
   moveInOutTierRows,
   PRICING_TIERS,
   standardTierRows,
+  startingPrice,
 } from "@/data/pricing";
 import { addOnTableRows } from "@/data/addon-table";
 import {
   CheckCircle2, Phone, Calculator, Sparkles, Shield, Clock,
-  Star, BadgeCheck, Home, Ruler, Bath, Wrench, CalendarClock,
-  DollarSign, HelpCircle, Award, Users, Info, MapPin, Receipt
+  Star, BadgeCheck, Home, CalendarClock,
+  HelpCircle, Award, Users, Info, MapPin, Receipt
 } from "lucide-react";
 import { CITY_PROOF, COMPANY, RATING_CLAIM } from "@/data/proof";
 
@@ -69,6 +69,13 @@ const standardPricing = standardTierRows();
 const deepPricing = deepCleanTierRows();
 
 const moveInOutPricing = moveInOutTierRows();
+
+/**
+ * The floor of the post-construction square-footage ladder. That service is
+ * priced by floor area rather than bedrooms, which is why it is absent from
+ * every tier table on this page and was absent from the page entirely.
+ */
+const POST_CONSTRUCTION_FROM = formatPrice(startingPrice("post-construction"));
 
 /**
  * The "from" figure for the title, the meta and the flat-rate card: the first
@@ -138,14 +145,11 @@ const CALGARY_TOWNS: { anchor: string; to: string }[] = [
   { anchor: "house cleaning in Chestermere", to: "/locations/chestermere/" },
 ];
 
-const pricingFactors = [
-  { icon: Ruler, title: "Type of home", desc: `An apartment or condo is the base. A bungalow or basement suite is ${HOME_TYPE_EXTRA.bungalow} more, a townhouse ${HOME_TYPE_EXTRA.townhouse} more, a two-storey house ${HOME_TYPE_EXTRA.twoStorey} more.` },
-  { icon: Bath, title: "Bedrooms and bathrooms", desc: "Bedrooms pick the tier. Bathrooms are priced on top, one by one, which is why the Mahogany example below lands under its card." },
-  { icon: Wrench, title: "Type of service", desc: "Standard is the base rate. Deep is that base plus a package sized to the home. Move-in/out is its own rate with the fridge, oven and cabinets inside it." },
-  { icon: Sparkles, title: "Add-ons", desc: "Each one is a fixed line from the table, chosen visit by visit. None is compulsory except the pet charge." },
-  { icon: CalendarClock, title: "Frequency", desc: "Weekly takes 20% off, bi-weekly 15%, every 4 weeks 10%, from the second visit onward." },
-  { icon: DollarSign, title: "Flat rate or hourly", desc: `Flat by size for a whole home. ${formatPrice(HOURLY_RATE)} an hour per cleaner for a few rooms or a one-off list, 3 hours minimum for one cleaner or 2 for two.` },
-];
+/* Six cards restating the price builder near the top of the page used to sit
+   here: home type, bedrooms and bathrooms, service, add-ons and frequency are
+   its five steps, said again in smaller type further down. The builder stays.
+   The sixth card held the one thing the builder does not say, flat rate against
+   hourly, and that is now a sentence in the same place. */
 
 const faqItems = [
   { value: "trust", question: "Can I trust my house cleaners?", answer: "Every cleaner on a Calgary crew was reference-checked before their first job with us, and the customer rates each visit afterwards. Those ratings decide who we keep sending to Calgary homes." },
@@ -420,6 +424,15 @@ export default function CalgaryPricing() {
                     <PricingTierCard key={item.beds} beds={item.beds} price={item.price} />
                   ))}
                 </div>
+                <p className="text-center text-sm text-muted-foreground mt-8 max-w-2xl mx-auto">
+                  Bedroom count stops being the right measure once a renovation or a new build is
+                  involved, so{" "}
+                  <Link to="/post-construction-cleaning-calgary/" className="text-accent underline underline-offset-4 hover:text-accent/80">
+                    post-construction cleaning in Calgary
+                  </Link>{" "}
+                  is banded by square footage, starting at {POST_CONSTRUCTION_FROM}. Fine drywall dust
+                  reaches the same surfaces in a one-bedroom infill as in a five-bedroom house.
+                </p>
               </TabsContent>
             </Tabs>
           </div>
@@ -602,21 +615,16 @@ export default function CalgaryPricing() {
         </div>
       </section>
 
-      {/* Factors That Affect Pricing */}
+      {/* Flat rate against hourly, then the no-hidden-fees banner */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4" ref={factorsRef}>
           <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-12">
-              <span className="text-accent font-semibold text-sm uppercase tracking-wider">What the form asks</span>
-              <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-4">What moves the cost of a Calgary clean</h2>
-              <p className="text-lg text-muted-foreground">Six questions on the form, and each one moves the total in the open</p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-5 mb-10">
-              {pricingFactors.map((factor) => (
-                <PricingFactorCard key={factor.title} icon={factor.icon} title={factor.title} description={factor.desc} />
-              ))}
-            </div>
+            <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-10 text-center">
+              Those five steps price a whole Calgary home. There is a sixth choice they do not make for
+              you: a home cleaned end to end is a flat rate, while a few rooms or a one-off task list is
+              billed by the hour at {formatPrice(HOURLY_RATE)} per cleaner, with a minimum of 3 hours for
+              one cleaner or 2 hours for two. The comparison is below.
+            </p>
 
             {/* No Hidden Fees Banner */}
             <div className="bg-brand-navy rounded-2xl p-8 md:p-10 border border-white/10 relative overflow-hidden">

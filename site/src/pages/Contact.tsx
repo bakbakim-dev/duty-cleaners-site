@@ -20,7 +20,7 @@ import {
 import { Phone, Mail, MapPin, Clock, CheckCircle2, MessageSquare, Sparkles, Heart, Shield, Star, Building2, Users, LucideIcon, Send } from "lucide-react";
 import { Link, useSearchParams } from "react-router-dom";
 import { canonicalForPath } from "@/data/legacy-urls";
-import { ARRIVAL_WINDOWS, POLICY } from "@/data/policy";
+import { ARRIVAL_WINDOWS, PAYMENT_TERMS, POLICY } from "@/data/policy";
 import { formatPrice } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
 import { submitQuote } from "@/lib/quote-submit";
@@ -32,6 +32,25 @@ const TITLE = "Contact Duty Cleaners | Edmonton & Calgary";
 const DESCRIPTION = `Contact Duty Cleaners in Edmonton or Calgary. Call ${CITY_PROOF.edmonton.phone} or ${CITY_PROOF.calgary.phone}, Mon-Sat 8am-8pm and Sun 9am-3pm, or send the form.`;
 
 const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
+
+/**
+ * The payment sequence, read verbatim from policy.ts.
+ *
+ * This page used to say "Booking takes no deposit and no card", which is half
+ * right and half wrong: there is no deposit, but a card IS taken, and the day
+ * before the visit a temporary hold goes on it. A customer who read "no card"
+ * and then saw a pending amount in their banking app had been told the opposite
+ * of what happens. Matched on wording rather than index so a reordering of
+ * PAYMENT_TERMS cannot silently pick the wrong sentence.
+ */
+const paymentTerm = (pattern: RegExp) => PAYMENT_TERMS.find((term) => pattern.test(term)) ?? "";
+const PAYMENT_SEQUENCE = [
+  paymentTerm(/Nothing is charged when you book/),
+  paymentTerm(/temporary hold/),
+  paymentTerm(/charged once the clean is complete/),
+]
+  .filter(Boolean)
+  .join(" ");
 
 /** The two offices keep the same hours; stated once so the schema and the cards agree. */
 const OPENING_HOURS = [
@@ -317,7 +336,7 @@ export default function Contact() {
         return;
       }
 
-      toast.success("Message sent. We reply within 24 hours.");
+      toast.success("Message sent. It is with the office now.");
       setFormData({
         name: "",
         email: "",
@@ -419,13 +438,13 @@ export default function Contact() {
 
             <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-8">
               The fastest answer to most questions is the price itself, which takes about a minute
-              to see. For anything else, call either office or send the form below and we reply
-              within 24 hours.
+              to see. For anything else, call either office during opening hours, or send the form
+              below.
             </p>
 
             <div className="flex flex-wrap justify-center gap-4">
-              {/* The line above says "Ready to book?" and this page had no way to
-                  book — two phone numbers and a 24-hour inbox. */}
+              {/* This page once offered no way to book at all: two phone numbers
+                  and a message form, under a line inviting the reader to book. */}
               <Button size="lg" className="bg-accent hover:bg-accent/90 text-white h-12 px-6" asChild>
                 <a href={quoteHrefFor(pathname)}>
                   <Calculator className="mr-2 w-5 h-5" />
@@ -514,7 +533,7 @@ Sun: 9:00am–3:00pm"
                   <h2 className="text-3xl md:text-4xl font-bold mt-2">Send a message to either office</h2>
                   <p className="text-muted-foreground mt-3">
                     For questions the price cannot answer: an unusual home, a fixed inspection
-                    date, a gift card. We reply within 24 hours.
+                    date, a gift card. Leave a phone number and the office can call you back.
                   </p>
                 </div>
 
@@ -640,20 +659,27 @@ Sun: 9:00am–3:00pm"
                     Why Contact Us?
                   </h3>
                   <div className="space-y-5">
-                    <FeatureHighlight 
-                      icon={CheckCircle2} 
-                      title="Quick Response" 
-                      description="We respond to all inquiries within 24 hours, often much sooner."
+                    {/* The "Quick Response — within 24 hours" item that stood
+                        here promised a reply time nothing in the repository
+                        confirms (proof.ts RESPONSE_TIME_PROMISE is still
+                        TODO-OWNER and is rendered nowhere), so it is gone rather
+                        than replaced with another invented number. What the page
+                        can honestly say is that most questions do not need a
+                        reply at all. */}
+                    <FeatureHighlight
+                      icon={CheckCircle2}
+                      title="The Price Without Asking"
+                      description="The quote form answers the most common question on its own, in about a minute, before GST."
                     />
-                    <FeatureHighlight 
-                      icon={Users} 
-                      title="One Call, Either City" 
+                    <FeatureHighlight
+                      icon={Users}
+                      title="One Call, Either City"
                       description="Edmonton and Calgary are answered by the same team, Mon-Sat 8am-8pm and Sun 9am-3pm."
                     />
-                    <FeatureHighlight 
-                      icon={Shield} 
-                      title="Nothing to Pay Up Front" 
-                      description="Booking takes no deposit and no card. You pay after the clean is done."
+                    <FeatureHighlight
+                      icon={Shield}
+                      title="No Deposit, and No Charge at Booking"
+                      description={PAYMENT_SEQUENCE}
                     />
                   </div>
                 </div>

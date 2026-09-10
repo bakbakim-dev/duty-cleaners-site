@@ -272,9 +272,13 @@ export default function GiftCards() {
                   icon={Gift}
                   iconColor="text-accent"
                   title="How to Use"
+                  /* The first line said "any cleaning service" and the second
+                     named a shorter list, so the card contradicted itself and
+                     /gift-card/, which answers the same question. Same set on
+                     both pages now. */
                   items={[
-                    { text: "Valid for any cleaning service in Alberta." },
-                    { text: "Can be used for standard, deep, move-in/move-out, and post-construction cleaning" },
+                    { text: "Valid on any home cleaning service in Edmonton, Calgary and the towns around each." },
+                    { text: "Standard, deep, move-in/move-out, post-construction, wall washing, and Airbnb turnovers, which are billed by the hour" },
                   ]}
                 />
 

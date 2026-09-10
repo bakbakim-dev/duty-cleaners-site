@@ -7,9 +7,15 @@ import QuoteOverlay from "./components/QuoteOverlay";
 import { QuoteOverlayProvider } from "./hooks/use-quote-overlay";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { SITE_ORIGIN } from "@/lib/seo";
-import Edmonton2 from "./pages/Edmonton2";
-// Only the "/" homepage (Edmonton) stays eager — Calgary loads on demand so it
-// no longer weighs down every first visit.
+// Both city homepages load on demand. Edmonton2 was the last eager route, so
+// its component tree sat in the entry chunk that all 209 pages download — 208
+// of which never render it. Every page is prerendered, so the HTML paints
+// before any of this resolves; keeping "/" eager bought the homepage one
+// avoided round trip and charged every other page for the homepage.
+// Measured: the entry chunk falls from 542 KB raw / 142 KB gzipped to 357 /
+// 100, a town page from 167 to 145 KB gzipped and /contact-us/ from 200 to
+// 176, while "/" itself pays 12 KB more and /cleaning-services-calgary/ 3.
+const Edmonton2 = lazy(() => import("./pages/Edmonton2"));
 const Calgary2 = lazy(() => import("./pages/Calgary2"));
 const EdmontonServices = lazy(() => import("./pages/EdmontonServices"));
 const CalgaryServices = lazy(() => import("./pages/CalgaryServices"));

@@ -69,6 +69,12 @@ const HUB = canonicalForPath("/calgary");
 const PRICING = canonicalForPath("/calgary/pricing");
 const RECURRING = canonicalForPath("/calgary/recurring-cleaning");
 const SERVICES = canonicalForPath("/calgary/services");
+const CHESTERMERE = canonicalForPath("/locations/chestermere");
+const QUOTE = `${HUB}#quote`;
+/* The cheapest turnover a host can actually book: the 3-hour minimum at the
+   hourly rate. An Offer quoting the bare hourly rate would advertise a price
+   nobody can buy. */
+const MINIMUM_BOOKING = HOURLY_RATE * 3;
 const TITLE = `Airbnb Cleaning Calgary from ${RATE}/hour | Duty Cleaners`;
 const DESCRIPTION = `Turnover cleaning for Calgary short-term rentals from ${RATE} per cleaner-hour. Stampede back-to-backs, linen resets and restocking, 3-hour minimum.`;
 
@@ -270,8 +276,19 @@ const AirbnbCleaningCalgary = () => {
             })),
           })}
         </script>
+        {/* The page prints a rate and a minimum; the Service node used to print
+            neither, so a machine reading it saw a service with no price at all.
+            The offer states the cheapest bookable turnover and the note carries
+            the rate and the minimum it is built from. */}
         <script type="application/ld+json">
-          {JSON.stringify(buildServiceSchema({ name: "Airbnb Turnover Cleaning", description: DESCRIPTION, path: "/airbnb-cleaning-services-calgary", city: "calgary" }))}
+          {JSON.stringify(buildServiceSchema({
+            name: "Airbnb Turnover Cleaning",
+            description: DESCRIPTION,
+            path: "/airbnb-cleaning-services-calgary",
+            city: "calgary",
+            offerFrom: MINIMUM_BOOKING,
+            offerNote: `Billed by the hour at ${RATE} per cleaner, with a minimum of 3 hours for one cleaner or 2 hours for two.`,
+          }))}
         </script>
       </Helmet>
       <Navigation city="calgary" />
@@ -310,8 +327,11 @@ const AirbnbCleaningCalgary = () => {
             billed for the hours it took, after it is done.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            {/* Turnovers are sold by the hour. This button opens the flat-rate
+                list, which is a different way of buying, so it now says so
+                instead of reading "See my price". */}
             <Button asChild size="lg" className="text-lg bg-accent text-accent-foreground hover:bg-accent/90">
-              <Link to={PRICING}>See my price</Link>
+              <Link to={PRICING}>See Calgary prices by home size</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="text-lg border-white/20 text-white hover:bg-white/10">
               <Link to="/contact-us/?topic=airbnb&city=calgary">Request a callback</Link>
@@ -432,8 +452,13 @@ const AirbnbCleaningCalgary = () => {
               <Link to={PRICING} className="text-accent underline underline-offset-2">
                 Calgary house cleaning prices by home size
               </Link>{" "}
-              apply to a short-term rental as they do to any other home, and every one of them is before
-              GST with nothing charged until the clean is finished.
+              apply to a short-term rental as they do to any other home. Describe the unit in the quote
+              form and you can{" "}
+              <Link to={QUOTE} className="text-accent underline underline-offset-2">
+                see your instant price for a flat-rate clean
+              </Link>{" "}
+              before you commit to anything; every figure is before GST, with nothing charged until the
+              clean is finished.
             </p>
           </div>
         </AnimatedSection>
@@ -468,8 +493,11 @@ const AirbnbCleaningCalgary = () => {
       <section className="py-16 px-4 bg-background">
         <AnimatedSection>
           <div className="container mx-auto max-w-3xl">
+            {/* The heading said two towns while the FAQ below answers for three.
+                The FAQ is the one that matches city-locations.ts, so the heading
+                and the paragraph now name all three. */}
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-              Turnover coverage across Calgary and the two towns beside it
+              Turnover coverage across Calgary, Airdrie, Cochrane and Chestermere
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
               Inside Calgary city limits there is no trip fee, whichever quadrant the unit is in. Past the
@@ -477,11 +505,15 @@ const AirbnbCleaningCalgary = () => {
               <Link to="/cleaning-services-airdrie/" className="text-accent underline underline-offset-2">
                 Airdrie house cleaners
               </Link>{" "}
-              are dispatched from the Calgary office, and{" "}
+              are dispatched from the Calgary office,{" "}
               <Link to="/cleaning-services-cochrane/" className="text-accent underline underline-offset-2">
                 house cleaning in Cochrane
               </Link>{" "}
-              covers the units that fill up with Banff traffic on Friday nights.
+              covers the units that fill up with Banff traffic on Friday nights, and{" "}
+              <Link to={CHESTERMERE} className="text-accent underline underline-offset-2">
+                cleaning services in Chestermere
+              </Link>{" "}
+              work to the same checklist as a unit downtown.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-4">
               The turnover is one line on a longer menu. Duty Cleaners has done{" "}
@@ -632,7 +664,7 @@ const AirbnbCleaningCalgary = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="text-lg bg-accent text-accent-foreground hover:bg-accent/90">
-              <Link to={PRICING}>See my price</Link>
+              <Link to={PRICING}>See the flat-rate Calgary price list</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="text-lg border-white/20 text-white hover:bg-white/10">
               <Link to="/contact-us/?topic=airbnb&city=calgary">Request a callback</Link>

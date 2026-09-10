@@ -2,8 +2,10 @@ import { CITY_PROOF } from "@/data/proof";
 import { RATING_CLAIM } from "@/data/proof";
 import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
 import { canonicalUrlForPath, canonicalForPath } from "@/data/legacy-urls";
-import { standardTierRows, deepCleanTierRows, moveInOutTierRows, addOnFromPrice, formatPrice } from "@/data/pricing";
+import { standardTierRows, deepCleanTierRows, moveInOutTierRows, addOnFromPrice, formatPrice, FREQUENCIES } from "@/data/pricing";
+import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
 import { TRAVEL_FEE_KEY } from "@/data/addon-table";
+import { getListing } from "@/lib/google-listings";
 import Navigation from "@/components/Navigation";
 import heroFamilyBedroom from "@/assets/hero-family-bedroom.webp";
 import Footer from "@/components/Footer";
@@ -18,7 +20,7 @@ import LocalMarketNote from "@/components/LocalMarketNote";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { ArrowRight,
   Phone, CheckCircle2, Star, Shield, Clock, Award,
-  Home, Sparkles, Truck, SprayCan, Bath, UtensilsCrossed,
+  Home, Sparkles, Truck, SprayCan, Bath,
   Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail, PaintRoller
 } from "lucide-react";
 
@@ -85,6 +87,39 @@ const TRAVEL_FEE = (() => {
   return v === null ? null : formatPrice(v);
 })();
 
+/**
+ * The other two compulsory extras, read the same way /pricing/ reads them.
+ *
+ * The travel fee was the only one this page named, which made the flat-rate
+ * sentence read as though it were the whole story. It is not: the home-type
+ * surcharge is chosen on the booking form and the pet charge is BookingKoala
+ * extra 122, "Must choose if you have pets", billed on every visit. Quoting a
+ * headline rate and disclosing one of the three is the same drip-pricing
+ * pattern the travel-fee line exists to avoid, so all three ship together.
+ * Keyed by BK variable id, as EdmontonPricing does, so a price change in BK
+ * moves this sentence with it.
+ */
+const HOME_TYPE_EXTRA = {
+  bungalow: formatPrice(BK_PRICE_OVERRIDES[54].price),
+  townhouse: formatPrice(BK_PRICE_OVERRIDES[89].price),
+  twoStorey: formatPrice(BK_PRICE_OVERRIDES[90].price),
+};
+const PET_FEE = formatPrice(addOnFromPrice("standard", "must-choose-if-you-have-pets") ?? 0);
+
+/**
+ * Recurring discounts, read from bk-config by BookingKoala frequency id so the
+ * card and the price paragraph can never disagree with the booking form. The
+ * 10% tier is "Every 4 Weeks" there — 13 visits a year, not 12 — which is why
+ * nothing here says "monthly".
+ */
+const pctOff = (bkId: number) =>
+  `${Math.round((FREQUENCIES.find((f) => f.bkId === bkId)?.discount ?? 0) * 100)}%`;
+const OFF_WEEKLY = pctOff(3);
+const OFF_BIWEEKLY = pctOff(4);
+const OFF_FOUR_WEEKLY = pctOff(2);
+/** The cheapest published standard clean, the same figure /pricing/ leads with. */
+const RECURRING_FROM = standardTierRows()[0].price;
+
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
   return (
@@ -129,7 +164,7 @@ const ServiceCard = ({
   </div>
 );
 
-const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: string }) => (
+const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: React.ReactNode }) => (
   <div
     className="group bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center transition-all duration-500 ease-out hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-xl"
     style={{ transformStyle: "preserve-3d" }}
@@ -181,13 +216,42 @@ const services = (place: string, region: "edmonton" | "calgary") => {
   // /whats-included/, and the grid holds exactly six (2x3 and 3x2 both divide
   // it; a seventh card would sit alone on a row). The 150 location pages that
   // inline their own copy of this array were changed the same way.
-  { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
+  //
+  // The sixth card used to be "Kitchen Deep Clean" — the only card with no
+  // price and no link, describing a service pricing.ts does not sell. Appliance
+  // interiors are add-ons on a standard clean and included on a move-out clean;
+  // there is no kitchen-only package to book. Recurring cleaning is a real
+  // bookable frequency with its own page in both cities, and it was the only
+  // service on the menu with no card here.
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: canonicalForPath(`/${city}/recurring-cleaning`), linkText: `Recurring cleaning in ${place}` },
   ];
 };
 
-const whyUsItems = () => [
+const whyUsItems = (region: "edmonton" | "calgary") => [
   { icon: Shield, title: "Reference-Checked, Then Rated by You", description: "Every cleaner is reference-checked before their first job, then rated by the customer after every visit. Those ratings decide who keeps cleaning for us." },
-  { icon: Star, title: RATING_CLAIM, description: `${CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount} reviews across Edmonton and Calgary, and every one of them is on our Google listing.` },
+  // This card used to add the two branches together and say "287 reviews across
+  // Edmonton and Calgary", unlinked, while the LocalBusiness node on the same
+  // page pointed at ONE listing showing 236 or 51. Google never reports the sum,
+  // so no reader could check it anywhere. Each page now states its own branch's
+  // count and links the listing it came from.
+  {
+    icon: Star,
+    title: RATING_CLAIM,
+    description: (
+      <>
+        {CITY_PROOF[region].googleReviewCount} reviews on our{" "}
+        <a
+          href={getListing(CITY_PROOF[region].city).reviewsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-medium text-white underline underline-offset-2 hover:text-accent"
+        >
+          {CITY_PROOF[region].city} Google listing
+        </a>
+        , which is where that rating is read from.
+      </>
+    ),
+  },
   { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day slots when the schedule allows, including weekends." },
   // "and the planet" is an environmental-benefit claim. Since the June 2024
   // Competition Act amendments those require substantiation on an internationally
@@ -380,14 +444,42 @@ export default function LocationPageTemplate({
                 home, a deep clean {LOCATION_PRICES.deep}, and a move-in or move-out clean{" "}
                 {LOCATION_PRICES.moveInOut}. Those are flat rates in Canadian dollars before 5% GST — the
                 figure you see before booking is the figure you pay, and it does not go up because a clean
-                took longer than expected.
+                took longer than expected. Those figures are for an apartment or condo: a bungalow or
+                basement suite adds {HOME_TYPE_EXTRA.bungalow}, a townhouse {HOME_TYPE_EXTRA.townhouse} and
+                a two-storey house {HOME_TYPE_EXTRA.twoStorey}, and a home with pets {PET_FEE} a visit.
+                {/* "outside Edmonton and Calgary city limits" named the wrong
+                    city on half the pages that printed it — a Calgary-side town
+                    was being told about Edmonton's boundary. The fee is charged
+                    against the branch this page belongs to, so that is the
+                    boundary to name. */}
                 {isOwnMunicipality && TRAVEL_FEE !== null
-                  ? ` Because ${city} is outside Edmonton and Calgary city limits, a ${TRAVEL_FEE} travel fee is added to bookings here.`
+                  ? ` Because ${city} is outside ${regionLabel} city limits, a ${TRAVEL_FEE} travel fee is added to bookings here.`
                   : ""}
+                {" Every one of them shows on the quote before you book."}
               </p>
               <p className="text-muted-foreground text-lg leading-relaxed">
-                Recurring visits save 20% weekly, 15% bi-weekly and 10% monthly from the second clean.
-                Your first clean is charged at the standard one-time rate.
+                {/* These thirteen pages stated the recurring tiers as plain text,
+                    called the 10% tier "monthly" (it is Every 4 Weeks in
+                    BookingKoala, 13 visits a year), and offered no body route to
+                    a price list at all. Both links are what the 139 hand-built
+                    location pages already carry through <LocationPricing>. */}
+                On a{" "}
+                <Link
+                  to={canonicalForPath(`/${region}/recurring-cleaning`)}
+                  className="text-primary underline underline-offset-2"
+                >
+                  recurring schedule in {city}
+                </Link>{" "}
+                the discount is {OFF_WEEKLY} weekly, {OFF_BIWEEKLY} bi-weekly and {OFF_FOUR_WEEKLY} every
+                four weeks from the second clean. Your first clean is charged at the standard one-time
+                rate. The{" "}
+                <Link
+                  to={canonicalForPath(region === "calgary" ? "/calgary/pricing" : "/pricing")}
+                  className="text-primary underline underline-offset-2"
+                >
+                  full {regionLabel} price list
+                </Link>{" "}
+                breaks every tier down by bedroom count and lists the add-ons.
               </p>
             </div>
           </AnimatedSection>
@@ -444,36 +536,41 @@ export default function LocationPageTemplate({
               ))}
             </div>
           </AnimatedSection>
-          {region === "calgary" && (
-            <AnimatedSection>
-              {/* Up-link to the city hub, Calgary only.
-                  Both hubs receive 8 editorial in-body links from the whole
-                  site — the "217 vs 13" gap a naive count shows is breadcrumbs,
-                  which sit inside <main>. The difference that matters is what
-                  each hub IS: Edmonton's is the homepage, already fed by every
-                  nav, footer and breadcrumb on 209 pages, while Calgary's is a
-                  subpage that ranked 24.8 for "cleaning services calgary"
-                  against Edmonton's 6.3 on the same query and comparable
-                  impressions. Linking Edmonton pages to the homepage would buy
-                  nothing; linking Calgary's 77 neighbourhood pages to their hub
-                  is the support it does not have.
+          <AnimatedSection>
+            {/* Up-link to the city hub.
+                Both hubs receive 8 editorial in-body links from the whole
+                site — the "217 vs 13" gap a naive count shows is breadcrumbs,
+                which sit inside <main>. The difference that matters is what
+                each hub IS: Edmonton's is the homepage, already fed by every
+                nav, footer and breadcrumb on 209 pages, while Calgary's is a
+                subpage that ranked 24.8 for "cleaning services calgary"
+                against Edmonton's 6.3 on the same query and comparable
+                impressions.
 
-                  isOwnMunicipality keeps the sentence true: Airdrie, Okotoks
-                  and the rest are separate towns, not Calgary neighbourhoods. */}
-              <p className="mt-10 text-center text-muted-foreground">
-                {isOwnMunicipality
-                  ? `We clean ${city} and the wider Calgary area — see `
-                  : `${city} is one of the Calgary neighbourhoods we clean — see `}
-                <Link
-                  to={canonicalForPath("/cleaning-services-calgary")}
-                  className="text-primary underline underline-offset-2"
-                >
-                  house cleaning services in Calgary
-                </Link>
-                {" for the full picture."}
-              </p>
-            </AnimatedSection>
-          )}
+                That reasoning is why this sentence was Calgary-only, and it
+                went one step too far. Nav, footer and breadcrumb links are
+                site furniture: they carry no anchor text worth having and sit
+                outside the editorial body every link audit measures. The
+                result was 76 of 76 Calgary pages linking their hub in-body and
+                1 of 90 Edmonton-side pages linking theirs — the homepage,
+                which is the page that has to hold "house cleaning edmonton".
+                Both sides now carry the mirror of the same sentence.
+
+                isOwnMunicipality keeps it true: Airdrie, Okotoks, St. Albert
+                and the rest are separate towns, not city neighbourhoods. */}
+            <p className="mt-10 text-center text-muted-foreground">
+              {isOwnMunicipality
+                ? `We clean ${city} and the wider ${regionLabel} area — see `
+                : `${city} is one of the ${regionLabel} neighbourhoods we clean — see `}
+              <Link
+                to={region === "calgary" ? canonicalForPath("/cleaning-services-calgary") : "/"}
+                className="text-primary underline underline-offset-2"
+              >
+                house cleaning services in {regionLabel}
+              </Link>
+              {" for the full picture."}
+            </p>
+          </AnimatedSection>
         </div>
       </section>
 
@@ -494,7 +591,7 @@ export default function LocationPageTemplate({
           </AnimatedSection>
           <AnimatedSection>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {whyUsItems().map((item, i) => (
+              {whyUsItems(region).map((item, i) => (
                 <WhyUsCard key={i} {...item} />
               ))}
             </div>

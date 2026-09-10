@@ -115,12 +115,35 @@ export const calgarySurrounding: CityLocation[] = [
   { name: "Okotoks", to: "/locations/okotoks" },
   { name: "Cochrane", to: "/cleaning-services-cochrane" },
   { name: "Chestermere", to: "/locations/chestermere" },
-  { name: "Black Diamond", to: "/locations/black-diamond" },
+  // Black Diamond and Turner Valley stopped being separate towns on
+  // 1 January 2023, when the province amalgamated them as the Town of Diamond
+  // Valley. Listing both was listing one town twice under names it no longer
+  // has. One entry, linked to the page carrying the search equity of the two
+  // (1,333 legacy impressions against 237 — see legacy-urls.ts).
+  { name: "Diamond Valley", to: "/locations/black-diamond" },
   { name: "Crossfield", to: "/locations/crossfield" },
   { name: "High River", to: "/locations/high-river" },
   { name: "Langdon", to: "/locations/langdon" },
   { name: "Strathmore", to: "/locations/strathmore" },
-  { name: "Turner Valley", to: "/locations/turner-valley" },
+];
+
+/**
+ * Routes that still serve a Calgary-region page but are no longer a separate
+ * place on the coverage list above.
+ *
+ * /locations/turner-valley/ is the other half of Diamond Valley. Its page stays
+ * live and keeps its URL — it holds inherited search equity and inbound links,
+ * and a 404 or a redirect would throw both away — but the coverage lists name
+ * the one town rather than the two it was made from.
+ *
+ * This list exists because anything deriving "which city is this URL about?"
+ * from the coverage arrays would otherwise stop recognising the route. That is
+ * not cosmetic: cityFromPath falls through to "edmonton", so the page would
+ * render the Edmonton phone number and address under Calgary schema — the exact
+ * NAP contradiction structured-data.test.ts exists to catch.
+ */
+export const calgaryMergedRoutes: CityLocation[] = [
+  { name: "Diamond Valley", to: "/locations/turner-valley" },
 ];
 
 export const calgaryNeighborhoods: CityLocation[] = [

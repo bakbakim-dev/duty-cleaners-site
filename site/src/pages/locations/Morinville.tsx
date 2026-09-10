@@ -6,8 +6,10 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
-import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice } from "@/data/pricing";
+import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice, addOnFromPrice } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
+import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
+import { GOOGLE_LISTINGS } from "@/lib/google-listings";
 import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
 
 // Prices come from bk-config through pricing.ts; the page types none.
@@ -21,6 +23,16 @@ const DEEP_TO = DEEP[DEEP.length - 1].price;
 const MOVE_FROM = MOVE[0].price;
 const MOVE_TO = MOVE[MOVE.length - 1].price;
 const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
+// Post-construction carries its own travel-fee row in bk-config, at a higher amount.
+const PC_TRAVEL_FEE = formatPrice(travelFee("post-construction") ?? 0);
+// Charged for you rather than chosen, and charged inside the city too.
+const PET_FEE = formatPrice(addOnFromPrice("standard", "must-choose-if-you-have-pets") ?? 0);
+const HOME_TYPE = {
+  bungalow: formatPrice(BK_PRICE_OVERRIDES[54].price),
+  townhouse: formatPrice(BK_PRICE_OVERRIDES[89].price),
+  twoStorey: formatPrice(BK_PRICE_OVERRIDES[90].price),
+};
+const EDMONTON_LISTING = GOOGLE_LISTINGS.edmonton;
 const PAGE_TITLE = `House Cleaning Morinville from ${STANDARD_FROM} | Duty Cleaners`;
 const META_DESCRIPTION = `House cleaning in Morinville from ${STANDARD_FROM}, near St. Jean Baptiste Church and the Leisure Centre. A flat rate by home size, and you pay after the clean.`;
 
@@ -64,13 +76,34 @@ const ServiceCard = ({
   </div>
 );
 
-const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: string }) => (
+const WhyUsCard = ({
+  icon: Icon,
+  title,
+  description,
+  link,
+}: {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  /** Present on the rating card, which cites the listing the count comes from. */
+  link?: { href: string; text: string };
+}) => (
   <div className="group bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center transition-all duration-500 ease-out hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-xl" style={{ transformStyle: "preserve-3d" }}>
     <div className="w-14 h-14 rounded-full bg-accent/20 flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:rotate-12">
       <Icon className="w-7 h-7 text-accent" />
     </div>
     <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
-    <p className="text-white/80 text-sm leading-relaxed">{description}</p>
+    <p className="text-white/80 text-sm leading-relaxed">
+      {description}
+      {link && (
+        <>
+          {" "}
+          <a href={link.href} target="_blank" rel="noopener noreferrer" className="text-white underline underline-offset-2 font-medium">
+            {link.text}
+          </a>
+        </>
+      )}
+    </p>
   </div>
 );
 
@@ -80,12 +113,12 @@ const services = [
   { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for moving day, on the way out or the way in.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Morinville" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared properly after renos and handovers.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Morinville" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Morinville" },
-  { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard clean set to repeat, from ${STANDARD_FROM}. Weekly is 20% off from the second visit, every two weeks 15% off and every four weeks 10% off.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Morinville" },
 ];
 
 const whyUsItems = [
   { icon: Shield, title: "Reference-Checked, Then Rated by You", description: "Every cleaner is reference-checked before their first job, then rated by the customer after every visit. Those ratings decide who keeps cleaning for us." },
-  { icon: Star, title: RATING_CLAIM, description: `${CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount} reviews across Edmonton and Calgary, and every one of them is on our Google listing.` },
+  { icon: Star, title: RATING_CLAIM, description: `Morinville bookings are rated on the Edmonton listing, which stands at ${CITY_PROOF.edmonton.googleReviewCount} reviews.`, link: { href: EDMONTON_LISTING.reviewsUrl, text: "Look at the listing" } },
   { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day slots when the schedule allows." },
   { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners who work to the Duty Cleaners checklist." },
@@ -98,7 +131,7 @@ export default function Morinville() {
   const faqs: { question: string; answer: string; link?: { to: string; text: string } }[] = [
     {
       question: "Is there a travel fee in Morinville?",
-      answer: `Yes. Morinville is about 34 km up Highway 2 from Edmonton and outside its city limits, so a ${TRAVEL_FEE} travel fee goes on every home-cleaning booking here. The clean itself is priced at the same flat rate as an Edmonton home of the same size.`
+      answer: `Yes. Morinville is about 34 km up Highway 2 from Edmonton and outside its city limits, so a ${TRAVEL_FEE} travel fee goes on every home-cleaning booking here; post-construction is the exception and carries ${PC_TRAVEL_FEE}. Against an Edmonton address that fee is the only difference, which is not the same as the only extra. The clean is priced at the same flat rate as an Edmonton home of the same size, and the pet charge and the home-type surcharges are charged the same either side of the city limit: ${PET_FEE} a visit for a home with pets, and the step up from an apartment or condo, ${HOME_TYPE.bungalow} for a bungalow or basement suite, ${HOME_TYPE.townhouse} for a townhouse, ${HOME_TYPE.twoStorey} for a two-storey house.`
     },
     {
       question: "What does a standard clean in Morinville cost?",
@@ -164,7 +197,7 @@ export default function Morinville() {
             <div className="flex-1 text-center lg:text-left">
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-5 py-2 mb-6">
                 <MapPin className="w-4 h-4 text-accent" />
-                <span className="text-white/90 text-sm font-medium">Serving Morinville, AB Region</span>
+                <span className="text-white/90 text-sm font-medium">Serving Morinville, AB</span>
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                 Professional House Cleaning in Morinville
@@ -229,10 +262,11 @@ export default function Morinville() {
                   <a href="https://www.google.com/maps/place/100+Avenue,+Morinville,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">100 Avenue</a>{" "}
                   and the older homes near{" "}
                   <a href="https://www.google.com/maps/place/Notre+Dame+Elementary+School,+Morinville,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Notre Dame Elementary</a>.
-                  In the dry months wind carries field soil in from the farmland around the town, and it settles on sills and screens.
                 </p>
                 <p>
-                  The same Edmonton crews work as{" "}
+                  These crews do our{" "}
+                  <Link to="/" className="text-primary underline underline-offset-2">house cleaning in Edmonton itself</Link>{" "}
+                  the rest of the week, to the same checklist and the same flat rate, with the travel fee added for a Morinville address. They also work as{" "}
                   <Link to="/cleaning-services-st-albert/" className="text-primary underline underline-offset-2">St. Albert house cleaners</Link>{" "}
                   between here and the city. A suite let to visitors can be booked as{" "}
                   <Link to="/edmonton/airbnb-cleaning/" className="text-primary underline underline-offset-2">Airbnb cleaning in Edmonton</Link>, with the travel fee added.
@@ -308,14 +342,14 @@ export default function Morinville() {
         eyebrow="Local knowledge"
         heading="The church that reopened in 2025"
         paragraphs={[
-          "Founded in 1892 by the Oblate priest Jean-Baptiste Morin, who brought French settlers north from Edmonton, this town kept its parish at the centre of it. St. Jean Baptiste church went up in 1907, was named a historic site in 1975, burned on 30 June 2021 and reopened rebuilt in December 2025. A town that has been settled that long has housing from every decade since, which is the practical fact for us.",
+          "Founded in 1891 by the Oblate priest Jean-Baptiste Morin, who brought French settlers north from Edmonton, this town kept its parish at the centre of it. St. Jean Baptiste church went up in 1907, was named a historic site in 1975, burned on 30 June 2021 and reopened rebuilt in December 2025. A town that has been settled that long has housing from every decade since, which is the practical fact for us.",
           "About 34 km up Highway 2 from the city, with farmland close on every side, this is high open country rather than a sheltered grid. Wind carries field soil to the newest streets in the dry months, and it comes to rest where a routine pass tends not to look: window sills, the mesh of the screens, the top edge of a door.",
         ]}
       />
 
-      <LocationPricing />
-
-      {/* Services */}
+      {/* Services. This grid sits ABOVE the price block on purpose: the reader
+          has to know which cleans exist before a paragraph of prices means
+          anything. It used to render after it. */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <AnimatedSection>
@@ -339,6 +373,8 @@ export default function Morinville() {
           </AnimatedSection>
         </div>
       </section>
+
+      <LocationPricing />
 
       {/* Why Choose Us */}
       <section className="py-20 bg-brand-navy relative overflow-hidden">

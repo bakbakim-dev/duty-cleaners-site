@@ -16,7 +16,7 @@ interface JudgmentFreeProps {
 const COPY = {
   Edmonton: {
     lead: "Some homes have gotten away from people: after an illness, a new baby, a hard season, or simply more than you want to handle alone.",
-    body: "You don’t need to tidy before we arrive, apologize for the state of anything, or explain yourself. The cleaners do the work and leave. No photos, no commentary, no raised eyebrows. If it’s been a while, that’s exactly the kind of job we’re good at. Describe the home as it is; clear information helps, and no apology is needed.",
+    body: "You don’t need to clean before we arrive, apologize for the state of anything, or explain yourself. The cleaners do the work and leave. No photos, no commentary, no raised eyebrows. If it’s been a while, that’s exactly the kind of job we’re good at. Describe the home as it is; clear information helps, and no apology is needed.",
     safety: "For everyone’s safety, extreme biohazard situations, such as bodily fluids and pest or rodent infestations, need specialized services we can point you to.",
   },
   Calgary: {

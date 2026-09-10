@@ -12,7 +12,7 @@ import {
   Youtube,
   Linkedin,
   Shield,
-  Lock,
+  CreditCard,
   ArrowUpRight,
   MapPin,
 } from "lucide-react";
@@ -134,14 +134,24 @@ export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: 
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {/* The BBB Accredited badge was removed at the owner's direction.
-                It asserted an accreditation on all 209 pages and linked to BBB
-                Alberta's generic landing page rather than a company profile. */}
-            <a href="https://business.edmontonchamber.com/" target="_blank" rel="nofollow noopener noreferrer" className="group flex min-h-16 items-center justify-center rounded-lg border border-brand-navy-foreground/15 bg-brand-navy-foreground/5 px-3 text-center text-xs font-semibold leading-tight text-brand-navy-foreground/85 transition-all hover:border-brand-gold/60 hover:bg-brand-navy-foreground/10 hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold">Edmonton Chamber<br />of Commerce</a>
-            <a href="https://www.calgarychamber.com/" target="_blank" rel="nofollow noopener noreferrer" className="group flex min-h-16 items-center justify-center rounded-lg border border-brand-navy-foreground/15 bg-brand-navy-foreground/5 px-3 text-center text-xs font-semibold leading-tight text-brand-navy-foreground/85 transition-all hover:border-brand-gold/60 hover:bg-brand-navy-foreground/10 hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold">Calgary Chamber<br />of Commerce</a>
+          {/* Every badge in this row has to be a fact this repository holds.
+              The BBB Accredited badge was removed at the owner's direction: it
+              asserted an accreditation on all 209 pages and linked to BBB
+              Alberta's generic landing page rather than a company profile.
+
+              The two chamber-of-commerce badges went the same way, and for the
+              same reason. They named the Edmonton and Calgary chambers and
+              linked their sites on all 209 pages; proof.ts records no
+              membership in either, so the badges asserted one. "Secure
+              Payments" went with them — it named no processor, no standard and
+              no certificate, so there was nothing behind it to be true.
+
+              What is left is what PAYMENT_TERMS in data/policy.ts actually
+              says: nothing is charged when you book, the card is charged after
+              the clean, and these are the methods accepted. */}
+          <div className="mx-auto grid max-w-2xl grid-cols-2 gap-3">
             <div className="flex min-h-16 items-center justify-center gap-2 rounded-lg border border-brand-navy-foreground/15 bg-brand-navy-foreground/5 px-3 text-xs font-semibold leading-tight text-brand-navy-foreground/85"><Shield className="h-5 w-5 shrink-0 text-brand-gold" aria-hidden="true" /><span>Pay After<br />Your Clean</span></div>
-            <div className="flex min-h-16 items-center justify-center gap-2 rounded-lg border border-brand-navy-foreground/15 bg-brand-navy-foreground/5 px-3 text-xs font-semibold leading-tight text-brand-navy-foreground/85"><Lock className="h-5 w-5 shrink-0 text-brand-gold" aria-hidden="true" /><span>Secure<br />Payments</span></div>
+            <div className="flex min-h-16 items-center justify-center gap-2 rounded-lg border border-brand-navy-foreground/15 bg-brand-navy-foreground/5 px-3 text-xs font-semibold leading-tight text-brand-navy-foreground/85"><CreditCard className="h-5 w-5 shrink-0 text-brand-gold" aria-hidden="true" /><span>Visa, Mastercard,<br />Amex, debit, e-transfer</span></div>
           </div>
 
           <div className="mt-10">

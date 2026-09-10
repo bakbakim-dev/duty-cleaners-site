@@ -109,6 +109,15 @@ const CHROME_ARGS = [
 ];
 
 let done = 0, failed = 0, retried = 0, strippedTiles = 0;
+// Scroll-reveal wrappers unhidden in the snapshot, and any that survived.
+let revealPages = 0, revealWrappers = 0, revealLeft = 0;
+
+// The hidden half of the scroll-reveal wrapper, and the visible half the same
+// component renders once its observer fires. Both class pairs are Tailwind
+// utilities that already exist in the built stylesheet, because both branches
+// of the ternary are in the source the JIT scans.
+const REVEAL_HIDDEN = "opacity-0 translate-y-8";
+const REVEAL_SHOWN = "opacity-100 translate-y-0";
 
 /**
  * Headless Chrome occasionally returns a shell with no <h1> under concurrency —
@@ -176,11 +185,41 @@ async function renderRoute(route) {
     // neutralise the fragment rather than ship a link that lands nowhere.
     out = out.replace(/(<a[^>]*leaflet-popup-close-button[^>]*href=")#close(")/g, "$1#$2");
     out = out.replace(/(<a[^>]*href=")#close("[^>]*leaflet-popup-close-button)/g, "$1#$2");
+
+    // Scroll-reveal sections start hidden and are revealed by an
+    // IntersectionObserver, so --dump-dom freezes every section that was below
+    // the headless fold as `opacity-0 translate-y-8`. That is 1,862 wrappers
+    // across 173 pages, 32 of them on each post-construction page starting
+    // immediately below the hero — so on a slow connection the snapshot paints
+    // a hero and then nothing at all until the bundle boots and the observer
+    // runs. The snapshot exists precisely for the readers and crawlers who do
+    // not get that far, so it must ship the revealed state instead.
+    //
+    // This is a rewrite, not a removal: the wrapper keeps its transition
+    // classes and the client render is untouched, so the reveal animation
+    // still plays for everyone once React takes over.
+    //
+    // The no-JS guard in index.css (`html:not([data-motion="on"])
+    // .opacity-0.translate-y-8`) is deliberately left alone. It covers the
+    // live client render, where the hidden class does come back; it simply has
+    // nothing left to unhide in the snapshot.
+    const hiddenWrappers = out.split(REVEAL_HIDDEN).length - 1;
+    if (hiddenWrappers) {
+      out = out.split(REVEAL_HIDDEN).join(REVEAL_SHOWN);
+      revealPages++;
+      revealWrappers += hiddenWrappers;
+    }
+
     const outDir = route === "/" ? DIST : join(DIST, route.replace(/^\//, ""));
     mkdirSync(outDir, { recursive: true });
     // Chrome's --dump-dom output already starts with <!DOCTYPE html>. Prepending
     // unconditionally shipped two doctypes on all 209 pages.
     const doctyped = /^\s*<!doctype html>/i.test(out) ? out : "<!doctype html>\n" + out;
+    // Measured on what is actually written, not on what the rewrite above
+    // believes it did — a later edit that reintroduces the hidden pair after
+    // the rewrite would otherwise ship a blank page below the hero and still
+    // report a clean run.
+    if (doctyped.includes(REVEAL_HIDDEN)) revealLeft++;
     writeFileSync(join(outDir, "index.html"), doctyped);
     done++;
     if (done % 10 === 0) console.log(`  ${done}/${routes.length}`);
@@ -216,6 +255,14 @@ console.log("noindexed the shell artifacts (spa-shell.html, 404.html)");
 console.log(
   `prerender complete: ${done} ok, ${failed} failed` +
     (retried ? ` (${retried} needed a retry)` : "") +
-    (strippedTiles ? `; stripped baked map tiles from ${strippedTiles} pages` : ""),
+    (strippedTiles ? `; stripped baked map tiles from ${strippedTiles} pages` : "") +
+    `; unhid ${revealWrappers} scroll-reveal wrappers on ${revealPages} pages` +
+    `; ${revealLeft} snapshots still hide content below the hero`,
 );
+if (revealLeft > 0) {
+  console.error(
+    `${revealLeft} snapshot(s) still contain "${REVEAL_HIDDEN}" — those pages ship blank below the hero until React mounts.`,
+  );
+  process.exitCode = 1;
+}
 if (failed > 0) process.exitCode = 1;

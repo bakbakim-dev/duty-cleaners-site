@@ -102,8 +102,11 @@ const services = [
 // and pricing.ts (flat rate by size).
 const whyUsItems = [
   { icon: Shield, title: "Reference-checked, rated after every visit", description: "Every cleaner is reference-checked before their first job and rated by the customer after every visit. Those ratings decide who we keep sending." },
-  { icon: DollarSign, title: "Flat rate by home size", description: "The price is set by bedrooms and bathrooms when you book. It does not rise if the clean takes longer than expected, and it does not change on the day." },
-  { icon: Award, title: `${POLICY.guaranteeWindowHours}-hour re-clean`, description: `If the inspection or your own walkthrough finds something missed, tell us within ${POLICY.guaranteeWindowHours} hours and we return to put it right at no charge. Photos help but are not required.` },
+  // This grid is where the two terms the page used to repeat on every screen
+  // are actually stated: the flat rate, and the re-clean window. The window is
+  // in the card title, so the description does not say the number again.
+  { icon: DollarSign, title: "Flat rate by home size", description: "The price is set by bedrooms and bathrooms when you book, and it does not rise if the clean takes longer than expected." },
+  { icon: Award, title: `${POLICY.guaranteeWindowHours}-hour re-clean`, description: "If the inspection or your own walkthrough finds something missed, say so and we return to put it right at no charge. Photos help but are not required." },
   { icon: Package, title: "Supplies included", description: "The crew brings the products, the vacuum and the step ladder. You need the water left on, and power for the vacuum." },
   { icon: Leaf, title: `Eco products for ${POLICY.ecoProductsFee}`, description: `Eco-friendly products are available for ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}.` },
   { icon: Clock, title: "Pay after the clean", description: "Nothing is charged when you book. A temporary hold goes on your card the day before, and the charge goes through once the clean is complete." },
@@ -194,8 +197,22 @@ export default function EdmontonMoveInOut() {
         <meta name="twitter:description" content={META_DESCRIPTION} />
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
+        {/* The five tiers the price table below prints, as Offers. The page
+            published a whole price list and declared none of it, so a rich
+            result had nothing to show and an assistant asked what a move-out
+            costs in Edmonton had to guess. Rows come straight from
+            moveInOutTierRows(), so the markup cannot drift from the table. */}
         <script type="application/ld+json">
-          {JSON.stringify(buildServiceSchema({ name: "Move Out and Move In Cleaning", description: META_DESCRIPTION, path: "/move-out-cleaning-edmonton", city: "edmonton" }))}
+          {JSON.stringify(buildServiceSchema({
+            name: "Move Out and Move In Cleaning",
+            description: META_DESCRIPTION,
+            path: "/move-out-cleaning-edmonton",
+            city: "edmonton",
+            offerCatalog: {
+              name: "Move-out cleaning by home size",
+              rows: moveInOutTierRows().map((row) => ({ name: row.beds, price: row.price })),
+            },
+          }))}
         </script>
       </Helmet>
 
@@ -224,9 +241,8 @@ export default function EdmontonMoveInOut() {
                   home gets before the keys change hands, done to the checklist a landlord or buyer walks
                   through. Inside the oven, fridge,
                   microwave, cabinets, drawers and closets are included, along with baseboards, switches,
-                  vents and all floors. If the inspection finds something we missed, tell us within{" "}
-                  {POLICY.guaranteeWindowHours} hours and we come back at no charge. Book online with the
-                  home size and your handover date. Nothing is charged until the clean is done.
+                  vents and all floors. Book it with the home size and the date the keys go back. The
+                  emptier the rooms are on the day, the more of that list the crew can reach.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
@@ -278,7 +294,9 @@ export default function EdmontonMoveInOut() {
                 <span className="text-accent font-semibold text-sm uppercase tracking-wide">Get Started</span>
                 <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-3">See My Instant Price in Under 60 Seconds</h2>
                 <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
-                  Enter the bedrooms, the bathrooms and the date you hand over the keys. The figure you see is the flat rate for the clean before 5% GST, and it is the figure you pay however long the job takes.
+                  Enter the bedrooms, the bathrooms and the date you hand over the keys. The quote lists
+                  every add-on you tick and the travel fee if the address sits outside the city, so the
+                  figure on screen is the whole figure before 5% GST.
                 </p>
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-10 py-6 h-auto font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5" asChild>
                   {/* The heading above promises an instant price and "no phone call
@@ -291,7 +309,11 @@ export default function EdmontonMoveInOut() {
                 <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground mt-4">
                   <span>⚡ Instant pricing</span>
                   <span>📞 No phone call required</span>
-                  <span>💳 No credit card required</span>
+                  {/* Was "No credit card required", which read as a promise about
+                      the booking. PAYMENT_TERMS puts a temporary hold on the card
+                      the day before the clean, so the true version of the claim is
+                      about the quote: seeing the price costs nothing. */}
+                  <span>💳 No card needed to see your price</span>
                 </div>
               </div>
             </AnimatedSection>
@@ -304,7 +326,10 @@ export default function EdmontonMoveInOut() {
             <AnimatedSection>
               <div className="text-center mb-8">
                 <span className="text-accent font-semibold text-sm uppercase tracking-wide">Damage Deposit</span>
-                <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">End of tenancy cleaning and your damage deposit</h2>
+                {/* The city belongs in the heading: this page targets "end of
+                    tenancy cleaning edmonton" and the H2 that owned the phrase
+                    named no place at all. */}
+                <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">End of tenancy cleaning in Edmonton and your damage deposit</h2>
               </div>
               <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
                 <p>
@@ -318,16 +343,26 @@ export default function EdmontonMoveInOut() {
                 <p>
                   We do not promise the deposit comes back; that decision is the landlord's. What we promise is
                   the checklist: inside the oven and fridge, inside the cabinets, drawers and closets, baseboards,
-                  switches, vents, window sills and tracks, bathrooms scrubbed, and the floors mopped last. If the
-                  walkthrough finds something missed, tell us within {POLICY.guaranteeWindowHours} hours and we
-                  return to put it right at no charge.
+                  switches, vents, window sills and tracks, bathrooms scrubbed, and the floors mopped last. A
+                  cited item names a room and a surface rather than an impression, which is what the checklist
+                  is built to match.
                 </p>
                 <p>
                   Most Edmonton tenancies turn over at month-end, and the last weeks of April and August are the
                   busiest, when leases around the university in Garneau, Strathcona and Oliver change hands at
                   the same time. Book the clean as soon as you have the handover date, because the day before
                   and the day of the move fill first. Basement suites under older bungalows and family homes
-                  moving in or out of Griesbach get the same checklist and the same flat rate by size.
+                  moving in or out of Griesbach get the same checklist.
+                </p>
+                <p>
+                  {/* L8: /edmonton/march-out-cleaning/ had one contextual link into
+                      it from the whole site. This page is where the reader who
+                      needs it actually is. */}
+                  Not every handover is a landlord's. Families releasing military housing are held to a CFHA
+                  march-out inspection instead of a walkthrough, and it is a longer list than a private
+                  tenancy uses. What that inspection checks, and how the clean is booked around a posting
+                  date, is set out on{" "}
+                  <Link to="/edmonton/march-out-cleaning/" className="text-primary underline underline-offset-4">march-out cleaning in Edmonton</Link>.
                 </p>
               </div>
             </AnimatedSection>
@@ -353,7 +388,10 @@ export default function EdmontonMoveInOut() {
               <p className="text-sm text-muted-foreground max-w-3xl mx-auto mt-8 text-center leading-relaxed">
                 Not included: exterior windows, carpet steam cleaning, furnace and duct cleaning, anything
                 beyond the reach of a 3-step ladder, and moving anything over 25 pounds. Garages and balconies
-                are a sweep of the floor only, booked as an add-on. The full list is on{" "}
+                are a sweep of the floor only, booked as an add-on. Marks on the paint are a separate row on
+                the same form: what a wash takes off, and what it costs by home size, is on{" "}
+                <Link to="/wall-washing-wall-cleaning/" className="text-primary underline underline-offset-4">wall washing in Edmonton</Link>.
+                The full list is on{" "}
                 <Link to="/whats-included/" className="text-primary underline underline-offset-4">what's included</Link>.
               </p>
             </AnimatedSection>
@@ -446,11 +484,13 @@ export default function EdmontonMoveInOut() {
                   only, added on the booking form, and the railings and outside glass are not cleaned.
                 </p>
                 <p>
-                  <strong className="text-foreground">Houses and basement suites.</strong> Houses are priced by
-                  bedrooms and bathrooms, with a finished basement or a basement suite added on the booking
-                  form so the crew's time matches the home. A garage is a sweep of the floor only. If a basement
-                  suite is changing hands on its own, book it as the size it is, not the size of the house
-                  above it.
+                  <strong className="text-foreground">Houses and basement suites.</strong> A finished basement
+                  or a basement suite is added on the booking form so the crew's time matches the home, and a
+                  garage is a sweep of the floor only. If a basement suite is changing hands on its own, book
+                  it as the size it is, not the size of the house above it. A house that is still furnished,
+                  with the cupboards full, is not a move-out at all — that is{" "}
+                  <Link to="/edmonton/deep-cleaning/" className="text-primary underline underline-offset-4">a deep clean in Edmonton</Link>,
+                  and we will say so rather than turn up and improvise.
                 </p>
               </div>
             </AnimatedSection>
@@ -466,8 +506,9 @@ export default function EdmontonMoveInOut() {
                 <span className="text-accent font-semibold text-sm uppercase tracking-wide">Price List</span>
                 <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-4 text-foreground">Move out cleaning cost in Edmonton</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  The move-out cleaning price list, before 5% GST. The rate is fixed by bedrooms and
-                  bathrooms when you book, and it does not rise if the clean takes longer than expected.
+                  The move-out cleaning price list, before 5% GST. Each row assumes the bathroom count a home
+                  that size usually has; a third bathroom in a two-bedroom moves the figure, and the quote
+                  shows it.
                 </p>
               </div>
 
@@ -493,15 +534,18 @@ export default function EdmontonMoveInOut() {
                 What changes the price: the number of bedrooms and bathrooms, add-ons you choose such as
                 interior windows or a finished basement, and a {moveInOutTravelFee()} travel fee for addresses
                 outside Edmonton city limits. What does not: how long the crew is there. Your quote lists each
-                line before you book, and nothing is charged until the clean is done.
+                line before you book.
               </p>
               <p className="mx-auto mt-4 max-w-2xl text-center text-sm text-muted-foreground leading-relaxed">
                 The travel fee covers the towns around the city, so{" "}
                 <Link to="/cleaning-services-sherwood-park/" className="text-primary underline underline-offset-4">house cleaning in Sherwood Park</Link>,{" "}
                 <Link to="/cleaning-services-st-albert/" className="text-primary underline underline-offset-4">house cleaning in St. Albert</Link> and{" "}
                 <Link to="/cleaning-services-leduc/" className="text-primary underline underline-offset-4">house cleaning in Leduc</Link>{" "}
-                are the same flat rate plus {moveInOutTravelFee()}. The standard and deep clean rows sit beside
-                these on <Link to="/pricing/" className="text-primary underline underline-offset-4">the full Edmonton price list</Link>.
+                are the same rows plus {moveInOutTravelFee()}. If the home is staying lived in rather than
+                being handed back, the rows for{" "}
+                <Link to="/edmonton/regular-cleaning/" className="text-primary underline underline-offset-4">a standard house clean in Edmonton</Link>{" "}
+                sit beside these on{" "}
+                <Link to="/pricing/" className="text-primary underline underline-offset-4">the full Edmonton price list</Link>.
               </p>
             </AnimatedSection>
           </div>
@@ -572,10 +616,10 @@ export default function EdmontonMoveInOut() {
                 Book move-out cleaning in Edmonton
               </h2>
               <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
-                From {moveInOutFromPrice()} plus 5% GST, fixed by home size. Nothing is charged until the clean
-                is done, and if the inspection finds something missed we come back within{" "}
-                {POLICY.guaranteeWindowHours} hours at no charge. If the new home needs a clean too, or a
-                recurring one after that,{" "}
+                From {moveInOutFromPrice()} plus 5% GST. Give us the home size and the handover date and the
+                rest is on the quote. If the new address needs a clean too, or{" "}
+                <Link to="/edmonton/recurring-cleaning/" className="text-white underline underline-offset-4">a recurring clean in Edmonton</Link>{" "}
+                once you are in,{" "}
                 <Link to="/services/" className="text-white underline underline-offset-4">all Edmonton cleaning services and prices</Link>{" "}
                 are on one page.
               </p>

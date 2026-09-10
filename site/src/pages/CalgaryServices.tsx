@@ -42,14 +42,17 @@ import { Helmet } from "react-helmet-async";
 import {
   deepCleanTierRows,
   formatPrice,
+  getFrequency,
+  homeTypeOptions,
   serviceTierRows,
-  standardTierRows,
   startingPrice,
   calculateQuote,
   addOnFromPrice,
   DEFAULT_FREQUENCY,
   FREQUENCIES,
   HOURLY_RATE,
+  PRICING_TIERS,
+  type FrequencyId,
 } from "@/data/pricing";
 
 /* Every published figure comes from the BookingKoala config snapshot. */
@@ -58,23 +61,53 @@ const from = (value: number) => `from ${formatPrice(value)}`;
 /** These cards print four prices and said nothing about tax. */
 const GST_PCT = `${Math.round(GST_RATE * 100)}%`;
 const GST_LINE = `Starting prices, before ${GST_PCT} GST.`;
-const RECURRING_FROM = calculateQuote({
-  service: "standard",
-  homeType: null,
-  bedrooms: 1,
-  bathrooms: 1,
-  halfBaths: 0,
-  addOns: [],
-  frequency: DEFAULT_FREQUENCY,
-}).ongoing;
-// The same helper /calgary/pricing/ uses, so the two pages agree to the cent.
-const STANDARD_PRICE = standardTierRows()[0].price;
+
+/**
+ * One rounding rule, and both halves of the recurring pair out of one helper.
+ *
+ * The card used to read "from $155, then $131.74": the base rounded to the
+ * whole dollar the way pricing.ts prints its tier tables, the derived figure
+ * not, so the reader's own arithmetic on the printed base — 155 x 0.85 is
+ * 131.75 — could not reproduce the number beside it. Every home price on this
+ * page now comes out of `homeSizes()`, at one frequency each, rounded once.
+ */
+const dollars = (value: number) => formatPrice(Math.round(value));
+
+/** Smallest, middle and largest published home — enough to price your own. */
+const pickThree = <T,>(rows: T[]): T[] => [rows[0], rows[2], rows[rows.length - 1]];
+const SHOWN_TIERS = pickThree(PRICING_TIERS);
+
+const homeSizes = (frequency: FrequencyId) =>
+  SHOWN_TIERS.map((tier) => {
+    const quote = calculateQuote({
+      service: "standard",
+      homeType: homeTypeOptions("standard")[0]?.id ?? null,
+      bedrooms: tier.beds,
+      bathrooms: tier.bathrooms,
+      halfBaths: tier.halfBaths,
+      addOns: [],
+      frequency,
+    });
+    return {
+      label: tier.label,
+      price: dollars(frequency === "one-time" ? quote.firstClean : quote.ongoing),
+    };
+  });
+
+const STANDARD_SIZES = homeSizes("one-time");
+const RECURRING_SIZES = homeSizes(DEFAULT_FREQUENCY);
+const DEFAULT_FREQ_LABEL = getFrequency(DEFAULT_FREQUENCY).label.toLowerCase();
+const STANDARD_PRICE = STANDARD_SIZES[0].price;
 const STANDARD_FROM = `from ${STANDARD_PRICE}`;
-const DEEP_ROW = deepCleanTierRows()[0];
+const RECURRING_PRICE = RECURRING_SIZES[0].price;
+const DEEP_ROWS = deepCleanTierRows();
+const DEEP_ROW = DEEP_ROWS[0];
 const DEEP_FROM = `from ${DEEP_ROW.price}`;
+const DEEP_SIZES = pickThree(DEEP_ROWS).map((row) => ({ label: row.beds, price: row.price }));
 const MOVE_ROWS = serviceTierRows("move-in-out");
 const MOVE_PRICE = MOVE_ROWS[0].price;
 const MOVE_FROM = `from ${MOVE_PRICE}`;
+const MOVE_SIZES = pickThree(MOVE_ROWS).map((row) => ({ label: row.beds, price: row.price }));
 const POST_FROM = from(startingPrice("post-construction"));
 const HOURLY = formatPrice(HOURLY_RATE);
 const PET_FEE = addOnFromPrice("standard", "must-choose-if-you-have-pets");
@@ -89,8 +122,19 @@ const pct = (id: string) => {
 const proof = CITY_PROOF.calgary;
 const QUOTE = `${canonicalForPath("/calgary")}#quote`;
 const PRICING = canonicalForPath("/calgary/pricing");
-const TITLE = `Cleaning Services Calgary from ${STANDARD_PRICE} | Duty Cleaners`;
-const DESCRIPTION = "Standard, deep, recurring, move-in/out and post-construction cleaning in Calgary. See your instant price in about 60 seconds.";
+/*
+ * The priced menu, not the Calgary landing page. Titled "Cleaning Services
+ * Calgary from $155", it competed with /cleaning-services-calgary/ for the
+ * query family that page has to own. The title now describes what a visitor
+ * gets here instead: the whole list, with the prices attached.
+ */
+const TITLE = `All Calgary Cleaning Services & Prices from ${STANDARD_PRICE}`;
+const DESCRIPTION = "Standard, recurring, deep, move-out, post-construction, wall and turnover cleaning in Calgary, each with its starting price by home size.";
+
+/* The opening paragraph of the choosing guide. It sits above the cards; the
+   rest of the guide sits below them. */
+const GUIDE_OPENER =
+  "The honest short version: if the home is lived in and has been cleaned in the last month or two, standard cleaning is the right service and the cheapest one. Deep cleaning is for the build-up standard cleaning does not reach, and in Calgary that build-up has a specific cause — the freeze-thaw cycle means roads get gritted, melt, and get gritted again all winter rather than staying frozen, so sand and de-icer keep coming through the door from November to April. By late winter it is along the baseboards, into carpet edges and under furniture, and a vacuum no longer lifts it.";
 
 
 type Service = {
@@ -98,6 +142,14 @@ type Service = {
   description: string;
   features: string[];
   price: string;
+  /**
+   * Three published home sizes. Every card used to price a one-bedroom and
+   * nothing else, so anyone with a family home had to open a second page to
+   * find out what their own house costs.
+   */
+  sizes?: { label: string; price: string }[];
+  /** What the three figures are, in one line. */
+  sizesNote?: string;
   link: string;
   linkText: string;
   icon: React.ComponentType<{ className?: string }>;
@@ -116,6 +168,8 @@ const services: Service[] = [
       "Hard floors mopped after vacuuming"
     ],
     price: STANDARD_FROM,
+    sizes: STANDARD_SIZES,
+    sizesNote: "A single visit, priced by bedrooms.",
     link: "/calgary/regular-cleaning/",
     linkText: "See Standard Cleaning",
     icon: Home,
@@ -131,8 +185,11 @@ const services: Service[] = [
       "Floors vacuumed, then mopped"
     ],
     // Both numbers, because BookingKoala charges the standard rate for the
-    // first clean and only applies the discount from the second visit.
-    price: `${STANDARD_FROM}, then ${formatPrice(RECURRING_FROM)}`,
+    // first clean and only applies the discount from the second visit. Both
+    // are rounded by `dollars`, so 155 x 0.85 lands where the card says it does.
+    price: `${STANDARD_FROM}, then ${RECURRING_PRICE} ${DEFAULT_FREQ_LABEL}`,
+    sizes: RECURRING_SIZES,
+    sizesNote: `Each repeat visit on the ${DEFAULT_FREQ_LABEL} plan.`,
     link: "/calgary/recurring-cleaning/",
     linkText: "See Recurring Cleaning",
     icon: Repeat,
@@ -148,6 +205,8 @@ const services: Service[] = [
       "Baseboards, door frames, switches, outlets and vent covers wiped by hand"
     ],
     price: DEEP_FROM,
+    sizes: DEEP_SIZES,
+    sizesNote: "The standard clean with the package added.",
     link: "/calgary/deep-cleaning/",
     linkText: "See Deep Cleaning",
     icon: Sparkles,
@@ -165,6 +224,8 @@ const services: Service[] = [
       "Every floor vacuumed and mopped, carpets vacuumed"
     ],
     price: MOVE_FROM,
+    sizes: MOVE_SIZES,
+    sizesNote: "An empty home, cleaned to the inspection list.",
     link: "/move-out-cleaning-calgary/",
     linkText: "See Move-In/Move-Out Cleaning",
     icon: Truck,
@@ -298,6 +359,21 @@ function ServiceCard({ service }: { service: Service }) {
       </ul>
 
       <div className="pt-6 border-t border-border/50 mt-auto">
+        {service.sizes && (
+          <div className="mb-4">
+            <dl className="space-y-1.5">
+              {service.sizes.map((size) => (
+                <div key={size.label} className="flex items-baseline justify-between gap-3 text-sm">
+                  <dt className="text-muted-foreground">{size.label}</dt>
+                  <dd className="font-semibold text-foreground tabular-nums">{size.price}</dd>
+                </div>
+              ))}
+            </dl>
+            {service.sizesNote && (
+              <p className="pt-2 text-xs text-muted-foreground">{service.sizesNote}</p>
+            )}
+          </div>
+        )}
         <div className="text-xl font-bold mb-4 text-primary">
           {service.price}
         </div>
@@ -367,8 +443,8 @@ export default function CalgaryServices() {
             </div>
 
             <h1 className="display-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              Our Cleaning Services in{" "}
-              <span className="text-accent">Calgary</span>
+              Every <span className="text-accent">Calgary</span> cleaning service, and what it
+              starts at
             </h1>
 
             <p className="text-xl text-white/80 leading-relaxed mb-4">
@@ -411,27 +487,22 @@ export default function CalgaryServices() {
         </div>
       </section>
 
-      <LocalMarketNote
-        accent="calgary"
-        eyebrow="Choosing a service in Calgary"
-        heading="Which of these you actually need, and how Calgary changes the answer"
-        paragraphs={[
-          "The honest short version: if the home is lived in and has been cleaned in the last month or two, standard cleaning is the right service and the cheapest one. Deep cleaning is for the build-up standard cleaning does not reach, and in Calgary that build-up has a specific cause — the freeze-thaw cycle means roads get gritted, melt, and get gritted again all winter rather than staying frozen, so sand and de-icer keep coming through the door from November to April. By late winter it is along the baseboards, into carpet edges and under furniture, and a vacuum no longer lifts it.",
-          "Where you live shifts the work more than the size of the home does. In a Beltline, Mission or Eau Claire condo the time goes into window tracks, balcony door channels and the fine dust a dry, windy city drives into every seal. In a newer house out in Mahogany, Cranston, Seton or Livingston it is usually construction dust, which keeps resurfacing from vents, closet shelves and the tops of doors for a year or two after handover. The same square footage can be a very different job.",
-          "Move-in and move-out cleaning is a separate service, not a bigger version of a deep clean, and it is priced against what property managers actually inspect: inside appliances, inside every cabinet and drawer, and the storage spaces. If you are working to a walk-through date, that is the one to book. If you are not sure which applies, the instant quote will ask a few questions about the home and tell you — and you can call and describe it instead.",
-        ]}
-      />
-
-      {/* Services Grid */}
+      {/* Services Grid.
+          The list and the prices are what this page is searched for, so they
+          sit directly under the hero. The guide that used to run for three
+          paragraphs above them keeps its opening paragraph here and continues
+          below the cards. */}
       <section className="py-20 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-12">
-            <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Every Calgary cleaning service, with its starting price
+          <div className="max-w-3xl mx-auto mb-12">
+            <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-4 text-center">
+              What a standard, deep, move-out or recurring clean costs in Calgary
             </h2>
+            <p className="text-muted-foreground leading-relaxed mb-4">{GUIDE_OPENER}</p>
             <p className="text-muted-foreground leading-relaxed">
-              The figure on each card is what a one-bedroom books at before {GST_PCT} GST. More bedrooms,
-              a pet or an add-on raises it, and the quote shows the full total before you commit to anything.
+              Three of the five published sizes are on every home-priced card: a one-bedroom, a
+              three-bedroom and the five-or-more tier, before {GST_PCT} GST. A pet, an add-on or a
+              two-storey house raises the figure, and the quote shows the full total first.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto items-stretch">
@@ -451,6 +522,16 @@ export default function CalgaryServices() {
           </div>
         </div>
       </section>
+
+      <LocalMarketNote
+        accent="calgary"
+        eyebrow="Choosing a service in Calgary"
+        heading="Why a Beltline condo and a Seton new-build are different jobs"
+        paragraphs={[
+          "Where you live shifts the work more than the size of the home does. In a Beltline, Mission or Eau Claire condo the time goes into window tracks, balcony door channels and the fine dust a dry, windy city drives into every seal. In a newer house out in Mahogany, Cranston, Seton or Livingston it is usually construction dust, which keeps resurfacing from vents, closet shelves and the tops of doors for a year or two after handover. The same square footage can be a very different job.",
+          "Move-in and move-out cleaning is a separate service, not a bigger version of a deep clean, and it is priced against what property managers actually inspect: inside appliances, inside every cabinet and drawer, and the storage spaces. If you are working to a walk-through date, that is the one to book. If you are not sure which applies, the instant quote will ask a few questions about the home and tell you — and you can call and describe it instead.",
+        ]}
+      />
 
       {/* How to choose, and where the rest of the site sits */}
       <section className="py-20 bg-background">

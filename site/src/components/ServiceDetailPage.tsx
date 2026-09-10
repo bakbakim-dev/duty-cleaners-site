@@ -17,6 +17,28 @@ import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 
+/**
+ * A 1x1 transparent GIF, 43 bytes, inline. It is the fallback candidate for
+ * the desktop-only hero: a `<picture>` needs an `<img>`, and every real URL in
+ * that slot is a file a phone downloads for nothing.
+ */
+const BLANK_PIXEL =
+  "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+
+/**
+ * A schema entity is named, not pitched. This node used to be handed the SEO
+ * title, so the graph's name for the Calgary recurring service was
+ * "Recurring Cleaning Calgary from $155 | Weekly 20% Off" — a headline with a
+ * pipe and a price in it, where a name belongs. Pages pass `serviceName`; this
+ * is the fallback for any that do not, and it drops the pitch rather than
+ * publishing it.
+ */
+const serviceNameFromTitle = (title: string) =>
+  title
+    .split("|")[0]
+    .replace(/\s+from\s+\$[\d,.]+\s*$/i, "")
+    .trim();
+
 interface FaqItem {
   q: string;
   a: string;
@@ -70,12 +92,21 @@ interface ServiceDetailPageProps {
   phoneHref: string;
   seoTitle: string;
   seoDescription: string;
+  /**
+   * What the Service node in the schema graph is called: the service and its
+   * city ("Recurring House Cleaning in Calgary"), not the SEO title. The pitch
+   * belongs to seoDescription.
+   */
+  serviceName?: string;
   canonical: string;
   heroHeading: ReactNode;
   heroSubheading: string;
   heroBadges?: string[];
   heroImage?: string;
   heroImageAlt?: string;
+  /** Intrinsic pixels of heroImage, so the box is reserved at the right shape. */
+  heroImageWidth?: number;
+  heroImageHeight?: number;
   overviewEyebrow?: string;
   overviewHeading: ReactNode;
   overviewParagraphs: ReactNode[];
@@ -138,12 +169,15 @@ const ServiceDetailPage = ({
   phoneHref,
   seoTitle,
   seoDescription,
+  serviceName,
   canonical,
   heroHeading,
   heroSubheading,
   heroBadges,
   heroImage,
   heroImageAlt,
+  heroImageWidth,
+  heroImageHeight,
   overviewEyebrow,
   overviewHeading,
   overviewParagraphs,
@@ -185,7 +219,7 @@ const ServiceDetailPage = ({
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: seoTitle.replace(/\s*\|\s*Duty Cleaners\s*$/, ""),
+    name: serviceName ?? serviceNameFromTitle(seoTitle),
     description: seoDescription,
     url: canonicalUrlForPath(new URL(canonical).pathname),
     provider: {
@@ -348,12 +382,32 @@ const ServiceDetailPage = ({
               </p>
             </div>
             {heroImage && (
+              /*
+                The wrapper is desktop-only, but `display: none` does not stop a
+                download. The preload scanner reads <img src> before any CSS is
+                applied, so every phone fetched this 48-84 KB hero at
+                fetchpriority="high" — ahead of the text it was waiting on — and
+                then never painted it.
+
+                A <source media> IS honoured by the preload scanner. Under
+                1024px no source matches, the browser resolves the <img>
+                fallback, and that is a 43-byte data: URI: no request at all.
+                Desktop matches the source, gets the real file, keeps
+                fetchpriority="high", and stays the LCP element.
+              */
               <div className="hidden lg:block">
-                <img
-                  src={heroImage}
-                  alt={heroImageAlt ?? ""}
-                  className="w-full h-[500px] object-cover rounded-2xl shadow-2xl border-4 border-white/10"
-                 loading="eager" fetchPriority="high"/>
+                <picture>
+                  <source media="(min-width: 1024px)" srcSet={heroImage} />
+                  <img
+                    src={BLANK_PIXEL}
+                    alt={heroImageAlt ?? ""}
+                    width={heroImageWidth}
+                    height={heroImageHeight}
+                    className="w-full h-[500px] object-cover rounded-2xl shadow-2xl border-4 border-white/10"
+                    loading="eager"
+                    fetchPriority="high"
+                  />
+                </picture>
               </div>
             )}
           </div>

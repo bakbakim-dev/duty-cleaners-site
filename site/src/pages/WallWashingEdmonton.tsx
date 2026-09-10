@@ -2,7 +2,7 @@ import { getListing } from "@/lib/google-listings";
 import { withTrailingSlash } from "@/data/legacy-urls";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import Navigation from "@/components/Navigation";
-import { addOnMaxPrice, addOnFromPrice, addOnsFor, bedroomOptions, formatPrice, PRICING_TIERS, standardTierRows } from "@/data/pricing";
+import { addOnMaxPrice, addOnFromPrice, addOnsFor, bedroomOptions, formatPrice, standardTierRows } from "@/data/pricing";
 import { POLICY } from "@/data/policy";
 import { travelFee } from "@/data/addon-table";
 import { buildServiceSchema } from "@/lib/service-schema";
@@ -127,13 +127,22 @@ const whyUs = [
   { icon: Star, title: "Rated by Edmonton customers", description: `${CITY_PROOF.edmonton.googleRating} on Google across ${CITY_PROOF.edmonton.googleReviewCount} Edmonton reviews.` },
 ];
 
+/*
+  Answers 1 to 4 and 6 were legacy filler — "we use safe cleaning methods
+  suitable for most interior painted surfaces", "can be significantly improved
+  or removed depending on severity", "our team can carefully work around
+  furniture when needed", and a ceilings answer whose middle sentence began
+  "Please note". None of them told a customer what would happen in their house,
+  and all of them shipped inside FAQPage JSON-LD. They now say which marks come
+  off, which fade, and what the crew will not touch.
+*/
 const faqs = [
-  { q: "Can all wall stains be removed?", a: "Most common stains like smudges, dirt, fingerprints and marks can be significantly improved or removed depending on severity, paint type and how long they've been there." },
-  { q: "Do you clean all types of painted walls?", a: "Yes, we use safe cleaning methods suitable for most interior painted surfaces. Very flat or delicate finishes may require a gentler spot-clean approach." },
-  { q: "Do you remove mold from walls?", a: "We handle light surface mold and mildew cleaning. Severe or structural mold cases may require a specialized mold remediation company." },
-  { q: "Do I need to move furniture?", a: "We recommend clearing access where possible to make sure we can reach the full wall, but our team can carefully work around furniture when needed." },
+  { q: "Can all wall stains be removed?", a: "Some come off, some only lighten. The furnace-dust film, cooking film, handprints and scuffs wash off. Nicotine lightens and rarely leaves altogether. Ink, crayon and a mark that has sat on flat paint for years often leave a ghost, because the pigment is in the paint rather than on it. The team looks at the finish before it starts and tells you which kind you have, rather than finding out at the end." },
+  { q: "Do you clean all types of painted walls?", a: "Painted drywall, yes, and the finish decides the method. Satin and semi-gloss take a proper wash. A flat or matte finish polishes to a shine wherever it is rubbed hard, so a mark on one of those is worked gently and left faint instead of being made shiny. Wallpaper, bare drywall and unpainted wood are not washed at all." },
+  { q: "Do you remove mold from walls?", a: "Light surface mildew on a painted wall, yes — the spots that come up in a bathroom after a winter of shut windows. Mold that has gone into the drywall or behind it, no. Washing the face of that hides it for a fortnight and fixes nothing, so if the crew finds it they stop, tell you, and leave it for a remediation contractor." },
+  { q: "Do I need to move furniture?", a: "Only what you want the wall behind. The crew washes as far as it can reach without dragging furniture about, and it does not move anything over 25 pounds. Pictures, mirrors and shelves are worth taking down the night before: the wall under them is the cleanest part of the room, and the outline shows once the rest is washed." },
   { q: "Do you offer wall cleaning for rentals or move-outs?", a: "Yes. Wall washing is an add-on on the move-out booking form, and the entry-wall band is the part of a rental an inspection photographs. Book spot cleaning for the marks or the full wash for every wall in the rooms you choose." },
-  { q: "Do you clean ceilings in homes affected by smoke or nicotine?", a: "We generally do not clean very high areas like ceilings as part of our standard service. However, as long as the ceiling is safely reachable and not very high, we can attempt to clean flat ceilings for an additional charge, since this work can take significantly more time and effort. Please note: ceiling cleaning is considered an extra service, additional charges and time may apply, and we cannot guarantee full stain or odour removal. We do not clean popcorn ceilings and usually recommend replacement instead, especially in heavily smoke-damaged homes." },
+  { q: "Do you clean ceilings in homes affected by smoke or nicotine?", a: "A ceiling is not part of the wall price. A flat one that a 3-step ladder reaches can be added for a charge agreed before the visit, and it is slower than a wall of the same area because everything you put on it runs back down your arm. Popcorn ceilings we leave alone; a smoke-stained one is normally replaced rather than washed. On any ceiling, the stain and the smell can both survive the clean, and that is worth knowing before you pay for it." },
 ];
 
 /** Cheapest bookable wall service, derived from bk-config — never typed. */
@@ -146,17 +155,26 @@ const WALL_FULL = addOnFromPrice("standard", "complete-inside-wall-washing") ?? 
  *  figure called a "flat rate" understated the large end by up to $115. */
 const WALL_SPOT_MAX = addOnMaxPrice("standard", "spot-cleaning-inside-walls") ?? 0;
 const WALL_FULL_MAX = addOnMaxPrice("standard", "complete-inside-wall-washing") ?? 0;
-const WALL_PRICE_LINE = `Wall washing is added to a standard, deep or move-out clean rather than booked on its own. Spot cleaning runs ${formatPrice(WALL_FROM)} to ${formatPrice(WALL_SPOT_MAX)} and a full top-to-bottom wash ${formatPrice(WALL_FULL)} to ${formatPrice(WALL_FULL_MAX)}, by home size, before 5% GST. Your exact figure is on the quote before you book.`;
 
-/** Both wall extras at every published home size, read from the same bk-config
- *  rows the booking form prices from. A single from-price hid a $70 spread. */
-const WALL_ROWS = PRICING_TIERS.map((tier) => {
-  const bedroomId = bedroomOptions("standard").find((b) => b.value === tier.beds)?.id ?? null;
-  const addOns = addOnsFor("standard", bedroomId);
+/** BookingKoala writes "800sqft"; the figure is the fact, the spacing is ours. */
+const sizeLabel = (label: string) => label.replace(/(\d)\s*sqft/gi, (_match, digit) => `${digit} sq ft`);
+
+/**
+ * Both wall extras at every size bk-config prices them at — seven rows, not the
+ * five the home-cleaning tables use.
+ *
+ * The hero quotes the top of each range, and those two figures ($109.99 and
+ * $234.99) live in the sixth and seventh rows. Built off PRICING_TIERS the
+ * table stopped at a "5+ Bedroom" row of $89.99 / $194.99, so the hero appeared
+ * to quote prices the page never showed, and the "+" in that label promised the
+ * six- and seven-bedroom homes a rate they are not charged.
+ */
+const WALL_ROWS = bedroomOptions("standard").map((bedroom) => {
+  const addOns = addOnsFor("standard", bedroom.id);
   const spot = addOns.find((a) => a.id === "spot-cleaning-inside-walls")?.price;
   const full = addOns.find((a) => a.id === "complete-inside-wall-washing")?.price;
   return {
-    beds: tier.label,
+    beds: sizeLabel(bedroom.label),
     spot: spot === undefined ? "" : formatPrice(spot),
     full: full === undefined ? "" : formatPrice(full),
   };
@@ -224,8 +242,19 @@ export default function WallWashingEdmonton() {
               <p className="text-lg text-white/80 mb-10 leading-relaxed max-w-2xl">
                 Painted walls washed by hand. Scuffs, handprints, cooking film and the grey band along the stairwell come off without stripping the finish.
               </p>
+              {/* The sentence names the three cleans this add-on rides on and
+                  used to link none of them, on a page that cannot be booked
+                  without one. */}
               <p className="text-lg text-white/90 mb-10 leading-relaxed max-w-2xl">
-                {WALL_PRICE_LINE}
+                Wall washing is added to{" "}
+                <Link to="/edmonton/regular-cleaning/" className="text-white underline underline-offset-4">a standard clean</Link>,{" "}
+                <Link to="/edmonton/deep-cleaning/" className="text-white underline underline-offset-4">a deep clean</Link>{" "}
+                or{" "}
+                <Link to="/move-out-cleaning-edmonton/" className="text-white underline underline-offset-4">a move-out clean</Link>{" "}
+                rather than booked on its own. Spot cleaning runs {formatPrice(WALL_FROM)} to{" "}
+                {formatPrice(WALL_SPOT_MAX)} and a full top-to-bottom wash {formatPrice(WALL_FULL)} to{" "}
+                {formatPrice(WALL_FULL_MAX)}, by home size, before 5% GST. Every one of those sizes is
+                in the table further down, and your own figure is on the quote before you book.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <Button size="lg" variant="accent" className="w-full sm:w-auto text-base px-8" asChild>
@@ -369,7 +398,8 @@ export default function WallWashingEdmonton() {
                 <p className="text-muted-foreground">
                   Two add-ons, each priced by the size of the home the clean is booked for, before 5% GST.
                   Spot cleaning is the marks: the switch plates, the stairwell band, the wall behind the
-                  bin. The full wash is every painted wall in the rooms you book.
+                  bin. The full wash is every painted wall in the rooms you book. The booking form carries
+                  one row per home size, and all seven of them are printed below.
                 </p>
               </div>
               <div className="overflow-hidden border border-border rounded-xl">
@@ -396,7 +426,10 @@ export default function WallWashingEdmonton() {
                 Wall washing is not sold on its own, so the smallest bill is a standard clean from{" "}
                 {STANDARD_FROM} plus spot wall cleaning from {formatPrice(WALL_FROM)}, before GST. On a
                 move-out the walls are the add-on most worth ticking, because the entry band is what the
-                inspection photographs. The clean itself, and every other add-on, is priced on{" "}
+                inspection photographs. After building work the film on the paint is sanding dust rather than
+                grease, and that whole job is{" "}
+                <Link to="/post-construction-cleaning/" className="text-primary underline underline-offset-4">post-construction cleaning in Edmonton</Link>,
+                priced by square footage instead. The clean itself, and every other add-on, is priced on{" "}
                 <Link to="/pricing/" className="text-primary underline underline-offset-4">the full Edmonton price list</Link>.
               </p>
             </div>

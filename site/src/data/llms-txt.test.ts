@@ -1,8 +1,16 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
-import { standardTierRows, deepCleanTierRows, moveInOutTierRows } from "./pricing";
+import {
+  standardTierRows,
+  deepCleanTierRows,
+  moveInOutTierRows,
+  sqftTierOptions,
+  formatPrice,
+  HOURLY_RATE,
+} from "./pricing";
 import { BK_PRICE_OVERRIDES } from "./bk-price-overrides";
+import { CITY_PROOF } from "./proof";
 
 /**
  * llms.txt exists for exactly one audience — machine readers that will not
@@ -98,6 +106,33 @@ describe("llms.txt price tables match bk-config", () => {
       expect(both, `${service} high (${high}) missing from llms files`).toContain(high);
     });
   }
+
+  /**
+   * The two services these files used to describe as "quoted by scope".
+   *
+   * Both are priced, and priced in this repository: post-construction on a
+   * square-footage ladder in bk-config, Airbnb at an hourly rate read from the
+   * one hourly service BookingKoala sells. "Quoted by scope" told an assistant
+   * there was no published price to give, on the surface that exists to be
+   * quoted verbatim — so a machine reader answering "what does post-construction
+   * cost in Edmonton?" had nothing, while the page beside it printed a band.
+   */
+  it("quotes the post-construction band and the hourly rate, not 'by scope'", () => {
+    const bands = sqftTierOptions("post-construction");
+    const low = formatPrice(bands[0].price);
+    const high = formatPrice(bands[bands.length - 1].price);
+    const hourly = formatPrice(HOURLY_RATE);
+
+    for (const [name, text] of [["llms.txt", llms], ["llms-full.txt", llmsFull]] as const) {
+      expect(text, `${name} never states the post-construction floor (${low})`).toContain(low);
+      expect(text, `${name} never states the post-construction ceiling (${high})`).toContain(high);
+      expect(text, `${name} never states the hourly rate (${hourly})`).toContain(hourly);
+      expect(
+        /quoted by scope/i.test(text),
+        `${name} still says "quoted by scope" for a service this repository prices`,
+      ).toBe(false);
+    }
+  });
 
   it("carries no figure that is not a real published tier", () => {
     // Every tier price across the three services, plus the hourly rate and the
@@ -270,6 +305,73 @@ describe("retired claims stay retired", () => {
         `${name} quotes prices but never states the $19.99 pet charge, which policy.ts records ` +
           "as compulsory rather than an add-on",
       ).toBe(true);
+    });
+  }
+});
+
+/**
+ * The review counts these files publish are the counts proof.ts recorded.
+ *
+ * llms.txt said "4.9 from 224 reviews (Edmonton)". The Edmonton listing had
+ * 236, read from the listing itself on 2026-09-01 and recorded in proof.ts with
+ * that provenance; Calgary's 51 appeared in neither file. 224 was not a typo —
+ * it was a real count, once, and it survived a rewrite of the file around it
+ * because nothing tied the number to its source. That is the exact way a stale
+ * figure lives longest: on the surface written to be quoted verbatim by
+ * machines, where no human reading the site would ever see it to notice.
+ *
+ * So the assertion runs both ways. Every count these files publish has to be
+ * one proof.ts holds, and every count proof.ts holds has to be published — the
+ * second half is what stops Calgary being quietly dropped again, and the first
+ * is what stops 224 coming back or the two being summed into a "287" that
+ * neither listing reports.
+ */
+describe("llms.txt review counts match the listings proof.ts read", () => {
+  const confirmed = new Set(
+    Object.values(CITY_PROOF)
+      .map((city) => city.googleReviewCount)
+      // Unconfirmed is null, and a null count is not a count to publish.
+      .filter((count) => count !== null)
+      .map(String),
+  );
+
+  it("proof.ts actually holds a count for both cities", () => {
+    // A guard that reads an empty set asserts nothing. This is the sentinel.
+    expect(confirmed.size).toBe(2);
+  });
+
+  for (const [name, text] of [["llms.txt", llms], ["llms-full.txt", llmsFullRaw]] as const) {
+    it(`${name} publishes every confirmed count and no other`, () => {
+      const published = [...text.matchAll(/([\d,]+)\s+reviews?\b/gi)].map((m) =>
+        m[1].replace(/,/g, ""),
+      );
+      const wrong = published.filter((n) => !confirmed.has(n));
+      expect(
+        wrong,
+        `${name} quotes review counts proof.ts does not hold: ${wrong.join(", ")}. ` +
+          `The confirmed counts are ${[...confirmed].join(" and ")}, read from the two ` +
+          `Google listings on 2026-09-01. A sum of the two is not a count either listing reports.`,
+      ).toEqual([]);
+
+      const missing = [...confirmed].filter((n) => !published.includes(n));
+      expect(
+        missing,
+        `${name} omits the confirmed review count(s) ${missing.join(", ")}. Both listings are ` +
+          `linked from this file; publishing one city's count and not the other is how ` +
+          `Calgary's 51 went missing the first time.`,
+      ).toEqual([]);
+    });
+
+    it(`${name} states the rating from proof.ts rather than a rounded one`, () => {
+      const rating = String(CITY_PROOF.edmonton.googleRating);
+      expect(text, `${name} does not state the confirmed ${rating} rating`).toContain(rating);
+      const rounded = [...text.matchAll(/\b([0-9](?:\.[0-9])?)\s*(?:out of 5|\/\s*5|stars?)\b/gi)]
+        .map((m) => m[1])
+        .filter((v) => v !== rating);
+      expect(
+        rounded,
+        `${name} states a rating that is not the confirmed ${rating}: ${rounded.join(", ")}`,
+      ).toEqual([]);
     });
   }
 });

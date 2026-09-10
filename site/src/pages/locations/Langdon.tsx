@@ -1,5 +1,6 @@
+import { getListing } from "@/lib/google-listings";
 import {
-  CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import { useEffect } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import {   Phone, CheckCircle2, Star, Shield, Clock, Award, Home, Sparkles, Truck, SprayCan, Bath, UtensilsCrossed, Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail, PaintRoller
+  CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import { useEffect } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import {   Phone, CheckCircle2, Star, Shield, Clock, Award, Home, Sparkles, Truck, SprayCan, Bath, Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail, PaintRoller
 } from "lucide-react";
 import langdonImg from "@/assets/gallery/langdon-bathroom-cleaning.webp";
 import { buildLocationSchema } from "@/lib/location-schema";
@@ -7,7 +8,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
-import { sitePriceRange } from "@/data/pricing";
+import { sitePriceRange, standardTierRows, FREQUENCIES } from "@/data/pricing";
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
   return (
@@ -48,7 +49,7 @@ const ServiceCard = ({
   </div>
 );
 
-const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: string }) => (
+const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: React.ReactNode }) => (
   <div className="group bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center transition-all duration-500 ease-out hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-xl" style={{ transformStyle: "preserve-3d" }}>
     <div className="w-14 h-14 rounded-full bg-accent/20 flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:rotate-12">
       <Icon className="w-7 h-7 text-accent" />
@@ -58,18 +59,56 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
   </div>
 );
 
+/**
+ * The recurring card's figures, read from bk-config so this page cannot drift
+ * from what the booking form charges. The 10% tier is "Every 4 Weeks" there —
+ * thirteen visits a year, not twelve — so nothing here calls it monthly.
+ */
+const RECURRING_FROM = standardTierRows()[0].price;
+const pctOff = (bkId: number) =>
+  `${Math.round((FREQUENCIES.find((f) => f.bkId === bkId)?.discount ?? 0) * 100)}%`;
+const OFF_WEEKLY = pctOff(3);
+const OFF_BIWEEKLY = pctOff(4);
+const OFF_FOUR_WEEKLY = pctOff(2);
+
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning that leaves your Langdon home spotless and fresh.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Langdon" },
   { icon: Sparkles, title: "Deep Cleaning", description: "Every corner, baseboard, and hidden surface, cleaned top to bottom.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Langdon" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Move-day cleaning done to the standard landlords check for.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Langdon" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Langdon.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Langdon" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Langdon" },
-  { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
+  // The sixth card was "Kitchen Deep Clean": the only one with no price and
+  // no link, describing a service pricing.ts does not sell — appliance
+  // interiors are add-ons on a standard clean and included on a move-out one.
+  // Recurring cleaning is a real bookable frequency with its own page, and it
+  // was the only service on the menu with no card here.
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/calgary/recurring-cleaning/", linkText: "Recurring cleaning in Langdon" },
 ];
 
 const whyUsItems = [
   { icon: Shield, title: "Reference-Checked, Then Rated by You", description: "Every cleaner is reference-checked before their first job, then rated by the customer after every visit. Those ratings decide who keeps cleaning for us." },
-  { icon: Star, title: RATING_CLAIM, description: `${CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount} reviews across Edmonton and Calgary, and every one of them is on our Google listing.` },
+  // Was "287 reviews across Edmonton and Calgary" — a sum Google never
+  // reports, printed with no link, while this page's LocalBusiness node points
+  // at one listing showing a different number. Both the count and the link now
+  // come from that same listing.
+  {
+    icon: Star,
+    title: RATING_CLAIM,
+    description: (
+      <>
+        {CITY_PROOF.calgary.googleReviewCount} reviews on our{" "}
+        <a
+          href={getListing(CITY_PROOF.calgary.city).reviewsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-medium text-white underline underline-offset-2 hover:text-accent"
+        >
+          {CITY_PROOF.calgary.city} Google listing
+        </a>
+        , which is where that rating is read from.
+      </>
+    ),
+  },
   { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability in Langdon. We work around your busy life." },
   { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },

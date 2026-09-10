@@ -1,13 +1,14 @@
 import { REVIEWS, type CityReview } from "@/data/reviews";
 import { CITY_PROOF, COMPANY, RATING_CLAIM } from "@/data/proof";
 import { HOMES_CLEANED } from "@/data/proof";
+import { PROVENANCE } from "@/data/confirmed";
 import { POLICY } from "@/data/policy";
 import { quoteHrefFor } from "@/lib/quote-link";
 import heroReviews from "@/assets/hero-reviews-testimonials.webp";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { Star, Quote, Shield, Heart, Phone, MapPin, Calculator, CheckCircle2, MessageSquare, ThumbsUp, Award } from "lucide-react";
+import { Star, Quote, Heart, Phone, MapPin, Calculator, CheckCircle2, MessageSquare, ThumbsUp, Award } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { GOOGLE_LISTINGS, openGoogleListing } from "@/lib/google-listings";
 import { Helmet } from "react-helmet-async";
@@ -162,6 +163,25 @@ const GROUPS: { id: GroupId; heading: string; intro: string; links: { to: string
   },
 ];
 
+/**
+ * The day both Google listings were read, taken from the provenance recorded
+ * beside each figure in proof.ts rather than typed here. A review count is only
+ * checkable if the reader knows when it was checked.
+ */
+const MONTH_NAMES = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December",
+];
+const LISTING_READ_ON =
+  PROVENANCE.find((p) => p.by === "google-listing" && p.value === CITY_PROOF.edmonton.googleReviewCount)?.on ??
+  PROVENANCE.find((p) => p.by === "google-listing")?.on ??
+  "";
+const [readYear, readMonth, readDay] = LISTING_READ_ON.split("-");
+/** "1 September 2026", or "" when nothing recorded the date — then say nothing. */
+const READ_ON_LABEL = readMonth
+  ? `${Number(readDay)} ${MONTH_NAMES[Number(readMonth) - 1]} ${readYear}`
+  : "";
+
 const TITLE = `Duty Cleaners Reviews | ${RATING_CLAIM}, Edmonton & Calgary`;
 const DESCRIPTION = `House cleaning rated ${CITY_PROOF.edmonton.googleRating} on Google in Edmonton and Calgary. Read what Alberta homeowners say about Duty Cleaners before you book.`;
 
@@ -170,7 +190,6 @@ export default function Reviews() {
   // raced it with a *different* string ("Client Reviews" vs "Customer Reviews"),
   // so which one shipped depended on effect ordering.
   const { pathname } = useLocation();
-  const reviewCount = CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount;
   const grouped = GROUPS.map((group) => ({
     ...group,
     reviews: reviews.filter((review) => groupOf(review) === group.id),
@@ -237,7 +256,10 @@ export default function Reviews() {
               )}
               <span className="text-2xl font-bold text-white ml-2">{RATING_CLAIM}</span>
             </div>
-            <p className="text-white/90 text-sm">{reviewCount} Google reviews from Edmonton and Calgary homeowners</p>
+            <p className="text-white/90 text-sm">
+              {CITY_PROOF.edmonton.googleReviewCount} reviews on the Edmonton Google listing,{" "}
+              {CITY_PROOF.calgary.googleReviewCount} on the Calgary one
+            </p>
           </div>
 
           {/* Stats Row */}
@@ -249,7 +271,10 @@ export default function Reviews() {
             sat directly above "4.9 out of 5" on this page, which refutes it: a 4.9 mean
             necessarily includes customers who rated below five. This states the promise
             the company actually honours instead. */}
-            <StatCard icon={Award} value={`${POLICY.guaranteeWindowHours}-Hour`} label="100% Satisfaction Guarantee" />
+            {/* This page was the only one of the 177 showing the guarantee badge that never
+            said what the guarantee is. A badge reading "100% Satisfaction Guarantee" on its
+            own invites the reader to hear "money back", and the guarantee is a return visit. */}
+            <StatCard icon={Award} value={`${POLICY.guaranteeWindowHours}-Hour`} label="Re-Clean Guarantee" />
             <StatCard icon={Heart} value={String(COMPANY.foundedYear)} label="Serving Alberta Since" />
           </div>
         </div>
@@ -291,39 +316,34 @@ export default function Reviews() {
         </div>
       </section>
 
-      {/* Google Reviews Badge */}
+      {/* Where the numbers come from.
+
+          This block used to be dressed as Google's own review widget: the
+          four-colour Google mark, a 4.9 in 48-point type, "287 reviews across
+          both cities" and the line "Powered by Google". Two things were wrong
+          with it. "Powered by Google" is Google's attribution for a widget
+          Google serves, and this was our markup. And 287 is our addition of two
+          listings; Google reports each profile on its own and publishes no such
+          total, so a reader who clicked through to check found 236 or 51 and
+          neither matched. The numbers below are the two Google does publish,
+          with the date they were read and a link to each profile. */}
       <section className="py-20 bg-brand-navy relative overflow-hidden">
         <div className="absolute top-0 right-0 w-80 h-80 bg-primary/10 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />
 
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-lg mx-auto">
-            <div className="bg-white rounded-2xl p-10 text-center border border-border shadow-lg">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-muted mb-6">
-                <svg viewBox="0 0 24 24" className="w-9 h-9" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
-                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
-                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" />
-                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
-                </svg>
-              </div>
-
-              <h2 className="text-3xl font-bold text-foreground mb-2">Our Google Reviews</h2>
-              <div className="flex items-center justify-center gap-2 my-4">
-                <span className="text-5xl font-bold text-foreground">{CITY_PROOF.edmonton.googleRating}</span>
-                <div className="flex flex-col items-start">
-                  <div className="flex gap-0.5">
-                    {[...Array(5)].map((_, i) =>
-                    <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                    )}
-                  </div>
-                  <span className="text-muted-foreground text-xs mt-1">out of 5</span>
-                </div>
-              </div>
-              <p className="text-muted-foreground mb-2">{reviewCount} reviews across both cities</p>
-              <p className="text-muted-foreground text-xs flex items-center justify-center gap-1">
-                <Shield className="w-3 h-3" />
-                Powered by Google
+          <div className="max-w-2xl mx-auto">
+            <div className="bg-white rounded-2xl p-8 md:p-10 border border-border shadow-lg">
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+                Where these reviews come from
+              </h2>
+              <p className="text-muted-foreground leading-relaxed">
+                One Google Business Profile per office{READ_ON_LABEL ? `, both read on ${READ_ON_LABEL}` : ""}. The
+                Edmonton listing stood at {CITY_PROOF.edmonton.googleRating} out of 5 from{" "}
+                {CITY_PROOF.edmonton.googleReviewCount} reviews, and the Calgary listing at{" "}
+                {CITY_PROOF.calgary.googleRating} from {CITY_PROOF.calgary.googleReviewCount}. Google
+                keeps the two counts separate and publishes no combined figure, so those are the numbers
+                to check us against. Both links open the profiles themselves.
               </p>
 
               <div className="mt-6 grid gap-3 sm:grid-cols-2">
@@ -334,15 +354,14 @@ export default function Reviews() {
                     target="_blank"
                     rel="nofollow noopener noreferrer"
                      onClick={(event) => openGoogleListing(event, GOOGLE_LISTINGS[key].reviewsUrl)}
-                    className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-border bg-muted/40 px-4 text-sm font-semibold text-foreground transition-colors hover:border-accent hover:text-accent"
+                    className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-border bg-muted/40 px-4 text-center text-sm font-semibold text-foreground transition-colors hover:border-accent hover:text-accent"
                   >
-                    Verify on Google
-                    <span className="capitalize text-muted-foreground">({key})</span>
+                    The {CITY_PROOF[key].city} listing on Google
                   </a>
                 ))}
               </div>
-              <p className="mt-3 text-xs text-muted-foreground">
-                Every quote above is checkable in one click on our Google Business Profiles.
+              <p className="mt-4 text-sm text-muted-foreground">
+                Every quote on this page is on one of those two profiles, word for word.
               </p>
 
             </div>
@@ -363,8 +382,9 @@ export default function Reviews() {
                 See your own price before you book
               </h2>
               <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
-                {reviewCount} reviews across Edmonton and Calgary, averaging{" "}
-                {CITY_PROOF.edmonton.googleRating}. The price takes about a minute to see, and you
+                {CITY_PROOF.edmonton.googleReviewCount} reviews on the Edmonton listing and{" "}
+                {CITY_PROOF.calgary.googleReviewCount} on the Calgary one, {CITY_PROOF.edmonton.googleRating} out
+                of 5 on each. The price takes about a minute to see, and you
                 pay after the clean. The full tables are on{" "}
                 <Link to="/pricing/" className="text-accent underline underline-offset-2">
                   the full Edmonton price list

@@ -1,3 +1,4 @@
+import { getListing } from "@/lib/google-listings";
 import {
   CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import { useEffect, lazy, Suspense } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import {   Phone, CheckCircle2, Star, Shield, Clock, Award, Home, Sparkles, Truck, Building2, HardHat, Bath, Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail, PaintRoller
 } from "lucide-react";
@@ -50,7 +51,7 @@ const ServiceCard = ({
   </div>
 );
 
-const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: string }) => (
+const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: React.ReactNode }) => (
   <div className="group bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center transition-all duration-500 ease-out hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-xl" style={{ transformStyle: "preserve-3d" }}>
     <div className="w-14 h-14 rounded-full bg-accent/20 flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:rotate-12">
       <Icon className="w-7 h-7 text-accent" />
@@ -71,7 +72,28 @@ const services = [
 
 const whyUsItems = [
   { icon: Shield, title: "Reference-Checked, Then Rated by You", description: "Every cleaner is reference-checked before their first job, then rated by the customer after every visit. Those ratings decide who keeps cleaning for us." },
-  { icon: Star, title: RATING_CLAIM, description: `${CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount} reviews across Edmonton and Calgary, and every one of them is on our Google listing.` },
+  // Was "287 reviews across Edmonton and Calgary" — a sum Google never
+  // reports, printed with no link, while this page's LocalBusiness node points
+  // at one listing showing a different number. Both the count and the link now
+  // come from that same listing.
+  {
+    icon: Star,
+    title: RATING_CLAIM,
+    description: (
+      <>
+        {CITY_PROOF.edmonton.googleReviewCount} reviews on our{" "}
+        <a
+          href={getListing(CITY_PROOF.edmonton.city).reviewsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-medium text-white underline underline-offset-2 hover:text-accent"
+        >
+          {CITY_PROOF.edmonton.city} Google listing
+        </a>
+        , which is where that rating is read from.
+      </>
+    ),
+  },
   { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability, schedule permitting. We work around your busy life." },
   { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
@@ -241,6 +263,24 @@ export default function Terwillegar() {
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
                 {services.map((s, i) => <ServiceCard key={i} {...s} />)}
               </div>
+            </AnimatedSection>
+            <AnimatedSection>
+              {/* Up-link to the Edmonton hub, which is the homepage.
+                  The Calgary pages have carried the mirror of this sentence to their
+                  own hub since the link-graph audit; the Edmonton side never got it,
+                  on the reasoning that the homepage is already reached from every nav,
+                  footer and breadcrumb. Those are site furniture: they carry no anchor
+                  text worth having and sit outside the editorial body. The count was
+                  76 of 76 Calgary pages linking their hub in-body against 1 of 90 on
+                  the Edmonton side — for the page that has to hold "house cleaning
+                  edmonton". */}
+              <p className="mt-10 text-center text-muted-foreground">
+                {"Terwillegar is one of the Edmonton neighbourhoods we clean — see "}
+                <Link to="/" className="text-primary underline underline-offset-2">
+                  house cleaning services in Edmonton
+                </Link>
+                {" for the full picture."}
+              </p>
             </AnimatedSection>
           </div>
         </section>

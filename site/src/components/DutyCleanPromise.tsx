@@ -24,7 +24,10 @@ const PILLARS: Record<"Edmonton" | "Calgary", Pillar[]> = {
     {
       icon: HeartHandshake,
       title: "Judgment-Free, Always",
-      desc: "You do not need to tidy before we arrive or explain the state of anything. Describe the home as it is on the booking form and the team arrives briefed. The jobs we do not take on are biohazards and infestations: bodily fluids, animal waste, mould remediation, pests and rodents.",
+      // "You do not need to tidy before we arrive" contradicted the service
+      // pages, which ask for clutter to be picked up. One sentence that is
+      // true of both, worded identically on every page that makes the claim.
+      desc: "You do not need to clean before the team comes: clear counters and floors get cleaned, cluttered ones get worked around, and decluttering or organising is a separate hourly add-on. Describe the home as it is on the booking form and the team arrives briefed. The jobs we do not take on are biohazards and infestations: bodily fluids, animal waste, mould remediation, pests and rodents.",
     },
     {
       icon: Receipt,
@@ -46,7 +49,7 @@ const PILLARS: Record<"Edmonton" | "Calgary", Pillar[]> = {
     {
       icon: HeartHandshake,
       title: "Judgment-Free, Always",
-      desc: "Do not tidy for us and do not explain the state of the place. Put it on the booking form as it is and the team arrives knowing. What we turn down: bodily fluids, animal waste, mould remediation, pests and rodents.",
+      desc: "You do not need to clean before the team comes: clear counters and floors get cleaned, cluttered ones get worked around, and decluttering or organising is a separate hourly add-on. Put the place on the booking form as it is and the team arrives knowing. What we turn down: bodily fluids, animal waste, mould remediation, pests and rodents.",
     },
     {
       icon: Receipt,

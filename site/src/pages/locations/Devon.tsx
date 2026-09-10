@@ -4,8 +4,10 @@ import {
 import devonLandmark from "@/assets/gallery/devon-landmark.webp";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CoverageChips from "@/components/CoverageChips";
-import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice } from "@/data/pricing";
+import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice, addOnFromPrice } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
+import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
+import { GOOGLE_LISTINGS } from "@/lib/google-listings";
 import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
 
 import LocationPricing from "@/components/LocationPricing";
@@ -19,10 +21,22 @@ const MOVE = moveInOutTierRows();
 const MOVE_FROM = MOVE[0].price;
 const MOVE_TOP = MOVE[MOVE.length - 1].price;
 const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
+// Post-construction carries its own travel-fee row in bk-config, at a higher amount.
+const PC_TRAVEL_FEE = formatPrice(travelFee("post-construction") ?? 0);
+// Charged for you rather than chosen, and charged inside the city too.
+const PET_FEE = formatPrice(addOnFromPrice("standard", "must-choose-if-you-have-pets") ?? 0);
+const HOME_TYPE = {
+  bungalow: formatPrice(BK_PRICE_OVERRIDES[54].price),
+  townhouse: formatPrice(BK_PRICE_OVERRIDES[89].price),
+  twoStorey: formatPrice(BK_PRICE_OVERRIDES[90].price),
+};
+const EDMONTON_LISTING = GOOGLE_LISTINGS.edmonton;
 const REVIEW_COUNT = CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount;
 
-const PAGE_TITLE = `House Cleaning Devon from ${STANDARD_FROM} | Duty Cleaners`;
-const PAGE_DESCRIPTION = `Flat-rate house cleaning in Devon, AB: standard cleans from ${STANDARD_FROM}, deep cleans from ${DEEP_FROM}, ${RATING_CLAIM}. See your price before you book.`;
+// Unqualified, "Devon" is an English county, and that is where most of this
+// page's impressions came from. Title and H1 both carry Alberta now.
+const PAGE_TITLE = `House Cleaning Devon, AB from ${STANDARD_FROM} | Duty Cleaners`;
+const PAGE_DESCRIPTION = `Flat-rate house cleaning in Devon, Alberta: standard cleans from ${STANDARD_FROM}, deep cleans from ${DEEP_FROM}, ${RATING_CLAIM}. See your price before you book.`;
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -64,13 +78,34 @@ const ServiceCard = ({
   </div>
 );
 
-const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: string }) => (
+const WhyUsCard = ({
+  icon: Icon,
+  title,
+  description,
+  link,
+}: {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  /** Present on the rating card, which cites the listing the count comes from. */
+  link?: { href: string; text: string };
+}) => (
   <div className="group bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center transition-all duration-500 ease-out hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-xl" style={{ transformStyle: "preserve-3d" }}>
     <div className="w-14 h-14 rounded-full bg-accent/20 flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:rotate-12">
       <Icon className="w-7 h-7 text-accent" />
     </div>
     <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
-    <p className="text-white/80 text-sm leading-relaxed">{description}</p>
+    <p className="text-white/80 text-sm leading-relaxed">
+      {description}
+      {link && (
+        <>
+          {" "}
+          <a href={link.href} target="_blank" rel="noopener noreferrer" className="text-white underline underline-offset-2 font-medium">
+            {link.text}
+          </a>
+        </>
+      )}
+    </p>
   </div>
 );
 
@@ -80,12 +115,12 @@ const services = [
   { icon: Truck, title: "Move In/Out Cleaning", description: "Move-day cleaning done to the standard landlords check for.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Devon" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris cleared after renovations or new builds.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Devon" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Devon" },
-  { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard clean booked to come back, from ${STANDARD_FROM}. Weekly saves 20% from the second visit, bi-weekly 15%, every four weeks 10%.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Devon" },
 ];
 
 const whyUsItems = [
   { icon: Shield, title: "Reference-Checked, Then Rated by You", description: "Every cleaner is reference-checked before their first job, then rated by the customer after every visit. Those ratings decide who keeps cleaning for us." },
-  { icon: Star, title: RATING_CLAIM, description: `${REVIEW_COUNT} reviews across Edmonton and Calgary, and every one of them is on our Google listing.` },
+  { icon: Star, title: RATING_CLAIM, description: `The Edmonton listing, which is where a Devon clean is rated, holds ${CITY_PROOF.edmonton.googleReviewCount} reviews.`, link: { href: EDMONTON_LISTING.reviewsUrl, text: "View the listing" } },
   { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day slots when a crew has room." },
   { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Cleaners who work to the Duty Cleaners checklist and are rated by the customer after each visit." },
@@ -101,7 +136,7 @@ export default function Devon() {
   const faqs = [
     {
       question: "Do you charge a travel fee in Devon?",
-      answer: `We do. Devon is outside Edmonton city limits, and every booking outside the two cities carries a ${TRAVEL_FEE} travel fee. It goes on at booking, so the total you agree to is the total you pay. The fee does not change with the size of the home or the type of clean.`
+      answer: `We do. Devon is outside Edmonton city limits, so a home-cleaning booking here carries a ${TRAVEL_FEE} travel fee. It goes on at booking, so the total you agree to is the total you pay. The size of the home does not move it, but the service can: a post-construction clean carries ${PC_TRAVEL_FEE} instead. That fee is the only difference from an Edmonton address, and not the only extra on a bill. The pet charge and the home-type surcharges apply in Devon exactly as they do in the city: ${PET_FEE} a visit where there are pets, and the step up from an apartment or condo, ${HOME_TYPE.bungalow} for a bungalow or basement suite, ${HOME_TYPE.townhouse} for a townhouse, ${HOME_TYPE.twoStorey} for a two-storey house.`
     },
     {
       question: "Is same-day house cleaning available in Devon?",
@@ -169,7 +204,7 @@ export default function Devon() {
                 <span className="text-white/90 text-sm font-medium">Serving Devon, AB</span>
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                Professional House Cleaning in Devon
+                Professional House Cleaning in Devon, Alberta
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto lg:mx-0 leading-relaxed">
                 Standard cleans in Devon start at {STANDARD_FROM} and deep cleans at {DEEP_FROM}, flat by home size, with the price shown before you book. Rated {RATING_CLAIM} across Edmonton and Calgary.
@@ -248,7 +283,7 @@ export default function Devon() {
                   </a>{" "}
                   get the same crews and the same checklist. Those crews are reference-checked before a first job and rated by the customer after every visit, which is how the rating stays at {RATING_CLAIM}; the{" "}
                   <Link to="/reviews/" className="text-primary underline underline-offset-2 font-medium">{REVIEW_COUNT} Google reviews</Link>{" "}
-                  are all on the listing, unedited. The full menu, with a starting price on each line, is on{" "}
+                  across the two city listings are there to read, unedited. The full menu, with a starting price on each line, is on{" "}
                   <Link to="/services/" className="text-primary underline underline-offset-2 font-medium">every Edmonton cleaning service with its starting price</Link>.
                 </p>
               </div>
@@ -267,7 +302,7 @@ export default function Devon() {
                 Around Devon
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
-                <p>Devon exists because of the Leduc No. 1 well, drilled in 1947, and the Leduc No. 1 Energy Discovery Centre just east of town is where that story is kept. The other names on the map: the University of Alberta Botanic Garden, the Devon Museum, River Valley Adventure Co. on the river, and Voyageur Park at the bottom of the hill.</p>
+                <p>Devon exists because of the Leduc No. 1 well, drilled in 1947, and the Leduc No. 1 Energy Discovery Centre just east of town is where that story is kept. The other names on the map: the University of Alberta Botanic Garden, the Devon Museum, and Voyageur Park at the bottom of the hill.</p>
               </div>
             </div>
           </AnimatedSection>
@@ -357,11 +392,14 @@ export default function Devon() {
         <div className="container mx-auto px-4 text-center">
           <AnimatedSection>
             <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
+            {/* One "Near Devon" H2 on the page is enough, and it belongs to
+                <NearbyNeighbourhoods>. This heading names the service. */}
             <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
-              Near Devon: other communities we clean
+              Cleaning services in Devon and the towns nearby
             </h2>
             <p className="text-muted-foreground mb-8 max-w-3xl mx-auto text-left md:text-center">
-              Devon and Leduc are next to each other, and the same crews cover both. We do{" "}
+              Devon and Leduc are next to each other, and the same crews cover both. They are the crews behind our{" "}
+              <Link to="/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Edmonton proper</Link>, working the same checklist for the same flat rate. We do{" "}
               <Link to="/cleaning-services-leduc/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Leduc</Link>{" "}
               and{" "}
               <Link to="/cleaning-services-beaumont/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Beaumont</Link>{" "}

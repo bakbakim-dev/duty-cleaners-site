@@ -68,6 +68,12 @@ const GUARANTEE_HOURS = POLICY.guaranteeWindowHours;
 const PRICING = canonicalForPath("/pricing");
 const RECURRING = canonicalForPath("/edmonton/recurring-cleaning");
 const SERVICES = canonicalForPath("/services");
+const HUB = canonicalForPath("/");
+const QUOTE = `${HUB}#quote`;
+/* The lowest figure a host can actually book a turnover for: the 3-hour
+   minimum at the hourly rate. A bare hourly rate in the Offer would advertise
+   a price nobody can buy. */
+const MINIMUM_BOOKING = HOURLY_RATE * 3;
 const TITLE = `Airbnb Cleaning Edmonton from ${RATE}/hour | Duty Cleaners`;
 const DESCRIPTION = `Airbnb turnover cleaning across Edmonton from ${RATE} per cleaner-hour, 3-hour minimum. Linens, restocking and a fixed checklist between guests.`;
 
@@ -269,8 +275,19 @@ const AirbnbCleaningEdmonton = () => {
             })),
           })}
         </script>
+        {/* The page prints a rate and a minimum; the Service node used to print
+            neither, so a machine reading it saw a service with no price at all.
+            The offer states the cheapest bookable turnover and the note carries
+            the rate and the minimum it is built from. */}
         <script type="application/ld+json">
-          {JSON.stringify(buildServiceSchema({ name: "Airbnb Turnover Cleaning", description: DESCRIPTION, path: "/edmonton/airbnb-cleaning", city: "edmonton" }))}
+          {JSON.stringify(buildServiceSchema({
+            name: "Airbnb Turnover Cleaning",
+            description: DESCRIPTION,
+            path: "/edmonton/airbnb-cleaning",
+            city: "edmonton",
+            offerFrom: MINIMUM_BOOKING,
+            offerNote: `Billed by the hour at ${RATE} per cleaner, with a minimum of 3 hours for one cleaner or 2 hours for two.`,
+          }))}
         </script>
       </Helmet>
       <Navigation city="edmonton" />
@@ -309,8 +326,11 @@ const AirbnbCleaningEdmonton = () => {
             is charged until it is done.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            {/* This page is priced by the hour. The button used to read "See my
+                price" and open the flat-rate list, which is a different way of
+                buying; it now says what it shows. */}
             <Button asChild size="lg" className="text-lg bg-accent text-accent-foreground hover:bg-accent/90">
-              <Link to={PRICING}>See my price</Link>
+              <Link to={PRICING}>See flat-rate prices by home size</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="text-lg border-white/20 text-white hover:bg-white/10">
               <Link to="/contact-us/?topic=airbnb&city=edmonton">Request a callback</Link>
@@ -335,9 +355,11 @@ const AirbnbCleaningEdmonton = () => {
               <CheckCircle className="w-4 h-4 text-accent" />
               <span>{GUARANTEE_HOURS}-hour re-clean guarantee</span>
             </div>
+            {/* Rate first, then the minimum. Run together as one clause, this
+                read as though {RATE} bought two hours of two cleaners. */}
             <div className="flex items-center gap-2">
               <CheckCircle className="w-4 h-4 text-accent" />
-              <span>{RATE} per cleaner-hour, or 2 hours with two cleaners</span>
+              <span>{RATE} per cleaner-hour; minimum 3 hours, or 2 with two cleaners</span>
             </div>
           </div>
         </div>
@@ -430,7 +452,11 @@ const AirbnbCleaningEdmonton = () => {
               <Link to={PRICING} className="text-accent underline underline-offset-2">
                 the full Edmonton price list
               </Link>{" "}
-              apply to short-term rentals too. Every figure there is before GST, and nothing is charged
+              apply to short-term rentals too. Answer a few questions about the unit and you can{" "}
+              <Link to={QUOTE} className="text-accent underline underline-offset-2">
+                see your instant price for a flat-rate clean
+              </Link>{" "}
+              in about a minute. Every figure there is before GST, and nothing is charged
               until the clean is done.
             </p>
           </div>
@@ -631,7 +657,7 @@ const AirbnbCleaningEdmonton = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="text-lg bg-accent text-accent-foreground hover:bg-accent/90">
-              <Link to={PRICING}>See my price</Link>
+              <Link to={PRICING}>See the Edmonton price list</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="text-lg border-white/20 text-white hover:bg-white/10">
               <Link to="/contact-us/?topic=airbnb&city=edmonton">Request a callback</Link>

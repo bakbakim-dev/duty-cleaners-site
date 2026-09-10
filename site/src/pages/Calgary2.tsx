@@ -1,4 +1,4 @@
-import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
+import { CITY_PROOF, COMPANY, RATING_CLAIM } from "@/data/proof";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, useState } from "react";
 import { CALGARY_REVIEWS } from "@/data/reviews";
@@ -45,15 +45,16 @@ import calgaryHeroRoom1280 from "@/assets/hero-room-calgary-1280w.webp";
 import calgaryHeroRoom1920 from "@/assets/hero-room-calgary-1920w.webp";
 
 
-import galleryOvenBA from "@/assets/gallery/calgary-oven-ba.webp";
+/* The oven, bathroom and toilet crops left with the five-photo bento mosaic:
+   generated images labelled as finished Calgary cleans, printed directly above
+   a line promising no stock stand-ins. What is left is what the hero strip,
+   the services chapter and the seasonal strip use. */
 import galleryKitchenBA from "@/assets/gallery/calgary-kitchen-ba.webp";
 import galleryCalgaryOvenBA from "@/assets/gallery/calgary-oven-ba.webp";
 import galleryHappyPlace from "@/assets/gallery/calgary-happy-place.webp";
 import galleryCalgaryMoveOut from "@/assets/gallery/calgary-move-out-clean.webp";
 import galleryCalgaryWindow from "@/assets/gallery/calgary-window-cleaning.webp";
 import gallerySpotlessKitchen from "@/assets/gallery/calgary-spotless-kitchen.webp";
-import galleryBathroomDeep from "@/assets/gallery/calgary-bathroom-deep.webp";
-import galleryToiletBA from "@/assets/gallery/calgary-toilet-ba.webp";
 import {
   sitePriceRange,
   standardTierRows,
@@ -92,7 +93,12 @@ const OUTER_TOWNS = calgarySurrounding
   .filter((town) => !["Airdrie", "Cochrane", "Okotoks", "Chestermere"].includes(town.name))
   .map((town) => town.name);
 
-const PAGE_TITLE = `House Cleaning Calgary from ${FROM_STANDARD} | Pay After the Clean`;
+/*
+  "Cleaning services calgary" is 63,216 impressions and the title carrying it
+  was /calgary/services/, a page this one outranks on every other signal. The
+  hub takes the phrase; the services hub is being retitled off it separately.
+*/
+const PAGE_TITLE = `House Cleaning Services Calgary from ${FROM_STANDARD} | Pay After`;
 const PAGE_DESCRIPTION = "House cleaning services in Calgary. Pay after your clean, customer-rated cleaners, flexible scheduling. Get an instant quote in 60 seconds.";
 
 /* Width-descriptor set for the hero, the LCP element on this page. Without
@@ -226,10 +232,13 @@ export default function Calgary2() {
     address: schemaAddressFor("calgary"),
     hasMap: "https://www.google.com/maps?cid=6193344199307583189",
     sameAs: [...BRANCH_PROFILES.calgary],
-    areaServed: [
-      "Calgary", "Airdrie", "Cochrane", "Okotoks", "Chestermere", "Strathmore",
-      "High River", "Langdon", "Crossfield",
-    ].map((name) => ({ "@type": "City", name })),
+    // Hand-listed, this had fallen two towns behind the FAQ on the same page:
+    // the answer named ten places we cover and the entity claimed nine. Both
+    // now read the same array, so a change in city-locations.ts moves both.
+    areaServed: ["Calgary", ...calgarySurrounding.map((town) => town.name)].map((name) => ({
+      "@type": "City",
+      name,
+    })),
     priceRange: sitePriceRange(),
     openingHours: ["Mo-Sa 08:00-20:00", "Su 09:00-15:00"],
     openingHoursSpecification: [
@@ -398,11 +407,20 @@ export default function Calgary2() {
               <Eyebrow>On repeat</Eyebrow>
               <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Maid service in Calgary, on a schedule or once</h2>
               <div className="mt-6 space-y-5 leading-relaxed text-muted-foreground">
+                {/* The phrase pointed at the recurring page. The page whose
+                    title carries "Maid Service" is the standard clean, so it
+                    takes the anchor and the schedule keeps its own link. The
+                    "one cleaner who knows the house" line went with it: the
+                    recurring page only promises our best effort at the same
+                    team, and policy.ts has no continuity term at all. */}
                 <p>
-                  Ask for a maid service in Calgary and what you get is a standard clean on repeat: one cleaner who knows
-                  the house, the same checklist each time, every week, every two weeks or every four weeks. That is{" "}
-                  <Link to="/calgary/recurring-cleaning/" className="font-semibold text-primary hover:underline">recurring cleaning in Calgary</Link>,
-                  and the discount starts on visit two: {RECURRING_DISCOUNTS}.
+                  Ask for a maid service in Calgary and what you get is a standard clean on repeat: the same checklist
+                  each time, your regular team where we can send them, every week, every two weeks or every four weeks.
+                  The visit itself is{" "}
+                  <Link to="/calgary/regular-cleaning/" className="font-semibold text-primary hover:underline">maid service in Calgary</Link>,
+                  and putting it on{" "}
+                  <Link to="/calgary/recurring-cleaning/" className="font-semibold text-primary hover:underline">a repeating Calgary schedule</Link>{" "}
+                  is what starts the discount at visit two: {RECURRING_DISCOUNTS}.
                 </p>
                 <p>
                   It works without a contract. The first clean is billed at the one-time rate, which is the same price as
@@ -423,45 +441,24 @@ export default function Calgary2() {
           </div>
         </section>
 
-        {/* Real Calgary Homes — asymmetric split: sticky heading column left,
-            bento mosaic right. */}
-        <section className="py-16 md:py-20 bg-background">
+        {/*
+          "Cleaning company calgary" is 20,110 impressions and had no heading
+          on either hub. Address and year from proof.ts; nothing else claimed.
+        */}
+        <section className="py-16 md:py-20 bg-background border-b border-border">
           <div className="container mx-auto px-4">
-            <div className="grid gap-10 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,2fr)] lg:gap-14">
-              <div className="lg:sticky lg:top-28 lg:self-start">
-                <Eyebrow>Our Work</Eyebrow>
-                {/* Was "Real Calgary Homes" over the AI-generated set, directly above a
-                    block saying the real before/afters are not shot yet. */}
-                <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">What a finished clean looks like</h2>
+            <div className="mx-auto max-w-3xl">
+              <Eyebrow>Who we are</Eyebrow>
+              <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">The cleaning company on the other end of the Calgary line</h2>
+              <div className="mt-6 space-y-5 leading-relaxed text-muted-foreground">
+                <p>
+                  There is a Calgary office, at {CITY_PROOF.calgary.streetAddress}, and the business running it has been
+                  cleaning Alberta homes {COMPANY.sinceLabel}. Residential cleaning is the work on this page: condos in
+                  the Beltline, houses in Mahogany, the towns out past the ring road. Every cleaner who arrives at a
+                  Calgary address is one of ours, reference-checked before a first job, and home cleaning is quoted off
+                  the published list rather than sized up on your doorstep.
+                </p>
               </div>
-
-            {/* Photo Gallery - Polished Bento Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[180px] md:auto-rows-[220px] gap-4">
-
-              {[
-                { src: gallerySpotlessKitchen, alt: "A kitchen at the end of a clean: countertops cleared and wiped, sink and taps polished, appliance fronts free of marks", label: "Kitchen", tag: "Kitchen", className: "col-span-2 row-span-2" },
-                { src: galleryOvenBA, alt: "An oven interior after the inside-oven add-on: racks, door glass and floor of the cavity degreased", label: "Inside the oven", tag: "Add-on", className: "col-span-2 row-span-2" },
-                { src: galleryBathroomDeep, alt: "A bathroom after a deep clean, with soap scum off the glass and mineral build-up off the fixtures", label: "Bathroom", tag: "Deep clean", className: "col-span-2 md:col-span-1 row-span-1" },
-                { src: galleryKitchenBA, alt: "A range and the wall behind it after degreasing, with no film left on the surround", label: "Range and surround", tag: "Deep clean", className: "col-span-2 md:col-span-2 row-span-1" },
-                { src: galleryToiletBA, alt: "A toilet scrubbed inside and out, including the base and the hinges where build-up collects", label: "Bathroom", tag: "Bathroom", className: "col-span-2 md:col-span-1 row-span-1" },
-                
-              ].map((photo, index) => (
-                <figure key={index} className={`group relative rounded-xl overflow-hidden bg-muted shadow-sm hover:shadow-xl transition-all duration-300 ${photo.className}`}>
-                  <img
-                    src={photo.src}
-                    alt={photo.alt}
-                    loading="lazy"
-                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <span className="absolute top-3 left-3 z-10 text-sm font-semibold uppercase tracking-wider bg-white/90 text-primary px-2.5 py-1 rounded-full shadow-sm">
-                    {photo.tag}
-                  </span>
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <figcaption className="text-white text-sm font-semibold">{photo.label}</figcaption>
-                  </div>
-                </figure>
-              ))}
-            </div>
             </div>
           </div>
         </section>

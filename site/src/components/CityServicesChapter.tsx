@@ -1,7 +1,7 @@
-import { FREQUENCIES } from "@/data/pricing";
+import { addOnFromPrice, formatPrice, FREQUENCIES } from "@/data/pricing";
 import { Link } from "react-router-dom";
 import { canonicalForPath } from "@/data/legacy-urls";
-import { ArrowRight, Building2, ExternalLink, HardHat, Home, KeyRound, Repeat, Sparkles, Truck } from "lucide-react";
+import { ArrowRight, Building2, ExternalLink, HardHat, Home, KeyRound, PaintRoller, Repeat, Sparkles, Truck } from "lucide-react";
 import { Accent } from "@/components/Accent";
 import Eyebrow from "@/components/Eyebrow";
 import useRevealOnScroll from "@/hooks/use-reveal-on-scroll";
@@ -18,6 +18,13 @@ const RECURRING_DISCOUNTS = FREQUENCIES
   .join(", ");
 
 /**
+ * Wall washing was the one service neither hub linked from its body, though
+ * both hubs sell it. It is an extra on a clean rather than a visit of its own,
+ * so the card says so and quotes the spot-cleaning floor read from bk-config.
+ */
+const WALL_FROM = formatPrice(addOnFromPrice("standard", "spot-cleaning-inside-walls") ?? 0);
+
+/**
  * Card copy per city. The services and their links are identical; the words
  * are not, because both hubs render this chapter and the money-page contract
  * caps how much of the Calgary hub may repeat the Edmonton one.
@@ -29,8 +36,12 @@ const COPY = {
     deep: "A more detailed top-to-bottom clean for built-up dust, grime, baseboards, bathrooms, kitchens, and hard-to-reach areas.",
     move: "A detailed empty-home clean designed for move transitions, listing photos, tenant turnover, and landlord walkthroughs.",
     moveNote: "Keys in, keys out: timed around your walkthrough.",
-    recurring: `Same cleaner on a schedule, and from the second visit you save ${RECURRING_DISCOUNTS}.`,
+    // Was "Same cleaner on a schedule". The recurring page says we do our best
+    // to send the same team and policy.ts carries no continuity term, so the
+    // card promised something the service pages take back.
+    recurring: `Your regular team where we can, and from the second visit you save ${RECURRING_DISCOUNTS}.`,
     post: "Drywall and construction dust after a renovation or a new build.",
+    wall: `Marks, scuffs and cooking film off the walls, from ${WALL_FROM} added to a standard, deep or move-out clean.`,
     commercial: "Offices, retail, warehouses and medical space, scoped in writing after a walkthrough.",
   },
   Calgary: {
@@ -39,8 +50,9 @@ const COPY = {
     deep: "Standard plus the deep-clean package: baseboards, the film on tile and glass, the strip along the floor edge where chinook grit settles. The usual answer to a Calgary spring.",
     move: "An empty-home clean for the handover, timed to the walkthrough: for tenants, landlords, sellers and the photos that go on the listing.",
     moveNote: "Booked against the possession date, not the calendar month.",
-    recurring: `Same cleaner, set schedule, and from the second visit the discount applies: ${RECURRING_DISCOUNTS}.`,
+    recurring: `Your regular team where we can, on a set day, and the discount starts at visit two: ${RECURRING_DISCOUNTS}.`,
     post: "Fine dust from drywall and sanding, after a renovation or on possession of a new build.",
+    wall: `Hallway scuffs, kitchen film, the wall behind the stove: from ${WALL_FROM} on top of a standard, deep or move-out clean.`,
     commercial: "Offices, retail and clinics, scoped in writing after a walkthrough.",
   },
 } as const;
@@ -204,6 +216,31 @@ export default function CityServicesChapter({
               className="hidden items-center text-sm font-semibold text-primary transition-transform duration-300 group-hover:translate-x-1 sm:inline-flex after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               Explore post-construction <ExternalLink className="ml-1 h-4 w-4" aria-hidden="true" />
+          </Link>
+        </div>
+
+        {/* Wall washing. Six of the seven services were linked from these two
+            hubs and this was the seventh — no route to it from the body of
+            either page, though both hubs sell it. It is an extra on a clean,
+            not a visit of its own, so it sits after post-construction with the
+            price it is added at. Edmonton's canonical is
+            /wall-washing-wall-cleaning/, Calgary's the -calgary twin; both come
+            out of canonicalForPath from the route path. */}
+        <div
+          className="motion-lift paper-rule card-warm group mt-6 flex items-center gap-4 border bg-white p-5 md:p-6 relative"
+        >
+          <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-primary/10">
+            <PaintRoller className="h-6 w-6 text-primary" aria-hidden="true" />
+          </div>
+          <div className="flex-1">
+            <h3 className="font-bold">Wall Washing</h3>
+            <p className="mt-1 text-sm text-muted-foreground leading-relaxed">{copy.wall}</p>
+          </div>
+          <Link
+            to={canonicalForPath(`${basePath}/wall-washing`)}
+            className="hidden items-center text-sm font-semibold text-primary transition-transform duration-300 group-hover:translate-x-1 sm:inline-flex after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          >
+            Explore wall washing <ExternalLink className="ml-1 h-4 w-4" aria-hidden="true" />
           </Link>
         </div>
 

@@ -9,7 +9,7 @@
 export const POST_MODIFIED: Readonly<Record<string, string>> = {
   "/blog/choosing-cleaning-company": "2026-09-04",
   "/blog/cleaning-schedule": "2026-09-04",
-  "/blog/cleaning-services-calgary": "2026-09-04",
+  "/blog/cleaning-services-calgary": "2026-09-09",
   "/blog/spotless-home-tips": "2026-09-04",
   "/cleaning-with-vinegar-and-baking-soda": "2026-09-04",
   "/how-much-does-a-house-cleaning-cost": "2026-09-09",

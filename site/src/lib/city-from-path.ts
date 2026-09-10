@@ -27,7 +27,11 @@
  *   - the Calgary-region satellite towns, which contain no "calgary" token
  */
 
-import { calgarySurrounding, calgaryNeighborhoods } from "@/data/city-locations";
+import {
+  calgarySurrounding,
+  calgaryNeighborhoods,
+  calgaryMergedRoutes,
+} from "@/data/city-locations";
 
 export type City = "edmonton" | "calgary";
 
@@ -47,9 +51,15 @@ export type City = "edmonton" | "calgary";
  * disagree: adding a Calgary neighbourhood there now routes it correctly here
  * with no second edit. Entries are stored as bare slugs so both URL forms
  * (/locations/<slug> and /cleaning-services-<slug>) resolve.
+ *
+ * `calgaryMergedRoutes` is folded in for the same reason. A page can leave the
+ * coverage list without leaving the site — /locations/turner-valley/ is half of
+ * the amalgamated Town of Diamond Valley and still serves at its own URL — and
+ * a served Calgary page that this resolver does not recognise renders the
+ * Edmonton phone number under Calgary schema.
  */
 const CALGARY_SLUGS: ReadonlySet<string> = new Set(
-  [...calgarySurrounding, ...calgaryNeighborhoods].map((entry) =>
+  [...calgarySurrounding, ...calgaryNeighborhoods, ...calgaryMergedRoutes].map((entry) =>
     entry.to.replace(/^\/(?:locations|cleaning-services)[/-]?/, "").replace(/\/+$/, ""),
   ),
 );

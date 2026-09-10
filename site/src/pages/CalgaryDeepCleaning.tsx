@@ -37,12 +37,15 @@ export default function CalgaryDeepCleaning() {
       phoneHref="tel:4037681341"
       seoTitle={`Deep Cleaning Services Calgary from ${TIERS[0].price} | Duty Cleaners`}
       seoDescription={`Deep cleaning in Calgary from ${TIERS[0].price}, flat by home size: baseboards, door frames, vents, fans, tile and grout, kitchen degreased. Misses re-cleaned free.`}
+      serviceName="Deep House Cleaning in Calgary"
       canonical="https://dutycleaners.ca/calgary/deep-cleaning"
       heroHeading={<>Deep Cleaning Services in <AccentGold>Calgary</AccentGold></>}
       heroSubheading={`Everything in a standard clean, plus what a standard clean does not reach: baseboards and door frames, switches and outlet covers, vents and ceiling fans, tile and shower glass, the stovetop and range hood degreased. From ${TIERS[0].price}, flat by home size. Inside the oven and fridge on request.`}
       heroBadges={["Top-to-Bottom Detail", "All Supplies Brought For You", "100% Satisfaction Guarantee"]}
       heroImage={heroImage}
       heroImageAlt="Calgary kitchen after a deep clean"
+      heroImageWidth={800}
+      heroImageHeight={800}
       overviewEyebrow="Service Overview"
       overviewHeading={<>The reset regular cleaning <Accent>can't reach.</Accent></>}
       overviewParagraphs={[
@@ -146,7 +149,7 @@ export default function CalgaryDeepCleaning() {
       faqs={[
         { q: "Is there a best time of year for a deep clean in Calgary?", a: "Early spring is the most popular, because it clears out a full winter of road sand and de-icer at once. Calgary thaws and refreezes on chinooks all season, so entryways and baseboards collect grit continuously rather than staying frozen over. Late autumn is the other good window, resetting the house before that cycle starts. Both book up quickly, so give us a week or two of notice if you can." },
         { q: "Can I have only part of the house deep cleaned?", a: "Yes. Tell us which rooms when you book: the bathrooms only, the kitchen only, the main floor, or the basement. The rest of the house can have the standard clean on the same visit." },
-        { q: "How should I get the house ready?", a: "Clear the floors and the counters. The package is about surfaces, baseboards and trim, and the team cannot wipe a baseboard behind a row of boxes or degrease a stovetop under a drying rack. If a room should be skipped, say so on the booking." },
+        { q: "How should I get the house ready?", a: "You do not need to clean before the team comes; clear counters and floors get cleaned and cluttered ones get worked around; decluttering and organising are a separate hourly add-on. It costs you more on a deep clean than on a standard one, because the package is surfaces, baseboards and trim: nobody can wipe a baseboard behind a row of boxes or degrease a stovetop under a drying rack. If a room should be skipped, say so on the booking." },
         { q: "Is deep cleaning more expensive than standard cleaning?", a: `Yes, by the price of the deep-clean package. For a one-bedroom that is ${DEEP.packagePrice}: ${DEEP.price} for the deep clean against ${DEEP.standard} for a standard clean. The table above lists every home size.` },
         { q: "Will the team deal with mould in the shower?", a: "Light surface mildew on grout or caulking gets wiped where it is safe to. Anything heavier is mould remediation, which is a different trade, and we will tell you so rather than scrub at it." },
         { q: "How long will a Calgary deep clean take?", a: "We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },

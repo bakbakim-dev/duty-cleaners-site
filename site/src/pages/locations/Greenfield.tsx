@@ -217,6 +217,13 @@ export default function Greenfield() {
                 </Link>
               </li>
             </ul>
+            <p className="mt-6 text-muted-foreground">
+              {"Greenfield is one of the Edmonton neighbourhoods we clean — see "}
+              <Link to="/" className="text-primary underline underline-offset-2">
+                house cleaning services in Edmonton
+              </Link>
+              {" for the full picture."}
+            </p>
           </div>
         </section>
 

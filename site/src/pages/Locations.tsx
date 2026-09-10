@@ -30,24 +30,26 @@ import {
   ArrowRight,
   Building2,
   Home,
-  Clock,
   WashingMachine
 } from "lucide-react";
 
 /** Charged per visit outside either city's limits; read from bk-config. */
 const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
 
-// Data for location cards
+// Data for location cards.
+//
+// Each card used to carry its homes-cleaned figure twice, once under the star
+// rating and once again in the stats box directly below it, word for word. Both
+// cards also carried the identical "Serving Alberta since 2017", which the hero
+// badge above already states once. Each proof now appears once.
 const mainLocations = [
   {
     name: "Edmonton",
     rating: RATING_CLAIM,
-    reviews: `${HOMES_CLEANED.edmonton} Edmonton homes cleaned`,
     phone: CITY_PROOF.edmonton.phone,
     phoneHref: CITY_PROOF.edmonton.phoneLink,
     address: CITY_PROOF.edmonton.streetAddress,
     addressLine2: `Edmonton, AB ${CITY_PROOF.edmonton.postalCode}`,
-    experience: `Serving Alberta since ${COMPANY.foundedYear}`,
     homesCleaned: `${HOMES_CLEANED.edmonton} Edmonton homes cleaned`,
     neighbourhoods: [
       { name: "Glenora", link: "/locations/glenora-edmonton/" },
@@ -68,12 +70,10 @@ const mainLocations = [
   {
     name: "Calgary",
     rating: RATING_CLAIM,
-    reviews: `${HOMES_CLEANED.calgary} homes cleaned`,
     phone: CITY_PROOF.calgary.phone,
     phoneHref: CITY_PROOF.calgary.phoneLink,
     address: CITY_PROOF.calgary.streetAddress,
     addressLine2: `Calgary, AB ${CITY_PROOF.calgary.postalCode}`,
-    experience: `Serving Alberta since ${COMPANY.foundedYear}`,
     homesCleaned: `${HOMES_CLEANED.calgary} Calgary homes cleaned`,
     neighbourhoods: [
       { name: "Kensington", link: "/locations/kensington/" },
@@ -322,7 +322,6 @@ function LocationCard({ location }: { location: typeof mainLocations[0] }) {
             ))}
             <span className="text-xl font-bold ml-2 text-white">{location.rating}</span>
           </div>
-          <p className="text-white/90">{location.reviews}</p>
         </div>
         <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:rotate-6">
           {location.name === "Edmonton" ? <SprayCan className="w-8 h-8 text-accent" /> : <WashingMachine className="w-8 h-8 text-accent" />}
@@ -356,12 +355,8 @@ function LocationCard({ location }: { location: typeof mainLocations[0] }) {
         </div>
       </div>
 
-      {/* Experience Stats */}
+      {/* Coverage stats */}
       <div className="bg-white/5 rounded-xl p-5 mb-6 border border-white/10 relative z-10">
-        <div className="flex items-center gap-3 mb-2">
-          <Clock className="w-5 h-5 text-accent" />
-          <span className="text-sm font-semibold text-white/90">{location.experience}</span>
-        </div>
         <div className="flex items-center gap-3 mb-2">
           <Home className="w-5 h-5 text-accent" />
           <span className="text-xl font-bold text-white">{location.homesCleaned}</span>
@@ -501,13 +496,16 @@ export default function Locations() {
               <span className="text-white/90 text-sm font-medium">Serving Alberta</span>
             </div>
 
+            {/* "Our Service Locations" named no place, on the one page whose
+                whole job is naming places. */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              Our Service <span className="text-accent">Locations</span>
+              House cleaning in <span className="text-accent">Edmonton and Calgary</span>, and the
+              Alberta towns around each
             </h1>
 
             <p className="text-xl text-white/80 leading-relaxed mb-10">
-              House cleaning in Edmonton, Calgary and the towns around each. Two offices, a price
-              list per city, and a travel fee only outside city limits.
+              Two offices, a price list per city, and a travel fee only outside city limits. Every
+              neighbourhood and town either office covers is listed below.
             </p>
 
             {/* Trust Badges */}
@@ -664,30 +662,6 @@ export default function Locations() {
         </div>
       </section>
 
-      {/* Interactive Google Map */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-4">
-              <MapPin className="w-4 h-4 text-primary" />
-              <span className="text-foreground text-sm font-medium">Service Coverage</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Our Service Area</h2>
-            <p className="text-muted-foreground max-w-3xl mx-auto">
-              Both cities and the towns around each. Areas we do not currently serve: Red Deer.
-              If your address is not on this page, call and we will say plainly whether it is in
-              range.
-            </p>
-          </div>
-
-          <div className="max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-xl border border-primary/10">
-            <Suspense fallback={<div className="w-full h-[500px] bg-muted animate-pulse rounded-2xl" />}>
-              <ServiceAreaMap />
-            </Suspense>
-          </div>
-        </div>
-      </section>
-
       {/* Calgary Region Cities */}
       <section className="py-20 bg-brand-navy relative overflow-hidden">
         <div className="absolute top-1/2 right-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2" />
@@ -733,6 +707,30 @@ export default function Locations() {
                 variant="calgary"
               />
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Interactive Google Map */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-4">
+              <MapPin className="w-4 h-4 text-primary" />
+              <span className="text-foreground text-sm font-medium">Service Coverage</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Our Service Area</h2>
+            <p className="text-muted-foreground max-w-3xl mx-auto">
+              Both cities and the towns around each. Areas we do not currently serve: Red Deer.
+              If your address is not on this page, call and we will say plainly whether it is in
+              range.
+            </p>
+          </div>
+
+          <div className="max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-xl border border-primary/10">
+            <Suspense fallback={<div className="w-full h-[500px] bg-muted animate-pulse rounded-2xl" />}>
+              <ServiceAreaMap />
+            </Suspense>
           </div>
         </div>
       </section>

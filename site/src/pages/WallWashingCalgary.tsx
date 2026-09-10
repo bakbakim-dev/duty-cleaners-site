@@ -2,7 +2,7 @@ import { getListing } from "@/lib/google-listings";
 import { withTrailingSlash } from "@/data/legacy-urls";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import Navigation from "@/components/Navigation";
-import { addOnMaxPrice, addOnFromPrice, addOnsFor, bedroomOptions, formatPrice, PRICING_TIERS, standardTierRows } from "@/data/pricing";
+import { addOnMaxPrice, addOnFromPrice, addOnsFor, bedroomOptions, formatPrice, standardTierRows, withGst } from "@/data/pricing";
 import { POLICY } from "@/data/policy";
 import { travelFee } from "@/data/addon-table";
 import { buildServiceSchema } from "@/lib/service-schema";
@@ -146,23 +146,33 @@ const WALL_FULL = addOnFromPrice("standard", "complete-inside-wall-washing") ?? 
  *  figure called a "flat rate" understated the large end by up to $115. */
 const WALL_SPOT_MAX = addOnMaxPrice("standard", "spot-cleaning-inside-walls") ?? 0;
 const WALL_FULL_MAX = addOnMaxPrice("standard", "complete-inside-wall-washing") ?? 0;
-const WALL_PRICE_LINE = `Wall washing rides on a standard, deep or move-out clean; it is not a visit on its own. Spot cleaning is ${formatPrice(WALL_FROM)} to ${formatPrice(WALL_SPOT_MAX)} by home size and the full top-to-bottom wash ${formatPrice(WALL_FULL)} to ${formatPrice(WALL_FULL_MAX)}, both before 5% GST. The figure for your home is on the quote before you pay.`;
 
-/** Both wall extras at every published home size, plus the smallest bill each
- *  can arrive on (a standard clean of that size with spot cleaning added).
- *  Every figure is read from the bk-config rows the booking form prices from. */
+/** BookingKoala writes "800sqft"; the figure is the fact, the spacing is ours. */
+const sizeLabel = (label: string) => label.replace(/(\d)\s*sqft/gi, (_match, digit) => `${digit} sq ft`);
+
+/**
+ * Both wall extras at every size bk-config prices them at, and the full wash
+ * with GST on it.
+ *
+ * The table used to be built off PRICING_TIERS, which stops at a "5+ Bedroom"
+ * row — so it ended at $89.99 / $194.99 while the hero quoted $109.99 and
+ * $234.99, the six- and seven-bedroom figures the table never showed. Seven
+ * rows, seven prices, and the hero's two ends are now the first and last of
+ * them. The old fourth column (a standard clean of that size plus spot
+ * cleaning) could only be computed for the five sizes the home-cleaning table
+ * publishes bath counts for; that figure is stated in the paragraph below the
+ * table instead.
+ */
 const STANDARD_ROWS = standardTierRows();
-const WALL_ROWS = PRICING_TIERS.map((tier, i) => {
-  const bedroomId = bedroomOptions("standard").find((b) => b.value === tier.beds)?.id ?? null;
-  const addOns = addOnsFor("standard", bedroomId);
+const WALL_ROWS = bedroomOptions("standard").map((bedroom) => {
+  const addOns = addOnsFor("standard", bedroom.id);
   const spot = addOns.find((a) => a.id === "spot-cleaning-inside-walls")?.price;
   const full = addOns.find((a) => a.id === "complete-inside-wall-washing")?.price;
-  const standard = Number((STANDARD_ROWS[i]?.price ?? "").replace(/[^0-9.]/g, ""));
   return {
-    beds: tier.label,
+    beds: sizeLabel(bedroom.label),
     spot: spot === undefined ? "" : formatPrice(spot),
     full: full === undefined ? "" : formatPrice(full),
-    withClean: spot === undefined || !standard ? "" : formatPrice(Math.round((standard + spot) * 100) / 100),
+    fullWithGst: full === undefined ? "" : formatPrice(withGst(full)),
   };
 });
 const STANDARD_FROM = STANDARD_ROWS[0]?.price ?? "";
@@ -228,8 +238,19 @@ export default function WallWashingCalgary() {
               <p className="text-lg text-white/80 mb-10 leading-relaxed max-w-2xl">
                 Walls washed by hand, not wiped. The static-held dust film, the halo above the registers and the hard-water haze in the bathroom come off, and the paint finish stays.
               </p>
+              {/* The three cleans this add-on can ride on, linked. The sentence
+                  named all three and linked none, which left the reader told
+                  what to do and not where to do it. */}
               <p className="text-lg text-white/90 mb-10 leading-relaxed max-w-2xl">
-                {WALL_PRICE_LINE}
+                Wall washing rides on{" "}
+                <Link to="/calgary/regular-cleaning/" className="text-white underline underline-offset-4">a standard clean</Link>,{" "}
+                <Link to="/calgary/deep-cleaning/" className="text-white underline underline-offset-4">a deep clean</Link>{" "}
+                or{" "}
+                <Link to="/move-out-cleaning-calgary/" className="text-white underline underline-offset-4">a move-out clean</Link>;
+                it is not a visit on its own. Spot cleaning is {formatPrice(WALL_FROM)} to{" "}
+                {formatPrice(WALL_SPOT_MAX)} by home size and the full top-to-bottom wash{" "}
+                {formatPrice(WALL_FULL)} to {formatPrice(WALL_FULL_MAX)}, both before 5% GST. Each of
+                those seven sizes has its own row in the table below.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <Button size="lg" variant="accent" className="w-full sm:w-auto text-base px-8" asChild>
@@ -373,9 +394,9 @@ export default function WallWashingCalgary() {
                 <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">What wall washing costs in Calgary</h2>
                 <p className="text-muted-foreground">
                   The add-on is priced by the size of the home on the booking, not by the number of walls,
-                  and the same row applies whether it rides on a standard, deep or move-out clean. The last
-                  column is the smallest bill it can arrive on: a standard clean of that size with spot
-                  cleaning added. All figures before 5% GST.
+                  and the same row applies whether it rides on a standard, deep or move-out clean. Seven
+                  sizes, seven rows, ending where the booking form ends. The last column carries the 5% GST
+                  on the full wash, because that is the number that reaches the card.
                 </p>
               </div>
               <div className="overflow-x-auto border border-border rounded-xl">
@@ -385,7 +406,7 @@ export default function WallWashingCalgary() {
                       <th className="py-3 px-4 text-left text-sm font-bold">Home size</th>
                       <th className="py-3 px-4 text-right text-sm font-bold">Spot cleaning</th>
                       <th className="py-3 px-4 text-right text-sm font-bold">Full wash</th>
-                      <th className="py-3 px-4 text-right text-sm font-bold">Standard clean + spot</th>
+                      <th className="py-3 px-4 text-right text-sm font-bold">Full wash with GST</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -394,7 +415,7 @@ export default function WallWashingCalgary() {
                         <td className="py-3 px-4 text-foreground">{r.beds}</td>
                         <td className="py-3 px-4 text-right font-bold text-foreground">{r.spot}</td>
                         <td className="py-3 px-4 text-right font-bold text-foreground">{r.full}</td>
-                        <td className="py-3 px-4 text-right text-foreground">{r.withClean}</td>
+                        <td className="py-3 px-4 text-right text-foreground">{r.fullWithGst}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -403,7 +424,10 @@ export default function WallWashingCalgary() {
               <p className="mt-6 text-muted-foreground leading-relaxed">
                 So the least a Calgary wall job can cost is a standard clean from {STANDARD_FROM} plus spot
                 wall cleaning from {formatPrice(WALL_FROM)}, before GST. A full wash of a one-bedroom on a
-                move-out is the move-out rate plus {formatPrice(WALL_FULL)}. The cleans themselves, and the
+                move-out is the move-out rate plus {formatPrice(WALL_FULL)}. Walls covered in drywall dust
+                after a build or a renovation are not this add-on at all;{" "}
+                <Link to="/post-construction-cleaning-calgary/" className="text-primary underline underline-offset-4">post-construction cleaning in Calgary</Link>{" "}
+                takes the whole house and is priced by square footage. The cleans themselves, and the
                 other add-ons, are on{" "}
                 <Link to="/calgary/pricing/" className="text-primary underline underline-offset-4">Calgary house cleaning prices by home size</Link>.
               </p>

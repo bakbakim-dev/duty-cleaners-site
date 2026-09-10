@@ -7,8 +7,10 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
-import { sitePriceRange, standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice } from "@/data/pricing";
+import { sitePriceRange, standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice, addOnFromPrice } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
+import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
+import { GOOGLE_LISTINGS } from "@/lib/google-listings";
 import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
 
 // Every figure on this page is derived from bk-config or policy.ts.
@@ -20,6 +22,16 @@ const MOVE = moveInOutTierRows();
 const MOVE_FROM = MOVE[0].price;
 const MOVE_TOP = MOVE[MOVE.length - 1].price;
 const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
+// Post-construction carries its own travel-fee row in bk-config, at a higher amount.
+const PC_TRAVEL_FEE = formatPrice(travelFee("post-construction") ?? 0);
+// Charged for you rather than chosen, and charged inside the city too.
+const PET_FEE = formatPrice(addOnFromPrice("standard", "must-choose-if-you-have-pets") ?? 0);
+const HOME_TYPE = {
+  bungalow: formatPrice(BK_PRICE_OVERRIDES[54].price),
+  townhouse: formatPrice(BK_PRICE_OVERRIDES[89].price),
+  twoStorey: formatPrice(BK_PRICE_OVERRIDES[90].price),
+};
+const CALGARY_LISTING = GOOGLE_LISTINGS.calgary;
 const CALGARY_RATING = `${CITY_PROOF.calgary.googleRating} on Google`;
 const REVIEW_COUNT = CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount;
 
@@ -66,13 +78,34 @@ const ServiceCard = ({
   </div>
 );
 
-const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: string }) => (
+const WhyUsCard = ({
+  icon: Icon,
+  title,
+  description,
+  link,
+}: {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  /** Present on the rating card, which cites the listing the count comes from. */
+  link?: { href: string; text: string };
+}) => (
   <div className="group bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center transition-all duration-500 ease-out hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-xl" style={{ transformStyle: "preserve-3d" }}>
     <div className="w-14 h-14 rounded-full bg-accent/20 flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:rotate-12">
       <Icon className="w-7 h-7 text-accent" />
     </div>
     <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
-    <p className="text-white/80 text-sm leading-relaxed">{description}</p>
+    <p className="text-white/80 text-sm leading-relaxed">
+      {description}
+      {link && (
+        <>
+          {" "}
+          <a href={link.href} target="_blank" rel="noopener noreferrer" className="text-white underline underline-offset-2 font-medium">
+            {link.text}
+          </a>
+        </>
+      )}
+    </p>
   </div>
 );
 
@@ -87,14 +120,16 @@ const services = [
 
 const whyUsItems = [
   { icon: Shield, title: "Reference-Checked, Then Rated by You", description: "Every cleaner is reference-checked before their first job, then rated by the customer after every visit. Those ratings decide who keeps cleaning for us." },
-  { icon: Star, title: RATING_CLAIM, description: `${REVIEW_COUNT} reviews across Edmonton and Calgary, and every one of them is on our Google listing.` },
+  { icon: Star, title: RATING_CLAIM, description: `That is the Calgary listing, the one a Cochrane clean is rated on, with ${CITY_PROOF.calgary.googleReviewCount} reviews on it.`, link: { href: CALGARY_LISTING.reviewsUrl, text: "Open it on Google" } },
   { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability, schedule permitting." },
   { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Cleaners who work to the Duty Cleaners checklist and are rated by the customer after each visit." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: `If something was missed, tell us within ${POLICY.guaranteeWindowHours} hours and we'll return to make it right — at no additional charge.` },
 ];
 
-const nearbyAreas = ["Sunset Ridge", "Fireside", "Heartland", "Riversong", "Heritage Hills", "Jumping Pound Ridge", "West Valley", "Cochrane Lakes"];
+// "Cochrane Lakes" was in this list. Cochrane Lake is a Rocky View County
+// hamlet north of the town, not a Cochrane neighbourhood, so it is gone.
+const nearbyAreas = ["Sunset Ridge", "Fireside", "Heartland", "Riversong", "Heritage Hills", "Jumping Pound Ridge", "West Valley"];
 
 const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Cochrane",
@@ -111,7 +146,7 @@ export default function Cochrane() {
   const faqs = [
     {
       question: "Do you charge a travel fee in Cochrane?",
-      answer: `We do. Cochrane is a town outside Calgary's city limits, and every booking outside Calgary and Edmonton carries a ${TRAVEL_FEE} travel fee. It is added at booking, so the total you see before you confirm already has it in. The clean itself is the same flat rate a Calgary address pays for the same home size.`
+      answer: `We do. Cochrane is a town outside Calgary's city limits, and a home-cleaning booking out here carries a ${TRAVEL_FEE} travel fee; post-construction is priced on its own row and carries ${PC_TRAVEL_FEE}. It is added at booking, so the total you see before you confirm already has it in. That fee is the whole of the difference from a Calgary address. The clean is the same flat rate for the same home size, and the pet charge and the home-type surcharges are added here as well: ${PET_FEE} a visit for a home with pets, and the step up from an apartment or condo, ${HOME_TYPE.bungalow} on a bungalow or basement suite, ${HOME_TYPE.townhouse} on a townhouse, ${HOME_TYPE.twoStorey} on a two-storey house.`
     },
     {
       question: "Can I book same-day house cleaning in Cochrane?",
@@ -127,7 +162,7 @@ export default function Cochrane() {
     },
     {
       question: "Do I need to supply anything for the clean?",
-      answer: `No. The crew brings products, cloths, a mop and a vacuum. Up on the ridges, where window tracks load with grit, the crew brushes the tracks out dry before anything wet touches them; nothing is needed from you for that. Eco-friendly products are ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}.`
+      answer: `No. The crew brings products, cloths, a mop and a vacuum. If there is something you would rather we used on a particular floor or counter, leave it out and say so at booking. Eco-friendly products are ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}.`
     },
     {
       question: "What is the guarantee, and what does a cancellation cost?",
@@ -267,7 +302,7 @@ export default function Cochrane() {
                 Around Cochrane
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
-                <p>Cochrane sits where the prairie meets the Rockies, a short drive west of Calgary, and it has grown fast while keeping a small downtown. Glenbow Ranch Provincial Park has the trails along the Bow River; the Cochrane Ranche Historic Site keeps the ranching history; MacKay's Ice Cream has been there since 1948. The downtown is a few blocks of shops and cafes, and the newer communities are up the hill on either side of it.</p>
+                <p>Cochrane is west of Calgary on Highway 1A, at the edge of the foothills. Glenbow Ranch Provincial Park has the trails along the Bow River; the Cochrane Ranche Historic Site keeps the ranching history; MacKay's Ice Cream has been there since 1948. Downtown sits on the valley floor and the newer communities are up the hill on either side of it.</p>
               </div>
             </div>
           </AnimatedSection>

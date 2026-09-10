@@ -6,8 +6,10 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
-import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice } from "@/data/pricing";
+import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice, addOnFromPrice } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
+import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
+import { GOOGLE_LISTINGS } from "@/lib/google-listings";
 import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
 
 // Every price on this page is read from bk-config through pricing.ts.
@@ -21,6 +23,16 @@ const DEEP_TO = DEEP[DEEP.length - 1].price;
 const MOVE_FROM = MOVE[0].price;
 const MOVE_TO = MOVE[MOVE.length - 1].price;
 const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
+// Post-construction carries its own travel-fee row in bk-config, at a higher amount.
+const PC_TRAVEL_FEE = formatPrice(travelFee("post-construction") ?? 0);
+// Charged for you rather than chosen, and charged inside the city too.
+const PET_FEE = formatPrice(addOnFromPrice("standard", "must-choose-if-you-have-pets") ?? 0);
+const HOME_TYPE = {
+  bungalow: formatPrice(BK_PRICE_OVERRIDES[54].price),
+  townhouse: formatPrice(BK_PRICE_OVERRIDES[89].price),
+  twoStorey: formatPrice(BK_PRICE_OVERRIDES[90].price),
+};
+const EDMONTON_LISTING = GOOGLE_LISTINGS.edmonton;
 const PAGE_TITLE = `House Cleaning Leduc from ${STANDARD_FROM} | Duty Cleaners`;
 const META_DESCRIPTION = `House cleaning in Leduc from ${STANDARD_FROM}, Telford Lake to Fred Johns Park. Standard, deep and move-out cleans at a flat price you see before you book.`;
 
@@ -64,13 +76,34 @@ const ServiceCard = ({
   </div>
 );
 
-const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: string }) => (
+const WhyUsCard = ({
+  icon: Icon,
+  title,
+  description,
+  link,
+}: {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  /** Present on the rating card, which cites the listing the count comes from. */
+  link?: { href: string; text: string };
+}) => (
   <div className="group bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center transition-all duration-500 ease-out hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-xl" style={{ transformStyle: "preserve-3d" }}>
     <div className="w-14 h-14 rounded-full bg-accent/20 flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:rotate-12">
       <Icon className="w-7 h-7 text-accent" />
     </div>
     <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
-    <p className="text-white/80 text-sm leading-relaxed">{description}</p>
+    <p className="text-white/80 text-sm leading-relaxed">
+      {description}
+      {link && (
+        <>
+          {" "}
+          <a href={link.href} target="_blank" rel="noopener noreferrer" className="text-white underline underline-offset-2 font-medium">
+            {link.text}
+          </a>
+        </>
+      )}
+    </p>
   </div>
 );
 
@@ -80,12 +113,12 @@ const services = [
   { icon: Truck, title: "Move In/Out Cleaning", description: "Move-day cleaning done to the standard landlords check for.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Leduc" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or a new build.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Leduc" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Leduc" },
-  { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `A standard clean that repeats weekly, every two weeks or every four, from ${STANDARD_FROM}. The first visit is the one-time rate, the discount starts on the second.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Leduc" },
 ];
 
 const whyUsItems = [
   { icon: Shield, title: "Reference-Checked, Then Rated by You", description: "Every cleaner is reference-checked before their first job, then rated by the customer after every visit. Those ratings decide who keeps cleaning for us." },
-  { icon: Star, title: RATING_CLAIM, description: `${CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount} reviews across Edmonton and Calgary, and every one of them is on our Google listing.` },
+  { icon: Star, title: RATING_CLAIM, description: `A Leduc clean is rated on the Edmonton listing, and that listing holds ${CITY_PROOF.edmonton.googleReviewCount} reviews.`, link: { href: EDMONTON_LISTING.reviewsUrl, text: "Read them on Google" } },
   { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day slots when the schedule allows." },
   { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Cleaners trained to the Duty Cleaners checklist, and rated by you after every visit." },
@@ -101,7 +134,7 @@ export default function Leduc() {
   const faqs: { question: string; answer: string; link?: { to: string; text: string } }[] = [
     {
       question: "Is there a travel fee in Leduc?",
-      answer: `Yes. Leduc is 33 km south of Edmonton and outside its city limits, so a ${TRAVEL_FEE} travel fee is added to each home-cleaning booking. The flat rate for the clean is the same as inside Edmonton; the fee is the only difference.`
+      answer: `Yes. Leduc is 33 km south of Edmonton and outside its city limits, so a ${TRAVEL_FEE} travel fee is added to each home-cleaning booking here, while a post-construction clean carries its own fee of ${PC_TRAVEL_FEE}. That fee is the only difference from an Edmonton address, not the only extra on the bill. The flat rate for the clean is the Edmonton rate, and the pet charge and the home-type surcharges are charged here as they are in the city: ${PET_FEE} on any visit to a home with pets, and the step up from an apartment or condo, ${HOME_TYPE.bungalow} for a bungalow or basement suite, ${HOME_TYPE.townhouse} for a townhouse, ${HOME_TYPE.twoStorey} for a two-storey house.`
     },
     {
       question: "What does a standard clean in Leduc cost?",
@@ -109,7 +142,7 @@ export default function Leduc() {
     },
     {
       question: "Can you come to Leduc same-day?",
-      answer: `If the day has room, yes. Same-day and next-day slots turn up when the schedule allows; call ${CITY_PROOF.edmonton.phone} and ask. The team arrives in a window of ${ARRIVAL_WINDOWS[0]}, ${ARRIVAL_WINDOWS[1]} or ${ARRIVAL_WINDOWS[2]}, which matters in a city where someone is often asleep after a night shift.`
+      answer: `If the day has room, yes. Same-day and next-day slots turn up when the schedule allows; call ${CITY_PROOF.edmonton.phone} and ask. The team arrives in a window of ${ARRIVAL_WINDOWS[0]}, ${ARRIVAL_WINDOWS[1]} or ${ARRIVAL_WINDOWS[2]} rather than at an exact minute, and you do not have to be in the house for it.`
     },
     {
       question: "Do you do move-out cleaning in Leduc?",
@@ -242,7 +275,8 @@ export default function Leduc() {
                   </a>.
                 </p>
                 <p>
-                  Many households here work a rotation rather than a weekday. Tell us at booking if someone will be asleep and the room order changes at no cost.
+                  The crews are the ones who do our{" "}
+                  <Link to="/" className="text-primary underline underline-offset-2 font-medium">house cleaning across Edmonton</Link>, working to the same checklist and the same flat rate, with the travel fee added for a Leduc address.
                 </p>
                 <p>
                   Hosts in Leduc with a suite let to airport travellers can book turnovers as{" "}
@@ -264,7 +298,7 @@ export default function Leduc() {
                 Around Leduc
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
-                <p>The Leduc #1 Energy Discovery Centre covers the 1947 oil strike the city is known for. Telford Lake Park has walking trails, picnic areas and a beach. The Maclab Centre for the Performing Arts hosts theatre.</p>
+                <p>The Leduc #1 Energy Discovery Centre, which is just outside Devon rather than in Leduc, covers the 1947 oil strike the city is known for. Telford Lake Park has walking trails, picnic areas and a beach. The Maclab Centre for the Performing Arts hosts theatre.</p>
               </div>
             </div>
           </AnimatedSection>
@@ -367,7 +401,7 @@ export default function Leduc() {
               Near Leduc, the other communities we clean from the same Edmonton office are{" "}
               <Link to="/cleaning-services-sherwood-park/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Sherwood Park</Link>{" "}
               to the northeast,{" "}
-              <Link to="/cleaning-services-spruce-grove/" className="text-primary underline underline-offset-2 font-medium">cleaning services in Spruce Grove</Link>{" "}
+              <Link to="/cleaning-services-spruce-grove/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Spruce Grove</Link>{" "}
               to the northwest, and{" "}
               <Link to="/cleaning-services-st-albert/" className="text-primary underline underline-offset-2 font-medium">St. Albert house cleaners</Link>{" "}
               and{" "}

@@ -6,8 +6,10 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
-import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice } from "@/data/pricing";
+import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice, addOnFromPrice } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
+import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
+import { GOOGLE_LISTINGS } from "@/lib/google-listings";
 import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
 
 // Prices are read from bk-config through pricing.ts, never typed here.
@@ -21,6 +23,16 @@ const DEEP_TO = DEEP[DEEP.length - 1].price;
 const MOVE_FROM = MOVE[0].price;
 const MOVE_TO = MOVE[MOVE.length - 1].price;
 const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
+// Post-construction has its own travel-fee row in bk-config, at a higher amount.
+const PC_TRAVEL_FEE = formatPrice(travelFee("post-construction") ?? 0);
+// Added for you, inside the city as well as outside it.
+const PET_FEE = formatPrice(addOnFromPrice("standard", "must-choose-if-you-have-pets") ?? 0);
+const HOME_TYPE = {
+  bungalow: formatPrice(BK_PRICE_OVERRIDES[54].price),
+  townhouse: formatPrice(BK_PRICE_OVERRIDES[89].price),
+  twoStorey: formatPrice(BK_PRICE_OVERRIDES[90].price),
+};
+const EDMONTON_LISTING = GOOGLE_LISTINGS.edmonton;
 const PAGE_TITLE = `House Cleaning Sherwood Park from ${STANDARD_FROM} | Duty Cleaners`;
 const META_DESCRIPTION = `House cleaning across Sherwood Park from ${STANDARD_FROM}: Broadmoor, Emerald Hills and Lakeland Ridge. Flat rates by home size, paid after the clean.`;
 
@@ -64,13 +76,34 @@ const ServiceCard = ({
   </div>
 );
 
-const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: string }) => (
+const WhyUsCard = ({
+  icon: Icon,
+  title,
+  description,
+  link,
+}: {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  /** Present on the rating card, which cites the listing the count comes from. */
+  link?: { href: string; text: string };
+}) => (
   <div className="group bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center transition-all duration-500 ease-out hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-xl" style={{ transformStyle: "preserve-3d" }}>
     <div className="w-14 h-14 rounded-full bg-accent/20 flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:rotate-12">
       <Icon className="w-7 h-7 text-accent" />
     </div>
     <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
-    <p className="text-white/80 text-sm leading-relaxed">{description}</p>
+    <p className="text-white/80 text-sm leading-relaxed">
+      {description}
+      {link && (
+        <>
+          {" "}
+          <a href={link.href} target="_blank" rel="noopener noreferrer" className="text-white underline underline-offset-2 font-medium">
+            {link.text}
+          </a>
+        </>
+      )}
+    </p>
   </div>
 );
 
@@ -80,12 +113,12 @@ const services = [
   { icon: Truck, title: "Move In/Out Cleaning", description: "Move-day cleaning done to the standard landlords check for.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Sherwood Park" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared properly after renos and handovers.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Sherwood Park" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Sherwood Park" },
-  { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The same standard clean on a weekly, bi-weekly or every-four-weeks visit, from ${STANDARD_FROM}. The discount starts on the second clean and there is no contract.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Sherwood Park" },
 ];
 
 const whyUsItems = [
   { icon: Shield, title: "Reference-Checked, Then Rated by You", description: "Every cleaner is reference-checked before their first job, then rated by the customer after every visit. Those ratings decide who keeps cleaning for us." },
-  { icon: Star, title: RATING_CLAIM, description: `${CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount} reviews across Edmonton and Calgary, and every one of them is on our Google listing.` },
+  { icon: Star, title: RATING_CLAIM, description: `That is the Edmonton listing, the one a Sherwood Park clean is rated on, and it holds ${CITY_PROOF.edmonton.googleReviewCount} reviews.`, link: { href: EDMONTON_LISTING.reviewsUrl, text: "Open the Google listing" } },
   { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day slots when the schedule allows." },
   { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Cleaners trained to the Duty Cleaners checklist, and rated by you after every visit." },
@@ -100,7 +133,7 @@ export default function SherwoodPark() {
   const faqs: { question: string; answer: string; link?: { to: string; text: string } }[] = [
     {
       question: "Is there a travel fee in Sherwood Park?",
-      answer: `Yes. Sherwood Park is in Strathcona County, outside Edmonton city limits, so a ${TRAVEL_FEE} travel fee is added to each home-cleaning booking. Nothing else changes: the flat rate for the clean is the Edmonton rate.`
+      answer: `Yes. Sherwood Park is in Strathcona County, outside Edmonton city limits, so a ${TRAVEL_FEE} travel fee is added to each home-cleaning booking, and a post-construction clean carries a higher one at ${PC_TRAVEL_FEE}. Set against an Edmonton address, that fee is the only difference. The clean is the same flat rate, and the pet charge and the home-type surcharges are charged here on the same terms as in the city: ${PET_FEE} per visit if there are pets in the house, and the step up from an apartment or condo, ${HOME_TYPE.bungalow} for a bungalow or a basement suite, ${HOME_TYPE.townhouse} for a townhouse and ${HOME_TYPE.twoStorey} for a two-storey.`
     },
     {
       question: "What does a standard clean in Sherwood Park cost?",
@@ -108,7 +141,7 @@ export default function SherwoodPark() {
     },
     {
       question: "Can you come out to Sherwood Park same-day?",
-      answer: `Sometimes. Same-day and next-day slots depend on what the day's schedule has left; call ${CITY_PROOF.edmonton.phone} and ask. Bookings are made to an arrival window (${ARRIVAL_WINDOWS[0]}, ${ARRIVAL_WINDOWS[1]} or ${ARRIVAL_WINDOWS[2]}), and shift workers can name a room to leave until last.`
+      answer: `Sometimes. Same-day and next-day slots depend on what the day's schedule has left; call ${CITY_PROOF.edmonton.phone} and ask. Bookings are made to an arrival window (${ARRIVAL_WINDOWS[0]}, ${ARRIVAL_WINDOWS[1]} or ${ARRIVAL_WINDOWS[2]}) rather than to a fixed minute, and you do not need to be home if you leave a key or a code.`
     },
     {
       question: "Do you do move-out cleaning in Sherwood Park?",
@@ -231,7 +264,9 @@ export default function SherwoodPark() {
                   and in Summerwood, Emerald Hills and Lakeland Ridge.
                 </p>
                 <p>
-                  Plant rotations put people asleep during the day. Tell us at booking and the room order changes at no cost.
+                  The crews come off the same schedule as our{" "}
+                  <Link to="/" className="text-primary underline underline-offset-2 font-medium">Edmonton house cleaning</Link>{" "}
+                  and work to the same checklist, with the travel fee added for a Sherwood Park address.
                 </p>
                 <p>
                   Hosts in Sherwood Park with a basement suite or a whole-home listing can book turnovers as{" "}
@@ -350,9 +385,9 @@ export default function SherwoodPark() {
               to the northwest,{" "}
               <Link to="/cleaning-services-morinville/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Morinville</Link>{" "}
               beyond it,{" "}
-              <Link to="/cleaning-services-spruce-grove/" className="text-primary underline underline-offset-2 font-medium">cleaning services in Spruce Grove</Link>{" "}
-              on the west side and a{" "}
-              <Link to="/cleaning-services-leduc/" className="text-primary underline underline-offset-2 font-medium">Leduc cleaning company</Link>{" "}
+              <Link to="/cleaning-services-spruce-grove/" className="text-primary underline underline-offset-2 font-medium">Spruce Grove house cleaners</Link>{" "}
+              on the west side and{" "}
+              <Link to="/cleaning-services-leduc/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Leduc</Link>{" "}
               by the airport. Each is outside city limits, so each carries the same {TRAVEL_FEE} travel fee as Sherwood Park.
             </p>
             <CoverageChips areas={nearbyAreas} variant="compact" />
@@ -374,9 +409,9 @@ export default function SherwoodPark() {
 
       <LocalMarketNote
         eyebrow="On the ground"
-        heading="A hamlet of seventy-five thousand"
+        heading="A hamlet of just over seventy-two thousand"
         paragraphs={[
-          "Sherwood Park is officially a hamlet, which is a strange label for 75,000 people — the province recognises its urban service area as the equivalent of a city, and Strathcona County runs it. It began in 1953 as Campbelltown and took its present name three years later, so the oldest streets are now seventy years old while the outer edges are still being finished. Both ends turn up on the same week's schedule.",
+          "Sherwood Park is officially a hamlet, which is a strange label for just over seventy-two thousand people at the 2021 census — the province recognises its urban service area as the equivalent of a city, and Strathcona County runs it. It began in 1953 as Campbelltown and took its present name three years later, so the oldest streets are now seventy years old while the outer edges are still being finished. Both ends turn up on the same week's schedule.",
           "Refinery Row lies immediately west, and the shift patterns that come with it are the thing worth telling us at booking. Plant rotations put people asleep during the day, and the room order is easy to change when we know. It costs nothing to work outward from the far end of the house instead of the near one.",
         ]}
       />

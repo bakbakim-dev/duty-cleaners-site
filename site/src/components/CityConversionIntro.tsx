@@ -127,7 +127,9 @@ const HOW_IT_WORKS = {
  * headline, so the figure has to sit here rather than in the section below.
  */
 const SUBHEAD = {
-  Edmonton: `Standard cleans from ${FROM_PRICE} for a one-bedroom, one-bathroom home, priced flat by size, and nothing is charged until the clean is done. No tidying first.`,
+  // "No tidying first" was the hero half of a claim the service pages take
+  // back three screens later, where they ask for clutter to be picked up.
+  Edmonton: `Standard cleans from ${FROM_PRICE} for a one-bedroom, one-bathroom home, priced flat by size, and nothing is charged until the clean is done. No cleaning before we come.`,
   Calgary: `A one-bedroom standard clean starts at ${FROM_PRICE}. You see the figure for your own home before you choose a date, and you pay after the clean, not before.`,
 } as const;
 
@@ -261,12 +263,16 @@ export default function CityConversionIntro({
                 <span className="h-1.5 w-1.5 rounded-full bg-brand-gold" aria-hidden="true" />
                 House cleaning · {city} &amp; area
               </span>
+              {/* "Cleaning services <city>" is the largest query family either
+                  hub can own (80,890 impressions in Edmonton, 63,216 in
+                  Calgary) and the phrase was sitting on the services hubs
+                  instead. The H1 carries it now, and so does the title. */}
               <h1
-                className={`display-serif max-w-[12ch] text-[2.75rem] font-bold leading-[1.05] tracking-[-0.02em] text-white md:text-5xl lg:text-[3.5rem] ${
+                className={`display-serif max-w-[14ch] text-[2.75rem] font-bold leading-[1.05] tracking-[-0.02em] text-white md:text-5xl lg:text-[3.5rem] ${
                   soft ? "[text-shadow:0_2px_18px_rgba(15,35,60,0.55)]" : "drop-shadow-sm"
                 }`}
               >
-                House cleaning in {city}, made{" "}
+                House cleaning services in {city}, made{" "}
                 <em className="italic text-accent-on-dark">simple.</em>
               </h1>
 

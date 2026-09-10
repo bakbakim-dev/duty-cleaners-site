@@ -1,4 +1,5 @@
 import { CITY_PROOF } from "@/data/proof";
+import { canonicalUrlForPath } from "@/data/legacy-urls";
 import { BRANCH_ID, BRANCH_IDENTITY } from "@/data/proof";
 import React from "react";
 import { Helmet } from "react-helmet-async";
@@ -154,7 +155,7 @@ const serviceSchema = {
     },
   },
   areaServed: { "@type": "City", name: "Edmonton" },
-  url: "https://dutycleaners.ca/edmonton/march-out-cleaning",
+  url: canonicalUrlForPath("/edmonton/march-out-cleaning"),
 };
 
 const faqSchema = {
@@ -241,7 +242,24 @@ export default function EdmontonMarchOut() {
             </Button>
           </div>
           <p className="text-white/80 text-sm">
-            March-out jobs are quoted by phone — every inspection list is a little different.
+            March-out jobs are quoted by phone, because every inspection list is a little different.
+            If you are leaving a civilian rental instead, book{" "}
+            <Link to="/move-out-cleaning-edmonton/" className="underline underline-offset-2">
+              move-out cleaning in Edmonton
+            </Link>{" "}
+            at a flat rate. The{" "}
+            <Link to="/whats-included/" className="underline underline-offset-2">
+              what&rsquo;s-included checklist
+            </Link>{" "}
+            and the{" "}
+            <Link to="/pricing/" className="underline underline-offset-2">
+              full Edmonton price list
+            </Link>{" "}
+            cover the add-ons an inspector usually asks for, including{" "}
+            <Link to="/wall-washing-wall-cleaning/" className="underline underline-offset-2">
+              wall washing
+            </Link>
+            .
           </p>
         </div>
       </section>

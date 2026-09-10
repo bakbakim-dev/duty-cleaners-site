@@ -52,12 +52,15 @@ export default function CalgaryRecurringCleaning() {
       phoneHref="tel:4037681341"
       seoTitle={`Recurring Cleaning Calgary from ${FROM} | Weekly 20% Off`}
       seoDescription={`Recurring house cleaning in Calgary from ${FROM}. Weekly 20% off, bi-weekly 15% off, every 4 weeks 10% off from the second visit; no contract to sign.`}
+      serviceName="Recurring House Cleaning in Calgary"
       canonical="https://dutycleaners.ca/calgary/recurring-cleaning"
       heroHeading={<>Recurring Cleaning in <AccentGold>Calgary</AccentGold></>}
       heroSubheading={`Weekly, bi-weekly or every-4-weeks visits of the standard clean. Your first visit is at the one-time rate, ${FROM} for a one-bedroom; every visit after it is 20% off weekly, 15% off bi-weekly or 10% off every 4 weeks.`}
       heroBadges={["Weekly 20% Off", "Bi-Weekly 15% Off", "Every 4 Weeks 10% Off"]}
       heroImage={heroImage}
       heroImageAlt="Bright, tidy Calgary living room maintained with recurring cleaning service"
+      heroImageWidth={800}
+      heroImageHeight={800}
       overviewEyebrow="Service Overview"
       overviewHeading={<>Standard cleaning, <Accent>on a schedule you set.</Accent></>}
       overviewParagraphs={[

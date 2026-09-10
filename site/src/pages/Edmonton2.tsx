@@ -1,4 +1,4 @@
-import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
+import { CITY_PROOF, COMPANY, RATING_CLAIM } from "@/data/proof";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { BRANCH_PROFILES, BRANCH_IDENTITY } from "@/data/proof";
 import { POLICY } from "@/data/policy";
@@ -53,12 +53,13 @@ import teamScottilee from "@/assets/team/edmonton-scottilee.webp";
 import teamDijana from "@/assets/team/edmonton-dijana.webp";
 import teamClarice from "@/assets/team/clarice-cleaner.webp";
 
-import galleryOvenBA from "@/assets/gallery/dc-oven-before-after.webp";
+/* The oven, stove and toilet crops went with the six-photo mosaic: generated
+   images captioned as finished cleans, sitting directly above a line promising
+   no stand-ins. The three still imported here are the ones the hero strip and
+   the services chapter use. */
 import galleryPostKitchen from "@/assets/gallery/dc-post-kitchen.webp";
 import galleryStoveDetail from "@/assets/gallery/dc-stove-detail.webp";
-import galleryStoveBA from "@/assets/gallery/dc-stove-before-after.webp";
 import galleryModernKitchen from "@/assets/gallery/dc-modern-kitchen.webp";
-import galleryToiletBA from "@/assets/gallery/dc-toilet-before-after.webp";
 import {
   sitePriceRange,
   standardTierRows,
@@ -92,8 +93,14 @@ const postTravel = travelFee("post-construction");
 const HOME_TRAVEL_FEE = homeTravel === null ? "a travel fee quoted when you book" : `a ${formatPrice(homeTravel)} travel fee`;
 const POST_TRAVEL_FEE = postTravel === null ? "a fee quoted when you book" : formatPrice(postTravel);
 
-const PAGE_TITLE = `House Cleaning Edmonton from ${FROM_STANDARD} | Pay After the Clean`;
-const PAGE_DESCRIPTION = `House cleaning in Edmonton from ${FROM_STANDARD}, and nothing is charged until the clean is done. See your price in about 60 seconds. Rated ${RATING_CLAIM}.`;
+/*
+  "Cleaning services edmonton" is the largest query family this site has any
+  claim on — 80,890 impressions — and the title carrying it was /services/,
+  a page with a fraction of this one's authority. The hub takes the phrase and
+  keeps the reason to click; /services/ is being retitled off it separately.
+*/
+const PAGE_TITLE = `House Cleaning Services Edmonton from ${FROM_STANDARD} | Pay After`;
+const PAGE_DESCRIPTION = `House cleaning services in Edmonton from ${FROM_STANDARD}, and nothing is charged until the clean is done. See your price in about 60 seconds. Rated ${RATING_CLAIM}.`;
 
 /* Width-descriptor set for the hero, the LCP element on this page. Without
    it a phone pulled the same 1920px file as a desktop: hero-room-edmonton-manus at 1920w against
@@ -230,10 +237,13 @@ export default function Edmonton2() {
     },
     hasMap: "https://www.google.com/maps?cid=8192121191672692049",
     sameAs: [...BRANCH_PROFILES.edmonton],
-    areaServed: [
-      "Edmonton", "St. Albert", "Sherwood Park", "Spruce Grove", "Leduc",
-      "Beaumont", "Fort Saskatchewan", "Stony Plain", "Morinville", "Devon",
-    ].map((name) => ({ "@type": "City", name })),
+    // Read from city-locations.ts rather than hand-listed. The Calgary twin's
+    // hand-list had already fallen two towns behind its own FAQ; a second copy
+    // of a list that lives in the data is a copy that drifts.
+    areaServed: ["Edmonton", ...edmontonSurrounding.map((town) => town.name)].map((name) => ({
+      "@type": "City",
+      name,
+    })),
     priceRange: sitePriceRange(),
     openingHours: ["Mo-Sa 08:00-20:00", "Su 09:00-15:00"],
     openingHoursSpecification: [
@@ -254,7 +264,10 @@ export default function Edmonton2() {
     answer: `A standard clean starts at ${FROM_STANDARD} for a one-bedroom, one-bathroom home and ${FROM_STANDARD_3BED} for three bedrooms. A deep clean starts at ${FROM_DEEP} and a move-out clean at ${FROM_MOVE}. Every figure is before 5% GST, and the booking form shows the exact price for your home before you choose a date.`
   }, {
     question: "How do Edmonton winters affect your cleaning service?",
-    answer: "Our Edmonton cleaners work year-round. In winter we schedule buffer time for traffic and weather delays."
+    // Was "we schedule buffer time for traffic and weather delays", which told
+    // a customer nothing they could act on. The season changes what to book
+    // and when, and that is on this page already.
+    answer: "It changes what to book more than how we clean. The winter here holds instead of thawing, so the sand and de-icer stay outside until the melt and then come through the door in one load through March and early April. That makes spring the deep-clean month in Edmonton, when entryways, stair treads and the first two metres of hallway have taken the whole season at once; book a standard clean over the winter itself and a deep clean once the melt is through."
   }, {
     question: "Do you clean high-rise condos in downtown Edmonton?",
     answer: "Yes. Our Edmonton team cleans high-rise condos in Oliver, Downtown and along Jasper Avenue, and knows the building protocols, parking passes and access requirements that come with them."
@@ -359,9 +372,11 @@ export default function Edmonton2() {
           deepImageAlt="Detailed stovetop after a deep clean in an Edmonton home"
         />
 
-        {/* The services in prose, with the from-prices. The cards above name
-            the services; these paragraphs say what each one is, what it
-            starts at, and who books it, in the words people search with. */}
+        {/* The services in prose. This used to describe all six of them a
+            second time, with the same from-prices the card grid above already
+            carries — three paragraphs that told a reader who had just scrolled
+            past the cards nothing new. What is left is the part the cards do
+            not do: the routes, and the prices that are not in the table. */}
         <section className="band band-paper band-hairline">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-3xl">
@@ -369,26 +384,20 @@ export default function Edmonton2() {
               <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Cleaning services in Edmonton, by the job</h2>
               <div className="mt-6 space-y-5 leading-relaxed text-muted-foreground">
                 <p>
-                  A standard clean is the upkeep visit: kitchen, bathrooms, bedrooms and living areas, worked from one
-                  checklist. It starts at {FROM_STANDARD} for a one-bedroom and {FROM_STANDARD_3BED} for a three-bedroom
-                  home, and it is the service most Edmonton homes book. The{" "}
-                  <Link to="/edmonton/regular-cleaning/" className="font-semibold text-primary hover:underline">standard cleaning page</Link>{" "}
-                  lists what the visit covers and what it leaves out.
+                  The upkeep visit is the{" "}
+                  <Link to="/edmonton/regular-cleaning/" className="font-semibold text-primary hover:underline">standard clean</Link>,
+                  priced flat by bedrooms and bathrooms; add the deep-clean package and it becomes a{" "}
+                  <Link to="/edmonton/deep-cleaning/" className="font-semibold text-primary hover:underline">deep clean in Edmonton</Link>{" "}
+                  from {FROM_DEEP}, which is what the spring melt is for.
                 </p>
                 <p>
-                  A deep clean is that visit plus the deep-clean package: baseboards, door frames, switches, vents, and
-                  the film on tile and shower glass, from {FROM_DEEP}. Spring is when Edmonton books it, once the winter's
-                  grit has come in through the door in one load. See{" "}
-                  <Link to="/edmonton/deep-cleaning/" className="font-semibold text-primary hover:underline">deep cleaning in Edmonton</Link>{" "}
-                  for the room-by-room list.
-                </p>
-                <p>
-                  A move-out clean, from {FROM_MOVE}, empties the home of everything a walkthrough would find.
-                  Post-construction cleaning is priced on floor area, because drywall dust does not care how many
-                  bedrooms there are. Short-term rental hosts book{" "}
+                  A <Link to="/move-out-cleaning-edmonton/" className="font-semibold text-primary hover:underline">move-out clean</Link>{" "}
+                  from {FROM_MOVE} empties the home of everything a walkthrough would find, and post-construction is
+                  priced on floor area, because drywall dust does not care how many bedrooms there are. Short-term
+                  rental hosts book{" "}
                   <Link to="/edmonton/airbnb-cleaning/" className="font-semibold text-primary hover:underline">Airbnb cleaning in Edmonton</Link>{" "}
-                  by the hour, at {AIRBNB_RATE} per hour per cleaner.{" "}
-                  <Link to="/services/" className="font-semibold text-primary hover:underline">All Edmonton cleaning services and prices</Link>{" "}
+                  by the hour at {AIRBNB_RATE} per cleaner, and{" "}
+                  <Link to="/services/" className="font-semibold text-primary hover:underline">all Edmonton cleaning services and prices</Link>{" "}
                   sit on one page.
                 </p>
               </div>
@@ -402,11 +411,18 @@ export default function Edmonton2() {
               <Eyebrow>On a schedule</Eyebrow>
               <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Maid service in Edmonton, on a schedule or once</h2>
               <div className="mt-6 space-y-5 leading-relaxed text-muted-foreground">
+                {/* This linked the recurring page, which is the schedule. The
+                    page whose title carries "Maid Service" is the standard
+                    clean, so the phrase now points where it goes and the
+                    schedule keeps its own link, for the discount. */}
                 <p>
                   People searching for a maid service in Edmonton are usually describing a standard clean on a regular
-                  day: the same cleaner, the same checklist, every week, every two weeks or every four. That is our{" "}
-                  <Link to="/edmonton/recurring-cleaning/" className="font-semibold text-primary hover:underline">recurring cleaning</Link>, and
-                  from the second visit it is discounted: {RECURRING_DISCOUNTS}.
+                  day: the same checklist, your regular team where we can send them, every week, every two weeks or
+                  every four. The page for that visit is{" "}
+                  <Link to="/edmonton/regular-cleaning/" className="font-semibold text-primary hover:underline">maid service in Edmonton</Link>.
+                  Put it on a schedule and the discount starts at the second visit:{" "}
+                  <Link to="/edmonton/recurring-cleaning/" className="font-semibold text-primary hover:underline">recurring cleaning</Link>{" "}
+                  takes off {RECURRING_DISCOUNTS}.
                 </p>
                 <p>
                   There is no contract. The first visit is charged at the one-time rate, so a single{" "}
@@ -425,49 +441,54 @@ export default function Edmonton2() {
           </div>
         </section>
 
-        {/* Gallery — asymmetric editorial split: sticky heading column left,
-            uneven photo mosaic right. */}
+        {/*
+          "Cleaning company edmonton" (21,509 impressions) was in this page's
+          body twice and in no heading on either hub. What the company is, in
+          the words people search with, and nothing that is not in proof.ts.
+        */}
         <section className="band band-paper band-hairline">
           <div className="container mx-auto px-4">
-            <div className="grid gap-10 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,2fr)] lg:gap-14">
-              <div className="lg:sticky lg:top-28 lg:self-start">
-                <Eyebrow>The standard</Eyebrow>
-                {/* Was "Real Edmonton Homes" over the AI-generated set, directly
-                    above a block saying the real before/afters are not shot yet. */}
-                <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">What a finished clean looks like</h2>
+            <div className="mx-auto max-w-3xl">
+              <Eyebrow>Who we are</Eyebrow>
+              <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">The cleaning company behind the Edmonton team</h2>
+              <div className="mt-6 space-y-5 leading-relaxed text-muted-foreground">
+                <p>
+                  Duty Cleaners is a cleaning company with its own Edmonton office, at {CITY_PROOF.edmonton.streetAddress},
+                  and has worked in this city {COMPANY.sinceLabel}. Residential cleaning is what this page prices:
+                  houses, condos, suites, and the communities past the city limits. The cleaners are ours to send and
+                  reference-checked before a first job, and home cleaning is quoted from the same list the booking form
+                  charges from, so there is nothing to work out on the doorstep.
+                </p>
               </div>
+            </div>
+          </div>
+        </section>
 
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
-                {[
-                  { src: galleryPostKitchen, alt: "A kitchen at the end of a clean: countertops cleared and wiped, sink and taps polished, appliance fronts free of marks", label: "Kitchen", tag: "Kitchen" },
-                  { src: galleryOvenBA, alt: "An oven interior after the inside-oven add-on: racks, door glass and floor of the cavity degreased", label: "Inside the oven", tag: "Add-on" },
-                  { src: galleryToiletBA, alt: "A toilet scrubbed inside and out, including the base and the hinges where build-up collects", label: "Bathroom", tag: "Bathroom" },
-                  { src: galleryStoveDetail, alt: "A stovetop and backsplash with cooking film removed, grates and burner rings degreased", label: "Stovetop", tag: "Deep clean" },
-                  { src: galleryStoveBA, alt: "A range and the wall behind it after degreasing, with no film left on the surround", label: "Range and surround", tag: "Deep clean" },
-                  { src: galleryModernKitchen, alt: "A condo kitchen cleaned to move-out standard, cabinet interiors and drawers emptied and wiped", label: "Move-out", tag: "Move-out" },
-                ].map((photo, index) => (
-                  <figure
-                    key={index}
-                    className={`group card-warm relative overflow-hidden bg-muted transition-all duration-300 hover:shadow-xl ${
-                      index === 0
-                        ? "col-span-2 row-span-2 aspect-[4/3] md:aspect-auto md:min-h-[22rem]"
-                        : "aspect-[4/3]"
-                    }`}
-                  >
-                    <img
-                      src={photo.src}
-                      alt={photo.alt}
-                      loading="lazy"
-                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <span className="absolute top-3 left-3 z-10 text-sm font-semibold uppercase tracking-wider bg-white/90 text-primary px-2.5 py-1 rounded-full shadow-sm">
-                      {photo.tag}
-                    </span>
-                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 via-black/30 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <figcaption className="text-white text-sm font-semibold">{photo.label}</figcaption>
-                    </div>
-                  </figure>
-                ))}
+        {/*
+          Apartments and condos: 3,404 page-one impressions in Edmonton and no
+          heading anywhere on the site. Access is the only thing that differs,
+          so the section says what differs and what does not.
+        */}
+        <section className="band band-white band-hairline">
+          <div className="container mx-auto px-4">
+            <div className="mx-auto max-w-3xl">
+              <Eyebrow>Apartments and condos</Eyebrow>
+              <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Apartment and condo cleaning in Edmonton</h2>
+              <div className="mt-6 space-y-5 leading-relaxed text-muted-foreground">
+                <p>
+                  Getting in is the part that differs. High-rises in Oliver,{" "}
+                  <Link to="/locations/downtown-edmonton/" className="font-semibold text-primary hover:underline">downtown Edmonton</Link>{" "}
+                  and along Jasper Avenue each want something different: a fob or a key left for the lobby, a visitor
+                  stall or a spot in the parkade, a sign-in at the desk, and in some buildings the service elevator
+                  booked for a slot. Put what your building needs on the booking, with the arrival window you have
+                  picked, and the cleaner turns up already knowing it.
+                </p>
+                <p>
+                  Nothing else moves. The price comes off the same table as a house: bedrooms, bathrooms, and whatever
+                  you add to the visit. The checklist is the one on this page and the guarantee is the same. A
+                  one-bedroom condo is a short visit and a three-bedroom apartment is not, which is the whole of why the
+                  number changes.
+                </p>
               </div>
             </div>
           </div>
@@ -492,10 +513,14 @@ export default function Edmonton2() {
                   customer rates the clean. Those ratings are not decoration: they decide who we keep sending, and a
                   cleaner who stops earning them stops getting work from us.
                 </p>
+                {/* The window was stated twice above this paragraph, in the
+                    trust plate and again in the promise block. Said once
+                    apiece is enough; this one keeps the part the others do not
+                    make: photos help, and are not a condition. */}
                 <p>
                   That rule is what makes the guarantee workable. A team that expects to be rated tends to finish the
-                  list. When something is missed anyway, you have {POLICY.guaranteeWindowHours} hours to tell us and we
-                  come back at no charge; photos help the team find it, but they are not a condition.
+                  list, and when something is missed anyway the return visit costs nothing. Photos help the team find
+                  what was missed, but they are not a condition of coming back.
                 </p>
                 <p>
                   The <Link to="/reviews/" className="font-semibold text-primary hover:underline">reviews page</Link> reprints

@@ -16,6 +16,7 @@ import cleanerImage from "@/assets/gallery/westmount-cleaner-kitchen.webp";
 // BookingKoala actually charges.
 const TIERS = standardTierRows().map((row) => ({ size: row.beds, price: row.price }));
 const FROM = TIERS[0].price;
+const TWO_BED = TIERS[1].price;
 const THREE_BED = TIERS[2].price;
 /** Travel fee for an address outside Edmonton city limits, from bk-config. */
 const TRAVEL = formatPrice(travelFee("standard") ?? 0);
@@ -36,12 +37,15 @@ export default function EdmontonRegularCleaning() {
       phoneHref="tel:7809136565"
       seoTitle={`Standard Cleaning & Maid Service Edmonton from ${FROM}`}
       seoDescription={`Standard house cleaning in Edmonton from ${FROM}, flat by home size. One visit, full checklist, nothing charged until the clean is done.`}
+      serviceName="Standard House Cleaning in Edmonton"
       canonical="https://dutycleaners.ca/edmonton/regular-cleaning"
       heroHeading={<>Standard Cleaning Services in <AccentGold>Edmonton</AccentGold></>}
       heroSubheading={`One visit covering the kitchen, bathrooms, bedrooms and living areas, priced flat by home size from ${FROM} for a one-bedroom. If you want it kept up, the same clean on a schedule is discounted from the second visit.`}
       heroBadges={["Reference-Checked Cleaners", "All Supplies Brought For You", "100% Satisfaction Guarantee"]}
       heroImage={heroImage}
       heroImageAlt="Bright, tidy Edmonton living room after a standard cleaning visit"
+      heroImageWidth={1024}
+      heroImageHeight={1024}
       overviewEyebrow="Service Overview"
       overviewHeading={<>One visit, every room, <Accent>one flat price.</Accent></>}
       overviewParagraphs={[
@@ -56,7 +60,7 @@ export default function EdmontonRegularCleaning() {
           The microwave is cleaned inside and out. The inside of the oven and fridge are add-ons, and baseboards, vents,
           switches and other build-up belong to a <Link to="/edmonton/deep-cleaning/">deep clean in Edmonton</Link>.
         </>,
-        "Our cleaners follow a room-by-room checklist and bring all the supplies and equipment. We ask that the home is reasonably prepared before arrival: clothing, toys, dishes and clutter picked up. Small items may be put away if it takes a minute or two, but the visit is cleaning, not decluttering or organising.",
+        "Our cleaners follow a room-by-room checklist and bring all the supplies and equipment. You do not need to clean before the team comes; clear counters and floors get cleaned and cluttered ones get worked around; decluttering and organising are a separate hourly add-on.",
       ]}
       sections={[
         {
@@ -86,6 +90,31 @@ export default function EdmontonRegularCleaning() {
           ),
         },
         {
+          heading: "Apartment and condo cleaning in Edmonton",
+          body: (
+            <>
+              <p>
+                An apartment or a condo pays the table rate with no home-type charge on top: {FROM} at one bedroom,{" "}
+                {TWO_BED} at two. A third-floor walk-up and a Downtown tower cost the same, because the figure is set
+                by bedrooms, bathrooms and the kind of home, and by nothing else. There is no stair charge and no
+                elevator charge.
+              </p>
+              <p>
+                Getting in is what actually differs. A tower usually means a fob left with the concierge, a buzzer code,
+                or somebody at the door; a walk-up usually means a lockbox. Put the arrangement on the booking, with
+                where the team should leave the car, whether that is a visitor stall in the parkade or the street. A
+                team that cannot get past the lobby is a lockout, and a lockout is charged at {POLICY.lockoutFee}.
+              </p>
+              <p>
+                The checklist itself does not change in a condo, and two edges of it are worth naming. An in-suite
+                laundry room is cleaned like any other room, the floor, the surfaces and the outside of the machines,
+                but the laundry itself is not on the checklist. The balcony is outdoor space and stays off it as well,
+                apart from a sweep booked as an add-on.
+              </p>
+            </>
+          ),
+        },
+        {
           heading: "House cleaning in Edmonton and the towns around it",
           body: (
             <>
@@ -95,6 +124,16 @@ export default function EdmontonRegularCleaning() {
                 has its own page: <Link to="/cleaning-services-st-albert/">St. Albert house cleaners</Link>,{" "}
                 <Link to="/cleaning-services-sherwood-park/">house cleaning in Sherwood Park</Link> and{" "}
                 <Link to="/cleaning-services-spruce-grove/">cleaning services in Spruce Grove</Link>.
+              </p>
+              <p>
+                A standard clean is not the right booking for every job. An empty place at the end of a tenancy is{" "}
+                <Link to="/move-out-cleaning-edmonton/">move-out cleaning in Edmonton</Link>, which has a table of its
+                own. A home just out of a renovation is{" "}
+                <Link to="/post-construction-cleaning/">post-construction cleaning</Link>, priced by square footage
+                rather than bedrooms. Scuffed or greasy walls are{" "}
+                <Link to="/wall-washing-wall-cleaning/">wall washing</Link>, a package added to a clean rather than part
+                of the checklist. A suite turned over between guests is{" "}
+                <Link to="/edmonton/airbnb-cleaning/">Airbnb cleaning in Edmonton</Link>, billed by the hour.
               </p>
               <p>
                 Everything else we do in the city, with a starting price beside each one, is on{" "}
@@ -143,7 +182,7 @@ export default function EdmontonRegularCleaning() {
       ]}
       faqs={[
         { q: "Is this the same as a maid service?", a: "Yes. Maid service, housekeeping and standard cleaning all describe the same visit here: a checklist clean of the kitchen, bathrooms, bedrooms and living areas at a flat rate by home size. We do not place live-in or hourly maids. If you want the visit repeated, book it as recurring cleaning and the discount applies from the second visit." },
-        { q: "Does standard cleaning include cleaning the kitchen?", a: "Yes. We clean kitchen counters, sinks, exterior appliance surfaces, outside of the cupboards, and floors." },
+        { q: "Does standard cleaning include cleaning the kitchen?", a: "Yes, and it is the longest stop on the round. The team wipes the counters and the cupboard fronts, cleans the sink and the stovetop, does the microwave inside and out, wipes the fridge, oven and dishwasher on the outside, then vacuums and mops the floor. The oven and fridge interiors are add-ons, and the grease on the range hood is deep-clean work." },
         { q: "What's the difference between standard and deep cleaning?", a: "Standard cleaning refreshes a home that's already clean — dusting, vacuuming, mopping, and sanitizing high-use areas. Deep cleaning tackles built-up grime, baseboards, doors, light switches, wall outlets, and outside vents." },
         { q: "How long does a standard cleaning take?", a: "We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
         { q: "How often should I schedule standard cleaning?", a: "A standard clean is a single visit, so book it when the home needs one. If you want it kept up, the recurring cleaning page has the same clean on a schedule: 20% off weekly, 15% off bi-weekly, and 10% off every 4 weeks, from the second visit on." },
@@ -153,7 +192,7 @@ export default function EdmontonRegularCleaning() {
         // visit when the team cannot get in.
         { q: "Do I need to be home during the cleaning?", a: "No. Most clients leave a lockbox or smart-lock code, a garage code, or a key with a concierge — a lockbox is the safest of these. Tell us the arrangement when you book so the team is not left standing outside, and we lock up when we leave." },
         { q: "Do I need to provide cleaning supplies?", a: "No — our team brings all cleaning supplies and equipment. If you would prefer we use specific products, tell us when you book." },
-        { q: "What should I do to prepare?", a: "Please pick up any personal items you'd like put away and clear surfaces such as vanities, countertops, and other cluttered areas so our cleaners can work efficiently. You may also let us know any priority areas or spaces you would like us to focus on or skip." },
+        { q: "What should I do to prepare?", a: "You do not need to clean before the team comes; clear counters and floors get cleaned and cluttered ones get worked around; decluttering and organising are a separate hourly add-on. What does help is telling us on the booking which room to start in and which to leave alone. If somebody works nights and will be asleep at two in the afternoon, say which room, and the order the house gets done in changes at no cost." },
       ]}
       closingSections={[
         {

@@ -29,6 +29,17 @@ export default defineConfig(({ mode }) => ({
         // chunk of the route that imports it, and a library several routes
         // share gets a chunk of its own that only those routes import.
         manualChunks: undefined,
+        // Rollup's default splitting is right about WHERE a module belongs and
+        // wrong about how small a chunk is worth making: the build emitted 83
+        // chunks under 1.5 KB — one per lucide icon and one per hashed image
+        // URL — so a route paid a request each for a few hundred bytes.
+        // Folding anything under 10 KB back into its importer took the build
+        // from 315 chunks to 286 and cut a page's requests by a fifth (a town
+        // page loads 21 chunks where it loaded 24). It is a request-count fix,
+        // not a byte fix: merging can duplicate a module that had several
+        // importers, and measured across four pages the transferred total
+        // moved between -0.8 and +2.0 KB gzipped.
+        experimentalMinChunkSize: 10000,
       },
     },
   },

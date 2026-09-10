@@ -701,3 +701,36 @@ describe("price CTAs reach the price", () => {
     ).toEqual([]);
   });
 });
+
+describe("the guarantee badge says what the guarantee is", () => {
+  /**
+   * "100% Satisfaction Guarantee" on its own invites the reader to hear
+   * "money back". The guarantee is a return visit: tell us within
+   * POLICY.guaranteeWindowHours hours and we re-clean the missed areas at no
+   * charge. So the badge may keep the name people recognise, but only on a
+   * page that also states the terms.
+   *
+   * An audit on 9 September 2026 found the badge on 177 built pages and the
+   * terms on 176 of them. The one exception was /reviews/, whose stat card
+   * read "24-Hour / 100% Satisfaction Guarantee" and stopped there. One page
+   * out of 177 is exactly the kind of gap nobody notices by reading.
+   */
+  const TERMS = /re-clean|come back and|return to make it right|at no additional charge|at no extra cost/i;
+
+  it("no page shows the badge without saying it is a re-clean", () => {
+    const pages = allPages();
+    if (!pages.length) return; // unbuilt tree
+    const bare: string[] = [];
+    for (const url of pages) {
+      const file = url === "/" ? join(DIST, "index.html") : join(DIST, ...url.split("/").filter(Boolean), "index.html");
+      const html = readFileSync(file, "utf-8");
+      if (!/100% Satisfaction Guarantee/i.test(html)) continue;
+      if (!TERMS.test(html)) bare.push(url);
+    }
+    expect(
+      bare,
+      "these pages promise a 100% guarantee and never say it is a return visit; " +
+        "state the terms beside the badge or name the badge for what it is",
+    ).toEqual([]);
+  });
+});

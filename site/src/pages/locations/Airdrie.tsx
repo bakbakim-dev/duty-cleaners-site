@@ -7,8 +7,10 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
-import { sitePriceRange, standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice } from "@/data/pricing";
+import { sitePriceRange, standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice, addOnFromPrice } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
+import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
+import { GOOGLE_LISTINGS } from "@/lib/google-listings";
 import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
 
 // Every figure on this page is derived from bk-config or policy.ts.
@@ -22,6 +24,16 @@ const MOVE = moveInOutTierRows();
 const MOVE_FROM = MOVE[0].price;
 const MOVE_TOP = MOVE[MOVE.length - 1].price;
 const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
+// Post-construction carries its own travel-fee row in bk-config, at a higher amount.
+const PC_TRAVEL_FEE = formatPrice(travelFee("post-construction") ?? 0);
+// Charged for you rather than chosen, and charged inside the city too.
+const PET_FEE = formatPrice(addOnFromPrice("standard", "must-choose-if-you-have-pets") ?? 0);
+const HOME_TYPE = {
+  bungalow: formatPrice(BK_PRICE_OVERRIDES[54].price),
+  townhouse: formatPrice(BK_PRICE_OVERRIDES[89].price),
+  twoStorey: formatPrice(BK_PRICE_OVERRIDES[90].price),
+};
+const CALGARY_LISTING = GOOGLE_LISTINGS.calgary;
 const CALGARY_RATING = `${CITY_PROOF.calgary.googleRating} on Google`;
 
 const PAGE_TITLE = `House Cleaning Airdrie from ${STANDARD_FROM} | Duty Cleaners`;
@@ -67,13 +79,34 @@ const ServiceCard = ({
   </div>
 );
 
-const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: string }) => (
+const WhyUsCard = ({
+  icon: Icon,
+  title,
+  description,
+  link,
+}: {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  /** Present on the rating card, which cites the listing the count comes from. */
+  link?: { href: string; text: string };
+}) => (
   <div className="group bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center transition-all duration-500 ease-out hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-xl" style={{ transformStyle: "preserve-3d" }}>
     <div className="w-14 h-14 rounded-full bg-accent/20 flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:rotate-12">
       <Icon className="w-7 h-7 text-accent" />
     </div>
     <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
-    <p className="text-white/80 text-sm leading-relaxed">{description}</p>
+    <p className="text-white/80 text-sm leading-relaxed">
+      {description}
+      {link && (
+        <>
+          {" "}
+          <a href={link.href} target="_blank" rel="noopener noreferrer" className="text-white underline underline-offset-2 font-medium">
+            {link.text}
+          </a>
+        </>
+      )}
+    </p>
   </div>
 );
 
@@ -88,7 +121,7 @@ const services = [
 
 const whyUsItems = [
   { icon: Shield, title: "Reference-Checked, Then Rated by You", description: "Every cleaner is reference-checked before their first job, then rated by the customer after every visit. Those ratings decide who keeps cleaning for us." },
-  { icon: Star, title: RATING_CLAIM, description: `${CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount} reviews across Edmonton and Calgary, and every one of them is on our Google listing.` },
+  { icon: Star, title: RATING_CLAIM, description: `An Airdrie clean is rated on the Calgary listing, which carries ${CITY_PROOF.calgary.googleReviewCount} reviews.`, link: { href: CALGARY_LISTING.reviewsUrl, text: "See the Calgary listing" } },
   { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability, schedule permitting." },
   { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Professional cleaners who work to the Duty Cleaners checklist." },
@@ -112,7 +145,7 @@ export default function Airdrie() {
   const faqs = [
     {
       question: "Is there a travel fee for house cleaning in Airdrie?",
-      answer: `Yes. Airdrie is its own city north of Calgary's limits, and bookings outside Calgary carry a ${TRAVEL_FEE} travel fee. It is added at booking and sits in the total before you confirm, and it is one flat amount regardless of home size or which clean you book.`
+      answer: `Yes. Airdrie is its own city north of Calgary's limits, and a home-cleaning booking outside Calgary carries a ${TRAVEL_FEE} travel fee. It is added at booking and sits in the total before you confirm. Home size does not change it, but the type of clean can: post-construction has its own fee of ${PC_TRAVEL_FEE}. Beyond that fee, nothing here is priced differently from a Calgary address. The pet charge and the home-type surcharges apply in Airdrie exactly as they do in the city: ${PET_FEE} a visit for a home with pets, and the step up from an apartment or condo, ${HOME_TYPE.bungalow} for a bungalow or basement suite, ${HOME_TYPE.townhouse} for a townhouse and ${HOME_TYPE.twoStorey} for a two-storey house.`
     },
     {
       question: "Can I get a same-day clean in Airdrie?",
@@ -128,7 +161,7 @@ export default function Airdrie() {
     },
     {
       question: "Do the cleaners bring supplies to Airdrie?",
-      answer: `Yes, all of them, including the vacuum. For hard-water scale on shower glass and chrome, which is the usual Airdrie complaint, the crew brings a mild acid descaler; a scrub pad is the wrong tool for it. Eco-friendly products are ${POLICY.ecoProductsFee} extra: ${POLICY.ecoProductsHowToRequest}.`
+      answer: `Yes, all of them, including the vacuum and the descaler. If there is a product you would rather we used on a particular surface, leave it out and say so at booking. Eco-friendly products are ${POLICY.ecoProductsFee} extra: ${POLICY.ecoProductsHowToRequest}.`
     },
     {
       question: "What is the guarantee on an Airdrie clean?",
@@ -244,7 +277,6 @@ export default function Airdrie() {
                     <a href="https://www.google.com/maps/place/Luxstone,+Airdrie,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Luxstone</a>{" "}
                     and{" "}
                     <a href="https://www.google.com/maps/place/Coopers+Crossing,+Airdrie,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Coopers Crossing</a>.
-                    The tap water is bought from Calgary and is hard, so shower glass and chrome here go cloudy rather than dirty, and cloudy comes off with a mild acid, not a scrub.
                   </p>
                   <p>
                     The price is a flat rate by bedroom count, from {STANDARD_FROM} for a one-bedroom, and Airdrie is outside Calgary city limits, so a {TRAVEL_FEE} travel fee is added at booking rather than discovered on the invoice. The crews are the Calgary crews: reference-checked before a first job, rated by the customer after every visit, and you can{" "}
@@ -265,10 +297,10 @@ export default function Airdrie() {
             <div className="max-w-4xl mx-auto">
               <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Life</span>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                Things To Do In Airdrie
+                Around Airdrie
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
-                <p>Airdrie began as a railway village in the late 1800s and is now part of the Calgary Metropolitan Region. Nose Creek Park hosts the Airdrie Festival of Lights each year, Iron Horse Park runs miniature train rides, and East Lake Regional Park has walking trails. The Airdrie Farmers Market sells local produce, and the restaurants are along Main Street.</p>
+                <p>Airdrie began as a railway village in the late 1800s and is now part of the Calgary Metropolitan Region. Nose Creek Park hosts the Airdrie Festival of Lights each year, Iron Horse Park runs miniature train rides, and East Lake Regional Park has walking trails. The other name on the map is the Airdrie Farmers Market.</p>
               </div>
             </div>
           </AnimatedSection>
@@ -342,7 +374,7 @@ export default function Airdrie() {
                 </h2>
                 <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                   <p>
-                    A deep clean in Airdrie is {DEEP_FROM} for a one-bedroom and {DEEP_TOP} for five or more bedrooms, plus the {TRAVEL_FEE} travel fee. It is the standard clean with the once-a-season work added: baseboards, ceiling fans, vent covers, outlet covers and light switches, and in Airdrie it is where the descaling of shower glass and taps gets the time it needs. Most homes book it once, then hold the result on a standard schedule. The{" "}
+                    A deep clean in Airdrie is {DEEP_FROM} for a one-bedroom and {DEEP_TOP} for five or more bedrooms, plus the {TRAVEL_FEE} travel fee. It is the standard clean with the once-a-season work added: baseboards, ceiling fans, vent covers, outlet covers and light switches. Most homes book it once, then hold the result on a standard schedule. The{" "}
                     <Link to="/calgary/deep-cleaning/" className="text-primary underline underline-offset-2">deep cleaning in Calgary</Link>{" "}
                     page has the full checklist and the price at every bedroom count.
                   </p>

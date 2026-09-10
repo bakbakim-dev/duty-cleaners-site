@@ -18,7 +18,6 @@ import cleanerImage from "@/assets/gallery/westmount-cleaner-kitchen.webp";
 // BookingKoala actually charges.
 const TIERS = standardTierRows().map((row) => ({ size: row.beds, price: row.price }));
 const FROM = TIERS[0].price;
-const THREE_BED = TIERS[2].price;
 /** Travel fee for an address outside Edmonton city limits, from bk-config. */
 const TRAVEL = formatPrice(travelFee("standard") ?? 0);
 const REVIEWS = CITY_PROOF.edmonton.googleReviewCount;
@@ -26,11 +25,15 @@ const WEEKLY = FREQUENCIES.find((f) => f.discount === 0.2);
 const BIWEEKLY = FREQUENCIES.find((f) => f.discount === 0.15);
 const FOUR_WEEKS = FREQUENCIES.find((f) => f.discount === 0.1);
 const pct = (discount?: number) => `${Math.round((discount ?? 0) * 100)}%`;
-/** What a visit costs from the second one on, for a published tier on a frequency. */
-const ongoing = (tierIndex: number, frequency?: string) => {
+/**
+ * One quote for a published tier on one frequency. Both halves of every worked
+ * example on this page come through here, so a base price and the discounted
+ * price under it can never be derived two different ways.
+ */
+const quoteFor = (tierIndex: number, frequency: string) => {
   const tier = PRICING_TIERS[tierIndex];
-  if (!tier || !frequency) return "";
-  const quote = calculateQuote({
+  if (!tier) return null;
+  return calculateQuote({
     service: "standard",
     homeType: homeTypeOptions("standard")[0]?.id ?? null,
     bedrooms: tier.beds,
@@ -39,7 +42,22 @@ const ongoing = (tierIndex: number, frequency?: string) => {
     addOns: [],
     frequency,
   });
-  return formatPrice(quote.ongoing ?? quote.firstClean);
+};
+/**
+ * The exact first-visit price, not the price table's rounded label. The table
+ * rounds to the dollar, so a three-bedroom billed at $232.30 shows as $232 —
+ * and the page printed that rounded figure beside unrounded discounted ones.
+ * A reader taking 20% off $232 got $185.60 where the page said $185.84, which
+ * reads as a page that cannot do arithmetic. Same helper, both halves.
+ */
+const firstVisit = (tierIndex: number) => {
+  const quote = quoteFor(tierIndex, "one-time");
+  return quote ? formatPrice(quote.firstClean) : "";
+};
+/** What a visit costs from the second one on, for a published tier on a frequency. */
+const ongoing = (tierIndex: number, frequency?: string) => {
+  const quote = frequency ? quoteFor(tierIndex, frequency) : null;
+  return quote ? formatPrice(quote.ongoing ?? quote.firstClean) : "";
 };
 
 export default function EdmontonRecurringCleaning() {
@@ -52,12 +70,15 @@ export default function EdmontonRecurringCleaning() {
       phoneHref="tel:7809136565"
       seoTitle={`Recurring Cleaning Edmonton from ${FROM} | Weekly 20% Off`}
       seoDescription={`Recurring house cleaning in Edmonton from ${FROM}: weekly 20% off, bi-weekly 15% off, every 4 weeks 10% off from the second visit. No contract.`}
+      serviceName="Recurring House Cleaning in Edmonton"
       canonical="https://dutycleaners.ca/edmonton/recurring-cleaning"
       heroHeading={<>Recurring Cleaning in <AccentGold>Edmonton</AccentGold></>}
       heroSubheading={`The standard clean on a weekly, bi-weekly or every-4-weeks schedule. The first visit is charged at the one-time rate, from ${FROM} for a one-bedroom; from the second, 20% off weekly, 15% off bi-weekly and 10% off every 4 weeks.`}
       heroBadges={["Weekly 20% Off", "Bi-Weekly 15% Off", "Every 4 Weeks 10% Off"]}
       heroImage={heroImage}
       heroImageAlt="Bright, tidy Edmonton living room maintained with recurring cleaning service"
+      heroImageWidth={1024}
+      heroImageHeight={1024}
       overviewEyebrow="Service Overview"
       overviewHeading={<>The same clean, <Accent>on a schedule.</Accent></>}
       overviewParagraphs={[
@@ -84,9 +105,10 @@ export default function EdmontonRecurringCleaning() {
               </p>
               <p>
                 It is every 4 weeks rather than the calendar month because that is how the booking system schedules it:
-                13 visits a year rather than 12. Worked through on a three-bedroom, the first visit is {THREE_BED}, and
-                from the second visit each clean is {ongoing(2, WEEKLY?.id)} weekly, {ongoing(2, BIWEEKLY?.id)} bi-weekly
-                or {ongoing(2, FOUR_WEEKS?.id)} every 4 weeks, before GST.
+                13 visits a year rather than 12. Worked through on a three-bedroom, the first visit is{" "}
+                {firstVisit(2)}, which the table below rounds to the nearest dollar. From the second visit each clean is{" "}
+                {ongoing(2, WEEKLY?.id)} weekly, {ongoing(2, BIWEEKLY?.id)} bi-weekly or {ongoing(2, FOUR_WEEKS?.id)}{" "}
+                every 4 weeks, before GST.
               </p>
             </>
           ),

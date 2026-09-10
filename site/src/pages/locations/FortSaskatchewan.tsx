@@ -4,8 +4,10 @@ import {
 import fortSaskKitchen from "@/assets/gallery/fort-saskatchewan-kitchen-clean.webp";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CoverageChips from "@/components/CoverageChips";
-import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice } from "@/data/pricing";
+import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice, addOnFromPrice } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
+import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
+import { GOOGLE_LISTINGS } from "@/lib/google-listings";
 import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
 
 import LocationPricing from "@/components/LocationPricing";
@@ -19,7 +21,16 @@ const MOVE = moveInOutTierRows();
 const MOVE_FROM = MOVE[0].price;
 const MOVE_TOP = MOVE[MOVE.length - 1].price;
 const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
-const REVIEW_COUNT = CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount;
+// Post-construction carries its own travel-fee row in bk-config, at a higher amount.
+const PC_TRAVEL_FEE = formatPrice(travelFee("post-construction") ?? 0);
+// Charged for you rather than chosen, and charged inside the city too.
+const PET_FEE = formatPrice(addOnFromPrice("standard", "must-choose-if-you-have-pets") ?? 0);
+const HOME_TYPE = {
+  bungalow: formatPrice(BK_PRICE_OVERRIDES[54].price),
+  townhouse: formatPrice(BK_PRICE_OVERRIDES[89].price),
+  twoStorey: formatPrice(BK_PRICE_OVERRIDES[90].price),
+};
+const EDMONTON_LISTING = GOOGLE_LISTINGS.edmonton;
 
 const PAGE_TITLE = `House Cleaning Fort Saskatchewan from ${STANDARD_FROM} | Duty Cleaners`;
 const PAGE_DESCRIPTION = `House cleaning in Fort Saskatchewan from ${STANDARD_FROM}, flat by home size and rated ${RATING_CLAIM}. Standard, deep and move-out cleans, paid after the clean.`;
@@ -64,13 +75,34 @@ const ServiceCard = ({
   </div>
 );
 
-const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: string }) => (
+const WhyUsCard = ({
+  icon: Icon,
+  title,
+  description,
+  link,
+}: {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  /** Present on the rating card, which cites the listing the count comes from. */
+  link?: { href: string; text: string };
+}) => (
   <div className="group bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center transition-all duration-500 ease-out hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-xl" style={{ transformStyle: "preserve-3d" }}>
     <div className="w-14 h-14 rounded-full bg-accent/20 flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:rotate-12">
       <Icon className="w-7 h-7 text-accent" />
     </div>
     <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
-    <p className="text-white/80 text-sm leading-relaxed">{description}</p>
+    <p className="text-white/80 text-sm leading-relaxed">
+      {description}
+      {link && (
+        <>
+          {" "}
+          <a href={link.href} target="_blank" rel="noopener noreferrer" className="text-white underline underline-offset-2 font-medium">
+            {link.text}
+          </a>
+        </>
+      )}
+    </p>
   </div>
 );
 
@@ -80,13 +112,13 @@ const services = [
   { icon: Truck, title: "Move In/Out Cleaning", description: "The empty-house clean, inside the appliances and cabinets included.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Fort Saskatchewan" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Drywall dust and site debris cleared after a build or a renovation.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Fort Saskatchewan" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Fort Saskatchewan" },
-  { icon: UtensilsCrossed, title: "Kitchen Deep Clean", description: "Appliance interiors, countertops, backsplashes, and sink areas thoroughly cleaned." },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard clean on a standing booking, from ${STANDARD_FROM}. Every visit after the first is 20% off weekly, 15% bi-weekly, 10% every four weeks.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Fort Saskatchewan" },
 ];
 
 const whyUsItems = [
   { icon: Shield, title: "Reference-Checked, Then Rated by You", description: "Every cleaner is reference-checked before their first job, then rated by the customer after every visit. Those ratings decide who keeps cleaning for us." },
-  { icon: Star, title: RATING_CLAIM, description: `${REVIEW_COUNT} reviews across Edmonton and Calgary, and every one of them is on our Google listing.` },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day slots when the schedule allows, and a room skipped for a sleeping shift worker at no charge." },
+  { icon: Star, title: RATING_CLAIM, description: `A Fort Saskatchewan clean is rated on the Edmonton listing, which carries ${CITY_PROOF.edmonton.googleReviewCount} reviews.`, link: { href: EDMONTON_LISTING.reviewsUrl, text: "Read the listing" } },
+  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day slots when the schedule allows." },
   { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
   { icon: Users, title: "Experienced Team", description: "Cleaners who work to the Duty Cleaners checklist and are rated by you after each visit." },
   { icon: ThumbsUp, title: "Satisfaction Guarantee", description: `If something was missed, tell us within ${POLICY.guaranteeWindowHours} hours and we'll return to make it right — at no additional charge.` },
@@ -101,11 +133,11 @@ export default function FortSaskatchewan() {
   const faqs = [
     {
       question: "Is there a travel fee for cleaning in Fort Saskatchewan?",
-      answer: `There is. Fort Saskatchewan is its own city, outside Edmonton's limits, so bookings here carry a ${TRAVEL_FEE} travel fee on top of the flat rate. It is one line, added at booking, and it is the same whether the clean is a standard, a deep or a move-out. Nothing else about the price differs from an Edmonton address.`
+      answer: `There is. Fort Saskatchewan is its own city, outside Edmonton's limits, so bookings here carry a ${TRAVEL_FEE} travel fee on top of the flat rate. It is one line, added at booking, and it is the same whether the clean is a standard, a deep or a move-out; post-construction is the one service with its own figure, ${PC_TRAVEL_FEE}. That line is the only thing an Edmonton address would not have. The rest of the bill is built the same way, including the pet charge and the home-type surcharges: ${PET_FEE} a visit for a home with pets, and the step up from an apartment or condo, ${HOME_TYPE.bungalow} for a bungalow or basement suite, ${HOME_TYPE.townhouse} for a townhouse, ${HOME_TYPE.twoStorey} for a two-storey house.`
     },
     {
       question: "Can I book same-day cleaning in Fort Saskatchewan?",
-      answer: `Often, yes, and the way to find out is to phone rather than fill in a form. Arrival windows are ${ARRIVAL_WINDOWS.join(", ")}. If someone in the house is on nights and asleep during the visit, say which room: the crew does that room last or skips it, and the price does not change.`
+      answer: `Often, yes, and the way to find out is to phone rather than fill in a form. Arrival windows are ${ARRIVAL_WINDOWS.join(", ")}. Booking a day or two ahead is the reliable way to get the window you want, and you do not need to be home if you leave a key or a code.`
     },
     {
       question: "Do you offer move-out cleaning in Fort Saskatchewan?",
@@ -246,7 +278,8 @@ export default function FortSaskatchewan() {
                   <a href="https://www.google.com/maps/place/Fort+Heritage+Precinct,+Fort+Saskatchewan,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
                     Fort Heritage Precinct
                   </a>{" "}
-                  are the two landmarks a crew steers by. The crews themselves are reference-checked before a first job and rated by the customer after every visit, and those ratings are what keep the score at {RATING_CLAIM}; you can see{" "}
+                  are the two landmarks a crew steers by. These are the crews who do our{" "}
+                  <Link to="/" className="text-primary underline underline-offset-2 font-medium">house cleaning inside Edmonton city limits</Link>, on the same checklist and the same flat rate, with the travel fee added out here. They are reference-checked before a first job and rated by the customer after every visit, and those ratings are what keep the score at {RATING_CLAIM}; you can see{" "}
                   <Link to="/reviews/" className="text-primary underline underline-offset-2 font-medium">what customers wrote</Link>{" "}
                   before you book. The{" "}
                   <Link to="/services/" className="text-primary underline underline-offset-2 font-medium">Edmonton services list, with a starting price on each</Link>, covers everything we run here.
@@ -267,7 +300,7 @@ export default function FortSaskatchewan() {
                 Around Fort Saskatchewan
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
-                <p>The city takes its name from the North-West Mounted Police fort of 1875, and the Fort Heritage Precinct sits on that history. The Dow Centennial Centre holds the theatre, the gallery and the fitness rooms; Legacy Park has the river trails and the picnic ground; Elk Island National Park is the campground people drive out to. The petrochemical plants east of town are the reason so many households here run on a shift rotation, which comes up further down this page.</p>
+                <p>The city takes its name from the North-West Mounted Police fort of 1875, and the Fort Heritage Precinct sits on that history. The Dow Centennial Centre holds the theatre, the gallery and the fitness rooms; Legacy Park has the river trails and the picnic ground; Elk Island National Park is the campground people drive out to. The petrochemical plants are east of town.</p>
               </div>
             </div>
           </AnimatedSection>
@@ -362,7 +395,7 @@ export default function FortSaskatchewan() {
             </h2>
             <p className="text-muted-foreground mb-8 max-w-3xl mx-auto text-left md:text-center">
               Our{" "}
-              <Link to="/cleaning-services-st-albert/" className="text-primary underline underline-offset-2 font-medium">St. Albert house cleaners</Link>{" "}
+              <Link to="/cleaning-services-st-albert/" className="text-primary underline underline-offset-2 font-medium">St. Albert cleaning crews</Link>{" "}
               cover the north side of the region with us. South of the city we do{" "}
               <Link to="/cleaning-services-beaumont/" className="text-primary underline underline-offset-2 font-medium">Beaumont house cleaning</Link>{" "}
               and run{" "}
@@ -390,7 +423,7 @@ export default function FortSaskatchewan() {
         eyebrow="From the route"
         heading="Quiet hours in a shift town"
         paragraphs={[
-          "Alberta's Industrial Heartland, which bills itself as the largest industrial area in Canada west of Toronto, takes in Fort Saskatchewan and the counties around it, and enough of the households we clean run on a plant rotation that we ask about it at booking. Someone may be asleep at two in the afternoon. Tell us which room: the order a house gets done in is easy to change, and the vacuum is the part that matters.",
+          "Alberta's Industrial Heartland, which describes itself as Canada's largest hydrocarbon processing region, takes in Fort Saskatchewan and the counties around it, and enough of the households we clean run on a plant rotation that we ask about it at booking. Someone may be asleep at two in the afternoon. Tell us which room: the order a house gets done in is easy to change, and the vacuum is the part that matters.",
           "Growth here has been steep and long: roughly 2,600 residents in the mid-1950s, more than 27,000 by 2021. Southfort and Westpark were laid out generations after the older streets near the 1875 fort site, so the work swings between move-in cleans in houses nobody has lived in yet and long-settled homes where a storage room has to be emptied before it can be cleaned at all.",
         ]}
       />

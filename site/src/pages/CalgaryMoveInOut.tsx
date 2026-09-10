@@ -151,6 +151,14 @@ export default function CalgaryMoveInOut() {
               description: META_DESCRIPTION,
               path: "/move-out-cleaning-calgary",
               city: "calgary",
+              // The five rows the cost table prints, declared as Offers. The
+              // page published a full price list and no offer of any kind, so
+              // nothing machine-readable carried a figure. Same rows, same
+              // source: moveInOutTierRows().
+              offerCatalog: {
+                name: "Move-out cleaning by home size",
+                rows: MOVE_ROWS.map((row) => ({ name: row.beds, price: row.price })),
+              },
             }),
           )}
         </script>
@@ -185,13 +193,10 @@ export default function CalgaryMoveInOut() {
                 Flat rate from {moveInOutFromPrice()} plus 5% GST, fixed by home size.
               </p>
               <p className="text-base md:text-lg mb-8 text-white/80 leading-relaxed">
-                A move-out clean is the one-time clean an empty home gets between tenants or owners.
-                It covers the inside of the oven, fridge, cabinets and closets, the baseboards,
-                switches and vents, the scale in the bathrooms, and the floors last. Prices start
-                at {moveInOutFromPrice()} for a one-bedroom and do not rise if the job runs long.
-                If the inspection cites anything we missed, tell us within {POLICY.guaranteeWindowHours} hours
-                and we come back at no charge. Book online with the instant price, or call the
-                Calgary office.
+                A move-out clean is the one-time clean an empty home gets between tenants or owners,
+                from {moveInOutFromPrice()} for a one-bedroom. It is timed for the gap after the
+                furniture goes and before the keys do, because that is the state the inspection
+                measures the home in. Book online with the instant price, or call the Calgary office.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
@@ -257,7 +262,10 @@ export default function CalgaryMoveInOut() {
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground mt-4">
               <span>⚡ Instant pricing</span>
               <span>📞 No phone call required</span>
-              <span>💳 No credit card required</span>
+              {/* Was "No credit card required". PAYMENT_TERMS places a temporary
+                  hold on the card the day before the clean, so that is false as a
+                  claim about booking and true as one about the quote. */}
+              <span>💳 No card needed to see your price</span>
             </div>
           </div>
         </div>
@@ -271,14 +279,17 @@ export default function CalgaryMoveInOut() {
           </h2>
 
           <div className="prose prose-lg max-w-none text-muted-foreground space-y-4">
+            {/* The room-by-room cards below are this page's includes list. This
+                paragraph used to repeat the whole of it, and so did the hero and
+                the end-of-tenancy section; it now says what makes the checklist
+                different instead. */}
             <p>
-              Move-out cleaning is the deepest clean we offer. The regular checklist keeps an
-              occupied home in order; the move-out checklist assumes the home is empty and works
-              through the parts nobody sees while they live there. We clean inside the oven,
-              fridge and freezer, dishwasher and microwave, inside every cabinet and drawer,
-              inside closets and storage, and along baseboards, door frames, switches, outlets
-              and vent covers. Bathrooms get the scale and soap scum off tile, glass and
-              fixtures. Floors are vacuumed and mopped last so nobody walks over them.
+              Move-out cleaning is the deepest clean we do.{" "}
+              <Link to="/calgary/regular-cleaning/" className="text-primary underline underline-offset-4">A standard clean in Calgary</Link>{" "}
+              keeps an occupied home in order and works around whatever is in it. The move-out
+              checklist assumes nothing is in the way, so it goes behind and inside things rather
+              than over them, and it is scored by somebody with a form. The room-by-room list
+              below is that checklist in full.
             </p>
             <p>
               The same checklist covers a <strong>move-in clean</strong>, an{" "}
@@ -288,8 +299,10 @@ export default function CalgaryMoveInOut() {
             </p>
             <p>
               Two things sit outside the checklist: carpet steam cleaning, and anything past the
-              reach of a three-step ladder. Inside windows, blinds, wall washing, the basement and
-              a garage sweep are add-ons you pick at booking, each priced by home size.
+              reach of a three-step ladder. Inside windows, blinds,{" "}
+              <Link to="/wall-washing-wall-cleaning-calgary/" className="text-primary underline underline-offset-4">wall washing</Link>,
+              the basement and a garage sweep are add-ons you pick at booking, each priced by home
+              size.
             </p>
           </div>
         </div>
@@ -508,8 +521,10 @@ export default function CalgaryMoveInOut() {
       {/* End of tenancy */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 max-w-4xl">
+          {/* The page ranks for "end of tenancy cleaning calgary" and the heading
+              that carried the phrase named no city. */}
           <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-6">
-            End of tenancy cleaning and the inspection report
+            End of tenancy cleaning in Calgary and the inspection report
           </h2>
           <div className="prose prose-lg max-w-none text-muted-foreground space-y-4">
             <p>
@@ -520,11 +535,11 @@ export default function CalgaryMoveInOut() {
               has gone and before the keys do.
             </p>
             <p>
-              We clean to the items an inspection report lists: appliance interiors, cabinet and
-              drawer interiors, bathroom scale, baseboards, vents, window sills and floors. If the
-              report cites something we missed, tell us within {POLICY.guaranteeWindowHours} hours
-              of the walkthrough and we come back at no charge. Photos help the team find it and are
-              not a condition.
+              The report is a form with the rooms down one side and a column for cleaning, filled in
+              with the tenant standing there, which is why a clean that looks right from the doorway
+              can still be cited on it. If it cites something we missed, tell us within{" "}
+              {POLICY.guaranteeWindowHours} hours of the walkthrough and we come back at no charge.
+              Photos help the team find it and are not a condition.
             </p>
             <p>
               We do not promise the deposit. The landlord decides that, and a clean cannot fix
@@ -652,10 +667,10 @@ export default function CalgaryMoveInOut() {
         </div>
       </section>
 
-      <MoveOutServiceAreas city="Calgary" />
-
-      {/* Pricing */}
-      <section className="py-20 bg-white">
+      {/* Pricing — the cost table and the FAQ now sit ABOVE the 26-name
+          coverage list. A reader who came for "move out cleaning cost calgary"
+          had to scroll past every neighbourhood we serve to reach a price. */}
+      <section className="py-20 bg-muted/20">
         <div className="container mx-auto px-4 max-w-5xl">
           <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-4">
             Move out cleaning cost in Calgary
@@ -699,9 +714,10 @@ export default function CalgaryMoveInOut() {
             </p>
             <p>
               What does not move it: how long the clean takes. The rate on your quote is the rate
-              you pay, and a two-bedroom that takes an extra hour is still a two-bedroom. To compare
-              a move-out against a standard or deep clean of the same home, the three sit side by
-              side on{" "}
+              you pay, and a two-bedroom that takes an extra hour is still a two-bedroom. If the home
+              is staying lived in, the service you want is{" "}
+              <Link to="/calgary/deep-cleaning/" className="text-primary underline underline-offset-4">a deep clean in Calgary</Link>{" "}
+              instead, and the three sit row against row on{" "}
               <Link to="/calgary/pricing/" className="text-primary underline underline-offset-4">Calgary house cleaning prices by home size</Link>.
             </p>
           </div>
@@ -717,7 +733,7 @@ export default function CalgaryMoveInOut() {
       </section>
 
       {/* FAQ */}
-      <section className="py-20 bg-muted/20">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4 max-w-4xl">
           <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-12">
             Move out cleaning in Calgary: questions we get asked
@@ -737,6 +753,8 @@ export default function CalgaryMoveInOut() {
           </Accordion>
         </div>
       </section>
+
+      <MoveOutServiceAreas city="Calgary" />
 
       {/* Final CTA */}
       <section className="py-20 bg-brand-navy text-white">
@@ -764,6 +782,8 @@ export default function CalgaryMoveInOut() {
           <p className="text-white/80">
             Same-day and next-day slots depend on the schedule. The day before the inspection is
             the safest date to book. Once you are in the new place,{" "}
+            <Link to="/calgary/recurring-cleaning/" className="text-white underline underline-offset-4">a recurring clean in Calgary</Link>{" "}
+            carries a discount from the second visit, and{" "}
             <Link to="/calgary/services/" className="text-white underline underline-offset-4">every Calgary cleaning service, with starting prices</Link>{" "}
             is listed on one page.
           </p>
