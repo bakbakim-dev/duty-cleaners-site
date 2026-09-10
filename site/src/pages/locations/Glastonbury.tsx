@@ -5,7 +5,6 @@ import {
 } from "lucide-react";
 import glastonburyCleanerImg from "@/assets/gallery/glastonbury-cleaner-home.webp";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -78,16 +77,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Glastonbury" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Glastonbury" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Glastonbury" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Glastonbury" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around Glastonbury.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Glastonbury" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Drywall dust and light debris are cleared after a renovation or a new build in Glastonbury.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Glastonbury" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Glastonbury" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Glastonbury" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment or condo, before GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Glastonbury" },
 ];
 
 const whyUsItems = [
@@ -137,7 +136,7 @@ export default function Glastonbury() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `In Glastonbury, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `In Glastonbury, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -159,15 +158,15 @@ export default function Glastonbury() {
     <>
       <Helmet>
         <title>House Cleaners in Glastonbury, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Glastonbury, Edmonton. Beautiful homes, welcoming community near The Grange. Local cleaners you can trust." />
+        <meta name="description" content="In Glastonbury's 2000s two-storeys in west Edmonton, the garage-entry mudroom takes the tracking and the stair carpet shows traffic first." />
         <link rel="canonical" href="https://dutycleaners.ca/locations/glastonbury/" />
         <meta property="og:title" content="House Cleaners in Glastonbury, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Glastonbury, Edmonton. Beautiful homes, welcoming community near The Grange. Local cleaners you can trust." />
+        <meta property="og:description" content="In Glastonbury's 2000s two-storeys in west Edmonton, the garage-entry mudroom takes the tracking and the stair carpet shows traffic first." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/glastonbury/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Glastonbury, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Glastonbury, Edmonton. Beautiful homes, welcoming community near The Grange. Local cleaners you can trust." />
+        <meta name="twitter:description" content="In Glastonbury's 2000s two-storeys in west Edmonton, the garage-entry mudroom takes the tracking and the stair carpet shows traffic first." />
         <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Glastonbury Edmonton", city: "edmonton", url: "https://dutycleaners.ca/locations/glastonbury", areaServed: "Glastonbury, Edmonton, AB" }))}</script>
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
@@ -194,7 +193,7 @@ export default function Glastonbury() {
                   Professional House Cleaning in Glastonbury
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Trusted cleaning for one of Edmonton's most picturesque communities. From elegant homes near The Grange to family residences along scenic walking paths — enjoy pristine spaces without the effort.
+                  Glastonbury's 2000s two-storeys have open main floors that clean quickly and bonus rooms over the garage whose long outside wall collects dust lines in cold snaps. The two-storey surcharge shows on the quote before you book.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -222,7 +221,7 @@ export default function Glastonbury() {
               <div className="flex-shrink-0 w-full max-w-[500px]">
                 <img width={896} height={672}
                   src={glastonburyCleanerImg}
-                  alt="Professional cleaner dusting a spacious modern home in Glastonbury, Edmonton"
+                  alt="Cleaner dusting in a spacious modern home"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                 loading="eager"
                   {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
@@ -242,7 +241,7 @@ export default function Glastonbury() {
                   Cleaning Services for Glastonbury Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Everything from weekly upkeep to full move-out cleans.
+                  The Edmonton branch offers six services for Glastonbury homes, from a single visit to a weekly schedule, each priced before 5% GST: flat by home size, or by square footage for post-construction.
                 </p>
               </div>
             </AnimatedSection>
@@ -285,7 +284,7 @@ export default function Glastonbury() {
                   Why Glastonbury Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -306,12 +305,11 @@ export default function Glastonbury() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Glastonbury</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Glastonbury and the Wider Edmonton Area</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    The Edmonton branch cleans 80 city neighbourhoods and nine communities outside Edmonton, Spruce Grove and Stony Plain among them, where a travel fee applies.
                   </p>
                 </div>
-                <CoverageChips areas={["The Grange", "Patricia Ravine", "Wedgewood Ravine Trails", "Glastonbury Gate", "Lessard Road", "Callingwood Road"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -326,8 +324,8 @@ export default function Glastonbury() {
         eyebrow="Local knowledge"
         heading="Glastonbury's west-end 2000s stock"
         paragraphs={[
-          "Glastonbury's 2000s two-storeys run the west-end pattern: garage-entry mudrooms that take all the tracking, open mains that clean quickly, and upstairs bonus rooms over the garage whose long exterior wall gathers condensation dust lines in cold snaps. Builder carpet on stairs shows traffic first — it is the honest indicator of a home's rhythm.",
-          "The Anthony Henday's proximity delivers ring-road grit on the wind, and Lewis Farms' big-box retail keeps local traffic steady. Homes backing the utility corridor get the strongest dust exposure and their window tracks fill first.",
+          "Glastonbury's 2000s two-storeys run the west-end pattern: garage-entry mudrooms that take all the tracking, open mains that clean quickly, and upstairs bonus rooms over the garage whose long exterior wall gathers condensation dust lines in cold snaps. Builder carpet on stairs shows traffic first and marks how hard a home is used.",
+          "The Anthony Henday's proximity delivers ring-road grit on the wind. Homes backing the utility corridor get more dust exposure, and their window tracks fill first.",
         ]}
       />
 

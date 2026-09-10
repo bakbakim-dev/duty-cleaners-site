@@ -5,7 +5,6 @@ import {
 import glenoraCleanerImg from "@/assets/gallery/glenora-cleaner-living-room.webp";
 import HonestReviewLink from "@/components/HonestReviewLink";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -66,9 +65,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Glenora" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Glenora" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Glenora" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Glenora" },
-  { icon: HardHat, title: "Post-Construction Cleanup", description: "Construction dust cleared properly after renos and handovers." },
+  { icon: HardHat, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or a new build, priced by square footage." },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Glenora" },
 ];
 
@@ -107,15 +106,15 @@ export default function Glenora() {
   const faqs = [
     {
       question: "How much does cleaning cost in Glenora?",
-      answer: "Cleaning costs depend on the type and size of the home, its condition, the service requested (standard, deep, or move-out), and any add-ons like interior window cleaning, baseboards, or appliances."
+      answer: "A Glenora clean is a flat rate set by the service and the size of the home, before 5% GST, and it does not go up because the clean took longer than expected. The base rates are for an apartment or condo, so a detached house adds a home-type surcharge and a home with pets adds a compulsory pet charge. There is no trip fee inside Edmonton, and the instant price shows the full figure before you book."
     },
     {
       question: "Do I need to be home during the cleaning?",
-      answer: "You don't need to be home. You can provide access by sharing a code, leaving a key, or giving us a garage code. We can also call you about 30 minutes before we finish for a walkthrough."
+      answer: "You do not need to be home. Most customers leave a key, a lockbox code or smart-lock access, and the team locks up when the clean is done."
     },
     {
-      question: "Are your Glenora cleaners vetted?",
-      answer: "Yes. Every cleaner is reference-checked, and every visit is rated by the customer afterwards."
+      question: "How are your Glenora cleaners checked?",
+      answer: "Every cleaner is reference-checked before a first job and rated by the customer after each visit. Those ratings decide who we keep sending to Glenora homes."
     },
     {
       question: "How long does an initial cleaning take?",
@@ -131,7 +130,7 @@ export default function Glenora() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `In Glenora, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `In Glenora, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -153,15 +152,15 @@ export default function Glenora() {
     <>
       <Helmet>
         <title>Home Cleaning You Can Count On in Glenora, Edmonton</title>
-        <meta name="description" content="Trusted local house cleaning in Glenora, Edmonton. Reliable cleaners serving Alexander Circle, Government House Park and nearby streets." />
+        <meta name="description" content="Nine in ten Glenora homes in Edmonton were standing by 1970, and their plaster, deep milled trim and original hardwood take no saturated mop." />
         <link rel="canonical" href="https://dutycleaners.ca/locations/glenora-edmonton/" />
         <meta property="og:title" content="Home Cleaning You Can Count On in Glenora, Edmonton" />
-        <meta property="og:description" content="Trusted local house cleaning in Glenora, Edmonton. Reliable cleaners serving Alexander Circle, Government House Park and nearby streets." />
+        <meta property="og:description" content="Nine in ten Glenora homes in Edmonton were standing by 1970, and their plaster, deep milled trim and original hardwood take no saturated mop." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/glenora-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Home Cleaning You Can Count On in Glenora, Edmonton" />
-        <meta name="twitter:description" content="Trusted local house cleaning in Glenora, Edmonton. Reliable cleaners serving Alexander Circle, Government House Park and nearby streets." />
+        <meta name="twitter:description" content="Nine in ten Glenora homes in Edmonton were standing by 1970, and their plaster, deep milled trim and original hardwood take no saturated mop." />
         <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Glenora Edmonton", city: "edmonton", url: "https://dutycleaners.ca/locations/glenora-edmonton", areaServed: "Glenora, Edmonton, AB" }))}</script>
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
@@ -188,7 +187,7 @@ export default function Glenora() {
                   Home Cleaning You Can Count On in Glenora
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Trusted, local service for homes in one of the city's most cherished neighbourhoods.
+                  Three quarters of Glenora is detached houses, most standing by 1970, and a fifth is high-rise suites, mostly on the Groat Road side. The Edmonton branch cleans both at a flat rate by home size.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -216,7 +215,7 @@ export default function Glenora() {
               <div className="flex-shrink-0 w-full max-w-[500px]">
                 <img width={896} height={672}
                   src={glenoraCleanerImg}
-                  alt="Professional cleaner vacuuming a heritage home living room in Glenora, Edmonton"
+                  alt="Cleaner vacuuming a heritage-style living room"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                 loading="eager"
                   {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
@@ -236,7 +235,7 @@ export default function Glenora() {
                   Cleaning Services for Glenora Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  You can't go wrong with Duty Cleaners in Glenora! We guarantee you'll find the perfect cleaning package for you.
+                  The Edmonton branch offers five services for Glenora houses and tower suites, each priced before 5% GST: flat by home size, or by square footage for post-construction.
                 </p>
               </div>
             </AnimatedSection>
@@ -273,14 +272,14 @@ export default function Glenora() {
           <div className="container mx-auto px-4">
             <AnimatedSection>
               <div className="max-w-4xl mx-auto">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Commitment</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Trust Starts at the Door</h2>
+                <span className="text-primary text-sm font-semibold tracking-wider uppercase">Access</span>
+                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Getting Into a Glenora Home</h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
                   <p>
-                    Good service starts long before we pick up a cloth or vacuum. It begins with trust, and that trust is earned through reliability, respect, and a commitment to doing things right.
+                    You do not need to be home for a Glenora clean. Most customers leave a key, a lockbox code or smart-lock access, and the team locks up on the way out. If the team arrives and cannot get in, the lockout charge is half the cost of the scheduled service.
                   </p>
                   <p>
-                    Many of our Glenora clients have worked with us for years, referring friends and neighbours along the way. You'll see familiar faces and receive the kind of dependable service that makes things easier—not more complicated.
+                    In a high-rise suite on the Groat Road side, tell us how the team reaches the unit. In a house facing the ravine, tell us which door takes the spring mud. On a recurring schedule, we send your regular team where we can send them.
                   </p>
                 </div>
               </div>
@@ -299,7 +298,7 @@ export default function Glenora() {
                   Why Glenora Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Dependable cleaning, visit after visit.
+                  Duty Cleaners has cleaned Alberta homes since 2017, and Glenora's houses and tower suites are booked through the Edmonton branch.
                 </p>
               </div>
             </AnimatedSection>
@@ -320,12 +319,11 @@ export default function Glenora() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Glenora</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Glenora Within Edmonton</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area's pace and personality well.
+                    The Edmonton branch covers 80 neighbourhoods inside the city, Glenora among them, plus nine communities outside it such as St. Albert and Sherwood Park.
                   </p>
                 </div>
-                <CoverageChips areas={["102 Avenue & Groat Road", "Alexander Circle", "Government House Park", "St. George's Crescent", "Glenora Park", "Glenora School Area"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -343,7 +341,7 @@ export default function Glenora() {
         heading="Government House and the ravine edge"
         paragraphs={[
           "Nine homes in ten here were standing by 1970, and the south edge is not a street at all — it drops into the river valley and MacKinnon Ravine. Two consequences follow. Interiors of that age carry plaster, deep milled trim and original hardwood, none of which take a saturated mop; and the ravine sends leaf litter, seed and spring mud up to the doors that face it.",
-          "The other surprise is the housing mix. Three quarters is detached, but a full fifth sits in high-rise apartments, mostly along the Groat Road side by Government House. That is two different jobs on one street grid: a century house wants slow dry work on trim and radiators, while a tower suite is a compact kitchen, a bathroom fan and balcony glass that can only be reached from inside.",
+          "The other surprise is the housing mix. Three quarters is detached, but a full fifth sits in high-rise apartments, mostly along the Groat Road side by Government House. That is two different jobs on one street grid: a century house wants slow dry work on trim and radiators, while a tower suite is a compact kitchen and a bathroom fan.",
         ]}
       />
 
@@ -379,10 +377,10 @@ export default function Glenora() {
           <div className="container mx-auto px-4 relative z-10 text-center">
             <AnimatedSection>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                Let's Take Cleaning Off Your Plate
+                Ready to Book a Clean in Glenora?
               </h2>
               <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
-                When life gets busy, home should feel like a place to recharge. Call us today or request your free quote — no pressure, no hassle.
+                See your flat rate before you book. Nothing is charged until the clean is done.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>

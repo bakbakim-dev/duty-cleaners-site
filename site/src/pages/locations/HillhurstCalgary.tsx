@@ -60,10 +60,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Hillhurst" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Hillhurst" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Hillhurst" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Hillhurst" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Hillhurst.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Hillhurst" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Hillhurst" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris cleared after renovations or new builds in Hillhurst.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Hillhurst" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, booked together with a clean.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Hillhurst" },
 ];
 
 const whyUsItems = [
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Sunnyside","West Hillhurst","Briar Hill","Kensington","Crescent Heights","Rosedale"];
+const nearbyAreas = ["Sunnyside","Kensington","Crescent Heights"];
 
 const faqs = [
   {
@@ -104,7 +104,7 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Hillhurst?",
-    answer: `Every service we run can be booked locally:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `The Calgary branch offers these services in Hillhurst:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
   },
   {
     question: "Do you offer discounts?",
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function HillhurstCalgary() {
     <>
       <Helmet>
         <title>House Cleaning in Hillhurst, Calgary | Duty Cleaners</title>
-        <meta name="description" content="House cleaning in Hillhurst, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
+        <meta name="description" content="Hillhurst century homes near the Kensington shops have fir floors and plaster walls, and the Calgary team cleans them at a flat rate by home size." />
         <meta property="og:title" content="House Cleaning in Hillhurst, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Hillhurst, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning in Hillhurst, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
-        <meta property="og:description" content="House cleaning in Hillhurst, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
+        <meta name="twitter:description" content="Hillhurst century homes near the Kensington shops have fir floors and plaster walls, and the Calgary team cleans them at a flat rate by home size." />
+        <meta property="og:description" content="Hillhurst century homes near the Kensington shops have fir floors and plaster walls, and the Calgary team cleans them at a flat rate by home size." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/hillhurst-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/hillhurst-calgary/" />
@@ -183,7 +183,7 @@ export default function HillhurstCalgary() {
                 Professional House Cleaning in Hillhurst
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Trusted house cleaning services for one of Calgary's vibrant inner-city communities — bringing a calm, spotless home within reach.
+                Hillhurst's century houses sit around the Kensington shops, with fir floors, plaster walls and stained-glass transoms. The Calgary team cleans them at a flat rate by home size, and you pay once the clean is done.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function HillhurstCalgary() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Hillhurst Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs — every service a home needs.
+                  Each service except post-construction has a flat rate set by the size and type of the Hillhurst home, century house or recent infill; post-construction is priced by square footage.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function HillhurstCalgary() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Hillhurst Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Hillhurst and the surrounding NW Calgary communities.
+                    Hillhurst is one of the 66 Calgary neighbourhoods on the branch's list, served from the office at 2835 37 Street SW.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function HillhurstCalgary() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={768} src={cleanHomeImg} alt="Spotless Hillhurst Calgary home cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1024} height={768} src={cleanHomeImg} alt="Sunlit living room with hardwood floors, a sectional sofa and tall windows" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Calm, Spotless Hillhurst Home — Every Visit</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Winter floors</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Chinook Grit and Fir Floors in Hillhurst</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Care and attention are the whole job. Expect gleaming surfaces, fresh air, and the quiet feeling of a home put properly <em>back in order</em>.
+                    Calgary thaws and refreezes on chinooks all winter, so sand and de-icer come through the door again and again from November to April. In a Hillhurst house that grit settles along baseboards and carpet edges, and on fir floors that already show water spots. Clear floors get cleaned at every visit, and the flat rate does not change because the grit took longer than expected.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Reference-checked before the first job","Supplies and equipment brought to the house","Re-clean at no charge when a miss is reported within 24 hours"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,9 +311,9 @@ export default function HillhurstCalgary() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Hillhurst and the communities around it.{" "}
+                  Duty Cleaners cleans homes in Hillhurst and in the Calgary neighbourhoods listed here.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -330,7 +330,7 @@ export default function HillhurstCalgary() {
         heading="Hillhurst around the shops"
         paragraphs={[
           "Hillhurst's century homes ring the Kensington shops, and living beside a retail district reads indoors as constant entry traffic and window films from street dust. The houses themselves are classic character stock — fir floors that show water spots, plaster that prefers dry methods, stained-glass transoms that want careful hands.",
-          "Infill construction is continuous here, so most blocks have an active site nearby pushing cut-lumber and drywall dust across property lines. Homes mid-renovation-zone need track and sill clearing every visit, and pale heritage window putty shows that dust faster than modern frames.",
+          "Infill construction is continuous here, so most blocks have an active site nearby pushing cut-lumber and drywall dust across property lines. Homes near an active site collect that dust on sills and in window tracks, and pale heritage window putty shows it faster than modern frames.",
         ]}
       />
 
@@ -347,7 +347,7 @@ export default function HillhurstCalgary() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Hillhurst Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>

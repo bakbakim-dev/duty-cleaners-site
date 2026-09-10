@@ -60,9 +60,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Greenview" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Greenview" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Greenview" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Greenview" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust and debris cleanup for renos and basement developments.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Greenview" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust and light debris are cleared after renos and basement developments in Greenview.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Greenview" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Greenview" },
 ];
 
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Tuxedo Park", "Highland Park", "Mount Pleasant", "Thorncliffe", "Crescent Heights", "Winston Heights"];
+const nearbyAreas = ["Tuxedo Park", "Highland Park", "Mount Pleasant", "Thorncliffe", "Crescent Heights"];
 
 const faqs = [
   {
@@ -108,11 +108,11 @@ const faqs = [
   },
   {
     question: "Do you offer discounts?",
-    answer: `Yes, recurring visits cost less every time:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
+    answer: `Yes. A standard clean on a recurring schedule in Greenview costs less:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function Greenview() {
     <>
       <Helmet>
         <title>Greenview, Calgary House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="Book house cleaning in Greenview, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="description" content="About two thirds of Greenview's housing in Calgary is rented, so move-outs are routine, and industrial-park wind leaves grit in window channels." />
         <meta property="og:title" content="Greenview, Calgary House Cleaning | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Greenview, Calgary House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="Book house cleaning in Greenview, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
-        <meta property="og:description" content="Book house cleaning in Greenview, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="twitter:description" content="About two thirds of Greenview's housing in Calgary is rented, so move-outs are routine, and industrial-park wind leaves grit in window channels." />
+        <meta property="og:description" content="About two thirds of Greenview's housing in Calgary is rented, so move-outs are routine, and industrial-park wind leaves grit in window channels." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/greenview-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/greenview-calgary/" />
@@ -183,7 +183,7 @@ export default function Greenview() {
                 Professional House Cleaning in Greenview
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Just north of downtown along Centre Street, Greenview is a friendly, family-first community with quick access to Deerfoot Trail, the airport, and the Calgary Zoo.
+                Greenview sits against Deerfoot Trail and Greenview Industrial Park, with the airport lands off to the northeast. Nearly half its buildings are condos or apartments, and our Calgary branch prices a standard, deep or move-out clean flat by home size.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function Greenview() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Greenview Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs — every service a home needs.
+                  A standard, deep or move-out clean in Greenview is priced by home size, and the instant price shows the figure before you book.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function Greenview() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Greenview Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Greenview and the surrounding N Calgary communities.
+                    Greenview, industrial-park side included, is inside Calgary city limits, so a clean here carries no trip fee.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function Greenview() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={768} src={cleanHomeImg} alt="Happy family relaxing together in a freshly cleaned Greenview Calgary living room by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1024} height={768} src={cleanHomeImg} alt="A family of four sitting together on a beige sofa in a bright living room" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">More Time With Family, Less Time Cleaning</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Moving out</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Move-Out Cleaning for Greenview Rentals</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Skip the weekend scrub session. Our Greenview families love walking into a tidy living room, fresh-smelling kitchen, and bathrooms that sparkle — all while they were out enjoying the river or the zoo.
+                    About two thirds of Greenview's housing is rented, so move-outs are a normal part of the month here. A move-out clean is priced flat by home size before 5% GST, and the instant price shows the figure before you book. Under Alberta's Residential Tenancies Act the landlord completes a move-out inspection report with the tenant, and the security deposit must be returned within 10 days after the tenant moves out. We do not promise the deposit comes back; the landlord decides.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Rated by the customer after every visit","Supplies and equipment brought by the team","Arrival windows starting at 9:00 AM, 12:00 PM or 3:00 PM"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,9 +311,9 @@ export default function Greenview() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Greenview and the communities around it.{" "}
+                  Our Calgary branch also cleans these neighbourhoods near Greenview.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -330,8 +330,8 @@ export default function Greenview() {
         eyebrow="On the ground"
         heading="Industrial park on the Deerfoot side"
         paragraphs={[
-          "Greenview Industrial Park adjoins this community along Deerfoot Trail, and the airport lands sit off the northeast. Between them they set the indoor conditions: a coarse, dark particulate that arrives on the wind rather than on shoes, and shows up first in window channels, on screen mesh and along the sills of whichever elevation faces the yards. It is abrasive, so it gets lifted rather than dragged across glass.",
-          "Nearly half the buildings are condominium or apartment and about two thirds of the housing is rented — high enough that move-outs are a normal part of the month rather than an occasional job. The community only exists in its own right since 1991, when the older Thorncliffe/Greenview area was split in two.",
+          "Greenview Industrial Park adjoins this community along Deerfoot Trail, and the airport lands sit off the northeast. Between them they set the indoor conditions: a coarse, dark particulate that arrives on the wind rather than on shoes, and shows up first in window channels, on screen mesh and along the sills of whichever elevation faces the yards.",
+          "Nearly half the buildings are condominium or apartment and about two thirds of the housing is rented — high enough that move-outs are a normal part of the month rather than an occasional job.",
         ]}
         accent="calgary"
       />
@@ -347,7 +347,7 @@ export default function Greenview() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Greenview Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>

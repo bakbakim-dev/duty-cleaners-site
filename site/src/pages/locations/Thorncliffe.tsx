@@ -60,10 +60,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Thorncliffe" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Thorncliffe" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Thorncliffe" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Thorncliffe" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Thorncliffe.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Thorncliffe" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Thorncliffe" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris cleared after renovation work in Thorncliffe, priced by the home's square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Thorncliffe" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film washed off painted walls, booked together with a clean.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Thorncliffe" },
 ];
 
 const whyUsItems = [
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Highland Park","Greenview","Tuxedo Park","Huntington Hills","Cambrian Heights","Beddington Heights"];
+const nearbyAreas = ["Highland Park","Greenview","Tuxedo Park","Huntington Hills"];
 
 const faqs = [
   {
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function Thorncliffe() {
     <>
       <Helmet>
         <title>Thorncliffe, Calgary House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="House cleaning in Thorncliffe, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
+        <meta name="description" content="For Thorncliffe homes on the Deerfoot Trail side, Calgary house cleaning means entryway grit that keeps arriving for weeks after the crescents are swept." />
         <meta property="og:title" content="Thorncliffe, Calgary House Cleaning | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Thorncliffe, Calgary House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning in Thorncliffe, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
-        <meta property="og:description" content="House cleaning in Thorncliffe, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
+        <meta name="twitter:description" content="For Thorncliffe homes on the Deerfoot Trail side, Calgary house cleaning means entryway grit that keeps arriving for weeks after the crescents are swept." />
+        <meta property="og:description" content="For Thorncliffe homes on the Deerfoot Trail side, Calgary house cleaning means entryway grit that keeps arriving for weeks after the crescents are swept." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/thorncliffe-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/thorncliffe-calgary/" />
@@ -183,7 +183,7 @@ export default function Thorncliffe() {
                 Professional House Cleaning in Thorncliffe
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Trusted house cleaning services for one of north Calgary's most established communities — a peaceful, friendly home worth showing off.
+                Centre Street North runs through the middle of Thorncliffe, so a good share of its homes front a bus route, and Deerfoot Trail forms the eastern edge. Our Calgary branch cleans homes across the community at flat rates by home size.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function Thorncliffe() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Thorncliffe Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs — every service a home needs.
+                  Five services for Thorncliffe homes: four at a flat rate by home size and post-construction by square footage, all before 5% GST, with the exact figure shown before you book.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function Thorncliffe() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Thorncliffe Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Thorncliffe and the surrounding N Calgary communities.
+                    Thorncliffe is on our Calgary branch's list of 66 neighbourhoods, and there is no trip fee inside city limits.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function Thorncliffe() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={768} src={featureImg} alt="Spotless Thorncliffe Calgary home cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1024} height={768} src={featureImg} alt="Sunlit living room with two sofas, a patterned rug and tall windows looking onto trees" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Calm, Spotless Thorncliffe Home — Every Visit</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">What to expect</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Winter Grit on Thorncliffe's Deerfoot Side</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Our vetted cleaners treat your home with care, attention, and the same standards we'd want in our own. Walk in to fresh air, gleaming surfaces, and that quiet feeling of <em>everything in its place</em>.
+                    On the first block beside Deerfoot Trail, winter grit keeps reaching the entryway for weeks after the crescents behind it are swept, and it shows up as pale rings on storm doors. Storm doors and exterior glass count as outdoor work, which is not included; interior windows can be added when you book.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Reference-checked, rated after every visit","Supplies and equipment brought","Free re-clean if told within 24 hours"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,9 +311,9 @@ export default function Thorncliffe() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Thorncliffe and the communities around it.{" "}
+                  Each of these is on our Calgary branch's list as well, priced the same way as Thorncliffe: a flat rate by home size.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -328,8 +328,8 @@ export default function Thorncliffe() {
         eyebrow="What we see here"
         heading="Grassland west, freeway east"
         paragraphs={[
-          "Thorncliffe's own streets are swept from mid-April into June. Deerfoot Trail, its eastern edge, is not — the freeway belongs to the Province, so the first block on that side keeps handing back winter grit for weeks after the crescents behind it are clean, and it arrives as pale rings on storm doors and grit in the entryway.",
-          "Centre Street North runs through the middle of the community rather than along an edge, so a good share of these homes front a bus route instead of a crescent. Exterior glass and storm doors on that frontage carry a traffic film the interior streets never produce, and it returns faster than anything indoors does.",
+          "Thorncliffe's own streets are swept from mid-April into June. Deerfoot Trail, its eastern edge, is not — the freeway belongs to the Province, so the first block on that side keeps handing back winter grit for weeks after the crescents behind it are clean. That grit leaves pale rings on the storm doors outside, and indoors it settles in the entryway, where a clean picks it up.",
+          "Centre Street North runs through the middle of the community rather than along an edge, so a good share of these homes front a bus route instead of a crescent. Exterior glass and storm doors on that frontage carry a traffic film the interior streets never produce, and it returns faster than anything indoors does. Removing that film from the Centre Street frontage is outdoor work, so it sits outside what a clean covers.",
         ]}
         accent="calgary"
       />
@@ -347,7 +347,7 @@ export default function Thorncliffe() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Thorncliffe Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Reliable, detail-first cleaning families count on.
+                  Every cleaner is reference-checked first, then rated by the customer after each visit.
                 </p>
               </div>
             </AnimatedSection>

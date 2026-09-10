@@ -19,9 +19,9 @@ import { buildLocationSchema } from "@/lib/location-schema";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { ArrowRight,
-  Phone, CheckCircle2, Star, Shield, Clock, Award,
+  Phone, CheckCircle2, Star, Shield, Award,
   Home, Sparkles, Truck, SprayCan, Bath,
-  Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail, PaintRoller
+  Leaf, CalendarCheck, ThumbsUp, MapPin, Mail, PaintRoller
 } from "lucide-react";
 
 interface LocationPageProps {
@@ -42,8 +42,6 @@ interface LocationPageProps {
   seoDescription?: string;
   phone: string;
   phoneLink: string;
-  /** Real, verbatim-sourced "Things To Do" paragraphs for this town, if confirmed. */
-  thingsToDo?: string[];
   /**
    * Cleaning-relevant local content — the thing that stops this page being a
    * copy of the other twelve.
@@ -193,7 +191,7 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
  * ordinary and fine. Do not reintroduce a spinner.
  */
 
-const services = (place: string, region: "edmonton" | "calgary") => {
+const services = (place: string, region: "edmonton" | "calgary", ownMunicipality: boolean) => {
   const city = region === "edmonton" ? "edmonton" : "calgary";
   const moveOut = region === "edmonton" ? "/move-out-cleaning-edmonton" : "/move-out-cleaning-calgary";
   const postCon =
@@ -201,16 +199,16 @@ const services = (place: string, region: "edmonton" | "calgary") => {
   const wallWashing =
     region === "edmonton" ? "/wall-washing-wall-cleaning" : "/wall-washing-wall-cleaning-calgary";
   return [
-  { icon: Home, title: "Standard House Cleaning", description: "Kitchen, bathrooms, floors and living areas at a flat rate by home size, once or on a schedule.", to: canonicalForPath(`/${city}/regular-cleaning`), linkText: `Standard cleaning in ${place}` },
-  { icon: Sparkles, title: "Deep Cleaning", description: "A full top-to-bottom reset — corners, baseboards, and the surfaces a regular visit skips.", to: canonicalForPath(`/${city}/deep-cleaning`), linkText: `Deep cleaning in ${place}` },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Move-day cleaning done to the standard a move-out inspection looks for.", to: canonicalForPath(moveOut), linkText: `Move-out cleaning in ${place}` },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust and debris cleared after a renovation or a new build.", to: canonicalForPath(postCon), linkText: `Post-construction cleaning in ${place}` },
+  { icon: Home, title: "Standard House Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: canonicalForPath(`/${city}/regular-cleaning`), linkText: `Standard cleaning in ${place}` },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: canonicalForPath(`/${city}/deep-cleaning`), linkText: `Deep cleaning in ${place}` },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: canonicalForPath(moveOut), linkText: `Move-out cleaning in ${place}` },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or a new build, priced by square footage.", to: canonicalForPath(postCon), linkText: `Post-construction cleaning in ${place}` },
   // Wall washing has a real page in both cities and was the only service on the
   // menu with no card here, so the 166 location pages sent it exactly ONE
   // in-body link between them against 88-91 for every linked sibling. Nav and
   // footer reached it, but none of the geo-qualified body support that carries
   // the local signal for the rest of the menu.
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: canonicalForPath(wallWashing), linkText: `Wall washing in ${place}` },
+  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film washed off painted walls, booked together with a clean.", to: canonicalForPath(wallWashing), linkText: `Wall washing in ${place}` },
   // Bathroom sanitization gave up its slot: it is a task inside a standard or
   // deep clean rather than a bookable service, it is described on
   // /whats-included/, and the grid holds exactly six (2x3 and 3x2 both divide
@@ -223,7 +221,7 @@ const services = (place: string, region: "edmonton" | "calgary") => {
   // there is no kitchen-only package to book. Recurring cleaning is a real
   // bookable frequency with its own page in both cities, and it was the only
   // service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: canonicalForPath(`/${city}/recurring-cleaning`), linkText: `Recurring cleaning in ${place}` },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule. The first clean is charged at the one-time rate, from ${RECURRING_FROM} for a one-bedroom, one-bathroom apartment or condo before GST${ownMunicipality && TRAVEL_FEE !== null ? `, the ${TRAVEL_FEE} travel fee` : ""} and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: canonicalForPath(`/${city}/recurring-cleaning`), linkText: `Recurring cleaning in ${place}` },
   ];
 };
 
@@ -252,18 +250,16 @@ const whyUsItems = (region: "edmonton" | "calgary") => [
       </>
     ),
   },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day slots when the schedule allows, including weekends." },
   // "and the planet" is an environmental-benefit claim. Since the June 2024
   // Competition Act amendments those require substantiation on an internationally
   // recognised methodology, and private applications to the Tribunal have been
   // live since June 2025. Nothing on the site or in the repo substantiates it.
   // The card title had already been softened from an eco claim to "High Quality
   // Cleaning Supplies" — this finishes that edit, which was left half-done.
-  // The family-and-pets half is kept: it describes handling, not an environmental
-  // benefit, and matches what the FAQ already tells customers.
-  { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
-  { icon: Users, title: "Experienced Cleaners", description: "Every cleaner comes with paid professional cleaning experience before their first job with us — it is one of the things we check." },
-  { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
+  // The card now states only SERVICE_TERMS (T5 in the content prompt): the team
+  // brings supplies, and it needs running water and power.
+  { icon: Leaf, title: "All Supplies Brought For You", description: "The team brings all supplies and equipment. Leave the water and power on until the clean is done." },
+  { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
 export default function LocationPageTemplate({
@@ -274,7 +270,6 @@ export default function LocationPageTemplate({
   seoDescription,
   phone,
   phoneLink,
-  thingsToDo,
   localNote,
   isOwnMunicipality = false,
 }: LocationPageProps) {
@@ -309,19 +304,19 @@ export default function LocationPageTemplate({
     },
     {
       question: `What cleaning services does Duty Cleaners offer in ${city}?`,
-      answer: `Every service we run can be booked here:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `Duty Cleaners books all of these for homes in ${city}:\n\n• Standard & Deep Cleaning Packages\n• Recurring Cleaning: weekly, every two weeks or every four weeks\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing, booked together with a clean`
     },
     {
       question: "Do you offer discounts?",
-      answer: `Yes. From the second visit on, a recurring schedule saves:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+      answer: `Yes. A recurring schedule of the standard clean in ${city} saves:\n\n• Every week: ${OFF_WEEKLY} off\n• Every two weeks: ${OFF_BIWEEKLY} off\n• Every four weeks: ${OFF_FOUR_WEEKLY} off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
-      question: "What is your 100% satisfaction guarantee policy?",
-      answer: `If you're not 100% satisfied, call us within 24 hours and we'll come back and put it right — at no extra cost!`
+      question: "What happens if something is missed?",
+      answer: `Tell us within 24 hours and the team comes back to your ${city} home to re-clean what was missed, at no charge. Photos help but are not required.`
     }
   ];
   const faqJsonLd = {
@@ -360,7 +355,7 @@ export default function LocationPageTemplate({
       <section className="relative py-24 bg-brand-navy overflow-hidden">
         <img
           src={heroFamilyBedroom}
-          alt={`Freshly cleaned bedroom in a ${city} home`}
+          alt="A freshly cleaned bedroom"
           width={1280}
           height={853}
           className="absolute inset-0 w-full h-full object-cover opacity-25"
@@ -399,14 +394,12 @@ export default function LocationPageTemplate({
             <div className="flex flex-wrap justify-center gap-6">
               {[
                 { icon: CheckCircle2, text: "Pay After Your Clean" },
-                // Round one deliberately softened the body of these pages to
-                // "Flexible Scheduling Available", but this badge kept promising
-                // same-day outright, so the hero contradicted the section below it.
-                // The FAQ's own wording is the qualified version — "same-day and
-                // next-day appointments based on availability" — so match that
-                // rather than either over-promising or dropping a real selling point.
-                { icon: CalendarCheck, text: "Same-Day When Available" },
-                { icon: Award, text: "100% Satisfaction Guarantee" },
+                // The same badges the hand-written neighbourhood pages carry. The
+                // content prompt retired the same-day badge (no same-day promise)
+                // and the 100% satisfaction wording: the guarantee is a 24-hour
+                // re-clean, POLICY in data/policy.ts.
+                { icon: CalendarCheck, text: "Open 7 Days a Week" },
+                { icon: Award, text: "24-Hour Re-Clean Guarantee" },
               ].map((badge, i) => (
                 <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                   <badge.icon className="w-4 h-4 text-accent" />
@@ -442,9 +435,9 @@ export default function LocationPageTemplate({
               <p className="text-muted-foreground text-lg leading-relaxed mb-4">
                 A standard clean in {city} runs {LOCATION_PRICES.standard} depending on the size of your
                 home, a deep clean {LOCATION_PRICES.deep}, and a move-in or move-out clean{" "}
-                {LOCATION_PRICES.moveInOut}. Those are flat rates in Canadian dollars before 5% GST — the
-                figure you see before booking is the figure you pay, and it does not go up because a clean
-                took longer than expected. Those figures are for an apartment or condo: a bungalow or
+                {LOCATION_PRICES.moveInOut}. Those are flat rates in Canadian dollars before 5% GST, and
+                they do not go up because a clean took longer than expected. Those figures are for an
+                apartment or condo: a bungalow or
                 basement suite adds {HOME_TYPE_EXTRA.bungalow}, a townhouse {HOME_TYPE_EXTRA.townhouse} and
                 a two-storey house {HOME_TYPE_EXTRA.twoStorey}, and a home with pets {PET_FEE} a visit.
                 {/* "outside Edmonton and Calgary city limits" named the wrong
@@ -497,23 +490,8 @@ export default function LocationPageTemplate({
         />
       )}
 
-      {thingsToDo && thingsToDo.length > 0 && (
-        <section className="py-20 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <AnimatedSection>
-              <div className="max-w-4xl mx-auto">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Life</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                  Things To Do In {city}
-                </h2>
-                <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
-                  {thingsToDo.map((p, i) => <p key={i}>{p}</p>)}
-                </div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
-      )}
+      {/* A "Things To Do" section and its thingsToDo prop were removed: no page
+          passed it, and the content prompt keeps tourism off these pages. */}
 
       {/* Services */}
       <section className="py-20 bg-background">
@@ -525,13 +503,13 @@ export default function LocationPageTemplate({
                 Cleaning Services for {city} Homes
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                From routine upkeep to deep cleans and move-outs, we have every service your home needs.
+                Each of these six services is priced flat by home size, except post-construction cleaning, which is priced by square footage.
               </p>
             </div>
           </AnimatedSection>
           <AnimatedSection>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {services(city, region).map((s, i) => (
+              {services(city, region, isOwnMunicipality).map((s, i) => (
                 <ServiceCard key={i} {...s} />
               ))}
             </div>
@@ -585,12 +563,12 @@ export default function LocationPageTemplate({
                 Why {city} Residents Choose Duty Cleaners
               </h2>
               <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                Trusted by families across {regionLabel} for reliable, thorough cleaning.
+                Duty Cleaners has cleaned homes in Alberta since 2017. Homes in {city} are cleaned by the {regionLabel} branch.
               </p>
             </div>
           </AnimatedSection>
           <AnimatedSection>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
               {whyUsItems(region).map((item, i) => (
                 <WhyUsCard key={i} {...item} />
               ))}
@@ -605,26 +583,16 @@ export default function LocationPageTemplate({
           <AnimatedSection>
             <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
             <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
-              Proudly Serving {city} & Surrounding Areas
+              House Cleaning in {city} and the Wider {regionLabel} Area
             </h2>
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-              We provide professional house cleaning services throughout {city} and nearby communities in the {regionLabel} region.
+              The {regionLabel} branch cleans homes across {city}. Every neighbourhood and community it serves is on the service-area list.
             </p>
             <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
               View All Service Areas →
             </Link>
-            {/* Commercial cross-link: Search Console shows office/commercial
-                queries for these towns ranking 20-40 with zero clicks. */}
-            <p className="mt-6 text-sm text-muted-foreground">
-              Run a business in {city}? We also handle{" "}
-              <Link
-                to={region === "calgary" ? "/commercial-cleaning-services-calgary/" : "/commercial-cleaning/"}
-                className="text-primary underline underline-offset-2 font-medium"
-              >
-                commercial and office cleaning across the {regionLabel} region
-              </Link>
-              .
-            </p>
+            {/* The commercial cross-link that sat here was removed: the content
+                prompt keeps commercial work off the house-cleaning pages. */}
           </AnimatedSection>
         </div>
       </section>
@@ -657,7 +625,7 @@ export default function LocationPageTemplate({
         <div className="container mx-auto px-4 relative z-10 text-center">
           <AnimatedSection>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Ready for a Spotless Home in {city}?
+              Ready to Book a Clean in {city}?
             </h2>
             <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
               See your flat rate before you book. Nothing is charged until the clean is done.

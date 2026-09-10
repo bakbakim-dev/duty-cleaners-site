@@ -7,7 +7,6 @@ import heroImg from "@/assets/gallery/sherbrooke-cleaner.webp";
 import { buildLocationSchema } from "@/lib/location-schema";
 import HonestReviewLink from "@/components/HonestReviewLink";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
 const LocationMap = lazy(() => import("@/components/LocationMap"));
@@ -82,7 +81,7 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Sherbrooke" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Sherbrooke" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Sherbrooke" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Sherbrooke" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris cleared after renovations or new builds.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Sherbrooke" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Sherbrooke" },
@@ -91,7 +90,7 @@ const services = [
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Sherbrooke" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit before GST for a one-bedroom apartment or condo, with any pet or home-type charge added. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Sherbrooke" },
 ];
 
 const whyUsItems = [
@@ -137,11 +136,11 @@ export default function Sherbrooke() {
     },
     {
       question: "Do you offer discounts?",
-      answer: `Yes, recurring visits cost less every time:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
+      answer: `Yes. Recurring visits of the standard clean in Sherbrooke are discounted:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -163,25 +162,25 @@ export default function Sherbrooke() {
     <>
       <Helmet>
         <title>House Cleaning in Sherbrooke, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Sherbrooke, Edmonton. Trusted local cleaners, customer-rated, serving Sherbrooke homes." />
+        <meta name="description" content="Sherbrooke, Edmonton house cleaning for post-war bungalows with coved plaster and original casings, and north sills filmed by Yellowhead traffic." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Sherbrooke, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/sherbrooke-edmonton",
   areaServed: "Sherbrooke, Edmonton, AB",
-  description: "Professional house cleaning in Sherbrooke, Edmonton. Trusted local cleaners serving Sherbrooke homes with reliable, customer-rated cleaning service.",
+  description: "Sherbrooke, Edmonton house cleaning for post-war bungalows with coved plaster and original casings, and north sills filmed by Yellowhead traffic.",
   geo: { latitude: "53.587", longitude: "-113.52" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/sherbrooke-edmonton/" />
         <meta property="og:title" content="House Cleaning in Sherbrooke, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Sherbrooke, Edmonton. Trusted local cleaners, customer-rated, serving Sherbrooke homes." />
+        <meta property="og:description" content="Sherbrooke, Edmonton house cleaning for post-war bungalows with coved plaster and original casings, and north sills filmed by Yellowhead traffic." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/sherbrooke-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Sherbrooke, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Sherbrooke, Edmonton. Trusted local cleaners, customer-rated, serving Sherbrooke homes." />
+        <meta name="twitter:description" content="Sherbrooke, Edmonton house cleaning for post-war bungalows with coved plaster and original casings, and north sills filmed by Yellowhead traffic." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -207,7 +206,7 @@ export default function Sherbrooke() {
                   Professional House Cleaning in Sherbrooke
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  From spacious family bungalows to updated infills near Sherbrooke Park — your local team for spotless, welcoming homes.
+                  Sherbrooke's post-war bungalows are compact, with coved plaster, original casings and hardwood that shows dust. The Edmonton team cleans them at a flat rate by home size, and the rate does not change if a clean takes longer.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -235,7 +234,7 @@ export default function Sherbrooke() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
                   src={heroImg}
-                  alt="Professional cleaner working in a Sherbrooke, Edmonton home"
+                  alt="A cleaner vacuuming a cream rug in front of a white sectional sofa in a bright living room"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   width={1024}
                   height={1024}
@@ -257,7 +256,7 @@ export default function Sherbrooke() {
                   Cleaning Services for Sherbrooke Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
+                  Duty Cleaners' prices are set for an apartment or condo, so a Sherbrooke bungalow adds a home-type charge; the instant price shows the exact figure before you book.
                 </p>
               </div>
             </AnimatedSection>
@@ -300,7 +299,7 @@ export default function Sherbrooke() {
                   Why Sherbrooke Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Reliable, detail-first cleaning families count on.
+                  Sherbrooke cleans go to reference-checked cleaners, rated by the customer after every visit, with a re-clean at no charge if you report a miss within 24 hours.
                 </p>
               </div>
             </AnimatedSection>
@@ -322,7 +321,7 @@ export default function Sherbrooke() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Sherbrooke Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Right in north-central Edmonton — convenient, friendly and nearby.
+                  Sherbrooke sits northwest of Westmount, with the Yellowhead to the north and St. Albert Trail along its west edge.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -341,12 +340,11 @@ export default function Sherbrooke() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Sherbrooke</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Other Edmonton Neighbourhoods We Clean</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    Sherbrooke is one of 80 Edmonton neighbourhoods on the Edmonton branch's list, which also takes in nine communities outside the city.
                   </p>
                 </div>
-                <CoverageChips areas={["Sherbrooke Park", "Sherbrooke Community League", "Princess Elizabeth Avenue", "127 Street", "Yellowhead Trail", "Athlone", "Calder", "Wellington"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -361,7 +359,7 @@ export default function Sherbrooke() {
         eyebrow="Local knowledge"
         heading="Sherbrooke's small footprint, big trim"
         paragraphs={[
-          "Sherbrooke's post-war bungalows northwest of Westmount are compact — many under a thousand square feet — but the era packed them with hand-cleaned detail: coved plaster, original casings, hardwood that telegraphs dust. Small homes of this vintage take longer per square metre than anything built after 1980, and quoting by size alone underestimates them.",
+          "Sherbrooke's post-war bungalows northwest of Westmount are compact, many under a thousand square feet, but the era packed them with hand-cleaned detail: coved plaster, original casings, hardwood that telegraphs dust. Small homes of this vintage take longer per square metre than anything built after 1980, and quoting by size alone underestimates them.",
           "The Yellowhead's truck traffic runs close enough that north-facing sills carry a constant fine grey film, renewed faster than the neighbourhood's quiet interior streets would suggest. St. Albert Trail's commuter flow does the same for the west edge — which side a home faces decides its dusting rhythm.",
         ]}
       />

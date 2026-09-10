@@ -60,10 +60,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Tuxedo Park" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Tuxedo Park" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Tuxedo Park" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Tuxedo Park" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Drywall and renovation dust removal after infill projects.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Tuxedo Park" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Tuxedo Park" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Drywall dust and debris removal once renovation work is finished.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Tuxedo Park" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film washed off painted walls, booked together with a clean.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Tuxedo Park" },
 ];
 
 const whyUsItems = [
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Mount Pleasant", "Highland Park", "Crescent Heights", "Renfrew", "Capitol Hill", "Rosedale"];
+const nearbyAreas = ["Mount Pleasant", "Highland Park", "Crescent Heights", "Renfrew", "Capitol Hill"];
 
 const faqs = [
   {
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function TuxedoPark() {
     <>
       <Helmet>
         <title>Tuxedo Park, Calgary House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="House cleaning in Tuxedo Park, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
+        <meta name="description" content="Our Calgary house cleaners work in Tuxedo Park, where just over half the buildings are condos or apartments and about as much of the housing is rented." />
         <meta property="og:title" content="Tuxedo Park, Calgary House Cleaning | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Tuxedo Park, Calgary House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning in Tuxedo Park, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
-        <meta property="og:description" content="House cleaning in Tuxedo Park, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
+        <meta name="twitter:description" content="Our Calgary house cleaners work in Tuxedo Park, where just over half the buildings are condos or apartments and about as much of the housing is rented." />
+        <meta property="og:description" content="Our Calgary house cleaners work in Tuxedo Park, where just over half the buildings are condos or apartments and about as much of the housing is rented." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/tuxedo-park-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/tuxedo-park-calgary/" />
@@ -183,7 +183,7 @@ export default function TuxedoPark() {
                 Professional House Cleaning in Tuxedo Park
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Walk-to-downtown convenience meets character-home charm in Tuxedo Park — one of Calgary's most desirable inner-city N neighbourhoods.
+                Just over half of Tuxedo Park's buildings are condominiums or apartments, and about as much of the housing is rented. Our Calgary branch cleans suites and houses here at flat rates by home size.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function TuxedoPark() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Tuxedo Park Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs — every service a home needs.
+                  Condos and apartments in Tuxedo Park are priced flat by home size before 5% GST, and a townhouse or house adds a home-type charge to that rate.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function TuxedoPark() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Tuxedo Park Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Tuxedo Park and the surrounding N Calgary communities.
+                    Tuxedo Park is inside Calgary city limits, one of 66 neighbourhoods on our Calgary branch's list, so no trip fee applies.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function TuxedoPark() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={768} src={cleanHomeImg} alt="Professional Duty Cleaner mopping the hardwood floor of a heritage Tuxedo Park Calgary dining room" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1024} height={768} src={cleanHomeImg} alt="Cleaner mopping the hardwood floor of a dining room" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Heritage Charm, Modern Sparkle</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">What to expect</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Rented Suites and Lease-End Cleans</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Our Tuxedo Park clients deserve a home that looks as good as it feels. From original mouldings to modern fixtures, our vetted cleaners give every detail the attention it deserves.
+                    The team brings all supplies and equipment, so a suite needs nothing left out for the clean. When a lease ends, the move-out clean covers inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Reference-checked, rated after every visit","Supplies and equipment brought","Free re-clean if told within 24 hours"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,7 +311,7 @@ export default function TuxedoPark() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
                   Duty Cleaners cleans homes across Tuxedo Park and the communities around it.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
@@ -330,8 +330,8 @@ export default function TuxedoPark() {
         eyebrow="Street level"
         heading="Centre Street through the middle"
         paragraphs={[
-          "Centre Street runs north to south straight through this community rather than along an edge, and the Trans-Canada closes the south side. That leaves a lot of frontage on moving traffic for somewhere annexed in 1910. Homes on those blocks carry a road film on exterior glass and door hardware that returns well before anything indoors needs attention, while the interior streets hold their finish from one visit to the next.",
-          "Just over half the buildings are condominium or apartment, and about the same share of the housing is rented, so suite work and turnover cleans make up more of the week here than in the detached pockets either side. Green Line construction on 16 Avenue North began in 2024, and while it runs, where the dust settles moves with the detours.",
+          "Centre Street runs north to south straight through this community rather than along an edge, and the Trans-Canada closes the south side. That leaves a lot of frontage on moving traffic. Homes on those blocks carry a road film on door hardware that returns well before anything indoors needs attention, while the interior streets hold their finish from one visit to the next. The same film settles on the outer panes facing Centre Street and the Trans-Canada, and that glass is outdoor work, left out of a clean.",
+          "Just over half the buildings are condominium or apartment, and about the same share of the housing is rented, so suite work and turnover cleans make up more of the week here than in the detached pockets either side.",
         ]}
         accent="calgary"
       />
@@ -347,7 +347,7 @@ export default function TuxedoPark() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Tuxedo Park Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>

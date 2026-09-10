@@ -82,7 +82,7 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Brintnell" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Brintnell" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "A deep clean is the standard checklist plus the deep-clean package: baseboards, doors, light switches, wall outlets and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Brintnell" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Brintnell" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris cleared after renovations or new builds.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Brintnell" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Brintnell" },
@@ -91,7 +91,7 @@ const services = [
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Brintnell" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment, before 5% GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Brintnell" },
 ];
 
 const whyUsItems = [
@@ -141,7 +141,7 @@ export default function Brintnell() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `The deep package extends the standard clean with:\n\n• Baseboards wiped\n• Doors wiped\n• Light switches fully cleaned\n• Wall outlet covers wiped\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -163,25 +163,25 @@ export default function Brintnell() {
     <>
       <Helmet>
         <title>House Cleaners in Brintnell, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Brintnell, Edmonton. Trusted local cleaners serving northeast Edmonton families." />
+        <meta name="description" content="Brintnell's 2000s-era homes in Edmonton have open-plan main floors and two-storey great rooms; our Edmonton branch prices each by home size." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Brintnell, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/brintnell-edmonton",
   areaServed: "Brintnell, Edmonton, AB",
-  description: "Professional house cleaning in Brintnell, Edmonton. Trusted local cleaners serving northeast Edmonton families.",
+  description: "Brintnell's 2000s-era homes in Edmonton have open-plan main floors and two-storey great rooms; our Edmonton branch prices each by home size.",
   geo: { latitude: "53.621", longitude: "-113.405" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/brintnell-edmonton/" />
         <meta property="og:title" content="House Cleaners in Brintnell, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Brintnell, Edmonton. Trusted local cleaners serving northeast Edmonton families." />
+        <meta property="og:description" content="Brintnell's 2000s-era homes in Edmonton have open-plan main floors and two-storey great rooms; our Edmonton branch prices each by home size." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/brintnell-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Brintnell, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Brintnell, Edmonton. Trusted local cleaners serving northeast Edmonton families." />
+        <meta name="twitter:description" content="Brintnell's 2000s-era homes in Edmonton have open-plan main floors and two-storey great rooms; our Edmonton branch prices each by home size." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -207,7 +207,7 @@ export default function Brintnell() {
                   Professional House Cleaning in Brintnell
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Your reliable, local cleaning team serving the Brintnell community. From modern two-storeys near Brintnell School to homes backing the trails — thorough, reliable cleaning every visit.
+                  Brintnell is one of northeast Edmonton's 2000s-era neighbourhoods, with open-plan main floors and two-storey great rooms. Our Edmonton branch cleans these homes at a flat rate by home size.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -235,7 +235,7 @@ export default function Brintnell() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
                   src={heroImg}
-                  alt="Professional cleaner wiping a granite kitchen counter in a Brintnell, Edmonton home"
+                  alt="Cleaner in blue gloves wiping a granite kitchen island"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   width={1024}
                   height={1024}
@@ -257,7 +257,7 @@ export default function Brintnell() {
                   Cleaning Services for Brintnell Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Everything from weekly upkeep to full move-out cleans.
+                  Two-storey Brintnell houses are priced by bedroom and bathroom count before 5% GST, plus a home-type surcharge. The team works up to what a 3-step ladder reaches, so the top of a great-room wall is out of scope.
                 </p>
               </div>
             </AnimatedSection>
@@ -300,7 +300,7 @@ export default function Brintnell() {
                   Why Brintnell Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -322,7 +322,7 @@ export default function Brintnell() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Brintnell Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Located in northeast Edmonton, we're always just around the corner.
+                  Brintnell is in northeast Edmonton, and homes near the Manning Drive retail pick up delivery-traffic grit at the front walk.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -341,12 +341,12 @@ export default function Brintnell() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Brintnell</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Edmonton-area neighbourhoods we clean</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    Brintnell is on our Edmonton branch's list of 80 neighbourhoods, alongside nine communities outside the city such as Fort Saskatchewan and St. Albert.
                   </p>
                 </div>
-                <CoverageChips areas={["Brintnell School", "Manning Town Centre", "167 Avenue", "50 Street", "Hollick-Kenyon", "Casselman", "Matt Berry", "McConachie"]} variant="compact" />
+                <CoverageChips areas={["Hollick-Kenyon", "Casselman", "Matt Berry", "McConachie"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -359,10 +359,10 @@ export default function Brintnell() {
 
       <LocalMarketNote
         eyebrow="Local knowledge"
-        heading="What Brintnell homes actually need"
+        heading="What Brintnell homes need"
         paragraphs={[
           "Brintnell is one of the northeast's 2000s-era builds, which changes the job completely from the mature areas nearby: open-plan mains clean faster than divided plans, but the two-storey great rooms collect cobwebs at heights a step-stool cannot reach, and builder-grade carpet on stairs shows traffic lines earlier than the hardwood of older districts.",
-          "Being new also means the neighbourhood is still close to its construction years — vents, closet shelving and the tops of kitchen cabinets keep producing fine drywall dust well after possession. Homes near the retail on Manning Drive add delivery-traffic grit at the front walk to that mix.",
+          "Homes near the retail on Manning Drive add delivery-traffic grit at the front walk.",
         ]}
       />
 

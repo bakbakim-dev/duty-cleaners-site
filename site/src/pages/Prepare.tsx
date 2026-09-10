@@ -17,22 +17,22 @@ const faqs = [
   {
     question: "Do I need to clean before the cleaners arrive?",
     answer:
-      "No — please don't. The goal is access and clarity, not an immaculate home. If you want to help, clear the surfaces you'd like us to focus on and note anything we should skip. Describe the home as it is; no apology is needed.",
+      "No. You do not need to clean before the Duty Cleaners team comes: clear counters and floors get cleaned, and cluttered ones get worked around. Decluttering or organising is a separate hourly add-on. Describe the home as it is when you book; no apology is needed.",
   },
   {
     question: "Should I book a standard clean or a deep clean?",
     answer:
-      "If the home has been maintained recently, a standard clean keeps it there. If there's buildup, it's been a while since the last proper clean, or there's renovation dust, choose deep — it adds the time and detail work a standard visit doesn't include.",
+      "If the home had a proper clean within the last month or so, a standard clean keeps it there. If there is build-up, the last proper clean was a while ago, or a small job left some renovation dust, choose a deep clean: it is the standard checklist plus the deep-clean package, which adds baseboards, doors, switches and vent covers. After a full renovation, post-construction cleaning is the service for it, priced by square footage.",
   },
   {
     question: "What should I tell you about a move-out clean?",
     answer:
-      "Share your move date, whether the home will be empty when we arrive, which rooms and appliances matter most, and how we get in. An empty home cleans faster and more thoroughly, so tell us if furniture will still be there.",
+      "For a move-out clean, share your move date, whether the home will be empty when the team arrives, which rooms and appliances matter most, and how the team gets in. An empty home cleans faster and more thoroughly, so tell us if furniture will still be there.",
   },
   {
-    question: "What details actually help the cleaner?",
+    question: "What details help the cleaner on the day?",
     answer:
-      "Pets and where they'll be, where to park, how to enter, and any rooms to skip. Our booking funnel asks each of these, so nothing has to be remembered on the day.",
+      "The details that help most are where pets will be, where to park, how to get in, and any rooms to skip. The booking form asks about pets, parking and entry, and its notes field takes anything else, so nothing has to be remembered on the day.",
   },
 ];
 
@@ -54,19 +54,19 @@ export default function Prepare() {
         <title>Getting Ready for Your Clean | Duty Cleaners</title>
         <meta
           name="description"
-          content="What actually helps before a house cleaning — and what you can skip. Standard or deep, move-day details, and the notes your cleaner needs."
+          content="What helps before a house cleaning and what you can skip: choosing a standard or deep clean, move-day details, and the notes your cleaner needs."
         />
         <link rel="canonical" href="https://dutycleaners.ca/prepare/" />
         <meta property="og:title" content="Getting Ready for Your Clean | Duty Cleaners" />
         <meta
           property="og:description"
-          content="What actually helps before a house cleaning — and what you can skip."
+          content="What helps before a house cleaning and what you can skip: choosing a standard or deep clean, move-day details, and the notes your cleaner needs."
         />
         <meta property="og:type" content="article" />
         <meta property="og:url" content="https://dutycleaners.ca/prepare/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Getting Ready for Your Clean | Duty Cleaners" />
-        <meta name="twitter:description" content="What actually helps before a house cleaning — and what you can skip." />
+        <meta name="twitter:description" content="What helps before a house cleaning and what you can skip: choosing a standard or deep clean, move-day details, and the notes your cleaner needs." />
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
 
@@ -88,8 +88,8 @@ export default function Prepare() {
                 <em className="italic text-accent-on-dark">clean.</em>
               </h1>
               <p className="mt-5 text-lg leading-relaxed text-brand-navy-foreground/85">
-                Short version: you don&rsquo;t have to do much. Here&rsquo;s what genuinely helps,
-                what you can ignore, and how to pick the right type of clean.
+                Short version: you don&rsquo;t have to do much. Here&rsquo;s what helps, what you
+                can ignore, and how to pick the right type of clean.
               </p>
             </div>
           </div>
@@ -102,15 +102,15 @@ export default function Prepare() {
                   You don&rsquo;t need to pre-clean
                 </h2>
                 <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-                  A surprising number of people tidy for hours before a cleaner arrives, then feel
-                  they wasted the visit. You don&rsquo;t need to. What we need is access and
-                  clarity: a path to the rooms that matter and a clear sense of what you want done
-                  first. That&rsquo;s it.
+                  You do not need to clean before the team comes. Clear counters and floors get
+                  cleaned, cluttered ones get worked around, and decluttering or organising is a
+                  separate hourly add-on. What the team needs is access and clarity: a path to the
+                  rooms that matter and a clear sense of what you want done first.
                 </p>
                 <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
                   If you want to help, move what you don&rsquo;t want touched — paperwork, medication,
                   small valuables, a work desk mid-project. Clearing a kitchen counter or a bathroom
-                  vanity gives our cleaner more surface to actually clean, which is the one kind of
+                  vanity gives the cleaner more surface to clean, which is the one kind of
                   tidying that pays you back in results.
                 </p>
                 <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
@@ -137,8 +137,7 @@ export default function Prepare() {
                   Standard or deep?
                 </h2>
                 <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-                  This is the question people get wrong most often, and the honest answer depends on
-                  one thing: when the home was last properly cleaned.
+                  The answer depends mostly on one thing: when the home was last properly cleaned.
                 </p>
                 <div className="mt-7 grid gap-5 md:grid-cols-2">
                   <div className="border-l-[3px] border-accent bg-card p-6 shadow-sm">
@@ -146,8 +145,8 @@ export default function Prepare() {
                       Choose standard
                     </span>
                     <p className="mt-3 text-base leading-relaxed text-foreground">
-                      The home has been maintained — cleaned within the last month or so, no real
-                      buildup. A standard visit keeps it where it is: kitchen, bathrooms, floors,
+                      The home has been kept up: a proper clean within the last month or so, and no
+                      real build-up. A standard visit keeps it where it is: kitchen, bathrooms, floors,
                       surfaces, and the rooms you use every day.
                     </p>
                   </div>
@@ -156,16 +155,32 @@ export default function Prepare() {
                       Choose deep
                     </span>
                     <p className="mt-3 text-base leading-relaxed text-foreground">
-                      There&rsquo;s buildup, it&rsquo;s the first proper clean in a while, or
-                      there&rsquo;s post-renovation dust. Deep adds baseboards, doors, switches,
-                      vent covers and the detail work a standard visit doesn&rsquo;t have time for.
+                      There&rsquo;s build-up, it&rsquo;s the first proper clean in a while, or a
+                      small job has left some renovation dust. Deep adds baseboards, doors, switches,
+                      vent covers and the detail work a standard visit does not include.
                     </p>
                   </div>
                 </div>
                 <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-                  Not sure? Our booking funnel asks when the home was last properly cleaned and
-                  recommends from your answer — and it shows you both prices before you commit to
-                  anything.
+                  The booking form asks when the home was last properly cleaned, and it shows the
+                  price for your home before you book. Both checklists and the prices by home size
+                  are on{" "}
+                  <Link to="/edmonton/regular-cleaning/" className="font-semibold text-foreground underline underline-offset-4">
+                    standard cleaning in Edmonton
+                  </Link>
+                  ,{" "}
+                  <Link to="/edmonton/deep-cleaning/" className="font-semibold text-foreground underline underline-offset-4">
+                    deep cleaning in Edmonton
+                  </Link>
+                  ,{" "}
+                  <Link to="/calgary/regular-cleaning/" className="font-semibold text-foreground underline underline-offset-4">
+                    standard cleaning in Calgary
+                  </Link>{" "}
+                  and{" "}
+                  <Link to="/calgary/deep-cleaning/" className="font-semibold text-foreground underline underline-offset-4">
+                    deep cleaning in Calgary
+                  </Link>
+                  .
                 </p>
                 <Button
                   size="lg"
@@ -173,7 +188,7 @@ export default function Prepare() {
                   asChild
                 >
                   <Link to="/#quote">
-                    See my price
+                    See My Instant Price
                     <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
                   </Link>
                 </Button>
@@ -196,7 +211,7 @@ export default function Prepare() {
                   {[
                     "Your move date — and the latest time the clean can finish.",
                     "Whether the home will be empty. An empty home cleans faster and far more thoroughly; if furniture is staying, tell us what it is.",
-                    "Priority rooms and appliances — inside the oven, inside the fridge, cabinet interiors, the garage.",
+                    "Priority rooms and appliances, such as inside the oven, the fridge and the cabinets. Garages are outside every clean.",
                     "Access: keys, lockbox, buzzer code, elevator booking, parking.",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-3">
@@ -209,8 +224,17 @@ export default function Prepare() {
                   ))}
                 </ul>
                 <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-                  Put anything unusual in the notes field at the end of the booking flow. It goes
-                  straight to the cleaner assigned to your job.
+                  Put anything unusual in the notes field at the end of the booking form, and it
+                  goes to the team with the rest of the booking. The move-out checklist and prices
+                  by home size are on{" "}
+                  <Link to="/move-out-cleaning-edmonton/" className="font-semibold text-foreground underline underline-offset-4">
+                    move-out cleaning in Edmonton
+                  </Link>{" "}
+                  and{" "}
+                  <Link to="/move-out-cleaning-calgary/" className="font-semibold text-foreground underline underline-offset-4">
+                    move-out cleaning in Calgary
+                  </Link>
+                  .
                 </p>
               </div>
             </div>
@@ -231,7 +255,7 @@ export default function Prepare() {
                 </p>
                 <div className="mt-6 grid gap-4 sm:grid-cols-2">
                   {[
-                    ["Pets", "Friendly, shy, or best kept in another room — just say which."],
+                    ["Pets", "Friendly, shy, or best kept in another room: just say which. Homes with pets carry a per-visit pet charge, shown on the quote before booking."],
                     ["Parking", "Street, driveway, visitor stall, or a permit we should know about."],
                     ["Entry", "Who's home, or how we get in if nobody is."],
                     ["Rooms to skip", "A home office mid-deadline, a nursery at nap time, a storage room."],
@@ -245,8 +269,8 @@ export default function Prepare() {
                   ))}
                 </div>
                 <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-                  Every one of these is asked right in our booking funnel, so nothing gets
-                  forgotten and nobody has to remember it on the doorstep.
+                  The booking form asks about pets, parking and entry, and its notes field takes a
+                  room to skip, so nobody has to remember any of it on the doorstep.
                 </p>
                 {/* This page asks about access four separate times and never said what
                     happens when it fails — the most expensive thing preparation can get
@@ -280,7 +304,7 @@ export default function Prepare() {
                   asChild
                 >
                   <Link to="/#quote">
-                    See my price
+                    See My Instant Price
                     <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
                   </Link>
                 </Button>

@@ -60,9 +60,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in East Village" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in East Village" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in East Village" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in East Village" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in East Village.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in East Village" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or a new build, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in East Village" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in East Village" },
 ];
 
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Downtown", "Inglewood", "Bridgeland", "Beltline", "Chinatown", "Eau Claire"];
+const nearbyAreas = ["Inglewood", "Bridgeland-Riverside", "Beltline", "Eau Claire"];
 
 const faqs = [
   {
@@ -104,7 +104,7 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in East Village?",
-    answer: `Every service we run can be booked locally:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `Duty Cleaners books these services for homes in East Village:\n\n• Standard & Deep Cleaning Packages\n• Recurring Cleaning\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning, booked together with a clean`
   },
   {
     question: "Do you offer discounts?",
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `In East Village, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `In East Village, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function EastVillage() {
     <>
       <Helmet>
         <title>East Village, Calgary House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="House cleaning in East Village, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
+        <meta name="description" content="Nearly all East Village housing in Calgary went up after 2009, so a house clean there meets drywall haze still working out of vents and closet tracks." />
         <meta property="og:title" content="East Village, Calgary House Cleaning | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="East Village, Calgary House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning in East Village, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
-        <meta property="og:description" content="House cleaning in East Village, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
+        <meta name="twitter:description" content="Nearly all East Village housing in Calgary went up after 2009, so a house clean there meets drywall haze still working out of vents and closet tracks." />
+        <meta property="og:description" content="Nearly all East Village housing in Calgary went up after 2009, so a house clean there meets drywall haze still working out of vents and closet tracks." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/east-village-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/east-village-calgary/" />
@@ -183,7 +183,7 @@ export default function EastVillage() {
                 Professional House Cleaning in East Village
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Trusted condo cleaning services for one of Calgary's most exciting riverside communities — bringing a calm, spotless home within reach.
+                Nearly all East Village housing was built under the master plan council approved in 2009. Our Calgary branch cleans it at a flat rate by home size, before 5% GST.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function EastVillage() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for East Village Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
+                  An East Village apartment or condo is priced at the base rate for its size, before 5% GST, with no home-type surcharge.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function EastVillage() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">East Village Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in East Village and the surrounding Calgary communities.
+                    East Village is inside Calgary city limits, so a quote here has no trip fee.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function EastVillage() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={768} src={cleanHomeImg} alt="Spotless East Village Calgary home cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1024} height={768} src={cleanHomeImg} alt="Bright living room with a cream sectional sofa, a glass coffee table and tall windows over a wood floor" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Calm, Spotless East Village Home — Every Visit</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">New-build work</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Where the Dust Settles in a Newer East Village Home</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Our vetted cleaners treat your home with care, attention, and the same standards we'd want in our own. Walk in to fresh air, gleaming surfaces, and that quiet feeling of <em>everything in its place</em>.
+                    The deep clean adds vent covers, and in a newer East Village home the vents are where drywall haze is still working its way out. You do not need to be home for it: most customers leave a key, a lockbox code or smart-lock access, and the team locks up.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Cleaners reference-checked before a first job","All supplies and equipment brought in","Re-clean at no charge if told within 24 hours"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,9 +311,9 @@ export default function EastVillage() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across East Village and the communities around it.{" "}
+                  East Village is one of 66 Calgary neighbourhoods the Calgary branch cleans, and these four are on the same list.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -328,8 +328,8 @@ export default function EastVillage() {
         eyebrow="Neighbourhood notes"
         heading="Half a neighbourhood still to come"
         paragraphs={[
-          "The genuinely old buildings here are not housing: the 1905 King Edward Hotel is part of the National Music Centre now, the 1912 Simmons mattress factory holds restaurants, and the 1914 St. Louis Hotel anchors the historic block on 8 Avenue SE. Nearly all of the housing arrived under the master plan council approved in 2009. So what we meet indoors is new-build residue rather than decades of buildup — drywall haze still working out of vents and closet tracks, adhesive marks on window frames, grout in its first years.",
-          "And the plan is roughly half delivered. CMLC counts more than 1,700 homes built on these 49 acres since 2009 against an eventual 3,500, which means live construction sites a block or two from most lobbies for years yet. Balcony rails and glass facing an open excavation collect a hard concrete dust that will scratch if it is wiped dry; it comes off wet, then gets polished.",
+          "The few old buildings here are not housing. Nearly all of the housing arrived under the master plan council approved in 2009. So what we meet indoors is new-build residue rather than decades of buildup — drywall haze still working out of vents and closet tracks, adhesive marks on window frames, grout in its first years.",
+          "And the plan is roughly half delivered. CMLC counts more than 1,700 homes built on these 49 acres since 2009 against an eventual 3,500, which means live construction sites a block or two from most lobbies for years yet. Suites facing an open excavation collect a hard concrete dust that will scratch if it is wiped dry; on interior sills it comes off wet, then gets polished.",
         ]}
         accent="calgary"
       />
@@ -347,7 +347,7 @@ export default function EastVillage() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why East Village Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Dependable cleaning, visit after visit.
+                  You do not need to tidy before the team arrives: clear counters get cleaned, and cluttered ones get worked around.
                 </p>
               </div>
             </AnimatedSection>

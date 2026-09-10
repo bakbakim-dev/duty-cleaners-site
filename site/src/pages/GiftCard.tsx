@@ -22,14 +22,14 @@ const EMBED_MIN_HEIGHT = 1500;
 const points = [
   { icon: Gift, text: "Any amount you choose" },
   { icon: Mail, text: "Delivered by email, so there is no card to lose" },
-  { icon: Wallet, text: "Balance tracked automatically, use it across visits" },
+  { icon: Wallet, text: "The balance is tracked and carries across visits" },
 ];
 
 const steps = [
   { title: "Choose an amount", text: "Any value you like. There is no minimum or maximum." },
   { title: "Add your message", text: "Their name, a short note, and who it's from." },
-  { title: "We email it", text: "Straight away, or on a date you pick." },
-  { title: "They book whenever", text: "No expiry pressure. The balance is tracked for them." },
+  { title: "We email it", text: "It goes out straight away, or on a date you pick." },
+  { title: "They book whenever", text: "The card does not expire, and the balance is tracked for them." },
 ];
 
 // Prices are derived from the booking config, never hand-typed.
@@ -37,9 +37,9 @@ const standard = standardTierRows();
 const deep = deepCleanTierRows();
 const move = moveInOutTierRows();
 const suggestions = [
-  { amount: standard[0]?.price ?? "", label: "A standard clean for a 1-bedroom home" },
-  { amount: standard[1]?.price ?? "", label: "A standard clean for a 2-bedroom home" },
-  { amount: deep[1]?.price ?? "", label: "A deep clean for a 2-bedroom home" },
+  { amount: standard[0]?.price ?? "", label: "A standard clean of a 1-bedroom, 1-bathroom apartment or condo" },
+  { amount: standard[1]?.price ?? "", label: "A standard clean of a 2-bedroom, 2-bathroom apartment or condo" },
+  { amount: deep[1]?.price ?? "", label: "A deep clean of a 2-bedroom, 2-bathroom apartment or condo" },
 ];
 
 /**
@@ -66,7 +66,7 @@ const FAQS = [
   },
   {
     q: "What if the clean costs more, or less, than the card?",
-    a: `If the clean costs more, they pay the difference at checkout. If it costs less, the remaining balance stays on the card for the next visit. A ${standard[0]?.price ?? ""} card covers a 1-bedroom standard clean before GST; a ${move[move.length - 1]?.price ?? ""} card covers a 5-bedroom move-out.`,
+    a: `If the clean costs more, they pay the difference at checkout. If it costs less, the remaining balance stays on the card for the next visit. A ${standard[0]?.price ?? ""} card matches a standard clean of a 1-bedroom, 1-bathroom apartment or condo, and a ${move[move.length - 1]?.price ?? ""} card matches a move-out clean of a 5-bedroom apartment or condo. Both prices are before 5% GST, and the pet charge, a home-type surcharge or a travel fee outside city limits is added on top.`,
   },
   {
     q: "Is there a minimum or maximum amount?",
@@ -87,7 +87,7 @@ const FAQS = [
 
 const TITLE = "House Cleaning Gift Cards Edmonton & Calgary | Duty Cleaners";
 const DESCRIPTION =
-  "Buy a house cleaning gift card for Edmonton or Calgary. Any amount, no expiry, delivered by email right away or on a date you pick.";
+  "Buy a house cleaning gift card for Edmonton or Calgary in any amount, with no expiry, emailed right away or on a date you pick.";
 
 export default function GiftCard() {
   const [loaded, setLoaded] = useState(false);
@@ -142,9 +142,9 @@ export default function GiftCard() {
             <div className="mx-auto max-w-3xl text-center">
               <h1 className="mb-5 text-3xl font-bold text-white md:text-5xl">House Cleaning Gift Cards for Edmonton and Calgary</h1>
               <p className="text-lg leading-relaxed text-white/85 md:text-xl">
-                Give someone their weekend back. Choose any amount, add a message, and it arrives by
-                email, right away or on a date you pick. Redeemable on any clean from either office,
-                rated {RATING_CLAIM}.
+                Choose any amount, add a message, and the card arrives by email, right away or on a
+                date you pick. The recipient can use it on any clean from the Edmonton or Calgary
+                office, and both are rated {RATING_CLAIM}.
               </p>
 
               <ul className="mt-8 grid gap-3 sm:grid-cols-3">
@@ -198,8 +198,10 @@ export default function GiftCard() {
             <div className="mx-auto max-w-4xl">
               <h2 className="mb-3 text-center text-2xl font-bold md:text-3xl">Gift card amounts that cover a whole clean</h2>
               <p className="mx-auto mb-8 max-w-2xl text-center text-base leading-relaxed text-muted-foreground">
-                Any amount works, because the balance is applied to whatever they book. These are
-                the usual starting points if you would rather cover a whole visit. All before 5% GST.
+                Any amount works, because the balance is applied to whatever they book. If you would
+                rather cover a whole visit, these are the one-visit prices for an apartment or condo,
+                before 5% GST. A larger home type, a pet charge or a travel fee outside Edmonton or
+                Calgary city limits adds to the total.
               </p>
               <ul className="grid gap-5 sm:grid-cols-3">
                 {suggestions.map((item) => (
@@ -208,7 +210,7 @@ export default function GiftCard() {
                     className="rounded-2xl border border-border/60 bg-card p-6 text-center"
                   >
                     <p className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-                      Starts around
+                      From
                     </p>
                     <p className="my-2 text-3xl font-bold text-brand-navy">{item.amount}</p>
                     <p className="text-base leading-relaxed text-muted-foreground">{item.label}</p>
@@ -331,15 +333,14 @@ export default function GiftCard() {
                   Giving a cleaning as a gift, without it landing wrong
                 </h2>
                 <p>
-                  The awkwardness is real and worth naming: a cleaning gift can read as a comment
-                  on the state of someone's home. It almost never does when there is an obvious
-                  occasion attached to it: a new baby, a house move, a stretch of illness or
-                  recovery, a parent who has stopped managing stairs comfortably, or the week
-                  either side of hosting a large family gathering. Those are the times people are
-                  most relieved to be handed this and least likely to read anything into it.
+                  The awkwardness is worth naming: a cleaning gift can read as a comment
+                  on the state of someone's home. An obvious occasion gives the gift its reason:
+                  a new baby, a house move, a stretch of illness or recovery, a parent who has
+                  stopped managing stairs comfortably, or the week either side of hosting a large
+                  family gathering.
                 </p>
                 <p>
-                  Two practical points that catch people out. The recipient has to be able to let
+                  Two practical points catch people out. The recipient has to be able to let
                   a cleaner in, so a gift for someone who travels constantly or works unpredictable
                   shifts may sit unused for months. That is survivable here, because the card does
                   not expire, but it is worth knowing. And they choose their own date and service;
@@ -362,8 +363,10 @@ export default function GiftCard() {
                   <Link to={canonicalForPath("/whats-included")} className="text-accent underline underline-offset-2">
                     what's included
                   </Link>{" "}
-                  shows what each service actually covers. All published prices are before 5% GST,
-                  so a card sized to the sticker price will fall a little short of the final total.
+                  shows what each service covers. All published prices are before 5% GST, so a card
+                  sized to the sticker price will fall a little short of the final total, and so will
+                  one that leaves out the pet charge, a home-type surcharge or a travel fee outside
+                  city limits.
                 </p>
                 <p>
                   If you are not sure which service they would pick,{" "}

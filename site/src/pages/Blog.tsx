@@ -62,7 +62,7 @@ const blogPosts: BlogPost[] = [
   {
     id: 14,
     title: "House Cleaning Tips for a Spotless Home",
-    excerpt: "Small, consistent habits beat one big weekend clean. Daily routines, a room-by-room guide, and a three-tier schedule that actually holds up.",
+    excerpt: "Small, consistent habits beat one big weekend clean. The post covers daily routines, a room-by-room guide and a three-tier schedule that holds up.",
     category: "Cleaning Tips",
     date: "August 24, 2026",
     readTime: "8 min read",
@@ -72,7 +72,7 @@ const blogPosts: BlogPost[] = [
   {
     id: 13,
     title: "Cleaning Services Calgary: What to Look For Before You Book",
-    excerpt: "Four things that separate a reliable Calgary cleaning company from a risky one — and what to check before you book.",
+    excerpt: "Four things separate a reliable Calgary cleaning company from a risky one. Here is what to check before you book.",
     category: "Hiring Guide",
     date: "August 24, 2026",
     readTime: "7 min read",
@@ -82,7 +82,7 @@ const blogPosts: BlogPost[] = [
   {
     id: 12,
     title: "The Top 5 Must-Have Cleaning Products for a Spotless Home",
-    excerpt: "Most homes own fifteen cleaning products and use four. Here are the five our cleaners actually carry, what each one is for, and what you can stop buying.",
+    excerpt: "Five products cover almost every surface in a home. Here is what each one is for, what to look for on the label, and what you can stop buying.",
     category: "Cleaning Supplies",
     date: "August 23, 2026",
     readTime: "9 min read",
@@ -92,7 +92,7 @@ const blogPosts: BlogPost[] = [
   {
     id: 11,
     title: "Choosing the Right Cleaning Company for Your Needs",
-    excerpt: "Learn how to find the perfect cleaning company for your home or office. From assessing your needs to checking credentials and reviews, we guide you through the key factors.",
+    excerpt: "Comparing house cleaning companies comes down to a few checks: what your home needs, how cleaners are screened, what reviews tell you and what a quote includes.",
     category: "Hiring Guide",
     date: "January 27, 2026",
     readTime: "14 min read",
@@ -102,7 +102,7 @@ const blogPosts: BlogPost[] = [
   {
     id: 10,
     title: "How Much Does a House Cleaning Cost?",
-    excerpt: "Understand the factors that affect professional house cleaning prices - from hourly rates to flat fees, and what you can expect to pay for different cleaning services.",
+    excerpt: "Home size, the type of clean and hourly or flat-rate billing all change what a house cleaning costs. Here is what to expect to pay for each type of clean.",
     category: "Pricing Guide",
     date: "January 25, 2026",
     readTime: "7 min read",
@@ -112,7 +112,7 @@ const blogPosts: BlogPost[] = [
   {
     id: 9,
     title: "Cleaning with Vinegar and Baking Soda",
-    excerpt: "Skip the harsh chemicals! Learn how to use these two natural household items to clean almost everything in your home safely and effectively.",
+    excerpt: "Vinegar and baking soda can clean a good part of the house. Here is how to use each one, and which surfaces they can damage.",
     category: "Green Cleaning",
     date: "January 25, 2026",
     readTime: "15 min read",
@@ -122,7 +122,7 @@ const blogPosts: BlogPost[] = [
   {
     id: 8,
     title: "How Often Should A Cleaning Service Clean My House?",
-    excerpt: "Discover the perfect cleaning frequency for your home based on your lifestyle, household size, pets, and budget. Weekly, bi-weekly, or monthly - find what works for you.",
+    excerpt: "Weekly, bi-weekly and monthly house cleaning each suit a different home. Household size, pets, how you use the home and your budget decide which one fits.",
     category: "Home Care",
     date: "January 22, 2026",
     readTime: "10 min read",
@@ -132,7 +132,7 @@ const blogPosts: BlogPost[] = [
   {
     id: 7,
     title: "A Cleaning Schedule That Actually Holds Up",
-    excerpt: "Divide and conquer! Create a realistic cleaning schedule with daily, weekly, and monthly tasks that fit your lifestyle without adding stress.",
+    excerpt: "A realistic schedule splits the cleaning into daily, weekly and monthly tasks, so no single day has to carry the whole house.",
     category: "Cleaning Tips",
     date: "January 20, 2026",
     readTime: "7 min read",
@@ -170,7 +170,7 @@ export default function Blog() {
         <title>Cleaning Tips & Guides Blog | Duty Cleaners</title>
         <meta
           name="description"
-          content="Expert cleaning tips, guides, and advice from professional cleaners. Learn how to maintain a spotless home with insights from Duty Cleaners."
+          content="The Duty Cleaners blog, from Edmonton and Calgary, covers cleaning costs, how often to book, which products to buy and how to hire a cleaner."
         />
         <link rel="canonical" href="https://dutycleaners.ca/blog/" />
         {/*
@@ -223,12 +223,12 @@ export default function Blog() {
             }),
         })}</script>
         <meta property="og:title" content="Cleaning Tips & Guides Blog | Duty Cleaners" />
-        <meta property="og:description" content="Expert cleaning tips, guides, and advice from professional cleaners. Learn how to maintain a spotless home with insights from Duty Cleaners." />
+        <meta property="og:description" content="The Duty Cleaners blog, from Edmonton and Calgary, covers cleaning costs, how often to book, which products to buy and how to hire a cleaner." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/blog/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Cleaning Tips & Guides Blog | Duty Cleaners" />
-        <meta name="twitter:description" content="Expert cleaning tips, guides, and advice from professional cleaners. Learn how to maintain a spotless home with insights from Duty Cleaners." />
+        <meta name="twitter:description" content="The Duty Cleaners blog, from Edmonton and Calgary, covers cleaning costs, how often to book, which products to buy and how to hire a cleaner." />
       </Helmet>
 
       <div className="min-h-screen bg-background">
@@ -255,13 +255,13 @@ export default function Blog() {
             <div className="max-w-3xl mx-auto text-center">
               <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-5 py-2 mb-6 backdrop-blur-sm">
                 <BookOpen className="w-4 h-4 text-accent" />
-                <span className="text-white/90 text-sm font-medium">Expert Advice & Guides</span>
+                <span className="text-white/90 text-sm font-medium">Guides and Advice</span>
               </div>
               <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white leading-tight">
                 Cleaning Tips & Insights
               </h1>
               <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
-                Practical advice from our professional cleaning team to help you maintain a spotless, healthy home between visits.
+                These guides come from Duty Cleaners in Edmonton and Calgary. They cover keeping a home clean between visits, choosing a cleaning company and what cleaning costs.
               </p>
             </div>
           </div>
@@ -277,7 +277,7 @@ export default function Blog() {
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">Browse Our Blog</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                From cost guides to natural cleaning methods — everything you need for a cleaner home.
+                The posts cover cleaning costs, schedules, products and hiring a cleaner, and the topic buttons narrow the list.
               </p>
             </div>
 
@@ -330,18 +330,18 @@ export default function Blog() {
             <div className="max-w-2xl mx-auto text-center">
               <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-5 py-2 mb-6 backdrop-blur-sm">
                 <Sparkles className="w-4 h-4 text-accent" />
-                <span className="text-white/90 text-sm font-medium">Rather not do it yourself?</span>
+                <span className="text-white/90 text-sm font-medium">Book a house cleaning</span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">See your price in about a minute</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">See your price before you book</h2>
               <p className="text-lg text-white/80 mb-8">
-                Answer a few questions about your home and get a real price — no waiting on a callback.
+                Answer a few questions about your home and see a flat price online, with no need to wait for a callback.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Button asChild size="lg" variant="accent" className="rounded-xl shadow-lg min-h-[52px] text-base font-bold">
                   <Link to="/#quote">See My Instant Price</Link>
                 </Button>
                 <Button asChild size="lg" variant="outline" className="rounded-xl min-h-[52px] border-white/40 bg-transparent text-white hover:bg-white/10">
-                  <a href="tel:7809136565">Prefer to talk? (780) 913-6565</a>
+                  <a href="tel:7809136565">Edmonton office: (780) 913-6565</a>
                 </Button>
               </div>
             </div>

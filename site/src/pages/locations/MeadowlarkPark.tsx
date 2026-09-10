@@ -60,9 +60,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Meadowlark Park" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Meadowlark Park" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Meadowlark Park" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Meadowlark Park" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Meadowlark Park.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Meadowlark Park" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris cleared after renovations or new builds in Meadowlark Park.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Meadowlark Park" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Meadowlark Park" },
 ];
 
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Windsor Park", "Manchester", "Kingsland", "Britannia", "Elboya", "Stanley Park"];
+const nearbyAreas = ["Windsor Park", "Manchester", "Stanley Park"];
 
 const faqs = [
   {
@@ -108,11 +108,11 @@ const faqs = [
   },
   {
     question: "Do you offer discounts?",
-    answer: `Yes, recurring visits cost less every time:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
+    answer: `Yes, on a recurring standard clean in Meadowlark Park:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `In Meadowlark Park, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `In Meadowlark Park, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function MeadowlarkPark() {
     <>
       <Helmet>
         <title>House Cleaners in Meadowlark Park, Calgary | Duty Cleaners</title>
-        <meta name="description" content="House cleaning in Meadowlark Park, Calgary. See your price before you book, pay after the clean, and we re-clean misses within 24 hours." />
+        <meta name="description" content="November to April, three arterials send road sand and de-icing brine into Meadowlark Park homes in SW Calgary, so neutral-pH cleaning matters." />
         <meta property="og:title" content="House Cleaners in Meadowlark Park, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Meadowlark Park, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning in Meadowlark Park, Calgary. See your price before you book, pay after the clean, and we re-clean misses within 24 hours." />
-        <meta property="og:description" content="House cleaning in Meadowlark Park, Calgary. See your price before you book, pay after the clean, and we re-clean misses within 24 hours." />
+        <meta name="twitter:description" content="November to April, three arterials send road sand and de-icing brine into Meadowlark Park homes in SW Calgary, so neutral-pH cleaning matters." />
+        <meta property="og:description" content="November to April, three arterials send road sand and de-icing brine into Meadowlark Park homes in SW Calgary, so neutral-pH cleaning matters." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/meadowlark-park-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/meadowlark-park-calgary/" />
@@ -183,7 +183,7 @@ export default function MeadowlarkPark() {
                 Professional House Cleaning in Meadowlark Park
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Meadowlark Park is a hidden SW gem — wide lots, mature trees, and classic mid-century bungalows wrapped around its namesake green space.
+                The city's assessment roll dates about nine in ten Meadowlark Park houses to 1960 or earlier, and in houses that age the front door sits a step or two from the main-floor hardwood.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function MeadowlarkPark() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Meadowlark Park Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs — every service a home needs.
+                  Five services for Meadowlark Park homes, each linked to its Calgary service page.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function MeadowlarkPark() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Meadowlark Park Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Meadowlark Park and the surrounding SW Calgary communities.
+                    Meadowlark Park is on the Calgary branch's list of city neighbourhoods, and there is no trip fee inside Calgary city limits.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function MeadowlarkPark() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={768} src={cleanHomeImg} alt="Bright, freshly cleaned mid-century bungalow living room in Meadowlark Park Calgary" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1024} height={768} src={cleanHomeImg} alt="A sunlit living room with a grey sofa, a hardwood floor and a teak sideboard" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Bungalow That Feels Brand New, Every Time</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Access and arrival</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Before the Team Arrives in Meadowlark Park</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Care and attention are the whole job. Expect gleaming surfaces, fresh air, and the quiet feeling of a home put properly <em>back in order</em>.
+                    You do not need to be home for a clean in Meadowlark Park. Most customers leave a key, a lockbox code or smart-lock access, and the team locks up. We book an arrival window of 9:00 to 10:00 AM, 12:00 to 1:00 PM, or 3:00 to 4:00 PM rather than an exact time.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Clear counters and floors get cleaned","Cluttered surfaces get worked around","Decluttering or organising is a separate hourly add-on"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,7 +311,7 @@ export default function MeadowlarkPark() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
                   Duty Cleaners cleans homes across Meadowlark Park and the communities around it.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
@@ -328,8 +328,8 @@ export default function MeadowlarkPark() {
         eyebrow="What we see here"
         heading="Chinook's parking lot is inside the line"
         paragraphs={[
-          "Almost nothing here is new: the city's assessment roll dates about nine in ten Meadowlark Park houses to 1960 or earlier, and only a couple of dozen infills have gone up since 1980. The 2021 census counted 260 occupied dwellings, 92 per cent of them detached. Houses of that vintage put the front door a step or two from the main-floor finish, and with no vestibule to stop it, winter grit goes straight onto the hardwood the door opens onto.",
-          "Arterials box the place in on three sides: Glenmore Trail south, Macleod Trail east, Elbow Drive west, with 58 Avenue SW closing the north. Chinook Centre and its parking lots occupy the eastern edge along Macleod, inside the community line. November to April, that geography delivers road sand and de-icing brine on every pair of boots, and brine dries to a white haze on wood and baseboards, which is why neutral-pH cleaning matters more here than any deep-clean add-on.",
+          "Almost nothing here is new: the city's assessment roll dates about nine in ten Meadowlark Park houses to 1960 or earlier, and only a couple of dozen infills have gone up since 1980. In the 2021 census, 92 per cent of the occupied dwellings here were detached. Houses of that vintage put the front door a step or two from the main-floor finish, and with no vestibule to stop it, winter grit goes straight onto the hardwood the door opens onto.",
+          "Arterials box the place in on three sides: Glenmore Trail south, Macleod Trail east, Elbow Drive west, with 58 Avenue SW closing the north. Chinook Centre and its parking lots occupy the eastern edge along Macleod, inside the community line. November to April, that geography delivers road sand and de-icing brine on every pair of boots, and brine dries to a white haze on wood and baseboards, which is why neutral-pH cleaning matters here.",
         ]}
         accent="calgary"
       />
@@ -347,7 +347,7 @@ export default function MeadowlarkPark() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Meadowlark Park Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>

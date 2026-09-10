@@ -60,9 +60,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Ramsay" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Ramsay" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Ramsay" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Ramsay" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Ramsay.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Ramsay" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "After renovation work, a post-construction clean is priced by square footage, from under 1,000 sq ft up to 4,999 sq ft.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Ramsay" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Ramsay" },
 ];
 
@@ -104,7 +104,7 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Ramsay?",
-    answer: `The full service menu is available here:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `In Ramsay, the Calgary branch books these services:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
   },
   {
     question: "Do you offer discounts?",
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function Ramsay() {
     <>
       <Helmet>
         <title>House Cleaning Services in Ramsay, Calgary | Duty Cleaners</title>
-        <meta name="description" content="House cleaning in Ramsay, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
+        <meta name="description" content="Ramsay house cleaning in Calgary for century homes with plaster, fir and steep stairs, where rail-yard dust shows dark on white sills." />
         <meta property="og:title" content="House Cleaning Services in Ramsay, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services in Ramsay, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning in Ramsay, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
-        <meta property="og:description" content="House cleaning in Ramsay, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
+        <meta name="twitter:description" content="Ramsay house cleaning in Calgary for century homes with plaster, fir and steep stairs, where rail-yard dust shows dark on white sills." />
+        <meta property="og:description" content="Ramsay house cleaning in Calgary for century homes with plaster, fir and steep stairs, where rail-yard dust shows dark on white sills." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/ramsay-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/ramsay-calgary/" />
@@ -183,7 +183,7 @@ export default function Ramsay() {
                 Professional House Cleaning in Ramsay
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Ramsay is a historic SE community perched on Scotsman's Hill with stunning Stampede and downtown views, character homes, and a tight-knit neighbourhood feel.
+                Ramsay's heritage houses climb from the Elbow toward Scotsman's Hill, with plaster, fir and steep, narrow stairs inside. Each clean is a flat rate by home size, before 5% GST.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function Ramsay() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Ramsay Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs — every service a home needs.
+                  Standard, deep and move-out cleans are priced by bedrooms, bathrooms and home type, and a clean that runs longer than expected costs the same.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function Ramsay() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Ramsay Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Ramsay and the surrounding SE Calgary communities.
+                    Ramsay is inside Calgary city limits, so no trip fee is added to a clean here.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function Ramsay() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1280} height={896} src={cleanHomeImg} alt="Spotless Ramsay Calgary home cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1280} height={896} src={cleanHomeImg} alt="Sunlit room with a wood floor, a white radiator under a sash window, a record player and a wooden dresser" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Calm, Spotless Ramsay Home — Every Visit</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Inside a century home</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Plaster, Fir and Basement Suites in Ramsay</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Every cleaner is vetted and customer-rated, and it shows in the details: clear counters, gleaming taps, and a home that smells like a fresh start.
+                    On the industrial side of Ramsay, rail-yard dust settles dark on white sills, so sills are worth wiping every visit. Low-clearance basement suites hold humidity; mould remediation is not part of a clean, though light surface mildew may be wiped where safe.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Rated by the customer after every visit","All supplies and equipment brought","Missed spots re-cleaned free if reported within 24 hours"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,9 +311,9 @@ export default function Ramsay() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Ramsay and the communities around it.{" "}
+                  Duty Cleaners cleans homes across Ramsay and in these nearby Calgary neighbourhoods.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -329,7 +329,7 @@ export default function Ramsay() {
         eyebrow="Local knowledge"
         heading="Ramsay's industrial edges"
         paragraphs={[
-          "Ramsay's heritage houses climb from the Elbow toward Scotsman's Hill with working industry still active on their flank — and that adjacency is the cleaning fact: rail-yard and fabrication dust drifts fine and dark, showing on white sills and glossy surfaces faster than ordinary road grit. Homes on the industrial side benefit from sill and track wiping every visit.",
+          "Ramsay's heritage houses climb from the Elbow toward Scotsman's Hill with working industry still active on their flank — and that adjacency is the cleaning fact: rail-yard and fabrication dust drifts fine and dark, showing on white sills and glossy surfaces faster than ordinary road grit. Homes on the industrial side benefit from sill wiping every visit.",
           "Inside, this is century-home territory: plaster, fir, steep narrow stairs and basements that were never meant to be living space but often are now. Low-clearance basement suites concentrate humidity and dust both, and their window wells collect what the hill sheds.",
         ]}
       />
@@ -347,7 +347,7 @@ export default function Ramsay() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Ramsay Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Reliable, detail-first cleaning families count on.
+                  Every cleaner is reference-checked before a first job and rated by the customer after each visit.
                 </p>
               </div>
             </AnimatedSection>

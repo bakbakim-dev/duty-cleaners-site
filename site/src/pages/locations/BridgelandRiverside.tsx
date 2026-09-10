@@ -59,11 +59,11 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Bridgeland-Riverside" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Bridgeland-Riverside" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Bridgeland-Riverside" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Bridgeland-Riverside.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Bridgeland-Riverside" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Bridgeland-Riverside" },
+  { icon: Home, title: "Standard Cleaning", description: "A standard clean is a one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Bridgeland-Riverside" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "A deep clean is the standard checklist plus the deep-clean package: baseboards, doors, light switches, wall outlets and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Bridgeland-Riverside" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "A move-in or move-out clean goes inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Bridgeland-Riverside" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "The team clears construction dust and debris from Bridgeland-Riverside infills and renovated condos.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Bridgeland-Riverside" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Wall washing takes scuffs, handprints and cooking film off painted walls without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Bridgeland-Riverside" },
 ];
 
 const whyUsItems = [
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Renfrew","Crescent Heights","Inglewood","Downtown","Sunnyside","Mayland Heights"];
+const nearbyAreas = ["Renfrew","Crescent Heights","Inglewood","Sunnyside"];
 
 const faqs = [
   {
@@ -104,7 +104,7 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Bridgeland-Riverside?",
-    answer: `Around Bridgeland-Riverside we offer the full range:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `In Bridgeland-Riverside, Duty Cleaners' Calgary branch offers:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
   },
   {
     question: "Do you offer discounts?",
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `In Bridgeland-Riverside, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `In Bridgeland-Riverside, a deep clean adds to the standard package:\n\n• Baseboards wiped\n• Doors wiped\n• Light switches fully cleaned\n• Wall outlet covers wiped\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function BridgelandRiverside() {
     <>
       <Helmet>
         <title>House Cleaning in Bridgeland-Riverside, Calgary</title>
-        <meta name="description" content="Book house cleaning in Bridgeland-Riverside, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="description" content="South sun through big hillside windows shows every streak in Calgary's Bridgeland-Riverside, where we clean condos, heritage cottages and infills." />
         <meta property="og:title" content="House Cleaning in Bridgeland-Riverside, Calgary" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Bridgeland-Riverside, Calgary" />
-        <meta name="twitter:description" content="Book house cleaning in Bridgeland-Riverside, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
-        <meta property="og:description" content="Book house cleaning in Bridgeland-Riverside, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="twitter:description" content="South sun through big hillside windows shows every streak in Calgary's Bridgeland-Riverside, where we clean condos, heritage cottages and infills." />
+        <meta property="og:description" content="South sun through big hillside windows shows every streak in Calgary's Bridgeland-Riverside, where we clean condos, heritage cottages and infills." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/bridgeland-riverside-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/bridgeland-riverside-calgary/" />
@@ -183,7 +183,7 @@ export default function BridgelandRiverside() {
                 Professional House Cleaning in Bridgeland-Riverside
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Trusted house cleaning for Bridgeland-Riverside — bringing a calm, spotless home within reach.
+                Bridgeland-Riverside stacks heritage cottages, mid-rise condos and steep-lot infills down a south-facing hill. Our Calgary branch cleans all three at a flat rate by home size.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function BridgelandRiverside() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Bridgeland-Riverside Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Everything from weekly upkeep to full move-out cleans.
+                  A Bridgeland-Riverside condo is priced at the apartment rate for its size, and a cottage or infill adds its home-type surcharge. Every price is before 5% GST.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function BridgelandRiverside() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Bridgeland-Riverside Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Bridgeland-Riverside and the surrounding Calgary communities.
+                    In Bridgeland-Riverside the walk home from the LRT is uphill, and the stair-heavy entries take the grit.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function BridgelandRiverside() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={768} src={cleanHomeImg} alt="Spotless Bridgeland-Riverside Calgary home cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1024} height={768} src={cleanHomeImg} alt="Tall windows lighting a living room with a cream sectional sofa and hardwood floors" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Calm, Spotless Bridgeland-Riverside Home — Every Visit</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Condos and hillside glass</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Bridgeland-Riverside Condos and Hillside Windows</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Vetted cleaners, careful hands, and the standard we'd hold for our own homes. Come back to fresh air and surfaces that actually gleam.
+                    Condos make up a high share of Bridgeland-Riverside homes for an inner neighbourhood. You do not need to be home: most customers leave a key, a lockbox code or smart-lock access, and the team locks up. Exterior windows count as outdoor work and are not included; interior windows are an add-on you choose when you book.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Rated by customers after every visit","The team brings supplies and equipment","Re-clean free if reported within 24 hours"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,9 +311,9 @@ export default function BridgelandRiverside() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Bridgeland-Riverside and the communities around it.{" "}
+                  Bridgeland-Riverside, Renfrew and Crescent Heights are among the 66 Calgary neighbourhoods on our Calgary branch's list.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -329,7 +329,7 @@ export default function BridgelandRiverside() {
         eyebrow="Local knowledge"
         heading="Bridgeland's hillside habits"
         paragraphs={[
-          "Bridgeland-Riverside stacks its housing down a south-facing hill — heritage cottages, mid-rise condos and steep-lot infills — and the slope itself is the cleaning story. Everything walks uphill from the restaurants and the LRT, so stair-heavy entries take the grit, and south sun through big hillside windows makes every streak and dust film visible in a way flat-lot homes hide.",
+          "Bridgeland-Riverside stacks its housing down a south-facing hill: heritage cottages, mid-rise condos and steep-lot infills. The slope itself is the cleaning story. Everything walks uphill from the LRT, so stair-heavy entries take the grit, and south sun through big hillside windows makes every streak and dust film visible in a way flat-lot homes hide.",
           "The condo share is high for an inner neighbourhood, and condo cleans have their own shape: balcony door tracks facing downtown wind, galley kitchens that film with cooking residue faster than open suburban plans, and shared-hallway dust that migrates in at the threshold.",
         ]}
       />
@@ -347,7 +347,7 @@ export default function BridgelandRiverside() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Bridgeland-Riverside Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Dependable cleaning, visit after visit.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>

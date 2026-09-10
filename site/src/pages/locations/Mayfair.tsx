@@ -60,9 +60,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Mayfair" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Mayfair" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Mayfair" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Mayfair" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Mayfair.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Mayfair" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Drywall and construction dust after a renovation in a Mayfair house.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Mayfair" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Mayfair" },
 ];
 
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Britannia", "Elbow Park", "Windsor Park", "Meadowlark Park", "Bel-Aire", "Kelvin Grove"];
+const nearbyAreas = ["Elbow Park", "Windsor Park", "Meadowlark Park"];
 
 const faqs = [
   {
@@ -108,11 +108,11 @@ const faqs = [
   },
   {
     question: "Do you offer discounts?",
-    answer: `Yes, recurring visits cost less every time:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
+    answer: `Yes, on a recurring standard clean in Mayfair:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function Mayfair() {
     <>
       <Helmet>
         <title>House Cleaning Services in Mayfair, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional cleaners serving Mayfair, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="description" content="Glenmore Trail traffic films the south-facing glass of Mayfair's detached houses in SW Calgary, and outer panes are outdoor work a clean does not cover." />
         <meta property="og:title" content="House Cleaning Services in Mayfair, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services in Mayfair, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional cleaners serving Mayfair, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
-        <meta property="og:description" content="Professional cleaners serving Mayfair, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="twitter:description" content="Glenmore Trail traffic films the south-facing glass of Mayfair's detached houses in SW Calgary, and outer panes are outdoor work a clean does not cover." />
+        <meta property="og:description" content="Glenmore Trail traffic films the south-facing glass of Mayfair's detached houses in SW Calgary, and outer panes are outdoor work a clean does not cover." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/mayfair-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/mayfair-calgary/" />
@@ -183,7 +183,7 @@ export default function Mayfair() {
                 Professional House Cleaning in Mayfair
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Mayfair is one of Calgary's most exclusive SW enclaves — sprawling estate homes, manicured grounds, and quiet curving streets minutes from the Elbow River.
+                Mayfair sits between the reservoir and Elbow Drive, with Glenmore Trail along its southern edge, and the City's last published figures counted only detached houses there.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function Mayfair() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Mayfair Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Mayfair homes get every service they need.
+                  Mayfair's detached houses can book a standard clean once or on a recurring schedule, and wall washing is added to a clean rather than booked on its own.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function Mayfair() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Mayfair Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Mayfair and the surrounding SW Calgary communities.
+                    Mayfair cleans are booked through the Calgary office at 2835 37 Street SW, (403) 768-1341, and no trip fee applies inside city limits.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function Mayfair() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={768} src={cleanHomeImg} alt="Duty Cleaners professional polishing tall windows in a Mayfair Calgary estate home" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1024} height={768} src={cleanHomeImg} alt="A cleaner reaching up with a white cloth beside tall glass doors" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Pristine, Thoughtful Cleaning for Estate Homes</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Recurring upkeep</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Upkeep Cleaning for Mayfair's Detached Houses</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Our vetted cleaners treat your home with care, attention, and the same standards we'd want in our own. Walk in to fresh air, gleaming surfaces, and that quiet feeling of <em>everything in its place</em>.
+                    On a recurring schedule in Mayfair, we send your regular team where we can, and you rate each cleaner after the visit; those ratings decide who we keep sending.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Your regular team where we can send them","Rated by you after every visit","Changes need 24 hours' notice"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,7 +311,7 @@ export default function Mayfair() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
                   Duty Cleaners cleans homes across Mayfair and the communities around it.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
@@ -328,8 +328,8 @@ export default function Mayfair() {
         eyebrow="Neighbourhood notes"
         heading="A reservoir for a west boundary"
         paragraphs={[
-          "Glenmore Trail runs the full length of the southern boundary and Elbow Drive closes the east side, which puts through traffic on two edges of a neighbourhood of about three-tenths of a square kilometre. South-facing windows, patio glass and door tracks carry the film that comes off Glenmore. On a recurring schedule that elevation earns attention every visit; the north side of the same house does not.",
-          "The reservoir forms the western boundary and the community of Bel-Aire the northern one, so nothing arterial feeds in from either side. When the City last published community statistics for Mayfair, every building was a single detached house and none of the housing was rented; the 2012 civic census counted 156 dwellings. Work here tends to be upkeep on long-held finishes rather than the reset a turnover block needs.",
+          "Glenmore Trail runs the full length of the southern boundary and Elbow Drive closes the east side, which puts through traffic on two edges of a neighbourhood of about three-tenths of a square kilometre. South-facing windows, glass doors and their tracks carry the film that comes off Glenmore. Outer panes are outdoor work beyond a clean's reach, but on a recurring schedule the inside sills and tracks on that south elevation earn attention every visit; the north side of the same house does not.",
+          "The reservoir forms the western boundary and a residential community the northern one, so nothing arterial feeds in from either side. When the City last published community statistics for Mayfair, every building was a single detached house and none of the housing was rented; the 2012 civic census counted 156 dwellings.",
         ]}
         accent="calgary"
       />

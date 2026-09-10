@@ -60,9 +60,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Spruce Cliff" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Spruce Cliff" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Spruce Cliff" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Spruce Cliff" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Spruce Cliff.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Spruce Cliff" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or new build, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Spruce Cliff" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Spruce Cliff" },
 ];
 
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Wildwood", "Westgate", "Glendale", "Shaganappi", "Sunalta West", "Scarboro"];
+const nearbyAreas = ["Wildwood", "Shaganappi", "Sunalta West", "Scarboro"];
 
 const faqs = [
   {
@@ -104,7 +104,7 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Spruce Cliff?",
-    answer: `Every service we run can be booked locally:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `In Spruce Cliff, households can book:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning, booked with a clean`
   },
   {
     question: "Do you offer discounts?",
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function SpruceCliff() {
     <>
       <Helmet>
         <title>House Cleaning in Spruce Cliff, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Book house cleaning in Spruce Cliff, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="description" content="House cleaners for Spruce Cliff, Calgary, where about three in four homes are apartments and valley-side balcony door tracks fill with wind-blown grit." />
         <meta property="og:title" content="House Cleaning in Spruce Cliff, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Spruce Cliff, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Book house cleaning in Spruce Cliff, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
-        <meta property="og:description" content="Book house cleaning in Spruce Cliff, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="twitter:description" content="House cleaners for Spruce Cliff, Calgary, where about three in four homes are apartments and valley-side balcony door tracks fill with wind-blown grit." />
+        <meta property="og:description" content="House cleaners for Spruce Cliff, Calgary, where about three in four homes are apartments and valley-side balcony door tracks fill with wind-blown grit." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/spruce-cliff-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/spruce-cliff-calgary/" />
@@ -183,7 +183,7 @@ export default function SpruceCliff() {
                 Professional House Cleaning in Spruce Cliff
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Spruce Cliff sits high above the Bow River — sweeping views, modern condos, and Calgary's beloved Edworthy Park right at your doorstep.
+                Spruce Cliff sits on the Bow River escarpment, and about three in four of its homes are apartment units. On the valley side, wind drives grit into the balcony door track.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function SpruceCliff() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Spruce Cliff Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
+                  Apartment units make up most of Spruce Cliff, and its standard, deep and move-out cleans are priced flat by home size, from a one-bedroom suite up.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function SpruceCliff() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Spruce Cliff Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Spruce Cliff and the surrounding SW Calgary communities.
+                    Spruce Cliff's northern edge drops to the CP main line and the Bow River. The Calgary office at 2835 37 Street SW books cleans here.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function SpruceCliff() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={768} src={cleanHomeImg} alt="Modern Spruce Cliff Calgary kitchen with river-valley view, professionally cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1024} height={768} src={cleanHomeImg} alt="Bright kitchen with a white stone island and floor-to-ceiling windows over a river valley" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A View Worth Coming Home To — Spotless</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Access and arrival</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">No Need to Be Home in Spruce Cliff</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Care and attention are the whole job. Expect gleaming surfaces, fresh air, and the quiet feeling of a home put properly <em>back in order</em>.
+                    Most customers leave a key, a lockbox code or smart-lock access, and the team locks up when the clean is done. Each clean is booked into an arrival window: 9:00 to 10:00 AM, 12:00 to 1:00 PM or 3:00 to 4:00 PM.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Customer-rated cleaners","Supplies and equipment brought","24-hour re-clean guarantee"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,7 +311,7 @@ export default function SpruceCliff() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
                   Duty Cleaners cleans homes across Spruce Cliff and the communities around it.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
@@ -329,7 +329,7 @@ export default function SpruceCliff() {
         heading="Living on the escarpment rim"
         paragraphs={[
           "Of the 2,220 dwellings counted here in 2021, about three in four are apartment units and only one in ten is a detached house. The community sits on the Bow River escarpment at about 1,125 metres, with the CP main line and the river directly below its northern edge. On that side the balcony door is the pressure point: valley wind drives grit into the sliding channels faster than anything indoors produces it.",
-          "Below the rim, the Douglas Fir Trail drops through old conifer stands toward Edworthy Park and the Bow River pathway - a genuine walk from most doors rather than a step outside, and a steady supply of needle litter, mud and cottonwood fluff on the way back up. It comes up the trail on boots and paws and stops at the stair treads and the door track; the rest of a suite stays comparatively clean.",
+          "Below the rim, the Douglas Fir Trail drops through old conifer stands toward Edworthy Park and the Bow River pathway. Both are a walk from most doors rather than a step outside, and the climb back up brings a steady supply of needle litter, mud and cottonwood fluff. That litter comes up the trail on boots and paws and stops at the stair treads and the door track; the rest of a suite stays comparatively clean.",
         ]}
         accent="calgary"
       />
@@ -347,7 +347,7 @@ export default function SpruceCliff() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Spruce Cliff Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Dependable cleaning, visit after visit.
+                  Duty Cleaners has cleaned homes in Alberta since 2017, and customers rate every cleaner after each visit.
                 </p>
               </div>
             </AnimatedSection>

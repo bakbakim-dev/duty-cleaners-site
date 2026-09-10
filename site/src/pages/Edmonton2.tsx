@@ -66,8 +66,8 @@ import {
   deepCleanTierRows,
   moveInOutTierRows,
   formatPrice,
-  FREQUENCIES,
   HOURLY_RATE,
+  addOnFromPrice,
 } from "@/data/pricing";
 import DeferUntilVisible from "@/components/DeferUntilVisible";
 
@@ -83,15 +83,19 @@ const FROM_STANDARD_3BED = STANDARD.find((row) => row.beds === "3 Bedroom")?.pri
 const FROM_DEEP = deepCleanTierRows()[0]?.price ?? "";
 const FROM_MOVE = moveInOutTierRows()[0]?.price ?? "";
 const AIRBNB_RATE = formatPrice(HOURLY_RATE);
-const RECURRING_DISCOUNTS = FREQUENCIES.filter((f) => f.discount > 0)
-  .sort((a, b) => b.discount - a.discount)
-  .map((f) => `${Math.round(f.discount * 100)}% ${f.label.toLowerCase()}`)
-  .join(", ");
 /** Outside the two city limits only; bk-config carries a separate row for post-construction. */
 const homeTravel = travelFee("standard");
 const postTravel = travelFee("post-construction");
 const HOME_TRAVEL_FEE = homeTravel === null ? "a travel fee quoted when you book" : `a ${formatPrice(homeTravel)} travel fee`;
 const POST_TRAVEL_FEE = postTravel === null ? "a fee quoted when you book" : formatPrice(postTravel);
+/** The compulsory per-visit pet charge (FACTS P10), read from bk-config rather than typed. */
+const petCharge = addOnFromPrice("standard", "must-choose-if-you-have-pets");
+const PET_FEE = petCharge === null ? "a pet charge" : formatPrice(petCharge);
+/** "A, B and C": the communities are read from city-locations.ts, never hand-listed. */
+const joinNames = (names: string[]) =>
+  names.length > 1 ? `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}` : names.join("");
+const EDMONTON_TOWNS = joinNames(edmontonSurrounding.map((town) => town.name));
+const EDMONTON_REVIEW_COUNT = CITY_PROOF.edmonton.googleReviewCount;
 
 /*
   "Cleaning services edmonton" is the largest query family this site has any
@@ -100,7 +104,7 @@ const POST_TRAVEL_FEE = postTravel === null ? "a fee quoted when you book" : for
   keeps the reason to click; /services/ is being retitled off it separately.
 */
 const PAGE_TITLE = `House Cleaning Services Edmonton from ${FROM_STANDARD} | Pay After`;
-const PAGE_DESCRIPTION = `House cleaning services in Edmonton from ${FROM_STANDARD}, and nothing is charged until the clean is done. See your price in about 60 seconds. Rated ${RATING_CLAIM}.`;
+const PAGE_DESCRIPTION = `House cleaning services in Edmonton from ${FROM_STANDARD} before GST for a one-bedroom condo, rated ${RATING_CLAIM}, and nothing is charged until the clean is done.`;
 
 /* Width-descriptor set for the hero, the LCP element on this page. Without
    it a phone pulled the same 1920px file as a desktop: hero-room-edmonton-manus at 1920w against
@@ -256,30 +260,38 @@ export default function Edmonton2() {
       { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "09:00", closes: "15:00" },
     ]
   };
+  // Every answer rests on the content prompt's FACTS block (A1, A3, C1, P1-P4,
+  // P9-P11, T1, T3-T5) or on this page's local note, and stands on its own:
+  // each one ships inside the FAQPage markup, where nothing else is visible.
   const faqs = [{
-    question: "Do you serve all areas of Edmonton?",
-    answer: `Yes. We clean in all quadrants (NW, NE, SW, SE, Central) with no trip fee inside city limits, and in the surrounding communities, including St. Albert, Sherwood Park, Spruce Grove, Leduc, Fort Saskatchewan, Beaumont, Stony Plain, Morinville and Devon, where ${HOME_TRAVEL_FEE} is added to a home clean.`
+    question: "Which parts of Edmonton and the towns around it do you clean in?",
+    answer: `The Edmonton branch covers ${edmontonNeighborhoods.length} Edmonton neighbourhoods, with no trip fee anywhere inside city limits, and ${edmontonSurrounding.length} communities outside them: ${EDMONTON_TOWNS}. A home clean in one of those communities carries ${HOME_TRAVEL_FEE}, before GST. If your address is not in one of those neighbourhoods or communities, call the Edmonton office at (780) 913-6565 and ask.`
   }, {
     question: "How much does house cleaning cost in Edmonton?",
-    answer: `A standard clean starts at ${FROM_STANDARD} for a one-bedroom, one-bathroom home and ${FROM_STANDARD_3BED} for three bedrooms. A deep clean starts at ${FROM_DEEP} and a move-out clean at ${FROM_MOVE}. Every figure is before 5% GST, and the booking form shows the exact price for your home before you choose a date.`
+    answer: `A standard clean of a one-bedroom, one-bathroom apartment or condo is ${FROM_STANDARD}, and three bedrooms, two bathrooms and a half bath is ${FROM_STANDARD_3BED}. A deep clean starts at ${FROM_DEEP} and a move-out clean at ${FROM_MOVE} for the one-bedroom size. Every figure is before 5% GST and prices an apartment or condo: a bungalow, basement suite, townhouse or two-storey house adds a home-type charge, homes with pets add ${PET_FEE} per visit, and an address outside city limits adds the travel fee. The instant price adds those up for your home before you choose a date.`
   }, {
-    question: "How do Edmonton winters affect your cleaning service?",
+    question: "How do Edmonton winters change what a clean needs?",
     // Was "we schedule buffer time for traffic and weather delays", which told
-    // a customer nothing they could act on. The season changes what to book
-    // and when, and that is on this page already.
-    answer: "It changes what to book more than how we clean. The winter here holds instead of thawing, so the sand and de-icer stay outside until the melt and then come through the door in one load through March and early April. That makes spring the deep-clean month in Edmonton, when entryways, stair treads and the first two metres of hallway have taken the whole season at once; book a standard clean over the winter itself and a deep clean once the melt is through."
+    // a customer nothing they could act on. Now FACTS C1 and the local note.
+    answer: "Edmonton holds its cold rather than cycling through thaws, so the sand and salt tracked in from November arrive dry and stay, working into carpet edges and along baseboards. Furnace season runs from October into April, and a house sealed up that long cycles dust faster. The spring melt in late March and April then brings a winter of grit indoors in about three weeks."
   }, {
-    question: "Do you clean high-rise condos in downtown Edmonton?",
-    answer: "Yes. Our Edmonton team cleans high-rise condos in Oliver, Downtown and along Jasper Avenue, and knows the building protocols, parking passes and access requirements that come with them."
+    question: "Do you clean condos and apartments in downtown Edmonton?",
+    answer: "Yes. Downtown is one of the Edmonton neighbourhoods the branch covers, and a condo or apartment is priced straight from the size table, by bedrooms and bathrooms, with no home-type charge and before 5% GST. Put the fob, front-desk and visitor-parking details on the booking. If the team arrives and cannot get in, the lockout charge is half the cost of the scheduled service."
   }, {
     question: "Do you offer same-day cleaning service in Edmonton?",
-    answer: "Sometimes. Same-day and next-day slots depend on the schedule; call and we will tell you what is open."
+    answer: "Same-day and next-day slots depend on the schedule. Call the Edmonton office at (780) 913-6565 and ask what the schedule has open."
   }, {
     question: "Do I need to be home during the clean?",
-    answer: "No. Most Edmonton customers leave a key, a lockbox code or smart-lock access, and the team locks up when they finish. Running water is required, and vacuuming needs electricity."
+    answer: "No. Most Edmonton customers leave a key, a lockbox code or smart-lock access, and the team locks up when they finish. Running water is required, and vacuuming may not be possible without electricity."
   }, {
-    question: "What cleaning products do you use?",
-    answer: `Our teams arrive with all supplies and equipment included. Eco-friendly products are available for ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}. If there is a product you want kept out of the house, note it on your booking and we will work to it.`
+    question: "Do I need to provide cleaning supplies?",
+    answer: `No. The team brings all supplies and equipment, so there is nothing to buy or set out before the visit. Eco-friendly products are available for ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}.`
+  }, {
+    question: "What happens if something is missed on an Edmonton clean?",
+    answer: `Tell us within ${POLICY.guaranteeWindowHours} hours and a team comes back to re-clean it at no charge. Photos help but are not required. The commitment is the return visit, and it does not come as a refund; a customer who wants something else can call the Edmonton office and talk about it.`
+  }, {
+    question: "Can I cancel or move an Edmonton booking?",
+    answer: `Yes, with ${POLICY.cancellationNoticeHours} hours' notice; inside ${POLICY.cancellationNoticeHours} hours the fee is ${POLICY.cancellationFee}. If we have to move a booking because a cleaner is ill, a vehicle will not start or the roads are unsafe, we say so as soon as we know and offer the earliest slot we have. Nobody pays for a visit we did not do, and cancelling a booking we moved costs nothing.`
   }];
   // Schema must mirror the FAQs actually rendered on the page.
   const faqSchema = {
@@ -320,30 +332,30 @@ export default function Edmonton2() {
            phoneLink="tel:7809136565"
            heroImage={edmontonHeroRoom}
            heroSrcSet={HERO_SRCSET}
-           heroAlt="Bright, freshly cleaned Edmonton living room with sunlight across the floor"
+           heroAlt="Bright kitchen and dining area with a wooden table and a window onto trees"
            heroPosition="center"
            heroScrim="soft"
            processImages={[
-             { src: galleryPostKitchen, alt: "Edmonton kitchen after a professional cleaning" },
-             { src: galleryLivingRoom, alt: "Tidy Edmonton living room after a Duty Cleaners visit" },
-             { src: galleryModernKitchen, alt: "Fresh Edmonton home kitchen after a detailed cleaning" },
+             { src: galleryPostKitchen, alt: "Kitchen with white cabinets, grey counters and a stainless steel range" },
+             { src: galleryLivingRoom, alt: "A dog lying on a living-room rug beside a vacuum cleaner" },
+             { src: galleryModernKitchen, alt: "Kitchen with dark cabinets, a white island and a stainless fridge" },
            ]}
          />
 
 
         {/*
-          Mirrors Calgary's note, which sat on that page alone. Every claim here
-          is already made in the same terms across the fact-checked location
-          pages — Edmonton's winter holds rather than thawing repeatedly, so the
-          grit arrives in one March load instead of all season.
+          Mirrors Calgary's note. The winter paragraph is FACTS C1 and nothing
+          more: the grit tracked in from November stays, and the spring melt
+          brings the rest in. The era and per-square-metre claims about the
+          mature core and the newer edges had no source and were cut.
         */}
         <LocalMarketNote
           accent="primary"
           eyebrow="Cleaning in Edmonton"
           heading="What an Edmonton house needs, and when"
           paragraphs={[
-            "Edmonton's winter holds. Where Calgary thaws and refreezes all season, the roads here stay frozen, so the sand and de-icer that go down in November largely stay outside until the melt — and then arrive at the door in one heavy load through March and early April. That timing is the useful part: entryways, stair treads and the first two metres of hallway take the whole winter's worth at once, which is why spring is when Edmonton homes book a deep clean rather than a standard one, and why a February visit is mostly maintenance.",
-            "The housing stock splits the work in two. The mature core — Glenora, Westmount, Old Strathcona, Garneau — is largely pre-war and early post-war: original trim, deeper window sills, more door frames, and rooms divided rather than open, all of which take longer per square metre than the floor area suggests. The newer edges in the southwest and southeast, Windermere, Terwillegar, Summerside and Glastonbury, are larger and faster to clean per square metre, but a home in its first year or two is still shedding construction dust from vents and closet shelves. The same bedroom count can be two quite different jobs, so describe the home rather than only its size.",
+            "Edmonton's winter holds. The sand and salt tracked in from November arrive dry and stay, working into carpet edges and along baseboards, and the spring melt in late March and April brings a whole winter of grit indoors in about three weeks.",
+            "The same bedroom count can be two quite different jobs, so describe the home rather than only its size.",
             "We clean across Edmonton and the surrounding communities: St. Albert, Sherwood Park, Spruce Grove, Leduc, Beaumont, Fort Saskatchewan, Stony Plain, Morinville and Devon, with no trip fee inside the city itself. Prices are identical to Calgary's; there is no city premium, and every figure is before 5% GST. If you are not sure whether your home needs a standard clean or a deep one, the booking form asks when it was last properly cleaned and recommends from your answer.",
           ]}
         />
@@ -361,15 +373,15 @@ export default function Edmonton2() {
 
         <DutyCleanPromise city="Edmonton" />
 
-       <JudgmentFree city="Edmonton" image={judgmentRoom} alt="Tidied Edmonton living room after a routine clean, lived-in rather than staged" />
+       <JudgmentFree city="Edmonton" image={judgmentRoom} alt="Sunlit living room with white armchairs, a sofa and a vase of flowers" />
 
         <CityServicesChapter
           city="Edmonton"
           basePath="/edmonton"
           featureImage={galleryLivingRoom}
-          featureImageAlt="Bright Edmonton living room after a standard Duty Cleaners visit"
+          featureImageAlt="Living room with a golden dog on a shaggy rug and a vacuum cleaner in front of it"
           deepImage={galleryStoveDetail}
-          deepImageAlt="Detailed stovetop after a deep clean in an Edmonton home"
+          deepImageAlt="Glass-top stove with the oven door open, under a microwave"
         />
 
         {/* The services in prose. This used to describe all six of them a
@@ -386,17 +398,27 @@ export default function Edmonton2() {
                 <p>
                   The upkeep visit is the{" "}
                   <Link to="/edmonton/regular-cleaning/" className="font-semibold text-primary hover:underline">standard clean</Link>,
-                  priced flat by bedrooms and bathrooms; add the deep-clean package and it becomes a{" "}
+                  priced flat by bedrooms and bathrooms, and the price does not change because a clean took longer than
+                  expected. Add the deep-clean package and it becomes a{" "}
                   <Link to="/edmonton/deep-cleaning/" className="font-semibold text-primary hover:underline">deep clean in Edmonton</Link>{" "}
-                  from {FROM_DEEP}, which is what the spring melt is for.
+                  from {FROM_DEEP}. That figure is before 5% GST for a one-bedroom,
+                  one-bathroom apartment or condo, and a house, a pet or an address outside the city adds to it.
                 </p>
                 <p>
                   A <Link to="/move-out-cleaning-edmonton/" className="font-semibold text-primary hover:underline">move-out clean</Link>{" "}
-                  from {FROM_MOVE} empties the home of everything a walkthrough would find, and post-construction is
-                  priced on floor area, because drywall dust does not care how many bedrooms there are. Short-term
-                  rental hosts book{" "}
+                  starts at {FROM_MOVE}, before GST at the same one-bedroom size, and the same house, pet and travel
+                  charges can apply to it. Book it ahead of the move-out inspection the landlord completes with the
+                  tenant under Alberta's Residential Tenancies Act. We do not promise the deposit comes back; the
+                  landlord decides.
+                </p>
+                <p>
+                  <Link to="/post-construction-cleaning/" className="font-semibold text-primary hover:underline">Post-construction cleaning in Edmonton</Link>{" "}
+                  is priced on floor area, because drywall dust does not care how many bedrooms there are.{" "}
+                  <Link to="/wall-washing-wall-cleaning/" className="font-semibold text-primary hover:underline">Wall washing in Edmonton</Link>{" "}
+                  is only booked together with a clean. Short-term rental hosts book{" "}
                   <Link to="/edmonton/airbnb-cleaning/" className="font-semibold text-primary hover:underline">Airbnb cleaning in Edmonton</Link>{" "}
-                  by the hour at {AIRBNB_RATE} per cleaner, and{" "}
+                  by the hour, at {AIRBNB_RATE} per cleaner-hour before GST, with a minimum of 3 hours for one cleaner or
+                  2 hours for two, and{" "}
                   <Link to="/services/" className="font-semibold text-primary hover:underline">all Edmonton cleaning services and prices</Link>{" "}
                   sit on one page.
                 </p>
@@ -416,25 +438,22 @@ export default function Edmonton2() {
                     clean, so the phrase now points where it goes and the
                     schedule keeps its own link, for the discount. */}
                 <p>
-                  People searching for a maid service in Edmonton are usually describing a standard clean on a regular
-                  day: the same checklist, your regular team where we can send them, every week, every two weeks or
-                  every four. The page for that visit is{" "}
+                  A maid service is a standard clean on a regular day: the same checklist, your regular team where we
+                  can send them, every week, every two weeks or every four. The page for that visit is{" "}
                   <Link to="/edmonton/regular-cleaning/" className="font-semibold text-primary hover:underline">maid service in Edmonton</Link>.
-                  Put it on a schedule and the discount starts at the second visit:{" "}
-                  <Link to="/edmonton/recurring-cleaning/" className="font-semibold text-primary hover:underline">recurring cleaning</Link>{" "}
-                  takes off {RECURRING_DISCOUNTS}.
+                  Put it on a schedule and it becomes{" "}
+                  <Link to="/edmonton/recurring-cleaning/" className="font-semibold text-primary hover:underline">recurring cleaning in Edmonton</Link>.
                 </p>
                 <p>
-                  There is no contract. The first visit is charged at the one-time rate, so a single{" "}
-                  <Link to="/edmonton/regular-cleaning/" className="font-semibold text-primary hover:underline">standard clean</Link>{" "}
-                  is the same booking as the first of a series; decide afterwards whether you want another.
+                  The first visit is charged at the one-time rate, so a single standard clean is the same booking as the
+                  first of a series; decide afterwards whether you want another. Every four weeks is what many people
+                  mean by monthly, though it comes to 13 visits a year where monthly would be 12.
                 </p>
                 <p>
                   A schedule suits people who are out. Leave a key, a lockbox code or smart-lock access and the team
-                  locks up on the way out. Somebody may be asleep at two in the afternoon; tell us which room and the
-                  order the house gets done in changes at no cost. If the clean is for someone else, you can{" "}
-                  <Link to="/gift-card/" className="font-semibold text-primary hover:underline">give a clean as a gift</Link>; the
-                  card never expires.
+                  locks up on the way out. Somebody may be asleep at two in the afternoon; tell us which room, because
+                  the order a house gets done in is easy to change. If the clean is for someone else, you can{" "}
+                  <Link to="/gift-card/" className="font-semibold text-primary hover:underline">give a clean as a gift</Link>.
                 </p>
               </div>
             </div>
@@ -454,10 +473,16 @@ export default function Edmonton2() {
               <div className="mt-6 space-y-5 leading-relaxed text-muted-foreground">
                 <p>
                   Duty Cleaners is a cleaning company with its own Edmonton office, at {CITY_PROOF.edmonton.streetAddress},
-                  and has worked in this city {COMPANY.sinceLabel}. Residential cleaning is what this page prices:
-                  houses, condos, suites, and the communities past the city limits. The cleaners are ours to send and
-                  reference-checked before a first job, and home cleaning is quoted from the same list the booking form
-                  charges from, so there is nothing to work out on the doorstep.
+                  and has cleaned Alberta homes {COMPANY.sinceLabel}. The work is residential: houses, condos, basement
+                  suites and homes in the communities past the city limits. Each cleaner's references are checked before
+                  they take a first job with us, and home cleaning is quoted from the same list the booking form charges
+                  from, so there is nothing to work out on the doorstep.
+                </p>
+                <p>
+                  Call the Edmonton office on{" "}
+                  <a href="tel:7809136565" className="font-semibold text-primary hover:underline">(780) 913-6565</a>{" "}
+                  Monday to Saturday from 8:00 AM to 8:00 PM, or Sunday from 9:00 AM to 3:00 PM. A booking gets an
+                  arrival window, not an exact time: 9:00 to 10:00 AM, 12:00 to 1:00 PM or 3:00 to 4:00 PM.
                 </p>
               </div>
             </div>
@@ -476,18 +501,18 @@ export default function Edmonton2() {
               <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Apartment and condo cleaning in Edmonton</h2>
               <div className="mt-6 space-y-5 leading-relaxed text-muted-foreground">
                 <p>
-                  Getting in is the part that differs. High-rises in Oliver,{" "}
-                  <Link to="/locations/downtown-edmonton/" className="font-semibold text-primary hover:underline">downtown Edmonton</Link>{" "}
-                  and along Jasper Avenue each want something different: a fob or a key left for the lobby, a visitor
-                  stall or a spot in the parkade, a sign-in at the desk, and in some buildings the service elevator
-                  booked for a slot. Put what your building needs on the booking, with the arrival window you have
-                  picked, and the cleaner turns up already knowing it.
+                  Getting in is the part that differs. A building may want a fob or a key left for the lobby, a visitor
+                  stall or a spot in the parkade, a sign-in at the desk, and in some cases the service elevator booked
+                  for a slot. Put what your building needs on the booking, with the arrival window you picked, because a
+                  team that cannot get in means a lockout charge of half the cost of the scheduled service.
                 </p>
                 <p>
-                  Nothing else moves. The price comes off the same table as a house: bedrooms, bathrooms, and whatever
-                  you add to the visit. The checklist is the one on this page and the guarantee is the same. A
-                  one-bedroom condo is a short visit and a three-bedroom apartment is not, which is the whole of why the
-                  number changes.
+                  The price is simpler than the access. The size table is written for an apartment or condo, so a condo
+                  carries no home-type charge, where a bungalow, townhouse or two-storey house does. The checklist and
+                  the guarantee are the same for a condo as for a house, and that holds for{" "}
+                  <Link to="/locations/downtown-edmonton/" className="font-semibold text-primary hover:underline">house cleaning in downtown Edmonton</Link>{" "}
+                  as much as anywhere else in the city. A one-bedroom condo is a short visit and a three-bedroom
+                  apartment is not, which is the whole of why the number changes.
                 </p>
               </div>
             </div>
@@ -513,19 +538,10 @@ export default function Edmonton2() {
                   customer rates the clean. Those ratings are not decoration: they decide who we keep sending, and a
                   cleaner who stops earning them stops getting work from us.
                 </p>
-                {/* The window was stated twice above this paragraph, in the
-                    trust plate and again in the promise block. Said once
-                    apiece is enough; this one keeps the part the others do not
-                    make: photos help, and are not a condition. */}
                 <p>
-                  That rule is what makes the guarantee workable. A team that expects to be rated tends to finish the
-                  list, and when something is missed anyway the return visit costs nothing. Photos help the team find
-                  what was missed, but they are not a condition of coming back.
-                </p>
-                <p>
-                  The <Link to="/reviews/" className="font-semibold text-primary hover:underline">reviews page</Link> reprints
-                  what Edmonton customers wrote on Google, unedited, and the {RATING_CLAIM} figure at the top of this page
-                  comes from that listing. Read a few before you book.
+                  The Edmonton listing is rated {RATING_CLAIM} across {EDMONTON_REVIEW_COUNT} reviews, and the{" "}
+                  <Link to="/reviews/" className="font-semibold text-primary hover:underline">Duty Cleaners reviews page</Link>{" "}
+                  reprints what Edmonton customers wrote there, unedited. Read a few before you book.
                 </p>
               </div>
             </div>
@@ -540,10 +556,10 @@ export default function Edmonton2() {
             <div className="grid gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16">
               <div className="lg:sticky lg:top-28 lg:self-start">
                 <Eyebrow>FAQ</Eyebrow>
-                <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Frequently Asked Questions</h2>
+                <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Questions about house cleaning in Edmonton</h2>
 
                 <div className="mt-8 rounded-xl border border-border bg-white p-6 shadow-sm">
-                  <p className="text-lg font-semibold">Still have a question? Talk to a real human.</p>
+                  <p className="text-lg font-semibold">Ask the Edmonton office.</p>
                   <p className="mt-1 text-sm text-muted-foreground">Mon&ndash;Sat 8 AM&ndash;8 PM &middot; Sun 9 AM&ndash;3 PM</p>
                   <a href="tel:7809136565" className="mt-3 inline-flex min-h-[44px] items-center gap-2 font-semibold text-gold-ink transition-colors hover:text-brand-navy">
                     <Phone className="h-4 w-4" aria-hidden="true" />
@@ -581,14 +597,15 @@ export default function Edmonton2() {
                 <Eyebrow>Coverage</Eyebrow>
                 <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Edmonton Service Areas</h2>
                 <p className="text-muted-foreground mt-4 prose-column leading-relaxed">
-                  Inside Edmonton city limits there is no trip fee. Boot trays in March, windows in June: we clean the
-                  way homes are lived in here.
+                  Inside Edmonton city limits there is no trip fee, in any of the {edmontonNeighborhoods.length}{" "}
+                  neighbourhoods the Edmonton branch covers. For an address that is not on the list, call the Edmonton
+                  office and ask.
                 </p>
                 {/* Communities outside city limits, each linked in a sentence
                     rather than a chip, with the travel fee stated once. */}
                 <p className="text-muted-foreground mt-3 prose-column leading-relaxed">
-                  The communities outside city limits are covered by the same teams, with {HOME_TRAVEL_FEE} added to a
-                  home clean: <Link to="/cleaning-services-st-albert/" className="font-semibold text-primary hover:underline">house cleaning in St. Albert</Link>,{" "}
+                  The communities outside city limits are covered by the Edmonton branch, with {HOME_TRAVEL_FEE} (before
+                  GST) added to a home clean: <Link to="/cleaning-services-st-albert/" className="font-semibold text-primary hover:underline">house cleaning in St. Albert</Link>,{" "}
                   <Link to="/cleaning-services-sherwood-park/" className="font-semibold text-primary hover:underline">Sherwood Park house cleaners</Link>,{" "}
                   <Link to="/cleaning-services-spruce-grove/" className="font-semibold text-primary hover:underline">cleaning services in Spruce Grove</Link>,{" "}
                   a <Link to="/cleaning-services-leduc/" className="font-semibold text-primary hover:underline">Leduc cleaning company</Link> you can price online,{" "}
@@ -605,28 +622,31 @@ export default function Edmonton2() {
                 </p>
                 <ThresholdLine className="mt-6 max-w-[220px]" />
               </div>
+              {/* Alt text describes what each picture shows. The old strings
+                  called a made bed an entryway floor and named Edmonton homes
+                  the pictures are not. */}
               <HomeRhythmStrip
                 slots={[
                   {
                     src: galleryLivingRoom,
                     width: 1024,
                     height: 1024,
-                    alt: "Morning light across a tidied Edmonton living room",
-                    caption: "Morning light — the front rooms",
+                    alt: "Golden dog resting on a shaggy rug in a living room, with a vacuum cleaner nearby",
+                    caption: "Homes with pets carry a per-visit charge",
                   },
                   {
                     src: galleryMoveOutClean,
                     width: 1024,
                     height: 1024,
-                    alt: "Cleaned Edmonton entryway floor after a winter week",
-                    caption: "Snow season — the entryway",
+                    alt: "Made bed with white bedding between two bedside tables and lamps",
+                    caption: "The bedroom",
                   },
                   {
                     src: galleryWindowDetail,
                     width: 800,
                     height: 800,
-                    alt: "Cleaned window and sill detail in an Edmonton home",
-                    caption: "Spring — window and sill detail",
+                    alt: "Floor-to-ceiling windows looking out over city towers",
+                    caption: "Interior windows are an add-on",
                   },
                 ]}
               />
@@ -638,7 +658,7 @@ export default function Edmonton2() {
               city="Edmonton"
               neighbourhoods={edmontonNeighborhoods}
               surrounding={edmontonSurrounding}
-              intro="Reference-checked cleaners across the city and the communities around it."
+              intro="The Edmonton branch sends reference-checked cleaners across the city and the communities around it."
             />
 
             <div className="mt-10 max-w-5xl mx-auto">
@@ -681,7 +701,7 @@ export default function Edmonton2() {
                 {[
                   { icon: BadgeCheck, title: "We confirm your price", text: "You see the full quote before anything is booked." },
                   { icon: Users, title: "We assign your cleaner", text: "A reference-checked cleaner is assigned to your home." },
-                  { icon: CalendarCheck, title: "We arrive on time", text: "Your cleaner arrives as scheduled, with supplies and equipment." },
+                  { icon: CalendarCheck, title: "We arrive in your window", text: "Your team arrives inside the arrival window you picked, with supplies and equipment." },
                 ].map(({ icon: Icon, title, text }) => (
                   <li key={title} className="rounded-xl border border-border bg-card p-5 text-center">
                     <Icon className="mx-auto h-6 w-6 text-accent" aria-hidden="true" />
@@ -698,7 +718,7 @@ export default function Edmonton2() {
           <CityCrossLink
             city="Calgary"
             to="/cleaning-services-calgary/"
-            description={`House cleaning rated ${RATING_CLAIM} for Calgary and surrounding communities, at the same prices and with the same reference-checked cleaners.`}
+            description={`House cleaning from the Calgary branch at the same prices, rated ${RATING_CLAIM}, with every cleaner reference-checked and rated after each visit.`}
           />
         </div>
 

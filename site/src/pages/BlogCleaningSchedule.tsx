@@ -20,7 +20,7 @@ import dishwasherImage from "@/assets/blog/dishwasher-cleaning.webp";
 const dailyTasks = [
   {
     title: "Do the Dishes",
-    description: "Instead of allowing dishes to pile up in the sink (which also makes the sink grimy and promotes bacteria), rinse off dirty dishes immediately and load them into the dishwasher. As soon as the dishwasher is at full capacity (typically at the end of the day), run a cycle."
+    description: "Instead of letting dishes pile up in the sink, where they leave it grimy, rinse them straight away and load them into the dishwasher. Run a cycle once it is full, which is usually the end of the day."
   },
   {
     title: "Empty the Dishwasher",
@@ -52,7 +52,7 @@ const dailyTasks = [
   },
   {
     title: "Dust Furniture",
-    description: "This is a dreaded task for many, however, when you do your bit to keep the house tidy and surfaces clutter-free, dusting furniture daily is quick and easy."
+    description: "Plenty of people dread dusting. When the house stays tidy and surfaces stay clear, though, a daily dust of the furniture takes a few minutes."
   }
 ];
 
@@ -83,11 +83,11 @@ const weeklyTasks = [
   },
   {
     title: "Vacuum Upholstery",
-    description: "You'd be surprised by how much dust and bacteria accumulates on household upholstery every week. This includes your sofas, couches, chairs, curtains, bedroom benches, and other upholstered furniture."
+    description: "Dust and crumbs build up in upholstery over a week. Go over sofas, chairs, curtains, bedroom benches and other upholstered furniture with the upholstery attachment."
   },
   {
     title: "Clean the Bathroom",
-    description: "This is typically a quick and easy weekly task because daily cleaning of bathroom surfaces leave the space relatively clean. Of course, for that extra sparkle, you will need to wash wall tiles and scrub down the sink and shower area once a week."
+    description: "This is usually a quick weekly task, because the daily wipe-downs keep bathroom surfaces fairly clean. Once a week, also wash the wall tiles and scrub the sink and shower area."
   }
 ];
 
@@ -97,20 +97,20 @@ const monthlyTasks = [
     description: "A microfibre broom with a flexible head is perfect for cleaning ceiling fan blades quickly and efficiently; otherwise, the old-fashioned approach using a ladder and damp cloth will suffice."
   },
   {
-    title: "Replace Linens",
-    description: "If not sooner, replace bed linens and curtains once a month. If a household member is sick (particularly with a contagious virus), it is highly advisable to launder their bed linens once a week until they recover."
+    title: "Wash the Curtains",
+    description: "Bed linens need washing more often than once a month, but curtains can go on the monthly list."
   },
   {
     title: "Clean Kitchen Appliances",
-    description: "The microwave, oven, coffee maker, toaster, and refrigerator are easy to overlook. It's important to keep these appliances sanitary with a monthly clean."
+    description: "The microwave, oven, coffee maker, toaster and refrigerator are easy to overlook. Give each one a clean inside and out once a month."
   },
   {
     title: "Remove Cobwebs",
     description: "You may or may not find cobwebs in your home every month but there's no harm in doing a monthly inspection. Oftentimes, cobwebs can be found behind furniture and tall cabinets as opposed to just ceiling corners."
   },
   {
-    title: "Sanitise the Trash Can",
-    description: "Owing to the bacteria trash cans carry, monthly cleaning and sterilising of the same are critically important."
+    title: "Wash the Garbage Bin",
+    description: "Wash the kitchen garbage bin inside and out once a month, and let it dry before a new bag goes in."
   }
 ];
 
@@ -190,13 +190,13 @@ export default function BlogCleaningSchedule() {
               </h1>
               
               <p className="text-xl text-muted-foreground mb-8">
-                Divide and conquer! That's really the only way to make your cleaning routine successful and not stressful.
+                Split the housework into daily, weekly and monthly jobs, and no single day has to carry all of it.
               </p>
 
               <div className="aspect-video rounded-2xl overflow-hidden mb-12">
                 <img width={1024} height={576}
                   src={heroImage}
-                  alt="Woman cleaning kitchen counter in a bright, organized home"
+                  alt="Woman wiping a counter in a bright, tidy kitchen"
                   className="w-full h-full object-cover"
                  loading="eager" fetchPriority="high"/>
               </div>
@@ -211,10 +211,10 @@ export default function BlogCleaningSchedule() {
               {/* Introduction */}
               <div className="prose prose-lg max-w-none mb-12">
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  We often overwhelm ourselves with the mere thought of recurring house cleaning and, more so, the lack of time and energy we have to do it. This brings us to our foolproof plan of action – <strong>divide household cleaning into daily, weekly, and monthly tasks</strong>, incorporate them into a cleaning schedule, and conquer them!
+                  Housework gets put off because it looks like one big job with no time set aside for it. The fix is to <strong>divide household cleaning into daily, weekly and monthly tasks</strong>, and give each tier its own place in the week or the month.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed mt-4">
-                  Now, if you're thinking that's easier said than done, that's what we are here for. Our experts at Duty Cleaners are sharing three realistic cleaning schedules that get the job done without taking a toll on your mental wellbeing. After all, home cleaning is meant to relieve stress rather than add to it.
+                  The three schedules that follow are a starting point. Keep the tasks that fit your home and your week, and drop the ones that do not.
                 </p>
               </div>
 
@@ -227,7 +227,7 @@ export default function BlogCleaningSchedule() {
                 <div className="aspect-video rounded-xl overflow-hidden mb-6">
                   <img width={1024} height={576}
                     src={bedroomImage}
-                    alt="Neatly made bed with fresh white linens in a cozy bedroom"
+                    alt="Neatly made bed with fresh white linens in a bright bedroom"
                     className="w-full h-full object-cover"
                    loading="lazy" decoding="async"/>
                 </div>
@@ -237,7 +237,7 @@ export default function BlogCleaningSchedule() {
                 </p>
 
                 <p className="font-semibold text-foreground mb-4">
-                  Use the daily cleaning checklist below to create a realistic cleaning schedule for yourself:
+                  Use this daily cleaning checklist to build a realistic cleaning schedule for yourself:
                 </p>
 
                 <div className="space-y-4">
@@ -276,7 +276,7 @@ export default function BlogCleaningSchedule() {
                 </div>
 
                 <p className="text-muted-foreground mb-6">
-                  The chores on your weekly cleaning checklist will consist of some small tasks, and some big ones. Since the average homeowner typically has more time on his/her hands during weekends, one should plan their weekly cleaning schedule accordingly. For example, leave bigger and more time-consuming tasks for Saturdays/Sundays while the rest of the week can include one or two weekly chores, at least.
+                  Your weekly cleaning checklist mixes small tasks with big ones. If your weekends are freer than your weekdays, put the bigger, slower jobs on Saturday or Sunday and spread one or two smaller ones across the rest of the week.
                 </p>
 
                 <div className="space-y-4">
@@ -293,7 +293,7 @@ export default function BlogCleaningSchedule() {
 
                 <div className="mt-6 p-6 bg-primary/10 rounded-xl border border-primary/20">
                   <p className="text-foreground">
-                    <strong>Pro Tip:</strong> You'd be surprised by how much dust and bacteria accumulates on household upholstery every week. Dusty upholstery can trigger allergies and asthma attacks. That is why we have created methods for cleaning and disinfecting your home, so that your home is fresh and clean from the ground up.
+                    <strong>Pro Tip:</strong> Vacuum upholstery with the upholstery attachment and work from the top down: cushions first, then the frame, then the floor under the sofa. Dust falls as you go, so the floor comes last.
                   </p>
                 </div>
               </div>
@@ -307,13 +307,13 @@ export default function BlogCleaningSchedule() {
                 <div className="aspect-video rounded-xl overflow-hidden mb-6">
                   <img width={1024} height={576}
                     src={bathroomImage}
-                    alt="Clean modern bathroom with sparkling white tiles"
+                    alt="Clean modern bathroom with white tiles"
                     className="w-full h-full object-cover"
                    loading="lazy" decoding="async"/>
                 </div>
 
                 <p className="text-muted-foreground mb-6">
-                  When compared to daily and weekly schedules, a monthly cleaning schedule is a lot easier to tweak as per one's convenience. It's just a matter of picking one day in the month to do an additional cleaning task, and then you don't have to worry about it for the next 4-5 weeks!
+                  A monthly cleaning schedule is easier to fit around the rest of life than the daily and weekly lists. Pick one day in the month for each extra task, and it is done for the next four or five weeks.
                 </p>
 
                 <div className="space-y-4">
@@ -342,8 +342,8 @@ export default function BlogCleaningSchedule() {
                 */}
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   A schedule only works if it survives a bad week. Build it around what your
-                  household actually does rather than an ideal version of it: pick the two or
-                  three daily habits you will genuinely keep, put the weekly work on a day that
+                  household does rather than an ideal version of it: pick the two or three
+                  daily habits you will keep, put the weekly work on a day that
                   is reliably free, and let the monthly jobs float within their month rather
                   than fixing them to a date.
                 </p>
@@ -351,12 +351,18 @@ export default function BlogCleaningSchedule() {
                   Expect to revise it. The first draft is usually too ambitious, and the fix is
                   to cut tasks rather than to try harder — a short list you follow beats a
                   complete one you abandon in February. If the weekly tier is the part that
-                  keeps slipping, that is the tier most people hand over first:{" "}
+                  keeps slipping, that is the part a cleaning company can take over. Duty
+                  Cleaners'{" "}
                   <Link to={canonicalForPath("/edmonton/recurring-cleaning")} className="text-accent underline underline-offset-2">
-                    recurring cleaning
+                    recurring cleaning in Edmonton
                   </Link>{" "}
-                  covers exactly that band of work on a fixed cadence, and the daily habits stay
-                  yours. What a visit includes is set out on{" "}
+                  and{" "}
+                  <Link to={canonicalForPath("/calgary/recurring-cleaning")} className="text-accent underline underline-offset-2">
+                    recurring cleaning in Calgary
+                  </Link>{" "}
+                  cover the floors, bathrooms, kitchen and dusting weekly, bi-weekly or every 4
+                  weeks, while laundry, dishes and the daily habits stay yours. What a visit
+                  includes is set out on{" "}
                   <Link to={canonicalForPath("/whats-included")} className="text-accent underline underline-offset-2">
                     what's included
                   </Link>
@@ -370,7 +376,7 @@ export default function BlogCleaningSchedule() {
                   Let Duty Cleaners Handle Your Cleaning Schedule
                 </h3>
                 <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                  Don't have time to manage all these cleaning tasks? Our professional cleaning team can take care of your home so you can focus on what matters most.
+                  The team brings all supplies and equipment, and you do not need to be home: most customers leave a key, a lockbox code or smart-lock access, and the team locks up. See the price for your home before you book.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button size="lg" variant="accent" className="w-full sm:w-auto min-h-[52px] text-base font-bold" asChild>

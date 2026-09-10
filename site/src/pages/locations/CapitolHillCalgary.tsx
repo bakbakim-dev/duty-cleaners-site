@@ -60,9 +60,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Capitol Hill" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Capitol Hill" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Capitol Hill" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Capitol Hill" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Capitol Hill.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Capitol Hill" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a Capitol Hill renovation, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Capitol Hill" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Capitol Hill" },
 ];
 
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Banff Trail","Mount Pleasant","Tuxedo Park","Highland Park","Rosedale","Crescent Heights"];
+const nearbyAreas = ["Mount Pleasant","Tuxedo Park","Highland Park","Crescent Heights"];
 
 const faqs = [
   {
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function CapitolHillCalgary() {
     <>
       <Helmet>
         <title>House Cleaners in Capitol Hill, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional cleaners serving Capitol Hill, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="description" content="In Capitol Hill, Calgary, house cleaners run upkeep visits in family homes and turnover cleans in student rentals near SAIT." />
         <meta property="og:title" content="House Cleaners in Capitol Hill, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Capitol Hill, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional cleaners serving Capitol Hill, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
-        <meta property="og:description" content="Professional cleaners serving Capitol Hill, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="twitter:description" content="In Capitol Hill, Calgary, house cleaners run upkeep visits in family homes and turnover cleans in student rentals near SAIT." />
+        <meta property="og:description" content="In Capitol Hill, Calgary, house cleaners run upkeep visits in family homes and turnover cleans in student rentals near SAIT." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/capitol-hill-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/capitol-hill-calgary/" />
@@ -183,7 +183,7 @@ export default function CapitolHillCalgary() {
                 Professional House Cleaning in Capitol Hill
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Trusted house cleaning services for one of Calgary's inner-city northwest communities — bringing a calm, spotless home within reach.
+                Capitol Hill's 1950s bungalows sit between SAIT and Confederation Park, and the Calgary branch cleans the family homes and the student rentals there at a flat rate set by home size.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function CapitolHillCalgary() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Capitol Hill Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
+                  Maintenance visits for Capitol Hill family homes, and turnover-grade cleans for rentals at the end of a semester.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function CapitolHillCalgary() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Capitol Hill Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Capitol Hill and the surrounding NW Calgary communities.
+                    Capitol Hill is served from the Calgary office at 2835 37 Street SW, and no trip fee applies inside Calgary city limits.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function CapitolHillCalgary() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={768} src={cleanHomeImg} alt="Spotless Capitol Hill Calgary home cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1024} height={768} src={cleanHomeImg} alt="Sunlit living room with a cream sectional sofa, a glass coffee table and a hardwood floor" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Calm, Spotless Capitol Hill Home — Every Visit</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">On the Day</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Clean Day in a Capitol Hill Home</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Vetted cleaners, careful hands, and the standard we'd hold for our own homes. Come back to fresh air and surfaces that actually gleam.
+                    You do not need to be home: most customers leave a key, a lockbox code or smart-lock access, and the team locks up. You do not need to tidy first either. Clear counters and floors get cleaned, and cluttered ones get worked around.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Arrival windows: 9 to 10 AM, 12 to 1 PM or 3 to 4 PM","Decluttering and organising is a separate hourly add-on","Changes and cancellations need 24 hours' notice"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,7 +311,7 @@ export default function CapitolHillCalgary() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
                   Duty Cleaners cleans homes across Capitol Hill and the communities around it.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
@@ -347,7 +347,7 @@ export default function CapitolHillCalgary() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Capitol Hill Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>

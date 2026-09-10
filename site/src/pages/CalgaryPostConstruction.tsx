@@ -17,7 +17,7 @@ import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import calgaryPostConstructionBeforeAfter from "@/assets/gallery/calgary-post-construction-before-after.webp";
 import CityCrossLink from "@/components/CityCrossLink";
 import { POLICY } from "@/data/policy";
-import { COMPANY, RATING_CLAIM } from "@/data/proof";
+import { COMPANY, CITY_PROOF, RATING_CLAIM } from "@/data/proof";
 import { travelFee } from "@/data/addon-table";
 
 import { startingPrice, formatPrice, sqftTierOptions, withGst } from "@/data/pricing";
@@ -37,10 +37,10 @@ const tierLabel = (label: string) => label.replace(/\s*(sq\/ft|sqft)\s*$/i, " sq
 const pcTravelFee = formatPrice(travelFee("post-construction") ?? 0);
 
 const PAGE_TITLE = `Post-Construction Cleaning Calgary from ${startingPriceLabel} | Duty Cleaners`;
-const META_DESCRIPTION = `Post-construction cleaning in Calgary from ${startingPriceLabel} by square footage: builder handovers in Seton and Mahogany, renovations and downtown conversions.`;
+const META_DESCRIPTION = `Post-construction cleaning for a Calgary new build or renovation is priced by square footage, from ${startingPriceLabel} before GST for the smallest band.`;
 
 const includedServices = [
-  { icon: Wind, title: "Drywall dust, everywhere it settled", desc: "Tops of door frames, window channels, closet shelves, inside the vents and along every baseboard, wiped and vacuumed rather than pushed around." },
+  { icon: Wind, title: "Drywall dust, everywhere it settled", desc: "Tops of door frames, window channels, closet shelves, the vent covers and along every baseboard, wiped and vacuumed rather than pushed around." },
   { icon: Sparkles, title: "Kitchen and bathrooms", desc: "Cabinets and drawers inside and out, counters, sinks, tubs and showers, grout haze off new tile, and the outside of the new appliances once their film and stickers are off." },
   { icon: Droplets, title: "Floors", desc: "Vacuumed before they are mopped, so the grit is lifted rather than ground into new hardwood or vinyl by the mop." },
   { icon: SprayCan, title: "Interior glass", desc: "Windows, mirrors and glass doors, with paint flecks and adhesive lifted before the glass is polished." },
@@ -59,12 +59,12 @@ const excludedServices = [
 ];
 
 const whyChooseUs = [
-  { icon: Calendar, title: "Timed after the last trade", desc: "Book us for after the final walkthrough, not before it. A clean done while a trade still has a key gets undone by the next visit. Weekday and weekend slots, subject to the schedule." },
+  { icon: Calendar, title: "Timed after the last trade", desc: "Book us for after the final walkthrough. A clean done while a trade still has a key gets undone by the next visit. Weekday and weekend slots depend on the schedule." },
   { icon: Shield, title: "Pay after the clean", desc: "Nothing is charged when you book. A temporary hold checks the card the day before, and the charge goes through once the clean is complete." },
-  { icon: DollarSign, title: "Priced by square footage", desc: `${startingPriceLabel} to ${topPriceLabel} before 5% GST, by the size band of the finished space. The figure on the quote is the figure on the bill.` },
+  { icon: DollarSign, title: "Priced by square footage", desc: `${startingPriceLabel} to ${topPriceLabel} before 5% GST, by the size band of the finished space. The quote shows the band before you book, and a travel fee is added only outside Calgary city limits.` },
   { icon: Wrench, title: "Supplies and equipment", desc: "The team brings the vacuums, cloths and products. You need the power and water on, which on a new build means checking the builder has not shut them off." },
   { icon: Heart, title: `${POLICY.guaranteeWindowHours}-hour re-clean`, desc: `A ledge or a track we missed is re-cleaned free if you tell us within ${POLICY.guaranteeWindowHours} hours.` },
-  { icon: Sparkles, title: "Reference-checked, rated by customers", desc: "Every cleaner is reference-checked before their first job and rated by the customer after every visit." },
+  { icon: Sparkles, title: "Reference-checked, rated by customers", desc: "Every cleaner is reference-checked before their first job and rated by the customer after every visit. Those ratings decide who we keep sending." },
 ];
 
 /**
@@ -84,26 +84,30 @@ const faqs: Faq[] = [
     a: "It is the clean that happens after the last trade has packed up and the debris is gone: the drywall dust off every surface it settled on, the smudges and paint flecks off the glass, the adhesive off the fixtures, so the home can be moved into. It is not a site clean. If there is still a drywall offcut in the corner or a plumber due on Thursday, the space is not ready for us.",
   },
   {
+    q: "How much does post-construction cleaning cost in Calgary?",
+    a: `From ${startingPriceLabel} for the smallest square-footage band to ${topPriceLabel} for the largest, before 5% GST. The band is set by the square footage of the finished space. Outside Calgary city limits a post-construction clean adds a ${pcTravelFee} travel fee. If any space needs substantially more work than described, the team explains what it found and the options before continuing.`,
+  },
+  {
     q: "Do you remove construction debris or leftover materials?",
     a: "No. Offcuts, lumber, packaging and the empty paint cans go with the contractor. We are not set up to haul anything, and debris hides the surfaces we are there to clean, so a room with material still in it does not get cleaned properly either.",
   },
   {
     q: "Can you clean my Calgary home after a kitchen or bathroom renovation?",
-    a: "Yes. A single-room renovation is the same clean on a smaller footprint. The dust from a kitchen or bathroom job settles two rooms away from where the work was, so we do the rooms around it as well as the room itself, and the cabinets and tile in the new room get done inside and out.",
+    a: "Yes. A single-room renovation is the same clean on a smaller footprint. The dust from a kitchen or bathroom job settles in the rooms around it as well, so tell us at booking which of those rooms took the dust. The cabinets and tile in the new room get done inside and out.",
   },
   {
     q: "How is post-construction cleaning different from a regular deep clean?",
-    a: "The dust. A deep clean is built for a lived-in home: grease, scale, the baseboards and the fridge. This clean is built for fine drywall dust, which gets inside cabinets, drawers, vents and window tracks and keeps coming back for weeks, plus the paint flecks and adhesive a trade leaves on glass and fixtures. Every cabinet and drawer is opened, every vent wiped inside, every track cleared.",
+    a: "The difference is the dust. A deep clean is built for a lived-in home: grease, scale, the baseboards and the fridge top. This clean is built for fine drywall dust, which gets inside cabinets, drawers, vents and window tracks and keeps coming back for weeks, plus the paint flecks and adhesive a trade leaves on glass and fixtures. Every cabinet and drawer is opened, every vent cover wiped, every track cleared.",
     more: { lead: "For a Calgary home with no building work in it, the right service is", to: "/calgary/deep-cleaning/", anchor: "a deep clean in Calgary" },
   },
   {
     q: "How long does a post-construction cleaning take?",
-    a: "Somewhere between 4 and 10 hours for most Calgary homes, set by the square footage, the number of bathrooms and how much dust is left. We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.",
+    a: "It depends on the square footage, the number of bathrooms and how much dust the trades left, so we do not quote a number of hours for a Calgary post-construction clean. We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.",
     more: { lead: "Once the house has stopped shedding dust, what it needs after that is", to: "/calgary/regular-cleaning/", anchor: "a standard house clean in Calgary" },
   },
   {
     q: "Do I need to be home during the cleaning?",
-    a: "No. A lockbox code, a key with the site super, or the builder's access arrangement all work; put it in the booking notes. Every cleaner is reference-checked and rated by the customer after each visit.",
+    a: `No. A lockbox code, a key with the site super, or the builder's access arrangement all work; put it in the booking notes. If the team arrives and cannot get in, the lockout charge is ${POLICY.lockoutFee}. Every cleaner is reference-checked and rated by the customer after each visit.`,
   },
   {
     q: "Do you remove stickers from new windows and appliances?",
@@ -111,15 +115,15 @@ const faqs: Faq[] = [
   },
   {
     q: "Do you clean inside appliances during post-renovation cleaning?",
-    a: "No. The outside of every appliance is wiped down; the inside is not part of this clean. A new oven or fridge has nothing in it yet, and a renovated kitchen's appliances are covered by a move-out or deep clean if you want the interiors done.",
+    a: "No. The outside of every appliance is wiped down; the inside is not part of this clean, and a new oven or fridge has nothing in it yet. For older appliances that stayed through a renovation, the oven and fridge interiors are part of a move-out clean and add-ons on a deep clean.",
   },
   {
     q: "Can you clean a home that is not completely empty after renovations?",
     a: "Furniture, yes. Debris, no. A renovated kitchen in a house you are still living in is normal work, and we clean around what is there. Building material has to be gone, because we cannot haul it and it hides the surfaces we are there for. Say at booking what is still in the rooms and we tell you whether this clean or a deep clean is the right one.",
   },
   {
-    q: "Do you offer a satisfaction guarantee?",
-    a: `Yes. Tell us within ${POLICY.guaranteeWindowHours} hours about a track, a ledge or a cabinet that was missed and we come back to re-clean it at no charge. Photos help the team find it; they are not a condition.`,
+    q: "What is the guarantee on a Calgary post-construction clean?",
+    a: `The guarantee is a re-clean. Tell us within ${POLICY.guaranteeWindowHours} hours about a track, a ledge or a cabinet that was missed and we come back to re-clean it at no charge. Photos help the team find it; they are not a condition. It is not a money-back guarantee, though you can call the Calgary office at (403) 768-1341 to talk it through.`,
   },
 ];
 
@@ -195,13 +199,14 @@ export default function CalgaryPostConstruction() {
                 Post-Construction Cleaning in <span className="text-accent">Calgary, AB</span>
               </h1>
               <p className="text-xl md:text-2xl text-white/80 max-w-3xl mb-4">
-                From {startingPriceLabel} before 5% GST, set by the square footage of the finished space.
-                The final clean on Calgary new builds, renovations and conversions, booked for after the
-                trades are out.
+                From {startingPriceLabel} before 5% GST when the finished space is{" "}
+                {tierLabel(sqftTiers[0]?.label ?? "").toLowerCase()}; the band rises with square footage, and a
+                travel fee is added outside Calgary city limits. It is the final clean on Calgary new builds, renovations and conversions, booked for after
+                the trades are out.
               </p>
               <p className="text-base md:text-lg text-white/90 max-w-3xl mb-8">
-                Drywall dust out of the vents, tracks and cabinets; paint flecks and adhesive off the glass.
-                The card is charged when the clean is done, not when you book.
+                The team takes drywall dust off the vent covers and out of the tracks and cabinets, and paint flecks and
+                adhesive off the glass. Nothing is charged at booking; the card is charged once the clean is done.
               </p>
               <div className="flex flex-wrap gap-4 justify-center lg:justify-start mb-10">
                 <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-white text-lg px-8">
@@ -217,13 +222,13 @@ export default function CalgaryPostConstruction() {
               <div className="flex flex-wrap justify-center lg:justify-start gap-6 text-white/80">
                 <div className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-accent" /><span>Square-footage bands, before GST</span></div>
                 <div className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-accent" /><span>Charged after the clean</span></div>
-                <div className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-accent" /><span>Missed spots re-cleaned within {POLICY.guaranteeWindowHours} hours</span></div>
+                <div className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-accent" /><span>Missed spots re-cleaned free if reported within {POLICY.guaranteeWindowHours} hours</span></div>
               </div>
             </div>
             <div className="flex-shrink-0 w-full lg:w-[500px]">
               <img width={1024} height={1024}
                 src={calgaryPostConstructionBeforeAfter}
-                alt="Newly built Calgary interior after a post-construction clean, drywall dust removed from floors, sills and fixtures"
+                alt="Illustration contrasting a house interior strewn with construction debris and an empty room with polished hardwood floors"
                 className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                loading="eager" fetchPriority="high"/>
             </div>
@@ -236,9 +241,8 @@ export default function CalgaryPostConstruction() {
         eyebrow="Calgary builds"
         heading="Where the post-construction work in Calgary actually is"
         paragraphs={[
-          "Most of what we clean is at the two edges of the city. The far south (Seton, Mahogany, Cranston, Wolf Willow) and the north around Livingston and Cornerstone are where new possession dates cluster, and they come with a particular problem: these are large communities still under construction around the finished homes. Drywall dust from the lot next door keeps arriving after your own build is done, which is why a final clean too early gets undone and why we would rather come after the last trade than before.",
-          "Calgary's freeze-thaw cycle makes the timing harder than it is elsewhere. A chinook can put a site through mud and back to frozen twice in a week, so what tracks through a house in February is wet clay one day and dry grit the next. Both end up ground into new flooring and pushed into the corners of window channels, and the two need different handling — one has to be lifted before it is scrubbed, or it just spreads.",
-          "The third stream is downtown. The City's conversion program has been turning empty office towers into apartments, and a converted floor plate is not a new-build: there is decades-old duct dust behind new drywall, concrete dust from core drilling, and adhesive residue on floors that were never meant to be lived on. We quote those after seeing them, because no per-square-foot figure survives contact with a conversion.",
+          "Houses in newer suburbs such as Mahogany, Seton and Livingston carry construction dust. Where the lots around a finished home are still being built, drywall dust from the lot next door keeps arriving after your own build is done, which is why a final clean too early gets undone and why we would rather come after the last trade than before.",
+          "Calgary's freeze-thaw cycle makes the timing harder than it is elsewhere. Calgary thaws and refreezes on chinooks all winter, so sand and de-icer arrive at the door again and again from November to April. That grit ends up ground into new flooring and pushed into the corners of window channels, and it has to be lifted before anything wet touches it, or it just spreads.",
         ]}
       />
 
@@ -273,37 +277,27 @@ export default function CalgaryPostConstruction() {
         </AnimatedSection>
       </section>
 
-      {/* Calgary-only: handovers, conversions, the chinook cycle */}
+      {/* Calgary-only: handovers and the chinook cycle */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4 max-w-4xl">
           <AnimatedSection>
             <div className="text-center mb-8">
-              <span className="text-accent font-semibold text-sm uppercase tracking-wide">Three Calgary jobs</span>
-              <h2 className="text-3xl md:text-4xl font-bold mt-2">Builder handovers, downtown conversions and the chinook week</h2>
+              <span className="text-accent font-semibold text-sm uppercase tracking-wide">Two Calgary jobs</span>
+              <h2 className="text-3xl md:text-4xl font-bold mt-2">Builder handovers and the chinook week</h2>
             </div>
             <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
               <p>
-                <strong className="text-foreground">Possession day in Seton, Mahogany or Livingston.</strong> The
-                builder's clean is done before the keys are handed over; ours is booked for the days after, before
-                the movers. It goes to the window channels, the tops of the door frames, the inside of the vents
+                <strong className="text-foreground">Possession day in Seton, Mahogany or Livingston.</strong> Our
+                clean is booked for the days after possession, before the movers arrive with the furniture. It goes
+                to the window channels, the tops of the door frames, the vent covers
                 and the cabinet drawers, which is where possession-day dust is. If the lot next door is still being
                 framed, say so at booking: the dust keeps arriving until that house is closed in, and we would rather
                 schedule around it than have you pay twice.
               </p>
               <p>
-                <strong className="text-foreground">Downtown conversions.</strong> An office floor turned into
-                apartments carries three kinds of dust at once: the old duct dust that was behind the ceiling tiles,
-                the concrete dust from core drilling, and the adhesive that held down flooring nobody was ever meant
-                to walk on in socks. None of that fits a square-footage band, so a conversion is quoted after one of
-                us has walked it, and the quote says which of the three we can shift and which needs the contractor
-                back.
-              </p>
-              <p>
-                <strong className="text-foreground">The chinook week.</strong> When a site goes from mud to frozen
-                and back inside a few days, what came in on the boots is wet clay one day and dry grit the next.
-                Grit is vacuumed before anything wet touches the floor, or the mop grinds it into new hardwood.
-                Clay is lifted once it is dry, not smeared while it is wet. Tell us which week the trades finished
-                and the team arrives with the right order of work.
+                <strong className="text-foreground">The chinook week.</strong> When a chinook thaws the city and it
+                refreezes, sand and de-icer come in on the boots. Grit is vacuumed before anything wet touches the
+                floor, or the mop grinds it into new hardwood.
               </p>
             </div>
           </AnimatedSection>
@@ -327,15 +321,14 @@ export default function CalgaryPostConstruction() {
               </p>
               <p>
                 <strong className="text-foreground">Bathroom.</strong> Tile dust and grout haze come off the new
-                tile, the shower glass and the mirror are cleaned for first use, and the bedroom on the other side
-                of the wall, which took the dust through the door, is done with it.
+                tile, and the shower glass and the mirror are cleaned for first use.
               </p>
               <p>
-                <strong className="text-foreground">Basement.</strong> Do the basement first and the furnace puts
-                the whole lot back through the upstairs, so we ask at booking whether the rest of the house was
+                <strong className="text-foreground">Basement.</strong> Dust from a basement job does not stay
+                downstairs, because the furnace can carry it through the house, so we ask at booking whether the rest of the house was
                 lived in during the work and price the clean for the space that needs it. A basement suite
                 finished to let is the same job until the first guest arrives; after that it is{" "}
-                <Link to="/airbnb-cleaning-services-calgary/" className="text-primary underline underline-offset-4">turnover cleaning for short-term rentals</Link>,
+                <Link to="/airbnb-cleaning-services-calgary/" className="text-primary underline underline-offset-4">turnover cleaning for short-term rentals in Calgary</Link>,
                 which is priced by the hour.
               </p>
             </div>
@@ -401,7 +394,7 @@ export default function CalgaryPostConstruction() {
               <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">What post-construction cleaning costs in Calgary</h2>
               <p className="text-muted-foreground leading-relaxed">
                 Bedrooms do not predict dust; floor area does, so this is the one clean priced by square footage.
-                Nine bands, one figure each, with the GST shown beside it because the form adds it at the end and
+                Each band has one figure, with the GST shown beside it because the form adds it at the end and
                 the number on the card should not be a surprise.
               </p>
             </div>
@@ -427,19 +420,18 @@ export default function CalgaryPostConstruction() {
             </div>
             <div className="mx-auto mt-6 max-w-3xl text-muted-foreground leading-relaxed space-y-4">
               <p>
-                Inside Calgary city limits the band is the whole price. Outside them a post-construction clean
-                carries a {pcTravelFee} travel fee, so a new build in Airdrie or Cochrane pays the row above plus
-                that. The rest of what we do in each town is on its own page:{" "}
+                Inside Calgary city limits no travel fee is added to the band. Outside them a post-construction clean
+                carries a {pcTravelFee} travel fee, so a new build in Airdrie or Cochrane pays its square-footage
+                band plus that. The rest of what we do in each town is on its own page:{" "}
                 <Link to="/cleaning-services-airdrie/" className="text-primary underline underline-offset-4">house cleaning in Airdrie</Link>{" "}
                 and{" "}
                 <Link to="/cleaning-services-cochrane/" className="text-primary underline underline-offset-4">house cleaning in Cochrane</Link>.
               </p>
               <p>
-                Downtown conversions are the exception to the table; they are quoted after a walk-through. Every
-                other clean is priced by bedrooms and bathrooms, and those rows are on{" "}
+                Standard, deep and move-out cleans are priced by bedrooms and bathrooms, and those rows are on{" "}
                 <Link to="/calgary/pricing/" className="text-primary underline underline-offset-4">Calgary house cleaning prices by home size</Link>.
-                A new house keeps releasing dust for months after possession, and if you would rather not chase
-                it,{" "}
+                In a community still being built around the house, drywall dust from the lots next door keeps
+                arriving after possession, and if you would rather not chase it,{" "}
                 <Link to="/calgary/recurring-cleaning/" className="text-primary underline underline-offset-4">a recurring clean in Calgary</Link>{" "}
                 is discounted from the second visit onward.
               </p>
@@ -506,17 +498,18 @@ export default function CalgaryPostConstruction() {
             <div className="max-w-3xl mx-auto text-center">
               <div className="inline-flex items-center gap-2 bg-accent/20 rounded-full px-4 py-2 mb-6">
                 <Heart className="w-4 h-4 text-accent" />
-                <span className="text-accent text-sm font-semibold uppercase">Cleaning Calgary homes {COMPANY.sinceLabel}</span>
+                <span className="text-accent text-sm font-semibold uppercase">Cleaning Alberta homes {COMPANY.sinceLabel}</span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">A missed track is re-cleaned free within {POLICY.guaranteeWindowHours} hours</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Tell us within {POLICY.guaranteeWindowHours} hours and a missed track is re-cleaned free</h2>
               <p className="text-lg text-white/90 mb-4">
                 Window tracks and the tops of door frames are where a post-construction clean gets caught out, so
-                the team checks both before they leave. If something was still missed, tell us within{" "}
+                both are on the checklist. If something was still missed, tell us within{" "}
                 {POLICY.guaranteeWindowHours} hours and we come back to it at no charge. Photos help; they are not a
                 condition.
               </p>
               <p className="text-base text-white/90 mb-8">
-                The Calgary customers who booked before you, new builds and renovations among them, are on the{" "}
+                The Calgary listing is rated {RATING_CLAIM} across {CITY_PROOF.calgary.googleReviewCount} reviews, and
+                you can read them on the{" "}
                 <Link to="/reviews/" className="text-white underline underline-offset-4">reviews page</Link>.
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
@@ -578,7 +571,7 @@ export default function CalgaryPostConstruction() {
           </AnimatedSection>
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {[
-              { icon: Phone, title: "Phone", desc: "Ask about a conversion or a half-finished site before you book", action: "(403) 768-1341", href: "tel:4037681341" },
+              { icon: Phone, title: "Phone", desc: "Questions before you book", action: "(403) 768-1341", href: "tel:4037681341" },
               { icon: MapPin, title: "Address", desc: "2835 37 Street SW #24\nCalgary, AB", action: "Get Directions", href: getListing("calgary").url },
               { icon: Clock, title: "Hours", desc: "Mon-Sat: 8am–8pm\nSun: 9am–3pm", action: "Google listing", href: getListing("calgary").reviewsUrl },
             ].map((card, index) => (
@@ -612,8 +605,7 @@ export default function CalgaryPostConstruction() {
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">See My Instant Price</h2>
               <p className="text-white/90 mb-8">
-                The form asks for the square footage band and the date, and shows the price before you book. A
-                conversion or a partly finished site is the one case we quote by phone instead. The other cleans
+                The form asks for the square footage band and the date, and shows the price before you book. The other cleans
                 are listed under{" "}
                 <Link to="/calgary/services/" className="text-white underline underline-offset-4">every Calgary cleaning service, with starting prices</Link>.
               </p>

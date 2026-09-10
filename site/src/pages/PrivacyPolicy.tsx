@@ -84,7 +84,7 @@ export default function PrivacyPolicy() {
                 <li>Provide and manage our cleaning services</li>
                 <li>Process payments and send invoices</li>
                 <li>Communicate about appointments and service updates</li>
-                <li>Respond to inquiries and provide customer support</li>
+                <li>Respond to enquiries and provide customer support</li>
                 <li>Send promotional materials (with your consent)</li>
                 <li>Improve our services and website</li>
                 <li>Comply with legal obligations</li>
@@ -101,9 +101,9 @@ export default function PrivacyPolicy() {
 
               <h2 className="text-2xl font-bold mb-4 text-foreground">Data Security</h2>
               <p className="mb-8">
-                We implement appropriate technical and organizational measures to protect your personal information
-                against unauthorized access, alteration, disclosure, or destruction. However, no method of transmission
-                over the Internet is 100% secure.
+                We implement appropriate technical and organisational measures to protect your personal information
+                against unauthorised access, alteration, disclosure, or destruction. However, no method of transmission
+                over the Internet is completely secure.
               </p>
 
               <h2 className="text-2xl font-bold mb-4 text-foreground">Your Rights</h2>
@@ -184,8 +184,8 @@ export default function PrivacyPolicy() {
               <p className="mb-8">
                 Duty Cleaners operates in Alberta, but two of the services we rely on are based in the
                 United States: BookingKoala, which runs our booking system, and HighLevel, which is our CRM.
-                Our own quote relay stores enquiries in Supabase before passing them on. When you book or request a quote, the details you enter — including your
-                name, address, phone number, email and any access instructions — are stored and processed
+                Our own quote relay stores enquiries in Supabase before passing them on. When you book or request a quote, the details you enter (including your
+                name, address, phone number, email and any access instructions) are stored and processed
                 on servers outside Canada. While your information is in another country it is subject to
                 that country&rsquo;s laws, and may be accessible to its courts and government authorities.
                 If you would rather not have your details handled that way, call us instead and we will

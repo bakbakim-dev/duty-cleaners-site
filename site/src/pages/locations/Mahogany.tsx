@@ -59,7 +59,7 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Mahogany" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Mahogany" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Mahogany" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Mahogany" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Drywall and construction dust after a renovation or a new build in Mahogany.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Mahogany" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Mahogany" },
@@ -93,7 +93,7 @@ const whyUsItems = [
   { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
-const nearbyAreas = ["Mahogany Beach Club", "Mahogany Lake", "Mahogany Wetlands", "Mahogany Village", "Auburn Bay", "Cranston", "Copperfield", "Seton"];
+const nearbyAreas = ["Auburn Bay", "Cranston"];
 
 const faqs = [
   {
@@ -110,7 +110,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `In Mahogany, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `In Mahogany, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -135,12 +135,12 @@ export default function Mahogany() {
     <>
       <Helmet>
         <title>House Cleaning Services in Mahogany, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Mahogany, Calgary. Beautiful lakeside community in SE Calgary. 100% satisfaction guarantee. Call (403) 768-1341." />
+        <meta name="description" content="New phases keep opening past 52 Street SE in Mahogany, Calgary, so homes downwind of an active lot get construction silt on sills and window tracks." />
         <meta property="og:title" content="House Cleaning Services in Mahogany, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services in Mahogany, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Mahogany, Calgary. Beautiful lakeside community in SE Calgary. 100% satisfaction guarantee. Call (403) 768-1341." />
-        <meta property="og:description" content="Professional house cleaning in Mahogany, Calgary. Beautiful lakeside community in SE Calgary. 100% satisfaction guarantee. Call (403) 768-1341." />
+        <meta name="twitter:description" content="New phases keep opening past 52 Street SE in Mahogany, Calgary, so homes downwind of an active lot get construction silt on sills and window tracks." />
+        <meta property="og:description" content="New phases keep opening past 52 Street SE in Mahogany, Calgary, so homes downwind of an active lot get construction silt on sills and window tracks." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/mahogany/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/mahogany/" />
@@ -181,7 +181,7 @@ export default function Mahogany() {
                 Professional House Cleaning in Mahogany
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Trusted house cleaning services for Calgary's premier lakeside community — from the Beach Club to Mahogany Wetlands.
+                Mahogany is still being built out on Calgary's southeast edge, so homes downwind of an active lot get construction silt on sills, window tracks and door tops within days of a wipe. Our Calgary team takes a damp cloth to it every visit.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -241,10 +241,10 @@ export default function Mahogany() {
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
-                  Mahogany Neighbourhoods We Serve
+                  More Calgary-area neighbourhoods we clean
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Mahogany and the communities around it.{" "}
+                  Duty Cleaners cleans homes across Mahogany, and every Calgary neighbourhood the branch serves is on the service-area list.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -260,7 +260,7 @@ export default function Mahogany() {
         heading="Silt from the next phase"
         paragraphs={[
           "Construction in Mahogany started in 2008 and, out on Calgary's southeast edge, it has not stopped: new phases keep opening past 52 Street SE while settled streets sit a few blocks away. That proximity is the practical issue. Households downwind of an active lot get silt on sills, window tracks and the top edges of doors, and it is back within days of the last wipe. It takes a damp cloth every time.",
-          "Seventy-four acres of naturalized wetland sit inside the neighbourhood, ringed by pathways and interpretive areas. That changes what comes through the door. Spring and fall, the ground either side of the paved path stays soft, so boots and dog paws bring in a dark, greasy mud rather than dry grit. Late summer, seed fluff and insects load up the window screens. Screens and entry flooring take the extra time here.",
+          "Seventy-four acres of naturalised wetland sit inside the neighbourhood, ringed by pathways and interpretive areas. That changes what comes through the door. Spring and fall, the ground either side of the paved path stays soft, so boots and dog paws bring in a dark, greasy mud rather than dry grit. Entry flooring takes the extra time here.",
         ]}
         accent="calgary"
       />
@@ -279,7 +279,7 @@ export default function Mahogany() {
                   Cleaning Services for Mahogany Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs, we have every service your lakeside home needs.
+                  Standard, deep and move-out cleans are flat rates by home size; post-construction cleaning is priced by square footage and suits a new Mahogany build.
                 </p>
               </div>
             </AnimatedSection>
@@ -321,7 +321,7 @@ export default function Mahogany() {
                   Why Mahogany Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>

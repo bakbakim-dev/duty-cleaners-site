@@ -203,7 +203,9 @@ const edmontonNeighborhoods = [
 // Calgary region cities
 const calgaryRegionCities = [
   { name: "Airdrie", link: "/cleaning-services-airdrie/" },
-  { name: "Black Diamond", link: "/locations/black-diamond/" },
+  // Black Diamond and Turner Valley amalgamated as Diamond Valley on
+  // 1 January 2023 (content prompt A2); each keeps its page, named both ways.
+  { name: "Black Diamond (Diamond Valley)", link: "/locations/black-diamond/" },
   { name: "Chestermere", link: "/locations/chestermere/" },
   { name: "Cochrane", link: "/cleaning-services-cochrane/" },
   { name: "Crossfield", link: "/locations/crossfield/" },
@@ -211,7 +213,7 @@ const calgaryRegionCities = [
   { name: "Langdon", link: "/locations/langdon/" },
   { name: "Okotoks", link: "/locations/okotoks/" },
   { name: "Strathmore", link: "/locations/strathmore/" },
-  { name: "Turner Valley", link: "/locations/turner-valley/" }
+  { name: "Turner Valley (Diamond Valley)", link: "/locations/turner-valley/" }
 ];
 
 // Calgary neighbourhoods
@@ -317,9 +319,8 @@ function LocationCard({ location }: { location: typeof mainLocations[0] }) {
         <div>
           <h2 className="text-3xl font-bold mb-3 text-white">{location.name}</h2>
           <div className="flex items-center gap-2 mb-2">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} className="w-5 h-5 fill-accent text-accent" />
-            ))}
+            {/* Five filled stars beside a 4.9 read as a rating rounded up to 5. */}
+            <Star className="w-5 h-5 fill-accent text-accent" aria-hidden="true" />
             <span className="text-xl font-bold ml-2 text-white">{location.rating}</span>
           </div>
         </div>
@@ -452,7 +453,7 @@ function NeighborhoodLink({ name, link, variant = "edmonton" }: { name: string; 
 
 const TITLE = "House Cleaning Locations in Alberta | Duty Cleaners";
 const DESCRIPTION =
-  "House cleaning across Alberta: Edmonton, Calgary and the towns around each. No travel fee inside city limits; reference-checked cleaners.";
+  "House cleaning in Edmonton, Calgary and the towns around each, from two offices, with no travel fee inside city limits and reference-checked cleaners.";
 
 export default function Locations() {
   const calgaryQuote = `${canonicalForPath("/calgary")}#quote`;
@@ -504,8 +505,9 @@ export default function Locations() {
             </h1>
 
             <p className="text-xl text-white/80 leading-relaxed mb-10">
-              Two offices, a price list per city, and a travel fee only outside city limits. Every
-              neighbourhood and town either office covers is listed below.
+              Each city has its own office and its own price list, and a travel fee applies only
+              outside city limits. Every neighbourhood and town the two offices cover is listed by
+              city, each linked to its own page.
             </p>
 
             {/* Trust Badges */}
@@ -546,7 +548,7 @@ export default function Locations() {
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Two offices: Edmonton and Calgary</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Call the office nearest you, or see your price online in about a minute. Nothing is
+              Call the office for your city, or see your price online in about a minute. Nothing is
               charged until the clean is done.
             </p>
           </div>
@@ -566,7 +568,7 @@ export default function Locations() {
             <div className="text-center mb-10">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">The same services in both cities</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Each service has its own page per city, with the price by home size. Start with{" "}
+                Each service has its own page per city, with its prices. Start with{" "}
                 <Link to="/services/" className="text-primary underline underline-offset-2">
                   all Edmonton cleaning services and prices
                 </Link>{" "}
@@ -625,9 +627,9 @@ export default function Locations() {
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Edmonton Region Cleaning Services</h2>
             <p className="text-white/90 max-w-3xl mx-auto">
-              The towns around Edmonton, served from the Edmonton office. Every one of them sits
-              outside Edmonton city limits, so a {TRAVEL_FEE} travel fee is added per visit. It shows
-              on your quote before you book.
+              The Edmonton office also cleans homes in the nine communities around the city. Every
+              one of them sits outside Edmonton city limits, so a {TRAVEL_FEE} travel fee, before GST, is added
+              per visit on a home clean. It shows on your quote before you book.
             </p>
           </div>
 
@@ -645,7 +647,7 @@ export default function Locations() {
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Edmonton Neighbourhoods</h2>
             <p className="text-muted-foreground max-w-3xl mx-auto">
-              All inside city limits, so none of these carries a travel fee.
+              Each of these Edmonton neighbourhoods is inside city limits, so none carries a travel fee.
             </p>
           </div>
 
@@ -674,9 +676,11 @@ export default function Locations() {
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Calgary Region Cleaning Services</h2>
             <p className="text-white/90 max-w-3xl mx-auto">
-              The towns around Calgary, served from the Calgary office. All of them are outside
-              Calgary city limits, which adds the same {TRAVEL_FEE} travel fee per visit, shown on
-              the quote before you book.
+              The Calgary office also cleans homes in the nine communities around the city. All
+              nine are outside Calgary city limits, which adds the same {TRAVEL_FEE} travel fee, before GST, per
+              visit on a home clean, shown on the quote before you book. Black Diamond and Turner
+              Valley each keep their own page, but they have been one town, Diamond Valley, since
+              1 January 2023.
             </p>
           </div>
 
@@ -694,7 +698,7 @@ export default function Locations() {
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Calgary Neighbourhoods</h2>
             <p className="text-muted-foreground max-w-3xl mx-auto">
-              All inside city limits, so none of these carries a travel fee.
+              The Calgary neighbourhoods are all inside city limits, so none of them carries a travel fee.
             </p>
           </div>
 
@@ -719,11 +723,11 @@ export default function Locations() {
               <MapPin className="w-4 h-4 text-primary" />
               <span className="text-foreground text-sm font-medium">Service Coverage</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Our Service Area</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Where the Edmonton and Calgary offices clean</h2>
             <p className="text-muted-foreground max-w-3xl mx-auto">
-              Both cities and the towns around each. Areas we do not currently serve: Red Deer.
-              If your address is not on this page, call and we will say plainly whether it is in
-              range.
+              The map shows both cities and the communities around each. Duty Cleaners does not
+              serve Red Deer. For an address that is not listed, call the Edmonton or Calgary
+              office and ask.
             </p>
           </div>
 

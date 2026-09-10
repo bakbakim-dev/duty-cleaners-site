@@ -60,9 +60,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Huntington Hills" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Huntington Hills" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Huntington Hills" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Huntington Hills" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Huntington Hills.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Huntington Hills" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris cleared after a renovation in Huntington Hills, priced by the home's square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Huntington Hills" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Huntington Hills" },
 ];
 
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Thorncliffe","Beddington Heights","Country Hills","MacEwan Glen","Sandstone Valley","Coventry Hills"];
+const nearbyAreas = ["Thorncliffe"];
 
 const faqs = [
   {
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `In Huntington Hills, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `In Huntington Hills, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function HuntingtonHills() {
     <>
       <Helmet>
         <title>House Cleaning in Huntington Hills, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional cleaners serving Huntington Hills, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="description" content="Dogs and boots carry seed heads and thaw clay in from Nose Hill Park, so entry mats do most of the work in Huntington Hills homes in Calgary." />
         <meta property="og:title" content="House Cleaning in Huntington Hills, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Huntington Hills, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional cleaners serving Huntington Hills, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
-        <meta property="og:description" content="Professional cleaners serving Huntington Hills, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="twitter:description" content="Dogs and boots carry seed heads and thaw clay in from Nose Hill Park, so entry mats do most of the work in Huntington Hills homes in Calgary." />
+        <meta property="og:description" content="Dogs and boots carry seed heads and thaw clay in from Nose Hill Park, so entry mats do most of the work in Huntington Hills homes in Calgary." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/huntington-hills-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/huntington-hills-calgary/" />
@@ -183,7 +183,7 @@ export default function HuntingtonHills() {
                 Professional House Cleaning in Huntington Hills
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Reliable house cleaning for one of north Calgary's largest, most family-friendly communities — bringing calm to busy households.
+                Nose Hill Park begins across 14 Street NW, and Deerfoot Trail runs the eastern edge. Our Calgary branch cleans Huntington Hills homes at a flat rate by home size, and nothing is charged until the clean is done.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function HuntingtonHills() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Huntington Hills Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Huntington Hills homes get every service they need.
+                  Standard, deep, move-out and post-construction cleaning in Huntington Hills are each priced by home size rather than by the hour, and wall washing is booked together with a clean.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function HuntingtonHills() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Huntington Hills Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Huntington Hills and the surrounding N Calgary communities.
+                    Huntington Hills runs from 14 Street NW to Deerfoot Trail, all of it inside Calgary city limits, where there is no trip fee.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function HuntingtonHills() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={768} src={featureImg} alt="Spotless Huntington Hills Calgary home cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1024} height={768} src={featureImg} alt="Cleaner in a grey apron and a yellow glove wiping a white kitchen counter with a yellow cloth" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Calm, Spotless Huntington Hills Home — Every Visit</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">At the front door</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Where the Work Goes in a Huntington Hills Home</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Our vetted cleaners treat your home with care, attention, and the same standards we'd want in our own. Walk in to fresh air, gleaming surfaces, and that quiet feeling of <em>everything in its place</em>.
+                    Seed heads, August grass dust and dried thaw clay come in off Nose Hill and settle in the entry mat and the first few metres of hallway. On the blocks by Deerfoot Trail, the window channels under east-facing glass collect grit, and the team clears them. Exterior glass is outdoor work, so it is not part of the clean.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Rated by the customer after every visit","Supplies and equipment come with the team","Re-clean at no charge if told within 24 hours"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,9 +311,9 @@ export default function HuntingtonHills() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Huntington Hills and the communities around it.{" "}
+                  Thorncliffe is on the Calgary branch's list of 66 neighbourhoods too, and like Huntington Hills it carries no trip fee.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -328,8 +328,8 @@ export default function HuntingtonHills() {
         eyebrow="On the ground"
         heading="Nose Hill comes indoors"
         paragraphs={[
-          "Across 14 Street NW the grid stops and Nose Hill Park begins — eleven square kilometres of open hill, where rough fescue grassland is one of seven major native habitat types. Dogs and boots come back off it loaded: seed heads, dry grass dust in August, and a sticky clay through the thaw that dries hard in the mat weave. Entry mats and the first few metres of hallway do most of the work in these homes.",
-          "The eastern boundary is a different problem entirely. Deerfoot Trail and the Nose Creek valley run its full length, and homes on those blocks pick up a traffic film on east-facing glass noticeably faster than the streets tucked in behind Centre Street. So we wash it off rather than wipe it around, and clear the window channel underneath where the grit collects and then grinds.",
+          "Across 14 Street NW the grid stops and the open hill of Nose Hill Park begins. Dogs and boots come back off it loaded: seed heads, dry grass dust in August, and a sticky clay through the thaw that dries hard in the mat weave. Entry mats and the first few metres of hallway do most of the work in these homes.",
+          "The eastern boundary is a different problem entirely. Deerfoot Trail and the Nose Creek valley run its full length, and homes on those blocks pick up a traffic film on east-facing glass noticeably faster than the streets set back behind Centre Street. The film on the outside of that glass is outdoor work a clean does not reach, but the team clears the window channel underneath, where the grit collects and then grinds.",
         ]}
         accent="calgary"
       />
@@ -347,7 +347,7 @@ export default function HuntingtonHills() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Huntington Hills Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>

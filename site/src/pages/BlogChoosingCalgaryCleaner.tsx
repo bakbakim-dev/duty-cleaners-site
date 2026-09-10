@@ -7,7 +7,8 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { Calendar, Clock, ArrowLeft, CheckCircle2, XCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { HOMES_CLEANED, COMPANY } from "@/data/proof";
+import { COMPANY, CITY_PROOF, RATING_CLAIM } from "@/data/proof";
+import { flatRateFromPrice, formatPrice } from "@/data/pricing";
 
 import { modifiedFor } from "@/data/post-dates";
 import heroImage from "@/assets/hero-calgary-skyline.webp";
@@ -26,44 +27,44 @@ import teamImage from "@/assets/calgary-cleaning-team.webp";
 const WHAT_TO_CHECK = [
   {
     title: "Flat pricing, quoted before booking",
-    good: "You see a price for your specific home before you commit to anything — no \"we'll assess on arrival\" surprises.",
+    good: "You see a price for your specific home before you commit to anything, with no \"we'll assess on arrival\" surprise.",
     bad: "Vague hourly estimates with no upper bound, or pricing that only appears after a phone call.",
   },
   {
-    title: "Vetted, consistent cleaners",
-    good: "The company screens who they send into your home, and you can request the same cleaner for recurring visits.",
+    title: "Screened cleaners, rated after each visit",
+    good: "The company can tell you how cleaners are screened before a first job, and how customers rate them after each visit.",
     // Was "No mention of background checks" — which flagged this company,
     // since policy.ts records reference checks, not background checks.
     bad: "No answer on how cleaners are screened, or a different unnamed contractor every time.",
   },
   {
     title: "A clear written scope",
-    good: "A checklist of exactly what's included in each service tier, so there's no ambiguity about what \"standard clean\" actually covers.",
-    bad: "Marketing copy about being \"thorough\" with no actual list of tasks.",
+    good: "A checklist of what each service includes, so there is no ambiguity about what a \"standard clean\" covers.",
+    bad: "Marketing copy about being \"thorough\" with no list of tasks.",
   },
   {
-    title: "A real satisfaction guarantee",
-    good: "A specific window (e.g. 24 hours) to flag anything missed, with a free return visit — not just a slogan.",
-    bad: "\"100% satisfaction guaranteed!\" with no process for what happens if you're not satisfied.",
+    title: "A guarantee with a process behind it",
+    good: "A specific window, such as 24 hours, to report anything missed, and a return visit to re-clean it at no charge.",
+    bad: "A satisfaction slogan with no deadline, no remedy and no process for what happens if you are not satisfied.",
   },
 ];
 
 const FAQS = [
   {
     q: "What should I look for when choosing a cleaning service in Calgary?",
-    a: "Four things: flat pricing quoted before you book, vetted and consistent cleaners, a written scope of exactly what's included, and a real satisfaction guarantee with a defined process — not just a slogan.",
+    a: "Look for four things in a Calgary cleaning company: a flat price quoted before you book, a clear answer on how cleaners are screened and rated, a written list of what each service includes, and a guarantee with a deadline and a remedy.",
   },
   {
     q: "How much does a house cleaning cost in Calgary?",
-    a: "It depends mainly on home size and service type (standard, deep, or move-out). See our full Calgary pricing breakdown for current rates by home size.",
+    a: `At Duty Cleaners, a standard clean of a one-bedroom, one-bathroom apartment or condo in Calgary is ${formatPrice(flatRateFromPrice())} before 5% GST. More bedrooms or bathrooms, a house or townhouse rather than a condo, add-ons and the compulsory charge for homes with pets all raise the price. There is no trip fee inside Calgary city limits, a travel fee applies outside them, and the Calgary price list shows every tier by home size.`,
   },
   {
     q: "Do Calgary cleaning companies bring their own supplies?",
-    a: "Reputable ones do — you shouldn't need to provide anything. Ask specifically whether products are pet- and child-safe if that matters to your household.",
+    a: "Duty Cleaners teams in Calgary bring all supplies and equipment, so there is nothing to buy or leave out before a clean. The home needs running water, and vacuuming may not be possible without electricity. Eco-friendly products are a paid add-on: ask when you book and the office adds it.",
   },
   {
     q: "Is a cleaning service worth it for a Calgary condo versus a house?",
-    a: "Condos generally cost less to clean since there's less square footage, which makes recurring service more affordable per visit. The core value — getting hours back every week — applies the same either way.",
+    a: "At Duty Cleaners the price list is set for an apartment or condo by bedrooms and bathrooms, and a bungalow, townhouse or two-storey house of the same size adds a home-type surcharge. A Calgary condo therefore costs less per visit than a house with the same rooms. Apartments and condos in the Beltline, Mission, Eau Claire and the downtown towers are also among the simplest jobs in the city. Recurring plans lower the price of each visit again from the second visit, for either kind of home.",
   },
 ];
 
@@ -167,7 +168,7 @@ export default function BlogChoosingCalgaryCleaner() {
                   width={1600}
                   height={900}
                   src={heroImage}
-                  alt="Calgary skyline, home to Duty Cleaners' Calgary cleaning team"
+                  alt="The Calgary skyline"
                   className="w-full h-full object-cover"
                  loading="eager" fetchPriority="high"/>
               </div>
@@ -182,9 +183,9 @@ export default function BlogChoosingCalgaryCleaner() {
               <div className="prose prose-lg max-w-none mb-12">
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   Hiring a cleaning service should save you time and stress, not add a new source of
-                  it. Most of the bad experiences people report — no-shows, surprise charges, uneven
-                  quality — trace back to the same handful of gaps in how a company operates. None of
-                  them are hard to check for before you book.
+                  it. Most of the bad experiences people report, such as no-shows, surprise charges
+                  and uneven quality, trace back to the same handful of gaps in how a company
+                  operates. None of them are hard to check for before you book.
                 </p>
               </div>
 
@@ -219,7 +220,7 @@ export default function BlogChoosingCalgaryCleaner() {
                     width={1536}
                     height={1024}
                     src={teamImage}
-                    alt="Duty Cleaners' Calgary cleaning team"
+                    alt="Two cleaners mopping a floor and spraying a window in a bright living room"
                     className="w-full h-full object-cover"
                    loading="lazy" decoding="async"/>
                 </div>
@@ -227,11 +228,12 @@ export default function BlogChoosingCalgaryCleaner() {
                   How we handle it
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  Duty Cleaners has been operating {COMPANY.sinceLabel}, with {HOMES_CLEANED.calgary} Calgary
-                  homes cleaned. Pricing is quoted up front based on your home's size, every cleaner is
-                  reference-checked before their first job, and if something's missed, tell us within
-                  24 hours and we'll come back and make it right at no additional charge — no fine
-                  print attached to that.
+                  Duty Cleaners has cleaned homes in Alberta {COMPANY.sinceLabel}, and the Calgary
+                  branch is rated {RATING_CLAIM} across {CITY_PROOF.calgary.googleReviewCount} reviews.
+                  The price is flat by home size and shown before you book, and every cleaner is
+                  reference-checked before a first job and rated by the customer after each visit.
+                  If something was missed, tell us within 24 hours and we come back and re-clean it
+                  at no charge. Photos help but are not required.
                 </p>
               </div>
 
@@ -249,28 +251,28 @@ export default function BlogChoosingCalgaryCleaner() {
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Most of what separates companies does not show up on a website, and the
-                  answers take about five minutes to collect on the phone. Ask what happens if
-                  the clean takes longer than expected — a flat rate should not move, and if the
-                  answer is vague you are being quoted an estimate rather than a price. Ask
-                  whether you get the same cleaner each visit; consistency is the single
-                  biggest predictor of whether a recurring arrangement survives past month
-                  three, because a cleaner who knows your home stops needing to be told things.
+                  answers are quick to collect on the phone. Ask what happens if the clean takes
+                  longer than expected. A flat rate should not move, and if the answer is vague
+                  you are being quoted an estimate rather than a price. Ask who will come, and
+                  whether a recurring booking keeps your regular team where the company can send
+                  them. A team that already knows a home needs fewer instructions.
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  Ask what is <em>not</em> included, and be suspicious of a company that says
-                  everything is. Nobody moves heavy furniture, cleans exterior windows, handles
-                  bodily fluids or litter boxes, or works above a three-step ladder as part of a
-                  standard visit — a firm that will not say so up front is one you will have a
-                  disagreement with later. Ask how payment works, too: taking full payment
-                  before any work happens is unusual in this trade, and it removes your only
-                  real leverage if something goes wrong.
+                  Ask what is <em>not</em> included, and be wary of a company that says
+                  everything is. Duty Cleaners, for example, does not lift anything over 25 lb,
+                  clean exterior windows, handle bodily fluids or litter boxes, or work beyond a
+                  three-step ladder. A firm that will not name its exclusions up front is one you
+                  are likely to disagree with later. Ask how payment works, too. Paying in full
+                  before any work happens leaves you little to stand on if something goes wrong.
+                  Duty Cleaners charges nothing at booking: a temporary hold the day before
+                  confirms the card is valid, and the card is charged once the clean is complete.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  Finally, ask about the guarantee in specifics rather than as a slogan. "One
-                  hundred per cent satisfaction guaranteed" means nothing on its own. What is
-                  the deadline for reporting a problem, what is the remedy, and does claiming it
-                  require photographs? A company that can answer those three questions
-                  immediately has an actual process; one that cannot has a marketing line.
+                  Finally, ask about the guarantee in specifics. A promise of total satisfaction
+                  means nothing on its own. What is the deadline for reporting a problem, what is
+                  the remedy, and does claiming it require photographs? A company that can answer
+                  those three questions immediately has a process; one that cannot has a
+                  marketing line.
                 </p>
               </div>
 
@@ -279,29 +281,28 @@ export default function BlogChoosingCalgaryCleaner() {
                   What is specific to Calgary
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  Two local things change what you should book. The first is the chinook cycle:
-                  because the city thaws and refreezes all winter, the roads are gritted, melt,
-                  and are gritted again rather than staying frozen through to spring. That sand
-                  and de-icer arrives at the door repeatedly from November to April and works
-                  along baseboards, into carpet edges and under furniture. By late winter a
-                  standard clean is often not the service the home actually needs, and a company
-                  that books you one anyway without mentioning it is not paying attention.
+                  Two local things change what you should book. The first is the chinook cycle.
+                  Calgary thaws and refreezes on chinooks all winter, so sand and de-icer arrive at
+                  the door again and again from November to April and settle along baseboards and
+                  carpet edges. By late winter a home can need{" "}
+                  <Link to="/calgary/deep-cleaning/" className="text-primary underline underline-offset-2 font-medium">deep cleaning in Calgary</Link>{" "}
+                  rather than a standard visit, and a company that books a standard clean without
+                  asking about the season is not paying attention.
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  The second is the housing split. An inner-city condo in the Beltline, Mission
-                  or Eau Claire is small in square footage but heavy on window tracks, balcony
-                  door channels and the fine dust a dry, windy city pushes into every seal — it
-                  takes longer per square metre than its size suggests. A newer house out in
-                  Mahogany, Seton or Livingston is the reverse, except where construction dust is
-                  still surfacing from vents and closet shelves, which is normal for a year or
-                  two after possession. Any quote given purely on bedroom count is ignoring the
-                  larger of the two variables.
+                  The second is the housing split. Apartments and condos in the Beltline, Mission,
+                  Eau Claire and the downtown towers are the simplest jobs. Houses in newer suburbs
+                  such as Mahogany, Seton and Livingston carry construction dust, and Calgary's dry
+                  air and wind keep fine grit airborne for most of the year. A quote that asks only
+                  about bedrooms misses the home type, which is why the Duty Cleaners price list
+                  adds a set surcharge for a bungalow, a basement suite, a townhouse or a
+                  two-storey house.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  One thing that should <em>not</em> vary locally is the price. We charge the
-                  same in Calgary as in Edmonton, with no city premium and no trip fee inside
-                  either city, and every published figure is before 5% GST. If a company quotes
-                  a Calgary surcharge, ask what it covers.
+                  One thing that should <em>not</em> vary locally is the price. Duty Cleaners
+                  charges one flat price list with no city premium, and there is no trip fee inside
+                  Calgary city limits; outside them a travel fee applies. Every published figure is
+                  before 5% GST. If a company quotes a Calgary surcharge, ask what it covers.
                 </p>
               </div>
 
@@ -363,8 +364,10 @@ export default function BlogChoosingCalgaryCleaner() {
                   See exactly what your clean would cost
                 </h3>
                 <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                  No phone call required — get a flat price for your Calgary home in about 60 seconds,
-                  and pay only after the clean is done.
+                  See a flat price for your Calgary home online before you book. Nothing is charged at
+                  booking, and the card is charged once the clean is complete. To talk it through,
+                  call the Calgary office at{" "}
+                  <a href="tel:4037681341" className="text-primary underline underline-offset-2 font-medium">(403) 768-1341</a>.
                 </p>
                 <Button size="lg" variant="accent" className="w-full sm:w-auto min-h-[52px] text-base font-bold" asChild>
                   <Link to="/cleaning-services-calgary/#quote">

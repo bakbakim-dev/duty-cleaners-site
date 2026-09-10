@@ -69,19 +69,19 @@ const last = <T,>(rows: T[]) => rows[rows.length - 1];
 const FAQS = [
   {
     q: "What is the difference between a standard clean and a deep clean?",
-    a: `A deep clean is the standard checklist plus the deep package: baseboards, doors, light switches, wall outlets and outside vent covers, ceiling fan blades within reach, and a detailed stovetop, grates and fridge top. The package adds ${DEEP[0].packagePrice} to a 1-bedroom standard clean and ${last(DEEP).packagePrice} to a 5-bedroom, so a deep clean runs ${DEEP[0].price} to ${last(DEEP).price} against ${STANDARD[0].price} to ${last(STANDARD).price} for standard, before GST.`,
+    a: `A deep clean is the standard checklist plus the deep package: baseboards, doors, light switches, wall outlets and vent covers, ceiling fan blades within reach, and a detailed stovetop, grates and fridge top. The package adds ${DEEP[0].packagePrice} to a 1-bedroom standard clean and ${last(DEEP).packagePrice} to a 5-bedroom, so a deep clean runs ${DEEP[0].price} to ${last(DEEP).price} against ${STANDARD[0].price} to ${last(STANDARD).price} for standard, before GST.`,
   },
   {
     q: "Is the inside of the oven included?",
-    a: `Only on a move-in or move-out clean, where the inside of the oven, fridge, cabinets and drawers are part of the service. On a standard or deep clean the oven is an add-on at ${OVEN_FEE}, the fridge ${FRIDGE_FEE}, and inside cabinets ${CABINET_FEE} once they are empty. Each is a tick-box in the booking form.`,
+    a: `Only on a move-in or move-out clean, where the inside of the oven, fridge, cabinets and drawers are part of the service. On a standard or deep clean the oven is an add-on at ${OVEN_FEE}, the fridge ${FRIDGE_FEE}, and inside cabinets ${CABINET_FEE} once they are empty, all before GST. Each is a tick-box in the booking form.`,
   },
   {
     q: "Is there a charge for pets?",
-    a: `Yes, ${PET_FEE} per visit, added when you tell us the home has pets. Hair, paw prints and nose marks on glass add time in every room. Litter boxes and animal waste stay outside what we handle.`,
+    a: `Yes, ${PET_FEE} per visit before GST, added when you tell us the home has pets. Hair, paw prints and nose marks on glass add time in every room. Litter boxes and animal waste stay outside what we handle.`,
   },
   {
     q: "Do you charge extra outside Edmonton or Calgary city limits?",
-    a: `Inside the limits there is no trip fee. Outside them a ${TRAVEL_FEE} travel fee is added per visit on a house clean, which covers St. Albert, Sherwood Park, Airdrie, Cochrane and the other surrounding towns. Post-construction cleaning is quoted from its own table and its travel fee is ${POST_CONSTRUCTION_TRAVEL_FEE}. Either way it shows on your quote before you book.`,
+    a: `Inside the limits there is no trip fee. Outside them a ${TRAVEL_FEE} travel fee, before GST, is added per visit on a house clean, which covers St. Albert, Sherwood Park, Airdrie, Cochrane and the other surrounding towns. Post-construction cleaning is quoted from its own table and its travel fee is ${POST_CONSTRUCTION_TRAVEL_FEE}. Either way it shows on your quote before you book.`,
   },
   {
     q: "What is never included in a clean?",
@@ -306,12 +306,12 @@ export default function WhatsIncluded() {
   const deepItems = [
     { icon: Check, text: "Everything on the standard checklist" },
     { icon: Fan, text: "Ceiling fan blades, where a 3-step ladder reaches them" },
-    { icon: Paintbrush, text: "Baseboards, doors, light switches, wall outlets and outside vent covers" },
+    { icon: Paintbrush, text: "Baseboards, doors, light switches, wall outlets and vent covers" },
     { icon: Refrigerator, text: "Detailed stovetop, grates and fridge top; inside the oven and fridge stay add-ons" },
   ];
 
   const moveOutItems = [
-    { icon: Paintbrush, text: "Baseboards, doors, light switches, wall outlets and outside vent covers" },
+    { icon: Paintbrush, text: "Baseboards, doors, light switches, wall outlets and vent covers" },
     { icon: Refrigerator, text: "Inside all appliances: oven, microwave and fridge" },
     { icon: DoorOpen, text: "Inside all drawers, cabinets and closets, plus window sills" },
     { icon: Home, text: "Behind the oven and fridge, if they are pulled out before we arrive" },
@@ -397,7 +397,7 @@ export default function WhatsIncluded() {
         {/* Background image */}
         <img width={1280} height={720}
           src={heroBg}
-          alt="Freshly cleaned open-plan living space covered by the standard checklist"
+          alt="Sunlit living room with a white sofa and armchairs, a glass coffee table and wood floors"
           className="absolute inset-0 w-full h-full object-cover opacity-40"
          loading="eager" fetchPriority="high"/>
         {/* Gradient overlay */}
@@ -419,7 +419,7 @@ export default function WhatsIncluded() {
             </h1>
 
             <p className="text-lg text-white/80 max-w-2xl mx-auto mb-8">
-              We work to a checklist, not a clock. This page is that checklist for Edmonton and
+              We work to a checklist, not a clock. Here is that checklist for Edmonton and
               Calgary: what a standard, deep and move-out clean covers, what is an add-on with
               its price, and what we do not do.
             </p>
@@ -456,7 +456,9 @@ export default function WhatsIncluded() {
             <p className="text-3xl md:text-4xl font-bold mt-2">One checklist per service</p>
             <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
               Each list builds on the one before it. Deep adds to standard; move-out adds to
-              deep. Nothing is taken away as you go up.
+              deep. Nothing is taken away as you go up. Each from-price is for a 1-bedroom,
+              1-bathroom apartment or condo, before 5% GST; a larger home type, pets or an address
+              outside city limits add to it.
             </p>
           </div>
 
@@ -487,7 +489,7 @@ export default function WhatsIncluded() {
             <CleaningTypeCard
               icon={Truck}
               title="Move-out cleaning checklist"
-              description={`Cleaned empty, to the standard a move-out inspection looks for, from ${MOVE[0].price} for a 1-bedroom home before GST. The same list applies to a move-in.`}
+              description={`The home is cleaned empty, to the standard a move-out inspection looks for, from ${MOVE[0].price} for a 1-bedroom home before GST. The same list applies to a move-in.`}
               items={moveOutItems}
               links={[
                 { to: "/move-out-cleaning-edmonton/", label: "move-out cleaning in Edmonton" },
@@ -521,10 +523,8 @@ export default function WhatsIncluded() {
                 <tr className="bg-brand-navy text-brand-navy-foreground">
                   <th scope="col" className="px-5 py-4 text-left font-semibold">What's included</th>
                   <th scope="col" className="px-4 py-4 text-center font-semibold">Standard</th>
-                  <th scope="col" className="px-4 py-4 text-center font-semibold">
-                    Deep
-                    <span className="ml-2 rounded-full bg-brand-gold px-2.5 py-0.5 text-sm font-bold text-brand-navy">Most popular</span>
-                  </th>
+                  {/* A "Most popular" badge sat here; no booking figure backs it. */}
+                  <th scope="col" className="px-4 py-4 text-center font-semibold">Deep</th>
                   <th scope="col" className="px-4 py-4 text-center font-semibold">Move In/Out</th>
                 </tr>
               </thead>
@@ -575,7 +575,7 @@ export default function WhatsIncluded() {
             Two rows say "Deep package" rather than "Add-on" because there is no tick-box for them:
             baseboards and the detailed stovetop are sold only inside the Deep Cleaning package,
             which adds {DEEP[0].packagePrice} to a 1-bedroom standard clean and{" "}
-            {last(DEEP).packagePrice} to a 5-bedroom.
+            {last(DEEP).packagePrice} to a 5-bedroom, before GST.
           </p>
         </div>
       </section>
@@ -642,7 +642,9 @@ export default function WhatsIncluded() {
               bk-config holds two, and post-construction carries the larger. */}
           <p className="text-muted-foreground text-sm mt-4 max-w-2xl mx-auto text-center">
             Some charges are not a choice and are added for you. A home with pets is {PET_FEE} a
-            visit. An address outside Edmonton or Calgary city limits carries a travel fee per visit:{" "}
+            visit. A bungalow, basement suite, townhouse or two-storey house adds a home-type
+            surcharge to the apartment-or-condo price. An address outside Edmonton or Calgary city
+            limits carries a travel fee per visit:{" "}
             {TRAVEL_FEE} on a house clean, and {POST_CONSTRUCTION_TRAVEL_FEE} on{" "}
             <Link to="/post-construction-cleaning/" className="text-primary underline underline-offset-2">
               post-construction cleaning in Edmonton
@@ -759,9 +761,9 @@ export default function WhatsIncluded() {
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 mb-6">
               <Star className="w-8 h-8 text-accent" />
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">100% Satisfaction Guarantee</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">The 24-hour re-clean guarantee</h2>
             <p className="text-muted-foreground text-lg mb-2">
-              The checklist above is what the guarantee is measured against.
+              Each service's checklist is what the guarantee is measured against.
             </p>
             <p className="text-muted-foreground mb-8">
               If something on it was missed, tell us within {POLICY.guaranteeWindowHours} hours of the

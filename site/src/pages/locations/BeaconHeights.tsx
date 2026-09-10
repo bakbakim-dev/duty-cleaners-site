@@ -82,7 +82,7 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Beacon Heights" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Beacon Heights" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fan blades within reach, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Beacon Heights" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Beacon Heights" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris cleared after renovations or new builds.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Beacon Heights" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Beacon Heights" },
@@ -91,7 +91,7 @@ const services = [
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Beacon Heights" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment or condo, before GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Beacon Heights" },
 ];
 
 const whyUsItems = [
@@ -141,7 +141,7 @@ export default function BeaconHeights() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fan blades within reach dusted\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -163,25 +163,25 @@ export default function BeaconHeights() {
     <>
       <Helmet>
         <title>House Cleaners in Beacon Heights, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Beacon Heights, Edmonton. Trusted local cleaners serving northeast Edmonton families." />
+        <meta name="description" content="For 1950s-60s Beacon Heights homes in Edmonton, most with a back-lane garage, house cleaning starts at the rear door." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Beacon Heights, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/beacon-heights-edmonton",
   areaServed: "Beacon Heights, Edmonton, AB",
-  description: "Professional house cleaning in Beacon Heights, Edmonton. Trusted local cleaners serving northeast Edmonton families.",
+  description: "For 1950s-60s Beacon Heights homes in Edmonton, most with a back-lane garage, house cleaning starts at the rear door.",
   geo: { latitude: "53.56", longitude: "-113.421" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/beacon-heights-edmonton/" />
         <meta property="og:title" content="House Cleaners in Beacon Heights, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Beacon Heights, Edmonton. Trusted local cleaners serving northeast Edmonton families." />
+        <meta property="og:description" content="For 1950s-60s Beacon Heights homes in Edmonton, most with a back-lane garage, house cleaning starts at the rear door." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/beacon-heights-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Beacon Heights, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Beacon Heights, Edmonton. Trusted local cleaners serving northeast Edmonton families." />
+        <meta name="twitter:description" content="For 1950s-60s Beacon Heights homes in Edmonton, most with a back-lane garage, house cleaning starts at the rear door." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -207,7 +207,7 @@ export default function BeaconHeights() {
                   Professional House Cleaning in Beacon Heights
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Your reliable, local cleaning team serving the Beacon Heights community. From classic bungalows near Concordia University to family homes by Rundle Park — friendly, dependable local cleaning.
+                  Beacon Heights carries 1950s-60s homes, most with a single detached garage off the back lane. Households come and go through the rear door, so that entry and the kitchen approach are where the team starts.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -235,7 +235,7 @@ export default function BeaconHeights() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
                   src={heroImg}
-                  alt="Professional cleaner wiping a counter in a Beacon Heights, Edmonton home"
+                  alt="Professional cleaner wiping a counter in a home"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   width={1024}
                   height={1024}
@@ -257,7 +257,7 @@ export default function BeaconHeights() {
                   Cleaning Services for Beacon Heights Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
+                  In Beacon Heights, standard, deep, move-out and recurring cleans are priced flat by home size before GST. Post-construction cleaning is priced by square footage, and wall washing is booked with a clean.
                 </p>
               </div>
             </AnimatedSection>
@@ -300,7 +300,7 @@ export default function BeaconHeights() {
                   Why Beacon Heights Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -322,7 +322,7 @@ export default function BeaconHeights() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Beacon Heights Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Located in northeast Edmonton, we're always just around the corner.
+                  Beacon Heights sits north of 118 Avenue, inside Edmonton city limits, so no trip fee is added to a quote here.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -341,12 +341,12 @@ export default function BeaconHeights() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Beacon Heights</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Edmonton-area neighbourhoods we clean</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    Beacon Heights is one of 80 Edmonton neighbourhoods the branch cleans, and Montrose is on the same list.
                   </p>
                 </div>
-                <CoverageChips areas={["Concordia University", "Rundle Park", "Beacon Heights School", "Yellowhead Trail", "Bergman", "Highlands", "Montrose", "Newton"]} variant="compact" />
+                <CoverageChips areas={["Montrose"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -361,8 +361,8 @@ export default function BeaconHeights() {
         eyebrow="Local knowledge"
         heading="Beacon Heights, close up"
         paragraphs={[
-          "Beacon Heights carries 1950s-60s homes on big mature lots, Beacon Heights carries 1950s-60s homes on generous mature lots, most with the original single detached garage off the back lane - the standard arrangement in Edmonton's pre-1970 neighbourhoods and the opposite of a suburban attached-garage mudroom. Households come and go through the rear door, so the back entry, the lane-side steps and the kitchen approach absorb the grit that newer homes trap in a mudroom, and those are where an honest clean starts.",
-          "Beacon Heights is tableland, not valley - 118 Avenue is its southern edge, with Beverly Heights sitting between it and the river bank - so the seasonal load comes from the neighbourhood's own mature canopy and back lanes rather than from valley wind. Jubilee Park, opened in 1955 on the old Beverly coal mine entrance, anchors the green space, and autumn leaf tracking off the older street trees is the reliable heavy season: entry mats, window tracks and the first stretch of flooring carry it.",
+          "Beacon Heights carries 1950s-60s homes on generous mature lots, most with the original single detached garage off the back lane — the standard arrangement in Edmonton's pre-1970 neighbourhoods and the opposite of a suburban attached-garage mudroom. Households come and go through the rear door, so the back entry, the lane-side steps and the kitchen approach absorb the grit that newer homes trap in a mudroom, and those are where the clean starts.",
+          "Beacon Heights is tableland, not valley. Its southern edge is 118 Avenue, and Beverly Heights lies between that edge and the river bank, so the seasonal load comes from the neighbourhood's own mature canopy and back lanes rather than from valley wind. Autumn leaf tracking off the older street trees is the reliable heavy season: entry mats, window tracks and the first stretch of flooring carry it.",
         ]}
       />
 

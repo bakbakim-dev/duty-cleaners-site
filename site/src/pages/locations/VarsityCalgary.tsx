@@ -60,10 +60,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Varsity" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Varsity" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Varsity" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Varsity" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Varsity.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Varsity" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Varsity" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris removal once renovation or building work is finished.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Varsity" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film washed off painted walls, booked together with a clean.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Varsity" },
 ];
 
 const whyUsItems = [
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Brentwood","Dalhousie","Silver Springs","Montgomery","University Heights","Charleswood"];
+const nearbyAreas = ["Brentwood","Dalhousie","Montgomery"];
 
 const faqs = [
   {
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function VarsityCalgary() {
     <>
       <Helmet>
         <title>House Cleaning Services in Varsity, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional cleaners serving Varsity, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="description" content="Many 1960s-70s homes in Varsity, Calgary keep terrazzo entries that dull under harsh cleaners, and the room order changes for night-shift sleepers." />
         <meta property="og:title" content="House Cleaning Services in Varsity, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services in Varsity, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional cleaners serving Varsity, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
-        <meta property="og:description" content="Professional cleaners serving Varsity, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="twitter:description" content="Many 1960s-70s homes in Varsity, Calgary keep terrazzo entries that dull under harsh cleaners, and the room order changes for night-shift sleepers." />
+        <meta property="og:description" content="Many 1960s-70s homes in Varsity, Calgary keep terrazzo entries that dull under harsh cleaners, and the room order changes for night-shift sleepers." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/varsity-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/varsity-calgary/" />
@@ -183,7 +183,7 @@ export default function VarsityCalgary() {
                 Professional House Cleaning in Varsity
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Trusted house cleaning services for one of Calgary's established northwest communities — bringing a calm, spotless home within reach.
+                Varsity's 1960s and 70s homes run from bungalows to large splits, many with original terrazzo entries and tiled baths. Our Calgary branch cleans them at a flat rate by home size.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function VarsityCalgary() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Varsity Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Everything from weekly upkeep to full move-out cleans.
+                  For Varsity houses and rental suites alike, each service is priced flat by home size before 5% GST, apart from post-construction, which is priced by square footage.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function VarsityCalgary() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Varsity Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Varsity and the surrounding NW Calgary communities.
+                    The University of Calgary campus runs along Varsity's southern edge. Varsity is inside Calgary city limits, so no trip fee applies.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function VarsityCalgary() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={768} src={cleanHomeImg} alt="Spotless Varsity Calgary home cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1024} height={768} src={cleanHomeImg} alt="Bright living room with a cream sectional sofa, a glass coffee table and hardwood floors" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Calm, Spotless Varsity Home — Every Visit</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">What to expect</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Keyed Entries and Night-Shift Sleepers</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Vetted cleaners, careful hands, and the standard we'd hold for our own homes. Come back to fresh air and surfaces that actually gleam.
+                    You do not need to be home: most customers leave a key, a lockbox code or smart-lock access, and the team locks up. If someone is asleep after a night shift, tell us which room, and the team changes the order it works through the house.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Reference-checked, rated after every visit","Supplies and equipment brought","Free re-clean if told within 24 hours"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,7 +311,7 @@ export default function VarsityCalgary() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
                   Duty Cleaners cleans homes across Varsity and the communities around it.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
@@ -327,10 +327,10 @@ export default function VarsityCalgary() {
       <LocalMarketNote
         accent="calgary"
         eyebrow="Local knowledge"
-        heading="Varsity's houses and hospital shifts"
+        heading="Varsity's houses and keyed entries"
         paragraphs={[
-          "Varsity's 1960s-70s homes range from bungalows to estate-scale splits near the golf course, with original terrazzo entries and tiled baths surviving in many. Terrazzo rewards proper neutral cleaners and dulls under harsh ones — a materials-aware clean preserves exactly the features that make these houses worth their market.",
-          "With Market Mall inside Varsity Village and the University of Calgary campus along the community's southern edge, the neighbourhood hosts shift-work households and student suites in unusual numbers, which means access and scheduling matter as much as scrubbing: keyed entries, quiet daytime cleans for night-shift sleepers, and turnover-grade attention in the rental suites., which means access and scheduling matter as much as scrubbing: keyed entries, quiet daytime cleans for night-shift sleepers, and turnover-grade attention in the rental suites.",
+          "Varsity's 1960s-70s homes range from bungalows to estate-scale splits, with original terrazzo entries and tiled baths surviving in many. Terrazzo rewards proper neutral cleaners and dulls under harsh ones — a materials-aware clean preserves exactly the features that make these houses worth their market.",
+          "With the University of Calgary campus along the community's southern edge, the neighbourhood hosts shift-work households and student suites, which means access and scheduling matter as much as scrubbing: keyed entries, a room order that suits night-shift sleepers, and turnover-grade attention in the rental suites.",
         ]}
       />
 
@@ -347,7 +347,7 @@ export default function VarsityCalgary() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Varsity Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>

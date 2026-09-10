@@ -21,7 +21,6 @@ import {
   Truck,
   HardHat,
   PaintRoller,
-  Briefcase,
   BedDouble,
   Repeat,
   Phone,
@@ -130,13 +129,14 @@ const PRICING = canonicalForPath("/pricing");
  * trouble. The title now says what the page is: every service, priced.
  */
 const TITLE = `All Edmonton Cleaning Services & Prices from ${STANDARD_PRICE}`;
-const DESCRIPTION = "Every Edmonton cleaning service on one page, with what each costs for a one-bedroom, three-bedroom and five-bedroom home, before GST.";
+const DESCRIPTION = `Every Edmonton cleaning service with its starting price, and the flat rates for a one-, three- and five-bedroom home, from ${STANDARD_PRICE} before GST.`;
 
 /* The opening paragraph of the choosing guide. It sits above the cards; the
    rest of the guide sits below them, where a reader who has already found the
-   price they came for will actually read it. */
+   price they came for will actually read it. Its climate sentences are C1 of
+   the content prompt's FACTS, nothing more. */
 const GUIDE_OPENER =
-  "The honest short version: if the home is lived in and has been cleaned in the last month or two, standard cleaning is the right service and the cheapest one. Deep cleaning is for what standard cleaning cannot reach, and Edmonton generates that in its own way — the cold here holds rather than cycling, so the heating season runs unbroken from October to April. The furnace simply keeps going, and everything that moves through the ducts in those months settles on the tops of doors, along ceiling lines and behind furniture where nothing disturbs it.";
+  "The short version: if the home is lived in and was cleaned in the last month or two, standard cleaning is the right service and the cheapest one. Deep cleaning is for the build-up a standard visit cannot reach, and an Edmonton winter produces plenty of it. Furnace season here runs from October into April, and a house sealed up that long cycles dust faster. Then the spring melt, in late March and April, brings a whole winter of grit indoors in about three weeks. If you can name what a standard clean would miss, book the deep clean once and go back to standard visits after it.";
 
 
 type Service = {
@@ -238,7 +238,7 @@ const services: Service[] = [
   },
   {
     title: "Post-Construction Cleaning",
-    description: "The fine dust a renovation leaves, cleared from walls, inside windows, baseboards and floors after the trades are out.",
+    description: `The fine dust a renovation leaves, cleared from walls, inside windows, baseboards and floors after the trades are out. Priced by square footage, ${POST_FROM} for under 1,000 sq ft, before GST.`,
     features: [
       "Drywall and sanding dust removed",
       "Cleaning of walls, inside windows, baseboards",
@@ -253,12 +253,12 @@ const services: Service[] = [
   },
   {
     title: "March Out Cleaning",
-    description: "Military housing move-out cleaning in Edmonton, done to CFHA march-out inspection standards so your handover passes the first time.",
+    description: "Military housing move-out cleaning in Edmonton, done to CFHA's march-out inspection standards and priced by phone from the inspection list for the home.",
     features: [
       "Appliance interiors, edges and baseboards",
-      "Bathrooms cleaned to inspection standards",
+      "Bathrooms scrubbed, scale worked off taps and glass",
       "Wall washing & interior windows available as add-ons",
-      "Final walkthrough against the inspection list"
+      "Scope taken from your inspection list"
     ],
     price: "Quoted by Phone",
     link: "/edmonton/march-out-cleaning/",
@@ -268,14 +268,16 @@ const services: Service[] = [
   },
   {
     title: "Wall Washing & Cleaning",
-    description: "Walls washed by hand: handprints, cooking film, smoke residue and the grey line above the baseboard heater.",
+    // Was "Custom Pricing", beside a wall-washing page that prints every
+    // size. The add-on is priced by home size and booked with a clean.
+    description: `Walls washed by hand: handprints, cooking film and smoke residue off painted walls. Booked together with a clean, not on its own: spot cleaning ${from(addOnFromPrice("standard", "spot-cleaning-inside-walls") ?? 0)}, a full wash ${from(addOnFromPrice("standard", "complete-inside-wall-washing") ?? 0)}, by home size and before GST.`,
     features: [
       "Remove handprints and smudges",
       "Lift nicotine tar and smoke residue",
       "Clean dust and cobwebs",
       "Prepare walls for painting or a sale"
     ],
-    price: "Custom Pricing",
+    price: from(addOnFromPrice("standard", "spot-cleaning-inside-walls") ?? 0),
     link: "/wall-washing-wall-cleaning/",
     linkText: "See Wall Washing & Cleaning",
     icon: PaintRoller,
@@ -286,7 +288,7 @@ const services: Service[] = [
     description: `Turnovers between guests for short-term rental hosts, billed by the hour at ${HOURLY} per cleaner with a 3-hour minimum.`,
     features: [
       "Beds remade with your linen",
-      "Laundry when the machines and a spare set are ready",
+      "Kitchen and bathrooms sanitised",
       "Supplies restocked from your stock",
       "Same checklist on every turnover"
     ],
@@ -295,23 +297,9 @@ const services: Service[] = [
     linkText: "See Airbnb Cleaning Service",
     icon: BedDouble,
     accent: true
-  },
-  {
-    title: "Commercial Cleaning",
-    description: "Professional cleaning for offices, retail spaces, and commercial properties across Edmonton.",
-    features: [
-      "Offices & commercial spaces",
-      "Recurring cleaning schedules",
-      "Reference-checked, customer-rated cleaners",
-      "Flexible scheduling options"
-    ],
-    price: "Custom Pricing",
-    link: "/commercial-cleaning/",
-    linkText: "See Commercial Cleaning",
-    icon: Briefcase,
-    badge: "Professional Service",
-    accent: true
   }
+  /* A "Commercial Cleaning" card closed this list until 10 September 2026.
+     The content prompt keeps office work off the house-cleaning pages. */
 ];
 
 /* Answered from pricing.ts and policy.ts. Feeds the FAQPage JSON-LD below
@@ -323,7 +311,7 @@ const faqs = [
   },
   {
     q: "Is move-out cleaning the same as a deep clean?",
-    a: `No. Move-out cleaning includes every deep cleaning task and then goes where a landlord's inspection goes: inside every cabinet and drawer, inside the oven and fridge, the kitchen walls, and every floor including carpet. A one-bedroom home is ${MOVE_PRICE}, against ${DEEP_ROW.price} for a deep clean. Whether the damage deposit comes back is the landlord's decision, so we do not guarantee it; we clean to the list they inspect against.`,
+    a: `No. Move-out cleaning includes every deep cleaning task and then goes where a landlord's inspection goes: inside every cabinet and drawer, inside the oven and fridge, the kitchen walls, and every floor including carpet. A one-bedroom apartment is ${MOVE_PRICE} before GST, against ${DEEP_ROW.price} for a deep clean, with the pet charge, a home-type surcharge or the travel fee added to either where they apply. Under Alberta's Residential Tenancies Act the landlord completes a move-out inspection report with the tenant and decides what happens to the damage deposit, so we do not guarantee it comes back.`,
   },
   {
     q: "Do the prices include GST?",
@@ -331,11 +319,19 @@ const faqs = [
   },
   {
     q: "How do the recurring discounts work?",
-    a: `The first clean is charged at the standard one-time rate. From the second visit on, the discount depends on how often we come: ${pct("weekly")} weekly, ${pct("bi-weekly-every-2-weeks")} bi-weekly and ${pct("every-4-weeks")} every 4 weeks. There is no contract; if you stop, the standing booking stops with you.`,
+    a: `The first clean is charged at the standard one-time rate. From the second visit on, the discount depends on how often we come: ${pct("weekly")} weekly, ${pct("bi-weekly-every-2-weeks")} bi-weekly and ${pct("every-4-weeks")} every 4 weeks. Every 4 weeks is what many people mean by monthly, though it comes to 13 visits a year rather than 12. For a one-bedroom apartment that is ${STANDARD_PRICE} for the first visit and ${RECURRING_PRICE} for each ${DEFAULT_FREQ_LABEL} visit after it, before GST and before any pet charge, home-type surcharge or travel fee.`,
   },
   {
     q: "Is there a charge for pets?",
-    a: `Yes, ${PET_LINE}. Paw prints, nose marks on glass and shed hair add real time in every room, and the charge appears on your quote before you book. Litter boxes and animal waste stay outside what we handle.`,
+    a: `Yes, ${PET_LINE}, and it is compulsory for a home with pets. Paw prints, nose marks on glass and shed hair add time in every room, and the charge appears on your quote before you book. Litter boxes and animal waste stay outside what we handle.`,
+  },
+  {
+    q: "What happens if something is missed on an Edmonton clean?",
+    a: `Tell us within ${POLICY.guaranteeWindowHours} hours of the clean and the team comes back and re-cleans the missed areas at no charge. Photos help but are not required. The commitment is the return visit; it is not a money-back guarantee, though you can call the Edmonton office at ${proof.phone} to talk about anything else.`,
+  },
+  {
+    q: "Do I need to be home while the house is cleaned?",
+    a: "No. Most customers leave a key, a lockbox code or smart-lock access, and the team locks up when it leaves. The team brings all supplies and equipment. Running water is required, and vacuuming may not be possible without electricity.",
   },
   {
     q: "Is there a travel fee outside Edmonton?",
@@ -450,7 +446,7 @@ export default function EdmontonServices() {
       <section className="relative py-20 bg-brand-navy overflow-hidden">
         <img width={1024} height={1024}
           src={edmontonHero}
-          alt="Duty Cleaners cleaner at work in an Edmonton home"
+          alt="A cleaner wiping a glass counter in a sunlit living room"
           className="absolute inset-0 w-full h-full object-cover opacity-40"
          loading="eager" fetchPriority="high"/>
         <div className="absolute inset-0 bg-gradient-to-b from-brand-navy/70 via-brand-navy/60 to-brand-navy/80" />
@@ -471,12 +467,14 @@ export default function EdmontonServices() {
             </h1>
 
             <p className="text-xl text-white/80 leading-relaxed mb-4">
-              Flat rates by home size {STANDARD_FROM} before GST, or {HOURLY} per cleaner-hour for
-              the jobs a size tier cannot describe. Rated {RATING_CLAIM} across Edmonton homes {COMPANY.sinceLabel}.
+              Prices are flat by home size, {STANDARD_FROM} for a one-bedroom apartment before GST, or {HOURLY} per
+              cleaner-hour for partial jobs and Airbnb turnovers. Duty Cleaners is rated {RATING_CLAIM} across{" "}
+              {proof.googleReviewCount} Edmonton reviews and has cleaned Alberta homes {COMPANY.sinceLabel}.
             </p>
             <p className="text-lg text-white/70 leading-relaxed mb-8">
-              Answer a few questions about the home and the quote form shows your price in about 60
-              seconds, before anything is booked.
+              Answer a few questions about the home and the quote form shows your price before anything is
+              booked, with the pet charge, the home type, any travel fee and any add-ons already in it. Nothing is charged
+              until the clean is complete.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
@@ -548,9 +546,8 @@ export default function EdmontonServices() {
 
       <LocalMarketNote
         eyebrow="Choosing a service in Edmonton"
-        heading="How an Edmonton winter decides between a standard and a deep clean"
+        heading="Move-out cleaning or a deep clean in Edmonton"
         paragraphs={[
-          "A closed-up Edmonton winter adds a second kind of dirt. With windows shut for five months, cooking vapour, fireplace soot and pet dander recirculate instead of venting, and they land as a film rather than as dust — which is why kitchens and the walls around them so often need more than a wipe by March. In older Oliver, Garneau and Strathcona homes with original trim and radiators there is more surface to hand-clean than the square footage suggests; in newer Windermere, Keswick or Laurel builds it is usually construction dust still working its way out of the vents.",
           "Move-in and move-out cleaning is a separate service rather than a larger deep clean, priced against what landlords actually inspect: inside appliances, inside every cabinet and drawer, and the storage spaces. If you are working to a walk-through date, book that one. If you are unsure which fits, the instant quote asks a few questions about the home and tells you — or you can call and describe it and we will say which is the cheaper honest answer.",
         ]}
       />
@@ -567,8 +564,8 @@ export default function EdmontonServices() {
                 Start with the standard clean unless you can name what it would miss. It is priced flat by
                 home size, {STANDARD_FROM}, and the rate does not change if the team is there longer than
                 expected. If what you can name is grout, a scaled shower door, a greasy range hood or grey
-                baseboards, that is the Deep Cleaning package, and the honest way to buy it is once, then
-                drop back to standard visits.
+                baseboards, that is the Deep Cleaning package, {DEEP_FROM} for a one-bedroom apartment before
+                GST, and the sensible way to buy it is once, then drop back to standard visits.
               </p>
               <p>
                 Recurring cleaning is the standard clean on a standing booking, and it is the cheapest way to
@@ -603,9 +600,10 @@ export default function EdmontonServices() {
                 and let them pick the date.
               </p>
               <p>
-                All of it runs inside Edmonton city limits at the prices above, with no trip fee. The same
-                crews cover the towns around the city for a travel fee of {money(TRAVEL_HOME)} per home-cleaning
-                visit:{" "}
+                All of it runs inside Edmonton city limits at the prices on the cards, with no trip fee. The
+                Edmonton branch also covers nine communities outside the city, where a travel fee of{" "}
+                {money(TRAVEL_HOME)} is added to each home-cleaning visit and {money(TRAVEL_POST)} to a
+                post-construction clean:{" "}
                 <Link to="/cleaning-services-st-albert/" className="text-accent underline underline-offset-2">
                   house cleaning in St. Albert
                 </Link>
@@ -633,7 +631,7 @@ export default function EdmontonServices() {
                 Standard, deep or move-out: the questions Edmonton callers ask
               </h2>
               <p className="text-muted-foreground">
-                Answered from the price list and the terms, not from a script.
+                Each answer comes from the Edmonton price list and the booking terms.
               </p>
             </div>
             <div className="bg-card rounded-2xl border border-border p-2 md:p-4 shadow-sm">

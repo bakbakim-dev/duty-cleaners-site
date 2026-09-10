@@ -82,16 +82,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Evansdale" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Evansdale" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Evansdale" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Evansdale" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around Evansdale.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Evansdale" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or a new build, priced by square footage.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Evansdale" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Evansdale" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Evansdale" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment, before 5% GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Evansdale" },
 ];
 
 const whyUsItems = [
@@ -141,7 +141,7 @@ export default function Evansdale() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -163,25 +163,25 @@ export default function Evansdale() {
     <>
       <Helmet>
         <title>House Cleaners in Evansdale, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="House cleaning in Evansdale, Edmonton. Trusted local cleaners serving north Edmonton families. Customer-rated cleaners, rated 4.9 on Google." />
+        <meta name="description" content="Evansdale's 1970s split-levels in Edmonton add short stair runs, scrolled iron railings and low return vents in sunken living rooms to a house clean." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Evansdale, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/evansdale-edmonton",
   areaServed: "Evansdale, Edmonton, AB",
-  description: "Professional house cleaning in Evansdale, Edmonton. Trusted local cleaners serving north Edmonton families. Customer-rated cleaners, rated 4.9 on Google.",
+  description: "The Edmonton branch of Duty Cleaners cleans Evansdale's 1970s split-levels and other homes at a flat rate by home size, before 5% GST.",
   geo: { latitude: "53.589", longitude: "-113.471" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/evansdale-edmonton/" />
         <meta property="og:title" content="House Cleaners in Evansdale, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="House cleaning in Evansdale, Edmonton. Trusted local cleaners serving north Edmonton families. Customer-rated cleaners, rated 4.9 on Google." />
+        <meta property="og:description" content="Evansdale's 1970s split-levels in Edmonton add short stair runs, scrolled iron railings and low return vents in sunken living rooms to a house clean." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/evansdale-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Evansdale, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning in Evansdale, Edmonton. Trusted local cleaners serving north Edmonton families. Customer-rated cleaners, rated 4.9 on Google." />
+        <meta name="twitter:description" content="Evansdale's 1970s split-levels in Edmonton add short stair runs, scrolled iron railings and low return vents in sunken living rooms to a house clean." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -207,7 +207,7 @@ export default function Evansdale() {
                   Professional House Cleaning in Evansdale
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Your reliable, local cleaning team serving the Evansdale community. From split-level family homes near Evansdale School to apartments by Northgate Centre — friendly local cleaners who know the area.
+                  Evansdale's 1970s split-levels mean two or three short stair runs, iron railings and sunken living rooms to clean. The Edmonton branch prices each visit flat by home size, before 5% GST.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -235,7 +235,7 @@ export default function Evansdale() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
                   src={heroImg}
-                  alt="Professional cleaner vacuuming a family room in an Evansdale, Edmonton home"
+                  alt="Cleaner vacuuming a carpeted living room with a tiled fireplace and framed photos on the wall"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   width={1024}
                   height={1024}
@@ -257,7 +257,7 @@ export default function Evansdale() {
                   Cleaning Services for Evansdale Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs — every service a home needs.
+                  The deep clean is the one to book for the low return vents in a sunken Evansdale living room, which the standard checklist leaves out.
                 </p>
               </div>
             </AnimatedSection>
@@ -300,7 +300,7 @@ export default function Evansdale() {
                   Why Evansdale Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -322,7 +322,7 @@ export default function Evansdale() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Evansdale Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Located in north Edmonton, we're always just around the corner.
+                  Evansdale is inside Edmonton city limits, so no trip fee is added to a quote there.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -341,12 +341,12 @@ export default function Evansdale() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Evansdale</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Edmonton-area neighbourhoods we clean</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    Castle Downs and Lago Lindo are also on the Edmonton branch's list of 80 city neighbourhoods.
                   </p>
                 </div>
-                <CoverageChips areas={["Evansdale School", "Northgate Centre", "Evansdale Community League", "97 Street", "144 Avenue", "Castle Downs", "Belle Rive", "Lago Lindo"]} variant="compact" />
+                <CoverageChips areas={["Castle Downs", "Lago Lindo"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -362,7 +362,7 @@ export default function Evansdale() {
         heading="Evansdale's split-levels at work"
         paragraphs={[
           "Evansdale's 1970s split-levels multiply the surfaces that matter: two or three short stair runs, iron railings with dust-holding scrollwork, and sunken living rooms whose low return vents recirculate floor-level dust. The era's textured ceilings also shed fine white particles when disturbed — ceiling-adjacent work needs a gentle touch.",
-          "The neighbourhood's schools and rink traffic define its calendar, and 97 Street's retail edge adds arterial grit to homes on the west blocks. Winter is the heavy season — boot slush, gear bags and rink sand from October through March — and entry systems earn most of the attention.",
+          "The neighbourhood's schools define its calendar, and 97 Street's retail edge adds arterial grit to homes on the west blocks. Winter is the heavy season: boot slush, gear bags and rink sand come through the door from October through March, and entry systems earn most of the attention.",
         ]}
       />
 

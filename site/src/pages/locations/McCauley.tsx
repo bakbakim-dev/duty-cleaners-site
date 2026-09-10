@@ -82,16 +82,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in McCauley" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in McCauley" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in McCauley" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in McCauley" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared properly after renos and handovers.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in McCauley" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or a new build, priced by square footage.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in McCauley" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in McCauley" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in McCauley" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment or condo, before GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in McCauley" },
 ];
 
 const whyUsItems = [
@@ -133,7 +133,7 @@ export default function McCauley() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in McCauley?",
-      answer: `The full service menu is available here:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `In McCauley, the Edmonton branch offers:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning\n• Recurring Cleaning`
     },
     {
       question: "Do you offer discounts?",
@@ -141,7 +141,7 @@ export default function McCauley() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -163,25 +163,25 @@ export default function McCauley() {
     <>
       <Helmet>
         <title>House Cleaning in McCauley, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in McCauley, Edmonton. Trusted local cleaners, customer-rated, serving McCauley homes." />
+        <meta name="description" content="House cleaning in McCauley, Edmonton calls for a damp mop, since pooled water damages the plaster walls and fir floors of its early-1900s houses." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – McCauley, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/mccauley-edmonton",
   areaServed: "McCauley, Edmonton, AB",
-  description: "Professional house cleaning in McCauley, Edmonton. Trusted local cleaners serving McCauley homes with reliable, customer-rated cleaning service.",
+  description: "House cleaning in McCauley, Edmonton calls for a damp mop, since pooled water damages the plaster walls and fir floors of its early-1900s houses.",
   geo: { latitude: "53.554", longitude: "-113.479" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/mccauley-edmonton/" />
         <meta property="og:title" content="House Cleaning in McCauley, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in McCauley, Edmonton. Trusted local cleaners, customer-rated, serving McCauley homes." />
+        <meta property="og:description" content="House cleaning in McCauley, Edmonton calls for a damp mop, since pooled water damages the plaster walls and fir floors of its early-1900s houses." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/mccauley-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in McCauley, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in McCauley, Edmonton. Trusted local cleaners, customer-rated, serving McCauley homes." />
+        <meta name="twitter:description" content="House cleaning in McCauley, Edmonton calls for a damp mop, since pooled water damages the plaster walls and fir floors of its early-1900s houses." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -207,7 +207,7 @@ export default function McCauley() {
                   Professional House Cleaning in McCauley
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  From historic homes near Giovanni Caboto Park to updated walk-ups in Little Italy — your trusted partner for inner-city Edmonton cleaning.
+                  A good number of McCauley's standing houses date to the first two decades of the 1900s, and they sit beside later walk-ups and recent infill.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -235,7 +235,7 @@ export default function McCauley() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
                   src={heroImg}
-                  alt="Professional cleaner working in a McCauley, Edmonton home"
+                  alt="A cleaner sweeping the doormat at the front door of a brick house"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   width={1024}
                   height={1024}
@@ -257,7 +257,7 @@ export default function McCauley() {
                   Cleaning Services for McCauley Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, McCauley homes get every service they need.
+                  Six services for McCauley's century houses, walk-ups and infill.
                 </p>
               </div>
             </AnimatedSection>
@@ -300,7 +300,7 @@ export default function McCauley() {
                   Why McCauley Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Reliable, detail-first cleaning families count on.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -322,7 +322,7 @@ export default function McCauley() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the McCauley Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Right in the heart of Edmonton's historic inner city.
+                  Two of McCauley's edges are 111 Avenue on the north and the old Canadian National rail cut, now carrying the Capital Line, on the southeast.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -341,12 +341,12 @@ export default function McCauley() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know McCauley</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Edmonton-area neighbourhoods we clean</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    Boyle Street is also one of the 80 Edmonton neighbourhoods the Edmonton branch cleans.
                   </p>
                 </div>
-                <CoverageChips areas={["Giovanni Caboto Park", "Italian Centre Shop", "Sacred Heart Church", "95 Street", "107A Avenue", "Little Italy", "Chinatown", "Boyle Street"]} variant="compact" />
+                <CoverageChips areas={["Boyle Street"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -361,7 +361,7 @@ export default function McCauley() {
         eyebrow="Street level"
         heading="Century houses beside a rail cut"
         paragraphs={[
-          "McCauley's oldest housing is genuinely old — a good number of standing houses date to the first two decades of the 1900s, sitting beside later walk-ups and recent infill. Lath-and-plaster walls and original fir floors are the two surfaces that punish a wet mop: plaster crumbles at the base where water pools, and softwood raises grain and greys under it. Damp, wrung-out and quick beats saturated every time in these houses.",
+          "A good number of McCauley's standing houses date to the first two decades of the 1900s, sitting beside later walk-ups and recent infill. Lath-and-plaster walls and original fir floors are the two surfaces that punish a wet mop: plaster crumbles at the base where water pools, and softwood raises grain and greys under it. Damp, wrung-out and quick beats saturated every time in these houses.",
           "The southeast edge is the old Canadian National cut, now carrying the Capital Line past Stadium station, and 111 Avenue does the same job along the north. Blocks near either edge take a fine dark grit, and a century house gives it somewhere to land: deep painted casings, moulded baseboards, the tops of every door frame. Flat modern trim would shed most of it.",
         ]}
       />

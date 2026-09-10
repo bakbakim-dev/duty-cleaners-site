@@ -23,56 +23,56 @@ import floorImage from "@/assets/blog/weekly-cleaning-floor.webp";
  */
 
 const DAILY_HABITS = [
-  { title: "Make the bed", body: "Thirty seconds, and it resets how the whole room reads for the rest of the day." },
-  { title: "Wipe counters and the sink", body: "Kitchen counters and the bathroom sink, right after you use them — this is what actually stops grime from building up, not a weekly scrub." },
-  { title: "Run a quick sweep or vacuum", body: "Just the high-traffic strip — entryway, kitchen floor, in front of the couch. Two minutes, not the whole house." },
-  { title: "Put things back where they live", body: "A five-minute reset before bed. If an item does not have a \"home,\" that is a sign it needs one — or needs to go." },
-  { title: "Deal with spills immediately", body: "Every spill is easiest to clean in the first sixty seconds and hardest after it dries. This one habit prevents more staining than any product." },
+  { title: "Make the bed", body: "It takes thirty seconds, and it changes how the whole room looks for the rest of the day." },
+  { title: "Wipe counters and the sink", body: "Wipe the kitchen counters and the bathroom sink right after you use them. That stops grime from building up far better than a weekly scrub does." },
+  { title: "Run a quick sweep or vacuum", body: "Do just the high-traffic strip: the entryway, the kitchen floor and the patch in front of the couch. It takes a couple of minutes." },
+  { title: "Put things back where they live", body: "Spend five minutes resetting the house before bed. If an item has no \"home\", that is a sign it needs one, or needs to go." },
+  { title: "Deal with spills immediately", body: "A spill is easiest to clean while it is still wet and hardest once it dries. This one habit prevents more staining than any product." },
 ];
 
 const ROOM_GUIDE = [
   {
     room: "Kitchen",
     focus: "Appliance exteriors, countertops and the floor pick up grease fastest, so they need the most frequent attention.",
-    detail: "Wipe stovetop and counters after cooking, not after they've had a day to set. Cabinet fronts and the microwave interior are the two spots people forget most.",
+    detail: "Wipe the stovetop and counters after cooking, before the grease has a day to set. Cabinet fronts and the inside of the microwave are easy to forget.",
   },
   {
     room: "Bathroom",
-    focus: "Hard water and daily use mean this room needs disinfecting attention, not just wiping.",
-    detail: "Tile, sink and toilet need a real clean weekly at minimum. Shower glass and taps benefit from a quick wipe-down after each use — it is far easier than removing built-up scale later.",
+    focus: "Hard Alberta water leaves mineral scale on taps and shower glass, and daily use adds soap scum, so this room needs more than a quick wipe.",
+    detail: "Tile, sink and toilet need a proper clean at least once a week. A quick wipe of the shower glass and taps after each use is far easier than removing built-up scale later.",
   },
   {
     room: "Bedrooms",
-    focus: "Dust and allergens settle on surfaces and in bedding faster than most people expect.",
-    detail: "Dust surfaces before vacuuming, not after — otherwise you're just resettling dust onto a floor you already cleaned. Rotate bed linens weekly.",
+    focus: "Dust settles on flat surfaces and in bedding, so bedrooms need regular dusting as well as vacuuming.",
+    detail: "Dust surfaces before you vacuum, so the dust you knock down lands on a floor you have not cleaned yet. Wash bed linens weekly.",
   },
   {
     room: "Living areas",
-    focus: "High-touch points — light switches, remotes, door handles — are the most-missed spots in a normal cleaning routine.",
-    detail: "Dust and vacuum on a regular schedule, and don't skip the high-touch surfaces just because they don't look visibly dirty.",
+    focus: "High-touch points such as light switches, remotes and door handles are easy to miss in a normal cleaning routine.",
+    detail: "Dust and vacuum on a regular schedule, and wipe the high-touch surfaces even when they do not look dirty.",
   },
 ];
 
 const FAQS = [
   {
     q: "What is the single most effective habit for keeping a home clean?",
-    a: "Cleaning up spills and messes the moment they happen. It takes seconds in the moment and prevents the staining and buildup that turns a quick wipe into a scrubbing job later.",
+    a: "Cleaning up spills and messes the moment they happen saves the most work. It takes seconds at the time and prevents the staining and build-up that turn a quick wipe into a scrubbing job later.",
   },
   {
     q: "Should I declutter before or after cleaning?",
-    a: "Before. Cleaning around clutter means re-cleaning the same surfaces once the clutter finally gets moved. Sort one room at a time into keep, donate and discard before you pick up a cloth.",
+    a: "Declutter before you clean. Cleaning around clutter means re-cleaning the same surfaces once the clutter finally gets moved. Sort one room at a time into keep, donate and discard before you pick up a cloth.",
   },
   {
-    q: "How often should each room actually get cleaned?",
-    a: "Kitchens and bathrooms need weekly attention at minimum because of grease and hard water. Bedrooms and living areas can usually stretch to every one to two weeks if daily habits — bed made, surfaces wiped, floor swept — are already in place.",
+    q: "How often should each room get cleaned?",
+    a: "Kitchens and bathrooms need attention at least once a week, because grease builds up in a kitchen and hard water leaves scale in a bathroom. Bedrooms and living areas can usually stretch to every one to two weeks, as long as the daily habits of making the bed, wiping surfaces and sweeping the floor are already in place.",
   },
   {
-    q: "What is the fastest way to build a cleaning schedule that actually sticks?",
-    a: "Split tasks into daily (two minutes), weekly (thirty to sixty minutes), and monthly (the bigger jobs — baseboards, behind appliances, windows). Most people fail at cleaning schedules by trying to do the monthly-tier tasks every week.",
+    q: "What is the fastest way to build a cleaning schedule that sticks?",
+    a: "Split household tasks into three tiers: daily habits of a couple of minutes, weekly jobs of thirty to sixty minutes, and monthly jobs such as baseboards, behind appliances and window tracks. A schedule that tries to fit the monthly jobs into every week is the one that gets abandoned.",
   },
   {
     q: "Are natural ingredients like vinegar and baking soda enough on their own?",
-    a: "For most everyday cleaning, yes — see our full breakdown in Cleaning with Vinegar and Baking Soda. Where they fall short is disinfecting and heavy grease, which still call for a purpose-made product.",
+    a: "Vinegar and baking soda handle a lot of everyday cleaning. Vinegar dissolves the mineral scale that hard Alberta water leaves on taps and shower glass, and baking soda is a mild abrasive for sinks and tubs. Neither replaces a purpose-made product for heavy grease or disinfecting, and vinegar should stay off natural stone, wood finishes and mirrors.",
   },
 ];
 
@@ -84,7 +84,7 @@ export default function BlogSpotlessHomeTips() {
   const canonical = "https://dutycleaners.ca/blog/spotless-home-tips/";
   const title = "House Cleaning Tips for a Spotless Home";
   const description =
-    "Low-effort habits that keep a home clean between visits: daily routines, a room-by-room guide, and a cleaning schedule that actually sticks.";
+    "Low-effort habits that keep a home clean between visits, with daily routines, a room-by-room guide and a cleaning schedule that sticks.";
 
   return (
     <>
@@ -163,8 +163,8 @@ export default function BlogSpotlessHomeTips() {
               </h1>
 
               <p className="text-xl text-muted-foreground mb-8">
-                A spotless home isn't the result of one big weekend clean — it's a handful of small
-                habits, done consistently, plus a schedule that keeps the bigger jobs from piling up.
+                A clean home comes from a handful of small habits done most days, and a schedule
+                that keeps the bigger jobs from piling up.
               </p>
 
               <div className="aspect-video rounded-2xl overflow-hidden mb-12">
@@ -172,7 +172,7 @@ export default function BlogSpotlessHomeTips() {
                   width={1920}
                   height={1080}
                   src={heroImage}
-                  alt="A tidy, well-organized living space in an Alberta home"
+                  alt="A tidy living room with clear surfaces"
                   className="w-full h-full object-cover"
                  loading="eager" fetchPriority="high"/>
               </div>
@@ -192,7 +192,7 @@ export default function BlogSpotlessHomeTips() {
                   ever gets the chance to pile up into a project.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed mt-4">
-                  Here's the approach that actually holds up: declutter first, build a simple schedule,
+                  Here's the approach that holds up: declutter first, build a simple schedule,
                   keep a short list of daily habits, and know which rooms need more frequent attention
                   than others.
                 </p>
@@ -210,9 +210,8 @@ export default function BlogSpotlessHomeTips() {
                   and a visibly tidier room even before any actual cleaning starts.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  This is also the step that makes everything after it faster — a decluttered kitchen
-                  counter takes thirty seconds to wipe; a cluttered one takes five minutes of moving
-                  things out of the way first.
+                  This is also the step that makes everything after it faster. A clear kitchen counter
+                  is a quick wipe; a cluttered one means moving everything off it first.
                 </p>
               </div>
 
@@ -248,16 +247,16 @@ export default function BlogSpotlessHomeTips() {
                   tasks into three tiers instead:
                 </p>
                 <ul className="space-y-2 text-muted-foreground mb-4">
-                  <li>• <strong className="text-foreground">Daily</strong> — the five habits above. Two minutes, done automatically.</li>
-                  <li>• <strong className="text-foreground">Weekly</strong> — vacuuming, mopping, bathroom and kitchen deep-wipe, dusting. Thirty to sixty minutes.</li>
-                  <li>• <strong className="text-foreground">Monthly</strong> — baseboards, behind and under appliances, window tracks, light fixtures. The jobs that don't need weekly attention but do need to happen eventually.</li>
+                  <li>• <strong className="text-foreground">Daily</strong>: the five daily habits. Each takes a couple of minutes.</li>
+                  <li>• <strong className="text-foreground">Weekly</strong>: vacuuming, mopping, a thorough wipe of the bathroom and kitchen, and dusting. Allow thirty to sixty minutes.</li>
+                  <li>• <strong className="text-foreground">Monthly</strong>: baseboards, behind and under appliances, window tracks and light fixtures. These jobs do not need weekly attention, but they do need to happen.</li>
                 </ul>
                 <p className="text-muted-foreground leading-relaxed">
                   If you're building this from scratch, our own{" "}
                   <Link to="/whats-included/" className="text-primary underline underline-offset-2 font-medium">
                     cleaning checklist
                   </Link>{" "}
-                  is a reasonable starting template — it's the same breakdown our crews work from.
+                  is a reasonable starting template: it lists what our teams do on each service.
                 </p>
               </div>
 
@@ -272,7 +271,7 @@ export default function BlogSpotlessHomeTips() {
                       width={1024}
                       height={576}
                       src={bedroomImage}
-                      alt="A clean, well-organized bedroom"
+                      alt="A tidy bedroom with a made bed"
                       className="w-full h-full object-cover"
                      loading="lazy" decoding="async"/>
                   </div>
@@ -303,11 +302,11 @@ export default function BlogSpotlessHomeTips() {
                   A quick note on tough stains
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  Speed matters more than product for most stains. Blot — don't rub — coffee and wine
-                  spills immediately to lift excess liquid before it sets. For grease, baking soda left
-                  to sit for a few minutes before wiping or vacuuming does most of the work. And always
-                  test any cleaning solution on a hidden patch first if the surface is delicate — the
-                  full method is in{" "}
+                  Speed matters more than product for most stains. Blot coffee and wine spills straight
+                  away, rather than rubbing them, to lift the excess liquid before it sets. For grease,
+                  baking soda left to sit for a few minutes before wiping or vacuuming does most of the
+                  work. Test any cleaning solution on a hidden patch first if the surface is delicate;
+                  the full method is in{" "}
                   <Link to="/cleaning-with-vinegar-and-baking-soda/" className="text-primary underline underline-offset-2 font-medium">
                     Cleaning with Vinegar and Baking Soda
                   </Link>.
@@ -345,7 +344,7 @@ export default function BlogSpotlessHomeTips() {
                       </Link>
                     </h3>
                     <p className="text-muted-foreground text-sm mt-1">
-                      The five products our cleaners actually carry — and what you can stop buying.
+                      The five cleaning products worth keeping, and what you can stop buying.
                     </p>
                   </div>
                   <div
@@ -360,7 +359,7 @@ export default function BlogSpotlessHomeTips() {
                       </Link>
                     </h3>
                     <p className="text-muted-foreground text-sm mt-1">
-                      A more detailed breakdown of the three-tier schedule above.
+                      A more detailed breakdown of the daily, weekly and monthly schedule.
                     </p>
                   </div>
                 </div>
@@ -369,12 +368,13 @@ export default function BlogSpotlessHomeTips() {
               {/* CTA */}
               <div className="bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 rounded-2xl p-8 text-center">
                 <h3 className="text-2xl font-bold mb-4 text-foreground">
-                  Or hand the whole thing off
+                  Or hand off the weekly jobs
                 </h3>
                 <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                  If the schedule above sounds like more than you want to manage yourself, our crews
-                  handle it on a recurring basis — weekly, bi-weekly or monthly. See your price in
-                  about 60 seconds, and pay only after the clean is done.
+                  If a three-tier schedule sounds like more than you want to manage yourself, Duty
+                  Cleaners can take on the weekly jobs as recurring cleaning, booked weekly, bi-weekly
+                  or every 4 weeks, with a discount from the second visit. Nothing is charged at
+                  booking, and the card is charged once the clean is complete.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button size="lg" variant="accent" className="w-full sm:w-auto min-h-[52px] text-base font-bold" asChild>

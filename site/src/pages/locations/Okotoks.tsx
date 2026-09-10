@@ -5,7 +5,6 @@ import {
 import okotoksImg from "@/assets/gallery/okotoks-clean-home-kids.webp";
 import { buildLocationSchema } from "@/lib/location-schema";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
 import { sitePriceRange } from "@/data/pricing";
@@ -61,9 +60,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Okotoks" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Okotoks" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Okotoks" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Okotoks" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Okotoks.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Okotoks" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or a new build in Okotoks, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Okotoks" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Okotoks" },
 ];
 
@@ -95,8 +94,6 @@ const whyUsItems = [
   { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
-const nearbyAreas = ["Sheep River Valley", "Cimarron", "D'Arcy", "Crystal Shores", "Drake Landing", "Air Ranch", "Westmount", "Heritage Hills"];
-
 const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Okotoks",
   city: "calgary",
@@ -116,7 +113,7 @@ export default function Okotoks() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Okotoks?",
-      answer: `Every service we run can be booked locally:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `These services can be booked in Okotoks:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing, booked together with a clean`
     },
     {
       question: "Do you offer discounts?",
@@ -124,7 +121,7 @@ export default function Okotoks() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -146,12 +143,12 @@ export default function Okotoks() {
     <>
       <Helmet>
         <title>House Cleaning Services in Okotoks, AB | Duty Cleaners</title>
-        <meta name="description" content="Book house cleaning in Okotoks in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="description" content="House cleaning in Okotoks, where a provincial licence on the Sheep River sets how much water the town may take. The clean involves no outdoor work." />
         <meta property="og:title" content="House Cleaning Services in Okotoks, AB | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services in Okotoks, AB | Duty Cleaners" />
-        <meta name="twitter:description" content="Book house cleaning in Okotoks in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
-        <meta property="og:description" content="Book house cleaning in Okotoks in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="twitter:description" content="House cleaning in Okotoks, where a provincial licence on the Sheep River sets how much water the town may take. The clean involves no outdoor work." />
+        <meta property="og:description" content="House cleaning in Okotoks, where a provincial licence on the Sheep River sets how much water the town may take. The clean involves no outdoor work." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/okotoks/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/okotoks/" />
@@ -181,7 +178,7 @@ export default function Okotoks() {
                   Professional House Cleaning in Okotoks
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Trusted house cleaning services in Okotoks, AB. Customer-rated cleaners loved by local families — from Cimarron to Crystal Shores.
+                  How much water Okotoks may take is set by a provincial licence on the Sheep River, and under Stage 1 of the water bylaw, outdoor watering runs two weekdays a week from May through October. The clean itself involves no outdoor work.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -209,7 +206,7 @@ export default function Okotoks() {
               <div className="flex-shrink-0 w-full lg:w-[500px]">
                 <img width={1024} height={1024}
                   src={okotoksImg}
-                  alt="Happy children playing in a clean home in Okotoks, Alberta"
+                  alt="Two children playing with building blocks on a hardwood floor in an open-plan living room and kitchen"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                 loading="eager"
                   {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
@@ -218,24 +215,6 @@ export default function Okotoks() {
           </div>
         </section>
 
-
-      {/* Things To Do */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <AnimatedSection>
-            <div className="max-w-4xl mx-auto">
-              <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Life</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                Things To Do In Okotoks
-              </h2>
-              <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
-                <p>Situated along the beautiful Sheep River, Okotoks is a vibrant town just south of Calgary, known for its natural beauty and welcoming community. With a population of over 30,000, Okotoks offers a unique mix of small-town charm and modern amenities. Nature enthusiasts will love exploring Sheep River Valley, with its stunning walking trails and picturesque views. Start your day with a peaceful walk along the Sheep River Pathway, or head to Eagle 72 Park for some outdoor fun with the family. History lovers can visit the Okotoks Museum and Archives to learn about the town’s rich past.</p>
-                <p>And don't miss the famous Okotoks Erratic (Big Rock), a massive glacial boulder that’s a must-see landmark. If you’re a fan of markets, the Okotoks Farmers' Market is the perfect spot to find fresh local produce and handmade goods. For art lovers, the Okotoks Art Gallery offers rotating exhibits that showcase local talent. During the summer, don't miss a visit to Kayben Farms, where you can enjoy fresh berries, farm-to-table dining, and family-friendly activities. Downtown Okotoks is filled with charming boutiques, local shops, and cozy cafes, perfect for a leisurely day out. The Heartland Cafe is on Elizabeth Street downtown. When you come home after a day of fun, let Duty Cleaners take care of the mess, so you can relax and unwind.</p>
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
 
         {/* Interactive Map */}
         <section className="py-16 bg-background">
@@ -261,30 +240,12 @@ export default function Okotoks() {
           </div>
         </section>
 
-        {/* Local Coverage */}
-        <section className="py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <AnimatedSection>
-              <div className="text-center mb-10">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
-                  Okotoks Neighbourhoods We Serve
-                </h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto">
-                  We proudly serve families and homeowners across all Okotoks communities.
-                </p>
-              </div>
-              <CoverageChips areas={nearbyAreas} />
-            </AnimatedSection>
-          </div>
-        </section>
-
       <LocalMarketNote
         eyebrow="Water discipline"
         heading="Two watering days a week"
         paragraphs={[
-          "How much water the town may take is set by provincial licence on the Sheep River, not by demand, and land use for new development is approved only where licence capacity already exists. A mandatory watering schedule has been in place since 2008, when the population was just over 17,000. Conservation here is not a preference; it is the operating condition, and cleaning method follows it.",
-          "Under Stage 1 of the water bylaw, outdoor watering runs two days a week and weekdays only: even-numbered homes Tuesday and Friday, odd-numbered Monday and Thursday, May through October. Exterior work gets booked onto a household's own days, and the indoor method is a refilled bucket and a wrung cloth rather than a running tap — same result, a fraction of the litres.",
+          "How much water the town may take is set by provincial licence on the Sheep River, not by demand, and land use for new development is approved only where licence capacity already exists. A mandatory watering schedule has been in place since 2008. Conservation here is not a preference; it is the operating condition.",
+          "Under Stage 1 of the water bylaw, outdoor watering runs two days a week and weekdays only: even-numbered homes Tuesday and Friday, odd-numbered Monday and Thursday, May through October. The clean itself involves no outdoor work.",
         ]}
         accent="calgary"
       />
@@ -303,7 +264,7 @@ export default function Okotoks() {
                   Cleaning Services for Okotoks Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Okotoks homes get every service they need.
+                  Okotoks bookings go through the Calgary branch, and each service is priced at a flat rate before GST.
                 </p>
               </div>
             </AnimatedSection>
@@ -345,7 +306,7 @@ export default function Okotoks() {
                   Why Okotoks Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -368,7 +329,7 @@ export default function Okotoks() {
                 House Cleaning in Okotoks & Surrounding Areas
               </h2>
               <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-                We provide professional house cleaning services throughout Okotoks and nearby communities in the Calgary region.
+                Okotoks is one of nine communities outside Calgary that the Calgary branch serves, along with Airdrie, Cochrane, Chestermere, Strathmore, High River, Langdon, Crossfield and Diamond Valley. Because these are outside city limits, a travel fee applies, and it shows on the quote before you book.
               </p>
               <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                 View All Service Areas →

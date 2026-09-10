@@ -82,16 +82,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Holyrood" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Holyrood" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Holyrood" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Holyrood" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Post-renovation dust and debris, professionally removed.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Holyrood" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Holyrood" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or a new build, priced by square footage.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Holyrood" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, booked together with a clean.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Holyrood" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Holyrood" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment or condo, before GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Holyrood" },
 ];
 
 const whyUsItems = [
@@ -133,15 +133,15 @@ export default function Holyrood() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Holyrood?",
-      answer: `Households here can book any of the following:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `The Edmonton branch offers these services in Holyrood:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
-      answer: `Yes, recurring visits cost less every time:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
+      answer: `Yes. From the second visit, a recurring schedule in Holyrood is discounted:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -163,25 +163,25 @@ export default function Holyrood() {
     <>
       <Helmet>
         <title>House Cleaners in Holyrood, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Holyrood, Edmonton. Trusted local cleaners serving southeast Edmonton families." />
+        <meta name="description" content="Holyrood's 1950s houses in Edmonton hold dust in their coved plaster corners. Book a flat-rate clean by home size and pay once it is done." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Holyrood, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/holyrood-edmonton",
   areaServed: "Holyrood, Edmonton, AB",
-  description: "Professional house cleaning in Holyrood, Edmonton. Trusted local cleaners serving southeast Edmonton families.",
+  description: "Holyrood's 1950s houses in Edmonton hold dust in their coved plaster corners. Book a flat-rate clean by home size and pay once it is done.",
   geo: { latitude: "53.527", longitude: "-113.43" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/holyrood-edmonton/" />
         <meta property="og:title" content="House Cleaners in Holyrood, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Holyrood, Edmonton. Trusted local cleaners serving southeast Edmonton families." />
+        <meta property="og:description" content="Holyrood's 1950s houses in Edmonton hold dust in their coved plaster corners. Book a flat-rate clean by home size and pay once it is done." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/holyrood-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Holyrood, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Holyrood, Edmonton. Trusted local cleaners serving southeast Edmonton families." />
+        <meta name="twitter:description" content="Holyrood's 1950s houses in Edmonton hold dust in their coved plaster corners. Book a flat-rate clean by home size and pay once it is done." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -207,7 +207,7 @@ export default function Holyrood() {
                   Professional House Cleaning in Holyrood
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Your reliable, local cleaning team serving the Holyrood community. From character bungalows near Holyrood School to modern infills along 85 Street — careful, considered cleaning every visit.
+                  Most Holyrood houses date from the 1950s, with coved plaster corners, decades of paint along the door frames and original hardwood under many of the carpets. The Edmonton team cleans them at a flat rate by home size.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -235,7 +235,7 @@ export default function Holyrood() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
                   src={heroImg}
-                  alt="Professional cleaner dusting a wood mantle in a Holyrood, Edmonton character home"
+                  alt="Cleaner dusting a wooden fireplace mantel with a long-handled duster"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   width={1024}
                   height={1024}
@@ -257,7 +257,7 @@ export default function Holyrood() {
                   Cleaning Services for Holyrood Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs — every service a home needs.
+                  Each Holyrood service is booked at a flat rate by home size, and the price does not rise if the clean runs long.
                 </p>
               </div>
             </AnimatedSection>
@@ -300,7 +300,7 @@ export default function Holyrood() {
                   Why Holyrood Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -322,7 +322,7 @@ export default function Holyrood() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Holyrood Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Located in southeast Edmonton, we're always just around the corner.
+                  Holyrood cleans are booked through the Edmonton office on (780) 913-6565, open Monday to Saturday 8 AM to 8 PM and Sunday 9 AM to 3 PM.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -341,12 +341,12 @@ export default function Holyrood() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Holyrood</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Another Neighbourhood near Holyrood</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    Bonnie Doon is also one of the Edmonton branch's 80 city neighbourhoods, cleaned at the same flat rates as Holyrood.
                   </p>
                 </div>
-                <CoverageChips areas={["Holyrood School", "Mill Creek Ravine", "Bonnie Doon Centre", "85 Street", "Strathearn", "Idylwylde", "King Edward Park", "Bonnie Doon"]} variant="compact" />
+                <CoverageChips areas={["Bonnie Doon"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -362,7 +362,7 @@ export default function Holyrood() {
         heading="What cleaning a Holyrood home involves"
         paragraphs={[
           "Holyrood's houses mostly date from the 1950s, and sixty-plus years of paint layers show along every door frame and window sill. Original hardwood hides under carpet in many of them, mid-century tile keeps its looks only when grout is kept ahead of, and the coved plaster corners that make these interiors feel warm also hold dust in a way flat drywall never does. A careful hand-wipe matters more here than horsepower.",
-          "Mill Creek Ravine is a short drive west rather than out the back door, so what actually drives the seasonal pattern here is Holyrood's own mature boulevard canopy: seed fluff drifting in through June screens, leaf litter walked in every October, and dry-spell dust on sills. The Valley Line LRT along 85 Street — Holyrood's western edge, with the Holyrood stop at 93 Avenue — added construction dust for years, and much of it is still working out of older ductwork.",
+          "Mill Creek Ravine is a short drive west rather than out the back door, so what drives the seasonal pattern here is Holyrood's own mature boulevard canopy: seed fluff drifting in through June screens, leaf litter walked in every October, and dry-spell dust on sills. The Valley Line LRT runs along 85 Street, Holyrood's western edge, with the Holyrood stop at 93 Avenue. Its construction added dust for years, and much of that dust is still working out of older ductwork.",
         ]}
       />
 

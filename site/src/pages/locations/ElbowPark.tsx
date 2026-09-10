@@ -60,9 +60,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Elbow Park" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Elbow Park" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Elbow Park" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Elbow Park" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Elbow Park.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Elbow Park" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or a new build, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Elbow Park" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Elbow Park" },
 ];
 
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Mission","Erlton","Mount Royal","Britannia","Roxboro","Altadore"];
+const nearbyAreas = ["Mission","Erlton","Mount Royal","Roxboro","Altadore"];
 
 const faqs = [
   {
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `In Elbow Park, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `In Elbow Park, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function ElbowPark() {
     <>
       <Helmet>
         <title>House Cleaners in Elbow Park, Calgary | Duty Cleaners</title>
-        <meta name="description" content="House cleaning in Elbow Park, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
+        <meta name="description" content="Elbow Park homes in Calgary date from the 1910s to the 1930s, with panel doors, leaded glass and radiators, and each clean is priced flat by home size." />
         <meta property="og:title" content="House Cleaners in Elbow Park, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Elbow Park, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning in Elbow Park, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
-        <meta property="og:description" content="House cleaning in Elbow Park, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
+        <meta name="twitter:description" content="Elbow Park homes in Calgary date from the 1910s to the 1930s, with panel doors, leaded glass and radiators, and each clean is priced flat by home size." />
+        <meta property="og:description" content="Elbow Park homes in Calgary date from the 1910s to the 1930s, with panel doors, leaded glass and radiators, and each clean is priced flat by home size." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/elbow-park-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/elbow-park-calgary/" />
@@ -183,7 +183,7 @@ export default function ElbowPark() {
                 Professional House Cleaning in Elbow Park
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Elbow Park is one of Calgary's most prestigious inner-city neighbourhoods — known for its tree-lined streets, heritage homes, and peaceful riverside charm along the Elbow River.
+                Elbow Park's homes date from the 1910s to the 1930s, with original mill-work, panel doors and leaded glass. Each clean is priced flat by home size, before 5% GST.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -217,7 +217,7 @@ export default function ElbowPark() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Elbow Park Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Everything from weekly upkeep to full move-out cleans.
+                  An Elbow Park house is priced by home type as well as size, so a bungalow or two-storey house carries a surcharge that shows on the quote before you book.
                 </p>
               </div>
             </AnimatedSection>
@@ -255,7 +255,7 @@ export default function ElbowPark() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Elbow Park Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Elbow Park and the surrounding SW Calgary communities.
+                    The Elbow River borders Elbow Park, which is inside Calgary city limits, so a clean here carries no trip fee.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -280,16 +280,16 @@ export default function ElbowPark() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1280} height={896} src={cleanHomeImg} alt="Spotless Elbow Park Calgary home cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1280} height={896} src={cleanHomeImg} alt="Formal dining room with a chandelier, wainscoting, white panel doors and a dark wood floor" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Calm, Spotless Elbow Park Home — Every Visit</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Heritage houses</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Panel Doors, Leaded Glass and Radiators in Elbow Park</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Our vetted cleaners treat your home with care, attention, and the same standards we'd want in our own. Walk in to fresh air, gleaming surfaces, and that quiet feeling of <em>everything in its place</em>.
+                    In an older Elbow Park house, light bulbs and fragile fixtures are outside a clean, and so is anything beyond a 3-step ladder. Heavy scrubbing of walls and panel doors is the wall-washing package, which is booked together with a clean.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Flat rate by home size, before 5% GST","Supplies and equipment come with the team","Anything missed re-cleaned if reported within 24 hours"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -307,9 +307,9 @@ export default function ElbowPark() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Elbow Park and the communities around it.{" "}
+                  These five are on the Calgary list too, and the branch that covers Elbow Park cleans each of them.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -325,8 +325,8 @@ export default function ElbowPark() {
         eyebrow="Local knowledge"
         heading="Elbow Park's heritage scale"
         paragraphs={[
-          "Elbow Park is one of Calgary's oldest estate districts, and its 1910s-30s homes are heritage-scale work: original mill-work and panel doors by the dozen, leaded glass that wants soft cloths, radiators whose fins need brush-dusting, and staircases that are furniture in their own right. Square footage here understates effort by half.",
-          "The Elbow River borders the district, and flood-aware basements — rebuilt after 2013 with sumps and monitored humidity — deserve their seasonal checks. River-path traffic and the walk to the Glencoe Club keep front entries in gentle constant use; mature elms overhead run the full pollen-to-leaf calendar.",
+          "Elbow Park's 1910s-30s estate homes are heritage-scale work: original mill-work and panel doors by the dozen, leaded glass that wants soft cloths, radiators whose fins need brush-dusting, and staircases that are furniture in their own right. Square footage here understates effort by half.",
+          "The Elbow River borders the district, and the district's flood-aware basements were rebuilt after 2013 with sumps and monitored humidity. River-path traffic keeps front entries in gentle constant use; mature elms overhead run the full pollen-to-leaf calendar.",
         ]}
       />
 
@@ -342,7 +342,7 @@ export default function ElbowPark() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Elbow Park Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>

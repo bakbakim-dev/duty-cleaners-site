@@ -60,10 +60,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Sunalta" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Sunalta" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Sunalta" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Sunalta" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Sunalta.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Sunalta" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing services" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or new build, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Sunalta" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Sunalta" },
 ];
 
 const whyUsItems = [
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Scarboro","Shaganappi","Bankview","Beltline","Downtown West End","Killarney"];
+const nearbyAreas = ["Scarboro","Shaganappi","Bankview","Beltline","Downtown West End","Killarney-Glengarry"];
 
 const faqs = [
   {
@@ -104,7 +104,7 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Sunalta?",
-    answer: `Around Sunalta we offer the full range:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `In Sunalta, households can book:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning, booked with a clean`
   },
   {
     question: "Do you offer discounts?",
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function Sunalta() {
     <>
       <Helmet>
         <title>House Cleaning Services in Sunalta, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional cleaners serving Sunalta, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="description" content="Our Sunalta, Calgary cleaners take on 1910s cottages dense with original fir trim and walk-up suites whose galley kitchens grease-film quickly." />
         <meta property="og:title" content="House Cleaning Services in Sunalta, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services in Sunalta, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional cleaners serving Sunalta, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
-        <meta property="og:description" content="Professional cleaners serving Sunalta, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="twitter:description" content="Our Sunalta, Calgary cleaners take on 1910s cottages dense with original fir trim and walk-up suites whose galley kitchens grease-film quickly." />
+        <meta property="og:description" content="Our Sunalta, Calgary cleaners take on 1910s cottages dense with original fir trim and walk-up suites whose galley kitchens grease-film quickly." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/sunalta-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/sunalta-calgary/" />
@@ -183,7 +183,7 @@ export default function Sunalta() {
                 Professional House Cleaning in Sunalta
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Trusted house cleaning for Sunalta — bringing a calm, spotless home within reach.
+                Sunalta mixes 1910s cottages with low-rise apartment courts. The West LRT and Bow Trail traffic on its edges keep grit high on sills and entry floors.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function Sunalta() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Sunalta Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Sunalta homes get every service they need.
+                  Sunalta's walk-up suites and 1910s cottages are both priced flat by home size before GST, and a house adds a home-type charge to the apartment rate.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function Sunalta() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Sunalta Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Sunalta and the surrounding Calgary communities.
+                    Sunalta's pre-war windows have deep sills and storm tracks that hold more debris than modern ones. Cleans here are booked through the Calgary office at 2835 37 Street SW.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function Sunalta() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1280} height={896} src={cleanHomeImg} alt="Spotless Sunalta Calgary home cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1280} height={896} src={cleanHomeImg} alt="Made bed with white linen beside a sunlit window and a small white side table" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Calm, Spotless Sunalta Home — Every Visit</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Walk-ups and cottages</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Galley Kitchens and Fir Trim in Sunalta</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Our vetted cleaners treat your home with care, attention, and the same standards we'd want in our own. Walk in to fresh air, gleaming surfaces, and that quiet feeling of <em>everything in its place</em>.
+                    In a Sunalta walk-up, corridor dust reaches the suite door and the galley kitchen grease-films quickly. In a 1910s cottage, the work is in the trim and the original fir. Tell us which room matters most: the order a home gets done in is easy to change.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Customer-rated cleaners","Supplies and equipment brought","24-hour re-clean guarantee"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,7 +311,7 @@ export default function Sunalta() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
                   Duty Cleaners cleans homes across Sunalta and the communities around it.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
@@ -330,7 +330,7 @@ export default function Sunalta() {
         heading="Sunalta's walk-up century"
         paragraphs={[
           "Sunalta mixes 1910s cottages with low-rise apartment courts, minutes west of downtown. The old houses are dense with trim-work and original fir; the walk-ups bring corridor dust to every suite door and galley kitchens that grease-film quickly. Both share pre-war windows whose deep sills and storm tracks hold more debris per opening than anything modern.",
-          "The West LRT runs the neighbourhood's edge on elevated track, and Bow Trail's traffic sits just north — between them, Sunalta's ambient grit level is among the inner city's highest. Balconies, sills and entry floors on the corridor sides need the most frequent passes.",
+          "The West LRT runs the neighbourhood's edge on elevated track, and Bow Trail's traffic sits just north, so Sunalta takes ambient grit from both. Sills and entry floors on the corridor sides need the most frequent passes.",
         ]}
       />
 
@@ -347,7 +347,7 @@ export default function Sunalta() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Sunalta Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Reliable, detail-first cleaning families count on.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>

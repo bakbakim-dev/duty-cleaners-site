@@ -52,11 +52,11 @@ export default function Book() {
         <h1 className="mb-5 text-base font-semibold text-muted-foreground">
           {deepIntent ? (
             <>
-              Step 4 of 4 — your Deep Cleaning package is already added — just pick your time.
+              Step 4 of 4: your Deep Cleaning package is already added, so just pick your time.
             </>
           ) : (
             <>
-              Step 4 of 4 — pick your time. Your details are carried over. Add-ons like the Deep
+              Step 4 of 4: pick your time. Your details are carried over. Add-ons like the Deep
               Cleaning package are under &ldquo;Select Extras&rdquo;.
             </>
           )}

@@ -6,7 +6,6 @@ import riverbendCleanerImg from "@/assets/gallery/riverbend-cleaner-family-room.
 import { buildLocationSchema } from "@/lib/location-schema";
 import HonestReviewLink from "@/components/HonestReviewLink";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
 const RiverbendMap = lazy(() => import("@/components/RiverbendMap"));
@@ -63,9 +62,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Riverbend" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Riverbend" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Riverbend" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Riverbend" },
-  { icon: HardHat, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations to established homes." },
+  { icon: HardHat, title: "Post-Construction Cleanup", description: "Renovation dust and debris cleared from a Riverbend house, priced by square footage.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Riverbend" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Riverbend" },
 ];
 
@@ -104,15 +103,15 @@ export default function Riverbend() {
   const faqs = [
     {
       question: "Do you serve all of Riverbend?",
-      answer: "Yes! We serve all areas of Riverbend including Brander Gardens, Rhatigan Ridge, Ramsay Heights, and surrounding neighbourhoods."
+      answer: "Yes. Riverbend is one of the 80 Edmonton neighbourhoods on the Edmonton branch's list. If you are unsure whether your address falls inside Riverbend, call the Edmonton office on (780) 913-6565 and ask."
     },
     {
-      question: "How do you handle older homes with special care needs?",
-      answer: "Our team is experienced with mature homes. We use appropriate products for hardwood floors, vintage fixtures, and delicate surfaces, always taking extra care with cherished features."
+      question: "How do you clean the finishes in a Riverbend home?",
+      answer: "Riverbend was laid out under a 1972 district plan, so its housing is a generation younger than the inner-city stock, with sealed counters, engineered flooring and tub and shower surrounds that stain rather than soil. Those finishes want a mild product and time to work. Hard Alberta water also leaves mineral scale on taps and shower glass, and scale answers to the same patience."
     },
     {
       question: "Can I book recurring cleaning services?",
-      answer: "Absolutely! Many Riverbend families prefer weekly or bi-weekly cleaning. We offer flexible scheduling and priority booking for regular clients."
+      answer: "Yes. Recurring cleaning in Riverbend is the standard clean on a weekly, bi-weekly or every-4-weeks schedule, and the discount applies from the second visit. We send your regular team where we can, and a booking can be changed with 24 hours' notice."
     },
     {
       question: "How long does an initial cleaning take?",
@@ -120,15 +119,15 @@ export default function Riverbend() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Riverbend?",
-      answer: `The full service menu is available here:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `In Riverbend, the Edmonton branch books these services:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
-      answer: `Yes, recurring visits cost less every time:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
+      answer: `Yes. In Riverbend, a recurring schedule is discounted by frequency:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -149,22 +148,22 @@ export default function Riverbend() {
   return (
     <>
       <Helmet>
-        <title>Home Cleaning You Can Count On in Riverbend, Edmonton</title>
-        <meta name="description" content="Trusted local house cleaning in Riverbend, Edmonton. Cleaners serving Brander Gardens, Rhatigan Ridge and surrounding streets." />
+        <title>House Cleaning in Riverbend, Edmonton | Duty Cleaners</title>
+        <meta name="description" content="Riverbend in Edmonton backs onto ravine and river, so house cleaning there deals with thaw mud, June poplar fluff and leaf fall at the back entry." />
         <link rel="canonical" href="https://dutycleaners.ca/locations/riverbend/" />
-        <meta property="og:title" content="Home Cleaning You Can Count On in Riverbend, Edmonton" />
-        <meta property="og:description" content="Trusted local house cleaning in Riverbend, Edmonton. Cleaners serving Brander Gardens, Rhatigan Ridge and surrounding streets." />
+        <meta property="og:title" content="House Cleaning in Riverbend, Edmonton | Duty Cleaners" />
+        <meta property="og:description" content="Riverbend in Edmonton backs onto ravine and river, so house cleaning there deals with thaw mud, June poplar fluff and leaf fall at the back entry." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/riverbend/" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Home Cleaning You Can Count On in Riverbend, Edmonton" />
-        <meta name="twitter:description" content="Trusted local house cleaning in Riverbend, Edmonton. Cleaners serving Brander Gardens, Rhatigan Ridge and surrounding streets." />
+        <meta name="twitter:title" content="House Cleaning in Riverbend, Edmonton | Duty Cleaners" />
+        <meta name="twitter:description" content="Riverbend in Edmonton backs onto ravine and river, so house cleaning there deals with thaw mud, June poplar fluff and leaf fall at the back entry." />
         <script type="application/ld+json">{JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Riverbend, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/riverbend",
   areaServed: "Riverbend, Edmonton, AB",
-  description: "Trusted local house cleaning in Riverbend, Edmonton. Cleaners serving Brander Gardens, Rhatigan Ridge and surrounding streets.",
+  description: "Riverbend in Edmonton backs onto ravine and river, so house cleaning there deals with thaw mud, June poplar fluff and leaf fall at the back entry.",
 }))}</script>
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
@@ -188,10 +187,10 @@ export default function Riverbend() {
                   <span className="text-white/90 text-sm font-medium">Serving Riverbend, Edmonton</span>
                 </div>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                  Home Cleaning You Can Count On in Riverbend
+                  House Cleaning in Riverbend
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Trusted, local service for one of Edmonton's most cherished established communities.
+                  Whitemud Creek Ravine borders Riverbend on the east and south and the North Saskatchewan River closes the north, so many homes back onto trees rather than rooftops.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -217,7 +216,7 @@ export default function Riverbend() {
               <div className="flex-shrink-0 w-full max-w-[500px]">
                 <img width={896} height={672}
                   src={riverbendCleanerImg}
-                  alt="Professional cleaner mopping a cozy family room in Riverbend, Edmonton"
+                  alt="Cleaner in a white shirt and denim apron mopping a rug in a family room with wood trim, bookshelves and a fireplace"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                 loading="eager"
                   {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
@@ -234,7 +233,7 @@ export default function Riverbend() {
               <div className="text-center mb-14">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Riverbend Homes</h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto text-lg">Quality care your established home deserves.</p>
+                <p className="text-muted-foreground max-w-2xl mx-auto text-lg">Edmonton's furnace season runs from October into April, and a Riverbend house sealed up that long cycles dust faster. Standard, deep and move-out cleans are priced flat by home size, before GST.</p>
               </div>
             </AnimatedSection>
             <AnimatedSection>
@@ -268,11 +267,11 @@ export default function Riverbend() {
           <div className="container mx-auto px-4">
             <AnimatedSection>
               <div className="max-w-4xl mx-auto">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Commitment</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Trust Starts at the Door</h2>
+                <span className="text-primary text-sm font-semibold tracking-wider uppercase">Before the visit</span>
+                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Access and Tidying Before a Riverbend Clean</h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
-                  <p>Many of our Riverbend clients have worked with us for years, referring friends and neighbours along the way. We understand hardwood floors, older fixtures, and the care that established homes require.</p>
-                  <p>You'll see familiar faces and receive the kind of dependable service that makes things easier — not more complicated. We treat every Riverbend home like our own.</p>
+                  <p>You do not need to be home for a clean in Riverbend. Most customers leave a key, a lockbox code or smart-lock access, and the team locks up when it leaves.</p>
+                  <p>There is no need to tidy before the team arrives. Clear counters and floors get cleaned and cluttered ones get worked around; decluttering or organising is a separate hourly add-on. On a recurring schedule we send your regular team where we can.</p>
                 </div>
               </div>
             </AnimatedSection>
@@ -287,7 +286,7 @@ export default function Riverbend() {
               <div className="text-center mb-14">
                 <span className="text-white text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Riverbend Families Choose Duty Cleaners</h2>
-                <p className="text-white/90 max-w-2xl mx-auto text-lg">Trusted locally for reliable, thorough cleaning.</p>
+                <p className="text-white/90 max-w-2xl mx-auto text-lg">Duty Cleaners has cleaned Alberta homes since 2017, and Riverbend bookings run through the Edmonton office at 18615 71 Ave NW.</p>
               </div>
             </AnimatedSection>
             <AnimatedSection>
@@ -305,10 +304,9 @@ export default function Riverbend() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Riverbend</h2>
-                  <p className="text-muted-foreground text-lg max-w-2xl mx-auto">We're in and around the neighbourhood daily, so we know the area's pace and personality well.</p>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Where the Edmonton Branch Cleans</h2>
+                  <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Riverbend is inside Edmonton city limits, so a clean here has no trip fee. The Edmonton branch also covers nine communities outside the city, where a travel fee applies.</p>
                 </div>
-                <CoverageChips areas={["Brander Gardens", "Rhatigan Ridge", "Ramsay Heights", "Southgate Centre Area", "Riverbend Road", "Whitemud Drive Corridor"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">View All Service Areas →</Link>
                 </div>
@@ -378,9 +376,9 @@ export default function Riverbend() {
           <div className="absolute bottom-0 left-20 w-80 h-80 bg-accent/10 rounded-full blur-3xl" />
           <div className="container mx-auto px-4 relative z-10 text-center">
             <AnimatedSection>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Let's Take Cleaning Off Your Plate</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Book a Clean in Riverbend?</h2>
               <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
-                Trust your cherished home to Edmonton's favourite cleaning team. Call us today or request your free quote — no pressure, no hassle.
+                See your flat rate before you book. Nothing is charged until the clean is done.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>

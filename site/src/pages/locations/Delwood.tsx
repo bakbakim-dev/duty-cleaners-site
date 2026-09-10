@@ -82,7 +82,7 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Delwood" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Delwood" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Delwood" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Delwood" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris cleared after renovations or new builds.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Delwood" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Delwood" },
@@ -91,7 +91,7 @@ const services = [
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Delwood" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment or condo, before GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Delwood" },
 ];
 
 const whyUsItems = [
@@ -133,7 +133,7 @@ export default function Delwood() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Delwood?",
-      answer: `Every service we run can be booked locally:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `Duty Cleaners books these services for homes in Delwood:\n\n• Standard & Deep Cleaning Packages\n• Recurring Cleaning\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning, booked together with a clean`
     },
     {
       question: "Do you offer discounts?",
@@ -141,7 +141,7 @@ export default function Delwood() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `In Delwood, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `In Delwood, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -163,25 +163,25 @@ export default function Delwood() {
     <>
       <Helmet>
         <title>House Cleaners in Delwood, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="House cleaning in Delwood, Edmonton. Trusted local cleaners serving north Edmonton families. Customer-rated cleaners, rated 4.9 on Google." />
+        <meta name="description" content="Cleaning Delwood's 1960s bungalows in Edmonton means tiled tub surrounds, painted wood cabinets, and window tracks that fill from the elm and ash." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Delwood, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/delwood-edmonton",
   areaServed: "Delwood, Edmonton, AB",
-  description: "Professional house cleaning in Delwood, Edmonton. Trusted local cleaners serving north Edmonton families. Customer-rated cleaners, rated 4.9 on Google.",
+  description: "Cleaning Delwood's 1960s bungalows in Edmonton means tiled tub surrounds, painted wood cabinets, and window tracks that fill from the elm and ash.",
   geo: { latitude: "53.586", longitude: "-113.464" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/delwood-edmonton/" />
         <meta property="og:title" content="House Cleaners in Delwood, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="House cleaning in Delwood, Edmonton. Trusted local cleaners serving north Edmonton families. Customer-rated cleaners, rated 4.9 on Google." />
+        <meta property="og:description" content="Cleaning Delwood's 1960s bungalows in Edmonton means tiled tub surrounds, painted wood cabinets, and window tracks that fill from the elm and ash." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/delwood-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Delwood, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning in Delwood, Edmonton. Trusted local cleaners serving north Edmonton families. Customer-rated cleaners, rated 4.9 on Google." />
+        <meta name="twitter:description" content="Cleaning Delwood's 1960s bungalows in Edmonton means tiled tub surrounds, painted wood cabinets, and window tracks that fill from the elm and ash." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -207,7 +207,7 @@ export default function Delwood() {
                   Professional House Cleaning in Delwood
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Your reliable, local cleaning team serving the Delwood community. From classic bungalows on 82 Street to family split-levels near Delwood School — friendly, dependable local cleaning.
+                  Delwood was built out through the 1960s, and mature elm and ash along its streets shed onto floors and into window tracks for most of the year. Each visit is priced flat by home size, and the card is charged once the clean is done.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -235,7 +235,7 @@ export default function Delwood() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
                   src={heroImg}
-                  alt="Professional cleaner wiping a wood dining table in a Delwood, Edmonton home"
+                  alt="Cleaner in blue gloves wiping down a wood dining table"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   width={1024}
                   height={1024}
@@ -257,7 +257,7 @@ export default function Delwood() {
                   Cleaning Services for Delwood Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Delwood homes get every service they need.
+                  A Delwood post-construction clean is priced by square footage and every other service flat by home size, and neither price changes if the job runs longer than expected.
                 </p>
               </div>
             </AnimatedSection>
@@ -300,7 +300,7 @@ export default function Delwood() {
                   Why Delwood Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -322,7 +322,7 @@ export default function Delwood() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Delwood Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Located in north Edmonton, we're always just around the corner.
+                  Delwood bookings come with an arrival window rather than an exact time: 9 to 10 AM, 12 to 1 PM or 3 to 4 PM.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -341,12 +341,12 @@ export default function Delwood() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Delwood</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Edmonton-area neighbourhoods we clean</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    Belvedere, Glengarry and Balwin are on the Edmonton branch's list of 80 neighbourhoods, the same list Delwood is on.
                   </p>
                 </div>
-                <CoverageChips areas={["Delwood School", "Yellowhead Trail", "Northgate Centre", "82 Street", "Killarney", "Belvedere", "Glengarry", "Balwin"]} variant="compact" />
+                <CoverageChips areas={["Belvedere", "Glengarry", "Balwin"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →

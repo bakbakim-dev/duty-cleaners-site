@@ -82,16 +82,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Miller" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Miller" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Miller" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Miller" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around Miller.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Miller" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris cleared after renovations or new builds around Miller.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Miller" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Miller" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Miller" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment or condo, before GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Miller" },
 ];
 
 const whyUsItems = [
@@ -137,11 +137,11 @@ export default function Miller() {
     },
     {
       question: "Do you offer discounts?",
-      answer: `Yes, recurring visits cost less every time:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
+      answer: `Yes, on a recurring standard clean in Miller:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -163,25 +163,25 @@ export default function Miller() {
     <>
       <Helmet>
         <title>House Cleaners in Miller, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Miller, Edmonton. Trusted local cleaners serving northeast Edmonton families." />
+        <meta name="description" content="In Miller, Edmonton, nearly all tracking in a two-storey comes through the attached garage and mudroom, while the formal entry stays clean." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Miller, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/miller-edmonton",
   areaServed: "Miller, Edmonton, AB",
-  description: "Professional house cleaning in Miller, Edmonton. Trusted local cleaners serving northeast Edmonton families.",
+  description: "In Miller, Edmonton, nearly all tracking in a two-storey comes through the attached garage and mudroom, while the formal entry stays clean.",
   geo: { latitude: "53.626", longitude: "-113.391" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/miller-edmonton/" />
         <meta property="og:title" content="House Cleaners in Miller, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Miller, Edmonton. Trusted local cleaners serving northeast Edmonton families." />
+        <meta property="og:description" content="In Miller, Edmonton, nearly all tracking in a two-storey comes through the attached garage and mudroom, while the formal entry stays clean." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/miller-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Miller, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Miller, Edmonton. Trusted local cleaners serving northeast Edmonton families." />
+        <meta name="twitter:description" content="In Miller, Edmonton, nearly all tracking in a two-storey comes through the attached garage and mudroom, while the formal entry stays clean." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -207,7 +207,7 @@ export default function Miller() {
                   Professional House Cleaning in Miller
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Your reliable, local cleaning team serving the Miller community. From newer two-storey homes near Miller Park to townhouses along 153 Avenue — friendly, local cleaning service.
+                  Miller's 1990s and 2000s two-storeys come with attached double garages, and the route from the garage through the mudroom to the kitchen carries nearly all the tracking.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -235,7 +235,7 @@ export default function Miller() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
                   src={heroImg}
-                  alt="Professional cleaner sweeping the entryway of a Miller, Edmonton home"
+                  alt="A cleaner at the front door of a tiled entry hallway, with a push broom in the foreground"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   width={1024}
                   height={1024}
@@ -257,7 +257,7 @@ export default function Miller() {
                   Cleaning Services for Miller Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs — every service a home needs.
+                  Six services for Miller's two-storeys, from a one-time standard clean to weekly, bi-weekly or every-4-weeks visits.
                 </p>
               </div>
             </AnimatedSection>
@@ -300,7 +300,7 @@ export default function Miller() {
                   Why Miller Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Reliable, detail-first cleaning families count on.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -322,7 +322,7 @@ export default function Miller() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Miller Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Located in northeast Edmonton, we're always just around the corner.
+                  Miller borders stormwater greens and pathway links, and it sits inside Edmonton city limits, where there is no trip fee.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -341,12 +341,12 @@ export default function Miller() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Miller</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Edmonton-area neighbourhoods we clean</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    Matt Berry, Hollick-Kenyon, Brintnell and Ozerna are on the same Edmonton branch list as Miller.
                   </p>
                 </div>
-                <CoverageChips areas={["Miller Park", "Anthony Henday", "Manning Town Centre", "18 Street", "Matt Berry", "Hollick-Kenyon", "Brintnell", "Ozerna"]} variant="compact" />
+                <CoverageChips areas={["Matt Berry", "Hollick-Kenyon", "Brintnell", "Ozerna"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -361,8 +361,8 @@ export default function Miller() {
         eyebrow="Local knowledge"
         heading="Miller's homes and their habits"
         paragraphs={[
-          "Miller pairs 1990s and 2000s two-storeys with attached double garages, and the garage entry is the real front door — the mudroom route from garage to kitchen carries nearly all the household's tracking, while the formal entry stays clean. A visit that budgets its floor time by that reality serves these homes better than an even split.",
-          "The neighbourhood borders stormwater greens and pathway links, and households here skew young-family: more occupants, more footwear rotations, more washable surfaces touched at hip height and below. Fingerprint bands on stair rails, switch plates and appliance fronts are the visible difference a clean makes.",
+          "Miller pairs 1990s and 2000s two-storeys with attached double garages, and the garage entry is the everyday front door — the mudroom route from garage to kitchen carries nearly all the household's tracking, while the formal entry stays clean. A visit that budgets its floor time by that reality serves these homes better than an even split.",
+          "The neighbourhood borders stormwater greens and pathway links. Fingerprint bands on stair rails, switch plates and appliance fronts are the visible difference a clean makes.",
         ]}
       />
 

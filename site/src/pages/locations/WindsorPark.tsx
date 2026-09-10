@@ -60,10 +60,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Windsor Park" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Windsor Park" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Windsor Park" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Windsor Park" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Windsor Park.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Windsor Park" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Windsor Park" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Renovation dust cleaned out of a Windsor Park home, priced by square footage. The debris has to be gone before the team arrives.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Windsor Park" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film washed off painted walls, booked together with a clean.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Windsor Park" },
 ];
 
 const whyUsItems = [
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Britannia", "Elboya", "Meadowlark Park", "Manchester", "Stanley Park", "Kingsland"];
+const nearbyAreas = ["Meadowlark Park", "Manchester", "Stanley Park"];
 
 const faqs = [
   {
@@ -108,11 +108,11 @@ const faqs = [
   },
   {
     question: "Do you offer discounts?",
-    answer: `Yes, recurring visits cost less every time:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
+    answer: `Yes. A recurring schedule of the standard clean in Windsor Park saves:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function WindsorPark() {
     <>
       <Helmet>
         <title>House Cleaners in Windsor Park, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Book house cleaning in Windsor Park, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="description" content="Windsor Park, Calgary, is mostly apartments and condos, mostly rented, and a move-out clean vacuums traffic grit out of the window tracks." />
         <meta property="og:title" content="House Cleaners in Windsor Park, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Windsor Park, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Book house cleaning in Windsor Park, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
-        <meta property="og:description" content="Book house cleaning in Windsor Park, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="twitter:description" content="Windsor Park, Calgary, is mostly apartments and condos, mostly rented, and a move-out clean vacuums traffic grit out of the window tracks." />
+        <meta property="og:description" content="Windsor Park, Calgary, is mostly apartments and condos, mostly rented, and a move-out clean vacuums traffic grit out of the window tracks." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/windsor-park-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/windsor-park-calgary/" />
@@ -177,13 +177,13 @@ export default function WindsorPark() {
             <div className="max-w-4xl mx-auto text-center">
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-5 py-2 mb-6">
                 <MapPin className="w-4 h-4 text-accent" />
-                <span className="text-white/90 text-sm font-medium">Serving Windsor Park, SW Calgary</span>
+                <span className="text-white/90 text-sm font-medium">Serving Windsor Park, Calgary</span>
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                 Professional House Cleaning in Windsor Park
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Windsor Park is a friendly, tree-lined SW community minutes from Britannia and Chinook — known for its tidy bungalows, infills, and welcoming neighbours.
+                Two-thirds of Windsor Park's buildings are apartments or condominiums, and most of the housing is rented. Our Calgary branch handles move-out and regular cleans here at a flat rate by home size.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function WindsorPark() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Windsor Park Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Windsor Park homes get every service they need.
+                  Move-out, regular and deep cleans for Windsor Park apartments, condos and every other home type, each priced flat by home size before GST.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function WindsorPark() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Windsor Park Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Windsor Park and the surrounding SW Calgary communities.
+                    Windsor Park is one of the 66 neighbourhoods on our Calgary branch's list, and a clean inside Calgary city limits carries no trip fee.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function WindsorPark() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={768} src={cleanHomeImg} alt="Elegant freshly cleaned dining room with chandelier in a Windsor Park Calgary home" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1024} height={768} src={cleanHomeImg} alt="Dining room with a chandelier over the table" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Welcome Guests Into a Home That Shines</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">What to expect</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Move-Out Cleans at the End of a Lease</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Vetted cleaners, careful hands, and the standard we'd hold for our own homes. Come back to fresh air and surfaces that actually gleam.
+                    A move-out clean in Windsor Park is priced flat by home size, before GST, and the price does not change if the clean takes longer than expected. Under Alberta's Residential Tenancies Act the landlord completes a move-out inspection report with the tenant; we do not promise the deposit comes back, because the landlord decides.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Reference-checked, rated after every visit","Supplies and equipment brought","Free re-clean if told within 24 hours"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,9 +311,9 @@ export default function WindsorPark() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Windsor Park and the communities around it.{" "}
+                  Our Calgary branch also cleans in Meadowlark Park, Manchester and Stanley Park.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -328,8 +328,8 @@ export default function WindsorPark() {
         eyebrow="From the route"
         heading="Mostly apartments, mostly rented"
         paragraphs={[
-          "Two-thirds of the buildings here are apartments or condominiums and most of the housing is rented, which is an unusual mix for a community that started building in 1940. Rentals turn over, and a turnover clean here has a deadline and a fixed list: oven, fridge seals, tub surround, inside every closet, the track of every sliding door.",
-          "The community runs from 50 Avenue south to 58, with Macleod Trail along its entire eastern edge and Chinook Centre just beyond the south-east corner. Arterial traffic throws off winter sanding grit and summer road film, and it lands on balcony glass, window tracks and entry mats first. It is abrasive, so the tracks are vacuumed out before the cloth arrives.",
+          "Two-thirds of the buildings here are apartments or condominiums and most of the housing is rented, which is an unusual mix for a community that started building in 1940. Rentals turn over, and a move-out clean here works to a fixed list: inside the oven and fridge, inside every cabinet, drawer and closet, and the window tracks.",
+          "The community runs from 50 Avenue south to 58, with Macleod Trail along its entire eastern edge and Chinook Centre just beyond the south-east corner. Arterial traffic throws off winter sanding grit and summer road film, and it lands on window tracks and entry mats first. The grit is abrasive, so on a move-out clean the tracks are vacuumed out before the cloth arrives.",
         ]}
         accent="calgary"
       />
@@ -347,7 +347,7 @@ export default function WindsorPark() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Windsor Park Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>

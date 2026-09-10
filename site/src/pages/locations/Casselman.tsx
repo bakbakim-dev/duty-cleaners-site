@@ -82,7 +82,7 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Casselman" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Casselman" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Casselman" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Casselman" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris cleared after renovations or new builds.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Casselman" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Casselman" },
@@ -91,7 +91,7 @@ const services = [
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Casselman" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment or condo, before GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Casselman" },
 ];
 
 const whyUsItems = [
@@ -141,7 +141,7 @@ export default function Casselman() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -163,25 +163,25 @@ export default function Casselman() {
     <>
       <Helmet>
         <title>House Cleaners in Casselman, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="House cleaning in Casselman, Edmonton. Trusted local cleaners serving north Edmonton families. Customer-rated cleaners, rated 4.9 on Google." />
+        <meta name="description" content="Casselman, Edmonton house cleaning for 1970s detached homes and townhouse rows, where one stair carpet run takes a whole home's traffic." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Casselman, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/casselman-edmonton",
   areaServed: "Casselman, Edmonton, AB",
-  description: "Professional house cleaning in Casselman, Edmonton. Trusted local cleaners serving north Edmonton families. Customer-rated cleaners, rated 4.9 on Google.",
+  description: "Casselman, Edmonton house cleaning for 1970s detached homes and townhouse rows, where one stair carpet run takes a whole home's traffic.",
   geo: { latitude: "53.61", longitude: "-113.421" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/casselman-edmonton/" />
         <meta property="og:title" content="House Cleaners in Casselman, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="House cleaning in Casselman, Edmonton. Trusted local cleaners serving north Edmonton families. Customer-rated cleaners, rated 4.9 on Google." />
+        <meta property="og:description" content="Casselman, Edmonton house cleaning for 1970s detached homes and townhouse rows, where one stair carpet run takes a whole home's traffic." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/casselman-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Casselman, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning in Casselman, Edmonton. Trusted local cleaners serving north Edmonton families. Customer-rated cleaners, rated 4.9 on Google." />
+        <meta name="twitter:description" content="Casselman, Edmonton house cleaning for 1970s detached homes and townhouse rows, where one stair carpet run takes a whole home's traffic." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -207,7 +207,7 @@ export default function Casselman() {
                   Professional House Cleaning in Casselman
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Your reliable, local cleaning team serving the Casselman community. From newer townhomes to family homes near Casselman Park — local, friendly cleaning you can count on every week.
+                  Casselman's 1970s housing splits between detached homes and townhouse clusters. In the townhouse rows one stair carpet run takes the whole home's traffic, so entries and stairs come first.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -235,7 +235,7 @@ export default function Casselman() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
                   src={heroImg}
-                  alt="Professional cleaner mopping the entryway of a Casselman, Edmonton home"
+                  alt="Cleaner with a mop and a yellow bucket by a front door, on a hardwood hallway floor"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   width={1024}
                   height={1024}
@@ -257,7 +257,7 @@ export default function Casselman() {
                   Cleaning Services for Casselman Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs — every service a home needs.
+                  Regular upkeep, deep cleans and move-outs for Casselman's detached homes and townhouse rows.
                 </p>
               </div>
             </AnimatedSection>
@@ -300,7 +300,7 @@ export default function Casselman() {
                   Why Casselman Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -322,7 +322,7 @@ export default function Casselman() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Casselman Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Located in north Edmonton, we're always just around the corner.
+                  Casselman sits a short reach from Manning Drive, inside Edmonton city limits, so no trip fee applies.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -341,12 +341,12 @@ export default function Casselman() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Casselman</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Edmonton-area neighbourhoods we clean</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    The Edmonton branch cleans in Casselman and in these other Edmonton neighbourhoods.
                   </p>
                 </div>
-                <CoverageChips areas={["Casselman Park", "153 Avenue", "Manning Crossing", "Anthony Henday", "Hollick-Kenyon", "Brintnell", "Matt Berry", "McConachie"]} variant="compact" />
+                <CoverageChips areas={["Hollick-Kenyon", "Brintnell", "Matt Berry", "McConachie"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →

@@ -120,6 +120,17 @@ describe("location pages", () => {
     });
     expect(undisclosed, "priced satellite-town pages with no travel-fee disclosure").toEqual([]);
   });
+
+  /**
+   * The content prompt allows no exclamation marks in page copy. Until
+   * 2026-09-10, 146 location pages carried one, most of them closing the
+   * guarantee answer ("...at no extra cost!"). Location pages quote no customer
+   * reviews, so there is no verbatim text to exempt.
+   */
+  it("no location page's copy uses an exclamation mark", () => {
+    const loud = urls.filter((u) => mainText(read(u)).includes("!"));
+    expect(loud, "location pages with an exclamation mark in their visible copy").toEqual([]);
+  });
 });
 
 /**

@@ -33,10 +33,15 @@ const HOME_TYPE = {
 };
 const CALGARY_LISTING = GOOGLE_LISTINGS.calgary;
 const CALGARY_RATING = `${CITY_PROOF.calgary.googleRating} on Google`;
-const REVIEW_COUNT = CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount;
 
 const PAGE_TITLE = `House Cleaning Cochrane from ${STANDARD_FROM} | Duty Cleaners`;
-const PAGE_DESCRIPTION = `House cleaning in Cochrane, AB: standard cleans from ${STANDARD_FROM}, move-out cleans from ${MOVE_FROM}, flat by home size, rated ${CALGARY_RATING}. Pay after the clean.`;
+const PAGE_DESCRIPTION = `Cochrane house cleaning is charged to the card only once the clean is complete: from ${STANDARD_FROM} before GST for a one-bedroom, plus a ${TRAVEL_FEE} travel fee.`;
+
+// A worked quote built from the same rows the price table uses: a
+// two-bedroom townhouse on a standard clean, outside city limits.
+const dollars = (price: string) => Number(price.replace(/[^0-9.]/g, ""));
+const EXAMPLE_TIER = STANDARD[1];
+const EXAMPLE_PRICE = formatPrice(dollars(EXAMPLE_TIER.price) + BK_PRICE_OVERRIDES[89].price + (travelFee("standard") ?? 0));
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -110,26 +115,26 @@ const WhyUsCard = ({
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A one-time cleaning to bring the whole home back to baseline, priced flat by size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Cochrane" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "A full top-to-bottom reset — corners, baseboards, and the surfaces regular visits skip.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Cochrane" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Move-day cleaning to the standard a Calgary landlord checks against.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Cochrane" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris removal after renovations or new builds in Cochrane.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Cochrane" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Cochrane" },
-  { icon: Building2, title: "Commercial Cleaning", description: "Office and commercial space cleaning for Cochrane businesses." },
+  { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Cochrane" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Cochrane" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Cochrane" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared from a renovation or a new build in Cochrane, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Cochrane" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Booked with a clean rather than on its own: spot cleaning or a full wash, priced by home size.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Cochrane" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: "The standard clean weekly, bi-weekly or every 4 weeks, with the discount starting on the second visit.", to: "/calgary/recurring-cleaning/", linkText: "Recurring cleaning in Cochrane" },
 ];
 
 const whyUsItems = [
   { icon: Shield, title: "Reference-Checked, Then Rated by You", description: "Every cleaner is reference-checked before their first job, then rated by the customer after every visit. Those ratings decide who keeps cleaning for us." },
   { icon: Star, title: RATING_CLAIM, description: `That is the Calgary listing, the one a Cochrane clean is rated on, with ${CITY_PROOF.calgary.googleReviewCount} reviews on it.`, link: { href: CALGARY_LISTING.reviewsUrl, text: "Open it on Google" } },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability, schedule permitting." },
-  { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
-  { icon: Users, title: "Experienced Team", description: "Cleaners who work to the Duty Cleaners checklist and are rated by the customer after each visit." },
-  { icon: ThumbsUp, title: "Satisfaction Guarantee", description: `If something was missed, tell us within ${POLICY.guaranteeWindowHours} hours and we'll return to make it right — at no additional charge.` },
+  { icon: Leaf, title: "All Supplies Brought For You", description: "The team brings all supplies and equipment. Leave the water and power on until the clean is done." },
+  { icon: ThumbsUp, title: "Re-Clean Guarantee", description: `Tell us within ${POLICY.guaranteeWindowHours} hours if something was missed and the team comes back to re-clean it, at no charge.` },
 ];
 
-// "Cochrane Lakes" was in this list. Cochrane Lake is a Rocky View County
-// hamlet north of the town, not a Cochrane neighbourhood, so it is gone.
-const nearbyAreas = ["Sunset Ridge", "Fireside", "Heartland", "Riversong", "Heritage Hills", "Jumping Pound Ridge", "West Valley"];
+// The coverage chips that stood here (Sunset Ridge, Fireside, Heartland,
+// Riversong, Heritage Hills, Jumping Pound Ridge, West Valley) are gone: none
+// of them is on the Calgary coverage list in data/city-locations.ts, and a
+// name on a page must mean the place is on that list. Sunset Ridge and Fireside
+// still appear where the local note puts them.
 
 const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Cochrane",
@@ -146,27 +151,31 @@ export default function Cochrane() {
   const faqs = [
     {
       question: "Do you charge a travel fee in Cochrane?",
-      answer: `We do. Cochrane is a town outside Calgary's city limits, and a home-cleaning booking out here carries a ${TRAVEL_FEE} travel fee; post-construction is priced on its own row and carries ${PC_TRAVEL_FEE}. It is added at booking, so the total you see before you confirm already has it in. That fee is the whole of the difference from a Calgary address. The clean is the same flat rate for the same home size, and the pet charge and the home-type surcharges are added here as well: ${PET_FEE} a visit for a home with pets, and the step up from an apartment or condo, ${HOME_TYPE.bungalow} on a bungalow or basement suite, ${HOME_TYPE.townhouse} on a townhouse, ${HOME_TYPE.twoStorey} on a two-storey house.`
+      answer: `We do. Cochrane is a town outside Calgary's city limits, so a home-cleaning booking here carries a ${TRAVEL_FEE} travel fee, and a post-construction booking carries ${PC_TRAVEL_FEE}. It is added at booking, so the total you see before you confirm already has it in. Beyond that fee a Cochrane clean costs what a Calgary one does: the same flat rate by home size, ${PET_FEE} a visit for a home with pets, and the step up from an apartment or condo, ${HOME_TYPE.bungalow} on a bungalow or basement suite, ${HOME_TYPE.townhouse} on a townhouse, ${HOME_TYPE.twoStorey} on a two-storey house. Every figure is before 5% GST.`
     },
     {
-      question: "Can I book same-day house cleaning in Cochrane?",
-      answer: `Sometimes, when a crew heading west has room. Ring the Calgary office and ask; a same-day answer is a phone answer, not a form answer. Arrival windows are ${ARRIVAL_WINDOWS.join(", ")}, and a same-day booking takes whichever is still open. You do not need to be home if you leave a key or a code.`
+      question: "Can I book house cleaning in Cochrane at short notice?",
+      answer: `Same-day and next-day slots depend on the schedule, so ring the Calgary office on (403) 768-1341 and ask. Arrival windows are ${ARRIVAL_WINDOWS.join(", ")}, and a short-notice booking takes whichever window is still open. You do not need to be home if you leave a key, a lockbox code or smart-lock access; the team locks up when it leaves.`
     },
     {
       question: "Is move-out cleaning available in Cochrane?",
-      answer: `Yes. A move-in or move-out clean is ${MOVE_FROM} to ${MOVE_TOP} depending on bedroom count, plus the travel fee, and it is priced for an empty house. What sets it apart from a standard clean is the closed things: the oven, the fridge and the kitchen and bathroom cabinets are cleaned inside as part of the job. In a new build in Sunset Ridge or Fireside it doubles as the move-in clean before the furniture lands.`
+      answer: `Yes. A move-in or move-out clean is ${MOVE_FROM} to ${MOVE_TOP} by home size for an apartment or condo, before GST, plus the ${TRAVEL_FEE} travel fee and any house-type or pet charge. What sets it apart from a standard clean is the closed things: the inside of the oven, fridge and microwave, and the inside of every cabinet, drawer and closet. In a new build in Sunset Ridge or Fireside it serves as the move-in clean before the furniture lands.`
     },
     {
       question: "How much is a standard clean in Cochrane?",
-      answer: `${STANDARD_FROM} for a one-bedroom and ${STANDARD_TOP} for five or more bedrooms, before GST, plus the ${TRAVEL_FEE} travel fee. The deep clean, which adds baseboards, fans, vents, outlet covers and light switches, starts at ${DEEP_FROM}. Put the standard clean on a weekly schedule and it is 20% less from the second visit; bi-weekly is 15% less, every four weeks 10% less.`
+      answer: `${STANDARD_FROM} for a one-bedroom apartment or condo and ${STANDARD_TOP} for five or more bedrooms, before GST, plus the ${TRAVEL_FEE} travel fee; a house-type charge and the pet charge can apply on top. The deep clean starts at ${DEEP_FROM}. Put the standard clean on a weekly schedule and it is 20% less; bi-weekly is 15% less, every 4 weeks 10% less. Discounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
       question: "Do I need to supply anything for the clean?",
-      answer: `No. The crew brings products, cloths, a mop and a vacuum. If there is something you would rather we used on a particular floor or counter, leave it out and say so at booking. Eco-friendly products are ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}.`
+      answer: `No. The team brings all supplies and equipment. It does need running water, and vacuuming may not be possible without electricity, so leave the water and power on. Eco-friendly products are ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}.`
     },
     {
-      question: "What is the guarantee, and what does a cancellation cost?",
-      answer: `If a task was missed, tell us within ${POLICY.guaranteeWindowHours} hours and we return to do it at no charge, without asking for photos. Cancelling inside ${POLICY.cancellationNoticeHours} hours costs ${POLICY.cancellationFee}. If the crew arrives in Cochrane and cannot get in, the lockout charge is ${POLICY.lockoutFee}.`
+      question: "What happens if something is missed?",
+      answer: `Tell us within ${POLICY.guaranteeWindowHours} hours and the team comes back to your Cochrane home to re-clean what was missed, at no charge. Photos help but are not required.`
+    },
+    {
+      question: "What does a cancellation cost in Cochrane?",
+      answer: `Cancelling inside ${POLICY.cancellationNoticeHours} hours costs ${POLICY.cancellationFee}; with more notice than that, changing or cancelling is free. If the crew arrives in Cochrane and cannot get in, the lockout charge is ${POLICY.lockoutFee}. If Duty Cleaners has to move your booking, you hear as soon as the office knows, you are offered the earliest slot it has, and cancelling that moved booking costs nothing.`
     }
   ];
   const faqJsonLd = {
@@ -219,7 +228,7 @@ export default function Cochrane() {
                   Professional House Cleaning in Cochrane
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  {`Standard cleans in Cochrane from ${STANDARD_FROM} and move-out cleans from ${MOVE_FROM}, flat by home size and priced before you book. Rated ${CALGARY_RATING} by our Calgary customers, from Sunset Ridge to Fireside.`}
+                  {`Cochrane house cleaning runs from ${STANDARD_FROM} for a one-bedroom apartment or condo, and move-out cleaning from ${MOVE_FROM}, both before GST and both with a ${TRAVEL_FEE} travel fee, since Cochrane is outside Calgary city limits. House-type and pet charges show on the quote before you book, and the Calgary listing is rated ${CALGARY_RATING} across ${CITY_PROOF.calgary.googleReviewCount} reviews.`}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -234,8 +243,8 @@ export default function Cochrane() {
                 <div className="flex flex-wrap justify-center lg:justify-start gap-6">
                   {[
                     { icon: CheckCircle2, text: "Pay After Your Clean" },
-                    { icon: CalendarCheck, text: "Flexible Scheduling Available" },
-                    { icon: Award, text: "100% Satisfaction Guarantee" },
+                    { icon: CalendarCheck, text: "Open 7 Days a Week" },
+                    { icon: Award, text: "24-Hour Re-Clean Guarantee" },
                   ].map((badge, i) => (
                     <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                       <badge.icon className="w-4 h-4 text-accent" />
@@ -247,7 +256,7 @@ export default function Cochrane() {
               <div className="flex-shrink-0 w-full lg:w-[500px]">
                 <img width={800} height={608}
                   src={cochraneImg}
-                  alt="Clean modern home interior in Cochrane with Rocky Mountain views"
+                  alt="A clean modern home interior with mountain views through the windows"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                 loading="eager"
                   {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
@@ -255,59 +264,6 @@ export default function Cochrane() {
             </div>
           </div>
         </section>
-
-        {/* About the Neighbourhood */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <AnimatedSection>
-              <div className="max-w-4xl mx-auto">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">About the Neighbourhood</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                  House cleaning in Cochrane, priced by home size
-                </h2>
-                <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
-                  <p>
-                    Cochrane is a town in the foothills west of Calgary, along{" "}
-                    <a href="https://www.google.com/maps/place/Highway+1A,+Cochrane,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Highway 1A</a>.
-                    We clean homes from the streets near the{" "}
-                    <a href="https://www.google.com/maps/place/Cochrane+Ranche+Historic+Site/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Cochrane Ranche Historic Site</a>{" "}
-                    and{" "}
-                    <a href="https://www.google.com/maps/place/Mitford+Park,+Cochrane,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Mitford Park</a>{" "}
-                    down on the river to the newer communities up the hill in{" "}
-                    <a href="https://www.google.com/maps/place/Sunset+Ridge,+Cochrane,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Sunset Ridge</a>{" "}
-                    and{" "}
-                    <a href="https://www.google.com/maps/place/Fireside,+Cochrane,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Fireside</a>, and out toward{" "}
-                    <a href="https://www.google.com/maps/place/Glenbow+Ranch+Provincial+Park/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Glenbow Ranch Provincial Park</a>.
-                    The rate is flat by bedroom count, from {STANDARD_FROM} for a one-bedroom, and Cochrane is outside Calgary city limits, so a {TRAVEL_FEE} travel fee is added at booking and is in the total before you confirm.
-                  </p>
-                  <p>
-                    The crews are our Calgary crews: reference-checked before a first job and rated by the customer after every visit. The Calgary listing stands at {CALGARY_RATING}, and the{" "}
-                    <Link to="/reviews/" className="text-primary underline underline-offset-2">{REVIEW_COUNT} Google reviews</Link>{" "}
-                    across both cities are there to read before you book. For the whole menu with a starting price on each line, see{" "}
-                    <Link to="/calgary/services/" className="text-primary underline underline-offset-2">all Calgary cleaning services and prices</Link>.
-                  </p>
-                </div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
-
-      {/* Things To Do */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <AnimatedSection>
-            <div className="max-w-4xl mx-auto">
-              <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Life</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                Around Cochrane
-              </h2>
-              <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
-                <p>Cochrane is west of Calgary on Highway 1A, at the edge of the foothills. Glenbow Ranch Provincial Park has the trails along the Bow River; the Cochrane Ranche Historic Site keeps the ranching history; MacKay's Ice Cream has been there since 1948. Downtown sits on the valley floor and the newer communities are up the hill on either side of it.</p>
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
 
         {/* Interactive Map */}
         <section className="py-16 bg-background">
@@ -333,30 +289,12 @@ export default function Cochrane() {
           </div>
         </section>
 
-        {/* Local Coverage */}
-        <section className="py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <AnimatedSection>
-              <div className="text-center mb-10">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
-                  Cochrane Neighbourhoods We Serve
-                </h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto">
-                  The Cochrane communities we cover, at the same flat rate in each.
-                </p>
-              </div>
-              <CoverageChips areas={nearbyAreas} />
-            </AnimatedSection>
-          </div>
-        </section>
-
       <LocalMarketNote
         eyebrow="From the route"
         heading="At the base of Big Hill"
         paragraphs={[
           "The town sits at the base of Big Hill, downtown low on the Bow River valley floor, with most of the newer streets up on the higher ground either side of it. Those upper communities lose the shelter the valley gives. Wind comes off the foothills to the west over open ranch country, and screens and window tracks up there load with dry grit far faster than they do downtown. Brushing tracks out is a standing item here, not a deep-clean extra.",
-          "The 2021 census counted 32,199 people here, a 24.5 per cent jump in five years, and the building has not let up since — the north end around Sunset Ridge, the streets south of the river in Fireside. Plenty of these households are in Sunset Ridge or Fireside, in a house the trades only recently left. Construction dust is mildly abrasive and still working out of ductwork months later. Wet cloths, changed often: a cloth that has already picked up construction fines becomes an abrasive itself.",
+          "Construction has not let up in the north end around Sunset Ridge or in the streets south of the river in Fireside, and plenty of households there live in a house the trades only recently left. Construction dust is mildly abrasive and still working out of ductwork months later. Wet cloths, changed often: a cloth that has already picked up construction fines becomes an abrasive itself.",
         ]}
         accent="calgary"
       />
@@ -376,17 +314,66 @@ export default function Cochrane() {
                 </h2>
                 <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                   <p>
-                    A house in Sunset Ridge or Fireside that the trades left within the year wants the deep clean first, from {DEEP_FROM}, so the construction fines in the baseboards and vent covers are dealt with once; after that the standard clean from {STANDARD_FROM} holds it. The{" "}
+                    A house in Sunset Ridge or Fireside that the trades only recently left can start with the deep clean, which adds the deep-clean package to the standard checklist: cobwebs, ceiling fans, light switches, outlet covers and vent covers. The deep clean is {DEEP_FROM} before GST for a one-bedroom apartment or condo, and on top of that come the {TRAVEL_FEE} travel fee, the home-type charge for a house and the pet charge where there is a pet. Construction dust keeps working out of the ductwork for months in a house like that, so wiping the vent covers earns its place, though cleaning inside the ducts is not part of any clean. After that, the standard clean keeps the house up. The{" "}
                     <Link to="/calgary/deep-cleaning/" className="text-primary underline underline-offset-2">Calgary deep cleaning</Link>{" "}
-                    page has the checklist and the price at every bedroom count. A handover, in either direction, is{" "}
-                    <Link to="/move-out-cleaning-calgary/" className="text-primary underline underline-offset-2">move-out cleaning in Calgary</Link>{" "}
-                    from {MOVE_FROM}, priced for an empty house with the appliance and cabinet interiors included.
+                    page has the checklist and the price at every bedroom count.
                   </p>
                   <p>
                     A suite or a whole house let to visitors is a turnover between guests, priced by the hour on the{" "}
                     <Link to="/airbnb-cleaning-services-calgary/" className="text-primary underline underline-offset-2">Airbnb turnover cleaning in Calgary</Link>{" "}
                     page. Every tier and every add-on is on{" "}
                     <Link to="/calgary/pricing/" className="text-primary underline underline-offset-2">the Calgary price list by bedroom count</Link>; add the {TRAVEL_FEE} travel fee for a Cochrane address.
+                  </p>
+                </div>
+              </div>
+            </AnimatedSection>
+          </div>
+        </section>
+
+        {/* Worked quote */}
+        <section className="py-16 bg-background">
+          <div className="container mx-auto px-4">
+            <AnimatedSection>
+              <div className="max-w-3xl mx-auto">
+                <span className="text-primary text-sm font-semibold tracking-wider uppercase">One quote, in full</span>
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground mt-2 mb-6">
+                  How a Cochrane house cleaning quote is built
+                </h2>
+                <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
+                  <p>
+                    A two-bedroom, two-bathroom townhouse in Cochrane on a one-time standard clean starts from the table price of {EXAMPLE_TIER.price}. The townhouse charge adds {HOME_TYPE.townhouse}, and the travel fee for an address outside Calgary city limits adds {TRAVEL_FEE}, for {EXAMPLE_PRICE} before 5% GST. If a cat or a dog lives there, the pet charge goes on as well, and it appears on the quote before booking like the rest.
+                  </p>
+                  <p>
+                    Bedrooms, bathrooms, the type of home, pets and add-ons are what change a Cochrane price. The inside of the oven, the inside of the fridge and interior windows are add-ons with their own prices. How long the clean takes is no part of it: the rate is flat by home size and does not rise because a visit ran long. When a home needs substantially more work than described, such as heavy build-up, the team explains what it found and the options before it goes on.
+                  </p>
+                  <p>
+                    Nothing is charged when you book. A temporary hold goes on the card the day before to confirm it is valid, and the card is charged once the clean is complete; no money moves before then. To weigh the options first, see{" "}
+                    <Link to="/calgary/services/" className="text-primary underline underline-offset-2">all Calgary cleaning services and prices</Link>{" "}
+                    or{" "}
+                    <Link to="/reviews/" className="text-primary underline underline-offset-2">the Duty Cleaners reviews page</Link>.
+                  </p>
+                </div>
+              </div>
+            </AnimatedSection>
+          </div>
+        </section>
+
+        {/* Move-out cleaning */}
+        <section className="py-16 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <AnimatedSection>
+              <div className="max-w-3xl mx-auto">
+                <span className="text-primary text-sm font-semibold tracking-wider uppercase">Moving day</span>
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground mt-2 mb-6">
+                  Move-out cleaning in Cochrane
+                </h2>
+                <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
+                  <p>
+                    A handover in either direction is booked as a move-in or move-out clean, from {MOVE_FROM} before GST for a one-bedroom apartment or condo, plus the {TRAVEL_FEE} travel fee for a Cochrane address and any house-type or pet charge. In a house the trades only recently left in Sunset Ridge or Fireside, it is the clean to book before the furniture arrives, while the cabinets and closets are still empty. The full checklist is on the page for{" "}
+                    <Link to="/move-out-cleaning-calgary/" className="text-primary underline underline-offset-2">move-out cleaning in Calgary</Link>.
+                  </p>
+                  <p>
+                    Renters leaving a Cochrane home fall under Alberta's Residential Tenancies Act, which has the landlord complete a move-out inspection report with the tenant and return the security deposit within 10 days after the tenant moves out. We never promise the deposit comes back, because the landlord decides. What a move-out clean does is finish the home to the checklist before that inspection.
                   </p>
                 </div>
               </div>
@@ -404,7 +391,7 @@ export default function Cochrane() {
                   Cleaning Services for Cochrane Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Everything from weekly upkeep to full move-out cleans.
+                  Six services for Cochrane homes, all run from the Calgary branch.
                 </p>
               </div>
             </AnimatedSection>
@@ -451,7 +438,7 @@ export default function Cochrane() {
               </div>
             </AnimatedSection>
             <AnimatedSection>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
                 {whyUsItems.map((item, i) => (
                   <WhyUsCard key={i} {...item} />
                 ))}
@@ -466,22 +453,19 @@ export default function Cochrane() {
             <AnimatedSection>
               <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
               <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
-                Near Cochrane: other communities we clean
+                Other towns the Calgary cleaning company covers
               </h2>
               <p className="text-muted-foreground mb-8 max-w-3xl mx-auto text-left md:text-center">
                 Our{" "}
                 <Link to="/cleaning-services-airdrie/" className="text-primary underline underline-offset-2 font-medium">Airdrie house cleaners</Link>{" "}
-                are the same Calgary crews working the north side instead of the west. Airdrie and Cochrane are both outside Calgary city limits, so both carry the {TRAVEL_FEE} travel fee; inside Calgary there is none, and the city page lists every neighbourhood we cover.
+                work from the same Calgary office as the Cochrane crews. Airdrie and Cochrane are both outside Calgary city limits, so both carry the {TRAVEL_FEE} travel fee, and so do Strathmore, Langdon, Crossfield, Okotoks and Chestermere. The same fee applies to{" "}
+                <Link to="/locations/high-river/" className="text-primary underline underline-offset-2 font-medium">cleaning services in High River</Link>{" "}
+                and to{" "}
+                <Link to="/locations/black-diamond/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Diamond Valley</Link>, the town Black Diamond and Turner Valley became on 1 January 2023. Inside Calgary city limits there is no trip fee.
               </p>
               <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                 View All Service Areas →
               </Link>
-            <p className="mt-6 text-sm text-muted-foreground">
-              Run a business in Cochrane? We also handle{" "}
-              <Link to="/commercial-cleaning-services-calgary/" className="text-primary underline underline-offset-2 font-medium">
-                commercial and office cleaning across the Calgary region
-              </Link>.
-            </p>
 
             </AnimatedSection>
           </div>

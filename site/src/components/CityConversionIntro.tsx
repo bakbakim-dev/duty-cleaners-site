@@ -69,8 +69,8 @@ const TRUST_ITEMS = {
     },
     {
       icon: HeartHandshake,
-      label: "100% Satisfaction Guarantee",
-      detail: `If something was missed, tell us within ${POLICY.guaranteeWindowHours} hours and we return to make it right at no charge.`,
+      label: "Re-Clean at No Charge",
+      detail: `If something was missed, tell us within ${POLICY.guaranteeWindowHours} hours and we come back and re-clean it at no charge.`,
     },
   ],
   Calgary: [
@@ -88,35 +88,35 @@ const TRUST_ITEMS = {
     },
     {
       icon: HeartHandshake,
-      label: "100% Satisfaction Guarantee",
-      detail: `Tell us within ${POLICY.guaranteeWindowHours} hours about anything missed and a team comes back to redo it, at no charge.`,
+      label: `${POLICY.guaranteeWindowHours}-Hour Re-Clean Guarantee`,
+      detail: `Tell us within ${POLICY.guaranteeWindowHours} hours about anything missed and a team comes back to re-clean it. There is no charge for the return visit.`,
     },
   ],
 } as const;
 
 const PROCESS_STEPS = {
   Edmonton: [
-    { number: "01", title: "Tell us about your home", description: "Bedrooms, bathrooms and the type of clean you need." },
-    { number: "02", title: "Share your contact details", description: "So we can send your quote and confirm anything unusual." },
-    { number: "03", title: "See your price", description: "A real dollar figure for your home, with no waiting and no obligation." },
-    { number: "04", title: "Confirm your booking", description: "Pick your time and address on our secure booking page." },
+    { number: "01", title: "Tell us about your home", description: "Enter the bedrooms, the bathrooms and the type of clean you need." },
+    { number: "02", title: "Share your contact details", description: "We use them to send your quote and to check anything unusual." },
+    { number: "03", title: "See your price", description: "The form shows the price for your home straight away, with no obligation to book." },
+    { number: "04", title: "Confirm your booking", description: "Pick the date and a morning, midday or afternoon arrival window, then add your address on the booking page." },
   ],
   Calgary: [
-    { number: "01", title: "Describe the home", description: "Bedrooms, bathrooms, and which of the cleans you want." },
-    { number: "02", title: "Leave your contact details", description: "Where to send the quote, and a number in case something needs checking." },
-    { number: "03", title: "See your price", description: "The actual figure for your home, on screen, before you commit to anything." },
+    { number: "01", title: "Describe the home", description: "Give the number of bedrooms and bathrooms, then pick the clean." },
+    { number: "02", title: "Leave your contact details", description: "Tell us where to send the quote, and leave a number in case something needs checking." },
+    { number: "03", title: "See your price", description: "The figure for your home appears on screen before you commit to anything." },
     { number: "04", title: "Book the date", description: "Choose a day and an arrival window, add the address, and it is done." },
   ],
 } as const;
 
 const HOW_IT_WORKS = {
   Edmonton: {
-    heading: "A clear path from question to clean home.",
+    heading: "Booking a house clean in Edmonton, step by step.",
     intro: "Price your home first. The rest of the booking simply carries your details forward.",
   },
   Calgary: {
     heading: "Four steps, and the price comes before the commitment.",
-    intro: "Nothing here asks for a card. The form prices the home, then carries what you typed into the booking.",
+    intro: "The form prices the home first, then carries what you typed into the booking.",
   },
 } as const;
 
@@ -129,8 +129,8 @@ const HOW_IT_WORKS = {
 const SUBHEAD = {
   // "No tidying first" was the hero half of a claim the service pages take
   // back three screens later, where they ask for clutter to be picked up.
-  Edmonton: `Standard cleans from ${FROM_PRICE} for a one-bedroom, one-bathroom home, priced flat by size, and nothing is charged until the clean is done. No cleaning before we come.`,
-  Calgary: `A one-bedroom standard clean starts at ${FROM_PRICE}. You see the figure for your own home before you choose a date, and you pay after the clean, not before.`,
+  Edmonton: `Standard cleans start at ${FROM_PRICE} before GST for a one-bedroom, one-bathroom apartment or condo, priced flat by size. A pet charge, a surcharge for other home types and a travel fee outside city limits can apply, and nothing is charged until the clean is done.`,
+  Calgary: `A standard clean of a one-bedroom, one-bathroom condo starts at ${FROM_PRICE} before GST; pets, home types other than an apartment or condo, and addresses outside city limits each add a charge. You see the figure for your own home before you choose a date, and you pay after the clean.`,
 } as const;
 
 

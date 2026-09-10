@@ -60,9 +60,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Montgomery" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Montgomery" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Montgomery" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Montgomery" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Renovation and new-build cleanup that removes drywall dust and debris.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Montgomery" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Renovation and new-build cleanup that removes drywall dust.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Montgomery" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Montgomery" },
 ];
 
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Bowness", "Varsity", "Parkdale", "University Heights", "Brentwood", "Point McKay"];
+const nearbyAreas = ["Bowness", "Varsity", "Brentwood"];
 
 const faqs = [
   {
@@ -104,7 +104,7 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Montgomery?",
-    answer: `Every service we run can be booked locally:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `These services can be booked in Montgomery:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing, booked together with a clean`
   },
   {
     question: "Do you offer discounts?",
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function Montgomery() {
     <>
       <Helmet>
         <title>House Cleaners in Montgomery, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional cleaners serving Montgomery, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="description" content="House cleaners in Montgomery, Calgary. If someone works hospital nights, tell us which room they sleep in, and the order of the clean changes." />
         <meta property="og:title" content="House Cleaners in Montgomery, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Montgomery, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional cleaners serving Montgomery, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
-        <meta property="og:description" content="Professional cleaners serving Montgomery, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="twitter:description" content="House cleaners in Montgomery, Calgary. If someone works hospital nights, tell us which room they sleep in, and the order of the clean changes." />
+        <meta property="og:description" content="House cleaners in Montgomery, Calgary. If someone works hospital nights, tell us which room they sleep in, and the order of the clean changes." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/montgomery-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/montgomery-calgary/" />
@@ -183,7 +183,7 @@ export default function Montgomery() {
                 Professional House Cleaning in Montgomery
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Sitting along the Bow River next to the U of C and Foothills Hospital, Montgomery blends mid-century bungalows with bright modern infills and a true neighbourhood feel.
+                Only about one building in nine in Montgomery is a condominium or apartment, so the neighbourhood is mostly whole houses. Enough households work nights on hospital rotations that it pays to say which room someone will be asleep in, because the order the rooms get done in is easy to change.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function Montgomery() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Montgomery Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Montgomery homes get every service they need.
+                  With about a third of Montgomery's housing rented, move-out cleans run alongside the recurring visits here.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function Montgomery() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Montgomery Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Montgomery and the surrounding NW Calgary communities.
+                    Montgomery bookings run through the Calgary office, open Monday to Saturday 8:00 AM to 8:00 PM and Sunday 9:00 AM to 3:00 PM.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function Montgomery() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={768} src={cleanHomeImg} alt="Friendly Duty Cleaners professional sanitizing a kitchen counter in a Montgomery Calgary home" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1024} height={768} src={cleanHomeImg} alt="Cleaner in a navy uniform and white gloves wiping a grey stone kitchen counter with an orange cloth" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">How a visit works</span>
                   <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Every room, one flat price</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Our Montgomery clients love coming home to a kitchen that gleams, bathrooms that sparkle, and that unmistakable feeling of a job done right. We sweat the small stuff so you don't have to.
+                    A standard, deep or move-out clean in Montgomery is priced by home size before GST, and the figure does not change if the team takes longer. You do not need to be home: most customers leave a key, a lockbox code or smart-lock access, and the team locks up.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Reference-checked before the first job","Supplies and equipment brought","Re-clean at no charge if told within 24 hours"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,9 +311,9 @@ export default function Montgomery() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Montgomery and the communities around it.{" "}
+                  Bowness, Varsity and Brentwood are cleaned by the same Calgary branch as Montgomery, at the same flat rates.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -328,10 +328,10 @@ export default function Montgomery() {
 
       <LocalMarketNote
         eyebrow="From the route"
-        heading="A town until 1963"
+        heading="Its own place, with the Bow on two sides"
         paragraphs={[
-          "Montgomery ran its own affairs until 1963 — a town in 1957, a village a year later, then amalgamated into the city — and it still reads as a separate place, with the Bow River closing both the south and the west. Only about one building in nine is a condominium or apartment, so this is mostly whole houses, and a third of the housing is rented, which puts a steady run of possession-date work alongside the recurring visits.",
-          "The Alberta Children's Hospital sits inside the community and Market Mall closes the north with 32 Avenue. Hospital rotations are the practical detail: enough households here work nights that we ask about sleeping hours at booking, because the order rooms get done in costs nothing to change and the vacuum is the part that carries.",
+          "Montgomery ran its own affairs until it was amalgamated into the city, and it still reads as a separate place, with the Bow River closing both the south and the west. About one building in nine is a condominium or apartment, so this is mostly whole houses, and a third of the housing is rented, which puts a steady run of possession-date work alongside the recurring visits.",
+          "The Alberta Children's Hospital sits inside the community, and 32 Avenue closes the north. Hospital rotations are the practical detail: enough households here work nights that it is worth telling us which room someone sleeps in, because the order rooms get done in costs nothing to change and the vacuum is the part that carries.",
         ]}
         accent="calgary"
       />
@@ -347,7 +347,7 @@ export default function Montgomery() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Montgomery Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Dependable cleaning, visit after visit.
+                  Reference checks before the first job and customer ratings after every visit decide who we send.
                 </p>
               </div>
             </AnimatedSection>

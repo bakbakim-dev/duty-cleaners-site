@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { FREQUENCIES, flatRateFromPrice, formatPrice } from "@/data/pricing";
+import { POLICY } from "@/data/policy";
 
 import heroImage from "@/assets/blog/cleaning-frequency-hero.webp";
 import familyImage from "@/assets/blog/family-household.webp";
@@ -38,59 +39,62 @@ const STANDARD_EXAMPLE = {
     return index === RECURRING.length - 1 ? `or ${price} ${plan}` : `${price} ${plan}`;
   }).join(", "),
 };
+// The smallest recurring discount is the "Every 4 Weeks" tier: 13 visits a
+// year, so the article never calls it "monthly" when it means our plan.
+const EVERY_FOUR_WEEKS = RECURRING[RECURRING.length - 1];
 
 const factors = [
   {
     icon: Home,
     title: "Household Size",
-    description: "How big is your house? The size of your house and the people living in it matter in deciding the frequency of cleaning. If you have a bigger house with a large family, hiring a weekly service is likely your best bet. The house cleaner can help clean areas of your home that you may not have thought needed cleaning especially if you have kids who love to play around and keep their toys everywhere. However, if you have a small one-bedroom home, alone, and have less stuff to clean, biweekly or even monthly service is fine."
+    description: "The size of the home and the number of people living in it decide how fast it gets untidy. A bigger house with a large family is usually best served weekly, while one person in a one-bedroom apartment with little stuff can do well on bi-weekly or monthly visits. At Duty Cleaners, toys and clutter get worked around rather than tidied: clear counters and floors get cleaned, and decluttering is a separate hourly add-on."
   },
   {
     icon: Users,
     title: "Usage Patterns",
-    description: "Do you still do a regular tidy-up of your home such as dusting surface areas, vacuuming, mopping, and cleaning the kitchen, bathrooms, etc.? If your answer is yes, a weekly service may not be the best choice for you. A biweekly cleaning may be perfect since you still do daily cleaning and you may only need help with heavy tasks such as scrubbing the floors, cleaning the windows, etc."
+    description: "If you already dust, vacuum and wipe down the kitchen and bathrooms between visits, a weekly service may be more than the home needs. Bi-weekly often suits a home where the daily tidying is covered and the help is wanted for the jobs that take longest, such as scrubbing bathrooms and washing floors."
   },
   {
     icon: PawPrint,
     title: "Pets",
-    description: "We love our furry friends, but sometimes we forget about the amount of hair they shed or the messes they make. If you have pets who shed a lot at home and you are having a hard time keeping the house clean due to pet-related messes then hiring a cleaner who comes weekly or biweekly can be a huge help. These services may be necessary to keep your home free from pet hair and dander."
+    description: "Pets shed, and the hair and dander settle on floors, furniture and baseboards between visits. A home with a pet that sheds heavily usually needs a cleaner weekly or bi-weekly to stay ahead of it. At Duty Cleaners a compulsory per-visit charge applies to homes with pets, and it shows on the quote before booking. Litter boxes and animal waste are not part of any Duty Cleaners clean."
   },
   {
     icon: Briefcase,
     title: "Lifestyle",
-    description: "Your lifestyle can play a big role in the frequency of your cleaning service. If you are constantly busy with work and social commitments and have no extra time to do even the basic cleaning, then weekly or biweekly services may be more suited to your needs. However, if you have more time to concentrate on housework and don't need as much assistance, a monthly service may be enough."
+    description: "How much time you have for housework matters as much as the size of the home. If work and other commitments leave no time for even basic cleaning, weekly or bi-weekly visits carry the load. If you have time for most of the housework and want help with the rest, a monthly visit may be enough."
   },
   {
     icon: DollarSign,
     title: "Budget",
-    description: `A monthly visit costs least per month. A weekly one costs least per visit, because recurring plans are discounted from the second clean on: ${FREQUENCY_DISCOUNTS}. On a ${STANDARD_EXAMPLE.base} standard clean that works out to ${STANDARD_EXAMPLE.perVisit}. All before 5% GST. Decide which of the two numbers is the one your budget actually feels.`
+    description: `A visit every 4 weeks costs least per month. A weekly one costs least per visit, because recurring plans are discounted from the second clean on: ${FREQUENCY_DISCOUNTS}. On the ${STANDARD_EXAMPLE.base} standard clean of a one-bedroom, one-bathroom apartment or condo, that works out to ${STANDARD_EXAMPLE.perVisit}. Those prices are before 5% GST, the first clean is charged at the one-time rate, and a pet charge, a home-type surcharge or a travel fee outside city limits can apply. Decide which of the two numbers your budget feels.`
   }
 ];
 
 const frequencyOptions = [
   {
     title: "Weekly Cleaning",
-    ideal: "Busy households with kids and pets, larger homes, seniors or disabled individuals",
-    description: "Weekly cleaning is the best option for busy households that need consistent upkeep and maintenance. This is especially true if you have kids and pets at home. If your home is on the larger side, weekly cleaning is definitely something you should look into. The cleaning covers the surfaces of the home as well as the high traffic areas of the house.",
-    benefit: `The more often a home is cleaned, the less there is to clean each time, which is why weekly carries the largest discount: ${FREQUENCY_DISCOUNTS}, applied from your second visit on.`
+    ideal: "Households with children or pets, larger homes, and anyone who cannot do routine cleaning themselves",
+    description: "Weekly cleaning suits a household that needs steady upkeep, especially with children and pets at home or a larger house. Each visit covers the surfaces of the home and the high-traffic areas, so nothing has time to build up.",
+    benefit: `Weekly carries the largest recurring discount at Duty Cleaners. The discounts are ${FREQUENCY_DISCOUNTS}, from the second visit on and before 5% GST.`
   },
   {
     title: "Bi-Weekly Cleaning",
-    ideal: "Young couples, individuals who do regular tidying, medium-sized homes",
-    description: "Biweekly cleanings are the most popular and ideal for those who want to keep their homes tidy but don't feel the need for frequent weekly cleanings. If you're a young couple or someone who can still do general tidying or regular cleaning then bi-weekly service may be the perfect fit for you.",
-    benefit: "Two weeks is long enough that a visit feels like a reset, and short enough that dust and kitchen grease never get ahead of you. It is the plan most recurring customers choose."
+    ideal: "Couples, people who tidy regularly, medium-sized homes",
+    description: "Bi-weekly cleaning suits a home that stays fairly tidy day to day but still needs a proper clean more often than once a month. It works well when someone in the household keeps up with general tidying between visits.",
+    benefit: "Two weeks is long enough that a visit feels like a reset, and short enough that dust and kitchen grease never get ahead of you."
   },
   {
     title: "Monthly Cleaning",
-    ideal: "Smaller homes, individuals who clean regularly, those with flexible schedules",
-    description: "The cleaner may come to your home once a month and do a thorough cleaning of your home. If you have a busy schedule and find weekly and biweekly cleanings to be too much, then a monthly cleaning service may be better suited for your needs.",
-    benefit: "This type of service is ideal for those who don't use their homes often or for households with less mess to clean up on a weekly and bi-weekly basis."
+    ideal: "Smaller homes, people who clean regularly, homes that are lightly used",
+    description: "A cleaner comes about once a month and does a thorough clean of the home. It suits a home with less mess to clean up, or a household that does most of the housework and wants a regular reset.",
+    benefit: `At Duty Cleaners the closest plan is ${EVERY_FOUR_WEEKS.label.toLowerCase()}, which is what many people mean by monthly. It is 13 visits a year, not 12, at ${Math.round(EVERY_FOUR_WEEKS.discount * 100)}% off from the second visit, before 5% GST.`
   },
   {
     title: "One-time or Special Events",
     ideal: "Holiday gatherings, parties, move-in/move-out, seasonal deep cleaning",
-    description: "If you have a special event coming up or need one-time deep cleaning services for any reason, there are many professional companies that offer customized services to meet your needs. Whether you're having guests over for the holidays or hosting a large party, a dedicated team can help get your home looking its best before the big day.",
-    benefit: "These services usually involve deeper and focused cleanings of specific spaces or rooms in your home, so that you can focus on preparing for the event without worrying about tidying up beforehand."
+    description: "A one-time clean suits a home before guests arrive for the holidays or a party, or as a seasonal reset. A move-in or move-out clean and a deep clean are separate services, each with its own checklist and price.",
+    benefit: "A one-time clean is priced by home size like any other visit. If it goes well, a recurring plan can start from there."
   }
 ];
 
@@ -105,27 +109,27 @@ export default function BlogCleaningFrequency() {
         <title>How Often Should You Get Your House Cleaned? | Duty Cleaners</title>
         <meta
           name="description"
-          content="Learn how often you should hire a cleaning service - weekly, bi-weekly, or monthly. An expert guide to choosing the right cleaning frequency."
+          content="Household size, pets, how you use the home and budget decide whether a house needs cleaning weekly, bi-weekly or monthly, and what each costs."
         />
         {/* Canonical is the preserved WordPress slug, matching the cost and vinegar
             posts. /blog/cleaning-frequency is the modern route and now 301s here. */}
         <link rel="canonical" href="https://dutycleaners.ca/how-often-should-a-cleaning-service-clean-my-house/" />
         <meta property="og:title" content="How Often Should You Get Your House Cleaned? | Duty Cleaners" />
-        <meta property="og:description" content="Learn how often you should hire a cleaning service - weekly, bi-weekly, or monthly. An expert guide to choosing the right cleaning frequency." />
+        <meta property="og:description" content="Household size, pets, how you use the home and budget decide whether a house needs cleaning weekly, bi-weekly or monthly, and what each costs." />
         <meta name="twitter:card" content="summary_large_image" />
         {/* This post's own hero, so a share card shows the article rather
             than the generic site image. */}
         <meta property="og:image" content={absoluteAssetUrl(heroImage)} />
         <meta name="twitter:image" content={absoluteAssetUrl(heroImage)} />
         <meta name="twitter:title" content="How Often Should You Get Your House Cleaned? | Duty Cleaners" />
-        <meta name="twitter:description" content="Learn how often you should hire a cleaning service - weekly, bi-weekly, or monthly. An expert guide to choosing the right cleaning frequency." />
+        <meta name="twitter:description" content="Household size, pets, how you use the home and budget decide whether a house needs cleaning weekly, bi-weekly or monthly, and what each costs." />
         <meta property="og:type" content="article" />
         <meta property="og:url" content="https://dutycleaners.ca/how-often-should-a-cleaning-service-clean-my-house/" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Article",
           "headline": "How Often Should A Cleaning Service Clean My House",
-          "description": "Learn how often you should hire a cleaning service - weekly, bi-weekly, or monthly. Expert guide from Duty Cleaners to help you choose the right cleaning frequency.",
+          "description": "Household size, pets, how you use the home and budget decide whether a house needs cleaning weekly, bi-weekly or monthly, and what each costs.",
           "image": absoluteAssetUrl(heroImage),
           ...(publishedFor("/how-often-should-a-cleaning-service-clean-my-house") ? { datePublished: publishedFor("/how-often-should-a-cleaning-service-clean-my-house") } : {}),
           "dateModified": modifiedOr("/how-often-should-a-cleaning-service-clean-my-house"),
@@ -172,7 +176,7 @@ export default function BlogCleaningFrequency() {
               </h1>
               
               <p className="text-xl text-muted-foreground mb-8">
-                Discover the perfect cleaning frequency for your home based on your lifestyle, household size, and budget.
+                The right cleaning frequency depends on household size, pets, how much tidying you already do and what you want to spend.
               </p>
 
               <div className="aspect-video rounded-2xl overflow-hidden mb-12">
@@ -193,10 +197,10 @@ export default function BlogCleaningFrequency() {
               {/* Introduction */}
               <div className="prose prose-lg max-w-none mb-12">
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  The question is rarely whether the house needs cleaning. It is how many hours a month you want back, and what those hours cost at each frequency. Most cleaning providers offer <Link to="/edmonton/recurring-cleaning/" className="text-primary underline underline-offset-2 font-medium">weekly, biweekly, and monthly home cleaning services</Link> which we can choose based on our needs and budget — and if budget is the deciding factor, our guide to <Link to="/how-much-does-a-house-cleaning-cost/" className="text-primary underline underline-offset-2 font-medium">what house cleaning costs</Link> breaks the numbers down.
+                  The question is rarely whether the house needs cleaning. It is how many hours a month you want back, and what those hours cost at each frequency. Most cleaning companies offer weekly, bi-weekly and roughly monthly visits. At Duty Cleaners, <Link to="/edmonton/recurring-cleaning/" className="text-primary underline underline-offset-2 font-medium">recurring house cleaning in Edmonton</Link> and <Link to="/calgary/recurring-cleaning/" className="text-primary underline underline-offset-2 font-medium">recurring house cleaning in Calgary</Link> run weekly, bi-weekly or every 4 weeks. If budget is the deciding factor, our guide to <Link to="/how-much-does-a-house-cleaning-cost/" className="text-primary underline underline-offset-2 font-medium">what house cleaning costs</Link> breaks the numbers down.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed mt-4">
-                  But how often do we need professional cleanings for our homes? Is once a week too much? Is bi-weekly enough? Or does monthly service make more sense timewise and financially? Well, the answer to these questions depends on many factors.
+                  The right answer depends on five things: the size of the household, how the home is used, pets, how much time you have and your budget.
                 </p>
               </div>
 
@@ -205,13 +209,13 @@ export default function BlogCleaningFrequency() {
                 <div className="p-6 bg-primary/10 rounded-xl border border-primary/20">
                   <h2 className="font-bold text-foreground mb-2">Weekly Cleaning Recommended</h2>
                   <p className="text-muted-foreground text-sm">
-                    If you own a large house, with a dog that sheds, and little kids but none of your family members have time to do even basic cleaning, then definitely you need a house cleaner to come weekly to maintain cleanliness and tidiness in your home.
+                    A large house with a dog that sheds and young children, in a family with no time for even basic cleaning, is the clearest case for a weekly visit.
                   </p>
                 </div>
                 <div className="p-6 bg-secondary/30 rounded-xl border border-secondary/30">
                   <h2 className="font-bold text-foreground mb-2">Monthly Cleaning Sufficient</h2>
                   <p className="text-muted-foreground text-sm">
-                    If you live alone in a one-bedroom apartment with one bathroom and you constantly do some regular tidying in your home, a monthly schedule will be enough.
+                    One person in a one-bedroom, one-bathroom apartment who tidies regularly can do well on a monthly schedule.
                   </p>
                 </div>
               </div>
@@ -261,7 +265,7 @@ export default function BlogCleaningFrequency() {
                    loading="lazy" decoding="async"/>
                 </div>
                 <p className="text-center text-muted-foreground mt-4 italic">
-                  Pets add joy to our homes but also require more frequent cleaning to manage shedding and dander.
+                  A home with a pet that sheds usually needs cleaning more often, to keep hair and dander off floors and furniture.
                 </p>
               </div>
 
@@ -269,32 +273,32 @@ export default function BlogCleaningFrequency() {
               <div className="mb-12 p-6 bg-muted/30 rounded-xl">
                 <h3 className="font-bold text-foreground mb-4">When Weekly Cleaning May Not Be Right</h3>
                 <p className="text-muted-foreground mb-4">
-                  If you already maintain a regular cleaning routine, a weekly service may lead to the following issues:
+                  If you already keep a regular cleaning routine, a weekly service has two drawbacks:
                 </p>
                 <ul className="space-y-2 text-muted-foreground">
                   <li className="flex items-start gap-2">
                     <span className="text-primary font-bold">1.</span>
-                    There would be no big jobs being completed as they are being done weekly and you may find that there is simply not enough time between visits.
+                    Each visit has less to do, so you pay for more visits than the home needs.
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-primary font-bold">2.</span>
-                    You will end up paying more because weekly cleaning services are usually more expensive compared to other frequencies.
+                    Weekly costs more per month than bi-weekly or every 4 weeks, even with its larger discount.
                   </li>
                 </ul>
               </div>
 
               {/* Kitchen Warning */}
               <div className="mb-12 p-6 bg-destructive/10 rounded-xl border border-destructive/20">
-                <h3 className="font-bold text-foreground mb-2">Did You Know?</h3>
+                <h3 className="font-bold text-foreground mb-2">The Rooms That Set the Schedule</h3>
                 <p className="text-muted-foreground">
-                  The kitchen is actually the dirtiest room in the house because of all the grease and food stains which makes it more susceptible to bacteria and dirt than bathrooms are. If you don't keep your home clean and it's cluttered most of the time, you should consider having a weekly or biweekly professional service.
+                  Kitchens and bathrooms decide most cleaning schedules. Grease and food spills build up in a kitchen that is cooked in every day, and hard Alberta water leaves mineral scale on taps, shower glass and kettles between visits. If either room is hard to keep up with on your own, a weekly or bi-weekly visit usually helps more than a monthly one.
                 </p>
               </div>
 
               {/* Frequency Options */}
               <div className="mb-16">
                 <h2 className="text-2xl md:text-3xl font-bold mb-6 text-foreground">
-                  The Frequency of Professional Cleaning Service
+                  Weekly, Bi-Weekly, Monthly or One-Time Cleaning
                 </h2>
 
                 <div className="aspect-video rounded-xl overflow-hidden mb-8">
@@ -306,7 +310,7 @@ export default function BlogCleaningFrequency() {
                 </div>
 
                 <p className="text-muted-foreground mb-8">
-                  The frequency of cleaning may be customized depending on the amount of cleaning you need in your home, and where you want the cleaner to focus their efforts.
+                  Each schedule suits a different kind of household, depending on how much cleaning the home needs between visits.
                 </p>
 
                 <div className="grid md:grid-cols-2 gap-6">
@@ -342,20 +346,20 @@ export default function BlogCleaningFrequency() {
                   Finding the Right Frequency for You
                 </h2>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Pick the frequency by how fast your home actually gets untidy, not by the one that sounds most responsible. A plan you quietly resent is a plan you cancel, and you can change frequency or stop at any time without a contract.
+                  Pick the frequency by how fast your home gets untidy, not by the one that sounds most responsible. A plan you quietly resent is a plan you cancel. At Duty Cleaners a booking can be changed or cancelled with {POLICY.cancellationNoticeHours} hours' notice; inside {POLICY.cancellationNoticeHours} hours the fee is {POLICY.cancellationFee}.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed mt-4">
-                  No matter what frequency of cleaning service you choose, finding a reliable house cleaning service that can meet your needs is essential for peace of mind and maintaining a healthy home environment.
+                  A few visits in, the schedule shows whether it fits. If the home is untidy again well before the next visit, book more often; if the team finds little to do, book less often.
                 </p>
               </div>
 
               {/* CTA */}
               <div className="bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 rounded-2xl p-8 text-center">
                 <h3 className="text-2xl font-bold mb-4 text-foreground">
-                  Ready to Book Your Cleaning Service?
+                  Book a Recurring Clean in Edmonton or Calgary
                 </h3>
                 <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                  Duty Cleaners serves Edmonton, Calgary and the surrounding communities. Pick a frequency, see the price for your home size, and pay only after the clean is done.
+                  Duty Cleaners has an Edmonton branch and a Calgary branch, and each also serves nine communities outside its city. Pick a frequency and see the price for your home size before you book. The card is charged once the clean is complete.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button size="lg" variant="accent" className="w-full sm:w-auto min-h-[52px] text-base font-bold" asChild>

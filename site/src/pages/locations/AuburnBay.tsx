@@ -60,10 +60,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Auburn Bay" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Auburn Bay" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Auburn Bay" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Drywall and construction dust after a renovation or a new build in Auburn Bay.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Auburn Bay" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Auburn Bay" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Auburn Bay" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "A move-out clean covers inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Auburn Bay" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Post-construction cleaning clears drywall and construction dust after a renovation or a new build in Auburn Bay.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Auburn Bay" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Wall washing takes scuffs, handprints and cooking film off painted walls without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Auburn Bay" },
 ];
 
 const whyUsItems = [
@@ -94,7 +94,7 @@ const whyUsItems = [
   { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
-const nearbyAreas = ["Auburn Bay Estates", "Auburn Bay Heights", "Auburn Bay Villas", "Mahogany", "Cranston", "Seton", "McKenzie Towne", "Copperfield"];
+const nearbyAreas = ["Mahogany", "Cranston"];
 
 const faqs = [
   {
@@ -103,7 +103,7 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Auburn Bay?",
-    answer: `Around Auburn Bay we offer the full range:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `In Auburn Bay the Calgary branch offers:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
   },
   {
     question: "Do you offer discounts?",
@@ -111,7 +111,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `In Auburn Bay, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `In Auburn Bay, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -136,12 +136,12 @@ export default function AuburnBay() {
     <>
       <Helmet>
         <title>House Cleaning in Auburn Bay, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Auburn Bay, Calgary. Lakeside community with private beach. 100% satisfaction guaranteed. Pay after your clean." />
+        <meta name="description" content="Calgary's Auburn Bay began building in 2005, so its first homes are at the age where grout goes porous; from May, the lake adds sand to mudrooms." />
         <meta property="og:title" content="House Cleaning in Auburn Bay, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Auburn Bay, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Auburn Bay, Calgary. Lakeside community with private beach. 100% satisfaction guaranteed. Pay after your clean." />
-        <meta property="og:description" content="Professional house cleaning in Auburn Bay, Calgary. Lakeside community with private beach. 100% satisfaction guaranteed. Pay after your clean." />
+        <meta name="twitter:description" content="Calgary's Auburn Bay began building in 2005, so its first homes are at the age where grout goes porous; from May, the lake adds sand to mudrooms." />
+        <meta property="og:description" content="Calgary's Auburn Bay began building in 2005, so its first homes are at the age where grout goes porous; from May, the lake adds sand to mudrooms." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/auburn-bay/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/auburn-bay/" />
@@ -183,7 +183,7 @@ export default function AuburnBay() {
                   Professional House Cleaning in Auburn Bay
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Trusted cleaning services for Calgary's award-winning lake community — from lakefront properties to family homes near the pathways.
+                  Development in Auburn Bay began in 2005, so its earliest homes are now around twenty years old. From May, the lake adds beach sand and wet towels to the mudroom floor.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -211,7 +211,7 @@ export default function AuburnBay() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
                   src={calgaryKitchen}
-                  alt="A spotless kitchen after a Duty Cleaners visit in Calgary"
+                  alt="Kitchen with granite counters and a gas cooktop, opening onto a dining table by tall windows"
                   width={800}
                   height={800}
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
@@ -254,10 +254,10 @@ export default function AuburnBay() {
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
-                  Auburn Bay Neighbourhoods We Serve
+                  More Calgary-area neighbourhoods we clean
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Auburn Bay and the communities around it.{" "}
+                  Our Calgary branch cleans these neighbourhoods at the same flat rates by home size as Auburn Bay.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -272,8 +272,8 @@ export default function AuburnBay() {
         eyebrow="Neighbourhood notes"
         heading="Twenty years on the lake"
         paragraphs={[
-          "Two freeways bound this place - Deerfoot Trail the whole western side, Stoney Trail the north - so Auburn Bay's lake sits inside an L of high-speed traffic. Perimeter homes pay for it. Exterior glass and window screens on those two elevations pick up a road film that interior streets never produce, and it is back in weeks, not months. One annual window clean will not hold on those two elevations.",
-          "The lake is the reason people are here and the reason the mudroom is the busiest room in the house: swim bags, beach sand and wet towels come off the water from May, and they land on the same two metres of tile every time. Development began in 2005, so the earliest phases are around twenty years old - the point where grout goes porous and tub silicone stains rather than soils. Those are replacement and refinishing problems, not scrubbing problems, and we will say so rather than keep working a stain that has already set.",
+          "Two freeways bound this place, Deerfoot Trail along the whole western side and Stoney Trail along the north, so Auburn Bay's lake sits inside an L of high-speed traffic. Perimeter homes pay for it. The glass and screens on those two elevations pick up a road film that interior streets never produce, and it is back within weeks. That film is on the outside of the glass, which a house clean leaves alone; the inside of the glass is the interior-windows add-on.",
+          "The lake is what fills the mudroom: swim bags, beach sand and wet towels come off the water from May, and they land on the same two metres of tile every time. Development began in 2005, so the earliest phases are around twenty years old. That is the point where grout goes porous and tub silicone stains rather than soils. Those are replacement and refinishing problems, not scrubbing problems, and we will say so rather than keep working a stain that has already set.",
         ]}
         accent="calgary"
       />
@@ -292,7 +292,7 @@ export default function AuburnBay() {
                   Cleaning Services for Auburn Bay Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs, we have every service your lakeside home needs.
+                  Standard, deep and move-out cleans for Auburn Bay homes are priced flat by home size before GST. Post-construction goes by square footage, and wall washing is booked together with a clean.
                 </p>
               </div>
             </AnimatedSection>
@@ -334,7 +334,7 @@ export default function AuburnBay() {
                   Why Auburn Bay Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>

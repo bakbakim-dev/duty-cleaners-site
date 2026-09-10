@@ -82,16 +82,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Prince Charles" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Prince Charles" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Prince Charles" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Prince Charles" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Post-renovation dust and debris, professionally removed.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Prince Charles" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "After a renovation, the clean is priced by square footage instead of by bedrooms.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Prince Charles" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Prince Charles" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Prince Charles" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule. The first clean is charged at the one-time rate, from ${RECURRING_FROM} before GST for a one-bedroom, one-bathroom apartment, plus the pet charge where it applies. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Prince Charles" },
 ];
 
 const whyUsItems = [
@@ -133,15 +133,15 @@ export default function PrinceCharles() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Prince Charles?",
-      answer: `Every service we run can be booked locally:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `In Prince Charles, the Edmonton branch books these services:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
-      answer: `Yes, recurring visits cost less every time:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
+      answer: `Yes. A recurring standard clean is discounted by frequency:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -163,25 +163,25 @@ export default function PrinceCharles() {
     <>
       <Helmet>
         <title>House Cleaning in Prince Charles, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Prince Charles, Edmonton. Trusted local cleaners, customer-rated, serving Prince Charles homes." />
+        <meta name="description" content="House cleaning in Prince Charles, Edmonton: wartime and 1950s homes with original trim, and east-facing window tracks catching Blatchford dust." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Prince Charles, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/prince-charles-edmonton",
   areaServed: "Prince Charles, Edmonton, AB",
-  description: "Professional house cleaning in Prince Charles, Edmonton. Trusted local cleaners serving Prince Charles homes with reliable, customer-rated cleaning service.",
+  description: "House cleaning in Prince Charles, Edmonton, where compact wartime and 1950s houses with original trim are priced flat by home size.",
   geo: { latitude: "53.575", longitude: "-113.507" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/prince-charles-edmonton/" />
         <meta property="og:title" content="House Cleaning in Prince Charles, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Prince Charles, Edmonton. Trusted local cleaners, customer-rated, serving Prince Charles homes." />
+        <meta property="og:description" content="House cleaning in Prince Charles, Edmonton: wartime and 1950s homes with original trim, and east-facing window tracks catching Blatchford dust." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/prince-charles-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Prince Charles, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Prince Charles, Edmonton. Trusted local cleaners, customer-rated, serving Prince Charles homes." />
+        <meta name="twitter:description" content="House cleaning in Prince Charles, Edmonton: wartime and 1950s homes with original trim, and east-facing window tracks catching Blatchford dust." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -207,7 +207,7 @@ export default function PrinceCharles() {
                   Professional House Cleaning in Prince Charles
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  From character homes along 132 Avenue to family bungalows near Prince Charles School — your trusted neighbourhood cleaning team.
+                  Most homes in Prince Charles are compact wartime and 1950s houses with original trim, next to the Blatchford build-out. The price is a flat rate by home size, and it does not rise when small rooms take longer.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -235,7 +235,7 @@ export default function PrinceCharles() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
                   src={heroImg}
-                  alt="Professional cleaner working in a Prince Charles, Edmonton home"
+                  alt="A cleaner wiping a wooden china cabinet beside a tall, sunlit window"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   width={1024}
                   height={1024}
@@ -257,7 +257,7 @@ export default function PrinceCharles() {
                   Cleaning Services for Prince Charles Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
+                  Each service card links to its own Edmonton page, and every price is a flat rate before 5% GST.
                 </p>
               </div>
             </AnimatedSection>
@@ -300,7 +300,7 @@ export default function PrinceCharles() {
                   Why Prince Charles Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Reliable, detail-first cleaning families count on.
+                  Customer ratings after each visit decide which cleaners we keep sending, and a missed spot reported within 24 hours gets a free re-clean.
                 </p>
               </div>
             </AnimatedSection>
@@ -322,7 +322,7 @@ export default function PrinceCharles() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Prince Charles Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Steady, dependable cleaning across north-central Edmonton.
+                  Prince Charles runs north from 118 Avenue and is inside Edmonton city limits, so no trip fee is added to a clean.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -341,12 +341,12 @@ export default function PrinceCharles() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Prince Charles</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Edmonton Neighbourhoods We Clean</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    The Edmonton branch cleans these neighbourhoods as well, and prices them the same way, by home size.
                   </p>
                 </div>
-                <CoverageChips areas={["Prince Charles School", "Coronation Park", "Westwood Park", "132 Avenue", "127 Street", "Sherbrooke", "Lauderdale", "Mayfield"]} variant="compact" />
+                <CoverageChips areas={["Sherbrooke", "Lauderdale", "Mayfield"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -361,8 +361,8 @@ export default function PrinceCharles() {
         eyebrow="Local knowledge"
         heading="Prince Charles by the airfield"
         paragraphs={[
-          "Prince Charles borders the old municipal airport lands, and Blatchford's decade-long build-out next door is the neighbourhood's defining dust source — cut earth and construction fines drifting over the fence line in every dry week. East-facing window tracks tell the story at a glance, and clearing them is a per-visit task while the build runs.",
-          "The homes are wartime and 1950s stock, compact with original trim, and The homes are wartime and 1950s stock — seven in ten built between 1946 and 1960 — compact, with original trim and small dense rooms that take longer per square foot than their footprint suggests. 118 Avenue runs the whole south edge — bending into Kingsway at the neighbourhood's southeast corner — and adds the usual arterial grit to the blocks that front it.",
+          "Prince Charles borders the old municipal airport lands, and Blatchford's decade-long build-out next door is the neighbourhood's defining dust source — cut earth and construction fines drifting over the fence line in every dry week. East-facing window tracks tell the story at a glance.",
+          "The homes are wartime and 1950s stock, with seven in ten built between 1946 and 1960. They are compact, with original trim and small dense rooms that take longer per square foot than their footprint suggests. 118 Avenue runs the whole south edge, bending into Kingsway at the neighbourhood's southeast corner, and adds the usual arterial grit to the blocks that front it.",
         ]}
       />
 

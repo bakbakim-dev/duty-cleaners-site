@@ -82,16 +82,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Kilkenny" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Kilkenny" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Kilkenny" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Kilkenny" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared properly after renos and handovers.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Kilkenny" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust and debris cleared after a renovation, priced by the home's square footage.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Kilkenny" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Kilkenny" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Kilkenny" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit before GST for a one-bedroom, one-bathroom apartment, plus any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Kilkenny" },
 ];
 
 const whyUsItems = [
@@ -141,7 +141,7 @@ export default function Kilkenny() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -163,25 +163,25 @@ export default function Kilkenny() {
     <>
       <Helmet>
         <title>House Cleaners in Kilkenny, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Kilkenny, Edmonton. Trusted local cleaners serving northeast Edmonton families." />
+        <meta name="description" content="In Kilkenny, Edmonton, late-1960s bungalows have basement drop-ceiling tiles that shed dust when bumped, so basement cleans start at the top." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Kilkenny, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/kilkenny-edmonton",
   areaServed: "Kilkenny, Edmonton, AB",
-  description: "Professional house cleaning in Kilkenny, Edmonton. Trusted local cleaners serving northeast Edmonton families.",
+  description: "In Kilkenny, Edmonton, late-1960s bungalows have basement drop-ceiling tiles that shed dust when bumped, so basement cleans start at the top.",
   geo: { latitude: "53.601", longitude: "-113.466" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/kilkenny-edmonton/" />
         <meta property="og:title" content="House Cleaners in Kilkenny, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Kilkenny, Edmonton. Trusted local cleaners serving northeast Edmonton families." />
+        <meta property="og:description" content="In Kilkenny, Edmonton, late-1960s bungalows have basement drop-ceiling tiles that shed dust when bumped, so basement cleans start at the top." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/kilkenny-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Kilkenny, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Kilkenny, Edmonton. Trusted local cleaners serving northeast Edmonton families." />
+        <meta name="twitter:description" content="In Kilkenny, Edmonton, late-1960s bungalows have basement drop-ceiling tiles that shed dust when bumped, so basement cleans start at the top." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -207,7 +207,7 @@ export default function Kilkenny() {
                   Professional House Cleaning in Kilkenny
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Your reliable, local cleaning team serving the Kilkenny community. From family bungalows on Kilkenny Crescent to homes near Londonderry Mall — dependable, detail-focused cleaning.
+                  Kilkenny was laid down in the late 1960s, and its bungalows keep panelled basement rec rooms under drop ceilings. Our Edmonton branch cleans them at a flat rate by home size.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -235,7 +235,7 @@ export default function Kilkenny() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
                   src={heroImg}
-                  alt="Professional cleaner cleaning a bathroom mirror in a Kilkenny, Edmonton home"
+                  alt="Man wiping a bathroom mirror with a towel while a woman points to a spot on the glass"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   width={1024}
                   height={1024}
@@ -257,7 +257,7 @@ export default function Kilkenny() {
                   Cleaning Services for Kilkenny Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
+                  Every service for Kilkenny homes is priced by home size, and a bungalow's home-type charge shows on the quote before you book.
                 </p>
               </div>
             </AnimatedSection>
@@ -300,7 +300,7 @@ export default function Kilkenny() {
                   Why Kilkenny Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Reliable, detail-first cleaning families count on.
+                  Every visit is rated by the customer, and every cleaner is reference-checked before a first job.
                 </p>
               </div>
             </AnimatedSection>
@@ -322,7 +322,7 @@ export default function Kilkenny() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Kilkenny Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Located in northeast Edmonton, we're always just around the corner.
+                  Kilkenny homes facing 82 Street take in more grit than those on the quiet interior crescents, and there is no trip fee inside Edmonton city limits.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -341,12 +341,12 @@ export default function Kilkenny() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Kilkenny</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Edmonton-area neighbourhoods we clean</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    Belvedere, Kildare and Evansdale are on the Edmonton branch's list as well, and none of them carries a trip fee.
                   </p>
                 </div>
-                <CoverageChips areas={["Londonderry Mall", "Kilkenny School", "144 Avenue", "66 Street", "Belmead", "Belvedere", "Kildare", "Evansdale"]} variant="compact" />
+                <CoverageChips areas={["Belvedere", "Kildare", "Evansdale"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -362,7 +362,7 @@ export default function Kilkenny() {
         heading="Kilkenny's era, in cleaning terms"
         paragraphs={[
           "Kilkenny was laid down in the late 1960s, and its bungalows keep the era's signature basement: panelled rec rooms, drop ceilings and bar corners that collect a specific mix of dust and dryness. Drop-ceiling tiles hold decades of fine particles and shed them when bumped, so basement cleans here start at the top or get undone.",
-          "The neighbourhood's border arterials — 82 Street on one side, 66 Street traffic nearby — bring the north side's constant grit, while the interior crescents stay quiet. Which street a Kilkenny home faces changes its entry workload more than its size does, and it is worth saying so when booking.",
+          "The neighbourhood's border arterials, 82 Street on one side and 66 Street traffic nearby, bring the north side's constant grit, while the interior crescents stay quiet. Which street a Kilkenny home faces changes its entry workload more than its size does, and it is worth saying so when booking.",
         ]}
       />
 

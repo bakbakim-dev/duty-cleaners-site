@@ -81,17 +81,17 @@ const OFF_BIWEEKLY = pctOff(4);
 const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Boyle Street" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Boyle Street" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Boyle Street" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around Boyle Street.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Boyle Street" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Boyle Street" },
+  { icon: Home, title: "Standard Cleaning", description: "A standard clean is a one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Boyle Street" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "A deep clean is the standard checklist plus the deep-clean package: baseboards, doors, light switches, wall outlets and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Boyle Street" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "A move-in or move-out clean goes inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Boyle Street" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "The team clears dust and debris after a renovation in a Boyle Street suite or converted building.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Boyle Street" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Wall washing takes scuffs, handprints and cooking film off painted walls without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Boyle Street" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Boyle Street" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `Recurring cleaning is the standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment, before 5% GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Boyle Street" },
 ];
 
 const whyUsItems = [
@@ -133,7 +133,7 @@ export default function BoyleStreet() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Boyle Street?",
-      answer: `The full service menu is available here:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `In Boyle Street, Duty Cleaners' Edmonton branch offers:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
@@ -141,7 +141,7 @@ export default function BoyleStreet() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `A deep clean layers these onto the standard visit:\n\n• Baseboards wiped\n• Doors wiped\n• Light switches fully cleaned\n• Wall outlet covers wiped\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -163,25 +163,25 @@ export default function BoyleStreet() {
     <>
       <Helmet>
         <title>Boyle Street, Edmonton House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Boyle Street, Edmonton. Trusted local cleaners, customer-rated, serving Boyle Street homes." />
+        <meta name="description" content="Boyle Street housing in Edmonton runs to apartment blocks and converted older buildings, so cleaners carry every supply in and price by suite size." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Boyle Street, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/boyle-street-edmonton",
   areaServed: "Boyle Street, Edmonton, AB",
-  description: "Professional house cleaning in Boyle Street, Edmonton. Trusted local cleaners serving Boyle Street homes with reliable, customer-rated cleaning service.",
+  description: "Boyle Street housing in Edmonton runs to apartment blocks and converted older buildings, so cleaners carry every supply in and price by suite size.",
   geo: { latitude: "53.547", longitude: "-113.481" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/boyle-street-edmonton/" />
         <meta property="og:title" content="Boyle Street, Edmonton House Cleaning | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Boyle Street, Edmonton. Trusted local cleaners, customer-rated, serving Boyle Street homes." />
+        <meta property="og:description" content="Boyle Street housing in Edmonton runs to apartment blocks and converted older buildings, so cleaners carry every supply in and price by suite size." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/boyle-street-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Boyle Street, Edmonton House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Boyle Street, Edmonton. Trusted local cleaners, customer-rated, serving Boyle Street homes." />
+        <meta name="twitter:description" content="Boyle Street housing in Edmonton runs to apartment blocks and converted older buildings, so cleaners carry every supply in and price by suite size." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -207,7 +207,7 @@ export default function BoyleStreet() {
                   Professional House Cleaning in Boyle Street
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  From renovated heritage walk-ups to modern lofts near the Ice District — bring quiet polish to your inner-city home with our trusted local team.
+                  Boyle Street housing runs to apartment blocks and converted older buildings rather than houses. Our Edmonton branch cleans suites here unit by unit, brings every supply, and charges the card once the clean is complete.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -235,7 +235,7 @@ export default function BoyleStreet() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
                   src={heroImg}
-                  alt="Professional cleaner working in a Boyle Street, Edmonton home"
+                  alt="Cleaner mopping a wood-floored hallway lined with exposed brick"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   width={1024}
                   height={1024}
@@ -257,7 +257,7 @@ export default function BoyleStreet() {
                   Cleaning Services for Boyle Street Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Boyle Street homes get every service they need.
+                  Apartments and condos in Boyle Street are priced flat by bedroom and bathroom count, before 5% GST, and the pet charge applies to homes with pets.
                 </p>
               </div>
             </AnimatedSection>
@@ -300,7 +300,7 @@ export default function BoyleStreet() {
                   Why Boyle Street Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -322,7 +322,7 @@ export default function BoyleStreet() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Boyle Street Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Steps from the Ice District and the Quarters — we know the inner city well.
+                  Boyle Street runs from the river valley at Grierson Hill and Rowland Road up to the LRT corridor, between 97 Street and 82 Street.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -341,12 +341,12 @@ export default function BoyleStreet() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Boyle Street</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Edmonton-area neighbourhoods we clean</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    Our Edmonton branch cleans 80 Edmonton neighbourhoods, Boyle Street and McCauley among them, with no trip fee inside city limits.
                   </p>
                 </div>
-                <CoverageChips areas={["Rogers Place", "Chinatown", "The Quarters", "Jasper Avenue", "97 Street", "95 Street", "Boyle Plaza", "McCauley"]} variant="compact" />
+                <CoverageChips areas={["McCauley"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -361,7 +361,7 @@ export default function BoyleStreet() {
         eyebrow="On the ground"
         heading="Between the LRT and the river"
         paragraphs={[
-          "Few parts of Edmonton hold as much surviving Edwardian brick as Boyle Street - the Gibson Block of 1913, the Hecla Block of 1914, the Ernest Brown Block, all designated municipal historic resources. Housing here runs to apartment blocks and converted older buildings rather than houses, and that decides how a clean goes: unit by unit, everything carried up stairs or into an elevator, no driveway to stage from, older trim that wants a soft cloth over a scouring pad.",
+          "Few parts of Edmonton hold as much surviving Edwardian brick as Boyle Street: the Gibson Block of 1913, the Hecla Block of 1914 and the Ernest Brown Block are all designated municipal historic resources. Housing here runs to apartment blocks and converted older buildings rather than houses, and that decides how a clean goes: unit by unit, everything carried up stairs or into an elevator, no driveway to stage from, older trim that wants a soft cloth over a scouring pad.",
           "Three of the four boundaries are hard ones. Ground falls away to the river valley on the south along Grierson Hill and Rowland Road, the LRT corridor runs the north edge, and 97 Street closes it off to the west; only 82 Street on the east is an ordinary street. Winter sand and road grit arrive on shoes rather than on the wind, so entry mats, thresholds and hallway-side floors are what refill first in a suite here.",
         ]}
       />

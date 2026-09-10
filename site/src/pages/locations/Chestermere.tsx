@@ -5,10 +5,14 @@ import {
 import chestermereImg from "@/assets/gallery/chestermere-landmark.webp";
 import { buildLocationSchema } from "@/lib/location-schema";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
-import { sitePriceRange } from "@/data/pricing";
+import { sitePriceRange, addOnFromPrice, formatPrice } from "@/data/pricing";
+import { TRAVEL_FEE_KEY } from "@/data/addon-table";
+
+/** The travel fee outside Calgary city limits (P11), read from bk-config the way <LocationPricing> reads it. */
+const TRAVEL_FEE = formatPrice(addOnFromPrice("standard", TRAVEL_FEE_KEY) ?? 0);
+
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
   return (
@@ -61,9 +65,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Chestermere" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Chestermere" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Chestermere" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Chestermere" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Chestermere.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Chestermere" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or a new build, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Chestermere" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Chestermere" },
 ];
 
@@ -95,7 +99,6 @@ const whyUsItems = [
   { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
-const nearbyAreas = ["Westmere", "Kinniburgh", "Lakepointe", "Rainbow Falls", "Dawson's Landing", "Shores", "Waterford", "The Cove"];
 
 const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Chestermere",
@@ -116,7 +119,7 @@ export default function Chestermere() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Chestermere?",
-      answer: `The full service menu is available here:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `Duty Cleaners books these services in Chestermere:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
@@ -124,11 +127,15 @@ export default function Chestermere() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
       answer: "Tell us within 24 hours and the team comes back to your Chestermere home to re-clean what was missed, at no charge. Photos help but are not required."
+    },
+    {
+      question: "Is there a travel fee for house cleaning in Chestermere?",
+      answer: `Yes. Chestermere is outside Calgary city limits, so a ${TRAVEL_FEE} travel fee is added to home-cleaning bookings there, before 5% GST. It comes on top of the flat price by home size, the home-type charge for a bungalow, basement suite, townhouse or two-storey house, and the compulsory pet charge for a home with pets. Each of these charges shows on the quote before you book.`
     }
   ];
   const faqJsonLd = {
@@ -145,13 +152,13 @@ export default function Chestermere() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning Services in Chestermere, AB | Duty Cleaners</title>
-        <meta name="description" content="Professional cleaners serving Chestermere. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
-        <meta property="og:title" content="House Cleaning Services in Chestermere, AB | Duty Cleaners" />
+        <title>{`House Cleaning Chestermere, ${RATING_CLAIM} | Duty Cleaners`}</title>
+        <meta name="description" content="No season is a dry one at a Chestermere back door, and house cleaning here is priced flat by home size with a 24-hour re-clean guarantee." />
+        <meta property="og:title" content={`House Cleaning Chestermere, ${RATING_CLAIM} | Duty Cleaners`} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning Services in Chestermere, AB | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional cleaners serving Chestermere. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
-        <meta property="og:description" content="Professional cleaners serving Chestermere. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="twitter:title" content={`House Cleaning Chestermere, ${RATING_CLAIM} | Duty Cleaners`} />
+        <meta name="twitter:description" content="No season is a dry one at a Chestermere back door, and house cleaning here is priced flat by home size with a 24-hour re-clean guarantee." />
+        <meta property="og:description" content="No season is a dry one at a Chestermere back door, and house cleaning here is priced flat by home size with a 24-hour re-clean guarantee." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/chestermere/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/chestermere/" />
@@ -181,7 +188,7 @@ export default function Chestermere() {
                   Professional House Cleaning in Chestermere
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Trusted house cleaning services in Chestermere, AB. Customer-rated cleaners loved by lakeside families — from Kinniburgh to Rainbow Falls.
+                  Chestermere is built on every side of a canal-fed reservoir, and the Calgary branch cleans homes all the way around it. Because Chestermere is outside Calgary city limits, a travel fee is added to the quote.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -219,24 +226,6 @@ export default function Chestermere() {
         </section>
 
 
-      {/* Things To Do */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <AnimatedSection>
-            <div className="max-w-4xl mx-auto">
-              <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Life</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                Things To Do In Chestermere
-              </h2>
-              <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
-                <p>Located just east of Calgary, Chestermere is a beautiful lakeside city known for its vibrant community and outdoor recreational opportunities. With a population of over 20,000, Chestermere combines small-town charm with the convenience of city amenities. Start your day with a visit to Chestermere Lake, the heart of the community, perfect for boating, kayaking, paddleboarding, and even swimming during the summer months. For a scenic stroll or a bike ride, the Chestermere Pathway System offers picturesque views around the lake and throughout the city. If you’re into golf, Lakeside Golf Club offers a beautiful course with stunning views and a relaxed atmosphere.</p>
-                <p>Families can enjoy a fun day at John Peake Park, which features playgrounds, picnic spots, and a boat launch. For shopping and dining, check out Chestermere Station, a bustling hub with local shops, boutiques, and cozy restaurants. The Canadian Brewhouse is on Chestermere Station Way. After a day of exploring Chestermere, come home to a spotless space with the help of Duty Cleaners.</p>
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
         {/* Interactive Map */}
         <section className="py-16 bg-background">
           <div className="container mx-auto px-4">
@@ -268,30 +257,29 @@ export default function Chestermere() {
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
-                  Chestermere Neighbourhoods We Serve
+                  Where We Clean in Chestermere
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  We proudly serve families and homeowners across all Chestermere communities.
+                  The Calgary branch books homes on every side of the lake in Chestermere. If you are not sure an address is covered, call the Calgary office at (403) 768-1341 before booking.
                 </p>
               </div>
-              <CoverageChips areas={nearbyAreas} />
             </AnimatedSection>
           </div>
         </section>
+
+      <LocationPricing />
 
       <LocalMarketNote
         eyebrow="Reservoir town"
         heading="Nothing natural about this lake"
         paragraphs={[
-          "The CPR dammed this slough into a lake in 1907 for irrigation, and it is still plumbed that way — canal-fed from the Bow River, draining out through two more canals, five kilometres long and nowhere deeper than seven metres. The city stands on every side of it. No home here sits far from open water, and no season here is a dry one at the back door.",
-          "Summer is swimming, windsurfing and fishing; winter is skating on the same surface. Wet gear comes through the back door twelve months a year, which makes damp the recurring problem rather than dirt — mats that never fully dry, thresholds that darken at the edges, a mudroom that smells before it looks dirty. Air movement and dry storage fix more here than any cleaning product does.",
+          "The CPR dammed this slough into a lake for irrigation, and it is still plumbed that way — canal-fed from the Bow River and draining out through two more canals. The city stands on every side of it. No home here sits far from open water, and no season here is a dry one at the back door.",
+          "The lake is in use in every season, so wet gear comes through the back door twelve months a year, which makes damp the recurring problem rather than dirt — mats that never fully dry, thresholds that darken at the edges, a mudroom that smells before it looks dirty. Air movement and dry storage fix more here than any cleaning product does.",
         ]}
         accent="calgary"
       />
 
       <NearbyNeighbourhoods />
-
-      <LocationPricing />
 
         {/* Services */}
         <section className="py-20 bg-background">
@@ -303,7 +291,7 @@ export default function Chestermere() {
                   Cleaning Services for Chestermere Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs, we have every service your lakeside home needs.
+                  Chestermere homes can book standard, deep and move-out cleaning at flat prices by home size before GST, and post-construction cleaning priced by square footage. Wall washing is booked together with a clean, not on its own.
                 </p>
               </div>
             </AnimatedSection>
@@ -345,7 +333,7 @@ export default function Chestermere() {
                   Why Chestermere Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -368,7 +356,7 @@ export default function Chestermere() {
                 House Cleaning in Chestermere & Surrounding Areas
               </h2>
               <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-                We provide professional house cleaning services throughout Chestermere and nearby communities in the Calgary region.
+                The Calgary branch covers 66 Calgary neighbourhoods and nine communities outside the city: Chestermere, Airdrie, Cochrane, Okotoks, Strathmore, High River, Langdon, Crossfield and Diamond Valley.
               </p>
               <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                 View All Service Areas →

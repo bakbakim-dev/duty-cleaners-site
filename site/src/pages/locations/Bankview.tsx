@@ -60,9 +60,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Bankview" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Bankview" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fan blades within reach, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Bankview" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Bankview" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Bankview.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Bankview" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Renovation dust in a Bankview suite or townhome, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Bankview" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Bankview" },
 ];
 
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Sunalta","Lower Mount Royal","Mount Royal","South Calgary","Richmond","Scarboro"];
+const nearbyAreas = ["Sunalta","Lower Mount Royal","Mount Royal","Richmond","Scarboro"];
 
 const faqs = [
   {
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fan blades within reach dusted\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function Bankview() {
     <>
       <Helmet>
         <title>House Cleaning Services in Bankview, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Book house cleaning in Bankview, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="description" content="On Bankview's steep Calgary grade, chinook runoff carries grit to the door that dries to a film, so each clean starts with the entry and the stairs." />
         <meta property="og:title" content="House Cleaning Services in Bankview, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services in Bankview, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Book house cleaning in Bankview, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
-        <meta property="og:description" content="Book house cleaning in Bankview, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="twitter:description" content="On Bankview's steep Calgary grade, chinook runoff carries grit to the door that dries to a film, so each clean starts with the entry and the stairs." />
+        <meta property="og:description" content="On Bankview's steep Calgary grade, chinook runoff carries grit to the door that dries to a film, so each clean starts with the entry and the stairs." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/bankview-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/bankview-calgary/" />
@@ -183,7 +183,7 @@ export default function Bankview() {
                 Professional House Cleaning in Bankview
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Bankview is a hillside inner-city SW community offering sweeping downtown views, walkable streets, and a friendly neighbourhood feel just minutes from 17th Avenue.
+                Bankview's 1950s walk-up courts and newer townhomes are terraced into a steep grade, so many entries open straight onto stairs. Those stairs and entries are where each clean here starts.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function Bankview() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Bankview Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Bankview homes get every service they need.
+                  For Bankview's compact walk-up suites and newer townhomes, standard, deep and move-out cleans are priced flat by home size before GST. A post-construction clean is priced by square footage instead.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function Bankview() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Bankview Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Bankview and the surrounding SW Calgary communities.
+                    Bankview sits inside Calgary city limits, so a clean here has no trip fee.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function Bankview() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1280} height={896} src={cleanHomeImg} alt="Spotless Bankview Calgary home cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1280} height={896} src={cleanHomeImg} alt="Living room with a hardwood floor and tall windows looking out over a city skyline" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Calm, Spotless Bankview Home — Every Visit</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">What to expect</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Small Bankview Suites, Close-Set Rooms</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Every cleaner is vetted and customer-rated, and it shows in the details: clear counters, gleaming taps, and a home that smells like a fresh start.
+                    Hard Alberta water leaves mineral scale on taps and shower glass. In a compact Bankview suite where one fan serves both the kitchen and the bathroom, cooking film and humidity build up together, which makes a small suite dense work for its size.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Cleaners rated by customers after every visit","Supplies and equipment come with the team","Re-clean at no charge if told within 24 hours"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,9 +311,9 @@ export default function Bankview() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Bankview and the communities around it.{" "}
+                  The Calgary branch's list also includes these neighbourhoods near Bankview.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -347,7 +347,7 @@ export default function Bankview() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Bankview Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>

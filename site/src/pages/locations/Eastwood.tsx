@@ -7,7 +7,6 @@ import heroImg from "@/assets/gallery/eastwood-cleaner.webp";
 import { buildLocationSchema } from "@/lib/location-schema";
 import HonestReviewLink from "@/components/HonestReviewLink";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
 const LocationMap = lazy(() => import("@/components/LocationMap"));
@@ -82,16 +81,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Eastwood" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Eastwood" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Eastwood" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Eastwood" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Post-renovation dust and debris, professionally removed.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Eastwood" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or a new build, priced by square footage.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Eastwood" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Eastwood" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Eastwood" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment, before 5% GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Eastwood" },
 ];
 
 const whyUsItems = [
@@ -133,7 +132,7 @@ export default function Eastwood() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Eastwood?",
-      answer: `Every service we run can be booked locally:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `Duty Cleaners books these services for homes in Eastwood:\n\n• Standard & Deep Cleaning Packages\n• Recurring Cleaning\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning, booked together with a clean`
     },
     {
       question: "Do you offer discounts?",
@@ -141,7 +140,7 @@ export default function Eastwood() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -163,25 +162,25 @@ export default function Eastwood() {
     <>
       <Helmet>
         <title>Eastwood, Edmonton House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Eastwood, Edmonton. Trusted local cleaners, customer-rated, serving Eastwood homes." />
+        <meta name="description" content="In Eastwood, Edmonton, where early-2000s census counts found most homes rented, move-out cleaning is priced flat by home size before GST." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Eastwood, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/eastwood-edmonton",
   areaServed: "Eastwood, Edmonton, AB",
-  description: "Professional house cleaning in Eastwood, Edmonton. Trusted local cleaners serving Eastwood homes with reliable, customer-rated cleaning service.",
+  description: "Duty Cleaners' Edmonton branch cleans homes in Eastwood, Edmonton, many of them walk-up apartments, at flat rates by home size.",
   geo: { latitude: "53.571", longitude: "-113.463" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/eastwood-edmonton/" />
         <meta property="og:title" content="Eastwood, Edmonton House Cleaning | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Eastwood, Edmonton. Trusted local cleaners, customer-rated, serving Eastwood homes." />
+        <meta property="og:description" content="In Eastwood, Edmonton, where early-2000s census counts found most homes rented, move-out cleaning is priced flat by home size before GST." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/eastwood-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Eastwood, Edmonton House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Eastwood, Edmonton. Trusted local cleaners, customer-rated, serving Eastwood homes." />
+        <meta name="twitter:description" content="In Eastwood, Edmonton, where early-2000s census counts found most homes rented, move-out cleaning is priced flat by home size before GST." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -207,7 +206,7 @@ export default function Eastwood() {
                   Professional House Cleaning in Eastwood
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  From heritage homes near Clarke Stadium to character bungalows by 118 Avenue — your local cleaning team for one of Edmonton's most spirited neighbourhoods.
+                  Early-2000s census counts found most Eastwood homes rented and more walk-up apartments than single-family houses. Move-out cleaning in Eastwood is priced flat by home size before 5% GST.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -235,7 +234,7 @@ export default function Eastwood() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
                   src={heroImg}
-                  alt="Professional cleaner working in a Eastwood, Edmonton home"
+                  alt="Cleaner in white gloves wiping a wooden dining table beside a window lined with potted plants"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   width={1024}
                   height={1024}
@@ -257,7 +256,7 @@ export default function Eastwood() {
                   Cleaning Services for Eastwood Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
+                  An Eastwood walk-up apartment is priced at the apartment-or-condo rate; a bungalow, townhouse or two-storey house adds a home-type surcharge that the quote shows.
                 </p>
               </div>
             </AnimatedSection>
@@ -300,7 +299,7 @@ export default function Eastwood() {
                   Why Eastwood Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -322,7 +321,7 @@ export default function Eastwood() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Eastwood Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Always close — we're right in the heart of north-central Edmonton.
+                  Eastwood reaches from 118 Avenue to the Yellowhead Trail corridor, inside Edmonton city limits, where there is no trip fee.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -341,12 +340,11 @@ export default function Eastwood() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Eastwood</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Where the Edmonton Branch Cleans</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    Eastwood is one of 80 Edmonton neighbourhoods on the branch's list, which also takes in nine communities outside the city, such as St. Albert, Sherwood Park and Fort Saskatchewan.
                   </p>
                 </div>
-                <CoverageChips areas={["Clarke Stadium", "Borden Park", "Eastwood Community League", "118 Avenue", "Northlands", "Norwood", "Parkdale", "Alberta Avenue"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -361,8 +359,8 @@ export default function Eastwood() {
         eyebrow="On the ground"
         heading="Rented walk-ups near the rail line"
         paragraphs={[
-          "Two housing facts shape the work here, both from census counts in the early 2000s: about 69% of homes were rented, and 44% were apartments in walk-up buildings under five storeys — more than the 42% that were single-family. Rental stock in that proportion means move-out cleans rather than long-standing weekly routines. Ovens and fridges back to bare enamel, grout reset, closet shelves and window tracks done because a walkthrough will check them.",
-          "Eastwood is split by 122 Avenue, and the two halves have different edges. Only the smaller pocket north of that line runs up to the Yellowhead Trail corridor; the larger southern portion reaches 118 Avenue, with a jagged eastern boundary that follows Fort Road in places and the CN Rail right-of-way in others. Where a home backs onto that corridor, the film on outward-facing glass is the job — and screens come out to be washed, not wiped in place.",
+          "Two housing facts shape the work here, both from census counts in the early 2000s: about 69% of homes were rented, and 44% were apartments in walk-up buildings under five storeys — more than the 42% that were single-family. Rental stock in that proportion means move-out cleans rather than long-standing weekly routines. Ovens and fridges get cleaned inside, and closet shelves and window tracks get done, because a walkthrough will check them.",
+          "Eastwood is split by 122 Avenue, and the two halves have different edges. Only the smaller pocket north of that line runs up to the Yellowhead Trail corridor; the larger southern portion reaches 118 Avenue, with a jagged eastern boundary that follows Fort Road in places and the CN Rail right-of-way in others. Where a home backs onto that corridor, a film builds on the outward-facing glass and in the screens; from inside, the clean takes in the sills and window tracks.",
         ]}
       />
 

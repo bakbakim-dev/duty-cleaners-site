@@ -1,6 +1,8 @@
-import { CITY_PROOF } from "@/data/proof";
+import { CITY_PROOF, RATING_CLAIM, COMPANY } from "@/data/proof";
 import { canonicalUrlForPath } from "@/data/legacy-urls";
 import { BRANCH_ID, BRANCH_IDENTITY } from "@/data/proof";
+import { GST_RATE, moveInOutTierRows } from "@/data/pricing";
+import { ARRIVAL_WINDOWS, POLICY } from "@/data/policy";
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
@@ -9,7 +11,6 @@ import {
   Phone,
   CheckCircle,
   ClipboardCheck,
-  AlertTriangle,
   Sparkles,
   UtensilsCrossed,
   Bath,
@@ -40,6 +41,25 @@ const PHONE_TEL = "tel:7809136565";
 // /contact force-301s to /contact-us/ and a redirect may drop the prefill.
 const CALLBACK_HREF = "/contact-us/?topic=march-out&city=edmonton";
 
+const proof = CITY_PROOF.edmonton;
+const GST_PCT = `${Math.round(GST_RATE * 100)}%`;
+const GUARANTEE_HOURS = POLICY.guaranteeWindowHours;
+/*
+  A march-out is quoted by phone and has no published price. The civilian
+  move-out rate is the nearest service that does, so the page names it as a
+  reference point for a different service, never as the march-out price.
+*/
+const MOVE_FROM = moveInOutTierRows()[0]?.price ?? "";
+/* policy.ts writes each window with a spaced dash; three in one sentence read badly. */
+const WINDOWS = ARRIVAL_WINDOWS.map((w) => w.replace(" – ", " to "));
+const WINDOWS_LINE = `${WINDOWS.slice(0, -1).join(", ")} or ${WINDOWS[WINDOWS.length - 1]}`;
+
+const PAGE_TITLE = "March Out Cleaning Edmonton | Military Housing Move-Outs";
+/* One sentence for description, og and twitter alike. The old one promised a
+   "same-day quote", which is a response time nobody has confirmed. */
+const META_DESCRIPTION =
+  "March out cleaning in Edmonton for military housing, done to CFHA's march-out inspection standards and quoted by phone on (780) 913-6565.";
+
 const AnimatedSection = ({
   children,
   className = "",
@@ -60,75 +80,103 @@ const AnimatedSection = ({
   );
 };
 
+/*
+  The cards used to say what inspectors "open first" and that the crew hands
+  the keys back after a walkthrough. Neither is on file, so the cards now say
+  what the clean covers and nothing about the inspector.
+*/
 const included = [
   {
     icon: UtensilsCrossed,
-    title: "Appliance Deep Cleaning",
+    title: "Kitchen and appliances",
     description:
-      "Inside and outside of the stove, oven, fridge, dishwasher and microwave — the areas inspectors open first.",
+      "Inside and outside the oven, fridge and microwave, the outside of the dishwasher, then the counters, sink and cabinet fronts.",
   },
   {
     icon: Footprints,
-    title: "Floors, Edges & Baseboards",
+    title: "Floors, edges and baseboards",
     description:
-      "Vacuuming, mopping and detailed edge work along baseboards, corners and door tracks.",
+      "Every floor vacuumed and mopped, with baseboards, corners and door tracks worked by hand.",
   },
   {
     icon: Bath,
-    title: "Bathroom Sanitizing",
+    title: "Bathrooms",
     description:
-      "Tubs, showers, tile, sinks, toilets and mirrors scrubbed to march-out inspection standards.",
+      "Tubs, showers, tile, sinks, toilets and mirrors scrubbed. Hard Alberta water leaves mineral scale on taps and shower glass, so those get their own pass.",
   },
   {
     icon: DoorOpen,
-    title: "Surface Wipe-Down",
+    title: "Doors, frames and fixtures",
     description:
-      "Doors, frames, cabinet interiors and exteriors, switch plates, vents covers and fixtures.",
+      "Doors, frames, cabinet interiors and exteriors, switch plates, vent covers and fixtures wiped down.",
   },
   {
     icon: Search,
-    title: "Final Walkthrough",
+    title: "Worked from your list",
     description:
-      "We re-check every room against the march-out list before we hand the keys back to you.",
+      "The team cleans room by room from the inspection list you give us when you call, so the scope matches the home.",
   },
   {
     icon: Sparkles,
-    title: "Add-Ons on Request",
+    title: "Add-ons the list names",
     description:
-      "Wall washing, interior windows and unfinished basements are often required at march-out — tell us in advance and we'll include them.",
+      "Wall washing, interior windows and unfinished basements are add-ons. If the list asks for them, they go into the phone quote.",
   },
 ];
 
-const risks = [
-  "Missed details that lead to a failed inspection",
-  "Last-minute re-clean charges you didn't budget for",
-  "Delays to your move-out approval and handover date",
+/* What the office needs to price the job. This replaced a list of fears
+   ("a failed inspection", "re-clean charges you didn't budget for") that no
+   record supports. */
+const callPrep = [
+  "The inspection date, so the clean can be booked close to it",
+  "The home's size: bedrooms, bathrooms, and whether it is a house or an apartment",
+  "The inspection list, or the items on it you are unsure about",
+  "Whether there are pets in the home, and how the team will get in",
 ];
 
+/*
+  Rewritten 10 September 2026 from the content prompt's FACTS. The old answers
+  claimed CFHA inspections are "far more detailed than a typical landlord
+  walkthrough", that march-out dates "cluster around posting season", and that
+  a re-clean follows anything "flagged at inspection" when the guarantee runs
+  24 hours from the clean. None of that was on file.
+*/
 const faqs = [
   {
-    q: "What is a march-out cleaning?",
-    a: "It's the move-out clean required when you release military housing. The inspection follows CFHA's move-out condition guidelines, which are far more detailed than a typical landlord walkthrough — appliance interiors, baseboards, wall marks, vents and cabinet interiors are all checked.",
+    q: "What is a march-out clean?",
+    a: `A march-out clean is the move-out clean for military housing, done to CFHA's march-out inspection standards. Duty Cleaners quotes it by phone from the Edmonton office at ${PHONE_DISPLAY}, because the scope follows the inspection list for each home.`,
   },
   {
-    q: "How is it different from a regular move-out clean?",
-    a: "A standard move-out clean targets what a new tenant would notice. A march-out clean targets what an inspector measures against a checklist, so we spend far more time on edges, appliance interiors, wall marks and fixture detail.",
+    q: "How is a march-out clean different from a regular move-out clean?",
+    a: `A civilian move-out clean in Edmonton is booked online at a flat rate by home size, from ${MOVE_FROM} for a one-bedroom apartment before ${GST_PCT} GST, with a house, pets or an address outside the city adding to that figure. The landlord judges it at the move-out inspection that Alberta's Residential Tenancies Act requires. A march-out clean is judged against CFHA's march-out inspection standards instead, which is why it is quoted by phone from the list for the home.`,
   },
   {
-    q: "Are wall washing and interior windows included?",
-    a: "No — wall washing, interior window cleaning and unfinished basement cleaning are add-ons, not part of the standard march-out package. They're commonly required to pass, so let us know when you call and we'll quote them in.",
+    q: "Are wall washing and interior windows included in a march-out clean?",
+    a: "No. Wall washing, interior window cleaning and unfinished basement cleaning are add-ons that sit outside the march-out clean itself. If the inspection list for the home names any of them, say so on the call and they go into the quote before anything is booked.",
   },
   {
-    q: "How far in advance should I book?",
-    a: "As early as you have your inspection date. March-out dates cluster around posting season, so the earlier you call, the more likely you get your preferred window.",
+    q: "How far ahead should I book a march-out clean?",
+    a: `Book it as soon as you have the inspection date. Same-day and next-day slots depend on the schedule. The team arrives in a booked window of ${WINDOWS_LINE}, so an early call leaves the most windows to choose from.`,
   },
   {
-    q: "Why can't I get an instant online price?",
-    a: "March-out jobs vary too much by home size, condition and which add-ons your inspection requires. We quote them by phone so the number you get is the number you pay.",
+    q: "Why is there no instant online price for a march-out clean?",
+    a: `The online form prices a civilian home by size, and a march-out follows the inspection list for the home, which decides the add-ons the job needs. The Edmonton office prices it by phone at ${PHONE_DISPLAY}, Monday to Saturday 8:00 AM to 8:00 PM and Sunday 9:00 AM to 3:00 PM, and every figure is before ${GST_PCT} GST. The price does not change because the clean took longer. It changes only if the home needs substantially more work than was described, and the team explains the options before carrying on.`,
   },
   {
-    q: "What if something is flagged at inspection?",
-    a: "Tell us within 24 hours after the cleaning and we'll come back and re-clean the flagged areas at no additional charge.",
+    q: "What if the inspector finds something the clean missed?",
+    a: `Tell us within ${GUARANTEE_HOURS} hours of the clean and the team comes back and re-cleans the missed items at no charge. Photos help but are not required. The window runs from the clean, so booking the clean close to the inspection date keeps the inspection inside it. The commitment is the return visit; it is not a refund, though you can call the Edmonton office to talk it through.`,
+  },
+  {
+    q: "Do I need to be home for the march-out clean?",
+    a: "No. Most customers leave a key, a lockbox code or smart-lock access, and the team locks up when it leaves. The team brings all supplies and equipment. Running water is required, and vacuuming may not be possible without electricity, so keep the utilities on until the clean is done.",
+  },
+  {
+    q: "What happens if my inspection date moves?",
+    a: `Moving or cancelling a booking needs ${POLICY.cancellationNoticeHours} hours' notice; inside that window the fee is ${POLICY.cancellationFee}. If we have to move a booking ourselves, because a cleaner is ill or the roads are unsafe, we say so as soon as we know and offer the earliest slot we have. Cancelling a booking we moved costs nothing.`,
+  },
+  {
+    q: "What does a march-out clean not include?",
+    a: "A march-out clean does not include lifting anything over 25 lb, exterior windows or other outdoor work, garages, anything beyond a 3-step ladder, carpet steam cleaning, furnace and duct cleaning, or mould remediation. Light surface mildew may be wiped where it is safe to do so. If the inspection list asks for any of these, tell the Edmonton office on the call so the quote says plainly what the team will and will not do.",
   },
 ];
 
@@ -172,22 +220,16 @@ export default function EdmontonMarchOut() {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>March Out Cleaning Edmonton | CFHA Move-Out Cleaners</title>
-        <meta
-          name="description"
-          content="March out cleaning in Edmonton for military housing, cleaned to CFHA inspection standards. Call (780) 913-6565 for a same-day quote."
-        />
+        <title>{PAGE_TITLE}</title>
+        <meta name="description" content={META_DESCRIPTION} />
         <link rel="canonical" href="https://dutycleaners.ca/edmonton/march-out-cleaning/" />
-        <meta property="og:title" content="March Out Cleaning Edmonton | CFHA Move-Out Cleaners" />
-        <meta
-          property="og:description"
-          content="Military housing move-out cleaning in Edmonton, done to CFHA march-out inspection standards."
-        />
+        <meta property="og:title" content={PAGE_TITLE} />
+        <meta property="og:description" content={META_DESCRIPTION} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/edmonton/march-out-cleaning/" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="March Out Cleaning Edmonton | CFHA Move-Out Cleaners" />
-        <meta name="twitter:description" content="Military housing move-out cleaning in Edmonton, done to CFHA march-out inspection standards." />
+        <meta name="twitter:title" content={PAGE_TITLE} />
+        <meta name="twitter:description" content={META_DESCRIPTION} />
         <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
@@ -202,7 +244,7 @@ export default function EdmontonMarchOut() {
       <section className="relative py-20 px-4 bg-brand-navy overflow-hidden">
         <img
           src={heroBg}
-          alt="Emptied Edmonton military home cleaned to march-out inspection standard"
+          alt="A bedroom with a made bed and matching nightstands"
           width={1024}
           height={1024}
           className="absolute inset-0 w-full h-full object-cover opacity-25"
@@ -212,7 +254,7 @@ export default function EdmontonMarchOut() {
         <div className="container mx-auto max-w-4xl text-center relative z-10">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
             <ShieldCheck className="w-4 h-4 text-accent" />
-            <span className="text-white/90 text-sm font-medium">Military Housing Move-Out Specialists</span>
+            <span className="text-white/90 text-sm font-medium">Military housing move-outs, quoted by phone</span>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-white">
             March Out Cleaning in Edmonton
@@ -221,9 +263,11 @@ export default function EdmontonMarchOut() {
             Cleaned to CFHA march-out inspection standards
           </p>
           <p className="text-lg mb-8 text-white/90 max-w-3xl mx-auto leading-relaxed">
-            Releasing military housing means passing a detailed march-out inspection before your move is
-            approved. We clean to that checklist — appliances, edges, walls and fixtures — so the handover
-            goes through the first time.
+            A march-out clean is the move-out clean for military housing. The Edmonton team works through
+            the kitchen, bathrooms, floors and fixtures against the inspection list for the home, and the
+            inspector decides whether it passes. Duty Cleaners is rated {RATING_CLAIM} across{" "}
+            {proof.googleReviewCount} reviews on the Edmonton listing, and has cleaned Alberta homes{" "}
+            {COMPANY.sinceLabel}.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Button asChild size="lg" className="text-lg bg-accent text-accent-foreground hover:bg-accent/90">
@@ -242,12 +286,13 @@ export default function EdmontonMarchOut() {
             </Button>
           </div>
           <p className="text-white/80 text-sm">
-            March-out jobs are quoted by phone, because every inspection list is a little different.
+            March-out jobs are quoted by phone, because the scope follows the inspection list for each home.
             If you are leaving a civilian rental instead, book{" "}
             <Link to="/move-out-cleaning-edmonton/" className="underline underline-offset-2">
               move-out cleaning in Edmonton
             </Link>{" "}
-            at a flat rate. The{" "}
+            at a flat rate, from {MOVE_FROM} for a one-bedroom apartment before {GST_PCT} GST, with the pet charge, a
+            house or an address outside the city adding to it. The{" "}
             <Link to="/whats-included/" className="underline underline-offset-2">
               what&rsquo;s-included checklist
             </Link>{" "}
@@ -255,7 +300,7 @@ export default function EdmontonMarchOut() {
             <Link to="/pricing/" className="underline underline-offset-2">
               full Edmonton price list
             </Link>{" "}
-            cover the add-ons an inspector usually asks for, including{" "}
+            set out every add-on and its price, including{" "}
             <Link to="/wall-washing-wall-cleaning/" className="underline underline-offset-2">
               wall washing
             </Link>
@@ -264,50 +309,51 @@ export default function EdmontonMarchOut() {
         </div>
       </section>
 
-      {/* Why it's different */}
+      {/* How it differs */}
       <section className="py-20 px-4 bg-background">
         <AnimatedSection>
           <div className="container mx-auto max-w-5xl grid lg:grid-cols-2 gap-10 items-center">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Why military move-out inspections are different
+                How a march-out differs from a civilian move-out
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-6">
-                A march-out inspection is measured against a written condition standard, not a quick
-                walkthrough. Inspectors open the oven, check behind the fridge, run a hand along baseboards
-                and look for marks on walls and door frames. Cleaners who have never worked a CFHA-managed
-                home routinely miss those areas.
+                A civilian tenancy in Alberta ends with the landlord completing a move-out inspection report
+                with the tenant, as the Residential Tenancies Act requires, and the landlord decides what
+                happens to the deposit. A march-out is measured against CFHA&rsquo;s march-out inspection
+                standards instead, so the clean starts from the list for the home. What to have ready when
+                you call the Edmonton office:
               </p>
               <div className="space-y-3">
-                {risks.map((risk) => (
-                  <div key={risk} className="flex items-start gap-3">
-                    <AlertTriangle className="w-5 h-5 text-accent shrink-0 mt-0.5" aria-hidden="true" />
-                    <span className="text-foreground">{risk}</span>
+                {callPrep.map((item) => (
+                  <div key={item} className="flex items-start gap-3">
+                    <ClipboardCheck className="w-5 h-5 text-accent shrink-0 mt-0.5" aria-hidden="true" />
+                    <span className="text-foreground">{item}</span>
                   </div>
                 ))}
               </div>
               <p className="mt-6 text-muted-foreground leading-relaxed">
-                We clean against the same list the inspector uses, and we walk the home again before we
-                leave.
+                The team works from the list you give us. Anything it misses that you report within{" "}
+                {GUARANTEE_HOURS} hours of the clean is re-cleaned at no charge.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <img width={1024} height={1024}
                 src={imgKitchen}
-                alt="Kitchen appliances deep cleaned for an Edmonton march-out inspection"
+                alt="A cleaned kitchen with wiped appliance fronts"
                 loading="lazy"
                 className="rounded-2xl object-cover w-full h-full aspect-[4/5]"
               />
               <div className="grid gap-4">
                 <img width={1024} height={1024}
                   src={imgBathroom}
-                  alt="Bathroom sanitized to march-out standards in Edmonton"
+                  alt="A cleaner wiping a bathroom mirror above the sink"
                   loading="lazy"
                   className="rounded-2xl object-cover w-full aspect-square"
                 />
                 <img width={768} height={1024}
                   src={imgWalls}
-                  alt="Washed walls in an Edmonton military housing unit"
+                  alt="White painted walls in a bright, nearly empty room"
                   loading="lazy"
                   className="rounded-2xl object-cover w-full aspect-square"
                 />
@@ -326,7 +372,7 @@ export default function EdmontonMarchOut() {
                 What our Edmonton march-out cleaning covers
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Room by room, against the inspection checklist.
+                Room by room, against the inspection list you give us.
               </p>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -343,38 +389,32 @@ export default function EdmontonMarchOut() {
                 </div>
               ))}
             </div>
-            <div className="mt-8 rounded-xl border border-border bg-card p-6">
-              <div className="flex items-start gap-3">
-                <ClipboardCheck className="w-5 h-5 text-primary shrink-0 mt-0.5" aria-hidden="true" />
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  <strong className="text-foreground">Please note:</strong> wall washing, interior window
-                  cleaning and unfinished basement cleaning are frequently required to pass a march-out
-                  inspection, but they are add-ons rather than part of the standard package. Mention them when
-                  you call and we'll build them into your quote.
-                </p>
-              </div>
-            </div>
           </div>
         </AnimatedSection>
       </section>
 
-      {/* Why families choose us */}
+      {/* The branch behind the clean */}
       <section className="py-20 px-4 bg-brand-navy">
         <AnimatedSection>
           <div className="container mx-auto max-w-4xl text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Why Edmonton military families call us
+              The Edmonton branch behind a march-out clean
             </h2>
             <p className="text-white/85 max-w-2xl mx-auto mb-10">
-              We've been cleaning Alberta homes since 2017, and march-out work is one of the jobs we're asked
-              for most around posting season.
+              Duty Cleaners has cleaned homes in Alberta {COMPANY.sinceLabel}, and march-out cleans are booked
+              through the Edmonton office at {proof.address}. The same office books every other service, each
+              listed with its starting price under{" "}
+              <Link to="/services/" className="underline underline-offset-2">
+                all Edmonton cleaning services and prices
+              </Link>
+              .
             </p>
             <div className="grid sm:grid-cols-2 gap-4 text-left">
               {[
-                "We clean to CFHA move-out condition guidelines, not a generic checklist.",
-                "Reference-checked, customer-rated cleaners who've done march-outs before.",
-                "Add-ons like wall washing quoted upfront, so nothing gets missed on inspection day.",
-                "Not happy? Tell us within 24 hours and we re-clean at no additional charge.",
+                "Every cleaner is reference-checked before a first job and rated by the customer after each visit, and the ratings decide who we keep sending.",
+                "The team brings all supplies and equipment, so an empty house needs only running water and, for the vacuum, electricity.",
+                "Nothing is charged at booking. A temporary hold the day before confirms the card, and the charge goes through once the clean is complete.",
+                `If something was missed, tell us within ${GUARANTEE_HOURS} hours and the team comes back and re-cleans it at no charge.`,
               ].map((point) => (
                 <div
                   key={point}
@@ -425,7 +465,8 @@ export default function EdmontonMarchOut() {
               Book your Edmonton march-out clean
             </h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Tell us your inspection date and home size and we'll give you a firm price over the phone.
+              Tell us the inspection date, the size of the home and what the list asks for, and the Edmonton
+              office prices the clean over the phone before anything is booked.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="text-lg bg-accent text-accent-foreground hover:bg-accent/90">

@@ -7,6 +7,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import LocationPricing from "@/components/LocationPricing";
+import { POLICY } from "@/data/policy";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Phone } from "lucide-react";
@@ -35,7 +36,7 @@ export default function Greenfield() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `In Greenfield, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `In Greenfield, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -57,15 +58,15 @@ export default function Greenfield() {
     <>
       <Helmet>
         <title>House Cleaning in Greenfield Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional residential cleaning services in Greenfield, Edmonton. Local cleaners serving Greenfield and surrounding areas." />
+        <meta name="description" content="Most Greenfield houses in Edmonton went up in the 1960s. In kitchens and baths never redone, porous grout and stained tub surrounds set the pace." />
         <link rel="canonical" href="https://dutycleaners.ca/locations/greenfield-edmonton/" />
         <meta property="og:title" content="House Cleaning in Greenfield Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional residential cleaning services in Greenfield, Edmonton. Local cleaners serving Greenfield and surrounding areas." />
+        <meta property="og:description" content="Most Greenfield houses in Edmonton went up in the 1960s. In kitchens and baths never redone, porous grout and stained tub surrounds set the pace." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/greenfield-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Greenfield Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional residential cleaning services in Greenfield, Edmonton. Local cleaners serving Greenfield and surrounding areas." />
+        <meta name="twitter:description" content="Most Greenfield houses in Edmonton went up in the 1960s. In kitchens and baths never redone, porous grout and stained tub surrounds set the pace." />
         <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Greenfield Edmonton", city: "edmonton", url: "https://dutycleaners.ca/locations/greenfield-edmonton", areaServed: "Greenfield, Edmonton, AB", geo: { latitude: "53.475", longitude: "-113.511" },
 }))}</script>
       </Helmet>
@@ -85,7 +86,7 @@ export default function Greenfield() {
               Greenfield House Cleaning Professionals
             </h1>
             <p className="text-xl text-muted-foreground mb-8">
-              Reliable house cleaners in Greenfield, Edmonton.
+              Greenfield is almost all detached houses, most of them built in the 1960s. Our Edmonton branch cleans them at a flat rate by home size before GST, and a bungalow or a two-storey house adds a home-type surcharge to the condo price.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
               <Button size="lg" className="text-lg px-8" asChild>
@@ -105,23 +106,22 @@ export default function Greenfield() {
         eyebrow="On the ground"
         heading="Built in one decade, kept ever since"
         paragraphs={[
-          "Seventy-seven per cent of these houses went up in the 1960s and another fifth in the 1970s, so the whole neighbourhood reaches the same wear points at the same time. Kitchens and bathrooms of that vintage that have never been redone are the slow rooms: original tile grout that has gone porous, tub surrounds where staining sits in the material rather than on it, and cabinet interiors that want emptying rather than wiping.",
-          "Ninety-two per cent of it is detached, which means whole-home visits rather than suites — more floor area per stop, more separate rooms, more trim. The neighbourhood was renamed from Petrolia for Herbert Greenfield, premier in the early 1920s, and the old Petrolia shopping centre still anchors the east side toward 111 Street.",
+          "Seventy-seven per cent of these houses went up in the 1960s and another fifth in the 1970s, so the whole neighbourhood reaches the same wear points at the same time. Kitchens and bathrooms of that vintage that have never been redone are the slow rooms: original tile grout that has gone porous, and tub surrounds where staining sits in the material rather than on it.",
+          "Ninety-two per cent of it is detached, which means whole-home visits rather than suites — more floor area per stop, more separate rooms, more trim.",
         ]}
       />
 
       <LocationPricing />
 
         {/* Our work in Greenfield homes.
-            The alt text describes what the photo actually shows — a Duty Cleaners
-            result in an Edmonton home — rather than asserting it depicts Greenfield
-            specifically, which we have no photo of. */}
+            The alt text describes what the picture shows and makes no claim about
+            where it was taken: we have no photo of a Greenfield home. */}
         <section className="py-8 px-4 bg-muted/30">
           <div className="container mx-auto max-w-4xl">
             <div className="rounded-lg overflow-hidden shadow-lg border border-border">
               <img
                 src={greenfieldCleanHome}
-                alt="A freshly cleaned family living space in an Edmonton home"
+                alt="A family playing with toys on a wooden living-room floor"
                 width={1024}
                 height={1024}
                 className="w-full h-auto object-cover"
@@ -147,37 +147,37 @@ export default function Greenfield() {
         <section className="py-16 px-4">
           <div className="container mx-auto max-w-4xl">
             <h2 className="text-3xl font-bold mb-6 text-foreground">
-              Residential Cleaning in Greenfield – Consistent Help from People Who Live Nearby
+              Residential Cleaning in Greenfield, Edmonton
             </h2>
             <div className="prose prose-lg max-w-none text-muted-foreground space-y-4">
               <p>
-                Greenfield isn't just a place on the map—it's a real community, one where people take pride in their homes, know their neighbors, and enjoy a slower, more thoughtful pace of life. From the tidy bungalows near 61 Avenue to the tree-covered paths by Greenfield Park, this neighbourhood is full of character. And we're proud to be a small part of keeping it that way.
+                Greenfield houses have been through decades of Edmonton winters, and the winter still sets the calendar. Sand and salt tracked in from November arrive dry and stay, working into carpet edges and along baseboards. Furnace season runs from October into April, and a house sealed up that long cycles dust faster; the spring melt then brings a whole winter of grit indoors in about three weeks.
               </p>
               <p>
-                At Duty Cleaners, we don't just drive through Greenfield—we work here, we know the streets, and we understand the value of being reliable. Our clients don't need to chase us for answers or wonder who's showing up. They know us by name, and we do our best to return that trust with every visit.
+                Every cleaner sent to a Greenfield house is reference-checked before a first job and rated by the customer after each visit, and those ratings decide who we keep sending. We book an arrival window rather than an exact time: 9:00 to 10:00 AM, 12:00 to 1:00 PM, or 3:00 to 4:00 PM.
               </p>
 
               <h3 className="text-2xl font-bold mt-8 mb-4 text-foreground">
-                We're Already in the Neighborhood
+                Getting In While You Are Out
               </h3>
               <p>
-                It's not unusual for our team to have multiple stops in Greenfield during the week—sometimes even on the same street. Whether we're near Greenfield School, close to Southgate Centre, or tucked between the quiet crescents that define this part of town, we're nearby and ready to help when you need it.
+                You do not need to be home for a clean in Greenfield. Most customers leave a key, a lockbox code or smart-lock access, and the team locks up on the way out. The team brings all supplies and equipment; running water is required, and vacuuming may not be possible without electricity.
               </p>
               <p>
-                Being local means less waiting, fewer delays, and a smoother experience all around.
+                If the team arrives and cannot get in, the lockout charge is half the cost of the scheduled service, so check the code or the key the day before.
               </p>
               <p>
-                We're proud to be among the trusted providers of residential cleaning service in Edmonton—serving the Greenfield neighbourhood with a level of care that reflects the community itself.
+                Greenfield is inside Edmonton city limits, so no trip fee is added to a clean here.
               </p>
 
               <h3 className="text-2xl font-bold mt-8 mb-4 text-foreground">
                 What You Can Expect
               </h3>
               <p>
-                We don't overpromise. Instead, we focus on showing up when we say we will, doing the job right, and communicating clearly every step of the way. You won't find call centers or generic replies here—just a small team who respects your home and your time.
+                If we have to move a booking because a cleaner is ill, a vehicle will not start or the roads are unsafe, we say so as soon as we know and offer the earliest slot we have. Nobody pays for a visit we did not do. To cancel or change a booking yourself, give 24 hours' notice; inside 24 hours the cancellation fee is {POLICY.cancellationFee}.
               </p>
               <p>
-                It's the kind of service that makes sense in a neighbourhood like this: consistent, considerate, and never rushed.
+                There is no need to tidy before the team comes. Clear counters and floors get cleaned, cluttered ones get worked around, and decluttering or organising is a separate hourly add-on.
               </p>
             </div>
           </div>
@@ -230,19 +230,19 @@ export default function Greenfield() {
         <section className="py-16 px-4 bg-primary/5">
           <div className="container mx-auto max-w-4xl text-center">
             <h3 className="text-2xl font-bold mb-4 text-foreground">
-              Get an instant quote, without all the hassle.
+              Get an instant price for your Greenfield home
             </h3>
             <Button size="lg" className="mb-8" asChild>
               <a href="#quote">See My Instant Price</a>
             </Button>
             <div className="space-y-4">
-              <p className="text-lg font-semibold text-foreground">Trusted by Alberta families since 2017</p>
+              <p className="text-lg font-semibold text-foreground">Cleaning homes in Alberta since 2017</p>
               <p className="text-muted-foreground">
-                <strong>100% Satisfaction Guarantee.</strong><br />
-                We stand behind the quality of our staff. If you're not 100% satisfied with your cleaning, we'll come back and re-clean it at no additional charge, as long as we’re informed within 24 hours after the cleaning.
+                <strong>24-hour re-clean guarantee.</strong><br />
+                Tell us within 24 hours if something was missed and we come back to re-clean it at no charge. The commitment is the return visit.
               </p>
               <Button variant="link" asChild>
-                <Link to="/satisfaction-guarantee/">Read the Satisfaction Guarantee</Link>
+                <Link to="/satisfaction-guarantee/">How the re-clean guarantee works</Link>
               </Button>
             </div>
           </div>
@@ -277,10 +277,10 @@ export default function Greenfield() {
               Ready When You Are
             </h3>
             <p className="text-lg text-muted-foreground mb-8">
-              Let us take one thing off your plate. Whether it's been a busy month, a full week, or just a day that got away from you—we're here to help you feel at ease in your home again.
+              See the flat rate for your Greenfield house before you book. Nothing is charged at booking; the card is charged once the clean is complete.
             </p>
             <p className="text-lg text-muted-foreground mb-8">
-              Call us today or request a free quote online. We'd love to add you to our growing list of Greenfield clients who value service that's close to home and easy to trust.
+              To talk it through first, call the Edmonton office at (780) 913-6565, Monday to Saturday 8:00 AM to 8:00 PM or Sunday 9:00 AM to 3:00 PM.
             </p>
             <Button size="lg" asChild>
               <a href="#quote">See My Instant Price</a>

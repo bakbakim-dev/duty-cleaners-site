@@ -82,16 +82,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Mayfield" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Mayfield" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Mayfield" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Mayfield" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around Mayfield.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Mayfield" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris cleared after renovations or new builds around Mayfield.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Mayfield" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Mayfield" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Mayfield" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment or condo, before GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Mayfield" },
 ];
 
 const whyUsItems = [
@@ -133,7 +133,7 @@ export default function Mayfield() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Mayfield?",
-      answer: `The full service menu is available here:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `In Mayfield, the Edmonton branch offers:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning\n• Recurring Cleaning`
     },
     {
       question: "Do you offer discounts?",
@@ -141,7 +141,7 @@ export default function Mayfield() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -163,25 +163,25 @@ export default function Mayfield() {
     <>
       <Helmet>
         <title>House Cleaners in Mayfield, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Mayfield, Edmonton. Trusted local cleaners serving Mayfield homes with reliable, customer-rated cleaning service." />
+        <meta name="description" content="Seven in ten Mayfield homes in Edmonton went up between 1946 and 1960, and the basement under the compact main floor can go months without a turn." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Mayfield, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/mayfield-edmonton",
   areaServed: "Mayfield, Edmonton, AB",
-  description: "Professional house cleaning in Mayfield, Edmonton. Trusted local cleaners serving Mayfield homes with reliable, customer-rated cleaning service.",
+  description: "Seven in ten Mayfield homes in Edmonton went up between 1946 and 1960, and the basement under the compact main floor can go months without a turn.",
   geo: { latitude: "53.561", longitude: "-113.568" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/mayfield-edmonton/" />
         <meta property="og:title" content="House Cleaners in Mayfield, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Mayfield, Edmonton. Trusted local cleaners serving Mayfield homes with reliable, customer-rated cleaning service." />
+        <meta property="og:description" content="Seven in ten Mayfield homes in Edmonton went up between 1946 and 1960, and the basement under the compact main floor can go months without a turn." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/mayfield-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Mayfield, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Mayfield, Edmonton. Trusted local cleaners serving Mayfield homes with reliable, customer-rated cleaning service." />
+        <meta name="twitter:description" content="Seven in ten Mayfield homes in Edmonton went up between 1946 and 1960, and the basement under the compact main floor can go months without a turn." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -207,7 +207,7 @@ export default function Mayfield() {
                   Professional House Cleaning in Mayfield
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  From renovated 1950s bungalows to family homes near Mayfield Common — your trusted local cleaning team for west Edmonton living.
+                  Seven of every ten Mayfield homes went up between 1946 and 1960, and most are single-family detached houses with a compact main floor over a basement.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -235,7 +235,7 @@ export default function Mayfield() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
                   src={heroImg}
-                  alt="Professional cleaner working in a Mayfield, Edmonton home"
+                  alt="A cleaner holding a yellow spray bottle in a white kitchen with a window over the sink"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   width={1024}
                   height={1024}
@@ -257,7 +257,7 @@ export default function Mayfield() {
                   Cleaning Services for Mayfield Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs — every service a home needs.
+                  Six services for Mayfield homes, from a single standard visit to a recurring schedule.
                 </p>
               </div>
             </AnimatedSection>
@@ -300,7 +300,7 @@ export default function Mayfield() {
                   Why Mayfield Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -322,7 +322,7 @@ export default function Mayfield() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Mayfield Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Convenient west Edmonton coverage from Stony Plain to the Yellowhead.
+                  Mayfield's residential edges are 156 Street on the east and 107 Avenue on the south, with industrial land to the west and north.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -341,12 +341,12 @@ export default function Mayfield() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Mayfield</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Edmonton-area neighbourhoods we clean</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    Mayfield is one of 80 Edmonton neighbourhoods on the Edmonton branch's list, and Canora is another.
                   </p>
                 </div>
-                <CoverageChips areas={["Mayfield Common", "Mayfield Park", "Stony Plain Road", "Yellowhead Trail", "156 Street", "West Jasper Place", "Britannia Youngstown", "Canora"]} variant="compact" />
+                <CoverageChips areas={["Canora"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -361,8 +361,8 @@ export default function Mayfield() {
         eyebrow="Local knowledge"
         heading="Where the deep clean goes downstairs"
         paragraphs={[
-          "Industrial land presses on this neighbourhood from two sides: Youngstown Industrial to the west, Sheffield Industrial to the north, with High Park Industrial off the northeast corner. The residential edges are the other two — 156 Street on the east, 107 Avenue on the south. Where a home faces the industrial side, window tracks, screens and the tops of exterior door frames are the surfaces that reward a regular pass; they collect what the wind carries off working land.",
-          "Seven of every ten homes here went up between 1946 and 1960, and most are single-family detached. In houses of that vintage the main floor is compact and quick to work through, while the basement below — laundry, storage, a rec room finished at some later date — is effectively a second floor that can go months without a turn. Deep cleans in Mayfield often spend longer downstairs than up.",
+          "Industrial land presses on this neighbourhood from two sides: Youngstown Industrial to the west, Sheffield Industrial to the north, with High Park Industrial off the northeast corner. The residential edges are the other two — 156 Street on the east, 107 Avenue on the south. Where a home faces the industrial side, the window tracks and the tops of the door frames on that side collect what the wind carries off working land.",
+          "Seven of every ten homes here went up between 1946 and 1960, and most are single-family detached. In houses of that vintage the main floor is compact and quick to work through, while the basement below, with its laundry, storage and a rec room finished at some later date, is effectively a second floor that can go months without a turn.",
         ]}
       />
 

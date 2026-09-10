@@ -1,6 +1,6 @@
 import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
 import { addOnFromPrice } from "@/data/pricing";
-import { TRAVEL_FEE_KEY } from "@/data/addon-table";
+import { TRAVEL_FEE_KEY, travelFee } from "@/data/addon-table";
 import { POLICY, PRICING_TERMS } from "@/data/policy";
 import { useLocation } from "react-router-dom";
 import { quoteHrefFor } from "@/lib/quote-link";
@@ -40,7 +40,7 @@ import {
   Star, BadgeCheck, Home, CalendarClock,
   HelpCircle, Award, Users, Info, MapPin, Receipt
 } from "lucide-react";
-import { COMPANY, RATING_CLAIM } from "@/data/proof";
+import { CITY_PROOF, COMPANY, RATING_CLAIM } from "@/data/proof";
 
 /* Derived from bk-config — never hand-typed, so the table can never
    drift from what BookingKoala actually charges. */
@@ -62,6 +62,8 @@ const PET_FEE = formatPrice(addOnFromPrice("standard", "must-choose-if-you-have-
    the one most likely to be read as authoritative and the least likely to be
    noticed when BookingKoala moves. */
 const TRAVEL_FEE = formatPrice(addOnFromPrice("standard", TRAVEL_FEE_KEY) ?? 0);
+/** Post-construction carries its own, larger travel fee (content prompt P11). */
+const POST_TRAVEL_FEE = formatPrice(travelFee("post-construction") ?? 0);
 /* The add-on that answer gives as its example. It is lifted out of the page on
    its own, so it states a price rather than pointing at the add-on table. */
 const OVEN_FEE = formatPrice(addOnFromPrice("standard", "inside-oven") ?? 0);
@@ -134,18 +136,19 @@ const standardIncludes = [
 ];
 
 const standardAddOns = [
-  "Baseboards, doors, light switches, wall outlets, and outside vent covers",
+  "Baseboards, doors, light switches, wall outlets, and the outside of vent covers",
   "Inside appliances",
   "Inside cabinets",
   "Interior windows",
   "Wall washing",
-  "Garage/balcony",
-  "Decluttering/Organizing",
+  "Decluttering and organising, by the hour",
   "Basement",
 ];
 
 /* Derived from bk-config — see src/data/addon-table.ts. */
-const addOnServices = addOnTableRows("edmonton");
+/* Less the garage/balcony sweep: policy T7 puts garages, patios and outdoor
+   areas outside every clean, and this page says so under the table. */
+const addOnServices = addOnTableRows("edmonton").filter((row) => !/garage/i.test(row.service));
 
 /** Add-on rows that have a service page of their own. */
 const ADD_ON_PAGE: Record<string, string> = {
@@ -177,16 +180,16 @@ const faqItems = [
   { value: "trust", question: "Can I trust my house cleaners?", answer: "Every cleaner is reference-checked before their first job, and every visit is rated by the customer afterwards. Those ratings decide who we send back." },
   { value: "included", question: "What is included in maid service in Edmonton?", answer: "A standard clean covers dusting all surfaces, vacuuming carpets, mopping floors, mirrors, window sills, the kitchen (sink, stovetop, countertops, inside and outside the microwave, the outside of the other appliances) and the bathrooms (toilets, showers, tubs, sinks). Inside the fridge, the oven and the cabinets are add-ons on a standard clean and included on a move-in/out clean. Baseboards come with the Deep Cleaning package." },
   { value: "duration", question: "How long does a typical house cleaning take?", answer: "We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes. Deep cleaning and move-in/out services cover more tasks than a standard clean, so they take longer." },
-  { value: "supplies", question: "Are there discounts if I provide my own cleaning supplies?", answer: `No. We bring all cleaning supplies and equipment, and the rate already assumes that. If you would rather a particular product were used on a surface, leave it out and say so in the booking notes; there is no charge for that either. Eco-friendly products are ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}.` },
-  { value: "recurring", question: "Do you offer recurring service discounts?", answer: "Yes: 20% off weekly, 15% off bi-weekly and 10% off every 4 weeks. The discount starts from your second visit; the first is at the one-time rate. If you start with a deep clean, the deep-cleaning package is charged once on that first visit and is not discounted, and the visits after it are standard cleans at the discounted rate." },
-  { value: "pricing-types", question: "What's the difference between Hourly Cleaning and flat-rate pricing?", answer: `A flat rate is fixed by home size and service type, and it does not change if the clean takes longer than expected. Hourly Cleaning (${formatPrice(HOURLY_RATE)}/hour per cleaner) is for partial or unusual jobs: a few rooms, a one-off task list, or a home that does not fit a size tier. The minimum hourly booking is 3 hours for 1 cleaner or 2 hours for 2 cleaners.` },
+  { value: "supplies", question: "Are there discounts if I provide my own cleaning supplies?", answer: `No. We bring all cleaning supplies and equipment, and the rate already assumes that. Eco-friendly products are ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}.` },
+  { value: "recurring", question: "Do you offer recurring service discounts?", answer: "Yes: 20% off weekly, 15% off bi-weekly and 10% off every 4 weeks. Every 4 weeks comes to 13 visits a year rather than 12. The discount starts from your second visit; the first is at the one-time rate. If you start with a deep clean, the deep-cleaning package is charged once on that first visit and is not discounted, and the visits after it are standard cleans at the discounted rate." },
+  { value: "pricing-types", question: "What's the difference between Hourly Cleaning and flat-rate pricing?", answer: `A flat rate is fixed by home size and service type, and it does not change if the clean takes longer than expected. Hourly Cleaning (${formatPrice(HOURLY_RATE)} per hour per cleaner, before GST) is for partial or unusual jobs: a few rooms, a one-off task list, or a home that does not fit a size tier. The minimum hourly booking is 3 hours for 1 cleaner or 2 hours for 2 cleaners.` },
   // A FAQ with this title has to name the charges customers call hidden. Both
   // are published on /terms/ and both read from POLICY, so this answer can
   // never drift away from the terms it summarises.
   // It is also lifted on its own from the FAQPage markup, so it names the
   // home-type charges and an add-on's price instead of "the table above".
-  { value: "hidden-fees", question: "Are there any hidden fees?", answer: `No. The quote shows every charge added to the flat rate for your home size before you book: a bungalow, townhouse or two-storey house adds ${HOME_TYPE_EXTRA.bungalow}, ${HOME_TYPE_EXTRA.townhouse} or ${HOME_TYPE_EXTRA.twoStorey} to the apartment or condo rate, a home with pets adds ${PET_FEE} a visit, and an address outside Edmonton and Calgary city limits adds a ${TRAVEL_FEE} travel fee to a home clean, with no trip or diagnostic fee inside them. Cancelling or rescheduling inside ${POLICY.cancellationNoticeHours} hours is ${POLICY.cancellationFee}, and if the team arrives and cannot get in, the visit is charged at ${POLICY.lockoutFee}. Add-ons such as the inside of the oven at ${OVEN_FEE} are optional, each a tick-box on the booking form with its price beside it, except eco-friendly products at ${POLICY.ecoProductsFee}, which are not on the form, so ${POLICY.ecoProductsHowToRequest}. The flat rate does not change because a clean took longer; it changes only if the home needs substantially more work than it was described as needing, and the team explains what they found before continuing.` },
-  { value: "satisfaction", question: "What if I'm not satisfied with the cleaning?", answer: `Tell us within ${POLICY.guaranteeWindowHours} hours and we come back and re-clean the areas that were missed at no additional cost. That is the whole guarantee: no form to fill in and no photos required.` },
+  { value: "hidden-fees", question: "Are there any hidden fees?", answer: `No. The quote shows every charge added to the flat rate for your home size before you book, each before 5% GST: a bungalow or basement suite adds ${HOME_TYPE_EXTRA.bungalow}, a townhouse ${HOME_TYPE_EXTRA.townhouse} and a two-storey house ${HOME_TYPE_EXTRA.twoStorey} to the apartment or condo rate, a home with pets adds ${PET_FEE} a visit, and an address outside Edmonton city limits adds a ${TRAVEL_FEE} travel fee to a home clean or ${POST_TRAVEL_FEE} to a post-construction clean, with no trip fee inside the city. Cancelling or rescheduling inside ${POLICY.cancellationNoticeHours} hours is ${POLICY.cancellationFee}, and if the team arrives and cannot get in, the visit is charged at ${POLICY.lockoutFee}. Add-ons such as the inside of the oven at ${OVEN_FEE} before GST are optional, each a tick-box on the booking form with its price beside it, except eco-friendly products at ${POLICY.ecoProductsFee}, which are not on the form, so ${POLICY.ecoProductsHowToRequest}. The flat rate does not change because a clean took longer; it changes only if the home needs substantially more work than it was described as needing, and the team explains what they found before continuing.` },
+  { value: "satisfaction", question: "What if I'm not satisfied with the cleaning?", answer: `Tell us within ${POLICY.guaranteeWindowHours} hours and we come back and re-clean the areas that were missed at no additional cost. Photos help but are not required. The commitment is the return visit; it is not a money-back guarantee, though you can call the Edmonton office at (780) 913-6565 to talk about anything else.` },
 ];
 
 export default function EdmontonPricing() {
@@ -204,7 +207,7 @@ export default function EdmontonPricing() {
   const { ref: ctaRef } = useScrollAnimation();
 
   const title = `Edmonton House Cleaning Prices from ${FROM_PRICE} | Duty Cleaners`;
-  const description = `Edmonton house cleaning prices by home size, from ${FROM_PRICE} for a one-bedroom. Deep and move-out rates, add-ons, 5% GST, no trip fee inside the city.`;
+  const description = `Edmonton house cleaning prices by home size, from ${FROM_PRICE} for a one-bedroom apartment before GST, with deep, move-out, add-on and recurring rates.`;
 
   return (
     <div className="min-h-screen">
@@ -271,8 +274,9 @@ export default function EdmontonPricing() {
                 display:none, so a reader that extracts rendered text saw
                 Standard pricing only. Every figure is derived, never typed. */}
             <p className="text-xl md:text-2xl text-white/85 mb-3 leading-relaxed">
-              Flat rates by bedroom count. A standard clean is {priceSpan(standardPricing)}, a deep clean{" "}
-              {priceSpan(deepPricing)}, and a move-in or move-out clean {priceSpan(moveInOutPricing)}, all before 5% GST.
+              Prices are flat rates by bedroom count. A standard clean is {priceSpan(standardPricing)}, a deep clean{" "}
+              {priceSpan(deepPricing)}, and a move-in or move-out clean {priceSpan(moveInOutPricing)}, all before 5% GST
+              and before any pet charge, home-type surcharge or travel fee outside city limits.
               You see the figure before you book and pay after the clean.
             </p>
             <p className="text-lg text-white/90 mb-10">
@@ -282,19 +286,19 @@ export default function EdmontonPricing() {
                   verified Form 1 table so BK and the page cannot diverge. */}
               Those figures are for an apartment or condo. A bungalow or basement suite adds{" "}
               {HOME_TYPE_EXTRA.bungalow}, a townhouse {HOME_TYPE_EXTRA.townhouse}, and a two-storey house{" "}
-              {HOME_TYPE_EXTRA.twoStorey}, for the stairs and the extra floor. The quote asks which you have and
+              {HOME_TYPE_EXTRA.twoStorey}. The quote asks which you have and
               shows the difference before you book.
             </p>
             <p className="text-lg text-white/90 mb-10">
               The rate does not go up because a clean took longer. It changes only when a home needs substantially
               more work than it was described as needing, and the team says so before continuing. Partial jobs and
-              homes that fit no size tier are quoted hourly at {formatPrice(HOURLY_RATE)} per hour per cleaner,
-              and we tell you which option costs less.
+              homes that fit no size tier are quoted hourly at {formatPrice(HOURLY_RATE)} per hour per cleaner
+              before GST, with a minimum of 3 hours for one cleaner or 2 hours for two.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4 mb-10">
               {[
-                { icon: Star, label: RATING_CLAIM },
+                { icon: Star, label: `${RATING_CLAIM} across ${CITY_PROOF.edmonton.googleReviewCount} Edmonton reviews` },
                 { icon: Shield, label: "Pay after your clean" },
                 { icon: BadgeCheck, label: "No Hidden Fees" },
               ].map((badge, i) => (
@@ -329,8 +333,7 @@ export default function EdmontonPricing() {
         eyebrow="Edmonton pricing, in plain terms"
         heading="Why your Edmonton quote lands where it does"
         paragraphs={[
-          "Our prices are identical in Edmonton and Calgary — there is no city premium and no trip fee within either city. What varies is which service a given home actually needs. Edmonton's heating season runs unbroken from roughly October to April, and a furnace that never stops moves duct dust onto the tops of doors, along ceiling lines and behind furniture for months. A home booked in early spring after that run often needs the deep clean rather than the standard one, and it is cheaper to hear that up front than to book the wrong tier.",
-          "The housing stock swings the number as much as anything. Older homes through Oliver, Garneau and Strathcona carry original trim, radiators and more hand-cleaned surface than their square footage implies, so they sit at the slower end of their tier. Newer builds in Windermere, Keswick or Laurel are quicker for the same size — unless construction dust is still working out of the vents and closet shelves, which is normal for a year or two after possession.",
+          "Our prices are identical in Edmonton and Calgary — there is no city premium and no trip fee within either city. What varies is which service a given home needs. Furnace season in Edmonton runs from October into April, and a house sealed up that long cycles dust faster. A home booked in early spring after that season may need the deep clean rather than the standard one, and it is cheaper to hear that up front than to book the wrong tier.",
           "Every figure here is before tax; 5% GST is added on top. Recurring discounts of 20% weekly, 15% bi-weekly and 10% every four weeks apply from the second visit, with the first clean charged at the one-time rate. If a home turns out to need substantially more work than it was described as needing, the team explains what they found and the options before carrying on — not afterwards on the invoice.",
         ]}
       />
@@ -456,8 +459,9 @@ export default function EdmontonPricing() {
                   <Link to="/post-construction-cleaning/" className="text-accent underline underline-offset-4 hover:text-accent/80">
                     Post-construction cleaning in Edmonton
                   </Link>{" "}
-                  goes by square footage instead, from {POST_CONSTRUCTION_FROM} for the smallest band,
-                  because drywall dust settles on every surface regardless of how many bedrooms there are.
+                  goes by square footage instead, because drywall dust settles on every surface regardless of
+                  how many bedrooms there are. It starts at {POST_CONSTRUCTION_FROM} for under 1,000 sq ft before
+                  GST, with a {POST_TRAVEL_FEE} post-construction travel fee outside city limits.
                 </p>
               </TabsContent>
             </Tabs>
@@ -512,21 +516,18 @@ export default function EdmontonPricing() {
             <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto mt-8 text-center">
               Everything a standard clean already covers, room by room, is on the{" "}
               <Link to="/whats-included/" className="text-accent underline underline-offset-4 hover:text-accent/80">what's-included checklist</Link>.
-              The rows above are the tasks it does not, and the pet line is the one charge that is not optional.
+              The table lists the tasks a standard clean does not cover. Its pet line and, outside city
+              limits, its travel-fee line are not optional.
             </p>
 
-            {/* Office Cleaning Card */}
-            <div className="mt-10 max-w-lg mx-auto group" style={{ perspective: "1000px" }}>
-              <div className="bg-card rounded-xl border border-border/50 shadow-sm p-8 text-center transition-all duration-500 ease-out group-hover:-translate-y-2 group-hover:shadow-xl group-hover:scale-[1.02]" style={{ transformStyle: "preserve-3d" }}>
-                <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mx-auto mb-4 transition-transform duration-500 group-hover:rotate-6">
-                  <Home className="w-6 h-6 text-accent" />
-                </div>
-                <h3 className="text-xl font-bold mb-1">Office Cleaning</h3>
-                <p className="text-sm text-muted-foreground mb-3">Office cleaning, billed by the hour.</p>
-                <div className="text-4xl font-bold text-accent mb-1">{formatPrice(HOURLY_RATE)}/hour</div>
-                <p className="text-sm text-muted-foreground">Per cleaner · Flexible scheduling</p>
-              </div>
-            </div>
+            {/* An "Office Cleaning" card sat here until 10 September 2026. The
+                content prompt keeps commercial work off the house-cleaning
+                pages, so it went, and the space now says what no add-on buys. */}
+            <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto mt-6 text-center">
+              Some jobs stay outside every Edmonton clean, with or without add-ons: exterior windows,
+              garages, patios, carpet steam cleaning, furnace and duct cleaning, and lifting anything over
+              25 lb. Decluttering and organising are a separate hourly add-on, not part of the flat rate.
+            </p>
           </div>
         </div>
       </section>
@@ -545,7 +546,7 @@ export default function EdmontonPricing() {
 
             <div className="grid md:grid-cols-3 gap-6 mb-8">
               <RecurringDiscountCard percentage="20%" title="Weekly Cleaning" />
-              <RecurringDiscountCard percentage="15%" title="Bi-weekly Cleaning" isPopular />
+              <RecurringDiscountCard percentage="15%" title="Bi-weekly Cleaning" />
               <RecurringDiscountCard percentage="10%" title="Every 4 Weeks" />
             </div>
 
@@ -582,10 +583,10 @@ export default function EdmontonPricing() {
               <div className="bg-card rounded-xl border border-border/50 shadow-sm p-6">
                 <div className="flex items-center gap-3 mb-3">
                   <Receipt className="w-5 h-5 text-accent" />
-                  <h3 className="text-lg font-bold">A two-bedroom condo in Oliver</h3>
+                  <h3 className="text-lg font-bold">A two-bedroom condo in Garneau</h3>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Two bedrooms, two bathrooms, no pets: that is the second card, {standardPricing[1].price} for a
+                  Two bedrooms, two bathrooms, no pets: that is the two-bedroom rate, {standardPricing[1].price} for a
                   standard clean before GST. Booked bi-weekly, the second visit and every one after it is{" "}
                   {whole(condo.ongoing ?? condo.firstClean)}. If the first visit is a deep clean instead, that visit
                   is {deepPricing[1].price} ({deepPricing[1].standard} standard plus the {deepPricing[1].packagePrice}{" "}
@@ -595,14 +596,15 @@ export default function EdmontonPricing() {
               <div className="bg-card rounded-xl border border-border/50 shadow-sm p-6">
                 <div className="flex items-center gap-3 mb-3">
                   <Receipt className="w-5 h-5 text-accent" />
-                  <h3 className="text-lg font-bold">A three-bedroom bungalow in Strathcona</h3>
+                  <h3 className="text-lg font-bold">A three-bedroom bungalow in Old Strathcona</h3>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Three bedrooms, two full bathrooms and a half bath, one dog. The size and bathrooms set{" "}
                   {whole(bungalowBase.firstClean)}, the bungalow adds {HOME_TYPE_EXTRA.bungalow}, and the pet charge
                   is {PET_FEE} a visit: {whole(bungalow.firstClean)} before GST. On a bi-weekly plan the visits
                   after the first are {whole(bungalow.ongoing ?? bungalow.firstClean)}. Add the inside of the oven
-                  for the first visit and it goes on as its own line at the price in the table above.
+                  for the first visit and it goes on as its own line, {OVEN_FEE} before GST. GST at 5% then goes
+                  on the total.
                 </p>
               </div>
             </div>
@@ -620,10 +622,10 @@ export default function EdmontonPricing() {
             </div>
             <h2 className="display-serif text-2xl md:text-3xl font-bold mb-6 text-balance">Outside Edmonton: the travel fee and the towns it covers</h2>
             <p className="text-muted-foreground leading-relaxed mb-5">
-              Inside Edmonton city limits there is no trip fee and no diagnostic fee. An address outside them carries
-              a {TRAVEL_FEE} travel fee per visit, on top of the same flat rate, the same add-on prices and the same
-              recurring discounts. It covers the drive and nothing else, and it appears as its own line on the quote
-              before you book.
+              Inside Edmonton city limits there is no trip fee. An address outside them carries a {TRAVEL_FEE} travel
+              fee per home-cleaning visit, or {POST_TRAVEL_FEE} on a post-construction clean, on top of the same flat
+              rate, the same add-on prices and the same recurring discounts. It covers the drive and nothing else, and
+              it appears as its own line on the quote before you book.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-5">
               That is the whole price difference for{" "}
@@ -637,7 +639,7 @@ export default function EdmontonPricing() {
             <p className="text-muted-foreground leading-relaxed">
               Calgary, Airdrie and Cochrane are on the{" "}
               <Link to="/calgary/pricing/" className="text-accent underline underline-offset-4 hover:text-accent/80">Calgary house cleaning prices by home size</Link>{" "}
-              page. The price sheet is the same in both cities; the local notes are not.
+              page, and the Calgary branch works from the same price sheet.
             </p>
           </div>
         </div>
@@ -648,10 +650,9 @@ export default function EdmontonPricing() {
         <div className="container mx-auto px-4" ref={factorsRef}>
           <div className="max-w-5xl mx-auto">
             <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-10 text-center">
-              The five steps at the top of the page price a whole home, and a flat rate is what a whole
-              home costs. Ask for less than that, a few rooms or a one-off task list, and the job is
-              quoted hourly instead, at {formatPrice(HOURLY_RATE)} per hour per cleaner. Which of the
-              two costs less is set out further down.
+              A flat rate prices a whole home. Ask for less than that, a few rooms or a one-off task
+              list, and the job is quoted hourly instead, at {formatPrice(HOURLY_RATE)} per hour per
+              cleaner before GST.
             </p>
 
             {/* No Hidden Fees Banner */}
@@ -665,7 +666,7 @@ export default function EdmontonPricing() {
                    <h3 className="text-xl font-bold text-white">The price before the booking</h3>
                  </div>
                  <p className="text-white/90 leading-relaxed mb-6 max-w-2xl">
-                   You see the price before you book, and your card is charged once the clean is complete. There is no trip or diagnostic fee inside city limits. The number moves only when a home needs substantially more time or work than it was described as needing, and the team tells you before continuing.
+                   You see the price before you book, and your card is charged once the clean is complete. There is no trip fee inside Edmonton city limits. The number moves only when a home needs substantially more work than it was described as needing, and the team tells you before continuing.
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Button className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold shadow-md hover:shadow-lg transition-all" asChild>
@@ -703,17 +704,17 @@ export default function EdmontonPricing() {
                 title="Hourly Cleaning"
                 description="For partial or unusual jobs: a few rooms, a one-off task list, or a home that does not fit a size tier. You set what gets done and pay for the time it takes."
                 price={`${formatPrice(HOURLY_RATE)}/hour`}
-                priceLabel="Per cleaner"
+                priceLabel="Per cleaner, before 5% GST"
                 features={["Minimum booking: 1 cleaner for 3 hours or 2 cleaners for 2 hours", "You set the task list and the order", "Billed by the hour, per cleaner"]}
                 buttonText="Book Hourly Service"
               />
               <PricingOptionCard
                 icon={Home}
                 title="Flat-Rate Pricing"
-                description="The rate for most homes. Set by bedrooms, bathrooms and home type, with add-ons priced separately in the table above, for standard, deep and move-in/out cleans."
+                description="The rate for most homes. Set by bedrooms, bathrooms and home type, with add-ons priced separately, for standard, deep and move-in/out cleans."
                 price={`from ${FROM_PRICE}`}
                 priceLabel="Fixed by home size, before 5% GST"
-                features={["The figure you see is the figure you pay", "Standard, deep and move-in/out cleans", "No trip or diagnostic fee inside city limits", "Most popular option"]}
+                features={["The price shows before you book","Standard, deep and move-in/out cleans", "No trip fee inside Edmonton city limits", "Pet charge and home type shown before you book"]}
                 buttonText="See My Instant Price"
                 isHighlighted
               />
@@ -759,7 +760,7 @@ export default function EdmontonPricing() {
               <Link to="/reviews/" className="text-accent underline underline-offset-4 hover:text-white">Read the reviews</Link>{" "}
               before you decide, or see{" "}
               <Link to="/services/" className="text-accent underline underline-offset-4 hover:text-white">all Edmonton cleaning services and prices</Link>{" "}
-              if the job you have in mind is not in the tabs above. You can also{" "}
+              if the job you have in mind is not a standard, deep or move-in/out clean. You can also{" "}
               <Link to="/gift-card/" className="text-accent underline underline-offset-4 hover:text-white">give a clean as a gift</Link>; the card does not expire.
             </p>
 
@@ -842,7 +843,7 @@ export default function EdmontonPricing() {
 
             <div className="flex flex-wrap items-center justify-center gap-4">
               {[
-                { icon: CheckCircle2, label: "Flexible Scheduling" },
+                { icon: CheckCircle2, label: `${POLICY.guaranteeWindowHours}-hour re-clean` },
                 { icon: Shield, label: "Pay after your clean" },
                 { icon: BadgeCheck, label: "No Hidden Fees" },
               ].map((badge, i) => (

@@ -155,7 +155,7 @@ export default function QuoteOverlay() {
             className="hidden items-center gap-1.5 text-sm font-bold text-accent hover:underline lg:inline-flex"
           >
             <Phone className="h-4 w-4" aria-hidden="true" />
-            Prefer to book by phone? {phone}
+            Or book by phone: {phone}
           </a>
           <a
             href={phoneLink}

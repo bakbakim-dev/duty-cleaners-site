@@ -60,9 +60,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Lower Mount Royal" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Lower Mount Royal" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Lower Mount Royal" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Lower Mount Royal" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Lower Mount Royal.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Lower Mount Royal" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris cleaned up after a renovation or new build in Lower Mount Royal, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Lower Mount Royal" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Lower Mount Royal" },
 ];
 
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function LowerMountRoyal() {
     <>
       <Helmet>
         <title>House Cleaners in Lower Mount Royal, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional cleaners serving Lower Mount Royal, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="description" content="In Lower Mount Royal's 1950s-60s courtyard walk-ups, kitchens sit a step from the living room; our Calgary branch cleans each suite at a flat rate." />
         <meta property="og:title" content="House Cleaners in Lower Mount Royal, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Lower Mount Royal, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional cleaners serving Lower Mount Royal, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
-        <meta property="og:description" content="Professional cleaners serving Lower Mount Royal, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="twitter:description" content="In Lower Mount Royal's 1950s-60s courtyard walk-ups, kitchens sit a step from the living room; our Calgary branch cleans each suite at a flat rate." />
+        <meta property="og:description" content="In Lower Mount Royal's 1950s-60s courtyard walk-ups, kitchens sit a step from the living room; our Calgary branch cleans each suite at a flat rate." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/lower-mount-royal-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/lower-mount-royal-calgary/" />
@@ -183,7 +183,7 @@ export default function LowerMountRoyal() {
                 Professional House Cleaning in Lower Mount Royal
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Lower Mount Royal is a charming inner-city SW neighbourhood with tree-lined streets, character homes, and unbeatable walkability to 17th Avenue's shops and restaurants.
+                Lower Mount Royal threads 1950s-60s courtyard walk-ups between its surviving character houses. Our Calgary branch cleans suites and houses alike, at flat rates by bedroom and bathroom count and home type.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function LowerMountRoyal() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Lower Mount Royal Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
+                  From a one-bedroom suite to a character house, a Lower Mount Royal home is priced flat by bedroom and bathroom count and home type, before 5% GST.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function LowerMountRoyal() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Lower Mount Royal Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Lower Mount Royal and the surrounding SW Calgary communities.
+                    Seventeenth Avenue runs along Lower Mount Royal's northern edge. Homes here are inside Calgary city limits, with no trip fee added.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function LowerMountRoyal() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1280} height={896} src={cleanHomeImg} alt="Spotless Lower Mount Royal Calgary home cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1280} height={896} src={cleanHomeImg} alt="Hallway with crown moulding, a gilt-framed mirror, white flowers on a side table and dark hardwood floors" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Calm, Spotless Lower Mount Royal Home — Every Visit</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Suite by suite</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Walk-Up Suites in Lower Mount Royal</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Care and attention are the whole job. Expect gleaming surfaces, fresh air, and the quiet feeling of a home put properly <em>back in order</em>.
+                    The price table is set for an apartment or condo, so a walk-up suite is quoted straight from it by bedroom and bathroom count, before 5% GST, with the pet charge added for a home with pets. You do not need to be home: most customers leave a key, a lockbox code or smart-lock access, and the team locks up. Balconies count as outdoor areas, which are not included.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Reference-checked before the first job","Supplies and equipment come with the team","Tell us within 24 hours and we re-clean"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,9 +311,9 @@ export default function LowerMountRoyal() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Lower Mount Royal and the communities around it.{" "}
+                  Mount Royal, Beltline, Cliff Bungalow, Mission, Bankview and Sunalta are on our Calgary branch's list too, all inside city limits.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -329,7 +329,7 @@ export default function LowerMountRoyal() {
         eyebrow="Local knowledge"
         heading="Lower Mount Royal's walk-up life"
         paragraphs={[
-          "Lower Mount Royal is Calgary's densest walk-up quarter — courtyard apartment blocks from the 1950s-60s threaded between surviving character houses — and suite cleaning is its own discipline: compact kitchens a step from living rooms, single-fan bathrooms doing double duty, and corridor dust arriving under every suite door. Small spaces here are dense, not quick.",
+          "Lower Mount Royal is a walk-up quarter, its courtyard apartment blocks from the 1950s-60s threaded between surviving character houses. Suite cleaning is its own discipline: compact kitchens a step from living rooms, single-fan bathrooms doing double duty, and corridor dust arriving under every suite door. Small spaces here are dense, not quick.",
           "Seventeenth Avenue's restaurant strip runs the district's northern edge, and its foot traffic, patio seasons and delivery cycles keep sidewalk grit constant at every entry. Balconies over the avenue collect street dust at a pace quiet residential blocks never see.",
         ]}
       />
@@ -347,7 +347,7 @@ export default function LowerMountRoyal() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Lower Mount Royal Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>

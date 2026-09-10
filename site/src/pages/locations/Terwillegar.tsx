@@ -6,7 +6,6 @@ import terwillegarCleanerImg from "@/assets/gallery/terwillegar-cleaner-bathroom
 import { buildLocationSchema } from "@/lib/location-schema";
 import HonestReviewLink from "@/components/HonestReviewLink";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
 const TerwillegarMap = lazy(() => import("@/components/TerwillegarMap"));
@@ -63,10 +62,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Terwillegar" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Terwillegar" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Terwillegar" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Terwillegar" },
   { icon: HardHat, title: "Post-Construction Cleanup", description: "Dust and debris cleared after renovations or new builds." },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Terwillegar" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film washed off painted walls, booked together with a clean.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Terwillegar" },
 ];
 
 const whyUsItems = [
@@ -104,15 +103,15 @@ export default function Terwillegar() {
   const faqs = [
     {
       question: "Do you serve all areas of Terwillegar?",
-      answer: "Yes! We serve Terwillegar Towne, Terwillegar Gardens, South Terwillegar, and all surrounding areas including Magrath Heights."
+      answer: "Terwillegar is on our Edmonton branch's list of 80 neighbourhoods, and there is no trip fee inside Edmonton city limits. If you are not sure whether an address is covered, call the Edmonton office at (780) 913-6565 and ask before you book."
     },
     {
       question: "Can you handle homes with pets?",
-      answer: "Absolutely! Many Terwillegar families have dogs (we know the off-leash park is popular!). We're experienced with pet-friendly homes and can address pet hair and outdoor messes."
+      answer: "Yes. Homes with pets carry a compulsory pet charge on every visit, and it shows on the quote before you book. Litter boxes and animal waste are not part of any clean."
     },
     {
       question: "Do you offer move-in/move-out cleaning?",
-      answer: "Yes! We offer comprehensive move-in and move-out cleaning services perfect for Terwillegar's active real estate market."
+      answer: "Yes. A move-in or move-out clean in Terwillegar covers inside the oven, fridge and microwave, and inside every cabinet, drawer and closet, at a flat rate by home size before GST; the home-type surcharge and the pet charge can apply. Under Alberta's Residential Tenancies Act the landlord completes a move-out inspection report with the tenant, and the landlord decides what happens to the deposit."
     },
     {
       question: "How long does an initial cleaning take?",
@@ -128,7 +127,7 @@ export default function Terwillegar() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -150,21 +149,21 @@ export default function Terwillegar() {
     <>
       <Helmet>
         <title>Home Cleaning You Can Count On in Terwillegar, Edmonton</title>
-        <meta name="description" content="Trusted local house cleaning in Terwillegar, Edmonton. Cleaners serving Terwillegar Park, Magrath Heights and surrounding areas." />
+        <meta name="description" content="Terwillegar, Edmonton: lane-access homes built after 1995, where house cleaning meets gravel at the back door and uses damp cloths on laminate." />
         <link rel="canonical" href="https://dutycleaners.ca/locations/terwillegar/" />
         <meta property="og:title" content="Home Cleaning You Can Count On in Terwillegar, Edmonton" />
-        <meta property="og:description" content="Trusted local house cleaning in Terwillegar, Edmonton. Cleaners serving Terwillegar Park, Magrath Heights and surrounding areas." />
+        <meta property="og:description" content="Terwillegar, Edmonton: lane-access homes built after 1995, where house cleaning meets gravel at the back door and uses damp cloths on laminate." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/terwillegar/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Home Cleaning You Can Count On in Terwillegar, Edmonton" />
-        <meta name="twitter:description" content="Trusted local house cleaning in Terwillegar, Edmonton. Cleaners serving Terwillegar Park, Magrath Heights and surrounding areas." />
+        <meta name="twitter:description" content="Terwillegar, Edmonton: lane-access homes built after 1995, where house cleaning meets gravel at the back door and uses damp cloths on laminate." />
         <script type="application/ld+json">{JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Terwillegar, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/terwillegar",
   areaServed: "Terwillegar, Edmonton, AB",
-  description: "Trusted local house cleaning in Terwillegar, Edmonton. Cleaners serving Terwillegar Park, Magrath Heights and surrounding areas.",
+  description: "Terwillegar, Edmonton: lane-access homes built after 1995, where house cleaning meets gravel at the back door and uses damp cloths on laminate.",
 }))}</script>
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
@@ -191,7 +190,7 @@ export default function Terwillegar() {
                   Home Cleaning You Can Count On in Terwillegar
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  More time on the trails, less time cleaning — trusted local service for nature-connected homes.
+                  Every street in Terwillegar was laid out after 1995, with vehicle access through lanes behind the houses. Our Edmonton branch cleans these homes at a flat rate by home size, and you pay once the clean is done.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -217,7 +216,7 @@ export default function Terwillegar() {
               <div className="flex-shrink-0 w-full max-w-[500px]">
                 <img width={896} height={672}
                   src={terwillegarCleanerImg}
-                  alt="Professional cleaner cleaning a bathroom in Terwillegar, Edmonton"
+                  alt="Cleaner wiping down a bathroom"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                 loading="eager"
                   {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
@@ -234,7 +233,7 @@ export default function Terwillegar() {
               <div className="text-center mb-14">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Terwillegar Homes</h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto text-lg">Find the perfect cleaning package for your nature-connected home.</p>
+                <p className="text-muted-foreground max-w-2xl mx-auto text-lg">Whole-home cleans for Terwillegar's detached houses, duplexes and row housing, priced flat by home size before 5% GST, apart from post-construction, which goes by square footage.</p>
               </div>
             </AnimatedSection>
             <AnimatedSection>
@@ -268,11 +267,11 @@ export default function Terwillegar() {
           <div className="container mx-auto px-4">
             <AnimatedSection>
               <div className="max-w-4xl mx-auto">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Commitment</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Trust Starts at the Door</h2>
+                <span className="text-primary text-sm font-semibold tracking-wider uppercase">Access and timing</span>
+                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Getting In When You Are Not Home</h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
-                  <p>Good service starts long before we pick up a cloth or vacuum. It begins with trust, and that trust is earned through reliability, respect, and a commitment to doing things right.</p>
-                  <p>Many of our Terwillegar clients have worked with us for years, referring friends and neighbours along the way. You'll see familiar faces and receive the kind of dependable service that makes things easier — not more complicated.</p>
+                  <p>You do not need to be home for a clean in Terwillegar. Most customers leave a key, a lockbox code or smart-lock access, and the team locks up on the way out. In a lane-access house, tell us whether the team should use the back door.</p>
+                  <p>We book an arrival window rather than an exact time: 9:00 to 10:00 AM, 12:00 to 1:00 PM, or 3:00 to 4:00 PM. If the team arrives and cannot get in, the lockout charge is half the cost of the scheduled service, so check the code or key before the day.</p>
                 </div>
               </div>
             </AnimatedSection>
@@ -287,7 +286,7 @@ export default function Terwillegar() {
               <div className="text-center mb-14">
                 <span className="text-white text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Terwillegar Residents Choose Duty Cleaners</h2>
-                <p className="text-white/90 max-w-2xl mx-auto text-lg">Trusted locally for reliable, thorough cleaning.</p>
+                <p className="text-white/90 max-w-2xl mx-auto text-lg">Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.</p>
               </div>
             </AnimatedSection>
             <AnimatedSection>
@@ -305,10 +304,9 @@ export default function Terwillegar() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Terwillegar</h2>
-                  <p className="text-muted-foreground text-lg max-w-2xl mx-auto">We're in and around the neighbourhood daily, so we know the area's pace and personality well.</p>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Terwillegar and the Rest of Edmonton</h2>
+                  <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Terwillegar is one of 80 Edmonton neighbourhoods our Edmonton branch cleans, alongside nine communities outside the city such as St. Albert, Sherwood Park and Leduc.</p>
                 </div>
-                <CoverageChips areas={["Terwillegar Park & Trails", "Terwillegar Towne", "Terwillegar Gardens", "South Terwillegar", "Magrath Heights", "Terwillegar Recreation Centre"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">View All Service Areas →</Link>
                 </div>
@@ -321,7 +319,7 @@ export default function Terwillegar() {
         eyebrow="Newer builds"
         heading="Nothing here predates 1995"
         paragraphs={[
-          "Every street here was laid out after 1995, and the plan follows new-urbanist lines: vehicle access runs through service lanes behind the houses rather than off the street in front. That makes the back door the working entrance. Road gravel in winter and March slush arrive there instead of at the front, so the mat doing the real work is the rear one, and the front hall stays presentable between visits with almost nothing on it.",
+          "Every street here was laid out after 1995, and the plan follows new-urbanist lines: vehicle access runs through service lanes behind the houses rather than off the street in front. That makes the back door the working entrance. Road gravel in winter and March slush arrive there instead of at the front, so the rear mat does most of the work, and the front hall stays presentable between visits with almost nothing on it.",
           "Detached houses account for four in five addresses, with duplexes, row housing and low-rise condominiums making up most of the rest, so the work is whole homes rather than units — more floor area per stop, fewer shared entries. Laminate flooring and acrylic tub surrounds are the usual finishes in homes of this vintage, and both rule out a wet mop and an abrasive pad, so the safe default on a first visit is damp cloths and a question about the finish.",
         ]}
       />
@@ -378,9 +376,9 @@ export default function Terwillegar() {
           <div className="absolute bottom-0 left-20 w-80 h-80 bg-accent/10 rounded-full blur-3xl" />
           <div className="container mx-auto px-4 relative z-10 text-center">
             <AnimatedSection>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Let's Take Cleaning Off Your Plate</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Book a Clean in Terwillegar?</h2>
               <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
-                Enjoy Terwillegar's trails and lifestyle while we take care of the cleaning. Call us today or request your free quote.
+                See your flat rate before you book. Nothing is charged until the clean is done.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>

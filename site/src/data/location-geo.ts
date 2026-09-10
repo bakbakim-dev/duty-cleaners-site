@@ -74,7 +74,7 @@ export const LOCATION_GEO: Readonly<Record<string, LatLon>> = {
   "/locations/laurel-edmonton": { latitude: "53.44626", longitude: "-113.38182" }, // neighbourhood: Laurel
   "/locations/lewis-estates": { latitude: "53.52283", longitude: "-113.67868" }, // quarter: Lewis Estates
   "/locations/londonderry": { latitude: "53.60681", longitude: "-113.45667" }, // quarter: Londonderry
-  "/locations/maple-ridge-edmonton": { latitude: "53.59314", longitude: "-113.44207" }, // residential: Maple Ridge
+  "/locations/maple-ridge-edmonton": { latitude: "53.50000", longitude: "-113.36306" }, // residential: Maple Ridge
   "/locations/mcconachie-edmonton": { latitude: "53.63504", longitude: "-113.43013" }, // neighbourhood: McConachie
   "/locations/montrose": { latitude: "53.57436", longitude: "-113.44173" }, // neighbourhood: Montrose
   "/locations/northmount-edmonton": { latitude: "53.60316", longitude: "-113.47982" }, // neighbourhood: Northmount

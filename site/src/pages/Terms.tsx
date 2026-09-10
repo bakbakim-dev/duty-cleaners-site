@@ -112,7 +112,7 @@ export default function Terms() {
                     Changing or Cancelling a Visit
                   </h2>
                   <p className="mb-8">
-                    Plans change. Please give us at least {POLICY.cancellationNoticeHours} hours'
+                    Please give us at least {POLICY.cancellationNoticeHours} hours'
                     notice if you need to move or cancel a clean, so we can offer the slot to
                     someone else and keep your cleaner's day full.
                     {POLICY.cancellationFee
@@ -163,7 +163,7 @@ export default function Terms() {
                   <h2 className="text-2xl font-bold mb-4 text-foreground">Gift Cards</h2>
                   <p className="mb-8">
                     {POLICY.giftCardExpiryMonths === "none"
-                      ? "Gift cards do not expire. We track the remaining balance, so it can be used across more than one visit, and if a clean costs more than the balance you simply pay the difference."
+                      ? "Gift cards do not expire. We track the remaining balance, so it can be used across more than one visit, and if a clean costs more than the balance you pay the difference."
                       : `Gift cards should be redeemed within ${POLICY.giftCardExpiryMonths} months. We track the remaining balance, so it can be used across more than one visit.`}{" "}
                     Gift cards are non-refundable and cannot be combined with other promotions.
                     {POLICY.giftCardMaxValue === "none"
@@ -179,8 +179,8 @@ export default function Terms() {
                 <>
                   <h2 className="text-2xl font-bold mb-4 text-foreground">If We Cannot Get In</h2>
                   <p className="mb-8">
-                    If our team arrives for a scheduled clean and cannot get into the home — no
-                    key left, a code that does not work, or nobody able to let them in — we
+                    If our team arrives for a scheduled clean and cannot get into the home because
+                    no key was left, a code does not work or nobody is able to let them in, we
                     charge {POLICY.lockoutFee}. The cleaner has already travelled and the slot
                     cannot be given to anyone else at that point. Telling us at least{" "}
                     {POLICY.cancellationNoticeHours} hours ahead avoids this entirely.
@@ -218,8 +218,8 @@ export default function Terms() {
 
               <h2 className="text-2xl font-bold mb-4 text-foreground">Your Privacy</h2>
               <p className="mb-8">
-                How we collect, use and share your information — including what is sent to our
-                booking system when you book — is set out in our{" "}
+                How we collect, use and share your information, including what is sent to our
+                booking system when you book, is set out in our{" "}
                 <a href="/privacy-policy/" className="text-primary underline">
                   Privacy Policy
                 </a>

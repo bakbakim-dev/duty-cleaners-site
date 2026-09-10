@@ -17,16 +17,17 @@ import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import postConstructionBeforeAfter from "@/assets/gallery/post-construction-before-after.webp";
 import CityCrossLink from "@/components/CityCrossLink";
 import { POLICY } from "@/data/policy";
-import { COMPANY, RATING_CLAIM } from "@/data/proof";
+import { COMPANY, RATING_CLAIM, CITY_PROOF } from "@/data/proof";
 import { travelFee } from "@/data/addon-table";
 
-import { startingPrice, formatPrice, sqftTierOptions } from "@/data/pricing";
+import { startingPrice, formatPrice, sqftTierOptions, GST_RATE } from "@/data/pricing";
+const REVIEWS = CITY_PROOF.edmonton.googleReviewCount;
+/** A before-tax figure with 5% GST added, for the worked example. */
+const withGst = (value: number) => formatPrice(Math.round(value * (1 + GST_RATE) * 100) / 100);
 /* The figure /services/ already publishes for this service, from bk-config. */
 const startingPriceLabel = formatPrice(startingPrice("post-construction"));
 /* And the top of the real ladder. "Starts at $550" is true but anchors a
-   visitor at the floor of a nine-tier table that reaches $1,900 — and the
-   new-build communities this page names (Windermere, Keswick, Glenridding
-   Ravine) are 1,800-2,800 sq ft homes, which sit at $750-$1,100, not $550.
+   visitor at the floor of a nine-tier table that reaches $1,900.
    Quoting a floor beside the words "no hidden fees" is how a page sets up its
    own quote call to disappoint. Derived, so it cannot drift from bk-config. */
 const sqftTiers = sqftTierOptions("post-construction");
@@ -41,7 +42,7 @@ const pcTravelFee = formatPrice(travelFee("post-construction") ?? 0);
 /* The title carries the derived floor and the payment term; the brand would
    push it past 60 characters. */
 const PAGE_TITLE = `Post-Construction Cleaning Edmonton from ${startingPriceLabel} | Pay After`;
-const META_DESCRIPTION = `Post-construction cleaning in Edmonton from ${startingPriceLabel} by square footage. Drywall dust, smudges and contractor residue off new builds and renovations.`;
+const META_DESCRIPTION = `Once the last trade leaves an Edmonton new build or renovation, post-construction cleaning is priced by square footage from ${startingPriceLabel} before GST.`;
 
 /* Card titles were Title Case service-brochure headings ("Fine Dust & Debris
    Removal", "Kitchen Deep Cleaning") of the kind the Calgary twin was rewritten
@@ -56,7 +57,7 @@ const includedServices = [
 ];
 
 const excludedServices = [
-  "We provide FINAL-stage post-construction cleaning only — not rough construction cleanup or active job-site cleaning",
+  "Final-stage post-construction cleaning only: no rough construction cleanup and no active job-site cleaning",
   "No removal of construction debris, drywall scraps, or leftover building materials",
   "No hauling, disposal, or large debris removal services",
   "No removal of plastics from new appliances, and no removal of stickers from windows, doors, or surfaces",
@@ -71,12 +72,12 @@ const excludedServices = [
    were card titles that could sit on any cleaning company's page in any city.
    Each now states the term it was standing in for. */
 const whyChooseUs = [
-  { icon: Calendar, title: "Booked around your possession date", desc: "Monday to Saturday 8:00 AM to 8:00 PM and Sunday 9:00 AM to 3:00 PM, subject to what is open. Give us the date the last trade finishes and we take the slot after it." },
+  { icon: Calendar, title: "Booked around your possession date", desc: "The crew arrives in a booked window, 9:00 to 10:00 AM, 12:00 to 1:00 PM or 3:00 to 4:00 PM, rather than at an exact time. Give us the date the last trade finishes and book the first open slot after it." },
   { icon: Shield, title: "Pay after the clean", desc: "Nothing is charged when you book. The day before your appointment a temporary hold confirms the card is valid, and no money moves. Your card is charged once the clean is complete." },
-  { icon: Sparkles, title: "Ledges, tracks and vents by hand", desc: "The four places a post-construction clean is judged on, and the four a machine cannot do: ledges, window tracks, vent slots and the top edge of the trim." },
+  { icon: Sparkles, title: "Ledges, tracks and vents by hand", desc: "Four places a machine cannot do are wiped by hand: the ledges, the window tracks, the vent slots and the top edge of the trim." },
   { icon: Wrench, title: "What the crew brings, what the site needs", desc: "Vacuums, cloths, products and the 3-step ladder come with the crew. The site has to have power and running water, which on a new build is worth confirming with the builder." },
-  { icon: Heart, title: `${POLICY.guaranteeWindowHours}-hour re-clean`, desc: "Tell us about any area you are not happy with, inside that window, and we re-clean it free of charge. Photos help the team find it and are not a condition." },
-  { icon: DollarSign, title: "The band is the price", desc: `${startingPriceLabel} to ${topPriceLabel}, before 5% GST, set by the square-footage band of the finished space. Nothing is added for a clean that runs long.` }
+  { icon: Heart, title: `${POLICY.guaranteeWindowHours}-hour re-clean`, desc: `Tell us within ${POLICY.guaranteeWindowHours} hours about anything we missed and we re-clean it free of charge. Photos help the team find it and are not a condition.` },
+  { icon: DollarSign, title: "The band is the price", desc: `${startingPriceLabel} to ${topPriceLabel}, before 5% GST, set by the square-footage band of the finished space. Nothing is added for a clean that runs long, and an address outside Edmonton city limits also pays the travel fee.` }
 ];
 
 /**
@@ -93,24 +94,28 @@ interface Faq {
 const faqs: Faq[] = [
   {
     q: "What is final-stage post-construction cleaning?",
-    a: "The clean that goes in after the trades have finished and the material has gone. It takes the sanding dust out of the vents, the window channels and the new drawers, lifts the paint flecks and adhesive off the glass, and leaves the place fit to move into. It is neither rough cleanup nor a site clean: if a trade is still due back for something, the room is not ready for us.",
+    a: "It is the clean that goes in after the trades have finished and the material has gone. It takes the sanding dust off the vent covers and out of the window channels and the new drawers, lifts the paint flecks and adhesive off the glass, and leaves the place fit to move into. It is neither rough cleanup nor a site clean: if a trade is still due back for something, the room is not ready for us.",
+  },
+  {
+    q: "How much does post-construction cleaning cost in Edmonton?",
+    a: `It is priced by the square footage of the finished space: ${startingPriceLabel} for ${tierLabel(sqftTiers[0]?.label ?? "").toLowerCase()}, rising by band to ${topPriceLabel} for ${tierLabel(sqftTiers[sqftTiers.length - 1]?.label ?? "")}, all before 5% GST. The band is set before you book and does not change if the clean runs long. Inside Edmonton city limits there is no travel fee; outside them a post-construction clean carries a ${pcTravelFee} travel fee.`,
   },
   {
     q: "Do you remove construction debris or leftover materials?",
-    a: "No, and it is not a question of price — the vans carry cleaning kit, not a trailer. Offcuts, packaging, old fixtures and the empty tins leave with whoever brought them. A room with material still stacked in it cannot be cleaned properly either, because half the floor and most of the trim are underneath it.",
+    a: "No. Hauling, disposal and large debris removal are outside the service, and the crew arrives with cleaning equipment and no way to take material away. Offcuts, packaging, old fixtures and the empty tins leave with whoever brought them. A room with material still stacked in it cannot be cleaned properly either, because half the floor and most of the trim are underneath it.",
   },
   {
     q: "Can you clean my Edmonton home after a kitchen or bathroom renovation?",
-    a: "Yes. Post-renovation cleaning of a single room is the same service on a smaller footprint. We detail cabinets inside and out, sanitize tubs and tile, and take the drywall dust off the rooms around the one that was worked on, because that is where it travelled.",
+    a: "Yes. Post-renovation cleaning of a single room is the same service on a smaller footprint. We detail cabinets inside and out and sanitize tubs and tile. The drywall dust travels into the rooms around the one that was worked on, so tell us at booking which of those rooms took it.",
   },
   {
     q: "How is post-construction cleaning different from a regular deep clean?",
-    a: "Post-construction cleaning targets the fine construction dust that settles on every surface, including inside cabinets, drawers, vents, and window tracks, as well as light paint splatters, smudges, and residue left behind by tradespeople. A deep clean does not open every cabinet and drawer, wipe inside the vents, clear the window tracks, or lift paint flecks and adhesive residue off glass and fixtures. This one does.",
+    a: "Post-construction cleaning targets the fine construction dust that settles on every surface, including inside cabinets, drawers, vents, and window tracks, as well as light paint splatters, smudges, and residue left behind by tradespeople. A deep clean does not open every cabinet and drawer, clear the window tracks, or lift paint flecks and adhesive residue off glass and fixtures. This one does.",
     more: { lead: "For a lived-in home with no building work, compare it with", to: "/edmonton/deep-cleaning/", anchor: "a deep clean in Edmonton" },
   },
   {
     q: "How long does a post-construction cleaning take?",
-    a: "Most Edmonton homes take between 4 and 10 hours depending on square footage, number of bathrooms, and how much fine dust remains. The price is set by the square footage band before you book, and it does not change because the clean ran long.",
+    a: "We work to a checklist, not a clock, and the crew stays until every item on the post-construction list is done. The price is set by the square-footage band before you book, and it does not change because the clean ran long. The booking gives an arrival window, 9:00 to 10:00 AM, 12:00 to 1:00 PM or 3:00 to 4:00 PM, rather than an exact start time.",
     more: { lead: "Once the dust stops resurfacing, the home moves onto", to: "/edmonton/regular-cleaning/", anchor: "a standard house clean in Edmonton" },
   },
   {
@@ -130,8 +135,8 @@ const faqs: Faq[] = [
     a: "Construction debris and materials do have to be gone before we start — that part is not negotiable, because our team is not equipped to haul it and it hides the surfaces we are there to clean. Furniture is a different question: a renovated kitchen or bathroom in a home you still live in is normal work for us, and we clean around what is there. Tell us at booking what is still in the rooms and we will say plainly whether a post-construction clean is the right service or whether a deep clean fits better.",
   },
   {
-    q: "Do you offer a satisfaction guarantee?",
-    a: `Yes. If any area of the post-construction clean is not right, tell us within ${POLICY.guaranteeWindowHours} hours and we return to re-clean it free of charge. Photos help the team find it and are not a condition.`,
+    q: "Is there a guarantee on a post-construction clean?",
+    a: `Yes, and it is a re-clean. If any area of the post-construction clean is not right, tell us within ${POLICY.guaranteeWindowHours} hours and we return to re-clean it free of charge. Photos help the team find it and are not a condition. The commitment is the return visit rather than a refund, though you can call the Edmonton office on (780) 913-6565 to talk through anything else.`,
   },
 ];
 
@@ -196,7 +201,7 @@ export default function EdmontonPostConstruction() {
               <div className="inline-flex flex-wrap items-center gap-2 mb-6">
                 <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                   <Star className="w-4 h-4 text-accent" />
-                  <span className="text-white/90 text-sm font-medium">{RATING_CLAIM}</span>
+                  <span className="text-white/90 text-sm font-medium">{RATING_CLAIM}{REVIEWS ? `, ${REVIEWS} reviews` : ""}</span>
                 </span>
                 <span className="inline-flex items-center gap-2 bg-accent/20 backdrop-blur-sm rounded-full px-4 py-2">
                   <Home className="w-4 h-4 text-accent" />
@@ -207,12 +212,14 @@ export default function EdmontonPostConstruction() {
                 Post-Construction Cleaning in <span className="text-accent">Edmonton, AB</span>
               </h1>
               <p className="text-xl md:text-2xl text-white/80 max-w-3xl mb-4">
-                From {startingPriceLabel} before 5% GST, priced by square footage. Final-stage cleaning for
-                newly built and freshly renovated Edmonton homes, once the last trade has left.
+                From {startingPriceLabel} before 5% GST for a finished space{" "}
+                {tierLabel(sqftTiers[0]?.label ?? "").toLowerCase()}, priced by square footage; an address outside
+                Edmonton city limits adds a travel fee. It is the final-stage clean for newly built and freshly
+                renovated Edmonton homes, booked once the last trade has left.
               </p>
               <p className="text-base md:text-lg text-white/90 max-w-3xl mb-8">
-                Fine drywall dust, smudges and contractor residue off cabinets, windows, baseboards and
-                floors. Nothing is charged until the clean is done.
+                The crew takes fine drywall dust, smudges and contractor residue off cabinets, windows,
+                baseboards and floors, and nothing is charged until the clean is done.
               </p>
               <div className="flex flex-wrap gap-4 justify-center lg:justify-start mb-10">
                 <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-white text-lg px-8">
@@ -246,9 +253,8 @@ export default function EdmontonPostConstruction() {
         eyebrow="Edmonton builds"
         heading="Where the post-construction work in Edmonton actually is"
         paragraphs={[
-          "The new-build volume here sits in the southwest and the west — Windermere, Keswick, Glenridding Ravine, Laurel and out toward Rosenthal and Edgemont. Like any active community, the lots around a finished home keep producing dust long after that home is done, so a final clean scheduled before the neighbouring builds are closed in gets partly undone. We would rather come after the last trade has left than be the reason you clean twice.",
-          "Edmonton's build calendar is compressed by the winter in a way that changes the cleaning. Interior work carries on through the cold months with temporary heat running, and construction heaters push fine dust through a house continuously while every window stays sealed. It settles into the tops of door frames, closet shelves, and the inside of vents, and it keeps resurfacing for months after possession — which is why the first deep clean in a winter-finished Edmonton home almost never gets everything.",
-          "River valley lots come with an extra step. Builds on the ravine edges through the west end and the southwest sit on sandier ground, and that fine sand tracks in and gets into window channels and slider tracks where it grinds against new hardware. Clearing it out properly is slower than it looks, and skipping it is how a new door starts sticking in its first year.",
+          "In a community still being built, the lots around a finished home keep producing dust long after that home is done, so a final clean scheduled before the neighbouring builds are closed in gets partly undone. We would rather come after the last trade has left than be the reason you clean twice.",
+          "Furnace season runs from October into April, and a house sealed up that long cycles dust faster. In a winter-finished Edmonton home the drywall dust settles into the tops of door frames and closet shelves.",
         ]}
       />
 
@@ -264,9 +270,12 @@ export default function EdmontonPostConstruction() {
                 is a separate add-on, priced by the size of the home.
               </p>
               <p className="text-lg text-muted-foreground mb-4">
-                At Duty Cleaners Edmonton, we do <strong>final-stage post-construction cleaning</strong>: the{" "}
-                <Link to="/move-out-cleaning-edmonton/" className="text-primary underline underline-offset-4">move-in clean</Link>{" "}
-                performed once construction is complete and the space is empty of debris. That covers new builds, kitchen and bathroom remodels, basement renovations and whole-home refreshes.
+                Duty Cleaners in Edmonton does <strong>final-stage post-construction cleaning</strong>, the clean that
+                goes in once construction is complete and the space is empty of debris. That covers new builds, kitchen
+                and bathroom remodels, basement renovations and whole-home refreshes. A finished home that is simply
+                changing hands is{" "}
+                <Link to="/move-out-cleaning-edmonton/" className="text-primary underline underline-offset-4">move-in cleaning in Edmonton</Link>{" "}
+                instead, priced by bedrooms rather than square footage.
               </p>
               <p className="text-lg text-muted-foreground mb-4">
                 <strong>Important:</strong> we do not provide rough construction cleanup, debris hauling, or active job-site cleaning. Our service begins after your contractor has finished and removed all materials.
@@ -295,8 +304,7 @@ export default function EdmontonPostConstruction() {
               <p>
                 <strong className="text-foreground">Bathroom remodel.</strong> New tile carries a grout haze that
                 wiping spreads and washing removes. The tub, the shower glass, the mirror and the vanity are
-                cleaned for first use, and the dust that settled on the rooms either side of the bathroom is
-                taken off with it.
+                cleaned for first use.
               </p>
               <p>
                 <strong className="text-foreground">Basement renovation.</strong> A basement is the job where the
@@ -381,19 +389,26 @@ export default function EdmontonPostConstruction() {
               <p>
                 What changes the figure: the square footage band, and whether the address is inside Edmonton
                 city limits. Outside them a post-construction clean carries a {pcTravelFee} travel fee, which is
-                what a new build in Leduc or Beaumont pays on top of the row above. The rest of what we do in
-                those towns is on their own pages:{" "}
+                what a new build in Leduc or Beaumont pays on top of its band. The rest of what we do in
+                Leduc, Beaumont and St. Albert is on their own pages:{" "}
                 <Link to="/cleaning-services-leduc/" className="text-primary underline underline-offset-4">house cleaning in Leduc</Link>,{" "}
                 <Link to="/cleaning-services-beaumont/" className="text-primary underline underline-offset-4">house cleaning in Beaumont</Link>{" "}
                 and{" "}
                 <Link to="/cleaning-services-st-albert/" className="text-primary underline underline-offset-4">St. Albert house cleaners</Link>.
               </p>
+              {sqftTiers[2] && (
+                <p>
+                  Take a new house with a finished space in the {tierLabel(sqftTiers[2].label)} band. Inside the city
+                  limits the clean is {formatPrice(sqftTiers[2].price)} before GST and {withGst(sqftTiers[2].price)} once
+                  5% GST is added; the same house in Leduc adds the travel fee before the tax is worked out.
+                </p>
+              )}
               <p>
-                Every other clean we do is priced by bedrooms and bathrooms instead; those rows are on{" "}
+                Standard, deep and move-out cleans are priced by bedrooms and bathrooms instead; those rows are on{" "}
                 <Link to="/pricing/" className="text-primary underline underline-offset-4">the full Edmonton price list</Link>.
-                A winter-finished house keeps bringing dust back up for months, and{" "}
+                If the dust keeps coming back after the clean,{" "}
                 <Link to="/edmonton/recurring-cleaning/" className="text-primary underline underline-offset-4">a recurring clean in Edmonton</Link>{" "}
-                carries a discount from the second visit, which is the cheaper way through that first year.
+                carries a discount from the second visit.
               </p>
             </div>
           </AnimatedSection>
@@ -465,14 +480,16 @@ export default function EdmontonPostConstruction() {
                 <Heart className="w-4 h-4 text-accent" />
                 <span className="text-accent text-sm font-semibold uppercase">Cleaning Edmonton homes {COMPANY.sinceLabel}</span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Re-cleaned within {POLICY.guaranteeWindowHours} hours if we missed a ledge</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Tell us within {POLICY.guaranteeWindowHours} hours if we missed a ledge</h2>
               <p className="text-lg text-white/90 mb-4">
-                If any area of the clean is not right, tell us within {POLICY.guaranteeWindowHours} hours and we come
-                back to re-clean it at no charge. Photos help the team find it and are not a condition.
+                If any area of the post-construction clean is not right, tell us within{" "}
+                {POLICY.guaranteeWindowHours} hours and we come back to re-clean it at no charge. Photos help
+                the team find it and are not a condition.
               </p>
               <p className="text-base text-white/90 mb-8">
-                Every Edmonton post-construction job is checked against the checklist before we leave: cabinet
-                interiors, window tracks, baseboards. The customers who booked it before you are on the{" "}
+                The post-construction checklist names the cabinet interiors, the window tracks and the
+                baseboards, so a miss is easy to point to. Our Edmonton team is rated{" "}
+                {RATING_CLAIM}{REVIEWS ? ` across ${REVIEWS} reviews` : ""}; read them on the{" "}
                 <Link to="/reviews/" className="text-white underline underline-offset-4">reviews page</Link>.
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
@@ -494,7 +511,7 @@ export default function EdmontonPostConstruction() {
           <AnimatedSection>
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Post-Construction Cleaning FAQs</h2>
             <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-              Answers to the questions Edmonton homeowners, builders, and renovators ask us most.
+              Questions Edmonton homeowners, builders and renovators ask before a post-construction clean.
             </p>
           </AnimatedSection>
           <AnimatedSection>

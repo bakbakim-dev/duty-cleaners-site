@@ -10,7 +10,7 @@ type RecentActivityStripProps = {
 };
 
 /**
- * Horizontal marquee of recent five-star cleans, shown directly above the
+ * Horizontal marquee of recent Google reviews, shown directly above the
  * quote form to build urgency and social proof at the conversion point.
  *
  * With no verified review text on file we still owe the visitor proof at this
@@ -76,7 +76,7 @@ const RecentActivityStrip = ({ city, reviews }: RecentActivityStripProps) => {
       className={`marquee-hover-pause relative overflow-hidden border-y border-border bg-white py-3${
         paused ? " marquee-paused" : ""
       }`}
-      aria-label={`Recent five-star cleans in ${city}`}
+      aria-label={`Recent Google reviews from ${city} customers`}
     >
       <button
         type="button"
@@ -85,7 +85,7 @@ const RecentActivityStrip = ({ city, reviews }: RecentActivityStripProps) => {
         className="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full border border-border bg-white/90 p-1.5 text-foreground shadow-sm transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
       >
         {paused ? <Play className="h-3.5 w-3.5" aria-hidden="true" /> : <Pause className="h-3.5 w-3.5" aria-hidden="true" />}
-        <span className="sr-only">{paused ? "Resume the recent cleans strip" : "Pause the recent cleans strip"}</span>
+        <span className="sr-only">{paused ? "Resume the recent reviews strip" : "Pause the recent reviews strip"}</span>
       </button>
       <div className="animate-marquee flex w-max items-center gap-3">
         {items.map((review, index) => (

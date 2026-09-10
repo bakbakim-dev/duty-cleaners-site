@@ -119,7 +119,7 @@ const GROUPS: { id: GroupId; heading: string; intro: string; links: { to: string
   {
     id: "move",
     heading: "Move-out cleaning reviews",
-    intro: "Cleaned empty, to the standard an inspection looks for: inside the oven, fridge, cabinets and closets, on top of the deep checklist.",
+    intro: "A move-in or move-out clean is done to the standard an inspection looks for: the deep checklist plus the inside of the oven, fridge, cabinets, drawers and closets.",
     links: [
       { to: "/move-out-cleaning-edmonton/", label: "move-out cleaning in Edmonton" },
       { to: "/move-out-cleaning-calgary/", label: "move-out cleaning in Calgary" },
@@ -128,7 +128,7 @@ const GROUPS: { id: GroupId; heading: string; intro: string; links: { to: string
   {
     id: "recurring",
     heading: "Recurring cleaning reviews",
-    intro: "Weekly, bi-weekly or every 4 weeks, with the recurring discount applied from the second visit.",
+    intro: "Recurring cleaning is the standard clean booked weekly, bi-weekly or every 4 weeks, and the discount applies from the second visit, with the first clean at the one-time rate.",
     links: [
       { to: "/edmonton/recurring-cleaning/", label: "recurring cleaning in Edmonton" },
       { to: "/calgary/recurring-cleaning/", label: "recurring cleaning in Calgary" },
@@ -275,7 +275,7 @@ export default function Reviews() {
             said what the guarantee is. A badge reading "100% Satisfaction Guarantee" on its
             own invites the reader to hear "money back", and the guarantee is a return visit. */}
             <StatCard icon={Award} value={`${POLICY.guaranteeWindowHours}-Hour`} label="Re-Clean Guarantee" />
-            <StatCard icon={Heart} value={String(COMPANY.foundedYear)} label="Serving Alberta Since" />
+            <StatCard icon={Heart} value={String(COMPANY.foundedYear)} label="The year we started cleaning Alberta homes" />
           </div>
         </div>
       </section>
@@ -285,8 +285,9 @@ export default function Reviews() {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-14">
             <p className="text-muted-foreground text-lg leading-relaxed">
-              Grouped by the service the reviewer describes, so you can read the ones about the
-              clean you are pricing. Where a review does not say, it sits under its city.
+              The reviews are grouped by the service each reviewer describes, so you can read the
+              ones about the clean you are pricing. Where a review does not name a service, it sits
+              under its city.
             </p>
           </div>
 
@@ -338,7 +339,7 @@ export default function Reviews() {
                 Where these reviews come from
               </h2>
               <p className="text-muted-foreground leading-relaxed">
-                One Google Business Profile per office{READ_ON_LABEL ? `, both read on ${READ_ON_LABEL}` : ""}. The
+                Each office has its own Google Business Profile{READ_ON_LABEL ? `, and both were read on ${READ_ON_LABEL}` : ""}. The
                 Edmonton listing stood at {CITY_PROOF.edmonton.googleRating} out of 5 from{" "}
                 {CITY_PROOF.edmonton.googleReviewCount} reviews, and the Calgary listing at{" "}
                 {CITY_PROOF.calgary.googleRating} from {CITY_PROOF.calgary.googleReviewCount}. Google
@@ -443,8 +444,9 @@ export default function Reviews() {
               Cleaned with us recently? Leave a review
             </h2>
             <p className="text-muted-foreground text-lg mb-8">
-              Reviews are how most people find us, and they are the fairest test of whether we did the
-              job properly. If you have a minute, it genuinely helps.
+              A review is the fairest test of whether we did the job properly, and it helps the next
+              person decide who to let into their home. Each button opens the Google listing for its
+              office.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               {(["edmonton", "calgary"] as const).map((key) => (

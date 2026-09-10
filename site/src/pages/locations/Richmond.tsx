@@ -60,9 +60,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Richmond" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Richmond" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Richmond" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Richmond" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Richmond.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Richmond" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "A finished infill or renovation gets a post-construction clean, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Richmond" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Richmond" },
 ];
 
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Killarney-Glengarry","South Calgary","Marda Loop","Altadore","Bankview","Rutland Park"];
+const nearbyAreas = ["Killarney-Glengarry","Marda Loop","Altadore","Bankview"];
 
 const faqs = [
   {
@@ -104,15 +104,15 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Richmond?",
-    answer: `The full service menu is available here:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `In Richmond, the Calgary branch books these services:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
   },
   {
     question: "Do you offer discounts?",
-    answer: `Yes, recurring visits cost less every time:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
+    answer: `Yes. A recurring standard clean is discounted by frequency:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function Richmond() {
     <>
       <Helmet>
         <title>House Cleaning Services in Richmond, Calgary | Duty Cleaners</title>
-        <meta name="description" content="House cleaning in Richmond, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
+        <meta name="description" content="Richmond is Calgary infill country, where homes between two builds take drywall and cut-stone dust through their window seals for months." />
         <meta property="og:title" content="House Cleaning Services in Richmond, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services in Richmond, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning in Richmond, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
-        <meta property="og:description" content="House cleaning in Richmond, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
+        <meta name="twitter:description" content="Richmond is Calgary infill country, where homes between two builds take drywall and cut-stone dust through their window seals for months." />
+        <meta property="og:description" content="Richmond is Calgary infill country, where homes between two builds take drywall and cut-stone dust through their window seals for months." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/richmond-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/richmond-calgary/" />
@@ -183,7 +183,7 @@ export default function Richmond() {
                 Professional House Cleaning in Richmond
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Trusted house cleaning for Richmond — bringing a calm, spotless home within reach.
+                Richmond's 1950s bungalows are giving way to three-storey infill semis, and many homes sit beside an active build. Every clean is a flat rate by home size, shown before you book.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function Richmond() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Richmond Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Everything from weekly upkeep to full move-out cleans.
+                  For a standard clean, a three-storey infill and a small 1950s bungalow are both priced by bedrooms, bathrooms and home type, and neither costs more for taking longer.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function Richmond() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Richmond Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Richmond and the surrounding Calgary communities.
+                    Richmond is an inner-southwest neighbourhood inside Calgary city limits, so a clean here carries no trip fee.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function Richmond() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1280} height={896} src={cleanHomeImg} alt="Spotless Richmond Calgary home cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1280} height={896} src={cleanHomeImg} alt="Dining table in warm light with wooden chairs, a vase of greenery and open shelves beside tall windows" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Calm, Spotless Richmond Home — Every Visit</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Infills and bungalows</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Three Storeys, Deck Doors and Pale Floors</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Our vetted cleaners treat your home with care, attention, and the same standards we'd want in our own. Walk in to fresh air, gleaming surfaces, and that quiet feeling of <em>everything in its place</em>.
+                    In a new Richmond infill, roof-top deck doors let wind-blown dust into the top floor, and pale wide-plank floors show every footprint. The deck itself is outdoor space, and outdoor areas and exterior windows are not part of a clean.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Cleaners rated by customers after each visit","All supplies and equipment brought by the team","A free re-clean when a miss is reported within 24 hours"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,9 +311,9 @@ export default function Richmond() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Richmond and the communities around it.{" "}
+                  Duty Cleaners cleans homes across Richmond and in these nearby Calgary neighbourhoods.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -329,8 +329,8 @@ export default function Richmond() {
         eyebrow="Local knowledge"
         heading="Richmond, between eras"
         paragraphs={[
-          "Richmond is inner-southwest infill country — 1950s bungalows coming down, three-storey semis going up — and living beside an active build site is the defining cleaning fact here. Neighbouring construction pushes drywall and cut-stone dust through window seals for months, and homes mid-block between two projects need window-track clearing on every visit.",
-          "The new infills themselves clean differently: three storeys of stairs, roof-top deck doors that funnel wind-blown dust straight into top-floor mains, and pale wide-plank floors that show every footprint. The older bungalows that remain are the opposite job — small, dense with original trim, and slower per square metre than their size suggests.",
+          "Richmond is inner-southwest infill country, where 1950s bungalows come down and three-storey semis go up. Living beside an active build site is the defining cleaning fact here. Neighbouring construction pushes drywall and cut-stone dust through window seals for months.",
+          "The new infills themselves clean differently: three storeys of stairs, roof-top deck doors that funnel wind-blown dust straight onto the top floor, and pale wide-plank floors that show every footprint. The older bungalows that remain are the opposite job — small, dense with original trim, and slower per square metre than their size suggests.",
         ]}
       />
 
@@ -347,7 +347,7 @@ export default function Richmond() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Richmond Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Reliable, detail-first cleaning families count on.
+                  Customers rate their cleaners after every visit, and those ratings decide who the Calgary branch keeps sending.
                 </p>
               </div>
             </AnimatedSection>

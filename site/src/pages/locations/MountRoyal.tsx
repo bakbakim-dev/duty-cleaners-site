@@ -5,6 +5,7 @@ import {
 import { buildLocationSchema } from "@/lib/location-schema";
 import CoverageChips from "@/components/CoverageChips";
 import LocationPricing from "@/components/LocationPricing";
+import { sitePriceRange } from "@/data/pricing";
 import calgaryCleanHome from "@/assets/gallery/calgary-clean-home-northwest.webp";
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -59,9 +60,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Mount Royal" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Mount Royal" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Mount Royal" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Mount Royal" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Drywall and construction dust after a renovation or a new build in your heritage property.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Mount Royal" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Drywall and construction dust after a renovation, priced by the home's square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Mount Royal" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Mount Royal" },
 ];
 
@@ -89,25 +90,25 @@ const whyUsItems = [
       </>
     ),
   },
-  { icon: Leaf, title: "Premium Products", description: "High-quality products suited to delicate surfaces and antique fixtures." },
+  { icon: Leaf, title: "All Supplies Brought For You", description: "The team brings all supplies and equipment. Leave the water and power on until the clean is done." },
   { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
-const nearbyAreas = ["Elbow Park", "Britannia", "Scarboro", "Rideau Park", "Upper Mount Royal", "Lower Mount Royal", "Cliff Bungalow", "Mission"];
+const nearbyAreas = ["Elbow Park", "Scarboro", "Rideau Park", "Lower Mount Royal", "Cliff Bungalow", "Mission"];
 
 const faqs = [
   { question: "How long does an initial cleaning take?", answer: "We work to a checklist, not a clock. Your Mount Royal team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
-  { question: "What cleaning services does Duty Cleaners offer in Mount Royal?", answer: "We offer:\n\n• Standard Cleaning & Deep Cleaning Packages\n• Move-In And Move-Out Cleaning Service\n• Post Construction Cleaning\n• Wall Washing and Wall Cleaning" },
-  { question: "Do you offer discounts?", answer: "We offer recurring discounts for our Standard and Deep Cleaning Packages.\n\nIf you avail of our recurring discount, on your next cleaning:\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off" },
-  { question: "What's included in a deep cleaning?", answer: "Deep cleaning adds the following to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned" },
-  { question: "What happens if something is missed?", answer: "Not fully satisfied? Let us know within 24 hours and we'll come back and put it right at no charge." },
+  { question: "What cleaning services does Duty Cleaners offer in Mount Royal?", answer: "Mount Royal homes can book any of these:\n\n• Standard Cleaning & Deep Cleaning Packages\n• Move-In And Move-Out Cleaning Service\n• Post Construction Cleaning\n• Wall Washing and Wall Cleaning" },
+  { question: "Do you offer discounts?", answer: "Yes. A standard clean booked on a recurring schedule is discounted from the second visit:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nThe first clean is charged at the one-time rate." },
+  { question: "What's included in a deep cleaning?", answer: "Deep cleaning adds the following to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped" },
+  { question: "What happens if something is missed?", answer: "Tell us within 24 hours and the team comes back to your Mount Royal home to re-clean what was missed, at no charge. Photos help but are not required." },
 ];
 
 const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Mount Royal Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/mount-royal",
-  priceRange: "$$$",
+  priceRange: sitePriceRange(),
   geo: { latitude: "51.0317", longitude: "-114.0867" },
 });
 
@@ -118,12 +119,12 @@ export default function MountRoyal() {
     <>
       <Helmet>
         <title>Mount Royal, Calgary House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="Premium house cleaning in Mount Royal, Calgary. Experienced with heritage homes and fine finishes. 100% satisfaction guaranteed." />
+        <meta name="description" content="Mount Royal, Calgary house cleaning for pre-war lath-and-plaster homes above the escarpment and the low-rise apartment blocks below it." />
         <meta property="og:title" content="Mount Royal, Calgary House Cleaning | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Mount Royal, Calgary House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="Premium house cleaning in Mount Royal, Calgary. Experienced with heritage homes and fine finishes. 100% satisfaction guaranteed." />
-        <meta property="og:description" content="Premium house cleaning in Mount Royal, Calgary. Experienced with heritage homes and fine finishes. 100% satisfaction guaranteed." />
+        <meta name="twitter:description" content="Mount Royal, Calgary house cleaning for pre-war lath-and-plaster homes above the escarpment and the low-rise apartment blocks below it." />
+        <meta property="og:description" content="Mount Royal, Calgary house cleaning for pre-war lath-and-plaster homes above the escarpment and the low-rise apartment blocks below it." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/mount-royal/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/mount-royal/" />
@@ -162,10 +163,10 @@ export default function MountRoyal() {
                   <span className="text-white/90 text-sm font-medium">Serving Mount Royal, Calgary</span>
                 </div>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                  Premium House Cleaning in Mount Royal
+                  House Cleaning in Mount Royal
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Trusted cleaning services for Calgary's most prestigious heritage neighbourhood. Customer-rated cleaners experienced with luxury homes.
+                  An escarpment along Cameron and Royal Avenues splits Mount Royal in two: pre-war houses on the high side, low-rise apartment blocks below. The Calgary branch scopes each home on its own and prices it by size.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -191,7 +192,7 @@ export default function MountRoyal() {
               <div className="flex-shrink-0 w-full lg:w-[500px]">
                 <img
                   src={calgaryCleanHome}
-                  alt="A freshly cleaned Calgary living space"
+                  alt="Living room with a cream sectional sofa, a glass coffee table holding flowers, potted plants and tall windows over hardwood floors"
                   width={1024}
                   height={768}
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
@@ -229,7 +230,7 @@ export default function MountRoyal() {
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Neighbourhoods We Serve</h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto">We proudly serve families and homeowners across Mount Royal and surrounding communities.</p>
+                <p className="text-muted-foreground max-w-2xl mx-auto">Lower Mount Royal, Cliff Bungalow and the other neighbourhoods around Mount Royal are on the same Calgary branch's list, with no trip fee inside city limits.</p>
               </div>
               <CoverageChips areas={nearbyAreas} />
             </AnimatedSection>
@@ -241,7 +242,7 @@ export default function MountRoyal() {
         heading="Above and below the escarpment"
         paragraphs={[
           "An escarpment running east to west along Cameron and Royal Avenues splits this community in two. Upper Mount Royal, on the high side, goes back to 1904, and pre-war construction sets the method: lath-and-plaster walls that dent under pressure, deep milled trim holding a century of paint in its profiles, and, in the houses still on radiators, fins packing dust no vacuum head reaches. All three want time and a dry cloth rather than a stronger product.",
-          "Below the escarpment the pattern flips. Lower Mount Royal is one of the inner city's densest pockets - low-rise apartment blocks rather than houses - and its northern edge is 17 Avenue SW itself, not a few streets short of it. A suite fronting that strip and a pre-war house four blocks uphill share a community name and almost nothing about the work; we scope them separately.",
+          "Below the escarpment the pattern flips. Lower Mount Royal is built as low-rise apartment blocks rather than houses, and its northern edge is 17 Avenue SW itself, not a few streets short of it. A suite fronting that strip and a pre-war house four blocks uphill share a community name and almost nothing about the work; we scope them separately.",
         ]}
         accent="calgary"
       />
@@ -257,7 +258,7 @@ export default function MountRoyal() {
               <div className="text-center mb-14">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Mount Royal Homes</h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto text-lg">Premium cleaning packages tailored to heritage and luxury living.</p>
+                <p className="text-muted-foreground max-w-2xl mx-auto text-lg">Deep milled trim in Mount Royal's pre-war houses gets time and a dry cloth rather than a stronger product.</p>
               </div>
             </AnimatedSection>
             <AnimatedSection>
@@ -293,7 +294,7 @@ export default function MountRoyal() {
               <div className="text-center mb-14">
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Mount Royal Residents Choose Duty Cleaners</h2>
-                <p className="text-white/90 max-w-2xl mx-auto text-lg">Trusted locally for reliable, thorough cleaning.</p>
+                <p className="text-white/90 max-w-2xl mx-auto text-lg">Cleaners are reference-checked before the first job and rated after every visit, and anything missed and reported within 24 hours is re-cleaned at no charge.</p>
               </div>
             </AnimatedSection>
             <AnimatedSection>
@@ -331,8 +332,8 @@ export default function MountRoyal() {
           <div className="container mx-auto px-4 text-center">
             <AnimatedSection>
               <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-              <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Proudly Serving Mount Royal & Surrounding Areas</h2>
-              <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">We provide professional house cleaning services throughout Mount Royal and nearby communities in Calgary.</p>
+              <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">House Cleaning in Mount Royal and Nearby Neighbourhoods</h2>
+              <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">The Calgary office at 2835 37 Street SW books Mount Royal cleans, Monday to Saturday 8:00 AM to 8:00 PM and Sunday 9:00 AM to 3:00 PM.</p>
               <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">View All Service Areas →</Link>
             </AnimatedSection>
           </div>

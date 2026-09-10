@@ -43,7 +43,7 @@ import { submitQuote } from "@/lib/quote-submit";
 import { toast } from "sonner";
 import { z } from "zod";
 import heroCleanersSmiling from "@/assets/hero-cleaners-smiling.webp";
-import { CITY_PROOF, CLEANER_JOB_POSTING } from "@/data/proof";
+import { CITY_PROOF, CLEANER_JOB_POSTING, COMPANY } from "@/data/proof";
 
 const applicationSchema = z.object({
   firstName: z.string().trim().min(1, "First name is required").max(50, "First name must be less than 50 characters"),
@@ -62,33 +62,33 @@ type ApplicationFormData = z.infer<typeof applicationSchema>;
 const benefits = [
   {
     icon: Users,
-    title: "Supportive Team",
-    description: "Become part of a team that truly values and supports you."
+    title: "Office Support",
+    description: "Customers book and pay through the Duty Cleaners office, so you are not finding clients or collecting payment yourself."
   },
   {
     icon: DollarSign,
-    title: "Great Pay",
-    description: "Earn competitive pay based on jobs completed."
+    title: "Paid Per Job",
+    description: "You are paid for each job you complete, not by the hour. The office gives you the current per-job rates for your city before you commit."
   },
   {
     icon: Calendar,
-    title: "Flexible Schedule",
-    description: "Work when you want with a flexible schedule that fits your life."
+    title: "Choose Your Days",
+    description: "You choose the days and hours you are available to work."
   },
   {
     icon: MapPin,
     title: "Choose Your Areas",
-    description: "Get jobs in the areas you choose to work in."
+    description: "You get jobs in the areas you choose to work in."
   },
   {
     icon: Briefcase,
     title: "Regular Bookings",
-    description: "Regular bookings at the same time and location every week."
+    description: "Recurring customers book weekly, bi-weekly or every 4 weeks, so that work repeats on a schedule."
   },
   {
     icon: Clock,
     title: "No Night Shifts",
-    description: "Option to take weekends off, and no night shifts."
+    description: "There are no night shifts, and you can take weekends off."
   }
 ];
 
@@ -96,35 +96,35 @@ const benefits = [
 const requirements = [
   {
     icon: FileCheck,
-    title: "BN Registered",
+    title: "Business Number (BN)",
     // "BN" was unexplained, and it is the requirement that tells an applicant
     // this is contract work rather than employment.
-    description: "Cleaners work as independent contractors, so you need a CRA Business Number. Registering for one takes about 15 minutes and is free."
+    description: "Cleaners work as independent contractors, so you need a Business Number from the Canada Revenue Agency (CRA)."
   },
   {
     icon: Car,
     title: "Your Own Vehicle",
-    description: "Must have reliable transportation to get to job sites."
+    description: "You need reliable transportation of your own to reach each job."
   },
   {
     icon: FileCheck,
-    title: "Driver's License",
-    description: "Valid driver's license required."
+    title: "Driver's Licence",
+    description: "You need a valid driver's licence."
   },
   {
     icon: Shield,
     title: "Reference Checked",
-    description: "Must provide checkable references."
+    description: "You need references we can check. Every Duty Cleaners cleaner is reference-checked before a first job."
   },
   {
     icon: CheckCircle2,
     title: "Professional Experience",
-    description: "Have professional house/domestic cleaning experience."
+    description: "You need paid experience cleaning homes."
   },
   {
     icon: Briefcase,
     title: "Own Equipment",
-    description: "Provide your own equipment and cleaning supplies."
+    description: "You bring your own equipment and cleaning supplies to each job."
   }
 ];
 
@@ -133,17 +133,17 @@ const faqs = [
   {
     value: "pay",
     question: "What does the position pay?",
-    answer: "Pay is per job completed rather than per hour, so what you earn in a pay period depends on how many jobs you take and how efficiently you work. Ask for the current per-job rates for your city when we call you — we will give you the actual numbers before you commit to anything."
+    answer: "Pay is per job completed rather than per hour, so what you earn in a pay period depends on how many jobs you take and how efficiently you work. Ask for the current per-job rates for your city when the office calls you, and you will have the figures before you commit to anything."
   },
   {
     value: "hours",
     question: "What are the hours?",
-    answer: "Most cleaning shifts run between 9:00 AM and 5:00 PM, Monday to Sunday. (Our customer service hours are Monday to Saturday 8:00 AM to 8:00 PM and Sunday 9:00 AM to 3:00 PM.). You can choose the days and hours that work best for you."
+    answer: "Most cleaning jobs run between 9:00 AM and 5:00 PM, Monday to Sunday, and you choose the days and hours you are available. The office answers the phone Monday to Saturday from 8:00 AM to 8:00 PM and Sunday from 9:00 AM to 3:00 PM."
   },
   {
     value: "transportation",
     question: "Do I need to have private reliable transportation?",
-    answer: "Yes, you need your own vehicle to get to your jobs. Drop-offs by someone else are not allowed."
+    answer: "Yes. You need your own vehicle to get to your jobs, and drop-offs by someone else are not allowed."
   },
   {
     value: "qualifications",
@@ -153,7 +153,7 @@ const faqs = [
   {
     value: "next-steps",
     question: "I already applied, now what?",
-    answer: "We review every application and contact qualified applicants within 24-48 hours. If two full business days have passed and you have heard nothing, call us at (780) 913-6565 and we will check on it."
+    answer: "The office reads every application and calls the applicants whose experience fits. To check on an application, phone the office for the city you applied to: Edmonton at (780) 913-6565 or Calgary at (403) 768-1341."
   }
 ];
 
@@ -264,7 +264,7 @@ export default function JoinTheTeam() {
         return;
       }
 
-      toast.success("Application submitted! We'll contact you within 24-48 hours.");
+      toast.success("Application sent. The office reads every application and calls the applicants whose experience fits.");
       setFormData({
         firstName: "",
         lastName: "",
@@ -284,16 +284,16 @@ export default function JoinTheTeam() {
         <title>Cleaning Jobs Edmonton & Calgary | Duty Cleaners Careers</title>
         <meta
           name="description"
-          content="Join the Duty Cleaners team. Flexible schedules, competitive pay and consistent work. Cleaning positions in Edmonton and Calgary."
+          content="House cleaning jobs with Duty Cleaners in Edmonton and Calgary: paid per job, you choose your areas and days, and there are no night shifts."
         />
         <link rel="canonical" href="https://dutycleaners.ca/join-the-team/" />
         <meta property="og:title" content="Cleaning Jobs Edmonton & Calgary | Duty Cleaners Careers" />
-        <meta property="og:description" content="Join the Duty Cleaners team. Flexible schedules, competitive pay and consistent work. Cleaning positions in Edmonton and Calgary." />
+        <meta property="og:description" content="House cleaning jobs with Duty Cleaners in Edmonton and Calgary: paid per job, you choose your areas and days, and there are no night shifts." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/join-the-team/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Cleaning Jobs Edmonton & Calgary | Duty Cleaners Careers" />
-        <meta name="twitter:description" content="Join the Duty Cleaners team. Flexible schedules, competitive pay and consistent work. Cleaning positions in Edmonton and Calgary." />
+        <meta name="twitter:description" content="House cleaning jobs with Duty Cleaners in Edmonton and Calgary: paid per job, you choose your areas and days, and there are no night shifts." />
         {/* Mirrors the FAQ accordion rendered on this page. */}
         <script type="application/ld+json">
           {JSON.stringify({
@@ -316,7 +316,7 @@ export default function JoinTheTeam() {
               "@type": "JobPosting",
               title: "House Cleaner",
               description:
-                "Duty Cleaners is hiring experienced house cleaners in Edmonton and Calgary. Regular bookings at the same time and location each week, flexible scheduling, no night shifts, and the option to take weekends off.",
+                "Duty Cleaners is hiring experienced house cleaners in Edmonton and Calgary. Cleaners work as independent contractors, are paid per job, choose their areas and days, work no night shifts, and can take weekends off.",
               datePosted: CLEANER_JOB_POSTING.datePosted,
               ...(CLEANER_JOB_POSTING.validThrough
                 ? { validThrough: CLEANER_JOB_POSTING.validThrough }
@@ -367,30 +367,31 @@ export default function JoinTheTeam() {
             <div className="max-w-4xl mx-auto text-center">
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
                 <Heart className="w-4 h-4 text-accent" />
-                <span className="text-white/90 text-sm font-medium">Join Our Family</span>
+                <span className="text-white/90 text-sm font-medium">Careers at Duty Cleaners</span>
               </div>
-              
+
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-                Become Part of the <span className="text-accent">Duty Cleaners</span> Family
+                House Cleaning Jobs in <span className="text-accent">Edmonton and Calgary</span>
               </h1>
-              
+
               <p className="text-xl md:text-2xl text-white/80 leading-relaxed mb-10">
-                Help Us Keep Spaces Spotless – Join Our Team!
+                Duty Cleaners has cleaned homes in Alberta since {COMPANY.foundedYear}. Cleaners work
+                as independent contractors, paid per job, on the days they choose.
               </p>
 
               {/* Trust Badges */}
               <div className="flex flex-wrap justify-center gap-4 mb-10">
                 <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-5 py-3 rounded-full border border-white/20">
                   <DollarSign className="w-5 h-5 text-accent" />
-                  <span className="font-medium text-white">Competitive Pay</span>
+                  <span className="font-medium text-white">Paid Per Job</span>
                 </div>
                 <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-5 py-3 rounded-full border border-white/20">
                   <Calendar className="w-5 h-5 text-accent" />
-                  <span className="font-medium text-white">Flexible Hours</span>
+                  <span className="font-medium text-white">You Choose Your Days</span>
                 </div>
                 <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-5 py-3 rounded-full border border-white/20">
                   <Star className="w-5 h-5 text-accent" />
-                  <span className="font-medium text-white">Great Team</span>
+                  <span className="font-medium text-white">No Night Shifts</span>
                 </div>
               </div>
               
@@ -412,11 +413,11 @@ export default function JoinTheTeam() {
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-4">
                 <Sparkles className="w-4 h-4 text-primary" />
-                <span className="text-primary text-sm font-medium">Why Choose Us?</span>
+                <span className="text-primary text-sm font-medium">Why Work With Us</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">What You Get</h2>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Join a team that values your time, rewards your work, and supports your growth.
+                What working with Duty Cleaners looks like, from pay to scheduling.
               </p>
             </div>
 
@@ -449,7 +450,7 @@ export default function JoinTheTeam() {
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">What You Need</h2>
               <p className="text-xl text-white/90 max-w-2xl mx-auto">
-                We require you to have the following criteria in order to be eligible to work at Duty Cleaners.
+                You need each of these before your first job with Duty Cleaners.
               </p>
             </div>
 
@@ -482,7 +483,7 @@ export default function JoinTheTeam() {
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">From Application to Your First Clean</h2>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Four simple steps — most applicants hear back within 24-48 hours.
+                Four steps, from the online application to your first clean.
               </p>
             </div>
 
@@ -491,7 +492,7 @@ export default function JoinTheTeam() {
                 {
                   icon: FileCheck,
                   title: "Apply online",
-                  text: "Fill out the application below — it takes about 5 minutes.",
+                  text: "Fill out the online application. It takes about 5 minutes.",
                   preview: (
                     <div className="space-y-2">
                       <div className="h-2.5 w-3/4 rounded-full bg-border" />
@@ -503,7 +504,7 @@ export default function JoinTheTeam() {
                 {
                   icon: CheckCircle2,
                   title: "We review",
-                  text: "Our team reviews every application and contacts qualified applicants within 24-48 hours.",
+                  text: "The office reads every application and calls the applicants whose experience fits.",
                   preview: (
                     <div className="space-y-2">
                       <div className="flex items-center gap-2"><CheckCircle2 className="h-3.5 w-3.5 text-success" /><div className="h-2.5 w-2/3 rounded-full bg-border" /></div>
@@ -514,8 +515,8 @@ export default function JoinTheTeam() {
                 },
                 {
                   icon: Shield,
-                  title: "Meet & vet",
-                  text: "A quick interview and reference check — the same bar every Duty Cleaners pro clears.",
+                  title: "Interview and references",
+                  text: "A short interview and a reference check, which every Duty Cleaners cleaner passes before a first job.",
                   preview: (
                     <div className="flex items-center gap-3">
                       <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
@@ -531,7 +532,7 @@ export default function JoinTheTeam() {
                 {
                   icon: Calendar,
                   title: "Start cleaning",
-                  text: "Choose the areas you serve and set a schedule that fits your life.",
+                  text: "Choose the areas you work in and the days you are available.",
                   preview: (
                     <div className="grid grid-cols-3 gap-1.5">
                       {[...Array(6)].map((_, i) => (
@@ -574,9 +575,9 @@ export default function JoinTheTeam() {
                   <HelpCircle className="w-4 h-4 text-primary" />
                   <span className="text-primary text-sm font-medium">FAQ</span>
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Your Questions Answered</h2>
+                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Questions About Cleaning Jobs</h2>
                 <p className="text-xl text-muted-foreground">
-                  Have questions? Here are some answers to people's most common questions.
+                  Pay, hours, transport and what you need to apply.
                 </p>
               </div>
 
@@ -620,9 +621,9 @@ export default function JoinTheTeam() {
                   <FileCheck className="w-4 h-4 text-accent" />
                   <span className="text-white/90 text-sm font-medium">Application</span>
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Apply Below</h2>
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Apply for a Cleaning Job</h2>
                 <p className="text-xl text-white/90">
-                  Simply fill out the application below and we'll contact you within 24-48 hours if you're qualified.
+                  Tell us about your experience and the city you want to work in.
                 </p>
               </div>
 
@@ -683,7 +684,7 @@ export default function JoinTheTeam() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="location" className="text-foreground font-medium">Which Location are you applying for? *</Label>
+                    <Label htmlFor="location" className="text-foreground font-medium">Which city are you applying for? *</Label>
                     <Select
                       value={formData.location}
                       onValueChange={(value) => setFormData({ ...formData, location: value })}
@@ -786,7 +787,7 @@ export default function JoinTheTeam() {
 
               {/* Contact Info */}
               <div className="mt-10 text-center">
-                <p className="text-white/90 mb-4">Have questions? Send us an email!</p>
+                <p className="text-white/90 mb-4">For questions about the job, email the office.</p>
                 <a 
                   href="mailto:support@dutycleaners.ca" 
                   className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20 text-white hover:bg-white/20 transition-colors"

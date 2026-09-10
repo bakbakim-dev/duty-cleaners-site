@@ -1,5 +1,6 @@
 import { POLICY } from "@/data/policy";
-import { HOMES_CLEANED } from "@/data/proof";
+import { CITY_PROOF, HOMES_CLEANED, RATING_CLAIM } from "@/data/proof";
+import { calgaryNeighborhoods, calgarySurrounding, edmontonNeighborhoods, edmontonSurrounding } from "@/data/city-locations";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -13,15 +14,15 @@ export default function AboutUs() {
   return <div className="min-h-screen">
       <Helmet>
         <title>About Duty Cleaners | Edmonton & Calgary House Cleaning</title>
-        <meta name="description" content="Meet the team behind Duty Cleaners. Serving Alberta since 2017 with reference-checked, customer-rated cleaners in Edmonton and Calgary." />
+        <meta name="description" content="Duty Cleaners has cleaned Alberta homes since 2017 from offices in Edmonton and Calgary, with cleaners reference-checked and rated after every visit." />
         <link rel="canonical" href="https://dutycleaners.ca/about-us/" />
         <meta property="og:title" content="About Duty Cleaners | Edmonton & Calgary House Cleaning" />
-        <meta property="og:description" content="Meet the team behind Duty Cleaners. Serving Alberta since 2017 with reference-checked, customer-rated cleaners in Edmonton and Calgary." />
+        <meta property="og:description" content="Duty Cleaners has cleaned Alberta homes since 2017 from offices in Edmonton and Calgary, with cleaners reference-checked and rated after every visit." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/about-us/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="About Duty Cleaners | Edmonton & Calgary House Cleaning" />
-        <meta name="twitter:description" content="Meet the team behind Duty Cleaners. Serving Alberta since 2017 with reference-checked, customer-rated cleaners in Edmonton and Calgary." />
+        <meta name="twitter:description" content="Duty Cleaners has cleaned Alberta homes since 2017 from offices in Edmonton and Calgary, with cleaners reference-checked and rated after every visit." />
       </Helmet>
       <Navigation />
       <main id="main-content" tabIndex={-1}>
@@ -33,7 +34,7 @@ export default function AboutUs() {
       <section className="relative bg-brand-navy py-20 overflow-hidden">
         <img
           src={heroCleaningLadies}
-          alt="Professional Duty Cleaners team smiling in a clean home"
+          alt="Two cleaners holding spray bottles and cloths in a bright living room"
           width={1280}
           height={853}
           className="absolute inset-0 w-full h-full object-cover opacity-25"
@@ -43,7 +44,7 @@ export default function AboutUs() {
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="display-serif text-4xl md:text-5xl mb-6 font-bold text-white lg:text-7xl">About Duty Cleaners</h1>
             <p className="text-xl md:text-2xl mb-8 text-white/85 font-semibold">
-              Dedicated to Exceptional Cleaning and Customer Care Since 2017
+              Duty Cleaners cleans homes from an Edmonton office and a Calgary office, and both are rated {RATING_CLAIM}.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90" asChild>
@@ -64,20 +65,19 @@ export default function AboutUs() {
             <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-6">Our Story</h2>
             <div className="prose prose-lg max-w-none text-muted-foreground space-y-4">
               <p>
-                Letting someone into your home is the part people actually hesitate over, so here is
-                how it works. You see the price before you book. The cleaner who arrives has been
-                reference-checked, and you rate them afterwards — those ratings decide who keeps
-                working for us.
+                Letting someone into your home is the part people hesitate over, so here is how it
+                works. You see the price before you book. The cleaner who arrives has been
+                reference-checked, and you rate them afterwards — those ratings decide who we keep
+                sending.
               </p>
               <p>
-                We have been cleaning Alberta homes since 2017. What started as a small family business
-                now runs out of two offices, Edmonton and Calgary, and has cleaned{" "}
-                {HOMES_CLEANED.alberta} homes between them.
+                The company runs out of two offices, Edmonton and Calgary, and has cleaned{" "}
+                {HOMES_CLEANED.alberta} Alberta homes between them.
               </p>
               <p>
                 If something gets missed, tell us within {POLICY.guaranteeWindowHours} hours and we come
-                back and put it right at no additional charge. That is the whole of the guarantee, and it
-                is the same one whichever page you read it on.
+                back and re-clean it at no charge. That is the whole of the guarantee, and it is the
+                same one whichever page you read it on.
               </p>
             </div>
           </div>
@@ -87,18 +87,18 @@ export default function AboutUs() {
       {/* Our Journey */}
       <section className="py-20 bg-muted/20">
         <div className="container mx-auto px-4">
-          <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-4">Our Journey</h2>
+          <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-4">Two offices, one company</h2>
           <p className="text-center text-muted-foreground mb-14 max-w-2xl mx-auto">
-            One family business, two cities, and a promise that has not changed since 2017.
+            Each office has its own address, phone number and Google listing, and both charge the same prices and give the same guarantee.
           </p>
           <div className="relative max-w-5xl mx-auto">
             <div className="absolute left-[7px] top-2 bottom-2 w-0.5 bg-brand-gold/40 md:left-0 md:right-0 md:top-[7px] md:bottom-auto md:h-0.5 md:w-auto" aria-hidden="true" />
             <div className="grid gap-10 md:grid-cols-4 md:gap-6">
               {[
-                { title: "Where we started", text: "A small family business with one simple promise: treat every home like our own." },
-                { title: `${HOMES_CLEANED.edmonton} Edmonton homes`, text: "Repeat customers and word of mouth carried the Edmonton branch, one neighbourhood at a time." },
-                { title: "Calgary, here we come", text: "The same vetted cleaners, transparent pricing, and guarantee — now in Calgary and surrounding communities." },
-                { title: "Today", text: "Two cities, cleaners who are reference-checked before their first job and customer-rated after every visit, and the same promise every time." },
+                { title: "Since 2017", text: "Duty Cleaners has cleaned homes in Alberta since 2017, from an Edmonton branch and a Calgary branch." },
+                { title: `${HOMES_CLEANED.edmonton} Edmonton homes`, text: `The Edmonton office is at ${CITY_PROOF.edmonton.streetAddress} and answers on ${CITY_PROOF.edmonton.phone}. It covers ${edmontonNeighborhoods.length} Edmonton neighbourhoods and ${edmontonSurrounding.length} communities outside the city, including St. Albert, Sherwood Park and Spruce Grove.` },
+                { title: `${HOMES_CLEANED.calgary} Calgary homes`, text: `The Calgary office is at ${CITY_PROOF.calgary.streetAddress} and answers on ${CITY_PROOF.calgary.phone}. It covers ${calgaryNeighborhoods.length} Calgary neighbourhoods and ${calgarySurrounding.length} communities outside the city, including Airdrie, Cochrane and Okotoks.` },
+                { title: RATING_CLAIM, text: `${CITY_PROOF.edmonton.googleReviewCount} reviews on the Edmonton listing and ${CITY_PROOF.calgary.googleReviewCount} on the Calgary one. Google keeps the two counts separate, and so do we.` },
               ].map((step, index) => (
                 <div key={step.title} className="relative pl-10 md:pl-0 md:pt-10">
                   <span className="absolute left-0 top-2 h-4 w-4 rounded-full border-2 border-brand-gold bg-white md:left-1/2 md:top-0 md:-translate-x-1/2" aria-hidden="true" />
@@ -122,18 +122,18 @@ export default function AboutUs() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {[
               {
-                icon: Heart,
+                icon: DollarSign,
                 iconWrap: "bg-primary/10",
                 iconColor: "text-primary",
-                title: "Peace of Mind",
-                text: "We go beyond just cleaning—we bring peace of mind and comfort to every household we serve. Our focus on reliability and building trust allows clients to focus on what matters most.",
+                title: "A Flat Price by Home Size",
+                text: "The price is set by bedrooms, bathrooms and home type before you book, and it does not change because a clean took longer than expected. Prices are before 5% GST, and a pet charge or a travel fee outside city limits shows on the quote where it applies.",
               },
               {
                 icon: Shield,
                 iconWrap: "bg-accent/10",
                 iconColor: "text-accent",
                 title: "Reference-Checked & Customer-Rated",
-                text: "Every cleaner is reference-checked before working in a customer’s home — then gets rated by the customer after every single visit.",
+                text: "Every cleaner is reference-checked before a first job and rated by the customer after each visit.",
               },
               {
                 icon: Users,
@@ -142,7 +142,7 @@ export default function AboutUs() {
                 // Was "Vetted Professional Cleaners You Can Trust", which repeated the
                 // card directly above it and the Duty Clean Promise section above that.
                 title: "You Do Not Have to Be Home",
-                text: "Tell us how to get in — a key, a lockbox, a buzzer code, a neighbour — and we clean around your day. If you would rather be there, that works too.",
+                text: "Most customers leave a key, a lockbox code or smart-lock access, and the team locks up when it leaves. If you would rather be there, that works too.",
               },
               {
                 icon: Sparkles,
@@ -151,24 +151,24 @@ export default function AboutUs() {
                 title: "All Cleaning Supplies & Equipment Provided",
                 // "Premium products and top-tier equipment" implies one company-chosen kit.
                 // Cleaners work as contractors and bring their own, which /join-the-team/
-                // states plainly. What is true — and better — is that you supply nothing
-                // and can ask for particular products.
-                text: "Cleaners arrive with their own supplies and equipment, so you provide nothing. If you need particular products used — an allergy, a pet, sealed stone, a septic system — say so when you book and we pass it to the cleaner.",
+                // states plainly. What is true is that you supply nothing; the eco-products
+                // option and its fee read from policy.ts.
+                text: `The team brings all supplies and equipment, so you provide nothing. Eco-friendly products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}.`,
               },
               {
                 icon: Clock,
                 iconWrap: "bg-accent/10",
                 iconColor: "text-accent",
-                title: "Instant Pricing",
-                text: "Skip the hassle of calling multiple cleaners for quotes. Get an instant quote and save time!",
+                title: "See the Price Before You Book",
+                text: "Choose the service, bedrooms, bathrooms and home type, and the booking form shows the price. Nothing is charged at booking, and the card is charged once the clean is complete.",
               },
               {
                 icon: Award,
                 iconWrap: "bg-green-400",
                 iconColor: "text-secondary",
-                // One page, one name — and the owner keeps this one.
-                title: "100% Satisfaction Guarantee",
-                text: `If something was missed, tell us within ${POLICY.guaranteeWindowHours} hours and we come back and put it right at no additional charge.`,
+                // Named for what it is: a return visit (content prompt, T1).
+                title: `${POLICY.guaranteeWindowHours}-Hour Re-Clean Guarantee`,
+                text: `If something was missed, tell us within ${POLICY.guaranteeWindowHours} hours and we come back and re-clean it at no charge. Photos help but are not required.`,
               },
             ].map((card, index) => {
               const CardIcon = card.icon;
@@ -196,16 +196,29 @@ export default function AboutUs() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="display-serif text-3xl md:text-4xl font-bold mb-6">Our Mission</h2>
+            <h2 className="display-serif text-3xl md:text-4xl font-bold mb-6">How we work</h2>
             <p className="text-lg text-muted-foreground mb-8">
-              At Duty Cleaners, what we find most fulfilling is the sense of accomplishment and joy that comes from
-              knowing our work has a meaningful impact. It's incredibly rewarding to hear how a clean, refreshed space
-              makes our clients feel more at ease and in control of their lives.
+              Each visit is booked into an arrival window: 9:00 to 10:00 AM, 12:00 to 1:00 PM, or 3:00 to
+              4:00 PM. Changing or cancelling a booking needs {POLICY.cancellationNoticeHours} hours'
+              notice, and inside that the fee is {POLICY.cancellationFee}. Office hours are Monday to
+              Saturday 8:00 AM to 8:00 PM, and Sunday 9:00 AM to 3:00 PM.
             </p>
             <p className="text-lg text-muted-foreground mb-8">
-              The gratitude and relief we see in client feedback remind us why we do what we do. For us, it's not just
-              about the physical act of cleaning but about building trust, creating moments of happiness, and knowing
-              we've made a real difference in someone's day.
+              Some things are outside every service: outdoor work and exterior windows, anything beyond a
+              3-step ladder, lifting anything over 25 lb, carpet steam cleaning, and laundry and dishes. The
+              full scope of each service is on{" "}
+              <Link to="/whats-included/" className="text-primary underline underline-offset-2">
+                what's included in each clean
+              </Link>
+              , and prices by home size are on{" "}
+              <Link to="/pricing/" className="text-primary underline underline-offset-2">
+                the Edmonton price list
+              </Link>{" "}
+              and{" "}
+              <Link to="/calgary/pricing/" className="text-primary underline underline-offset-2">
+                Calgary house cleaning prices
+              </Link>
+              .
             </p>
           </div>
         </div>

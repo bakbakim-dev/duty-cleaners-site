@@ -82,16 +82,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Westmount" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Westmount" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Westmount" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Westmount" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around Westmount.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Westmount" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Westmount" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris removal once renovation or building work is finished.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Westmount" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film washed off painted walls, booked together with a clean.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Westmount" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Westmount" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit before GST for a one-bedroom, one-bathroom apartment, plus any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Westmount" },
 ];
 
 const whyUsItems = [
@@ -141,7 +141,7 @@ export default function Westmount() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -163,25 +163,25 @@ export default function Westmount() {
     <>
       <Helmet>
         <title>House Cleaners in Westmount, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Westmount, Edmonton. Trusted local cleaners, customer-rated, serving Westmount homes." />
+        <meta name="description" content="House cleaning in Westmount, Edmonton, where Craftsman and Foursquare houses, mostly 1911 to 1925, keep plaster walls needing gentle products." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Westmount, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/westmount-edmonton",
   areaServed: "Westmount, Edmonton, AB",
-  description: "Professional house cleaning in Westmount, Edmonton. Trusted local cleaners serving Westmount homes with reliable, customer-rated cleaning service.",
+  description: "House cleaning in Westmount, Edmonton, where Craftsman and Foursquare houses, mostly 1911 to 1925, keep plaster walls needing gentle products.",
   geo: { latitude: "53.556", longitude: "-113.532" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/westmount-edmonton/" />
         <meta property="og:title" content="House Cleaners in Westmount, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Westmount, Edmonton. Trusted local cleaners, customer-rated, serving Westmount homes." />
+        <meta property="og:description" content="House cleaning in Westmount, Edmonton, where Craftsman and Foursquare houses, mostly 1911 to 1925, keep plaster walls needing gentle products." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/westmount-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Westmount, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Westmount, Edmonton. Trusted local cleaners, customer-rated, serving Westmount homes." />
+        <meta name="twitter:description" content="House cleaning in Westmount, Edmonton, where Craftsman and Foursquare houses, mostly 1911 to 1925, keep plaster walls needing gentle products." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -207,7 +207,7 @@ export default function Westmount() {
                   Professional House Cleaning in Westmount
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  From elegant historic homes near 124 Street to charming infills around Westmount Park — keep your beautiful home pristine with our trusted local team.
+                  The Westmount Architectural Heritage Area holds Craftsman and Foursquare houses built mostly between 1911 and 1925. Our Edmonton branch cleans homes here at a flat rate by home size, and you pay once the clean is done.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -235,7 +235,7 @@ export default function Westmount() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
                   src={heroImg}
-                  alt="Professional cleaner working in a Westmount, Edmonton home"
+                  alt="Cleaner wiping a white fireplace mantel below a round gilt mirror"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   width={1024}
                   height={1024}
@@ -257,7 +257,7 @@ export default function Westmount() {
                   Cleaning Services for Westmount Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Westmount homes get every service they need.
+                  Each service for Westmount homes, recurring visits included, is priced flat by home size before 5% GST; post-construction cleanup is the exception and is priced by square footage.
                 </p>
               </div>
             </AnimatedSection>
@@ -300,7 +300,7 @@ export default function Westmount() {
                   Why Westmount Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -322,7 +322,7 @@ export default function Westmount() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Westmount Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  A neighbourhood we've served for years — every street feels familiar.
+                  Westmount's heritage blocks run from 124 to 127 Street, between 107 and 111 Avenue.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -341,12 +341,12 @@ export default function Westmount() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Westmount</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Edmonton-area neighbourhoods we clean</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    Glenora and Inglewood are on the same Edmonton branch list as Westmount, which covers 80 neighbourhoods inside the city.
                   </p>
                 </div>
-                <CoverageChips areas={["124 Street", "Westmount Park", "Westmount Shopping Centre", "Groat Road", "111 Avenue", "Coronation Park", "Glenora", "Inglewood"]} variant="compact" />
+                <CoverageChips areas={["Glenora", "Inglewood"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -362,7 +362,7 @@ export default function Westmount() {
         heading="Craftsman blocks under heritage control"
         paragraphs={[
           "The blocks between 124 and 127 Street, from 107 Avenue up to 111 Avenue, carry the Westmount Architectural Heritage Area — Craftsman and Foursquare houses raised mostly between 1911 and 1925, placed under a development control provision by the city. Interiors of that age hold plaster walls, original wood trim and period hardware, all of which abrasives and standing water strip in a single visit. Gentle products and dry methods do more here than pressure ever will.",
-          "124 Street runs the heritage area's eastern edge and doubles as Westmount's shopping and gallery strip; 111 Avenue carries arterial traffic across the top. Houses fronting either take the film a busy road leaves - a grey haze on exterior glass and door hardware that returns faster than it does a block in. Two streets deeper, on the quiet interior blocks, the same surfaces hold their finish from one clean to the next.",
+          "124 Street runs the heritage area's eastern edge, and 111 Avenue carries arterial traffic across the top. Houses fronting either take the film a busy road leaves, a grey haze on the outside of the windows and on door hardware that returns faster than it does a block in. Two streets deeper, on the quiet interior blocks, the same surfaces stay clear for longer. The outside of the windows is outdoor work and is not part of a clean.",
         ]}
       />
 

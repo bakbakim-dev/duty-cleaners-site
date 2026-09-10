@@ -176,4 +176,65 @@ describe("the copy does not read like a template filled in by a machine", () => 
     }
     expect(hits, "FAQ answers opening with an exclamation").toEqual([]);
   });
+
+  /**
+   * Promises and brochure lines the content prompt retired
+   * (DUTY-CLEANERS-CONTENT-PROMPT.md at the repository root, section 3).
+   *
+   * Until 10 September 2026 the neighbourhood pages carried them by the
+   * hundred: a "Flexible Scheduling" card promising same-day availability on
+   * 150 pages, "exacting quality standards" on 132, a "100% satisfaction"
+   * guarantee that is really a 24-hour re-clean on 150, "trusted by" lines on
+   * 158, and a landmark tour ("the places that make X feel like home") on 52.
+   * The money-page list above never reached those pages, which is how they
+   * lasted. Every location page now gets the full list.
+   */
+  const RETIRED_BY_THE_CONTENT_PROMPT = [
+    "100% satisfaction",
+    "same-day and next-day availability",
+    "next-day openings most weeks",
+    "work around your busy",
+    "exacting quality",
+    "trusted by",
+    "trusted local",
+    "proudly serv",
+    "premier",
+    "resort-style",
+    "feel like home",
+    "know the area inside and out",
+    "always around the corner",
+    "sought-after",
+    "most desirable",
+    "stunning",
+    "spotless home",
+  ];
+
+  const locationFiles = () => allTsx(join(SRC, "pages", "locations"), "pages/locations/");
+
+  it("no location page carries brochure vocabulary or a retired promise", () => {
+    const files = locationFiles();
+    expect(files.length).toBeGreaterThan(150);
+    expect(
+      offences(files, [...BANNED_ON_MONEY_PAGES, ...RETIRED_BY_THE_CONTENT_PROMPT]),
+      "brochure vocabulary or a retired promise on a location page",
+    ).toEqual([]);
+  });
+
+  it("no money page makes a promise the content prompt retired", () => {
+    expect(offences(MONEY_PAGE_FILES, RETIRED_BY_THE_CONTENT_PROMPT), "a retired promise on a money page").toEqual([]);
+  });
+
+  it("no location page sells commercial cleaning", () => {
+    // The prompt keeps commercial work out of the house-cleaning pages: 73
+    // neighbourhood pages carried a "Commercial Cleaning" card with no link,
+    // 132 listed it as a bullet in an FAQ, and seven ended on "Run a business
+    // in X? We also handle commercial and office cleaning".
+    const re = /title: "(?:office & )?commercial cleaning"|\\n• (?:office & )?commercial|run a business in|commercial and office cleaning|office and commercial/;
+    const hits: string[] = [];
+    for (const rel of locationFiles()) {
+      const m = re.exec(stripComments(readFileSync(join(SRC, rel), "utf-8")).toLowerCase());
+      if (m) hits.push(`${rel}: "${m[0]}"`);
+    }
+    expect(hits, "a commercial-cleaning offer on a house-cleaning page").toEqual([]);
+  });
 });

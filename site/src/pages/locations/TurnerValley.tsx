@@ -73,16 +73,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Turner Valley" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Turner Valley" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Turner Valley" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Turner Valley" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Turner Valley.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Turner Valley" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Turner Valley" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris cleared after a renovation or new build in Turner Valley, priced by square footage plus the post-construction travel fee.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Turner Valley" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film washed off painted walls, booked together with a clean.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Turner Valley" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/calgary/recurring-cleaning/", linkText: "Recurring cleaning in Turner Valley" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment or condo before GST and the travel fee. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}; the pet charge and home-type surcharge can apply.`, to: "/calgary/recurring-cleaning/", linkText: "Recurring cleaning in Turner Valley" },
 ];
 
 const whyUsItems = [
@@ -113,7 +113,7 @@ const whyUsItems = [
   { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
-const nearbyAreas = ["Diamond Valley", "Millarville", "Longview", "Priddis", "Okotoks"];
+const nearbyAreas = ["Diamond Valley", "Okotoks"];
 
 const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Turner Valley",
@@ -142,7 +142,7 @@ export default function TurnerValley() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -164,12 +164,12 @@ export default function TurnerValley() {
     <>
       <Helmet>
         <title>House Cleaning Services in Turner Valley, AB | Duty Cleaners</title>
-        <meta name="description" content="Professional cleaners serving Turner Valley. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="description" content="From 1920s cottages to houses finished last year, Turner Valley homes get house cleaning with a mudroom pass for the wet grit chinook thaws bring in." />
         <meta property="og:title" content="House Cleaning Services in Turner Valley, AB | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services in Turner Valley, AB | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional cleaners serving Turner Valley. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
-        <meta property="og:description" content="Professional cleaners serving Turner Valley. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="twitter:description" content="From 1920s cottages to houses finished last year, Turner Valley homes get house cleaning with a mudroom pass for the wet grit chinook thaws bring in." />
+        <meta property="og:description" content="From 1920s cottages to houses finished last year, Turner Valley homes get house cleaning with a mudroom pass for the wet grit chinook thaws bring in." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/turner-valley/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/turner-valley/" />
@@ -199,7 +199,7 @@ export default function TurnerValley() {
                   Professional House Cleaning in Turner Valley
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Trusted house cleaning services in Turner Valley, AB. Customer-rated cleaners, reliable — keeping your home spotless in the foothills.
+                  Turner Valley has been part of the Town of Diamond Valley since 1 January 2023, and one street here can hold a 1920s worker's cottage and a house finished last year. Our Calgary branch cleans both at flat rates by home size, plus a travel fee because the town is outside Calgary city limits.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -227,7 +227,7 @@ export default function TurnerValley() {
               <div className="flex-shrink-0 w-full lg:w-[500px]">
                 <img width={1024} height={1024}
                   src={turnerValleyImg}
-                  alt="Professional cleaner scrubbing a kitchen sink in Turner Valley, Alberta"
+                  alt="Kitchen with white upper cabinets, dark lower cabinets and a window over the sink"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                 loading="eager"
                   {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
@@ -246,7 +246,7 @@ export default function TurnerValley() {
                   Cleaning Services for Turner Valley Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Everything from weekly upkeep to full move-out cleans.
+                  Six services for Turner Valley homes, priced by home size before 5% GST, apart from post-construction, which is priced by square footage.
                 </p>
               </div>
             </AnimatedSection>
@@ -278,23 +278,6 @@ export default function TurnerValley() {
         </section>
 
 
-      {/* Things To Do */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <AnimatedSection>
-            <div className="max-w-4xl mx-auto">
-              <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Life</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                Things To Do In Turner Valley
-              </h2>
-              <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
-                <p>In the foothills of the Rocky Mountains just southwest of Calgary, Turner Valley has been part of the Town of Diamond Valley since 2023, when it amalgamated with neighbouring Black Diamond, known for its natural beauty and rich history in Alberta’s oil and gas industry. With a population of just over 2,500, Turner Valley offers small-town charm with easy access to outdoor adventures. Start your day with a scenic hike through Sheep River Provincial Park, where you’ll find beautiful trails and stunning views of the surrounding landscapes.</p>
-                <p>For history enthusiasts, the Turner Valley Gas Plant National Historic Site provides a fascinating glimpse into Alberta’s industrial heritage. If you love local markets, don’t miss the Turner Valley Farmers' Market, offering fresh produce and artisanal goods from local vendors. For a taste of local flavor, visit the Eau Claire Distillery, Alberta’s first craft distillery, where you can enjoy handcrafted spirits in a rustic setting. After a day of exploring, unwind with a hearty meal at Chuckwagon Cafe, a beloved spot known for its farm-to-table dishes and welcoming atmosphere. When the day is done, let Duty Cleaners handle your cleaning needs, so you can relax in a fresh, spotless home.</p>
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
 
         {/* Why Choose Us */}
         <section className="py-20 bg-brand-navy relative overflow-hidden">
@@ -307,7 +290,7 @@ export default function TurnerValley() {
                   Why Turner Valley Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -330,7 +313,7 @@ export default function TurnerValley() {
                 House Cleaning in Turner Valley & Surrounding Areas
               </h2>
               <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-                We provide professional house cleaning services throughout Turner Valley and nearby communities in the foothills region.
+                Turner Valley is part of Diamond Valley, one of nine communities outside Calgary on our Calgary branch's list; Okotoks is another.
               </p>
               <CoverageChips areas={nearbyAreas} />
               <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
@@ -345,9 +328,9 @@ export default function TurnerValley() {
 
       <LocalMarketNote
         eyebrow="From the route"
-        heading="Dingman's well, 1914"
+        heading="Turner Valley's cottages and new builds"
         paragraphs={[
-          "A.W. Dingman struck wet gas here on 14 May 1914, and for three decades afterwards this field was the largest producer in the British Empire. The gas plant ran until 1985. What that leaves is a small townsite with housing from every phase of a century-long boom and bust, so a street can hold a 1920s worker's cottage and a house finished last year, and the two need almost nothing in common from a visit.",
+          "Turner Valley is a small townsite with housing from every phase of a century-long boom and bust, so a street can hold a 1920s worker's cottage and a house finished last year, and the two need almost nothing in common from a visit.",
           "The town sits about 60 km southwest of the city on Highway 22, high enough that chinooks run through all winter. Each thaw turns a dry week's dust into wet grit on the same boots, and it arrives at the door rather than drifting in — which is why mudrooms and the first stretch of hard floor get their own pass here.",
         ]}
         accent="calgary"

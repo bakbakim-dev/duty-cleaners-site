@@ -79,16 +79,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Bannerman" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Bannerman" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fan blades within reach, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Bannerman" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Bannerman" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Post-renovation dust and debris, professionally removed.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Bannerman" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Renovation dust through a Bannerman home, priced by square footage.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Bannerman" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Bannerman" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Bannerman" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment or condo, before GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Bannerman" },
 ];
 
 const whyUsItems = [
@@ -130,19 +130,19 @@ const whyUsItems = [
 const faqs = [
   {
     question: "What cleaning services do you offer in Bannerman?",
-    answer: "We offer recurring house cleaning, deep cleaning, move in/out cleaning, post-construction cleanup, bathroom sanitization, and kitchen deep cleans for Bannerman homes.",
+    answer: "Standard cleaning, recurring cleaning, deep cleaning, move-in and move-out cleaning, post-construction cleaning and wall washing are all available in Bannerman. Wall washing is booked together with a clean, not on its own.",
   },
   {
     question: "How do I book a cleaning in Bannerman?",
-    answer: "You can call us at (780) 913-6565 or request a free quote online. We'll match you with a local cleaner and schedule a time that works for you.",
+    answer: "Call the Edmonton office at (780) 913-6565, or see your instant price online and book it there. You pick an arrival window rather than an exact time: 9:00 to 10:00 AM, 12:00 to 1:00 PM or 3:00 to 4:00 PM. Nothing is charged at booking.",
   },
   {
     question: "How are your cleaners vetted?",
-    answer: "Yes — every cleaner is reference-checked before working in a customer’s home, and every visit is rated by the customer afterwards.",
+    answer: "Every cleaner is reference-checked before a first job and rated by the customer after each visit. Those ratings decide who we keep sending to Bannerman homes.",
   },
   {
-    question: "Can you use specific cleaning products I prefer?",
-    answer: "Absolutely. We bring all supplies, and we can use specific products you prefer — just tell us when you book.",
+    question: "Do the cleaners bring their own products?",
+    answer: "Yes. The team brings all supplies and equipment to a Bannerman clean, and needs running water, plus power for the vacuum. Eco-friendly products cost extra: ask when you book and the office adds them.",
   },
   {
     question: "How long does an initial cleaning take?",
@@ -150,11 +150,11 @@ const faqs = [
   },
   {
     question: "Do you offer discounts?",
-    answer: "Yes! We offer recurring discounts:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off",
+    answer: "Yes, from the second visit on a recurring schedule:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nThe first clean is charged at the one-time rate.",
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: "Deep cleaning adds to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned",
+    answer: "Deep cleaning adds to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fan blades within reach dusted\n• Light switches fully cleaned\n• Vent covers wiped",
   },
   {
     question: "What happens if something is missed?",
@@ -181,24 +181,24 @@ export default function Bannerman() {
     <>
       <Helmet>
         <title>Bannerman, Edmonton House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Bannerman, Edmonton. Serving families near Bannerman Park, Bannerman School, Hermitage Park & more." />
+        <meta name="description" content="Most homes in Bannerman, Edmonton, date from the 1970s, and clay from the river valley to the east comes back up on boots and paws." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Bannerman, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/bannerman",
   areaServed: "Bannerman, Edmonton, AB",
-  description: "Professional house cleaning in Bannerman, Edmonton. Serving families near Bannerman Park, Bannerman School, Hermitage Park & more. Local cleaners you can trust.",
+  description: "House cleaning in Bannerman, Edmonton, where over a third of the homes are row houses and most were built in the 1970s.",
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/bannerman/" />
         <meta property="og:title" content="Bannerman, Edmonton House Cleaning | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Bannerman, Edmonton. Serving families near Bannerman Park, Bannerman School, Hermitage Park & more." />
+        <meta property="og:description" content="Most homes in Bannerman, Edmonton, date from the 1970s, and clay from the river valley to the east comes back up on boots and paws." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/bannerman/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Bannerman, Edmonton House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Bannerman, Edmonton. Serving families near Bannerman Park, Bannerman School, Hermitage Park & more." />
+        <meta name="twitter:description" content="Most homes in Bannerman, Edmonton, date from the 1970s, and clay from the river valley to the east comes back up on boots and paws." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -223,7 +223,7 @@ export default function Bannerman() {
                 Professional House Cleaning in Bannerman
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Your reliable, local cleaning team serving the Bannerman community. From family homes near Hermitage Park to residences by Bannerman School — enjoy dependable cleaning built on trust and genuine care.
+                Most of Bannerman's housing went up in the 1970s, and over a third of it is row housing. East of the last houses the ground drops into the river valley, and its clay comes back up on boots and paws.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -262,7 +262,7 @@ export default function Bannerman() {
                   Cleaning Services for Bannerman Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Bannerman homes get every service they need.
+                  Bannerman's row houses, rented apartments and detached homes are priced flat by home size and type before GST, and only post-construction is priced by square footage.
                 </p>
               </div>
             </AnimatedSection>
@@ -305,7 +305,7 @@ export default function Bannerman() {
                   Why Bannerman Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -325,10 +325,10 @@ export default function Bannerman() {
             <AnimatedSection>
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Location</span>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Map</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Bannerman Service Area</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We serve Bannerman and surrounding northeast Edmonton communities.
+                    Bannerman is inside Edmonton city limits, so no trip fee is added to the price.
                   </p>
                 </div>
                 <div className="rounded-xl overflow-hidden shadow-lg border border-border">
@@ -355,12 +355,12 @@ export default function Bannerman() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Bannerman</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Edmonton-area neighbourhoods we clean</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    Clareview, Belvedere and Beacon Heights are cleaned by our Edmonton branch too, at the same flat rates.
                   </p>
                 </div>
-                <CoverageChips areas={["Bannerman Park", "Bannerman School", "Hermitage Park", "144 Avenue", "Clareview Recreation Centre", "Clareview", "Belvedere", "Beacon Heights"]} variant="compact" />
+                <CoverageChips areas={["Clareview", "Belvedere", "Beacon Heights"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -413,13 +413,13 @@ export default function Bannerman() {
           <div className="container mx-auto px-4 relative z-10 text-center">
             <AnimatedSection>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                Ready for a Fresh Start in Bannerman?
+                Ready to Book a Clean in Bannerman?
               </h2>
               <p className="text-xl text-white/80 mb-4 max-w-2xl mx-auto">
-                Whether you're near Hermitage Park, tucked close to 144 Avenue, or walking distance from Clareview Recreation Centre, we're right in the neighbourhood and ready to help.
+                See your flat rate before you book. Nothing is charged until the clean is done.
               </p>
               <p className="text-white/90 mb-10 max-w-2xl mx-auto">
-                Call us today or request your free quote online. A cleaner, more comfortable home in Bannerman is just a step away.
+                The Edmonton office is open Monday to Saturday 8:00 AM to 8:00 PM and Sunday 9:00 AM to 3:00 PM.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>

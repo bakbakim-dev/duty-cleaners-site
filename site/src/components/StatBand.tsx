@@ -15,7 +15,7 @@ const STATS = {
     // Was "Charged today. Your card is only charged once the clean is done." —
     // word for word the second half of the trust plate two screens above it.
     { value: "$0", caption: "Charged today. The bill follows the clean, not the booking." },
-    { value: String(COMPANY.foundedYear), caption: "Cleaning Alberta homes since." },
+    { value: String(COMPANY.foundedYear), caption: "The year we started cleaning Alberta homes." },
     { value: "60s", caption: "From first question to a real dollar price for your home." },
     { value: `${POLICY.guaranteeWindowHours}h`, caption: "Make-it-right window. Tell us and we return at no charge." },
   ],

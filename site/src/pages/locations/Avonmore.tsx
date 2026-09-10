@@ -82,16 +82,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Avonmore" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Avonmore" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Avonmore" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around Avonmore.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Avonmore" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Avonmore" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Avonmore" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "A move-out clean covers inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Avonmore" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Renovation dust in an older Avonmore home, priced by square footage.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Avonmore" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Wall washing takes scuffs, handprints and cooking film off painted walls without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Avonmore" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Avonmore" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment or condo, before GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Avonmore" },
 ];
 
 const whyUsItems = [
@@ -133,15 +133,15 @@ export default function Avonmore() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Avonmore?",
-      answer: `Every service we run can be booked locally:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `These services can be booked in Avonmore:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
-      answer: `Yes, recurring visits cost less every time:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
+      answer: `Yes, recurring visits are discounted:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -163,25 +163,25 @@ export default function Avonmore() {
     <>
       <Helmet>
         <title>Avonmore, Edmonton House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Avonmore, Edmonton. Trusted local cleaners, customer-rated, serving Avonmore homes." />
+        <meta name="description" content="Avonmore's 1950s and 60s homes in Edmonton sit between ravine pollen and 75 Street road dust; original bungalows keep first-generation hardwood." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Avonmore, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/avonmore-edmonton",
   areaServed: "Avonmore, Edmonton, AB",
-  description: "Professional house cleaning in Avonmore, Edmonton. Trusted local cleaners serving Avonmore homes with reliable, customer-rated cleaning service.",
+  description: "House cleaning in Avonmore, Edmonton, where many 1950s and 1960s bungalows keep their first-generation hardwood floors.",
   geo: { latitude: "53.518", longitude: "-113.452" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/avonmore-edmonton/" />
         <meta property="og:title" content="Avonmore, Edmonton House Cleaning | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Avonmore, Edmonton. Trusted local cleaners, customer-rated, serving Avonmore homes." />
+        <meta property="og:description" content="Avonmore's 1950s and 60s homes in Edmonton sit between ravine pollen and 75 Street road dust; original bungalows keep first-generation hardwood." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/avonmore-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Avonmore, Edmonton House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Avonmore, Edmonton. Trusted local cleaners, customer-rated, serving Avonmore homes." />
+        <meta name="twitter:description" content="Avonmore's 1950s and 60s homes in Edmonton sit between ravine pollen and 75 Street road dust; original bungalows keep first-generation hardwood." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -207,7 +207,7 @@ export default function Avonmore() {
                   Professional House Cleaning in Avonmore
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  From updated post-war bungalows to family homes near Avonmore School — reliable cleaning that fits naturally into busy southeast Edmonton life.
+                  Avonmore's homes date from the 1950s and 60s, and its original bungalows still have first-generation hardwood that shows dust quickly. Each clean is a flat rate by home size, before GST.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -235,7 +235,7 @@ export default function Avonmore() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
                   src={heroImg}
-                  alt="Professional cleaner working in a Avonmore, Edmonton home"
+                  alt="Cleaner in yellow gloves wiping a stainless steel kitchen sink"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   width={1024}
                   height={1024}
@@ -257,7 +257,7 @@ export default function Avonmore() {
                   Cleaning Services for Avonmore Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs — every service a home needs.
+                  From a single standard visit to a recurring schedule, cleans in Avonmore are priced flat by home size before GST. Post-construction is the exception, priced by square footage.
                 </p>
               </div>
             </AnimatedSection>
@@ -300,7 +300,7 @@ export default function Avonmore() {
                   Why Avonmore Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Dependable cleaning, visit after visit.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -322,7 +322,7 @@ export default function Avonmore() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Avonmore Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Serving the friendly streets of southeast Edmonton, every week.
+                  Avonmore is inside Edmonton city limits, so a clean here carries no trip fee.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -341,12 +341,12 @@ export default function Avonmore() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Avonmore</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Edmonton-area neighbourhoods we clean</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    Bonnie Doon and Holyrood are on our Edmonton branch's list too, at the same flat rates as Avonmore.
                   </p>
                 </div>
-                <CoverageChips areas={["Avonmore School", "Avonmore Park", "Bonnie Doon", "Mill Creek Ravine", "75 Street", "76 Avenue", "Strathearn", "Holyrood"]} variant="compact" />
+                <CoverageChips areas={["Bonnie Doon", "Holyrood"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -362,7 +362,7 @@ export default function Avonmore() {
         heading="Avonmore's balanced blocks"
         paragraphs={[
           "Avonmore's 1950s-60s homes sit between Mill Creek's ravine reach and 75 Street's traffic — ravine seasons on one side, arterial grit on the other. Which force dominates depends on the block, and the practical read is simple: ravine-side homes fight organic debris and pollen, 75 Street homes fight fine road dust.",
-          "The Argyll velodrome and park draw sports traffic through summer, and the area's original bungalows keep first-generation hardwood that shows both dust and care instantly. It is a neighbourhood where a good clean is unusually visible.",
+          "The area's original bungalows keep first-generation hardwood that shows both dust and care instantly. It is a neighbourhood where a good clean is unusually visible.",
         ]}
       />
 

@@ -60,10 +60,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Wildwood" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Wildwood" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Wildwood" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Wildwood" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Fine dust and debris removal after renovations, additions, or new builds.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Wildwood" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Wildwood" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Fine construction dust and light debris cleared after renovations, additions, or new builds. Large debris removal is not included.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Wildwood" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film washed off painted walls, booked together with a clean.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Wildwood" },
 ];
 
 const whyUsItems = [
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Spruce Cliff", "Westgate", "Glendale", "Strathcona Park", "Christie Park", "Shaganappi"];
+const nearbyAreas = ["Spruce Cliff", "Shaganappi"];
 
 const faqs = [
   {
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function Wildwood() {
     <>
       <Helmet>
         <title>House Cleaning Services in Wildwood, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Book house cleaning in Wildwood, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="description" content="In Wildwood, Calgary, most detached bungalows sit on wide lots with rear laneways, so the back-door mudroom takes the most wear." />
         <meta property="og:title" content="House Cleaning Services in Wildwood, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services in Wildwood, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Book house cleaning in Wildwood, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
-        <meta property="og:description" content="Book house cleaning in Wildwood, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="twitter:description" content="In Wildwood, Calgary, most detached bungalows sit on wide lots with rear laneways, so the back-door mudroom takes the most wear." />
+        <meta property="og:description" content="In Wildwood, Calgary, most detached bungalows sit on wide lots with rear laneways, so the back-door mudroom takes the most wear." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/wildwood-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/wildwood-calgary/" />
@@ -183,7 +183,7 @@ export default function Wildwood() {
                 Professional House Cleaning in Wildwood
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Tucked beside Edworthy Park and the Bow River escarpment, Wildwood is a quiet, mature SW community of post-war bungalows and stunning river-valley views.
+                Nearly every Wildwood home is a single detached house, and which way it faces decides whether it gets trail mud from the Edworthy Park end or sanding grit off Bow Trail. The Calgary branch cleans these houses at a flat rate by home size.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function Wildwood() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Wildwood Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
+                  Every service for Wildwood's detached houses is priced flat by home size, before 5% GST.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function Wildwood() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Wildwood Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Wildwood and the surrounding SW Calgary communities.
+                    Wildwood is inside Calgary city limits, so no trip fee is added to the quote.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function Wildwood() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={768} src={cleanHomeImg} alt="Sunlit Wildwood Calgary living room with hardwood floors professionally cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1024} height={768} src={cleanHomeImg} alt="Sunlit living room with hardwood floors" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Wildwood Home That Feels Like a Retreat</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">What to expect</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">The Back Door Is the Front Door</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Come home to fresh air, gleaming hardwood, and dust-free baseboards. Our vetted cleaners treat every surface with the care it deserves — old or new.
+                    With rear-lane access, the back door is the working entrance in most Wildwood homes, and the mudroom takes the most wear. Tell us which door the team should use: you do not need to be home, and the team locks up.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Reference-checked, rated after every visit","Supplies and equipment brought","Free re-clean if told within 24 hours"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,9 +311,9 @@ export default function Wildwood() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Wildwood and the communities around it.{" "}
+                  Duty Cleaners cleans homes across Wildwood, and the Calgary branch also cleans in Spruce Cliff and Shaganappi.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -331,7 +331,7 @@ export default function Wildwood() {
         heading="Bungalows between a park and an expressway"
         paragraphs={[
           "Edworthy Park and the Bow close the north side and Bow Trail runs six lanes along the south, which is an unusual pair of neighbours for a street of bungalows. The park end sends needle litter, trail mud and cottonwood down the back lanes; the expressway end throws winter sanding grit at the front. A house takes one or the other depending on which way it faces, rarely both.",
-          "Ninety-four per cent of the homes are single detached, most of them on wide lots with rear laneways, and the community was established in 1956. Rear-lane access means the back door is the working entrance, so the mudroom and the run of floor inside it do more work than the front hall ever will.",
+          "Ninety-four per cent of the homes are single detached, most of them on wide lots with rear laneways. Rear-lane access means the back door is the working entrance, so the mudroom and the run of floor inside it do more work than the front hall ever will.",
         ]}
         accent="calgary"
       />
@@ -347,7 +347,7 @@ export default function Wildwood() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Wildwood Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Reliable, detail-first cleaning families count on.
+                  Our cleaners are reference-checked before a first job and rated by the customer after every visit, and a miss reported within 24 hours is re-cleaned at no charge.
                 </p>
               </div>
             </AnimatedSection>

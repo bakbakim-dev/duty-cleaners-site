@@ -60,10 +60,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in West Calgary" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in West Calgary" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in West Calgary" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in West Calgary" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds on Calgary's west side.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in West Calgary" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in West Calgary" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris removal after renovations or new builds on Calgary's west side.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in West Calgary" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film washed off painted walls, booked together with a clean.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in West Calgary" },
 ];
 
 const whyUsItems = [
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Glendale","Wildwood","Spruce Cliff","Killarney-Glengarry","Shaganappi","Bowness"];
+const nearbyAreas = ["Wildwood","Spruce Cliff","Killarney-Glengarry","Shaganappi","Bowness"];
 
 const faqs = [
   {
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function West() {
     <>
       <Helmet>
         <title>West Calgary House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="Professional cleaners serving West, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="description" content="West Calgary house cleaning for the district that meets the chinook first, with dust driven into west-facing window seals and faster upslope snowmelt." />
         <meta property="og:title" content="West Calgary House Cleaning | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="West Calgary House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional cleaners serving West, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
-        <meta property="og:description" content="Professional cleaners serving West, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="twitter:description" content="West Calgary house cleaning for the district that meets the chinook first, with dust driven into west-facing window seals and faster upslope snowmelt." />
+        <meta property="og:description" content="West Calgary house cleaning for the district that meets the chinook first, with dust driven into west-facing window seals and faster upslope snowmelt." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/west-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/west-calgary/" />
@@ -183,7 +183,7 @@ export default function West() {
                 Professional House Cleaning in West Calgary
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                West Calgary covers the welcoming neighbourhoods along the city's western edge — quiet, family-friendly streets with quick access to the mountains, parks, and major routes.
+                West Calgary is a district rather than one neighbourhood, and chinook winds reach it first, driving dust into the seals of west-facing windows. Our Calgary branch cleans homes across it at flat rates by home size.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function West() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for West Calgary Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs — every service a home needs.
+                  Each service for West Calgary homes is priced flat by home size, before 5% GST, except post-construction cleanup, which goes by square footage.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function West() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">West Calgary Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in West Calgary and the surrounding communities.
+                    West Calgary is inside Calgary city limits, so no trip fee is added.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function West() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1280} height={896} src={cleanHomeImg} alt="Spotless West Calgary home cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1280} height={896} src={cleanHomeImg} alt="Bright kitchen with white cabinets, an island with a fruit bowl and a large window onto trees" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Calm, Spotless West Side Home — Every Visit</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">What to expect</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">What the Chinook Leaves Behind</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Vetted cleaners, careful hands, and the standard we'd hold for our own homes. Come back to fresh air and surfaces that actually gleam.
+                    Upslope communities on the west side take more wind-driven dust than the valley floor, and mountain-facing glass is the surface owners notice most. Interior windows can be added when you book; exterior windows are outdoor work and are not included.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Reference-checked, rated after every visit","Supplies and equipment brought","Free re-clean if told within 24 hours"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,7 +311,7 @@ export default function West() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
                   Duty Cleaners cleans homes across West Calgary and the communities around it.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
@@ -330,7 +330,7 @@ export default function West() {
         heading="What 'west' means at district scale"
         paragraphs={[
           "West Calgary is a district label rather than one neighbourhood, and the west side's shared conditions are what a clean can plan on: chinook winds hit these communities first and hardest, driving dust into window seals on every west face; and the district's newer communities still have active construction phases feeding grit onto the wind.",
-          "Elevation matters too — the west side climbs toward the foothills, and upslope communities take more wind-driven dust and faster snowmelt cycles than the valley floor. Mountain-facing glass is the west district's showcase surface, and streak-free work there is what owners actually see.",
+          "Elevation matters too — the west side climbs toward the foothills, and upslope communities take more wind-driven dust and faster snowmelt cycles than the valley floor. Mountain-facing glass is the west district's showcase surface; the inside of it is an add-on booked with a clean, and the outside is outdoor work that a clean does not cover.",
         ]}
       />
 
@@ -347,7 +347,7 @@ export default function West() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why West Calgary Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Reliable, detail-first cleaning families count on.
+                  Every cleaner is reference-checked before a first job and rated by customers after every visit.
                 </p>
               </div>
             </AnimatedSection>

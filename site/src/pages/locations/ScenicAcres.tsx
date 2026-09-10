@@ -1,3 +1,4 @@
+import { sitePriceRange } from "@/data/pricing";
 import { getListing } from "@/lib/google-listings";
 import {
   CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import { useEffect } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import {   Phone, CheckCircle2, Star, Shield, Clock, Award, Home, Sparkles, Truck, SprayCan, Bath, Building2, Leaf, Users, CalendarCheck, ThumbsUp, Mountain, TreePine, PaintRoller
@@ -60,9 +61,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Scenic Acres" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Scenic Acres" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Scenic Acres" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Scenic Acres" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Scenic Acres.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Scenic Acres" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris cleared after a renovation or a new build in Scenic Acres.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Scenic Acres" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Scenic Acres" },
 ];
 
@@ -94,7 +95,7 @@ const whyUsItems = [
   { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
-const nearbyAreas = ["Tuscany", "Arbour Lake", "Citadel", "Hawkwood", "Ranchlands", "Varsity", "Silver Springs", "Dalhousie"];
+const nearbyAreas = ["Tuscany", "Arbour Lake", "Varsity", "Dalhousie"];
 
 const faqs = [
   {
@@ -103,15 +104,15 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Scenic Acres?",
-    answer: `We offer:\n\n• Standard Cleaning & Deep Cleaning Packages\n• Move-In And Move-Out Cleaning Service\n• Post Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `Duty Cleaners books all of these for homes in Scenic Acres:\n\n• Standard Cleaning & Deep Cleaning Packages\n• Move-In And Move-Out Cleaning Service\n• Post Construction Cleaning\n• Wall Washing and Wall Cleaning`
   },
   {
     question: "Do you offer discounts?",
-    answer: `We offer recurring discounts for our Standard and Deep Cleaning Packages.\n\nIf you avail of our recurring discount, on your next cleaning:\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
+    answer: `Yes. In Scenic Acres, the standard clean booked on a schedule is discounted:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `Deep cleaning adds the following to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `Deep cleaning adds the following to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -123,8 +124,8 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Scenic Acres Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/scenic-acres",
-  description: "Professional house cleaning in Scenic Acres, Calgary. Peaceful NW community beside Twelve Mile Coulee. 100% satisfaction guarantee. Call (403) 768-1341.",
-  priceRange: "$$",
+  description: "House cleaning in Scenic Acres, Calgary, where coulee trail mud and late-summer burrs end up on entry mats and stair treads. Rates go by home size. Call (403) 768-1341.",
+  priceRange: sitePriceRange(),
   geo: { latitude: "51.0983", longitude: "-114.1933" },
 });
 
@@ -136,14 +137,14 @@ export default function ScenicAcres() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning Services Scenic Acres Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Scenic Acres, Calgary. Peaceful NW community beside Twelve Mile Coulee. 100% satisfaction guarantee." />
+        <title>House Cleaning in Scenic Acres, Calgary | Duty Cleaners</title>
+        <meta name="description" content="House cleaning in Scenic Acres, Calgary, where coulee trail mud and late-summer burrs end up on entry mats and stair treads. Rates go by home size." />
         <meta name="keywords" content="house cleaning Scenic Acres Calgary, cleaning services Scenic Acres, maid service Scenic Acres Calgary, home cleaning Northwest Calgary" />
-        <meta property="og:title" content="House Cleaning Services Scenic Acres Calgary | Duty Cleaners" />
+        <meta property="og:title" content="House Cleaning in Scenic Acres, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning Services Scenic Acres Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Scenic Acres, Calgary. Peaceful NW community beside Twelve Mile Coulee. 100% satisfaction guarantee." />
-        <meta property="og:description" content="Professional house cleaning in Scenic Acres, Calgary. Peaceful NW community beside Twelve Mile Coulee. 100% satisfaction guarantee." />
+        <meta name="twitter:title" content="House Cleaning in Scenic Acres, Calgary | Duty Cleaners" />
+        <meta name="twitter:description" content="House cleaning in Scenic Acres, Calgary, where coulee trail mud and late-summer burrs end up on entry mats and stair treads. Rates go by home size." />
+        <meta property="og:description" content="House cleaning in Scenic Acres, Calgary, where coulee trail mud and late-summer burrs end up on entry mats and stair treads. Rates go by home size." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/scenic-acres/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/scenic-acres/" />
@@ -185,7 +186,7 @@ export default function ScenicAcres() {
                   House Cleaning Services in Scenic Acres, Calgary
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Professional cleaning for one of Calgary's most peaceful neighbourhoods. Customer-rated cleaners trusted by families living beside Twelve Mile Coulee.
+                  In Scenic Acres, mud from the coulee trails and winter grit off the Crowfoot station overpass both end up at the front door. The Calgary team cleans homes here at a flat rate by home size, and you pay once the clean is complete.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -213,7 +214,7 @@ export default function ScenicAcres() {
               <div className="flex-shrink-0 w-full lg:w-[500px]">
                 <img
                   src={calgaryKitchen}
-                  alt="A spotless kitchen after a Duty Cleaners visit in Calgary"
+                  alt="A galley kitchen with granite counters, a gas range and steel fridges, opening onto a dining table by tall windows"
                   width={800}
                   height={800}
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
@@ -259,7 +260,7 @@ export default function ScenicAcres() {
                   Scenic Acres & Nearby Neighbourhoods We Serve
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Scenic Acres and the communities around it.{" "}
+                  Tuscany, Arbour Lake, Varsity and Dalhousie are on the Calgary branch's list of 66 Calgary neighbourhoods, alongside Scenic Acres.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -275,7 +276,7 @@ export default function ScenicAcres() {
         heading="Coulee trails and commuter grit"
         paragraphs={[
           "Across Stoney Trail on the western edge, 12 Mile Coulee drops toward the Bow through native grassland and aspen. The pathway along the top of the ridge is paved, but the trails down in the coulee itself are dirt, and those are the ones that show up in our work. Melt weeks put mud on paws and boot soles; late summer sends grass seed and burrs home in coats and sock cuffs. Entry mats and stair treads catch nearly all of it.",
-          "There is no road from Scenic Acres to its own C-Train stop. Crowfoot station sits in the median of Crowchild Trail along the northern boundary, and the way across is a pedestrian overpass. From November to April that walk covers sanded walkways and a bridge deck above a sanded freeway, and the grit finishes its trip indoors - in entryway grout, in door tracks, and on the first flight of stairs.",
+          "There is no road from Scenic Acres to its own C-Train stop. Crowfoot station sits in the median of Crowchild Trail along the northern boundary, and the way across is a pedestrian overpass. From November to April that walk covers sanded walkways and the overpass above a sanded freeway, and the grit finishes its trip indoors: in entryway grout, in door tracks, and on the first flight of stairs.",
         ]}
         accent="calgary"
       />
@@ -294,7 +295,7 @@ export default function ScenicAcres() {
                   Cleaning Services for Scenic Acres Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs, we have every service your home near Crowfoot Crossing needs.
+                  Standard, deep and move-out cleans in Scenic Acres are priced flat by home size before GST; post-construction cleaning is priced by square footage.
                 </p>
               </div>
             </AnimatedSection>
@@ -336,7 +337,7 @@ export default function ScenicAcres() {
                   Why Scenic Acres Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>

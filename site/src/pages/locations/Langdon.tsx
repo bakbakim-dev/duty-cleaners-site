@@ -73,16 +73,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Langdon" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Langdon" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Langdon" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Langdon" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Langdon.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Langdon" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris cleaned up after a renovation or new build in Langdon, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Langdon" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Langdon" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/calgary/recurring-cleaning/", linkText: "Recurring cleaning in Langdon" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment, before 5% GST and any pet, home-type or travel charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/calgary/recurring-cleaning/", linkText: "Recurring cleaning in Langdon" },
 ];
 
 const whyUsItems = [
@@ -113,7 +113,7 @@ const whyUsItems = [
   { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
-const nearbyAreas = ["Indus", "Dalemead", "Dalroy", "Kathyrn", "Irricana", "Strathmore", "Chestermere"];
+const nearbyAreas = ["Strathmore", "Chestermere"];
 
 const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Langdon",
@@ -134,7 +134,7 @@ export default function Langdon() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Langdon?",
-      answer: `Every service we run can be booked locally:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `Duty Cleaners books these services for homes in Langdon:\n\n• Standard & Deep Cleaning Packages\n• Recurring Cleaning: weekly, every two weeks or every four weeks\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing, booked together with a clean`
     },
     {
       question: "Do you offer discounts?",
@@ -142,7 +142,7 @@ export default function Langdon() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `In Langdon, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `In Langdon, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -164,12 +164,12 @@ export default function Langdon() {
     <>
       <Helmet>
         <title>House Cleaning Services in Langdon, AB | Duty Cleaners</title>
-        <meta name="description" content="Book house cleaning in Langdon in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="description" content="Gravel dust and calcium chloride residue film Langdon floors rather than sweep away, so our Calgary house cleaners vacuum first, then damp-mop." />
         <meta property="og:title" content="House Cleaning Services in Langdon, AB | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services in Langdon, AB | Duty Cleaners" />
-        <meta name="twitter:description" content="Book house cleaning in Langdon in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
-        <meta property="og:description" content="Book house cleaning in Langdon in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="twitter:description" content="Gravel dust and calcium chloride residue film Langdon floors rather than sweep away, so our Calgary house cleaners vacuum first, then damp-mop." />
+        <meta property="og:description" content="Gravel dust and calcium chloride residue film Langdon floors rather than sweep away, so our Calgary house cleaners vacuum first, then damp-mop." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/langdon/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/langdon/" />
@@ -199,7 +199,7 @@ export default function Langdon() {
                   Professional House Cleaning in Langdon
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Quality house cleaning services in Langdon, AB. Customer-rated cleaners trusted by local families. 100% satisfaction guaranteed.
+                  Two rural highways cross in the middle of Langdon, and the gravel roads around the hamlet send crushed rock and calcium chloride residue in on boots. Our Calgary branch cleans here at flat rates by home size, plus a travel fee because Langdon is outside city limits.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -227,7 +227,7 @@ export default function Langdon() {
               <div className="flex-shrink-0 w-full lg:w-[500px]">
                 <img width={1024} height={1024}
                   src={langdonImg}
-                  alt="Professional cleaner scrubbing a bathroom tub in Langdon, Alberta"
+                  alt="Cleaner in blue overalls and rubber gloves wiping a white bathtub with a sponge"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                 loading="eager"
                   {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
@@ -236,24 +236,6 @@ export default function Langdon() {
           </div>
         </section>
 
-
-      {/* Things To Do */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <AnimatedSection>
-            <div className="max-w-4xl mx-auto">
-              <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Life</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                Things To Do In Langdon
-              </h2>
-              <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
-                <p>Just a short drive east of Calgary, Langdon is known as the “Good Luck Town.” With a welcoming community of over 5,000 people, Langdon offers a perfect mix of small-town warmth and modern conveniences. Start your morning at The Track Golf Course, where you can enjoy 18 scenic holes in a laid-back setting. For those who love the outdoors, Langdon Park is ideal for picnics, playing sports, or simply taking a leisurely walk.</p>
-                <p>If you’re a fan of fresh, local produce, the Langdon Farmers' Market is the perfect place to pick up seasonal fruits, vegetables, and handmade goods. The Langdon Firehouse Bar & Grill is on Centre Street. And when you head home, let Duty Cleaners handle the cleanup, so you can relax in a pristine space.</p>
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
 
         {/* Interactive Map */}
         <section className="py-16 bg-background">
@@ -289,7 +271,7 @@ export default function Langdon() {
                   Langdon & Surrounding Areas We Serve
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  We proudly serve families and homeowners across Langdon and nearby communities.
+                  Strathmore and Chestermere are also on our Calgary branch's list of nine communities outside the city.
                 </p>
               </div>
               <CoverageChips areas={nearbyAreas} />
@@ -321,7 +303,7 @@ export default function Langdon() {
                   Cleaning Services for Langdon Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs — every service a home needs.
+                  All six services for Langdon homes are priced by home size rather than by the hour, before 5% GST, and wall washing is booked together with a clean.
                 </p>
               </div>
             </AnimatedSection>
@@ -363,7 +345,7 @@ export default function Langdon() {
                   Why Langdon Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -386,7 +368,7 @@ export default function Langdon() {
                 House Cleaning in Langdon & Surrounding Areas
               </h2>
               <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-                We provide professional house cleaning services throughout Langdon and nearby communities in the Calgary region.
+                For an address near Langdon that is not on our list, call the Calgary office at (403) 768-1341 and ask.
               </p>
               <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                 View All Service Areas →

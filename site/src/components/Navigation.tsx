@@ -230,17 +230,17 @@ export default function Navigation({ city }: NavigationProps) {
   const isActive = (path: string) => location.pathname === path;
 
   const locationsItems: DropdownItem[] = [
-    { to: "/", icon: MapPin, title: "Edmonton", description: "Serving Edmonton & surrounding areas" },
-    { to: canonicalForPath("/calgary"), icon: MapPin, title: "Calgary", description: "Serving Calgary & nearby communities" },
+    { to: "/", icon: MapPin, title: "Edmonton", description: "Edmonton neighbourhoods and nearby communities" },
+    { to: canonicalForPath("/calgary"), icon: MapPin, title: "Calgary", description: "Calgary neighbourhoods and nearby communities" },
     { to: "/locations/", icon: Globe2, title: "All Locations", description: "See everywhere we clean" },
   ];
 
   const servicesItems: DropdownItem[] = [
     { to: canonicalForPath(`${cityPath}/services`), icon: Sparkles, title: "All Services", description: "Standard, deep & specialty cleaning" },
     { to: "/whats-included/", icon: ClipboardList, title: "What's Included", description: "Room-by-room cleaning checklists" },
-    { to: canonicalForPath(`${cityPath}/move-in-move-out-cleaning`), icon: Truck, title: "Move In/Out Cleaning", description: "Cleaned to the standard landlords inspect for" },
-    { to: canonicalForPath(`${cityPath}/post-construction-cleaning`), icon: HardHat, title: "Post-Construction", description: "Dust & debris removal after reno" },
-    { to: canonicalForPath(`${cityPath}/wall-washing`), icon: Sparkles, title: "Wall Washing", description: "Marks, scuffs and smoke off painted walls" },
+    { to: canonicalForPath(`${cityPath}/move-in-move-out-cleaning`), icon: Truck, title: "Move In/Out Cleaning", description: "Flat-priced cleans for moving in or out" },
+    { to: canonicalForPath(`${cityPath}/post-construction-cleaning`), icon: HardHat, title: "Post-Construction", description: "Construction dust after a build or renovation" },
+    { to: canonicalForPath(`${cityPath}/wall-washing`), icon: Sparkles, title: "Wall Washing", description: "Spot cleaning or a full wash, booked with a clean" },
     { to: canonicalForPath(`${cityPath}/airbnb-cleaning`), icon: KeyRound, title: "Airbnb Turnovers", description: "Changeovers between guests, priced hourly" },
     // March-out is Edmonton-only military housing work, quoted by phone.
     ...(city === "calgary"
@@ -256,11 +256,11 @@ export default function Navigation({ city }: NavigationProps) {
   // Company paths sit behind one dropdown. Reviews is promoted to a top-level
   // link because it is the highest-trust page in the funnel.
   const contactItems: DropdownItem[] = [
-    { to: "/about-us/", icon: Users, title: "About Us", description: "Who we are and how we vet our pros" },
+    { to: "/about-us/", icon: Users, title: "About Us", description: "Who we are and how cleaners are checked" },
     { to: canonicalForPath("/faq"), icon: HelpCircle, title: "FAQ", description: "Answers to common questions" },
-    { to: "/gift-card/", icon: Gift, title: "Gift Cards", description: "Give the gift of a clean home" },
+    { to: "/gift-card/", icon: Gift, title: "Gift Cards", description: "Give a house clean as a gift" },
     { to: "/join-the-team/", icon: Users, title: "Careers", description: "Join our cleaning team" },
-    { to: canonicalForPath("/contact"), icon: MessageSquare, title: "Contact Us", description: "Send us a message anytime" },
+    { to: canonicalForPath("/contact"), icon: MessageSquare, title: "Contact Us", description: "Phone, email and office addresses" },
   ];
 
 

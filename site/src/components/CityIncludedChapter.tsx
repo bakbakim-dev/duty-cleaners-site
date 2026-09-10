@@ -16,11 +16,11 @@ interface CityIncludedChapterProps {
 const COPY = {
   Edmonton: {
     heading: "What a standard clean covers, room by room",
-    caption: "A consistent checklist our Edmonton cleaners follow on every visit, so nothing gets missed.",
+    caption: "Edmonton cleaners work through this list on every standard visit. Inside the oven and inside the fridge are add-ons, and laundry and dishes are not part of the clean.",
   },
   Calgary: {
     heading: "The Calgary checklist, room by room",
-    caption: "Same list in every Calgary home, every visit. The team works through it in order and stays until it is done, whatever the clock says.",
+    caption: "Every standard visit in a Calgary home runs on this list. The team works through it in order and stays until each task on it is done.",
   },
 } as const;
 
@@ -31,7 +31,7 @@ const rooms = [
     items: [
       "Countertops & backsplash",
       "Stovetop & exterior of appliances",
-      "Sink & faucet polished",
+      "Sink & taps polished",
       "Cabinet fronts wiped",
       "Floors swept & mopped",
     ],
@@ -40,7 +40,7 @@ const rooms = [
     icon: Bath,
     title: "Bathrooms",
     items: [
-      "Toilets sanitized inside & out",
+      "Toilets sanitised inside & out",
       "Tubs, showers & tile scrubbed",
       "Mirrors & glass streak-free",
       "Counters & sinks disinfected",
@@ -55,7 +55,7 @@ const rooms = [
       "Beds made (linens if provided)",
       "Mirrors & glass cleaned",
       "Floors vacuumed & mopped",
-      "Trash removed",
+      "Garbage taken out",
     ],
   },
   {
@@ -93,7 +93,7 @@ export default function CityIncludedChapter({ city }: CityIncludedChapterProps) 
               to="/whats-included/"
               className="mt-6 inline-flex min-h-[44px] items-center font-semibold text-primary hover:underline"
             >
-              See the full checklist <ExternalLink className="ml-1 h-4 w-4" aria-hidden="true" />
+              The full standard cleaning checklist <ExternalLink className="ml-1 h-4 w-4" aria-hidden="true" />
             </Link>
           </div>
 

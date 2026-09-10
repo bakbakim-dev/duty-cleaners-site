@@ -82,16 +82,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Londonderry" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Londonderry" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Londonderry" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Londonderry" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around Londonderry.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Londonderry" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris cleaned up after a renovation or new build in Londonderry, priced by square footage.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Londonderry" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Londonderry" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Londonderry" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment, before 5% GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Londonderry" },
 ];
 
 const whyUsItems = [
@@ -123,9 +123,9 @@ const whyUsItems = [
 ];
 
 const faqs = [
-  { q: "How much does cleaning cost in Londonderry?", a: "Costs depend on home size, condition, and service type (standard, deep, or move-out). We keep pricing transparent with clear starting rates and service details." },
-  { q: "Do I need to be home during the cleaning?", a: "You don't need to be home. You can share a code, leave a key, or give us a garage code. We can call you about 30 minutes before we finish if you'd like a walkthrough." },
-  { q: "How are your cleaners vetted?", a: "Yes. Every cleaner is reference-checked, and every visit is rated by the customer afterwards." },
+  { q: "How much does cleaning cost in Londonderry?", a: `A standard clean in Londonderry starts at ${RECURRING_FROM} for a one-bedroom, one-bathroom apartment or condo, before 5% GST. Larger homes cost more, a bungalow, basement suite, townhouse or two-storey house adds a home-type surcharge, and a home with pets adds a compulsory pet charge. There is no trip fee inside Edmonton city limits, and the instant price shows every charge before you book.` },
+  { q: "Do I need to be home during the cleaning?", a: "No. Most Duty Cleaners customers leave a key, a lockbox code or smart-lock access, and the team locks up when the clean is finished. The team brings its own supplies and equipment, but the water needs to be running, and vacuuming may not be possible without electricity." },
+  { q: "How are your cleaners vetted?", a: "Every Duty Cleaners cleaner is reference-checked before a first job and rated by the customer after each visit. Those ratings decide who the Edmonton branch keeps sending to homes in Londonderry." },
 ];
 
 export default function Londonderry() {
@@ -137,14 +137,14 @@ export default function Londonderry() {
     <>
       <Helmet>
         <title>Londonderry, Edmonton House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Londonderry, Edmonton. Serving families near Londonderry Mall, Evansdale Park & M.E. LaZerte." />
+        <meta name="description" content="Move-out and house cleaning in Londonderry, Edmonton, where row housing, walk-ups and 1960s houses share the blocks between 137 and 153 Avenue." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Londonderry, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/londonderry",
   areaServed: "Londonderry, Edmonton, AB",
-  description: "Professional house cleaning in Londonderry, Edmonton. Serving families near Londonderry Mall, Evansdale Park & M.E. LaZerte. Local cleaners you can trust.",
+  description: "Move-out and house cleaning in Londonderry, Edmonton, where row housing, walk-ups and 1960s houses share the blocks between 137 and 153 Avenue.",
 }))}
         </script>
         {/* The FAQs below this page already renders — marked up so machine
@@ -162,12 +162,12 @@ export default function Londonderry() {
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/londonderry/" />
         <meta property="og:title" content="Londonderry, Edmonton House Cleaning | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Londonderry, Edmonton. Serving families near Londonderry Mall, Evansdale Park & M.E. LaZerte." />
+        <meta property="og:description" content="Move-out and house cleaning in Londonderry, Edmonton, where row housing, walk-ups and 1960s houses share the blocks between 137 and 153 Avenue." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/londonderry/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Londonderry, Edmonton House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Londonderry, Edmonton. Serving families near Londonderry Mall, Evansdale Park & M.E. LaZerte." />
+        <meta name="twitter:description" content="Move-out and house cleaning in Londonderry, Edmonton, where row housing, walk-ups and 1960s houses share the blocks between 137 and 153 Avenue." />
       </Helmet>
 
       <div className="min-h-screen">
@@ -192,7 +192,7 @@ export default function Londonderry() {
                   Professional House Cleaning in Londonderry
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Your reliable, local cleaning team serving the Londonderry community. From family homes near Londonderry Mall to residences by Evansdale Park — enjoy dependable cleaning built on trust and genuine care.
+                  About a third of Londonderry households rent, and move-out cleaning is available here as well as regular house cleaning. Our Edmonton branch cleans its detached houses, row housing and apartments at flat rates by home size.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -220,7 +220,7 @@ export default function Londonderry() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
                   src={londonderryCleanerImg}
-                  alt="Professional cleaner cleaning a living room in Londonderry, Edmonton"
+                  alt="Cleaner in a navy uniform vacuuming a light wood floor beside a grey sofa"
                   width={896}
                   height={1024}
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
@@ -242,7 +242,7 @@ export default function Londonderry() {
                   Cleaning Services for Londonderry Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Everything from weekly upkeep to full move-out cleans.
+                  Row houses, walk-up suites and detached homes in Londonderry are all quoted by bedroom and bathroom count before 5% GST, with any home-type surcharge added on the quote.
                 </p>
               </div>
             </AnimatedSection>
@@ -285,7 +285,7 @@ export default function Londonderry() {
                   Why Londonderry Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -307,7 +307,7 @@ export default function Londonderry() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Londonderry Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Located in northeast Edmonton, we're always just around the corner.
+                  Londonderry runs from 137 Avenue north to 153 Avenue, between 82 Street on the west and 66 Street on the east. The neighbourhood is inside Edmonton city limits, so there is no trip fee.
                 </p>
               </div>
               <Suspense fallback={<div className="w-full h-[400px] bg-muted rounded-2xl animate-pulse" />}>
@@ -324,12 +324,12 @@ export default function Londonderry() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Londonderry</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Edmonton-area neighbourhoods we clean</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    Our Edmonton branch cleans in Kilkenny and Evansdale too, both on its list of 80 city neighbourhoods.
                   </p>
                 </div>
-                <CoverageChips areas={["Londonderry Mall", "Evansdale Park", "M.E. LaZerte High School", "137 Avenue", "Londonderry Fitness Centre", "Steele Heights", "Kilkenny", "Evansdale"]} variant="compact" />
+                <CoverageChips areas={["Kilkenny", "Evansdale"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -344,8 +344,8 @@ export default function Londonderry() {
         eyebrow="Area notes"
         heading="Between 137 and 153 Avenue"
         paragraphs={[
-          "Roughly half the homes between these two avenues went up in the 1960s, and the mix runs the full range: detached houses, long runs of row housing, and apartment blocks, walk-up and taller, with about a third of households renting. That changes the work. Move-out cleans to a damage-deposit standard are routine, and so are the narrow stairwells and tight kitchens that row housing brings with it.",
-          "A shopping centre has anchored the southeast corner since 1972, where 137 Avenue meets 66 Street; 82 Street closes the west side and 153 Avenue the north. Homes fronting those roads collect the winter sanding heavy traffic throws off — grey grit at the entry mat, in the door tracks, along the baseboards nearest the front hall. Interior blocks, set back behind a full depth of housing, show noticeably less of it.",
+          "Roughly half the homes between these two avenues went up in the 1960s, and the mix runs the full range: detached houses, long runs of row housing, and apartment blocks, walk-up and taller, with about a third of households renting. That changes the work. Rentals mean move-out cleans, and row housing means narrow stairwells and tight kitchens.",
+          "The southeast corner sits where 137 Avenue meets 66 Street; 82 Street closes the west side and 153 Avenue the north. Homes fronting those roads collect the winter sanding heavy traffic throws off — grey grit at the entry mat, in the door tracks, along the baseboards nearest the front hall. Interior blocks, set back behind a full depth of housing, show noticeably less of it.",
         ]}
       />
 

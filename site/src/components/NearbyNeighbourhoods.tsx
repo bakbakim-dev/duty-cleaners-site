@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { MapPin } from "lucide-react";
 import { canonicalForPath } from "@/data/legacy-urls";
 import { nearbyFor, placeNameFor } from "@/data/nearby";
+import { cityFromPath } from "@/lib/city-from-path";
 
 /**
  * Links out to the five closest sibling location pages.
@@ -64,7 +65,8 @@ export default function NearbyNeighbourhoods() {
             {place ? `Near ${place}: other areas we clean` : "Other areas we clean"}
           </h2>
           <p className="text-muted-foreground mb-7">
-            Same crews, same flat rates by home size.
+            Prices by home size are the same in each area listed here. An address outside{" "}
+            {cityFromPath(pathname) === "calgary" ? "Calgary" : "Edmonton"} city limits adds a travel fee.
           </p>
           <ul className="flex flex-wrap justify-center gap-3">
             {places.map((place) => (

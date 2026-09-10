@@ -72,16 +72,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Capilano" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Capilano" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Capilano" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Capilano" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Post-renovation dust and debris, professionally removed.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Capilano" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or a new build, priced by square footage.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Capilano" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Capilano" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Capilano" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment or condo, before GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Capilano" },
 ];
 
 const whyUsItems = [
@@ -121,7 +121,7 @@ export default function Capilano() {
   name: "Duty Cleaners – Capilano, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/capilano-edmonton",
-  description: "Professional house cleaning in Capilano, Edmonton. Serving families near Capilano Mall, Gold Bar Park & the river valley. Local cleaners you can trust.",
+  description: "Most of Capilano's houses went up between 1946 and 1960, and Duty Cleaners' Edmonton branch cleans them at a flat rate set by home size.",
 });
   const faqJsonLd = {
     "@context": "https://schema.org",
@@ -130,16 +130,16 @@ export default function Capilano() {
       {
         "@type": "Question",
         name: "How much does cleaning cost in Capilano?",
-        acceptedAnswer: { "@type": "Answer", text: "Cleaning costs vary depending on the type and size of the home, the condition it's in, the type of service requested (such as standard, deep, or move-out cleaning), and any additional services added like interior window cleaning, baseboards, or appliances." },
+        acceptedAnswer: { "@type": "Answer", text: `A standard clean in Capilano starts at ${RECURRING_FROM} before 5% GST, for a one-bedroom, one-bathroom apartment or condo, and the rate is flat by home size. A bungalow, townhouse or two-storey house adds a home-type surcharge, and homes with pets carry a compulsory pet charge; both show on the quote before you book. There is no trip fee inside Edmonton city limits.` },
       },
       {
         "@type": "Question",
         name: "Do I need to be home during the cleaning appointment?",
-        acceptedAnswer: { "@type": "Answer", text: "You don't need to be home during the cleaning. You can provide access by sharing a code, leaving a key in a lockbox, or giving us a garage code. If you'd like to do a walkthrough with our cleaners, we can call you about 30 minutes before they finish." },
+        acceptedAnswer: { "@type": "Answer", text: "You do not need to be home for a clean in Capilano. Most customers leave a key, a lockbox code or smart-lock access, and the team locks up when the clean is done." },
       },
       {
         "@type": "Question",
-        name: "Are your Capilano cleaners vetted?",
+        name: "How are Capilano cleaners checked?",
         acceptedAnswer: { "@type": "Answer", text: "Yes. Every cleaner is reference-checked before their first job, and every visit is rated by the customer afterwards." },
       },
     ],
@@ -149,17 +149,17 @@ export default function Capilano() {
     <>
       <Helmet>
         <title>House Cleaning in Capilano, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Capilano, Edmonton. Serving families near Capilano Mall, Gold Bar Park & the river valley." />
+        <meta name="description" content="Most of Capilano's houses went up between 1946 and 1960, and Duty Cleaners' Edmonton branch cleans them at a flat rate set by home size." />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/capilano-edmonton/" />
         <meta property="og:title" content="House Cleaning in Capilano, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Capilano, Edmonton. Serving families near Capilano Mall, Gold Bar Park & the river valley." />
+        <meta property="og:description" content="Most of Capilano's houses went up between 1946 and 1960, and Duty Cleaners' Edmonton branch cleans them at a flat rate set by home size." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/capilano-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Capilano, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Capilano, Edmonton. Serving families near Capilano Mall, Gold Bar Park & the river valley." />
+        <meta name="twitter:description" content="Most of Capilano's houses went up between 1946 and 1960, and Duty Cleaners' Edmonton branch cleans them at a flat rate set by home size." />
       </Helmet>
 
       <div className="min-h-screen">
@@ -183,7 +183,7 @@ export default function Capilano() {
                 Professional House Cleaning in Capilano
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Your reliable, local cleaning team serving the Capilano community. From family homes near Capilano Mall to residences by Gold Bar Park — enjoy dependable cleaning built on trust and genuine care.
+                About five in six Capilano houses date from 1946 to 1960, and the river valley and Gold Bar Ravine sit below them. Each clean is priced flat by home size, before GST.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -222,7 +222,7 @@ export default function Capilano() {
                   Cleaning Services for Capilano Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
+                  Standard, deep and move-out cleaning for Capilano's post-war houses, from a first visit's built-up layers to regular upkeep.
                 </p>
               </div>
             </AnimatedSection>
@@ -265,7 +265,7 @@ export default function Capilano() {
                   Why Capilano Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Reliable, detail-first cleaning families count on.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -286,8 +286,8 @@ export default function Capilano() {
           <div className="container mx-auto px-4">
             <AnimatedSection>
               <div className="text-center mb-10">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Location</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Find Us in Capilano</h2>
+                <span className="text-primary text-sm font-semibold tracking-wider uppercase">Map</span>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Capilano on the Map</h2>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
                 <iframe
@@ -312,12 +312,12 @@ export default function Capilano() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Capilano</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Edmonton-area neighbourhoods we clean</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    Ottewell, Holyrood and Bonnie Doon are among the other Edmonton neighbourhoods the branch cleans.
                   </p>
                 </div>
-                <CoverageChips areas={["Capilano Mall", "Gold Bar Park", "Capilano Community League", "Hardisty School", "Capilano Park", "Gold Bar", "Ottewell", "Holyrood", "Bonnie Doon"]} variant="compact" />
+                <CoverageChips areas={["Ottewell", "Holyrood", "Bonnie Doon"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -354,17 +354,17 @@ export default function Capilano() {
                   <AccordionItem value="item-1">
                     <AccordionTrigger className="text-left">How much does cleaning cost in Capilano?</AccordionTrigger>
                     <AccordionContent>
-                      Cleaning costs vary depending on the type and size of the home, the condition it's in, the type of service requested (such as standard, deep, or move-out cleaning), and any additional services added like interior window cleaning, baseboards, or appliances.
+                      {`A standard clean in Capilano starts at ${RECURRING_FROM} before 5% GST, for a one-bedroom, one-bathroom apartment or condo, and the rate is flat by home size. A bungalow, townhouse or two-storey house adds a home-type surcharge, and homes with pets carry a compulsory pet charge; both show on the quote before you book. There is no trip fee inside Edmonton city limits.`}
                     </AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="item-2">
                     <AccordionTrigger className="text-left">Do I need to be home during the cleaning appointment?</AccordionTrigger>
                     <AccordionContent>
-                      You don't need to be home during the cleaning. You can provide access by sharing a code, leaving a key in a lockbox, or giving us a garage code. If you'd like to do a walkthrough with our cleaners, we can call you about 30 minutes before they finish.
+                      You do not need to be home for a clean in Capilano. Most customers leave a key, a lockbox code or smart-lock access, and the team locks up when the clean is done.
                     </AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="item-3">
-                    <AccordionTrigger className="text-left">Are your Capilano cleaners vetted?</AccordionTrigger>
+                    <AccordionTrigger className="text-left">How are Capilano cleaners checked?</AccordionTrigger>
                     <AccordionContent>
                       Yes. Every cleaner is reference-checked before their first job, and every visit is rated by the customer afterwards.
                     </AccordionContent>

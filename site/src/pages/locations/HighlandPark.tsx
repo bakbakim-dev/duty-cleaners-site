@@ -60,10 +60,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Highland Park" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Highland Park" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Highland Park" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Highland Park" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Post-reno dust removal for the area's many infill projects.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Highland Park" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Highland Park" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris cleared after renovations or new builds.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Highland Park" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, booked together with a clean.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Highland Park" },
 ];
 
 const whyUsItems = [
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Tuxedo Park", "Mount Pleasant", "Greenview", "Thorncliffe", "Winston Heights", "Cambrian Heights"];
+const nearbyAreas = ["Tuxedo Park", "Mount Pleasant", "Greenview", "Thorncliffe"];
 
 const faqs = [
   {
@@ -104,7 +104,7 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Highland Park?",
-    answer: `The full service menu is available here:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `The Calgary branch offers these services in Highland Park:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
   },
   {
     question: "Do you offer discounts?",
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function HighlandPark() {
     <>
       <Helmet>
         <title>House Cleaners in Highland Park, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional cleaners serving Highland Park, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="description" content="Almost half of Highland Park's buildings are condos or apartments. Our Calgary team cleans suites and houses at a flat rate by home size." />
         <meta property="og:title" content="House Cleaners in Highland Park, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Highland Park, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional cleaners serving Highland Park, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
-        <meta property="og:description" content="Professional cleaners serving Highland Park, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="twitter:description" content="Almost half of Highland Park's buildings are condos or apartments. Our Calgary team cleans suites and houses at a flat rate by home size." />
+        <meta property="og:description" content="Almost half of Highland Park's buildings are condos or apartments. Our Calgary team cleans suites and houses at a flat rate by home size." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/highland-park-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/highland-park-calgary/" />
@@ -183,7 +183,7 @@ export default function HighlandPark() {
                 Professional House Cleaning in Highland Park
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Highland Park sits on a quiet plateau north of downtown — mature trees, character bungalows, and one of Calgary's last truly walkable neighbourhood vibes.
+                Almost half of Highland Park's buildings are now condominiums or apartments, and roughly two thirds of its housing is rented. The Calgary team cleans the older detached houses and the rented suites alike, at a flat rate by home size and type.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function HighlandPark() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Highland Park Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Everything from weekly upkeep to full move-out cleans.
+                  Detached houses on the older streets and suites turning over on a possession date are priced the same way: a flat rate by home size and type.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function HighlandPark() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Highland Park Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Highland Park and the surrounding N Calgary communities.
+                    The Calgary office at 2835 37 Street SW books Highland Park cleans, and there is no trip fee anywhere inside the city.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function HighlandPark() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={768} src={cleanHomeImg} alt="Bright sanitized bathroom with subway tile in a Highland Park Calgary home cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1024} height={768} src={cleanHomeImg} alt="Bright bathroom with white subway tile, a glass shower and a freestanding tub" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Sparkling Bathrooms, Soothing Spaces</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Bathrooms</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Hard Water in Highland Park Bathrooms</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    There's something special about walking into a freshly cleaned bathroom — chrome that gleams, tile that sparkles, towels neatly folded. It's the small things that make Highland Park homes feel like a sanctuary.
+                    Hard Alberta water leaves mineral scale on taps and shower glass, in a long-held detached house and a rented suite alike. The standard clean covers every bathroom in the home at a flat rate, and the price does not change because scale took longer than expected. Heavy build-up is the exception: the team explains what it found and the options before continuing.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Rated by the customer after every visit","The team brings all supplies and equipment","A free re-clean if you report a miss within 24 hours"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,9 +311,9 @@ export default function HighlandPark() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Highland Park and the communities around it.{" "}
+                  Duty Cleaners cleans homes in Highland Park and in the Calgary neighbourhoods listed here.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -328,10 +328,10 @@ export default function HighlandPark() {
 
       <LocalMarketNote
         eyebrow="Neighbourhood notes"
-        heading="Golf course north, cemetery southwest"
+        heading="Queens Park Cemetery to the southwest"
         paragraphs={[
-          "Two large pieces of open ground shape this place: the Highland golf course across the northern section and Queens Park Cemetery in the southwest corner. Open grass on two flanks means seed heads through late summer and a mowing season's worth of fine organic dust, and it lands on patio glass and screens rather than on floors. Screens here repay coming out and being washed properly rather than wiped in place.",
-          "The community dates to 1946, but almost half the buildings now are condominium or apartment and roughly two thirds of the housing is rented. That mix produces two rhythms at once — long-settled owners on the older detached streets, and suites turning over against a possession date — and they need different amounts of time booked for the same square footage.",
+          "Queens Park Cemetery in the southwest corner puts open grass on one flank of the community, which means seed heads through late summer. Most of them land on the window screens rather than on the floors. Screens here repay coming out and being washed properly, but removing them is outside a Duty Cleaners visit, so that wash is left to the homeowner.",
+          "Almost half the buildings are now condominium or apartment, and roughly two thirds of the housing is rented. That mix produces two rhythms at once: long-settled owners on the older detached streets, and suites turning over against a possession date. Each needs different work for the same square footage.",
         ]}
         accent="calgary"
       />
@@ -347,7 +347,7 @@ export default function HighlandPark() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Highland Park Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>

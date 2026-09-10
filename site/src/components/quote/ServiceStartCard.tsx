@@ -222,7 +222,7 @@ export default function ServiceStartCard({
 
       {/* Minority case — kept below the action, not in front of it. */}
       <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-        Airbnb turnover or commercial property? Those are priced per hour — call{" "}
+        Airbnb turnovers are priced per hour — call{" "}
         <a href={phoneLink} className="font-semibold text-foreground underline underline-offset-4">
           {phone}
         </a>{" "}

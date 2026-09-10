@@ -4,7 +4,6 @@ import {
 } from "lucide-react";
 import featureImg from "@/assets/gallery/forest-lawn-family.webp";
 import { buildLocationSchema } from "@/lib/location-schema";
-import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
 import { sitePriceRange } from "@/data/pricing";
@@ -60,9 +59,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Forest Lawn" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Forest Lawn" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Forest Lawn" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Forest Lawn" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Forest Lawn.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Forest Lawn" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Drywall dust and light debris are cleared after a renovation or a new build in Forest Lawn.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Forest Lawn" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Forest Lawn" },
 ];
 
@@ -95,8 +94,6 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Penbrooke Meadows","Dover","Albert Park","Radisson Heights","Erin Woods","Forest Heights"];
-
 const faqs = [
   {
     question: "How long does an initial cleaning take?",
@@ -112,7 +109,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `In Forest Lawn, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `In Forest Lawn, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +134,12 @@ export default function ForestLawn() {
     <>
       <Helmet>
         <title>House Cleaning in Forest Lawn, Calgary | Duty Cleaners</title>
-        <meta name="description" content="House cleaning in Forest Lawn, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
+        <meta name="description" content="House and move-out cleaning in Forest Lawn, Calgary, where 68 per cent of households rented at the 2021 census and most homes predate 1980." />
         <meta property="og:title" content="House Cleaning in Forest Lawn, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Forest Lawn, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning in Forest Lawn, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
-        <meta property="og:description" content="House cleaning in Forest Lawn, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
+        <meta name="twitter:description" content="House and move-out cleaning in Forest Lawn, Calgary, where 68 per cent of households rented at the 2021 census and most homes predate 1980." />
+        <meta property="og:description" content="House and move-out cleaning in Forest Lawn, Calgary, where 68 per cent of households rented at the 2021 census and most homes predate 1980." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/forest-lawn-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/forest-lawn-calgary/" />
@@ -183,7 +180,7 @@ export default function ForestLawn() {
                 Professional House Cleaning in Forest Lawn
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Friendly, dependable cleaning for southeast Calgary's most diverse and welcoming community.
+                Most of Forest Lawn's homes were built before 1980, and with most households renting, move-in and move-out cleans come up here all year. Each one is a flat rate by home size.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +215,7 @@ export default function ForestLawn() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Forest Lawn Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Everything from weekly upkeep to full move-out cleans.
+                  The Calgary branch offers five services for Forest Lawn homes, each priced before 5% GST: flat by home size, or by square footage for post-construction. A pet charge or home-type surcharge, where one applies, shows on the quote before you book.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +254,7 @@ export default function ForestLawn() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Forest Lawn Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Forest Lawn and the surrounding SE Calgary communities.
+                    Forest Lawn is inside Calgary city limits, so a clean here carries no trip fee.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +280,16 @@ export default function ForestLawn() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={768} src={featureImg} alt="Spotless Forest Lawn Calgary home cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1024} height={768} src={featureImg} alt="A family and their dog on a beige sofa and rug in a bright living room" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Calm, Spotless Forest Lawn Home — Every Visit</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Near 17 Avenue SE</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Door Thresholds and Front Windows in Forest Lawn</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Our vetted cleaners treat your home with care, attention, and the same standards we'd want in our own. Walk in to fresh air, gleaming surfaces, and that quiet feeling of <em>everything in its place</em>.
+                    On the blocks feeding 17 Avenue SE, grit gathers at the door thresholds and front windows haze over between washes. Tell us which matters most when you book. Interior windows are an add-on; exterior glass counts as outdoor work and is not included.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Cleaners reference-checked before a first job","Supplies and equipment brought by the team","Re-clean at no charge if told within 24 hours"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,25 +308,24 @@ export default function ForestLawn() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Where the Calgary Branch Cleans</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Forest Lawn and the communities around it.{" "}
+                  The Calgary branch cleans 66 neighbourhoods inside the city and nine communities outside it, where a travel fee applies.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
                 </p>
               </div>
-              <CoverageChips areas={nearbyAreas} />
             </AnimatedSection>
           </div>
         </section>
 
       <LocalMarketNote
         eyebrow="Neighbourhood notes"
-        heading="A town until 1961"
+        heading="The old town grid"
         paragraphs={[
-          "Calgary annexed the Town of Forest Lawn on December 30, 1961, and the grid between 8 Avenue SE and 26 Avenue SE still reads like the separate place it was - most of its homes predate 1980. What matters more for scheduling is tenure: 68 per cent of households were renting at the 2021 census, so move-in and move-out cleans are a steady part of the year here, not an occasional job.",
-          "17 Avenue SE cuts through the middle as International Avenue, carrying the MAX Purple busway and an unbroken run of restaurants and shops. Homes on the blocks feeding into it get the traffic side of that arrangement: front windows that haze over between washes, grit at the door thresholds, cooking exhaust drifting on warm evenings. Range hoods and window glass come up here far more often than they do three blocks off.",
+          "Forest Lawn was its own town before Calgary annexed it, and the grid between 8 Avenue SE and 26 Avenue SE still reads like the separate place it was. Most of its homes predate 1980. What matters more for scheduling is tenure: 68 per cent of households were renting at the 2021 census, so move-in and move-out cleans are a steady part of the year here, not an occasional job.",
+          "17 Avenue SE cuts through the middle as International Avenue, carrying the MAX Purple busway and an unbroken run of restaurants and shops. Homes on the blocks feeding into it get the traffic side of that arrangement: front windows that haze over between washes, grit at the door thresholds, cooking exhaust drifting on warm evenings.",
         ]}
         accent="calgary"
       />
@@ -347,7 +343,7 @@ export default function ForestLawn() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Forest Lawn Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Dependable cleaning, visit after visit.
+                  Duty Cleaners has cleaned homes in Alberta since 2017, and the Calgary branch looks after Forest Lawn.
                 </p>
               </div>
             </AnimatedSection>

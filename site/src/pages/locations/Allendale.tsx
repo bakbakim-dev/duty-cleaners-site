@@ -89,16 +89,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Allendale" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Allendale" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Allendale" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared properly after renos and handovers.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Allendale" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Allendale" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Allendale" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "A move-out clean covers inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Allendale" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or a new build, priced by square footage.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Allendale" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Wall washing takes scuffs, handprints and cooking film off painted walls without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Allendale" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Allendale" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment or condo, before GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Allendale" },
 ];
 
 const whyUsItems = [
@@ -130,9 +130,9 @@ const whyUsItems = [
 ];
 
 const faqs = [
-  { q: "How much does residential cleaning typically cost in Allendale?", a: "Pricing depends on your home size and cleaning needs, but we keep everything transparent with clear starting rates and service details." },
-  { q: "Do you bring supplies, or should I provide my own?", a: "We come fully equipped with everything we need, so you don't have to lift a finger. If you have preferences, we're happy to work with them." },
-  { q: "What if I need to reschedule or cancel a visit?", a: `We understand that life happens! Just let us know as soon as possible and we'll accommodate the change. Cancellations within 24 hours of your appointment are charged ${POLICY.cancellationFee}.` },
+  { q: "How much does residential cleaning typically cost in Allendale?", a: `A standard clean of a one-bedroom, one-bathroom apartment or condo in Allendale is ${RECURRING_FROM} before 5% GST, and larger homes are priced by size. A bungalow, townhouse or two-storey house adds a home-type charge and a home with pets adds a per-visit pet charge; both show on the quote before you book.` },
+  { q: "Do you bring supplies, or should I provide my own?", a: "The team brings all supplies and equipment to an Allendale clean, so you do not need to provide anything. Running water is required, and vacuuming may not be possible without electricity. Eco-friendly products are an add-on: ask when you book and the office adds them." },
+  { q: "What if I need to reschedule or cancel a visit?", a: `Cancelling or changing an Allendale booking needs 24 hours' notice; inside 24 hours the fee is ${POLICY.cancellationFee}. If we have to move a booking, we say so as soon as we know and offer the earliest slot we have.` },
 ];
 
 export default function Allendale() {
@@ -144,14 +144,14 @@ export default function Allendale() {
     <>
       <Helmet>
         <title>House Cleaners in Allendale, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Allendale, Edmonton. Serving families near Allendale Park, Gateway Boulevard & 109 Street." />
+        <meta name="description" content="Post-war bungalows in Allendale, Edmonton sit against the CPR corridor, where the rail line and 104 Street traffic leave a fine, steady film of dust." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Allendale, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/allendale",
   areaServed: "Allendale, Edmonton, AB",
-  description: "Professional house cleaning in Allendale, Edmonton. Serving families near Allendale Park, Gateway Boulevard & 109 Street. Local cleaners you can trust.",
+  description: "Post-war bungalows in Allendale, Edmonton sit against the CPR corridor, where the rail line and 104 Street traffic leave a fine, steady film of dust.",
 }))}
         </script>
         {/* The FAQs below this page already renders — marked up so machine
@@ -169,12 +169,12 @@ export default function Allendale() {
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/allendale/" />
         <meta property="og:title" content="House Cleaners in Allendale, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Allendale, Edmonton. Serving families near Allendale Park, Gateway Boulevard & 109 Street." />
+        <meta property="og:description" content="Post-war bungalows in Allendale, Edmonton sit against the CPR corridor, where the rail line and 104 Street traffic leave a fine, steady film of dust." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/allendale/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Allendale, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Allendale, Edmonton. Serving families near Allendale Park, Gateway Boulevard & 109 Street." />
+        <meta name="twitter:description" content="Post-war bungalows in Allendale, Edmonton sit against the CPR corridor, where the rail line and 104 Street traffic leave a fine, steady film of dust." />
       </Helmet>
 
       <div className="min-h-screen">
@@ -199,7 +199,7 @@ export default function Allendale() {
                   Professional House Cleaning in Allendale
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto lg:mx-0 leading-relaxed">
-                  Your reliable, local cleaning team serving the Allendale community. From tree-lined streets near Allendale Park to cozy homes along Gateway Boulevard — enjoy dependable cleaning built on trust and genuine care.
+                  Allendale is post-war bungalows and university rentals beside the CPR corridor, so an Allendale clean deals with rail-line dust, original trim and, each spring, end-of-term move-outs. Every visit is priced flat by home size.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -227,7 +227,7 @@ export default function Allendale() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img width={1024} height={1024}
                   src={allendaleCleanerImg}
-                  alt="Professional cleaner cleaning a dining room in Allendale, Edmonton"
+                  alt="A cleaner in gloves wiping a wooden dining table beside a sunny window"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                 loading="eager"
                   {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
@@ -247,7 +247,7 @@ export default function Allendale() {
                   Cleaning Services for Allendale Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
+                  Standard, deep and move-out cleans in Allendale are priced flat by home size, and the move-out clean is the one the neighbourhood's university rentals need each spring.
                 </p>
               </div>
             </AnimatedSection>
@@ -290,7 +290,7 @@ export default function Allendale() {
                   Why Allendale Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -312,7 +312,7 @@ export default function Allendale() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Allendale Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Located in south-central Edmonton, we're always just around the corner.
+                  There is no trip fee in Allendale: the neighbourhood is inside Edmonton city limits.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -331,12 +331,12 @@ export default function Allendale() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Allendale</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Edmonton-area neighbourhoods we clean</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    The same Edmonton branch cleans these neighbourhoods, with the same checklist and prices.
                   </p>
                 </div>
-                <CoverageChips areas={["Allendale Park", "Gateway Boulevard", "109 Street", "Allendale Community League", "Pleasantview", "Queen Alexandra", "Parkallen", "Malmo Plains"]} variant="compact" />
+                <CoverageChips areas={["Pleasantview", "Queen Alexandra"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →

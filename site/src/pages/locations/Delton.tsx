@@ -88,7 +88,7 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Delton" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Delton" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Delton" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Delton" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris cleared after renovations or new builds.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Delton" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Delton" },
@@ -97,7 +97,7 @@ const services = [
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Delton" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment or condo, before GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Delton" },
 ];
 
 const whyUsItems = [
@@ -129,9 +129,9 @@ const whyUsItems = [
 ];
 
 const faqs = [
-  { q: "How much does residential cleaning typically cost in Delton?", a: "Pricing depends on your home size and cleaning needs, but we keep everything transparent with clear starting rates and service details." },
-  { q: "Do you bring supplies, or should I provide my own?", a: "We come fully equipped with everything we need, so you don't have to lift a finger. If you have preferences, we're happy to work with them." },
-  { q: "What if I need to reschedule or cancel a visit?", a: `We understand that life happens! Just let us know as soon as possible and we'll accommodate the change. Cancellations within 24 hours of your appointment are charged ${POLICY.cancellationFee}.` },
+  { q: "How much does residential cleaning typically cost in Delton?", a: `A standard clean in Delton starts at ${RECURRING_FROM} before 5% GST, for a one-bedroom, one-bathroom apartment or condo, and it is priced flat by home size. A bungalow, townhouse or two-storey house adds a home-type surcharge, and a home with pets adds a compulsory pet charge per visit. Delton is inside Edmonton city limits, so there is no trip fee. Every charge shows on the quote before you book.` },
+  { q: "Do you bring supplies, or should I provide my own?", a: "The team brings all supplies and equipment to a Delton clean, so you do not need to provide anything. Running water is required, and vacuuming may not be possible without electricity." },
+  { q: "What if I need to reschedule or cancel a visit?", a: `Cancelling or changing a Delton booking needs 24 hours' notice, and inside 24 hours the fee is ${POLICY.cancellationFee}. If we have to move a booking, because a cleaner is ill or the roads are unsafe, we say so as soon as we know and offer the earliest slot we have.` },
 ];
 
 export default function Delton() {
@@ -143,14 +143,14 @@ export default function Delton() {
     <>
       <Helmet>
         <title>Delton, Edmonton House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Delton, Edmonton. Serving families near 97 Street, Norwood Square & Delton School. Local cleaners you can trust." />
+        <meta name="description" content="House cleaning in Delton, Edmonton, where wartime cottages and 1950s bungalows take fine grit from the 97 Street corridor and the CN tracks." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Delton, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/delton",
   areaServed: "Delton, Edmonton, AB",
-  description: "Professional house cleaning in Delton, Edmonton. Serving families near 97 Street, Norwood Square & Delton School. Local cleaners you can trust.",
+  description: "House cleaning in Delton, Edmonton, where wartime cottages and 1950s bungalows take fine grit from the 97 Street corridor and the CN tracks.",
 }))}
         </script>
         {/* The FAQs below this page already renders — marked up so machine
@@ -168,12 +168,12 @@ export default function Delton() {
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/delton/" />
         <meta property="og:title" content="Delton, Edmonton House Cleaning | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Delton, Edmonton. Serving families near 97 Street, Norwood Square & Delton School. Local cleaners you can trust." />
+        <meta property="og:description" content="House cleaning in Delton, Edmonton, where wartime cottages and 1950s bungalows take fine grit from the 97 Street corridor and the CN tracks." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/delton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Delton, Edmonton House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Delton, Edmonton. Serving families near 97 Street, Norwood Square & Delton School. Local cleaners you can trust." />
+        <meta name="twitter:description" content="House cleaning in Delton, Edmonton, where wartime cottages and 1950s bungalows take fine grit from the 97 Street corridor and the CN tracks." />
       </Helmet>
 
       <div className="min-h-screen">
@@ -198,7 +198,7 @@ export default function Delton() {
                   Professional House Cleaning in Delton
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto lg:mx-0 leading-relaxed">
-                  Your reliable, local cleaning team serving the Delton community. From character homes along 97 Street to family residences near Norwood Square — enjoy dependable cleaning built on trust and genuine care.
+                  Delton's wartime cottages and 1950s bungalows often come with a back-lane workshop, and the back entry is the door that gets used. The Edmonton team brings every supply and prices each visit flat by home size.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -226,7 +226,7 @@ export default function Delton() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img width={1024} height={1024}
                   src={deltonCleanerImg}
-                  alt="Professional cleaner vacuuming a living room in Delton, Edmonton"
+                  alt="Cleaner in a navy uniform vacuuming the hardwood floor of a bright living room"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   loading="eager"
                   fetchPriority="high"
@@ -247,7 +247,7 @@ export default function Delton() {
                   Cleaning Services for Delton Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
+                  Six services for Delton homes, from a one-time standard clean to a recurring schedule. Post-construction is priced by square footage and the other five flat by home size, all before GST.
                 </p>
               </div>
             </AnimatedSection>
@@ -290,7 +290,7 @@ export default function Delton() {
                   Why Delton Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Reliable, detail-first cleaning families count on.
+                  Reference-checked before the first job, rated by the customer after every visit, and backed by a return visit if a missed task is reported within 24 hours.
                 </p>
               </div>
             </AnimatedSection>
@@ -312,7 +312,7 @@ export default function Delton() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Delton Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Located in Edmonton's northeast core, we're always just around the corner.
+                  Delton is booked through the Edmonton office at 18615 71 Ave NW, open Monday to Saturday 8 AM to 8 PM and Sunday 9 AM to 3 PM.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -331,12 +331,12 @@ export default function Delton() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Delton</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Edmonton-area neighbourhoods we clean</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    The Edmonton branch cleans in 80 Edmonton neighbourhoods and 9 communities outside the city. Eastwood is another name on that list.
                   </p>
                 </div>
-                <CoverageChips areas={["97 Street", "Norwood Square", "Delton School", "122 Avenue", "119 Avenue", "St. Patrick School", "Churchill Square", "Eastwood"]} variant="compact" />
+                <CoverageChips areas={["Eastwood"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -351,8 +351,8 @@ export default function Delton() {
         eyebrow="Local knowledge"
         heading="Delton's workshop-era homes"
         paragraphs={[
-          "Delton's early stock north of the Avenue includes wartime cottages and 1950s bungalows, many with the deep single garages and back-lane workshops of a hands-on era. Workshop dust migrates indoors on clothes and boots, and back entries off the lane do the real work — front doors here are often ceremonial.",
-          "The 97 Street corridor on the west edge and the CN tracks along the north put steady fine grit on the neighbourhood, heaviest on the west and north blocks. Older furnaces pushing through original ducting redistribute it, so register grilles and cold-air returns here deserve wiping on every visit, not just deep cleans. Older furnaces pushing through original ducting redistribute it, so register grilles and cold-air returns here deserve wiping on every visit, not just deep cleans.",
+          "Delton's early stock north of the Avenue includes wartime cottages and 1950s bungalows, many with the deep single garages and back-lane workshops of a hands-on era. Workshop dust migrates indoors on clothes and boots, and back entries off the lane take the foot traffic — front doors here are often ceremonial.",
+          "The 97 Street corridor on the west edge and the CN tracks along the north put steady fine grit on the neighbourhood, heaviest on the west and north blocks. Older furnaces pushing through original ducting redistribute it onto register grilles and cold-air returns, and vent covers are part of the deep-clean package.",
         ]}
       />
 

@@ -19,15 +19,15 @@ import laundryImage from "@/assets/blog/laundry-natural-cleaning.webp";
 const whatToClean = [
   {
     title: "Kitchen Sink",
-    description: "A sink that looks clean still holds a film around the drain and the overflow. Sprinkle baking soda on the surface, scrub, and rinse it off. Soak paper towels in distilled white vinegar and let them line the sink for 20 minutes before wiping the cover down."
+    description: "A sink that looks clean still holds a film around the drain and the overflow. Sprinkle baking soda on the surface, scrub, and rinse it off. Soak paper towels in distilled white vinegar and let them line the sink for 20 minutes before wiping the sink down."
   },
   {
     title: "Clogged Drains and Garbage Disposals",
-    description: "To unclog drains, pour baking soda and add 2 cups of white vinegar. The two will react together, which will help break down grime, grease, and dirt. Wait until the mixture stops bubbling before flushing the drain with boiling water. For garbage disposals, dump half a cup of baking soda into the disposal and let it stay for 10 minutes to deodorize, then pour vinegar in and let the mixture bubble."
+    description: "To clear a slow drain, pour in baking soda and then 2 cups of white vinegar. The fizzing helps lift grime, grease and dirt. Wait until the bubbling stops, then flush the drain with hot water. For a garbage disposal, pour in half a cup of baking soda and leave it for 10 minutes to deodorise, then pour in vinegar and let the mixture bubble."
   },
   {
     title: "Faucets",
-    description: "Wrap the tap in a paper towel soaked in white vinegar and leave it 15 minutes to soften the scale. Peel the towel away, then scrub with a paste of baking soda and a little water, rinse, and buff dry with a cloth. One after the other, not mixed together."
+    description: "Wrap the tap in a paper towel soaked in white vinegar and leave it 15 minutes to soften the scale. Peel the towel away, then scrub with a paste of baking soda and a little water, rinse, and buff dry with a cloth. Use the two one after the other rather than mixed together."
   },
   {
     title: "Refrigerator",
@@ -35,15 +35,15 @@ const whatToClean = [
   },
   {
     title: "Bathroom Surfaces",
-    description: "Sprinkle baking soda over the tub and tiles, scrub with a damp nylon-backed sponge, and rinse. Then spray the glass and chrome with half white vinegar, half water and wipe dry. Two steps, one after the other — in the same bottle they cancel out and you are spraying salty water."
+    description: "Sprinkle baking soda over the tub and tiles, scrub with a damp nylon-backed sponge, and rinse. Then spray the glass and chrome with half white vinegar, half water and wipe dry. Do the two steps one after the other: in the same bottle they cancel out and you are spraying salty water."
   },
   {
     title: "Showerheads",
-    description: "If your showerhead is clogged with minerals, vinegar can help clear it. Mix 1 cup of vinegar into a litre of water. Let the showerhead soak in the mixture for 15 minutes. Afterward, rinse it off before replacing the showerhead."
+    description: "If your showerhead is clogged with minerals, vinegar can help clear it. Mix 1 cup of vinegar into a litre of water. Let the showerhead soak in the mixture for 15 minutes. Afterwards, rinse it off before replacing the showerhead."
   },
   {
     title: "Toilet Bowl",
-    description: "Add equal parts baking soda and hydrogen peroxide. Use a toilet brush to rub the mixture around the bowl. Leave the solution for at least 15 minutes, then scrub and rinse the sparkling bowl."
+    description: "Add equal parts baking soda and hydrogen peroxide. Use a toilet brush to rub the mixture around the bowl. Leave the solution for at least 15 minutes, then scrub and rinse the bowl."
   },
   {
     title: "Carpet Stains",
@@ -51,7 +51,7 @@ const whatToClean = [
   },
   {
     title: "Laundry Detergent Booster",
-    description: "Add half a cup of baking soda to your clothes before the wash cycle in the washing machine. Then, add vinegar to the rinse cycle. Baking soda can boost your liquid laundry detergent cleaning process and brighten your clothes, while vinegar removes the foul odour and softens the fabric."
+    description: "Add half a cup of baking soda to the drum with your clothes before the wash cycle, then add vinegar to the rinse cycle. Baking soda gives the detergent a boost, and vinegar in the rinse helps with odours and leaves the fabric softer. Never add vinegar to a load that has bleach in it."
   }
 ];
 
@@ -66,11 +66,11 @@ const whatNotToClean = [
   },
   {
     title: "Marble, Granite, or Stone Counters",
-    description: "You should never use these two in cleaning natural stone or marble surfaces. Both can make them lose their shine. Instead, use a liquid cleaner with water for the best results."
+    description: "Keep both off natural stone such as marble and granite. Vinegar can etch the surface and baking soda can scratch it, and either one can dull the shine. Use a cleaner made for stone, diluted in water, instead."
   },
   {
     title: "Wood Floors and Furniture",
-    description: "Vinegar can damage the finish that protects the wood and leaves it cloudy and dull. It is always best to use cleaning products recommended and formulated for wood floors and furniture."
+    description: "Vinegar can damage the finish that protects the wood and leaves it cloudy and dull. Use cleaning products made for wood floors and furniture instead."
   }
 ];
 
@@ -85,25 +85,25 @@ export default function BlogVinegarBakingSoda() {
         <title>Cleaning with Vinegar and Baking Soda | Duty Cleaners</title>
         <meta
           name="description"
-          content="Learn how to clean your home naturally with vinegar and baking soda. Safe, effective tips for kitchen, bathroom and laundry from Duty Cleaners."
+          content="Where vinegar and baking soda work in the kitchen, bathroom and laundry, which surfaces they damage, and why mixing them makes a weaker cleaner."
         />
         <link rel="canonical" href="https://dutycleaners.ca/cleaning-with-vinegar-and-baking-soda/" />
         <meta property="og:title" content="Cleaning with Vinegar and Baking Soda | Duty Cleaners" />
-        <meta property="og:description" content="Learn how to clean your home naturally with vinegar and baking soda. Safe, effective tips for kitchen, bathroom and laundry from Duty Cleaners." />
+        <meta property="og:description" content="Where vinegar and baking soda work in the kitchen, bathroom and laundry, which surfaces they damage, and why mixing them makes a weaker cleaner." />
         <meta name="twitter:card" content="summary_large_image" />
         {/* This post's own hero, so a share card shows the article rather
             than the generic site image. */}
         <meta property="og:image" content={absoluteAssetUrl(heroImage)} />
         <meta name="twitter:image" content={absoluteAssetUrl(heroImage)} />
         <meta name="twitter:title" content="Cleaning with Vinegar and Baking Soda | Duty Cleaners" />
-        <meta name="twitter:description" content="Learn how to clean your home naturally with vinegar and baking soda. Safe, effective tips for kitchen, bathroom and laundry from Duty Cleaners." />
+        <meta name="twitter:description" content="Where vinegar and baking soda work in the kitchen, bathroom and laundry, which surfaces they damage, and why mixing them makes a weaker cleaner." />
         <meta property="og:type" content="article" />
         <meta property="og:url" content="https://dutycleaners.ca/cleaning-with-vinegar-and-baking-soda/" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Article",
           "headline": "Cleaning with Vinegar and Baking Soda: Complete Guide",
-          "description": "Learn how to clean your home naturally with vinegar and baking soda. Safe, effective cleaning tips for kitchen, bathroom, laundry and more from Duty Cleaners Edmonton.",
+          "description": "Where vinegar and baking soda work in the kitchen, bathroom and laundry, which surfaces they damage, and why mixing them makes a weaker cleaner.",
           "image": absoluteAssetUrl(heroImage),
           ...(publishedFor("/cleaning-with-vinegar-and-baking-soda") ? { datePublished: publishedFor("/cleaning-with-vinegar-and-baking-soda") } : {}),
           "dateModified": modifiedOr("/cleaning-with-vinegar-and-baking-soda"),
@@ -150,7 +150,7 @@ export default function BlogVinegarBakingSoda() {
               </h1>
               
               <p className="text-xl text-muted-foreground mb-8">
-                Skip the harsh chemicals! Learn how to use these two natural household items to clean almost everything in your home safely and effectively.
+                Two cheap household staples handle a lot of everyday cleaning, as long as you use them one at a time and keep them off the surfaces they damage.
               </p>
 
               <div className="aspect-video rounded-2xl overflow-hidden mb-12">
@@ -182,10 +182,10 @@ export default function BlogVinegarBakingSoda() {
                   Most cleaning aisles are built around strong, single-purpose products, and plenty of homes have good reasons to want fewer of them around — young children, pets, sensitive skin, or a bathroom with no window and nowhere for fumes to go.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed mt-4">
-                  <strong>Vinegar and baking soda</strong> cover a surprising amount of that ground between them, and both are cheap enough that it costs nothing to try. What follows is where each one genuinely works, where it does not, and — the part most guides get wrong — what actually happens when you combine them.
+                  <strong>Vinegar and baking soda</strong> cover a lot of that ground between them, and both are cheap enough to be worth trying. What follows is where each one works, where it does not, and what happens when you combine them, which is the part many guides get wrong.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed mt-4">
-                  The downside is we can't use these products to clean everything in your house. But they are still safer than using cleaners with harsh chemicals. This blog will teach you different techniques and how and when to use or not use them.
+                  Neither one cleans everything. Vinegar can damage natural stone, wood finishes, the backing of a mirror and the inside of a clothes iron, and neither replaces a purpose-made disinfectant.
                 </p>
               </div>
 
@@ -207,14 +207,14 @@ export default function BlogVinegarBakingSoda() {
                 </p>
 
                 <p className="text-muted-foreground mb-6">
-                  That fizzing reaction is still genuinely useful, but for a mechanical reason rather than a chemical one — the carbon dioxide bubbles lift loose debris, which is why the combination works in a slow drain. For everything else, you will get better results using them separately, one after the other, than mixed together in a bowl.
+                  That fizzing reaction is still useful, but for a mechanical reason rather than a chemical one — the carbon dioxide bubbles lift loose debris, which is why the combination works in a slow drain. For everything else, you will get better results using them separately, one after the other, than mixed together in a bowl.
                 </p>
 
                 <div className="grid md:grid-cols-2 gap-6 mb-8">
                   <div className="p-6 bg-primary/10 rounded-xl border border-primary/20">
                     <h3 className="font-bold text-foreground mb-2">🧂 Baking Soda (Base)</h3>
                     <p className="text-muted-foreground text-sm">
-                      Also known as sodium bicarbonate, baking soda can dissolve some compounds, including grease and dirt. It's also a natural abrasive cleaner that can serve as an excellent cleaning agent without fear of damaging your surfaces.
+                      Baking soda (sodium bicarbonate) is a mild alkali that loosens grease and dirt, and a fine abrasive that scrubs without much force. Test it on a hidden patch of a glossy or soft finish first, because it can scratch.
                     </p>
                   </div>
                   <div className="p-6 bg-secondary/10 rounded-xl border border-secondary/20">
@@ -241,7 +241,7 @@ export default function BlogVinegarBakingSoda() {
                 </div>
 
                 <p className="text-muted-foreground mb-6">
-                  There are concrete ways to combine these products before you start cleaning. The mixture needs to be either acidic or basic to be effective. So it is advisable <strong>not to use equal parts of baking soda and vinegar</strong>.
+                  If you do combine them, the mixture keeps some cleaning power only while it stays either acidic or basic, so <strong>do not use equal parts of baking soda and vinegar</strong>.
                 </p>
 
                 <div className="p-6 bg-accent/20 rounded-xl border border-accent/30 mb-6">
@@ -311,7 +311,7 @@ export default function BlogVinegarBakingSoda() {
                   <div className="aspect-video rounded-xl overflow-hidden">
                     <img width={1024} height={1024}
                       src={bathroomImage}
-                      alt="Clean modern bathroom with sparkling chrome faucet"
+                      alt="Clean modern bathroom with a chrome faucet"
                       className="w-full h-full object-cover"
                      loading="lazy" decoding="async"/>
                   </div>
@@ -332,7 +332,7 @@ export default function BlogVinegarBakingSoda() {
                 </h2>
 
                 <p className="text-muted-foreground mb-6">
-                  Unfortunately, baking soda and vinegar cannot be used in all situations. Some surfaces can be damaged if they come into contact with these ingredients. Although these two may not always work, other cleaning materials you can use will be more effective.
+                  Baking soda and vinegar cannot be used everywhere. Some surfaces are damaged by them, and for those a product made for the surface does a better job.
                 </p>
 
                 <div className="space-y-4">
@@ -351,10 +351,10 @@ export default function BlogVinegarBakingSoda() {
               {/* CTA */}
               <div className="bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 rounded-2xl p-8 text-center">
                 <h3 className="text-2xl font-bold mb-4 text-foreground">
-                  Trust the Cleaning Professionals
+                  When the Grime Has Built Up
                 </h3>
                 <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                  Are you trying to figure out which cleaners are best for your home? Leave the cleaning to us! The professionals at Duty Cleaners will ensure your home is thoroughly clean with our top-of-the-line products — and when vinegar and baking soda have met their match, our <Link to="/edmonton/deep-cleaning/" className="text-primary underline underline-offset-2 font-medium">deep cleaning service</Link> handles the built-up grime they can’t. No matter your preference – natural remedies or professional-grade solutions – our cleaners will work with you to ensure your needs are met.
+                  When built-up grime is past what vinegar and baking soda can shift, a deep clean is the standard checklist plus the deep-clean package for baseboards, doors, light switches, wall outlets and vent covers. Duty Cleaners books <Link to="/edmonton/deep-cleaning/" className="text-primary underline underline-offset-2 font-medium">deep cleaning in Edmonton</Link> and <Link to="/calgary/deep-cleaning/" className="text-primary underline underline-offset-2 font-medium">deep cleaning in Calgary</Link>. The team brings all supplies and equipment, and eco-friendly products are an add-on: ask when you book and the office adds it.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button size="lg" variant="accent" className="w-full sm:w-auto min-h-[52px] text-base font-bold" asChild>

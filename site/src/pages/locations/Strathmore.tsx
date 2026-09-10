@@ -61,9 +61,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Strathmore" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Strathmore" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Strathmore" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Strathmore" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Strathmore.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Strathmore" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or new build, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Strathmore" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Strathmore" },
 ];
 
@@ -95,7 +95,10 @@ const whyUsItems = [
   { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
-const nearbyAreas = ["Wheatland Crossing", "Lakewood Meadows", "Westmount", "Heritage Heights", "Hillview Estates", "Brentwood", "Canal Gardens", "Edgewater"];
+// The Calgary branch's other communities outside the city (A2 in the content
+// prompt). The old list named Strathmore subdivisions that city-locations.ts
+// does not carry, so a name on this page no longer implies a place is served.
+const nearbyAreas = ["Airdrie", "Cochrane", "Okotoks", "Chestermere", "High River", "Langdon", "Crossfield", "Diamond Valley"];
 
 const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Strathmore",
@@ -117,7 +120,7 @@ export default function Strathmore() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Strathmore?",
-      answer: `Every service we run can be booked locally:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `In Strathmore, households can book:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning, booked with a clean`
     },
     {
       question: "Do you offer discounts?",
@@ -125,7 +128,7 @@ export default function Strathmore() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `In Strathmore, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `In Strathmore, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -147,12 +150,12 @@ export default function Strathmore() {
     <>
       <Helmet>
         <title>House Cleaning Services in Strathmore, AB | Duty Cleaners</title>
-        <meta name="description" content="Professional cleaners serving Strathmore. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="description" content="Cleaning homes in Strathmore, AB, where dry-weather soil off Wheatland County lands on blind slats and fan blades, so the team works high to low." />
         <meta property="og:title" content="House Cleaning Services in Strathmore, AB | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services in Strathmore, AB | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional cleaners serving Strathmore. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
-        <meta property="og:description" content="Professional cleaners serving Strathmore. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="twitter:description" content="Cleaning homes in Strathmore, AB, where dry-weather soil off Wheatland County lands on blind slats and fan blades, so the team works high to low." />
+        <meta property="og:description" content="Cleaning homes in Strathmore, AB, where dry-weather soil off Wheatland County lands on blind slats and fan blades, so the team works high to low." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/strathmore/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/strathmore/" />
@@ -182,7 +185,7 @@ export default function Strathmore() {
                   Professional House Cleaning in Strathmore
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Trusted house cleaning services in Strathmore, AB. Customer-rated cleaners loved by local families — from Wheatland Crossing to Lakewood Meadows.
+                  Strathmore is outside Calgary city limits, so a clean here carries the travel fee. In dry weather, fine soil from Wheatland County settles on blind slats, fan blades and the tops of door casings.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -210,7 +213,7 @@ export default function Strathmore() {
               <div className="flex-shrink-0 w-full lg:w-[500px]">
                 <img width={1024} height={768}
                   src={strathmoreImg}
-                  alt="Children playing in a clean, bright living room in Strathmore, Alberta"
+                  alt="Two children playing with building blocks on a rug in a bright living room"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                 loading="eager"
                   {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
@@ -219,24 +222,6 @@ export default function Strathmore() {
           </div>
         </section>
 
-
-      {/* Things To Do */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <AnimatedSection>
-            <div className="max-w-4xl mx-auto">
-              <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Life</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                Things To Do In Strathmore
-              </h2>
-              <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
-                <p>Located just 40 km east of Calgary, Strathmore is a thriving town that blends rural charm with modern conveniences. With a population of over 13,000, Strathmore is known for its friendly community spirit and outdoor recreation opportunities. Start your day with a walk or bike ride along the scenic Kinsmen Park Trail System, offering beautiful views of the natural surroundings. In the summer, you can cool off at the Strathmore Aquatic Centre or enjoy a round of golf at the Strathmore Golf Club.</p>
-                <p>History buffs will appreciate a visit to the Strathmore Heritage Days Museum, showcasing the town’s rich agricultural roots. For family fun, don’t miss the annual Strathmore Stampede, one of Canada’s largest rodeos, featuring exciting events, live music, and delicious food. Mike’s Bar & Grill is on Second Street. When the day is done, let Duty Cleaners take care of your cleaning needs, so you can unwind in a spotless home.</p>
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
 
         {/* Interactive Map */}
         <section className="py-16 bg-background">
@@ -269,10 +254,10 @@ export default function Strathmore() {
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
-                  Strathmore Neighbourhoods We Serve
+                  Other Calgary-Area Communities We Serve
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  We proudly serve families and homeowners across all Strathmore communities.
+                  Besides Strathmore, the Calgary branch cleans in eight communities outside the city, and each carries the same travel fee.
                 </p>
               </div>
               <CoverageChips areas={nearbyAreas} />
@@ -284,8 +269,8 @@ export default function Strathmore() {
         eyebrow="Corridor facts"
         heading="The bypass nobody has funded"
         paragraphs={[
-          "Highway 1 still runs through the built-up area rather than around it. A southern bypass exists on paper — temporarily numbered Highway 1X:12, and it would replace roughly eight kilometres of the current route — but it is unfunded, with no construction timeline. So the film on exterior glass and white frames near that corridor is a standing condition, not a phase: diesel soot bound into tire rubber. Water alone slides over it. Detergent first, then a full rinse.",
-          "Past the last street is Wheatland County — 4,505 square kilometres running on agriculture and oil and gas. In dry weather that ground gives up fine soil, and open windows bring it inside, where it lands on the surfaces nobody looks at: blind slats, fan blades, the top edge of door casings, the furnace return filter. Work high to low, or you clean the same dust twice.",
+          "Highway 1 still runs through the built-up area rather than around it. A southern bypass exists on paper, temporarily numbered Highway 1X:12, and it would replace roughly eight kilometres of the current route. The bypass is unfunded, with no construction timeline. So the film on the outer face of window glass and on white frames near that corridor is a standing condition, not a phase: diesel soot bound into tire rubber. Water alone slides over it. That outer face counts as outdoor work and stays outside a Strathmore clean, while the inner face of the same glass is covered by the interior windows add-on.",
+          "Past the last street is Wheatland County — 4,505 square kilometres running on agriculture and oil and gas. In dry weather that ground gives up fine soil, and open windows bring it inside, where it lands on the surfaces nobody looks at: blind slats, fan blades, the top edge of door casings. Work high to low, or you clean the same dust twice.",
         ]}
         accent="calgary"
       />
@@ -304,7 +289,7 @@ export default function Strathmore() {
                   Cleaning Services for Strathmore Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs — every service a home needs.
+                  Standard, deep and move-out cleans in Strathmore are priced flat by home size, and a house costs more than an apartment with the same rooms.
                 </p>
               </div>
             </AnimatedSection>
@@ -346,7 +331,7 @@ export default function Strathmore() {
                   Why Strathmore Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -369,7 +354,7 @@ export default function Strathmore() {
                 House Cleaning in Strathmore & Surrounding Areas
               </h2>
               <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-                We provide professional house cleaning services throughout Strathmore and nearby communities in the Calgary region.
+                Strathmore bookings go through the Calgary office at 2835 37 Street SW. For an address that is not on the service-area list, call (403) 768-1341.
               </p>
               <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                 View All Service Areas →

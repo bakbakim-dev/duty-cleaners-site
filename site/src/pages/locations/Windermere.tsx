@@ -78,16 +78,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Windermere" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Windermere" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Windermere" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Windermere" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Post-renovation dust and debris, professionally removed.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Windermere" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Renovation dust cleaned off a Windermere home once the contractor has cleared the debris, priced by square footage.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Windermere" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Windermere" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Windermere" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit before GST for a one-bedroom apartment or condo, with any pet or home-type charge added. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Windermere" },
 ];
 
 const whyUsItems = [
@@ -119,7 +119,7 @@ const whyUsItems = [
 ];
 
 const nearbyAreas = [
-  "Ambleside", "Windermere Estates", "Keswick", "South Terwillegar", "Hodgson", "Jagare Ridge", "Mactaggart", "Desrochers"
+  "Ambleside"
 ];
 
 export default function Windermere() {
@@ -138,7 +138,7 @@ export default function Windermere() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -160,15 +160,15 @@ export default function Windermere() {
     <div className="min-h-screen">
       <Helmet>
         <title>House Cleaning Windermere, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="House cleaning in Windermere, southwest Edmonton, near Currents of Windermere, Keswick and Ambleside. Flat-rate quotes, rated cleaners." />
+        <meta name="description" content="House cleaning in Windermere, Edmonton, where almost every home is under twenty years old and engineered stone gets neutral-pH product." />
         <link rel="canonical" href="https://dutycleaners.ca/cleaning-services-windermere/" />
         <meta property="og:title" content="House Cleaning Windermere, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="House cleaning in Windermere, southwest Edmonton, near Currents of Windermere, Keswick and Ambleside. Flat-rate quotes, rated cleaners." />
+        <meta property="og:description" content="House cleaning in Windermere, Edmonton, where almost every home is under twenty years old and engineered stone gets neutral-pH product." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/cleaning-services-windermere/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Windermere, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning in Windermere, southwest Edmonton, near Currents of Windermere, Keswick and Ambleside. Flat-rate quotes, rated cleaners." />
+        <meta name="twitter:description" content="House cleaning in Windermere, Edmonton, where almost every home is under twenty years old and engineered stone gets neutral-pH product." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Windermere Edmonton", city: "edmonton", url: "https://dutycleaners.ca/cleaning-services-windermere", areaServed: "Windermere, Edmonton, AB" }))}</script>
@@ -193,7 +193,7 @@ export default function Windermere() {
                 Professional House Cleaning in Windermere
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                Experienced cleaners and quality products dedicated to keeping your Windermere home beautifully clean and well-maintained.
+                Almost every home in Windermere went up in the last twenty years. Our Edmonton branch cleans them at a flat rate by home size, and nothing is charged until the clean is done.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -221,7 +221,7 @@ export default function Windermere() {
             <div className="flex-shrink-0 w-full lg:w-[500px]">
               <img width={800} height={544}
                 src={windermereHome}
-                alt="Beautiful home in Windermere neighbourhood, Edmonton"
+                alt="Two-storey house with stone and siding, an attached garage and a landscaped front lawn"
                 className="rounded-2xl shadow-2xl w-full h-auto object-cover border-2 border-white/10"
               loading="eager"
                   {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
@@ -231,23 +231,6 @@ export default function Windermere() {
       </section>
 
 
-      {/* Things To Do */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <AnimatedSection>
-            <div className="max-w-4xl mx-auto">
-              <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Life</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                Things To Do In Windermere
-              </h2>
-              <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
-                <p>Windermere is a safe, friendly, and family-oriented young neighbourhood in the southwestern part of Edmonton. With a population of around 11,000, it offers a friendly feel while still being part of the larger city. Although founded less than 20 years ago, it has grown to hold many upscale residential developments and amenities. However, its location near the North Saskatchewan River also provides stunning nature views.</p>
-                <p>All in all, Windermere is an enjoyable place for anyone staying there! For shopping lovers, Currents of Windermere is a bustling shopping centre filled to the brim with a wide range of stores, restaurants, and entertainment options they will enjoy. To experience the area's cultural offerings, visit the Windermere Music Academy, which hosts regular concerts and performances showcasing local talent, providing a delightful cultural experience for visitors and residents alike. Do you want to enjoy nature in Windermere? Visit Terwillegar Park, a vast green space along the North Saskatchewan River that provides ample space for picnics, hiking, and scenic river views. Finally, when you get hungry, head to Flame & Barrel, a trendy and inviting eatery that offers a delectable fusion of flavours through its grilled dishes and handcrafted cocktails.</p>
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
 
       {/* Services */}
       <section className="py-20 bg-muted/30">
@@ -259,7 +242,7 @@ export default function Windermere() {
                 Cleaning Services for Windermere Homes
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                Upkeep, deep cleans, move-outs: the whole toolkit in one place.
+                Six services for Windermere homes, each a flat rate by home size before GST, with no trip fee inside Edmonton city limits.
               </p>
             </div>
           </AnimatedSection>
@@ -302,7 +285,7 @@ export default function Windermere() {
                 Why Windermere Residents Choose Duty Cleaners
               </h2>
               <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                Dependable cleaning, visit after visit.
+                How cleaners are chosen, what the team brings to a Windermere home, and what happens if something is missed.
               </p>
             </div>
           </AnimatedSection>
@@ -325,7 +308,7 @@ export default function Windermere() {
               House Cleaning in Windermere & Surrounding Areas
             </h2>
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-              We provide professional house cleaning services throughout Windermere and nearby communities in the Edmonton region.
+              Windermere and Ambleside are both on our Edmonton branch's list of 80 neighbourhoods inside the city.
             </p>
             <CoverageChips areas={nearbyAreas} variant="compact" />
             <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
@@ -340,7 +323,7 @@ export default function Windermere() {
         heading="Everything young except the valley"
         paragraphs={[
           "The 2005 municipal census found 84 single-family houses in the whole neighbourhood. Almost every home here went up inside the last twenty years, so nothing dates from the era of enamel fixtures and waxed hardwood floors. What that leaves is modern surface, and engineered stone and engineered wood are permanently dulled by abrasives and high-pH cleaner. Neutral-pH product and a dry cloth is the default.",
-          "The west and northwest edge is the North Saskatchewan valley, so a good number of lots face open sky rather than another house. At Edmonton's latitude the afternoon sun comes in low across that opening, and at that angle a single wet pass dries into visible lines, so west glass gets a dry buff after the wash - and outside work waits for the city's spring sweep, which does not start until April, rather than fighting road sand in March.",
+          "The west and northwest edge is the North Saskatchewan valley, so a good number of lots face open sky rather than another house. At Edmonton's latitude the afternoon sun comes in low across that opening, and at that angle a single wet pass dries into visible lines, so west glass gets a dry buff after the wash. The city's spring sweep does not start until April, so March road sand is still on the streets and gets tracked indoors.",
         ]}
       />
 
@@ -358,7 +341,7 @@ export default function Windermere() {
                 Windermere Service Area
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Explore our service coverage in the Windermere area and surrounding southwest Edmonton communities.
+                Windermere's west and northwest edge is the North Saskatchewan River valley, so many lots face open sky and the low afternoon sun.
               </p>
             </div>
             <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-xl border border-border">

@@ -14,6 +14,7 @@ import HonestReviewLink from "@/components/HonestReviewLink";
 import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
+import { POLICY } from "@/data/policy";
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
   return (
@@ -82,18 +83,27 @@ const OFF_WEEKLY = pctOff(3);
 const OFF_BIWEEKLY = pctOff(4);
 const OFF_FOUR_WEEKLY = pctOff(2);
 
+// These two FAQ answers are rendered twice, in the FAQ markup and in the
+// accordion, so each is written once here. The old versions promised
+// "familiar faces" and gave no price at all.
+const TRUST_ANSWER = "Every cleaner is reference-checked before a first job and rated by the customer after each visit, and those ratings decide who we keep sending to Bellevue homes. If you book a recurring clean, you get your regular team where we can send them.";
+const COST_ANSWER = `A standard clean in Bellevue starts at ${RECURRING_FROM} before 5% GST, for a one-bedroom, one-bathroom apartment or condo. A bungalow, basement suite, townhouse or two-storey house adds a home-type charge, and a home with pets adds a compulsory pet charge. There is no trip fee inside Edmonton city limits, and the instant price shows every charge before you book.`;
+
+/** Shared by the visible FAQ and its FAQPage schema. The eco figure and how to ask for it come from POLICY (P12). */
+const PRODUCTS_ANSWER = `We bring all the products and equipment the job needs. Eco-friendly products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}.`;
+
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Bellevue" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Bellevue" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fan blades within reach, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Bellevue" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Bellevue" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around Bellevue.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Bellevue" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Renovation dust and debris cleared from Bellevue homes, priced by square footage.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Bellevue" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Bellevue" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Bellevue" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment or condo, before GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Bellevue" },
 ];
 
 const whyUsItems = [
@@ -133,7 +143,7 @@ export default function Bellevue() {
   name: "Duty Cleaners – Bellevue, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/bellevue-edmonton",
-  description: "Professional house cleaning in Bellevue, Edmonton. Serving families near Borden Park, Commonwealth Stadium & the river valley. Local cleaners you can trust.",
+  description: "Bellevue, Edmonton was built out by 1960, and house cleaning here keeps the cloths wrung out on its softwood floors and painted trim.",
 });
   const faqJsonLd = {
     "@context": "https://schema.org",
@@ -142,17 +152,17 @@ export default function Bellevue() {
       {
         "@type": "Question",
         name: "How do I know I can trust your cleaners in Bellevue?",
-        acceptedAnswer: { "@type": "Answer", text: "Our cleaners are carefully vetted, professional, and consistent. Many of our Bellevue clients appreciate that they see familiar faces. That builds trust and makes every cleaning feel comfortable." },
+        acceptedAnswer: { "@type": "Answer", text: TRUST_ANSWER },
       },
       {
         "@type": "Question",
         name: "How much does it cost to get started?",
-        acceptedAnswer: { "@type": "Answer", text: "We keep pricing straightforward and transparent. If you're curious, you can easily check our prices online for a no-pressure estimate before you book." },
+        acceptedAnswer: { "@type": "Answer", text: COST_ANSWER },
       },
       {
         "@type": "Question",
         name: "Are your cleaning products safe for pets and children?",
-        acceptedAnswer: { "@type": "Answer", text: "We bring all the products and equipment the job needs. If you would rather we used something specific in your home, tell us when you book and we will work to it." },
+        acceptedAnswer: { "@type": "Answer", text: PRODUCTS_ANSWER },
       },
     ],
   };
@@ -161,17 +171,17 @@ export default function Bellevue() {
     <>
       <Helmet>
         <title>House Cleaners in Bellevue, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Bellevue, Edmonton. Serving families near Borden Park, Commonwealth Stadium & the river valley." />
+        <meta name="description" content="Bellevue, Edmonton was built out by 1960, and house cleaning here keeps the cloths wrung out on its softwood floors and painted trim." />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/bellevue-edmonton/" />
         <meta property="og:title" content="House Cleaners in Bellevue, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Bellevue, Edmonton. Serving families near Borden Park, Commonwealth Stadium & the river valley." />
+        <meta property="og:description" content="Bellevue, Edmonton was built out by 1960, and house cleaning here keeps the cloths wrung out on its softwood floors and painted trim." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/bellevue-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Bellevue, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Bellevue, Edmonton. Serving families near Borden Park, Commonwealth Stadium & the river valley." />
+        <meta name="twitter:description" content="Bellevue, Edmonton was built out by 1960, and house cleaning here keeps the cloths wrung out on its softwood floors and painted trim." />
       </Helmet>
 
       <div className="min-h-screen">
@@ -195,7 +205,7 @@ export default function Bellevue() {
                 Professional House Cleaning in Bellevue
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Your reliable, local cleaning team serving the Bellevue community. From character homes near Borden Park to residences close to the river valley — enjoy dependable cleaning built on trust and genuine care.
+                Bellevue was essentially built out by 1960, and 96 per cent of its homes are detached. Houses facing the river valley track in spring mud, and those along Wayne Gretzky Drive get the winter sanding grit.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -234,7 +244,7 @@ export default function Bellevue() {
                   Cleaning Services for Bellevue Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Everything from weekly upkeep to full move-out cleans.
+                  Bellevue homes can book a single clean or a weekly, bi-weekly or every-4-weeks schedule, plus deep, move-out and post-construction cleans, with wall washing booked alongside a clean.
                 </p>
               </div>
             </AnimatedSection>
@@ -277,7 +287,7 @@ export default function Bellevue() {
                   Why Bellevue Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Dependable cleaning, visit after visit.
+                  Here is how the cleaners sent to Bellevue homes are chosen and rated, and what happens if something is missed.
                 </p>
               </div>
             </AnimatedSection>
@@ -324,12 +334,12 @@ export default function Bellevue() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Bellevue</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Edmonton-area neighbourhoods we clean</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    The flat rates that apply in Bellevue apply in Montrose too, and the service-area list names every place the Edmonton branch cleans.
                   </p>
                 </div>
-                <CoverageChips areas={["Borden Park", "Commonwealth Stadium", "Eastglen Leisure Centre", "112 Avenue", "Highlands", "Montrose", "Virginia Park", "Parkdale"]} variant="compact" />
+                <CoverageChips areas={["Montrose"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -365,15 +375,15 @@ export default function Bellevue() {
                 <Accordion type="single" collapsible className="w-full">
                   <AccordionItem value="item-1">
                     <AccordionTrigger className="text-left">How do I know I can trust your cleaners in Bellevue?</AccordionTrigger>
-                    <AccordionContent>Our cleaners are carefully vetted, professional, and consistent. Many of our Bellevue clients appreciate that they see familiar faces. That builds trust and makes every cleaning feel comfortable.</AccordionContent>
+                    <AccordionContent>{TRUST_ANSWER}</AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="item-2">
                     <AccordionTrigger className="text-left">How much does it cost to get started?</AccordionTrigger>
-                    <AccordionContent>We keep pricing straightforward and transparent. If you're curious, you can easily check our prices online for a no-pressure estimate before you book.</AccordionContent>
+                    <AccordionContent>{COST_ANSWER}</AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="item-3">
                     <AccordionTrigger className="text-left">Are your cleaning products safe for pets and children?</AccordionTrigger>
-                    <AccordionContent>We bring all the products and equipment the job needs. If you would rather we used something specific in your home, tell us when you book and we will work to it.</AccordionContent>
+                    <AccordionContent>{PRODUCTS_ANSWER}</AccordionContent>
                   </AccordionItem>
                 </Accordion>
               </div>

@@ -61,7 +61,7 @@ export default function NeighborhoodMarquee({ city }: NeighborhoodMarqueeProps) 
   );
 
   return (
-    <section className="band-hairline overflow-hidden bg-card py-10 md:py-14" aria-label={`${city} neighbourhoods we serve`}>
+    <section className="band-hairline overflow-hidden bg-card py-10 md:py-14" aria-label={`Neighbourhoods and communities the ${city} branch serves`}>
       <div className="dc-marquee" title="Hover to pause">
         <div className="dc-marquee-track flex w-max">
           {run(false)}

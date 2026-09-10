@@ -38,6 +38,11 @@ const TRAVEL_FEE_LABEL = (() => {
   const value = addOnFromPrice("standard", TRAVEL_FEE_KEY);
   return value === null ? "a travel fee" : formatPrice(value);
 })();
+/** The compulsory pet charge, from bk-config, for the price answers. */
+const PET_LABEL = (() => {
+  const value = addOnFromPrice("standard", "must-choose-if-you-have-pets");
+  return value === null ? "a pet charge" : formatPrice(value);
+})();
 /** ", from $X" for a move-in/out add-on, or nothing when bk-config has no such row. */
 const addOnLabel = (key: string) => {
   const value = addOnFromPrice("move-in-out", key);
@@ -48,7 +53,7 @@ const addOnLabel = (key: string) => {
 // move-in/out tier from bk-config is the honest floor.
 const moveInOutFromPrice = () => moveInOutTierRows()[0]?.price ?? "";
 
-const META_DESCRIPTION = `Move-out cleaning in Calgary from ${MOVE_FROM} before GST. Cleaned to the inspection checklist, re-cleaned within ${POLICY.guaranteeWindowHours} hours if anything is missed. Book online.`;
+const META_DESCRIPTION = `End of tenancy and move-out cleaning in Calgary is ${MOVE_FROM} before GST for a one-bedroom, and a miss reported within ${POLICY.guaranteeWindowHours} hours is re-cleaned free.`;
 const PAGE_TITLE = `Move Out Cleaning Calgary from ${MOVE_FROM} | Duty Cleaners`;
 
 /**
@@ -83,7 +88,7 @@ const branchSchema = () => {
 const faqs = [
   {
     q: "How much does move out cleaning cost in Calgary?",
-    a: `From ${MOVE_FROM} for a one-bedroom to ${MOVE_TO} for five bedrooms or more, before 5% GST. The number of bathrooms and any add-ons you pick move the figure, and the quote form shows the exact price before you book. It is a flat rate: it does not rise if the clean takes longer than expected.`,
+    a: `From ${MOVE_FROM} for a one-bedroom to ${MOVE_TO} for five bedrooms or more, before 5% GST, at the apartment rate. A townhouse or two-storey house adds a home-type charge, a home with pets adds ${PET_LABEL}, and an address outside Calgary city limits adds ${TRAVEL_FEE_LABEL} in travel. The number of bathrooms and any add-ons you pick also move the figure, and the quote form shows the exact price before you book. It is a flat rate: it does not rise if the clean takes longer than expected.`,
   },
   {
     q: "How long does a move out clean take?",
@@ -95,23 +100,23 @@ const faqs = [
   },
   {
     q: "Are the oven and fridge interiors included?",
-    a: "Yes. The inside of the oven, fridge, freezer, dishwasher and microwave is part of the move-out checklist, along with the inside of every cabinet, drawer and closet. None of it is an add-on. Appliances need to be switched on and reachable; we do not move anything over 25 pounds.",
+    a: "Yes. The inside of the oven, fridge and microwave is part of the move-out checklist, along with the inside of every cabinet, drawer and closet. None of it is an add-on. Appliances need to be switched on and reachable; we do not move anything over 25 pounds.",
   },
   {
     q: "What happens if the landlord finds something at the inspection?",
-    a: `Tell us within ${POLICY.guaranteeWindowHours} hours of the walkthrough and we come back to put it right at no charge. Photos of what was cited help the team find it, but they are not a condition of the return visit. We cannot decide the deposit; the landlord does that, and a clean cannot fix anything that is not cleaning.`,
+    a: `Tell us within ${POLICY.guaranteeWindowHours} hours of the clean and we come back to put it right at no charge. Photos of what was cited help the team find it, but they are not a condition of the return visit. We cannot decide the deposit; the landlord does that, and a clean cannot fix anything that is not cleaning.`,
   },
   {
     q: "Can you clean the same day I hand over the keys?",
-    a: `Often, schedule permitting, but it is not something we promise. Arrival windows are ${ARRIVAL_WINDOWS.join(", ")}, Monday to Saturday 8:00 AM to 8:00 PM and Sunday 9:00 AM to 3:00 PM. The safer booking is the day before the inspection, which leaves room to come back if the walkthrough cites anything.`,
+    a: `Same-day and next-day slots depend on the schedule, so a key-day clean is not something we promise. The team arrives in a booked window rather than at an exact time: ${ARRIVAL_WINDOWS.map((w) => w.replace(/\s*–\s*/, " to ")).join(", ")}. The safer booking is the day before the inspection, which leaves room to come back if the walkthrough cites anything.`,
   },
   {
     q: "What do I need to do before the team arrives?",
-    a: "Get your belongings out, and leave the power and running water on; the vacuum, the oven and the mop all need them. No pre-cleaning is required. What matters is how much is still in the home: the emptier it is, the more of it we can reach, and a move-out is priced to clean inside cabinets, closets and appliances. A few pieces of furniture we do not have to work around are fine. If the home is still fully furnished and the cupboards are full, a move-out is not the right service; we would book it as a deep clean with whatever add-ons it needs, and we will say so rather than turn up and improvise.",
+    a: "Get your belongings out, and leave the power and running water on: the team cannot clean without running water, and vacuuming may not be possible without electricity. No pre-cleaning is required. The emptier the home is, the more of it the team can reach, because a move-out is priced to clean inside cabinets, closets and appliances; a few pieces of furniture left in place are fine. If the home is still fully furnished and the cupboards are full, a move-out is not the right service. We would book it as a deep clean with whatever add-ons it needs, and we will say so before the day rather than improvise at the door.",
   },
   {
     q: "Do you do move-in cleaning as well?",
-    a: "Yes. A move-in clean is the same checklist run on the home you are arriving at, before the boxes go in, at the same flat rate by home size. Book the move-out and the move-in as two visits at two addresses; each is priced by its own size. If one end of the move is in Edmonton, we cover that too, at the same rates.",
+    a: `Yes. A move-in clean is the same checklist run on the home you are arriving at, before the boxes go in, at the same flat rate by home size. Book the move-out and the move-in as two visits at two addresses; each is priced by its own size. If the new home is in Airdrie, Cochrane or another community outside Calgary city limits, the ${TRAVEL_FEE_LABEL} travel fee applies to that visit only.`,
   },
   {
     q: "Is there a travel fee outside Calgary?",
@@ -230,7 +235,7 @@ export default function CalgaryMoveInOut() {
             <div className="flex-shrink-0">
               <img
                 src={calgaryMoveInOutHero}
-                alt="Empty Calgary home after a move-out clean"
+                alt="Empty living room with hardwood floors, a bay window and a fireplace"
                 width={500}
                 height={500}
                 className="lg:w-[500px] w-full rounded-2xl shadow-2xl"
@@ -245,7 +250,7 @@ export default function CalgaryMoveInOut() {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <span className="text-accent font-semibold text-sm uppercase tracking-wide">Get Started</span>
-            <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-3">See your price in under a minute</h2>
+            <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-3">See your move-out price before you book</h2>
             <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
               Choose the home size, the number of bathrooms and the date. The price shown is the
               flat rate for the full move-out checklist, before 5% GST, and nothing is charged
@@ -288,8 +293,8 @@ export default function CalgaryMoveInOut() {
               <Link to="/calgary/regular-cleaning/" className="text-primary underline underline-offset-4">A standard clean in Calgary</Link>{" "}
               keeps an occupied home in order and works around whatever is in it. The move-out
               checklist assumes nothing is in the way, so it goes behind and inside things rather
-              than over them, and it is scored by somebody with a form. The room-by-room list
-              below is that checklist in full.
+              than over them, and it is scored by somebody with a form. It runs room by room:
+              the kitchen, the bathrooms, then the bedrooms, living areas and the front entry.
             </p>
             <p>
               The same checklist covers a <strong>move-in clean</strong>, an{" "}
@@ -298,11 +303,12 @@ export default function CalgaryMoveInOut() {
               rate by home size, whichever of the three it is.
             </p>
             <p>
-              Two things sit outside the checklist: carpet steam cleaning, and anything past the
-              reach of a three-step ladder. Inside windows, blinds,{" "}
-              <Link to="/wall-washing-wall-cleaning-calgary/" className="text-primary underline underline-offset-4">wall washing</Link>,
-              the basement and a garage sweep are add-ons you pick at booking, each priced by home
-              size.
+              Some things stay outside the checklist in any home: carpet steam cleaning, exterior
+              windows, anything past the reach of a three-step ladder, and lifting anything over 25
+              pounds. Inside windows, blinds,{" "}
+              <Link to="/wall-washing-wall-cleaning-calgary/" className="text-primary underline underline-offset-4">wall washing in Calgary</Link>,
+              the basement and a garage sweep are add-ons you pick at booking, each a separate line
+              on the quote.
             </p>
           </div>
         </div>
@@ -316,8 +322,7 @@ export default function CalgaryMoveInOut() {
             The move-out checklist, room by room
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto text-lg">
-            The first three cards are the flat rate. The fourth is add-ons, chosen at booking and
-            shown on the quote before you pay.
+            The first three cards are the flat rate. The fourth lists what you can add at booking.
           </p>
 
           <div className="grid md:grid-cols-2 gap-8 mb-8">
@@ -344,7 +349,7 @@ export default function CalgaryMoveInOut() {
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="w-5 h-5 text-[hsl(160,100%,30%)] mt-0.5 flex-shrink-0" />
-                  <span>Inside the oven, fridge, freezer, dishwasher and microwave</span>
+                  <span>Inside the oven, fridge and microwave</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="w-5 h-5 text-[hsl(160,100%,30%)] mt-0.5 flex-shrink-0" />
@@ -423,7 +428,7 @@ export default function CalgaryMoveInOut() {
                 <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
                   <Star className="w-6 h-6 text-purple-600" />
                 </div>
-                <h3 className="text-2xl font-bold">Add-ons, priced by home size</h3>
+                <h3 className="text-2xl font-bold">Add-ons, each priced separately</h3>
               </div>
               <ul className="space-y-3 text-muted-foreground">
                 <li className="flex items-start gap-2">
@@ -457,25 +462,25 @@ export default function CalgaryMoveInOut() {
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center mb-8">
             <span className="text-accent font-semibold text-sm uppercase tracking-wide">The walkthrough</span>
-            <h2 className="display-serif text-2xl md:text-3xl font-bold mt-2">Where an inspection looks first</h2>
+            <h2 className="display-serif text-2xl md:text-3xl font-bold mt-2">Three places the move-out checklist reaches</h2>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             <div className="rounded-xl overflow-hidden shadow-lg group">
-              <img width={800} height={800} src={calgaryKitchenClean} alt="Calgary kitchen after a move-out clean" className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+              <img width={800} height={800} src={calgaryKitchenClean} alt="Kitchen with granite counters, a gas cooktop and a stainless-steel range hood" className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
               <div className="p-4 bg-white">
                 <h3 className="font-bold mb-1">The oven and the range hood</h3>
-                <p className="text-sm text-muted-foreground">The two places a landlord opens first. Both interiors are on the checklist.</p>
+                <p className="text-sm text-muted-foreground">Grease shows on both at a glance, and both are on the move-out checklist.</p>
               </div>
             </div>
             <div className="rounded-xl overflow-hidden shadow-lg group">
-              <img width={800} height={800} src={calgaryBathroomClean} alt="Calgary bathroom tile and glass after a move-out clean" className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+              <img width={800} height={800} src={calgaryBathroomClean} alt="White bathroom with a glass shower screen, a rain shower head and a stone vanity" className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
               <div className="p-4 bg-white">
                 <h3 className="font-bold mb-1">Shower glass and grout</h3>
                 <p className="text-sm text-muted-foreground">Scale ignores scrubbing. It answers to a mild acid and a few minutes of patience.</p>
               </div>
             </div>
             <div className="rounded-xl overflow-hidden shadow-lg group">
-              <img width={800} height={800} src={calgaryLivingRoomClean} alt="Empty Calgary living room after a move-out clean" className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+              <img width={800} height={800} src={calgaryLivingRoomClean} alt="Living room with a sofa and rug, white baseboards and a fireplace on hardwood floors" className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
               <div className="p-4 bg-white">
                 <h3 className="font-bold mb-1">Baseboards and closet shelves</h3>
                 <p className="text-sm text-muted-foreground">Furniture hides them for years. An empty room does not.</p>
@@ -490,7 +495,7 @@ export default function CalgaryMoveInOut() {
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid lg:grid-cols-2 gap-10 items-center">
             <div className="rounded-2xl overflow-hidden shadow-xl">
-              <img width={800} height={800} src={calgaryMoveOutClean} alt="Calgary family arriving at a cleaned home" className="w-full h-[420px] object-cover" loading="lazy" />
+              <img width={800} height={800} src={calgaryMoveOutClean} alt="Empty carpeted bedroom with white walls and sunlight through the window" className="w-full h-[420px] object-cover" loading="lazy" />
             </div>
             <div>
               <span className="text-accent font-semibold text-sm uppercase tracking-wide">Move-in cleaning</span>
@@ -498,20 +503,21 @@ export default function CalgaryMoveInOut() {
               <p className="text-muted-foreground leading-relaxed mb-4">
                 A move-in clean is the same checklist run on the home you are arriving at, before
                 the boxes go in. The previous occupant's clean was done to their standard, and a
-                builder's handover clean in Seton, Mahogany or Livingston usually stops at the
-                dust you can see. With the home empty we get inside the cabinets, wipe the shelves
+                house in a newer suburb such as Seton, Mahogany or Livingston carries construction
+                dust on its closet shelves and door tops. With the home empty we get inside the cabinets, wipe the shelves
                 and drawers you are about to fill, clean the oven and fridge interiors, and mop
                 the floors before furniture covers them. Book it for the day before the movers, or
                 the morning of if the keys come early.
               </p>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                If one end of the move is in Edmonton, we work there too, at the same rates: one
-                booking clears the old address and another does the new one.
+                For a move across Calgary, or out to Airdrie or Cochrane, one booking clears the
+                old address and another does the new one. Each is priced by its own size, and the
+                travel fee is added only for an address outside city limits.
               </p>
               <ul className="space-y-2 text-muted-foreground">
                 <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" /><span>Same flat rate by home size as a move-out clean</span></li>
                 <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" /><span>Cabinet, drawer and closet interiors wiped before you fill them</span></li>
-                <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" /><span>Move-out and move-in booked as two visits, each priced by its own address</span></li>
+                <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" /><span>Move-out and move-in booked as two visits, each priced by its own home size</span></li>
               </ul>
             </div>
           </div>
@@ -535,16 +541,16 @@ export default function CalgaryMoveInOut() {
               has gone and before the keys do.
             </p>
             <p>
-              The report is a form with the rooms down one side and a column for cleaning, filled in
-              with the tenant standing there, which is why a clean that looks right from the doorway
-              can still be cited on it. If it cites something we missed, tell us within{" "}
-              {POLICY.guaranteeWindowHours} hours of the walkthrough and we come back at no charge.
+              A room that looks right from the doorway can still be cited once somebody opens the
+              oven or runs a finger along a closet shelf, which is why the move-out checklist goes
+              inside things. If the inspection cites something we missed, tell us within{" "}
+              {POLICY.guaranteeWindowHours} hours of the clean and we come back at no charge.
               Photos help the team find it and are not a condition.
             </p>
             <p>
               We do not promise the deposit. The landlord decides that, and a clean cannot fix
-              anything that is not cleaning. What we can do is make sure the cleaning column of the
-              report has nothing in it.
+              anything that is not cleaning. What we can do is clean to the move-out checklist and
+              come back if the inspection finds something we missed.
             </p>
           </div>
         </div>
@@ -558,10 +564,10 @@ export default function CalgaryMoveInOut() {
           </h2>
           <div className="prose prose-lg max-w-none text-muted-foreground space-y-4">
             <p>
-              A lot of the move-out cleaning we do in Calgary is condos and apartments in the Beltline, Mission and
-              downtown. What differs is access rather than cleaning. Condo boards usually require a
-              booked elevator and a move-out window, so tell us the hours the elevator is yours and
-              the team works inside them. Parkade access, the lobby fob, and where the keys go
+              Condos and apartments in the Beltline, Mission, Eau Claire and the downtown towers are
+              the simplest move-outs in Calgary to clean. What differs is access rather than cleaning. If the
+              building books its elevator for move-outs, tell us the hours it is yours and we book
+              the arrival window that fits them, where the schedule allows. Parkade access, the lobby fob, and where the keys go
               afterward (concierge desk, lockbox, or property manager) all belong in the booking
               notes. In a condo the kitchen and one or two bathrooms are most of the job; the
               balcony is a sweep add-on.
@@ -571,8 +577,8 @@ export default function CalgaryMoveInOut() {
               front entry where chinook melt and road sand get tracked in all winter.
               The same grit rides into a condo on boots and tires through the parkade. A finished
               basement is priced as an add-on and an unfinished one as a sweep; the garage is a
-              sweep, not a scrub. Larger houses in the newer suburbs often come to us as first
-              resales, where the builder's clean was the last one done.
+              sweep, not a scrub. Houses in newer suburbs such as Mahogany, Seton and Livingston
+              also carry construction dust, which settles on closet shelves and the tops of door frames.
             </p>
             <p>
               Whichever you are leaving, the checklist is the same and the price is set by bedrooms
@@ -618,13 +624,14 @@ export default function CalgaryMoveInOut() {
               <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-4">
                 <CheckCircle2 className="w-8 h-8 text-green-600" />
               </div>
-              <h3 className="text-xl font-bold mb-3">Three charges outside the flat rate</h3>
+              <h3 className="text-xl font-bold mb-3">The charges outside the flat rate</h3>
               <p className="text-muted-foreground leading-relaxed">
                 {/* Was "no hidden fees" on a page that named none of them. */}
-                {POLICY.cancellationFee} for cancelling inside {POLICY.cancellationNoticeHours} hours,{" "}
-                {POLICY.lockoutFee} if we arrive and cannot get in, and {TRAVEL_FEE_LABEL} for an
-                address outside Calgary city limits. All three appear on your quote before you book,
-                and every figure is before 5% GST.
+                A home with pets adds {PET_LABEL} a visit, a townhouse or two-storey house adds a
+                home-type charge, and an address outside Calgary city limits adds {TRAVEL_FEE_LABEL}.
+                Each shows on your quote before you book, and quoted prices are before 5% GST.
+                Cancelling inside {POLICY.cancellationNoticeHours} hours costs {POLICY.cancellationFee},
+                and if we arrive and cannot get in, the lockout charge is {POLICY.lockoutFee}.
               </p>
             </div>
 
@@ -644,7 +651,7 @@ export default function CalgaryMoveInOut() {
               <div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mb-4">
                 <Award className="w-8 h-8 text-purple-600" />
               </div>
-              <h3 className="text-xl font-bold mb-3">Re-cleaned within {POLICY.guaranteeWindowHours} hours</h3>
+              <h3 className="text-xl font-bold mb-3">A {POLICY.guaranteeWindowHours}-hour window to report a miss</h3>
               <p className="text-muted-foreground leading-relaxed">
                 If the inspection or your own walkthrough finds something missed, tell us within{" "}
                 {POLICY.guaranteeWindowHours} hours and we return at no charge. Photos help and are not
@@ -702,8 +709,10 @@ export default function CalgaryMoveInOut() {
 
           <div className="mx-auto max-w-3xl text-muted-foreground space-y-4 mb-10">
             <p>
-              What moves the price: the number of bathrooms, the add-ons you pick (inside windows,
-              blinds, wall washing, a basement, a garage sweep), and a {TRAVEL_FEE_LABEL} travel fee
+              What moves the price: the number of bathrooms, the home type (the rows are the
+              apartment rate, and a townhouse or two-storey house costs more), the {PET_LABEL} pet
+              charge in a home with pets, the add-ons you pick (inside windows, blinds, wall
+              washing, a basement, a garage sweep), and a {TRAVEL_FEE_LABEL} travel fee
               for an address outside Calgary city limits. Airdrie, Cochrane, Okotoks and Chestermere
               are outside; the city itself carries no travel fee. The same checklist and the same
               rows cover{" "}
@@ -717,7 +726,7 @@ export default function CalgaryMoveInOut() {
               you pay, and a two-bedroom that takes an extra hour is still a two-bedroom. If the home
               is staying lived in, the service you want is{" "}
               <Link to="/calgary/deep-cleaning/" className="text-primary underline underline-offset-4">a deep clean in Calgary</Link>{" "}
-              instead, and the three sit row against row on{" "}
+              instead, and the standard, deep and move-out rates sit row against row on{" "}
               <Link to="/calgary/pricing/" className="text-primary underline underline-offset-4">Calgary house cleaning prices by home size</Link>.
             </p>
           </div>
@@ -764,7 +773,7 @@ export default function CalgaryMoveInOut() {
           </h2>
           <p className="text-xl mb-8 text-white/90">
             From {MOVE_FROM} plus 5% GST, fixed by home size. Our move out cleaners in Calgary work
-            to the inspection checklist, and nothing is charged until the clean is done.
+            to the move-out checklist, and nothing is charged until the clean is done.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">

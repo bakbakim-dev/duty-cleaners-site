@@ -1,3 +1,4 @@
+import { sitePriceRange } from "@/data/pricing";
 import { getListing } from "@/lib/google-listings";
 import {
   CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import { useEffect } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"; import {   Phone, CheckCircle2, Star, Shield, Clock, Award, Home, Sparkles, Truck, SprayCan, Bath, Building2, Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail, PaintRoller
@@ -59,9 +60,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Cranston" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Cranston" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Cranston" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Cranston" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Cranston.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Cranston" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or a new build, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Cranston" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Cranston" },
 ];
 
@@ -93,13 +94,13 @@ const whyUsItems = [
   { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
-const nearbyAreas = ["Auburn Bay", "Mahogany", "Seton", "McKenzie Towne", "Douglasdale", "New Brighton", "Copperfield", "Chaparral"];
+const nearbyAreas = ["Auburn Bay", "Mahogany"];
 
 const faqs = [
   { question: "How long does an initial cleaning take?", answer: "We work to a checklist, not a clock. Your cleaners stay until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
   { question: "What cleaning services does Duty Cleaners offer in Cranston?", answer: "We offer:\n\n• Standard Cleaning & Deep Cleaning Packages\n• Move-In And Move-Out Cleaning Service\n• Post Construction Cleaning\n• Wall Washing and Wall Cleaning" },
-  { question: "Do you offer discounts?", answer: "We offer recurring discounts for our Standard and Deep Cleaning Packages.\n\nIf you avail of our recurring discount, on your next cleaning:\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off" },
-  { question: "What's included in a deep cleaning?", answer: "Deep cleaning adds the following to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned" },
+  { question: "Do you offer discounts?", answer: "Yes. Booking the standard clean on a recurring schedule earns a discount from the second visit:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nThe first clean is charged at the one-time rate." },
+  { question: "What's included in a deep cleaning?", answer: "Deep cleaning adds the following to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped" },
   { question: "What happens if something is missed?", answer: "Tell us within 24 hours and the team comes back to your Cranston home to re-clean what was missed, at no charge. Photos help but are not required." },
 ];
 
@@ -107,7 +108,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Cranston Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/cranston",
-  priceRange: "$$",
+  priceRange: sitePriceRange(),
   geo: { latitude: "50.9017", longitude: "-114.0167" },
 });
 
@@ -120,12 +121,12 @@ export default function Cranston() {
     <>
       <Helmet>
         <title>House Cleaning Services in Cranston, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Cranston, Calgary. Family-friendly community with Century Hall amenities. 100% satisfaction guaranteed." />
+        <meta name="description" content="Walkout basements on the slope side of Cranston, Calgary add a second full living level, with its own glass doors and thresholds, to a deep clean." />
         <meta property="og:title" content="House Cleaning Services in Cranston, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services in Cranston, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Cranston, Calgary. Family-friendly community with Century Hall amenities. 100% satisfaction guaranteed." />
-        <meta property="og:description" content="Professional house cleaning in Cranston, Calgary. Family-friendly community with Century Hall amenities. 100% satisfaction guaranteed." />
+        <meta name="twitter:description" content="Walkout basements on the slope side of Cranston, Calgary add a second full living level, with its own glass doors and thresholds, to a deep clean." />
+        <meta property="og:description" content="Walkout basements on the slope side of Cranston, Calgary add a second full living level, with its own glass doors and thresholds, to a deep clean." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/cranston/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/cranston/" />
@@ -167,7 +168,7 @@ export default function Cranston() {
                   Professional House Cleaning in Cranston
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Trusted cleaning services for Calgary's family-friendly community. Customer-rated cleaners loved by local families — from Century Hall to Fish Creek.
+                  Cranston's two-storey houses from the 2000s sit along the Bow escarpment, where wind off the valley drives dust into the window seals that face the Bow and Fish Creek.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -193,7 +194,7 @@ export default function Cranston() {
               <div className="flex-shrink-0 w-full lg:w-[500px]">
                 <img
                   src={calgaryBathroom}
-                  alt="A sanitised bathroom after a Duty Cleaners visit in Calgary"
+                  alt="Bright bathroom with a glass shower screen over the tub, a white vanity and folded towels"
                   width={800}
                   height={800}
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
@@ -231,7 +232,7 @@ export default function Cranston() {
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Neighbourhoods We Serve</h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto">We proudly serve families and homeowners across Cranston and surrounding communities.</p>
+                <p className="text-muted-foreground max-w-2xl mx-auto">Cranston is one of 66 Calgary neighbourhoods the Calgary branch cleans, and Auburn Bay and Mahogany are on the same list.</p>
               </div>
               <CoverageChips areas={nearbyAreas} />
             </AnimatedSection>
@@ -243,8 +244,8 @@ export default function Cranston() {
         eyebrow="Local knowledge"
         heading="Cranston on the ridge"
         paragraphs={[
-          "Cranston's 2000s two-storeys ride the Bow escarpment's edge, and ridge exposure is the cleaning fact: Cranston's 2000s two-storeys ride the Bow escarpment's edge, and ridge exposure is the cleaning fact: wind off the valley drives dust into the west- and south-facing window seals that look over the Bow and Fish Creek, and the walkout basements common on the slope side add a second full living level — with its own glass doors and thresholds — to every deep clean., and the walkout basements common on the slope side add a second full living level — with its own glass doors and thresholds — to every deep clean.",
-          "The community's family skew shows indoors as mudroom-first living through the attached garage, bonus rooms over garages with their cold-wall dust lines, and Century Hall's rink-and-splash-park seasons tracking through in boots and sandals by turn. Seton's shops next door keep weekend traffic close to home.",
+          "Cranston's 2000s two-storeys ride the Bow escarpment's edge, and ridge exposure is the cleaning fact: wind off the valley drives dust into the west- and south-facing window seals that look over the Bow and Fish Creek. The walkout basements common on the slope side add a second full living level, with its own glass doors and thresholds, to every deep clean.",
+          "The community's family skew shows indoors as mudroom-first living through the attached garage, bonus rooms over garages with their cold-wall dust lines, and the seasons tracking through in boots and sandals by turn.",
         ]}
       />
 
@@ -259,7 +260,7 @@ export default function Cranston() {
               <div className="text-center mb-14">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Cranston Homes</h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto text-lg">Upkeep, deep cleans, move-outs: the whole toolkit in one place.</p>
+                <p className="text-muted-foreground max-w-2xl mx-auto text-lg">Standard, deep and move-out cleaning are priced flat by home size before GST, and post-construction cleaning by square footage. A two-storey house adds a home-type surcharge, and it shows on the quote before you book.</p>
               </div>
             </AnimatedSection>
             <AnimatedSection>
@@ -295,7 +296,7 @@ export default function Cranston() {
               <div className="text-center mb-14">
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Cranston Residents Choose Duty Cleaners</h2>
-                <p className="text-white/90 max-w-2xl mx-auto text-lg">Reliable, detail-first cleaning families count on.</p>
+                <p className="text-white/90 max-w-2xl mx-auto text-lg">Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.</p>
               </div>
             </AnimatedSection>
             <AnimatedSection>
@@ -333,8 +334,8 @@ export default function Cranston() {
           <div className="container mx-auto px-4 text-center">
             <AnimatedSection>
               <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-              <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Proudly Serving Cranston & Surrounding Areas</h2>
-              <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">We provide professional house cleaning services throughout Cranston and nearby communities in Calgary.</p>
+              <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">House Cleaning in Cranston and Across Calgary</h2>
+              <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">The Calgary branch cleans Cranston and 65 other Calgary neighbourhoods, plus nine communities outside the city, where a travel fee applies.</p>
               <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">View All Service Areas →</Link>
             </AnimatedSection>
           </div>

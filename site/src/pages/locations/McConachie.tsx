@@ -84,16 +84,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in McConachie" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in McConachie" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in McConachie" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in McConachie" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared properly after renos and handovers.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in McConachie" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or a new build, priced by square footage.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in McConachie" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in McConachie" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in McConachie" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment or condo, before GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in McConachie" },
 ];
 
 const whyUsItems = [
@@ -135,18 +135,18 @@ export default function McConachie() {
     mainEntity: [
       {
         "@type": "Question",
-        name: "How much does cleaning cost?",
-        acceptedAnswer: { "@type": "Answer", text: "Cleaning costs vary depending on the type and size of the home, the condition it's in, the type of service requested (such as standard, deep, or move-out cleaning), and any additional services added like interior window cleaning, baseboards, or appliances." },
+        name: "How much does house cleaning cost in McConachie?",
+        acceptedAnswer: { "@type": "Answer", text: `A standard clean of a one-bedroom, one-bathroom apartment or condo in McConachie starts at ${RECURRING_FROM} before 5% GST, and larger homes are priced flat by size. A bungalow, basement suite, townhouse or two-storey house adds a home-type charge, and a home with pets adds a compulsory per-visit pet charge. Both show on the quote before you book, and there is no trip fee inside Edmonton city limits.` },
       },
       {
         "@type": "Question",
         name: "Do I need to be home during the cleaning appointment?",
-        acceptedAnswer: { "@type": "Answer", text: "You don't need to be home during the cleaning. You can provide access by sharing a code, leaving a key in a lockbox, or giving us a garage code. If you'd like to do a walkthrough with our cleaners, we can call you about 30 minutes before they finish." },
+        acceptedAnswer: { "@type": "Answer", text: "You do not need to be home for a clean in McConachie. Most customers leave a key, a lockbox code or smart-lock access, and the team locks up when it leaves. Running water is required, and vacuuming may not be possible without electricity." },
       },
       {
         "@type": "Question",
-        name: "Are your McConachie cleaners vetted?",
-        acceptedAnswer: { "@type": "Answer", text: "Yes. Every cleaner is reference-checked before their first job, and every visit is rated by the customer afterwards." },
+        name: "How are McConachie cleaners checked?",
+        acceptedAnswer: { "@type": "Answer", text: "Every cleaner who comes to a McConachie home was reference-checked before a first job, and the customer rates each visit afterwards. Those ratings decide who we keep sending." },
       },
     ],
   };
@@ -155,25 +155,25 @@ export default function McConachie() {
     <>
       <Helmet>
         <title>House Cleaners in McConachie, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in McConachie, Edmonton. Serving families near McConachie Park, 167 Avenue & Manning Town Centre." />
+        <meta name="description" content="Cleaning McConachie homes in Edmonton: the glass shower enclosures and brushed fixtures here show water spots, so drying and buffing carry the visit." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – McConachie",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/mcconachie-edmonton",
   areaServed: "McConachie, Edmonton, AB",
-  description: "Professional house cleaning in McConachie, Edmonton. Serving families near McConachie Park, 167 Avenue & Manning Town Centre. Local cleaners you can trust.",
+  description: "Cleaning McConachie homes in Edmonton: the glass shower enclosures and brushed fixtures here show water spots, so drying and buffing carry the visit.",
 }))}
         </script>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/mcconachie-edmonton/" />
         <meta property="og:title" content="House Cleaners in McConachie, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in McConachie, Edmonton. Serving families near McConachie Park, 167 Avenue & Manning Town Centre." />
+        <meta property="og:description" content="Cleaning McConachie homes in Edmonton: the glass shower enclosures and brushed fixtures here show water spots, so drying and buffing carry the visit." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/mcconachie-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in McConachie, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in McConachie, Edmonton. Serving families near McConachie Park, 167 Avenue & Manning Town Centre." />
+        <meta name="twitter:description" content="Cleaning McConachie homes in Edmonton: the glass shower enclosures and brushed fixtures here show water spots, so drying and buffing carry the visit." />
       </Helmet>
 
       <div className="min-h-screen">
@@ -197,7 +197,7 @@ export default function McConachie() {
                 Professional House Cleaning in McConachie
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Your reliable, local cleaning team serving the McConachie community. From family homes near McConachie Park to residences by Manning Town Centre — enjoy dependable cleaning built on trust and genuine care.
+                McConachie's structure plan was adopted in 2006, and the houses that followed share the same flooring, glass shower enclosures and brushed fixtures street after street.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -226,19 +226,19 @@ export default function McConachie() {
         </section>
 
 
-        {/* More Than Just Cleaning */}
+        {/* Before the visit */}
         <section className="py-20 bg-muted/20">
           <div className="container mx-auto px-4">
             <AnimatedSection>
               <div className="max-w-4xl mx-auto">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Commitment</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">More Than Just Cleaning — It's About Trust</h2>
+                <span className="text-primary text-sm font-semibold tracking-wider uppercase">Before the visit</span>
+                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Before a Clean in McConachie</h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
                   <p>
-                    When you invite someone into your home, you want more than a task completed — you want respect, dependability, and peace of mind. Our McConachie clients appreciate that we show up consistently, communicate clearly, and treat every home with care.
+                    We book an arrival window for a McConachie clean rather than an exact time: 9:00 to 10:00 AM, 12:00 to 1:00 PM, or 3:00 to 4:00 PM.
                   </p>
                   <p>
-                    We keep things straightforward: no hidden surprises, no complicated processes. Just a reliable team that's focused on making your home feel fresh so you can enjoy more of what McConachie has to offer.
+                    There is no need to tidy up before the team comes. Clear counters and floors get cleaned, cluttered ones get worked around, and decluttering or organising is a separate hourly add-on.
                   </p>
                 </div>
               </div>
@@ -256,7 +256,7 @@ export default function McConachie() {
                   Cleaning Services for McConachie Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, McConachie homes get every service they need.
+                  Standard, deep and move-out cleaning for McConachie houses, plus post-construction clean-up, wall washing and recurring visits.
                 </p>
               </div>
             </AnimatedSection>
@@ -299,7 +299,7 @@ export default function McConachie() {
                   Why McConachie Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -322,12 +322,12 @@ export default function McConachie() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know McConachie</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Edmonton Neighbourhoods We Serve</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    The Edmonton branch cleans in 80 city neighbourhoods, McConachie among them. Here are four more from that list.
                   </p>
                 </div>
-                <CoverageChips areas={["McConachie Park", "167 Avenue", "Manning Town Centre", "Christ the King Elementary", "Clareview", "Belvedere", "Beacon Heights", "Hollick-Kenyon"]} variant="compact" />
+                <CoverageChips areas={["Clareview", "Belvedere", "Beacon Heights", "Hollick-Kenyon"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -342,8 +342,8 @@ export default function McConachie() {
         eyebrow="Ground truth"
         heading="One catalogue, street after street"
         paragraphs={[
-          "This is a 2006 neighbourhood — the structure plan was adopted that year — and the houses that followed came out of the same few years of catalogue: the same flooring, the same glass shower enclosures, the same brushed fixtures, street after street. Those surfaces rarely want scrubbing. They show water spotting and streaking, and the wrong product leaves haze on exactly them, so drying and buffing carry the visit. The earliest phases are near twenty years old now, and starting to show it.",
-          "Anthony Henday Drive runs the north edge and then angles southeast, so the last streets on that side face it twice. The windows and sills on those two exposures fill faster than anywhere else in the house — road film through the wet months, fine dust through the dry ones — and they are worth putting on a shorter cycle than the rest.",
+          "McConachie's houses followed a structure plan adopted in 2006 and came out of the same few years of catalogue: the same flooring, the same glass shower enclosures, the same brushed fixtures, street after street. Those surfaces rarely want scrubbing. They show water spotting and streaking, and the wrong product leaves haze on exactly them, so drying and buffing carry the visit. The earliest phases are near twenty years old now, and starting to show it.",
+          "Anthony Henday Drive runs the north edge and then angles southeast, so the last streets on that side face it twice. The windows and sills on those two exposures fill faster than anywhere else in the house: road film through the wet months, fine dust through the dry ones.",
         ]}
       />
 
@@ -359,6 +359,9 @@ export default function McConachie() {
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">McConachie Service Area</h2>
+                  <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+                    Anthony Henday Drive runs along McConachie's north edge and then angles southeast.
+                  </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden border border-border shadow-lg">
                   <iframe
@@ -388,21 +391,21 @@ export default function McConachie() {
                 </div>
                 <Accordion type="single" collapsible className="w-full">
                   <AccordionItem value="item-1">
-                    <AccordionTrigger className="text-left">How much does cleaning cost?</AccordionTrigger>
+                    <AccordionTrigger className="text-left">How much does house cleaning cost in McConachie?</AccordionTrigger>
                     <AccordionContent>
-                      Cleaning costs vary depending on the type and size of the home, the condition it's in, the type of service requested (such as standard, deep, or move-out cleaning), and any additional services added like interior window cleaning, baseboards, or appliances.
+                      {`A standard clean of a one-bedroom, one-bathroom apartment or condo in McConachie starts at ${RECURRING_FROM} before 5% GST, and larger homes are priced flat by size. A bungalow, basement suite, townhouse or two-storey house adds a home-type charge, and a home with pets adds a compulsory per-visit pet charge. Both show on the quote before you book, and there is no trip fee inside Edmonton city limits.`}
                     </AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="item-2">
                     <AccordionTrigger className="text-left">Do I need to be home during the cleaning appointment?</AccordionTrigger>
                     <AccordionContent>
-                      You don't need to be home during the cleaning. You can provide access by sharing a code, leaving a key in a lockbox, or giving us a garage code. If you'd like to do a walkthrough with our cleaners, we can call you about 30 minutes before they finish.
+                      You do not need to be home for a clean in McConachie. Most customers leave a key, a lockbox code or smart-lock access, and the team locks up when it leaves. Running water is required, and vacuuming may not be possible without electricity.
                     </AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="item-3">
-                    <AccordionTrigger className="text-left">Are your McConachie cleaners vetted?</AccordionTrigger>
+                    <AccordionTrigger className="text-left">How are McConachie cleaners checked?</AccordionTrigger>
                     <AccordionContent>
-                      Yes. Every cleaner is reference-checked before their first job, and every visit is rated by the customer afterwards.
+                      Every cleaner who comes to a McConachie home was reference-checked before a first job, and the customer rates each visit afterwards. Those ratings decide who we keep sending.
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
@@ -420,7 +423,7 @@ export default function McConachie() {
                 Ready for a Cleaner Home in McConachie?
               </h2>
               <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
-                Whether you're near 167 Avenue, close to McConachie Park, or steps from Manning Town Centre — we're nearby and ready to help.
+                See your flat rate before you book. Nothing is charged until the clean is done.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>

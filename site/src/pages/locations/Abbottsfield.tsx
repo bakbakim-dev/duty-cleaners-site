@@ -82,16 +82,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Abbottsfield" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Abbottsfield" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Abbottsfield" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Post-renovation dust and debris, professionally removed.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Abbottsfield" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Abbottsfield" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Abbottsfield" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "A move-out clean covers inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Abbottsfield" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or a new build, priced by square footage.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Abbottsfield" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Wall washing takes scuffs, handprints and cooking film off painted walls without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Abbottsfield" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Abbottsfield" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment or condo, before GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Abbottsfield" },
 ];
 
 const whyUsItems = [
@@ -133,7 +133,7 @@ export default function Abbottsfield() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Abbottsfield?",
-      answer: `Households here can book any of the following:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `Households in Abbottsfield can book any of the following:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
@@ -141,7 +141,7 @@ export default function Abbottsfield() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -163,25 +163,25 @@ export default function Abbottsfield() {
     <>
       <Helmet>
         <title>Abbottsfield, Edmonton House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Abbottsfield, Edmonton. Trusted local cleaners, customer-rated, serving Abbottsfield homes." />
+        <meta name="description" content="Abbottsfield, Edmonton has more 1970s townhouse rows and walk-ups than detached homes, so stair runs and galley kitchens shape each clean." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Abbottsfield, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/abbottsfield-edmonton",
   areaServed: "Abbottsfield, Edmonton, AB",
-  description: "Professional house cleaning in Abbottsfield, Edmonton. Trusted local cleaners serving Abbottsfield homes with reliable, customer-rated cleaning service.",
+  description: "Abbottsfield, Edmonton has more 1970s townhouse rows and walk-ups than detached homes, so stair runs and galley kitchens shape each clean.",
   geo: { latitude: "53.576", longitude: "-113.417" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/abbottsfield-edmonton/" />
         <meta property="og:title" content="Abbottsfield, Edmonton House Cleaning | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Abbottsfield, Edmonton. Trusted local cleaners, customer-rated, serving Abbottsfield homes." />
+        <meta property="og:description" content="Abbottsfield, Edmonton has more 1970s townhouse rows and walk-ups than detached homes, so stair runs and galley kitchens shape each clean." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/abbottsfield-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Abbottsfield, Edmonton House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Abbottsfield, Edmonton. Trusted local cleaners, customer-rated, serving Abbottsfield homes." />
+        <meta name="twitter:description" content="Abbottsfield, Edmonton has more 1970s townhouse rows and walk-ups than detached homes, so stair runs and galley kitchens shape each clean." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -207,7 +207,7 @@ export default function Abbottsfield() {
                   Professional House Cleaning in Abbottsfield
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  From cozy townhomes near Abbottsfield Mall to family homes by Rundle Park — count on a hardworking, reliable cleaning team that lives and works nearby.
+                  Abbottsfield has more 1970s townhouse rows and low-rise walk-ups than detached homes, where stair runs carry every footstep and galley kitchens film faster than open plans. The Edmonton branch cleans these homes at flat rates by home size.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -235,7 +235,7 @@ export default function Abbottsfield() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
                   src={heroImg}
-                  alt="Professional cleaner working in a Abbottsfield, Edmonton home"
+                  alt="A cleaner carrying a bag in each hand through a living room"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   width={1024}
                   height={1024}
@@ -257,7 +257,7 @@ export default function Abbottsfield() {
                   Cleaning Services for Abbottsfield Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
+                  A standard or move-out clean in Abbottsfield is a flat rate set by home size and home type, so a townhouse and a walk-up apartment of the same size are quoted differently.
                 </p>
               </div>
             </AnimatedSection>
@@ -300,7 +300,7 @@ export default function Abbottsfield() {
                   Why Abbottsfield Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Reliable, detail-first cleaning families count on.
+                  Every Abbottsfield visit comes with the same four things, from the first clean on.
                 </p>
               </div>
             </AnimatedSection>
@@ -322,7 +322,7 @@ export default function Abbottsfield() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Abbottsfield Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Just minutes from Rundle Park and the LRT — we're always around the corner.
+                  Abbottsfield is inside Edmonton city limits, so no trip fee is added to an Abbottsfield booking.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -341,12 +341,12 @@ export default function Abbottsfield() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Abbottsfield</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Also Near Abbottsfield</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    The Edmonton branch also cleans Hermitage, at the same flat rates by home size.
                   </p>
                 </div>
-                <CoverageChips areas={["Abbottsfield Mall", "Rundle Park", "Victoria Trail", "118 Avenue", "34 Street", "Hermitage", "Beverly", "Rundle Heights"]} variant="compact" />
+                <CoverageChips areas={["Hermitage"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -361,7 +361,7 @@ export default function Abbottsfield() {
         eyebrow="Local knowledge"
         heading="Abbottsfield's compact stock"
         paragraphs={[
-          "Abbottsfield is one of the northeast's densest pockets — 1970s townhouse rows and low-rise walk-ups more than detached homes — and row-house cleaning has its own economics: stair runs carry every footstep, galley kitchens film faster than open plans, and shared-wall units hold humidity in still corners. Compact homes here are denser work than their floor area suggests.",
+          "Abbottsfield, in the northeast, is 1970s townhouse rows and low-rise walk-ups more than detached homes. Row-house cleaning has its own economics: stair runs carry every footstep, galley kitchens film faster than open plans, and shared-wall units hold humidity in still corners. Compact homes here are denser work than their floor area suggests.",
           "The neighbourhood sits against Abbottsfield Road's transit loop with the river valley's Rundle Park a walk east, so entries collect both bus-stop grit and valley debris in season. Units facing the road show sill film first; units facing the green get the leaf-and-pollen calendar instead.",
         ]}
       />

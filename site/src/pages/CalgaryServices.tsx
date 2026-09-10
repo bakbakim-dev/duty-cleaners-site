@@ -20,7 +20,6 @@ import {
   Truck,
   HardHat,
   PaintRoller,
-  Briefcase,
   BedDouble,
   Repeat,
   Phone,
@@ -129,12 +128,15 @@ const PRICING = canonicalForPath("/calgary/pricing");
  * gets here instead: the whole list, with the prices attached.
  */
 const TITLE = `All Calgary Cleaning Services & Prices from ${STANDARD_PRICE}`;
-const DESCRIPTION = "Standard, recurring, deep, move-out, post-construction, wall and turnover cleaning in Calgary, each with its starting price by home size.";
+const DESCRIPTION = `Every Calgary cleaning service with its starting price before GST: standard from ${STANDARD_PRICE}, plus deep, move-out, recurring, wall and turnover cleaning.`;
+
+/** Spot wall cleaning, the cheapest wall add-on, from bk-config. */
+const WALL_SPOT = addOnFromPrice("standard", "spot-cleaning-inside-walls");
 
 /* The opening paragraph of the choosing guide. It sits above the cards; the
    rest of the guide sits below them. */
 const GUIDE_OPENER =
-  "The honest short version: if the home is lived in and has been cleaned in the last month or two, standard cleaning is the right service and the cheapest one. Deep cleaning is for the build-up standard cleaning does not reach, and in Calgary that build-up has a specific cause — the freeze-thaw cycle means roads get gritted, melt, and get gritted again all winter rather than staying frozen, so sand and de-icer keep coming through the door from November to April. By late winter it is along the baseboards, into carpet edges and under furniture, and a vacuum no longer lifts it.";
+  "In short: if the home is lived in and has been cleaned in the last month or two, standard cleaning is the right service and the cheapest one. Deep cleaning is for the build-up standard cleaning does not reach, and in Calgary that build-up has a winter cause. The city thaws and refreezes on chinooks, so roads get gritted, melt and get gritted again, and sand and de-icer keep coming through the door from November to April. By late winter it is along the baseboards, into carpet edges and under furniture, where a vacuum no longer lifts it.";
 
 
 type Service = {
@@ -216,16 +218,16 @@ const services: Service[] = [
     title: "Move-In/Move-Out Cleaning",
     // The guarantee page states plainly that we do not guarantee the damage
     // deposit comes back, because a landlord decides that, not us.
-    description: "Everything a property manager's move-out inspection checks, or an empty home cleaned before your boxes arrive.",
+    description: "An empty home cleaned to the move-out checklist before the inspection, or before your boxes arrive.",
     features: [
       "Every deep cleaning task",
-      "Inside every cabinet and drawer, plus the kitchen walls",
-      "Appliances cleaned inside and out",
+      "Inside every cabinet and drawer, and the storage spaces",
+      "Inside the oven, fridge and microwave",
       "Every floor vacuumed and mopped, carpets vacuumed"
     ],
     price: MOVE_FROM,
     sizes: MOVE_SIZES,
-    sizesNote: "An empty home, cleaned to the inspection list.",
+    sizesNote: "An empty home, cleaned to the move-out checklist.",
     link: "/move-out-cleaning-calgary/",
     linkText: "See Move-In/Move-Out Cleaning",
     icon: Truck,
@@ -233,12 +235,12 @@ const services: Service[] = [
   },
   {
     title: "Post-Construction Cleaning",
-    description: "Drywall and sanding dust cleared from walls, window interiors, baseboards and floors once the trades have left.",
+    description: "Drywall and sanding dust cleared from a new or renovated Calgary home once the trades have left, priced by square footage before GST.",
     features: [
-      "Fine construction dust lifted, not spread",
-      "Walls, inside windows and baseboards cleaned",
+      "Fine drywall and sanding dust lifted from ledges and floors",
+      "Dust wiped from vent covers, closet shelves and the tops of doors",
       "Every floor vacuumed and mopped",
-      "Detailed so the home can be lived in the same day"
+      "Priced by square footage instead of bedrooms"
     ],
     price: POST_FROM,
     link: "/post-construction-cleaning-calgary/",
@@ -248,14 +250,14 @@ const services: Service[] = [
   },
   {
     title: "Wall Washing & Cleaning",
-    description: "Hand-washed walls: fingerprints, cooking film, smoke residue and the dust line a dry Calgary winter leaves above every heater.",
+    description: "Hand-washed walls: fingerprints, cooking film, smoke residue and the dust line that dry Calgary air leaves above the heat registers. Booked together with a clean, not on its own.",
     features: [
       "Handprints and scuffs removed",
-      "Nicotine and smoke residue lifted",
+      "Smoke film washed back, with no promise it goes completely",
       "Cobwebs and dust cleared",
       "Walls ready for paint or a listing photo"
     ],
-    price: "Custom Pricing",
+    price: WALL_SPOT === null ? "Priced by home size" : `from ${formatPrice(WALL_SPOT)} with a clean`,
     link: "/wall-washing-wall-cleaning-calgary/",
     linkText: "See Wall Washing & Cleaning",
     icon: PaintRoller,
@@ -263,10 +265,10 @@ const services: Service[] = [
   },
   {
     title: "Airbnb Cleaning Service",
-    description: `Hourly turnovers for short-term rental hosts at ${HOURLY} per cleaner, 3-hour minimum, with same-day changeovers booked early for Stampede.`,
+    description: `Hourly turnovers for short-term rental hosts at ${HOURLY} per cleaner before GST, with a minimum of 3 hours for one cleaner or 2 hours for two.`,
     features: [
       "Beds stripped and remade with your linen",
-      "Laundry when a machine and a spare set are on site",
+      "Kitchen and bathrooms sanitised",
       "Guest supplies topped up from your stock",
       "The same checklist on every turnover"
     ],
@@ -274,22 +276,6 @@ const services: Service[] = [
     link: "/airbnb-cleaning-services-calgary/",
     linkText: "See Airbnb Cleaning Service",
     icon: BedDouble,
-    accent: true
-  },
-  {
-    title: "Commercial Cleaning",
-    description: "Professional cleaning for offices, retail spaces, and commercial properties across Calgary.",
-    features: [
-      "Offices & commercial spaces",
-      "Recurring cleaning schedules",
-      "Reference-checked, customer-rated cleaners",
-      "Flexible scheduling options"
-    ],
-    price: "Custom Pricing",
-    link: "/commercial-cleaning-services-calgary/",
-    linkText: "See Commercial Cleaning",
-    icon: Briefcase,
-    badge: "Professional Service",
     accent: true
   }
 ];
@@ -299,11 +285,11 @@ const services: Service[] = [
 const faqs = [
   {
     q: "Standard or deep cleaning for a Calgary home?",
-    a: `If the home has been cleaned in the last couple of months, standard. If you can point at scale on the shower glass, grit in the carpet edges or a greasy range hood, that is the Deep Cleaning package, which is the standard clean plus grout, descaling, degreasing and hand-wiped trim. On a one-bedroom the standard clean is ${DEEP_ROW.standard} and the package adds ${DEEP_ROW.packagePrice}, so ${DEEP_ROW.price} in total before GST. Most homes need it once, then go back to standard visits.`,
+    a: `If the home has been cleaned in the last couple of months, standard. If you can point at scale on the shower glass, grit in the carpet edges or a greasy range hood, that is the Deep Cleaning package, which is the standard clean plus grout, descaling, degreasing and hand-wiped trim. On a one-bedroom apartment or condo the standard clean is ${DEEP_ROW.standard} and the package adds ${DEEP_ROW.packagePrice}, so ${DEEP_ROW.price} before GST, with any home-type, pet or travel charge added on the quote. Book the deep clean once, then go back to standard visits.`,
   },
   {
     q: "When do I need move-out cleaning rather than a deep clean?",
-    a: `When someone is going to inspect the empty home. Move-out cleaning covers the deep clean and then the places an inspection opens: every cabinet and drawer, the inside of the oven and fridge, the kitchen walls, and every floor including carpet. A one-bedroom is ${MOVE_PRICE} against ${DEEP_ROW.price} for the deep clean. Your property manager decides whether the deposit comes back, so that is not something we promise; we clean to the list they check.`,
+    a: `When someone is going to inspect the empty home. Move-out cleaning covers the deep clean and then the places an inspection opens: inside every cabinet and drawer, the storage spaces, the inside of the oven and fridge, and every floor including carpet. A one-bedroom is ${MOVE_PRICE} against ${DEEP_ROW.price} for the deep clean. Your property manager decides whether the deposit comes back, so that is not something we promise; we clean to the move-out checklist.`,
   },
   {
     q: "Are Calgary prices shown with or without GST?",
@@ -311,11 +297,11 @@ const faqs = [
   },
   {
     q: "How much do I save by booking recurring cleaning?",
-    a: `Nothing on the first visit, which is charged at the one-time standard rate, and then ${pct("weekly")} on every weekly visit, ${pct("bi-weekly-every-2-weeks")} on every bi-weekly visit or ${pct("every-4-weeks")} on every visit every 4 weeks. No contract is attached; a standing booking can be paused for a holiday or ended with a phone call.`,
+    a: `Nothing on the first visit, which is charged at the one-time standard rate, and then ${pct("weekly")} on every weekly visit, ${pct("bi-weekly-every-2-weeks")} on every bi-weekly visit or ${pct("every-4-weeks")} on every visit every 4 weeks. A standing booking can be moved, skipped or ended with ${POLICY.cancellationNoticeHours} hours' notice; inside that window the fee is ${POLICY.cancellationFee}.`,
   },
   {
     q: "Is there a pet fee?",
-    a: `Yes, ${PET_LINE}. A dog that has been out on gravel paths all winter leaves prints in every room, and cat hair adds time on every soft surface, so the charge covers time we know will be spent. It appears on the quote before you book. Litter boxes and animal waste are outside what we handle.`,
+    a: `Yes, ${PET_LINE}. A dog that has been out on gravel paths all winter leaves prints in every room, and cat hair adds time on every soft surface, so the charge covers time we know will be spent. It is compulsory for a home with pets, and it appears on the quote before you book. Litter boxes and animal waste are outside what we handle.`,
   },
   {
     q: "Do you charge a travel fee to Airdrie or Cochrane?",
@@ -449,12 +435,14 @@ export default function CalgaryServices() {
 
             <p className="text-xl text-white/80 leading-relaxed mb-4">
               Home cleaning in Calgary {STANDARD_FROM} before GST, priced flat by the size of the home,
-              with hourly service at {HOURLY} per cleaner for anything a size tier cannot describe.
-              {" "}{RATING_CLAIM} on the Calgary listing, {COMPANY.sinceLabel}.
+              and Airbnb turnovers by the hour at {HOURLY} per cleaner-hour before GST, with a minimum of
+              3 hours for one cleaner or 2 hours for two.
+              {" "}{RATING_CLAIM} across {proof.googleReviewCount} reviews on the Calgary listing, and
+              Duty Cleaners has cleaned Alberta homes {COMPANY.sinceLabel}.
             </p>
             <p className="text-lg text-white/70 leading-relaxed mb-8">
-              The quote form asks about bedrooms, bathrooms, pets and add-ons and shows the price in
-              about 60 seconds. Nothing is booked until you say so.
+              The quote form asks about bedrooms, bathrooms, pets and add-ons and shows the price
+              before you book. Nothing is booked until you say so.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
@@ -476,7 +464,7 @@ export default function CalgaryServices() {
               </div>
               <div className="flex items-center gap-2 text-white/90">
                 <Heart className="w-5 h-5 text-accent" />
-                <span className="text-sm">Re-clean free within {POLICY.guaranteeWindowHours} hours</span>
+                <span className="text-sm">{POLICY.guaranteeWindowHours}-Hour Re-Clean Guarantee</span>
               </div>
               <div className="flex items-center gap-2 text-white/90">
                 <Star className="w-5 h-5 text-accent" />
@@ -501,8 +489,9 @@ export default function CalgaryServices() {
             <p className="text-muted-foreground leading-relaxed mb-4">{GUIDE_OPENER}</p>
             <p className="text-muted-foreground leading-relaxed">
               Three of the five published sizes are on every home-priced card: a one-bedroom, a
-              three-bedroom and the five-or-more tier, before {GST_PCT} GST. A pet, an add-on or a
-              two-storey house raises the figure, and the quote shows the full total first.
+              three-bedroom and the five-or-more tier, before {GST_PCT} GST. A pet, an add-on, a
+              two-storey house or an address outside Calgary city limits raises the figure, and the
+              quote shows the full total first.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto items-stretch">
@@ -528,8 +517,8 @@ export default function CalgaryServices() {
         eyebrow="Choosing a service in Calgary"
         heading="Why a Beltline condo and a Seton new-build are different jobs"
         paragraphs={[
-          "Where you live shifts the work more than the size of the home does. In a Beltline, Mission or Eau Claire condo the time goes into window tracks, balcony door channels and the fine dust a dry, windy city drives into every seal. In a newer house out in Mahogany, Cranston, Seton or Livingston it is usually construction dust, which keeps resurfacing from vents, closet shelves and the tops of doors for a year or two after handover. The same square footage can be a very different job.",
-          "Move-in and move-out cleaning is a separate service, not a bigger version of a deep clean, and it is priced against what property managers actually inspect: inside appliances, inside every cabinet and drawer, and the storage spaces. If you are working to a walk-through date, that is the one to book. If you are not sure which applies, the instant quote will ask a few questions about the home and tell you — and you can call and describe it instead.",
+          "Where you live shifts the work more than the size of the home does. A Beltline, Mission or Eau Claire condo is the simplest job, though dry air and wind keep fine grit airborne for most of the year. A newer house in Mahogany, Seton or Livingston carries construction dust. The same square footage can be a very different job.",
+          `Move-in and move-out cleaning is a separate service, not a bigger version of a deep clean, and it covers the inside of the oven, fridge and microwave and of every cabinet, drawer and closet. If you are working to a walk-through date, that is the one to book. If you are not sure which applies, call the Calgary office on ${proof.phone} and describe the home.`,
         ]}
       />
 
@@ -542,14 +531,14 @@ export default function CalgaryServices() {
             </h2>
             <div className="space-y-5 text-muted-foreground leading-relaxed">
               <p>
-                The standard clean is the default, {STANDARD_FROM}, and it stays the default until you can
-                say what it would leave behind. In a Calgary condo the usual answer in March is the grit in
-                the entry carpet and the scale on the shower glass, and both belong to the Deep Cleaning
-                package. Buy that once, when the winter is over, and go back to standard visits after.
+                The standard clean is the default, {STANDARD_FROM} before GST for a one-bedroom apartment or
+                condo, and it stays the default until you can say what it would leave behind. After a Calgary
+                winter the answer can be the grit in the entry carpet and the scale on the shower glass, and
+                both belong to the Deep Cleaning package. Buy that once, when the winter is over, and go back to standard visits after.
               </p>
               <p>
-                A standing booking is how most families here keep a house at one level without thinking
-                about it. Recurring cleaning charges the first visit at the one-time rate and discounts each
+                A standing booking keeps a Calgary house at one level without anyone having to remember
+                to book. Recurring cleaning charges the first visit at the one-time rate and discounts each
                 one after that by frequency. It also suits a host who lives in the unit for most of the year
                 and lists it for Stampede and ski season: recurring visits for your own months, and{" "}
                 <Link to="/airbnb-cleaning-services-calgary/" className="text-accent underline underline-offset-2">
@@ -559,8 +548,9 @@ export default function CalgaryServices() {
               </p>
               <p>
                 Book move-out cleaning when a property manager is going to walk the empty home with a
-                checklist. It is the deep clean plus the inside of every cabinet, drawer and appliance,
-                {" "}{MOVE_FROM}, and the deposit stays the manager's call. A house fresh from the builder in
+                checklist. It is the deep clean plus the inside of the oven, fridge and microwave and of every
+                cabinet, drawer and closet, {MOVE_FROM} before GST for a one-bedroom apartment or condo, and the
+                deposit stays the manager's call. A house fresh from the builder in
                 Seton or Livingston wants post-construction cleaning instead, {POST_FROM}, once the last
                 trade has handed back the keys.
               </p>
@@ -578,20 +568,22 @@ export default function CalgaryServices() {
                 surgery, so you can{" "}
                 <Link to="/gift-card/" className="text-accent underline underline-offset-2">
                   give a clean as a gift
-                </Link>{" "}
-                and let them choose the day.
+                </Link>
+                .
               </p>
               <p>
-                All of it is priced as above anywhere inside Calgary city limits, with no trip fee. The two
-                towns beside the city carry a {money(TRAVEL_HOME)} travel fee on each home-cleaning visit:{" "}
+                Inside Calgary city limits none of those services carries a trip fee. The Calgary branch
+                also cleans in nine communities outside the city, where each home-cleaning visit carries a{" "}
+                {money(TRAVEL_HOME)} travel fee and a post-construction clean {money(TRAVEL_POST)}. Two of
+                them have a page of their own, with the same services and the fee stated up front:{" "}
                 <Link to="/cleaning-services-airdrie/" className="text-accent underline underline-offset-2">
                   house cleaning in Airdrie
                 </Link>{" "}
                 and{" "}
                 <Link to="/cleaning-services-cochrane/" className="text-accent underline underline-offset-2">
                   Cochrane house cleaners
-                </Link>{" "}
-                each have a page of their own with the same services and the fee stated up front.
+                </Link>
+                .
               </p>
             </div>
           </div>

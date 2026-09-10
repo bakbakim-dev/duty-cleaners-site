@@ -24,15 +24,15 @@ const QueenAlexandra = () => {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Queen Alexandra?",
-      answer: `Every service we run can be booked locally:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `In Queen Alexandra, the Edmonton branch books these services:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
-      answer: `Yes, recurring visits cost less every time:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
+      answer: `Yes. A recurring standard clean is discounted by frequency:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -53,15 +53,15 @@ const QueenAlexandra = () => {
     <>
       <Helmet>
         <title>House Cleaning in Queen Alexandra, Edmonton</title>
-        <meta name="description" content="Reliable home cleaning in Queen Alexandra, Edmonton. Professional service near Queen Alexandra School, Tipton Park, and Whyte Avenue." />
+        <meta name="description" content="Move-out and suite cleaning in Queen Alexandra, Edmonton, where eight in ten homes are rented and possession dates cluster at month end." />
         <link rel="canonical" href="https://dutycleaners.ca/locations/queen-alexandra-edmonton/" />
         <meta property="og:title" content="House Cleaning in Queen Alexandra, Edmonton" />
-        <meta property="og:description" content="Reliable home cleaning in Queen Alexandra, Edmonton. Professional service near Queen Alexandra School, Tipton Park, and Whyte Avenue." />
+        <meta property="og:description" content="Move-out and suite cleaning in Queen Alexandra, Edmonton, where eight in ten homes are rented and possession dates cluster at month end." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/queen-alexandra-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Queen Alexandra, Edmonton" />
-        <meta name="twitter:description" content="Reliable home cleaning in Queen Alexandra, Edmonton. Professional service near Queen Alexandra School, Tipton Park, and Whyte Avenue." />
+        <meta name="twitter:description" content="Move-out and suite cleaning in Queen Alexandra, Edmonton, where eight in ten homes are rented and possession dates cluster at month end." />
         <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Queen Alexandra Edmonton", city: "edmonton", url: "https://dutycleaners.ca/locations/queen-alexandra-edmonton", areaServed: "Queen Alexandra, Edmonton, AB",   geo: { latitude: "53.518", longitude: "-113.504" },
 }))}</script>
       </Helmet>
@@ -81,7 +81,7 @@ const QueenAlexandra = () => {
                 Queen Alexandra House Cleaning Professionals
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Reliable home cleaning in Queen Alexandra, Edmonton. We offer friendly, professional service with a local touch.
+                Just over half the homes in Queen Alexandra are low-rise walk-up apartments, and most are rented. Every clean is a flat rate by home size, shown before you book.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <Button size="lg" asChild>
@@ -105,22 +105,21 @@ const QueenAlexandra = () => {
         heading="Four fifths of it is rented"
         paragraphs={[
           "Eight of every ten homes between Whyte Avenue and 70 Avenue are rented, and just over half the stock is low-rise walk-up apartments rather than houses. That shapes the calendar more than the method: possession dates cluster at month end, and a suite handed back gets the oven, the fridge seals and every cabinet interior whether the last tenant opened them or not.",
-          "Whyte Avenue closes the north side, which is the busiest pedestrian strip in the city outside downtown. Ground-floor suites and the first buildings in off the avenue take what the sidewalk carries — grit through winter, dust through summer, and a film on street-facing glass that comes back faster than anything the household itself produces.",
+          "Whyte Avenue's pedestrian strip closes the north side. Ground-floor suites and the first buildings in off the avenue take what the sidewalk carries — grit through winter, dust through summer, and a film on street-facing glass that comes back faster than anything the household itself produces.",
         ]}
       />
 
       <LocationPricing />
 
-        {/* Our work in the Queen Alexandra / Old Strathcona area. Queen Alexandra
-            sits immediately south of Whyte Avenue, so this Old Strathcona photo is
-            genuinely from the same few blocks — the alt text says what it shows
-            rather than over-claiming. */}
+        {/* This picture is not documented as a photo of a Queen Alexandra or Old
+            Strathcona home, so the alt text describes what it shows and names no
+            place, customer or cleaner. */}
         <section className="py-8 px-4">
           <div className="container mx-auto max-w-6xl">
             <div className="rounded-lg overflow-hidden shadow-lg border border-border">
               <img
                 src={strathconaCleanHome}
-                alt="A Duty Cleaners cleaner finishing a home in the Old Strathcona area, just north of Queen Alexandra"
+                alt="A cleaner vacuuming a loft living room with exposed brick walls, overhead ductwork and tall windows"
                 width={896}
                 height={672}
                 className="w-full h-auto object-cover"
@@ -136,26 +135,26 @@ const QueenAlexandra = () => {
           <div className="container mx-auto max-w-4xl prose prose-lg">
             <h2 className="text-3xl font-bold">Residential Cleaning in Queen Alexandra</h2>
             <p>
-              Queen Alexandra is one of those rare neighbourhoods that feels truly lived in—where the houses have history, the yards are full of personality, and the sidewalks are busy with families, students, and long-time locals alike. At Duty Cleaners, we're proud to be part of the rhythm here, offering dependable, friendly home cleaning that fits right into Queen Alexandra's laid-back yet lively atmosphere.
+              Most homes in Queen Alexandra are rented, and possession dates cluster at month end. A move-out clean on a suite covers the oven, the fridge seals and every cabinet interior, whether the last tenant used them or not.
             </p>
             <p>
-              We're a local team—not a corporate outfit—which means we value familiarity, reliability, and real relationships. Whether you're in a heritage home near 105 Street, tucked behind Queen Alexandra School, or close to the buzz of Whyte Avenue, you'll get personal service from a team that already knows the area.
-            </p>
-
-            <h3 className="text-3xl font-bold">We're Right Around the Corner—and Easy to Count On</h3>
-            <p>
-              We don't just serve Queen Alexandra—we're often just a few streets over. That local presence means we're able to show up on time, adjust to your schedule, and get the job done without you having to follow up or micromanage.
-            </p>
-            <p>
-              Clients here appreciate our consistency. You'll see the same faces, get straightforward communication, and know your home is being cared for with real attention to detail—not a one-size-fits-all routine. We respect your space, your time, and the trust you place in us.
+              Under Alberta's Residential Tenancies Act, the landlord completes a move-out inspection report with the tenant, and the security deposit must be returned within 10 days after the tenant moves out. We do not promise the deposit comes back; the landlord decides.
             </p>
 
-            <h3 className="text-3xl font-bold">A Neighbourhood with Character—and We Treat It That Way</h3>
+            <h3 className="text-3xl font-bold">Arrival Windows, Keys and Lockboxes</h3>
             <p>
-              Queen Alexandra has a bit of everything: tree-lined avenues, charming walk-ups, updated duplexes, and growing families all sharing space with university students and longtime residents. From early-morning walks in Tipton Park to quick stops near the Strathcona Farmers' Market, we work in the community daily—and that matters.
+              We book an arrival window, not an exact time: 9:00 to 10:00 AM, 12:00 to 1:00 PM, or 3:00 to 4:00 PM. You do not need to be home. Most customers leave a key, a lockbox code or smart-lock access, and the team locks up when it leaves.
             </p>
             <p>
-              We understand what it means to care for homes with history, personality, and quirks. Whether you're just a block from Queen Alexandra Park or in a tucked-away corner near 104 Street, our service is shaped by what works best for you and your space.
+              Changing or cancelling a booking needs 24 hours' notice, and a fee applies to any change or cancellation made inside 24 hours. Nothing is charged at booking; the card is charged once the clean is complete.
+            </p>
+
+            <h3 className="text-3xl font-bold">Whyte Avenue Grit Through an Edmonton Winter</h3>
+            <p>
+              Edmonton holds its cold rather than cycling through thaws, so the sand and salt tracked in from November arrive dry and stay, working into carpet edges and along baseboards. The spring melt in late March and April brings a whole winter of grit indoors in about three weeks.
+            </p>
+            <p>
+              Ground-floor suites near Whyte Avenue add the sidewalk's own grit to that load. Interior windows are an add-on, and exterior windows are outdoor work that is not part of a clean.
             </p>
           </div>
         </section>
@@ -174,16 +173,16 @@ const QueenAlexandra = () => {
         {/* CTA Section */}
         <section className="py-16 px-4 bg-muted/50">
           <div className="container mx-auto max-w-4xl text-center space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold">Get an instant quote, without all the hassle.</h2>
+            <h2 className="text-3xl md:text-4xl font-bold">See Your Queen Alexandra Price Before You Book</h2>
             <Button size="lg" asChild>
               <a href="#quote">See My Instant Price</a>
             </Button>
             <div className="pt-8">
               <p className="text-sm text-muted-foreground mb-2">Serving Alberta homes</p>
               <p className="text-2xl font-bold">SINCE 2017</p>
-              <p className="text-lg font-semibold mt-4">100% Satisfaction Guarantee.</p>
+              <p className="text-lg font-semibold mt-4">24-Hour Re-Clean Guarantee</p>
               <p className="text-muted-foreground">
-                We stand behind the quality of our staff. If you're not 100% satisfied with your cleaning, we'll come back and re-clean it at no additional charge, as long as we’re informed within 24 hours after the cleaning.
+                If something was missed, tell us within 24 hours and the team comes back to re-clean it at no charge.
               </p>
             </div>
           </div>
@@ -256,12 +255,12 @@ const QueenAlexandra = () => {
 
         <section className="py-16 px-4">
           <div className="container mx-auto max-w-4xl text-center space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold">Here When You Need Us</h2>
+            <h2 className="text-3xl md:text-4xl font-bold">Book a Clean in Queen Alexandra</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Home should be a place to unwind—not one more thing on your checklist. If you're looking for a team that treats your home with care, respects your time, and blends right into your routine, we'd love to help.
+              See your flat rate before you book, and pay nothing until the clean is done. The price is set by home size before 5% GST, and a pet charge or home-type surcharge shows on the quote when it applies.
             </p>
             <p className="text-muted-foreground">
-              Give us a call or request a free quote today. We're right here in the neighbourhood—and ready when you are.
+              The Edmonton office answers (780) 913-6565 Monday to Saturday from 8:00 AM to 8:00 PM and Sunday from 9:00 AM to 3:00 PM.
             </p>
             <Button size="lg" asChild>
               <a href="#quote">See My Instant Price</a>

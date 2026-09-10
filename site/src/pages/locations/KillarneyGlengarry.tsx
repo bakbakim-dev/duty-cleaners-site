@@ -60,9 +60,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Killarney-Glengarry" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Killarney-Glengarry" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Killarney-Glengarry" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Killarney-Glengarry" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Killarney-Glengarry.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Killarney-Glengarry" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris cleaned up after a renovation or new build in Killarney-Glengarry, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Killarney-Glengarry" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Killarney-Glengarry" },
 ];
 
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Shaganappi","Richmond","Rosscarrock","Westgate","Sunalta","Glamorgan"];
+const nearbyAreas = ["Shaganappi","Richmond","Sunalta"];
 
 const faqs = [
   {
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `In Killarney-Glengarry, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `In Killarney-Glengarry, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function KillarneyGlengarry() {
     <>
       <Helmet>
         <title>House Cleaning in Killarney-Glengarry, Calgary</title>
-        <meta name="description" content="Book house cleaning in Killarney-Glengarry, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="description" content="Killarney-Glengarry house cleaning for 1950s bungalows and the three-storey infills going up beside them, quoted flat by home size and type." />
         <meta property="og:title" content="House Cleaning in Killarney-Glengarry, Calgary" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Killarney-Glengarry, Calgary" />
-        <meta name="twitter:description" content="Book house cleaning in Killarney-Glengarry, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
-        <meta property="og:description" content="Book house cleaning in Killarney-Glengarry, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="twitter:description" content="Killarney-Glengarry house cleaning for 1950s bungalows and the three-storey infills going up beside them, quoted flat by home size and type." />
+        <meta property="og:description" content="Killarney-Glengarry house cleaning for 1950s bungalows and the three-storey infills going up beside them, quoted flat by home size and type." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/killarney-glengarry-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/killarney-glengarry-calgary/" />
@@ -183,7 +183,7 @@ export default function KillarneyGlengarry() {
                 Professional House Cleaning in Killarney-Glengarry
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Trusted house cleaning for Killarney-Glengarry — bringing a calm, spotless home within reach.
+                Killarney-Glengarry is mid-turnover: a 1950s bungalow on one lot, a three-storey infill on the next. Our Calgary branch cleans both at a flat rate by home size, and the home type shows on the quote before you book.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function KillarneyGlengarry() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Killarney-Glengarry Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
+                  Bungalows and three-storey infills in Killarney-Glengarry are quoted the same way: a flat rate by home size, before 5% GST, shown before you book.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function KillarneyGlengarry() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Killarney-Glengarry Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Killarney-Glengarry and the surrounding Calgary communities.
+                    Traffic through Killarney-Glengarry follows the 17 Avenue and 26 Avenue corridors. The neighbourhood is inside Calgary city limits, so there is no trip fee.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function KillarneyGlengarry() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1280} height={896} src={cleanHomeImg} alt="Spotless Killarney-Glengarry Calgary home cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1280} height={896} src={cleanHomeImg} alt="Double-height living room with tall windows, two grey sofas and a white rug on wood floors" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Calm, Spotless Killarney-Glengarry Home — Every Visit</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Two kinds of house</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Bungalow or Infill in Killarney-Glengarry</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Vetted cleaners, careful hands, and the standard we'd hold for our own homes. Come back to fresh air and surfaces that actually gleam.
+                    A three-storey infill brings loft dust on the top floor and stair runs; a 1950s bungalow brings original tile, plaster and small, dense rooms. Any home-type surcharge for either one shows on the quote before you book. A roof deck counts as outdoor space, which is not included.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Reference-checked cleaners, rated after each visit","All supplies and equipment brought","Re-clean at no charge if told within 24 hours"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,9 +311,9 @@ export default function KillarneyGlengarry() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Killarney-Glengarry and the communities around it.{" "}
+                  Shaganappi, Richmond and Sunalta are also on our Calgary branch's list of 66 neighbourhoods.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -329,8 +329,8 @@ export default function KillarneyGlengarry() {
         eyebrow="Local knowledge"
         heading="Killarney's bungalow-to-infill turn"
         paragraphs={[
-          "Killarney-Glengarry is mid-turnover: 1950s bungalows and their mature hedges on one lot, three-storey infills on the next. The infills bring third-floor loft dust, stair runs and roof-deck doors; the bungalows bring original tile, plaster and small dense rooms. A street's two neighbouring homes can be opposite cleaning jobs entirely.",
-          "The 17 Avenue and 26 Avenue corridors carry the area's traffic, and active infill sites keep construction dust circulating block by block. Homes beside a build need track and sill work every visit until the lot next door is landscaped — a temporary but real season that can last a year.",
+          "Killarney-Glengarry is mid-turnover: 1950s bungalows and their mature hedges on one lot, three-storey infills on the next. The infills bring third-floor loft dust, stair runs and roof-deck door tracks; the bungalows bring original tile, plaster and small dense rooms. A street's two neighbouring homes can be opposite cleaning jobs entirely.",
+          "The 17 Avenue and 26 Avenue corridors carry the area's traffic, and active infill sites keep construction dust circulating block by block. Homes beside a build need track and sill work every visit until the lot next door is landscaped — a temporary season that can last a year.",
         ]}
       />
 
@@ -347,7 +347,7 @@ export default function KillarneyGlengarry() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Killarney-Glengarry Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>

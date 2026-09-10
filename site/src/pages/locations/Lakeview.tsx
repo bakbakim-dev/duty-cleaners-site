@@ -4,7 +4,6 @@ import {
 } from "lucide-react";
 import featureImg from "@/assets/gallery/lakeview-clean-kitchen.webp";
 import { buildLocationSchema } from "@/lib/location-schema";
-import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
 import { sitePriceRange } from "@/data/pricing";
@@ -60,9 +59,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Lakeview" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Lakeview" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Lakeview" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Lakeview" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Lakeview.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Lakeview" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris cleaned up after a renovation or new build in Lakeview, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Lakeview" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Lakeview" },
 ];
 
@@ -95,8 +94,6 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["North Glenmore Park","Bayview","Lakeview Village","Glamorgan","Glendale","Cedarbrae"];
-
 const faqs = [
   {
     question: "How long does an initial cleaning take?",
@@ -112,7 +109,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +134,12 @@ export default function Lakeview() {
     <>
       <Helmet>
         <title>House Cleaning Services in Lakeview, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Book house cleaning in Lakeview, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="description" content="Grit from the reservoir pathways reaches Lakeview, Calgary homes on boots and dog paws, and our house cleaners take it off entry tile and stair runners." />
         <meta property="og:title" content="House Cleaning Services in Lakeview, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services in Lakeview, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Book house cleaning in Lakeview, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
-        <meta property="og:description" content="Book house cleaning in Lakeview, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="twitter:description" content="Grit from the reservoir pathways reaches Lakeview, Calgary homes on boots and dog paws, and our house cleaners take it off entry tile and stair runners." />
+        <meta property="og:description" content="Grit from the reservoir pathways reaches Lakeview, Calgary homes on boots and dog paws, and our house cleaners take it off entry tile and stair runners." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/lakeview-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/lakeview-calgary/" />
@@ -183,7 +180,7 @@ export default function Lakeview() {
                 Professional House Cleaning in Lakeview
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Premium, detail-driven house cleaning for one of southwest Calgary's most sought-after lakeside communities.
+                Lakeview's busy edges are two expressways, Glenmore Trail on the north and Crowchild Trail on the east, and their grit reaches the homes facing them first. Our Calgary branch cleans here at flat rates by home size.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +215,7 @@ export default function Lakeview() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Lakeview Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs — every service a home needs.
+                  Five services for Lakeview homes, each quoted in Canadian dollars before 5% GST at a flat rate that does not change if the clean runs long.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +254,7 @@ export default function Lakeview() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Lakeview Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Lakeview and the surrounding SW Calgary communities.
+                    37 Street SW is the city limit along Lakeview's western edge, so every Lakeview home is inside Calgary and pays no trip fee.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +280,16 @@ export default function Lakeview() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={768} src={featureImg} alt="Spotless Lakeview Calgary home cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1024} height={768} src={featureImg} alt="White kitchen with glass-front cabinets, marble counters and a window above a farmhouse sink" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Calm, Spotless Lakeview Home — Every Visit</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Boot traffic</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Entry Tile and Stair Runners in Lakeview</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Vetted cleaners, careful hands, and the standard we'd hold for our own homes. Come back to fresh air and surfaces that actually gleam.
+                    With pathways along the reservoir at the south end of the community, grit comes into Lakeview homes on boots and dog paws and settles on entry tile, mudroom grout and the stair runner. A home with pets carries the compulsory pet charge, and it shows on the quote before booking. Exterior windows are outdoor work and are not included, and neither is removing window screens; interior windows can be added when you book.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Rated by the customer after every visit","The team brings every supply","Missed spots re-cleaned free if reported within 24 hours"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,15 +308,14 @@ export default function Lakeview() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Areas Our Calgary Branch Serves</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Lakeview and the communities around it.{" "}
+                  Lakeview is one of 66 Calgary neighbourhoods on our Calgary branch's list, and the branch also cleans in nine communities outside the city.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
                 </p>
               </div>
-              <CoverageChips areas={nearbyAreas} />
             </AnimatedSection>
           </div>
         </section>
@@ -328,8 +324,8 @@ export default function Lakeview() {
         eyebrow="Ground truth"
         heading="Where Calgary ends at 37 Street"
         paragraphs={[
-          "37 Street SW is the western city limit at this point, so Lakeview has no neighbouring block on that side at all. The two edges that do carry traffic are expressways — Glenmore Trail on the north, Crowchild Trail on the east — which makes the soiling one-sided. North- and east-facing glass hazes first, and once the sanding season starts the grey grit off Glenmore settles into screens and sills within days of a wash.",
-          "The south end of the community meets the Glenmore Reservoir, with the Calgary Rowing Club and Calgary Canoe Club down there and pathways running the shore between Glenmore Trail and the Weaselhead. A neighbourhood with hiking trails at its back door brings the outside in on boots and dog paws, and it lands on entry tile, mudroom grout and the stair runner rather than spreading evenly through the house.",
+          "37 Street SW is the western city limit at this point, so Lakeview has no neighbouring block on that side at all. The two edges that do carry traffic are expressways, Glenmore Trail on the north and Crowchild Trail on the east, which makes the soiling one-sided. North- and east-facing glass hazes first, and once the sanding season starts the grey grit off Glenmore settles into screens and sills within days of a wash.",
+          "The south end of the community meets the Glenmore Reservoir, with pathways running the shore between Glenmore Trail and the Weaselhead. A neighbourhood with hiking trails at its back door brings the outside in on boots and dog paws, and it lands on entry tile, mudroom grout and the stair runner rather than spreading evenly through the house.",
         ]}
         accent="calgary"
       />
@@ -347,7 +343,7 @@ export default function Lakeview() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Lakeview Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Reliable, detail-first cleaning families count on.
+                  Customer ratings after each visit decide which reference-checked cleaners we keep sending to Lakeview.
                 </p>
               </div>
             </AnimatedSection>

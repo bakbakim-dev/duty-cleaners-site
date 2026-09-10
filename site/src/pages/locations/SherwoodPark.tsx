@@ -34,7 +34,15 @@ const HOME_TYPE = {
 };
 const EDMONTON_LISTING = GOOGLE_LISTINGS.edmonton;
 const PAGE_TITLE = `House Cleaning Sherwood Park from ${STANDARD_FROM} | Duty Cleaners`;
-const META_DESCRIPTION = `House cleaning across Sherwood Park from ${STANDARD_FROM}: Broadmoor, Emerald Hills and Lakeland Ridge. Flat rates by home size, paid after the clean.`;
+const META_DESCRIPTION = `Sherwood Park cleans start at ${STANDARD_FROM} for a one-bedroom apartment or condo, before GST, a ${TRAVEL_FEE} travel fee and any pet or home-type charge.`;
+
+// A worked quote built from the same rows the price table uses: a three-bedroom
+// two-storey house on a deep clean, no pets, outside city limits.
+const dollars = (price: string) => Number(price.replace(/[^0-9.]/g, ""));
+const EXAMPLE_TIER = DEEP[2];
+const EXAMPLE_PRICE = formatPrice(
+  Math.round((dollars(EXAMPLE_TIER.price) + BK_PRICE_OVERRIDES[90].price + (travelFee("standard") ?? 0)) * 100) / 100,
+);
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -108,25 +116,19 @@ const WhyUsCard = ({
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to bring the whole home back to baseline.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Sherwood Park" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "A full top-to-bottom reset — corners, baseboards, and the surfaces regular visits skip.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Sherwood Park" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Move-day cleaning done to the standard landlords check for.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Sherwood Park" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared properly after renos and handovers.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Sherwood Park" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Sherwood Park" },
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The same standard clean on a weekly, bi-weekly or every-four-weeks visit, from ${STANDARD_FROM}. The discount starts on the second clean and there is no contract.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Sherwood Park" },
+  { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Sherwood Park" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Sherwood Park" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Priced flat by home size, for moving out of a Sherwood Park home or into one.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Sherwood Park" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Priced by square footage, for the fine dust left after renovation work.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Sherwood Park" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Spot cleaning or a full wash of painted walls, booked together with a clean and priced by home size.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Sherwood Park" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: "The same standard clean on a weekly, bi-weekly or every-4-weeks visit, at 20%, 15% or 10% off from the second clean.", to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Sherwood Park" },
 ];
 
 const whyUsItems = [
   { icon: Shield, title: "Reference-Checked, Then Rated by You", description: "Every cleaner is reference-checked before their first job, then rated by the customer after every visit. Those ratings decide who keeps cleaning for us." },
   { icon: Star, title: RATING_CLAIM, description: `That is the Edmonton listing, the one a Sherwood Park clean is rated on, and it holds ${CITY_PROOF.edmonton.googleReviewCount} reviews.`, link: { href: EDMONTON_LISTING.reviewsUrl, text: "Open the Google listing" } },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day slots when the schedule allows." },
-  { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
-  { icon: Users, title: "Experienced Team", description: "Cleaners trained to the Duty Cleaners checklist, and rated by you after every visit." },
-  { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
-];
-
-const nearbyAreas = [
-  "Summerwood", "Clarkdale Meadows", "Lakeland Ridge", "Emerald Hills", "Broadmoor", "Nottingham", "Mills Haven", "Foxboro"
+  { icon: Leaf, title: "All Supplies Brought For You", description: "The team brings all supplies and equipment. Leave the water and power on until the clean is done." },
+  { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
 export default function SherwoodPark() {
@@ -137,24 +139,32 @@ export default function SherwoodPark() {
     },
     {
       question: "What does a standard clean in Sherwood Park cost?",
-      answer: `A one-bedroom is ${STANDARD_FROM} and a home with five or more bedrooms is ${STANDARD_TO}, with the sizes between priced in steps. Add the travel fee and 5% GST. A deep clean runs ${DEEP_FROM} to ${DEEP_TO}, and a recurring schedule takes 20%, 15% or 10% off from the second visit depending on how often we come.`
+      answer: `A one-bedroom apartment or condo is ${STANDARD_FROM} and a home with five or more bedrooms is ${STANDARD_TO}, with the sizes between priced in steps. Add the travel fee and 5% GST, plus the home-type surcharge for a house and the pet charge if there are pets. A deep clean runs ${DEEP_FROM} to ${DEEP_TO}, and a recurring schedule takes 20% off weekly, 15% bi-weekly and 10% every 4 weeks. Discounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
-      question: "Can you come out to Sherwood Park same-day?",
-      answer: `Sometimes. Same-day and next-day slots depend on what the day's schedule has left; call ${CITY_PROOF.edmonton.phone} and ask. Bookings are made to an arrival window (${ARRIVAL_WINDOWS[0]}, ${ARRIVAL_WINDOWS[1]} or ${ARRIVAL_WINDOWS[2]}) rather than to a fixed minute, and you do not need to be home if you leave a key or a code.`
+      question: "How soon can a team get to Sherwood Park?",
+      answer: `Same-day and next-day slots depend on the schedule; call ${CITY_PROOF.edmonton.phone} and ask. Bookings are made to an arrival window (${ARRIVAL_WINDOWS[0]}, ${ARRIVAL_WINDOWS[1]} or ${ARRIVAL_WINDOWS[2]}), and you do not need to be home if you leave a key, a lockbox code or smart-lock access. If someone in the house works plant shifts and sleeps during the day, say which room and the order the house is done in changes.`
     },
     {
       question: "Do you do move-out cleaning in Sherwood Park?",
-      answer: `Yes. Move-in and move-out cleans are ${MOVE_FROM} to ${MOVE_TO} by home size before the travel fee, and the oven, fridge and cabinet interiors are covered rather than added on.`,
+      answer: `Yes. Move-in and move-out cleans are ${MOVE_FROM} to ${MOVE_TO} by home size for an apartment or condo, before GST and the travel fee, with a house or a pet adding its usual charge. The inside of the oven, fridge and microwave, and of every cabinet, drawer and closet, is part of that price.`,
       link: { to: "/move-out-cleaning-edmonton/", text: "Move-out cleaning for Sherwood Park and Edmonton" }
     },
     {
       question: "Do you bring your own supplies?",
-      answer: `Yes. The team arrives with all cleaning products and equipment. Eco-friendly products are ${POLICY.ecoProductsFee} extra: ${POLICY.ecoProductsHowToRequest}. If you prefer a particular product on a surface, a sealed stone counter for instance, leave it out with a note and the team uses it.`
+      answer: `Yes. The team brings all supplies and equipment to every Sherwood Park clean. Eco-friendly products are ${POLICY.ecoProductsFee} extra: ${POLICY.ecoProductsHowToRequest}. Running water is required, and vacuuming may not be possible without power.`
     },
     {
       question: "How long does a first clean in Sherwood Park take?",
       answer: `We work to a checklist, not a clock. Your Sherwood Park team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
+    },
+    {
+      question: "What happens if something is missed?",
+      answer: `Tell us within 24 hours and the team comes back to your Sherwood Park home to re-clean what was missed, at no charge. Photos help but are not required.`
+    },
+    {
+      question: "What is not part of a Sherwood Park clean?",
+      answer: `Lifting anything over 25 lb, outdoor work including exterior windows, and anything beyond a 3-step ladder are not included. Neither are garages and patios, carpet steam cleaning and upholstery, laundry and dishes, or litter boxes and animal waste. Heavy scrubbing of walls and doors is the wall-washing package, which is booked together with a clean.`
     }
   ];
   const faqJsonLd = {
@@ -205,7 +215,7 @@ export default function SherwoodPark() {
                 Professional House Cleaning in Sherwood Park
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                House cleaning in Sherwood Park, rated {RATING_CLAIM}. Standard cleans from {STANDARD_FROM}, deep cleans from {DEEP_FROM}, flat by home size, from Broadmoor Lake Park to Millennium Place and across the hamlet.
+                A standard clean in Sherwood Park is {STANDARD_FROM} for a one-bedroom apartment or condo, before GST and the {TRAVEL_FEE} travel fee that applies outside Edmonton city limits; bigger homes, houses and pets cost more. The Edmonton branch that covers the hamlet is rated {RATING_CLAIM} across {CITY_PROOF.edmonton.googleReviewCount} reviews.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -220,8 +230,8 @@ export default function SherwoodPark() {
               <div className="flex flex-wrap justify-center lg:justify-start gap-6">
                 {[
                   { icon: CheckCircle2, text: "Pay After Your Clean" },
-                  { icon: CalendarCheck, text: "Flexible Scheduling Available" },
-                  { icon: Award, text: "100% Satisfaction Guarantee" },
+                  { icon: CalendarCheck, text: "Open 7 Days a Week" },
+                  { icon: Award, text: "24-Hour Re-Clean Guarantee" },
                 ].map((badge, i) => (
                   <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                     <badge.icon className="w-4 h-4 text-accent" />
@@ -233,7 +243,7 @@ export default function SherwoodPark() {
             <div className="flex-shrink-0 w-full lg:w-[500px]">
               <img width={1024} height={672}
                 src={sherwoodParkHome}
-                alt="A suburban home in Sherwood Park, Alberta"
+                alt="A two-storey house with an attached garage and a landscaped front lawn"
                 className="rounded-2xl shadow-2xl w-full h-auto object-cover"
               loading="eager"
                   {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
@@ -242,35 +252,30 @@ export default function SherwoodPark() {
         </div>
       </section>
 
-      {/* About the Neighbourhood */}
+      {/* Worked price example. Replaces the landmark tour and the "Around
+          Sherwood Park" attractions box, neither of which was in the local note. */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="max-w-4xl mx-auto">
-              <span className="text-primary text-sm font-semibold tracking-wider uppercase">About the Neighbourhood</span>
+              <span className="text-primary text-sm font-semibold tracking-wider uppercase">Worked example</span>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                House cleaning in Sherwood Park
+                Sherwood Park house cleaning, priced line by line
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>
-                  Sherwood Park is a hamlet in Strathcona County, just east of Edmonton, with Refinery Row on its west edge. We clean homes across it, from{" "}
-                  <a href="https://www.google.com/maps/place/Broadmoor+Lake+Park,+Sherwood+Park,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Broadmoor Lake Park</a>{" "}
-                  and{" "}
-                  <a href="https://www.google.com/maps/place/Millennium+Place,+Sherwood+Park,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Millennium Place</a>{" "}
-                  to{" "}
-                  <a href="https://www.google.com/maps/place/Sherwood+Park+Mall,+Sherwood+Park,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Sherwood Park Mall</a>{" "}
-                  and{" "}
-                  <a href="https://www.google.com/maps/place/Heritage+Hills+Park,+Sherwood+Park,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Heritage Hills Park</a>,
-                  and in Summerwood, Emerald Hills and Lakeland Ridge.
+                  Say the home is a three-bedroom two-storey house in Sherwood Park, with two and a half bathrooms and no pets, booked for a deep clean. The deep clean for that size is {EXAMPLE_TIER.price} as an apartment or condo, the travel fee is {TRAVEL_FEE} and a two-storey house adds {HOME_TYPE.twoStorey}, so the quote comes to {EXAMPLE_PRICE} before 5% GST. A dog or a cat in the house would put the pet charge of {PET_FEE} on each visit as well.
                 </p>
                 <p>
-                  The crews come off the same schedule as our{" "}
-                  <Link to="/" className="text-primary underline underline-offset-2 font-medium">Edmonton house cleaning</Link>{" "}
-                  and work to the same checklist, with the travel fee added for a Sherwood Park address.
+                  The deep clean is the standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers. Book a standard clean instead and the same house is quoted from the standard rate for its size, with the same surcharge and travel fee.
                 </p>
                 <p>
-                  Hosts in Sherwood Park with a basement suite or a whole-home listing can book turnovers as{" "}
-                  <Link to="/edmonton/airbnb-cleaning/" className="text-primary underline underline-offset-2 font-medium">Airbnb cleaning in Edmonton</Link>; the same travel fee applies.
+                  Size and home type set the rate, and a clean that runs long costs the same. The figure moves for more bathrooms than the table assumes, a larger home type, a pet or an add-on. When a home needs substantially more work than was described, such as heavy build-up or far more glass or cabinetry, the team says what it found and sets out the options before carrying on.
+                </p>
+                <p>
+                  Sherwood Park pays the travel fee because it is outside Edmonton city limits; a post-construction booking carries {PC_TRAVEL_FEE} instead. Inside the city there is no trip fee, and the rest of the quote is worked out the same way as for{" "}
+                  <Link to="/" className="text-primary underline underline-offset-2 font-medium">Edmonton house cleaning</Link>. A basement suite or a whole home let to short-term guests is booked as{" "}
+                  <Link to="/edmonton/airbnb-cleaning/" className="text-primary underline underline-offset-2 font-medium">Airbnb cleaning in Edmonton</Link>, charged by the hour.
                 </p>
               </div>
             </div>
@@ -278,17 +283,22 @@ export default function SherwoodPark() {
         </div>
       </section>
 
-      {/* Things To Do */}
+      {/* Move-out cleaning in the town */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="max-w-4xl mx-auto">
-              <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Life</span>
+              <span className="text-primary text-sm font-semibold tracking-wider uppercase">Moving</span>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                Around Sherwood Park
+                Move-out cleaning in Sherwood Park
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
-                <p>Strathcona Science Provincial Park has trails and lakes. The Strathcona County Museum and Archives covers the county's pioneer history. Festival Place hosts concerts, theatre and dance.</p>
+                <p>Leaving a Sherwood Park rental, or taking the keys to a house someone else has lived in, calls for the move-in or move-out clean. Beyond the standard rooms it goes inside the oven, fridge and microwave, and inside every cabinet, drawer and closet, at a flat rate by home size plus the same travel fee as any Sherwood Park booking.</p>
+                <p>Alberta's Residential Tenancies Act has the landlord complete a move-out inspection report with the tenant, and it requires the security deposit to be returned within 10 days after the tenant moves out. Whether any of the deposit is kept is for the landlord to decide, and we do not promise it comes back.</p>
+                <p>
+                  The clean goes furthest in empty rooms: clear counters and floors get cleaned, and cluttered ones get worked around. Anything over 25 lb stays where it is, and garages, patios and exterior windows sit outside every checklist. Sherwood Park moves follow{" "}
+                  <Link to="/move-out-cleaning-edmonton/" className="text-primary underline underline-offset-2 font-medium">the move-out checklist for Edmonton homes</Link>.
+                </p>
               </div>
             </div>
           </AnimatedSection>
@@ -329,7 +339,7 @@ export default function SherwoodPark() {
                 Cleaning Services for Sherwood Park Homes
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                Five services, each with a flat rate by home size. See{" "}
+                Standard, deep and move-out cleans have one flat rate per home size, post-construction goes by square footage, and wall washing is added to a clean. See{" "}
                 <Link to="/services/" className="text-primary underline underline-offset-2 font-medium">all Edmonton cleaning services and prices</Link>{" "}
                 for the add-ons and what each visit includes.
               </p>
@@ -356,13 +366,13 @@ export default function SherwoodPark() {
                 Sherwood Park house cleaners you rate after every visit
               </h2>
               <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                The rating you leave after a clean decides who comes back. Before you book,{" "}
+                The ratings customers leave after each clean decide who we keep sending. Before you book,{" "}
                 <Link to="/reviews/" className="text-white underline underline-offset-2 font-medium">read the reviews</Link>.
               </p>
             </div>
           </AnimatedSection>
           <AnimatedSection>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
               {whyUsItems.map((item, i) => (
                 <WhyUsCard key={i} {...item} />
               ))}
@@ -380,26 +390,18 @@ export default function SherwoodPark() {
               Cleaning services in Sherwood Park and the towns around Edmonton
             </h2>
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Near Sherwood Park, the other communities we clean from the Edmonton office are{" "}
+              Sherwood Park is one of nine communities outside the city that the Edmonton office cleans. The same office is also behind the{" "}
               <Link to="/cleaning-services-st-albert/" className="text-primary underline underline-offset-2 font-medium">St. Albert house cleaners</Link>{" "}
-              to the northwest,{" "}
+              and the{" "}
+              <Link to="/cleaning-services-spruce-grove/" className="text-primary underline underline-offset-2 font-medium">Spruce Grove house cleaners</Link>, and it does{" "}
               <Link to="/cleaning-services-morinville/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Morinville</Link>{" "}
-              beyond it,{" "}
-              <Link to="/cleaning-services-spruce-grove/" className="text-primary underline underline-offset-2 font-medium">Spruce Grove house cleaners</Link>{" "}
-              on the west side and{" "}
+              and{" "}
               <Link to="/cleaning-services-leduc/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Leduc</Link>{" "}
-              by the airport. Each is outside city limits, so each carries the same {TRAVEL_FEE} travel fee as Sherwood Park.
+              at the same flat rates. Each of those towns is outside city limits, so each carries the same {TRAVEL_FEE} travel fee as Sherwood Park.
             </p>
-            <CoverageChips areas={nearbyAreas} variant="compact" />
             <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
               View All Service Areas →
             </Link>
-            <p className="mt-6 text-sm text-muted-foreground">
-              Run a business in Sherwood Park? We also handle{" "}
-              <Link to="/commercial-cleaning/" className="text-primary underline underline-offset-2 font-medium">
-                commercial and office cleaning across the Edmonton region
-              </Link>.
-            </p>
 
           </AnimatedSection>
         </div>
@@ -409,9 +411,9 @@ export default function SherwoodPark() {
 
       <LocalMarketNote
         eyebrow="On the ground"
-        heading="A hamlet of just over seventy-two thousand"
+        heading="A hamlet the province treats as a city"
         paragraphs={[
-          "Sherwood Park is officially a hamlet, which is a strange label for just over seventy-two thousand people at the 2021 census — the province recognises its urban service area as the equivalent of a city, and Strathcona County runs it. It began in 1953 as Campbelltown and took its present name three years later, so the oldest streets are now seventy years old while the outer edges are still being finished. Both ends turn up on the same week's schedule.",
+          "Sherwood Park is officially a hamlet, though the province recognises its urban service area as the equivalent of a city, and Strathcona County runs it. The oldest streets are now seventy years old while the outer edges are still being finished. Both ends turn up on the same week's schedule.",
           "Refinery Row lies immediately west, and the shift patterns that come with it are the thing worth telling us at booking. Plant rotations put people asleep during the day, and the room order is easy to change when we know. It costs nothing to work outward from the far end of the house instead of the near one.",
         ]}
       />
@@ -457,7 +459,7 @@ export default function SherwoodPark() {
               See your Sherwood Park price before you book
             </h2>
             <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
-              See your flat rate before you book. Nothing is charged until the clean is done.
+              Nothing is charged at booking, and the card is charged once the clean is complete.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>

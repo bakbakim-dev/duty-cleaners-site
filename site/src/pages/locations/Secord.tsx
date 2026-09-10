@@ -82,16 +82,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Secord" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Secord" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Secord" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Secord" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared properly after renos and handovers.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Secord" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust and debris cleared after a renovation or a new build in Secord.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Secord" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Secord" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Secord" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit before GST for a one-bedroom apartment or condo, with any pet or home-type charge added. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Secord" },
 ];
 
 const whyUsItems = [
@@ -133,15 +133,15 @@ export default function Secord() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Secord?",
-      answer: `The full service menu is available here:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `Duty Cleaners books all of these for homes in Secord:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
-      answer: `Yes, recurring visits cost less every time:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
+      answer: `Yes. Recurring visits of the standard clean in Secord are discounted:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -163,25 +163,25 @@ export default function Secord() {
     <>
       <Helmet>
         <title>Secord, Edmonton House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Secord, Edmonton. Trusted local cleaners serving Secord homes with reliable, customer-rated cleaning service." />
+        <meta name="description" content="Secord house cleaning in west Edmonton, where homes on the 231 Street edge face open Parkland County land and take the wind unbroken." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Secord, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/secord-edmonton",
   areaServed: "Secord, Edmonton, AB",
-  description: "Professional house cleaning in Secord, Edmonton. Trusted local cleaners serving Secord homes with reliable, customer-rated cleaning service.",
+  description: "Secord house cleaning in west Edmonton, where homes on the 231 Street edge face open Parkland County land and take the wind unbroken.",
   geo: { latitude: "53.531", longitude: "-113.681" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/secord-edmonton/" />
         <meta property="og:title" content="Secord, Edmonton House Cleaning | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Secord, Edmonton. Trusted local cleaners serving Secord homes with reliable, customer-rated cleaning service." />
+        <meta property="og:description" content="Secord house cleaning in west Edmonton, where homes on the 231 Street edge face open Parkland County land and take the wind unbroken." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/secord-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Secord, Edmonton House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Secord, Edmonton. Trusted local cleaners serving Secord homes with reliable, customer-rated cleaning service." />
+        <meta name="twitter:description" content="Secord house cleaning in west Edmonton, where homes on the 231 Street edge face open Parkland County land and take the wind unbroken." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -207,7 +207,7 @@ export default function Secord() {
                   Professional House Cleaning in Secord
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  From brand-new estate homes to family duplexes along Webber Greens Drive — we keep west Edmonton's newest community looking just-moved-in fresh.
+                  Building in Secord has not finished, and lots on its newer streets still meet gravel and clay. The Edmonton team cleans homes here at a flat price by home size, before GST.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -235,7 +235,7 @@ export default function Secord() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
                   src={heroImg}
-                  alt="Professional cleaner working in a Secord, Edmonton home"
+                  alt="A cleaner wiping a wall with a yellow cloth beside a large black-framed window in a living room"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   width={1024}
                   height={1024}
@@ -257,7 +257,7 @@ export default function Secord() {
                   Cleaning Services for Secord Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Everything from weekly upkeep to full move-out cleans.
+                  Secord homes can book each of these services on its own, except wall washing, which is booked together with a clean.
                 </p>
               </div>
             </AnimatedSection>
@@ -300,7 +300,7 @@ export default function Secord() {
                   Why Secord Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Reliable, detail-first cleaning families count on.
+                  Each cleaner who comes to Secord was reference-checked before a first job and is rated by the customer after every visit.
                 </p>
               </div>
             </AnimatedSection>
@@ -322,7 +322,7 @@ export default function Secord() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Secord Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Serving west Edmonton's newer family communities every week.
+                  Secord runs from Winterburn Road (215 Street) on the east to the city boundary at 231 Street, with Stony Plain Road along the north edge.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -341,12 +341,12 @@ export default function Secord() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Secord</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Edmonton-area neighbourhoods we clean</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    Glastonbury and Secord are both on the Edmonton branch's list, which names 80 Edmonton neighbourhoods and nine communities outside the city.
                   </p>
                 </div>
-                <CoverageChips areas={["Webber Greens Drive", "Secord Park", "Anthony Henday Drive", "Lewis Estates Town Centre", "215 Street", "Stony Plain Road", "The Hamptons", "Glastonbury"]} variant="compact" />
+                <CoverageChips areas={["Glastonbury"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -361,8 +361,8 @@ export default function Secord() {
         eyebrow="From the route"
         heading="Parkland County starts across the road"
         paragraphs={[
-          "Drive west far enough here and you reach 231 Street, which is not merely a road but the City of Edmonton boundary. Parkland County begins on the far side and wraps the southwest and northwest corners too. Houses along that edge face open land rather than another row of rooftops, so wind arrives unbroken. On the western streets the outward-facing windows and their sills are what show it first, and they set the order of the visit.",
-          "The north edge is Stony Plain Road carrying Highway 16A — a through route to Stony Plain rather than a residential street — and Winterburn Industrial Area West sits directly across it. Winterburn Road, 215 Street, closes the east side. Secord's structure plan was adopted in 2007 and building has not finished, so lots on the newer streets still meet gravel and clay. Most of the real work is at the doors and on the glass that faces the open side.",
+          "Drive west far enough here and you reach 231 Street, which is the City of Edmonton boundary. Parkland County begins on the far side and wraps the southwest and northwest corners too. Houses along that edge face open land rather than another row of rooftops, so wind arrives unbroken. On the western streets the inside sills of the windows facing that land are what show it first, and they set the order of the visit.",
+          "The north edge is Stony Plain Road carrying Highway 16A, a through route to Stony Plain rather than a residential street. Winterburn Industrial Area West sits directly across that road. Winterburn Road, 215 Street, closes the east side. Secord's structure plan was adopted in 2007 and building has not finished, so lots on the newer streets still meet gravel and clay. Most of the work is at the doors and on the inside sills of the windows that face the open side.",
         ]}
       />
 

@@ -60,9 +60,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Cityscape" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Cityscape" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Cityscape" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Cityscape" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Cityscape.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Cityscape" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or a new build, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Cityscape" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Cityscape" },
 ];
 
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Skyview Ranch","Redstone","Cornerstone","Country Hills","Coral Springs","Saddle Ridge"];
+const nearbyAreas = ["Skyview Ranch","Saddle Ridge"];
 
 const faqs = [
   {
@@ -104,7 +104,7 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Cityscape?",
-    answer: `The full service menu is available here:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `Duty Cleaners offers these services in Cityscape:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
   },
   {
     question: "Do you offer discounts?",
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function Cityscape() {
     <>
       <Helmet>
         <title>House Cleaners in Cityscape, Calgary | Duty Cleaners</title>
-        <meta name="description" content="House cleaning in Cityscape, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
+        <meta name="description" content="Cityscape house cleaning for 2010s homes that still shed drywall fines from vents and show every paw mark on dark laminate by mid-week." />
         <meta property="og:title" content="House Cleaners in Cityscape, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Cityscape, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning in Cityscape, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
-        <meta property="og:description" content="House cleaning in Cityscape, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
+        <meta name="twitter:description" content="Cityscape house cleaning for 2010s homes that still shed drywall fines from vents and show every paw mark on dark laminate by mid-week." />
+        <meta property="og:description" content="Cityscape house cleaning for 2010s homes that still shed drywall fines from vents and show every paw mark on dark laminate by mid-week." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/cityscape/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/cityscape/" />
@@ -183,7 +183,7 @@ export default function Cityscape() {
                 Professional House Cleaning in Cityscape
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Trusted house cleaning services for one of Calgary's modern northeast communities — bringing a calm, spotless home within reach.
+                Cityscape's homes went up in the 2010s and still behave like new builds, with drywall fines resurfacing from vents and closet shelving long after possession.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function Cityscape() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Cityscape Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Cityscape homes get every service they need.
+                  Each service is priced flat by home size before GST. Post-construction cleaning for a Cityscape home fresh from the builder is priced by square footage instead.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function Cityscape() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Cityscape Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Cityscape and the surrounding NE Calgary communities.
+                    Cityscape runs between Métis Trail on the west and Airport Trail on the south. It is inside Calgary city limits, so no travel fee is added to the quote.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function Cityscape() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={768} src={cleanHomeImg} alt="Spotless Cityscape Calgary home cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1024} height={768} src={cleanHomeImg} alt="Bright living room with a cream sectional sofa, a glass coffee table and hardwood floors" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Calm, Spotless Cityscape Home — Every Visit</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">What to expect</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">High Great-Room Ledges in Cityscape</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Our vetted cleaners treat your home with care, attention, and the same standards we'd want in our own. Walk in to fresh air, gleaming surfaces, and that quiet feeling of <em>everything in its place</em>.
+                    The high great-room ledges in Cityscape homes gather dust out of arm's reach. The team works from a ladder of three steps at most, so a ledge higher than that is not part of the clean. In a home with pets, the compulsory pet charge shows on the quote before you book.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["You do not need to be home","A one-hour arrival window, booked ahead","Nothing charged until the clean is done"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,9 +311,9 @@ export default function Cityscape() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Cityscape and the communities around it.{" "}
+                  Skyview Ranch and Saddle Ridge are two more of the 66 Calgary neighbourhoods on the Calgary branch's list.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -330,7 +330,7 @@ export default function Cityscape() {
         heading="Cityscape's new-build realities"
         paragraphs={[
           "Cityscape is 2010s construction, and its homes still behave like new builds: drywall fines resurface from vents and closet shelving long after possession, high great-room ledges gather dust out of arm's reach, and dark laminate popular in these years shows every footprint and paw mark by mid-week.",
-          "The community's west edge is Métis Trail and its south edge is Airport Trail, with the airport lands directly across it, so arterial dust rides the wind year-round, and ongoing construction on neighbouring phases keeps site dust in circulation. Window tracks on the development-facing side fill fastest and tell you which way the current build is., and ongoing construction on neighbouring phases keeps site dust in circulation. Window tracks on the development-facing side fill fastest and tell you which way the current build is.",
+          "The community's west edge is Métis Trail and its south edge is Airport Trail, with the airport lands directly across it, so arterial dust rides the wind year-round, and ongoing construction on neighbouring phases keeps site dust in circulation. Window tracks on the development-facing side fill fastest and tell you which way the current build is.",
         ]}
       />
 
@@ -347,7 +347,7 @@ export default function Cityscape() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Cityscape Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>

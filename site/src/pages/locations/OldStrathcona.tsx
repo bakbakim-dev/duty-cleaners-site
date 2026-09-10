@@ -6,7 +6,6 @@ import {
 import oldStrathconaCleanerImg from "@/assets/gallery/old-strathcona-cleaner-home.webp";
 import { buildLocationSchema } from "@/lib/location-schema";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -73,7 +72,7 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Old Strathcona" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Old Strathcona" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Old Strathcona" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Old Strathcona" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Drywall and construction dust after a renovation or a new build in the area.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Old Strathcona" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Old Strathcona" },
@@ -82,7 +81,7 @@ const services = [
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Old Strathcona" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment or condo, before GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Old Strathcona" },
 ];
 
 const whyUsItems = [
@@ -132,7 +131,7 @@ export default function OldStrathcona() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -154,22 +153,22 @@ export default function OldStrathcona() {
     <>
       <Helmet>
         <title>House Cleaning Old Strathcona Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Old Strathcona, Edmonton. Serving the heritage homes of the Whyte Avenue district. Pay after your clean." />
+        <meta name="description" content="House cleaning for the pre-1913 houses off Whyte Avenue in Old Strathcona, where soft floors get a dry sweep before anything wet goes down." />
         <script type="application/ld+json">{JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Old Strathcona, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/old-strathcona",
   areaServed: "Old Strathcona, Edmonton, AB",
-  description: "Professional house cleaning in Old Strathcona, Edmonton. Serving the heritage homes of the Whyte Avenue district. Pay after your clean.",
+  description: "House cleaning for the pre-1913 houses off Whyte Avenue in Old Strathcona, where soft floors get a dry sweep before anything wet goes down.",
 }))}</script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/old-strathcona/" />
         <meta property="og:title" content="House Cleaning Old Strathcona Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Old Strathcona, Edmonton. Serving the heritage homes of the Whyte Avenue district. Pay after your clean." />
+        <meta property="og:description" content="House cleaning for the pre-1913 houses off Whyte Avenue in Old Strathcona, where soft floors get a dry sweep before anything wet goes down." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/old-strathcona/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Old Strathcona Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Old Strathcona, Edmonton. Serving the heritage homes of the Whyte Avenue district. Pay after your clean." />
+        <meta name="twitter:description" content="House cleaning for the pre-1913 houses off Whyte Avenue in Old Strathcona, where soft floors get a dry sweep before anything wet goes down." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -195,7 +194,7 @@ export default function OldStrathcona() {
                   House Cleaning in Old Strathcona
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Professional cleaning for Edmonton's iconic cultural district. From heritage homes near Whyte Avenue to cozy apartments by the Farmers' Market — enjoy a spotless space in this vibrant community.
+                  The oldest houses off Whyte Avenue went up before Strathcona amalgamated with Edmonton in 1912. Their softwood floors get a dry sweep before anything wet goes down.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -221,7 +220,7 @@ export default function OldStrathcona() {
               <div className="flex-shrink-0 w-full max-w-[500px]">
                 <img width={896} height={672}
                   src={oldStrathconaCleanerImg}
-                  alt="Professional cleaner tidying a stylish loft-style home in Old Strathcona, Edmonton"
+                  alt="Professional cleaner tidying a loft-style home"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                 loading="eager"
                   {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
@@ -238,7 +237,7 @@ export default function OldStrathcona() {
               <div className="text-center mb-14">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Old Strathcona Homes</h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto text-lg">Upkeep, deep cleans, move-outs: the whole toolkit in one place.</p>
+                <p className="text-muted-foreground max-w-2xl mx-auto text-lg">Each service carries a flat rate, from a one-time standard clean to a recurring schedule.</p>
               </div>
             </AnimatedSection>
             <AnimatedSection>
@@ -275,7 +274,7 @@ export default function OldStrathcona() {
               <div className="text-center mb-14">
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Old Strathcona Residents Choose Duty Cleaners</h2>
-                <p className="text-white/90 max-w-2xl mx-auto text-lg">Trusted by Old Strathcona families for reliable, thorough cleaning.</p>
+                <p className="text-white/90 max-w-2xl mx-auto text-lg">Every cleaner sent to Old Strathcona is reference-checked first and rated by the customer after each visit, and anything missed is re-cleaned at no charge if you tell us within 24 hours.</p>
               </div>
             </AnimatedSection>
             <AnimatedSection>
@@ -293,10 +292,9 @@ export default function OldStrathcona() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Old Strathcona</h2>
-                  <p className="text-muted-foreground text-lg max-w-2xl mx-auto">We're in and around the neighbourhood daily, so we know the area well.</p>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Old Strathcona and the Edmonton Service Area</h2>
+                  <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Old Strathcona is one of 80 Edmonton neighbourhoods the Edmonton branch cleans. The branch also serves nine communities outside the city, St. Albert and Sherwood Park among them.</p>
                 </div>
-                <CoverageChips areas={["Whyte Avenue", "Old Strathcona Farmers' Market", "Walterdale Bridge", "Arts Barns", "River Valley Trails", "Garneau Theatre"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">View All Service Areas →</Link>
                 </div>
@@ -310,7 +308,7 @@ export default function OldStrathcona() {
         heading="Pre-1913 houses off Whyte Avenue"
         paragraphs={[
           "The oldest houses on the blocks off Whyte Avenue went up before Strathcona amalgamated with Edmonton in 1912, in the boom that began when the Calgary and Edmonton Railway arrived in 1891. Plaster walls and softwood floors do not behave like drywall and engineered plank. Plaster takes a damp cloth rather than a wet one, and a floor that soft is scratched by whatever gets tracked across it, not by the mop.",
-          "These are also the blocks that host the Fringe each August — the oldest and largest festival of its kind in North America, staged in and around Old Strathcona. Residents near the venues spend that stretch with visitors coming and going off the street, and a hundred-year-old floor registers every bit of it. Mats at each door and a dry sweep before anything wet goes down are worth more here than any product.",
+          "The Fringe festival is staged in and around these blocks each August. Residents near the venues spend that stretch with visitors coming and going off the street, and a hundred-year-old floor registers every bit of it. Mats at each door and a dry sweep before anything wet goes down are worth more here than any product.",
         ]}
       />
 

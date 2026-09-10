@@ -82,16 +82,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Grovenor" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Grovenor" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Grovenor" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Grovenor" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Post-renovation dust and debris, professionally removed.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Grovenor" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Grovenor" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris cleared after a renovation, priced by square footage.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Grovenor" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, booked together with a clean.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Grovenor" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Grovenor" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment or condo, before GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Grovenor" },
 ];
 
 const whyUsItems = [
@@ -133,7 +133,7 @@ export default function Grovenor() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Grovenor?",
-      answer: `Households here can book any of the following:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `The Edmonton branch offers these services in Grovenor:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
@@ -141,7 +141,7 @@ export default function Grovenor() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `In Grovenor, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `In Grovenor, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -163,25 +163,25 @@ export default function Grovenor() {
     <>
       <Helmet>
         <title>Grovenor, Edmonton House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Grovenor, Edmonton. Trusted local cleaners serving Grovenor homes with reliable, customer-rated cleaning service." />
+        <meta name="description" content="Cement dust from the Stony Plain Road LRT worksite settles on sills and window tracks in the Grovenor, Edmonton blocks nearest the road." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Grovenor, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/grovenor",
   areaServed: "Grovenor, Edmonton, AB",
-  description: "Professional house cleaning in Grovenor, Edmonton. Trusted local cleaners serving Grovenor homes with reliable, customer-rated cleaning service.",
+  description: "Cement dust from the Stony Plain Road LRT worksite settles on sills and window tracks in the Grovenor, Edmonton blocks nearest the road.",
   geo: { latitude: "53.543", longitude: "-113.553" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/grovenor/" />
         <meta property="og:title" content="Grovenor, Edmonton House Cleaning | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Grovenor, Edmonton. Trusted local cleaners serving Grovenor homes with reliable, customer-rated cleaning service." />
+        <meta property="og:description" content="Cement dust from the Stony Plain Road LRT worksite settles on sills and window tracks in the Grovenor, Edmonton blocks nearest the road." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/grovenor/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Grovenor, Edmonton House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Grovenor, Edmonton. Trusted local cleaners serving Grovenor homes with reliable, customer-rated cleaning service." />
+        <meta name="twitter:description" content="Cement dust from the Stony Plain Road LRT worksite settles on sills and window tracks in the Grovenor, Edmonton blocks nearest the road." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -207,7 +207,7 @@ export default function Grovenor() {
                   Professional House Cleaning in Grovenor
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  From the heritage character homes along 102 Avenue to the leafy walk-ups near Stony Plain Road — we keep Grovenor homes shining with hometown care.
+                  Close to nine in ten Grovenor homes are single detached houses, most of them built before 1980, and at the south end the streets run down toward MacKinnon Ravine. Duty Cleaners sends Edmonton teams here at a price set by home size and shown before you book.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -235,7 +235,7 @@ export default function Grovenor() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
                   src={heroImg}
-                  alt="Professional cleaner working in a Grovenor, Edmonton home"
+                  alt="Cleaner with a flat mop on a hardwood living-room floor beside a fireplace"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   width={1024}
                   height={1024}
@@ -257,7 +257,7 @@ export default function Grovenor() {
                   Cleaning Services for Grovenor Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
+                  Pick a service for a Grovenor house, see the flat price for its size before 5% GST, and pay once the clean is complete.
                 </p>
               </div>
             </AnimatedSection>
@@ -300,7 +300,7 @@ export default function Grovenor() {
                   Why Grovenor Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Reliable, detail-first cleaning families count on.
+                  How the Edmonton branch decides who cleans a Grovenor home, and what backs the work.
                 </p>
               </div>
             </AnimatedSection>
@@ -322,7 +322,7 @@ export default function Grovenor() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Grovenor Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Steps from Stony Plain Road and Coronation Park — we're a familiar face in the neighbourhood.
+                  Grovenor sits on both sides of the Stony Plain Road LRT worksite and inside Edmonton city limits, so no trip fee applies.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -341,12 +341,12 @@ export default function Grovenor() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Grovenor</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Edmonton-area neighbourhoods we clean</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    Our Edmonton branch cleans 80 neighbourhoods across the city, including these two near Grovenor.
                   </p>
                 </div>
-                <CoverageChips areas={["Grovenor Community League", "Stony Plain Road", "Coronation Park", "142 Street", "102 Avenue", "Crestwood", "Glenora", "Westmount"]} variant="compact" />
+                <CoverageChips areas={["Glenora", "Westmount"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -361,8 +361,8 @@ export default function Grovenor() {
         eyebrow="From the route"
         heading="Stony Plain Road is a worksite"
         paragraphs={[
-          "Stony Plain Road splits Grovenor in two, and it has been an active LRT worksite since construction started in 2022 - the Valley Line West stop going in at 142 Street carries the neighbourhood's own name, and the line is expected to be finished in 2028. Blocks nearest the road get the consequences: cement dust on sills and window tracks, plus grit walked in off detoured sidewalks.",
-          "At the south end the streets run down toward MacKinnon Ravine, out of the corridor entirely and into old trees. Close to nine in ten homes here are single detached, most of them up before 1980, so the yards are mature and what comes through the door is organic - leaf litter in autumn, ravine mud through the spring melt, seed and pollen in early summer. That is a mudroom-and-entry problem, not a glass one.",
+          "Stony Plain Road splits Grovenor in two, and it has been an active LRT worksite since construction started in 2022. The Valley Line West stop going in at 142 Street carries the neighbourhood's own name, and the line is expected to be finished in 2028. Blocks nearest the road get the consequences: cement dust on sills and window tracks, plus grit walked in off detoured sidewalks.",
+          "At the south end the streets run down toward MacKinnon Ravine, out of the corridor entirely and into old trees. Close to nine in ten homes here are single detached, most of them up before 1980, so the yards are mature and what comes through the door is organic: leaf litter in autumn, ravine mud through the spring melt, seed and pollen in early summer. That is a mudroom-and-entry problem, not a glass one.",
         ]}
       />
 

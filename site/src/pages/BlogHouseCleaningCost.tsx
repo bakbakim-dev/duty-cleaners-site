@@ -32,37 +32,33 @@ import deepCleanImage from "@/assets/blog/deep-cleaning-kitchen.webp";
 const POST_PATH = "/how-much-does-a-house-cleaning-cost";
 
 /**
- * Market ranges for Canadian cities, gathered from publicly advertised rates.
- * These are the only hand-typed dollar figures on the page, and
- * published-prices.test.ts allows them because they describe the market, not
- * our price list. The same test checks each range still brackets our own
- * tiers end to end, so a market figure can never anchor a reader below what
- * the quote will ask.
+ * What each service covers and how it is priced. These cards used to carry
+ * hand-typed market ranges for Canadian cities. The content prompt
+ * (DUTY-CLEANERS-CONTENT-PROMPT.md) allows no figure that is not in its FACTS
+ * block, and those ranges had no source on file, so the page now states only
+ * Duty Cleaners' own prices, each derived from bk-config. The scope lines come
+ * from SERVICES in data/pricing.ts and the deep package row in bk-config.
  */
 const cleaningTypes = [
   {
-    title: "General Cleanings",
-    description: "Surfaces, floors, kitchen and bathrooms, with appliance exteriors wiped. Most companies price it flat by bedroom and bathroom count; a few still quote by square footage.",
-    priceRange: "$150 - $500"
+    title: "Standard clean",
+    description: "Kitchen surfaces and appliance exteriors, the bathrooms, dusting of reachable surfaces, and every floor vacuumed and mopped. Ours is priced flat by bedrooms, bathrooms and home type.",
+    pricedBy: "Flat by home size"
   },
   {
-    title: "Deep Cleanings",
-    description: "A general clean plus the detail work: baseboards, doors, switches, vents and fan blades. The inside of the oven and fridge is usually an add-on rather than part of the package.",
-    // Both ends bracket our own published deep range ($255-$485). A market
-    // range that stops below what we charge anchors the reader low and then
-    // surprises them at the quote, which is what "$170 - $400" did.
-    priceRange: "$200 - $550"
+    title: "Deep clean",
+    description: "A standard clean plus the deep package: baseboards, doors, light switches, wall outlets and vent covers. The inside of the oven and fridge are add-ons on top of the package.",
+    pricedBy: "Flat by home size"
   },
   {
-    title: "Move-in/Move-out Cleanings",
-    description: "Cleaned empty, to the standard an inspection looks for: the deep list plus the inside of the oven, fridge, cabinets, drawers and closets. Wall washing and interior windows are add-ons, at ours and at most companies.",
-    // Ours run $284-$539, so the ceiling has to clear $539.
-    priceRange: "$130 - $600"
+    title: "Move-in or move-out clean",
+    description: "Done once the home is empty: the inside of cabinets, drawers, closets, the oven and the fridge, window tracks and reachable interior glass, and walls spot-cleaned. Full wall washing is a separate add-on.",
+    pricedBy: "Flat by home size"
   },
   {
-    title: "Post-Construction Cleanings",
-    description: "Dust from a renovation reaches every surface in the house, so this is priced by floor area rather than bedroom count.",
-    priceRange: "$0.10 - $0.50/sq ft"
+    title: "Post-construction clean",
+    description: "Fine dust from a renovation settles on every surface in the house, so this clean is priced by square footage rather than bedroom count.",
+    pricedBy: "By square footage"
   }
 ];
 
@@ -80,17 +76,23 @@ const PET_FEE = formatPrice(addOnFromPrice("standard", "must-choose-if-you-have-
 const OVEN_FEE = formatPrice(addOnFromPrice("standard", "inside-oven") ?? 0);
 const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
 const HOURLY = formatPrice(HOURLY_RATE);
+/** The largest home-type surcharge (a two-storey house), over the apartment or condo price. */
+const HOUSE_MAX = formatPrice(Math.max(0, ...homeTypeOptions("standard").map((option) => option.price)));
+
+/** The compulsory charges, named without figures, for answers that already state a price. */
+const EXTRAS_SHORT =
+  "A house rather than an apartment, a home with pets, and an address outside Edmonton or Calgary city limits each add a charge to that price.";
 
 const pricingFactors = [
   {
     icon: Home,
-    title: "Size of the home",
-    description: "Most companies price by home size: bedrooms and bathrooms, or square footage. A 2-bedroom apartment (800 sq ft) may cost ~$325 for deep cleaning, while a 4-bedroom home (2,000 sq ft) can cost $400+."
+    title: "Size and type of the home",
+    description: `Most companies price by home size, using bedrooms and bathrooms or square footage. Ours is flat by bedroom and bathroom count for an apartment or condo, and a bungalow, basement suite, townhouse or two-storey house adds up to ${HOUSE_MAX}.`
   },
   {
     icon: Users,
     title: "Bedrooms and bathrooms",
-    description: "Bathrooms are the slow rooms. Two homes with the same floor area can differ by a full price tier because one has three bathrooms and the other has one."
+    description: "Bathrooms are the slow rooms, so a home with more bathrooms moves up the price list even when its floor area is the same."
   },
   {
     icon: Clock3,
@@ -105,12 +107,12 @@ const pricingFactors = [
   {
     icon: Package,
     title: "Pets and condition",
-    description: `Hair, paw prints and nose marks add time in every room, so homes with pets are charged more; ours is ${PET_FEE} per visit. A home that has not been cleaned in months is a deep-clean job, not a standard one.`
+    description: `Hair, paw prints and nose marks add time in every room, so homes with pets are charged more. Ours is ${PET_FEE} per visit; it is compulsory, and it shows on the quote before you book. A home that has not been cleaned in months is a deep-clean job rather than a standard one.`
   },
   {
     icon: Sparkles,
     title: "Add-ons",
-    description: `Inside the oven (${OVEN_FEE} at ours), inside the fridge, inside cabinets, interior windows, blinds and wall washing are priced on top of the base clean, and each shows in the booking form before you commit.`
+    description: `Inside the oven (${OVEN_FEE} at ours), inside the fridge, inside kitchen and bathroom cabinets, interior windows, window blinds and wall washing are priced on top of the base clean, and each shows in the booking form before you commit.`
   }
 ];
 
@@ -153,45 +155,44 @@ const ongoingPrice = (tier: (typeof PRICING_TIERS)[number], frequency: string) =
 const SECTIONS = [
   {
     id: "per-hour",
-    h2: "How much does house cleaning cost per hour in Canada?",
-    q: "How much does house cleaning cost per hour in Canada?",
-    a: `Advertised hourly rates across Canadian cities run about $40 to $65 per hour per cleaner for a small home and $70 to $80 for a larger one, usually with a minimum booking. Duty Cleaners charges ${HOURLY} per cleaner per hour for hourly work, with a minimum of 3 hours for one cleaner or 2 hours for two, but most homes are priced flat by size instead, so the hourly figure only matters for partial jobs.`,
+    h2: "How much does house cleaning cost per hour?",
+    q: "How much does house cleaning cost per hour?",
+    a: `Duty Cleaners does not charge by the hour for a home clean: standard, deep and move-out cleans are flat rates by home size, so the price stays the same if a clean runs long. Airbnb and short-term rental turnovers are billed by the hour instead, at ${HOURLY} per cleaner-hour before 5% GST, with a minimum of 3 hours for one cleaner or 2 hours for two. Outside Edmonton or Calgary city limits, a home clean also carries a ${TRAVEL_FEE} travel fee.`,
   },
   {
     id: "edmonton",
     h2: "Edmonton house cleaning prices by home size",
     q: "How much does house cleaning cost in Edmonton?",
-    a: `In Edmonton a standard clean is ${STANDARD[0].price} for a 1-bedroom home and ${last(STANDARD).price} for five or more bedrooms, a deep clean ${COST_SPANS.deep}, and a move-out clean ${COST_SPANS.moveInOut}. All are flat rates before 5% GST, and the figure does not change if the clean runs long.`,
+    a: `In Edmonton a standard clean is ${STANDARD[0].price} for a 1-bedroom, 1-bathroom apartment or condo and ${last(STANDARD).price} for five or more bedrooms, a deep clean ${COST_SPANS.deep}, and a move-out clean ${COST_SPANS.moveInOut}. All are flat rates before 5% GST, and the figure does not change if the clean runs long. A bungalow, basement suite, townhouse or two-storey house adds up to ${HOUSE_MAX} over the apartment price, a home with pets adds ${PET_FEE} a visit, and an address outside Edmonton city limits adds a ${TRAVEL_FEE} travel fee.`,
   },
   {
     id: "calgary",
     h2: "Calgary house cleaning prices by home size",
     q: "How much does house cleaning cost in Calgary?",
-    a: `Calgary uses the same price list as Edmonton: ${COST_SPANS.standard} for a standard clean by bedroom count, before GST. Booked weekly, bi-weekly or every 4 weeks, the visit is discounted ${FREQUENCY_DISCOUNTS} from the second clean on. On a ${DEEPEST.label.toLowerCase()} plan that takes a 1-bedroom home from ${STANDARD[0].price} to ${ongoingPrice(PRICING_TIERS[0], DEEPEST.id)} a visit, and five or more bedrooms from ${last(STANDARD).price} to ${ongoingPrice(last(PRICING_TIERS), DEEPEST.id)}.`,
+    a: `Calgary uses the same price list as Edmonton: ${COST_SPANS.standard} for a standard clean of an apartment or condo by bedroom count, before GST. A recurring booking is discounted from the second clean on (${FREQUENCY_DISCOUNTS}), and the first clean is charged at the one-time rate. On a ${DEEPEST.label.toLowerCase()} plan that takes a 1-bedroom home from ${STANDARD[0].price} to ${ongoingPrice(PRICING_TIERS[0], DEEPEST.id)} a visit, and five or more bedrooms from ${last(STANDARD).price} to ${ongoingPrice(last(PRICING_TIERS), DEEPEST.id)}. A house rather than an apartment, a home with pets (${PET_FEE} a visit), and an address outside Calgary city limits (${TRAVEL_FEE}) each add a charge.`,
   },
   {
     id: "move-out",
     h2: "How much does a move-out clean cost?",
     q: "How much does a move-out clean cost?",
-    a: `${MOVE[0].price} for a 1-bedroom home to ${last(MOVE).price} for five or more bedrooms, before GST. That includes the inside of the oven, fridge, cabinets, drawers and closets, which are add-ons on a standard clean. Outside Edmonton or Calgary city limits a ${TRAVEL_FEE} travel fee is added.`,
+    a: `A move-in or move-out clean is ${MOVE[0].price} for a 1-bedroom apartment or condo and ${last(MOVE).price} for five or more bedrooms, before GST, in Edmonton or Calgary. That includes the inside of the oven, fridge, cabinets, drawers and closets, which are add-ons on a standard clean. ${EXTRAS_SHORT}`,
   },
   {
     id: "deep",
     h2: "How much does a deep clean cost?",
     q: "How much does a deep clean cost?",
-    a: `${COST_SPANS.deep} before GST. It is a standard clean plus the deep package, which adds ${DEEP[0].packagePrice} on a 1-bedroom and ${last(DEEP).packagePrice} on a 5-bedroom home for baseboards, doors, switches, outlets, vent covers, fan blades, and a detailed stovetop and fridge top.`,
+    a: `A deep clean is ${COST_SPANS.deep} before GST, from a 1-bedroom apartment or condo to five or more bedrooms. It is a standard clean plus the deep package, which adds ${DEEP[0].packagePrice} on a 1-bedroom and ${last(DEEP).packagePrice} on a 5-bedroom home for baseboards, doors, light switches, wall outlets and vent covers. ${EXTRAS_SHORT}`,
   },
   {
     id: "what-changes",
     h2: "What changes the price",
     q: "What changes the price of a house cleaning?",
-    a: `Home size, the service, how often you book, add-ons, pets and the address. A home with pets is ${PET_FEE} more per visit, and an address outside city limits ${TRAVEL_FEE}. Condition matters too: if a home needs substantially more work than described, the team explains what they found and your options before continuing.`,
+    a: `The price of a house cleaning moves with the size and type of the home, the service, how often you book, and any add-ons. Three charges apply whenever they fit the home: up to ${HOUSE_MAX} for a house rather than an apartment or condo, ${PET_FEE} a visit for a home with pets, and a ${TRAVEL_FEE} travel fee outside Edmonton or Calgary city limits. Condition matters too: if a home needs substantially more work than described, the team explains what it found and the options before continuing.`,
   },
 ] as const;
 
 const TITLE = "How Much Does House Cleaning Cost? | Duty Cleaners";
-const DESCRIPTION =
-  "What house cleaning costs in Canada, with real Edmonton and Calgary prices by home size for standard, deep and move-out cleans, before GST.";
+const DESCRIPTION = `Duty Cleaners prices Edmonton and Calgary house cleaning flat by size, from ${STANDARD[0].price} before GST for a 1-bedroom condo, plus any house, pet or travel fee.`;
 
 /** "2026-09-05" -> "September 5, 2026", without a timezone shifting the day. */
 const readableDate = (iso: string) => {
@@ -333,8 +334,8 @@ export default function BlogHouseCleaningCost() {
               </h1>
 
               <p className="text-xl text-muted-foreground mb-8">
-                Per hour and per visit, across Canada and at Duty Cleaners in Edmonton and Calgary,
-                with the real price tables by bedroom count for standard, deep and move-out cleans.
+                This guide sets out Duty Cleaners' flat prices in Edmonton and Calgary by bedroom
+                count for standard, deep and move-out cleans, and the extra charges that can apply.
               </p>
 
               <div className="aspect-video rounded-2xl overflow-hidden mb-12">
@@ -361,21 +362,23 @@ export default function BlogHouseCleaningCost() {
                     paragraph of the site's highest-intent article — the one
                     people land on while deciding whether to hire anyone at all.
                   */}
-                  Cleaning is the job that loses. Work, children and errands all have deadlines attached; the kitchen floor does not, so it waits, and by the time it stops waiting it is a bigger job than it was. That is the calculation most people are actually making when they start pricing a cleaner: not whether the house needs it, but whether the hours are worth buying back.
+                  Cleaning is the job that loses. Work, children and errands all have deadlines attached; the kitchen floor does not, so it waits, and by the time it stops waiting it is a bigger job than it was. When people start pricing a cleaner, the question is usually whether the hours are worth buying back.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed mt-4">
-                  The price depends on four things: the size of the home, its condition, which service you book, and how often. This guide gives the market ranges for Canada first, then our own tables, so you can tell the two apart.
+                  The price depends on the size and type of the home, its condition, which service you book, how often, and whether pets or an address outside city limits add a charge. This guide sets out Duty Cleaners' own Edmonton and Calgary prices, read from our booking system, and explains what moves them.
                 </p>
               </div>
 
-              {/* Own figures first, market context after. All derived. */}
+              {/* Own figures first. All derived. */}
               <div className="mb-10 p-6 bg-primary/5 rounded-xl border-2 border-primary/20">
                 <p className="text-xl font-bold text-foreground mb-3">What Duty Cleaners charges</p>
                 <p className="text-muted-foreground leading-relaxed mb-3">
                   In Edmonton and Calgary a standard clean is {COST_SPANS.standard} depending on the size
                   of the home, a deep clean {COST_SPANS.deep}, and a move-in or move-out clean{" "}
-                  {COST_SPANS.moveInOut}. Those are flat rates in Canadian dollars before 5% GST, and
-                  they do not change because a clean ran long.
+                  {COST_SPANS.moveInOut}. Those are flat rates in Canadian dollars before 5% GST for an
+                  apartment or condo, and they do not change because a clean ran long. A house rather than an apartment, a
+                  home with pets and an address outside Edmonton or Calgary city limits each add a
+                  charge.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
                   The full tables by bedroom count, including add-ons, are on{" "}
@@ -389,9 +392,9 @@ export default function BlogHouseCleaningCost() {
               <div className="mb-12 p-6 bg-muted/40 rounded-xl border-l-4 border-primary">
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   <strong className="text-foreground">About the figures in this guide.</strong>{" "}
-                  Every price is in Canadian dollars. The market ranges are typical advertised
-                  rates across Canadian cities, not a survey and not a quote. Every Duty Cleaners
-                  figure is read from our booking system, so it is the number the form will show.
+                  Every price in this guide is a Duty Cleaners price in Canadian dollars before 5%
+                  GST, read from our booking system, so it matches what the booking form shows for
+                  the same home.
                 </p>
               </div>
 
@@ -418,23 +421,23 @@ export default function BlogHouseCleaningCost() {
                   <div className="p-6 bg-secondary/10 rounded-xl border border-secondary/20">
                     <div className="flex items-center gap-2 mb-3">
                       <Clock3 className="h-5 w-5 text-secondary-foreground" />
-                      <h3 className="font-bold text-foreground">Hourly rate, market</h3>
+                      <h3 className="font-bold text-foreground">Priced by the hour</h3>
                     </div>
                     <ul className="text-muted-foreground text-sm space-y-2">
-                      <li>• 2-bedroom apartment: <strong>$40-$65/hour</strong> per cleaner</li>
-                      <li>• Larger homes with more rooms: <strong>$70-$80/hour</strong> per cleaner</li>
-                      <li>• Professional companies usually have minimum hours (e.g., a 3-hour minimum, so $150–$195 for that 2-bedroom)</li>
+                      <li>• The bill is the rate times the hours worked, so a slow clean costs more.</li>
+                      <li>• Hourly bookings often carry a minimum number of hours.</li>
+                      <li>• At Duty Cleaners, Airbnb and short-term rental turnovers are billed this way, and home cleans are not.</li>
                     </ul>
                   </div>
                   <div className="p-6 bg-accent/10 rounded-xl border border-accent/20">
                     <div className="flex items-center gap-2 mb-3">
                       <DollarSign className="h-5 w-5 text-accent-foreground" />
-                      <h3 className="font-bold text-foreground">Flat rate, market</h3>
+                      <h3 className="font-bold text-foreground">Priced by the home</h3>
                     </div>
                     <ul className="text-muted-foreground text-sm space-y-2">
-                      <li>• Based on the size of your home</li>
-                      <li>• Small 1-bedroom apartment: <strong>$200-$300</strong> for deep cleaning</li>
-                      <li>• Larger 4-bedroom house: <strong>$400+</strong></li>
+                      <li>• The price is set by bedrooms, bathrooms and home type.</li>
+                      <li>• You know the number before anyone arrives.</li>
+                      <li>• Ours covers standard, deep and move-out cleans; post-construction is priced by square footage.</li>
                     </ul>
                   </div>
                 </div>
@@ -443,16 +446,16 @@ export default function BlogHouseCleaningCost() {
                   <div className="p-6 bg-muted/30 rounded-xl border">
                     <h3 className="font-bold text-foreground mb-3 text-lg">Independent cleaner</h3>
                     <p className="text-muted-foreground text-sm mb-4">
-                      Priced by the hour, at a rate set by the person. Someone starting out charges less; an established cleaner with a full book charges more. You supply the guarantee yourself: if they are ill, the clean does not happen.
+                      Usually priced by the hour, at a rate the person sets. Someone starting out tends to charge less than an established cleaner with a full book. There is rarely a second cleaner to send if they are ill, and any promise to come back and re-clean is between you and them.
                     </p>
                     <div className="bg-primary/10 rounded-lg p-3">
-                      <p className="text-primary font-semibold text-center">$50 - $90 for 2 hours</p>
+                      <p className="text-primary font-semibold text-center">Rate set by the person</p>
                     </div>
                   </div>
                   <div className="p-6 bg-muted/30 rounded-xl border">
                     <h3 className="font-bold text-foreground mb-3 text-lg">Cleaning company</h3>
                     <p className="text-muted-foreground text-sm mb-4">
-                      Most price flat by home size, bedrooms and bathrooms, and publish the number before you book. Some quote per hour with a minimum. Ours is {HOURLY} per cleaner per hour for hourly work, and flat by size for everything else.
+                      Many price flat by home size and show the number before you book; some quote per hour with a minimum. Duty Cleaners prices every home clean flat by size, discounts recurring visits from the second one, and re-cleans anything missed at no charge if you tell us within 24 hours.
                     </p>
                     <div className="bg-primary/10 rounded-lg p-3">
                       <p className="text-primary font-semibold text-center">Discounts for recurring visits</p>
@@ -468,7 +471,7 @@ export default function BlogHouseCleaningCost() {
                 </h2>
                 <p className="text-muted-foreground mb-6 leading-relaxed">{section("edmonton").a}</p>
                 <TierTable
-                  caption="Edmonton, one-time visit, before 5% GST. Bathroom counts follow the published tiers."
+                  caption="Edmonton, one-time visit for an apartment or condo, before 5% GST. Bathroom counts follow the published tiers."
                   columns={["Standard", "Deep", "Move-out"]}
                   rows={STANDARD.map((row, index) => ({
                     beds: row.beds,
@@ -491,7 +494,7 @@ export default function BlogHouseCleaningCost() {
                 </h2>
                 <p className="text-muted-foreground mb-6 leading-relaxed">{section("calgary").a}</p>
                 <TierTable
-                  caption="Calgary standard clean per visit, one-time and from the second recurring visit, before 5% GST."
+                  caption="Calgary standard clean per visit for an apartment or condo, one-time and from the second recurring visit, before 5% GST."
                   columns={["One-time", ...RECURRING.map((f) => f.label)]}
                   rows={PRICING_TIERS.map((tier, index) => ({
                     beds: STANDARD[index].beds,
@@ -499,7 +502,7 @@ export default function BlogHouseCleaningCost() {
                   }))}
                 />
                 <p className="text-muted-foreground leading-relaxed">
-                  The first visit is charged at the one-time rate whichever frequency you pick, because the first clean of a home is the slow one. Calgary's own pages:{" "}
+                  The first clean of a home is the slow one, which is why it is charged at the one-time rate whichever frequency you pick. Calgary has its own pages for{" "}
                   <Link to="/calgary/regular-cleaning/" className="text-primary underline">standard cleaning in Calgary</Link>,{" "}
                   <Link to="/calgary/recurring-cleaning/" className="text-primary underline">recurring cleaning in Calgary</Link> and{" "}
                   <Link to="/calgary/services/" className="text-primary underline">every Calgary cleaning service, with starting prices</Link>.
@@ -513,7 +516,7 @@ export default function BlogHouseCleaningCost() {
                 </h2>
                 <p className="text-muted-foreground mb-6 leading-relaxed">{section("move-out").a}</p>
                 <TierTable
-                  caption="Move-in or move-out clean, either city, before 5% GST."
+                  caption="Move-in or move-out clean for an apartment or condo, either city, before 5% GST."
                   columns={["Standard", "Move-out", "Difference"]}
                   rows={MOVE.map((row, index) => ({
                     beds: row.beds,
@@ -521,7 +524,7 @@ export default function BlogHouseCleaningCost() {
                   }))}
                 />
                 <p className="text-muted-foreground leading-relaxed">
-                  The difference buys the inside of every appliance and cupboard, which is what a landlord or buyer opens first. Book it for the day after the furniture leaves, so nothing blocks a wall or a floor. Details and the inspection-day checklist are on{" "}
+                  The difference buys the inside of the oven, fridge, cabinets, drawers and closets, which are the places a move-out inspection opens. Book it for the day after the furniture leaves, so nothing blocks a wall or a floor. Details are on{" "}
                   <Link to="/move-out-cleaning-edmonton/" className="text-primary underline">move-out cleaning in Edmonton</Link> and{" "}
                   <Link to="/move-out-cleaning-calgary/" className="text-primary underline">move-out cleaning in Calgary</Link>.
                 </p>
@@ -552,7 +555,7 @@ export default function BlogHouseCleaningCost() {
                 </div>
 
                 <TierTable
-                  caption="Deep clean, either city: the standard price plus the deep package, before 5% GST."
+                  caption="Deep clean for an apartment or condo, either city: the standard price plus the deep package, before 5% GST."
                   columns={["Standard", "Deep package", "Deep clean"]}
                   rows={DEEP.map((row) => ({
                     beds: row.beds,
@@ -560,7 +563,7 @@ export default function BlogHouseCleaningCost() {
                   }))}
                 />
                 <p className="text-muted-foreground leading-relaxed">
-                  Book a deep clean when the home has not been professionally cleaned in the last few months, or as the first visit of a recurring schedule; the standard visits after it are the cheap ones. What the package covers is on{" "}
+                  Book a deep clean when the home has not been professionally cleaned in the last few months, or as the first visit of a recurring schedule; the standard visits after it cost less. What the package covers is on{" "}
                   <Link to="/edmonton/deep-cleaning/" className="text-primary underline">deep cleaning in Edmonton</Link> and{" "}
                   <Link to="/calgary/deep-cleaning/" className="text-primary underline">deep cleaning in Calgary</Link>.
                 </p>
@@ -585,7 +588,7 @@ export default function BlogHouseCleaningCost() {
                   ))}
                 </div>
 
-                <h3 className="text-xl font-bold mb-4 text-foreground">Market ranges by service</h3>
+                <h3 className="text-xl font-bold mb-4 text-foreground">What each service covers</h3>
                 <div className="space-y-4 mb-10">
                   {cleaningTypes.map((type, index) => (
                     <div key={index} className="flex flex-col sm:flex-row sm:items-center gap-4 p-5 bg-muted/30 rounded-xl border">
@@ -594,7 +597,7 @@ export default function BlogHouseCleaningCost() {
                         <p className="text-muted-foreground text-sm">{type.description}</p>
                       </div>
                       <div className="bg-primary text-primary-foreground px-4 py-2 rounded-lg font-semibold text-sm whitespace-nowrap">
-                        {type.priceRange}
+                        {type.pricedBy}
                       </div>
                     </div>
                   ))}
@@ -612,7 +615,7 @@ export default function BlogHouseCleaningCost() {
                   <div className="p-5 bg-muted/30 rounded-xl border">
                     <h4 className="font-semibold text-foreground mb-2">You should not need an estimate visit</h4>
                     <p className="text-muted-foreground text-sm">
-                      A company that prices by home size can show you the number before you book. Ours takes about a minute to see, and it is the figure you pay, before 5% GST, whether the clean runs long or not. Treat &ldquo;we&rsquo;ll assess it on arrival&rdquo; as a reason to ask more questions, not a courtesy.{" "}
+                      A company that prices by home size can show you the number before you book. Ours shows on screen before you book, as a flat rate before 5% GST that does not change if the clean runs long. If a home needs substantially more work than described, the team explains what it found and the options before continuing. Treat &ldquo;we&rsquo;ll assess it on arrival&rdquo; as a reason to ask more questions.{" "}
                       <Link to="/reviews/" className="text-primary underline">Read the reviews</Link> from both cities before you decide.
                     </p>
                   </div>

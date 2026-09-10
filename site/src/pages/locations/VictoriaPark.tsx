@@ -60,10 +60,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Victoria Park" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Victoria Park" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Victoria Park" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Victoria Park" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Victoria Park.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Victoria Park" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Victoria Park" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris removal once renovation or building work is finished.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Victoria Park" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film washed off painted walls, booked together with a clean.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Victoria Park" },
 ];
 
 const whyUsItems = [
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Beltline","East Village","Ramsay","Erlton","Mission","Downtown"];
+const nearbyAreas = ["Beltline","East Village","Ramsay","Erlton","Mission"];
 
 const faqs = [
   {
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function VictoriaPark() {
     <>
       <Helmet>
         <title>House Cleaning in Victoria Park, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Book house cleaning in Victoria Park, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="description" content="Condo and townhome cleaning in Victoria Park, Calgary, beside the Stampede grounds, where balcony door tracks collect event dust and rail-corridor grit." />
         <meta property="og:title" content="House Cleaning in Victoria Park, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Victoria Park, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Book house cleaning in Victoria Park, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
-        <meta property="og:description" content="Book house cleaning in Victoria Park, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="twitter:description" content="Condo and townhome cleaning in Victoria Park, Calgary, beside the Stampede grounds, where balcony door tracks collect event dust and rail-corridor grit." />
+        <meta property="og:description" content="Condo and townhome cleaning in Victoria Park, Calgary, beside the Stampede grounds, where balcony door tracks collect event dust and rail-corridor grit." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/victoria-park-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/victoria-park-calgary/" />
@@ -183,7 +183,7 @@ export default function VictoriaPark() {
                 Professional House Cleaning in Victoria Park
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Victoria Park is a fast-evolving central community blending historic warehouses with sleek modern condos, just steps from the Stampede grounds and downtown core.
+                Victoria Park's housing is dense: condo towers and townhomes over retained heritage rows, beside the Stampede grounds. Our Calgary branch cleans these homes at a flat rate by home size.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function VictoriaPark() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Victoria Park Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Everything from weekly upkeep to full move-out cleans.
+                  For Victoria Park condos and townhomes, every service except post-construction is a flat rate by home size before 5% GST, and a townhouse adds a home-type charge to that rate. Post-construction is priced by square footage.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function VictoriaPark() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Victoria Park Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Victoria Park and the surrounding Central Calgary communities.
+                    Victoria Park is inside Calgary city limits, so a quote here carries no trip fee.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function VictoriaPark() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1280} height={896} src={cleanHomeImg} alt="Spotless Victoria Park Calgary home cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1280} height={896} src={cleanHomeImg} alt="Open loft with a dark kitchen island, exposed ductwork and tall windows onto a city skyline at dusk" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Calm, Spotless Victoria Park Home — Every Visit</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">What to expect</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Kitchens, Baths and Balcony Thresholds</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Every cleaner is vetted and customer-rated, and it shows in the details: clear counters, gleaming taps, and a home that smells like a fresh start.
+                    Tower suites put most of the work into the kitchen, the bathroom and the balcony threshold. The balcony itself is an outdoor area and is not part of a clean, and exterior windows are not included either.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Reference-checked, rated after every visit","Supplies and equipment brought","Free re-clean if told within 24 hours"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,7 +311,7 @@ export default function VictoriaPark() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
                   Duty Cleaners cleans homes across Victoria Park and the communities around it.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
@@ -327,10 +327,10 @@ export default function VictoriaPark() {
       <LocalMarketNote
         accent="calgary"
         eyebrow="Local knowledge"
-        heading="Victoria Park at festival pitch"
+        heading="Towers, townhomes and heritage rows"
         paragraphs={[
-          "Victoria Park lives beside the Stampede grounds and the Saddledome, and event season is its cleaning calendar: concert and festival crowds bring sidewalk grit, and the BMO Centre's expanded convention flow keeps it coming year-round. Ground-floor units near the grounds see film on sills within days of a big event.",
-          "The housing is dense — condo towers and townhomes over retained heritage rows — and tower living concentrates cleans into kitchens, baths and balcony thresholds. Balconies facing the grounds collect event dust and rail-corridor grit both; their door tracks are the single most demanding surface in the quarter.",
+          "Victoria Park sits beside the Stampede grounds, and ground-floor units near the grounds see film on sills within days of a big event.",
+          "The housing is dense: condo towers and townhomes over retained heritage rows. Tower living concentrates cleans into kitchens, baths and balcony thresholds. Balconies facing the grounds collect event dust and rail-corridor grit both, and both end up in the door tracks.",
         ]}
       />
 
@@ -347,7 +347,7 @@ export default function VictoriaPark() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Victoria Park Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Reliable, detail-first cleaning families count on.
+                  Each cleaner passes a reference check before a first job and is rated by the customer after each visit, and anything missed is re-cleaned free if you tell us within 24 hours.
                 </p>
               </div>
             </AnimatedSection>

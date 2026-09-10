@@ -60,9 +60,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Sunalta West" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Sunalta West" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Sunalta West" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Sunalta West" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Sunalta West.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Sunalta West" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris cleared after a renovation or new build in Sunalta West, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Sunalta West" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Sunalta West" },
 ];
 
@@ -104,7 +104,7 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Sunalta West?",
-    answer: `The full service menu is available here:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `In Sunalta West, households can book:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning, booked with a clean`
   },
   {
     question: "Do you offer discounts?",
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function SunaltaWest() {
     <>
       <Helmet>
         <title>Sunalta West, Calgary House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="Professional cleaners serving Sunalta West, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="description" content="Sunalta West house cleaning in Calgary: sanding grit dragged uphill from Bow Trail reaches the stair nosings first, so they are vacuumed before the mop." />
         <meta property="og:title" content="Sunalta West, Calgary House Cleaning | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Sunalta West, Calgary House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional cleaners serving Sunalta West, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
-        <meta property="og:description" content="Professional cleaners serving Sunalta West, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="twitter:description" content="Sunalta West house cleaning in Calgary: sanding grit dragged uphill from Bow Trail reaches the stair nosings first, so they are vacuumed before the mop." />
+        <meta property="og:description" content="Sunalta West house cleaning in Calgary: sanding grit dragged uphill from Bow Trail reaches the stair nosings first, so they are vacuumed before the mop." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/sunalta-west-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/sunalta-west-calgary/" />
@@ -183,7 +183,7 @@ export default function SunaltaWest() {
                 Professional House Cleaning in Sunalta West
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Sunalta West is a vibrant inner-city SW pocket — modern condos, character homes, and quick LRT access to downtown.
+                Sunalta West is the small residential pocket west of Crowchild Trail, between Bow Trail and 17 Avenue SW. Our Calgary branch cleans it at flat rates set by home size, and nothing is charged until the clean is done.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function SunaltaWest() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Sunalta West Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
+                  Sunalta West is inside Calgary city limits, so none of these five services carries a trip fee. Four are flat rates by home size and post-construction is priced by square footage, all before 5% GST.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function SunaltaWest() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Sunalta West Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Sunalta West and the surrounding SW Calgary communities.
+                    Sunalta West is one of the 66 Calgary neighbourhoods on our Calgary branch's list.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function SunaltaWest() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={768} src={cleanHomeImg} alt="Happy young couple enjoying coffee in their freshly cleaned Sunalta West Calgary condo" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1024} height={768} src={cleanHomeImg} alt="Woman holding a coffee mug in a bright condo kitchen with city towers outside the windows" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Come Home to Calm, Spotless Mornings</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">What to expect</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Stairs and Entryways Come First</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Care and attention are the whole job. Expect gleaming surfaces, fresh air, and the quiet feeling of a home put properly <em>back in order</em>.
+                    Uphill grit reaches the stair nosings and hard floors before anywhere else in a Sunalta West home, so the vacuum goes over them before any water does. Tell us which door the team should use: you do not need to be home, and the team locks up.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Reference-checked, rated after every visit","Supplies and equipment brought","Free re-clean if told within 24 hours"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,9 +311,9 @@ export default function SunaltaWest() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Other Calgary Neighbourhoods We Serve</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Sunalta West and the communities around it.{" "}
+                  These neighbourhoods are on the same Calgary branch list as Sunalta West, and each is cleaned at the same flat rates by home size.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -328,7 +328,7 @@ export default function SunaltaWest() {
         eyebrow="Local knowledge"
         heading="Uphill from Bow Trail"
         paragraphs={[
-          "Crowchild Trail cuts this community in two, and Sunalta West is the small residential pocket left on the west side of the freeway. Bow Trail runs along the north of it; 17 Avenue SW closes it off to the south. For a handful of blocks, that is a great deal of moving traffic, and brake dust builds on the glass facing Crowchild far faster than on anything sheltered behind it.",
+          "Sunalta West is the small residential pocket on the west side of Crowchild Trail. Bow Trail runs along the north of it; 17 Avenue SW closes it off to the south. For a handful of blocks, that is a great deal of moving traffic, and brake dust builds on the glass facing Crowchild far faster than on anything sheltered behind it.",
           "The land climbs away from Bow Trail, which changes what February does here. Sanding grit gets dragged uphill on boots and tires and arrives already ground fine, so it reaches entryways, stair nosings and hard floors long before it reaches anywhere else in the house. The grit is vacuumed off the nosings and the hard floor before the mop comes out of the bucket.",
         ]}
         accent="calgary"
@@ -347,7 +347,7 @@ export default function SunaltaWest() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Sunalta West Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>

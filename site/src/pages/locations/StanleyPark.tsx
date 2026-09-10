@@ -60,9 +60,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Stanley Park" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Stanley Park" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Stanley Park" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Stanley Park" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Stanley Park.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Stanley Park" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or new build, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Stanley Park" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Stanley Park" },
 ];
 
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Parkhill", "Manchester", "Windsor Park", "Elboya", "Erlton", "Rideau Park"];
+const nearbyAreas = ["Parkhill", "Manchester", "Windsor Park", "Erlton", "Rideau Park"];
 
 const faqs = [
   {
@@ -104,15 +104,15 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Stanley Park?",
-    answer: `Around Stanley Park we offer the full range:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `In Stanley Park, households can book:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning, booked with a clean`
   },
   {
     question: "Do you offer discounts?",
-    answer: `Yes, recurring visits cost less every time:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
+    answer: `Yes, recurring visits cost less after the first clean:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function StanleyPark() {
     <>
       <Helmet>
         <title>Stanley Park, Calgary House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="Professional cleaners serving Stanley Park, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="description" content="In Stanley Park, Calgary, summer brings sunscreen film and river grit indoors, and basements redone after the 2013 flood have sealed floors." />
         <meta property="og:title" content="Stanley Park, Calgary House Cleaning | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Stanley Park, Calgary House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional cleaners serving Stanley Park, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
-        <meta property="og:description" content="Professional cleaners serving Stanley Park, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="twitter:description" content="In Stanley Park, Calgary, summer brings sunscreen film and river grit indoors, and basements redone after the 2013 flood have sealed floors." />
+        <meta property="og:description" content="In Stanley Park, Calgary, summer brings sunscreen film and river grit indoors, and basements redone after the 2013 flood have sealed floors." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/stanley-park-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/stanley-park-calgary/" />
@@ -183,7 +183,7 @@ export default function StanleyPark() {
                 Professional House Cleaning in Stanley Park
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Named for one of Calgary's most beloved riverside parks, this SW neighbourhood offers green space, character homes, and easy downtown access.
+                Stanley Park's houses sit above the Elbow River flats. In summer, the outdoor pool leaves sunscreen film on floors, and the river pathway sends grit indoors on every pair of shoes.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function StanleyPark() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Stanley Park Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
+                  In Stanley Park, a one-visit standard clean, a deep clean and a move-out clean are each priced flat by home size.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function StanleyPark() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Stanley Park Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Stanley Park and the surrounding SW Calgary communities.
+                    The river flats and the Elbow River pathway run along Stanley Park's western edge. Cleans here are booked through the Calgary office on (403) 768-1341.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function StanleyPark() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={768} src={cleanHomeImg} alt="Duty Cleaners professional vacuuming a rug in a bright Stanley Park Calgary living room" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1024} height={768} src={cleanHomeImg} alt="Cleaner in a navy polo shirt vacuuming a white shag rug in a bright living room" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">We Handle the Cleaning. You Enjoy the Park.</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Room by room</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Tell Us Which Stanley Park Room Comes First</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Every cleaner is vetted and customer-rated, and it shows in the details: clear counters, gleaming taps, and a home that smells like a fresh start.
+                    Every cleaner is reference-checked before a first job and rated by the customer after each visit. If the lower level matters most, or someone is asleep upstairs, say so: the order a house gets done in is easy to change.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Customer-rated cleaners","Supplies and equipment brought","24-hour re-clean guarantee"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,7 +311,7 @@ export default function StanleyPark() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
                   Duty Cleaners cleans homes across Stanley Park and the communities around it.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
@@ -329,7 +329,7 @@ export default function StanleyPark() {
         heading="The pool below the houses"
         paragraphs={[
           "Twenty-one hectares of river flats sit below the houses on this community's western edge — an outdoor pool and wading pool in summer, a toboggan hill and a lawn bowling green the rest of the year, and Elbow River pathway the length of it. What comes back indoors is seasonal and predictable: sunscreen film on floors in July, chlorine on towels, and river grit off the pathway on every pair of shoes.",
-          "Stanley Park/Elboya was one of 26 Calgary neighbourhoods placed under mandatory evacuation in June 2013, and the Elbow has not moved since. Window wells on the low side silt up every spring and want clearing before they fill. Where a lower level was redone after the flood, its finishes are newer than the house above — sealed floors that abrasive powder will haze. We book the basement as its own job, not the last ten minutes.",
+          "Stanley Park/Elboya was one of 26 Calgary neighbourhoods placed under mandatory evacuation in June 2013, and the Elbow has not moved since. Window wells on the low side silt up every spring and want clearing before they fill. Where a lower level was redone after the flood, its finishes are newer than the house above — sealed floors that abrasive powder will haze.",
         ]}
         accent="calgary"
       />
@@ -347,7 +347,7 @@ export default function StanleyPark() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Stanley Park Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Dependable cleaning, visit after visit.
+                  Nothing is charged when you book; the card is charged once the clean is complete.
                 </p>
               </div>
             </AnimatedSection>

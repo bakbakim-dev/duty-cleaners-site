@@ -328,7 +328,7 @@ export default function QuoteFormEmbed({
                 </p>
                 <p className="text-sm text-muted-foreground">
                   1. Tell us about your home &nbsp;→&nbsp; 2. See your price
-                  &nbsp;→&nbsp; 3. Pick your time
+                  &nbsp;→&nbsp; 3. Pick your arrival window
                 </p>
               </div>
               <a
@@ -336,7 +336,7 @@ export default function QuoteFormEmbed({
                 className="inline-flex min-h-[48px] items-center gap-2 rounded-full px-4 text-sm font-bold text-accent hover:underline"
               >
                 <Phone className="h-4 w-4" aria-hidden="true" />
-                Prefer to book by phone? {phone}
+                Or book by phone: {phone}
               </a>
             </>
           ) : (
@@ -346,8 +346,9 @@ export default function QuoteFormEmbed({
                   This is taking longer than usual
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  Your connection may be slow. Reload the form, or call us and
-                  we'll price your clean over the phone in a minute.
+                  Your connection may be slow. Reload the form, or call the{" "}
+                  {isCalgary ? "Calgary" : "Edmonton"} office and the team will
+                  price your clean over the phone.
                 </p>
               </div>
               <div className="flex flex-col items-center gap-3 sm:flex-row">

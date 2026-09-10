@@ -1,4 +1,4 @@
-import { formatPrice } from "@/data/pricing";
+import { formatPrice, addOnFromPrice } from "@/data/pricing";
 import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
 import { GST_RATE } from "@/data/pricing";
 import { canonicalForPath, canonicalUrlForPath } from "@/data/legacy-urls";
@@ -24,6 +24,16 @@ import { Button } from "@/components/ui/button";
  */
 const BLANK_PIXEL =
   "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+
+/**
+ * The compulsory pet charge, from bk-config. The ladder's footnote named the
+ * home-type surcharges but not this one, so a pet owner read the ladder as the
+ * whole bill. The footnote names the charge without its figure: every page
+ * using this template already states the figure in its own copy, and
+ * /calgary/deep-cleaning/ states it twice, so a figure here would be a third.
+ * The constant only gates the clause, so it disappears if bk-config drops the row.
+ */
+const PET_FEE = addOnFromPrice("standard", "must-choose-if-you-have-pets");
 
 /**
  * A schema entity is named, not pitched. This node used to be handed the SEO
@@ -512,11 +522,11 @@ const ServiceDetailPage = ({
               Where we'll clean
             </h2>
             <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
-              A clear scope for every space in your {cityName} home — see the full breakdown on our{" "}
+              Each card counts the tasks the team does in that room of {/^[AEIOU]/.test(cityName) ? "an" : "a"} {cityName} home. The{" "}
               <Link to="/whats-included/" className="text-primary font-semibold hover:text-accent">
                 What's Included checklist
-              </Link>
-              .
+              </Link>{" "}
+              sets the standard, deep and move-out lists side by side.
             </p>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto">
               {roomTasks.map((room) => (
@@ -547,7 +557,7 @@ const ServiceDetailPage = ({
               Pricing by home size
             </h2>
             <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
-              Clear starting prices based on home size and service scope. Final time and cost can vary when a home requires substantially more work.
+              Each price is a flat rate for the home size shown, and it does not change because a clean took longer than expected. If a home needs substantially more work than described, the team explains what it found and the options before continuing.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-6xl mx-auto">
               {pricingBySize.map((tier) => (
@@ -573,7 +583,10 @@ const ServiceDetailPage = ({
               {Math.round(GST_RATE * 100)}% GST. A bungalow or basement suite adds{" "}
               {formatPrice(BK_PRICE_OVERRIDES[54].price)}, a townhouse{" "}
               {formatPrice(BK_PRICE_OVERRIDES[89].price)} and a two-storey house{" "}
-              {formatPrice(BK_PRICE_OVERRIDES[90].price)} — the quote asks which you have.
+              {formatPrice(BK_PRICE_OVERRIDES[90].price)}
+              {PET_FEE !== null ? ", and a home with pets adds the compulsory pet charge on every visit" : ""}.
+              An address outside {cityName} city limits adds a travel fee, and the quote shows every one
+              of these charges before you book.
             </p>
             {pricingNote && (
               <p className="text-center text-sm text-muted-foreground mt-3 max-w-2xl mx-auto">{pricingNote}</p>
@@ -604,7 +617,7 @@ const ServiceDetailPage = ({
                     <span className="w-10 h-10 rounded-lg bg-accent/10 text-accent flex items-center justify-center">
                       <Plus className="w-5 h-5" aria-hidden="true" />
                     </span>
-                    <h3 className="text-xl font-bold">Popular add-ons</h3>
+                    <h3 className="text-xl font-bold">Add-ons</h3>
                   </div>
                   <ul className="space-y-3">
                     {extras.map((extra) => (
@@ -623,7 +636,7 @@ const ServiceDetailPage = ({
                     ))}
                   </ul>
                   <p className="text-xs text-muted-foreground mt-5">
-                    Request add-ons when booking and we'll confirm pricing upfront.
+                    Add them when you book, and each one shows on the quote as its own line with its price.
                   </p>
                 </div>
               )}
@@ -644,11 +657,11 @@ const ServiceDetailPage = ({
                     ))}
                   </ul>
                   <p className="text-xs text-muted-foreground mt-5">
-                    Not sure about a task?{" "}
+                    If you are unsure whether a task is included,{" "}
                     <Link to="/contact-us/" className="text-primary font-semibold hover:text-accent">
-                      Send us a message
+                      send us a message
                     </Link>{" "}
-                    and we'll confirm.
+                    and we will tell you.
                   </p>
                 </div>
               )}
@@ -772,7 +785,7 @@ const ServiceDetailPage = ({
               <p className="font-bold truncate">{cityName} Cleaning</p>
               {fromPrice && (
                 <p className="text-muted-foreground whitespace-nowrap">
-                  From <span className="font-bold text-foreground text-lg">{fromPrice}</span>
+                  From <span className="font-bold text-foreground text-lg">{fromPrice}</span> before GST
                 </p>
               )}
               <span className="hidden lg:inline-flex items-center gap-1.5 text-sm text-muted-foreground whitespace-nowrap">

@@ -60,9 +60,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Mount Pleasant" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Mount Pleasant" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Mount Pleasant" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Mount Pleasant" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Post-construction cleanup for the area's many infills and renos.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Mount Pleasant" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Drywall dust after a renovation or a new build, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Mount Pleasant" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Mount Pleasant" },
 ];
 
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Tuxedo Park", "Highland Park", "Capitol Hill", "Rosedale", "Crescent Heights", "Banff Trail"];
+const nearbyAreas = ["Tuxedo Park", "Highland Park", "Capitol Hill", "Crescent Heights"];
 
 const faqs = [
   {
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `In Mount Pleasant, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `In Mount Pleasant, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function MountPleasant() {
     <>
       <Helmet>
         <title>House Cleaners in Mount Pleasant, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Book house cleaning in Mount Pleasant, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="description" content="Mount Pleasant blocks by the Trans-Canada take in winter traction grit, so Calgary house cleaners lift it off the floors before anything wet." />
         <meta property="og:title" content="House Cleaners in Mount Pleasant, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Mount Pleasant, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Book house cleaning in Mount Pleasant, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
-        <meta property="og:description" content="Book house cleaning in Mount Pleasant, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="twitter:description" content="Mount Pleasant blocks by the Trans-Canada take in winter traction grit, so Calgary house cleaners lift it off the floors before anything wet." />
+        <meta property="og:description" content="Mount Pleasant blocks by the Trans-Canada take in winter traction grit, so Calgary house cleaners lift it off the floors before anything wet." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/mount-pleasant-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/mount-pleasant-calgary/" />
@@ -183,7 +183,7 @@ export default function MountPleasant() {
                 Professional House Cleaning in Mount Pleasant
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Mount Pleasant lives up to its name — leafy streets, the Mount Pleasant Outdoor Pool, and a thriving community spirit just north of downtown Calgary.
+                Mount Pleasant runs from the Trans-Canada Highway on the south to Confederation Park on the north and northwest. The highway end takes in winter traction grit, and the coulee end trades it for needle drop and willow cotton.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function MountPleasant() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Mount Pleasant Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Mount Pleasant homes get every service they need.
+                  Each Mount Pleasant service shows its exact flat price on the instant quote before you book, with GST added on top.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function MountPleasant() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Mount Pleasant Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Mount Pleasant and the surrounding N Calgary communities.
+                    Mount Pleasant is inside Calgary city limits, so its quotes carry no travel fee.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function MountPleasant() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={768} src={cleanHomeImg} alt="Pristine modern kitchen with white cabinets in a Mount Pleasant Calgary infill cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1024} height={768} src={cleanHomeImg} alt="White kitchen with shaker cabinets, a marble-topped island holding a fruit bowl, and hardwood floors in low sun" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Modern Kitchen That Truly Shines</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Before the team arrives</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">What to Expect From a Mount Pleasant Clean</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    There's no better feeling than walking into a kitchen where every surface gleams and the air smells fresh. Our team makes that the standard, not the exception, in every Mount Pleasant home we visit.
+                    You do not need to clean before the team comes. Clear counters and floors get cleaned, cluttered ones get worked around, and decluttering or organising is a separate hourly add-on.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Rated by the customer after every visit","All supplies and equipment brought","A free re-clean if told within 24 hours"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,9 +311,9 @@ export default function MountPleasant() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Mount Pleasant and the communities around it.{" "}
+                  These neighbourhoods near Mount Pleasant are on the same Calgary branch's list, at the same flat rates.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -328,8 +328,8 @@ export default function MountPleasant() {
         eyebrow="Edge effects"
         heading="One edge highway, one edge coulee"
         paragraphs={[
-          "The southern boundary is the Trans-Canada Highway. Blocks nearest it carry a grey traffic film on exterior glass and a dark line of the same thing along the sills, and from November onward they take in whatever traction material the city has spread. Two jobs, not one: a degreasing wash and a real rinse on the glass, and the grit lifted off floors before anything wet goes near it.",
-          "North and northwest, the boundary is Confederation Park — 160 hectares following the North Hill Coulee since 1967, its riparian bottom holding Douglas fir, dogwood and willow. That end of the neighbourhood trades traffic film for organic litter: needle drop in the deck boards, willow cotton and spent catkins matting screen mesh in late spring. Screens to clear there, not glass to degrease.",
+          "The southern boundary is the Trans-Canada Highway. Blocks nearest it carry a grey traffic film on the outer panes and a dark line of the same thing along the sills, and from November onward they take in whatever traction material the city has spread. The highway film on those panes sits outside the clean's scope. Indoors the job is the traction grit, lifted off floors before anything wet goes near it.",
+          "North and northwest, the boundary is Confederation Park — 160 hectares following the North Hill Coulee, its riparian bottom holding Douglas fir, dogwood and willow. That end of the neighbourhood trades traffic film for organic litter: needle drop in the deck boards, willow cotton and spent catkins matting screen mesh in late spring. The deck boards are outdoor work, and taking the screens down is not part of the clean either.",
         ]}
         accent="calgary"
       />
@@ -347,7 +347,7 @@ export default function MountPleasant() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Mount Pleasant Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>

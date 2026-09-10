@@ -60,9 +60,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Sunnyside" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Sunnyside" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Sunnyside" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Sunnyside" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Sunnyside.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Sunnyside" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Renovation dust and debris cleared from Sunnyside homes, priced by square footage rather than by home size.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Sunnyside" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Sunnyside" },
 ];
 
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Hillhurst","West Hillhurst","Crescent Heights","Rosedale","Bridgeland","Downtown"];
+const nearbyAreas = ["Hillhurst","Crescent Heights","Bridgeland-Riverside"];
 
 const faqs = [
   {
@@ -104,7 +104,7 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Sunnyside?",
-    answer: `Households here can book any of the following:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `In Sunnyside, households can book:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning, booked with a clean`
   },
   {
     question: "Do you offer discounts?",
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function Sunnyside() {
     <>
       <Helmet>
         <title>House Cleaning in Sunnyside, Calgary | Duty Cleaners</title>
-        <meta name="description" content="House cleaning in Sunnyside, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
+        <meta name="description" content="House cleaning in Sunnyside, Calgary, for century homes on the Bow's low bank, from radiator fins to basements rebuilt after 2013." />
         <meta property="og:title" content="House Cleaning in Sunnyside, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Sunnyside, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning in Sunnyside, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
-        <meta property="og:description" content="House cleaning in Sunnyside, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
+        <meta name="twitter:description" content="House cleaning in Sunnyside, Calgary, for century homes on the Bow's low bank, from radiator fins to basements rebuilt after 2013." />
+        <meta property="og:description" content="House cleaning in Sunnyside, Calgary, for century homes on the Bow's low bank, from radiator fins to basements rebuilt after 2013." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/sunnyside-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/sunnyside-calgary/" />
@@ -183,7 +183,7 @@ export default function Sunnyside() {
                 Professional House Cleaning in Sunnyside
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Trusted house cleaning for Sunnyside — bringing a calm, spotless home within reach.
+                Sunnyside's century homes sit on the Bow's low bank, and many basements here were rebuilt after 2013. Our Calgary branch cleans these homes at a flat rate by home size, above grade and below.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function Sunnyside() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Sunnyside Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs — every service a home needs.
+                  Standard, deep and move-out cleans for Sunnyside homes are priced flat by home size before GST, and wall washing is booked together with one of them; post-construction cleaning is priced by square footage.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function Sunnyside() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Sunnyside Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Sunnyside and the surrounding Calgary communities.
+                    Sunnyside is inside Calgary city limits, so no trip fee is added to a quote here.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function Sunnyside() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={768} src={cleanHomeImg} alt="Spotless Sunnyside Calgary home cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1024} height={768} src={cleanHomeImg} alt="Bright living room with a cream sectional sofa, a glass coffee table and hardwood floors" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Calm, Spotless Sunnyside Home — Every Visit</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">What to expect</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Heritage Trim Upstairs, Rebuilt Basements Below</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Every cleaner is vetted and customer-rated, and it shows in the details: clear counters, gleaming taps, and a home that smells like a fresh start.
+                    Radiator fins gather dust a cloth cannot reach, so the team brings a brush along with every other supply it needs. Below grade, the seasonal tells are efflorescence lines and window-well condensation. You do not need to clean before the team arrives: clear counters and floors get cleaned, and cluttered ones get worked around.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Reference-checked, rated after every visit","Supplies and equipment brought","Free re-clean if told within 24 hours"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,9 +311,9 @@ export default function Sunnyside() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Sunnyside and the communities around it.{" "}
+                  Our Calgary branch also cleans these neighbourhoods, at the flat rates by home size it charges in Sunnyside.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -329,8 +329,8 @@ export default function Sunnyside() {
         eyebrow="Local knowledge"
         heading="Sunnyside, flood-aware and century-old"
         paragraphs={[
-          "Sunnyside's century homes sit on the Bow's low bank, and the neighbourhood remembers 2013 — basements here are rebuilt, sump-equipped and humidity-watched. Cleans that include the below-grade level should check the seasonal tells: efflorescence lines, window-well condensation and the musty corners that say a dehumidifier needs emptying.",
-          "Above grade it is heritage-scale work: original casings, stained glass here and there, radiators that gather dust in fins a cloth cannot reach without a brush. The walk to Kensington's shops keeps front entries busy year-round, and bike traffic off the river path adds chain-grease marks to entry floors no other neighbourhood produces as reliably.",
+          "Sunnyside's century homes sit on the Bow's low bank, and the neighbourhood remembers 2013 — basements here are rebuilt, sump-equipped and humidity-watched. The below-grade level has its seasonal tells: efflorescence lines, window-well condensation and the musty corners that say a dehumidifier needs emptying.",
+          "Above grade it is heritage-scale work: original casings, stained glass here and there, radiators that gather dust in fins a cloth cannot reach without a brush. Walks to and from Kensington keep front entries busy year-round, and bikes coming off the river path leave chain-grease marks on entry floors.",
         ]}
       />
 
@@ -347,7 +347,7 @@ export default function Sunnyside() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Sunnyside Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Dependable cleaning, visit after visit.
+                  Every cleaner is reference-checked before the first job and rated by the customer after every visit.
                 </p>
               </div>
             </AnimatedSection>

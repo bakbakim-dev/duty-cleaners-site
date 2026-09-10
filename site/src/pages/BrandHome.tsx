@@ -33,37 +33,38 @@ const stats = [{
   label: "Rated by Alberta Homeowners",
   icon: Star
 }, {
-  value: "24-Hour",
-  label: "100% Satisfaction Guarantee",
+  value: `${POLICY.guaranteeWindowHours}-Hour`,
+  label: "Re-Clean Guarantee",
   icon: Heart
 }];
 const services = [{
   icon: Sparkles,
   title: "Standard Cleaning",
-  desc: "Regular maintenance to keep your home fresh and tidy"
+  desc: "One visit on the standard checklist, priced flat by home size before GST."
 }, {
   icon: CheckCircle2,
   title: "Deep Cleaning",
-  desc: "Thorough cleaning for every corner and surface"
+  desc: "The standard checklist plus the deep-clean package, priced flat by home size."
 }, {
   icon: HomeIcon,
   title: "Move In/Out",
-  desc: "Complete cleaning for moving transitions"
+  desc: "A clean for the day you move out or before you move in, priced flat by home size."
 }, {
   icon: CalendarClock,
   title: "Recurring Service",
-  desc: "Save up to 20% with regular cleaning schedules"
+  desc: "The standard clean on a schedule: weekly 20% off, bi-weekly 15%, every 4 weeks 10%, from the second visit."
 }];
-const REVIEW_TOTAL = CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount;
 
+// Each branch's count stands alone. Google publishes no combined figure, and
+// this card used to print the two added together.
 const whyChooseUs = [{
   icon: Shield,
   title: "Pay After Your Clean",
-  desc: "No deposit and no card to book. You pay once the clean is done and you have seen it."
+  desc: "Nothing is charged when you book. The day before, a temporary hold confirms the card is valid, and the card is charged once the clean is complete."
 }, {
   icon: Star,
   title: RATING_CLAIM,
-  desc: `${REVIEW_TOTAL} reviews across Edmonton and Calgary, and the newest are always on our reviews page.`
+  desc: `${CITY_PROOF.edmonton.googleReviewCount} Google reviews for the Edmonton branch and ${CITY_PROOF.calgary.googleReviewCount} for the Calgary branch, read on 1 September 2026.`
 }, {
   icon: Award,
   title: "Reference-Checked, Then Rated by You",
@@ -71,17 +72,17 @@ const whyChooseUs = [{
 }, {
   icon: Sparkles,
   title: "All Cleaning Supplies & Equipment Provided",
-  desc: "Cleaners arrive with everything they need, so you provide nothing. Tell us if you want particular products used."
+  desc: "The team brings all supplies and equipment. The home needs running water, and vacuuming may not be possible without electricity."
 }, {
   icon: Clock,
-  title: "Flexible Scheduling",
-  desc: "Weekdays and weekends, and you pick the time in the booking form rather than waiting for a call back."
+  title: "Pick Your Arrival Window",
+  desc: "We book an arrival window, not an exact time: 9:00 to 10:00 AM, 12:00 to 1:00 PM or 3:00 to 4:00 PM. You pick it in the booking form rather than waiting for a call back."
 }, {
   icon: BadgeCheck,
-  // The owner keeps this name. What matters is that the terms travel with it,
-  // which is what was actually missing.
-  title: "100% Satisfaction Guarantee",
-  desc: `If something was missed, tell us within ${POLICY.guaranteeWindowHours} hours and we come back and put it right at no additional charge.`
+  // Was "100% Satisfaction Guarantee", which invites the reader to hear "money
+  // back". The guarantee is a return visit (POLICY), so the name says so.
+  title: `${POLICY.guaranteeWindowHours}-Hour Re-Clean Guarantee`,
+  desc: `If something was missed, tell us within ${POLICY.guaranteeWindowHours} hours and we come back and re-clean it at no charge. Photos help but are not required.`
 }];
 interface BrandHomeProps {
   hideFooter?: boolean;
@@ -129,7 +130,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
         <>
           <Helmet>
             <title>Professional House Cleaning Across Alberta | Duty Cleaners</title>
-            <meta name="description" content="Alberta's most trusted cleaning service. Professional house cleaning in Edmonton and Calgary. Pay after your clean. Customer-rated cleaners." />
+            <meta name="description" content="House cleaning in Edmonton and Calgary since 2017, rated 4.9 on Google. Nothing is charged when you book, and the card is charged after the clean." />
           </Helmet>
           <Navigation />
         </>
@@ -140,7 +141,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
       <section className="bg-brand-navy py-20 md:py-32 relative overflow-hidden">
         <img
           src={heroCleanHouse}
-          alt="Happy professional cleaner in a spotless living room"
+          alt="A cleaner at work in a living room"
           width={1376}
           height={768}
           className="absolute inset-0 w-full h-full object-cover opacity-40 blur-[2px]"
@@ -154,7 +155,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
           <div className="max-w-5xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-6 py-2.5 rounded-full mb-8 border border-white/15">
               <BadgeCheck className="w-4 h-4 text-accent" />
-              <span className="text-sm font-medium text-white/90">Trusted Since 2017 · 4.9 on Google</span>
+              <span className="text-sm font-medium text-white/90">{`Cleaning Alberta homes since ${COMPANY.foundedYear} · ${RATING_CLAIM}`}</span>
             </div>
 
             {/* When embedded inside another page (Locations) that page owns the
@@ -164,7 +165,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
               <span className="text-accent">Across Alberta</span>
             </HeroHeading>
             <p className="text-xl md:text-2xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-              Enjoy a cleaner, healthier home with trusted residential cleaning services across Alberta. We deliver dependable cleaning solutions designed for busy households and modern living.
+              House cleaning from two branches, one in Edmonton and one in Calgary. You see the flat price for your home size before you book, and the card is charged once the clean is complete.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4 mb-10">
@@ -332,9 +333,9 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12">
               <span className="text-brand-gold font-semibold text-sm uppercase tracking-wider">How It Works</span>
-              <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4 text-white">3 Simple Steps to a Spotless Home</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4 text-white">How Booking a House Clean Works</h2>
               <p className="text-lg text-white/90 max-w-2xl mx-auto leading-relaxed">
-                Booking your professional cleaning has never been easier — get back to what matters most in just three quick steps.
+                Three steps take you from the price for your home size to a finished clean.
               </p>
             </div>
 
@@ -343,17 +344,17 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
                 step: "01",
                 icon: CalendarClock,
                 title: "Book Online",
-                desc: "Tell us about your home and choose a time that works for you—no phone call needed unless you prefer one. We'll confirm your booking by call or text before your appointment."
+                desc: "Tell us your home size, see the flat price and choose an arrival window. No phone call is needed unless you would rather book by phone."
               }, {
                 step: "02",
                 icon: Sparkles,
                 title: "We Clean Your Home",
-                desc: "Our vetted cleaners arrive fully equipped and deliver a thorough, professional clean."
+                desc: "Reference-checked cleaners bring all supplies and equipment and work to the checklist for your service. You do not need to be home: most customers leave a key or a lockbox code."
               }, {
                 step: "03",
                 icon: Heart,
-                title: "Relax & Enjoy Your Space",
-                desc: `Come home to a fresh, spotless space. If anything was missed, tell us within ${POLICY.guaranteeWindowHours} hours and we come back and put it right.`
+                title: "Pay Once It Is Done",
+                desc: `The card is charged once the clean is complete. If anything was missed, tell us within ${POLICY.guaranteeWindowHours} hours and we come back and re-clean it at no charge.`
               }].map((step, i) => (
                 <div key={i} className="group relative" style={{ perspective: "1000px" }}>
                   <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-8 text-center h-full transition-all duration-500 ease-out group-hover:-translate-y-2 group-hover:scale-[1.02] group-hover:border-accent/40" style={{ transformStyle: "preserve-3d" }}>
@@ -372,10 +373,10 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
 
             <div className="text-center">
               <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold text-base h-14 px-8 shadow-lg hover:shadow-xl transition-all">
-                {/* Closes "How it works", whose step 03 is "See your price".
-                    It used to open the 24-hour contact inbox instead. */}
+                {/* Closes "How it works" by opening the quote, where step 01
+                    starts. It used to open the 24-hour contact inbox instead. */}
                 <a href={quoteHrefFor(pathname)}>
-                  Book Your Cleaning
+                  See My Instant Price
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </a>
               </Button>
@@ -390,9 +391,9 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12">
               <span className="text-accent font-semibold text-sm uppercase tracking-wider">What We Offer</span>
-              <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Comprehensive Cleaning Services</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">House Cleaning Services in Edmonton and Calgary</h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                From routine maintenance to deep cleaning, we offer a full range of professional services tailored to your needs
+                These four services are priced flat by home size before GST. The instant price shows the exact figure for your home, including any pet, home-type or travel charge.
               </p>
             </div>
 
@@ -430,7 +431,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
               <span className="text-accent font-semibold text-sm uppercase tracking-wider">Why Us</span>
               <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Why Albertans Choose Duty Cleaners</h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                We're not just another cleaning service — we're your reliable partner in maintaining a healthy, beautiful home
+                Duty Cleaners charges a flat price, takes payment after the clean, keeps the cleaners customers rate well and comes back if something was missed.
               </p>
             </div>
 
@@ -460,10 +461,10 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12">
-              <span className="text-accent font-semibold text-sm uppercase tracking-wider">Proven Track Record</span>
-              <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Trusted by Albertan Homeowners</h2>
+              <span className="text-accent font-semibold text-sm uppercase tracking-wider">Track Record</span>
+              <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Duty Cleaners by the Numbers</h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                {`Dependable service since ${COMPANY.foundedYear}, ${HOMES_CLEANED.alberta} homes cleaned, and a community of customers who keep coming back.`}
+                {`Duty Cleaners has cleaned ${HOMES_CLEANED.alberta} homes in Alberta since ${COMPANY.foundedYear} and is rated ${RATING_CLAIM}.`}
               </p>
             </div>
 
@@ -488,7 +489,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
               </div>
               <div className="inline-flex items-center gap-2 bg-card border border-border/50 px-4 py-2 rounded-full shadow-sm">
                 <BadgeCheck className="w-4 h-4 text-accent" />
-                <span className="text-sm font-medium">100% Satisfaction Guarantee</span>
+                <span className="text-sm font-medium">{`${POLICY.guaranteeWindowHours}-Hour Re-Clean Guarantee`}</span>
               </div>
               <div className="inline-flex items-center gap-2 bg-card border border-border/50 px-4 py-2 rounded-full shadow-sm">
                 <Sparkles className="w-4 h-4 text-accent" />
@@ -515,7 +516,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
                 <div className="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-6 rotate-3 hover:rotate-0 transition-transform duration-500">
                   <Sparkles className="w-8 h-8 text-accent" />
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Ready for a Spotless Home?</h2>
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Book a House Clean in Edmonton or Calgary</h2>
                 <p className="text-lg text-white/90 mb-8 leading-relaxed max-w-2xl mx-auto">
                   See the price for your home size before you book, choose a time that suits you, and pay
                   once the clean is done.
@@ -542,7 +543,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
                   label: "Easy Online Booking"
                 }, {
                   icon: Shield,
-                  label: "Satisfaction Guaranteed"
+                  label: "Re-Clean If Anything Is Missed"
                 }].map((badge, i) => <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                       <badge.icon className="w-4 h-4 text-accent" />
                       <span className="text-white/90 text-sm font-medium">{badge.label}</span>

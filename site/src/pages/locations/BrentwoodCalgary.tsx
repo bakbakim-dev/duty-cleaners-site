@@ -59,11 +59,11 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Brentwood" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Brentwood" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Brentwood" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Brentwood.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Brentwood" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Brentwood" },
+  { icon: Home, title: "Standard Cleaning", description: "A standard clean is a one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Brentwood" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "A deep clean is the standard checklist plus the deep-clean package: baseboards, doors, light switches, wall outlets and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Brentwood" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "A move-in or move-out clean goes inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Brentwood" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "The team clears dust and debris after a renovation or rebuild in Brentwood.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Brentwood" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Wall washing takes scuffs, handprints and cooking film off painted walls without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Brentwood" },
 ];
 
 const whyUsItems = [
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Charleswood","Collingwood","Varsity","Dalhousie","University Heights","Banff Trail"];
+const nearbyAreas = ["Varsity","Dalhousie"];
 
 const faqs = [
   {
@@ -104,7 +104,7 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Brentwood?",
-    answer: `Every service we run can be booked locally:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `In Brentwood, Duty Cleaners' Calgary branch offers:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
   },
   {
     question: "Do you offer discounts?",
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `The deep package extends the standard clean with:\n\n• Baseboards wiped\n• Doors wiped\n• Light switches fully cleaned\n• Wall outlet covers wiped\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function BrentwoodCalgary() {
     <>
       <Helmet>
         <title>House Cleaning in Brentwood, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional cleaners serving Brentwood, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="description" content="Between student-rental turnovers and original 1960s vanities, Brentwood homes in Calgary get a flat-rate clean priced by size and paid after the visit." />
         <meta property="og:title" content="House Cleaning in Brentwood, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Brentwood, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional cleaners serving Brentwood, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
-        <meta property="og:description" content="Professional cleaners serving Brentwood, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="twitter:description" content="Between student-rental turnovers and original 1960s vanities, Brentwood homes in Calgary get a flat-rate clean priced by size and paid after the visit." />
+        <meta property="og:description" content="Between student-rental turnovers and original 1960s vanities, Brentwood homes in Calgary get a flat-rate clean priced by size and paid after the visit." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/brentwood-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/brentwood-calgary/" />
@@ -183,7 +183,7 @@ export default function BrentwoodCalgary() {
                 Professional House Cleaning in Brentwood
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Trusted house cleaning services for one of Calgary's established northwest communities — bringing a calm, spotless home within reach.
+                Brentwood's 1960s bungalows sit a walk from the University of Calgary, and a share of them are rented to students. Our Calgary branch cleans owner-occupied homes and rental turnovers at a flat rate by home size.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function BrentwoodCalgary() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Brentwood Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Everything from weekly upkeep to full move-out cleans.
+                  A Brentwood rental between students is closer to a move-out clean than a maintenance visit. Move-out and standard cleans are both priced flat by home size, before 5% GST.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function BrentwoodCalgary() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Brentwood Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Brentwood and the surrounding NW Calgary communities.
+                    Brentwood Village and the LRT station keep foot traffic steady, and front entries on the walking routes to campus pick up more grit than the crescents behind them.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function BrentwoodCalgary() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={768} src={cleanHomeImg} alt="Spotless Brentwood Calgary home cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1024} height={768} src={cleanHomeImg} alt="Living room with a cream sectional sofa and a glass coffee table in afternoon sun" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Calm, Spotless Brentwood Home — Every Visit</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Turnovers and originals</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Brentwood Rentals and Mid-Century Bungalows</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Vetted cleaners, careful hands, and the standard we'd hold for our own homes. Come back to fresh air and surfaces that actually gleam.
+                    Between tenants, a Brentwood rental gets the move-out checklist: inside the oven, fridge and microwave, and inside every cabinet, drawer and closet. Scuff lines from furniture moves are a job for wall washing, which is booked together with a clean. The landlord completes the move-out inspection report with the tenant and decides what happens to the deposit. In the owner-occupied bungalows, original vanities keep their porcelain and chrome, and hard Alberta water leaves mineral scale on the taps.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Cleaners reference-checked, then rated by you","All supplies and equipment brought in","Re-clean at no charge if told within 24 hours"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,9 +311,9 @@ export default function BrentwoodCalgary() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Brentwood and the communities around it.{" "}
+                  Our Calgary branch cleans 66 Calgary neighbourhoods, Brentwood among them, plus nine communities outside the city such as Airdrie and Cochrane.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -329,7 +329,7 @@ export default function BrentwoodCalgary() {
         eyebrow="Local knowledge"
         heading="Brentwood bungalows and student wear"
         paragraphs={[
-          "Brentwood's 1960s bungalows sit a walk from the University of Calgary, and a meaningful share run as student rentals — which compresses years of wear into semesters. Turnover cleans here are a distinct job: inside appliances, closet shelving, and the scuff lines of frequent furniture moves, closer to a move-out standard than a maintenance visit.",
+          "Brentwood's 1960s bungalows sit a walk from the University of Calgary, and a meaningful share run as student rentals — which compresses years of wear into semesters. Turnover cleans here are a distinct job: inside appliances and closet shelving, closer to a move-out standard than a maintenance visit.",
           "Owner-occupied homes are classic mid-century: hardwood under carpet, plaster ceilings, original vanities whose porcelain and chrome reward polishing. Brentwood Village and the LRT station keep pedestrian traffic steady, and homes along the walking routes to campus see more front-entry grit than the crescents behind them.",
         ]}
       />
@@ -347,7 +347,7 @@ export default function BrentwoodCalgary() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Brentwood Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>

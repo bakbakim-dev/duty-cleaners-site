@@ -7,7 +7,6 @@ import inglewoodCleanerImg from "@/assets/gallery/inglewood-cleaner-kitchen.webp
 import { buildLocationSchema } from "@/lib/location-schema";
 import HonestReviewLink from "@/components/HonestReviewLink";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
 const InglewoodMap = lazy(() => import("@/components/InglewoodMap"));
@@ -82,16 +81,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Inglewood, Edmonton" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Inglewood, Edmonton" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Inglewood, Edmonton" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Inglewood, Edmonton" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Post-renovation dust and debris, professionally removed.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Inglewood, Edmonton" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Renovation dust and debris cleared, priced by the home's square footage.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Inglewood, Edmonton" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Inglewood, Edmonton" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Inglewood, Edmonton" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit before GST for a one-bedroom, one-bathroom apartment, plus any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Inglewood, Edmonton" },
 ];
 
 const whyUsItems = [
@@ -141,7 +140,7 @@ export default function Inglewood() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `In Inglewood, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `In Inglewood, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -163,24 +162,24 @@ export default function Inglewood() {
     <>
       <Helmet>
         <title>House Cleaning in Inglewood, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Inglewood, Edmonton. Serving homes near Westmount Centre, 124 Street & Inglewood School." />
+        <meta name="description" content="House cleaning for Inglewood in Edmonton, where most homes between 111 and 118 Avenue are post-war houses and low-rise apartment blocks." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Inglewood, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/inglewood",
   areaServed: "Inglewood, Edmonton, AB",
-  description: "Professional house cleaning in Inglewood, Edmonton. Serving homes near Westmount Centre, 124 Street & Inglewood School. Local cleaners you can trust.",
+  description: "House cleaning for Inglewood in Edmonton, where most homes between 111 and 118 Avenue are post-war houses and low-rise apartment blocks.",
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/inglewood/" />
         <meta property="og:title" content="House Cleaning in Inglewood, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Inglewood, Edmonton. Serving homes near Westmount Centre, 124 Street & Inglewood School." />
+        <meta property="og:description" content="House cleaning for Inglewood in Edmonton, where most homes between 111 and 118 Avenue are post-war houses and low-rise apartment blocks." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/inglewood/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Inglewood, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Inglewood, Edmonton. Serving homes near Westmount Centre, 124 Street & Inglewood School." />
+        <meta name="twitter:description" content="House cleaning for Inglewood in Edmonton, where most homes between 111 and 118 Avenue are post-war houses and low-rise apartment blocks." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -206,7 +205,7 @@ export default function Inglewood() {
                   Professional House Cleaning in Inglewood, Edmonton
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Your reliable, local cleaning team serving the Inglewood community. From charming century homes near 124 Street to modern infills by Westmount Centre — enjoy dependable cleaning built on trust and genuine care.
+                  Most of Inglewood's housing between 111 and 118 Avenue went up in the decades after the war, as low-rise apartment blocks and small houses. Our Edmonton branch cleans both at a flat rate by home size.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -234,7 +233,7 @@ export default function Inglewood() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img width={1024} height={1024}
                   src={inglewoodCleanerImg}
-                  alt="Professional cleaner smiling while cleaning a kitchen in Inglewood, Edmonton"
+                  alt="Smiling cleaner in pink gloves wiping a white kitchen counter"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                 loading="eager"
                   {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
@@ -254,7 +253,7 @@ export default function Inglewood() {
                   Cleaning Services for Inglewood Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs — every service a home needs.
+                  Inglewood homes can book six services, each priced by home size, and a move-out clean includes the inside of the oven and fridge.
                 </p>
               </div>
             </AnimatedSection>
@@ -297,7 +296,7 @@ export default function Inglewood() {
                   Why Inglewood Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Dependable cleaning, visit after visit.
+                  The customer rates every visit, and those ratings decide which cleaners we keep sending.
                 </p>
               </div>
             </AnimatedSection>
@@ -319,7 +318,7 @@ export default function Inglewood() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Inglewood Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Located in the heart of west Edmonton, we're always just around the corner.
+                  Inglewood runs from Groat Road on the west to the old Canadian National right-of-way on the east, inside city limits, so there is no trip fee.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -338,12 +337,11 @@ export default function Inglewood() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Inglewood</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Edmonton Neighbourhoods We Clean</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    The Edmonton branch cleans Inglewood and 79 other Edmonton neighbourhoods, plus nine communities outside the city, where a travel fee applies.
                   </p>
                 </div>
-                <CoverageChips areas={["Westmount Centre", "124 Street", "Inglewood School", "Inglewood Community League", "Westglen School", "Woodcroft Library", "111 Avenue", "Groat Road"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -358,8 +356,8 @@ export default function Inglewood() {
         eyebrow="What we see here"
         heading="A former rail line, a busy road"
         paragraphs={[
-          "Groat Road runs Inglewood's western boundary, and most of the housing between 111 and 118 Avenue went up in the thirty-five years after the war, with building all but stopped by 1990. What that leaves is low-rise apartment blocks and small post-war houses with kitchens and bathrooms of a certain age - enamel, tile grout, painted wood window frames - where a move-out clean ends in a walkthrough. Oven interiors, fridge seals and window tracks get done on every one, because those are the three a walkthrough opens first.",
-          "Along this stretch Groat Road is a plain surface arterial rather than the parkway it becomes further south, so suites on that frontage collect winter sand at the entries and a road film on balcony glass. On the east there is no street: the boundary is the abandoned Canadian National right-of-way. So the Groat Road suites get the balcony glass and the entries, and the rail side gets the screens.",
+          "Groat Road runs Inglewood's western boundary, and most of the housing between 111 and 118 Avenue went up in the thirty-five years after the war, with building all but stopped by 1990. What that leaves is low-rise apartment blocks and small post-war houses with kitchens and bathrooms of a certain age: enamel, tile grout, painted wood window frames. A move-out clean in one of those blocks or houses ends in a walkthrough. Oven interiors, fridge seals and window tracks get done on every one.",
+          "Along this stretch Groat Road is a plain surface arterial rather than the parkway it becomes further south, so suites on that frontage collect winter sand at the entries and a road film on balcony glass. On the east there is no street: the boundary is the abandoned Canadian National right-of-way. So the Groat Road suites need their entry floors kept ahead of that sand. The road film on the balcony glass and the screens on the rail side both sit outdoors, beyond what a clean covers.",
         ]}
       />
 

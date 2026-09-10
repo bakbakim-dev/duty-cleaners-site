@@ -59,9 +59,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Mission" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Mission" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Mission" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Mission" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris removal after renovations in Mission's heritage homes and modern builds.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Mission" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Drywall dust and debris after a renovation, priced by square footage rather than home size.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Mission" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Mission" },
 ];
 
@@ -93,7 +93,7 @@ const whyUsItems = [
   { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
-const nearbyAreas = ["4th Street SW", "Cliff Bungalow", "Erlton", "Beltline", "Rideau Park", "Roxboro", "Elbow Park", "Victoria Park"];
+const nearbyAreas = ["Cliff Bungalow", "Erlton", "Beltline", "Rideau Park", "Roxboro", "Elbow Park", "Victoria Park"];
 
 const faqs = [
   {
@@ -102,7 +102,7 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Mission?",
-    answer: `Every service we run can be booked locally:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `In Mission, the Calgary branch offers:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
   },
   {
     question: "Do you offer discounts?",
@@ -110,7 +110,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -135,12 +135,12 @@ export default function Mission() {
     <>
       <Helmet>
         <title>House Cleaning Services in Mission, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional cleaners serving Mission, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="description" content="Mission, Calgary homes range from simple condo cleans to old Rouleauville houses with layered paint on deep trim and radiator fins." />
         <meta property="og:title" content="House Cleaning Services in Mission, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services in Mission, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional cleaners serving Mission, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
-        <meta property="og:description" content="Professional cleaners serving Mission, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="twitter:description" content="Mission, Calgary homes range from simple condo cleans to old Rouleauville houses with layered paint on deep trim and radiator fins." />
+        <meta property="og:description" content="Mission, Calgary homes range from simple condo cleans to old Rouleauville houses with layered paint on deep trim and radiator fins." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/mission/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/mission/" />
@@ -181,7 +181,7 @@ export default function Mission() {
                 Professional House Cleaning in Mission
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Trusted house cleaning for one of Calgary's most vibrant inner-city neighbourhoods — from 4th Street SW to the Elbow River pathways.
+                Mission's apartments and condos are among the simplest jobs in Calgary. Its oldest houses carry layered paint on deep trim, and radiators with fins no vacuum head reaches.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -241,10 +241,10 @@ export default function Mission() {
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
-                  Mission Areas We Serve
+                  More Calgary-area neighbourhoods we clean
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  We proudly serve residents and businesses across Mission and surrounding inner-city Calgary communities.
+                  The Calgary branch cleans these neighbourhoods around Mission at the same flat rates, with no travel fee inside city limits.
                 </p>
               </div>
               <CoverageChips areas={nearbyAreas} />
@@ -256,10 +256,10 @@ export default function Mission() {
 
       <LocalMarketNote
         eyebrow="Neighbourhood notes"
-        heading="Rouleauville, annexed in 1907"
+        heading="Once the Village of Rouleauville"
         paragraphs={[
-          "This was the Village of Rouleauville before Calgary took it in in 1907, a French-speaking Catholic settlement whose institutions are still standing: St. Mary's School dates to 1885 and the cathedral to 1912. Housing that has stood that long has usually been divided, re-divided and re-plumbed, and the giveaway indoors is layered paint on deep trim profiles and radiators with fins no vacuum head reaches.",
-          "The Elbow has been over its banks here more than once, in 1929 and again in June 2013. Lower levels on the streets nearest the water are the part of a house worth checking rather than assuming — corners, baseboards and the backs of storage rooms hold damp and dust longer than anything upstairs. Up on 4 Street the restaurant frontage brings its own traffic to the doors above it.",
+          "This was the Village of Rouleauville before Calgary took it in. Housing that has stood that long has usually been divided, re-divided and re-plumbed, and the giveaway indoors is layered paint on deep trim profiles and radiators with fins no vacuum head reaches.",
+          "The Elbow has been over its banks here more than once, in 1929 and again in June 2013. Lower levels on the streets nearest the water are the part of a house worth checking rather than assuming — corners, baseboards and the backs of storage rooms hold damp and dust longer than anything upstairs.",
         ]}
         accent="calgary"
       />
@@ -276,7 +276,7 @@ export default function Mission() {
                   Cleaning Services for Mission Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Everything from weekly upkeep to full move-out cleans.
+                  The same five services cover Mission's apartments and condos and its older houses, many of them divided and re-plumbed over the decades.
                 </p>
               </div>
             </AnimatedSection>
@@ -318,7 +318,7 @@ export default function Mission() {
                   Why Mission Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -367,7 +367,7 @@ export default function Mission() {
                 House Cleaning in Mission & Inner-City Calgary
               </h2>
               <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-                We provide professional house cleaning services throughout Mission and nearby communities in southwest Calgary.
+                Mission is one of 66 Calgary neighbourhoods on the Calgary branch's list. For an address you do not see there, call the Calgary office at (403) 768-1341.
               </p>
               <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                 View All Service Areas →

@@ -31,12 +31,22 @@ const HOME_TYPE = {
   twoStorey: formatPrice(BK_PRICE_OVERRIDES[90].price),
 };
 const EDMONTON_LISTING = GOOGLE_LISTINGS.edmonton;
-const REVIEW_COUNT = CITY_PROOF.edmonton.googleReviewCount + CITY_PROOF.calgary.googleReviewCount;
+
+// A worked quote built from the same rows the price table uses: a
+// two-bedroom bungalow on a standard clean, outside city limits, with a pet.
+const dollars = (price: string) => Number(price.replace(/[^0-9.]/g, ""));
+const EXAMPLE_TIER = STANDARD[1];
+const EXAMPLE_TOTAL = dollars(EXAMPLE_TIER.price) + BK_PRICE_OVERRIDES[54].price + (travelFee("standard") ?? 0);
+const EXAMPLE_PRICE = formatPrice(EXAMPLE_TOTAL);
+const EXAMPLE_WITH_PET = formatPrice(EXAMPLE_TOTAL + (addOnFromPrice("standard", "must-choose-if-you-have-pets") ?? 0));
+// Add-ons on a standard clean; the move-in/move-out clean includes both.
+const OVEN_FROM = formatPrice(addOnFromPrice("standard", "inside-oven") ?? 0);
+const FRIDGE_FROM = formatPrice(addOnFromPrice("standard", "inside-fridge") ?? 0);
 
 // Unqualified, "Devon" is an English county, and that is where most of this
 // page's impressions came from. Title and H1 both carry Alberta now.
 const PAGE_TITLE = `House Cleaning Devon, AB from ${STANDARD_FROM} | Duty Cleaners`;
-const PAGE_DESCRIPTION = `Flat-rate house cleaning in Devon, Alberta: standard cleans from ${STANDARD_FROM}, deep cleans from ${DEEP_FROM}, ${RATING_CLAIM}. See your price before you book.`;
+const PAGE_DESCRIPTION = `Flat-rate house cleaning in Devon, Alberta, about 26 km southwest of Edmonton, starts at ${STANDARD_FROM} before GST for a one-bedroom, plus a ${TRAVEL_FEE} travel fee.`;
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -111,52 +121,57 @@ const WhyUsCard = ({
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Devon" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "A full top-to-bottom reset — corners, baseboards, and the surfaces regular visits skip.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Devon" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Move-day cleaning done to the standard landlords check for.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Devon" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris cleared after renovations or new builds.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Devon" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Devon" },
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard clean booked to come back, from ${STANDARD_FROM}. Weekly saves 20% from the second visit, bi-weekly 15%, every four weeks 10%.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Devon" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Devon" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Devon" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or a new build, priced by square footage.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Devon" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Spot cleaning or a full wash of painted walls, booked together with a clean rather than on its own.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Devon" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard clean booked to come back, from ${STANDARD_FROM} for a one-bedroom apartment or condo before GST, plus the ${TRAVEL_FEE} travel fee and any house-type or pet surcharge. Weekly saves 20% from the second visit, bi-weekly 15%, every 4 weeks 10%.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Devon" },
 ];
 
 const whyUsItems = [
   { icon: Shield, title: "Reference-Checked, Then Rated by You", description: "Every cleaner is reference-checked before their first job, then rated by the customer after every visit. Those ratings decide who keeps cleaning for us." },
   { icon: Star, title: RATING_CLAIM, description: `The Edmonton listing, which is where a Devon clean is rated, holds ${CITY_PROOF.edmonton.googleReviewCount} reviews.`, link: { href: EDMONTON_LISTING.reviewsUrl, text: "View the listing" } },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day slots when a crew has room." },
-  { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
-  { icon: Users, title: "Experienced Team", description: "Cleaners who work to the Duty Cleaners checklist and are rated by the customer after each visit." },
-  { icon: ThumbsUp, title: "Satisfaction Guarantee", description: `If something was missed, tell us within ${POLICY.guaranteeWindowHours} hours and we'll return to make it right — at no additional charge.` },
+  { icon: Leaf, title: "All Supplies Brought For You", description: "The team brings all supplies and equipment. Leave the water and power on until the clean is done." },
+  { icon: ThumbsUp, title: "Re-Clean Guarantee", description: `Tell us within ${POLICY.guaranteeWindowHours} hours if something was missed and the team comes back to re-clean it, at no charge.` },
 ];
 
 const nearbyAreas = [
-  "Leduc", "Beaumont", "Calmar", "Thorsby",
-  "Spruce Grove", "Stony Plain", "Nisku", "Warburg"
+  "Leduc", "Beaumont", "Spruce Grove", "Stony Plain"
 ];
 
 export default function Devon() {
   const faqs = [
     {
       question: "Do you charge a travel fee in Devon?",
-      answer: `We do. Devon is outside Edmonton city limits, so a home-cleaning booking here carries a ${TRAVEL_FEE} travel fee. It goes on at booking, so the total you agree to is the total you pay. The size of the home does not move it, but the service can: a post-construction clean carries ${PC_TRAVEL_FEE} instead. That fee is the only difference from an Edmonton address, and not the only extra on a bill. The pet charge and the home-type surcharges apply in Devon exactly as they do in the city: ${PET_FEE} a visit where there are pets, and the step up from an apartment or condo, ${HOME_TYPE.bungalow} for a bungalow or basement suite, ${HOME_TYPE.townhouse} for a townhouse, ${HOME_TYPE.twoStorey} for a two-storey house.`
+      answer: `Yes. Devon is outside Edmonton city limits, so a home-cleaning booking here carries a ${TRAVEL_FEE} travel fee, and a post-construction clean carries ${PC_TRAVEL_FEE} instead; the size of the home does not change it. The fee shows on the quote before you book. It is the only charge an Edmonton address would not have, but it is not the only extra that can apply. The pet charge and the home-type surcharges apply in Devon exactly as they do in the city: ${PET_FEE} a visit where there are pets, and the step up from an apartment or condo, ${HOME_TYPE.bungalow} for a bungalow or basement suite, ${HOME_TYPE.townhouse} for a townhouse, ${HOME_TYPE.twoStorey} for a two-storey house.`
     },
     {
-      question: "Is same-day house cleaning available in Devon?",
-      answer: `When a crew has a gap, yes. Call the Edmonton office and ask; the answer is a yes or a no on the spot rather than a callback. Crews arrive in one of three windows, ${ARRIVAL_WINDOWS.join(", ")}, and a same-day booking takes whichever of those is still open.`
+      question: "When does the team arrive in Devon, and do I need to be home?",
+      answer: `Every booking gets an arrival window rather than an exact time: ${ARRIVAL_WINDOWS.join(", ")}. Same-day and next-day slots depend on the schedule, so call the Edmonton office at ${CITY_PROOF.edmonton.phone} to ask what is open. You do not need to be home for a Devon clean: most customers leave a key, a lockbox code or smart-lock access, and the team locks up.`
     },
     {
       question: "Can you do a move-out clean in Devon?",
-      answer: `Yes. Move-in and move-out cleans run ${MOVE_FROM} to ${MOVE_TOP} by bedroom count. Unlike a standard clean, the inside of the oven, the fridge and the kitchen and bathroom cabinets are part of the job rather than add-ons, because that is what an inspection looks at. Have the house empty before the crew arrives.`
+      answer: `Yes. A move-in or move-out clean in Devon runs from ${MOVE_FROM} for a one-bedroom apartment or condo to ${MOVE_TOP} for five or more bedrooms, before GST, plus the ${TRAVEL_FEE} travel fee and any house-type or pet surcharge. Unlike a standard clean, it includes inside the oven, fridge and microwave, and inside every cabinet, drawer and closet. Empty the house before the team arrives, because a cupboard that still holds plates gets worked around rather than cleaned inside. We do not promise the deposit comes back; the landlord decides.`
     },
     {
       question: "What does a standard clean cost in Devon?",
-      answer: `A one-bedroom is ${STANDARD_FROM}; five or more bedrooms is ${STANDARD_TOP}. Those are flat rates before GST, and a Devon address adds the ${TRAVEL_FEE} travel fee. The deep clean, which adds baseboards, ceiling fans, vents, outlet covers and light switches, starts at ${DEEP_FROM}. Weekly, bi-weekly and every-four-weeks schedules take 20%, 15% and 10% off from the second visit.`
+      answer: `A standard clean of a one-bedroom apartment or condo in Devon is ${STANDARD_FROM} before GST, and five or more bedrooms is ${STANDARD_TOP}. A Devon address adds the ${TRAVEL_FEE} travel fee, and a house or a home with pets adds its surcharge on top. The deep clean, which adds cobwebs, ceiling fans, light switches, outlet covers and vent covers, starts at ${DEEP_FROM} on the same terms. Weekly, bi-weekly and every-4-weeks schedules take 20%, 15% and 10% off. Discounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
       question: "Do the cleaners bring their own supplies to Devon?",
-      answer: `Yes, everything: products, cloths, mop, vacuum. You do not need to be home, either; a key, a lockbox code or a smart-lock code is how most customers do it. If you want eco-friendly products, they are ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}.`
+      answer: `Yes. The team brings all supplies and equipment, from products and cloths to the mop and the vacuum. Leave the water and power on until the clean is done: running water is required, and vacuuming may not be possible without electricity. If you want eco-friendly products, they are ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}.`
     },
     {
-      question: "What if a room was not done properly?",
-      answer: `Say so within ${POLICY.guaranteeWindowHours} hours and we come back for that room at no cost. We do not ask for photos first. On the other side of the ledger, a cancellation with less than ${POLICY.cancellationNoticeHours} hours' notice costs ${POLICY.cancellationFee}, and if the crew cannot get in at the booked time the lockout charge is ${POLICY.lockoutFee}.`
+      question: "What happens if something is missed?",
+      answer: `Tell us within ${POLICY.guaranteeWindowHours} hours and the team comes back to your Devon home to re-clean what was missed, at no charge. Photos help but are not required.`
+    },
+    {
+      question: "What does it cost to cancel or change a Devon booking?",
+      answer: `Cancelling or changing a booking needs ${POLICY.cancellationNoticeHours} hours' notice; inside that window the fee is ${POLICY.cancellationFee}. If the team arrives and cannot get in, the lockout charge is ${POLICY.lockoutFee}. If we have to move a booking, because a cleaner is ill or the roads are unsafe, we say so as soon as we know and offer the earliest slot we have. Cancelling a booking we moved costs nothing.`
+    },
+    {
+      question: "What is not included in a Devon house clean?",
+      answer: `Outdoor work is not included, which means exterior windows, garages, patios and other outdoor areas; in a Devon house backing the river valley, the mud gets cleaned once it is inside the door. The team does not lift anything over 25 lb or work beyond a 3-step ladder. Carpet steam cleaning, upholstery, mould remediation, pests, litter boxes, laundry and dishes are also out of scope. Heavy scrubbing of walls and doors is the separate wall-washing package, and decluttering or organising is a separate hourly add-on.`
     }
   ];
   const faqJsonLd = {
@@ -207,7 +222,7 @@ export default function Devon() {
                 Professional House Cleaning in Devon, Alberta
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto lg:mx-0 leading-relaxed">
-                Standard cleans in Devon start at {STANDARD_FROM} and deep cleans at {DEEP_FROM}, flat by home size, with the price shown before you book. Rated {RATING_CLAIM} across Edmonton and Calgary.
+                A standard clean in Devon starts at {STANDARD_FROM} for a one-bedroom apartment or condo before GST, plus a {TRAVEL_FEE} travel fee and any house-type or pet surcharge. The Edmonton branch is rated {RATING_CLAIM} from {CITY_PROOF.edmonton.googleReviewCount} reviews.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -222,8 +237,8 @@ export default function Devon() {
               <div className="flex flex-wrap justify-center lg:justify-start gap-6">
                 {[
                   { icon: CheckCircle2, text: "Pay After Your Clean" },
-                  { icon: CalendarCheck, text: "Flexible Scheduling Available" },
-                  { icon: Award, text: "100% Satisfaction Guarantee" },
+                  { icon: CalendarCheck, text: "Open 7 Days a Week" },
+                  { icon: Award, text: "24-Hour Re-Clean Guarantee" },
                 ].map((badge, i) => (
                   <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                     <badge.icon className="w-4 h-4 text-accent" />
@@ -244,82 +259,17 @@ export default function Devon() {
         </div>
       </section>
 
-      {/* About the Neighbourhood */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <AnimatedSection>
-            <div className="max-w-4xl mx-auto">
-              <span className="text-primary text-sm font-semibold tracking-wider uppercase">About the Neighbourhood</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                House cleaning in Devon, at a flat rate
-              </h2>
-              <div className="prose prose-lg text-muted-foreground max-w-none space-y-4">
-                <p>
-                  Devon sits on the south bank of the North Saskatchewan River, southwest of Edmonton. We clean homes from{" "}
-                  <a href="https://www.google.com/maps/place/Devon+Voyageur+Park/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
-                    Voyageur Park
-                  </a>{" "}
-                  and the{" "}
-                  <a href="https://www.google.com/maps/place/Devon+River+Valley+Trail/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
-                    Devon River Valley Trail
-                  </a>{" "}
-                  up to the streets around the{" "}
-                  <a href="https://www.google.com/maps/place/Devon+Community+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
-                    Devon Community Centre
-                  </a>{" "}
-                  and{" "}
-                  <a href="https://www.google.com/maps/place/Lions+Campground,+Devon,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
-                    Lions Park &amp; Campground
-                  </a>. The price is set by bedroom count before anyone arrives, from {STANDARD_FROM} for a one-bedroom, and it does not move if the clean runs long. Devon is outside Edmonton city limits, so a {TRAVEL_FEE} travel fee is added to each booking.
-                </p>
-                <p>
-                  The older streets along{" "}
-                  <a href="https://www.google.com/maps/place/Athabasca+Ave,+Devon,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
-                    Athabasca Avenue
-                  </a>{" "}
-                  and the crescents near the{" "}
-                  <a href="https://www.google.com/maps/place/Devon+Golf+and+Conference+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">
-                    Devon Golf &amp; Conference Centre
-                  </a>{" "}
-                  get the same crews and the same checklist. Those crews are reference-checked before a first job and rated by the customer after every visit, which is how the rating stays at {RATING_CLAIM}; the{" "}
-                  <Link to="/reviews/" className="text-primary underline underline-offset-2 font-medium">{REVIEW_COUNT} Google reviews</Link>{" "}
-                  across the two city listings are there to read, unedited. The full menu, with a starting price on each line, is on{" "}
-                  <Link to="/services/" className="text-primary underline underline-offset-2 font-medium">every Edmonton cleaning service with its starting price</Link>.
-                </p>
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Landmarks */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <AnimatedSection>
-            <div className="max-w-4xl mx-auto">
-              <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Life</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                Around Devon
-              </h2>
-              <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
-                <p>Devon exists because of the Leduc No. 1 well, drilled in 1947, and the Leduc No. 1 Energy Discovery Centre just east of town is where that story is kept. The other names on the map: the University of Alberta Botanic Garden, the Devon Museum, and Voyageur Park at the bottom of the hill.</p>
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
       {/* Interactive Map */}
       <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="text-center mb-8">
-              <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Location</span>
+              <span className="text-primary text-sm font-semibold tracking-wider uppercase">Map</span>
               <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
-                Find Us in Devon
+                Devon on the map
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                We serve all of Devon and surrounding communities including Leduc, Calmar, and Beaumont.
+                Every Devon clean is booked through the Edmonton office at 18615 71 Ave NW, open Monday to Saturday 8:00 AM to 8:00 PM and Sunday 9:00 AM to 3:00 PM.
               </p>
             </div>
             <div className="max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-xl">
@@ -348,7 +298,7 @@ export default function Devon() {
                 Cleaning Services for Devon Homes
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                Everything from weekly upkeep to full move-out cleans.
+                Each clean is priced flat by home size, except post-construction, which goes by square footage.
               </p>
             </div>
           </AnimatedSection>
@@ -373,12 +323,12 @@ export default function Devon() {
                 Why Devon Residents Choose Duty Cleaners
               </h2>
               <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                What the booking includes, on every visit.
+                These four hold on every Devon booking.
               </p>
             </div>
           </AnimatedSection>
           <AnimatedSection>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
               {whyUsItems.map((item, i) => (
                 <WhyUsCard key={i} {...item} />
               ))}
@@ -395,30 +345,22 @@ export default function Devon() {
             {/* One "Near Devon" H2 on the page is enough, and it belongs to
                 <NearbyNeighbourhoods>. This heading names the service. */}
             <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
-              Cleaning services in Devon and the towns nearby
+              Cleaning services in Devon and other towns around Edmonton
             </h2>
             <p className="text-muted-foreground mb-8 max-w-3xl mx-auto text-left md:text-center">
-              Devon and Leduc are next to each other, and the same crews cover both. They are the crews behind our{" "}
-              <Link to="/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Edmonton proper</Link>, working the same checklist for the same flat rate. We do{" "}
+              Devon is one of nine communities outside Edmonton that the Edmonton branch cleans, on the same checklist and the same flat rates as our{" "}
+              <Link to="/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Edmonton proper</Link>. The same office does{" "}
               <Link to="/cleaning-services-leduc/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Leduc</Link>{" "}
               and{" "}
-              <Link to="/cleaning-services-beaumont/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Beaumont</Link>{" "}
-              to the east, and{" "}
+              <Link to="/cleaning-services-beaumont/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Beaumont</Link>, runs{" "}
               <Link to="/cleaning-services-stony-plain/" className="text-primary underline underline-offset-2 font-medium">cleaning services in Stony Plain</Link>{" "}
-              to the northwest, across the river. Our{" "}
-              <Link to="/cleaning-services-fort-saskatchewan/" className="text-primary underline underline-offset-2 font-medium">Fort Saskatchewan house cleaners</Link>{" "}
-              work the opposite corner of the region. Each of those towns is outside city limits and carries the {TRAVEL_FEE} travel fee, the same as Devon.
+              and sends out our{" "}
+              <Link to="/cleaning-services-fort-saskatchewan/" className="text-primary underline underline-offset-2 font-medium">Fort Saskatchewan house cleaners</Link>. Each of those towns is outside Edmonton city limits and carries the {TRAVEL_FEE} travel fee, the same as Devon.
             </p>
             <CoverageChips areas={nearbyAreas} />
             <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
               View All Service Areas →
             </Link>
-            <p className="mt-6 text-sm text-muted-foreground">
-              Run a business in Devon? We also handle{" "}
-              <Link to="/commercial-cleaning/" className="text-primary underline underline-offset-2 font-medium">
-                commercial and office cleaning across the Edmonton region
-              </Link>.
-            </p>
 
           </AnimatedSection>
         </div>
@@ -430,8 +372,8 @@ export default function Devon() {
         eyebrow="Ground truth"
         heading="Planned in one go, in 1947"
         paragraphs={[
-          "Imperial Oil built this town from nothing after the Leduc No. 1 well came in on 13 February 1947, and it was the first community in Canada approved by a regional planning commission. A place laid out all at once ages all at once: the original streets share a build era, a floor plan vocabulary and a set of finishes, so the same rooms reach the same wear points across whole blocks rather than house by house.",
-          "The townsite sits on the south bank of the North Saskatchewan about 26 km southwest of Edmonton, with the river valley and its trail network immediately below. Households backing that edge bring the valley home — mud through the thaw, seed and pollen in early summer — and it concentrates at whichever door faces the slope.",
+          "Imperial Oil built this town from nothing after the Leduc No. 1 well came in during 1947, and it was the first community in Canada approved by a regional planning commission. A place laid out all at once ages all at once: the original streets share a build era, a floor plan vocabulary and a set of finishes, so the same rooms reach the same wear points across whole blocks rather than house by house.",
+          "The townsite sits on the south bank of the North Saskatchewan about 26 km southwest of Edmonton, with the river valley and its trail network immediately below. Households backing that edge bring the valley home: mud through the thaw, seed and pollen in early summer. All of it concentrates at whichever door faces the slope.",
         ]}
       />
 
@@ -448,15 +390,43 @@ export default function Devon() {
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>
-                  For a house that is kept up, book the standard clean, from {STANDARD_FROM}, and put it on a repeating schedule for the discount. The deep clean, from {DEEP_FROM}, is the right first visit for a house that has not been professionally cleaned before, because the baseboards and fan blades only need doing once before a standard visit can keep them. For a rental handover, book{" "}
-                  <Link to="/move-out-cleaning-edmonton/" className="text-primary underline underline-offset-2 font-medium">Devon move-out cleaning</Link>{" "}
-                  from {MOVE_FROM} and have the house empty first; a crew cannot clean the inside of a cupboard that still has plates in it.
+                  For a house that is kept up, book the standard clean, from {STANDARD_FROM} for a one-bedroom apartment or condo, before GST, the travel fee and any house-type or pet surcharge, and put it on a repeating schedule for the discount. The deep clean, from {DEEP_FROM} on the same terms, is the better first visit for a house that has not had a professional clean, because it adds cobwebs, ceiling fans, light switches, outlet covers and vent covers to the standard checklist.
                 </p>
                 <p>
-                  If the property is a short-term rental, the job is a turnover between guests rather than a scheduled clean, and it is priced by the hour on the{" "}
+                  For a rental handover, book{" "}
+                  <Link to="/move-out-cleaning-edmonton/" className="text-primary underline underline-offset-2 font-medium">Devon move-out cleaning</Link>{" "}
+                  from {MOVE_FROM} for a one-bedroom apartment or condo, before GST, the travel fee and any house-type or pet surcharge, and empty the cupboards first. Under Alberta's Residential Tenancies Act the landlord completes a move-out inspection report with the tenant, and the security deposit must be returned within 10 days after the tenant moves out. We do not promise the deposit comes back; the landlord decides.
+                </p>
+                <p>
+                  If the property is a short-term rental, the job is a turnover between guests rather than a scheduled clean. It is priced by the hour, with a minimum of 3 hours for one cleaner or 2 hours for two, on the{" "}
                   <Link to="/edmonton/airbnb-cleaning/" className="text-primary underline underline-offset-2 font-medium">Airbnb turnover cleaning in Edmonton</Link>{" "}
                   page. For every tier and every add-on in one table, see{" "}
                   <Link to="/pricing/" className="text-primary underline underline-offset-2 font-medium">what each home size costs in Edmonton</Link>, then add the {TRAVEL_FEE} travel fee for a Devon address.
+                </p>
+              </div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* A worked quote, built from the same rows as the price table */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4">
+          <AnimatedSection>
+            <div className="max-w-3xl mx-auto">
+              <span className="text-primary text-sm font-semibold tracking-wider uppercase">A worked quote</span>
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mt-2 mb-6">
+                What a Devon house cleaning quote adds up to
+              </h2>
+              <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
+                <p>
+                  Take a two-bedroom, two-bathroom bungalow in Devon, booked for a one-time standard clean. The table price for that size is {EXAMPLE_TIER.price}, which assumes an apartment or condo. A bungalow adds {HOME_TYPE.bungalow} and a Devon address adds the {TRAVEL_FEE} travel fee, so the quote comes to {EXAMPLE_PRICE} before 5% GST. If a dog or a cat lives there, the {PET_FEE} pet charge is compulsory on every visit and takes it to {EXAMPLE_WITH_PET}, still before GST.
+                </p>
+                <p>
+                  What else moves the figure is the home and the extras, not the clock. More bathrooms than the table assumes raise it, and so do add-ons: on a standard clean, inside the oven is from {OVEN_FROM} and inside the fridge from {FRIDGE_FROM}, both before GST. How long the clean takes does not change it. If a home needs substantially more work than described, such as heavy build-up, the team explains what it found and the options before continuing.
+                </p>
+                <p>
+                  Every line shows on the instant price before you book, and nothing is charged at booking. The day before the clean, a temporary hold confirms the card is valid; it can look like a charge in a banking app, but no money moves. The card is charged once the clean is complete.
                 </p>
               </div>
             </div>

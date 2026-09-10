@@ -6,7 +6,6 @@ import {
 import garneauCleanerImg from "@/assets/gallery/garneau-cleaner-apartment.webp";
 import { buildLocationSchema } from "@/lib/location-schema";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -73,7 +72,7 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Garneau" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Garneau" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Garneau" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Garneau" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Drywall and construction dust after a renovation or a new build in the area.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Garneau" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Garneau" },
@@ -82,7 +81,7 @@ const services = [
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Garneau" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment or condo, before GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Garneau" },
 ];
 
 const whyUsItems = [
@@ -132,7 +131,7 @@ export default function Garneau() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -154,22 +153,22 @@ export default function Garneau() {
     <>
       <Helmet>
         <title>House Cleaning Services Garneau Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Garneau, Edmonton. Serving the university district's heritage homes near the University of Alberta." />
+        <meta name="description" content="Cleaning for Garneau's student suites and older Edmonton houses, where many units turn over on a rental cycle rather than an owner's." />
         <script type="application/ld+json">{JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Garneau, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/garneau",
   areaServed: "Garneau, Edmonton, AB",
-  description: "Professional house cleaning in Garneau, Edmonton. Serving the university district's heritage homes near the University of Alberta.",
+  description: "Cleaning for Garneau's student suites and older Edmonton houses, where many units turn over on a rental cycle rather than an owner's.",
 }))}</script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/garneau/" />
         <meta property="og:title" content="House Cleaning Services Garneau Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Garneau, Edmonton. Serving the university district's heritage homes near the University of Alberta." />
+        <meta property="og:description" content="Cleaning for Garneau's student suites and older Edmonton houses, where many units turn over on a rental cycle rather than an owner's." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/garneau/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services Garneau Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Garneau, Edmonton. Serving the university district's heritage homes near the University of Alberta." />
+        <meta name="twitter:description" content="Cleaning for Garneau's student suites and older Edmonton houses, where many units turn over on a rental cycle rather than an owner's." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -195,7 +194,7 @@ export default function Garneau() {
                   House Cleaning Services in Garneau
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Professional cleaning for Edmonton's vibrant university district. From heritage homes with beautiful tree-lined streets to modern apartments near the U of A campus — enjoy a spotless living space.
+                  Many of Garneau's older houses were divided into suites after the Second World War, and the blocks along 109 Street are mostly rented, so cleans here tend to follow possession dates.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -221,7 +220,7 @@ export default function Garneau() {
               <div className="flex-shrink-0 w-full max-w-[500px]">
                 <img width={896} height={672}
                   src={garneauCleanerImg}
-                  alt="Professional cleaner vacuuming a bright apartment near the University of Alberta in Garneau, Edmonton"
+                  alt="Cleaner vacuuming a bright apartment"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                 loading="eager"
                   {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
@@ -238,7 +237,7 @@ export default function Garneau() {
               <div className="text-center mb-14">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Garneau Homes</h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto text-lg">Everything from weekly upkeep to full move-out cleans.</p>
+                <p className="text-muted-foreground max-w-2xl mx-auto text-lg">The Edmonton branch offers six services for Garneau suites and houses, each priced before 5% GST: flat by home size, or by square footage for post-construction.</p>
               </div>
             </AnimatedSection>
             <AnimatedSection>
@@ -275,7 +274,7 @@ export default function Garneau() {
               <div className="text-center mb-14">
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Garneau Residents Choose Duty Cleaners</h2>
-                <p className="text-white/90 max-w-2xl mx-auto text-lg">Trusted by families and students across Edmonton for reliable, thorough cleaning.</p>
+                <p className="text-white/90 max-w-2xl mx-auto text-lg">Every cleaner sent to a Garneau home is reference-checked first, and the ratings customers give after each visit decide who we keep sending.</p>
               </div>
             </AnimatedSection>
             <AnimatedSection>
@@ -293,10 +292,9 @@ export default function Garneau() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Garneau</h2>
-                  <p className="text-muted-foreground text-lg max-w-2xl mx-auto">We're in and around the neighbourhood daily, so we know the area well.</p>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Garneau and Edmonton's Other Neighbourhoods</h2>
+                  <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Garneau is one of 80 Edmonton neighbourhoods the Edmonton branch cleans, and none of them carries a trip fee.</p>
                 </div>
-                <CoverageChips areas={["University of Alberta", "Garneau Theatre", "Garneau School", "109 Street", "River Valley Trails", "Whyte Avenue"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">View All Service Areas →</Link>
                 </div>
@@ -309,8 +307,8 @@ export default function Garneau() {
         eyebrow="Neighbourhood notes"
         heading="Houses that were cut into suites"
         paragraphs={[
-          "The University of Alberta's main campus sits directly west, and after the Second World War a great many of Garneau's older houses were divided into rooming houses and suites for the students it drew. Much of that fabric is still in place - original wood trim, plaster, period hardware - inside units that turn over on a rental cycle rather than an owner's. The build-up we find in them is often several tenancies deep.",
-          "109 Street runs straight through the middle of the neighbourhood, lined with high-rise and low-rise blocks that are mostly rented, largely to students, which is why the calendar here runs on possession dates rather than weekly slots. At the north edge, along Saskatchewan Drive, suites look out over the river valley with nothing in the way, and those windows are the whole outlook of the suite, which is why they are the surface both a tenant and a landlord check first.",
+          "The University of Alberta's main campus sits directly west, and after the Second World War a great many of Garneau's older houses were divided into rooming houses and suites for the students it drew. Much of that fabric is still in place, with original wood trim, plaster and period hardware inside units that turn over on a rental cycle rather than an owner's.",
+          "109 Street runs straight through the middle of the neighbourhood, lined with high-rise and low-rise blocks that are mostly rented, largely to students, which is why the calendar here runs on possession dates rather than weekly slots. At the north edge, along Saskatchewan Drive, suites look out over the river valley with nothing in the way, and those windows are the whole outlook of the suite.",
         ]}
       />
 

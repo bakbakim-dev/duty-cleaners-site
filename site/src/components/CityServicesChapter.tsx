@@ -1,7 +1,7 @@
 import { addOnFromPrice, formatPrice, FREQUENCIES } from "@/data/pricing";
 import { Link } from "react-router-dom";
 import { canonicalForPath } from "@/data/legacy-urls";
-import { ArrowRight, Building2, ExternalLink, HardHat, Home, KeyRound, PaintRoller, Repeat, Sparkles, Truck } from "lucide-react";
+import { ArrowRight, ExternalLink, HardHat, Home, KeyRound, PaintRoller, Repeat, Sparkles, Truck } from "lucide-react";
 import { Accent } from "@/components/Accent";
 import Eyebrow from "@/components/Eyebrow";
 import useRevealOnScroll from "@/hooks/use-reveal-on-scroll";
@@ -32,28 +32,26 @@ const WALL_FROM = formatPrice(addOnFromPrice("standard", "spot-cleaning-inside-w
 const COPY = {
   Edmonton: {
     heading: <>Pick the clean that fits the job in <Accent>Edmonton</Accent></>,
-    standard: "A maintenance clean for kitchens, bathrooms, bedrooms, floors, dusting, and surfaces. Best for homes that need regular upkeep.",
-    deep: "A more detailed top-to-bottom clean for built-up dust, grime, baseboards, bathrooms, kitchens, and hard-to-reach areas.",
-    move: "A detailed empty-home clean designed for move transitions, listing photos, tenant turnover, and landlord walkthroughs.",
-    moveNote: "Keys in, keys out: timed around your walkthrough.",
+    standard: "Standard cleaning is a maintenance clean of the kitchen, bathrooms, bedrooms and floors, with the dusting and surfaces done. It suits a home that needs regular upkeep.",
+    deep: "Deep cleaning is the standard checklist plus the deep-clean package, which adds the baseboards, doors, light switches, wall outlets and vent covers. In Edmonton it suits the weeks after the spring melt, which brings a whole winter of grit indoors.",
+    move: "A move-in or move-out clean is done in the empty home. It is booked for tenant turnover, for listing photos and ahead of the move-out inspection a landlord completes with the tenant.",
+    moveNote: "Book it for the empty day between the last box and the walkthrough.",
     // Was "Same cleaner on a schedule". The recurring page says we do our best
     // to send the same team and policy.ts carries no continuity term, so the
     // card promised something the service pages take back.
-    recurring: `Your regular team where we can, and from the second visit you save ${RECURRING_DISCOUNTS}.`,
-    post: "Drywall and construction dust after a renovation or a new build.",
-    wall: `Marks, scuffs and cooking film off the walls, from ${WALL_FROM} added to a standard, deep or move-out clean.`,
-    commercial: "Offices, retail, warehouses and medical space, scoped in writing after a walkthrough.",
+    recurring: `Recurring cleaning is the standard clean on a schedule. From the second visit you save ${RECURRING_DISCOUNTS}; the first visit is charged at the one-time rate, and we send your regular team where we can.`,
+    post: "Post-construction cleaning clears the drywall and construction dust that a renovation or a new build leaves behind. It is priced by square footage.",
+    wall: `Wall washing takes marks, scuffs and cooking film off the walls. It is booked with a standard, deep or move-out clean, and spot cleaning starts at ${WALL_FROM} before GST, by home size.`,
   },
   Calgary: {
     heading: <>Calgary services, from upkeep to <Accent>handover</Accent></>,
-    standard: "The upkeep visit: kitchen, bathrooms, bedrooms, floors and the dusting, worked from the same list every time. The right choice for a home that is already in reasonable shape.",
-    deep: "Standard plus the deep-clean package: baseboards, the film on tile and glass, the strip along the floor edge where chinook grit settles. The usual answer to a Calgary spring.",
-    move: "An empty-home clean for the handover, timed to the walkthrough: for tenants, landlords, sellers and the photos that go on the listing.",
-    moveNote: "Booked against the possession date, not the calendar month.",
-    recurring: `Your regular team where we can, on a set day, and the discount starts at visit two: ${RECURRING_DISCOUNTS}.`,
-    post: "Fine dust from drywall and sanding, after a renovation or on possession of a new build.",
-    wall: `Hallway scuffs, kitchen film, the wall behind the stove: from ${WALL_FROM} on top of a standard, deep or move-out clean.`,
-    commercial: "Offices, retail and clinics, scoped in writing after a walkthrough.",
+    standard: "The upkeep visit covers the kitchen, bathrooms, bedrooms, floors and dusting, worked from the same list every time. It is the right choice for a home that is already in reasonable shape.",
+    deep: "Deep cleaning is the standard checklist with the deep-clean package added: baseboards, doors, light switches, wall outlets and vent covers. It suits the end of a Calgary winter, after months of chinook thaws have carried sand and de-icer to the door.",
+    move: "Move-out cleaning is an empty-home clean for the handover. Tenants, landlords and sellers book it, and so does anyone who needs the rooms ready for listing photos.",
+    moveNote: "Book it around the possession date.",
+    recurring: `Recurring cleaning puts the standard clean on a set day, with your regular team where we can send them. The discount starts at visit two: ${RECURRING_DISCOUNTS}.`,
+    post: "Post-construction cleaning lifts the fine dust from drywall and sanding after a renovation or on possession of a new build. It is priced by square footage.",
+    wall: `Wall washing handles hallway scuffs, kitchen film and the wall behind the stove. It is added to a standard, deep or move-out clean and cannot be booked alone, and spot cleaning is priced by home size from ${WALL_FROM} before GST.`,
   },
 } as const;
 
@@ -118,7 +116,7 @@ export default function CityServicesChapter({
                   to={canonicalForPath(`${basePath}/regular-cleaning`)}
                   className="mt-5 inline-flex items-center font-semibold text-primary transition-transform duration-300 group-hover:translate-x-1 after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 >
-                  Explore standard cleaning <ArrowRight className="ml-1.5 h-4 w-4" aria-hidden="true" />
+                  Standard cleaning in {city} <ArrowRight className="ml-1.5 h-4 w-4" aria-hidden="true" />
               </Link>
             </div>
           </div>
@@ -146,7 +144,7 @@ export default function CityServicesChapter({
                   to={canonicalForPath(`${basePath}/deep-cleaning`)}
                   className="mt-3 inline-flex items-center text-sm font-semibold text-primary transition-transform duration-300 group-hover:translate-x-1 after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 >
-                  Explore deep cleaning <ExternalLink className="ml-1 h-4 w-4" aria-hidden="true" />
+                  Deep cleaning in {city} <ExternalLink className="ml-1 h-4 w-4" aria-hidden="true" />
               </Link>
             </div>
           </div>
@@ -171,7 +169,7 @@ export default function CityServicesChapter({
               to={canonicalForPath(`${basePath}/move-in-move-out-cleaning`)}
               className="inline-flex items-center font-semibold text-accent-on-dark transition-transform duration-300 group-hover:translate-x-1 after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
-              Explore move-in/out cleaning <ArrowRight className="ml-1.5 h-4 w-4" aria-hidden="true" />
+              Move-in and move-out cleaning in {city} <ArrowRight className="ml-1.5 h-4 w-4" aria-hidden="true" />
           </Link>
         </div>
 
@@ -196,7 +194,7 @@ export default function CityServicesChapter({
               to={canonicalForPath(`${basePath}/recurring-cleaning`)}
               className="hidden items-center text-sm font-semibold text-accent transition-transform duration-300 group-hover:translate-x-1 sm:inline-flex after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
-              Explore recurring cleaning <ExternalLink className="ml-1 h-4 w-4" aria-hidden="true" />
+              {city} recurring cleaning <ExternalLink className="ml-1 h-4 w-4" aria-hidden="true" />
           </Link>
         </div>
 
@@ -215,7 +213,7 @@ export default function CityServicesChapter({
               to={canonicalForPath(`${basePath}/post-construction-cleaning`)}
               className="hidden items-center text-sm font-semibold text-primary transition-transform duration-300 group-hover:translate-x-1 sm:inline-flex after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
-              Explore post-construction <ExternalLink className="ml-1 h-4 w-4" aria-hidden="true" />
+              {city} post-construction cleaning <ExternalLink className="ml-1 h-4 w-4" aria-hidden="true" />
           </Link>
         </div>
 
@@ -240,40 +238,14 @@ export default function CityServicesChapter({
             to={canonicalForPath(`${basePath}/wall-washing`)}
             className="hidden items-center text-sm font-semibold text-primary transition-transform duration-300 group-hover:translate-x-1 sm:inline-flex after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
-            Explore wall washing <ExternalLink className="ml-1 h-4 w-4" aria-hidden="true" />
+            {city} wall washing <ExternalLink className="ml-1 h-4 w-4" aria-hidden="true" />
           </Link>
         </div>
 
-        {/* Commercial. The chapter listed five services and omitted this one,
-            on the page that is the entry point for the whole city — while
-            /commercial-cleaning-services-calgary/ earns 136,659 impressions and
-            /commercial-cleaning/ another 147,030 across its URLs. It was
-            reachable only from the services index.
-
-            The path is written out rather than composed from basePath: Calgary's
-            route is /calgary/commercial-cleaning (canonical
-            /commercial-cleaning-services-calgary/), but Edmonton's has no
-            /edmonton/ prefix at all — it is simply /commercial-cleaning/. */}
-        <div
-          className="motion-lift paper-rule card-warm group mt-6 flex items-center gap-4 border bg-white p-5 md:p-6 relative"
-        >
-          <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-primary/10">
-            <Building2 className="h-6 w-6 text-primary" aria-hidden="true" />
-          </div>
-          <div className="flex-1">
-            <h3 className="font-bold">Commercial &amp; Office</h3>
-            <p className="mt-1 text-sm text-muted-foreground leading-relaxed">{copy.commercial}</p>
-          </div>
-          <Link
-            to={canonicalForPath(
-              basePath === "/calgary" ? "/calgary/commercial-cleaning" : "/commercial-cleaning",
-            )}
-            className="hidden items-center text-sm font-semibold text-primary transition-transform duration-300 group-hover:translate-x-1 sm:inline-flex after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-          >
-            Explore commercial cleaning <ExternalLink className="ml-1 h-4 w-4" aria-hidden="true" />
-          </Link>
-        </div>
-
+        {/* The commercial card that sat here went in September 2026. These are
+            the residential hubs, and the content prompt puts commercial and
+            office cleaning out of scope on residential pages. The commercial
+            pages keep their own routes and navigation links. */}
         <div className="mt-10 text-center">
           <Link
             to={canonicalForPath(`${basePath}/services`)}

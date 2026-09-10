@@ -82,16 +82,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Woodcroft" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Woodcroft" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Woodcroft" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Woodcroft" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around Woodcroft.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Woodcroft" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Woodcroft" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "The clean after a Woodcroft renovation, priced by square footage, starts once the contractor has hauled away the debris.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Woodcroft" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film washed off painted walls, booked together with a clean.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Woodcroft" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Woodcroft" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit before GST for a one-bedroom apartment or condo, with any pet or home-type charge added. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Woodcroft" },
 ];
 
 const whyUsItems = [
@@ -141,7 +141,7 @@ export default function Woodcroft() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -163,25 +163,25 @@ export default function Woodcroft() {
     <>
       <Helmet>
         <title>House Cleaners in Woodcroft, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Woodcroft, Edmonton. Trusted local cleaners serving northwest Edmonton families." />
+        <meta name="description" content="In Woodcroft, Edmonton, some late-1950s homes still have milk-door cubbies and boot closets, and those cavities hold decades of settled grime." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Woodcroft, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/woodcroft-edmonton",
   areaServed: "Woodcroft, Edmonton, AB",
-  description: "Professional house cleaning in Woodcroft, Edmonton. Trusted local cleaners serving northwest Edmonton families.",
+  description: "In Woodcroft, Edmonton, some late-1950s homes still have milk-door cubbies and boot closets, and those cavities hold decades of settled grime.",
   geo: { latitude: "53.566", longitude: "-113.541" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/woodcroft-edmonton/" />
         <meta property="og:title" content="House Cleaners in Woodcroft, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Woodcroft, Edmonton. Trusted local cleaners serving northwest Edmonton families." />
+        <meta property="og:description" content="In Woodcroft, Edmonton, some late-1950s homes still have milk-door cubbies and boot closets, and those cavities hold decades of settled grime." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/woodcroft-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Woodcroft, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Woodcroft, Edmonton. Trusted local cleaners serving northwest Edmonton families." />
+        <meta name="twitter:description" content="In Woodcroft, Edmonton, some late-1950s homes still have milk-door cubbies and boot closets, and those cavities hold decades of settled grime." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -207,7 +207,7 @@ export default function Woodcroft() {
                   Professional House Cleaning in Woodcroft
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Your reliable, local cleaning team serving the Woodcroft community. From mature bungalows along 133 Street to townhomes near Westmount — friendly, neighbourhood-level cleaning service.
+                  Woodcroft's late-1950s homes pair plaster walls with hardwood floors. Our Edmonton branch cleans them at a flat rate by home size, and the card is charged only once the clean is complete.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -235,7 +235,7 @@ export default function Woodcroft() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
                   src={heroImg}
-                  alt="Professional cleaner tidying a living room in a Woodcroft, Edmonton townhome"
+                  alt="Cleaner mopping a living-room floor beside a sofa and coffee table"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   width={1024}
                   height={1024}
@@ -257,7 +257,7 @@ export default function Woodcroft() {
                   Cleaning Services for Woodcroft Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
+                  Six services for Woodcroft homes, recurring visits among them, each priced by home size before GST rather than by the hour.
                 </p>
               </div>
             </AnimatedSection>
@@ -300,7 +300,7 @@ export default function Woodcroft() {
                   Why Woodcroft Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -322,7 +322,7 @@ export default function Woodcroft() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Woodcroft Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Located in northwest Edmonton, we're always just around the corner.
+                  Woodcroft is one of 80 Edmonton neighbourhoods our Edmonton branch cleans, with no trip fee inside city limits.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -341,12 +341,12 @@ export default function Woodcroft() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Woodcroft</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Edmonton-area neighbourhoods we clean</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    Westmount, Inglewood, Sherbrooke and Dovercourt are on the same Edmonton branch list as Woodcroft.
                   </p>
                 </div>
-                <CoverageChips areas={["Woodcroft Library", "Coronation Park", "Groat Road", "111 Avenue", "Westmount", "Inglewood", "Sherbrooke", "Dovercourt"]} variant="compact" />
+                <CoverageChips areas={["Westmount", "Inglewood", "Sherbrooke", "Dovercourt"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -362,7 +362,7 @@ export default function Woodcroft() {
         heading="Woodcroft, between the park and the Centre"
         paragraphs={[
           "Woodcroft's late-1950s homes cluster near Westmount and Coronation Park, and the era's give-away indoors is the plaster-and-hardwood pairing: walls that mark easily but wipe clean, floors that show dust plainly. Original milk-door cubbies and boot closets survive in some, and those overlooked cavities hold decades of settled grime worth clearing once a season.",
-          "The Westmount shopping district and 111 Avenue's bus corridors keep the neighbourhood's south edge busy, while Coronation Park's sports fields feed weekend traffic through the west side. Homes between the two collect entry wear from both directions — a mid-block Woodcroft house cleans differently front and back.",
+          "Westmount traffic and 111 Avenue's bus corridors keep the neighbourhood's south edge busy, while Coronation Park draws weekend traffic through the west side. Homes between the two collect entry wear from both directions — a mid-block Woodcroft house cleans differently front and back.",
         ]}
       />
 

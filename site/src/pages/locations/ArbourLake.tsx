@@ -1,3 +1,4 @@
+import { sitePriceRange } from "@/data/pricing";
 import { getListing } from "@/lib/google-listings";
 import {
   CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import { useEffect } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import {   Phone, CheckCircle2, Star, Shield, Clock, Award, Home, Sparkles, Truck, SprayCan, Bath, Building2, Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Waves, PaintRoller
@@ -60,10 +61,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Arbour Lake" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Arbour Lake" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Arbour Lake" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Arbour Lake.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Arbour Lake" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Arbour Lake" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Arbour Lake" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "A move-out clean covers inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Arbour Lake" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust and debris cleared after a renovation in Arbour Lake, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Arbour Lake" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Wall washing takes scuffs, handprints and cooking film off painted walls without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Arbour Lake" },
 ];
 
 const whyUsItems = [
@@ -94,7 +95,7 @@ const whyUsItems = [
   { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
-const nearbyAreas = ["Arbour Lake Estates", "Tuscany", "Scenic Acres", "Citadel", "Hawkwood", "Ranchlands", "Varsity", "Silver Springs"];
+const nearbyAreas = ["Tuscany", "Scenic Acres", "Varsity"];
 
 const faqs = [
   {
@@ -107,11 +108,11 @@ const faqs = [
   },
   {
     question: "Do you offer discounts?",
-    answer: `We offer recurring discounts for our Standard and Deep Cleaning Packages.\n\nIf you avail of our recurring discount, on your next cleaning:\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
+    answer: `Recurring cleaning in Arbour Lake is the standard clean on a schedule, and from the second visit it costs less:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nThe first clean is charged at the one-time rate.`
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `Deep cleaning adds the following to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `Deep cleaning adds the following to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -123,8 +124,8 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Arbour Lake Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/arbour-lake",
-  description: "Professional house cleaning services in Arbour Lake, Calgary. Welcoming lakeside community near Stoney Trail NW. 100% satisfaction guarantee.",
-  priceRange: "$$",
+  description: "In northwest Calgary, Arbour Lake beach sand works into carpet backing and hardwood seams, so house cleaning here means a slow vacuum pass.",
+  priceRange: sitePriceRange(),
   geo: { latitude: "51.1011", longitude: "-114.2031" },
 });
 
@@ -137,13 +138,13 @@ export default function ArbourLake() {
     <>
       <Helmet>
         <title>House Cleaning Services Arbour Lake Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning services in Arbour Lake, Calgary. Welcoming lakeside community near Stoney Trail NW. 100% satisfaction guarantee." />
+        <meta name="description" content="In northwest Calgary, Arbour Lake beach sand works into carpet backing and hardwood seams, so house cleaning here means a slow vacuum pass." />
         <meta name="keywords" content="house cleaning Arbour Lake Calgary, cleaning services Arbour Lake, maid service Arbour Lake Calgary, home cleaning Northwest Calgary" />
         <meta property="og:title" content="House Cleaning Services Arbour Lake Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services Arbour Lake Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning services in Arbour Lake, Calgary. Welcoming lakeside community near Stoney Trail NW. 100% satisfaction guarantee." />
-        <meta property="og:description" content="Professional house cleaning services in Arbour Lake, Calgary. Welcoming lakeside community near Stoney Trail NW. 100% satisfaction guarantee." />
+        <meta name="twitter:description" content="In northwest Calgary, Arbour Lake beach sand works into carpet backing and hardwood seams, so house cleaning here means a slow vacuum pass." />
+        <meta property="og:description" content="In northwest Calgary, Arbour Lake beach sand works into carpet backing and hardwood seams, so house cleaning here means a slow vacuum pass." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/arbour-lake/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/arbour-lake/" />
@@ -185,7 +186,7 @@ export default function ArbourLake() {
                   House Cleaning Services in Arbour Lake, Calgary
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Professional cleaning for Calgary's premier lakeside community. Customer-rated cleaners loved by local families — from the private beach to every corner of your home.
+                  Arbour Lake is built around a man-made lake, and its beach sends fine sand home from May onward. That sand works into carpet backing and hardwood seams, so a slow, sectioned vacuum pass does more here than shaking out a mat.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -213,7 +214,7 @@ export default function ArbourLake() {
               <div className="flex-shrink-0 w-full lg:w-[500px]">
                 <img
                   src={calgaryCleanHome}
-                  alt="A freshly cleaned Calgary living space"
+                  alt="A bright living room with a cream sectional sofa and a glass coffee table"
                   width={1024}
                   height={768}
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
@@ -259,7 +260,7 @@ export default function ArbourLake() {
                   Arbour Lake & Nearby Neighbourhoods We Serve
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Arbour Lake and the communities around it.{" "}
+                  The Calgary branch cleans homes in Arbour Lake and in the neighbourhoods listed here.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -272,10 +273,10 @@ export default function ArbourLake() {
 
       <LocalMarketNote
         eyebrow="From the route"
-        heading="Northwest Calgary's only lake"
+        heading="The man-made lake at the centre of Arbour Lake"
         paragraphs={[
           "Sand is the summer story on these streets. The man-made lake at the centre of Arbour Lake is the reason for the whole plan, and its beach sends sand home in towels, swim bags and sandal treads from May onward. Fine sand works down into carpet backing and hardwood seams instead of sitting on top of them, which is why shaking out a mat achieves nothing and a slow, sectioned vacuum pass does.",
-          "Thirty-plus years of the same ductwork is the other thing. Building started in 1992, and a lot of these houses are still moving air through their original supply runs, so registers and cold-air returns are a line item here rather than something folded into dusting - thirty years of the same supply runs holds a lot of beach sand.",
+          "Thirty-plus years of the same ductwork is the other thing. Building started in 1992, and a lot of these houses are still moving air through their original supply runs, so the reachable register and return covers get wiped in a deep clean. The ducts behind them are left alone, because furnace, vent and duct cleaning is not included in any clean.",
         ]}
         accent="calgary"
       />
@@ -294,7 +295,7 @@ export default function ArbourLake() {
                   Cleaning Services for Arbour Lake Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs, we have every service your lakeside home needs.
+                  Many Arbour Lake houses, built from 1992 on, still move air through their original supply runs. Reachable vents are part of the deep clean, and standard, deep and move-out cleans are priced flat by home size.
                 </p>
               </div>
             </AnimatedSection>
@@ -336,7 +337,7 @@ export default function ArbourLake() {
                   Why Arbour Lake Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>

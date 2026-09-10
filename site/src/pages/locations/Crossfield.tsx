@@ -5,10 +5,14 @@ import {
 import crossfieldImg from "@/assets/gallery/crossfield-clean-home.webp";
 import { buildLocationSchema } from "@/lib/location-schema";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
-import { sitePriceRange } from "@/data/pricing";
+import { sitePriceRange, addOnFromPrice, formatPrice } from "@/data/pricing";
+import { TRAVEL_FEE_KEY } from "@/data/addon-table";
+
+/** The travel fee outside Calgary city limits (P11), read from bk-config the way <LocationPricing> reads it. */
+const TRAVEL_FEE = formatPrice(addOnFromPrice("standard", TRAVEL_FEE_KEY) ?? 0);
+
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
   return (
@@ -61,9 +65,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Crossfield" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Crossfield" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Crossfield" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Crossfield" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Crossfield.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Crossfield" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or a new build, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Crossfield" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Crossfield" },
 ];
 
@@ -95,7 +99,6 @@ const whyUsItems = [
   { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
-const nearbyAreas = ["Westwinds", "Prairie Winds", "Mountain View Estates", "Railway Avenue", "Downtown Crossfield", "Eagle Ridge"];
 
 const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Crossfield",
@@ -124,11 +127,15 @@ export default function Crossfield() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `In Crossfield, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `In Crossfield, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
       answer: "Tell us within 24 hours and the team comes back to your Crossfield home to re-clean what was missed, at no charge. Photos help but are not required."
+    },
+    {
+      question: "Is there a travel fee for house cleaning in Crossfield?",
+      answer: `Yes. Crossfield is outside Calgary city limits, so a ${TRAVEL_FEE} travel fee is added to home-cleaning bookings there, before 5% GST. It comes on top of the flat price by home size, the home-type charge for a bungalow, basement suite, townhouse or two-storey house, and the compulsory pet charge for a home with pets. Each of these charges shows on the quote before you book.`
     }
   ];
   const faqJsonLd = {
@@ -145,13 +152,13 @@ export default function Crossfield() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning Services in Crossfield, AB | Duty Cleaners</title>
-        <meta name="description" content="Book house cleaning in Crossfield in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
-        <meta property="og:title" content="House Cleaning Services in Crossfield, AB | Duty Cleaners" />
+        <title>{`House Cleaning Crossfield, ${RATING_CLAIM} | Duty Cleaners`}</title>
+        <meta name="description" content="Farm and gas-plant work makes the entry and laundry room work hardest in a Crossfield home, and every clean has a 24-hour re-clean guarantee." />
+        <meta property="og:title" content={`House Cleaning Crossfield, ${RATING_CLAIM} | Duty Cleaners`} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning Services in Crossfield, AB | Duty Cleaners" />
-        <meta name="twitter:description" content="Book house cleaning in Crossfield in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
-        <meta property="og:description" content="Book house cleaning in Crossfield in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="twitter:title" content={`House Cleaning Crossfield, ${RATING_CLAIM} | Duty Cleaners`} />
+        <meta name="twitter:description" content="Farm and gas-plant work makes the entry and laundry room work hardest in a Crossfield home, and every clean has a 24-hour re-clean guarantee." />
+        <meta property="og:description" content="Farm and gas-plant work makes the entry and laundry room work hardest in a Crossfield home, and every clean has a 24-hour re-clean guarantee." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/crossfield/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/crossfield/" />
@@ -181,7 +188,7 @@ export default function Crossfield() {
                   Professional House Cleaning in Crossfield
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Trusted house cleaning services in Crossfield, AB. Customer-rated cleaners loved by local families — from Mountain View Estates to Downtown Crossfield.
+                  Crossfield's housing stock is young, with matte wall paint, engineered plank and low-sheen cabinet fronts that want a neutral-pH cleaner and a soft cloth. Crossfield is outside Calgary city limits, so the Calgary branch adds a travel fee to bookings here.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -209,7 +216,7 @@ export default function Crossfield() {
               <div className="flex-shrink-0 w-full lg:w-[500px]">
                 <img width={1024} height={1024}
                   src={crossfieldImg}
-                  alt="Clean modern home interior in Crossfield, Alberta — bright and inviting living space"
+                  alt="Bright living room with grey sofas, a pale rug and wood plank floors under tall windows"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                 loading="eager"
                   {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
@@ -218,24 +225,6 @@ export default function Crossfield() {
           </div>
         </section>
 
-
-      {/* Things To Do */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <AnimatedSection>
-            <div className="max-w-4xl mx-auto">
-              <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Life</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                Things To Do In Crossfield
-              </h2>
-              <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
-                <p>Located just north of Calgary, Crossfield is a welcoming town known for its scenic charm and tight-knit community. With a population of over 3,000, Crossfield offers a perfect blend of small-town atmosphere and modern amenities. Collicutt Siding Golf Club is just west of town.</p>
-                <p>Enjoy a walk or family picnic at Banta Park, a beautiful green space perfect for outdoor activities. For fresh, local produce and unique finds, the Crossfield Farmers' Market is a must-visit. Wrap up your day with a hearty meal at The Lobby Kitchen & Bar, known for its cozy ambiance and delicious food. After a day out, let Duty Cleaners handle the cleaning so you can return to a spotless home.</p>
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
 
         {/* Interactive Map */}
         <section className="py-16 bg-background">
@@ -268,30 +257,29 @@ export default function Crossfield() {
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
-                  Crossfield Neighbourhoods We Serve
+                  Crossfield Addresses We Clean
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  We proudly serve families and homeowners across all Crossfield communities.
+                  Homes anywhere in the Town of Crossfield book at the same flat rates by home size, plus the travel fee. For a farm or acreage outside town, call the Calgary office at (403) 768-1341 before booking.
                 </p>
               </div>
-              <CoverageChips areas={nearbyAreas} />
             </AnimatedSection>
           </div>
         </section>
+
+      <LocationPricing />
 
       <LocalMarketNote
         eyebrow="Two economies"
         heading="What the work clothes bring in"
         paragraphs={[
-          "Three things pay the bills around here: farming, the services that supply it, and natural gas — a processing plant has run just south of the townsite since 1965. Both kinds of work come home on the clothes and on the boots, which makes the entry, the laundry and the utility sink the hardest-working rooms in the house. A clean that starts in the living room has started in the wrong place.",
-          "It began in 1892 as a railway station, waited until 1907 for village status and 1980 for town status, then grew 20.7 percent in five years to 3,599 people at the 2021 count. Growth like that keeps the housing stock young, and young stock means young finishes — matte wall paint, engineered plank, low-sheen cabinet fronts. All three want neutral-pH cleaner and a soft cloth; the cream cleansers and scouring pads that suit old enamel will haze them for good.",
+          "Farm and gas-plant work comes home on the clothes and on the boots, which makes the entry, the laundry and the utility sink the hardest-working rooms in the house. A clean that starts in the living room has started in the wrong place.",
+          "Crossfield's housing stock is young, and young stock means young finishes — matte wall paint, engineered plank, low-sheen cabinet fronts. All three want neutral-pH cleaner and a soft cloth; the cream cleansers and scouring pads that suit old enamel will haze them for good.",
         ]}
         accent="calgary"
       />
 
       <NearbyNeighbourhoods />
-
-      <LocationPricing />
 
         {/* Services */}
         <section className="py-20 bg-background">
@@ -303,7 +291,7 @@ export default function Crossfield() {
                   Cleaning Services for Crossfield Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Everything from weekly upkeep to full move-out cleans.
+                  Standard, deep and move-out cleaning are priced flat by home size before GST, and post-construction cleaning by square footage. A home with pets carries a compulsory pet charge, and it shows on the Crossfield quote before you book.
                 </p>
               </div>
             </AnimatedSection>
@@ -345,7 +333,7 @@ export default function Crossfield() {
                   Why Crossfield Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -368,7 +356,7 @@ export default function Crossfield() {
                 House Cleaning in Crossfield & Surrounding Areas
               </h2>
               <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-                We provide professional house cleaning services throughout Crossfield and nearby communities in the Calgary region.
+                Crossfield shares the Calgary branch with Airdrie, Cochrane, Chestermere and five other communities outside the city, and with 66 Calgary neighbourhoods.
               </p>
               <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                 View All Service Areas →

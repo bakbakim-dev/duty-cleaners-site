@@ -82,16 +82,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Central McDougall" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Central McDougall" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Central McDougall" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Central McDougall" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared properly after renos and handovers.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Central McDougall" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or a new build, priced by square footage.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Central McDougall" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Central McDougall" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Central McDougall" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment or condo, before GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Central McDougall" },
 ];
 
 const whyUsItems = [
@@ -141,7 +141,7 @@ export default function CentralMcDougall() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `In Central McDougall, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `In Central McDougall, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -163,25 +163,25 @@ export default function CentralMcDougall() {
     <>
       <Helmet>
         <title>House Cleaning in Central McDougall, Edmonton</title>
-        <meta name="description" content="Professional house cleaning in Central McDougall, Edmonton. Reliable, customer-rated local cleaners. Pay after your clean." />
+        <meta name="description" content="When a Central McDougall household in Edmonton works hospital shifts, book an afternoon arrival window and tell us which room someone sleeps in." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Central McDougall, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/central-mcdougall-edmonton",
   areaServed: "Central McDougall, Edmonton, AB",
-  description: "Professional house cleaning in Central McDougall, Edmonton. Reliable, customer-rated local cleaners. Pay after your clean.",
+  description: "When a Central McDougall household in Edmonton works hospital shifts, book an afternoon arrival window and tell us which room someone sleeps in.",
   geo: { latitude: "53.555", longitude: "-113.496" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/central-mcdougall-edmonton/" />
         <meta property="og:title" content="House Cleaning in Central McDougall, Edmonton" />
-        <meta property="og:description" content="Professional house cleaning in Central McDougall, Edmonton. Reliable, customer-rated local cleaners. Pay after your clean." />
+        <meta property="og:description" content="When a Central McDougall household in Edmonton works hospital shifts, book an afternoon arrival window and tell us which room someone sleeps in." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/central-mcdougall-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Central McDougall, Edmonton" />
-        <meta name="twitter:description" content="Professional house cleaning in Central McDougall, Edmonton. Reliable, customer-rated local cleaners. Pay after your clean." />
+        <meta name="twitter:description" content="When a Central McDougall household in Edmonton works hospital shifts, book an afternoon arrival window and tell us which room someone sleeps in." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -207,7 +207,7 @@ export default function CentralMcDougall() {
                   Professional House Cleaning in Central McDougall
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  From student-friendly apartments near MacEwan University to family homes by Kingsway Mall — our team keeps central Edmonton spaces beautifully tidy.
+                  Central McDougall is six blocks by eight, with the Royal Alexandra Hospital inside its boundaries. If someone sleeps after a hospital shift, tell us which room and the vacuuming is sequenced around it.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -235,7 +235,7 @@ export default function CentralMcDougall() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
                   src={heroImg}
-                  alt="Professional cleaner working in a Central McDougall, Edmonton home"
+                  alt="Cleaner with a broom in a bright room with a desk, a teal cabinet and sheer curtains"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   width={1024}
                   height={1024}
@@ -257,7 +257,7 @@ export default function CentralMcDougall() {
                   Cleaning Services for Central McDougall Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs — every service a home needs.
+                  Standard, deep and move-out cleans for Central McDougall homes, with afternoon arrival windows for households working hospital shifts.
                 </p>
               </div>
             </AnimatedSection>
@@ -300,7 +300,7 @@ export default function CentralMcDougall() {
                   Why Central McDougall Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Dependable cleaning, visit after visit.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -322,7 +322,7 @@ export default function CentralMcDougall() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Central McDougall Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Always close to MacEwan, Kingsway and the city centre.
+                  Central McDougall runs from 105 Avenue up to 111 Avenue and from 101 Street west to 109 Street, inside Edmonton city limits, so no trip fee applies.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -341,12 +341,12 @@ export default function CentralMcDougall() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Central McDougall</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Edmonton-area neighbourhoods we clean</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    Besides Central McDougall, the Edmonton branch cleans in Westmount and the rest of its 80 Edmonton neighbourhoods.
                   </p>
                 </div>
-                <CoverageChips areas={["MacEwan University", "Kingsway Mall", "Royal Alexandra Hospital", "107 Avenue", "109 Street", "Queen Mary Park", "Westmount", "Oliver"]} variant="compact" />
+                <CoverageChips areas={["Westmount"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -361,8 +361,8 @@ export default function CentralMcDougall() {
         eyebrow="Local knowledge"
         heading="Scheduling around the Royal Alex"
         paragraphs={[
-          "Six blocks north to south and eight east to west — 105 Avenue up to 111, 101 Street west to 109 — and every one of those four boundaries is a through road rather than a residential street. Inside that small a footprint, curb space is the practical constraint on the day. We plan on parking a street back and carrying kit in, and confirm the door and the parking before the visit rather than working it out on arrival.",
-          "The Royal Alexandra Hospital sits inside the neighbourhood boundaries, with the Metro Line's Kingsway/Royal Alex station on the north side of Kingsway at its door and a nine-bay transit centre on 111 Avenue. When a household here works hospital shifts, the clean has to fit around sleep: quiet-hours requests, vacuuming sequenced to keep noise off one bedroom, and afternoon starts instead of the usual morning slot.",
+          "Central McDougall is six blocks north to south and eight east to west: 105 Avenue up to 111, 101 Street west to 109. Every one of those four boundaries is a through road rather than a residential street. Inside that small a footprint, curb space is the practical constraint on the day. The booking form asks about parking and how to get in, so tell us there which door to use and where the team can park.",
+          "The Royal Alexandra Hospital sits inside the neighbourhood boundaries, with the Metro Line's Kingsway/Royal Alex station on the north side of Kingsway at its door and a nine-bay transit centre on 111 Avenue. When a household here works hospital shifts, the clean has to fit around sleep: vacuuming sequenced to keep noise off one bedroom, and an arrival window of 12:00 to 1:00 PM or 3:00 to 4:00 PM rather than 9:00 to 10:00 AM.",
         ]}
       />
 

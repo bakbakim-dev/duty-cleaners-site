@@ -93,9 +93,9 @@ export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: 
         <div id={hasQuoteSection ? undefined : "quote"} className="mb-14 flex flex-col gap-6 border-b border-brand-navy-foreground/15 pb-12 md:flex-row md:items-center md:justify-between lg:mb-16 lg:pb-14">
           <div className="max-w-2xl">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-brand-gold">Ready when you are</p>
-            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">A cleaner home starts with a simple quote.</h2>
+            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">See your price before you book.</h2>
             <p className="mt-3 max-w-xl text-sm leading-6 text-brand-navy-foreground/85 sm:text-base">
-              Tell us what your home needs and we’ll help you choose the right cleaning service for your space.
+              Prices are before GST, and the instant price shows the exact figure for your home.
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row md:shrink-0">
@@ -126,11 +126,11 @@ export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: 
         <div className="mb-14 border-b border-brand-navy-foreground/15 pb-12 lg:mb-16 lg:pb-14">
           <div className="mb-8 flex flex-col gap-2 text-center sm:flex-row sm:items-end sm:justify-between sm:text-left">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-gold">Why homeowners choose us</p>
-              <h2 className="mt-2 text-xl font-bold sm:text-2xl">Trusted locally. Built around care.</h2>
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-gold">Reviews and payment</p>
+              <h2 className="mt-2 text-xl font-bold sm:text-2xl">Read the reviews, and pay once the clean is complete.</h2>
             </div>
             <p className="max-w-md text-sm leading-6 text-brand-navy-foreground/85">
-              Customer-rated cleaners, connected to the local communities we serve.
+              Every cleaner is reference-checked before a first job and rated by the customer after each visit, and those ratings decide who we keep sending.
             </p>
           </div>
 
@@ -181,8 +181,8 @@ export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: 
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-[1.25fr_0.8fr_1fr_1.2fr] lg:gap-10">
           <div>
             <Link to="/" className="inline-flex rounded bg-brand-gold px-4 py-2 text-xl font-bold text-brand-gold-foreground transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-navy">DUTY CLEANERS</Link>
-            <p className="mt-4 text-sm font-medium text-brand-gold">Serving Alberta since 2017</p>
-            <p className="mt-3 max-w-sm text-sm leading-6 text-brand-navy-foreground/85">Professional cleaning services for Alberta homes and businesses, delivered by vetted cleaners.</p>
+            <p className="mt-4 text-sm font-medium text-brand-gold">Cleaning Alberta homes since 2017</p>
+            <p className="mt-3 max-w-sm text-sm leading-6 text-brand-navy-foreground/85">House cleaning in Edmonton, Calgary and nearby communities, from an Edmonton branch and a Calgary branch.</p>
             <div className="mt-6 flex flex-wrap gap-2">
               {socialLinks.map(({ label, href, icon: Icon }) => (
                 <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="flex h-11 w-11 items-center justify-center rounded-full border border-brand-navy-foreground/15 text-brand-navy-foreground/85 transition-colors hover:border-brand-gold hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold" aria-label={label}>
@@ -256,8 +256,8 @@ export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: 
               <div className="border-t border-brand-navy-foreground/15 pt-5">
                 <div className="flex min-h-12 items-center gap-2 font-semibold"><Clock className="h-4 w-4 text-brand-gold" aria-hidden="true" /><span>Hours</span></div>
                 <div className="space-y-1 text-sm leading-6 text-brand-navy-foreground/85">
-                  <div className="flex justify-between gap-3"><span>Mon – Sat</span><span>8:00am – 8:00pm</span></div>
-                  <div className="flex justify-between gap-3"><span>Sunday</span><span>9:00am – 3:00pm</span></div>
+                  <div className="flex justify-between gap-3"><span>Mon to Sat</span><span>8:00 AM to 8:00 PM</span></div>
+                  <div className="flex justify-between gap-3"><span>Sunday</span><span>9:00 AM to 3:00 PM</span></div>
                 </div>
               </div>
             </div>
@@ -268,7 +268,7 @@ export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: 
           <div className="flex flex-col gap-5 text-sm md:flex-row md:items-center md:justify-between">
             <p className="text-center text-brand-navy-foreground/85 md:text-left">© {new Date().getFullYear()} Duty Cleaners. All rights reserved.</p>
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 md:justify-end">
-              <Link to="/satisfaction-guarantee/" className="text-brand-navy-foreground/85 transition-colors hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold">Satisfaction Guarantee</Link>
+              <Link to="/satisfaction-guarantee/" className="text-brand-navy-foreground/85 transition-colors hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold">Re-Clean Guarantee</Link>
               <Link to="/privacy-policy/" className="text-brand-navy-foreground/85 transition-colors hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold">Privacy Policy</Link>
               <Link to="/terms/" className="text-brand-navy-foreground/85 transition-colors hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold">Terms of Service</Link>
               {/* Plain anchor: /sitemap.xml is a real static file, not a React route. */}

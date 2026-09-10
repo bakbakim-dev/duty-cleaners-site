@@ -11,7 +11,7 @@ import {
   formatPrice,
 } from "@/data/pricing";
 import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
-import { TRAVEL_FEE_KEY } from "@/data/addon-table";
+import { TRAVEL_FEE_KEY, travelFee } from "@/data/addon-table";
 import { edmontonSurrounding, calgarySurrounding } from "@/data/city-locations";
 
 /**
@@ -72,6 +72,7 @@ const HOME_TYPE_EXTRA = {
   twoStorey: formatPrice(BK_PRICE_OVERRIDES[90].price),
 };
 const PET_FEE = formatPrice(addOnFromPrice("standard", "must-choose-if-you-have-pets") ?? 0);
+const POST_TRAVEL_FEE = formatPrice(travelFee("post-construction") ?? 0);
 
 /** Route slugs for every place that is its own municipality, not a neighbourhood. */
 const SURROUNDING_SLUGS: ReadonlySet<string> = new Set(
@@ -106,21 +107,20 @@ export default function LocationPricing({ place }: LocationPricingProps) {
             Cleaning prices in {name}
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed mb-4">
-            A standard clean in {name} runs {PRICES.standard} depending on the size of your home, a deep
+            A standard clean in {name} runs {PRICES.standard} from one bedroom to five or more, a deep
             clean {PRICES.deep}, and a move-in or move-out clean {PRICES.moveInOut}. Those are flat
-            rates in Canadian dollars before 5% GST — the figure you see before booking is the
-            figure you pay, and it does not go up because a clean took longer than expected. Those
-            figures are for an apartment or condo: a bungalow or basement suite adds{" "}
+            rates for an apartment or condo, in Canadian dollars before 5% GST. More bathrooms raise them, and they do not go up
+            because a clean took longer than expected. A bungalow or basement suite adds{" "}
             {HOME_TYPE_EXTRA.bungalow}, a townhouse {HOME_TYPE_EXTRA.townhouse} and a two-storey house{" "}
-            {HOME_TYPE_EXTRA.twoStorey}, and a home with pets {PET_FEE} a visit.
+            {HOME_TYPE_EXTRA.twoStorey}, and a home with pets pays a compulsory {PET_FEE} on every visit.
             {/* The fee is charged against the branch this page belongs to, so
                 that is the boundary to name. "outside Edmonton and Calgary city
                 limits" was true of the company and useless to the reader: an
                 Okotoks visitor was being told about Edmonton's boundary. */}
             {isOwnMunicipality && TRAVEL_FEE !== null
-              ? ` Because ${name} is outside ${city} city limits, a ${TRAVEL_FEE} travel fee is added to bookings here.`
+              ? ` Because ${name} is outside ${city} city limits, a ${TRAVEL_FEE} travel fee is added to home-cleaning bookings here, or ${POST_TRAVEL_FEE} to a post-construction clean.`
               : ""}
-            {" Every one of them shows on the quote before you book."}
+            {" Each of these charges shows on the quote before you book."}
           </p>
           <p className="text-muted-foreground text-lg leading-relaxed">
             {/* This sentence is about recurring cleaning and linked only to the
@@ -135,7 +135,7 @@ export default function LocationPricing({ place }: LocationPricingProps) {
             >
               recurring schedule in {name}
             </Link>{" "}
-            the discount is 20% weekly, 15% bi-weekly and 10% every four weeks from the second clean.
+            the discount is 20% weekly, 15% bi-weekly and 10% every 4 weeks from the second clean.
             Your first clean is charged at the standard one-time rate. The{" "}
             <Link to={canonicalForPath(pricingPath)} className="text-accent underline underline-offset-2">
               full {city} price list

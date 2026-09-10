@@ -12,7 +12,7 @@ interface FormulaStep {
 const steps: FormulaStep[] = [
   { icon: Sparkles, title: "Service", desc: "Standard, deep, or move-in/out. Deep is the standard rate plus a package sized to the home." },
   { icon: Home, title: "Home size", desc: "Bedrooms pick the tier, then each bathroom is priced on top." },
-  { icon: Building2, title: "Home type", desc: "An apartment or condo is the base. A bungalow, townhouse or two-storey house adds a little for the stairs and extra floor." },
+  { icon: Building2, title: "Home type", desc: "An apartment or condo is the base. A bungalow or basement suite, a townhouse or a two-storey house adds a set amount." },
   { icon: PlusCircle, title: "Add-ons", desc: "Inside the oven, the fridge, the cabinets, interior windows and the rest, each a fixed line per visit." },
   { icon: Percent, title: "Frequency", desc: "20% off weekly, 15% off bi-weekly, 10% off every 4 weeks, from the second visit." },
 ];
@@ -40,7 +40,7 @@ export default function PricingFormula({ city }: PricingFormulaProps) {
           <span className="text-accent font-semibold text-sm uppercase tracking-wider">How the price is built</span>
           <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">How {article} {city} cleaning price is put together</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Five things set {article} {city} price. The form asks for each one and shows the total before you book.
+            Five things set {article} {city} price, and pets or an address outside city limits add their own charge. The form asks for each one and shows the total before you book.
           </p>
         </div>
 

@@ -60,13 +60,13 @@ export default function MoveOutServiceAreas({ city }: MoveOutServiceAreasProps) 
           Move Out Cleaning Throughout {city}
         </h2>
         <p className="text-center text-muted-foreground mb-12">
-          Book the same move-out checklist anywhere we work. Each area has its own page with local
-          detail and the same flat rates.
+          The move-out checklist and the prices by home size are the same in every place named here,
+          and each one has its own page. Communities outside {city} city limits add a travel fee.
         </p>
 
         <div className="flex flex-col gap-10 rounded-xl bg-white p-8 shadow-md">
           {group(`${city} neighbourhoods`, neighbourhoods)}
-          {group("Surrounding communities", towns)}
+          {group(`Outside ${city} city limits`, towns)}
         </div>
       </div>
     </section>

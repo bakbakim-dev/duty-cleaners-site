@@ -1,5 +1,6 @@
 import { Clock, Heart, Shield, Star, type LucideIcon } from "lucide-react";
 import { Accent, AccentGold } from "@/components/Accent";
+import { CITY_PROOF } from "@/data/proof";
 
 type City = "Edmonton" | "Calgary";
 
@@ -15,31 +16,31 @@ const values: Value[] = [
     icon: Shield,
     label: "Safety",
     title: "Customer-Rated Cleaners",
-    desc: () =>
-      "Safety is our priority. We accept less than 5% of applicants. Every cleaner undergoes a strict 5-step vetting process including identity verification, reference audits, and online interviews.",
+    desc: (city) =>
+      `Every cleaner is reference-checked before a first job and rated by the customer after each visit. Those ratings decide who we keep sending to ${city} homes.`,
   },
   {
     icon: Star,
     label: "Craft",
-    title: "Excellence in Every Detail",
+    title: "A Checklist, Not a Clock",
     desc: () =>
-      "From baseboards to ceiling fans, we approach every job with meticulous attention to detail. Our checklist is a promise that nothing gets overlooked.",
+      "The team works through the checklist for the service you booked and stays until it is done. The price is flat by home size and does not change because a clean took longer than expected. If something was missed, tell us within 24 hours and we come back and re-clean it at no charge.",
   },
   {
     icon: Clock,
     label: "Dependability",
-    title: "Reliability You Can Count On",
+    title: "An Arrival Window You Can Plan Around",
     desc: () =>
-      "We arrive prepared, follow the agreed priorities, and keep the work focused on your home\u2019s needs.",
+      "We book an arrival window rather than an exact time: 9:00 to 10:00 AM, 12:00 to 1:00 PM or 3:00 to 4:00 PM. The team brings all supplies and equipment. If we have to move a booking, we say so as soon as we know and offer the earliest slot we have.",
   },
   {
     icon: Heart,
     label: "Local",
-    title: "Community First",
+    title: "A Branch in Your City",
     desc: (city) =>
       city === "Edmonton"
-        ? "Edmonton isn't just where we work\u2014it's where we live and raise our families. From cheering on the Oilers at Rogers Place to enjoying the River Valley trails, we're proud to be part of this community and employ local residents."
-        : "Calgary isn't just where we work\u2014it's where we live and raise our families. From cheering on the Flames at the Saddledome to enjoying the Bow River pathways, we're proud to be part of this community and employ local residents.",
+        ? `Edmonton homes are cleaned by the Edmonton branch, from its office at ${CITY_PROOF.edmonton.streetAddress}. Edmonton holds its cold rather than cycling through thaws, so the sand and salt tracked in from November arrive dry and stay, working into carpet edges and along baseboards.`
+        : `Calgary homes are cleaned by the Calgary branch, from its office at ${CITY_PROOF.calgary.streetAddress}. Chinooks thaw and refreeze the city all winter, so sand and de-icer reach the door again and again from November to April and settle along baseboards and carpet edges.`,
   },
 ];
 
@@ -63,9 +64,8 @@ export function MissionValues({ city }: { city: City }) {
             Making {city} homes cleaner, <AccentGold>lives easier.</AccentGold>
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
-            At Duty Cleaners, our mission is simple: to provide exceptional cleaning services that give {city} families
-            more time for what matters most. We believe that a clean home isn't just about appearances&mdash;it's about
-            creating a healthy, comfortable space where memories are made and life is lived.
+            Duty Cleaners has cleaned homes in Alberta since 2017. The aim is plain: {city} homes cleaned properly, at a
+            flat price you see before you book, so the hours you would have spent cleaning go back to you.
           </p>
         </div>
 

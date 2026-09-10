@@ -60,9 +60,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Parkhill" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Parkhill" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Parkhill" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Parkhill" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Parkhill.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Parkhill" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust after a Parkhill renovation, priced by the home's square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Parkhill" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Parkhill" },
 ];
 
@@ -104,7 +104,7 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Parkhill?",
-    answer: `The full service menu is available here:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `In Parkhill, the Calgary branch books these services:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
   },
   {
     question: "Do you offer discounts?",
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function Parkhill() {
     <>
       <Helmet>
         <title>House Cleaning Services in Parkhill, Calgary | Duty Cleaners</title>
-        <meta name="description" content="House cleaning in Parkhill, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
+        <meta name="description" content="Parkhill homes near Macleod Trail get a wet pass on entry tile for winter brine; those on the Elbow River valley side collect fine pathway dust on sills." />
         <meta property="og:title" content="House Cleaning Services in Parkhill, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services in Parkhill, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning in Parkhill, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
-        <meta property="og:description" content="House cleaning in Parkhill, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
+        <meta name="twitter:description" content="Parkhill homes near Macleod Trail get a wet pass on entry tile for winter brine; those on the Elbow River valley side collect fine pathway dust on sills." />
+        <meta property="og:description" content="Parkhill homes near Macleod Trail get a wet pass on entry tile for winter brine; those on the Elbow River valley side collect fine pathway dust on sills." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/parkhill-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/parkhill-calgary/" />
@@ -183,7 +183,7 @@ export default function Parkhill() {
                 Professional House Cleaning in Parkhill
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Parkhill sits high above the Elbow River — a friendly SW community of character bungalows, modern infills, and panoramic downtown views.
+                Parkhill runs from Macleod Trail on its eastern edge to ground that falls away west into the Elbow River valley. Homes near the road collect winter brine haze, and homes on the valley side collect fine pathway dust.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function Parkhill() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Parkhill Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Everything from weekly upkeep to full move-out cleans.
+                  Each of these services is bookable in Parkhill through the Calgary branch, and the quote shows the flat price before anything is booked.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function Parkhill() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Parkhill Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Parkhill and the surrounding SW Calgary communities.
+                    Parkhill is inside Calgary city limits, so there is no trip fee on a Parkhill booking.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function Parkhill() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={768} src={cleanHomeImg} alt="Pristine modern bathroom in a Parkhill Calgary home, professionally cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1024} height={768} src={cleanHomeImg} alt="White bathroom with a glass shower screen over the tub, a rain shower head and a pedestal sink" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">What a Parkhill clean covers</span>
                   <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Bathrooms, kitchens and floors, done properly</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Our vetted cleaners treat your home with care, attention, and the same standards we'd want in our own. Walk in to fresh air, gleaming surfaces, and that quiet feeling of <em>everything in its place</em>.
+                    Hard Alberta water leaves mineral scale on taps, shower glass and kettles. Calgary thaws and refreezes on chinooks all winter, so sand and de-icer reach the door again and again from November to April and settle along baseboards and carpet edges.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Customer-rated cleaners","All supplies and equipment brought","Re-clean at no charge if you tell us within 24 hours"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,9 +311,9 @@ export default function Parkhill() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Parkhill and the communities around it.{" "}
+                  Duty Cleaners cleans homes across Parkhill and in these nearby Calgary neighbourhoods.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -328,7 +328,7 @@ export default function Parkhill() {
         eyebrow="From the route"
         heading="What Macleod Trail leaves behind"
         paragraphs={[
-          "Macleod Trail runs the length of the eastern boundary, and the City names it among the roads carrying over twenty thousand vehicles a day — the tier it treats first with anti-icing brine when snow is forecast. Storm doors and east-facing glass on those first blocks carry a pale brine haze all winter, and entry tile picks the same thing up off boots. Salt wants rinsing off before a cloth goes near it, so those homes get a wet pass first.",
+          "Macleod Trail runs the length of the eastern boundary, and the City names it among the roads carrying over twenty thousand vehicles a day — the tier it treats first with anti-icing brine when snow is forecast. Storm doors and east-facing glass on those first blocks carry a pale brine haze all winter, and entry tile picks the same thing up off boots. Salt wants rinsing off before a cloth goes near it, so in those homes the tile gets a wet pass first.",
           "The opposite edge has no traffic at all. Ground falls away west into the Elbow River valley, with Stanley Park and the river pathway below. That side stays open to whatever moves through the valley, and the work follows — fine pathway dust settling on sills through summer, damp entry mats through the melt, and patio door tracks that need doing far more often than anything up on the flat.",
         ]}
         accent="calgary"
@@ -347,7 +347,7 @@ export default function Parkhill() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Parkhill Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Reliable, detail-first cleaning families count on.
+                  Cleaners are reference-checked first and rated after each Parkhill visit, and a missed spot reported within 24 hours gets a return visit at no charge.
                 </p>
               </div>
             </AnimatedSection>

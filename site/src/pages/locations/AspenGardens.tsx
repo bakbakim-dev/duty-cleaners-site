@@ -82,16 +82,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Aspen Gardens" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Aspen Gardens" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Aspen Gardens" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Aspen Gardens" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "A move-out clean covers inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Aspen Gardens" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris cleared after renovations or new builds.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Aspen Gardens" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Aspen Gardens" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Wall washing takes scuffs, handprints and cooking film off painted walls without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Aspen Gardens" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Aspen Gardens" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment or condo, before GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Aspen Gardens" },
 ];
 
 const whyUsItems = [
@@ -133,15 +133,15 @@ export default function AspenGardens() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Aspen Gardens?",
-      answer: `Every service we run can be booked locally:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `These services can be booked in Aspen Gardens:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
-      answer: `Yes, recurring visits cost less every time:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
+      answer: `Yes, on a recurring schedule:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -163,25 +163,25 @@ export default function AspenGardens() {
     <>
       <Helmet>
         <title>Aspen Gardens, Edmonton House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Aspen Gardens, Edmonton. Trusted local cleaners serving southwest Edmonton families." />
+        <meta name="description" content="Aspen Gardens, Edmonton backs the Whitemud ravine, and many of its 1960s homes have vaulted cedar ceilings that hold dust along the grain." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Aspen Gardens, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/aspen-gardens-edmonton",
   areaServed: "Aspen Gardens, Edmonton, AB",
-  description: "Professional house cleaning in Aspen Gardens, Edmonton. Trusted local cleaners serving southwest Edmonton families.",
+  description: "Aspen Gardens, Edmonton backs the Whitemud ravine, and many of its 1960s homes have vaulted cedar ceilings that hold dust along the grain.",
   geo: { latitude: "53.487", longitude: "-113.56" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/aspen-gardens-edmonton/" />
         <meta property="og:title" content="Aspen Gardens, Edmonton House Cleaning | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Aspen Gardens, Edmonton. Trusted local cleaners serving southwest Edmonton families." />
+        <meta property="og:description" content="Aspen Gardens, Edmonton backs the Whitemud ravine, and many of its 1960s homes have vaulted cedar ceilings that hold dust along the grain." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/aspen-gardens-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Aspen Gardens, Edmonton House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Aspen Gardens, Edmonton. Trusted local cleaners serving southwest Edmonton families." />
+        <meta name="twitter:description" content="Aspen Gardens, Edmonton backs the Whitemud ravine, and many of its 1960s homes have vaulted cedar ceilings that hold dust along the grain." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -207,7 +207,7 @@ export default function AspenGardens() {
                   Professional House Cleaning in Aspen Gardens
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Your reliable, local cleaning team serving the Aspen Gardens community. From custom family homes off 119 Street to estate properties along Whitemud Drive — meticulous, white-glove cleaning every visit.
+                  Aspen Gardens is a neighbourhood of 1960s executive homes backing the Whitemud ravine, many with vaulted cedar ceilings and floor-to-ceiling glass. Pollen, needle drop and debris from the ravine reach the thresholds on their own calendar.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -235,7 +235,7 @@ export default function AspenGardens() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
                   src={heroImg}
-                  alt="Professional cleaner polishing hardwood in an Aspen Gardens, Edmonton home"
+                  alt="A cleaner running a floor mop over a dark hardwood living-room floor"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   width={1024}
                   height={1024}
@@ -257,7 +257,7 @@ export default function AspenGardens() {
                   Cleaning Services for Aspen Gardens Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
+                  Interior windows can be added to a standard or deep clean in Aspen Gardens, and standard, deep and move-out cleans are priced flat by home size.
                 </p>
               </div>
             </AnimatedSection>
@@ -300,7 +300,7 @@ export default function AspenGardens() {
                   Why Aspen Gardens Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Dependable cleaning, visit after visit.
+                  Every Aspen Gardens clean from the Edmonton branch comes with these four things.
                 </p>
               </div>
             </AnimatedSection>
@@ -322,7 +322,7 @@ export default function AspenGardens() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Aspen Gardens Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Located in southwest Edmonton, we're always just around the corner.
+                  Aspen Gardens is an Edmonton neighbourhood inside city limits, so a booking here pays no trip fee.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -341,12 +341,12 @@ export default function AspenGardens() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Aspen Gardens</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Edmonton-area neighbourhoods we clean</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    Homes in these neighbourhoods get the same checklist and the same flat rates from the Edmonton branch.
                   </p>
                 </div>
-                <CoverageChips areas={["Aspen Gardens Park", "Whitemud Drive", "Snow Valley", "Riverbend", "119 Street", "Lansdowne", "Westbrook Estates", "Greenfield"]} variant="compact" />
+                <CoverageChips areas={["Riverbend", "Greenfield"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -361,8 +361,8 @@ export default function AspenGardens() {
         eyebrow="Local knowledge"
         heading="Aspen Gardens under the canopy"
         paragraphs={[
-          "Aspen Gardens is 1960s executive stock backing the Whitemud ravine, with vaulted cedar ceilings and floor-to-ceiling ravine glass in many homes. Cedar sheds fine fibres and holds dust along its grain lines, and those big view windows carry the whole burden of the room's first impression — tracks, sills and glass are the job here.",
-          "Ravine adjacency sets the calendar: heavy pollen weeks off the aspen and spruce, needle drop through fall, and wildlife-carried debris at grade. Homes on the ravine lots need screen and threshold attention on a rhythm street-side homes never do.",
+          "Aspen Gardens is 1960s executive stock backing the Whitemud ravine, with vaulted cedar ceilings and floor-to-ceiling ravine glass in many homes. Cedar sheds fine fibres and holds dust along its grain lines, and those big view windows set the room's first impression. The inside of that glass within a 3-step ladder's reach is the interior-windows add-on.",
+          "Ravine adjacency sets the calendar: heavy pollen weeks off the aspen and spruce, needle drop through fall, and wildlife-carried debris at grade. Homes on the ravine lots need threshold attention on a rhythm street-side homes never do.",
         ]}
       />
 

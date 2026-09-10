@@ -60,9 +60,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Erlton" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Erlton" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Erlton" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Erlton" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Erlton.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Erlton" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or a new build, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Erlton" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Erlton" },
 ];
 
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function Erlton() {
     <>
       <Helmet>
         <title>House Cleaning Services in Erlton, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Book house cleaning in Erlton, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="description" content="Erlton sits beside Stampede Park in Calgary, and about seven buildings in ten are condos or apartments, so most house cleaning here is suite-scale." />
         <meta property="og:title" content="House Cleaning Services in Erlton, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services in Erlton, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Book house cleaning in Erlton, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
-        <meta property="og:description" content="Book house cleaning in Erlton, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="twitter:description" content="Erlton sits beside Stampede Park in Calgary, and about seven buildings in ten are condos or apartments, so most house cleaning here is suite-scale." />
+        <meta property="og:description" content="Erlton sits beside Stampede Park in Calgary, and about seven buildings in ten are condos or apartments, so most house cleaning here is suite-scale." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/erlton-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/erlton-calgary/" />
@@ -183,7 +183,7 @@ export default function Erlton() {
                 Professional House Cleaning in Erlton
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Erlton is a riverside inner-city SW community offering quiet streets, easy LRT access, and a perfect blend of character bungalows and modern condos near the Elbow River.
+                Erlton sits between the Elbow River and Stampede Park, and most of its housing is condos and apartments, so a clean here is usually suite-scale. Each one is priced flat by home size, before 5% GST.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function Erlton() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Erlton Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Erlton homes get every service they need.
+                  An Erlton clean is booked into an arrival window of 9:00 to 10:00 AM, 12:00 to 1:00 PM or 3:00 to 4:00 PM, rather than an exact time.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function Erlton() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Erlton Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Erlton and the surrounding SW Calgary communities.
+                    Macleod Trail runs north to south through Erlton, and the whole community is inside Calgary city limits, so there is no trip fee.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function Erlton() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1280} height={896} src={cleanHomeImg} alt="Spotless Erlton Calgary home cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1280} height={896} src={cleanHomeImg} alt="Condo living room with floor-to-ceiling windows over a river, cream sofas and a dark tiled fireplace" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Calm, Spotless Erlton Home — Every Visit</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Suite-scale cleans</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Compact Kitchens and In-Suite Laundry in Erlton</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Our vetted cleaners treat your home with care, attention, and the same standards we'd want in our own. Walk in to fresh air, gleaming surfaces, and that quiet feeling of <em>everything in its place</em>.
+                    Most Erlton cleans are suites, so the work goes into a compact kitchen, the bathroom and the in-suite laundry. Doing the laundry itself is not part of a clean, and exterior windows and balconies count as outdoor work that is not included.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Reference-checked cleaners, rated after each visit","Nothing charged until the clean is done","Free re-clean if you tell us within 24 hours"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,9 +311,9 @@ export default function Erlton() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Erlton and the communities around it.{" "}
+                  Erlton and these six are among the 66 Calgary neighbourhoods on the Calgary branch's list.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -329,8 +329,8 @@ export default function Erlton() {
         eyebrow="Local knowledge"
         heading="Erlton beside the grounds"
         paragraphs={[
-          "Erlton sits between the Elbow River and Stampede Park, and ten days each July the neighbourhood absorbs the grounds' dust, crowds and parking overflow — a seasonal spike no other Calgary community experiences at this intensity. Post-Stampede cleans here are a known genre: fine lot dust on every sill and floors that have hosted a festival's foot traffic.",
-          "The housing runs heavily to condominiums and apartments — about seven buildings in ten — with a scatter of heritage survivors among them, so most cleans here are suite-scale: compact kitchens, in-suite laundry, and balcony glass that collects Macleod Trail film between visits. River-path cyclists and MNP Centre traffic keep entries busy year-round, and Macleod Trail bisects the community north to south, so glass and balcony rails on the Macleod side carry visible traffic film between visits — the tell-tale surfaces on every Erlton clean.",
+          "Erlton sits between the Elbow River and Stampede Park, and for ten days each July the neighbourhood absorbs the grounds' dust, crowds and parking overflow.",
+          "The housing runs heavily to condominiums and apartments, about seven buildings in ten, with a scatter of heritage survivors among them. Most cleans here are suite-scale: compact kitchens and in-suite laundry. River-path cyclists and MNP Centre traffic keep entries busy year-round, and Macleod Trail bisects the community north to south. On the Macleod side, balcony glass and rails carry visible traffic film between visits. Both sit outside the clean, which stops at the balcony door and takes in the sills on the inside.",
         ]}
       />
 
@@ -347,7 +347,7 @@ export default function Erlton() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Erlton Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Dependable cleaning, visit after visit.
+                  Duty Cleaners' hours are Monday to Saturday, 8:00 AM to 8:00 PM, and Sunday, 9:00 AM to 3:00 PM.
                 </p>
               </div>
             </AnimatedSection>

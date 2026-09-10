@@ -60,9 +60,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Skyview Ranch" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Skyview Ranch" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Skyview Ranch" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Skyview Ranch" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Skyview Ranch.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Skyview Ranch" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Site grit and drywall dust cleared after a new build or a renovation in Skyview Ranch.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Skyview Ranch" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Skyview Ranch" },
 ];
 
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Cityscape","Saddle Ridge","Redstone","Cornerstone","Country Hills","Coral Springs"];
+const nearbyAreas = ["Cityscape","Saddle Ridge"];
 
 const faqs = [
   {
@@ -104,15 +104,15 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Skyview Ranch?",
-    answer: `Households here can book any of the following:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `In Skyview Ranch, households can book:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning, booked with a clean`
   },
   {
     question: "Do you offer discounts?",
-    answer: `Yes, recurring visits cost less every time:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
+    answer: `Yes, recurring visits cost less after the first clean:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `In Skyview Ranch, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `In Skyview Ranch, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function SkyviewRanch() {
     <>
       <Helmet>
         <title>House Cleaners in Skyview Ranch, Calgary | Duty Cleaners</title>
-        <meta name="description" content="House cleaning in Skyview Ranch, Calgary. See your price before you book, pay after the clean, and we re-clean misses within 24 hours." />
+        <meta name="description" content="Skyview Ranch in Calgary filled in fast through the 2010s, and our cleaners find drywall fines working out of vents and dust on high foyer ledges." />
         <meta property="og:title" content="House Cleaners in Skyview Ranch, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Skyview Ranch, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning in Skyview Ranch, Calgary. See your price before you book, pay after the clean, and we re-clean misses within 24 hours." />
-        <meta property="og:description" content="House cleaning in Skyview Ranch, Calgary. See your price before you book, pay after the clean, and we re-clean misses within 24 hours." />
+        <meta name="twitter:description" content="Skyview Ranch in Calgary filled in fast through the 2010s, and our cleaners find drywall fines working out of vents and dust on high foyer ledges." />
+        <meta property="og:description" content="Skyview Ranch in Calgary filled in fast through the 2010s, and our cleaners find drywall fines working out of vents and dust on high foyer ledges." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/skyview-ranch/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/skyview-ranch/" />
@@ -183,7 +183,7 @@ export default function SkyviewRanch() {
                 Professional House Cleaning in Skyview Ranch
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Trusted house cleaning services for one of Calgary's modern northeast communities — bringing a calm, spotless home within reach.
+                Skyview Ranch filled in fast through the 2010s, and a first deep clean here routinely pulls more out of a house than the owners expect. Standard, deep and move-out cleans are priced flat by home size, before GST.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function SkyviewRanch() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Skyview Ranch Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs — every service a home needs.
+                  A deep clean in Skyview Ranch is the standard checklist plus the deep-clean package, and a move-in clean is priced the same as a move-out clean.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function SkyviewRanch() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Skyview Ranch Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Skyview Ranch and the surrounding NE Calgary communities.
+                    Skyview Ranch cleans are booked through the Calgary office on (403) 768-1341, Monday to Saturday 8:00 AM to 8:00 PM and Sunday 9:00 AM to 3:00 PM.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function SkyviewRanch() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={768} src={cleanHomeImg} alt="Spotless Skyview Ranch Calgary home cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1024} height={768} src={cleanHomeImg} alt="A bright living room with a pale sectional sofa, a glass coffee table and hardwood floors" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Calm, Spotless Skyview Ranch Home — Every Visit</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Before the team arrives</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">No Need to Tidy Before a Skyview Ranch Clean</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Vetted cleaners, careful hands, and the standard we'd hold for our own homes. Come back to fresh air and surfaces that actually gleam.
+                    You do not need to clean before the team comes. Clear counters and floors get cleaned, cluttered ones get worked around, and decluttering or organising is a separate hourly add-on.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Cleaners rated by the customer after every visit","All supplies and equipment brought","Missed spots re-cleaned free if reported within 24 hours"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,9 +311,9 @@ export default function SkyviewRanch() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Skyview Ranch and the communities around it.{" "}
+                  Cityscape and Saddle Ridge are two more of the 66 Calgary neighbourhoods the Calgary branch cleans.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -329,7 +329,7 @@ export default function SkyviewRanch() {
         eyebrow="Local knowledge"
         heading="Skyview Ranch, still settling"
         paragraphs={[
-          "Skyview Ranch filled in fast through the 2010s, and its homes still carry the marks of a quick build-out — drywall fines working out of vents, builder-grade carpet showing stair traffic early, and high foyer ledges that collect dust where no cloth conveniently reaches., and high foyer ledges that collect dust where no cloth conveniently reaches. First deep cleans here routinely pull more out of a house than owners expect.",
+          "Skyview Ranch filled in fast through the 2010s, and its homes still carry the marks of a quick build-out — drywall fines working out of vents, builder-grade carpet showing stair traffic early, and high foyer ledges that collect dust where no cloth conveniently reaches. First deep cleans here routinely pull more out of a house than owners expect.",
           "Airport approaches and Métis Trail put steady fine dust on the wind, and phases still building nearby keep site grit in rotation. The tell is always the same: window tracks on the side facing the active phase fill first, and garage-entry mudrooms carry nearly all the family's tracking.",
         ]}
       />
@@ -347,7 +347,7 @@ export default function SkyviewRanch() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Skyview Ranch Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>

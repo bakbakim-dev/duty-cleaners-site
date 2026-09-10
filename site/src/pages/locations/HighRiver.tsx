@@ -5,7 +5,6 @@ import {
 import highRiverImg from "@/assets/gallery/high-river-family-home.webp";
 import { buildLocationSchema } from "@/lib/location-schema";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
 import { sitePriceRange } from "@/data/pricing";
@@ -61,10 +60,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in High River" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in High River" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in High River" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in High River" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in High River.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in High River" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in High River" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris cleared after renovations or new builds in High River.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in High River" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, booked together with a clean.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in High River" },
 ];
 
 const whyUsItems = [
@@ -95,8 +94,6 @@ const whyUsItems = [
   { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
-const nearbyAreas = ["Hampton Hills", "Montrose", "Sunshine Meadows", "Valley View", "Highwood Village", "Patterson", "Sable Pointe", "Heritage Heights"];
-
 const structuredData = buildLocationSchema({
   name: "Duty Cleaners - High River",
   city: "calgary",
@@ -116,7 +113,7 @@ export default function HighRiver() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in High River?",
-      answer: `Every service we run can be booked locally:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `The Calgary branch offers these services in High River:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
@@ -124,7 +121,7 @@ export default function HighRiver() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -146,12 +143,12 @@ export default function HighRiver() {
     <>
       <Helmet>
         <title>House Cleaning Services in High River, AB | Duty Cleaners</title>
-        <meta name="description" content="Book house cleaning in High River in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="description" content="Many High River homes carry finishes rebuilt after the 2013 flood. The Calgary branch cleans them at a flat rate, with the travel fee shown on the quote." />
         <meta property="og:title" content="House Cleaning Services in High River, AB | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services in High River, AB | Duty Cleaners" />
-        <meta name="twitter:description" content="Book house cleaning in High River in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
-        <meta property="og:description" content="Book house cleaning in High River in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="twitter:description" content="Many High River homes carry finishes rebuilt after the 2013 flood. The Calgary branch cleans them at a flat rate, with the travel fee shown on the quote." />
+        <meta property="og:description" content="Many High River homes carry finishes rebuilt after the 2013 flood. The Calgary branch cleans them at a flat rate, with the travel fee shown on the quote." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/high-river/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/high-river/" />
@@ -181,7 +178,7 @@ export default function HighRiver() {
                   Professional House Cleaning in High River
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Trusted house cleaning services in High River, AB. Customer-rated cleaners loved by local families — from Hampton Hills to Montrose.
+                  Many High River homes carry finishes and lower levels rebuilt after the June 2013 flood, inside a townsite that is far older. Because the town is outside Calgary city limits, a travel fee is added, and the quote shows it before you book.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -209,7 +206,7 @@ export default function HighRiver() {
               <div className="flex-shrink-0 w-full lg:w-[500px]">
                 <img width={640} height={832}
                   src={highRiverImg}
-                  alt="Happy family relaxing in a clean home in High River, Alberta"
+                  alt="Smiling family with a toddler sitting on a sofa in a bright living room"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                 loading="eager"
                   {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
@@ -218,24 +215,6 @@ export default function HighRiver() {
           </div>
         </section>
 
-
-      {/* Things To Do */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <AnimatedSection>
-            <div className="max-w-4xl mx-auto">
-              <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Life</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                Things To Do In High River
-              </h2>
-              <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
-                <p>Situated just south of Calgary, High River is a charming town known for its scenic beauty and rich history. With a population of over 14,000, this vibrant community offers a mix of small-town hospitality and modern amenities. Begin your day with a stroll along the Happy Trails Pathway System, offering beautiful views of the Highwood River and the surrounding landscapes.</p>
-                <p>For history buffs, the Museum of the Highwood showcases fascinating exhibits about the region’s past, while Sheppard Family Park is perfect for picnicking and exploring historical buildings. Fans of the hit TV show Heartland can take a self-guided tour of filming locations throughout the town. If you’re into local markets, the High River Farmers' Market offers fresh produce and artisanal goods during the summer months. Wrap up your day with a meal at The Hitchin' Post Drive-In, a beloved local spot for burgers and milkshakes, or enjoy fine dining at The George Traditional House. After a day of exploring High River, let Duty Cleaners handle your cleaning needs, so you can relax in a spotless home.</p>
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
 
         {/* Interactive Map */}
         <section className="py-16 bg-background">
@@ -261,32 +240,14 @@ export default function HighRiver() {
           </div>
         </section>
 
-        {/* Local Coverage */}
-        <section className="py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <AnimatedSection>
-              <div className="text-center mb-10">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
-                  High River Neighbourhoods We Serve
-                </h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto">
-                  We proudly serve families and homeowners across all High River communities.
-                </p>
-              </div>
-              <CoverageChips areas={nearbyAreas} />
-            </AnimatedSection>
-          </div>
-        </section>
-
       <NearbyNeighbourhoods />
 
       <LocalMarketNote
         eyebrow="Ground truth"
         heading="What the 2013 flood rebuilt"
         paragraphs={[
-          "The Highwood River runs through the middle of this town and has come over its banks repeatedly — 1995, 2005, and most destructively in June 2013, when thousands were evacuated and three people died. The rebuild that followed is the fact that matters indoors: a great many homes here carry finishes and lower levels that are barely a decade old inside a townsite that is far older, and the two want different handling.",
-          "It sits about 68 km south of the city where highways 2 and 23 meet, and the film crews that have worked here since Heartland began in 2007 are a genuine part of the local calendar. Basements stay the part of a house worth checking properly rather than leaving to the last ten minutes, particularly the backs of storage rooms.",
+          "The Highwood River runs through the middle of this town and has come over its banks repeatedly — 1995, 2005, and most destructively in June 2013. The rebuild that followed is the fact that matters indoors: a great many homes here carry finishes and lower levels that are barely a decade old inside a townsite that is far older, and the two want different handling.",
+          "High River sits about 68 km south of Calgary, where highways 2 and 23 meet. Basements stay the part of a house worth checking properly rather than leaving to the last ten minutes, particularly the backs of storage rooms.",
         ]}
         accent="calgary"
       />
@@ -303,7 +264,7 @@ export default function HighRiver() {
                   Cleaning Services for High River Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs — every service a home needs.
+                  Each service is priced flat by home size before GST, and the High River travel fee appears on the same quote.
                 </p>
               </div>
             </AnimatedSection>
@@ -345,7 +306,7 @@ export default function HighRiver() {
                   Why High River Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -368,7 +329,7 @@ export default function HighRiver() {
                 House Cleaning in High River & Surrounding Areas
               </h2>
               <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-                We provide professional house cleaning services throughout High River and nearby communities in the Calgary region.
+                High River is one of nine communities outside Calgary that the Calgary branch serves, along with Okotoks, Diamond Valley, Airdrie, Cochrane, Chestermere, Strathmore, Langdon and Crossfield. For an address that is not on that list, call (403) 768-1341 and ask.
               </p>
               <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                 View All Service Areas →

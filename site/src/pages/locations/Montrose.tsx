@@ -6,7 +6,6 @@ import {
 import { buildLocationSchema } from "@/lib/location-schema";
 import HonestReviewLink from "@/components/HonestReviewLink";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -79,16 +78,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Montrose" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Montrose" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Montrose" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Montrose" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around Montrose.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Montrose" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Drywall dust after a renovation in Montrose, priced by square footage.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Montrose" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Montrose" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Montrose" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule. The first clean is charged at the one-time rate, from ${RECURRING_FROM} for a one-bedroom, one-bathroom apartment before GST, with the pet charge or a home-type surcharge added where they apply. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Montrose" },
 ];
 
 const whyUsItems = [
@@ -130,7 +129,7 @@ export default function Montrose() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Montrose?",
-      answer: `Around Montrose we offer the full range:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `In Montrose we offer:\n\n• Standard & Deep Cleaning Packages\n• Recurring Cleaning: weekly, every two weeks or every four weeks\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing, booked together with a clean`
     },
     {
       question: "Do you offer discounts?",
@@ -138,7 +137,7 @@ export default function Montrose() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -160,24 +159,24 @@ export default function Montrose() {
     <>
       <Helmet>
         <title>House Cleaners in Montrose, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Montrose, Edmonton. Serving families near Santa Rosa Park, Montrose Park & Wayne Gretzky Drive." />
+        <meta name="description" content="In Montrose, Edmonton, two-thirds of the housing went up before 1961, so a stairwell or finished basement can take longer to clean than the kitchen." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Montrose, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/montrose",
   areaServed: "Montrose, Edmonton, AB",
-  description: "Professional house cleaning in Montrose, Edmonton. Serving families near Santa Rosa Park, Montrose Park & Wayne Gretzky Drive. Local cleaners you can trust.",
+  description: "In Montrose, Edmonton, two-thirds of the housing went up before 1961, so a stairwell or finished basement can take longer to clean than the kitchen.",
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/montrose/" />
         <meta property="og:title" content="House Cleaners in Montrose, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Montrose, Edmonton. Serving families near Santa Rosa Park, Montrose Park & Wayne Gretzky Drive." />
+        <meta property="og:description" content="In Montrose, Edmonton, two-thirds of the housing went up before 1961, so a stairwell or finished basement can take longer to clean than the kitchen." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/montrose/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Montrose, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Montrose, Edmonton. Serving families near Santa Rosa Park, Montrose Park & Wayne Gretzky Drive." />
+        <meta name="twitter:description" content="In Montrose, Edmonton, two-thirds of the housing went up before 1961, so a stairwell or finished basement can take longer to clean than the kitchen." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -202,7 +201,7 @@ export default function Montrose() {
                 Professional House Cleaning in Montrose
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Your reliable, local cleaning team serving the Montrose community. From tree-lined streets near Santa Rosa Park to homes along Wayne Gretzky Drive — enjoy dependable cleaning built on trust and genuine care.
+                Montrose sits between Yellowhead Trail and 118 Avenue, and roughly two-thirds of its houses went up before 1961. Standard, deep and move-out cleans in Montrose are priced flat by home size, before 5% GST.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -241,7 +240,7 @@ export default function Montrose() {
                   Cleaning Services for Montrose Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Everything from weekly upkeep to full move-out cleans.
+                  Six services for Montrose homes, from a single standard clean to a recurring schedule with a discount from the second visit.
                 </p>
               </div>
             </AnimatedSection>
@@ -284,7 +283,7 @@ export default function Montrose() {
                   Why Montrose Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Reliable, detail-first cleaning families count on.
+                  Every Edmonton cleaner is reference-checked first and rated by the customer after each visit.
                 </p>
               </div>
             </AnimatedSection>
@@ -332,12 +331,11 @@ export default function Montrose() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Montrose</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Montrose and the Rest of Edmonton</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    Montrose is one of 80 Edmonton neighbourhoods the Edmonton branch cleans, and the branch also covers 9 communities outside the city, where a travel fee applies.
                   </p>
                 </div>
-                <CoverageChips areas={["Santa Rosa Park", "Montrose Park", "Wayne Gretzky Drive", "118 Avenue", "Eastglen Leisure Centre", "Rexall Place Plaza", "Norwood Boulevard", "Highlands"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -352,7 +350,7 @@ export default function Montrose() {
         eyebrow="What we see here"
         heading="Between the Yellowhead and 118 Avenue"
         paragraphs={[
-          "Yellowhead Trail runs along the northern edge here, 118 Avenue along the southern one, and the CN right-of-way with the northeast LRT line down the west side. The Yellowhead is Highway 16 through the city, so it carries truck traffic in both directions year-round. Houses on the north blocks take more of that than the middle of the neighbourhood does, and it turns up first on exterior glass and window screens.",
+          "Yellowhead Trail runs along the northern edge here, 118 Avenue along the southern one, and the CN right-of-way with the northeast LRT line down the west side. The Yellowhead is Highway 16 through the city, so it carries truck traffic in both directions year-round. Houses on the north blocks take more of that than the middle of the neighbourhood does, and it turns up first on the outer glass and the window screens. The outer glass is outdoor work and the screens stay in place, so the clean deals with the sills from inside.",
           "Roughly two-thirds of the housing went up before 1961, a fifth of it before 1946. Main floors of that age are small by modern standards, and living space has spread downward over the decades. The work moves with it: a stairwell, a lower-level bathroom and a finished basement room can take longer than the kitchen does.",
         ]}
       />

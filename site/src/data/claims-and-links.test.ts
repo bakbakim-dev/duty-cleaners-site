@@ -149,6 +149,35 @@ describe("retired claims stay retired on every rendered page", () => {
       expect(hits.slice(0, 12)).toEqual([]);
     });
   }
+
+  /**
+   * Retired by the content prompt (DUTY-CLEANERS-CONTENT-PROMPT.md at the
+   * repository root, section 3) on 2026-09-10, after running on 130 to 160
+   * pages each: a same-day promise, a "100% satisfaction" guarantee that is
+   * really a 24-hour re-clean, "trusted by" lines, a quality standard nobody
+   * wrote down, and a landmark tour sold as local knowledge.
+   *
+   * The two commercial pages are exempt, and only them: the owner asked that
+   * commercial work stay out of the house-cleaning rollout, and the prompt is
+   * written for house cleaning.
+   */
+  const RETIRED_BY_THE_CONTENT_PROMPT: Array<[RegExp, string]> = [
+    [/same-day and next-day (?:availability|openings)/i, "an unconditional same-day promise; the most the site says is that same-day and next-day slots depend on the schedule"],
+    [/\b100%\s*satisf/i, "the guarantee is a re-clean within 24 hours (policy T1), not a satisfaction promise"],
+    [/\btrusted by\b/i, "an endorsement no source backs"],
+    [/\binsured\b/i, "no insurance fact exists in proof.ts or policy.ts"],
+    [/exacting quality standards/i, "an unsourced quality claim"],
+    [/feel like home/i, "the landmark-tour sections the prompt retired as tourism"],
+  ];
+  const houseCleaningPages = pages.filter((p) => !/[\\/]commercial-cleaning/.test(p));
+
+  for (const [pattern, why] of RETIRED_BY_THE_CONTENT_PROMPT) {
+    it(`no house-cleaning page claims /${pattern.source}/ — ${why}`, () => {
+      if (!houseCleaningPages.length) return;
+      const hits = houseCleaningPages.filter((p) => pattern.test(visible(read(p)))).map(rel);
+      expect(hits.slice(0, 12)).toEqual([]);
+    });
+  }
 });
 
 describe("internal links use the canonical trailing-slash form", () => {

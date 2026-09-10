@@ -82,16 +82,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Ozerna" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Ozerna" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Ozerna" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Ozerna" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around Ozerna.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Ozerna" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Renovation and new-build dust cleared from Ozerna homes, priced by square footage.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Ozerna" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Ozerna" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Ozerna" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment or condo, before GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Ozerna" },
 ];
 
 const whyUsItems = [
@@ -141,7 +141,7 @@ export default function Ozerna() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -163,25 +163,25 @@ export default function Ozerna() {
     <>
       <Helmet>
         <title>House Cleaners in Ozerna, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Ozerna, Edmonton. Trusted local cleaners serving northeast Edmonton families." />
+        <meta name="description" content="In Ozerna, moisture lingers on ensuite glass, grout lines and laundry corners, and 1990s two-storeys add spindle staircases to the hand-work list." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Ozerna, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/ozerna-edmonton",
   areaServed: "Ozerna, Edmonton, AB",
-  description: "Professional house cleaning in Ozerna, Edmonton. Trusted local cleaners serving northeast Edmonton families.",
+  description: "In Ozerna, moisture lingers on ensuite glass, grout lines and laundry corners, and 1990s two-storeys add spindle staircases to the hand-work list.",
   geo: { latitude: "53.62", longitude: "-113.421" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/ozerna-edmonton/" />
         <meta property="og:title" content="House Cleaners in Ozerna, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Ozerna, Edmonton. Trusted local cleaners serving northeast Edmonton families." />
+        <meta property="og:description" content="In Ozerna, moisture lingers on ensuite glass, grout lines and laundry corners, and 1990s two-storeys add spindle staircases to the hand-work list." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/ozerna-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Ozerna, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Ozerna, Edmonton. Trusted local cleaners serving northeast Edmonton families." />
+        <meta name="twitter:description" content="In Ozerna, moisture lingers on ensuite glass, grout lines and laundry corners, and 1990s two-storeys add spindle staircases to the hand-work list." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -207,7 +207,7 @@ export default function Ozerna() {
                   Professional House Cleaning in Ozerna
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Your reliable, local cleaning team serving the Ozerna community. From newer family homes near Ozerna Park to townhouses along 153 Avenue — consistent, dependable cleaning each visit.
+                  Ozerna's 1990s two-storeys bring spindle staircases and corner fireplaces to the hand-work list. Homes backing the pond also carry a back-entry workload that the street-facing homes never see.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -235,7 +235,7 @@ export default function Ozerna() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
                   src={heroImg}
-                  alt="Professional cleaner making a bed in an Ozerna, Edmonton bedroom"
+                  alt="Professional cleaner making a bed in a bedroom"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   width={1024}
                   height={1024}
@@ -257,7 +257,7 @@ export default function Ozerna() {
                   Cleaning Services for Ozerna Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Ozerna homes get every service they need.
+                  Ozerna homes can choose from six services, each with a flat price shown before booking.
                 </p>
               </div>
             </AnimatedSection>
@@ -300,7 +300,7 @@ export default function Ozerna() {
                   Why Ozerna Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -322,7 +322,7 @@ export default function Ozerna() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Ozerna Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Located in northeast Edmonton, we're always just around the corner.
+                  Ozerna is inside Edmonton city limits, which means no trip fee is added to the quote.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -341,12 +341,12 @@ export default function Ozerna() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Ozerna</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Edmonton-area neighbourhoods we clean</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    Brintnell, Hollick-Kenyon, Matt Berry and Miller are on the same Edmonton branch list as Ozerna.
                   </p>
                 </div>
-                <CoverageChips areas={["Ozerna Park", "Manning Drive", "153 Avenue", "Manning Town Centre", "Brintnell", "Hollick-Kenyon", "Matt Berry", "Miller"]} variant="compact" />
+                <CoverageChips areas={["Brintnell", "Hollick-Kenyon", "Matt Berry", "Miller"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -361,8 +361,8 @@ export default function Ozerna() {
         eyebrow="Local knowledge"
         heading="Ozerna's lakeside checklist"
         paragraphs={[
-          "Ozerna cleans start where the water shows up indoors: ensuite glass and grout lines that hold moisture longer than in drier districts, window reveals in steam-facing rooms, and the laundry corners where humid air settles. The neighbourhood's 1990s two-storeys add spindle staircases and corner fireplaces to the hand-work list.",
-          "The lake path draws walkers year-round, and homes backing the pond get waterfowl-season debris on decks and rear thresholds — a back-entry workload the street-facing homes never see. Winter flips it: rink season on nearby ponds brings skate-bag slush through the garage entry instead.",
+          "In Ozerna homes the water shows up indoors: ensuite glass and grout lines that hold moisture, window reveals in steam-facing rooms, and the laundry corners where humid air settles. The neighbourhood's 1990s two-storeys add spindle staircases and corner fireplaces to the hand-work list.",
+          "The lake path draws walkers year-round, and homes backing the pond get waterfowl-season debris on their rear thresholds — a back-entry workload the street-facing homes never see. Winter flips it: skating season on nearby ponds brings skate-bag slush through the garage entry instead.",
         ]}
       />
 

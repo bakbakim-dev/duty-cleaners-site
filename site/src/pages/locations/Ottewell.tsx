@@ -82,16 +82,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Ottewell" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Ottewell" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Ottewell" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Ottewell" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared properly after renos and handovers.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Ottewell" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or a new build, priced by square footage.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Ottewell" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Ottewell" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Ottewell" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment or condo, before GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Ottewell" },
 ];
 
 const whyUsItems = [
@@ -141,7 +141,7 @@ export default function Ottewell() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -163,25 +163,25 @@ export default function Ottewell() {
     <>
       <Helmet>
         <title>Ottewell, Edmonton House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Ottewell, Edmonton. Trusted local cleaners serving southeast Edmonton families." />
+        <meta name="description" content="Most Ottewell houses date from 1946 to 1960, so a clean there means more hand-wiped trim on original doors and casings." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Ottewell, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/ottewell-edmonton",
   areaServed: "Ottewell, Edmonton, AB",
-  description: "Professional house cleaning in Ottewell, Edmonton. Trusted local cleaners serving southeast Edmonton families.",
+  description: "Most Ottewell houses date from 1946 to 1960, so a clean there means more hand-wiped trim on original doors and casings.",
   geo: { latitude: "53.53", longitude: "-113.418" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/ottewell-edmonton/" />
         <meta property="og:title" content="Ottewell, Edmonton House Cleaning | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Ottewell, Edmonton. Trusted local cleaners serving southeast Edmonton families." />
+        <meta property="og:description" content="Most Ottewell houses date from 1946 to 1960, so a clean there means more hand-wiped trim on original doors and casings." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/ottewell-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Ottewell, Edmonton House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Ottewell, Edmonton. Trusted local cleaners serving southeast Edmonton families." />
+        <meta name="twitter:description" content="Most Ottewell houses date from 1946 to 1960, so a clean there means more hand-wiped trim on original doors and casings." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -207,7 +207,7 @@ export default function Ottewell() {
                   Professional House Cleaning in Ottewell
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Your reliable, local cleaning team serving the Ottewell community. From character bungalows near Hardisty School to homes by Capilano Mall — careful, considered cleaning every visit.
+                  Most Ottewell houses went up between 1946 and 1960: wide bungalows with hardwood under the broadloom and their original doors and casings. The back entrance here works harder than the front door.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -235,7 +235,7 @@ export default function Ottewell() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
                   src={heroImg}
-                  alt="Professional cleaner vacuuming a living room in an Ottewell, Edmonton home"
+                  alt="Professional cleaner vacuuming a living room in a home"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   width={1024}
                   height={1024}
@@ -257,7 +257,7 @@ export default function Ottewell() {
                   Cleaning Services for Ottewell Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs — every service a home needs.
+                  Ottewell is cleaned from the Edmonton branch, and every service is quoted as a flat rate, not by the hour.
                 </p>
               </div>
             </AnimatedSection>
@@ -300,7 +300,7 @@ export default function Ottewell() {
                   Why Ottewell Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Reliable, detail-first cleaning families count on.
+                  Every Ottewell visit is rated by the customer, and those ratings decide which cleaners we keep sending.
                 </p>
               </div>
             </AnimatedSection>
@@ -322,7 +322,7 @@ export default function Ottewell() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Ottewell Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Located in southeast Edmonton, we're always just around the corner.
+                  Ottewell sits in southeast Edmonton, inside city limits, so a booking here carries no travel fee.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -341,12 +341,12 @@ export default function Ottewell() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Ottewell</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Edmonton-area neighbourhoods we clean</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    The Edmonton branch also cleans in Capilano and Holyrood, two of the 80 Edmonton neighbourhoods on its list.
                   </p>
                 </div>
-                <CoverageChips areas={["Hardisty School", "Capilano Mall", "Goldstick Park", "98 Avenue", "Capilano", "Fulton Place", "Holyrood", "Forest Heights"]} variant="compact" />
+                <CoverageChips areas={["Capilano", "Holyrood"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -361,8 +361,8 @@ export default function Ottewell() {
         eyebrow="Local knowledge"
         heading="The Ottewell clean, in practice"
         paragraphs={[
-          "Ottewell is 1950s Edmonton at its most intact — the great majority of its houses went up between 1946 and 1960 — wide bungalows on generous lots, hardwood under the broadloom, and low-slung rooflines that keep eaves close to grade so exterior dust finds its way onto sills quickly. Interiors of this vintage reward patience: original doors and casings mean triple the hand-wiped trim of a new build.",
-          "The community's mature canopy is among the densest in the southeast, and homes back onto schoolyards and green strips that generate season-long tracking — spring mud from the fields, summer playground sand, autumn leaves. Back entrances here work harder than front doors and are the first place a visit should start.",
+          "Ottewell is 1950s Edmonton, and the great majority of its houses went up between 1946 and 1960. The typical house is a wide bungalow on a generous lot, with hardwood under the broadloom and a low-slung roofline that keeps the eaves close to grade, so dust from outside finds its way onto the sills quickly. Interiors of this vintage reward patience: original doors and casings mean more hand-wiped trim than a new build.",
+          "Ottewell sits under a mature canopy, and homes back onto schoolyards and green strips that generate season-long tracking — spring mud from the fields, summer playground sand, autumn leaves. Back entrances here work harder than front doors and are the first place a visit should start.",
         ]}
       />
 

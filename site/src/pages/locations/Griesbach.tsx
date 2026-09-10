@@ -77,16 +77,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Griesbach" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Griesbach" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Griesbach" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Griesbach" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Post-renovation dust and debris, professionally removed.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Griesbach" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Griesbach" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Sawdust and drywall silt cleared after a build or a renovation, priced by square footage.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Griesbach" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, booked together with a clean.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Griesbach" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Griesbach" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment or condo, before GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Griesbach" },
 ];
 
 const whyUsItems = [
@@ -137,7 +137,7 @@ export default function Griesbach() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -159,15 +159,15 @@ export default function Griesbach() {
     <>
       <Helmet>
         <title>Griesbach, Edmonton House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="House cleaning in Griesbach, Edmonton. Reliable cleaners serving homes near Patricia Lake and Major General Griesbach Park." />
+        <meta name="description" content="Griesbach in Edmonton is a former Forces base still being built, and its construction leaves sawdust and drywall silt on door casings and fan blades." />
         <link rel="canonical" href="https://dutycleaners.ca/locations/griesbach-edmonton/" />
         <meta property="og:title" content="Griesbach, Edmonton House Cleaning | Duty Cleaners" />
-        <meta property="og:description" content="House cleaning in Griesbach, Edmonton. Reliable cleaners serving homes near Patricia Lake and Major General Griesbach Park." />
+        <meta property="og:description" content="Griesbach in Edmonton is a former Forces base still being built, and its construction leaves sawdust and drywall silt on door casings and fan blades." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/griesbach-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Griesbach, Edmonton House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning in Griesbach, Edmonton. Reliable cleaners serving homes near Patricia Lake and Major General Griesbach Park." />
+        <meta name="twitter:description" content="Griesbach in Edmonton is a former Forces base still being built, and its construction leaves sawdust and drywall silt on door casings and fan blades." />
         <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Griesbach Edmonton", city: "edmonton", url: "https://dutycleaners.ca/locations/griesbach-edmonton", areaServed: "Griesbach, Edmonton, AB" }))}</script>
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
@@ -194,7 +194,7 @@ export default function Griesbach() {
                   House Cleaning Services in Griesbach
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-2xl leading-relaxed">
-                  Reliable cleaners you can count on, right in the heart of Griesbach — from Patricia Lake to Major General Griesbach Park.
+                  Griesbach was a Canadian Forces base until the early 2000s and is still being built, with the northeast corner the last major section left. Our Edmonton branch cleans homes on its finished streets and its newest ones, priced flat by home size.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -236,7 +236,7 @@ export default function Griesbach() {
         heading="A base still becoming a neighbourhood"
         paragraphs={[
           "Griesbach was a Canadian Forces base until the early 2000s, when the land was sold off to be rebuilt as housing. Two decades on it is still going up: the northeast corner is the last major section left, and it is expected to take another ten to fifteen years to finish. Living beside a lot that is still being framed produces a different kind of dust than an established street does.",
-          "The northeast corner is still being framed, so the streets nearest it take sawdust and drywall silt off the wind, while the finished streets round Patricia Lake shed their own out of ducts and closets for a year or two. Either way it lands on flat horizontals - the tops of door casings, fan blades, the shoulders of baseboards - where a routine wipe-down never reaches.",
+          "The northeast corner is still being framed, so the streets nearest it take sawdust and drywall silt off the wind, while the finished streets round Patricia Lake shed their own out of ducts and closets for a year or two. Either way it lands on flat horizontals where a routine wipe-down never reaches: the tops of door casings, fan blades, the shoulders of baseboards.",
         ]}
       />
 
@@ -255,7 +255,7 @@ export default function Griesbach() {
                   Cleaning Services for Griesbach Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
+                  Every Griesbach service is a flat rate by home size before 5% GST, except post-construction cleaning, which is priced by square footage.
                 </p>
               </div>
             </AnimatedSection>
@@ -298,7 +298,7 @@ export default function Griesbach() {
                   Why Griesbach Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Dependable cleaning, visit after visit.
+                  Four things that hold on every clean in Griesbach, whichever team comes.
                 </p>
               </div>
             </AnimatedSection>
@@ -322,7 +322,7 @@ export default function Griesbach() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Service Area</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Griesbach Service Area</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  We proudly serve Griesbach and surrounding north Edmonton communities.
+                  Griesbach is inside Edmonton city limits, so no trip fee applies to a clean anywhere in it, including the newest streets in the northeast corner.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border">

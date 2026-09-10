@@ -37,10 +37,10 @@ const GetInTouch = ({ city }: GetInTouchProps) => {
   const data = CITY_DATA[city];
 
   const quickLinks = [
-    { to: data.pricingPath, icon: DollarSign, label: "View Pricing", hint: "Transparent rates" },
+    { to: data.pricingPath, icon: DollarSign, label: "View Pricing", hint: "Flat prices by home size, before GST" },
     { to: "/reviews/", icon: Star, label: "Read Reviews", hint: "Rated 4.9 on Google" },
     { to: canonicalForPath("/faq"), icon: MessageSquare, label: "Full FAQ", hint: "Answers to common questions" },
-    { to: "/about-us/", icon: Users, label: "About Us", hint: "Meet the team" },
+    { to: "/about-us/", icon: Users, label: "About Us", hint: `The company behind the ${city} office` },
   ];
 
   return (
@@ -55,10 +55,10 @@ const GetInTouch = ({ city }: GetInTouchProps) => {
             <span className="h-px w-8 bg-brand-gold" aria-hidden="true" />
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mt-4 text-brand-navy">
-            Talk to a real person in {city}
+            Talk to the {city} office
           </h2>
           <p className="mt-3 text-muted-foreground text-base md:text-lg">
-            Call, visit, or browse the details below — whatever is easiest for you.
+            Call the {city} office, send an email, or check prices, reviews and common questions before you book.
           </p>
         </div>
 
@@ -77,7 +77,7 @@ const GetInTouch = ({ city }: GetInTouchProps) => {
                 <span className="min-w-0">
                   <span className="block text-xs uppercase tracking-wider text-white/90">Phone</span>
                   <span className="block text-xl md:text-2xl font-bold">{data.phoneDisplay}</span>
-                  <span className="block text-sm text-white/90">Tap to call — fastest way to book</span>
+                  <span className="block text-sm text-white/90">Tap to call the {city} office</span>
                 </span>
               </a>
 
@@ -105,8 +105,8 @@ const GetInTouch = ({ city }: GetInTouchProps) => {
                 </span>
                 <span className="min-w-0">
                   <span className="block text-xs uppercase tracking-wider text-white/90">Hours</span>
-                  <span className="block text-lg font-semibold">Mon–Sat: 8AM – 8PM</span>
-                  <span className="block text-lg font-semibold">Sun: 9AM – 3PM</span>
+                  <span className="block text-lg font-semibold">Mon to Sat: 8:00 AM to 8:00 PM</span>
+                  <span className="block text-lg font-semibold">Sun: 9:00 AM to 3:00 PM</span>
                 </span>
               </div>
 
@@ -130,7 +130,7 @@ const GetInTouch = ({ city }: GetInTouchProps) => {
               href="#quote-form"
               className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-6 py-4 text-base font-bold text-accent-foreground transition-colors hover:bg-accent/90 min-h-[48px]"
             >
-              See your price in 60 seconds
+              See My Instant Price
               <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </a>
           </div>
@@ -138,7 +138,7 @@ const GetInTouch = ({ city }: GetInTouchProps) => {
           {/* Quick links */}
           <div className="lg:col-span-2 rounded-2xl border border-border bg-secondary/30 p-6 md:p-8">
             <h3 className="text-xl font-bold text-brand-navy">Quick Links</h3>
-            <p className="mt-1 text-sm text-muted-foreground">Everything you might want to check first.</p>
+            <p className="mt-1 text-sm text-muted-foreground">Prices, reviews and answers to read before you book.</p>
             <ul className="mt-6 space-y-2">
               {quickLinks.map(({ to, icon: Icon, label, hint }) => (
                 <li key={to}>

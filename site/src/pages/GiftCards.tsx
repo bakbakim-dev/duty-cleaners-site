@@ -38,9 +38,9 @@ const buyingGuide = giftCardGuide();
 
 const howItWorksSteps = [
   { icon: CreditCard, step: "1", title: "Choose Amount", description: "Select how much you'd like for the gift card" },
-  { icon: Gift, step: "2", title: "Pick a Design", description: "Choose from our beautiful card designs" },
-  { icon: Send, step: "3", title: "Add Details", description: "Fill in recipient's name and personal message" },
-  { icon: Sparkles, step: "4", title: "Instant Delivery", description: "We send the gift card instantly via email" },
+  { icon: Gift, step: "2", title: "Pick a Design", description: "Choose the design that fits the occasion" },
+  { icon: Send, step: "3", title: "Add Details", description: "Add the recipient's name and a personal message" },
+  { icon: Sparkles, step: "4", title: "Email Delivery", description: "We email the gift card right away" },
 ];
 
 export default function GiftCards() {
@@ -56,16 +56,16 @@ export default function GiftCards() {
     <>
       <Helmet>
         <title>Cleaning Gift Cards | Duty Cleaners Edmonton & Calgary</title>
-        <meta name="description" content="A house cleaning gift card for Edmonton or Calgary, in any amount, with no expiry. Pick a design, add a message, and it is emailed to them." />
+        <meta name="description" content="Pick a card design for the occasion and add a message, and we email a Duty Cleaners gift card for Edmonton or Calgary whose balance does not expire." />
         {/* Near-duplicate of /gift-card (the linked page) — consolidate signals there. */}
         <link rel="canonical" href="https://dutycleaners.ca/gift-card/" />
         <meta property="og:title" content="Cleaning Gift Cards | Duty Cleaners Edmonton & Calgary" />
-        <meta property="og:description" content="A house cleaning gift card for Edmonton or Calgary, in any amount, with no expiry. Pick a design, add a message, and it is emailed to them." />
+        <meta property="og:description" content="Pick a card design for the occasion and add a message, and we email a Duty Cleaners gift card for Edmonton or Calgary whose balance does not expire." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/gift-cards/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Cleaning Gift Cards | Duty Cleaners Edmonton & Calgary" />
-        <meta name="twitter:description" content="A house cleaning gift card for Edmonton or Calgary, in any amount, with no expiry. Pick a design, add a message, and it is emailed to them." />
+        <meta name="twitter:description" content="Pick a card design for the occasion and add a message, and we email a Duty Cleaners gift card for Edmonton or Calgary whose balance does not expire." />
       </Helmet>
 
       <div className="min-h-screen">
@@ -80,7 +80,7 @@ export default function GiftCards() {
           {/* Background image */}
           <img
             src={giftCardsHero}
-            alt="Bright, freshly cleaned living room — a clean home given as a gift"
+            alt="A gold geometric star on a navy background above a bright kitchen and living room"
             width={1920}
             height={1080}
             className="absolute inset-0 w-full h-full object-cover opacity-40 pointer-events-none"
@@ -100,8 +100,9 @@ export default function GiftCards() {
                 House Cleaning <span className="text-accent">Gift Cards</span> for Edmonton and Calgary
               </h1>
               <p className="text-xl md:text-2xl text-white/85 mb-3 leading-relaxed">
-                Any amount, emailed to them, backed by the same{" "}
-                <strong className="text-white">100% Satisfaction Guarantee</strong> as every clean
+                Choose any amount and we email it to them. The clean it pays for carries the same{" "}
+                <strong className="text-white">{POLICY.guaranteeWindowHours}-hour re-clean guarantee</strong> as
+                every other clean.
               </p>
               <p className="text-lg text-white/90 mb-10">
                 They pick the service and the date. The balance does not expire.
@@ -112,7 +113,7 @@ export default function GiftCards() {
                 {[
                   { icon: Star, label: RATING_CLAIM },
                   { icon: Users, label: `${HOMES_CLEANED.alberta} Alberta homes cleaned` },
-                  { icon: BadgeCheck, label: "Satisfaction Guaranteed" },
+                  { icon: BadgeCheck, label: `${POLICY.guaranteeWindowHours}-hour re-clean guarantee` },
                 ].map((badge, i) => (
                   <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                     <badge.icon className="w-4 h-4 text-accent" />
@@ -144,7 +145,7 @@ export default function GiftCards() {
           <div className="container mx-auto px-4" ref={designsRef}>
             <div className="max-w-5xl mx-auto">
               <div className="text-center mb-12">
-                <span className="text-accent font-semibold text-sm uppercase tracking-wider">Personalize Your Gift</span>
+                <span className="text-accent font-semibold text-sm uppercase tracking-wider">Personalise Your Gift</span>
                 <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Choose Your Gift Card Design</h2>
                 <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                   Pick the design that fits the occasion.
@@ -188,7 +189,7 @@ export default function GiftCards() {
           <div className="container mx-auto px-4 relative z-10" ref={howItWorksRef}>
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-12">
-                <span className="text-brand-gold font-semibold text-sm uppercase tracking-wider">Simple &amp; Easy</span>
+                <span className="text-brand-gold font-semibold text-sm uppercase tracking-wider">How it works</span>
                 <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4 text-white">
                   Four steps to send a gift card
                 </h2>
@@ -232,10 +233,10 @@ export default function GiftCards() {
                 <span className="text-accent font-semibold text-sm uppercase tracking-wider">Buying Guide</span>
                 <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Gift card amounts and what they cover</h2>
                 <p className="text-lg text-muted-foreground">
-                  What each amount pays for in full, by home size, before 5% GST.
+                  Each amount is matched against the one-visit prices for an apartment or condo, before 5% GST.
                 </p>
                 <p className="text-sm text-muted-foreground mt-3 italic">
-                  The exact figure depends on bedrooms, bathrooms and add-ons; the recipient sees it before they book.
+                  The exact figure depends on bedrooms, bathrooms, home type and add-ons, and a pet charge or a travel fee outside city limits can apply. The recipient sees the full price before they book.
                 </p>
               </div>
 
@@ -305,7 +306,7 @@ export default function GiftCards() {
                 <InfoCard
                   icon={Shield}
                   iconColor="text-accent"
-                  title="100% Satisfaction Guarantee"
+                  title={`${POLICY.guaranteeWindowHours}-Hour Re-Clean Guarantee`}
                   variant="highlight"
                   items={[]}
                   footerText={`A clean paid for with a gift card is covered the same way as any other. If something was missed, the recipient tells us within ${POLICY.guaranteeWindowHours} hours and we come back and re-clean it at no additional charge.`}
@@ -327,7 +328,7 @@ export default function GiftCards() {
               </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Send a gift card today</h2>
               <p className="text-lg text-white/75 mb-8 leading-relaxed">
-                Any amount, emailed straight away, no expiry.
+                Choose any amount. It is emailed straight away, and the balance does not expire.
               </p>
               <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-10 py-6 h-auto font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5" asChild>
                 <a href={GIFT_CARD_PURCHASE_URL} target="_blank" rel="noopener noreferrer">

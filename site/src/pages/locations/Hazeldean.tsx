@@ -5,7 +5,6 @@ import {
 } from "lucide-react";
 import { buildLocationSchema } from "@/lib/location-schema";
 import HonestReviewLink from "@/components/HonestReviewLink";
-import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -72,16 +71,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Hazeldean" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Hazeldean" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Hazeldean" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Hazeldean" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared properly after renos and handovers.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Hazeldean" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Hazeldean" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Renovation dust cleared from a house you are still living in, priced by square footage.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Hazeldean" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, booked together with a clean.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Hazeldean" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Hazeldean" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment or condo, before GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Hazeldean" },
 ];
 
 const whyUsItems = [
@@ -113,9 +112,9 @@ const whyUsItems = [
 ];
 
 const faqs = [
-  { q: "What types of cleaning do you offer in Hazeldean?", a: "We offer standard, deep cleanings, move-in/move-out services, recurring cleanings, and post-renovation cleaning. If you're not sure what you need, we're happy to walk you through it." },
-  { q: "How soon can I book a cleaning in Hazeldean?", a: "We can usually book cleanings within a few days, but we recommend scheduling at least a week ahead to get your preferred date. Contact us to check our next opening." },
-  { q: "Do you provide cleaning services in all areas of Hazeldean?", a: "Yes, we serve the entire Hazeldean neighbourhood and nearby areas including Ritchie, King Edward Park, and Bonnie Doon." },
+  { q: "What types of cleaning do you offer in Hazeldean?", a: "Our Edmonton branch offers standard, deep, move-in and move-out, recurring and post-construction cleaning in Hazeldean, plus wall washing booked together with a clean. Every service except post-construction is a flat rate by home size before 5% GST; post-construction cleaning is priced by square footage. If you are not sure which one fits, call the Edmonton office at (780) 913-6565." },
+  { q: "How soon can I book a cleaning in Hazeldean?", a: "Same-day and next-day slots depend on the schedule, so booking a Hazeldean clean earlier gives you more choice of day. We book an arrival window rather than an exact time: 9:00 to 10:00 AM, 12:00 to 1:00 PM, or 3:00 to 4:00 PM. Nothing is charged at booking; the card is charged once the clean is complete." },
+  { q: "Do you provide cleaning services in all areas of Hazeldean?", a: "Yes. Hazeldean is on our Edmonton branch's list of 80 neighbourhoods, and it sits inside Edmonton city limits, so no trip fee applies anywhere in it. For an address you are unsure of, call the Edmonton office at (780) 913-6565." },
 ];
 
 export default function Hazeldean() {
@@ -125,22 +124,22 @@ export default function Hazeldean() {
     <>
       <Helmet>
         <title>House Cleaners in Hazeldean, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Hazeldean, Edmonton. Serving families near Mill Creek Ravine, Donnan Park & more. Local cleaners you can trust." />
+        <meta name="description" content="Between rail land and Mill Creek Ravine, Hazeldean's post-war Edmonton houses collect fine mineral dust on sills and ravine mud at the door." />
         <script type="application/ld+json">{JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Hazeldean",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/hazeldean",
   areaServed: "Hazeldean, Edmonton, AB",
-  description: "Professional house cleaning in Hazeldean, Edmonton. Serving families near Mill Creek Ravine, Donnan Park & more. Local cleaners you can trust.",
+  description: "Between rail land and Mill Creek Ravine, Hazeldean's post-war Edmonton houses collect fine mineral dust on sills and ravine mud at the door.",
 }))}</script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/hazeldean/" />
         <meta property="og:title" content="House Cleaners in Hazeldean, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Hazeldean, Edmonton. Serving families near Mill Creek Ravine, Donnan Park & more. Local cleaners you can trust." />
+        <meta property="og:description" content="Between rail land and Mill Creek Ravine, Hazeldean's post-war Edmonton houses collect fine mineral dust on sills and ravine mud at the door." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/hazeldean/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Hazeldean, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Hazeldean, Edmonton. Serving families near Mill Creek Ravine, Donnan Park & more. Local cleaners you can trust." />
+        <meta name="twitter:description" content="Between rail land and Mill Creek Ravine, Hazeldean's post-war Edmonton houses collect fine mineral dust on sills and ravine mud at the door." />
         {/* The FAQs this page already renders — marked up so machine readers
             get the same Q&A the visitor sees. */}
         <script type="application/ld+json">
@@ -175,7 +174,7 @@ export default function Hazeldean() {
                 Professional House Cleaning in Hazeldean
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Your reliable, local cleaning team serving the Hazeldean community. From family homes near Mill Creek Ravine to residences by Donnan Park — enjoy dependable cleaning built on trust and genuine care.
+                Three in four Hazeldean houses date from the end of the war to 1960, on streets between rail land to the west and Mill Creek Ravine to the east. You pay once the clean is complete, at a flat rate set by the size of the house.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -209,7 +208,7 @@ export default function Hazeldean() {
               <div className="text-center mb-14">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Hazeldean Homes</h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto text-lg">Upkeep, deep cleans, move-outs: the whole toolkit in one place.</p>
+                <p className="text-muted-foreground max-w-2xl mx-auto text-lg">Each of these six services for a Hazeldean house shows its price before you book, and every figure is before 5% GST.</p>
               </div>
             </AnimatedSection>
             <AnimatedSection>
@@ -246,7 +245,7 @@ export default function Hazeldean() {
               <div className="text-center mb-14">
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Hazeldean Residents Choose Duty Cleaners</h2>
-                <p className="text-white/90 max-w-2xl mx-auto text-lg">Trusted by Hazeldean families for reliable, thorough cleaning.</p>
+                <p className="text-white/90 max-w-2xl mx-auto text-lg">The same four commitments apply to every house in Hazeldean.</p>
               </div>
             </AnimatedSection>
             <AnimatedSection>
@@ -266,10 +265,9 @@ export default function Hazeldean() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Hazeldean</h2>
-                  <p className="text-muted-foreground text-lg max-w-2xl mx-auto">We're in and around the neighbourhood daily, so we know the area well.</p>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Hazeldean and Other Edmonton Neighbourhoods</h2>
+                  <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Our Edmonton branch cleans 80 neighbourhoods inside the city, Hazeldean among them, and nine communities outside it where a travel fee applies.</p>
                 </div>
-                <CoverageChips areas={["Mill Creek Ravine", "Donnan Park", "Hazeldean Elementary", "75 Avenue", "99 Street", "86 Street", "Ritchie Market", "Community Garden"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">View All Service Areas →</Link>
                 </div>
@@ -282,7 +280,7 @@ export default function Hazeldean() {
         eyebrow="Two boundaries"
         heading="Rail yards west, ravine east"
         paragraphs={[
-          "Rail land sits on the west and northwest of this pocket and industrial blocks wrap the south, which puts a fine mineral dust on window tracks and sills — the sort that dry dusting lifts into the air and drops again two feet away. The old Edmonton, Yukon & Pacific line once crossed here too, leaving the CP tracks near 67 Avenue, cutting over 99 Street and dropping into the ravine to reach a brickyard, a coal mine and two packing plants.",
+          "Rail land sits on the west and northwest of this pocket and industrial blocks wrap the south, which puts a fine mineral dust on window tracks and sills — the sort that dry dusting lifts into the air and drops again two feet away.",
           "The east boundary is Mill Creek Ravine, where the paved path north of 67 Avenue runs on the old rail bed and the dirt side trails off it turn to mud after the melt — April soil and August soil arrive at the same door looking nothing alike. Indoors, three houses in four date from between the war's end and 1960 and barely one in fifteen from after 1970, so post-construction work here means renovation dust in an occupied house, not an empty shell.",
         ]}
       />
@@ -297,8 +295,8 @@ export default function Hazeldean() {
             <AnimatedSection>
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Location</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Find Us Near Hazeldean</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Map</span>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Hazeldean on the Map</h2>
                 </div>
                 <div className="rounded-xl overflow-hidden shadow-lg border border-border">
                   <iframe

@@ -1,4 +1,4 @@
-import { HOURLY_RATE, GST_RATE, formatPrice, withGst, FREQUENCIES } from "@/data/pricing";
+import { HOURLY_RATE, GST_RATE, formatPrice, withGst, FREQUENCIES, standardTierRows, addOnFromPrice } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
 import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
 import { CITY_PROOF, RATING_CLAIM, COMPANY } from "@/data/proof";
@@ -64,6 +64,19 @@ const TRAVEL = travelFee("airbnb");
 const TRAVEL_LINE = TRAVEL === null ? "a travel fee, quoted when you book" : `a ${formatPrice(TRAVEL)} travel fee per visit`;
 const WEEKLY = FREQUENCIES.find((f) => f.id === "weekly");
 const WEEKLY_PCT = WEEKLY ? `${Math.round(WEEKLY.discount * 100)}%` : "a";
+const pct = (id: string) => {
+  const f = FREQUENCIES.find((x) => x.id === id);
+  return f ? `${Math.round(f.discount * 100)}%` : "";
+};
+/** The flat-rate alternative a host can book instead: a one-bedroom standard clean. */
+const STANDARD_FROM = standardTierRows()[0]?.price ?? "";
+/* The Airbnb booking form carries its own pet fee at the figure the home form
+   charges (content prompt P10), so the cost answer has to name it. */
+const PET_FEE = addOnFromPrice("standard", "must-choose-if-you-have-pets");
+const PET_LINE = PET_FEE === null ? "a pet charge" : `a ${formatPrice(PET_FEE)} pet charge per visit`;
+/* policy.ts writes each window with a spaced dash; three in one sentence read badly. */
+const WINDOWS = ARRIVAL_WINDOWS.map((w) => w.replace(" – ", " to "));
+const WINDOWS_LINE = `${WINDOWS.slice(0, -1).join(", ")} or ${WINDOWS[WINDOWS.length - 1]}`;
 const GUARANTEE_HOURS = POLICY.guaranteeWindowHours;
 const PRICING = canonicalForPath("/pricing");
 const RECURRING = canonicalForPath("/edmonton/recurring-cleaning");
@@ -75,7 +88,7 @@ const QUOTE = `${HUB}#quote`;
    a price nobody can buy. */
 const MINIMUM_BOOKING = HOURLY_RATE * 3;
 const TITLE = `Airbnb Cleaning Edmonton from ${RATE}/hour | Duty Cleaners`;
-const DESCRIPTION = `Airbnb turnover cleaning across Edmonton from ${RATE} per cleaner-hour, 3-hour minimum. Linens, restocking and a fixed checklist between guests.`;
+const DESCRIPTION = `Airbnb turnover cleaning in Edmonton is ${RATE} per cleaner-hour before GST, with a 3-hour minimum for one cleaner or 2 hours for two, and beds remade.`;
 
 const AnimatedSection = ({
   children,
@@ -177,75 +190,77 @@ const AirbnbCleaningEdmonton = () => {
   const whatWeClean = [
     { image: imgBedroom, title: "Bedrooms and beds", description: "Beds stripped and remade with the linen you leave out, nightstands and surfaces dusted, floors vacuumed." },
     { image: imgBathroom, title: "Bathrooms sanitised", description: "Toilets, sinks, tubs and showers disinfected, mirrors and chrome wiped dry, hair cleared from the drain cover." },
-    { image: imgKitchen, title: "Kitchen reset", description: "Counters and sink scrubbed, appliance exteriors and the inside of the microwave wiped, dishwasher emptied if it has run." },
-    { image: imgLiving, title: "Living areas", description: "Floors vacuumed and mopped, surfaces dusted, cushions straightened, remotes and chargers put back where the listing photo shows them." },
-    { image: imgLaundry, title: "Laundry and linen changes", description: "Available when the machines are ready to use and clean linens are prepared and accessible for the cleaners. Without a spare set, the beds are made with what is on site." },
-    { image: imgEssentials, title: "Restocking and bins", description: "Soap, shampoo and paper goods replenished from the supplies you leave on site. Bins emptied and relined, garbage and recycling taken to the building's collection point." },
+    { image: imgKitchen, title: "Kitchen reset", description: "Counters and sink scrubbed, appliance exteriors and the inside of the microwave wiped. Dishes and laundry sit outside the checklist, so leave the dishwasher for the guest or for yourself." },
+    { image: imgLiving, title: "Living areas", description: "Floors vacuumed and mopped, surfaces dusted, cushions straightened." },
+    { image: imgLaundry, title: "Linen changes", description: "Beds stripped and remade with the clean linen you leave out. A second set of sheets and towels on site is what lets the beds go straight back on." },
+    { image: imgEssentials, title: "Restocking and bins", description: "Soap, shampoo and paper goods replenished from the supplies you leave on site. Bins emptied and relined inside the unit." },
   ];
 
   const howItWorks = [
     { icon: ClipboardCheck, title: "Send the checkout time", description: "Book online or by phone with the checkout and the next check-in. Those two times set the window we work in." },
-    { icon: KeyRound, title: "Tell us how to get in", description: "Lockbox code, smart lock or a key on site. Most hosts are never present, and the booking form asks for access and parking." },
-    { icon: Wand2, title: "The turnover runs to a checklist", description: "The same list every visit, so the third turnover looks like the first. Anything the guest left behind is set aside and reported." },
-    { icon: DoorOpen, title: "Ready before check-in", description: "Beds made, supplies restocked, bins out, door locked. If something needs your attention, a photo comes with the report." },
+    { icon: KeyRound, title: "Tell us how to get in", description: "Lockbox code, smart lock or a key on site. You do not need to be there, and the booking form asks for access and parking." },
+    { icon: Wand2, title: "The turnover runs to a checklist", description: "The same list every visit, in the same order, so the third turnover covers what the first one did." },
+    { icon: DoorOpen, title: "Locked up behind the team", description: "Beds made, supplies restocked, bins emptied, door locked. The next guest walks into the unit as the checklist left it." },
   ];
 
   const whyChooseUs = [
-    { icon: Clock, title: "Arrival windows, not a vague afternoon", description: `We schedule to one of three windows: ${ARRIVAL_WINDOWS.join(", ")}. For a same-day changeover, tell us the checkout time and we pick the window that fits.` },
-    { icon: Star, title: RATING_CLAIM, description: `That rating covers Edmonton homes and rentals ${COMPANY.sinceLabel}. Every cleaner is reference-checked before their first job and rated by the customer after every visit.` },
-    { icon: Calendar, title: "No contract, no deposit", description: "Nothing is charged when you book. Your card is charged once the turnover is complete, and you can book one visit or a season of them." },
+    { icon: Clock, title: "A booked arrival window", description: `The team arrives in one of three windows: ${WINDOWS_LINE}. When checkout and check-in fall on the same day, tell us both times and we look for the window that fits between them.` },
+    { icon: Star, title: RATING_CLAIM, description: `That is the rating across ${proof.googleReviewCount} reviews on the Edmonton Google listing, for a company that has cleaned Alberta homes ${COMPANY.sinceLabel}. Every cleaner is reference-checked before their first job and rated by the customer after every visit.` },
+    { icon: Calendar, title: "Paid after the turnover", description: "Nothing is charged when you book. The day before, a temporary hold confirms the card, and the charge goes through once the turnover is complete. Book one turnover or a run of them." },
     { icon: Shield, title: "We bring the supplies", description: `Products and equipment come with the team. Eco-friendly products are available for ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}.` },
   ];
 
   const gallery = [
-    { src: gal1, alt: "Clean Edmonton Airbnb home interior" },
-    { src: gal2, alt: "Sanitised Edmonton Airbnb bathroom" },
-    { src: gal3, alt: "Edmonton short-term rental kitchen deep clean" },
-    { src: gal4, alt: "Edmonton Airbnb living room after a turnover" },
-    { src: gal5, alt: "Edmonton Airbnb cleaning before and after" },
-    { src: gal6, alt: "Edmonton Airbnb bedroom turnover" },
+    /* Generated images, so the alts say what each shows and never that it is
+       a real Edmonton listing or a real before-and-after. */
+    { src: gal1, alt: "A family playing on the floor of a tidy living room" },
+    { src: gal2, alt: "A cleaner wiping a bathroom mirror" },
+    { src: gal3, alt: "A kitchen with a sink, a microwave and a range hood" },
+    { src: gal4, alt: "A dog lying on a living-room rug beside a vacuum" },
+    { src: gal5, alt: "A kitchen labelled before and after, with different cabinets and tile in each half" },
+    { src: gal6, alt: "A family laughing together in a bed with white sheets" },
   ];
 
   const faqs = [
     {
       q: "How much does Airbnb cleaning cost in Edmonton?",
-      a: `${RATE} per cleaner per hour, before ${GST_PCT} GST, with a minimum of 3 hours for one cleaner or 2 hours for two. A one-bedroom condo at the minimum is ${MIN_ONE} before tax. Most hosts know their typical figure after the first two or three turnovers, and it holds unless the guest count or the condition changes.`,
+      a: `${RATE} per cleaner per hour, before ${GST_PCT} GST, with a minimum of 3 hours for one cleaner or 2 hours for two. A one-bedroom condo at the one-cleaner minimum is ${MIN_ONE} before tax and ${MIN_ONE_GST} with it, and two cleaners at their minimum come to ${MIN_TWO} before tax. A listing with pets adds ${PET_LINE}, and one outside Edmonton city limits adds ${TRAVEL_LINE}.`,
     },
     {
       q: "Why is it hourly rather than a flat rate?",
-      a: "A flat rate by home size assumes a lived-in home, and a rental between guests can be anything from ten minutes of tidying to a full reset after a week-long stay. Hourly means you pay for the time the turnover actually took. If you would rather have a fixed number, the standard cleaning rates on the Edmonton price list apply to short-term rentals as well.",
+      a: `A flat rate by home size assumes a lived-in home, and a rental between guests can be anything from ten minutes of tidying to a full reset after a week-long stay. Hourly means you pay for the time the turnover took. A host who would rather have a fixed number can book a standard clean instead, priced flat by home size from ${STANDARD_FROM} for a one-bedroom apartment before GST, with the pet charge, the home-type surcharge and the travel fee added where they apply.`,
     },
     {
       q: "Do you offer same-day Airbnb cleaning?",
-      a: "Only when a team is free that day, which we cannot promise. Book each turnover as soon as the checkout date is fixed. During K-Days and the Fringe the afternoon slots fill first, and a host with the dates booked in advance keeps them.",
+      a: `Same-day and next-day slots depend on the schedule, so book each turnover as soon as the checkout date is fixed. To ask what is open, call the Edmonton office at ${proof.phone}.`,
     },
     {
-      q: "Do you handle laundry and linens?",
-      a: "Laundry and linen changes are available, provided that the machines are ready to use and clean linens are prepared and accessible for the cleaners. A second set of sheets and towels is the single change that shortens a turnover most, because the beds go on while the wash runs.",
+      q: "Do you do laundry between guests?",
+      a: `Laundry is not part of the turnover checklist. The team strips the beds and remakes them with the clean linen you leave out, so keep a second set of sheets and towels on site for the beds to go straight back on. To ask about a particular listing, call the Edmonton office at ${proof.phone}.`,
     },
     {
       q: "Can you restock guest supplies?",
-      a: "Yes, from supplies you leave on site. We do not buy stock on your behalf. Keep a labelled bin of soap, paper goods and coffee in a closet and tell us where it is in the booking notes.",
+      a: "Yes, from supplies you leave on site. Keep a labelled bin of soap, paper goods and coffee in a closet and say where it is in the booking notes, and the team restocks the unit from it on every turnover.",
     },
     {
       q: "Do I need to be there?",
-      a: `No. Most hosts give us a lockbox code or a smart-lock code and never meet the team. If nobody can get in at the booked time, the lockout fee is ${POLICY.lockoutFee}, so keep the code current.`,
+      a: `No. Most customers leave a key, a lockbox code or smart-lock access, and the team locks up behind itself. If nobody can get in at the booked time, the lockout charge is ${POLICY.lockoutFee}, so keep the code current.`,
     },
     {
       q: "Is there a travel fee for listings outside Edmonton?",
-      a: `Inside Edmonton city limits there is no trip fee. Listings in St. Albert, Sherwood Park, Spruce Grove, Leduc, Beaumont or the other surrounding towns carry ${TRAVEL_LINE}, shown on the quote before you confirm.`,
+      a: `Inside Edmonton city limits there is no trip fee. Listings in St. Albert, Sherwood Park, Spruce Grove, Leduc, Beaumont, Fort Saskatchewan, Stony Plain, Morinville or Devon carry ${TRAVEL_LINE}, shown on the quote before you confirm.`,
     },
     {
       q: "What if a guest checks in and finds something missed?",
-      a: `Tell us within ${GUARANTEE_HOURS} hours of the turnover and we come back and re-clean the missed item at no charge. Photos help but are not required. The window is short on purpose: after a new guest has been in, nobody can tell whose mess it is.`,
+      a: `Tell us within ${GUARANTEE_HOURS} hours of the turnover and we come back and re-clean the missed item at no charge. Photos help but are not required. Report it early: once a new guest has been in for a while, nobody can tell whose mess it is. The commitment is the return visit, not a refund.`,
     },
     {
       q: "What happens if I cancel a turnover?",
-      a: `Free with ${POLICY.cancellationNoticeHours} hours' notice. Inside that window the cancellation fee is ${POLICY.cancellationFee}. A guest cancelling on you is the usual reason, so tell us the moment the platform does.`,
+      a: `Cancelling is free with ${POLICY.cancellationNoticeHours} hours' notice; inside that window the fee is ${POLICY.cancellationFee}, so tell us the moment a guest cancels on the platform. If we have to move a turnover ourselves, because a cleaner is ill or the roads are unsafe, we say so as soon as we know and offer the earliest slot we have. Nobody pays for a visit we did not do.`,
     },
     {
       q: "Do you clean the unit when it is my own home between guests?",
-      a: `Yes, and if you live there most of the year, recurring cleaning is usually cheaper than hourly turnovers: ${WEEKLY_PCT} off from the second weekly visit, with the first clean at the standard rate. Book the recurring plan for your own weeks and hourly turnovers for the guest weeks.`,
+      a: `Yes. For the weeks you live there, recurring cleaning is priced differently: the standard clean at a flat rate by home size, from ${STANDARD_FROM} for a one-bedroom apartment before GST and before any pet or home-type charge, with ${WEEKLY_PCT} off weekly, ${pct("bi-weekly-every-2-weeks")} off bi-weekly and ${pct("every-4-weeks")} off every 4 weeks from the second visit. The first clean is at the one-time rate, and hourly turnovers then cover only the guest weeks.`,
     },
   ];
 
@@ -300,7 +315,7 @@ const AirbnbCleaningEdmonton = () => {
       <section className="relative py-20 px-4 bg-brand-navy overflow-hidden">
         <img width={1280} height={720}
           src={heroBg}
-          alt="Guest-ready short-term rental living room in Edmonton after a turnover clean"
+          alt="A tidy apartment living room with a grey sofa and tall windows"
           className="absolute inset-0 w-full h-full object-cover opacity-25"
          loading="eager" fetchPriority="high"/>
         <div className="absolute inset-0 bg-gradient-to-b from-brand-navy/80 via-brand-navy/70 to-brand-navy/90" />
@@ -317,7 +332,8 @@ const AirbnbCleaningEdmonton = () => {
             Airbnb Cleaning Service in Edmonton
           </h1>
           <p className="text-xl md:text-2xl mb-6 text-white/90 font-medium">
-            {RATE} per cleaner-hour before GST, 3-hour minimum, rated {RATING_CLAIM}
+            Turnovers are {RATE} per cleaner-hour before GST, with a 3-hour minimum for one cleaner or 2 hours
+            for two, and the Edmonton listing is rated {RATING_CLAIM} across {proof.googleReviewCount} reviews.
           </p>
           <p className="text-lg mb-8 text-white/90 max-w-3xl mx-auto leading-relaxed">
             Between guests the team works to the same checklist every visit: beds stripped and remade
@@ -349,7 +365,7 @@ const AirbnbCleaningEdmonton = () => {
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle className="w-4 h-4 text-accent" />
-              <span>No contract: one turnover or a season</span>
+              <span>Book one turnover or a run of them</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle className="w-4 h-4 text-accent" />
@@ -369,9 +385,8 @@ const AirbnbCleaningEdmonton = () => {
         eyebrow="Edmonton turnovers"
         heading="What running a short-term rental in Edmonton actually demands"
         paragraphs={[
-          "Edmonton's short-term rental year has two peaks rather than one, and they sit back to back. K-Days runs through late July, and the Fringe takes over Old Strathcona for most of August. A Whyte Avenue or Garneau listing can spend those weeks fully booked on one- and two-night stays, which means turnovers every single day rather than the two or three a week the same property sees in October.",
-          "Winter is the opposite problem, and it is the one that damages a listing's rating. Edmonton holds its cold rather than cycling through it, so the salt and sand tracked in from November onward arrives dry and stays put. It works into entry mats, along baseboards and into the grout at the door. Guests notice it immediately because it is the first thing they step on. Entryways get specific attention on every winter turnover for exactly that reason.",
-          "The paperwork matters too. Edmonton requires a business licence to operate a short-term rental, and hosts renting near Rogers Place or the university are the ones most likely to be asked about their cleaning process, by the platform, by a condo board, or by a guest querying a cleaning fee. We work to a fixed checklist, so you can say precisely what is covered on each visit.",
+          "Winter is the season that damages a listing's rating. Edmonton holds its cold rather than cycling through it, so the salt and sand tracked in from November onward arrives dry and stays put. It works into entry mats, along baseboards and into the grout at the door. Guests notice it immediately because it is the first thing they step on.",
+          "A guest may ask what a cleaning fee covers. We work to a fixed checklist, so you can say precisely what is covered on each visit.",
         ]}
       />
 
@@ -388,8 +403,8 @@ const AirbnbCleaningEdmonton = () => {
                 What a short-term rental turnover includes
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Six areas, the same order every visit. Laundry and dishes sit outside the standard
-                scope; laundry is added when the machines and a spare set of linen are ready.
+                Six areas, the same order every visit. Laundry and dishes sit outside the checklist,
+                so the beds are remade with the clean linen you leave out.
               </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -441,22 +456,24 @@ const AirbnbCleaningEdmonton = () => {
               <ul className="space-y-2 text-muted-foreground text-sm leading-relaxed">
                 <li>One cleaner at the 3-hour minimum: 3 × {RATE} = <strong>{MIN_ONE}</strong> before GST, {MIN_ONE_GST} with it.</li>
                 <li>Two cleaners for the 2-hour minimum, when the check-in is close behind the checkout: 4 cleaner-hours = <strong>{MIN_TWO}</strong> before GST.</li>
-                <li>A three-bedroom house after a week-long stay usually runs to 4 cleaner-hours, {FOUR_HOURS} before GST, and less once the routine is established.</li>
+                <li>A three-bedroom house that takes 4 cleaner-hours after a week-long stay comes to {FOUR_HOURS} before GST.</li>
                 <li>Listings outside Edmonton city limits add {TRAVEL_LINE}.</li>
+                <li>A listing with pets adds {PET_LINE}.</li>
               </ul>
             </div>
             <p className="text-muted-foreground leading-relaxed">
-              Most hosts settle into a predictable number within the first two or three turnovers, and
-              we tell you what that looks like for your property after the first clean. If you would
-              rather have a flat rate by home size, the standard cleaning rates on{" "}
+              The hours are what the turnover took, so the figure moves with the guest count and the state
+              the unit was left in. If you would rather have a flat rate by home size, a standard clean
+              from {STANDARD_FROM} for a one-bedroom apartment before GST, plus the pet charge or a home-type
+              surcharge where they apply, is on{" "}
               <Link to={PRICING} className="text-accent underline underline-offset-2">
                 the full Edmonton price list
               </Link>{" "}
-              apply to short-term rentals too. Answer a few questions about the unit and you can{" "}
+              with every other size. Answer a few questions about the unit and you can{" "}
               <Link to={QUOTE} className="text-accent underline underline-offset-2">
                 see your instant price for a flat-rate clean
               </Link>{" "}
-              in about a minute. Every figure there is before GST, and nothing is charged
+              before booking. Every figure there is before GST, and nothing is charged
               until the clean is done.
             </p>
           </div>
@@ -496,19 +513,19 @@ const AirbnbCleaningEdmonton = () => {
               Where we turn over short-term rentals
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Anywhere inside Edmonton city limits at the rate above, with no trip fee. Outside them
-              the same crews cover the surrounding towns for {TRAVEL_LINE}:{" "}
+              Anywhere inside Edmonton city limits at {RATE} per cleaner-hour, with no trip fee. The
+              Edmonton branch also serves nine communities outside the city, each for {TRAVEL_LINE}:{" "}
               <Link to="/cleaning-services-st-albert/" className="text-accent underline underline-offset-2">
                 St. Albert house cleaners
               </Link>{" "}
-              come from the same office, and{" "}
+              work from the Edmonton office, and{" "}
               <Link to="/cleaning-services-sherwood-park/" className="text-accent underline underline-offset-2">
                 house cleaning in Sherwood Park
               </Link>{" "}
               runs on the same checklist east of the city.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Turnovers are one service of nine. The company has done{" "}
+              Turnovers are one of several Edmonton services. The company has done{" "}
               <Link to="/" className="text-accent underline underline-offset-2">
                 house cleaning in Edmonton
               </Link>{" "}
@@ -516,7 +533,7 @@ const AirbnbCleaningEdmonton = () => {
               <Link to={SERVICES} className="text-accent underline underline-offset-2">
                 all Edmonton cleaning services and prices
               </Link>{" "}
-              on one page. A host who lives in the unit most of the year usually does better on{" "}
+              on one page. A host who lives in the unit most of the year may prefer{" "}
               <Link to={RECURRING} className="text-accent underline underline-offset-2">
                 recurring cleaning in Edmonton
               </Link>{" "}
@@ -527,7 +544,7 @@ const AirbnbCleaningEdmonton = () => {
               <Link to="/reviews/" className="text-accent underline underline-offset-2">
                 read the reviews
               </Link>{" "}
-              behind the {RATING_CLAIM} figure. They are from homeowners and hosts, unedited.
+              behind the {RATING_CLAIM} figure. The Edmonton listing carries {proof.googleReviewCount} of them.
             </p>
           </div>
         </AnimatedSection>
@@ -546,7 +563,7 @@ const AirbnbCleaningEdmonton = () => {
                 What a finished turnover looks like
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                The state every Edmonton rental is left in before the next guest checks in.
+                These pictures are illustrations, not photographs of a customer&rsquo;s rental.
               </p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
@@ -611,8 +628,8 @@ const AirbnbCleaningEdmonton = () => {
               </h2>
               <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
                 If a turnover misses something, tell us within {GUARANTEE_HOURS} hours and we come back
-                and re-clean it at no charge. Photos help us send the right person but are not a
-                condition. {POLICY.insuranceClaim}
+                and re-clean it at no charge. Photos help but are not
+                required. {POLICY.insuranceClaim}
               </p>
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="bg-muted/30 rounded-xl p-6 text-left">

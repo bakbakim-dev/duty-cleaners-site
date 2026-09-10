@@ -1,3 +1,4 @@
+import { sitePriceRange } from "@/data/pricing";
 import { getListing } from "@/lib/google-listings";
 import {
   CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import { useEffect } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"; import {   Phone, CheckCircle2, Star, Shield, Clock, Award, Home, Sparkles, Truck, SprayCan, Bath, Building2, Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail, PaintRoller
@@ -59,9 +60,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Marda Loop" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Marda Loop" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Marda Loop" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Marda Loop" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Drywall and construction dust after a renovation or a new build in your home.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Marda Loop" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Drywall and construction dust after a renovation or a new infill build in Marda Loop.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Marda Loop" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Marda Loop" },
 ];
 
@@ -93,21 +94,21 @@ const whyUsItems = [
   { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
-const nearbyAreas = ["South Calgary", "Altadore", "Garrison Woods", "River Park", "Bankview", "Killarney", "Richmond", "Currie Barracks"];
+const nearbyAreas = ["Altadore", "Bankview", "Killarney-Glengarry", "Richmond"];
 
 const faqs = [
   { question: "How long does an initial cleaning take?", answer: "We work to a checklist, not a clock. Your Marda Loop team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
   { question: "What cleaning services does Duty Cleaners offer in Marda Loop?", answer: "We offer:\n\n• Standard Cleaning & Deep Cleaning Packages\n• Move-In And Move-Out Cleaning Service\n• Post Construction Cleaning\n• Wall Washing and Wall Cleaning" },
-  { question: "Do you offer discounts?", answer: "We offer recurring discounts for our Standard and Deep Cleaning Packages.\n\nIf you avail of our recurring discount, on your next cleaning:\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off" },
-  { question: "What's included in a deep cleaning?", answer: "Deep cleaning adds the following to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned" },
-  { question: "What happens if something is missed?", answer: "Not fully satisfied? Let us know within 24 hours and we'll come back and put it right at no charge." },
+  { question: "Do you offer discounts?", answer: "Yes. A recurring standard clean in Marda Loop is discounted from the second visit:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nThe first clean is charged at the one-time rate." },
+  { question: "What's included in a deep cleaning?", answer: "Deep cleaning adds the following to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped" },
+  { question: "What happens if something is missed?", answer: "Tell us within 24 hours and the team comes back to your Marda Loop home to re-clean what was missed, at no charge. Photos help but are not required." },
 ];
 
 const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Marda Loop Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/marda-loop",
-  priceRange: "$$",
+  priceRange: sitePriceRange(),
   geo: { latitude: "51.0253", longitude: "-114.0978" },
 });
 
@@ -118,12 +119,12 @@ export default function MardaLoop() {
     <>
       <Helmet>
         <title>House Cleaning in Marda Loop, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Marda Loop, Calgary. Trendy SW neighbourhood near 33rd Avenue shops & River Park. 100% satisfaction guaranteed." />
+        <meta name="description" content="In Marda Loop, Calgary, new infills have pale floors and glass rails that show every mark; the post-war bungalows beside them are dense with trim." />
         <meta property="og:title" content="House Cleaning in Marda Loop, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Marda Loop, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Marda Loop, Calgary. Trendy SW neighbourhood near 33rd Avenue shops & River Park. 100% satisfaction guaranteed." />
-        <meta property="og:description" content="Professional house cleaning in Marda Loop, Calgary. Trendy SW neighbourhood near 33rd Avenue shops & River Park. 100% satisfaction guaranteed." />
+        <meta name="twitter:description" content="In Marda Loop, Calgary, new infills have pale floors and glass rails that show every mark; the post-war bungalows beside them are dense with trim." />
+        <meta property="og:description" content="In Marda Loop, Calgary, new infills have pale floors and glass rails that show every mark; the post-war bungalows beside them are dense with trim." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/marda-loop/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/marda-loop/" />
@@ -165,7 +166,7 @@ export default function MardaLoop() {
                   Professional House Cleaning in Marda Loop
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Trusted cleaning services for Calgary's trendiest inner-city neighbourhood. Customer-rated cleaners committed to your satisfaction.
+                  Marda Loop's infill turnover puts new three-storeys with roof decks beside post-war bungalows, so construction dust moves block by block. The new builds' pale floors and glass rails show every mark.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -191,7 +192,7 @@ export default function MardaLoop() {
               <div className="flex-shrink-0 w-full lg:w-[500px]">
                 <img
                   src={calgaryKitchen}
-                  alt="A spotless kitchen after a Duty Cleaners visit in Calgary"
+                  alt="A kitchen with granite counters, stainless steel appliances and a wood floor"
                   width={800}
                   height={800}
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
@@ -229,7 +230,7 @@ export default function MardaLoop() {
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Neighbourhoods We Serve</h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto">We proudly serve families and homeowners across Marda Loop and surrounding communities.</p>
+                <p className="text-muted-foreground max-w-2xl mx-auto">Our Calgary branch also cleans homes in these neighbourhoods close to Marda Loop.</p>
               </div>
               <CoverageChips areas={nearbyAreas} />
             </AnimatedSection>
@@ -241,8 +242,8 @@ export default function MardaLoop() {
         eyebrow="Local knowledge"
         heading="Marda Loop beside the strip"
         paragraphs={[
-          "Marda Loop's blocks live beside one of Calgary's busiest retail strips, and 33rd Avenue's coffee-and-errand traffic keeps front walks and entries in constant light use. The housing is in full infill turnover — new three-storeys with stair towers and roof decks rising beside the remaining post-war bungalows — so construction dust is a rolling, block-by-block season here.",
-          "The new builds' pale wide-plank floors and glass rail panels show every mark and film, making streak-free work the visible measure of a clean; the older homes are the opposite job, small and dense with original trim. Garrison Woods' paths feed steady stroller-and-dog traffic through it all.",
+          "Marda Loop's blocks live beside 33rd Avenue's retail strip, and its coffee-and-errand traffic keeps front walks and entries in constant light use. The housing is in full infill turnover: new three-storeys with stair towers and roof decks are rising beside the remaining post-war bungalows, so construction dust is a rolling, block-by-block season here.",
+          "The new builds' pale wide-plank floors and glass rail panels show every mark and film, and on those floors streak-free work is the visible measure of a clean; the older homes are the opposite job, small and dense with original trim. Garrison Woods' paths feed steady stroller-and-dog traffic through it all.",
         ]}
       />
 
@@ -257,7 +258,7 @@ export default function MardaLoop() {
               <div className="text-center mb-14">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Marda Loop Homes</h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto text-lg">Professional cleaning packages for every home and lifestyle.</p>
+                <p className="text-muted-foreground max-w-2xl mx-auto text-lg">Standard and deep cleans suit the older bungalows, and post-construction cleaning lifts the drywall dust a new Marda Loop infill leaves behind.</p>
               </div>
             </AnimatedSection>
             <AnimatedSection>
@@ -331,8 +332,8 @@ export default function MardaLoop() {
           <div className="container mx-auto px-4 text-center">
             <AnimatedSection>
               <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-              <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Proudly Serving Marda Loop & Surrounding Areas</h2>
-              <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">We provide professional house cleaning services throughout Marda Loop and nearby communities in Calgary.</p>
+              <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Beyond Marda Loop: Our Calgary Coverage</h2>
+              <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">Our Calgary branch covers 66 Calgary neighbourhoods and nine communities outside the city, including Airdrie, Cochrane and Okotoks, where a travel fee applies.</p>
               <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">View All Service Areas →</Link>
             </AnimatedSection>
           </div>

@@ -60,9 +60,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Downtown West End" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Downtown West End" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Downtown West End" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Downtown West End" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Downtown West End.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Downtown West End" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris cleared after a suite renovation in the Downtown West End, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Downtown West End" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Downtown West End" },
 ];
 
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Eau Claire", "Sunalta", "Beltline", "Hillhurst", "Downtown Commercial Core", "Connaught"];
+const nearbyAreas = ["Eau Claire", "Sunalta", "Beltline", "Hillhurst"];
 
 const faqs = [
   {
@@ -104,7 +104,7 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Downtown West End?",
-    answer: `The full service menu is available here:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `Duty Cleaners books these services for homes in the Downtown West End:\n\n• Standard & Deep Cleaning Packages\n• Recurring Cleaning\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning, booked together with a clean`
   },
   {
     question: "Do you offer discounts?",
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function DowntownWestEnd() {
     <>
       <Helmet>
         <title>Downtown West End, Calgary House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="Professional cleaners serving Downtown West End, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="description" content="In Calgary's Downtown West End nearly every clean is a condo job, so the team confirms service-elevator loading hours before a first visit." />
         <meta property="og:title" content="Downtown West End, Calgary House Cleaning | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Downtown West End, Calgary House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional cleaners serving Downtown West End, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
-        <meta property="og:description" content="Professional cleaners serving Downtown West End, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="twitter:description" content="In Calgary's Downtown West End nearly every clean is a condo job, so the team confirms service-elevator loading hours before a first visit." />
+        <meta property="og:description" content="In Calgary's Downtown West End nearly every clean is a condo job, so the team confirms service-elevator loading hours before a first visit." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/downtown-west-end-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/downtown-west-end-calgary/" />
@@ -183,7 +183,7 @@ export default function DowntownWestEnd() {
                 Professional House Cleaning in Downtown West End
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Trusted condo cleaning services for one of Calgary's quietest downtown communities — bringing a calm, spotless home within reach.
+                Twenty-five single-family houses remain in the Downtown West End, so nearly every clean here happens in a tower suite. Each visit is priced flat by home size, and the card is charged only once the clean is complete.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function DowntownWestEnd() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Downtown West End Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Downtown West End homes get every service they need.
+                  Downtown West End cleans are priced flat by home size, except post-construction, which goes by square footage. The base rates on the Calgary price list are the ones for an apartment or condo.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function DowntownWestEnd() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Downtown West End Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Downtown West End and the surrounding Calgary communities.
+                    The Downtown West End sits between the Bow River and the CPR tracks, and its bookings go through the Calgary branch at (403) 768-1341.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function DowntownWestEnd() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={768} src={cleanHomeImg} alt="Spotless Downtown West End Calgary home cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1024} height={768} src={cleanHomeImg} alt="Living room with tall windows, a cream sectional sofa and hardwood floors" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Calm, Spotless Downtown West End Home — Every Visit</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Getting In</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Access for a Downtown West End Condo Clean</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Every cleaner is vetted and customer-rated, and it shows in the details: clear counters, gleaming taps, and a home that smells like a fresh start.
+                    You do not need to be home: most customers leave a key, a lockbox code or smart-lock access, and the team locks up. The team brings every supply and piece of equipment, which matters in a building with no outdoor tap, though running water in the suite is still required.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["A booked arrival window rather than an exact time","No tidying needed before the team comes","The card charged only once the clean is complete"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,9 +311,9 @@ export default function DowntownWestEnd() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Downtown West End and the communities around it.{" "}
+                  Eau Claire, Sunalta, Beltline and Hillhurst are on the Calgary branch's list of 66 neighbourhoods, as is the Downtown West End.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -328,8 +328,8 @@ export default function DowntownWestEnd() {
         eyebrow="On the ground"
         heading="Twenty-five houses and everything else"
         paragraphs={[
-          "Twenty-five single-family houses are all that remain inside the boundaries; everything else on this strip between the Bow River and the CPR tracks is towers. So nearly every job here is a condo job, and the constraints repeat — window walls reachable only from the inside, glass rails that show every mark, and no outdoor tap anywhere in the building plan to fill a bucket from.",
-          "Which face a suite has decides the rest. Rail-corridor sills on the south side hold a fine dark film that smears under a dry cloth; north-side glass over the river trades that for a humid haze the moment the weather turns. Access sets the schedule too. The Downtown West–Kerby platform is right here, and the Plus 15 network stops a block east at 8 Street SW. Either way crews and equipment go up the service elevator, so we confirm loading hours before a first visit.",
+          "Twenty-five single-family houses are all that remain inside the boundaries; everything else on this strip between the Bow River and the CPR tracks is towers. So nearly every job here is a condo job, and the constraints repeat — window walls reachable only from the inside and no outdoor tap anywhere in the building plan to fill a bucket from.",
+          "Which face a suite has decides the rest. Rail-corridor sills on the south side hold a fine dark film that smears under a dry cloth; north-side glass over the river trades that for a humid haze the moment the weather turns. Access sets the schedule too. The Downtown West–Kerby platform is right here, and the Plus 15 network stops a block east at 8 Street SW. Crews and equipment go up the service elevator, so we confirm loading hours before a first visit.",
         ]}
         accent="calgary"
       />
@@ -347,7 +347,7 @@ export default function DowntownWestEnd() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Downtown West End Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>

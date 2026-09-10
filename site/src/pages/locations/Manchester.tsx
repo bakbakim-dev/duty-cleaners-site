@@ -60,9 +60,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Manchester" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Manchester" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Manchester" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Manchester" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Manchester.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Manchester" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Drywall and construction dust after a renovation or a new build in Manchester.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Manchester" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Manchester" },
 ];
 
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Windsor Park", "Stanley Park", "Parkhill", "Highfield", "Burns Industrial", "Meadowlark Park"];
+const nearbyAreas = ["Windsor Park", "Stanley Park", "Parkhill", "Meadowlark Park"];
 
 const faqs = [
   {
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function Manchester() {
     <>
       <Helmet>
         <title>House Cleaning in Manchester, Calgary | Duty Cleaners</title>
-        <meta name="description" content="House cleaning in Manchester, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
+        <meta name="description" content="Industrial land wraps Manchester, Calgary on three sides, so blind slats and baseboards there read dusty sooner than the same rooms a few blocks west." />
         <meta property="og:title" content="House Cleaning in Manchester, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Manchester, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning in Manchester, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
-        <meta property="og:description" content="House cleaning in Manchester, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
+        <meta name="twitter:description" content="Industrial land wraps Manchester, Calgary on three sides, so blind slats and baseboards there read dusty sooner than the same rooms a few blocks west." />
+        <meta property="og:description" content="Industrial land wraps Manchester, Calgary on three sides, so blind slats and baseboards there read dusty sooner than the same rooms a few blocks west." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/manchester-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/manchester-calgary/" />
@@ -177,13 +177,13 @@ export default function Manchester() {
             <div className="max-w-4xl mx-auto text-center">
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-5 py-2 mb-6">
                 <MapPin className="w-4 h-4 text-accent" />
-                <span className="text-white/90 text-sm font-medium">Serving Manchester, SE Calgary</span>
+                <span className="text-white/90 text-sm font-medium">Serving Manchester, Calgary</span>
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                 Professional House Cleaning in Manchester
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Manchester is Calgary's industrial-turned-creative pocket — converted warehouses, modern lofts, and a growing community of makers and entrepreneurs.
+                Manchester mixes pre-war workers' cottages with housing built in 2003, and industrial land wraps it on three sides. The older rooms get dry dusting, and the newer units a faster pass on washable surfaces.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function Manchester() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Manchester Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
+                  Manchester homes can book a one-time standard or deep clean, a move-out clean at the end of a lease, or wall washing booked together with a clean.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function Manchester() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Manchester Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Manchester and the surrounding SE Calgary communities.
+                    Manchester is inside Calgary city limits, so there is no trip fee, and the team arrives in a booked window: 9:00 to 10:00 AM, 12:00 to 1:00 PM or 3:00 to 4:00 PM.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function Manchester() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={768} src={cleanHomeImg} alt="Cleaned modern loft interior with exposed brick and polished concrete floors in Manchester Calgary" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1024} height={768} src={cleanHomeImg} alt="A large open-plan loft with brick walls, tall windows and a polished concrete floor" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Loft-Living, Spotless Living</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Before the team arrives</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">What a Manchester Clean Needs From You</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Every cleaner is vetted and customer-rated, and it shows in the details: clear counters, gleaming taps, and a home that smells like a fresh start.
+                    You do not need to be home for a clean in Manchester: most customers leave a key, a lockbox code or smart-lock access, and the team locks up. Nor do you need to tidy first. Clear counters get cleaned, and cluttered ones get worked around.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Key, lockbox or smart-lock access","Running water on for the visit","Decluttering is a separate hourly add-on"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,9 +311,9 @@ export default function Manchester() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Manchester and the communities around it.{" "}
+                  Duty Cleaners cleans homes across Manchester, and every Calgary neighbourhood the branch serves is on the service-area list.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -329,7 +329,7 @@ export default function Manchester() {
         heading="Industry on three sides"
         paragraphs={[
           "Industrial land wraps this community on the north, east and south; only the west flank faces houses, across Macleod Trail from Elboya, Parkhill and Windsor Park. The Canadian Pacific right-of-way runs the eastern edge. With traffic on one side and yard activity on the other three, horizontal surfaces re-film quickly here — blind slats, frame tops and baseboards read dusty again sooner than the same rooms would a few blocks west.",
-          "The stock splits in two. Most of the original dwellings were up by 1940 — Heritage Calgary's inventory includes the Edwardian workers' cottages on 1 Street SW — while a significant share of the housing in the southern part was built in 2003. Those are different jobs: small pre-war rooms want dry dusting and a barely damp cloth on any original painted woodwork, while the newer units take ordinary washable surfaces and a faster pass.",
+          "The stock splits in two. Most of the original dwellings were up by 1940, and Heritage Calgary's inventory includes the Edwardian workers' cottages on 1 Street SW. In the southern part, a significant share of the housing was built in 2003. Those are different jobs: small pre-war rooms want dry dusting and a barely damp cloth on any original painted woodwork, while the newer units take ordinary washable surfaces and a faster pass.",
         ]}
         accent="calgary"
       />
@@ -347,7 +347,7 @@ export default function Manchester() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Manchester Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>

@@ -60,9 +60,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Rideau Park" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Rideau Park" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Rideau Park" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Rideau Park" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Rideau Park.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Rideau Park" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Renovation dust and debris cleared from a Rideau Park suite or house, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Rideau Park" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Rideau Park" },
 ];
 
@@ -104,7 +104,7 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Rideau Park?",
-    answer: `The full service menu is available here:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `In Rideau Park, Duty Cleaners books these services:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
   },
   {
     question: "Do you offer discounts?",
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function RideauPark() {
     <>
       <Helmet>
         <title>House Cleaners in Rideau Park, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Book house cleaning in Rideau Park, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="description" content="Of roughly 340 homes in Rideau Park, Calgary, 195 are in high-rise apartment or condo buildings, where glass is cleaned from inside only, as an add-on." />
         <meta property="og:title" content="House Cleaners in Rideau Park, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Rideau Park, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Book house cleaning in Rideau Park, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
-        <meta property="og:description" content="Book house cleaning in Rideau Park, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="twitter:description" content="Of roughly 340 homes in Rideau Park, Calgary, 195 are in high-rise apartment or condo buildings, where glass is cleaned from inside only, as an add-on." />
+        <meta property="og:description" content="Of roughly 340 homes in Rideau Park, Calgary, 195 are in high-rise apartment or condo buildings, where glass is cleaned from inside only, as an add-on." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/rideau-park-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/rideau-park-calgary/" />
@@ -183,7 +183,7 @@ export default function RideauPark() {
                 Professional House Cleaning in Rideau Park
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Rideau Park is a quiet, prestigious SW pocket of mid-century homes and tree-canopied streets just above the Elbow River — and we know it well.
+                The Elbow River wraps Rideau Park on the north and west, and 4 Street SW is its only land edge. More than half of its homes are high-rise apartments or condos, and about 120 are detached houses.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function RideauPark() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Rideau Park Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Rideau Park homes get every service they need.
+                  Most Rideau Park homes are high-rise suites, and you do not need to be home for a clean: leave a key, a lockbox code or smart-lock access, and the team locks up.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function RideauPark() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Rideau Park Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Rideau Park and the surrounding SW Calgary communities.
+                    Rideau Park is inside Calgary city limits, so there is no trip fee on the quote. Bookings go through the Calgary office at 2835 37 Street SW.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function RideauPark() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={768} src={cleanHomeImg} alt="Professional Duty Cleaners team member polishing a kitchen counter in a Rideau Park Calgary home" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1024} height={768} src={cleanHomeImg} alt="Smiling cleaner in a blue uniform and white gloves wiping a white stone counter in a bright kitchen" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Showroom-Worthy Rideau Park Home, Every Time We Leave</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Glass and blinds</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">High-Rise Suites and Detached Houses in Rideau Park</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Vetted cleaners, careful hands, and the standard we'd hold for our own homes. Come back to fresh air and surfaces that actually gleam.
+                    In a Rideau Park high-rise suite the glass is cleaned from the inside only, because exterior windows are outdoor work and are not included. Interior windows are an add-on that shows on the quote before you book. High up, valley dust also settles on ledges and blinds. In the detached houses, river grit and spring melt arrive at floor level instead, and Calgary's chinooks bring sand and de-icer to the door again and again from November to April.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Interior windows as an add-on","Nothing charged until the clean is complete","Re-clean at no charge if told within 24 hours"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,9 +311,9 @@ export default function RideauPark() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Rideau Park and the communities around it.{" "}
+                  The Calgary branch that books Rideau Park also cleans these nearby neighbourhoods.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -328,8 +328,8 @@ export default function RideauPark() {
         eyebrow="Local knowledge"
         heading="Towers in the Elbow bend"
         paragraphs={[
-          "The Elbow River wraps this community on the north and west, leaving 4 Street SW as its only land edge. That one arterial does most of the dirty work - traffic grime settles on the glass and frames facing it right through winter, while the streets nearer the water gather dust slowly and evenly. The 4 Street frontage needs its glass and frames every visit; the streets down by the water can sit at the back of the rotation.",
-          "The housing is not what the setting suggests. Of the roughly 340 dwellings here, 195 — well over half — sit in high-rise apartment or condominium buildings, about 120 are detached houses and the remainder is row housing. That splits the work in two: high up, the glass can only be done from the inside and valley dust settles on ledges and blinds; in the detached houses, river grit and spring melt arrive at floor level instead.",
+          "The Elbow River wraps this community on the north and west, leaving 4 Street SW as its only land edge. That one arterial does most of the dirty work: traffic grime settles on the glass and frames facing it right through winter, while the streets nearer the water gather dust slowly and evenly. The 4 Street frontage needs its interior glass and frames every visit.",
+          "The housing is not what the setting suggests. Of the roughly 340 dwellings here, 195 sit in high-rise apartment or condominium buildings, which is well over half; about 120 are detached houses and the remainder is row housing. That splits the work in two: high up, the glass can only be done from the inside and valley dust settles on ledges and blinds; in the detached houses, river grit and spring melt arrive at floor level instead.",
         ]}
         accent="calgary"
       />
@@ -347,7 +347,7 @@ export default function RideauPark() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Rideau Park Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>

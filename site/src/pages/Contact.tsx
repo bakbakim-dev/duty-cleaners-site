@@ -32,6 +32,8 @@ const TITLE = "Contact Duty Cleaners | Edmonton & Calgary";
 const DESCRIPTION = `Contact Duty Cleaners in Edmonton or Calgary. Call ${CITY_PROOF.edmonton.phone} or ${CITY_PROOF.calgary.phone}, Mon-Sat 8am-8pm and Sun 9am-3pm, or send the form.`;
 
 const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
+/* Post-construction carries its own, larger travel-fee row in bk-config. */
+const POST_CONSTRUCTION_TRAVEL_FEE = formatPrice(travelFee("post-construction") ?? 0);
 
 /**
  * The payment sequence, read verbatim from policy.ts.
@@ -75,13 +77,13 @@ const OPENING_HOURS = [
  */
 const CONTACT_FAQS: { q: string; a: string; more: { to: string; label: string } }[] = [
   {
-    q: "What is actually included in a clean?",
-    a: "A standard clean covers dusting, floors, kitchen surfaces and appliance exteriors, bathrooms, and inside the microwave. Deep adds baseboards, doors, switches, vents and fan blades; move-out adds inside the oven, fridge, cabinets and closets. Inside the oven and fridge are add-ons on the other two.",
+    q: "What is included in a clean?",
+    a: "A standard clean covers dusting, floors, the kitchen surfaces and appliance exteriors, the bathrooms, and inside the microwave. A deep clean adds baseboards, doors, light switches, vent covers and ceiling fan blades within reach; a move-out clean adds inside the oven, fridge, cabinets and closets. On a standard or deep clean, inside the oven and fridge are add-ons.",
     more: { to: "/whats-included", label: "The full checklist, service by service" },
   },
   {
     q: "Do I need to do anything before the cleaners arrive?",
-    a: "Not much. Tell us how to get in, where to park, whether there are pets, and any rooms to skip. Running water is required, and we bring every product and piece of equipment. Clearing counters and floors of belongings lets the team reach the surfaces.",
+    a: "You do not need to clean first. Tell us how to get in, where to park, whether there are pets, and any rooms to skip. Running water is required, and the team brings every product and piece of equipment. Clear counters and floors get cleaned, and cluttered ones get worked around.",
     more: { to: "/prepare", label: "How to prepare" },
   },
   {
@@ -96,12 +98,12 @@ const CONTACT_FAQS: { q: string; a: string; more: { to: string; label: string } 
   },
   {
     q: "Which areas do you serve?",
-    a: `Edmonton, Calgary and the towns around each: St. Albert, Sherwood Park, Spruce Grove, Leduc and the rest of the Edmonton region; Airdrie, Cochrane, Okotoks and the rest of the Calgary region. Inside city limits there is no trip fee. Outside them a ${TRAVEL_FEE} travel fee is added per visit, shown on the quote before you book.`,
+    a: `The Edmonton office covers Edmonton plus St. Albert, Sherwood Park, Spruce Grove, Leduc, Beaumont, Fort Saskatchewan, Stony Plain, Morinville and Devon. The Calgary office covers Calgary plus Airdrie, Cochrane, Okotoks, Chestermere, Strathmore, High River, Langdon, Crossfield and Diamond Valley. Inside city limits there is no trip fee; outside them a ${TRAVEL_FEE} travel fee is added per visit on a home clean, or ${POST_CONSTRUCTION_TRAVEL_FEE} on post-construction, shown on the quote before you book. For an address that is not listed, call the branch.`,
     more: { to: "/locations", label: "Every area we serve" },
   },
   {
     q: "Are you hiring?",
-    a: "Often, in both cities. Cleaners work as contractors with their own vehicle and equipment. Apply through the join-the-team page rather than the contact form, which routes to booking.",
+    a: "Duty Cleaners takes cleaner applications for both cities through the join-the-team page, not the contact form, which routes to booking. Cleaners work as independent contractors with their own vehicle and equipment.",
     more: { to: "/join-the-team", label: "Join the team" },
   },
 ];
@@ -155,16 +157,19 @@ const OfficeCard = ({
   phone, 
   email, 
   address, 
-  hours, 
+  hours,
   linkTo,
+  reviewCount,
   accentColor = "primary"
-}: { 
-  city: string; 
-  phone: string; 
-  email: string; 
-  address: string; 
+}: {
+  city: string;
+  phone: string;
+  email: string;
+  address: string;
   hours: string;
   linkTo: string;
+  /** This branch's own Google review count; never the two added together. */
+  reviewCount?: number | null;
   accentColor?: string;
 }) => (
   <div 
@@ -181,7 +186,7 @@ const OfficeCard = ({
         <h2 className="text-2xl font-bold text-white transition-transform duration-300 group-hover:translate-x-1">{city} Office</h2>
         <div className="flex items-center gap-1 text-sm text-white/90">
           <Star className="w-4 h-4 text-accent fill-accent" />
-          <span>4.9 on Google</span>
+          <span>{RATING_CLAIM}{reviewCount ? `, ${reviewCount} reviews` : ""}</span>
         </div>
       </div>
     </div>
@@ -332,7 +337,7 @@ export default function Contact() {
       setIsSubmitting(false);
 
       if (!outcome.ok) {
-        toast.error("We couldn't send that. Please call us and we'll help right away.");
+        toast.error("We couldn't send that. Please call the Edmonton or Calgary office instead.");
         return;
       }
 
@@ -429,7 +434,7 @@ export default function Contact() {
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-sm mb-6">
               <MessageSquare className="w-4 h-4 text-accent" />
-              <span>Two offices, one phone team</span>
+              <span>Edmonton and Calgary offices</span>
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
@@ -438,8 +443,8 @@ export default function Contact() {
 
             <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-8">
               The fastest answer to most questions is the price itself, which takes about a minute
-              to see. For anything else, call either office during opening hours, or send the form
-              below.
+              to see. For anything else, call the office for your city during opening hours, or
+              send a message with the form.
             </p>
 
             <div className="flex flex-wrap justify-center gap-4">
@@ -473,10 +478,10 @@ export default function Contact() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <span className="text-accent font-semibold text-sm uppercase tracking-wide">Our Locations</span>
-            <h2 className="text-3xl md:text-4xl font-bold mt-2">Two Offices Serving Alberta</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mt-2">The Edmonton and Calgary offices</h2>
             <p className="text-muted-foreground mt-3 max-w-xl mx-auto">
-              Both numbers are answered by the same team, Monday to Saturday 8:00 AM to 8:00 PM
-              and Sunday 9:00 AM to 3:00 PM. Rated {RATING_CLAIM} in each city.
+              Call the office for the city the home is in. Both branches are rated {RATING_CLAIM},
+              each on its own Google listing.
             </p>
           </div>
 
@@ -484,7 +489,8 @@ export default function Contact() {
             <OfficeCard
               city="Edmonton"
               phone="(780) 913-6565"
-              email="Support@dutycleaners.ca"
+              email={SUPPORT_EMAIL}
+              reviewCount={CITY_PROOF.edmonton.googleReviewCount}
               address={`${CITY_PROOF.edmonton.streetAddress}, Edmonton, AB ${CITY_PROOF.edmonton.postalCode}`}
               hours="Mon–Sat: 8:00am–8:00pm
 Sun: 9:00am–3:00pm"
@@ -493,7 +499,8 @@ Sun: 9:00am–3:00pm"
             <OfficeCard
               city="Calgary"
               phone="(403) 768-1341"
-              email="Support@dutycleaners.ca"
+              email={SUPPORT_EMAIL}
+              reviewCount={CITY_PROOF.calgary.googleReviewCount}
               address={`${CITY_PROOF.calgary.streetAddress}, Calgary, AB ${CITY_PROOF.calgary.postalCode}`}
               hours="Mon–Sat: 8:00am–8:00pm
 Sun: 9:00am–3:00pm"
@@ -514,7 +521,7 @@ Sun: 9:00am–3:00pm"
                     the price comes first and the form second. */}
                 <div className="mb-8 rounded-2xl border-2 border-accent/30 bg-accent/10 p-6">
                   <p className="text-lg font-semibold text-foreground">
-                    Booking, or wondering what it costs? Skip the form.
+                    To book, or to see what a clean costs, skip the form.
                   </p>
                   <p className="mt-1 text-muted-foreground">
                     Answer a few questions about the home and the price is on screen in about a
@@ -544,8 +551,8 @@ Sun: 9:00am–3:00pm"
                         Gift card{giftDesignLabel ? ` — ${giftDesignLabel} design` : ""}
                       </p>
                       <p className="mt-1 text-sm text-muted-foreground">
-                        We've noted your choice. Add your details below and we'll send payment and
-                        delivery options right away.
+                        We've noted your choice. Add your details and the office will contact you
+                        with payment and delivery options.
                       </p>
                     </div>
                   )}
@@ -656,7 +663,7 @@ Sun: 9:00am–3:00pm"
                 <div className="bg-brand-navy text-white rounded-2xl p-8">
                   <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
                     <Heart className="w-5 h-5 text-accent" />
-                    Why Contact Us?
+                    Before You Write
                   </h3>
                   <div className="space-y-5">
                     {/* The "Quick Response — within 24 hours" item that stood
@@ -673,8 +680,8 @@ Sun: 9:00am–3:00pm"
                     />
                     <FeatureHighlight
                       icon={Users}
-                      title="One Call, Either City"
-                      description="Edmonton and Calgary are answered by the same team, Mon-Sat 8am-8pm and Sun 9am-3pm."
+                      title="One Email for Both Cities"
+                      description={`Write to ${SUPPORT_EMAIL} for either the Edmonton or the Calgary office.`}
                     />
                     <FeatureHighlight
                       icon={Shield}
@@ -691,13 +698,14 @@ Sun: 9:00am–3:00pm"
                       <CheckCircle2 className="w-7 h-7 text-accent" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold">100% Satisfaction</h3>
-                      <p className="text-sm text-muted-foreground">Guaranteed</p>
+                      <h3 className="text-xl font-bold">The Re-Clean Guarantee</h3>
+                      <p className="text-sm text-muted-foreground">If something was missed</p>
                     </div>
                   </div>
                   <p className="text-muted-foreground text-sm leading-relaxed">
                     If something was missed, tell us within {POLICY.guaranteeWindowHours} hours of the
-                    clean and we come back and re-clean it at no additional charge.
+                    clean and we come back and re-clean it at no additional charge. Photos help but
+                    are not required.
                   </p>
                 </div>
 
@@ -741,16 +749,17 @@ Sun: 9:00am–3:00pm"
             <p className="text-muted-foreground leading-relaxed mb-5">
               We answer Monday to Saturday, 8:00 AM to 8:00 PM, and Sunday 9:00 AM to 3:00 PM. If
               you already know your home's size and roughly what you want done, the instant quote
-              will give you a real number faster than we can on the phone — the price you see is
-              the price, before 5% GST. Call when the home is unusual, when you are working to a
-              specific inspection date, or when you would simply rather talk it through.
+              gives you the figure faster than a phone call can, before 5% GST, with the pet charge,
+              the home-type surcharge or the travel fee included where they apply. Call when the
+              home is unusual, when you are working to a specific inspection date, or when you
+              would rather talk it through.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-5">
               Two things speed up any booking call: the number of bedrooms and bathrooms, and
               whether the home has been professionally cleaned recently. Those two answers decide
-              which service you actually need, and getting it right up front is usually the
-              difference between the standard rate and the deep-clean rate. If you are not sure,
-              describe the place and we will tell you which is the cheaper honest answer.
+              which service fits, and they usually settle whether the home needs the standard rate
+              or the deep-clean rate. If you are not sure, describe the place and we will tell you
+              the cheaper of the two that still does the job.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-8">
               We schedule to an arrival window rather than an exact time, so one job running long
@@ -787,12 +796,12 @@ Sun: 9:00am–3:00pm"
           <Sparkles className="w-12 h-12 text-accent mx-auto mb-4" />
           <h2 className="text-3xl md:text-4xl font-bold mb-4">See your Edmonton or Calgary price before you book</h2>
           <p className="text-white/80 max-w-xl mx-auto mb-8">
-            Flat rates by home size, no contracts, and nothing charged until the clean is done.
-            Not sure we cover your address?{" "}
+            Prices are flat by home size, before GST, with no long-term contract, and nothing is
+            charged until the clean is done. To check an address, see{" "}
             <Link to="/locations/" className="text-accent underline underline-offset-2">
-              Every area we serve
-            </Link>{" "}
-            is listed, and you can{" "}
+              every area we serve
+            </Link>
+            , or{" "}
             <Link to="/reviews/" className="text-accent underline underline-offset-2">
               read the reviews
             </Link>{" "}

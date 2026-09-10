@@ -60,9 +60,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Eau Claire" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Eau Claire" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Eau Claire" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Eau Claire" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Eau Claire.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Eau Claire" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or a new build, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Eau Claire" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Eau Claire" },
 ];
 
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Downtown West End", "Chinatown", "Downtown Commercial Core", "East Village", "Hillhurst", "Sunnyside"];
+const nearbyAreas = ["Downtown West End", "East Village", "Hillhurst", "Sunnyside"];
 
 const faqs = [
   {
@@ -104,7 +104,7 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Eau Claire?",
-    answer: `Every service we run can be booked locally:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `Duty Cleaners books these services for homes in Eau Claire:\n\n• Standard & Deep Cleaning Packages\n• Recurring Cleaning\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning, booked together with a clean`
   },
   {
     question: "Do you offer discounts?",
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function EauClaire() {
     <>
       <Helmet>
         <title>House Cleaning in Eau Claire, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional cleaners serving Eau Claire, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="description" content="We clean condos in Eau Claire, Calgary, where suites nearest the cleared market block collect a fine grey dust that packs into window channels." />
         <meta property="og:title" content="House Cleaning in Eau Claire, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Eau Claire, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional cleaners serving Eau Claire, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
-        <meta property="og:description" content="Professional cleaners serving Eau Claire, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="twitter:description" content="We clean condos in Eau Claire, Calgary, where suites nearest the cleared market block collect a fine grey dust that packs into window channels." />
+        <meta property="og:description" content="We clean condos in Eau Claire, Calgary, where suites nearest the cleared market block collect a fine grey dust that packs into window channels." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/eau-claire-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/eau-claire-calgary/" />
@@ -183,7 +183,7 @@ export default function EauClaire() {
                 Professional House Cleaning in Eau Claire
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Trusted condo cleaning services for one of Calgary's most prestigious riverside communities — bringing a calm, spotless home within reach.
+                Apartments and condos in Eau Claire are among the simplest jobs the Calgary branch books, and each one is priced flat by home size before 5% GST.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function EauClaire() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Eau Claire Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Eau Claire homes get every service they need.
+                  You do not need to be home for an Eau Claire clean: most customers leave a key, a lockbox code or smart-lock access, and the team locks up.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function EauClaire() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Eau Claire Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Eau Claire and the surrounding Calgary communities.
+                    Eau Claire runs from 4 Avenue north to the Bow, all inside Calgary city limits, so no trip fee is added.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function EauClaire() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={768} src={cleanHomeImg} alt="Spotless Eau Claire Calgary home cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1024} height={768} src={cleanHomeImg} alt="Sunlit living room with a cream sectional, potted plants and a glass coffee table on a wood floor" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Calm, Spotless Eau Claire Home — Every Visit</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Near the cleared block</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Grey Dust and Window Channels in Eau Claire</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Care and attention are the whole job. Expect gleaming surfaces, fresh air, and the quiet feeling of a home put properly <em>back in order</em>.
+                    The Eau Claire suites nearest the old market site collect a fine, abrasive grey dust in their window channels. Interior windows are an add-on you can choose when you book, while exterior windows and balconies are outdoor work that a clean does not include.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Rated by the customer after each visit","Card charged only once the clean is complete","A missed spot re-cleaned free if reported within 24 hours"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,9 +311,9 @@ export default function EauClaire() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Eau Claire and the communities around it.{" "}
+                  These four sit on the Calgary branch's list of neighbourhoods alongside Eau Claire.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -328,8 +328,8 @@ export default function EauClaire() {
         eyebrow="Ground truth"
         heading="After the market came down"
         paragraphs={[
-          "Eau Claire Market closed at the end of May 2024 and was demolished by June 2025 to clear ground for a Green Line LRT station. The block sits open inside a community that runs only from 4 Avenue north to the Bow. Suites nearest it show it first: a fine, abrasive grey dust that packs into window channels and screen frames. On the suites facing the cleared block the screen frames have to come out and be washed over a sink; a cloth on the mesh only pushes the dust through it.",
-          "The riverside itself is settled now. The flood barrier and Eau Claire Promenade now run unbroken from the Peace Bridge to the Reconciliation Bridge, and the rebuilt Plaza has reopened. What is left along there is seasonal: Prince's Island sits in the Bow directly north, and festival weekends — the Calgary Folk Music Festival every July above all — put more traffic through lobbies and elevators than any other stretch of the year.",
+          "Eau Claire Market closed at the end of May 2024 and was demolished by June 2025 to clear ground for a Green Line LRT station. The block sits open inside a community that runs only from 4 Avenue north to the Bow. Suites nearest it show it first: a fine, abrasive grey dust that packs into window channels and screen frames. On the suites facing the cleared block, wiping the screen mesh in place pushes that dust straight through it, so the screens are left alone and the work goes into the channels and sills.",
+          "The riverside itself is settled now, and the flood barrier runs unbroken along it. What still changes along the river is seasonal: festival weekends, above all in July, put more traffic through lobbies and elevators than any other stretch of the year.",
         ]}
         accent="calgary"
       />
@@ -347,7 +347,7 @@ export default function EauClaire() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Eau Claire Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>

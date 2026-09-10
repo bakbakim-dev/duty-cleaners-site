@@ -41,19 +41,21 @@ const STEPS = [
     title: "Tell us the home size and your date",
     // Both move-out pages already state the flat rate in their own terms grid.
     // This step used to say it a third time; it now says what the form does.
-    body: "Bedrooms, bathrooms, and whether it is a move-out, a move-in, or both. The quote is built from those three answers, and every add-on you tick appears on it as its own line.",
+    body: "Give the bedrooms, the bathrooms, the home type and the date. The quote is priced from those answers, and every add-on you choose shows on it as its own line before you book.",
   },
   {
     icon: Sparkles,
-    title: "We clean to the inspection standard",
+    title: "We work down the move-out checklist",
     // Was a second copy of the includes list. The pages that render this
-    // component both print that list in full above it.
-    body: "The crew works down the move-out list rather than around the room, in the order an inspection reads it, with the floors left until last.",
+    // component both print that list in full above it. "The inspection
+    // standard" and "the order an inspection reads it" rested on no fact; this
+    // is the supplies line (T5) and the clutter line (T6).
+    body: "The team brings its own products and equipment and works through the move-out checklist. Clear counters and floors get cleaned, and anything still sitting on them gets worked around, so book the clean for after the last boxes are out.",
   },
   {
     icon: KeyRound,
     title: "Lock up, or hand back the keys",
-    body: "Most clients aren't home for a move-out clean — leave a key in a lockbox or with the property manager. We confirm by phone once the job is done.",
+    body: "You do not need to be there. Most customers leave a key, a lockbox code or smart-lock access, and the team locks up when the checklist is done.",
   },
 ];
 
@@ -73,8 +75,9 @@ export default function MoveOutDepth({ city, showPricing = true }: MoveOutDepthP
               Move in / move out cleaning prices in {city}
             </h2>
             <p className="text-muted-foreground leading-relaxed">
-              Flat rate by home size, plus 5% GST. The rate you see is the rate you pay — it
-              doesn't change if the job runs long, and nothing is charged until the clean is done.
+              Each price is a flat rate for an apartment or condo of that size, before 5% GST. The price
+              does not change because a clean took longer than expected, and the card is charged only
+              once the clean is complete.
             </p>
           </div>
 
@@ -97,8 +100,9 @@ export default function MoveOutDepth({ city, showPricing = true }: MoveOutDepthP
             </table>
           </div>
           <p className="mx-auto mt-4 max-w-2xl text-center text-sm text-muted-foreground">
-            Condition, add-ons, and exact bathroom count can change the final number — your quote
-            spells all of it out before you book.
+            More bathrooms, add-ons, a home type other than an apartment or condo, a pet in the home
+            and an address outside {city} city limits each raise the price, and the quote lists every one
+            of them before you book.
           </p>
         </div>
       </section>
@@ -140,7 +144,8 @@ export default function MoveOutDepth({ city, showPricing = true }: MoveOutDepthP
               ))}
             </span>
             <p className="mt-3 text-foreground">
-              Move-out cleaning affects a deposit you do not get a second chance at.{" "}
+              Every cleaner is rated by the customer after each visit, and those ratings decide who we
+              keep sending.{" "}
               <Link to="/reviews/" className="font-semibold text-primary underline underline-offset-4">Read the reviews</Link>{" "}
               from {city} customers before booking, or go straight to the Google listing.
             </p>

@@ -37,7 +37,15 @@ const CALGARY_LISTING = GOOGLE_LISTINGS.calgary;
 const CALGARY_RATING = `${CITY_PROOF.calgary.googleRating} on Google`;
 
 const PAGE_TITLE = `House Cleaning Airdrie from ${STANDARD_FROM} | Duty Cleaners`;
-const PAGE_DESCRIPTION = `House cleaning in Airdrie from ${STANDARD_FROM}, flat by home size, with the travel fee shown up front. Standard, deep and move-out cleans rated ${CALGARY_RATING}.`;
+const PAGE_DESCRIPTION = `Airdrie homes get a ${POLICY.guaranteeWindowHours}-hour re-clean guarantee and a flat rate by home size: house cleaning from ${STANDARD_FROM} before GST, plus a ${TRAVEL_FEE} travel fee.`;
+
+// A worked quote built from the same rows the price table uses: a
+// three-bedroom two-storey house on a standard clean, outside city limits.
+const dollars = (price: string) => Number(price.replace(/[^0-9.]/g, ""));
+const EXAMPLE_TIER = STANDARD[2];
+const EXAMPLE_TOTAL = dollars(EXAMPLE_TIER.price) + BK_PRICE_OVERRIDES[90].price + (travelFee("standard") ?? 0);
+const EXAMPLE_PRICE = formatPrice(EXAMPLE_TOTAL);
+const EXAMPLE_WITH_PET = formatPrice(EXAMPLE_TOTAL + (addOnFromPrice("standard", "must-choose-if-you-have-pets") ?? 0));
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -111,24 +119,25 @@ const WhyUsCard = ({
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A one-time clean of the whole home, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Airdrie" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Corners, baseboards and the surfaces a regular visit skips, cleaned top to bottom.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Airdrie" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for moving day, on the way out or the way in.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Airdrie" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after renovations and new builds in Airdrie.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Airdrie" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Airdrie" },
-  { icon: Building2, title: "Commercial Cleaning", description: "Office and commercial cleaning for Airdrie businesses." },
+  { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Airdrie" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Airdrie" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Airdrie" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after renovations and new builds in Airdrie, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Airdrie" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Spot cleaning or a full wash of the walls, priced by home size and booked together with a clean.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Airdrie" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: "The standard clean on a weekly, bi-weekly or every-4-weeks schedule, discounted from the second visit.", to: "/calgary/recurring-cleaning/", linkText: "Recurring cleaning in Airdrie" },
 ];
 
 const whyUsItems = [
   { icon: Shield, title: "Reference-Checked, Then Rated by You", description: "Every cleaner is reference-checked before their first job, then rated by the customer after every visit. Those ratings decide who keeps cleaning for us." },
   { icon: Star, title: RATING_CLAIM, description: `An Airdrie clean is rated on the Calgary listing, which carries ${CITY_PROOF.calgary.googleReviewCount} reviews.`, link: { href: CALGARY_LISTING.reviewsUrl, text: "See the Calgary listing" } },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability, schedule permitting." },
-  { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
-  { icon: Users, title: "Experienced Team", description: "Professional cleaners who work to the Duty Cleaners checklist." },
-  { icon: ThumbsUp, title: "Satisfaction Guarantee", description: `If something was missed, tell us within ${POLICY.guaranteeWindowHours} hours and we'll return to make it right — at no additional charge.` },
+  { icon: Leaf, title: "All Supplies Brought For You", description: "The team brings all supplies and equipment. Leave the water and power on until the clean is done." },
+  { icon: ThumbsUp, title: "Re-Clean Guarantee", description: `Tell us within ${POLICY.guaranteeWindowHours} hours if something was missed and the team comes back to re-clean it, at no charge.` },
 ];
 
-const nearbyAreas = ["Coopers Crossing", "Luxstone", "Bayside", "Williamstown", "Windsong", "Midtown", "Hillcrest", "Cobblestone Creek"];
+// The coverage chips that stood here (Coopers Crossing, Luxstone, Bayside,
+// Williamstown, Windsong, Midtown, Hillcrest, Cobblestone Creek) are gone:
+// none of them is on the Calgary coverage list in data/city-locations.ts, and
+// a name on a page must mean the place is on that list.
 
 const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Airdrie",
@@ -145,27 +154,31 @@ export default function Airdrie() {
   const faqs = [
     {
       question: "Is there a travel fee for house cleaning in Airdrie?",
-      answer: `Yes. Airdrie is its own city north of Calgary's limits, and a home-cleaning booking outside Calgary carries a ${TRAVEL_FEE} travel fee. It is added at booking and sits in the total before you confirm. Home size does not change it, but the type of clean can: post-construction has its own fee of ${PC_TRAVEL_FEE}. Beyond that fee, nothing here is priced differently from a Calgary address. The pet charge and the home-type surcharges apply in Airdrie exactly as they do in the city: ${PET_FEE} a visit for a home with pets, and the step up from an apartment or condo, ${HOME_TYPE.bungalow} for a bungalow or basement suite, ${HOME_TYPE.townhouse} for a townhouse and ${HOME_TYPE.twoStorey} for a two-storey house.`
+      answer: `Yes. Airdrie is outside Calgary city limits, so a home-cleaning booking here carries a ${TRAVEL_FEE} travel fee, and a post-construction booking carries ${PC_TRAVEL_FEE}. The fee is added at booking and sits in the total before you confirm. Two other charges apply in Airdrie exactly as they do inside Calgary: ${PET_FEE} a visit for a home with pets, and a home-type charge on top of the apartment-or-condo table price, ${HOME_TYPE.bungalow} for a bungalow or basement suite, ${HOME_TYPE.townhouse} for a townhouse and ${HOME_TYPE.twoStorey} for a two-storey house. Every figure is before 5% GST.`
     },
     {
-      question: "Can I get a same-day clean in Airdrie?",
-      answer: `When a Calgary crew has a gap in the north of the city, yes; the office can tell you on the phone. Arrival windows are ${ARRIVAL_WINDOWS.join(", ")}. Booking a day or two ahead is the sure way to get the window you want, and you do not need to be home if you leave a key or a code.`
+      question: "How soon can a cleaning team come to Airdrie?",
+      answer: `Same-day and next-day slots depend on the schedule, and the Calgary office on (403) 768-1341 can tell you what is open. A booking gets an arrival window rather than an exact time: ${ARRIVAL_WINDOWS.join(", ")}. You do not need to be home; most customers leave a key, a lockbox code or smart-lock access, and the team locks up.`
     },
     {
       question: "Do you do move-out cleaning in Airdrie?",
-      answer: `Yes. A move-in or move-out clean in Airdrie is ${MOVE_FROM} to ${MOVE_TOP} by bedroom count, plus the travel fee. It is priced for an empty house and includes what a standard clean treats as add-ons: the inside of the oven, the inside of the fridge, and the inside of the kitchen and bathroom cabinets. The Calgary move-out page lists the full checklist.`
+      answer: `Yes. A move-in or move-out clean in Airdrie is ${MOVE_FROM} to ${MOVE_TOP} by home size for an apartment or condo, before GST, plus the ${TRAVEL_FEE} travel fee and any house-type or pet charge. On top of the standard checklist it covers the inside of the oven, fridge and microwave, and the inside of every cabinet, drawer and closet. Book it for after the movers have been, so the team can reach all of them.`
     },
     {
       question: "What does a standard clean cost in Airdrie?",
-      answer: `${STANDARD_FROM} for a one-bedroom through ${STANDARD_TOP} for five or more bedrooms, before GST, plus the ${TRAVEL_FEE} travel fee. A deep clean runs ${DEEP_FROM} to ${DEEP_TOP} on the same scale. Recurring schedules take 20% off weekly, 15% off bi-weekly and 10% off every four weeks, from the second visit.`
+      answer: `${STANDARD_FROM} for a one-bedroom apartment or condo through ${STANDARD_TOP} for five or more bedrooms, before GST, plus the ${TRAVEL_FEE} travel fee. A house adds a home-type charge, and a home with pets adds the pet charge on every visit. Recurring schedules take 20% off weekly, 15% off bi-weekly and 10% off every 4 weeks. Discounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
       question: "Do the cleaners bring supplies to Airdrie?",
-      answer: `Yes, all of them, including the vacuum and the descaler. If there is a product you would rather we used on a particular surface, leave it out and say so at booking. Eco-friendly products are ${POLICY.ecoProductsFee} extra: ${POLICY.ecoProductsHowToRequest}.`
+      answer: `Yes. The team brings all supplies and equipment, including the vacuum. Running water is required, and vacuuming may not be possible without electricity, so leave both on until the clean is done. Eco-friendly products are ${POLICY.ecoProductsFee} extra: ${POLICY.ecoProductsHowToRequest}.`
     },
     {
-      question: "What is the guarantee on an Airdrie clean?",
-      answer: `If something was missed, tell us within ${POLICY.guaranteeWindowHours} hours and we come back and do it at no charge; photos are not required. Cancelling with less than ${POLICY.cancellationNoticeHours} hours' notice costs ${POLICY.cancellationFee}, and a lockout is charged at ${POLICY.lockoutFee}.`
+      question: "What happens if something is missed?",
+      answer: `Tell us within ${POLICY.guaranteeWindowHours} hours and the team comes back to your Airdrie home to re-clean what was missed, at no charge. Photos help but are not required.`
+    },
+    {
+      question: "What does it cost to cancel an Airdrie booking?",
+      answer: `Cancelling or changing a booking needs ${POLICY.cancellationNoticeHours} hours' notice; inside that, the fee is ${POLICY.cancellationFee}. If the team reaches your Airdrie address and cannot get in, the lockout charge is ${POLICY.lockoutFee}. If Duty Cleaners has to move a booking, the office says so as soon as it knows and offers the earliest slot it has, and cancelling a booking we moved costs nothing.`
     }
   ];
   const faqJsonLd = {
@@ -218,7 +231,7 @@ export default function Airdrie() {
                   Professional House Cleaning in Airdrie
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  {`House cleaning in Airdrie from ${STANDARD_FROM}, flat by home size, with the ${TRAVEL_FEE} travel fee for addresses outside Calgary shown before you book. Rated ${CALGARY_RATING} by Calgary customers, from Coopers Crossing to Bayside.`}
+                  {`A standard clean of a one-bedroom apartment or condo in Airdrie is ${STANDARD_FROM} before GST, and a home-cleaning booking here adds a ${TRAVEL_FEE} travel fee because Airdrie is outside Calgary city limits. A house or a pet adds a set charge, shown on the quote before you book. Airdrie cleans are rated on the Calgary listing: ${CALGARY_RATING}, from ${CITY_PROOF.calgary.googleReviewCount} reviews.`}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -233,8 +246,8 @@ export default function Airdrie() {
                 <div className="flex flex-wrap justify-center lg:justify-start gap-6">
                   {[
                     { icon: CheckCircle2, text: "Pay After Your Clean" },
-                    { icon: CalendarCheck, text: "Flexible Scheduling Available" },
-                    { icon: Award, text: "100% Satisfaction Guarantee" },
+                    { icon: CalendarCheck, text: "Open 7 Days a Week" },
+                    { icon: Award, text: "24-Hour Re-Clean Guarantee" },
                   ].map((badge, i) => (
                     <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                       <badge.icon className="w-4 h-4 text-accent" />
@@ -254,58 +267,6 @@ export default function Airdrie() {
             </div>
           </div>
         </section>
-
-        {/* About the Neighbourhood */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <AnimatedSection>
-              <div className="max-w-4xl mx-auto">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">About the Neighbourhood</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                  House cleaning in Airdrie
-                </h2>
-                <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
-                  <p>
-                    Airdrie is north of Calgary on the{" "}
-                    <a href="https://www.google.com/maps/place/Queen+Elizabeth+II+Hwy,+Alberta/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Queen Elizabeth II Highway</a>.
-                    We clean homes across the city, from{" "}
-                    <a href="https://www.google.com/maps/place/Nose+Creek+Park,+Airdrie,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Nose Creek Park</a>,{" "}
-                    <a href="https://www.google.com/maps/place/Iron+Horse+Park,+Airdrie,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Iron Horse Park</a>{" "}
-                    and{" "}
-                    <a href="https://www.google.com/maps/place/East+Lake+Regional+Park,+Airdrie,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">East Lake Regional Park</a>{" "}
-                    to{" "}
-                    <a href="https://www.google.com/maps/place/Luxstone,+Airdrie,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Luxstone</a>{" "}
-                    and{" "}
-                    <a href="https://www.google.com/maps/place/Coopers+Crossing,+Airdrie,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Coopers Crossing</a>.
-                  </p>
-                  <p>
-                    The price is a flat rate by bedroom count, from {STANDARD_FROM} for a one-bedroom, and Airdrie is outside Calgary city limits, so a {TRAVEL_FEE} travel fee is added at booking rather than discovered on the invoice. The crews are the Calgary crews: reference-checked before a first job, rated by the customer after every visit, and you can{" "}
-                    <Link to="/reviews/" className="text-primary underline underline-offset-2">read the reviews</Link>{" "}
-                    before you book. For the whole menu at a glance, see{" "}
-                    <Link to="/calgary/services/" className="text-primary underline underline-offset-2">every Calgary cleaning service, with starting prices</Link>.
-                  </p>
-                </div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
-
-      {/* Things To Do */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <AnimatedSection>
-            <div className="max-w-4xl mx-auto">
-              <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Life</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                Around Airdrie
-              </h2>
-              <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
-                <p>Airdrie began as a railway village in the late 1800s and is now part of the Calgary Metropolitan Region. Nose Creek Park hosts the Airdrie Festival of Lights each year, Iron Horse Park runs miniature train rides, and East Lake Regional Park has walking trails. The other name on the map is the Airdrie Farmers Market.</p>
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
 
         {/* Interactive Map */}
         <section className="py-16 bg-background">
@@ -331,30 +292,12 @@ export default function Airdrie() {
           </div>
         </section>
 
-        {/* Local Coverage */}
-        <section className="py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <AnimatedSection>
-              <div className="text-center mb-10">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
-                  Airdrie Neighbourhoods We Serve
-                </h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto">
-                  The Airdrie communities we cover, at the same flat rate in each.
-                </p>
-              </div>
-              <CoverageChips areas={nearbyAreas} />
-            </AnimatedSection>
-          </div>
-        </section>
-
       <LocalMarketNote
         eyebrow="Supply and scale"
         heading="Cloudy glass, not dirty glass"
         paragraphs={[
           "No treatment plant operates here. The water arrives already treated, bought from the City of Calgary and held in local reservoirs before it reaches a tap — and the published hardness at that supplier's two plants never drops below about 140 milligrams per litre in any quarter. So shower glass, kettle elements and chrome go cloudy rather than grubby. Scale ignores scrubbing. It answers to a mild acid and a few minutes of patience.",
-          "A 2012 annexation brought in 12,640 acres from Rocky View County, land banked to carry growth all the way to 2062. That is four decades of city edge with a build site somewhere along it. Downwind of an active phase, what collects in window tracks and on patio doors is gypsum and sawdust — light, dry and abrasive. Lift it off dry. Wiping it across glass is how glass gets scratched.",
+          "A 2012 annexation brought in 12,640 acres from Rocky View County, land banked to carry growth all the way to 2062. That is four decades of city edge with a build site somewhere along it. Downwind of an active phase, what collects in window tracks and on the inside of door glass is gypsum and sawdust — light, dry and abrasive. Lift it off dry. Wiping it across glass is how glass gets scratched.",
         ]}
         accent="calgary"
       />
@@ -363,8 +306,35 @@ export default function Airdrie() {
 
       <LocationPricing />
 
-        {/* Deep cleaning */}
+        {/* Worked quote */}
         <section className="py-16 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <AnimatedSection>
+              <div className="max-w-3xl mx-auto">
+                <span className="text-primary text-sm font-semibold tracking-wider uppercase">Worked example</span>
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground mt-2 mb-6">
+                  What a house cleaning quote in Airdrie adds up to
+                </h2>
+                <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
+                  <p>
+                    Take a two-storey house in Airdrie with three bedrooms, two bathrooms and a half bath, booked for a one-time standard clean. The table price for that size is {EXAMPLE_TIER.price}, the two-storey charge adds {HOME_TYPE.twoStorey}, and the travel fee adds {TRAVEL_FEE}, so the quote comes to {EXAMPLE_PRICE} before 5% GST. With a dog or a cat in the house, the {PET_FEE} pet charge takes it to {EXAMPLE_WITH_PET}. Every one of those lines is on the quote before you book.
+                  </p>
+                  <p>
+                    Four things move an Airdrie quote: the number of bedrooms and bathrooms, the type of home, pets, and add-ons such as the inside of the oven, the inside of the fridge or interior windows. Time does not. The price is flat by home size, and it does not change because a clean took longer than expected. If a home needs substantially more work than described, such as heavy build-up or far more glass or cabinetry than stated, the team explains what it found and the options before continuing.
+                  </p>
+                  <p>
+                    Nothing is charged at booking. The day before the clean, a temporary hold is placed on the card to confirm it is valid; it can look like a charge in a banking app, but no money moves until the clean is complete. Before you book, compare{" "}
+                    <Link to="/calgary/services/" className="text-primary underline underline-offset-2">every Calgary cleaning service, with starting prices</Link>, or{" "}
+                    <Link to="/reviews/" className="text-primary underline underline-offset-2">read the Duty Cleaners reviews</Link>.
+                  </p>
+                </div>
+              </div>
+            </AnimatedSection>
+          </div>
+        </section>
+
+        {/* Deep cleaning */}
+        <section className="py-16 bg-background">
           <div className="container mx-auto px-4">
             <AnimatedSection>
               <div className="max-w-3xl mx-auto">
@@ -374,17 +344,39 @@ export default function Airdrie() {
                 </h2>
                 <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                   <p>
-                    A deep clean in Airdrie is {DEEP_FROM} for a one-bedroom and {DEEP_TOP} for five or more bedrooms, plus the {TRAVEL_FEE} travel fee. It is the standard clean with the once-a-season work added: baseboards, ceiling fans, vent covers, outlet covers and light switches. Most homes book it once, then hold the result on a standard schedule. The{" "}
+                    A deep clean in Airdrie is {DEEP_FROM} for a one-bedroom apartment or condo and {DEEP_TOP} for five or more bedrooms, before GST, plus the {TRAVEL_FEE} travel fee and any house-type or pet charge. It is the standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers. Book it once to catch up, then keep the home on a standard schedule. The{" "}
                     <Link to="/calgary/deep-cleaning/" className="text-primary underline underline-offset-2">deep cleaning in Calgary</Link>{" "}
                     page has the full checklist and the price at every bedroom count.
                   </p>
                   <p>
-                    For a handover, the job is{" "}
-                    <Link to="/move-out-cleaning-calgary/" className="text-primary underline underline-offset-2">Calgary move-out cleaning</Link>{" "}
-                    from {MOVE_FROM}, priced for an empty house with the oven, fridge and cabinet interiors included. A suite on a booking platform is a turnover between guests rather than a schedule, and it is priced by the hour on the{" "}
+                    A suite on a booking platform is a turnover between guests rather than a schedule, and it is priced by the hour on the{" "}
                     <Link to="/airbnb-cleaning-services-calgary/" className="text-primary underline underline-offset-2">short-term rental turnover cleaning in Calgary</Link>{" "}
                     page. Every tier and every add-on is on{" "}
                     <Link to="/calgary/pricing/" className="text-primary underline underline-offset-2">Calgary house cleaning prices by home size</Link>; add the {TRAVEL_FEE} travel fee for an Airdrie address.
+                  </p>
+                </div>
+              </div>
+            </AnimatedSection>
+          </div>
+        </section>
+
+        {/* Move-out cleaning */}
+        <section className="py-16 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <AnimatedSection>
+              <div className="max-w-3xl mx-auto">
+                <span className="text-primary text-sm font-semibold tracking-wider uppercase">Handover day</span>
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground mt-2 mb-6">
+                  Move-out cleaning in Airdrie
+                </h2>
+                <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
+                  <p>
+                    Move-out cleaning in Airdrie starts at {MOVE_FROM} before GST for a one-bedroom apartment or condo, and the {TRAVEL_FEE} travel fee is added because the address is outside Calgary city limits. The same home sizes, house-type charges and pet charge apply as on a standard clean. The full checklist for{" "}
+                    <Link to="/move-out-cleaning-calgary/" className="text-primary underline underline-offset-2">end of tenancy cleaning for an Airdrie rental</Link>{" "}
+                    is on the Calgary move-out page.
+                  </p>
+                  <p>
+                    Under Alberta's Residential Tenancies Act, the landlord of an Airdrie rental completes a move-out inspection report with the tenant, and the security deposit must be returned within 10 days after the tenant moves out. Duty Cleaners does not promise the deposit comes back; the landlord decides. What the clean can do is have the home finished to the move-out checklist before that inspection starts.
                   </p>
                 </div>
               </div>
@@ -402,7 +394,7 @@ export default function Airdrie() {
                   Cleaning Services for Airdrie Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Everything from weekly upkeep to full move-out cleans.
+                  Six services for Airdrie homes; every booking here carries the travel fee.
                 </p>
               </div>
             </AnimatedSection>
@@ -449,7 +441,7 @@ export default function Airdrie() {
               </div>
             </AnimatedSection>
             <AnimatedSection>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
                 {whyUsItems.map((item, i) => (
                   <WhyUsCard key={i} {...item} />
                 ))}
@@ -464,21 +456,18 @@ export default function Airdrie() {
             <AnimatedSection>
               <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
               <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
-                Near Airdrie: other communities we clean
+                Other towns the Calgary house cleaners cover
               </h2>
               <p className="text-muted-foreground mb-8 max-w-3xl mx-auto text-left md:text-center">
                 The same Calgary crews do{" "}
-                <Link to="/cleaning-services-cochrane/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Cochrane</Link>, west of the city in the foothills, and both towns are outside Calgary limits, so both carry the {TRAVEL_FEE} travel fee. Inside Calgary there is no fee; the city page lists every neighbourhood we cover.
+                <Link to="/cleaning-services-cochrane/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Cochrane</Link>, and both towns are outside Calgary city limits, so both carry the {TRAVEL_FEE} travel fee. The Calgary branch also does{" "}
+                <Link to="/locations/okotoks/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Okotoks</Link>{" "}
+                and runs{" "}
+                <Link to="/locations/chestermere/" className="text-primary underline underline-offset-2 font-medium">cleaning services in Chestermere</Link>, as well as Strathmore, High River, Langdon, Crossfield and Diamond Valley, and the same fee applies in each. Inside Calgary city limits there is no trip fee.
               </p>
               <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                 View All Service Areas →
               </Link>
-            <p className="mt-6 text-sm text-muted-foreground">
-              Run a business in Airdrie? We also handle{" "}
-              <Link to="/commercial-cleaning-services-calgary/" className="text-primary underline underline-offset-2 font-medium">
-                commercial and office cleaning across the Calgary region
-              </Link>.
-            </p>
 
             </AnimatedSection>
           </div>

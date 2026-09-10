@@ -82,16 +82,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Belmont" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Belmont" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fan blades within reach, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Belmont" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Belmont" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around Belmont.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Belmont" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Renovation dust and debris cleared, priced by the square footage of the home.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Belmont" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Belmont" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Belmont" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment or condo, before GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Belmont" },
 ];
 
 const whyUsItems = [
@@ -141,7 +141,7 @@ export default function Belmont() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fan blades within reach dusted\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -163,25 +163,25 @@ export default function Belmont() {
     <>
       <Helmet>
         <title>Belmont, Edmonton House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Belmont, Edmonton. Trusted local cleaners serving northeast Edmonton families." />
+        <meta name="description" content="In Belmont, Edmonton, 1970s duplexes and row houses stack their rooms, so house cleaning there spends more time on stair runs and landings." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Belmont, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/belmont-edmonton",
   areaServed: "Belmont, Edmonton, AB",
-  description: "Professional house cleaning in Belmont, Edmonton. Trusted local cleaners serving northeast Edmonton families.",
+  description: "In Belmont, Edmonton, 1970s duplexes and row houses stack their rooms, so house cleaning there spends more time on stair runs and landings.",
   geo: { latitude: "53.583", longitude: "-113.395" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/belmont-edmonton/" />
         <meta property="og:title" content="Belmont, Edmonton House Cleaning | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Belmont, Edmonton. Trusted local cleaners serving northeast Edmonton families." />
+        <meta property="og:description" content="In Belmont, Edmonton, 1970s duplexes and row houses stack their rooms, so house cleaning there spends more time on stair runs and landings." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/belmont-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Belmont, Edmonton House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Belmont, Edmonton. Trusted local cleaners serving northeast Edmonton families." />
+        <meta name="twitter:description" content="In Belmont, Edmonton, 1970s duplexes and row houses stack their rooms, so house cleaning there spends more time on stair runs and landings." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -207,7 +207,7 @@ export default function Belmont() {
                   Professional House Cleaning in Belmont
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Your reliable, local cleaning team serving the Belmont community. From newer family homes near Belmont School to townhomes by Hermitage Park — dependable, detail-focused cleaning every visit.
+                  Belmont went up in the 1970s, and fewer than half its homes are single-family houses. In its duplexes and row houses, stair runs and landings take more of the clean than their floor area suggests.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -235,7 +235,7 @@ export default function Belmont() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
                   src={heroImg}
-                  alt="Professional cleaner cleaning a kitchen island in a Belmont, Edmonton home"
+                  alt="Professional cleaner cleaning a kitchen island in a home"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   width={1024}
                   height={1024}
@@ -257,7 +257,7 @@ export default function Belmont() {
                   Cleaning Services for Belmont Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
+                  A Belmont duplex, row house or detached home gets a flat price by size, before GST, for a standard, deep, move-out or recurring clean. Post-construction goes by square footage, and wall washing is booked together with a clean.
                 </p>
               </div>
             </AnimatedSection>
@@ -300,7 +300,7 @@ export default function Belmont() {
                   Why Belmont Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Dependable cleaning, visit after visit.
+                  The four cards set out who cleans a Belmont home, where the rating is read from and what happens if something is missed.
                 </p>
               </div>
             </AnimatedSection>
@@ -322,7 +322,7 @@ export default function Belmont() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Belmont Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Located in northeast Edmonton, we're always just around the corner.
+                  Belmont sits off 137 Avenue, inside Edmonton city limits, so the quote carries no trip fee.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -341,12 +341,12 @@ export default function Belmont() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Belmont</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Edmonton-area neighbourhoods we clean</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    Clareview and Abbottsfield are on the Edmonton branch's list as well, priced at the same flat rates by home size.
                   </p>
                 </div>
-                <CoverageChips areas={["Belmont School", "Hermitage Park", "Manning Drive", "Victoria Trail", "Clareview", "Kennedale", "Fraser", "Abbottsfield"]} variant="compact" />
+                <CoverageChips areas={["Clareview", "Abbottsfield"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -361,7 +361,7 @@ export default function Belmont() {
         eyebrow="Local knowledge"
         heading="Belmont homes, specifically"
         paragraphs={[
-          "Belmont went up almost entirely in the 1970s, and its housing mix is the detail that changes a clean: single-family homes are only about 44% of the stock, with duplexes near 28% and row houses another 15%. Attached-wall homes stack their living space vertically, so stair runs, landings and stair-nose dust lines carry a share of the work well out of proportion to the floor area they occupy - and shared walls hold cooking humidity in the still corners longer than a detached plan does.",
+          "Belmont went up almost entirely in the 1970s, and its housing mix is the detail that changes a clean: single-family homes are about 44% of the stock, with duplexes near 28% and row houses another 15%. Attached-wall homes stack their living space vertically, so stair runs, landings and stair-nose dust lines carry a share of the work well out of proportion to the floor area they occupy. Shared walls hold cooking humidity in the still corners longer than a detached plan does.",
           "The neighbourhood sits off 137 Avenue with steady traffic feeding the retail strip, so road grit rides in year-round rather than only in winter. Entry mats and the first two metres of hallway take the wear, and in homes near the avenue the front-facing sills pick up a grey film noticeably faster than the back of the house.",
         ]}
       />

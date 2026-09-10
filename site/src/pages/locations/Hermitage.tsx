@@ -82,16 +82,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Hermitage" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Hermitage" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Hermitage" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Hermitage" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris cleared after renovations or new builds.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Hermitage" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Hermitage" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, booked together with a clean.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Hermitage" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Hermitage" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment or condo, before GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Hermitage" },
 ];
 
 const whyUsItems = [
@@ -133,7 +133,7 @@ export default function Hermitage() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Hermitage?",
-      answer: `Households here can book any of the following:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `The Edmonton branch offers these services in Hermitage:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
@@ -141,7 +141,7 @@ export default function Hermitage() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `In Hermitage, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `In Hermitage, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -163,25 +163,25 @@ export default function Hermitage() {
     <>
       <Helmet>
         <title>House Cleaning in Hermitage, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Hermitage, Edmonton. Trusted local cleaners serving northeast Edmonton families." />
+        <meta name="description" content="Hermitage townhouse kitchens generally need degreasing more often than detached ones. A standard clean here is priced flat by home size and type." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Hermitage, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/hermitage-edmonton",
   areaServed: "Hermitage, Edmonton, AB",
-  description: "Professional house cleaning in Hermitage, Edmonton. Trusted local cleaners serving northeast Edmonton families.",
+  description: "Hermitage townhouse kitchens generally need degreasing more often than detached ones. A standard clean here is priced flat by home size and type.",
   geo: { latitude: "53.591", longitude: "-113.402" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/hermitage-edmonton/" />
         <meta property="og:title" content="House Cleaning in Hermitage, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Hermitage, Edmonton. Trusted local cleaners serving northeast Edmonton families." />
+        <meta property="og:description" content="Hermitage townhouse kitchens generally need degreasing more often than detached ones. A standard clean here is priced flat by home size and type." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/hermitage-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Hermitage, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Hermitage, Edmonton. Trusted local cleaners serving northeast Edmonton families." />
+        <meta name="twitter:description" content="Hermitage townhouse kitchens generally need degreasing more often than detached ones. A standard clean here is priced flat by home size and type." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -207,7 +207,7 @@ export default function Hermitage() {
                   Professional House Cleaning in Hermitage
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Your reliable, local cleaning team serving the Hermitage community. From homes overlooking Hermitage Park to family townhomes along Victoria Trail — careful, considered cleaning every visit.
+                  Hermitage mixes 1970s and 1980s townhouse rows with detached homes, close to the North Saskatchewan. The Edmonton team cleans both at a flat rate by home size and type, and nothing is charged until the clean is done.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -235,7 +235,7 @@ export default function Hermitage() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
                   src={heroImg}
-                  alt="Professional cleaner wiping a coffee table in a Hermitage, Edmonton home"
+                  alt="Cleaner wiping a glass-topped coffee table in a living room with tall windows"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   width={1024}
                   height={1024}
@@ -257,7 +257,7 @@ export default function Hermitage() {
                   Cleaning Services for Hermitage Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs — every service a home needs.
+                  Every Hermitage booking except post-construction is priced flat by home size and type, in Canadian dollars before GST; post-construction is priced by square footage.
                 </p>
               </div>
             </AnimatedSection>
@@ -300,7 +300,7 @@ export default function Hermitage() {
                   Why Hermitage Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -322,7 +322,7 @@ export default function Hermitage() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Hermitage Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Located in northeast Edmonton, we're always just around the corner.
+                  Hermitage bookings run through the Edmonton office at 18615 71 Ave NW, and homes inside city limits pay no trip fee.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -341,12 +341,12 @@ export default function Hermitage() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Hermitage</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Edmonton-area neighbourhoods we clean</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    Abbottsfield, Clareview and Belmont are also among the Edmonton branch's 80 city neighbourhoods, each cleaned at the same flat rates as Hermitage.
                   </p>
                 </div>
-                <CoverageChips areas={["Hermitage Park", "Victoria Trail", "Abbottsfield", "Manning Drive", "Clareview", "Belmont", "Kennedale", "Fraser"]} variant="compact" />
+                <CoverageChips areas={["Abbottsfield", "Clareview", "Belmont"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -361,7 +361,7 @@ export default function Hermitage() {
         eyebrow="Local knowledge"
         heading="What the river edge means for Hermitage homes"
         paragraphs={[
-          "Hermitage sits against the North Saskatchewan's bends, with Hermitage Park's ponds and picnic grounds effectively in the neighbourhood's backyard. Proximity to water reads indoors as humidity swings — bathroom seals and basement window wells here mildew faster in warm months than in drier districts, and deserve attention every visit rather than seasonally.",
+          "Hermitage sits against the North Saskatchewan's bends, with Hermitage Park's ponds effectively in the neighbourhood's backyard. Proximity to water reads indoors as humidity swings — bathroom seals and basement window wells here mildew faster in warm months than in drier districts. The team wipes light surface mildew on bathroom seals where it is safe to; mould remediation is outside a clean.",
           "Housing is a 1970s-80s blend of townhouse rows and detached homes, and the townhouse share matters: shared-wall homes ventilate differently, holding cooking films and pet dander longer in still corners. Kitchens in the rows generally need degreasing more often than the detached homes a street over.",
         ]}
       />

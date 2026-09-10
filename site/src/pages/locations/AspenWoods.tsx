@@ -1,9 +1,9 @@
+import { sitePriceRange } from "@/data/pricing";
 import { getListing } from "@/lib/google-listings";
 import {
   CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import { useEffect } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"; import {   Phone, CheckCircle2, Star, Shield, Clock, Award, Home, Sparkles, Truck, SprayCan, Bath, Building2, Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail, PaintRoller
 } from "lucide-react";
 import { buildLocationSchema } from "@/lib/location-schema";
-import CoverageChips from "@/components/CoverageChips";
 import LocationPricing from "@/components/LocationPricing";
 import calgaryLivingRoom from "@/assets/gallery/calgary-living-room-clean.webp";
 
@@ -59,10 +59,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Aspen Woods" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Aspen Woods" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Aspen Woods" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or remodels in your estate home.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Aspen Woods" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Aspen Woods" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Aspen Woods" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "A move-out clean covers inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Aspen Woods" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust left by a renovation or remodel, priced by square footage rather than bedroom count.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Aspen Woods" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Wall washing takes scuffs, handprints and cooking film off painted walls without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Aspen Woods" },
 ];
 
 const whyUsItems = [
@@ -89,17 +89,15 @@ const whyUsItems = [
       </>
     ),
   },
-  { icon: Leaf, title: "Premium Products", description: "High-quality products suited to delicate surfaces and fine finishes." },
+  { icon: Leaf, title: "Clear About Reach", description: "Nothing beyond a 3-step ladder is included, so the top panes of a two-storey window wall and high great-room fixtures stay outside the clean." },
   { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
-
-const nearbyAreas = ["West Springs", "Christie Park", "Springbank Hill", "Signal Hill", "Cougar Ridge", "Wentworth", "Patterson", "Coach Hill"];
 
 const faqs = [
   { question: "How long does an initial cleaning take?", answer: "We work to a checklist, not a clock. Your Aspen Woods team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
   { question: "What cleaning services does Duty Cleaners offer in Aspen Woods?", answer: "We offer:\n\n• Standard Cleaning & Deep Cleaning Packages\n• Move-In And Move-Out Cleaning Service\n• Post Construction Cleaning\n• Wall Washing and Wall Cleaning" },
-  { question: "Do you offer discounts?", answer: "We offer recurring discounts for our Standard and Deep Cleaning Packages.\n\nIf you avail of our recurring discount, on your next cleaning:\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off" },
-  { question: "What's included in a deep cleaning?", answer: "Deep cleaning adds the following to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned" },
+  { question: "Do you offer discounts?", answer: "Yes. A recurring booking is the standard clean on a schedule, and from the second visit it is discounted:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nThe first clean in Aspen Woods is charged at the one-time rate." },
+  { question: "What's included in a deep cleaning?", answer: "Deep cleaning adds the following to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped" },
   { question: "What happens if something is missed?", answer: "Tell us within 24 hours and the team comes back to your Aspen Woods home to re-clean what was missed, at no charge. Photos help but are not required." },
 ];
 
@@ -107,7 +105,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Aspen Woods Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/aspen-woods",
-  priceRange: "$$$",
+  priceRange: sitePriceRange(),
   geo: { latitude: "51.0394", longitude: "-114.2103" },
 });
 
@@ -120,12 +118,12 @@ export default function AspenWoods() {
     <>
       <Helmet>
         <title>House Cleaners in Aspen Woods, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Premium house cleaning in Aspen Woods, Calgary. Experienced with luxury homes and fine finishes. 100% satisfaction guaranteed." />
+        <meta name="description" content="In Aspen Woods, Calgary, homes date from 2001, and their stone counters want a pH-neutral product rather than a degreaser." />
         <meta property="og:title" content="House Cleaners in Aspen Woods, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Aspen Woods, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Premium house cleaning in Aspen Woods, Calgary. Experienced with luxury homes and fine finishes. 100% satisfaction guaranteed." />
-        <meta property="og:description" content="Premium house cleaning in Aspen Woods, Calgary. Experienced with luxury homes and fine finishes. 100% satisfaction guaranteed." />
+        <meta name="twitter:description" content="In Aspen Woods, Calgary, homes date from 2001, and their stone counters want a pH-neutral product rather than a degreaser." />
+        <meta property="og:description" content="In Aspen Woods, Calgary, homes date from 2001, and their stone counters want a pH-neutral product rather than a degreaser." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/aspen-woods/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/aspen-woods/" />
@@ -164,10 +162,10 @@ export default function AspenWoods() {
                   <span className="text-white/90 text-sm font-medium">Serving Aspen Woods, Calgary</span>
                 </div>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                  Premium House Cleaning in Aspen Woods
+                  House Cleaning in Aspen Woods
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Trusted cleaning services for Calgary's premier west-side estate community. Customer-rated cleaners experienced with luxury homes.
+                  Aspen Woods homes date from 2001, and the houses here were built with two-storey window walls and tall stairwell glass. A standard clean is priced flat by home size, before GST.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -193,7 +191,7 @@ export default function AspenWoods() {
               <div className="flex-shrink-0 w-full lg:w-[500px]">
                 <img
                   src={calgaryLivingRoom}
-                  alt="A tidy, freshly cleaned Calgary living room"
+                  alt="A tidy, freshly cleaned living room"
                   width={800}
                   height={800}
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
@@ -224,26 +222,12 @@ export default function AspenWoods() {
           </div>
         </section>
 
-        {/* Local Coverage */}
-        <section className="py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <AnimatedSection>
-              <div className="text-center mb-10">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Neighbourhoods We Serve</h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto">We proudly serve families and homeowners across Aspen Woods and surrounding communities.</p>
-              </div>
-              <CoverageChips areas={nearbyAreas} />
-            </AnimatedSection>
-          </div>
-        </section>
-
       <LocalMarketNote
         eyebrow="What we see here"
         heading="Two storeys of west-facing glass"
         paragraphs={[
-          "Two-storey window walls, tall stairwell glass, great-room fixtures well past ladder height: the houses on this high, open ground - roughly 1,230 metres - were built to take the foothills straight on. Low winter sun swinging through the south and southwest lights up every streak on that west elevation, so west glass gets squeegee work and a dry buff, not a spray-and-wipe that leaves its own record.",
-          "The ring road's last leg opened just west of here in December 2023, and 17 Avenue SW closes Aspen Woods off to the south. Homes date from 2001, which puts the first generation of surfaces at the age where handling changes - hardwood thinned through the traffic lanes, stone counters that want a pH-neutral product rather than a degreaser.",
+          "Two-storey window walls, tall stairwell glass, great-room fixtures well past ladder height: the houses on this high, open ground, at roughly 1,230 metres, were built to take the foothills straight on. Low winter sun swinging through the south and southwest lights up every streak on that west elevation. When interior windows are added to a clean, the inside of the west glass within a 3-step ladder's reach gets squeegee work and a dry buff, not a spray-and-wipe that leaves its own record.",
+          "The ring road's last leg runs just west of here, and 17 Avenue SW closes Aspen Woods off to the south. Homes date from 2001, which puts the first generation of surfaces at the age where handling changes: hardwood thinned through the traffic lanes, stone counters that want a pH-neutral product rather than a degreaser.",
         ]}
         accent="calgary"
       />
@@ -259,7 +243,7 @@ export default function AspenWoods() {
               <div className="text-center mb-14">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Aspen Woods Homes</h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto text-lg">Premium cleaning packages tailored to luxury living.</p>
+                <p className="text-muted-foreground max-w-2xl mx-auto text-lg">Standard, deep and move-out cleans in Aspen Woods are flat rates by home size before GST, and post-construction is priced by square footage. Interior windows are an add-on, shown in the instant price before you book.</p>
               </div>
             </AnimatedSection>
             <AnimatedSection>
@@ -295,7 +279,7 @@ export default function AspenWoods() {
               <div className="text-center mb-14">
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Aspen Woods Residents Choose Duty Cleaners</h2>
-                <p className="text-white/90 max-w-2xl mx-auto text-lg">Dependable cleaning, visit after visit.</p>
+                <p className="text-white/90 max-w-2xl mx-auto text-lg">Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.</p>
               </div>
             </AnimatedSection>
             <AnimatedSection>
@@ -333,8 +317,8 @@ export default function AspenWoods() {
           <div className="container mx-auto px-4 text-center">
             <AnimatedSection>
               <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-              <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Proudly Serving Aspen Woods & Surrounding Areas</h2>
-              <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">We provide professional house cleaning services throughout Aspen Woods and nearby communities in Calgary.</p>
+              <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Aspen Woods and the Calgary Branch</h2>
+              <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">Aspen Woods is one of the 66 Calgary neighbourhoods on the Calgary branch's list, and it is inside city limits, so no trip fee applies. For an address that is not on the list, call the Calgary office at (403) 768-1341.</p>
               <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">View All Service Areas →</Link>
             </AnimatedSection>
           </div>

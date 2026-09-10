@@ -7,7 +7,6 @@ import heroImg from "@/assets/gallery/ambleside-cleaner.webp";
 import { buildLocationSchema } from "@/lib/location-schema";
 import HonestReviewLink from "@/components/HonestReviewLink";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
 const LocationMap = lazy(() => import("@/components/LocationMap"));
@@ -82,16 +81,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Ambleside" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Ambleside" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Ambleside" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around Ambleside.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Ambleside" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Ambleside" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Ambleside" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "A move-out clean covers inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Ambleside" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust and debris cleared after a renovation in Ambleside, priced by square footage.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Ambleside" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Wall washing takes scuffs, handprints and cooking film off painted walls without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Ambleside" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Ambleside" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment or condo, before GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Ambleside" },
 ];
 
 const whyUsItems = [
@@ -133,7 +132,7 @@ export default function Ambleside() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Ambleside?",
-      answer: `Around Ambleside we offer the full range:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `In Ambleside the Edmonton branch offers:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
@@ -141,7 +140,7 @@ export default function Ambleside() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -163,25 +162,25 @@ export default function Ambleside() {
     <>
       <Helmet>
         <title>House Cleaning in Ambleside, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Ambleside, Edmonton. Trusted local cleaners, customer-rated, serving Ambleside homes." />
+        <meta name="description" content="Nearly every Ambleside, Edmonton home has first-generation stone, vinyl plank and frameless glass, and all of it shows mineral spots within days." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Ambleside, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/ambleside-edmonton",
   areaServed: "Ambleside, Edmonton, AB",
-  description: "Professional house cleaning in Ambleside, Edmonton. Trusted local cleaners serving Ambleside homes with reliable, customer-rated cleaning service.",
+  description: "Nearly every Ambleside, Edmonton home has first-generation stone, vinyl plank and frameless glass, and all of it shows mineral spots within days.",
   geo: { latitude: "53.454", longitude: "-113.63" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/ambleside-edmonton/" />
         <meta property="og:title" content="House Cleaning in Ambleside, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Ambleside, Edmonton. Trusted local cleaners, customer-rated, serving Ambleside homes." />
+        <meta property="og:description" content="Nearly every Ambleside, Edmonton home has first-generation stone, vinyl plank and frameless glass, and all of it shows mineral spots within days." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/ambleside-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Ambleside, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Ambleside, Edmonton. Trusted local cleaners, customer-rated, serving Ambleside homes." />
+        <meta name="twitter:description" content="Nearly every Ambleside, Edmonton home has first-generation stone, vinyl plank and frameless glass, and all of it shows mineral spots within days." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -207,7 +206,7 @@ export default function Ambleside() {
                   Professional House Cleaning in Ambleside
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  From modern estate homes near Currents of Windermere to family streets backing onto the river valley — enjoy bright, polished spaces with zero stress.
+                  Most Ambleside homes still have their first finishes: engineered stone, vinyl plank and frameless glass shower panels. Glass gets a squeegee and stone gets pH-neutral product, because none of these finishes forgives an abrasive.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -235,7 +234,7 @@ export default function Ambleside() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
                   src={heroImg}
-                  alt="Professional cleaner working in a Ambleside, Edmonton home"
+                  alt="A cleaner mopping a tiled kitchen floor beside a small dining table"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   width={1024}
                   height={1024}
@@ -257,7 +256,7 @@ export default function Ambleside() {
                   Cleaning Services for Ambleside Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs — every service a home needs.
+                  Each Ambleside service is one flat price by home size, from a single standard clean to a move-out.
                 </p>
               </div>
             </AnimatedSection>
@@ -300,7 +299,7 @@ export default function Ambleside() {
                   Why Ambleside Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -322,7 +321,7 @@ export default function Ambleside() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Ambleside Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Serving the southwest Edmonton family communities along Windermere Boulevard.
+                  Anthony Henday Drive runs along Ambleside's north edge and 170 Street SW closes its west side. Ambleside is inside Edmonton city limits, so there is no trip fee.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -341,12 +340,11 @@ export default function Ambleside() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Ambleside</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Other Edmonton Service Areas</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    Ambleside is one of the neighbourhoods the Edmonton branch cleans. The full list, in the city and outside it, is on the service areas page.
                   </p>
                 </div>
-                <CoverageChips areas={["Currents of Windermere", "Ambleside Park", "Windermere Boulevard", "Anthony Henday Drive", "Ambleside Link", "Allard", "Glenridding", "Cavanagh"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -361,8 +359,8 @@ export default function Ambleside() {
         eyebrow="On the ground"
         heading="Nothing in Ambleside is old yet"
         paragraphs={[
-          "The 2009 census counted 248 people here; three years later it counted 2,328. Nearly everything you walk into is a first-generation finish, and the packages repeat street to street — engineered stone, vinyl plank, frameless glass shower panels. None of it forgives an abrasive, and all of it shows mineral spotting within days. The work is squeegee discipline on glass and pH-neutral product on stone, not the scrubbing an older kitchen would shrug off.",
-          "Anthony Henday Drive runs along the north edge and 170 Street SW — Terwillegar Drive where it meets the ring road — closes the west side, with the Currents of Windermere a short way up 170 Street. Freeway and parking-lot pavement both throw grit. From November until the Spring Sweep finishes — April to June, up to eight weeks of it — that grit arrives as sand and calcium-chloride residue on boots, and the mats, the door tracks and the garage threshold take almost all of it.",
+          "Nearly everything you walk into is a first-generation finish, and the packages repeat street to street — engineered stone, vinyl plank, frameless glass shower panels. None of it forgives an abrasive, and all of it shows mineral spotting within days. The work is squeegee discipline on glass and pH-neutral product on stone, not the scrubbing an older kitchen would shrug off.",
+          "Anthony Henday Drive runs along the north edge, and 170 Street SW, which is Terwillegar Drive where it meets the ring road, closes the west side, with the Currents of Windermere a short way up 170 Street. Freeway and parking-lot pavement both throw grit. From November until the Spring Sweep finishes, that grit arrives as sand and calcium-chloride residue on boots, and the mats, the door tracks and the garage threshold take almost all of it. The sweep falls between April and June and can run up to eight weeks.",
         ]}
       />
 

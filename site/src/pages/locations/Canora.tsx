@@ -82,16 +82,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Canora" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Canora" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Canora" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Canora" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared properly after renos and handovers.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Canora" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or a new build, priced by square footage.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Canora" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Canora" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Canora" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment or condo, before GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Canora" },
 ];
 
 const whyUsItems = [
@@ -141,7 +141,7 @@ export default function Canora() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -163,25 +163,25 @@ export default function Canora() {
     <>
       <Helmet>
         <title>House Cleaning in Canora, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Canora, Edmonton. Trusted local cleaners serving Canora homes with reliable, customer-rated cleaning service." />
+        <meta name="description" content="House cleaning in Canora, Edmonton, where about 68% of homes are rented, and a move-out clean covers the oven, fridge seals and closet shelves." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Canora, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/canora-edmonton",
   areaServed: "Canora, Edmonton, AB",
-  description: "Professional house cleaning in Canora, Edmonton. Trusted local cleaners serving Canora homes with reliable, customer-rated cleaning service.",
+  description: "House cleaning in Canora, Edmonton, where about 68% of homes are rented, and a move-out clean covers the oven, fridge seals and closet shelves.",
   geo: { latitude: "53.536", longitude: "-113.557" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/canora-edmonton/" />
         <meta property="og:title" content="House Cleaning in Canora, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Canora, Edmonton. Trusted local cleaners serving Canora homes with reliable, customer-rated cleaning service." />
+        <meta property="og:description" content="House cleaning in Canora, Edmonton, where about 68% of homes are rented, and a move-out clean covers the oven, fridge seals and closet shelves." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/canora-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Canora, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Canora, Edmonton. Trusted local cleaners serving Canora homes with reliable, customer-rated cleaning service." />
+        <meta name="twitter:description" content="House cleaning in Canora, Edmonton, where about 68% of homes are rented, and a move-out clean covers the oven, fridge seals and closet shelves." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -207,7 +207,7 @@ export default function Canora() {
                   Professional House Cleaning in Canora
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  From cute character bungalows to renovated infills near Canora Park — bring sparkle back to your west Edmonton home with our trusted local team.
+                  About 68% of Canora's homes are rented and roughly half are apartments, and seven of every eight buildings went up between the end of the Second World War and 1980. The Edmonton branch cleans Canora homes at a flat rate set by home size.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -235,7 +235,7 @@ export default function Canora() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
                   src={heroImg}
-                  alt="Professional cleaner working in a Canora, Edmonton home"
+                  alt="Cleaner wiping a bathroom mirror with a yellow cloth above a white sink"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   width={1024}
                   height={1024}
@@ -257,7 +257,7 @@ export default function Canora() {
                   Cleaning Services for Canora Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Everything from weekly upkeep to full move-out cleans.
+                  Move-out cleans for suites handed back on possession day, and regular upkeep for the Canora households staying put.
                 </p>
               </div>
             </AnimatedSection>
@@ -300,7 +300,7 @@ export default function Canora() {
                   Why Canora Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -322,7 +322,7 @@ export default function Canora() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Canora Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  A small, welcoming pocket of west Edmonton — we know every street.
+                  Stony Plain Road forms Canora's southern edge. Canora is inside Edmonton city limits, so no trip fee applies.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -341,12 +341,12 @@ export default function Canora() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Canora</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Edmonton-area neighbourhoods we clean</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    Glenwood is another of the Edmonton neighbourhoods the branch cleans.
                   </p>
                 </div>
-                <CoverageChips areas={["Canora Community League", "Canora Park", "Stony Plain Road", "156 Street", "102 Avenue", "Britannia Youngstown", "West Jasper Place", "Glenwood"]} variant="compact" />
+                <CoverageChips areas={["Glenwood"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →

@@ -82,16 +82,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Pleasantview" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Pleasantview" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Pleasantview" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Pleasantview" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Post-renovation dust and debris, professionally removed.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Pleasantview" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or a new build, priced by square footage.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Pleasantview" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Pleasantview" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Pleasantview" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment or condo, before GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Pleasantview" },
 ];
 
 const whyUsItems = [
@@ -133,15 +133,15 @@ export default function Pleasantview() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Pleasantview?",
-      answer: `Households here can book any of the following:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `Households in Pleasantview can book these services through the Edmonton branch:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
-      answer: `Yes, recurring visits cost less every time:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
+      answer: `Yes. A recurring standard clean is discounted by frequency:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -163,25 +163,25 @@ export default function Pleasantview() {
     <>
       <Helmet>
         <title>House Cleaning in Pleasantview, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Pleasantview, Edmonton. Trusted local cleaners, customer-rated, serving Pleasantview homes." />
+        <meta name="description" content="A Pleasantview bungalow's hours go to floors and baseboards, while an apartment's go to the galley kitchen, the bathroom fan and the balcony door track." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Pleasantview, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/pleasantview",
   areaServed: "Pleasantview, Edmonton, AB",
-  description: "Professional house cleaning in Pleasantview, Edmonton. Trusted local cleaners serving Pleasantview homes with reliable, customer-rated cleaning service.",
+  description: "A Pleasantview bungalow's hours go to floors and baseboards, while an apartment's go to the galley kitchen, the bathroom fan and the balcony door track.",
   geo: { latitude: "53.497", longitude: "-113.516" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/pleasantview/" />
         <meta property="og:title" content="House Cleaning in Pleasantview, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Pleasantview, Edmonton. Trusted local cleaners, customer-rated, serving Pleasantview homes." />
+        <meta property="og:description" content="A Pleasantview bungalow's hours go to floors and baseboards, while an apartment's go to the galley kitchen, the bathroom fan and the balcony door track." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/pleasantview/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Pleasantview, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Pleasantview, Edmonton. Trusted local cleaners, customer-rated, serving Pleasantview homes." />
+        <meta name="twitter:description" content="A Pleasantview bungalow's hours go to floors and baseboards, while an apartment's go to the galley kitchen, the bathroom fan and the balcony door track." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -207,7 +207,7 @@ export default function Pleasantview() {
                   Professional House Cleaning in Pleasantview
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  From beloved post-war bungalows to modern infills near the University of Alberta — bring polished calm to your south Edmonton home.
+                  Pleasantview mixes single-family houses with apartment towers and low-rise walk-ups, and the 1960s were its main building decade. In a house, most of the hours go to floors and baseboards; in an apartment, they go to the galley kitchen, the bathroom fan and the balcony door track.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -235,7 +235,7 @@ export default function Pleasantview() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
                   src={heroImg}
-                  alt="Professional cleaner working in a Pleasantview, Edmonton home"
+                  alt="Professional cleaner working in a home"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   width={1024}
                   height={1024}
@@ -257,7 +257,7 @@ export default function Pleasantview() {
                   Cleaning Services for Pleasantview Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
+                  Apartment or bungalow, each Pleasantview service is priced flat, and the instant price shows the figure before you book.
                 </p>
               </div>
             </AnimatedSection>
@@ -300,7 +300,7 @@ export default function Pleasantview() {
                   Why Pleasantview Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -322,7 +322,7 @@ export default function Pleasantview() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Pleasantview Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Right in central south Edmonton — minutes from the U of A.
+                  Pleasantview's southwest corner is where 111 Street meets 51 Avenue, a few blocks north of Southgate station.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -341,12 +341,12 @@ export default function Pleasantview() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Pleasantview</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Edmonton-area neighbourhoods we clean</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    Allendale and Aspen Gardens are cleaned by the same Edmonton branch, at the same flat rates as Pleasantview.
                   </p>
                 </div>
-                <CoverageChips areas={["Pleasantview Community League", "Southgate Centre", "University of Alberta", "111 Street", "51 Avenue", "Allendale", "Parkallen", "Aspen Gardens"]} variant="compact" />
+                <CoverageChips areas={["Allendale", "Aspen Gardens"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -362,7 +362,7 @@ export default function Pleasantview() {
         heading="Bungalow hours, apartment hours"
         paragraphs={[
           "Pleasantview carries two housing stocks at once. Census counts from the early 2000s put just under half its homes as single-family and two in five as apartments, evenly split between towers of five storeys and up and low-rise walk-ups, with the 1960s the dominant build decade across the neighbourhood. The two stocks ask for different visits — a bungalow's hours go to floors and baseboards, an apartment's to a galley kitchen, a bathroom fan and a balcony door track that packs with dirt until it jams.",
-          "Southgate station and its transit centre sit a few blocks south of the southwest corner, below where 111 Street meets 51 Avenue, which puts a walking commute within reach of these streets. Walking commutes bring the street indoors. From first snow through spring breakup that means road salt and sand at the door, and salt left to dry will dull a finish, so entry floors and the runner beyond them get weekly attention, not monthly.",
+          "Southgate station and its transit centre sit a few blocks south of the southwest corner, below where 111 Street meets 51 Avenue, which puts a walking commute within reach of these streets. Walking commutes bring the street indoors. From first snow through spring breakup that means road salt and sand at the door, and salt left to dry will dull a finish, so entry floors and the runner beyond them are worth weekly attention.",
         ]}
       />
 

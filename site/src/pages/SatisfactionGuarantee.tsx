@@ -8,20 +8,23 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import TrustPageCta from "@/components/TrustPageCta";
 import { Shield, CheckCircle2, Phone, Mail } from "lucide-react";
 
+const TITLE = `${POLICY.guaranteeWindowHours}-Hour Re-Clean Guarantee | Duty Cleaners`;
+const DESCRIPTION = `If something was missed in your Duty Cleaners clean, tell us within ${POLICY.guaranteeWindowHours} hours and we come back and re-clean it at no charge.`;
+
 export default function SatisfactionGuarantee() {
   return (
     <>
       <Helmet>
-        <title>100% Satisfaction Guarantee Policy | Duty Cleaners</title>
-        <meta name="description" content="Our 100% Satisfaction Guarantee ensures you're completely happy with your cleaning. If not, we'll re-clean for free within 24 hours." />
+        <title>{TITLE}</title>
+        <meta name="description" content={DESCRIPTION} />
         <link rel="canonical" href="https://dutycleaners.ca/satisfaction-guarantee/" />
-        <meta property="og:title" content="100% Satisfaction Guarantee Policy | Duty Cleaners" />
-        <meta property="og:description" content="Our 100% Satisfaction Guarantee ensures you're completely happy with your cleaning. If not, we'll re-clean for free within 24 hours." />
+        <meta property="og:title" content={TITLE} />
+        <meta property="og:description" content={DESCRIPTION} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/satisfaction-guarantee/" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="100% Satisfaction Guarantee Policy | Duty Cleaners" />
-        <meta name="twitter:description" content="Our 100% Satisfaction Guarantee ensures you're completely happy with your cleaning. If not, we'll re-clean for free within 24 hours." />
+        <meta name="twitter:title" content={TITLE} />
+        <meta name="twitter:description" content={DESCRIPTION} />
       </Helmet>
 
       <div className="min-h-screen">
@@ -39,9 +42,9 @@ export default function SatisfactionGuarantee() {
               <div className="w-20 h-20 bg-accent/20 border-2 border-accent rounded-full flex items-center justify-center mx-auto mb-6">
                 <Shield className="w-10 h-10 text-accent" />
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">100% Satisfaction Guarantee</h1>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">Our {POLICY.guaranteeWindowHours}-Hour Re-Clean Guarantee</h1>
               <p className="text-lg text-white/85">
-                Your happiness is our priority. We stand behind every cleaning with a written guarantee.
+                The guarantee is a return visit: if something was missed, the team comes back and re-cleans it at no charge.
               </p>
             </div>
           </div>
@@ -50,17 +53,17 @@ export default function SatisfactionGuarantee() {
         <div className="container mx-auto px-4 py-16">
           <div className="max-w-3xl mx-auto">
             <div className="prose prose-lg max-w-none text-muted-foreground">
-              <h2 className="text-2xl font-bold mb-4 text-foreground">Our Promise to You</h2>
+              <h2 className="text-2xl font-bold mb-4 text-foreground">How the re-clean guarantee works</h2>
               <p className="mb-6">
-                At Duty Cleaners, we believe you should love the results of every cleaning. That's why we offer a comprehensive
-                satisfaction guarantee that puts your peace of mind first.
+                The guarantee applies to every clean from the Edmonton and Calgary offices, whichever
+                service you booked, including a clean paid for with a gift card.
               </p>
 
               <div className="bg-primary/5 border-2 border-primary/20 rounded-xl p-6 mb-8">
                 <h3 className="text-xl font-bold mb-4 text-primary">The Duty Cleaners Guarantee</h3>
                 <p className="mb-4">
-                  If you're not completely satisfied with any aspect of your cleaning service, contact us within
-                  <strong> 24 hours</strong> of your appointment and we will:
+                  If something in your service scope was missed or not done well, contact us within{" "}
+                  <strong>{POLICY.guaranteeWindowHours} hours</strong> of your appointment and we will:
                 </p>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
@@ -71,17 +74,13 @@ export default function SatisfactionGuarantee() {
                     <CheckCircle2 className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
                     <span>Address any specific issues you identify within your scheduled cleaning scope</span>
                   </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                    <span>Ensure you're 100% happy before we consider the job complete</span>
-                  </li>
                 </ul>
               </div>
 
               <h2 className="text-2xl font-bold mb-4 text-foreground">How to Request a Re-Clean</h2>
               <ol className="list-decimal pl-6 space-y-3 mb-8">
-                <li>Contact us within 24 hours of your cleaning appointment</li>
-                <li>Describe the specific areas or items that didn't meet your expectations</li>
+                <li>Contact us within {POLICY.guaranteeWindowHours} hours of your cleaning appointment</li>
+                <li>Describe the specific areas or items that were missed or not done well</li>
                 {/* Photos are a favour, not a condition — confirmed by the owner.
                     As a bare numbered step this read as mandatory, which is how
                     llms.txt ended up telling AI assistants a photo was "required". */}
@@ -90,8 +89,8 @@ export default function SatisfactionGuarantee() {
                   know exactly what to put right. They are not required, and a phone call
                   describing the problem is enough.
                 </li>
-                <li>We'll schedule a return visit at a time convenient for you (typically within 48 hours)</li>
-                <li>Our team will address all identified concerns at no extra charge</li>
+                <li>We book a return visit at a time that suits you</li>
+                <li>The team re-cleans the areas you named at no extra charge</li>
               </ol>
 
               <h2 className="text-2xl font-bold mb-4 text-foreground">What's Covered</h2>
@@ -116,7 +115,7 @@ export default function SatisfactionGuarantee() {
               </p>
               <ul className="space-y-2 mb-8">
                 <li>• Services not included in the original cleaning package</li>
-                <li>• Pre-existing stains, damage, or permanent discoloration</li>
+                <li>• Pre-existing stains, damage, or permanent discolouration</li>
                 {/* This said 48 hours while the promise at the top of the same page
                     — and roughly 100 other surfaces — said 24, so a customer calling
                     at 30 hours could not tell whether they were covered. The owner
@@ -146,10 +145,11 @@ export default function SatisfactionGuarantee() {
               </p>
               <p className="mb-4">
                 It is also not a guarantee about someone else's decision. Move-out customers ask
-                whether we guarantee the damage deposit comes back, and we do not — a landlord's
-                assessment is theirs to make and can turn on things that have nothing to do with
-                cleaning. What we will do is return and address anything cited as a cleaning
-                issue, which is the part that is actually ours.
+                whether we guarantee the security deposit comes back, and we do not: the landlord
+                decides, and that assessment can turn on things that have nothing to do with
+                cleaning. What we will do, if you tell us within {POLICY.guaranteeWindowHours} hours
+                of the clean, is come back and re-clean anything in the service scope that was
+                missed, which is the part that is ours.
               </p>
 
               <h2 className="text-2xl font-bold mb-4 text-foreground">
@@ -181,9 +181,9 @@ export default function SatisfactionGuarantee() {
 
               <h2 className="text-2xl font-bold mb-4 text-foreground">Fewer reasons to need this</h2>
               <p className="mb-8">
-                Most re-cleans we are called back for trace to a mismatch between what was booked
-                and what the home needed — a standard clean booked for a home that wanted a deep
-                one, or an add-on everyone assumed was included. Two pages head that off:{" "}
+                A re-clean is less likely when the booking matches the home. A standard clean booked
+                for a home that needed a deep one, or an add-on everyone assumed was included, leaves
+                work outside the scope, and the guarantee covers the scope. Two pages head that off:{" "}
                 <Link to={canonicalForPath("/whats-included")} className="text-accent underline underline-offset-2">
                   what's included
                 </Link>{" "}
@@ -191,7 +191,16 @@ export default function SatisfactionGuarantee() {
                 <Link to={canonicalForPath("/prepare")} className="text-accent underline underline-offset-2">
                   how to prepare
                 </Link>{" "}
-                covers the few things that stop a team getting to a surface at all.
+                covers the few things that stop a team getting to a surface at all. If the home has not
+                had a proper clean in a while, read about{" "}
+                <Link to="/edmonton/deep-cleaning/" className="text-accent underline underline-offset-2">
+                  deep cleaning in Edmonton
+                </Link>{" "}
+                or{" "}
+                <Link to="/calgary/deep-cleaning/" className="text-accent underline underline-offset-2">
+                  deep cleaning in Calgary
+                </Link>{" "}
+                before you book.
               </p>
 
               <div className="bg-accent/10 border-2 border-accent/20 rounded-xl p-6">

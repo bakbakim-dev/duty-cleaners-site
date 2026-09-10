@@ -60,10 +60,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Altadore" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Altadore" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Altadore" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new infills in Altadore.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Altadore" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Altadore" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Altadore" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "A move-out clean covers inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Altadore" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust and debris cleared after a renovation or a new infill in Altadore, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Altadore" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Wall washing takes scuffs, handprints and cooking film off painted walls without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Altadore" },
 ];
 
 const whyUsItems = [
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Marda Loop","South Calgary","Garrison Woods","Bankview","Richmond","Elbow Park"];
+const nearbyAreas = ["Marda Loop","Bankview","Richmond","Elbow Park"];
 
 const faqs = [
   {
@@ -104,15 +104,15 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Altadore?",
-    answer: `The full service menu is available here:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `In Altadore, the Calgary branch offers:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
   },
   {
     question: "Do you offer discounts?",
-    answer: `Yes, recurring visits cost less every time:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
+    answer: `Yes, on a recurring schedule:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `In Altadore, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `In Altadore, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function Altadore() {
     <>
       <Helmet>
         <title>House Cleaning Services in Altadore, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Book house cleaning in Altadore, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="description" content="In Altadore, Calgary, 1950s bungalows stand beside three-storey infills and dogs bring River Park mud in after the thaw; we clean both kinds of house." />
         <meta property="og:title" content="House Cleaning Services in Altadore, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services in Altadore, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Book house cleaning in Altadore, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
-        <meta property="og:description" content="Book house cleaning in Altadore, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="twitter:description" content="In Altadore, Calgary, 1950s bungalows stand beside three-storey infills and dogs bring River Park mud in after the thaw; we clean both kinds of house." />
+        <meta property="og:description" content="In Altadore, Calgary, 1950s bungalows stand beside three-storey infills and dogs bring River Park mud in after the thaw; we clean both kinds of house." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/altadore-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/altadore-calgary/" />
@@ -183,7 +183,7 @@ export default function Altadore() {
                 Professional House Cleaning in Altadore
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Altadore is a vibrant SW community next to Marda Loop — known for its modern infills, family-friendly streets, and proximity to River Park and Sandy Beach.
+                Altadore's blocks mix original 1950s bungalows with three-storey infills, and dogs back from River Park and Sandy Beach bring the mud in after the thaw. Entry mats, stair carpets and the first metres of hardwood get most of the attention in an Altadore clean.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -217,7 +217,7 @@ export default function Altadore() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Altadore Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
+                  Each Altadore service has a flat rate by home size, or by square footage for post-construction, and the rate does not change if the clean runs long.
                 </p>
               </div>
             </AnimatedSection>
@@ -255,7 +255,7 @@ export default function Altadore() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Altadore Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Altadore and the surrounding SW Calgary communities.
+                    Altadore sits inside Calgary city limits, which means an Altadore clean carries no trip fee.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -280,16 +280,16 @@ export default function Altadore() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1280} height={896} src={cleanHomeImg} alt="Spotless Altadore Calgary home cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1280} height={896} src={cleanHomeImg} alt="A living room with grey sofas, a white rug and a window onto a tree" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Calm, Spotless Altadore Home — Every Visit</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Before the Team Arrives</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Getting Ready for an Altadore Clean</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Vetted cleaners, careful hands, and the standard we'd hold for our own homes. Come back to fresh air and surfaces that actually gleam.
+                    You do not need to be home. Most customers leave a key, a lockbox code or smart-lock access, and the team locks up. You do not need to tidy first either: clear counters and floors get cleaned, and cluttered ones get worked around.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Arrival windows: 9:00 to 10:00 AM, 12:00 to 1:00 PM or 3:00 to 4:00 PM","Running water is needed on the day of the clean","24 hours' notice to cancel or change a booking"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -307,9 +307,9 @@ export default function Altadore() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Altadore and the communities around it.{" "}
+                  The Calgary branch also cleans homes in each of these neighbourhoods.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -323,9 +323,9 @@ export default function Altadore() {
       <LocalMarketNote
         accent="calgary"
         eyebrow="Local knowledge"
-        heading="Altadore between park and shops"
+        heading="Altadore between River Park and Marda Loop"
         paragraphs={[
-          "Altadore runs from River Park's off-leash slopes to the Marda Loop shops, and its blocks are mid-turnover — original 1950s bungalows beside three-storey infills. The infills bring stair-tower dust lines and roof-deck thresholds; the bungalows bring plaster, original oak and small dense rooms. Two doors apart can be two different trades.",
+          "Altadore runs from River Park's off-leash slopes to Marda Loop, and its blocks are mid-turnover — original 1950s bungalows beside three-storey infills. The infills bring stair-tower dust lines and roof-deck thresholds; the bungalows bring plaster, original oak and small dense rooms. Two doors apart can be two different trades.",
           "Dog traffic is the neighbourhood's signature: River Park and Sandy Beach put paws on floors year-round, and the mud weeks after thaw are the heavy season. Entry mats, stair carpets and the first metres of hardwood earn most of the attention in an Altadore clean.",
         ]}
       />
@@ -342,7 +342,7 @@ export default function Altadore() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Altadore Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Dependable cleaning, visit after visit.
+                  The Calgary branch sends reference-checked cleaners to Altadore, and a 24-hour re-clean guarantee backs each visit.
                 </p>
               </div>
             </AnimatedSection>

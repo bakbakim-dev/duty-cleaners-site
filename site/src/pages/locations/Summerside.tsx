@@ -82,16 +82,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Summerside" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Summerside" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Summerside" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Summerside" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around Summerside.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Summerside" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or new build, priced by square footage.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Summerside" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Summerside" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Summerside" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment, before GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Summerside" },
 ];
 
 const whyUsItems = [
@@ -133,7 +133,7 @@ export default function Summerside() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Summerside?",
-      answer: `The full service menu is available here:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `In Summerside, households can book:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning, booked with a clean`
     },
     {
       question: "Do you offer discounts?",
@@ -141,7 +141,7 @@ export default function Summerside() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -163,25 +163,25 @@ export default function Summerside() {
     <>
       <Helmet>
         <title>Summerside, Edmonton House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Summerside, Edmonton. Trusted local cleaners serving south Edmonton families." />
+        <meta name="description" content="Summerside, Edmonton house cleaning for 2000s two-storey homes, where the garage mudroom takes lake sand in July and boot slush in rink season." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Summerside, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/summerside",
   areaServed: "Summerside, Edmonton, AB",
-  description: "Professional house cleaning in Summerside, Edmonton. Trusted local cleaners serving south Edmonton families.",
+  description: "Summerside, Edmonton house cleaning for 2000s two-storey homes, where the garage mudroom takes lake sand in July and boot slush in rink season.",
   geo: { latitude: "53.41764", longitude: "-113.45999" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/summerside/" />
         <meta property="og:title" content="Summerside, Edmonton House Cleaning | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Summerside, Edmonton. Trusted local cleaners serving south Edmonton families." />
+        <meta property="og:description" content="Summerside, Edmonton house cleaning for 2000s two-storey homes, where the garage mudroom takes lake sand in July and boot slush in rink season." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/summerside/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Summerside, Edmonton House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Summerside, Edmonton. Trusted local cleaners serving south Edmonton families." />
+        <meta name="twitter:description" content="Summerside, Edmonton house cleaning for 2000s two-storey homes, where the garage mudroom takes lake sand in July and boot slush in rink season." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -207,7 +207,7 @@ export default function Summerside() {
                   Professional House Cleaning in Summerside
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Your reliable, local cleaning team serving the Summerside community. From lakefront family homes to townhomes near 91 Street — friendly, dependable cleaning all year round.
+                  Summerside's houses are mostly 2000s two-storeys, and nearly all their traffic comes through the garage mudroom: lake sand in summer, skate bags and boot slush in winter.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -235,7 +235,7 @@ export default function Summerside() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
                   src={heroImg}
-                  alt="Professional cleaner inside a Summerside, Edmonton lake community home"
+                  alt="Cleaner in blue overalls mopping the floor of a white kitchen"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   width={896}
                   height={672}
@@ -257,7 +257,7 @@ export default function Summerside() {
                   Cleaning Services for Summerside Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
+                  Standard, deep and move-out cleans are priced flat by home size. A two-storey house, the usual Summerside home, adds a home-type charge that shows on the quote.
                 </p>
               </div>
             </AnimatedSection>
@@ -300,7 +300,7 @@ export default function Summerside() {
                   Why Summerside Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -322,7 +322,7 @@ export default function Summerside() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Summerside Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Located in south Edmonton, we're always just around the corner.
+                  Summerside is built around Edmonton's only residential beach lake. Call the Edmonton office on (780) 913-6565 to book a clean here.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -341,12 +341,12 @@ export default function Summerside() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Summerside</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Edmonton-area neighbourhoods we clean</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    The Edmonton branch cleans in Summerside and in Tamarack. For an address not on the full list, call (780) 913-6565.
                   </p>
                 </div>
-                <CoverageChips areas={["Summerside Lake", "Summerside Community Centre", "Ellerslie Road", "91 Street", "Tamarack", "Charlesworth", "Walker", "Heritage Valley"]} variant="compact" />
+                <CoverageChips areas={["Tamarack"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -361,7 +361,7 @@ export default function Summerside() {
         eyebrow="Local knowledge"
         heading="Summerside and its lake"
         paragraphs={[
-          "Summerside is built around Edmonton's only residential beach lake, and lake life comes indoors all summer — sand in entry mats and stair carpets from July beach days, wet-towel humidity in mudrooms and baths, and sunscreen films on door hardware that ordinary dusting misses. A beach-season clean here has its own checklist.",
+          "Summerside is built around Edmonton's only residential beach lake, and lake life comes indoors all summer — sand in entry mats and stair carpets from July beach days, wet-towel humidity in mudrooms and baths, and sunscreen films on door hardware that ordinary dusting misses.",
           "The housing is 2000s two-storey stock with garage-entry mudrooms carrying nearly all traffic, and great-room ceilings holding dust at height. Winters flip the lake's role — rink season brings skate bags and boot slush through the same mudroom that handled sand in August.",
         ]}
       />

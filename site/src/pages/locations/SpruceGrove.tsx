@@ -34,7 +34,15 @@ const HOME_TYPE = {
 };
 const EDMONTON_LISTING = GOOGLE_LISTINGS.edmonton;
 const PAGE_TITLE = `House Cleaning Spruce Grove from ${STANDARD_FROM} | Duty Cleaners`;
-const META_DESCRIPTION = `House cleaning in Spruce Grove from ${STANDARD_FROM}, 11 km west of Edmonton. Standard, deep and move-out cleans, flat by home size, paid after the visit.`;
+const META_DESCRIPTION = `Spruce Grove house cleaning starts at ${STANDARD_FROM} for a one-bedroom apartment or condo before GST, plus a ${TRAVEL_FEE} travel fee and any pet or home-type charge.`;
+
+// A worked quote built from the same rows the price table uses: a four-bedroom
+// two-storey house on a move-in clean, no pets, outside city limits.
+const dollars = (price: string) => Number(price.replace(/[^0-9.]/g, ""));
+const EXAMPLE_TIER = MOVE[3];
+const EXAMPLE_PRICE = formatPrice(
+  Math.round((dollars(EXAMPLE_TIER.price) + BK_PRICE_OVERRIDES[90].price + (travelFee("standard") ?? 0)) * 100) / 100,
+);
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -109,26 +117,22 @@ const WhyUsCard = ({
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Spruce Grove" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "A full top-to-bottom reset — corners, baseboards, and the surfaces regular visits skip.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Spruce Grove" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Inspection-grade detail for moving out or settling in.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Spruce Grove" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after renovations and handovers.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Spruce Grove" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Spruce Grove" },
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard clean booked to repeat, from ${STANDARD_FROM}. Weekly takes 20% off from the second visit, bi-weekly 15% and every four weeks 10%.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Spruce Grove" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Spruce Grove" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Priced flat by home size, for moving out of a Spruce Grove home or into one.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Spruce Grove" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Priced by square footage, for the drywall dust a renovation or a new build leaves.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Spruce Grove" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Spot cleaning or a full wash, added to a clean and priced by home size.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Spruce Grove" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: "The standard clean booked to repeat. Weekly takes 20% off from the second visit, bi-weekly 15% and every four weeks 10%.", to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Spruce Grove" },
 ];
 
 const whyUsItems = [
   { icon: Shield, title: "Reference-Checked, Then Rated by You", description: "Every cleaner is reference-checked before their first job, then rated by the customer after every visit. Those ratings decide who keeps cleaning for us." },
   { icon: Star, title: RATING_CLAIM, description: `The Edmonton listing carries ${CITY_PROOF.edmonton.googleReviewCount} of them, and a Spruce Grove clean is rated on that listing.`, link: { href: EDMONTON_LISTING.reviewsUrl, text: "Check it on Google" } },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day openings most weeks." },
-  { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
-  { icon: Users, title: "Experienced Team", description: "Professional cleaners who work to the Duty Cleaners checklist." },
-  { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
+  { icon: Leaf, title: "All Supplies Brought For You", description: "The team brings all supplies and equipment. Leave the water and power on until the clean is done." },
+  { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
-const nearbyAreas = [
-  "Stony Plain", "Parkland County", "Acheson", "Entwistle",
-  "Seba Beach", "Wabamun", "Edmonton"
-];
+// Only names on the Edmonton branch's list in data/city-locations.ts.
+const nearbyAreas = ["Stony Plain"];
 
 export default function SpruceGrove() {
   const faqs: { question: string; answer: string; link?: { to: string; text: string } }[] = [
@@ -138,24 +142,32 @@ export default function SpruceGrove() {
     },
     {
       question: "What does a standard clean cost in Spruce Grove?",
-      answer: `${STANDARD_FROM} for one bedroom, up to ${STANDARD_TO} for five or more, before the travel fee and 5% GST. The deep clean package on top brings the range to ${DEEP_FROM} to ${DEEP_TO}. Weekly, bi-weekly and every-four-weeks schedules are discounted 20%, 15% and 10% from the second clean on.`
+      answer: `A standard clean in Spruce Grove is ${STANDARD_FROM} for a one-bedroom apartment or condo, up to ${STANDARD_TO} for five or more bedrooms, before the travel fee and 5% GST; a house and a pet add their own charges. The deep clean package on top brings the range to ${DEEP_FROM} to ${DEEP_TO}. Weekly, bi-weekly and every-four-weeks schedules are discounted 20%, 15% and 10%. Discounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
-      question: "Do you come out to Spruce Grove same-day?",
-      answer: `When there is room in the day. Same-day and next-day openings come up most weeks; call ${CITY_PROOF.edmonton.phone} to check. The team arrives inside a window of ${ARRIVAL_WINDOWS[0]}, ${ARRIVAL_WINDOWS[1]} or ${ARRIVAL_WINDOWS[2]}, and you do not need to be home if there is a lockbox or a code.`
+      question: "How soon can you clean in Spruce Grove?",
+      answer: `Same-day and next-day slots depend on the schedule; call ${CITY_PROOF.edmonton.phone} to check. The team arrives inside a window of ${ARRIVAL_WINDOWS[0]}, ${ARRIVAL_WINDOWS[1]} or ${ARRIVAL_WINDOWS[2]}, and you do not need to be home if there is a key, a lockbox code or smart-lock access.`
     },
     {
       question: "Do you do move-out cleaning in Spruce Grove?",
-      answer: `Yes. Move-in and move-out cleans run ${MOVE_FROM} to ${MOVE_TO} by home size plus the travel fee, with oven, fridge and cabinet interiors included rather than added on. Book it once the rooms are clear; a cupboard with plates still in it cannot be cleaned inside.`,
+      answer: `Yes. Move-in and move-out cleans run ${MOVE_FROM} to ${MOVE_TO} by home size for an apartment or condo, before GST and the travel fee, with oven, fridge and cabinet interiors included in the price. A house or a pet adds its usual charge. Book it once the rooms are clear.`,
       link: { to: "/move-out-cleaning-edmonton/", text: "Move-out cleaning, Edmonton and Spruce Grove" }
     },
     {
       question: "Do you bring the supplies?",
-      answer: `Yes. Products, cloths, vacuum and mop all arrive with the team. Eco-friendly products cost ${POLICY.ecoProductsFee} more: ${POLICY.ecoProductsHowToRequest}. Running water is required, and vacuuming needs power.`
+      answer: `Yes. The team brings all supplies and equipment. Eco-friendly products cost ${POLICY.ecoProductsFee} more: ${POLICY.ecoProductsHowToRequest}. Running water is required, and vacuuming needs power.`
     },
     {
       question: "How long does a first clean in Spruce Grove take?",
       answer: `We work to a checklist, not a clock. The crew stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
+    },
+    {
+      question: "What happens if something is missed?",
+      answer: `Tell us within 24 hours and the team comes back to your Spruce Grove home to re-clean what was missed, at no charge. Photos help but are not required.`
+    },
+    {
+      question: "Do I need to tidy before the team comes to Spruce Grove?",
+      answer: `No. You do not need to clean before the team arrives at a Spruce Grove home. Clear counters and floors get cleaned and cluttered ones get worked around, and decluttering or organising is a separate hourly add-on.`
     }
   ];
   const faqJsonLd = {
@@ -206,7 +218,7 @@ export default function SpruceGrove() {
                 Professional House Cleaning in Spruce Grove
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto lg:mx-0 leading-relaxed">
-                Standard cleans in Spruce Grove from {STANDARD_FROM} and deep cleans from {DEEP_FROM}, flat by home size and rated {RATING_CLAIM}. Same-day and next-day openings most weeks.
+                Standard cleans in Spruce Grove start at {STANDARD_FROM} for a one-bedroom apartment or condo, before GST, and every home-cleaning booking here carries a {TRAVEL_FEE} travel fee; a house or a pet raises the figure. The Edmonton branch that takes Spruce Grove bookings is rated {RATING_CLAIM}, from {CITY_PROOF.edmonton.googleReviewCount} reviews on its listing.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -221,8 +233,8 @@ export default function SpruceGrove() {
               <div className="flex flex-wrap justify-center lg:justify-start gap-6">
                 {[
                   { icon: CheckCircle2, text: "Pay After Your Clean" },
-                  { icon: CalendarCheck, text: "Flexible Scheduling Available" },
-                  { icon: Award, text: "100% Satisfaction Guarantee" },
+                  { icon: CalendarCheck, text: "Open 7 Days a Week" },
+                  { icon: Award, text: "24-Hour Re-Clean Guarantee" },
                 ].map((badge, i) => (
                   <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                     <badge.icon className="w-4 h-4 text-accent" />
@@ -234,7 +246,7 @@ export default function SpruceGrove() {
             <div className="flex-shrink-0 w-full lg:w-[500px]">
               <img width={1024} height={768}
                 src={spruceGroveFamilyHome}
-                alt="A family in a clean living room in Spruce Grove, Alberta"
+                alt="A family of four on a sofa in a bright, open living room"
                 className="rounded-2xl shadow-2xl w-full h-auto object-cover"
               loading="eager"
                   {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
@@ -243,31 +255,27 @@ export default function SpruceGrove() {
         </div>
       </section>
 
-      {/* About the Neighbourhood */}
+      {/* Worked price example. Replaces the landmark tour and the "Around
+          Spruce Grove" history and attractions box, none of it in the local note. */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="max-w-4xl mx-auto">
-              <span className="text-primary text-sm font-semibold tracking-wider uppercase">About the Neighbourhood</span>
+              <span className="text-primary text-sm font-semibold tracking-wider uppercase">Worked example</span>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                House cleaning in Spruce Grove
+                A Spruce Grove move-in clean, worked through
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>
-                  Spruce Grove is 11 km west of Edmonton, with Stony Plain next door and Parkland County on every other side. We clean homes across the city, from the streets around{" "}
-                  <a href="https://www.google.com/maps/place/Jubilee+Park,+Spruce+Grove,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">Jubilee Park</a>{" "}
-                  and the{" "}
-                  <a href="https://www.google.com/maps/place/Spruce+Grove+Grain+Elevator+Museum/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">Grain Elevator Museum</a>{" "}
-                  to the homes out by{" "}
-                  <a href="https://www.google.com/maps/place/The+Links+at+Spruce+Grove/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">The Links at Spruce Grove</a>.
+                  Picture a four-bedroom two-storey house in Spruce Grove with three and a half bathrooms, booked for a move-in clean before the boxes arrive. The move-in rate for that size is {EXAMPLE_TIER.price} as an apartment or condo, the travel fee is {TRAVEL_FEE} and the two-storey surcharge is {HOME_TYPE.twoStorey}, which makes {EXAMPLE_PRICE} before 5% GST. With no pets in the empty house there is no pet charge; a home with pets pays {PET_FEE} a visit.
                 </p>
                 <p>
-                  The crews and the checklist are the ones behind our{" "}
-                  <Link to="/" className="text-primary underline underline-offset-2 font-medium">Edmonton house cleaning service</Link>. Only the travel fee changes for a Spruce Grove address.
+                  The quote is set before the team arrives and does not grow because the clean takes longer than expected. It goes up for what is booked: more bathrooms, a larger home type, a pet or an add-on such as interior windows. If a house turns out to need substantially more work than was described, such as heavy build-up or far more glass or cabinetry than stated, the team explains what it found and the options before continuing.
                 </p>
                 <p>
-                  Hosts in Spruce Grove letting a suite can book turnovers as{" "}
-                  <Link to="/edmonton/airbnb-cleaning/" className="text-primary underline underline-offset-2 font-medium">Airbnb cleaning in Edmonton</Link>, with the same travel fee applied.
+                  Spruce Grove is outside Edmonton city limits, which is why the travel fee applies; post-construction carries {PC_TRAVEL_FEE} instead. Inside the city there is no trip fee, and everything else on a Spruce Grove quote matches the{" "}
+                  <Link to="/" className="text-primary underline underline-offset-2 font-medium">Edmonton house cleaning service</Link>. Hosts in Spruce Grove letting a suite book turnovers as{" "}
+                  <Link to="/edmonton/airbnb-cleaning/" className="text-primary underline underline-offset-2 font-medium">Airbnb cleaning in Edmonton</Link>, priced by the hour.
                 </p>
               </div>
             </div>
@@ -275,17 +283,22 @@ export default function SpruceGrove() {
         </div>
       </section>
 
-      {/* Things To Do */}
+      {/* Move-out cleaning in the town */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="max-w-4xl mx-auto">
-              <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Life</span>
+              <span className="text-primary text-sm font-semibold tracking-wider uppercase">Moving</span>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                Around Spruce Grove
+                Move-out cleaning in Spruce Grove
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
-                <p>Spruce Grove dates from 1891, when French and Scottish families settled here. The Spruce Grove Grain Elevator Museum is the last wooden grain elevator in the area. Jubilee Park has walking trails and a pond, The Links at Spruce Grove is the golf course, and the Spruce Grove Art Gallery shows local work.</p>
+                <p>The same move-in or move-out clean works in the other direction for anyone leaving a Spruce Grove home. It covers the standard rooms and goes inside the oven, fridge and microwave, and inside every cabinet, drawer and closet, priced flat by home size with the Spruce Grove travel fee on top.</p>
+                <p>For tenants, Alberta's Residential Tenancies Act sets two things: the landlord completes a move-out inspection report with the tenant, and the security deposit must be returned within 10 days after the tenant moves out. The landlord decides what happens to the deposit, and we do not promise it comes back.</p>
+                <p>
+                  Empty rooms make the best move-out clean, because a cupboard with plates still in it cannot be cleaned inside. No one needs to be home: most customers leave a key, a lockbox code or smart-lock access, and the team locks up. Anything beyond a 3-step ladder is outside the checklist, and so are exterior windows and garages. The checklist is shared with{" "}
+                  <Link to="/move-out-cleaning-edmonton/" className="text-primary underline underline-offset-2 font-medium">move-out cleaning across Edmonton</Link>.
+                </p>
               </div>
             </div>
           </AnimatedSection>
@@ -302,7 +315,7 @@ export default function SpruceGrove() {
                 Cleaning Services for Spruce Grove Homes
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                Standard, deep, move-out, post-construction and wall washing, priced flat by home size. The page listing{" "}
+                Standard, deep and move-out cleans are flat by home size; post-construction is priced by square footage, and wall washing is booked alongside a clean. The page listing{" "}
                 <Link to="/services/" className="text-primary underline underline-offset-2 font-medium">all Edmonton cleaning services and prices</Link>{" "}
                 has the add-ons and the checklist for each.
               </p>
@@ -336,7 +349,7 @@ export default function SpruceGrove() {
             </div>
           </AnimatedSection>
           <AnimatedSection>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
               {whyUsItems.map((item, i) => (
                 <WhyUsCard key={i} {...item} />
               ))}
@@ -351,29 +364,21 @@ export default function SpruceGrove() {
           <AnimatedSection>
             <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
             <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
-              Cleaning services in Spruce Grove, Stony Plain and Parkland County
+              Cleaning services in Spruce Grove, Stony Plain and the other Edmonton-area towns
             </h2>
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Near Spruce Grove, the same Edmonton office runs{" "}
-              <Link to="/cleaning-services-st-albert/" className="text-primary underline underline-offset-2 font-medium">cleaning services in St. Albert</Link>{" "}
-              and{" "}
-              <Link to="/cleaning-services-morinville/" className="text-primary underline underline-offset-2 font-medium">a Morinville cleaning company</Link>{" "}
-              to the north,{" "}
+              The same Edmonton office runs{" "}
+              <Link to="/cleaning-services-st-albert/" className="text-primary underline underline-offset-2 font-medium">cleaning services in St. Albert</Link>,{" "}
+              <Link to="/cleaning-services-morinville/" className="text-primary underline underline-offset-2 font-medium">a Morinville cleaning company</Link>,{" "}
               <Link to="/cleaning-services-sherwood-park/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Sherwood Park</Link>{" "}
-              on the far side of the city and{" "}
+              and{" "}
               <Link to="/cleaning-services-leduc/" className="text-primary underline underline-offset-2 font-medium">Leduc house cleaners</Link>{" "}
-              to the south. Like Spruce Grove, each is outside Edmonton city limits and carries the {TRAVEL_FEE} travel fee.
+              at the same flat rates as Spruce Grove, and Stony Plain is on its list too. Like Spruce Grove, each is outside Edmonton city limits and carries the {TRAVEL_FEE} travel fee.
             </p>
             <CoverageChips areas={nearbyAreas} />
             <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
               View All Service Areas →
             </Link>
-            <p className="mt-6 text-sm text-muted-foreground">
-              Run a business in Spruce Grove? We also handle{" "}
-              <Link to="/commercial-cleaning/" className="text-primary underline underline-offset-2 font-medium">
-                commercial and office cleaning across the Edmonton region
-              </Link>.
-            </p>
 
           </AnimatedSection>
         </div>
@@ -384,7 +389,7 @@ export default function SpruceGrove() {
         heading="What Parkland County blows in"
         paragraphs={[
           "Parkland County wraps the city on every side, and Stony Plain is its only urban neighbour. North and south of the limits that county land is prime cropland, worked at both ends of the season: seeding in May, combines from late August. Both put fine mineral soil in the air, and it settles along sills, in screen mesh and on top of door frames. Grit like that scratches if you wet it first, so it comes off dry, vacuum then cloth.",
-          "Between the 2016 and 2021 censuses the count went from 34,066 residents to 37,645, and a jump that size arrives as new houses. Freshly finished homes hold drywall fines in ductwork and return-air grilles long after possession day, so on a first clean the vents come before any general surface. Do the room first and the furnace puts the whole lot back through it.",
+          "The 2021 census found more people here than the 2016 count did, and that kind of growth arrives in Spruce Grove as new houses. Freshly finished homes hold drywall fines in return-air grilles long after possession day, so a first deep clean wipes the vent covers before any general surface. Do the room first and the furnace puts the whole lot back through it.",
         ]}
       />
 

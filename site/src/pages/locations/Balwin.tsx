@@ -82,18 +82,21 @@ const OFF_WEEKLY = pctOff(3);
 const OFF_BIWEEKLY = pctOff(4);
 const OFF_FOUR_WEEKLY = pctOff(2);
 
+/** Shared by the visible FAQ and its FAQPage schema, so the two cannot drift. */
+const COST_ANSWER = `A standard clean in Balwin starts at ${RECURRING_FROM} before GST for a one-bedroom, one-bathroom apartment or condo, and a deep or move-out clean costs more. A bungalow, basement suite, townhouse or two-storey house adds a home-type surcharge, a home with pets adds a compulsory pet charge, and add-ons such as inside the oven or fridge are extra. The instant price shows every charge before you book, and no trip fee applies inside Edmonton city limits.`;
+
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Balwin" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Balwin" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fan blades within reach, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Balwin" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Balwin" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared properly after renos and handovers.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Balwin" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Renovation dust in a Balwin house or suite, priced by square footage.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Balwin" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Balwin" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Balwin" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment or condo, before GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Balwin" },
 ];
 
 const whyUsItems = [
@@ -133,7 +136,7 @@ export default function Balwin() {
   name: "Duty Cleaners – Balwin, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/balwin-edmonton",
-  description: "Professional house cleaning in Balwin, Edmonton. Serving families near Zoie Gardens Park, Princeton School & more. Local cleaners you can trust.",
+  description: "House cleaning in Balwin, Edmonton, for detached houses, duplexes, row housing and the suites in low-rise rental blocks.",
 });
   const faqJsonLd = {
     "@context": "https://schema.org",
@@ -142,17 +145,17 @@ export default function Balwin() {
       {
         "@type": "Question",
         name: "How much does cleaning cost in Balwin?",
-        acceptedAnswer: { "@type": "Answer", text: "Cleaning costs depend on the type and size of the home, the condition it's in, the type of service requested (such as standard, deep, or move-out cleaning), and any additional services added like interior window cleaning, baseboards, or appliances." },
+        acceptedAnswer: { "@type": "Answer", text: COST_ANSWER },
       },
       {
         "@type": "Question",
         name: "Do I need to be home during the cleaning?",
-        acceptedAnswer: { "@type": "Answer", text: "You don't need to be home during the cleaning. You can provide access by sharing a code, leaving a key in a lockbox, or giving us a garage code. If you'd like to do a walkthrough, we can call you about 30 minutes before they finish." },
+        acceptedAnswer: { "@type": "Answer", text: "No. Most customers leave a key, a lockbox code or smart-lock access, and the team locks up when the clean is done. In a Balwin walk-up, tell us how the team gets through the building's front door as well as the suite door." },
       },
       {
         "@type": "Question",
         name: "How are your cleaners vetted?",
-        acceptedAnswer: { "@type": "Answer", text: "Yes. Every cleaner is reference-checked before their first job, and every visit is rated by the customer afterwards." },
+        acceptedAnswer: { "@type": "Answer", text: "Each cleaner's references are checked before a first job, and the customer rates every visit. Those ratings decide who we keep sending." },
       },
     ],
   };
@@ -161,17 +164,17 @@ export default function Balwin() {
     <>
       <Helmet>
         <title>House Cleaners in Balwin, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Balwin, Edmonton. Serving families near Zoie Gardens Park, Princeton School & more. Local cleaners you can trust." />
+        <meta name="description" content="Row housing, duplexes and walk-up rental suites sit beside detached houses in Balwin, Edmonton, a neighbourhood built out by the early 1980s." />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/balwin-edmonton/" />
         <meta property="og:title" content="House Cleaners in Balwin, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Balwin, Edmonton. Serving families near Zoie Gardens Park, Princeton School & more. Local cleaners you can trust." />
+        <meta property="og:description" content="Row housing, duplexes and walk-up rental suites sit beside detached houses in Balwin, Edmonton, a neighbourhood built out by the early 1980s." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/balwin-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Balwin, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Balwin, Edmonton. Serving families near Zoie Gardens Park, Princeton School & more. Local cleaners you can trust." />
+        <meta name="twitter:description" content="Row housing, duplexes and walk-up rental suites sit beside detached houses in Balwin, Edmonton, a neighbourhood built out by the early 1980s." />
       </Helmet>
 
       <div className="min-h-screen">
@@ -195,7 +198,7 @@ export default function Balwin() {
                 Professional House Cleaning in Balwin
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Your reliable, local cleaning team serving the Balwin community. From family homes near Zoie Gardens Park to residences by Princeton School — enjoy dependable cleaning built on trust and genuine care.
+                In Balwin, detached houses share the streets with duplexes, row housing and low-rise rental blocks, all built out by the early 1980s. A house and a walk-up suite are each priced flat by home size, before GST.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -234,7 +237,7 @@ export default function Balwin() {
                   Cleaning Services for Balwin Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Everything from weekly upkeep to full move-out cleans.
+                  Balwin homes can book weekly upkeep for a house or a move-out clean when a suite is handed back.
                 </p>
               </div>
             </AnimatedSection>
@@ -277,7 +280,7 @@ export default function Balwin() {
                   Why Balwin Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -298,7 +301,7 @@ export default function Balwin() {
           <div className="container mx-auto px-4">
             <AnimatedSection>
               <div className="text-center mb-10">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Location</span>
+                <span className="text-primary text-sm font-semibold tracking-wider uppercase">Map</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Balwin Community</h2>
               </div>
               <div className="max-w-4xl mx-auto rounded-xl overflow-hidden shadow-lg border border-border">
@@ -324,12 +327,12 @@ export default function Balwin() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Balwin</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Edmonton-area neighbourhoods we clean</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    Our Edmonton branch also cleans these four neighbourhoods, at the same flat rates by home size as Balwin.
                   </p>
                 </div>
-                <CoverageChips areas={["Zoie Gardens Park", "Princeton School", "132 Avenue", "Northgate Centre", "Belvedere", "Beacon Heights", "Spruce Avenue", "Eastwood"]} variant="compact" />
+                <CoverageChips areas={["Belvedere", "Beacon Heights", "Spruce Avenue", "Eastwood"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -344,7 +347,7 @@ export default function Balwin() {
         eyebrow="Neighbourhood notes"
         heading="Two kinds of front door"
         paragraphs={[
-          "Detached houses are only part of the picture in Balwin — low-rise rental blocks, duplexes and row housing make up a real share of the rest, and the residential build-out was finished by the early 1980s. That changes what the schedule looks like. So the week's schedule mixes recurring visits with suites handed back on a possession date in the same walk-up, sometimes on the same stairwell.",
+          "Detached houses are one part of the picture in Balwin — low-rise rental blocks, duplexes and row housing make up a sizeable share of the rest, and the residential build-out was finished by the early 1980s.",
           "The south side ends at 127 Avenue, with the rail and industrial land of the Yellowhead corridor beyond it, so the quiet interior streets and the exposed edge are a few blocks apart. Winter sand off an arterial travels on tires and boots more than on wind. In a walk-up it lands on the shared stairs and the landing first, which is why entrance mats in these buildings earn their keep.",
         ]}
       />
@@ -366,19 +369,19 @@ export default function Balwin() {
                   <AccordionItem value="item-1">
                     <AccordionTrigger className="text-left">How much does cleaning cost in Balwin?</AccordionTrigger>
                     <AccordionContent>
-                      Cleaning costs depend on the type and size of the home, the condition it's in, the type of service requested (such as standard, deep, or move-out cleaning), and any additional services added like interior window cleaning, baseboards, or appliances.
+                      {COST_ANSWER}
                     </AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="item-2">
                     <AccordionTrigger className="text-left">Do I need to be home during the cleaning?</AccordionTrigger>
                     <AccordionContent>
-                      You don't need to be home during the cleaning. You can provide access by sharing a code, leaving a key in a lockbox, or giving us a garage code. If you'd like to do a walkthrough, we can call you about 30 minutes before they finish.
+                      No. Most customers leave a key, a lockbox code or smart-lock access, and the team locks up when the clean is done. In a Balwin walk-up, tell us how the team gets through the building's front door as well as the suite door.
                     </AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="item-3">
                     <AccordionTrigger className="text-left">How are your cleaners vetted?</AccordionTrigger>
                     <AccordionContent>
-                      Yes. Every cleaner is reference-checked before their first job, and every visit is rated by the customer afterwards.
+                      Each cleaner's references are checked before a first job, and the customer rates every visit. Those ratings decide who we keep sending.
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>

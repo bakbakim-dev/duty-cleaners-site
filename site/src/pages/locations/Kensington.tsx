@@ -1,3 +1,4 @@
+import { sitePriceRange } from "@/data/pricing";
 import { getListing } from "@/lib/google-listings";
 import {
   CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import { useEffect } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"; import {   Phone, CheckCircle2, Star, Shield, Clock, Award, Home, Sparkles, Truck, SprayCan, Bath, Building2, Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail, PaintRoller
@@ -59,9 +60,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Kensington" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Kensington" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Kensington" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Kensington" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or remodels in Kensington.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Kensington" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris cleared after a Kensington renovation, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Kensington" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Kensington" },
 ];
 
@@ -93,21 +94,21 @@ const whyUsItems = [
   { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
-const nearbyAreas = ["Hillhurst", "Sunnyside", "West Hillhurst", "Briar Hill", "St. Andrews Heights", "Parkdale", "Point McKay", "University Heights"];
+const nearbyAreas = ["Hillhurst", "Sunnyside"];
 
 const faqs = [
   { question: "How long does an initial cleaning take?", answer: "We work to a checklist, not a clock. Your cleaners stay until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
   { question: "What cleaning services does Duty Cleaners offer in Kensington?", answer: "We offer:\n\n• Standard Cleaning & Deep Cleaning Packages\n• Move-In And Move-Out Cleaning Service\n• Post Construction Cleaning\n• Wall Washing and Wall Cleaning" },
-  { question: "Do you offer discounts?", answer: "We offer recurring discounts for our Standard and Deep Cleaning Packages.\n\nIf you avail of our recurring discount, on your next cleaning:\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off" },
-  { question: "What's included in a deep cleaning?", answer: "Deep cleaning adds the following to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned" },
-  { question: "What happens if something is missed?", answer: "Not fully satisfied? Let us know within 24 hours and we'll come back and put it right at no charge." },
+  { question: "Do you offer discounts?", answer: "Recurring standard cleans are discounted from the second visit on:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nThe first clean is charged at the one-time rate." },
+  { question: "What's included in a deep cleaning?", answer: "Deep cleaning adds the following to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped" },
+  { question: "What happens if something is missed?", answer: "Tell us within 24 hours and the team comes back to your Kensington home to re-clean what was missed, at no charge. Photos help but are not required." },
 ];
 
 const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Kensington Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/kensington",
-  priceRange: "$$",
+  priceRange: sitePriceRange(),
   geo: { latitude: "51.0544", longitude: "-114.0932" },
 });
 
@@ -120,12 +121,12 @@ export default function Kensington() {
     <>
       <Helmet>
         <title>House Cleaners in Kensington, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Book house cleaning in Kensington, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="description" content="Kensington, Calgary house cleaning for pre-war walk-ups and character homes, where radiators, original casings and fir floors are cleaned by hand." />
         <meta property="og:title" content="House Cleaners in Kensington, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Kensington, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Book house cleaning in Kensington, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
-        <meta property="og:description" content="Book house cleaning in Kensington, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="twitter:description" content="Kensington, Calgary house cleaning for pre-war walk-ups and character homes, where radiators, original casings and fir floors are cleaned by hand." />
+        <meta property="og:description" content="Kensington, Calgary house cleaning for pre-war walk-ups and character homes, where radiators, original casings and fir floors are cleaned by hand." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/kensington/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/kensington/" />
@@ -167,7 +168,7 @@ export default function Kensington() {
                   Professional House Cleaning in Kensington
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Trusted house cleaning services for Calgary's most vibrant village community. Customer-rated cleaners loved by local families — from Hillhurst to Sunnyside.
+                  Kensington's walk-ups and character homes line the Bow's north bank, with radiators and original casings to clean by hand. Our Calgary branch prices each clean flat by home size, so a slow heritage room does not raise the bill.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -195,7 +196,7 @@ export default function Kensington() {
               <div className="flex-shrink-0 w-full lg:w-[500px]">
                 <img
                   src={calgaryLivingRoom}
-                  alt="A tidy, freshly cleaned Calgary living room"
+                  alt="Living room with a beige sofa, a fireplace, hardwood floors and tall white-framed windows"
                   width={800}
                   height={800}
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
@@ -241,7 +242,7 @@ export default function Kensington() {
                   Nearby Neighbourhoods We Serve
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Kensington and the communities around it.{" "}
+                  Hillhurst and Sunnyside are on the Calgary branch's list too, inside city limits with no trip fee.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -257,7 +258,7 @@ export default function Kensington() {
         heading="Kensington's walk-everywhere blocks"
         paragraphs={[
           "Calgary's Kensington is pre-war walk-up and character-home territory along the Bow's north bank, and its interiors are dense with hand-cleaned detail: original casings, radiators, and fir floors that show every footprint. The condo conversions above the shops add corridor dust and balcony-track grit to the mix, and small heritage rooms clean slower than their footprints suggest.",
-          "Tenth Street and Kensington Road run one of the city's busiest cafe strips straight through the district, and the C-Train station keeps foot traffic constant from morning to last call. Entries and front windows near the strip carry sidewalk grit year-round; a block uphill toward Riley Park, the pace and the dust both drop off noticeably.",
+          "Tenth Street and Kensington Road run a strip of shops straight through the district, and the C-Train station keeps foot traffic constant through the day. Entries and front windows near the strip carry sidewalk grit year-round; a block uphill toward Riley Park, the pace and the dust both drop off noticeably.",
         ]}
       />
 
@@ -275,7 +276,7 @@ export default function Kensington() {
                   Cleaning Services for Kensington Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Kensington homes get every service they need.
+                  Kensington condo conversions and character homes are priced the same way for every service except post-construction cleaning: by home size and home type, shown in the instant price.
                 </p>
               </div>
             </AnimatedSection>
@@ -317,7 +318,7 @@ export default function Kensington() {
                   Why Kensington Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>

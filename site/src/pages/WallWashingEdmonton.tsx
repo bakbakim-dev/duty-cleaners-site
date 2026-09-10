@@ -94,12 +94,12 @@ const edmontonLocations = [
 ];
 
 const wallProblems = [
-  { icon: Wind, title: "Furnace dust film", description: "The grey deposit above every register and along the ceiling line that a duster spreads rather than removes." },
+  { icon: Wind, title: "Furnace dust film", description: "The grey deposit above every register and along the ceiling line that a duster only spreads." },
   { icon: Utensils, title: "Cooking film", description: "The sticky layer that spreads past the backsplash onto the surrounding wall and holds whatever lands on it." },
   { icon: HandMetal, title: "Handprints & scuffs", description: "Around switches, along hallways and up the stairwell, where hands and bags touch the wall." },
-  { icon: Droplets, title: "Salt & grit at the entry", description: "Splash marks and grit to about knee height beside the door and along the stairwell." },
+  { icon: Droplets, title: "Salt & grit at the entry", description: "Grit and salt marks on the wall beside the door and along the stairwell." },
   { icon: Cigarette, title: "Nicotine & smoke residue", description: "Yellow tar film that dulls the paint. It fades with washing; full removal is not promised." },
-  { icon: Sparkles, title: "Light mould & mildew spots", description: "Surface treatment for minor spots on bathroom and humid-area walls." },
+  { icon: Sparkles, title: "Light surface mildew", description: "Wiped off painted bathroom walls where it is safe to. Mould that has gone into the drywall is remediation work, which the team does not do." },
 ];
 
 const includedItems = [
@@ -111,20 +111,25 @@ const includedItems = [
   { icon: Shield, title: "Paint-ready wall cleaning", description: "Dust, residue and film taken off so primer and paint go onto a clean wall." },
 ];
 
+/* The last step used to promise a walkthrough "with you before we leave".
+   Most customers are not home (content prompt T5), so it now says what is
+   true for all of them. */
 const steps = [
-  { icon: ClipboardCheck, title: "Request a quote", description: "Tell us about your home, rooms and the wall condition you'd like cleaned." },
+  { icon: ClipboardCheck, title: "Tick it on the booking form", description: "Choose the clean first, then add spot cleaning or the full wash for your home size. The price shows before you book." },
   { icon: Search, title: "We assess the walls", description: "On arrival the team checks the paint finish in each room. Very flat or delicate finishes get a gentler spot-clean." },
   { icon: Brush, title: "We wash the walls", description: "By hand, top to bottom, with products suited to painted surfaces. Marks are worked on first, then the whole wall." },
-  { icon: ThumbsUp, title: "Final walkthrough", description: "We walk the rooms with you before we leave. Anything missed and reported within 24 hours is re-cleaned free." },
+  { icon: ThumbsUp, title: "Locked up, then paid", description: "You do not need to be home: most customers leave a key, a lockbox code or smart-lock access, and the team locks up. The card is charged once the clean is complete." },
 ];
 
 const whyUs = [
   { icon: Sparkles, title: "What comes off", description: "Cooking film, nicotine, handprints, scuffs and the grey furnace-dust film." },
   { icon: Shield, title: "What stays", description: "The paint finish. Very flat or delicate paint limits how hard a mark can be worked, and some stains only fade." },
   { icon: Home, title: "When to book it", description: "Before painting, after a tenant moves out, or with a move-out clean." },
-  { icon: Droplets, title: "Safe interior wall methods", description: "Products and techniques suited to painted surfaces." },
+  { icon: Droplets, title: "What the team leaves alone", description: "Wallpaper, bare drywall and unpainted wood are not washed, and nothing is reached from higher than a 3-step ladder." },
   { icon: ThumbsUp, title: `${POLICY.guaranteeWindowHours}-hour re-clean`, description: `Tell us within ${POLICY.guaranteeWindowHours} hours about a wall or a mark we missed and we come back to it at no charge.` },
-  { icon: Star, title: "Rated by Edmonton customers", description: `${CITY_PROOF.edmonton.googleRating} on Google across ${CITY_PROOF.edmonton.googleReviewCount} Edmonton reviews.` },
+  /* This card repeated the rating the hero badge and the reviews heading
+     already give, a third time. It now carries R2 from the content prompt. */
+  { icon: Star, title: "Rated after every visit", description: "Every cleaner is reference-checked before a first job and rated by the customer after each visit, and the ratings decide who we keep sending." },
 ];
 
 /*
@@ -137,12 +142,16 @@ const whyUs = [
   off, which fade, and what the crew will not touch.
 */
 const faqs = [
-  { q: "Can all wall stains be removed?", a: "Some come off, some only lighten. The furnace-dust film, cooking film, handprints and scuffs wash off. Nicotine lightens and rarely leaves altogether. Ink, crayon and a mark that has sat on flat paint for years often leave a ghost, because the pigment is in the paint rather than on it. The team looks at the finish before it starts and tells you which kind you have, rather than finding out at the end." },
-  { q: "Do you clean all types of painted walls?", a: "Painted drywall, yes, and the finish decides the method. Satin and semi-gloss take a proper wash. A flat or matte finish polishes to a shine wherever it is rubbed hard, so a mark on one of those is worked gently and left faint instead of being made shiny. Wallpaper, bare drywall and unpainted wood are not washed at all." },
-  { q: "Do you remove mould from walls?", a: "Light surface mildew on a painted wall, yes — the spots that come up in a bathroom after a winter of shut windows. Mould that has gone into the drywall or behind it, no. Washing the face of that hides it for a fortnight and fixes nothing, so if the crew finds it they stop, tell you, and leave it for a remediation contractor." },
+  { q: "Can all wall stains be removed?", a: "Some come off, some only lighten. The furnace-dust film, cooking film, handprints and scuffs wash off. Nicotine lightens and rarely leaves altogether. Ink, crayon and a mark that has sat on flat paint for years often leave a ghost, because the pigment has gone into the paint. The team looks at the finish before it starts and tells you which kind you have." },
+  { q: "Do you clean all types of painted walls?", a: "Painted drywall, yes, and the finish decides the method. Satin and semi-gloss take a proper wash. A flat or matte finish polishes to a shine wherever it is rubbed hard, so a mark on one of those is worked gently and left faint. Wallpaper, bare drywall and unpainted wood are not washed at all." },
+  { q: "Do you remove mould from walls?", a: "Light surface mildew on a painted wall, yes — the spots that come up in a bathroom after a winter of shut windows. Mould that has gone into the drywall or behind it, no. Washing the face of that hides it and fixes nothing, so if the crew finds it they stop, tell you, and leave it for a remediation contractor." },
   { q: "Do I need to move furniture?", a: "Only what you want the wall behind. The crew washes as far as it can reach without dragging furniture about, and it does not move anything over 25 pounds. Pictures, mirrors and shelves are worth taking down the night before: the wall under them is the cleanest part of the room, and the outline shows once the rest is washed." },
-  { q: "Do you offer wall cleaning for rentals or move-outs?", a: "Yes. Wall washing is an add-on on the move-out booking form, and the entry-wall band is the part of a rental an inspection photographs. Book spot cleaning for the marks or the full wash for every wall in the rooms you choose." },
-  { q: "Do you clean ceilings in homes affected by smoke or nicotine?", a: "A ceiling is not part of the wall price. A flat one that a 3-step ladder reaches can be added for a charge agreed before the visit, and it is slower than a wall of the same area because everything you put on it runs back down your arm. Popcorn ceilings we leave alone; a smoke-stained one is normally replaced rather than washed. On any ceiling, the stain and the smell can both survive the clean, and that is worth knowing before you pay for it." },
+  { q: "Do you offer wall cleaning for rentals or move-outs?", a: `Yes. Wall washing is an add-on on the move-out booking form, and it takes in the band of salt and grit beside an Edmonton entry. Book spot cleaning for the marks, from ${formatPrice(addOnFromPrice("standard", "spot-cleaning-inside-walls") ?? 0)}, or the full wash for every wall in the rooms you choose, from ${formatPrice(addOnFromPrice("standard", "complete-inside-wall-washing") ?? 0)}, by home size and before GST.` },
+  /* This answer used to offer a flat ceiling "for a charge agreed before the
+     visit" and to say a smoke-stained ceiling "is normally replaced". Neither
+     is on file; the ladder limit is (content prompt T7). */
+  { q: "Do you clean ceilings in homes affected by smoke or nicotine?", a: `Ceilings are not part of wall washing, and the team works from nothing higher than a 3-step ladder. Smoke stain and smell can both survive a wash on the walls, so call the Edmonton office at ${CITY_PROOF.edmonton.phone} before booking to talk through a particular room.` },
+  { q: "How much does wall washing cost in Edmonton?", a: `Spot cleaning runs ${formatPrice(addOnFromPrice("standard", "spot-cleaning-inside-walls") ?? 0)} to ${formatPrice(addOnMaxPrice("standard", "spot-cleaning-inside-walls") ?? 0)} and a full wash ${formatPrice(addOnFromPrice("standard", "complete-inside-wall-washing") ?? 0)} to ${formatPrice(addOnMaxPrice("standard", "complete-inside-wall-washing") ?? 0)}, by home size and before 5% GST. Wall washing is booked together with a clean, so the bill also carries that clean, from ${standardTierRows()[0]?.price ?? ""} for a one-bedroom apartment. A home with pets adds a compulsory ${formatPrice(addOnFromPrice("standard", "must-choose-if-you-have-pets") ?? 0)} a visit, a bungalow, basement suite, townhouse or two-storey house costs more than an apartment, and an address outside Edmonton city limits adds a ${formatPrice(travelFee("standard") ?? 0)} travel fee; each shows on the quote before you book.` },
 ];
 
 /** Cheapest bookable wall service, derived from bk-config — never typed. */
@@ -182,8 +191,14 @@ const WALL_ROWS = bedroomOptions("standard").map((bedroom) => {
 /** The cheapest clean a wall add-on can ride on. */
 const STANDARD_FROM = standardTierRows()[0]?.price ?? "";
 
+/** The compulsory charge on the clean a wall add-on rides on (content prompt P10). */
+const PET_FEE = addOnFromPrice("standard", "must-choose-if-you-have-pets");
+const PET_LINE = PET_FEE === null ? "a pet charge" : `${formatPrice(PET_FEE)} a visit`;
+const TRAVEL_LINE = formatPrice(travelFee("standard") ?? 0);
+const PROOF = CITY_PROOF.edmonton;
+
 const PAGE_TITLE = `Wall Washing & Cleaning Edmonton from ${formatPrice(WALL_FROM)} | Duty Cleaners`;
-const META_DESCRIPTION = `Wall washing in Edmonton from ${formatPrice(WALL_FROM)} by home size: scuffs, handprints and cooking film off painted walls, added to any standard or move-out clean.`;
+const META_DESCRIPTION = `Wall washing in Edmonton from ${formatPrice(WALL_FROM)} before GST, by home size: handprints and cooking film off painted walls, with a standard or move-out clean.`;
 
 export default function WallWashingEdmonton() {
 
@@ -234,13 +249,13 @@ export default function WallWashingEdmonton() {
             <div className="flex-1 text-center lg:text-left">
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
                 <Star className="w-4 h-4 text-accent" />
-                <span className="text-white/90 text-sm font-medium">{RATING_CLAIM}, re-cleaned within {POLICY.guaranteeWindowHours} hours if a mark is missed</span>
+                <span className="text-white/90 text-sm font-medium">{RATING_CLAIM} across {PROOF.googleReviewCount} Edmonton reviews</span>
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                 Wall Washing & Cleaning <span className="text-accent">Edmonton</span>
               </h1>
               <p className="text-lg text-white/80 mb-10 leading-relaxed max-w-2xl">
-                Painted walls washed by hand. Scuffs, handprints, cooking film and the grey band along the stairwell come off without stripping the finish.
+                The team washes painted walls by hand. Scuffs, handprints, cooking film and the grey band along the stairwell come off without stripping the finish.
               </p>
               {/* The sentence names the three cleans this add-on rides on and
                   used to link none of them, on a page that cannot be booked
@@ -253,8 +268,8 @@ export default function WallWashingEdmonton() {
                 <Link to="/move-out-cleaning-edmonton/" className="text-white underline underline-offset-4">a move-out clean</Link>{" "}
                 rather than booked on its own. Spot cleaning runs {formatPrice(WALL_FROM)} to{" "}
                 {formatPrice(WALL_SPOT_MAX)} and a full top-to-bottom wash {formatPrice(WALL_FULL)} to{" "}
-                {formatPrice(WALL_FULL_MAX)}, by home size, before 5% GST. Every one of those sizes is
-                in the table further down, and your own figure is on the quote before you book.
+                {formatPrice(WALL_FULL_MAX)}, by home size, before 5% GST. The booking form prices
+                seven home sizes, and your own figure is on the quote before you book.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <Button size="lg" variant="accent" className="w-full sm:w-auto text-base px-8" asChild>
@@ -273,7 +288,7 @@ export default function WallWashingEdmonton() {
             <div className="flex-shrink-0 w-full lg:w-[500px]">
               <img width={768} height={1024}
                 src={cleanWallsPhoto}
-                alt="Professionally cleaned walls in an Edmonton home"
+                alt="A bright room with white painted walls and a doorway"
                 className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                loading="eager" fetchPriority="high"/>
             </div>
@@ -285,9 +300,9 @@ export default function WallWashingEdmonton() {
         eyebrow="Why Edmonton walls"
         heading="What actually ends up on a wall in Edmonton"
         paragraphs={[
-          "Edmonton runs a long, unbroken heating season — the furnace here does not get the mid-winter reprieve that a chinook gives Calgary, so it simply runs, month after month. Everything that cycles through the ducts in that time ends up somewhere, and a good deal of it ends up on the walls: a fine, even grey deposit above every register, along the ceiling line, and in the still air behind doors and furniture. It builds slowly enough that most people only see it when a picture comes down.",
-          "Closed-up houses concentrate the rest. From November through March windows stay shut, so cooking vapour, candle and fireplace soot and pet dander recirculate instead of venting. Kitchens take the worst of it — a sticky film spreads well past the backsplash onto the surrounding wall, and because it is greasy rather than dusty it holds onto everything that lands on it afterwards.",
-          "Then there is the entry. Edmonton's cold is persistent rather than intermittent, so road salt and sand arrive dry and get kicked up rather than tracked as slush. Splash marks and grit run up the wall beside the door and along the stairwell to about knee height. That band is the most-photographed part of a move-out inspection, and it is the reason wall washing and end-of-tenancy cleaning are so often booked together here.",
+          "Edmonton runs a long, unbroken heating season, and the furnace here simply runs, month after month, from October into April. Everything that cycles through the ducts in that time ends up somewhere, and a good deal of it ends up on the walls: a fine, even grey deposit above every register, along the ceiling line, and in the still air behind doors and furniture. It builds slowly, and it shows when a picture comes down.",
+          "Closed-up houses concentrate the rest. Through furnace season the windows stay shut, so cooking vapour and pet dander recirculate. Kitchens take the worst of it — a sticky film spreads well past the backsplash onto the surrounding wall, and because it is greasy it holds onto everything that lands on it afterwards.",
+          "Then there is the entry. Edmonton's cold holds through the winter, so road salt and sand arrive dry and get kicked up. Grit and salt mark the wall beside the door and along the stairwell.",
         ]}
       />
 
@@ -298,19 +313,24 @@ export default function WallWashingEdmonton() {
             <div className="text-center mb-12 max-w-3xl mx-auto">
               <span className="text-accent font-semibold text-sm uppercase tracking-wider">What comes off</span>
               <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">
-                What wall cleaning actually takes off
+                What wall cleaning takes off an Edmonton wall
               </h2>
               <p className="text-muted-foreground">
-                Scuffs, fingerprints around switches, cooking film above the stove, and the grey band that builds along a stairwell.
+                Scuffs, fingerprints around switches, cooking film above the stove, and the grey band that builds
+                along a stairwell. The pictures are illustrations of marks and washed walls, not photographs of a
+                customer&rsquo;s home.
               </p>
             </div>
+            {/* The captions used to read as a before-and-after set ("Dirty walls
+                before cleaning", "Hallway wall after washing") over generated
+                images. They now say what each picture shows. */}
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-              <ResultCard src={dirtyWallBefore} caption="Dirty walls before cleaning" />
-              <ResultCard src={livingRoomWalls} caption="Living room wall refresh" />
-              <ResultCard src={stainCloseup} caption="Close-up stain removal" />
-              <ResultCard src={hallwayClean} caption="Hallway wall after washing" />
-              <ResultCard src={kitchenGrease} caption="Kitchen wall grease removal" />
-              <ResultCard src={wallStainRemoval} caption="Smudge & handprint clean-up" />
+              <ResultCard src={dirtyWallBefore} caption="A handprint and scuffs beside a door frame" />
+              <ResultCard src={livingRoomWalls} caption="A living room with pale painted walls" />
+              <ResultCard src={stainCloseup} caption="An orange stain beside a cleaning cloth" />
+              <ResultCard src={hallwayClean} caption="A hallway with white painted walls" />
+              <ResultCard src={kitchenGrease} caption="Wiping grey film off the wall behind a stove" />
+              <ResultCard src={wallStainRemoval} caption="A gloved hand wiping a stain off a painted wall" />
             </div>
           </AnimatedSection>
         </div>
@@ -424,12 +444,13 @@ export default function WallWashingEdmonton() {
               </div>
               <p className="mt-6 text-muted-foreground leading-relaxed">
                 Wall washing is not sold on its own, so the smallest bill is a standard clean from{" "}
-                {STANDARD_FROM} plus spot wall cleaning from {formatPrice(WALL_FROM)}, before GST. On a
-                move-out the walls are the add-on most worth ticking, because the entry band is what the
-                inspection photographs. After building work the film on the paint is sanding dust rather than
-                grease, and that whole job is{" "}
+                {STANDARD_FROM} for a one-bedroom apartment plus spot wall cleaning from {formatPrice(WALL_FROM)} at
+                the smallest size in the table, both before GST. The clean underneath carries its own compulsory charges: a home with
+                pets adds {PET_LINE}, a bungalow, basement suite, townhouse or two-storey house costs more than an apartment,
+                and an address outside Edmonton city limits adds a {TRAVEL_LINE} travel fee. After building work
+                the film on the paint is sanding dust, and that whole job is{" "}
                 <Link to="/post-construction-cleaning/" className="text-primary underline underline-offset-4">post-construction cleaning in Edmonton</Link>,
-                priced by square footage instead. The clean itself, and every other add-on, is priced on{" "}
+                priced by square footage. The clean itself, and every other add-on, is priced on{" "}
                 <Link to="/pricing/" className="text-primary underline underline-offset-4">the full Edmonton price list</Link>.
               </p>
             </div>
@@ -444,7 +465,7 @@ export default function WallWashingEdmonton() {
             <div className="max-w-5xl mx-auto">
               <div className="text-center mb-12">
                 <span className="text-accent font-semibold text-sm uppercase tracking-wider">Why Choose Us</span>
-                <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Why Edmonton Homeowners Choose Us</h2>
+                <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">What wall washing will and will not do</h2>
               </div>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {whyUs.map((w, i) => (

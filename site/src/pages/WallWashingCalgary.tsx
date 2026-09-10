@@ -89,13 +89,14 @@ const calgaryLocations = [
   { name: "Strathmore", path: "/locations/strathmore" },
   { name: "Crossfield", path: "/locations/crossfield" },
   { name: "Langdon", path: "/locations/langdon" },
-  { name: "Black Diamond", path: "/locations/black-diamond" },
-  { name: "Turner Valley", path: "/locations/turner-valley" },
+  // Black Diamond and Turner Valley amalgamated as Diamond Valley on 1 January
+  // 2023; city-locations.ts lists the town once, at this path.
+  { name: "Diamond Valley", path: "/locations/black-diamond" },
 ];
 
 const wallProblems = [
-  { icon: Wind, title: "Static-held dust film", description: "The grey film above vents and behind doors that a duster moves around rather than removes." },
-  { icon: Cloud, title: "Furnace halo", description: "The soft dark band above the registers and along the ceiling line that chinook restarts build up." },
+  { icon: Wind, title: "Static-held dust film", description: "The grey film above vents and behind doors. Static holds it to the paint, so a duster only pushes it along." },
+  { icon: Cloud, title: "Furnace halo", description: "The soft dark band above the registers and along the ceiling line." },
   { icon: Droplets, title: "Hard-water haze", description: "The mineral film around the shower and behind the sink that wiping does not shift." },
   { icon: Utensils, title: "Cooking film", description: "Grease and hard-water residue combined into a film on the backsplash surround." },
   { icon: HandMetal, title: "Handprints & scuffs", description: "Around switches, along hallways and entry walls, where hands and bags touch the wall." },
@@ -103,37 +104,38 @@ const wallProblems = [
 ];
 
 const includedItems = [
-  { icon: Brush, title: "The full wash", description: "Painted drywall in each room on the booking, washed with a damp cloth and a bucket, top of the wall to the baseboard." },
+  { icon: Brush, title: "The full wash", description: "The team washes painted drywall in each room on the booking with a damp cloth and a bucket, from the top of the wall to the baseboard, within reach of a 3-step ladder." },
   { icon: Sparkles, title: "Marks first", description: "Scuffs, handprints and the odd crayon line are worked one at a time before the wash, so the wash does not spread them." },
   { icon: Wind, title: "Corners and the ceiling line", description: "Cobwebs and the furnace halo come down before the wall is touched, or they end up back on it." },
-  { icon: Droplets, title: "Hard-water haze", description: "The mineral film around the shower and behind the taps is dissolved, not scrubbed, so the paint underneath survives." },
-  { icon: Cloud, title: "Smoke and cooking film", description: "The film comes off the wall. The smell in the drywall may not, and we say so before you book rather than after." },
-  { icon: Shield, title: "Light mildew on bathroom walls", description: "Surface spots on humid-room walls are treated where the paint allows it. Anything in the drywall itself is a remediation job, not a wash." },
+  { icon: Droplets, title: "Hard-water haze", description: "The mineral film around the shower and behind the taps is dissolved with a mild acid, so the paint underneath is left as it was." },
+  { icon: Cloud, title: "Smoke and cooking film", description: "Cooking film comes off the wall. Smoke film fades with washing, and a smell held in the drywall may stay; we say that plainly if you ask before booking." },
+  { icon: Shield, title: "Light mildew on bathroom walls", description: "Light surface mildew on a painted bathroom wall is wiped where it is safe to do so. Mould inside the drywall needs remediation, which the team does not do." },
 ];
 
 const steps = [
   { icon: ClipboardCheck, title: "Tick the wall add-on", description: "It sits on the booking form under the clean you are booking. Choose spot cleaning for the marks or the full wash for whole rooms, and the price for your home size appears beside it." },
-  { icon: Search, title: "Paint check on arrival", description: "The team tests an out-of-the-way patch in each room. Flat and matte finishes mark if they are rubbed, so those rooms get the lighter method and we tell you which ones." },
+  { icon: Search, title: "Paint check on arrival", description: "The team checks each room's paint finish when it arrives. Flat and matte finishes mark if they are rubbed, so those rooms get the lighter method." },
   { icon: Brush, title: "Wash, room by room", description: "By hand, with a product suited to painted walls. Marks are worked first, then the whole wall in one pass so it dries without streaks." },
-  { icon: ThumbsUp, title: "Walk it with you", description: `We look at the rooms together before we leave. A mark we missed is re-cleaned at no charge if you tell us within ${POLICY.guaranteeWindowHours} hours.` },
+  { icon: ThumbsUp, title: "Locked up when the team leaves", description: `You do not need to be home: most customers leave a key, a lockbox code or smart-lock access, and the team locks up. A mark we missed is re-cleaned at no charge if you tell us within ${POLICY.guaranteeWindowHours} hours.` },
 ];
 
 const whyUs = [
   { icon: Sparkles, title: "What washing removes", description: "The static-held film, the furnace halo, cooking film, hard-water haze, handprints and scuffs." },
   { icon: Shield, title: "What it cannot promise", description: "That a nicotine wall goes back to white, or that a matte finish takes a hard scrub. Some marks fade rather than vanish, and we say which." },
-  { icon: Home, title: "When it earns its price", description: "Before a listing photo, before a repaint, and on a move-out, where the entry wall is the first thing the inspection sees." },
-  { icon: Droplets, title: "Bathroom walls", description: "Calgary water is hard, so the haze around the shower is on most of the bathroom walls we wash. It comes off with a mild acid, not force." },
+  { icon: Home, title: "When it earns its price", description: "Before a listing photo, before a repaint, and on a move-out, before the landlord completes the move-out inspection report with the tenant." },
+  { icon: Droplets, title: "Supplies and water", description: "The team brings every supply and piece of equipment, including the product used on painted walls. The home needs running water, and vacuuming may not be possible without electricity." },
   { icon: ThumbsUp, title: `${POLICY.guaranteeWindowHours}-hour re-clean`, description: `A wall or a mark we missed is put right at no charge. Tell us within ${POLICY.guaranteeWindowHours} hours of the clean.` },
   { icon: Star, title: "Rated by Calgary customers", description: `${CITY_PROOF.calgary.googleRating} on Google across ${CITY_PROOF.calgary.googleReviewCount} Calgary reviews.` },
 ];
 
 const faqs = [
-  { q: "Can all wall stains be removed?", a: "No, and we will not tell you otherwise on the phone. Handprints, scuffs, the dust film and cooking grease come off. Nicotine fades but rarely disappears. A mark that has been on a matte wall for years may leave a shadow where the paint has taken the stain in. The team tells you at the paint check which kind you have." },
+  { q: "What does wall washing cost in Calgary?", a: `Spot cleaning is ${formatPrice(addOnFromPrice("standard", "spot-cleaning-inside-walls") ?? 0)} to ${formatPrice(addOnMaxPrice("standard", "spot-cleaning-inside-walls") ?? 0)} and the full wash ${formatPrice(addOnFromPrice("standard", "complete-inside-wall-washing") ?? 0)} to ${formatPrice(addOnMaxPrice("standard", "complete-inside-wall-washing") ?? 0)}, set by home size and before 5% GST. Either one is added to a standard, deep or move-out clean, and that clean is priced on its own, from ${standardTierRows()[0]?.price ?? ""} for a one-bedroom apartment or condo. The clean can also carry the ${formatPrice(addOnFromPrice("standard", "must-choose-if-you-have-pets") ?? 0)} pet charge, a home-type charge for a bungalow, basement suite, townhouse or two-storey house, and a ${formatPrice(travelFee("standard") ?? 0)} travel fee outside Calgary city limits. Every one of those lines is on the quote before you book.` },
+  { q: "Can all wall stains be removed?", a: "No, and we will not tell you otherwise on the phone. Handprints, scuffs, the dust film and cooking grease come off. Nicotine fades but rarely disappears. A mark that has been on a matte wall for years may leave a shadow where the paint has taken the stain in. The team checks the paint when it arrives and tells you which kind you have." },
   { q: "Do you clean all types of painted walls?", a: "Most of them. Eggshell, satin and semi-gloss take a proper wash. Flat and matte paint burnishes if it is rubbed, so those rooms get a lighter spot-clean and we say which rooms that was." },
-  { q: "Do you remove mould from walls?", a: "Surface mildew on a painted bathroom wall, yes. Mould that has grown into the drywall or the wall behind it, no; that is a remediation job, and washing the face of it hides the problem without fixing it. If we find that, we tell you and leave it alone." },
+  { q: "Do you remove mould from walls?", a: "Light surface mildew on a painted bathroom wall, yes, where it is safe to wipe it. Mould that has grown into the drywall or the wall behind it, no; that is a remediation job, and washing the face of it hides the problem without fixing it. If we find that, we tell you and leave it alone." },
   { q: "Do I need to move furniture?", a: "Move what you can. A wall behind a sofa gets washed to where we can reach without dragging the sofa, and we do not move anything over 25 pounds. Pictures and shelves come down before we arrive if you want the wall behind them done." },
-  { q: "Do you offer wall cleaning for rentals or move-outs?", a: "Yes. The wall add-on is on the move-out booking form as well as the standard one. The entry wall and the stairwell are what a Calgary landlord photographs first, so spot cleaning those two is the usual choice; the full wash is for a repaint or a listing." },
-  { q: "Do you clean ceilings in homes affected by smoke or nicotine?", a: "Not as part of the wall add-on. A flat ceiling that is reachable from a step ladder can be added for an extra charge agreed before the visit, and it takes longer than a wall of the same size. Popcorn ceilings are not cleaned and are usually replaced instead. Whichever ceiling it is, we do not promise the stain or the smell goes completely." },
+  { q: "Do you offer wall cleaning for rentals or move-outs?", a: `Yes. The wall add-on is on the move-out booking form as well as the standard one, priced by home size from ${formatPrice(addOnFromPrice("standard", "spot-cleaning-inside-walls") ?? 0)} for spot cleaning before GST. Spot cleaning the entry wall and the stairwell, where hands and bags touch the paint, is the lighter choice for a Calgary rental; the full wash suits a repaint or a listing.` },
+  { q: "Do you clean ceilings in homes affected by smoke or nicotine?", a: "Not as part of the wall add-on, which covers painted walls from the top of the wall to the baseboard. Anything beyond the reach of a 3-step ladder is outside what the team does. Smoke film on the walls fades with washing, but we do not promise the stain or the smell goes completely. If the smoke has reached the ceiling, call the Calgary office at (403) 768-1341 before you book and we will say what the wall wash can and cannot do." },
 ];
 
 /** Cheapest bookable wall service, derived from bk-config — never typed. */
@@ -179,7 +181,7 @@ const STANDARD_FROM = STANDARD_ROWS[0]?.price ?? "";
 const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
 
 const PAGE_TITLE = `Wall Washing & Cleaning Calgary from ${formatPrice(WALL_FROM)} | Duty Cleaners`;
-const META_DESCRIPTION = `Wall washing in Calgary from ${formatPrice(WALL_FROM)}: static-held dust film, hard-water haze and cooking film washed off painted walls, added to any clean we do.`;
+const META_DESCRIPTION = `Wall washing in Calgary from ${formatPrice(WALL_FROM)} before GST, added to a standard, deep or move-out clean: dust film, hard-water haze and cooking film.`;
 
 export default function WallWashingCalgary() {
 
@@ -230,13 +232,13 @@ export default function WallWashingCalgary() {
             <div className="flex-1 text-center lg:text-left">
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
                 <Star className="w-4 h-4 text-accent" />
-                <span className="text-white/90 text-sm font-medium">{RATING_CLAIM}, a missed mark re-cleaned free within {POLICY.guaranteeWindowHours} hours</span>
+                <span className="text-white/90 text-sm font-medium">{RATING_CLAIM}, a missed mark re-cleaned free if you tell us within {POLICY.guaranteeWindowHours} hours</span>
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                 Wall Washing & Cleaning <span className="text-accent">Calgary</span>
               </h1>
               <p className="text-lg text-white/80 mb-10 leading-relaxed max-w-2xl">
-                Walls washed by hand, not wiped. The static-held dust film, the halo above the registers and the hard-water haze in the bathroom come off, and the paint finish stays.
+                The team washes walls by hand. The static-held dust film, the halo above the registers and the hard-water haze in the bathroom come off, and the paint finish stays.
               </p>
               {/* The three cleans this add-on can ride on, linked. The sentence
                   named all three and linked none, which left the reader told
@@ -250,7 +252,7 @@ export default function WallWashingCalgary() {
                 it is not a visit on its own. Spot cleaning is {formatPrice(WALL_FROM)} to{" "}
                 {formatPrice(WALL_SPOT_MAX)} by home size and the full top-to-bottom wash{" "}
                 {formatPrice(WALL_FULL)} to {formatPrice(WALL_FULL_MAX)}, both before 5% GST. Each of
-                those seven sizes has its own row in the table below.
+                the seven home sizes on the booking form has its own price for both.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <Button size="lg" variant="accent" className="w-full sm:w-auto text-base px-8" asChild>
@@ -269,7 +271,7 @@ export default function WallWashingCalgary() {
             <div className="flex-shrink-0 w-full lg:w-[500px]">
               <img width={1024} height={768}
                 src={livingRoomWalls}
-                alt="Washed living room walls in a Calgary home"
+                alt="A sunlit living room with pale painted walls and a cream sofa"
                 className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                loading="eager" fetchPriority="high"/>
             </div>
@@ -282,9 +284,9 @@ export default function WallWashingCalgary() {
         eyebrow="Why Calgary walls"
         heading="What actually ends up on a wall in Calgary"
         paragraphs={[
-          "Calgary sits in a semi-arid belt at the edge of the foothills, and the air here is dry enough for most of the year that fine dust never really settles — it circulates and clings. Walls above baseboards, around vents and behind doors pick up a grey film that a duster moves around rather than removes, because static is holding it there. That film is the single most common thing we are called about, and it comes off with washing rather than dusting.",
-          "The chinooks make it worse in a specific way. Temperature swings of twenty degrees inside a day drive the furnace on and off repeatedly instead of letting it hold a steady cycle, and every restart pushes another load of duct dust into the room. Above the registers and along the ceiling line is where that shows first — a soft dark halo that homeowners often mistake for a paint defect.",
-          "The other Calgary problem is water. The supply comes off the Bow and the Elbow, drawing through Rockies limestone, and it is hard. In bathrooms that leaves a mineral haze on the wall around the shower and behind the sink that regular cleaning does not shift, and in kitchens it combines with cooking grease into a film on the backsplash surround. Both need the wall washed rather than wiped.",
+          "Dry air and wind keep fine grit airborne in Calgary for most of the year, so it circulates and clings. Walls above baseboards, around vents and behind doors pick up a grey film that a duster moves around rather than removes, because static is holding it there. That film comes off with a wash.",
+          "The chinooks add grit of their own: the city thaws and refreezes all winter, so sand and de-icer reach the door again and again from November to April and settle along the baseboards. Above the registers and along the ceiling line, dust shows as a soft dark halo.",
+          "The other Calgary problem is water. Hard Alberta water leaves mineral scale on taps and shower glass. In bathrooms it also leaves a mineral haze on the wall around the shower and behind the sink, and in kitchens it combines with cooking grease into a film on the backsplash surround. Both come off when the wall is washed.",
         ]}
       />
 
@@ -302,12 +304,12 @@ export default function WallWashingCalgary() {
               </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-              <ResultCard src={dirtyWallBefore} caption="The grey film on a wall before washing" />
-              <ResultCard src={livingRoomWalls} caption="Living room walls after the full wash" />
-              <ResultCard src={stainCloseup} caption="One mark, worked out by hand" />
-              <ResultCard src={hallwayClean} caption="A hallway with the handprints gone" />
-              <ResultCard src={kitchenGrease} caption="Cooking film off the wall beside a stove" />
-              <ResultCard src={wallStainRemoval} caption="Scuffs along a stairwell, cleaned" />
+              <ResultCard src={dirtyWallBefore} caption="A grey handprint on a painted wall beside a door frame" />
+              <ResultCard src={livingRoomWalls} caption="Pale painted walls above a living room sofa" />
+              <ResultCard src={stainCloseup} caption="An orange stain on white paint, beside a microfibre cloth" />
+              <ResultCard src={hallwayClean} caption="A white-walled hallway with a wood floor" />
+              <ResultCard src={kitchenGrease} caption="A gloved cleaner wiping film off the wall behind a gas range" />
+              <ResultCard src={wallStainRemoval} caption="A gloved hand wiping a mark off a beige wall" />
             </div>
           </AnimatedSection>
         </div>
@@ -322,7 +324,7 @@ export default function WallWashingCalgary() {
                 <span className="text-accent font-semibold text-sm uppercase tracking-wider">Common Issues</span>
                 <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">The six marks Calgary walls collect</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  The static-held dust film is the most common call in Calgary. These are the rest.
+                  The static-held dust film comes first, and five more marks follow it.
                 </p>
               </div>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -393,7 +395,7 @@ export default function WallWashingCalgary() {
                 <span className="text-accent font-semibold text-sm uppercase tracking-wider">Price list</span>
                 <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">What wall washing costs in Calgary</h2>
                 <p className="text-muted-foreground">
-                  The add-on is priced by the size of the home on the booking, not by the number of walls,
+                  The add-on is priced by the size of the home on the booking, however many walls it has,
                   and the same row applies whether it rides on a standard, deep or move-out clean. Seven
                   sizes, seven rows, ending where the booking form ends. The last column carries the 5% GST
                   on the full wash, because that is the number that reaches the card.
@@ -423,8 +425,10 @@ export default function WallWashingCalgary() {
               </div>
               <p className="mt-6 text-muted-foreground leading-relaxed">
                 So the least a Calgary wall job can cost is a standard clean from {STANDARD_FROM} plus spot
-                wall cleaning from {formatPrice(WALL_FROM)}, before GST. A full wash of a one-bedroom on a
-                move-out is the move-out rate plus {formatPrice(WALL_FULL)}. Walls covered in drywall dust
+                wall cleaning from {formatPrice(WALL_FROM)}, before GST. A home with pets adds the{" "}
+                {formatPrice(addOnFromPrice("standard", "must-choose-if-you-have-pets") ?? 0)} pet charge to the
+                clean, and a bungalow, basement suite, townhouse or two-storey house adds its home-type charge, both on the quote. A full
+                wash of a one-bedroom on a move-out is the move-out rate plus {formatPrice(WALL_FULL)}. Walls covered in drywall dust
                 after a build or a renovation are not this add-on at all;{" "}
                 <Link to="/post-construction-cleaning-calgary/" className="text-primary underline underline-offset-4">post-construction cleaning in Calgary</Link>{" "}
                 takes the whole house and is priced by square footage. The cleans themselves, and the
@@ -470,8 +474,8 @@ export default function WallWashingCalgary() {
                 <span className="text-accent font-semibold text-sm uppercase tracking-wider">Service Areas</span>
                 <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Wall washing across Calgary, Airdrie and Cochrane</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Inside Calgary city limits the price is the row above and nothing else. The towns around
-                  the city carry a {TRAVEL_FEE} travel fee on the clean the walls are added to, and two of them
+                  Inside Calgary city limits there is no travel fee on a wall wash or the clean it rides on.
+                  The towns around the city carry a {TRAVEL_FEE} travel fee on the clean the walls are added to, and two of them
                   have their own pages:{" "}
                   <Link to="/cleaning-services-airdrie/" className="text-primary underline underline-offset-4">house cleaning in Airdrie</Link>{" "}
                   and{" "}
@@ -536,11 +540,11 @@ export default function WallWashingCalgary() {
               </h2>
               <p className="text-xl font-semibold text-accent mb-6">A missed mark is re-cleaned free</p>
               <p className="text-white/90 mb-8 max-w-xl mx-auto">
-                The Calgary listing carries fewer reviews than Edmonton's; the rating is the same. Tell us
-                within {POLICY.guaranteeWindowHours} hours about a wall we got wrong and it is put right at
-                no charge.{" "}
+                Those are the reviews on the Calgary branch's own Google listing. Tell us within{" "}
+                {POLICY.guaranteeWindowHours} hours about a wall we got wrong and it is put right at no
+                charge.{" "}
                 <Link to="/reviews/" className="text-white underline underline-offset-4">Read the reviews</Link>{" "}
-                from both cities before you decide.
+                before you decide.
               </p>
               <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10" asChild>
                 <Link to="/about-us/">About Duty Cleaners</Link>
@@ -622,9 +626,11 @@ export default function WallWashingCalgary() {
           <AnimatedSection>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Book the walls with the next clean</h2>
             <p className="text-white/90 mb-8 max-w-xl mx-auto">
-              Spot cleaning from {formatPrice(WALL_FROM)}, the full wash from {formatPrice(WALL_FULL)}, on top of a
-              standard clean from {STANDARD_FROM}, all before GST and none of it charged until the clean is
-              done. The cleans it can ride on are listed with their starting prices under{" "}
+              Spot cleaning from {formatPrice(WALL_FROM)} and the full wash from {formatPrice(WALL_FULL)} at the
+              one-bedroom size, on top of a standard clean from {STANDARD_FROM} for a one-bedroom apartment or
+              condo, all before GST and none of it charged until the clean is done. The pet charge, a home-type
+              charge or the travel fee outside Calgary city limits can apply, and each one is on the quote before
+              you book. The cleans it can ride on are listed with their starting prices under{" "}
               <Link to="/calgary/services/" className="text-white underline underline-offset-4">every Calgary cleaning service, with starting prices</Link>.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

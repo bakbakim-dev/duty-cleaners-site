@@ -13,7 +13,7 @@ import useRevealOnScroll from "@/hooks/use-reveal-on-scroll";
  */
 const EMPTY_LINE = {
   Edmonton: "Before-and-after photos from Edmonton cleans go up here once the homeowners have approved them.",
-  Calgary: "Calgary before-and-after photos go up as each homeowner signs off on theirs.",
+  Calgary: "Before-and-after photos from Calgary cleans go up here once the homeowners have approved them.",
 } as const;
 
 export default function BeforeAfterGallery({ city }: { city: "Edmonton" | "Calgary" }) {

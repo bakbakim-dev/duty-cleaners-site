@@ -4,7 +4,6 @@ import {
 } from "lucide-react";
 import featureImg from "@/assets/gallery/ogden-bathroom-clean.webp";
 import { buildLocationSchema } from "@/lib/location-schema";
-import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
 import { sitePriceRange } from "@/data/pricing";
@@ -60,9 +59,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Ogden" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Ogden" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Ogden" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Ogden" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Ogden.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Ogden" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Drywall dust cleared after a renovation or a new build.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Ogden" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Ogden" },
 ];
 
@@ -95,7 +94,6 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Lynnwood","Riverbend","Millican","Foothills Industrial","Quarry Park","Douglasdale"];
 
 const faqs = [
   {
@@ -104,7 +102,7 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Ogden?",
-    answer: `Around Ogden we offer the full range:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `In Ogden we offer:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing, booked together with a clean`
   },
   {
     question: "Do you offer discounts?",
@@ -112,7 +110,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +135,12 @@ export default function Ogden() {
     <>
       <Helmet>
         <title>House Cleaning Services in Ogden, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Book house cleaning in Ogden, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="description" content="For house cleaning in Ogden, Calgary, expect fine rail-yard grit from the Ogden Shops in window tracks and along sills facing the rail land." />
         <meta property="og:title" content="House Cleaning Services in Ogden, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services in Ogden, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Book house cleaning in Ogden, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
-        <meta property="og:description" content="Book house cleaning in Ogden, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="twitter:description" content="For house cleaning in Ogden, Calgary, expect fine rail-yard grit from the Ogden Shops in window tracks and along sills facing the rail land." />
+        <meta property="og:description" content="For house cleaning in Ogden, Calgary, expect fine rail-yard grit from the Ogden Shops in window tracks and along sills facing the rail land." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/ogden-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/ogden-calgary/" />
@@ -183,7 +181,7 @@ export default function Ogden() {
                 Professional House Cleaning in Ogden
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Honest, attentive house cleaning for one of southeast Calgary's most historic and tight-knit neighbourhoods.
+                The railway's Ogden Shops line Ogden's northern and eastern edges. Standard, deep and move-out cleans here are priced by home size before GST, and nothing is charged until the clean is done.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +216,7 @@ export default function Ogden() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Ogden Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Everything from weekly upkeep to full move-out cleans.
+                  Ogden cleans are priced by home size, except post-construction cleanup, which is priced by square footage.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +255,7 @@ export default function Ogden() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Ogden Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Ogden and the surrounding SE Calgary communities.
+                    The team arrives in a booked window rather than at an exact time: 9:00 to 10:00 AM, 12:00 to 1:00 PM, or 3:00 to 4:00 PM.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +281,16 @@ export default function Ogden() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={768} src={featureImg} alt="Spotless Ogden Calgary home cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1024} height={768} src={featureImg} alt="White bathroom with a glass shower enclosure over a tub, folded towels and a chrome tap on a white vanity" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Calm, Spotless Ogden Home — Every Visit</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Scope</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">What an Ogden Clean Covers</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Our vetted cleaners treat your home with care, attention, and the same standards we'd want in our own. Walk in to fresh air, gleaming surfaces, and that quiet feeling of <em>everything in its place</em>.
+                    An Ogden clean covers the inside of the home. Outdoor work, exterior windows and removing window screens are not included, and neither is anything beyond a 3-step ladder.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Reference-checked and customer-rated cleaners","Supplies and equipment brought to the door","Missed spots re-cleaned at no charge if reported within 24 hours"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,15 +309,14 @@ export default function Ogden() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Ogden and the Other Calgary Neighbourhoods We Clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Ogden and the communities around it.{" "}
+                  Ogden is one of 66 Calgary neighbourhoods the Calgary branch cleans, and none of them carries a travel fee.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
                 </p>
               </div>
-              <CoverageChips areas={nearbyAreas} />
             </AnimatedSection>
           </div>
         </section>
@@ -328,7 +325,7 @@ export default function Ogden() {
         eyebrow="On the ground"
         heading="Ogden Road is moving"
         paragraphs={[
-          "Named in 1912 for a Canadian Pacific vice-president, this southeast community has had the railway's Ogden Shops along its northern and eastern edges ever since. A working yard produces a particular dirt - fine, dark and gritty rather than household lint - and it shows up first in window tracks, on screens and along the sills of whichever side of the house faces the rail land.",
+          "This southeast community has the railway's Ogden Shops along its northern and eastern edges. A working yard produces a particular dirt: fine, dark grit rather than household lint. It shows up first in window tracks, on screens and along the sills of whichever side of the house faces the rail land.",
           "A second dust source arrived in September 2025, when Calgary began realigning Ogden Road SE between the rail bridge and 69 Avenue SE to make room for the Green Line. Completion is anticipated in October 2026, and until then the detours move week to week, so where the dust lands moves with them. Vents and door tracks are worth a second pass for as long as that work runs.",
         ]}
         accent="calgary"
@@ -347,7 +344,7 @@ export default function Ogden() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Ogden Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>

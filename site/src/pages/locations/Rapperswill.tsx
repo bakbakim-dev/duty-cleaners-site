@@ -82,16 +82,16 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Rapperswill" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Rapperswill" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Rapperswill" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Rapperswill" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds around Rapperswill.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Rapperswill" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "After a build or a renovation, the clean is priced by square footage.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Rapperswill" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Rapperswill" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
   // no link, describing a service pricing.ts does not sell — appliance
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Rapperswill" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule. The first clean is charged at the one-time rate, from ${RECURRING_FROM} before GST for a one-bedroom, one-bathroom apartment, plus the pet charge where it applies. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Rapperswill" },
 ];
 
 const whyUsItems = [
@@ -133,15 +133,15 @@ export default function Rapperswill() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Rapperswill?",
-      answer: `Around Rapperswill we offer the full range:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `In Rapperswill, the Edmonton branch books these services:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
-      answer: `Yes, recurring visits cost less every time:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
+      answer: `Yes. A recurring standard clean is discounted by frequency:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -163,25 +163,25 @@ export default function Rapperswill() {
     <>
       <Helmet>
         <title>House Cleaners in Rapperswill, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Rapperswill, Edmonton. Trusted local cleaners, customer-rated, serving Rapperswill homes." />
+        <meta name="description" content="Every home in Rapperswill, Edmonton went up after 2007, so house cleaning there means a pH-neutral cleaner and a soft cloth on engineered floors." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Rapperswill, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/rapperswill-edmonton",
   areaServed: "Rapperswill, Edmonton, AB",
-  description: "Professional house cleaning in Rapperswill, Edmonton. Trusted local cleaners serving Rapperswill homes with reliable, customer-rated cleaning service.",
+  description: "House cleaning in Rapperswill, Edmonton, for post-2007 homes with engineered flooring, factory-finished cabinet doors and sealed counters.",
   geo: { latitude: "53.631", longitude: "-113.55" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/rapperswill-edmonton/" />
         <meta property="og:title" content="House Cleaners in Rapperswill, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Rapperswill, Edmonton. Trusted local cleaners, customer-rated, serving Rapperswill homes." />
+        <meta property="og:description" content="Every home in Rapperswill, Edmonton went up after 2007, so house cleaning there means a pH-neutral cleaner and a soft cloth on engineered floors." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/rapperswill-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Rapperswill, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Rapperswill, Edmonton. Trusted local cleaners, customer-rated, serving Rapperswill homes." />
+        <meta name="twitter:description" content="Every home in Rapperswill, Edmonton went up after 2007, so house cleaning there means a pH-neutral cleaner and a soft cloth on engineered floors." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -207,7 +207,7 @@ export default function Rapperswill() {
                   Professional House Cleaning in Rapperswill
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  From modern family homes near Rapperswill Park to new estate builds along 137 Avenue — our team keeps northwest Edmonton homes effortlessly fresh.
+                  Every house in Rapperswill went up after 2007, so its floors, cabinet doors and counters are modern finishes that want a pH-neutral cleaner. Each clean is priced flat by home size, and nothing is charged until it is done.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -235,7 +235,7 @@ export default function Rapperswill() {
               <div className="lg:w-[500px] flex-shrink-0">
                 <img
                   src={heroImg}
-                  alt="Professional cleaner working in a Rapperswill, Edmonton home"
+                  alt="A person with a mop and a yellow bucket in a living room with a fireplace and a sectional sofa"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   width={1024}
                   height={1024}
@@ -257,7 +257,7 @@ export default function Rapperswill() {
                   Cleaning Services for Rapperswill Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs — every service a home needs.
+                  If a floor or counter warranty names products that void it, leave the paperwork out: the team would rather read it than guess.
                 </p>
               </div>
             </AnimatedSection>
@@ -300,7 +300,7 @@ export default function Rapperswill() {
                   Why Rapperswill Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Each cleaner is reference-checked first and rated after every visit, and each clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -322,7 +322,7 @@ export default function Rapperswill() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Rapperswill Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                  Serving northwest Edmonton family communities, weekly and biweekly.
+                  Rapperswill lies east of 127 Street and north of 167 Avenue, inside Edmonton city limits, so no trip fee applies.
                 </p>
               </div>
               <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
@@ -341,12 +341,12 @@ export default function Rapperswill() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Rapperswill</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Other Neighbourhoods We Serve</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    Griesbach is also an Edmonton neighbourhood we clean, at the same flat rates by home size.
                   </p>
                 </div>
-                <CoverageChips areas={["Rapperswill Park", "Anthony Henday Drive", "137 Avenue", "Rapperswill Drive", "CFB Edmonton", "Griesbach", "Carlton", "Hudson"]} variant="compact" />
+                <CoverageChips areas={["Griesbach"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →

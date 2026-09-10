@@ -31,17 +31,18 @@ export interface NearbyPlace {
 
 export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
   "/cleaning-services-beaumont/": [
+    { name: "Summerside", to: "/locations/summerside/" },
     { name: "Laurel", to: "/locations/laurel-edmonton/" },
   ],
   "/cleaning-services-devon/": [
     { name: "Windermere", to: "/cleaning-services-windermere/" },
   ],
   "/cleaning-services-sherwood-park/": [
+    { name: "Maple Ridge", to: "/locations/maple-ridge-edmonton/" },
     { name: "Larkspur", to: "/locations/larkspur-edmonton/" },
     { name: "Tamarack", to: "/locations/tamarack-edmonton/" },
     { name: "Ottewell", to: "/locations/ottewell-edmonton/" },
     { name: "Holyrood", to: "/locations/holyrood-edmonton/" },
-    { name: "Capilano", to: "/locations/capilano-edmonton/" },
   ],
   "/cleaning-services-spruce-grove/": [
     { name: "Stony Plain", to: "/cleaning-services-stony-plain/" },
@@ -126,10 +127,10 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
   ],
   "/locations/balwin-edmonton/": [
     { name: "Delwood", to: "/locations/delwood-edmonton/" },
-    { name: "Maple Ridge", to: "/locations/maple-ridge-edmonton/" },
     { name: "Evansdale", to: "/locations/evansdale-edmonton/" },
     { name: "Kilkenny", to: "/locations/kilkenny-edmonton/" },
     { name: "Montrose", to: "/locations/montrose/" },
+    { name: "Eastwood", to: "/locations/eastwood-edmonton/" },
   ],
   "/locations/bankview-calgary/": [
     { name: "Sunalta West", to: "/locations/sunalta-west-calgary/" },
@@ -177,8 +178,8 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
     { name: "McLeod", to: "/locations/mcleod-edmonton/" },
     { name: "Abbottsfield", to: "/locations/abbottsfield-edmonton/" },
     { name: "Montrose", to: "/locations/montrose/" },
-    { name: "Maple Ridge", to: "/locations/maple-ridge-edmonton/" },
     { name: "Hermitage", to: "/locations/hermitage-edmonton/" },
+    { name: "Belmont", to: "/locations/belmont-edmonton/" },
   ],
   "/locations/black-diamond/": [
     { name: "Turner Valley", to: "/locations/turner-valley/" },
@@ -331,8 +332,8 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
     { name: "Evansdale", to: "/locations/evansdale-edmonton/" },
     { name: "Balwin", to: "/locations/balwin-edmonton/" },
     { name: "Delton", to: "/locations/delton/" },
-    { name: "Maple Ridge", to: "/locations/maple-ridge-edmonton/" },
     { name: "Eastwood", to: "/locations/eastwood-edmonton/" },
+    { name: "Kilkenny", to: "/locations/kilkenny-edmonton/" },
   ],
   "/locations/dovercourt-edmonton/": [
     { name: "Woodcroft", to: "/locations/woodcroft-edmonton/" },
@@ -555,8 +556,8 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
     { name: "York", to: "/locations/york-edmonton/" },
     { name: "Casselman", to: "/locations/casselman-edmonton/" },
     { name: "Hairsine", to: "/locations/hairsine-edmonton/" },
-    { name: "Maple Ridge", to: "/locations/maple-ridge-edmonton/" },
     { name: "Ozerna", to: "/locations/ozerna-edmonton/" },
+    { name: "Hollick-Kenyon", to: "/locations/hollick-kenyon-edmonton/" },
   ],
   "/locations/kilkenny-edmonton/": [
     { name: "Londonderry", to: "/locations/londonderry/" },
@@ -588,10 +589,10 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
   ],
   "/locations/larkspur-edmonton/": [
     { name: "Tamarack", to: "/locations/tamarack-edmonton/" },
+    { name: "Maple Ridge", to: "/locations/maple-ridge-edmonton/" },
     { name: "Laurel", to: "/locations/laurel-edmonton/" },
     { name: "Ottewell", to: "/locations/ottewell-edmonton/" },
     { name: "Holyrood", to: "/locations/holyrood-edmonton/" },
-    { name: "Avonmore", to: "/locations/avonmore-edmonton/" },
   ],
   "/locations/lauderdale/": [
     { name: "Rosslyn", to: "/locations/rosslyn-edmonton/" },
@@ -603,9 +604,9 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
   "/locations/laurel-edmonton/": [
     { name: "Tamarack", to: "/locations/tamarack-edmonton/" },
     { name: "Larkspur", to: "/locations/larkspur-edmonton/" },
+    { name: "Summerside", to: "/locations/summerside/" },
+    { name: "Maple Ridge", to: "/locations/maple-ridge-edmonton/" },
     { name: "Hazeldean", to: "/locations/hazeldean/" },
-    { name: "Greenfield", to: "/locations/greenfield-edmonton/" },
-    { name: "Avonmore", to: "/locations/avonmore-edmonton/" },
   ],
   "/locations/lewis-estates/": [
     { name: "Secord", to: "/locations/secord-edmonton/" },
@@ -617,9 +618,9 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
   "/locations/londonderry/": [
     { name: "Kilkenny", to: "/locations/kilkenny-edmonton/" },
     { name: "Northmount", to: "/locations/northmount-edmonton/" },
-    { name: "Maple Ridge", to: "/locations/maple-ridge-edmonton/" },
     { name: "York", to: "/locations/york-edmonton/" },
     { name: "Balwin", to: "/locations/balwin-edmonton/" },
+    { name: "Kildare", to: "/locations/kildare-edmonton/" },
   ],
   "/locations/lower-mount-royal-calgary/": [
     { name: "Beltline", to: "/locations/beltline-calgary/" },
@@ -642,11 +643,11 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
     { name: "Elbow Park", to: "/locations/elbow-park-calgary/" },
   ],
   "/locations/maple-ridge-edmonton/": [
-    { name: "Balwin", to: "/locations/balwin-edmonton/" },
-    { name: "York", to: "/locations/york-edmonton/" },
-    { name: "Delwood", to: "/locations/delwood-edmonton/" },
-    { name: "McLeod", to: "/locations/mcleod-edmonton/" },
-    { name: "Kildare", to: "/locations/kildare-edmonton/" },
+    { name: "Larkspur", to: "/locations/larkspur-edmonton/" },
+    { name: "Tamarack", to: "/locations/tamarack-edmonton/" },
+    { name: "Ottewell", to: "/locations/ottewell-edmonton/" },
+    { name: "Sherwood Park", to: "/cleaning-services-sherwood-park/" },
+    { name: "Holyrood", to: "/locations/holyrood-edmonton/" },
   ],
   "/locations/marda-loop/": [
     { name: "Altadore", to: "/locations/altadore-calgary/" },
@@ -701,8 +702,8 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
     { name: "Belvedere", to: "/locations/belvedere-edmonton/" },
     { name: "Abbottsfield", to: "/locations/abbottsfield-edmonton/" },
     { name: "Hermitage", to: "/locations/hermitage-edmonton/" },
-    { name: "Maple Ridge", to: "/locations/maple-ridge-edmonton/" },
     { name: "Belmont", to: "/locations/belmont-edmonton/" },
+    { name: "Montrose", to: "/locations/montrose/" },
   ],
   "/locations/meadowlark-park-calgary/": [
     { name: "Windsor Park", to: "/locations/windsor-park-calgary/" },
@@ -965,9 +966,9 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
   "/locations/summerside/": [
     { name: "Laurel", to: "/locations/laurel-edmonton/" },
     { name: "Greenfield", to: "/locations/greenfield-edmonton/" },
+    { name: "Beaumont", to: "/cleaning-services-beaumont/" },
     { name: "Terwillegar", to: "/locations/terwillegar/" },
     { name: "Tamarack", to: "/locations/tamarack-edmonton/" },
-    { name: "Larkspur", to: "/locations/larkspur-edmonton/" },
   ],
   "/locations/sunalta-calgary/": [
     { name: "Sunalta West", to: "/locations/sunalta-west-calgary/" },
@@ -993,9 +994,9 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
   "/locations/tamarack-edmonton/": [
     { name: "Larkspur", to: "/locations/larkspur-edmonton/" },
     { name: "Laurel", to: "/locations/laurel-edmonton/" },
+    { name: "Maple Ridge", to: "/locations/maple-ridge-edmonton/" },
     { name: "Sherwood Park", to: "/cleaning-services-sherwood-park/" },
     { name: "Ottewell", to: "/locations/ottewell-edmonton/" },
-    { name: "Holyrood", to: "/locations/holyrood-edmonton/" },
   ],
   "/locations/terwillegar/": [
     { name: "Riverbend", to: "/locations/riverbend/" },
@@ -1080,9 +1081,9 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
   "/locations/york-edmonton/": [
     { name: "Kildare", to: "/locations/kildare-edmonton/" },
     { name: "Casselman", to: "/locations/casselman-edmonton/" },
-    { name: "Maple Ridge", to: "/locations/maple-ridge-edmonton/" },
     { name: "Hairsine", to: "/locations/hairsine-edmonton/" },
     { name: "Londonderry", to: "/locations/londonderry/" },
+    { name: "Ozerna", to: "/locations/ozerna-edmonton/" },
   ],
 };
 

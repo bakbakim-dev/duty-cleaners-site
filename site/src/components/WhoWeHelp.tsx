@@ -1,5 +1,7 @@
 import { Accessibility, ArrowRight, Baby, Briefcase, Building2, Home, PawPrint, type LucideIcon } from "lucide-react";
 import { Accent } from "@/components/Accent";
+import { addOnFromPrice, formatPrice, FREQUENCIES } from "@/data/pricing";
+import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
 
 type City = "Edmonton" | "Calgary";
 
@@ -10,58 +12,68 @@ interface Persona {
   desc: (city: City) => string;
 }
 
+/** The compulsory pet charge, read from bk-config rather than typed. */
+const PET_FEE = addOnFromPrice("standard", "must-choose-if-you-have-pets");
+
+/** The recurring discounts, read from bk-config: "20% weekly, 15% bi-weekly, 10% every 4 weeks". */
+const RECURRING_DISCOUNTS = FREQUENCIES
+  .filter((frequency) => frequency.discount > 0)
+  .sort((a, b) => b.discount - a.discount)
+  .map((frequency) => `${Math.round(frequency.discount * 100)}% ${frequency.label.toLowerCase()}`)
+  .join(", ");
+
 const personas: Persona[] = [
   {
     icon: Briefcase,
-    label: "For packed schedules",
-    title: "Busy Professionals",
+    label: "For long workdays",
+    title: "People Out at Work",
     desc: () =>
-      "Come home to a clean house after a long workday. We handle the cleaning ahead of time so your evenings and weekends are your own.",
+      "You do not need to be home. Most customers leave a key, a lockbox code or smart-lock access, and the team locks up when it leaves.",
   },
   {
     icon: Baby,
     label: "For growing families",
     title: "Families With Kids",
-    desc: (city) =>
-      `A safe, sanitized home for little ones. Professional products and detail-focused cleaning families across ${city} trust.`,
+    desc: () =>
+      "You do not need to clean before the team comes. Clear floors and counters get cleaned, and cluttered ones get worked around.",
   },
   {
     icon: PawPrint,
-    label: "For furry households",
+    label: "For homes with pets",
     title: "Pet Owners",
     desc: () =>
-      "Pet hair, dander, and paw prints — handled. We keep your home fresh without disrupting your furry family members.",
+      PET_FEE === null
+        ? "Homes with pets carry a compulsory charge per visit, and it shows on the quote before you book. Litter boxes and animal waste are not part of the clean."
+        : `Homes with pets carry a ${formatPrice(PET_FEE)} charge per visit before GST, and it shows on the quote before you book. Litter boxes and animal waste are not part of the clean.`,
   },
   {
     icon: Accessibility,
-    label: "For comfortable living",
+    label: "For older adults",
     title: "Seniors",
     desc: () =>
-      "Friendly, respectful service for older adults who want to enjoy a spotless home without the physical strain.",
+      "The team brings all the supplies and equipment, so there is nothing to buy, carry or store. Lifting anything over 25 lb is not part of the clean.",
   },
   {
     icon: Building2,
-    label: "For turnovers & units",
-    title: "Property Managers",
+    label: "For rentals between tenants",
+    title: "Landlords & Property Managers",
     desc: (city) =>
-      `Reliable turnover cleaning for landlords and property managers. Consistent quality across multiple ${city} units.`,
+      `Move-out cleaning between ${city} tenancies is an empty-home clean, priced flat by the size of the unit before GST. Under Alberta's Residential Tenancies Act, the landlord completes the move-out inspection report with the tenant.`,
   },
   {
     icon: Home,
-    label: "For everyone else",
-    title: "Everyday Homeowners",
+    label: "For regular upkeep",
+    title: "Homeowners on a Schedule",
     desc: () =>
-      "For anyone who simply wants a clean, comfortable home without the stress of keeping up with it all.",
+      `A standard clean on a schedule costs less from the second visit: ${RECURRING_DISCOUNTS}. The first visit is charged at the one-time rate.`,
   },
 ];
 
-const cityCopy: Record<City, { demonym: string; homesStat: string }> = {
-  Edmonton: { demonym: "Edmontonians", homesStat: "4,000+ Edmonton homes cleaned" },
-  Calgary: { demonym: "Calgarians", homesStat: "1,000+ Calgary homes cleaned" },
-};
-
 export function WhoWeHelp({ city }: { city: City }) {
-  const copy = cityCopy[city];
+  const proof = city === "Calgary" ? CITY_PROOF.calgary : CITY_PROOF.edmonton;
+  const ratingLine = proof.googleReviewCount
+    ? `Rated ${RATING_CLAIM}, from ${proof.googleReviewCount} reviews on the ${city} listing.`
+    : `Rated ${RATING_CLAIM} by ${city} customers.`;
 
   return (
     <section id="who-we-help" className="bg-white py-16 md:py-24" aria-labelledby={`who-we-help-${city.toLowerCase()}`}>
@@ -73,10 +85,10 @@ export function WhoWeHelp({ city }: { city: City }) {
             <span className="h-px w-8 bg-accent/60" aria-hidden="true" />
           </div>
           <h2 id={`who-we-help-${city.toLowerCase()}`} className="text-3xl font-bold leading-tight text-foreground md:text-5xl">
-            Perfect for busy {city} homes. <Accent>Whatever your days look like.</Accent>
+            Who books house cleaners in {city}, <Accent>and what each of them should know.</Accent>
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            Trusted by {copy.demonym} at every stage of life — from packed schedules to growing families and everything in between.
+            {ratingLine}
           </p>
         </div>
 
@@ -105,7 +117,7 @@ export function WhoWeHelp({ city }: { city: City }) {
 
         <div className="mx-auto mt-12 flex max-w-4xl flex-col items-center gap-5 text-center">
           <ul className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm font-medium text-muted-foreground">
-            {[copy.homesStat, "Professional products", "Vetted cleaners"].map((item, i) => (
+            {["You pay after the clean", "We bring the supplies", "Reference-checked cleaners"].map((item, i) => (
               <li key={item} className="flex items-center gap-3">
                 {i > 0 && <span className="h-1.5 w-1.5 rounded-full bg-brand-gold" aria-hidden="true" />}
                 <span>{item}</span>
@@ -116,7 +128,7 @@ export function WhoWeHelp({ city }: { city: City }) {
             href="#quote-form"
             className="inline-flex min-h-[48px] items-center gap-2 rounded-lg bg-accent px-6 py-3 text-sm font-bold text-accent-foreground shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent/90 hover:shadow-md"
           >
-            See your price in 60 seconds
+            See My Instant Price
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </a>
         </div>

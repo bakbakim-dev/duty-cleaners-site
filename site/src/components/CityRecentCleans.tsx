@@ -64,7 +64,7 @@ function CleanCard({ review, index, city }: { review: RecentCleanReview; index: 
         <GoogleMark className="w-5 h-5 shrink-0" />
       </div>
 
-      <div className="flex gap-0.5 mb-3" aria-label="Five star review">
+      <div className="flex gap-0.5 mb-3" aria-label="Google review">
         {[1, 2, 3, 4, 5].map((star) => (
           <Star key={star} className="w-4 h-4 text-brand-gold fill-brand-gold" aria-hidden="true" />
         ))}
@@ -108,7 +108,7 @@ function PullQuote({ review, city }: { review: RecentCleanReview; city: string }
       }`}
     >
       <div className="flex items-center justify-between">
-        <div className="flex gap-0.5" aria-label="Five star review">
+        <div className="flex gap-0.5" aria-label="Google review">
           {[1, 2, 3, 4, 5].map((star) => (
             <Star key={star} className="h-5 w-5 fill-brand-gold text-brand-gold" aria-hidden="true" />
           ))}
@@ -141,7 +141,7 @@ function PullQuote({ review, city }: { review: RecentCleanReview; city: string }
 }
 
 /**
- * "Recent Five-Star Cleans" — Simply Maid-style transparency feed built only
+ * Recent Google reviews: a transparency feed built only
  * from real Google review snippets (no invented job data, prices, or counts).
  */
 export default function CityRecentCleans({ city, reviews, reviewsTo = "/reviews/" }: CityRecentCleansProps) {
@@ -161,11 +161,11 @@ export default function CityRecentCleans({ city, reviews, reviewsTo = "/reviews/
               ))}
             </div>
             <h2 className="text-2xl font-bold md:text-3xl">
-              Rated 4.9 on Google by <Accent>{city}</Accent> homeowners
+              Rated 4.9 on Google by <Accent>{city}</Accent> customers
             </h2>
             <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-              Every review is on our Google Business Profile, unedited — read what {city} customers
-              say before you book.
+              Every review is on our Google Business Profile. Read what {city} customers say before
+              you book.
             </p>
             <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-8">
               <a
@@ -182,7 +182,7 @@ export default function CityRecentCleans({ city, reviews, reviewsTo = "/reviews/
                 to={reviewsTo}
                 className="inline-flex min-h-[48px] items-center gap-2 font-semibold text-muted-foreground transition-colors hover:text-accent"
               >
-                See customer stories
+                Read Duty Cleaners reviews
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
             </div>
@@ -198,10 +198,10 @@ export default function CityRecentCleans({ city, reviews, reviewsTo = "/reviews/
         <div className="mb-10 max-w-2xl">
           <Eyebrow>Fresh From Google</Eyebrow>
           <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">
-            Recent five-star cleans in <Accent>{city}</Accent>
+            Recent Google reviews from <Accent>{city}</Accent>
           </h2>
           <p className="text-muted-foreground mt-3 max-w-[55ch] leading-relaxed">
-            Recent reviews, quoted as {city} customers posted them on Google.
+            Each review is copied word for word from Google; a long one is cut only at the end of a sentence, marked […].
           </p>
         </div>
 
@@ -219,7 +219,7 @@ export default function CityRecentCleans({ city, reviews, reviewsTo = "/reviews/
             to={reviewsTo}
             className="inline-flex items-center gap-2 font-semibold text-primary hover:text-accent transition-colors"
           >
-            Read more five-star reviews
+            Read more customer reviews
             <ArrowRight className="w-4 h-4" aria-hidden="true" />
           </Link>
           <a

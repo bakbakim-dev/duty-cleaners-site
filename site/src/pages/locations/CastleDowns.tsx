@@ -5,7 +5,6 @@ import {
 } from "lucide-react";
 import castleDownsCleanerImg from "@/assets/gallery/castle-downs-cleaner-vacuuming.webp";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -78,7 +77,7 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Castle Downs" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Castle Downs" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Castle Downs" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Castle Downs" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris cleared after renovations or new builds.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Castle Downs" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Castle Downs" },
@@ -87,7 +86,7 @@ const services = [
   // interiors are add-ons on a standard clean and included on a move-out one.
   // Recurring cleaning is a real bookable frequency with its own page, and it
   // was the only service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Castle Downs" },
+  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule, from ${RECURRING_FROM} a visit for a one-bedroom, one-bathroom apartment or condo, before GST and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Castle Downs" },
 ];
 
 const whyUsItems = [
@@ -137,7 +136,7 @@ export default function CastleDowns() {
     },
     {
       question: "What's included in a deep cleaning?",
-      answer: `In Castle Downs, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+      answer: `In Castle Downs, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
     },
     {
       question: "What happens if something is missed?",
@@ -159,15 +158,15 @@ export default function CastleDowns() {
     <>
       <Helmet>
         <title>House Cleaning in Castle Downs, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Castle Downs, Edmonton. Serving families near Beaumaris Lake, Castle Downs Park & more." />
+        <meta name="description" content="Cedar-sided splits and townhouse courts repeat across Castle Downs, Edmonton, and house cleaning there is priced flat by home size." />
         <link rel="canonical" href="https://dutycleaners.ca/locations/castle-downs/" />
         <meta property="og:title" content="House Cleaning in Castle Downs, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional house cleaning in Castle Downs, Edmonton. Serving families near Beaumaris Lake, Castle Downs Park & more." />
+        <meta property="og:description" content="Cedar-sided splits and townhouse courts repeat across Castle Downs, Edmonton, and house cleaning there is priced flat by home size." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/castle-downs/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Castle Downs, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Castle Downs, Edmonton. Serving families near Beaumaris Lake, Castle Downs Park & more." />
+        <meta name="twitter:description" content="Cedar-sided splits and townhouse courts repeat across Castle Downs, Edmonton, and house cleaning there is priced flat by home size." />
         <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Castle Downs Edmonton", city: "edmonton", url: "https://dutycleaners.ca/locations/castle-downs", areaServed: "Castle Downs, Edmonton, AB" }))}</script>
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
@@ -194,7 +193,7 @@ export default function CastleDowns() {
                   Professional House Cleaning in Castle Downs
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Your reliable, local cleaning team serving the Castle Downs community. From family homes near Beaumaris Lake to residences by Castle Downs Park — enjoy dependable cleaning built on trust and genuine care.
+                  Castle Downs is a 1970s and 80s district of cedar-sided splits and townhouse courts, and no home in it is far from the dust of 97 Street, 153 Avenue or Castle Downs Road. Booking notes that name the arterial your home faces help the team target the first visit.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -222,7 +221,7 @@ export default function CastleDowns() {
               <div className="flex-shrink-0 w-full max-w-[500px]">
                 <img width={1024} height={1024}
                   src={castleDownsCleanerImg}
-                  alt="Professional cleaner vacuuming a living room in Castle Downs, Edmonton"
+                  alt="Cleaner in blue scrubs vacuuming a hardwood living room floor while a family sits on the sofa"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                 loading="eager"
                   {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
@@ -242,7 +241,7 @@ export default function CastleDowns() {
                   Cleaning Services for Castle Downs Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to deep cleans and move-outs — every service a home needs.
+                  Standard, deep, move-out and post-construction cleaning for Castle Downs splits and townhouse courts.
                 </p>
               </div>
             </AnimatedSection>
@@ -285,7 +284,7 @@ export default function CastleDowns() {
                   Why Castle Downs Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
@@ -306,12 +305,11 @@ export default function CastleDowns() {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">We Know Castle Downs</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Castle Downs and the Rest of Edmonton</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    We're in and around the neighbourhood daily, so we know the area well.
+                    Castle Downs is one of 80 Edmonton neighbourhoods on the branch's list, which also takes in nine communities outside the city.
                   </p>
                 </div>
-                <CoverageChips areas={["Beaumaris Lake", "Castle Downs Park", "Castle Downs YMCA", "153 Avenue", "Baturyn", "Chambery", "Dunluce", "Lorelei"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                     View All Service Areas →
@@ -327,7 +325,7 @@ export default function CastleDowns() {
         heading="Castle Downs at district scale"
         paragraphs={[
           "Castle Downs is a 1970s-80s district of distinct pockets, and its housing repeats two forms that shape cleans: cedar-sided splits whose exterior sheds onto sills, and townhouse courts where stair runs and shared walls concentrate wear. Lake District ponds nearby add summer humidity that bathrooms register first.",
-          "The district's arterials — 97 Street, 153 Avenue, Castle Downs Road — box every pocket in traffic, so no home is far from arterial dust. The practical difference between addresses is which arterial they face; booking notes that say so get a better-targeted first visit.",
+          "The district's arterials (97 Street, 153 Avenue, Castle Downs Road) box every pocket in traffic, so no home is far from arterial dust. The practical difference between addresses is which arterial they face; booking notes that say so get a better-targeted first visit.",
         ]}
       />
 

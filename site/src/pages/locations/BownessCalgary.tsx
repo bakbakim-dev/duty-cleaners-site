@@ -59,11 +59,11 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Bowness" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Bowness" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Bowness" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Bowness.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Bowness" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Bowness" },
+  { icon: Home, title: "Standard Cleaning", description: "A standard clean is a one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Bowness" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "A deep clean is the standard checklist plus the deep-clean package: baseboards, doors, light switches, wall outlets and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Bowness" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "A move-in or move-out clean goes inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Bowness" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "The team clears dust and debris after a renovation or a new infill build in Bowness.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Bowness" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Wall washing takes scuffs, handprints and cooking film off painted walls without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Bowness" },
 ];
 
 const whyUsItems = [
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Montgomery","Silver Springs","Greenwood Village","Valley Ridge","Cougar Ridge","Varsity"];
+const nearbyAreas = ["Montgomery","Varsity"];
 
 const faqs = [
   {
@@ -104,7 +104,7 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Bowness?",
-    answer: `The full service menu is available here:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `In Bowness, Duty Cleaners' Calgary branch offers:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
   },
   {
     question: "Do you offer discounts?",
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `A deep clean layers these onto the standard visit:\n\n• Baseboards wiped\n• Doors wiped\n• Light switches fully cleaned\n• Wall outlet covers wiped\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function BownessCalgary() {
     <>
       <Helmet>
         <title>House Cleaning Services in Bowness, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional cleaners serving Bowness, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="description" content="Original cottages, post-war bungalows and new infills share Bowness blocks in Calgary, and our Calgary branch cleans each at a flat rate by home size." />
         <meta property="og:title" content="House Cleaning Services in Bowness, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services in Bowness, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional cleaners serving Bowness, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
-        <meta property="og:description" content="Professional cleaners serving Bowness, Calgary. Flat rates by home size, vetted and customer-rated pros, pay after your clean." />
+        <meta name="twitter:description" content="Original cottages, post-war bungalows and new infills share Bowness blocks in Calgary, and our Calgary branch cleans each at a flat rate by home size." />
+        <meta property="og:description" content="Original cottages, post-war bungalows and new infills share Bowness blocks in Calgary, and our Calgary branch cleans each at a flat rate by home size." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/bowness-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/bowness-calgary/" />
@@ -183,7 +183,7 @@ export default function BownessCalgary() {
                 Professional House Cleaning in Bowness
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Trusted house cleaning services for one of Calgary's historic riverside communities — bringing a calm, spotless home within reach.
+                Bowness mixes original cottages, post-war bungalows and new riverside infills on the same block. Our Calgary branch cleans each of them at a flat rate by home size, and nothing is charged until the clean is complete.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function BownessCalgary() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Bowness Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
+                  An original cottage and a new infill are priced the same way in Bowness: flat by bedroom and bathroom count, before 5% GST, plus any home-type surcharge.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function BownessCalgary() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Bowness Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Bowness and the surrounding NW Calgary communities.
+                    Bowness runs along the Bow, and Bowness Road and 16 Avenue feed steady traffic grit onto its local streets.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function BownessCalgary() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={768} src={cleanHomeImg} alt="Spotless Bowness Calgary home cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1024} height={768} src={cleanHomeImg} alt="Sunlit living room with a cream sectional sofa, a glass coffee table and hardwood floors" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Calm, Spotless Bowness Home — Every Visit</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Below grade and at the door</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Bowness Basements and Entry Floors</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Every cleaner is vetted and customer-rated, and it shows in the details: clear counters, gleaming taps, and a home that smells like a fresh start.
+                    In a rebuilt basement along the Bow, light surface mildew may be wiped where it is safe, but mould remediation is not part of any clean. At the front door, chinook thaws bring sand and de-icer in from November to April, and they settle along baseboards and carpet edges. The team brings every supply and needs running water and a way in; without electricity, vacuuming may not be possible.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Reference-checked cleaners, rated after each visit","Every supply and tool brought by the team","Free re-clean when told within 24 hours"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,9 +311,9 @@ export default function BownessCalgary() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Bowness and the communities around it.{" "}
+                  Bowness is one of 66 Calgary neighbourhoods our Calgary branch cleans, with no trip fee inside city limits.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -329,8 +329,8 @@ export default function BownessCalgary() {
         eyebrow="Local knowledge"
         heading="Bowness by the river"
         paragraphs={[
-          "Bowness grew as its own town before joining Calgary, and its mix shows it — original cottages, post-war bungalows and new riverside infills on the same block. The flood-aware basements along the Bow are the special consideration: rebuilt lower levels with sumps and vapour barriers where seasonal humidity checks belong in every clean.",
-          "Bowness Park draws city-wide traffic through the neighbourhood all summer and skating season, and Bowness Road and 16 Avenue feed steady traffic grit onto local streets. Between park visitors and river-path cyclists, entry floors here work harder than the neighbourhood's quiet reputation suggests.",
+          "Bowness grew as its own town before joining Calgary, and its mix shows it — original cottages, post-war bungalows and new riverside infills on the same block. The flood-aware basements along the Bow are the special consideration: rebuilt lower levels with sumps and vapour barriers.",
+          "Bowness Road and 16 Avenue feed steady traffic grit onto local streets.",
         ]}
       />
 
@@ -347,7 +347,7 @@ export default function BownessCalgary() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Bowness Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>

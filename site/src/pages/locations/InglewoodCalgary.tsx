@@ -1,3 +1,4 @@
+import { sitePriceRange } from "@/data/pricing";
 import { getListing } from "@/lib/google-listings";
 import {
   CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import { useEffect } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"; import {   Phone, CheckCircle2, Star, Shield, Clock, Award, Home, Sparkles, Truck, SprayCan, Bath, Building2, Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail, PaintRoller
@@ -59,9 +60,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Inglewood, Calgary" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Inglewood, Calgary" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Inglewood, Calgary" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Inglewood, Calgary" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or loft conversions.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Inglewood, Calgary" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "After a renovation, dust and debris are cleared at a price set by the home's square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Inglewood, Calgary" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Inglewood, Calgary" },
 ];
 
@@ -93,13 +94,13 @@ const whyUsItems = [
   { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
-const nearbyAreas = ["Ramsay", "Bridgeland", "East Village", "Victoria Park", "Beltline", "Albert Park", "Radisson Heights", "Forest Lawn"];
+const nearbyAreas = ["Ramsay", "Bridgeland-Riverside", "East Village", "Victoria Park", "Beltline", "Forest Lawn"];
 
 const faqs = [
   { question: "How long does an initial cleaning take?", answer: "We work to a checklist, not a clock. The crew stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
   { question: "What cleaning services does Duty Cleaners offer in Inglewood?", answer: "We offer:\n\n• Standard Cleaning & Deep Cleaning Packages\n• Move-In And Move-Out Cleaning Service\n• Post Construction Cleaning\n• Wall Washing and Wall Cleaning" },
-  { question: "Do you offer discounts?", answer: "We offer recurring discounts for our Standard and Deep Cleaning Packages.\n\nIf you avail of our recurring discount, on your next cleaning:\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off" },
-  { question: "What's included in a deep cleaning?", answer: "Deep cleaning adds the following to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned" },
+  { question: "Do you offer discounts?", answer: "Yes. A recurring standard clean is discounted from the second visit:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nThe first clean is charged at the one-time rate." },
+  { question: "What's included in a deep cleaning?", answer: "Deep cleaning adds the following to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped" },
   { question: "What happens if something is missed?", answer: "Tell us within 24 hours and the team comes back to your Inglewood, Calgary home to re-clean what was missed, at no charge. Photos help but are not required." },
 ];
 
@@ -107,7 +108,7 @@ const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Inglewood Calgary",
   city: "calgary",
   url: "https://dutycleaners.ca/locations/inglewood-calgary",
-  priceRange: "$$",
+  priceRange: sitePriceRange(),
   geo: { latitude: "51.0372", longitude: "-114.0233" },
 });
 
@@ -120,12 +121,12 @@ export default function InglewoodCalgary() {
     <>
       <Helmet>
         <title>House Cleaning in Inglewood, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional house cleaning in Inglewood, Calgary. Heritage homes and modern lofts. 100% satisfaction guaranteed. Call (403) 768-1341." />
+        <meta name="description" content="In Inglewood, Calgary, the oldest houses have plaster walls and floors refinished thin, so our cleaners keep the damp cloth for tile and glass." />
         <meta property="og:title" content="House Cleaning in Inglewood, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Inglewood, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional house cleaning in Inglewood, Calgary. Heritage homes and modern lofts. 100% satisfaction guaranteed. Call (403) 768-1341." />
-        <meta property="og:description" content="Professional house cleaning in Inglewood, Calgary. Heritage homes and modern lofts. 100% satisfaction guaranteed. Call (403) 768-1341." />
+        <meta name="twitter:description" content="In Inglewood, Calgary, the oldest houses have plaster walls and floors refinished thin, so our cleaners keep the damp cloth for tile and glass." />
+        <meta property="og:description" content="In Inglewood, Calgary, the oldest houses have plaster walls and floors refinished thin, so our cleaners keep the damp cloth for tile and glass." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/inglewood-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/inglewood-calgary/" />
@@ -167,7 +168,7 @@ export default function InglewoodCalgary() {
                   Professional House Cleaning in Inglewood, Calgary
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Trusted cleaning for Calgary's oldest and most artistic neighbourhood. From heritage homes to modern lofts — customer-rated cleaners, locally loved.
+                  Inglewood is bounded by the Bow, the Elbow and CPKC's Alyth yard, and its oldest houses have plaster walls and floors refinished almost to nothing. Our Calgary branch cleans them at a flat rate by home size.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -193,7 +194,7 @@ export default function InglewoodCalgary() {
               <div className="flex-shrink-0 w-full lg:w-[500px]">
                 <img
                   src={calgaryCleanHome}
-                  alt="A freshly cleaned Calgary living space"
+                  alt="Bright living room with a cream sectional sofa, a glass coffee table and tall windows"
                   width={1024}
                   height={768}
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
@@ -231,7 +232,7 @@ export default function InglewoodCalgary() {
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Neighbourhoods We Serve</h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto">We proudly serve families and homeowners across Inglewood and surrounding communities.</p>
+                <p className="text-muted-foreground max-w-2xl mx-auto">These Calgary neighbourhoods are on the same branch list as Inglewood, all of them inside city limits.</p>
               </div>
               <CoverageChips areas={nearbyAreas} />
             </AnimatedSection>
@@ -242,8 +243,8 @@ export default function InglewoodCalgary() {
         eyebrow="Neighbourhood notes"
         heading="Two rivers and a rail yard"
         paragraphs={[
-          "The community's own boundary listing is two rivers and a rail yard: the Bow to the north and east, the Elbow to the west, and CPKC's Alyth yard hard against the south. Yard-side blocks pick up a fine gritty film the river blocks do not. Screens, sills and outdoor glass on that side need doing on a shorter cycle than the river blocks.",
-          "Established in 1875, this is the oldest neighbourhood in the city, and the housing behind 9 Avenue SE — probably Calgary's first main street — shows its age. In the oldest of them, floors have been refinished down to almost nothing and the walls are plaster, which does not forgive standing water. So the wet work stays wet and the dry work stays dry: the damp cloth is for tile and glass, and abrasives stay in the van.",
+          "The community's own boundary listing is two rivers and a rail yard: the Bow to the north and east, the Elbow to the west, and CPKC's Alyth yard hard against the south. Yard-side blocks pick up a fine gritty film the river blocks do not. Sills on that side need doing on a shorter cycle than the river blocks, though the film on the yard-facing screens and outdoor glass is exterior work a clean does not reach.",
+          "The housing behind 9 Avenue SE shows its age. In the oldest houses, floors have been refinished down to almost nothing and the walls are plaster, which does not forgive standing water. So the wet work stays wet and the dry work stays dry: the damp cloth is for tile and glass, and abrasives stay in the van.",
         ]}
         accent="calgary"
       />
@@ -259,7 +260,7 @@ export default function InglewoodCalgary() {
               <div className="text-center mb-14">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Inglewood Homes</h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto text-lg">From heritage homes to modern lofts, we have every service your unique space needs.</p>
+                <p className="text-muted-foreground max-w-2xl mx-auto text-lg">Each Inglewood service is priced flat by home size, so the price does not change if an older house takes longer to clean.</p>
               </div>
             </AnimatedSection>
             <AnimatedSection>
@@ -295,7 +296,7 @@ export default function InglewoodCalgary() {
               <div className="text-center mb-14">
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Inglewood Residents Choose Duty Cleaners</h2>
-                <p className="text-white/90 max-w-2xl mx-auto text-lg">Trusted locally for reliable, thorough cleaning.</p>
+                <p className="text-white/90 max-w-2xl mx-auto text-lg">Reference checks come before a cleaner's first job. After that, customer ratings decide who we keep sending.</p>
               </div>
             </AnimatedSection>
             <AnimatedSection>
@@ -333,8 +334,8 @@ export default function InglewoodCalgary() {
           <div className="container mx-auto px-4 text-center">
             <AnimatedSection>
               <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-              <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Proudly Serving Inglewood & Surrounding Areas</h2>
-              <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">We provide professional house cleaning services throughout Inglewood and nearby communities in Calgary.</p>
+              <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Inglewood and the Rest of Calgary</h2>
+              <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">The Calgary branch cleans 66 neighbourhoods inside the city and 9 communities outside it, where a travel fee applies.</p>
               <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">View All Service Areas →</Link>
             </AnimatedSection>
           </div>

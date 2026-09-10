@@ -32,12 +32,12 @@ const PILLARS: Record<"Edmonton" | "Calgary", Pillar[]> = {
     {
       icon: Receipt,
       title: "Priced on What You Tell Us",
-      desc: "Your quote is built from your home's size and condition as you describe them. Some things only show themselves once we start: built-up grime under the surface, extra cabinets, glass railings. When the job turns out bigger than described, we let you know what changed and why.",
+      desc: "The price is flat by home size, worked out from what you enter on the booking form. Some things only show themselves once we start: heavy build-up, far more glass or cabinetry than the form described. When that happens, the team explains what it found and the options before carrying on.",
     },
     {
       icon: RotateCcw,
-      title: "100% Satisfaction Guarantee",
-      desc: `If something was missed, tell us within ${POLICY.guaranteeWindowHours} hours and we return to make it right at no additional charge.`,
+      title: `${POLICY.guaranteeWindowHours}-Hour Re-Clean Guarantee`,
+      desc: `Tell us within ${POLICY.guaranteeWindowHours} hours if anything was missed and the team comes back to re-clean it at no charge. Photos help but are not required, and the commitment is the return visit rather than a refund.`,
     },
   ],
   Calgary: [
@@ -49,17 +49,17 @@ const PILLARS: Record<"Edmonton" | "Calgary", Pillar[]> = {
     {
       icon: HeartHandshake,
       title: "Judgment-Free, Always",
-      desc: "You do not need to clean before the team comes: clear counters and floors get cleaned, cluttered ones get worked around, and decluttering or organising is a separate hourly add-on. Put the place on the booking form as it is and the team arrives knowing. What we turn down: bodily fluids, animal waste, mould remediation, pests and rodents.",
+      desc: "You do not need to clean before the team comes: clear counters and floors get cleaned, cluttered ones get worked around, and decluttering or organising is a separate hourly add-on. Say on the booking form what state the place is in, and the team comes prepared for it. The team does not take on bodily fluids, animal waste, mould remediation, pests or rodents.",
     },
     {
       icon: Receipt,
       title: "Priced on What You Tell Us",
-      desc: "The quote comes from the size and condition you describe. Some things only show up once the team is through the door: grime under the surface, more cabinets than expected, a glass railing. When the job is bigger than described, the team tells you what changed before carrying on.",
+      desc: "The quote comes from the home size you enter, and a clean that runs long costs the same. Some things only show up once the team is through the door: heavy build-up, more cabinets than expected, a glass railing. When the job is substantially bigger than described, the team tells you what it found and the options before carrying on.",
     },
     {
       icon: RotateCcw,
-      title: "100% Satisfaction Guarantee",
-      desc: `Anything missed, reported within ${POLICY.guaranteeWindowHours} hours, is put right on a return visit at no charge.`,
+      title: "A Return Visit, at No Charge",
+      desc: `Anything missed, reported within ${POLICY.guaranteeWindowHours} hours, is re-cleaned on a return visit at no charge. It is not a money-back guarantee, though you can always call the Calgary office to talk it through.`,
     },
   ],
 };
@@ -67,11 +67,11 @@ const PILLARS: Record<"Edmonton" | "Calgary", Pillar[]> = {
 const COPY = {
   Edmonton: {
     eyebrow: "Included With Every Clean",
-    quote: "Trust isn’t something our cleaners claim. It’s something they earn at every visit.",
+    quote: "The team works through the checklist and stays until every task on it is done, however long the clean takes.",
   },
   Calgary: {
     eyebrow: "Standing terms, every Calgary visit",
-    quote: "A cleaner keeps working for us because Calgary customers keep rating them well. There is no other way to stay on the list.",
+    quote: "Calgary is hard on floors and easy on nothing. These terms come with every Calgary clean.",
   },
 } as const;
 
@@ -96,7 +96,7 @@ export default function DutyCleanPromise({ city = "Edmonton" }: { city?: "Edmont
               to="/satisfaction-guarantee/"
               className="mt-8 inline-flex min-h-[44px] items-center gap-2 text-accent-on-dark font-semibold hover:underline underline-offset-4 group"
             >
-              Read our full Satisfaction Guarantee
+              How the re-clean guarantee works
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>

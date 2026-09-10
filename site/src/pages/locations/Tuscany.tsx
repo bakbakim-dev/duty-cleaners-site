@@ -59,10 +59,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Tuscany" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Tuscany" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Tuscany" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Tuscany" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Tuscany.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Tuscany" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Tuscany" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Renovation and new-build dust cleared from Tuscany homes, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Tuscany" },
+  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film washed off painted walls, booked together with a clean.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Tuscany" },
 ];
 
 const whyUsItems = [
@@ -93,7 +93,7 @@ const whyUsItems = [
   { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
-const nearbyAreas = ["Tuscany Ravine", "Tuscany Hills", "Tuscany Estates", "Tuscany Valley", "Rocky Ridge", "Royal Oak", "Scenic Acres", "Arbour Lake"];
+const nearbyAreas = ["Scenic Acres", "Arbour Lake"];
 
 const faqs = [
   {
@@ -110,7 +110,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -135,12 +135,12 @@ export default function Tuscany() {
     <>
       <Helmet>
         <title>House Cleaning Services in Tuscany, Calgary | Duty Cleaners</title>
-        <meta name="description" content="House cleaning in Tuscany, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
+        <meta name="description" content="In Tuscany, Calgary, original grout and tub silicone is around twenty years old and porous, so house cleaning here relies on a mild product and dwell time." />
         <meta property="og:title" content="House Cleaning Services in Tuscany, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services in Tuscany, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning in Tuscany, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
-        <meta property="og:description" content="House cleaning in Tuscany, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
+        <meta name="twitter:description" content="In Tuscany, Calgary, original grout and tub silicone is around twenty years old and porous, so house cleaning here relies on a mild product and dwell time." />
+        <meta property="og:description" content="In Tuscany, Calgary, original grout and tub silicone is around twenty years old and porous, so house cleaning here relies on a mild product and dwell time." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/tuscany/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/tuscany/" />
@@ -181,7 +181,7 @@ export default function Tuscany() {
                 Professional House Cleaning in Tuscany
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Trusted house cleaning services for one of Calgary's most family-friendly communities — from Tuscany Hills to Rocky Ridge.
+                Nearly every home in Tuscany went up in one push through the late 1990s and 2000s, so whole streets reach the same wear points together. Our Calgary branch cleans them at flat rates by home size.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -241,10 +241,10 @@ export default function Tuscany() {
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
-                  Tuscany Neighbourhoods We Serve
+                  More Calgary-area neighbourhoods we clean
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Tuscany and the communities around it.{" "}
+                  Scenic Acres and Arbour Lake are on our Calgary branch's list as well, with the same flat rates by home size as Tuscany.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -260,7 +260,7 @@ export default function Tuscany() {
         heading="A decade of building, then quiet"
         paragraphs={[
           "Construction started in 1994 and then ran hard: the City of Calgary counted 6,672 dwellings here at its 2019 civic census, nearly all of them raised in a single push through the late 1990s and 2000s. Whole streets therefore reach the same wear points together. Where the grout and tub silicone is still original, it is now around twenty years old and porous — staining sits in the material rather than on it, so it needs dwell time with a mild product rather than pressure or abrasives.",
-          "Twelve Mile Coulee Road runs down the western edge, and past it the street grid gives out — the Lynx Ridge acreages, then the Bearspaw country. With open land that side, west-facing rooms take low late-afternoon sun straight on, and by four o'clock in October that wall is lit edge-on, which is when a sprayed-and-buffed window starts to show its own drying marks. Glass on that wall repays a squeegee and a dried edge; the same work on a north-facing window would never show at all.",
+          "Twelve Mile Coulee Road runs down the western edge, and past it the street grid gives out — the Lynx Ridge acreages, then the Bearspaw country. With open land that side, west-facing rooms take low late-afternoon sun straight on, and by four o'clock in October that wall is lit edge-on, which is when a sprayed-and-buffed window starts to show its own drying marks. Glass on that wall repays a squeegee and a dried edge; the same work on a north-facing window would never show at all. Interior windows are an add-on to a clean, and the outside of the glass is outdoor work that a clean does not cover.",
         ]}
         accent="calgary"
       />
@@ -279,7 +279,7 @@ export default function Tuscany() {
                   Cleaning Services for Tuscany Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  From routine upkeep to move-outs, Tuscany homes get every service they need.
+                  Tuscany cleans are flat rates by home size before 5% GST, apart from post-construction, which is priced by square footage; the instant price shows the exact figure before you book.
                 </p>
               </div>
             </AnimatedSection>
@@ -321,7 +321,7 @@ export default function Tuscany() {
                   Why Tuscany Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>

@@ -1,6 +1,6 @@
 import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
 import { addOnFromPrice } from "@/data/pricing";
-import { TRAVEL_FEE_KEY } from "@/data/addon-table";
+import { TRAVEL_FEE_KEY, travelFee } from "@/data/addon-table";
 import { POLICY } from "@/data/policy";
 import { useLocation } from "react-router-dom";
 import { quoteHrefFor } from "@/lib/quote-link";
@@ -59,6 +59,8 @@ const PET_FEE = formatPrice(addOnFromPrice("standard", "must-choose-if-you-have-
    the one most likely to be read as authoritative and the least likely to be
    noticed when BookingKoala moves. */
 const TRAVEL_FEE = formatPrice(addOnFromPrice("standard", TRAVEL_FEE_KEY) ?? 0);
+/** Post-construction carries its own, larger travel fee outside the city. */
+const POST_TRAVEL_FEE = formatPrice(travelFee("post-construction") ?? 0);
 
 const standardPricing = standardTierRows();
 
@@ -118,14 +120,14 @@ const standardIncludes = [
 ];
 
 const standardAddOns = [
-  "Baseboards, doors, light switches, wall outlets, and outside vent covers",
+  "Baseboards, doors, light switches, wall outlets, and vent covers",
   "Inside appliances",
   "Inside cabinets",
   "Interior windows",
   "Wall washing",
-  "Garage/balcony",
-  "Decluttering/Organizing",
-  "Basement",
+  "Garage or balcony sweep",
+  "Decluttering and organising, by the hour",
+  "Finished basement",
 ];
 
 /* Derived from bk-config — see src/data/addon-table.ts. */
@@ -152,18 +154,18 @@ const CALGARY_TOWNS: { anchor: string; to: string }[] = [
    hourly, and that is now a sentence in the same place. */
 
 const faqItems = [
-  { value: "trust", question: "Can I trust my house cleaners?", answer: "Every cleaner on a Calgary crew was reference-checked before their first job with us, and the customer rates each visit afterwards. Those ratings decide who we keep sending to Calgary homes." },
+  { value: "trust", question: "Who are the house cleaners who come to a Calgary home?", answer: "Every cleaner on a Calgary crew was reference-checked before their first job with us, and the customer rates each visit afterwards. Those ratings decide who we keep sending to Calgary homes." },
   { value: "included", question: "What is included in maid service in Calgary?", answer: "A standard clean in Calgary covers the kitchen (sink, stovetop, counters, the inside and outside of the microwave, the outside of the other appliances), every bathroom (toilets, showers, tubs, sinks), and the bedrooms and living areas (dusting, mirrors, window sills, chairs and tables, vacuuming and mopping). The inside of the fridge, the oven and the cabinets are add-ons on a standard clean and part of a move-in/out clean. Baseboards are in the Deep Cleaning package." },
-  { value: "duration", question: "How long does a typical house cleaning take?", answer: "As long as the checklist takes. A Beltline one-bedroom and a Mahogany four-bedroom are each billed at their flat rate whether the crew finishes in two hours or four, because the rate is set by the home and not by the clock. Deep and move-in/out cleans have longer lists and run longer." },
+  { value: "duration", question: "How long does a typical house cleaning take?", answer: "As long as the checklist takes. A Beltline one-bedroom and a Mahogany four-bedroom are each billed at their flat rate whether the crew finishes early or runs long, because the rate is set by the home and not by the clock. Deep and move-in/out cleans have longer lists and run longer." },
   { value: "supplies", question: "Are there discounts if I provide my own cleaning supplies?", answer: `No. The crew arrives with its own supplies and equipment, and the rate already assumes that. If there is a product you want used on a particular surface, leave it out and note it on the booking; that costs nothing extra. Eco-friendly products are ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}.` },
   { value: "recurring", question: "Do you offer recurring service discounts?", answer: "Weekly is 20% off, bi-weekly 15% off, every 4 weeks 10% off. The discount begins on the second visit and the first is charged at the one-time rate. When that first visit is a deep clean, the package part is billed once and never discounted, and the visits after it are standard cleans at the discounted price. Move-out cleans do not recur, so they carry no discount." },
-  { value: "pricing-types", question: "What's the difference between Hourly Cleaning and flat-rate pricing?", answer: `Flat rate: one figure set by bedrooms, bathrooms and home type, unchanged if the clean runs long. Hourly, at ${formatPrice(HOURLY_RATE)} per cleaner per hour: for a few rooms, a one-off task list, or a home no size tier fits, with a minimum of 3 hours for one cleaner or 2 hours for two. A Calgary condo owner who only wants the kitchen and one bathroom done is an hourly job; the same condo done end to end is a flat rate.` },
+  { value: "pricing-types", question: "What's the difference between Hourly Cleaning and flat-rate pricing?", answer: `Flat rate: one figure set by bedrooms, bathrooms and home type, unchanged if the clean runs long. Hourly, at ${formatPrice(HOURLY_RATE)} per cleaner per hour before GST: for a few rooms, a one-off task list, or a home no size tier fits, with a minimum of 3 hours for one cleaner or 2 hours for two. A Calgary condo owner who only wants the kitchen and one bathroom done is an hourly job; the same condo done end to end is a flat rate.` },
   // A FAQ with this title has to name the charges customers call hidden. Both
   // are published on /terms/ and both read from POLICY, so this answer can
   // never drift away from the terms it summarises.
-  { value: "hidden-fees", question: "Are there any hidden fees?", answer: `Every charge outside the card price is on the quote before you book, and this is the whole list. Pets: ${PET_FEE} a visit, because shed hair and nose marks on glass add time in every room. An address outside Calgary city limits, such as Airdrie, Cochrane, Okotoks or Chestermere: a ${TRAVEL_FEE} travel fee. Cancelling or moving a booking inside ${POLICY.cancellationNoticeHours} hours: ${POLICY.cancellationFee}. A lockout, where the crew arrives and cannot get in: ${POLICY.lockoutFee}. Eco-friendly products: ${POLICY.ecoProductsFee}, and since the form has no box for them, ${POLICY.ecoProductsHowToRequest}. The flat rate itself does not rise because a clean ran long. It changes only when a home needs substantially more work than the booking described, and the crew tells you what they found before continuing.` },
-  { value: "satisfaction", question: "What if I'm not satisfied with the cleaning?", answer: `Tell us within ${POLICY.guaranteeWindowHours} hours and the crew comes back to re-clean whatever was missed, at no cost. There is no form to fill in and no photo requirement.` },
-  { value: "same-as-edmonton", question: "Is the price different in Calgary than in Edmonton?", answer: "No. One price sheet covers both cities and neither carries a premium. What differs is which service a Calgary home tends to need: after a winter of chinook melt-and-grit cycles, the deep clean is the right first booking more often than it is in Edmonton. That is a difference in what you choose, not in what we charge." },
+  { value: "hidden-fees", question: "Are there any hidden fees?", answer: `Every card price is before 5% GST, and these are the only other charges. Home type: the cards price an apartment or condo, and a bungalow or basement suite adds ${HOME_TYPE_EXTRA.bungalow}, a townhouse ${HOME_TYPE_EXTRA.townhouse} and a two-storey house ${HOME_TYPE_EXTRA.twoStorey}. Pets: ${PET_FEE} a visit, because shed hair and nose marks on glass add time in every room. An address outside Calgary city limits, such as Airdrie, Cochrane, Okotoks or Chestermere: a ${TRAVEL_FEE} travel fee on home cleaning, or ${POST_TRAVEL_FEE} on a post-construction clean. Cancelling or moving a booking inside ${POLICY.cancellationNoticeHours} hours: ${POLICY.cancellationFee}. A lockout, where the crew arrives and cannot get in: ${POLICY.lockoutFee}. Eco-friendly products: ${POLICY.ecoProductsFee}, and since the form has no box for them, ${POLICY.ecoProductsHowToRequest}. The flat rate itself does not rise because a clean ran long. It changes only when a home needs substantially more work than the booking described, and the crew tells you what they found before continuing.` },
+  { value: "satisfaction", question: "What if I'm not satisfied with the cleaning?", answer: `Tell us within ${POLICY.guaranteeWindowHours} hours and the crew comes back to re-clean whatever was missed, at no cost. Photos help, but they are not required. The commitment is that return visit, and a Calgary customer who wants something else can call (403) 768-1341 and talk it through.` },
+  { value: "same-as-edmonton", question: "Is the price different in Calgary than in Edmonton?", answer: "No. One price sheet covers both cities and neither carries a premium. What can differ is which service a Calgary home needs: after a winter of chinook melt-and-grit cycles, sand and de-icer settle along baseboards and carpet edges, and baseboards are in the deep-clean package. That is a difference in what you choose, not in what we charge." },
 ];
 
 export default function CalgaryPricing() {
@@ -181,7 +183,7 @@ export default function CalgaryPricing() {
   const { ref: ctaRef } = useScrollAnimation();
 
   const title = `Calgary House Cleaning Prices from ${FROM_PRICE} | Duty Cleaners`;
-  const description = `Calgary house cleaning prices from ${FROM_PRICE} by home size. GST stated, no trip fee inside city limits, and you pay after the clean, not before.`;
+  const description = `Calgary house cleaning prices from ${FROM_PRICE} for a one-bedroom, before GST. No trip fee inside city limits, and the card is charged after the clean.`;
 
   return (
     <div className="min-h-screen">
@@ -240,29 +242,29 @@ export default function CalgaryPricing() {
                 Standard one. Every figure is derived, never typed. */}
             <p className="text-xl md:text-2xl text-white/85 mb-3 leading-relaxed">
               One flat rate per bedroom count, before 5% GST: {priceSpan(standardPricing)} for a standard clean,{" "}
-              {priceSpan(deepPricing)} for a deep clean, {priceSpan(moveInOutPricing)} to move in or out. The
-              number on the quote is the number on the card, charged once the crew has finished.
+              {priceSpan(deepPricing)} for a deep clean, {priceSpan(moveInOutPricing)} to move in or out. Your
+              payment card is charged once the crew has finished.
             </p>
             <p className="text-lg text-white/90 mb-10">
               {/* Read from the verified Form 1 table so BK and the page cannot
                   diverge; the old line put two home types under one number. */}
               Those rates assume an apartment or condo. A bungalow or a basement suite is {HOME_TYPE_EXTRA.bungalow} more,
-              a townhouse {HOME_TYPE_EXTRA.townhouse} more, and a two-storey house {HOME_TYPE_EXTRA.twoStorey} more,
-              because a second floor and its stairs take longer to cover. Pick the home type on the form and the total
+              a townhouse {HOME_TYPE_EXTRA.townhouse} more, and a two-storey house {HOME_TYPE_EXTRA.twoStorey} more.
+              Pick the home type on the form and the total
               updates in front of you.
             </p>
             <p className="text-lg text-white/90 mb-10">
               Nothing about how the day goes moves the rate. A quote changes only when a home needs substantially more
               work than it was described as needing, and the crew explains what they found before they carry on. A
-              few rooms, or a home with no bedroom count that fits, is quoted hourly at {formatPrice(HOURLY_RATE)} per
-              hour per cleaner instead.
+              few rooms, or a home with no bedroom count that fits, is quoted hourly instead, at {formatPrice(HOURLY_RATE)}
+              per hour per cleaner before GST.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4 mb-10">
               {[
                 { icon: Star, label: RATING_CLAIM },
                 { icon: Shield, label: "Pay after your clean" },
-                { icon: BadgeCheck, label: "No Hidden Fees" },
+                { icon: BadgeCheck, label: "Every fee shown on the quote" },
               ].map((badge, i) => (
                 <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                   <badge.icon className="w-4 h-4 text-accent" />
@@ -299,8 +301,8 @@ export default function CalgaryPricing() {
         eyebrow="Calgary pricing, in plain terms"
         heading="Why your Calgary quote lands where it does"
         paragraphs={[
-          "Our prices are the same in Calgary as in Edmonton — we do not charge a city premium, and there is no trip fee inside either city. What differs is which service a Calgary home usually needs, and that is where the real cost difference shows up. Because the chinooks keep putting the roads through melt-and-grit cycles all winter, sand and de-icer accumulate along baseboards and carpet edges in a way that a standard clean is not scoped to remove. Booked in late winter, a Calgary home is more likely to genuinely need the deep clean than the standard one.",
-          "Home type moves the number more than neighbourhood does. A Beltline or Mission condo is small in square footage but heavy on glass, tracks and balcony seals, so it prices lower than a suburban house but takes longer per square foot than the tier suggests. A newer place in Mahogany, Seton or Livingston is the reverse — larger and quicker, unless it is still shedding construction dust from the vents and closet shelves, which is common for a year or two after possession.",
+          "Our prices are the same in Calgary as in Edmonton — we do not charge a city premium, and there is no trip fee inside either city. What can differ is which service a Calgary home needs. Because the chinooks keep putting the roads through melt-and-grit cycles all winter, sand and de-icer accumulate along baseboards and carpet edges in a way that a standard clean is not scoped to remove.",
+          "Home type moves the number more than neighbourhood does. A Beltline or Mission condo is one of the simplest jobs in the city, and it prices at the apartment or condo rate with no home-type charge. Houses in newer suburbs such as Mahogany, Seton and Livingston carry construction dust, and a two-storey house there adds the home-type charge.",
           "Everything quoted here is before tax; 5% GST is added on top. Recurring discounts of 20% weekly, 15% bi-weekly and 10% every four weeks start from your second visit, and the first clean is charged at the one-time rate. If the home turns out to need substantially more work than described, the team explains what they found and your options before continuing rather than adjusting the bill afterwards.",
         ]}
       />
@@ -327,7 +329,7 @@ export default function CalgaryPricing() {
                   <span className="font-semibold text-foreground">The rate is fixed by home size and bathroom count, and it does not go up because the crew took longer.</span>{" "}
                   It changes in one case only: a home that needs substantially more work than the booking described,
                   heavy build-up or far more glass and cabinetry than stated. Then the crew tells you what they found
-                  and your options before continuing, not on the invoice afterwards.
+                  and your options before continuing.
                 </p>
               </div>
             </div>
@@ -337,7 +339,7 @@ export default function CalgaryPricing() {
               set number of bathrooms: {PRICING_TIERS[0].bathrooms} for the one-bedroom, {PRICING_TIERS[1].bathrooms} for the two-bedroom, and{" "}
               {fourBedTier.bathrooms} full plus a half bath by the four-bedroom. A Beltline one-bedroom with one
               bathroom is the first card exactly; a four-bedroom in Mahogany with two bathrooms comes in under the
-              fourth, worked through below. The{" "}
+              fourth card, because that card assumes {fourBedTier.bathrooms} full bathrooms and a half bath. The{" "}
               <Link to="/calgary/regular-cleaning/" className="text-accent underline underline-offset-4 hover:text-accent/80">Calgary standard cleaning</Link>{" "}
               rate is the base for everything. A{" "}
               <Link to="/calgary/deep-cleaning/" className="text-accent underline underline-offset-4 hover:text-accent/80">deep clean in Calgary</Link>{" "}
@@ -354,7 +356,7 @@ export default function CalgaryPricing() {
               </TabsList>
 
               <TabsContent value="standard">
-                <p className="text-center text-muted-foreground mb-8">The visit most Calgary homes book, at the rate for their size</p>
+                <p className="text-center text-muted-foreground mb-8">One visit, at the flat rate for the home's size</p>
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-10">
                   {standardPricing.map((item) => (
                     <PricingTierCard key={item.beds} beds={item.beds} price={item.price} />
@@ -430,7 +432,8 @@ export default function CalgaryPricing() {
                   <Link to="/post-construction-cleaning-calgary/" className="text-accent underline underline-offset-4 hover:text-accent/80">
                     post-construction cleaning in Calgary
                   </Link>{" "}
-                  is banded by square footage, starting at {POST_CONSTRUCTION_FROM}. Fine drywall dust
+                  is banded by square footage, starting at {POST_CONSTRUCTION_FROM} before GST for under 1,000 sq ft, with a
+                  travel fee outside Calgary city limits. Fine drywall dust
                   reaches the same surfaces in a one-bedroom infill as in a five-bedroom house.
                 </p>
               </TabsContent>
@@ -488,18 +491,10 @@ export default function CalgaryPricing() {
               and the two wall rows link to the Calgary wall-washing page for the detail.
             </p>
 
-            {/* Office Cleaning Card */}
-            <div className="mt-10 max-w-lg mx-auto group" style={{ perspective: "1000px" }}>
-              <div className="bg-card rounded-xl border border-border/50 shadow-sm p-8 text-center transition-all duration-500 ease-out group-hover:-translate-y-2 group-hover shadow-xl group-hover:scale-[1.02]" style={{ transformStyle: "preserve-3d" }}>
-                <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mx-auto mb-4 transition-transform duration-500 group-hover:rotate-6">
-                  <Home className="w-6 h-6 text-accent" />
-                </div>
-                <h3 className="text-xl font-bold mb-1">Office Cleaning</h3>
-                <p className="text-sm text-muted-foreground mb-3">Office cleaning, billed by the hour.</p>
-                <div className="text-4xl font-bold text-accent mb-1">{formatPrice(HOURLY_RATE)}/hour</div>
-                <p className="text-sm text-muted-foreground">Per cleaner · Flexible scheduling</p>
-              </div>
-            </div>
+            <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto mt-6 text-center">
+              Every add-on price is per visit and before 5% GST. Pick the add-ons on the booking form and each
+              one appears as its own line on the Calgary quote, beside the flat rate for the home.
+            </p>
           </div>
         </div>
       </section>
@@ -518,7 +513,7 @@ export default function CalgaryPricing() {
 
             <div className="grid md:grid-cols-3 gap-6 mb-8">
               <RecurringDiscountCard percentage="20%" title="Weekly Cleaning" />
-              <RecurringDiscountCard percentage="15%" title="Bi-weekly Cleaning" isPopular />
+              <RecurringDiscountCard percentage="15%" title="Bi-weekly Cleaning" />
               <RecurringDiscountCard percentage="10%" title="Every 4 Weeks" />
             </div>
 
@@ -593,9 +588,9 @@ export default function CalgaryPricing() {
             </div>
             <h2 className="display-serif text-2xl md:text-3xl font-bold mb-6 text-balance">Outside Calgary city limits: what the travel fee covers</h2>
             <p className="text-muted-foreground leading-relaxed mb-5">
-              Inside Calgary there is no trip fee and no diagnostic fee. Past the city limits, each visit carries a{" "}
+              Inside Calgary city limits there is no trip fee. Past the city limits, each visit carries a{" "}
               {TRAVEL_FEE} travel fee, and that fee is the only thing separating a Calgary quote from one in the towns
-              around it. The flat rate, the add-on prices and the recurring discounts are the city figures, and the fee
+              around it. A post-construction clean outside the limits carries a {POST_TRAVEL_FEE} travel fee instead. The flat rate, the add-on prices and the recurring discounts are the city figures, and the fee
               shows as its own line on the quote before you confirm.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-5">
@@ -620,10 +615,10 @@ export default function CalgaryPricing() {
         <div className="container mx-auto px-4" ref={factorsRef}>
           <div className="max-w-5xl mx-auto">
             <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-10 text-center">
-              Those five steps price a whole Calgary home. There is a sixth choice they do not make for
-              you: a home cleaned end to end is a flat rate, while a few rooms or a one-off task list is
-              billed by the hour at {formatPrice(HOURLY_RATE)} per cleaner, with a minimum of 3 hours for
-              one cleaner or 2 hours for two. The comparison is below.
+              A whole Calgary home is priced by its home type, bedrooms, bathrooms, add-ons and frequency.
+              The one choice that pricing does not make for you is flat rate against hourly: a home cleaned
+              end to end is a flat rate, while a few rooms or a one-off task list is billed by the hour at{" "}
+              {formatPrice(HOURLY_RATE)} per cleaner before GST, with a minimum of 3 hours for one cleaner or 2 hours for two.
             </p>
 
             {/* No Hidden Fees Banner */}
@@ -637,7 +632,7 @@ export default function CalgaryPricing() {
                    <h3 className="text-xl font-bold text-white">Seen before you book, charged after the clean</h3>
                  </div>
                  <p className="text-white/90 leading-relaxed mb-6 max-w-2xl">
-                   The quote is fixed before you confirm, and nothing is charged at booking. Your card is charged once the crew has finished. Inside Calgary there is no trip or diagnostic fee. Should a home turn out to need substantially more work than the booking described, the crew says so and gives you the options before continuing.
+                   The quote is fixed before you confirm, and nothing is charged at booking. Your card is charged once the crew has finished. Inside Calgary city limits there is no trip fee. Should a home turn out to need substantially more work than the booking described, the crew says so and gives you the options before continuing.
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Button className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold shadow-md hover:shadow-lg transition-all" asChild>
@@ -675,7 +670,7 @@ export default function CalgaryPricing() {
                 title="Hourly Cleaning"
                 description="A few rooms, a one-off list, or a home no bedroom tier fits. You write the list, the crew works down it, and you pay for the hours it took."
                 price={`${formatPrice(HOURLY_RATE)}/hour`}
-                priceLabel="Per cleaner"
+                priceLabel="Per cleaner, before 5% GST"
                 features={["3 hours minimum for one cleaner, 2 hours for two", "Your list, in your order", "Billed by the hour, per cleaner"]}
                 buttonText="Book Hourly Service"
               />
@@ -685,9 +680,8 @@ export default function CalgaryPricing() {
                 description="One figure for the whole home, set by bedrooms, bathrooms and home type. Standard, deep and move-in/out cleans are all priced this way, with add-ons as separate lines."
                 price={`from ${FROM_PRICE}`}
                 priceLabel="Set by home size, before 5% GST"
-                features={["The quote is the bill", "Standard, deep and move-in/out", "No trip or diagnostic fee inside Calgary", "Most popular option"]}
+                features={["Quote shown before you book", "Standard, deep and move-in/out", "No trip fee inside Calgary city limits", "Pet and home-type charges shown on the quote"]}
                 buttonText="See My Instant Price"
-                isHighlighted
               />
             </div>
           </div>
@@ -707,7 +701,7 @@ export default function CalgaryPricing() {
 
             <div className="grid md:grid-cols-3 gap-6 mb-10">
               {[
-                { icon: Clock, title: `In Calgary and Edmonton ${COMPANY.sinceLabel}`, desc: `${CITY_PROOF.calgary.googleReviewCount} Google reviews on the Calgary listing, ${CITY_PROOF.calgary.googleRating} average` },
+                { icon: Clock, title: `In Alberta ${COMPANY.sinceLabel}`, desc: `${CITY_PROOF.calgary.googleReviewCount} Google reviews on the Calgary listing, ${CITY_PROOF.calgary.googleRating} average` },
                 { icon: Award, title: `${POLICY.guaranteeWindowHours}-hour re-clean`, desc: "Say so inside the window and the crew returns to redo what was missed, at no cost and with no photos needed" },
                 { icon: Users, title: "Reference-checked crews", desc: "The customer rates every visit, and the ratings decide who comes back" },
               ].map((item, i) => (
@@ -730,11 +724,11 @@ export default function CalgaryPricing() {
             <p className="text-center text-white/80 leading-relaxed max-w-2xl mx-auto mb-8">
               The{" "}
               <Link to="/reviews/" className="text-accent underline underline-offset-4 hover:text-white">{CITY_PROOF.calgary.googleReviewCount} Calgary Google reviews</Link>{" "}
-              are worth ten minutes before you book. If the job is not in the tabs above, it is under{" "}
+              are worth ten minutes before you book. If the job is not a standard, deep or move-out clean, it is under{" "}
               <Link to="/calgary/services/" className="text-accent underline underline-offset-4 hover:text-white">every Calgary cleaning service, with starting prices</Link>.
               And a clean makes a straightforward present:{" "}
-              <Link to="/gift-card/" className="text-accent underline underline-offset-4 hover:text-white">give a clean as a gift</Link>{" "}
-              and the card never expires.
+              <Link to="/gift-card/" className="text-accent underline underline-offset-4 hover:text-white">give a clean as a gift</Link>
+              .
             </p>
 
             <div className="text-center">
@@ -816,9 +810,9 @@ export default function CalgaryPricing() {
 
             <div className="flex flex-wrap items-center justify-center gap-4">
               {[
-                { icon: CheckCircle2, label: "Flexible Scheduling" },
+                { icon: CheckCircle2, label: `Missed spots re-cleaned if you tell us within ${POLICY.guaranteeWindowHours} hours` },
                 { icon: Shield, label: "Pay after your clean" },
-                { icon: BadgeCheck, label: "No Hidden Fees" },
+                { icon: BadgeCheck, label: "Every fee shown on the quote" },
               ].map((badge, i) => (
                 <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                   <badge.icon className="w-4 h-4 text-accent" />

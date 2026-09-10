@@ -60,9 +60,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Renfrew" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Renfrew" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Renfrew" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Renfrew" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Renfrew.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Renfrew" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "For a new infill or a renovated older house, the clean is priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Renfrew" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Renfrew" },
 ];
 
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Bridgeland","Crescent Heights","Mayland Heights","Tuxedo Park","Winston Heights","Mount Pleasant"];
+const nearbyAreas = ["Bridgeland-Riverside","Crescent Heights","Tuxedo Park","Mount Pleasant"];
 
 const faqs = [
   {
@@ -104,7 +104,7 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Renfrew?",
-    answer: `Households here can book any of the following:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `Households in Renfrew can book these services through the Calgary branch:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
   },
   {
     question: "Do you offer discounts?",
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function Renfrew() {
     <>
       <Helmet>
         <title>House Cleaning Services in Renfrew, Calgary | Duty Cleaners</title>
-        <meta name="description" content="House cleaning in Renfrew, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
+        <meta name="description" content="Renfrew, Calgary house cleaning for 1940s and 50s homes, where plaster walls and old fir floors get low-moisture methods, never soaked cloths." />
         <meta property="og:title" content="House Cleaning Services in Renfrew, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services in Renfrew, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning in Renfrew, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
-        <meta property="og:description" content="House cleaning in Renfrew, Calgary. See your price before you book and pay after the clean. Missed something? We re-clean within 24 hours." />
+        <meta name="twitter:description" content="Renfrew, Calgary house cleaning for 1940s and 50s homes, where plaster walls and old fir floors get low-moisture methods, never soaked cloths." />
+        <meta property="og:description" content="Renfrew, Calgary house cleaning for 1940s and 50s homes, where plaster walls and old fir floors get low-moisture methods, never soaked cloths." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/renfrew-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/renfrew-calgary/" />
@@ -183,7 +183,7 @@ export default function Renfrew() {
                 Professional House Cleaning in Renfrew
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Trusted house cleaning for Renfrew — bringing a calm, spotless home within reach.
+                Renfrew climbs its hill in 1940s and 50s houses with plaster walls and fir floors, between modern infills. Every clean is a flat rate by home size, before 5% GST.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function Renfrew() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Renfrew Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Everything from weekly upkeep to full move-out cleans.
+                  Every service is a flat rate by home size, and the order a house gets done in is easy to change, so an entry full of chinook grit can come first.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function Renfrew() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Renfrew Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Renfrew and the surrounding Calgary communities.
+                    No trip fee applies anywhere in Renfrew, which is inside Calgary city limits.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function Renfrew() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={768} src={cleanHomeImg} alt="Spotless Renfrew Calgary home cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1024} height={768} src={cleanHomeImg} alt="Bright living room with a cream sectional sofa, a glass coffee table, potted plants and a wood floor" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Calm, Spotless Renfrew Home — Every Visit</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Old houses, modern infills</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Low-Moisture Cleaning for Plaster and Fir</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Vetted cleaners, careful hands, and the standard we'd hold for our own homes. Come back to fresh air and surfaces that actually gleam.
+                    Plaster walls take a damp cloth rather than a soaked one, and aged fir shows water spots, so Renfrew's older houses get low-moisture methods. Heavy scrubbing of walls and doors is the wall-washing package, which is booked together with a clean.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Reference-checked before a first job","Supplies and equipment brought to every visit","A free re-clean if you tell us within 24 hours"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,9 +311,9 @@ export default function Renfrew() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Duty Cleaners cleans homes across Renfrew and the communities around it.{" "}
+                  Duty Cleaners cleans homes across Renfrew and in these nearby Calgary neighbourhoods.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
                     See every area we serve
                   </Link>.
@@ -329,7 +329,7 @@ export default function Renfrew() {
         eyebrow="Local knowledge"
         heading="Renfrew's old bones"
         paragraphs={[
-          "Renfrew climbs its hill in 1940s and 50s houses — stucco exteriors, plaster interiors, fir floors — punctuated by modern infills. The old stock wants low-moisture methods: plaster hates soaked cloths, aged fir shows water spots, and the deep window wells of the era hold more dust per window than anything built since.",
+          "Renfrew climbs its hill in 1940s and 50s houses, punctuated by modern infills. The older houses have stucco exteriors, plaster interiors and fir floors, and that old stock wants low-moisture methods: plaster hates soaked cloths, aged fir shows water spots, and the deep window wells of the era hold more dust per window than anything built since.",
           "The hillside itself works against clean floors. Runoff crosses walks on every thaw, and the chinook cycle means thaw happens all winter — grit arrives at Renfrew doors wet, dries into film, and grinds into entry hardwood. Homes near the Nose Creek slope get the strongest version of this and deserve entry-first cleans.",
         ]}
       />
@@ -347,7 +347,7 @@ export default function Renfrew() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Renfrew Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
+                  A cleaner is checked before a first job and rated after every visit, and each clean is covered by a re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>

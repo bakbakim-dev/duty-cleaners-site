@@ -60,9 +60,9 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Beltline" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Beltline" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fan blades within reach, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Beltline" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Beltline" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Beltline.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Beltline" },
+  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris cleared after a suite renovation, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Beltline" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Beltline" },
 ];
 
@@ -95,7 +95,7 @@ const whyUsItems = [
 ];
 
 
-const nearbyAreas = ["Downtown", "Mission", "Cliff Bungalow", "Connaught", "Victoria Park", "Lower Mount Royal"];
+const nearbyAreas = ["Mission", "Cliff Bungalow", "Victoria Park", "Lower Mount Royal"];
 
 const faqs = [
   {
@@ -112,7 +112,7 @@ const faqs = [
   },
   {
     question: "What's included in a deep cleaning?",
-    answer: `In Beltline, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
+    answer: `In Beltline, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fan blades within reach dusted\n• Light switches fully cleaned\n• Vent covers wiped`
   },
   {
     question: "What happens if something is missed?",
@@ -137,12 +137,12 @@ export default function Beltline() {
     <>
       <Helmet>
         <title>House Cleaning Services in Beltline, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Book house cleaning in Beltline, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="description" content="Condo cleaning in the Beltline, Calgary, where most towers built since the early 2010s run 25 to 40 storeys and supplies go up in one load." />
         <meta property="og:title" content="House Cleaning Services in Beltline, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services in Beltline, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Book house cleaning in Beltline, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
-        <meta property="og:description" content="Book house cleaning in Beltline, Calgary in about 60 seconds. Reference-checked cleaners and a 100% satisfaction guarantee." />
+        <meta name="twitter:description" content="Condo cleaning in the Beltline, Calgary, where most towers built since the early 2010s run 25 to 40 storeys and supplies go up in one load." />
+        <meta property="og:description" content="Condo cleaning in the Beltline, Calgary, where most towers built since the early 2010s run 25 to 40 storeys and supplies go up in one load." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/beltline-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/beltline-calgary/" />
@@ -183,7 +183,7 @@ export default function Beltline() {
                 Professional House Cleaning in Beltline
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Trusted house and condo cleaning services for one of Calgary's most vibrant inner-city communities — bringing a calm, spotless home within reach.
+                In Beltline, most towers built since the early 2010s run 25 to 40 storeys. The team brings every supply up in a single load. Where a building requires a service-elevator booking, tell us about it when you book.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -218,7 +218,7 @@ export default function Beltline() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Beltline Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Upkeep, deep cleans, move-outs: the whole toolkit in one place.
+                  For a Beltline suite or house, standard, deep and move-out cleans are priced flat by home size before GST. Post-construction is priced by square footage, and wall washing is added to a clean rather than booked alone.
                 </p>
               </div>
             </AnimatedSection>
@@ -257,7 +257,7 @@ export default function Beltline() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Beltline Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Proudly serving every street in Beltline and the surrounding Calgary communities.
+                    Beltline runs from the CPR tracks to 17 Avenue SW and from 14 Street SW east to the Elbow River, all inside Calgary city limits, so no trip fee applies.
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
@@ -283,16 +283,16 @@ export default function Beltline() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={768} src={cleanHomeImg} alt="Spotless Beltline Calgary home cleaned by Duty Cleaners" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  <img width={1024} height={768} src={cleanHomeImg} alt="Sunlit living room with a cream sectional sofa, a glass coffee table, potted plants and hardwood floors" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">A Cleaner You Can Trust</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">A Calm, Spotless Beltline Home — Every Visit</h2>
+                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">What to expect</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning a Beltline Suite While You Are Out</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Vetted cleaners, careful hands, and the standard we'd hold for our own homes. Come back to fresh air and surfaces that actually gleam.
+                    You do not need to be home. Most customers leave a key, a lockbox code or smart-lock access, and the team locks up on the way out. Running water is required, and the team brings every other supply and all the equipment.
                   </p>
                   <ul className="space-y-3">
-                    {["Customer-rated cleaners","Professional products and equipment","100% satisfaction guarantee"].map((t,i)=>(
+                    {["Cleaners reference-checked, then rated after each visit","Supplies and equipment carried in by the team","Re-clean at no charge if told within 24 hours"].map((t,i)=>(
                       <li key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                         <span className="text-foreground">{t}</span>
@@ -311,7 +311,7 @@ export default function Beltline() {
             <AnimatedSection>
               <div className="text-center mb-10">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
+                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
                   Duty Cleaners cleans homes across Beltline and the communities around it.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
@@ -326,10 +326,10 @@ export default function Beltline() {
 
       <LocalMarketNote
         eyebrow="What we see here"
-        heading="Freight one end, bars the other"
+        heading="The freight corridor and the balcony glass"
         paragraphs={[
-          "Everything between the CPR tracks and 17 Avenue SW is Beltline, from 14 Street SW east to the Elbow River — a freight corridor at one end, and at the other a dense concentration of bars, restaurants and nightclubs. In a tower, that lands on the balcony first, and in the sliding-door track behind it. A suite can be spotless inside and still look dirty through the glass. The balcony is part of the suite here, and it gets the same half hour the kitchen does.",
-          "This is one of the densest and most urban communities in Calgary, and most of the towers built since the early 2010s run between 25 and 40 storeys. That changes the logistics more than the method: no outdoor tap, everything carried up in a single load, and the service elevator booked ahead where a building requires it. Stampede Park is not next door — it sits inside the community's southeast corner, and for ten days each July that crowd moves through here and along 17 Avenue.",
+          "Everything between the CPR tracks and 17 Avenue SW is Beltline, from 14 Street SW east to the Elbow River. In a tower, whatever the freight corridor puts into the air lands on the balcony first, and in the sliding-door track behind it. A suite can be spotless inside and still look dirty through the glass. The clean stops at the inside of the sliding door; the balcony and the outside of the glass count as outdoor work.",
+          "Most Beltline towers built since the early 2010s run between 25 and 40 storeys. That changes the logistics more than the method: no outdoor tap, and everything carried up in a single load. Where a building requires a service-elevator booking, tell us when you book.",
         ]}
         accent="calgary"
       />
@@ -347,7 +347,7 @@ export default function Beltline() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Beltline Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Dependable cleaning, visit after visit.
+                  What a Beltline customer can check before booking: who the cleaners are, where the rating comes from and how a missed spot gets fixed.
                 </p>
               </div>
             </AnimatedSection>

@@ -29,7 +29,7 @@ function Chip({ name, to }: CityLocation) {
 }
 
 /**
- * "Covering all of {City}" — full neighbourhood + surrounding-community chip
+ * "Where the {City} branch cleans": full neighbourhood + surrounding-community chip
  * grid that internal-links to every location page (silo strategy).
  *
  * Every chip is in the DOM. The "show all" control only toggles visibility, so
@@ -41,7 +41,7 @@ export default function CityCoverageGrid({
   neighbourhoods,
   surrounding,
   viewAllTo = "/locations",
-  intro = "Reference-checked cleaners across the city and the communities around it.",
+  intro = "Each name links to its own page. For an address that is not listed, call the branch.",
 }: CityCoverageGridProps) {
   const [expanded, setExpanded] = useState(false);
   // Every chip renders. The overflow is hidden with CSS rather than sliced out
@@ -55,7 +55,7 @@ export default function CityCoverageGrid({
     <div className="max-w-5xl mx-auto">
       <div className="text-center mb-8">
         <h3 className="text-2xl md:text-3xl font-bold">
-          Covering all of <Accent>{city}</Accent>
+          Where the <Accent>{city}</Accent> branch cleans
         </h3>
         <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">{intro}</p>
       </div>

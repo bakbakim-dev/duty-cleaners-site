@@ -63,6 +63,7 @@ import {
   formatPrice,
   FREQUENCIES,
   HOURLY_RATE,
+  addOnFromPrice,
 } from "@/data/pricing";
 import DeferUntilVisible from "@/components/DeferUntilVisible";
 
@@ -88,6 +89,14 @@ const postTravel = travelFee("post-construction");
 const HOME_TRAVEL_FEE = homeTravel === null ? "a travel fee quoted when you book" : `a ${formatPrice(homeTravel)} travel fee`;
 const POST_TRAVEL_FEE = postTravel === null ? "a fee quoted when you book" : formatPrice(postTravel);
 const CALGARY_REVIEW_COUNT = CITY_PROOF.calgary.googleReviewCount;
+/** The compulsory per-visit pet charge (FACTS P10), read from bk-config rather than typed. */
+const petCharge = addOnFromPrice("standard", "must-choose-if-you-have-pets");
+const PET_FEE = petCharge === null ? "a pet charge" : formatPrice(petCharge);
+/** "A, B and C", so a list read from city-locations.ts reads as a sentence. */
+const joinNames = (names: string[]) =>
+  names.length > 1 ? `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}` : names.join("");
+/** Every community outside the city on the Calgary branch's list (FACTS A2). */
+const CALGARY_TOWNS = joinNames(calgarySurrounding.map((town) => town.name));
 /** The ring towns that are not linked by name in the coverage paragraph. */
 const OUTER_TOWNS = calgarySurrounding
   .filter((town) => !["Airdrie", "Cochrane", "Okotoks", "Chestermere"].includes(town.name))
@@ -99,7 +108,7 @@ const OUTER_TOWNS = calgarySurrounding
   hub takes the phrase; the services hub is being retitled off it separately.
 */
 const PAGE_TITLE = `House Cleaning Services Calgary from ${FROM_STANDARD} | Pay After`;
-const PAGE_DESCRIPTION = "House cleaning services in Calgary. Pay after your clean, customer-rated cleaners, flexible scheduling. Get an instant quote in 60 seconds.";
+const PAGE_DESCRIPTION = `Calgary house cleaning services start at ${FROM_STANDARD} plus GST in a one-bedroom condo, and your card is charged only once the clean is complete.`;
 
 /* Width-descriptor set for the hero, the LCP element on this page. Without
    it a phone pulled the same 1920px file as a desktop: hero-room-calgary at 1920w against
@@ -254,27 +263,35 @@ export default function Calgary2() {
   // Written for Calgary, not copied from the homepage and re-labelled: the
   // money-page contract measures how much of this page repeats the Edmonton
   // hub, and FAQ answers ship inside FAQPage JSON-LD, so they count twice.
+  // Each answer rests on the content prompt's FACTS block (A2, A3, C2, P1-P3,
+  // P9-P11, T3-T5, T7) or on this page's local note.
   const faqs = [{
     question: "Which parts of Calgary do you cover?",
-    answer: `All four quadrants and the centre, with no trip fee inside city limits. The towns around the city are covered too: Airdrie, Cochrane, Okotoks, Chestermere, ${OUTER_TOWNS.join(", ")}. Past the limits, home cleans carry ${HOME_TRAVEL_FEE}.`
+    answer: `Inside Calgary, the branch works in ${calgaryNeighborhoods.length} neighbourhoods and charges no trip fee anywhere within city limits. Past the limits it cleans in ${CALGARY_TOWNS}, where a home clean carries ${HOME_TRAVEL_FEE} and a post-construction job ${POST_TRAVEL_FEE}, both before GST. For an address missing from those lists, phone (403) 768-1341 and ask.`
   }, {
     question: "What does a house clean cost in Calgary?",
-    answer: `The same as in Edmonton. One bedroom and one bathroom: ${FROM_STANDARD}. Three bedrooms: ${FROM_STANDARD_3BED}. Deep cleans begin at ${FROM_DEEP} and move-outs at ${FROM_MOVE}, and all of it is before 5% GST. The form shows your exact figure before you pick a date.`
+    answer: `In an apartment or condo, a standard clean runs ${FROM_STANDARD} for one bedroom and one bathroom, and ${FROM_STANDARD_3BED} for a three-bedroom unit with two and a half baths. Deep cleans begin at ${FROM_DEEP} and move-outs at ${FROM_MOVE} at the one-bedroom size. None of those figures includes the 5% GST, the home-type charge for a two-storey house, townhouse, bungalow or basement suite, the ${PET_FEE} charged per visit in homes with pets, or the travel fee past the city limits. The form totals your own figure before you pick a date.`
   }, {
     question: "Does a chinook winter change how you clean?",
-    answer: "It changes what people book, not how we work. The grit that each thaw-and-refreeze brings in is why Calgary homes book a deep clean in late winter and standard visits the rest of the year. The teams work year-round; in winter we add buffer time for the roads."
+    answer: "It changes what people book, not how we work. Every thaw and refreeze brings sand and de-icer back to the door between November and April, and the grit settles along baseboards and carpet edges. When the roads are unsafe and a booking has to move, the office tells you once it knows and offers its earliest open slot."
   }, {
     question: "Do you clean condos in the Beltline and downtown towers?",
-    answer: "Yes. The Calgary team cleans in the Beltline, Downtown, Eau Claire and along 17th Avenue, and is used to condo rules: signing in at the desk, visitor parking passes, and whatever the building needs for access. Put the building's requirements on the booking and the cleaner arrives knowing them."
+    answer: "Yes. Apartments and condos in the Beltline, Mission, Eau Claire and the downtown towers are the simplest jobs the Calgary team does, and they carry no home-type charge on top of the size table, which is before 5% GST. Put the building's rules on the booking: desk sign-in, visitor parking, and how the team gets through the door. If the team reaches the door and cannot get in, you are billed half of what the scheduled clean would have cost."
   }, {
     question: "Can I get a same-day clean in Calgary?",
-    answer: "Occasionally. It depends on what the day's schedule has open. Phone the Calgary line and we will say straight away rather than leave you waiting on a callback."
+    answer: "Same-day and next-day slots depend on the schedule. Phone the Calgary line at (403) 768-1341 and the office can check what the day has open."
   }, {
     question: "Do I have to be there while you clean?",
-    answer: "No. A key, a lockbox code or a smart-lock code is how most Calgary customers handle it, and the team locks the door behind them. The water has to be on, and the vacuum needs an outlet."
+    answer: "No. A key, a lockbox code or a smart-lock code is how most Calgary customers handle it, and the team locks the door behind them. The water has to be on, and without electricity the vacuuming may not be possible."
   }, {
     question: "Whose products and equipment are used?",
-    answer: `Ours; the team brings everything. Eco-friendly products cost ${POLICY.ecoProductsFee} extra (${POLICY.ecoProductsHowToRequest}), and anything you would rather we did not use in the house goes on the booking note.`
+    answer: `The products are ours: the team brings every supply and every piece of equipment. Eco-friendly products cost ${POLICY.ecoProductsFee} extra: ${POLICY.ecoProductsHowToRequest}.`
+  }, {
+    question: "Is there a charge for pets in a Calgary home?",
+    answer: `Yes. A home with pets carries ${PET_FEE} per visit, before GST. The charge is compulsory, and it shows on the quote before you book. Litter boxes and animal waste are outside what the team cleans.`
+  }, {
+    question: "What will the Calgary team not clean?",
+    answer: "The team does no outdoor work, which rules out exterior windows, garages and patios, and it will not lift anything over 25 lb or climb beyond a 3-step ladder. Mould remediation, pests, bodily fluids, carpet steam cleaning, upholstery, ducts, drains, laundry and dishes are also outside the service. Heavy scrubbing of walls and doors belongs to the wall-washing package, and decluttering or organising is a separate hourly add-on."
   }];
   // Schema must mirror the FAQs actually rendered on the page.
   const faqSchema = {
@@ -321,12 +338,12 @@ export default function Calgary2() {
            phoneLink="tel:4037681341"
            heroImage={calgaryHeroRoom}
            heroSrcSet={HERO_SRCSET}
-           heroAlt="Bright, freshly cleaned Calgary living room with sunlight across the floor"
+           heroAlt="Sunlit living room with white sofas, a glass coffee table and a vase of flowers"
            heroPosition="center 58%"
            processImages={[
-             { src: gallerySpotlessKitchen, alt: "Calgary kitchen after a professional cleaning" },
-             { src: galleryHappyPlace, alt: "Duty Cleaners cleaning result in a welcoming Calgary home" },
-             { src: galleryKitchenBA, alt: "Fresh Calgary kitchen after a detailed cleaning" },
+             { src: gallerySpotlessKitchen, alt: "Galley kitchen with white cabinets, a stainless fridge and a sink in the island" },
+             { src: galleryHappyPlace, alt: "Kitchen with white cabinets, an island and a wooden dining table" },
+             { src: galleryKitchenBA, alt: "Two views of a basement kitchen with oak cabinets and tiled counters" },
            ]}
           />
 
@@ -336,9 +353,9 @@ export default function Calgary2() {
           eyebrow="Cleaning in Calgary"
           heading="What a Calgary house needs, and when"
           paragraphs={[
-            "Calgary is hard on floors and easy on nothing. Because the chinooks keep pushing the city above freezing and back down again, the roads are gritted, melted and gritted again rather than staying frozen through to spring — so sand and de-icer arrive at the door repeatedly from November to April instead of once. It works along baseboards, into carpet edges, down the sides of stair treads and under furniture, and by February it is past the point a vacuum reaches. That is the single most common reason a Calgary home books a deep clean rather than a standard one.",
-            "The city's quadrant split is a planning difference, and it shows up in the work. Inner-city Beltline, Mission, Kensington and Inglewood are mostly condos and older infill: small in square footage, heavy on window tracks, balcony seals and the fine dust a dry, windy city drives into every gap. The newer edges — Mahogany, Seton and Cranston in the deep south, Livingston and Cornerstone in the north — are larger, faster homes still shedding construction dust from vents and closet shelves for a year or two after possession.",
-            "We serve the city and the ring of towns around it, including Airdrie, Cochrane, Okotoks and Chestermere, with no trip fee inside Calgary itself. Prices are the same here as in Edmonton — there is no city premium — and every figure quoted is before the 5% GST. If you are not sure whether your home needs a standard or a deep clean, describe it on the phone and we will tell you which is the cheaper honest answer.",
+            "Calgary is hard on floors and easy on nothing. Because the chinooks keep pushing the city above freezing and back down again, the roads are gritted, melted and gritted again rather than staying frozen through to spring — so sand and de-icer arrive at the door repeatedly from November to April instead of once. It works along baseboards, into carpet edges, down the sides of stair treads and under furniture, and by February it is past the point a vacuum reaches.",
+            "In the Beltline and Mission, apartments and condos are the simplest jobs, and the dry air and wind keep fine grit airborne for most of the year. In newer suburbs such as Mahogany, Seton and Livingston, houses carry construction dust.",
+            "We serve the city and the ring of towns around it, including Airdrie, Cochrane, Okotoks and Chestermere, with no trip fee inside Calgary itself. Prices are the same here as in Edmonton, with no city premium, and every figure quoted is before the 5% GST. If you are not sure whether your home needs a standard or a deep clean, describe it on the phone and we will tell you which is the cheaper honest answer.",
           ]}
         />
 
@@ -357,15 +374,15 @@ export default function Calgary2() {
 
         <DutyCleanPromise city="Calgary" />
 
-       <JudgmentFree city="Calgary" image={judgmentRoom} alt="Calgary living room reset after a clean, lived-in rather than staged" />
+       <JudgmentFree city="Calgary" image={judgmentRoom} alt="Minimal living room with a pale sectional sofa, a rug and a wall-mounted television" />
 
         <CityServicesChapter
           city="Calgary"
           basePath="/calgary"
           featureImage={gallerySpotlessKitchen}
-          featureImageAlt="Calgary kitchen after a standard Duty Cleaners visit"
+          featureImageAlt="Kitchen with white shaker cabinets, grey counters and a stainless steel fridge"
           deepImage={galleryCalgaryOvenBA}
-          deepImageAlt="Oven before and after a Calgary deep clean"
+          deepImageAlt="Four oven-interior panels labelled before and after, heavily soiled on the left and clean on the right"
         />
 
         {/* The services in prose, with the from-prices, in Calgary's own
@@ -378,22 +395,35 @@ export default function Calgary2() {
               <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Cleaning services in Calgary, by the job</h2>
               <div className="mt-6 space-y-5 leading-relaxed text-muted-foreground">
                 <p>
-                  Four cleans cover nearly every Calgary booking. The standard clean is the upkeep visit, from{" "}
-                  {FROM_STANDARD} for a one-bedroom condo and {FROM_STANDARD_3BED} for a three-bedroom house; it is priced
-                  flat by size, so the number does not move if the team is slow. What the visit covers is on the{" "}
+                  Upkeep is the standard clean's job, from {FROM_STANDARD} for a one-bedroom, one-bathroom condo and{" "}
+                  {FROM_STANDARD_3BED} for a three-bedroom condo, both before 5% GST. It is priced flat by size, so the
+                  number does not move if the team is slow. A two-storey house, townhouse, bungalow or basement suite
+                  adds a home-type charge, and pets or an address past the city limits add their own charges. What the
+                  visit covers is on the{" "}
                   <Link to="/calgary/regular-cleaning/" className="font-semibold text-primary hover:underline">Calgary standard cleaning page</Link>.
                 </p>
                 <p>
-                  Add the deep-clean package and it becomes a deep clean, from {FROM_DEEP}: baseboards, tile film, the
-                  strip along the floor edge where chinook grit settles. Most Calgary homes want one in late winter and
-                  standard visits the rest of the year. The room-by-room list is under{" "}
+                  Add the deep-clean package and it becomes a deep clean, from {FROM_DEEP} before GST at the one-bedroom
+                  condo size, with the same home-type, pet and travel charges on top. It is the clean for the grit a
+                  chinook winter works into a house, and the room-by-room list is under{" "}
                   <Link to="/calgary/deep-cleaning/" className="font-semibold text-primary hover:underline">Calgary deep cleaning</Link>.
                 </p>
                 <p>
-                  Move-out cleans start at {FROM_MOVE} and are timed to the walkthrough. Post-construction cleans are
-                  priced on floor area, for the dust a renovation leaves in every vent. Short-term rental hosts book{" "}
+                  Move-out cleans start at {FROM_MOVE}, also before GST at the one-bedroom size, and those same charges
+                  apply. Alberta's Residential Tenancies Act has the landlord complete a move-out inspection report with
+                  the tenant, and the security deposit must be returned within 10 days after the tenant moves out. The
+                  landlord decides what happens to it, and we do not promise it comes back. The details are on{" "}
+                  <Link to="/move-out-cleaning-calgary/" className="font-semibold text-primary hover:underline">move-out cleaning in Calgary</Link>.
+                </p>
+                <p>
+                  <Link to="/post-construction-cleaning-calgary/" className="font-semibold text-primary hover:underline">Post-construction cleaning in Calgary</Link>{" "}
+                  goes by square footage, since renovation dust lands wherever the work was. Walls are a package added to
+                  a clean, so{" "}
+                  <Link to="/wall-washing-wall-cleaning-calgary/" className="font-semibold text-primary hover:underline">wall cleaning in Calgary</Link>{" "}
+                  is never booked by itself. Short-term rental hosts book{" "}
                   <Link to="/airbnb-cleaning-services-calgary/" className="font-semibold text-primary hover:underline">turnover cleaning for Calgary Airbnbs</Link>{" "}
-                  by the hour, at {AIRBNB_RATE} per cleaner. Every service, with its starting price, is on{" "}
+                  by the hour: {AIRBNB_RATE} per cleaner-hour before GST, with at least 3 hours for one cleaner or 2 for a
+                  pair. Every service, with its starting price, is on{" "}
                   <Link to="/calgary/services/" className="font-semibold text-primary hover:underline">the Calgary services page</Link>.
                 </p>
               </div>
@@ -423,18 +453,16 @@ export default function Calgary2() {
                   is what starts the discount at visit two: {RECURRING_DISCOUNTS}.
                 </p>
                 <p>
-                  It works without a contract. The first clean is billed at the one-time rate, which is the same price as
-                  booking a{" "}
+                  The first clean is billed at the one-time rate, which is the same price as booking a{" "}
                   <Link to="/calgary/regular-cleaning/" className="font-semibold text-primary hover:underline">single standard clean in Calgary</Link>,
                   so nothing is lost by trying one visit and deciding later.
                 </p>
                 <p>
-                  For a house in Mahogany or Seton, a visit every two weeks keeps construction dust and boot-tray grit
-                  from building up between deep cleans; in a Beltline or Mission condo, every four weeks is often enough
-                  because there is less floor. Either way you need not be in: a lockbox code or a smart lock works, and
+                  A house in Mahogany or Cranston and a condo in the Beltline or Mission can each go on any of the three
+                  schedules. Either way you need not be in: a lockbox code or a smart lock works, and
                   the team locks up. If the clean is for somebody else,{" "}
-                  <Link to="/gift-card/" className="font-semibold text-primary hover:underline">a gift card</Link> covers any
-                  service and never expires.
+                  <Link to="/gift-card/" className="font-semibold text-primary hover:underline">a gift card</Link> lets you
+                  give it.
                 </p>
               </div>
             </div>
@@ -453,10 +481,17 @@ export default function Calgary2() {
               <div className="mt-6 space-y-5 leading-relaxed text-muted-foreground">
                 <p>
                   There is a Calgary office, at {CITY_PROOF.calgary.streetAddress}, and the business running it has been
-                  cleaning Alberta homes {COMPANY.sinceLabel}. Residential cleaning is the work on this page: condos in
-                  the Beltline, houses in Mahogany, the towns out past the ring road. Every cleaner who arrives at a
-                  Calgary address is one of ours, reference-checked before a first job, and home cleaning is quoted off
-                  the published list rather than sized up on your doorstep.
+                  cleaning Alberta homes {COMPANY.sinceLabel}. The Calgary homes it cleans range from condos in the
+                  Beltline to houses in Mahogany and the towns out past the ring road. Every cleaner who arrives at a
+                  Calgary address is reference-checked before a first job, and home cleaning is quoted off the published
+                  list rather than sized up on your doorstep.
+                </p>
+                <p>
+                  The Calgary line,{" "}
+                  <a href="tel:4037681341" className="font-semibold text-primary hover:underline">(403) 768-1341</a>, is
+                  open from 8:00 AM until 8:00 PM Monday to Saturday and from 9:00 AM until 3:00 PM on Sundays, and written
+                  questions go to support@dutycleaners.ca. Nobody books an exact minute: a Calgary visit gets one of three
+                  hour-long arrival windows, starting at 9:00 AM, 12:00 PM or 3:00 PM.
                 </p>
               </div>
             </div>
@@ -478,16 +513,17 @@ export default function Calgary2() {
               <div className="mt-6 space-y-5 leading-relaxed text-muted-foreground">
                 <p>
                   A cleaner's references are checked before their first Calgary job. Then the customer rates each
-                  visit, and that rating is what keeps a cleaner on our list. Low ratings mean we stop sending that
-                  cleaner; there is no other measure that overrides the customer.
+                  visit, and those ratings decide which cleaners we keep sending.
                 </p>
                 <p>
                   That is also why the guarantee is workable. Report a miss within {POLICY.guaranteeWindowHours} hours
-                  and a team returns to redo it, with no charge and no argument. Photos help the team find what was
-                  missed, but the return visit does not depend on them.
+                  and a team comes back and redoes it without charge. Photos make the miss easier to find, but the
+                  return visit does not depend on them. That visit is the whole of the guarantee, and a refund is not
+                  part of it; if you want something else, call the Calgary line and talk it over.
                 </p>
                 <p>
-                  Calgary customers have left {CALGARY_REVIEW_COUNT} Google reviews at {RATING_CLAIM}. The{" "}
+                  Calgary customers have left {CALGARY_REVIEW_COUNT} reviews on the branch's listing, which is rated{" "}
+                  {RATING_CLAIM}. The{" "}
                   <Link to="/reviews/" className="font-semibold text-primary hover:underline">reviews page</Link> reprints
                   them as posted, and the listing itself is a click away if you would rather check the source.
                 </p>
@@ -502,10 +538,10 @@ export default function Calgary2() {
             <div className="grid gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16">
               <div className="lg:sticky lg:top-28 lg:self-start">
                 <Eyebrow>FAQ</Eyebrow>
-                <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Frequently Asked Questions</h2>
+                <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">What Calgary customers ask before booking</h2>
 
                 <div className="mt-8 rounded-xl border border-border bg-white p-6 shadow-sm">
-                  <p className="text-lg font-semibold">Still have a question? Talk to a real human.</p>
+                  <p className="text-lg font-semibold">The Calgary office takes calls.</p>
                   <p className="mt-1 text-sm text-muted-foreground">Mon&ndash;Sat 8 AM&ndash;8 PM &middot; Sun 9 AM&ndash;3 PM</p>
                   <a href="tel:4037681341" className="mt-3 inline-flex min-h-[44px] items-center gap-2 font-semibold text-gold-ink transition-colors hover:text-brand-navy">
                     <Phone className="h-4 w-4" aria-hidden="true" />
@@ -543,49 +579,52 @@ export default function Calgary2() {
                 <Eyebrow>Coverage</Eyebrow>
                 <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Calgary Service Areas</h2>
                 <p className="text-muted-foreground mt-4 max-w-[55ch] leading-relaxed">
-                  Chinook dust in the entryway, sun through the front windows. We clean the way homes are lived in
-                  here, and there is no trip fee anywhere inside Calgary city limits.
+                  There is no trip fee anywhere in the {calgaryNeighborhoods.length} Calgary neighbourhoods the branch
+                  covers, from condos and infill in Kensington and Mission to newer houses in Cranston.
                 </p>
                 {/* The towns outside the limits, linked in a sentence with the
                     travel fee stated once. Okotoks and Chestermere live under
                     /locations/; Airdrie and Cochrane keep their legacy URLs. */}
                 <p className="text-muted-foreground mt-3 max-w-[55ch] leading-relaxed">
-                  Beyond the limits the same teams do{" "}
-                  <Link to="/cleaning-services-airdrie/" className="font-semibold text-primary hover:underline">house cleaning in Airdrie</Link>, work as{" "}
-                  <Link to="/cleaning-services-cochrane/" className="font-semibold text-primary hover:underline">Cochrane house cleaners</Link>, and cover{" "}
+                  Beyond the limits the Calgary branch does{" "}
+                  <Link to="/cleaning-services-airdrie/" className="font-semibold text-primary hover:underline">house cleaning in Airdrie</Link>, works as{" "}
+                  <Link to="/cleaning-services-cochrane/" className="font-semibold text-primary hover:underline">Cochrane house cleaners</Link>, and covers{" "}
                   <Link to="/locations/okotoks/" className="font-semibold text-primary hover:underline">cleaning services in Okotoks</Link> and{" "}
                   <Link to="/locations/chestermere/" className="font-semibold text-primary hover:underline">Chestermere house cleaning</Link>, with{" "}
-                  {HOME_TRAVEL_FEE} on a home clean and {POST_TRAVEL_FEE} on a post-construction job. The ring towns
-                  farther out are listed below.
+                  {HOME_TRAVEL_FEE} on a home clean and {POST_TRAVEL_FEE} on a post-construction job, both before GST.{" "}
+                  {joinNames(OUTER_TOWNS)} are covered on the same terms.
                 </p>
                 <p className="text-muted-foreground mt-3 max-w-[55ch] leading-relaxed">
                   <Link to="/calgary/pricing/" className="font-semibold text-primary hover:underline">Calgary house cleaning prices by home size</Link>{" "}
-                  are on one page, and they match Edmonton's to the dollar.
+                  are on one page, and the same list applies past the city limits with only the travel fee added.
                 </p>
                 <ThresholdLine className="mt-6 max-w-[220px]" />
               </div>
+              {/* Alt text describes what each picture shows. The old strings
+                  called a kitchen a living room and an empty bedroom an
+                  entryway, and named Calgary homes the pictures are not. */}
               <HomeRhythmStrip
                 slots={[
                   {
                     src: galleryHappyPlace,
                     width: 1080,
                     height: 1920,
-                    alt: "Morning light across a tidied Calgary living room",
-                    caption: "Morning light — the front rooms",
+                    alt: "Kitchen island and a wooden dining table under pendant lights",
+                    caption: "Kitchen and dining table",
                   },
                   {
                     src: galleryCalgaryMoveOut,
                     width: 800,
                     height: 800,
-                    alt: "Cleaned Calgary entryway floor after a winter week",
-                    caption: "Chinook season — the entryway",
+                    alt: "Empty carpeted room with sunlight through the window",
+                    caption: "An empty carpeted room",
                   },
                   {
                     src: galleryCalgaryWindow,
                     width: 800,
                     height: 800,
-                    alt: "Cleaned window and sill detail in a Calgary home",
-                    caption: "Spring — window and sill detail",
+                    alt: "Tall windows framing a view of city towers",
+                    caption: "Interior window cleaning is an add-on",
                   },
                 ]}
               />
@@ -597,7 +636,7 @@ export default function Calgary2() {
               city="Calgary"
               neighbourhoods={calgaryNeighborhoods}
               surrounding={calgarySurrounding}
-              intro="Every quadrant, the inner city, and the towns on the ring road and beyond it."
+              intro={`The Calgary branch covers these ${calgaryNeighborhoods.length} Calgary neighbourhoods and ${calgarySurrounding.length} nearby communities.`}
             />
 
             <div className="mt-10 max-w-5xl mx-auto">
@@ -622,7 +661,8 @@ export default function Calgary2() {
                 <span className="text-sm font-semibold uppercase tracking-[0.16em] text-accent">Your next step</span>
                 <h2 className="display-serif mt-3 text-3xl font-bold leading-tight text-foreground md:text-4xl">See the instant price for your Calgary home.</h2>
                 <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-muted-foreground">
-                  A few questions, then the figure. Choose the service after you have seen the number, not before.
+                  The form asks about the home first and shows the figure next, so you can choose the service with the
+                  number in front of you.
                 </p>
               </div>
 
@@ -640,8 +680,8 @@ export default function Calgary2() {
               <ul className="mt-8 grid gap-4 sm:grid-cols-3">
                 {[
                   { icon: BadgeCheck, title: "The price is confirmed", text: "The full quote is on screen before any date is booked." },
-                  { icon: Users, title: "A cleaner is assigned", text: "Reference-checked, and rated by the last Calgary customer they cleaned for." },
-                  { icon: CalendarCheck, title: "They arrive in the window", text: "With supplies and equipment; you do not stock anything." },
+                  { icon: Users, title: "A cleaner is assigned", text: "Every cleaner is reference-checked and rated by the Calgary customers they clean for." },
+                  { icon: CalendarCheck, title: "They arrive in the window", text: "The team comes inside the arrival window you chose and brings the supplies and equipment." },
                 ].map(({ icon: Icon, title, text }) => (
                   <li key={title} className="rounded-xl border border-border bg-card p-5 text-center">
                     <Icon className="mx-auto h-6 w-6 text-accent" aria-hidden="true" />
@@ -657,7 +697,7 @@ export default function Calgary2() {
           <CityCrossLink
             city="Edmonton"
             to="/"
-            description={`Edmonton house cleaning at the same prices, rated ${RATING_CLAIM}, with the same reference-checked cleaners and the same guarantee.`}
+            description={`The Edmonton branch, rated ${RATING_CLAIM}, prices homes from the same table and backs each clean with the same re-clean guarantee.`}
           />
         </div>
 

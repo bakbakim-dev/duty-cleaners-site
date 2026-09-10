@@ -1,4 +1,6 @@
 import { POLICY } from "@/data/policy";
+import { deepCleanTierRows, formatPrice, HOURLY_RATE, standardTierRows } from "@/data/pricing";
+import { travelFee } from "@/data/addon-table";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -8,6 +10,16 @@ import { Phone, HelpCircle, Home, Truck, Building2, HardHat, DollarSign, Award, 
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import heroFaqLivingRoom from "@/assets/hero-faq-living-room.webp";
 import { RATING_CLAIM } from "@/data/proof";
+
+/** Figures read from bk-config, so an answer cannot drift from the booking form. */
+const STANDARD_FROM = standardTierRows()[0].price;
+const DEEP_FROM = deepCleanTierRows()[0].price;
+const HOURLY = formatPrice(HOURLY_RATE);
+const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
+const POST_CONSTRUCTION_TRAVEL_FEE = formatPrice(travelFee("post-construction") ?? 0);
+
+const FAQ_DESCRIPTION =
+  "Answers about house cleaning in Edmonton and Calgary: prices before GST, what each clean includes, access, payment and the 24-hour re-clean.";
 
 interface FAQCategory {
   title: string;
@@ -22,43 +34,43 @@ const faqCategories: FAQCategory[] = [
     items: [
       {
         question: "Does standard cleaning include cleaning the kitchen?",
-        answer: "Yes. We clean kitchen counters, sinks, exterior appliance surfaces, outside of the cupboards, and floors.",
+        answer: "Yes. A standard clean covers the kitchen counters, sink and stovetop, the outside of the appliances and cupboards, inside and outside the microwave, and the floor. Inside the oven and fridge are add-ons on a standard clean.",
       },
       {
         question: "What is included in the standard cleaning service?",
-        answer: "Our standard recurring clean covers dusting all accessible surfaces, vacuuming carpets and rugs, mopping hard floors, sanitizing bathrooms (toilets, sinks, showers, mirrors), kitchen surfaces (countertops, sinks, stovetop, exterior of appliances and cabinets), wiping high-touch points, emptying trash, and light tidying of common areas.",
+        answer: "A standard clean, one-time or recurring, covers dusting reachable surfaces and furniture, vacuuming carpets and rugs, mopping hard floors, and scrubbing and sanitizing the bathrooms: toilets, tubs, showers, sinks and mirrors. In the kitchen it covers the counters, sink, stovetop, the outside of the appliances and cabinets, and inside and outside the microwave. Bins are emptied and the bags tied. Decluttering and organising are a separate hourly add-on.",
       },
       {
         question: "Do you make beds during standard cleaning?",
-        answer: "Bed-making is not included in our standard cleaning service, but if you let us know in advance, we will make the beds for you. Just ensure that the bedding is prepared when we arrive.",
+        answer: "Bed-making is not part of the standard checklist, and laundry is not included either.",
       },
       {
         question: "What's the difference between standard and deep cleaning?",
-        answer: "Standard recurring cleaning maintains a home that is already in reasonable shape — dusting, vacuuming, mopping, and sanitizing high-use areas. Deep cleaning is a more detailed reset that tackles built-up grime, baseboards, door frames, light switches, wall outlets, and outside vent covers.",
+        answer: "A standard clean keeps a home that is already in reasonable shape clean: dusting, vacuuming, mopping, the bathrooms and the kitchen. A deep clean is the standard checklist plus the deep-clean package, which adds detailed work on the parts a regular clean passes over, such as baseboards and doors. It is the right first clean for a home that has not been professionally cleaned in a while.",
       },
       {
         question: "How often should I schedule recurring cleaning?",
-        answer: "Most households in Alberta choose bi-weekly. Weekly works best for larger families, homes with pets, or busy schedules; monthly is a good fit for smaller, lower-traffic homes. You can change or pause your frequency at any time.",
+        answer: "Weekly suits a large household or a home with pets, bi-weekly suits most homes lived in every day, and every 4 weeks suits a smaller or quieter home. Every 4 weeks is what many people mean by monthly, and it works out to 13 visits a year. You can change or pause a recurring schedule with 24 hours' notice before the next visit.",
       },
       {
         question: "How long does a house cleaning take?",
-        answer: "For a typical 3-bedroom home, a standard clean usually takes one cleaner around 3 to 4 hours, or two cleaners about 2 hours. A deep clean of the same home generally runs longer. We schedule to the checklist rather than the clock, so the team stays until every task in your service scope is done — and because the rate is flat, it costs the same whether the job runs short or long.",
+        answer: "Time depends on the home's size, its condition and the service booked, so we do not quote a set number of hours. We work to a checklist, not a clock: the team stays until every task in the service scope is done. The rate is flat by home size, so it costs the same whether the clean runs short or long.",
       },
       {
         question: "Should I tip the cleaners?",
-        answer: "Tipping is not expected and never required — the price you are quoted is the whole price, and our cleaners are paid for the job either way. If you would like to leave something for a team that did well, it is welcome and goes to the cleaners who did the work. A review is just as valuable to us, and free.",
+        answer: "Tipping is not expected and never required. The quoted price plus 5% GST is the whole bill. A review helps and costs nothing.",
       },
       {
         question: "What happens if something is damaged during a clean?",
-        answer: "Tell us as soon as you notice. Send photos or video within 24 hours, by phone or to support@dutycleaners.ca, so we can look into it while the details are fresh — we will ask the team what happened, come back to you with what we find, and agree how to put it right. If a clean simply missed something rather than damaged it, that falls under the 24-hour re-clean guarantee instead.",
+        answer: "Tell us as soon as you notice. Send photos or video within 24 hours, by phone or to support@dutycleaners.ca, so we can look into it while the details are fresh — we will ask the team what happened, come back to you with what we find, and put it right where we are at fault. If a clean simply missed something rather than damaged it, that falls under the 24-hour re-clean guarantee instead.",
       },
       {
         question: "What time will the cleaners arrive?",
-        answer: "We schedule to an arrival window rather than an exact time, so traffic or an earlier job running long does not push your whole day. The windows are 9:00 – 10:00 AM, 12:00 – 1:00 PM, and 3:00 – 4:00 PM. You will be told which window is yours when you book.",
+        answer: "We book an arrival window rather than an exact time, so traffic or an earlier job running long does not push your whole day. The windows are 9:00 to 10:00 AM, 12:00 to 1:00 PM and 3:00 to 4:00 PM. You are told which window is yours when you book.",
       },
       {
         question: "What is your cancellation policy?",
-        answer: `We ask for at least 24 hours' notice to change or cancel a clean, so we can offer the slot to someone else. Cancelling or rescheduling inside 24 hours is charged ${POLICY.cancellationFee}. There is no long-term contract, and you can change or pause a recurring schedule at any time.`,
+        answer: `We ask for at least 24 hours' notice to change or cancel a clean, so we can offer the slot to someone else. Cancelling or rescheduling inside 24 hours is charged ${POLICY.cancellationFee}. There is no long-term contract, and you can change or pause a recurring schedule with 24 hours' notice before the next visit.`,
       },
       {
         // The cancellation answer above is entirely about what the customer
@@ -68,35 +80,35 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "What if the cleaners cannot get in?",
-        answer: "If our team arrives and cannot get into the home — no key left, a code that does not work, or nobody able to let them in — the visit is charged at half the cost of the scheduled service. The cleaner has already travelled and the slot cannot be reassigned at that point. Letting us know at least 24 hours ahead avoids this entirely.",
+        answer: "If the team arrives and cannot get into the home because no key was left, a code does not work or nobody can let them in, the visit is charged at half the cost of the scheduled service. The cleaner has already travelled and the slot cannot be reassigned at that point. Letting us know at least 24 hours ahead avoids the charge.",
       },
       {
         question: "What are your operating hours?",
-        answer: "We're available Monday through Saturday from 8:00 AM to 8:00 PM, and Sundays from 9:00 AM to 3:00 PM. We offer flexible scheduling to accommodate your busy lifestyle.",
+        answer: "The Edmonton and Calgary offices answer Monday to Saturday from 8:00 AM to 8:00 PM and Sunday from 9:00 AM to 3:00 PM. Cleans are booked into an arrival window of 9:00 to 10:00 AM, 12:00 to 1:00 PM or 3:00 to 4:00 PM.",
       },
       {
         question: "Do I need to be home during the cleaning?",
-        answer: "No. Most clients provide a lockbox code, smart-lock access, or leave a key. All our cleaners are reference-checked and customer-rated, and we lock up securely when finished.",
+        answer: "No. Most customers leave a key, a lockbox code or smart-lock access, and the team locks up when it finishes. Every cleaner is reference-checked before a first job and rated by the customer after each visit.",
       },
       {
         question: "Do I need to clean before the cleaners arrive?",
-        answer: "No \u2014 please don't. Clear the surfaces you'd like us to focus on, move anything you don't want touched, and tell us which rooms matter most. That's all the preparation we need. See our full guide at /prepare.",
+        answer: "No. Clear counters and floors get cleaned and cluttered ones get worked around, so clearing the surfaces you most want done is the only preparation that helps. Put away anything you do not want touched, and tell us which rooms matter most.",
       },
       {
         question: "What should I do to prepare for a cleaning service?",
-        answer: "Pick up clothing, toys, dishes, and excessive clutter so our team can focus on detailed cleaning. Small items may be lightly organized if it only takes a minute or two, but our primary focus is professional cleaning rather than full decluttering or home organization. Let us know any priorities or areas to skip.",
+        answer: "Pick up clothing, toys and dishes so the team can reach the surfaces, and tell us your priorities and any rooms to skip when you book. Small items may be straightened if it takes a minute or two, but decluttering and organising are a separate hourly add-on rather than part of the clean.",
       },
       {
         question: "Do I need to provide cleaning supplies?",
-        answer: "No — our team brings all cleaning supplies and equipment. If you would prefer we use specific products, tell us when you book.",
+        answer: `No. The team brings all cleaning supplies and equipment. Eco-friendly products are available for ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}.`,
       },
       {
         question: "Do you take out the trash after cleaning?",
-        answer: "No — for standard and deep cleaning we tie the trash bags and leave them in your home. If there's a bin outside, we'll be glad to take them there. You can also let us know where you'd like us to leave the trash.",
+        answer: "On a standard or deep clean the team ties the bags and leaves them inside the home, or takes them to an outside bin if there is one. Tell us where you would like them left.",
       },
       {
         question: "How do I schedule a cleaning appointment?",
-        answer: "You can book online through our website or call us directly at (780) 913-6565 for Edmonton or (403) 768-1341 for Calgary. We offer same-day and next-day appointments based on availability.",
+        answer: "Book online through the instant price, or call the Edmonton office at (780) 913-6565 or the Calgary office at (403) 768-1341. Same-day and next-day slots depend on the schedule.",
       },
     ],
   },
@@ -106,39 +118,39 @@ const faqCategories: FAQCategory[] = [
     items: [
       {
         question: "Can I book deep cleaning for only certain areas?",
-        answer: "Yes, you may request deep cleaning for specific areas, such as bathrooms, kitchen, basement, or main floor only.",
+        answer: "A deep clean is the standard checklist plus the deep-clean package, priced flat by home size. To ask about a deep clean of specific areas only, call the Edmonton or Calgary office.",
       },
       {
         question: "Should I declutter before deep cleaning?",
-        answer: "Yes, we recommend removing clutter before the appointment so our team can focus on cleaning surfaces properly.",
+        answer: "Yes. Clear the clutter before the appointment so the team can reach the surfaces and clean them properly. Clear counters and floors get cleaned, and cluttered ones get worked around.",
       },
       {
         question: "Is deep cleaning more expensive than standard cleaning?",
-        answer: "Yes, deep cleaning usually costs more because it requires more time, detail, and effort.",
+        answer: `Yes. A deep clean is the standard checklist plus the deep-clean package, so it costs more at every home size. For a 1-bedroom, 1-bathroom apartment or condo it starts at ${DEEP_FROM} against ${STANDARD_FROM} for a standard clean, before 5% GST. A larger home type, pets or an address outside city limits add to either price.`,
       },
       {
         question: "Does deep cleaning remove mould or mildew?",
-        answer: "We may wipe light surface mildew if safe, but we do not provide mould remediation or remove heavy mould.",
+        answer: "We may wipe light surface mildew where it is safe to, but we do not provide mould remediation or remove heavy mould.",
       },
       {
         question: "What does a deep cleaning include?",
-        answer: "Deep cleaning covers everything in a standard clean plus detailed work on baseboards, door frames, light switches, wall outlets, and outside vent covers.",
+        answer: "A deep clean covers everything in a standard clean plus the deep package: baseboards, doors and door frames, light switches, wall outlets and vent covers, ceiling fan blades within reach of a 3-step ladder, and a detailed stovetop, grates and fridge top. Inside the oven and fridge stay add-ons.",
       },
       {
         question: "How often should I book a deep clean?",
-        answer: "Most homes benefit from a deep clean every 3 to 6 months. We also recommend deep cleaning before starting a new recurring schedule, after hosting, or seasonally in spring and fall.",
+        answer: "Book one before a recurring schedule starts, after hosting, or at the change of season, and as the first clean for a home that has gone a while without one. Between deep cleans, a standard clean keeps the home maintained.",
       },
       {
         question: "Do you clean grout, hard-water stains, or fixtures like fans and chandeliers?",
-        answer: "We do not currently offer grout restoration, but we do clean hard water stains. For light fixtures, if they are safely reachable, we can attempt to clean them for you; however, this is not a specialized service we provide. Ceiling fans can also be cleaned as long as they are safely reachable. If you have any questions or need clarification, feel free to reach out to us.",
+        answer: "Grout restoration is not offered, but hard-water stains are cleaned: hard Alberta water leaves mineral scale on taps and shower glass. Ceiling fan blades are cleaned on a deep or move-out clean where a 3-step ladder reaches them. Chandeliers, light bulbs and other fragile fixtures are not included.",
       },
       {
         question: "What if my home needs extra attention or is very dirty?",
-        answer: "Our estimates are based on the details shared when booking. In uncommon cases where the home's actual condition requires substantially more time than expected, extra charges may apply. If that situation comes up, the team will explain what they found and the available options so you can make an informed decision.",
+        answer: "The flat price is based on the home size and condition you describe when you book, and it does not change because a clean takes longer than expected. If the home needs substantially more work than described, such as heavy build-up or far more glass or cabinetry than stated, the team explains what it found and the options before continuing.",
       },
       {
         question: "Does the deep cleaning package include wall washing and cleaning inside appliances?",
-        answer: "No. Wall washing is a separate package, and cleaning the inside of appliances (oven, and fridge) is available as an add-on. Deep cleaning covers everything in a standard clean plus detailed work on baseboards, doors, light switches, wall outlets, and outside vent covers.",
+        answer: "No. Wall washing is a separate package booked together with a clean, and inside the oven and inside the fridge are add-ons on a deep clean. A move-in or move-out clean is the service that includes the inside of the oven and fridge.",
       },
     ],
   },
@@ -148,77 +160,56 @@ const faqCategories: FAQCategory[] = [
     items: [
       {
         question: "What's included in a move-out cleaning?",
-        answer: "Move-in and move-out cleaning is comprehensive: everything in our deep clean plus inside all cabinets and drawers, inside closets, wiping light switches and outlet covers, door frames, window sills, and inside the oven, refrigerator, dishwasher, and microwave so the home is move-in ready.",
+        answer: "A move-in or move-out clean is the deep-clean checklist plus inside all cabinets, drawers and closets, the window sills, and inside the oven, fridge and microwave. The home is cleaned empty, to the standard a move-out inspection looks for. We do not promise a deposit comes back; the landlord decides.",
       },
       {
         question: "How long does a move-out cleaning take?",
-        answer: "We don't quote a set number of hours. We send one or two cleaners and work through the full move-out checklist — inside cabinets, closets, appliances, baseboards and more — until it is done. Your flat rate stays the same regardless of how long that takes.",
+        answer: "We do not quote a set number of hours for a move-out clean. The team works through the full move-out checklist, including inside the cabinets, closets and appliances, until every task is done. The flat rate stays the same however long that takes.",
       },
       {
         question: "Do you clean inside appliances?",
-        answer: "Yes — our move-out cleaning includes inside the oven, refrigerator, dishwasher, and microwave so everything is spotless for the next tenant or owner.",
+        answer: "On a move-in or move-out clean, yes: inside the oven, fridge and microwave are on the checklist. On a standard or deep clean, inside the microwave is included and inside the oven and fridge are add-ons.",
       },
       {
         question: "Do you clean behind appliances?",
-        answer: "We can clean behind appliances only if they are already pulled out before our team arrives. Our cleaners do not move heavy appliances.",
+        answer: "The team cleans behind the oven and fridge only if they are pulled out before it arrives. Cleaners do not move heavy appliances or lift anything over 25 lb.",
       },
       {
         question: "Do you clean walls during move-out cleaning?",
-        answer: "Wall spot cleaning or full wall washing may be available. Please let us know what level of wall cleaning you need. The only area that will be included in the package would be the kitchen walls, but if you need other wall areas to be cleaned, this will be an add-on.",
+        answer: "Heavy scrubbing of walls is the wall-washing package, which is booked together with the clean rather than on its own. It comes as spot cleaning or a full wash, each priced by home size. Tell us which rooms need it when you book.",
       },
       {
         question: "What if I'm moving in, but the home is not empty? Can I still book a move-in cleaning?",
-        answer: "It depends on how much furniture and belongings are still in the home.\n\nIf there are only a few pieces of furniture and we do not need to move or clean around them extensively, we can usually still book your service as a move-in cleaning.\n\nHowever, if the home is still fully furnished and the cabinets, closets, and storage areas contain belongings, a move-in cleaning may not be the best fit. In that case, we would typically recommend our Deep Cleaning package along with any additional add-ons you may need. If you're unsure which service is right for your situation, feel free to contact us, and we'll be happy to help determine the best option.",
+        answer: "It depends on how much is still in the home. With only a few pieces of furniture that the team can clean around, it can usually still be booked as a move-in clean. If the home is fully furnished and the cabinets, closets and storage are full, a deep clean with the add-ons you need is usually the better fit. If you are not sure which suits your home, call the Edmonton or Calgary office and describe it.",
       },
       {
         question: "Do you clean exterior windows or carpets professionally?",
-        answer: "We clean interior window glass and sills as part of move-in/out service. Exterior window cleaning and steam carpet cleaning are not included — we recommend specialists for those services.",
+        answer: "Window sills are on the move-in and move-out checklist, and interior window glass is an add-on. Exterior windows and carpet steam cleaning are not part of any service, so book a specialist for those.",
       },
       {
         question: "Can move-in/move-out cleaning be done the same day as moving?",
-        answer: "It can be, but we recommend allowing enough time between moving and cleaning so our team can work efficiently.",
+        answer: "It can be, but leave enough time between the move and the clean for the furniture and boxes to be out when the team arrives, because the move-out checklist covers the inside of the cabinets, closets and appliances.",
       },
       {
         question: "Can you clean a home with no running water?",
-        answer: "No, running water is required for most cleaning tasks.",
+        answer: "No. Running water is required for the clean, so check that it is on before the team arrives.",
       },
       {
         question: "Can you clean a home with no electricity?",
-        answer: "Some cleaning tasks may not be possible without electricity. Vacuuming and proper visibility may be affected.",
+        answer: "Without electricity, vacuuming may not be possible and unlit rooms are hard to clean properly. Running water is required either way.",
       },
     ],
   },
   {
-    title: "Office & Commercial Cleaning",
+    // This category was "Office & Commercial Cleaning". The content prompt keeps
+    // commercial work off the house-cleaning pages, so those six answers are
+    // gone; the Airbnb turnover question that sat among them stays.
+    title: "Airbnb & Short-Term Rentals",
     icon: Building2,
     items: [
       {
-        question: "What is included in commercial cleaning?",
-        answer: "Commercial cleaning may include dusting, vacuuming, mopping, bathroom cleaning, breakroom cleaning, disinfecting touchpoints, and cleaning common areas.",
-      },
-      {
-        question: "Do you offer commercial cleaning services?",
-        answer: "Yes — we provide professional commercial cleaning for offices, retail spaces, medical facilities, and more in both Edmonton and Calgary. Services are customized to your business needs with flexible scheduling.",
-      },
-      {
-        question: "Do you offer recurring commercial cleaning?",
-        answer: "Yes, we can provide recurring commercial cleaning on a weekly, bi-weekly, monthly, or custom schedule depending on your business needs.",
-      },
-      {
-        question: "Can you clean during business hours?",
-        answer: "Yes, we can clean during business hours if preferred, but we recommend choosing a time that causes the least disruption to your staff and customers.",
-      },
-      {
-        question: "Do you clean office kitchens or breakrooms?",
-        answer: "Yes, we clean sinks, counters, tables, exterior appliance surfaces, and floors in office kitchens or breakrooms.",
-      },
-      {
-        question: "Can you clean after business hours?",
-        answer: "Yes, depending on our availability — we recommend letting us know at least a week in advance so we can schedule evening or weekend cleaning without interfering with your business operations.",
-      },
-      {
         question: "Do you handle Airbnb and short-term rental turnovers?",
-        answer: "Yes. We provide turnover cleaning for Airbnb and short-term rentals with same-day or next-day scheduling depending on our availability, linen changes on request, and basic restocking of provided amenities. We still suggest letting us know at least a week in advance so we can guarantee a turnover slot between guests.",
+        answer: `Yes. Airbnb and short-term rental turnovers are priced by the hour, at ${HOURLY} per cleaner-hour before GST, with a minimum of 3 hours for one cleaner or 2 hours for two. Linen changes and restocking from your own supplies are available when the clean linen and supplies are left out for the team. Same-day and next-day slots depend on the schedule, so book each turnover as early as you can.`,
       },
     ],
   },
@@ -228,19 +219,19 @@ const faqCategories: FAQCategory[] = [
     items: [
       {
         question: "What is post-construction cleaning?",
-        answer: "Post-construction cleaning removes dust, debris, and residue left after construction or renovation work. It includes detailed dusting of all surfaces, interior window and sill cleaning, vacuuming, mopping, and detailed cleaning of kitchens and bathrooms so the space is move-in ready.",
+        answer: `Post-construction cleaning removes the fine dust and residue left after building or renovation work: detailed dusting of every surface, window sills, vacuuming, mopping, and detailed cleaning of the kitchen and bathrooms. It is priced by square footage rather than by bedrooms. Outside Edmonton or Calgary city limits a post-construction clean carries its own travel fee of ${POST_CONSTRUCTION_TRAVEL_FEE} per visit.`,
       },
       {
         question: "What is NOT included in post-construction cleaning?",
-        answer: "Our post-construction service does not include cleaning inside vents or ductwork, grout restoration, removal of construction materials, paint or stain stripping, or exterior window cleaning. For light fixtures and ceiling fans, if they are safely reachable, we can attempt to clean them for you; however, this is not a specialized service we provide. We focus on the interior surfaces, kitchens, and bathrooms.",
+        answer: "Post-construction cleaning does not include inside vents or ductwork, grout restoration, removing construction materials, paint or stain stripping, or exterior windows. Light bulbs and fragile fixtures are not included, and nothing past the reach of a 3-step ladder is cleaned. The service covers the interior surfaces, the kitchen and the bathrooms.",
       },
       {
         question: "Does post-construction cleaning include debris removal?",
-        answer: "We do not provide construction waste hauling or junk removal. Debris should be removed before our team arrives.",
+        answer: "No. We do not haul construction waste or remove junk, so clear the debris out before the team arrives.",
       },
       {
         question: "How soon after construction can you clean?",
-        answer: "We recommend waiting until all construction work is complete, including painting and flooring. Once contractors have removed their materials and equipment, we can schedule cleaning depending on our availability — we suggest letting us know at least a week in advance.",
+        answer: "Book the clean for after all the work is finished, including painting and flooring, and after the contractors have taken their materials and equipment away. Dates depend on the schedule, so book as early as you can.",
       },
     ],
   },
@@ -250,23 +241,23 @@ const faqCategories: FAQCategory[] = [
     items: [
       {
         question: "When am I charged?",
-        answer: "After your clean, not before. Nothing is charged when you book. The day before your appointment a temporary hold appears on your card to confirm it's valid — it can look like a charge in your banking app, but no money moves. Your card is charged only once the clean is complete.",
+        answer: "Your card is charged after the clean, not before. Nothing is charged when you book. The day before your appointment a temporary hold goes on your card to confirm it is valid; it can look like a charge in your banking app, but no money moves. The card is charged only once the clean is complete.",
       },
       {
         question: "How does your pricing work?",
-        answer: "Most homes are priced flat by size, so you see your exact number — plus 5% GST — before you book, and it doesn't go up because a clean took longer. If a flat rate doesn't suit your job or budget, we can quote hourly instead and we'll tell you which works out cheaper. Your quote is based on the size and condition you describe. If the job turns out bigger once we're in it — heavy build-up, extra cabinets or glass — we'll let you know what changed and why.",
+        answer: "Homes are priced flat by home size, and the exact figure shows before you book, plus 5% GST. It does not go up because a clean took longer than expected. The pet charge, a larger home type and the travel fee outside city limits are added on the quote where they apply. If the home needs substantially more work than you described, such as heavy build-up or far more glass or cabinetry, the team explains what it found and the options before continuing.",
       },
       {
         question: "What payment methods do you accept?",
-        answer: "We accept debit and credit cards (Visa, Mastercard, and Amex) as well as e-transfer. A hold will be placed on the card one day before the service, so we require the card details at the time of booking. Payment is due upon completion of the service.",
+        answer: "We accept Visa, Mastercard, American Express, debit and e-transfer. Card details are taken at booking because a temporary hold goes on the card the day before the clean, and payment is taken once the clean is complete.",
       },
       {
         question: "Do you offer discounts for recurring services?",
-        answer: "Yes — recurring schedules unlock ongoing savings: 20% off weekly visits, 15% off bi-weekly visits, and 10% off every-four-weeks visits. Commercial contracts may qualify for additional rates.",
+        answer: "Yes. A recurring standard clean is 20% off weekly, 15% off bi-weekly and 10% off every 4 weeks, from the second visit. The first clean is charged at the one-time rate.",
       },
       {
         question: "Do you offer gift cards?",
-        answer: "Yes — Duty Cleaners gift cards are available in multiple tiers and designs. They're a thoughtful gift for housewarmings, new parents, or anyone who could use a break from cleaning.",
+        answer: "Yes. Duty Cleaners gift cards come in any amount, and they do not expire. The balance stays on the card across visits, and if a clean costs more than the balance, the recipient pays the difference.",
       },
     ],
   },
@@ -276,23 +267,19 @@ const faqCategories: FAQCategory[] = [
     items: [
       {
         question: "What if I'm not happy with the clean?",
-        answer: "Tell us within 24 hours and we'll come back and re-clean the areas you weren't happy with, free.",
+        answer: `Tell us within ${POLICY.guaranteeWindowHours} hours of the clean and we come back and re-clean what was missed at no charge. Photos help but are not required. The guarantee is a return visit rather than a money-back guarantee; if you would like something else, call and talk it through.`,
       },
       {
         question: "Who will be cleaning my home?",
-        answer: "A cleaner from our Edmonton and Calgary team. Every cleaner is reference-checked before their first job with us, and every clean is rated by the customer afterwards — those ratings decide who we keep sending. Cleaners who don't keep their scores up don't come back.",
+        answer: "Your clean is done by a cleaner from the Duty Cleaners team in your city. Every cleaner is reference-checked before a first job and rated by the customer after each visit, and those ratings decide who we keep sending. On a recurring schedule, you get your regular team where we can send them.",
       },
       {
         question: "My home is in rough shape. Will you judge me?",
-        answer: "No. Some homes have gotten away from people, and those are jobs we're good at. You don't need to tidy first or explain anything. We clean, we leave, and there's no commentary. (The one limit: extreme biohazards — bodily fluids, pest infestations — need specialized services we can refer you to.)",
-      },
-      {
-        question: "Do you bring supplies?",
-        answer: `Yes — all supplies and equipment. Prefer eco-friendly products? Ask when booking and we can use them for ${POLICY.ecoProductsFee} — ${POLICY.ecoProductsHowToRequest}.`,
+        answer: "No. Some homes get away from people, and the team cleans them without commentary. You do not need to tidy first or explain anything. Bodily fluids, pests and rodents, and hoarding situations are outside what we handle; for those we will point you to a specialist where we can.",
       },
       {
         question: "Which areas do you serve?",
-        answer: "We proudly offer our cleaning services across Alberta, primarily serving Edmonton and its neighboring cities, as well as Calgary and nearby communities.\n\nOur Edmonton service area includes St. Albert, Sherwood Park, Spruce Grove, Stony Plain, Beaumont, Leduc, Fort Saskatchewan, Devon, Morinville, and surrounding areas.\n\nOur Calgary service area includes Airdrie, Cochrane, Chestermere, Okotoks, High River, Strathmore, Langdon, Crossfield, Turner Valley, and nearby communities.",
+        answer: `The Edmonton office covers 80 Edmonton neighbourhoods plus St. Albert, Sherwood Park, Spruce Grove, Leduc, Beaumont, Fort Saskatchewan, Stony Plain, Morinville and Devon. The Calgary office covers 66 Calgary neighbourhoods plus Airdrie, Cochrane, Okotoks, Chestermere, Strathmore, High River, Langdon, Crossfield and Diamond Valley, which includes Black Diamond and Turner Valley. There is no trip fee inside either city's limits; outside them a ${TRAVEL_FEE} travel fee is added per visit on a home clean. Red Deer is not served, and for any other address that is not listed, call the branch.`,
       },
     ],
   },
@@ -363,14 +350,14 @@ export default function FAQ() {
     <div className="min-h-screen bg-background">
       <Helmet>
         <title>House Cleaning FAQs – Edmonton & Calgary | Duty Cleaners</title>
-        <meta name="description" content="Find answers to common questions about Duty Cleaners' house cleaning services in Edmonton and Calgary. Pricing, scheduling, services." />
+        <meta name="description" content={FAQ_DESCRIPTION} />
         <meta name="keywords" content="cleaning FAQ, house cleaning questions, Edmonton cleaning, Calgary cleaning, cleaning service hours" />
         <link rel="canonical" href="https://dutycleaners.ca/faqs/" />
         <meta property="og:title" content="House Cleaning FAQs – Edmonton & Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning FAQs – Edmonton & Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Answers to common questions about Duty Cleaners' house cleaning services in Edmonton and Calgary." />
-        <meta property="og:description" content="Answers to common questions about Duty Cleaners' house cleaning services in Edmonton and Calgary." />
+        <meta name="twitter:description" content={FAQ_DESCRIPTION} />
+        <meta property="og:description" content={FAQ_DESCRIPTION} />
         <meta property="og:url" content="https://dutycleaners.ca/faqs/" />
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
@@ -384,7 +371,7 @@ export default function FAQ() {
       <section className="bg-brand-navy py-20 relative overflow-hidden">
         <img width={1920} height={1088}
           src={heroFaqLivingRoom}
-          alt="Freshly cleaned living room after a Duty Cleaners visit"
+          alt="Bright living room with a pale sectional sofa, a wooden coffee table and light wood floors"
           className="absolute inset-0 w-full h-full object-cover"
          loading="eager" fetchPriority="high"/>
         <div className="absolute inset-0 bg-gradient-to-br from-brand-navy/85 via-brand-navy/75 to-brand-navy/85" />
@@ -400,15 +387,16 @@ export default function FAQ() {
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-              Frequently Asked Questions
+              House Cleaning FAQs for Edmonton and Calgary
             </h1>
             <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
-              Everything you need to know about our professional cleaning services in Alberta.
+              Prices, what each clean includes, access, payment and the 24-hour re-clean
+              guarantee, answered for both cities.
             </p>
 
             {/* Quick Contact */}
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 max-w-xl mx-auto border border-white/10">
-              <p className="text-white/80 text-sm mb-4">Can't find what you're looking for? Reach out directly:</p>
+              <p className="text-white/80 text-sm mb-4">For a question not answered here, call the office for your city:</p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <a
                   href="tel:7809136565"
@@ -432,7 +420,7 @@ export default function FAQ() {
           <div className="flex flex-wrap justify-center gap-6 mt-10 max-w-2xl mx-auto">
             {[
               { icon: Shield, label: "Pay After Your Clean" },
-              { icon: Heart, label: "24hr Guarantee" },
+              { icon: Heart, label: "24-Hour Re-Clean Guarantee" },
               { icon: Award, label: RATING_CLAIM },
             ].map(({ icon: BadgeIcon, label }) => (
               <div key={label} className="flex items-center gap-2 text-white/90 text-sm">
@@ -456,7 +444,7 @@ export default function FAQ() {
               Find Your Answer
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed">
-              We've organized the most common questions by category to help you find what you need quickly.
+              The most common questions, grouped by service and topic.
             </p>
           </div>
 
@@ -484,7 +472,7 @@ export default function FAQ() {
                 {index === 2 && (
                   <div className="mt-6 flex flex-col items-center gap-3 rounded-xl border border-border bg-secondary/50 p-6 text-center sm:flex-row sm:justify-between sm:text-left">
                     <p className="text-base font-semibold text-foreground">
-                      Got what you needed? See your price in about 60 seconds — no phone call.
+                      See your price in about a minute, without a phone call.
                     </p>
                     <a
                       href="#quote"
@@ -511,10 +499,11 @@ export default function FAQ() {
             <div className="relative z-10">
               <Sparkles className="w-10 h-10 text-accent mx-auto mb-4" />
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Still have a question? Talk to a real human.
+                Call the Edmonton or Calgary office
               </h2>
               <p className="text-lg text-white/80 mb-3 max-w-2xl mx-auto">
-                We're here to help! Reach out to our friendly team or get an instant quote online.
+                The office answers the phone seven days a week, or you can see your price online in
+                about a minute.
               </p>
               <p className="text-sm text-white/90 mb-8">Mon&ndash;Sat 8 AM&ndash;8 PM &middot; Sun 9 AM&ndash;3 PM</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
