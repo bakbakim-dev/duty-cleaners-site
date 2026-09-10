@@ -65,11 +65,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Glenora home welcoming and fresh every week.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Glenora" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Every corner, baseboard, and hidden surface, cleaned top to bottom.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Glenora" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth Glenora move — leave or arrive to a pristine home.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Glenora" },
+  { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Glenora" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Glenora" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Glenora" },
   { icon: HardHat, title: "Post-Construction Cleanup", description: "Construction dust cleared properly after renos and handovers." },
-  { icon: Building2, title: "Office & Commercial Cleaning", description: "A clean workspace promotes productivity. We cater to businesses of all sizes in Glenora." },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Glenora" },
 ];
 
@@ -97,10 +96,8 @@ const whyUsItems = [
       </>
     ),
   },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day slots when the schedule allows. We work around your busy life." },
-  { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
-  { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
-  { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
+  { icon: Leaf, title: "All Supplies Brought For You", description: "The team brings all supplies and equipment. Leave the water and power on until the clean is done." },
+  { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
 export default function Glenora() {
@@ -126,19 +123,19 @@ export default function Glenora() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Glenora?",
-      answer: `Households here can book any of the following:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `Households here can book any of the following:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
-      answer: `Yes — the discount grows with visit frequency:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+      answer: `Yes — the discount grows with visit frequency:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
       question: "What's included in a deep cleaning?",
       answer: `In Glenora, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
     },
     {
-      question: "What is your 100% satisfaction guarantee policy?",
-      answer: "If you're not 100% satisfied, call us within 24 hours and we'll return and make it right — at no extra cost!"
+      question: "What happens if something is missed?",
+      answer: "Tell us within 24 hours and the team comes back to your Glenora home to re-clean what was missed, at no charge. Photos help but are not required."
     }
   ];
   const faqJsonLd = {
@@ -206,8 +203,8 @@ export default function Glenora() {
                 <div className="flex flex-wrap justify-center lg:justify-start gap-6">
                   {[
                     { icon: CheckCircle2, text: "Pay After Your Clean" },
-                    { icon: CalendarCheck, text: "Flexible Scheduling Available" },
-                    { icon: Award, text: "100% Satisfaction Guarantee" },
+                    { icon: CalendarCheck, text: "Open 7 Days a Week" },
+                    { icon: Award, text: "24-Hour Re-Clean Guarantee" },
                   ].map((badge, i) => (
                     <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                       <badge.icon className="w-4 h-4 text-accent" />
@@ -228,25 +225,6 @@ export default function Glenora() {
           </div>
         </section>
 
-        {/* About Glenora */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <AnimatedSection>
-              <div className="max-w-4xl mx-auto">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">About the Neighbourhood</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Residential Cleaning in Glenora</h2>
-                <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
-                  <p>
-                    Glenora is a neighbourhood where classic charm meets modern living. With its wide streets, stately homes, and a deep sense of community, it's a place where people care about their surroundings—and expect the same from the services they trust.
-                  </p>
-                  <p>
-                    Whether you're in a century-old house near Alexander Circle or a newly built infill just steps from the river valley, we bring a personal, attentive approach to each visit. Consistency, clear communication, and respect are at the heart of what we do.
-                  </p>
-                </div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
 
         {/* Services */}
         <section className="py-20 bg-muted/30">
@@ -326,7 +304,7 @@ export default function Glenora() {
               </div>
             </AnimatedSection>
             <AnimatedSection>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
                 {whyUsItems.map((item, i) => (
                   <WhyUsCard key={i} {...item} />
                 ))}

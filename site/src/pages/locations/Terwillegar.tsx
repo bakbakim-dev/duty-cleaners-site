@@ -62,11 +62,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Terwillegar home welcoming and fresh every week.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Terwillegar" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning reaching every corner — perfect after outdoor adventures.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Terwillegar" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for smooth transitions in Terwillegar's active real estate market.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Terwillegar" },
+  { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Terwillegar" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Terwillegar" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Terwillegar" },
   { icon: HardHat, title: "Post-Construction Cleanup", description: "Dust and debris cleared after renovations or new builds." },
-  { icon: Building2, title: "Office & Commercial Cleaning", description: "A clean workspace promotes productivity for Terwillegar's local businesses." },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Terwillegar" },
 ];
 
@@ -94,10 +93,8 @@ const whyUsItems = [
       </>
     ),
   },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability, schedule permitting. We work around your busy life." },
-  { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
-  { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
-  { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
+  { icon: Leaf, title: "All Supplies Brought For You", description: "The team brings all supplies and equipment. Leave the water and power on until the clean is done." },
+  { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
 export default function Terwillegar() {
@@ -123,19 +120,19 @@ export default function Terwillegar() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Terwillegar?",
-      answer: `Households here can book any of the following:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `Households here can book any of the following:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
-      answer: `Yes — the discount grows with visit frequency:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+      answer: `Yes — the discount grows with visit frequency:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
       question: "What's included in a deep cleaning?",
       answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
     },
     {
-      question: "What is your 100% satisfaction guarantee policy?",
-      answer: "If you're not 100% satisfied, call us within 24 hours and we'll re-clean the missed areas — at no extra cost!"
+      question: "What happens if something is missed?",
+      answer: "Tell us within 24 hours and the team comes back to your Terwillegar home to re-clean what was missed, at no charge. Photos help but are not required."
     }
   ];
   const faqJsonLd = {
@@ -207,8 +204,8 @@ export default function Terwillegar() {
                 <div className="flex flex-wrap justify-center lg:justify-start gap-6">
                   {[
                     { icon: CheckCircle2, text: "Pay After Your Clean" },
-                    { icon: CalendarCheck, text: "Flexible Scheduling Available" },
-                    { icon: Award, text: "100% Satisfaction Guarantee" },
+                    { icon: CalendarCheck, text: "Open 7 Days a Week" },
+                    { icon: Award, text: "24-Hour Re-Clean Guarantee" },
                   ].map((badge, i) => (
                     <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                       <badge.icon className="w-4 h-4 text-accent" />
@@ -229,25 +226,6 @@ export default function Terwillegar() {
           </div>
         </section>
 
-        {/* About Terwillegar */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <AnimatedSection>
-              <div className="max-w-4xl mx-auto">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">About the Neighbourhood</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Residential Cleaning in Terwillegar</h2>
-                <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
-                  <p>
-                    Terwillegar is truly a gem in Southwest Edmonton, offering the best of both worlds — urban convenience and natural beauty. With direct access to <a href="https://www.google.com/maps/search/Terwillegar+Park+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">Terwillegar Park</a> and the North Saskatchewan River Valley, this neighbourhood attracts families, outdoor enthusiasts, and anyone who values a connection to nature.
-                  </p>
-                  <p>
-                    Whether you live near the park trails or in a newer build along <a href="https://www.google.com/maps/search/Terwillegar+Drive+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">Terwillegar Drive</a>, we bring a personal, attentive approach to each visit. Our team handles everything from mudroom messes to spotless living spaces with care.
-                  </p>
-                </div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
 
         {/* Services */}
         <section className="py-20 bg-muted/30">
@@ -313,7 +291,7 @@ export default function Terwillegar() {
               </div>
             </AnimatedSection>
             <AnimatedSection>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
                 {whyUsItems.map((item, i) => <WhyUsCard key={i} {...item} />)}
               </div>
             </AnimatedSection>

@@ -75,9 +75,9 @@ const OFF_BIWEEKLY = pctOff(4);
 const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning that resets the whole home, room by room.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Spruce Avenue" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Every corner, baseboard, and hidden surface, cleaned top to bottom.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Spruce Avenue" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Inspection-grade detail for moving out or settling in.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Spruce Avenue" },
+  { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Spruce Avenue" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Spruce Avenue" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Spruce Avenue" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared properly after renos and handovers.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Spruce Avenue" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Spruce Avenue" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
@@ -112,10 +112,8 @@ const whyUsItems = [
       </>
     ),
   },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability, schedule permitting. We work around your busy life." },
-  { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
-  { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
-  { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
+  { icon: Leaf, title: "All Supplies Brought For You", description: "The team brings all supplies and equipment. Leave the water and power on until the clean is done." },
+  { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
 export default function SpruceAvenue() {
@@ -129,19 +127,19 @@ export default function SpruceAvenue() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Spruce Avenue?",
-      answer: `Households here can book any of the following:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `Households here can book any of the following:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
-      answer: `Yes. A recurring schedule earns a standing discount:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+      answer: `Yes. A recurring schedule earns a standing discount:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
       question: "What's included in a deep cleaning?",
       answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
     },
     {
-      question: "What is your 100% satisfaction guarantee policy?",
-      answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back to your Spruce Avenue home and make it right — at no extra cost!"
+      question: "What happens if something is missed?",
+      answer: "Tell us within 24 hours and the team comes back to your Spruce Avenue home to re-clean what was missed, at no charge. Photos help but are not required."
     }
   ];
   const faqJsonLd = {
@@ -217,8 +215,8 @@ export default function SpruceAvenue() {
                 <div className="flex flex-wrap justify-center lg:justify-start gap-6">
                   {[
                     { icon: CheckCircle2, text: "Pay After Your Clean" },
-                    { icon: CalendarCheck, text: "Flexible Scheduling Available" },
-                    { icon: Award, text: "100% Satisfaction Guarantee" },
+                    { icon: CalendarCheck, text: "Open 7 Days a Week" },
+                    { icon: Award, text: "24-Hour Re-Clean Guarantee" },
                   ].map((badge, i) => (
                     <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                       <badge.icon className="w-4 h-4 text-accent" />
@@ -241,33 +239,6 @@ export default function SpruceAvenue() {
           </div>
         </section>
 
-        {/* About Spruce Avenue */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <AnimatedSection>
-              <div className="max-w-4xl mx-auto">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">About the Neighbourhood</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Residential Cleaning in Spruce Avenue</h2>
-                <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
-                  <p>
-                    Spruce Avenue is one of Edmonton's most established and diverse communities — a neighbourhood that blends old charm with modern convenience. With its mature trees, friendly neighbours, and easy access to schools, shops, and green spaces, residents here take pride in their well-kept homes.
-                  </p>
-                  <p>
-                    Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Spruce+Avenue+School/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Spruce Avenue School</a>,
-                    steps from{" "}
-                    <a href="https://www.google.com/maps/place/Kingsway+Mall/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Kingsway Mall</a>,
-                    close to{" "}
-                    <a href="https://www.google.com/maps/place/Royal+Alexandra+Hospital/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Royal Alexandra Hospital</a>,
-                    or near{" "}
-                    <a href="https://www.google.com/maps/place/Norwood+Square/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Norwood Square</a>,
-                    we bring a personal, attentive approach to every visit.
-                  </p>
-                </div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
 
         {/* Services */}
         <section className="py-20 bg-muted/30">
@@ -322,12 +293,12 @@ export default function SpruceAvenue() {
                   Why Spruce Avenue Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by Spruce Avenue families for reliable, thorough cleaning.
+                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
             <AnimatedSection>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
                 {whyUsItems.map((item, i) => (
                   <WhyUsCard key={i} {...item} />
                 ))}
@@ -421,7 +392,7 @@ export default function SpruceAvenue() {
           <div className="container mx-auto px-4 relative z-10 text-center">
             <AnimatedSection>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                Ready for a Spotless Home in Spruce Avenue?
+                Ready to Book a Clean in Spruce Avenue?
               </h2>
               <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
                 See your flat rate before you book. Nothing is charged until the clean is done.

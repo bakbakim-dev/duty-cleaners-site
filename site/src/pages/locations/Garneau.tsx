@@ -72,9 +72,9 @@ const OFF_BIWEEKLY = pctOff(4);
 const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Garneau home fresh and inviting year-round.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Garneau" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Comprehensive cleaning of the house, reaching every corner, baseboard, and hidden surface.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Garneau" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Perfect for students and families transitioning — leave or arrive to a pristine home.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Garneau" },
+  { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Garneau" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Garneau" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Garneau" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Drywall and construction dust after a renovation or a new build in the area.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Garneau" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Garneau" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
@@ -109,10 +109,8 @@ const whyUsItems = [
       </>
     ),
   },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability in Garneau. We work around your busy life." },
-  { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
-  { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
-  { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
+  { icon: Leaf, title: "All Supplies Brought For You", description: "The team brings all supplies and equipment. Leave the water and power on until the clean is done." },
+  { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
 export default function Garneau() {
@@ -126,19 +124,19 @@ export default function Garneau() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Garneau?",
-      answer: `Every service we run can be booked locally:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `Every service we run can be booked locally:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
-      answer: `Yes — customers in Garneau on a recurring schedule save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+      answer: `Yes — customers in Garneau on a recurring schedule save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
       question: "What's included in a deep cleaning?",
       answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
     },
     {
-      question: "What is your 100% satisfaction guarantee policy?",
-      answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back to your Garneau home and make it right — at no extra cost!"
+      question: "What happens if something is missed?",
+      answer: "Tell us within 24 hours and the team comes back to your Garneau home to re-clean what was missed, at no charge. Photos help but are not required."
     }
   ];
   const faqJsonLd = {
@@ -210,8 +208,8 @@ export default function Garneau() {
                 <div className="flex flex-wrap justify-center lg:justify-start gap-6">
                   {[
                     { icon: CheckCircle2, text: "Pay After Your Clean" },
-                    { icon: CalendarCheck, text: "Flexible Scheduling Available" },
-                    { icon: Award, text: "100% Satisfaction Guarantee" },
+                    { icon: CalendarCheck, text: "Open 7 Days a Week" },
+                    { icon: Award, text: "24-Hour Re-Clean Guarantee" },
                   ].map((badge, i) => (
                     <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                       <badge.icon className="w-4 h-4 text-accent" />
@@ -232,35 +230,6 @@ export default function Garneau() {
           </div>
         </section>
 
-        {/* About Garneau */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <AnimatedSection>
-              <div className="max-w-4xl mx-auto">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">About the Neighbourhood</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Residential Cleaning in Garneau</h2>
-                <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
-                  <p>
-                    Garneau is a walkable neighbourhood between the{" "}
-                    <a href="https://www.google.com/maps/place/University+of+Alberta/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">University of Alberta</a>{" "}
-                    and the scenic{" "}
-                    <a href="https://www.google.com/maps/place/North+Saskatchewan+River+Valley/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">North Saskatchewan River Valley</a>.
-                    Known for its beautiful tree-lined streets, heritage homes, and a close-knit academic community, Garneau offers an ideal blend of urban convenience and residential tranquility.
-                  </p>
-                  <p>
-                    Whether you're in a family home near{" "}
-                    <a href="https://www.google.com/maps/place/Garneau+School/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Garneau School</a>,
-                    an apartment along{" "}
-                    <a href="https://www.google.com/maps/place/109+Street,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">109 Street</a>,
-                    or near the iconic{" "}
-                    <a href="https://www.google.com/maps/place/Garneau+Theatre/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Garneau Theatre</a>,
-                    we bring a personal, attentive approach to every visit.
-                  </p>
-                </div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
 
         {/* Services */}
         <section className="py-20 bg-muted/30">
@@ -310,7 +279,7 @@ export default function Garneau() {
               </div>
             </AnimatedSection>
             <AnimatedSection>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
                 {whyUsItems.map((item, i) => <WhyUsCard key={i} {...item} />)}
               </div>
             </AnimatedSection>
@@ -398,7 +367,7 @@ export default function Garneau() {
           <div className="absolute bottom-0 left-20 w-80 h-80 bg-accent/10 rounded-full blur-3xl" />
           <div className="container mx-auto px-4 relative z-10 text-center">
             <AnimatedSection>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready for a Spotless Home in Garneau?</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Book a Clean in Garneau?</h2>
               <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">See your flat rate before you book. Nothing is charged until the clean is done.</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>

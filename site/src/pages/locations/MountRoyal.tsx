@@ -58,12 +58,11 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your prestigious Mount Royal home spotless and elegant.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Mount Royal" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Comprehensive cleaning of the house — ideal for heritage homes with intricate details and fine finishes.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Mount Royal" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for smooth transitions in Mount Royal's premium real estate market.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Mount Royal" },
+  { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Mount Royal" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Mount Royal" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Mount Royal" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Drywall and construction dust after a renovation or a new build in your heritage property.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Mount Royal" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Mount Royal" },
-  { icon: Building2, title: "Commercial Cleaning", description: "Professional cleaning for businesses and offices in the Mount Royal area." },
 ];
 
 const whyUsItems = [
@@ -90,20 +89,18 @@ const whyUsItems = [
       </>
     ),
   },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability. We work around your busy professional lifestyle." },
   { icon: Leaf, title: "Premium Products", description: "High-quality products suited to delicate surfaces and antique fixtures." },
-  { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to handle heritage properties with the care they deserve." },
-  { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
+  { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
 const nearbyAreas = ["Elbow Park", "Britannia", "Scarboro", "Rideau Park", "Upper Mount Royal", "Lower Mount Royal", "Cliff Bungalow", "Mission"];
 
 const faqs = [
   { question: "How long does an initial cleaning take?", answer: "We work to a checklist, not a clock. Your Mount Royal team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
-  { question: "What cleaning services does Duty Cleaners offer in Mount Royal?", answer: "We offer:\n\n• Commercial Cleaning\n• Standard Cleaning & Deep Cleaning Packages\n• Move-In And Move-Out Cleaning Service\n• Post Construction Cleaning\n• Wall Washing and Wall Cleaning" },
+  { question: "What cleaning services does Duty Cleaners offer in Mount Royal?", answer: "We offer:\n\n• Standard Cleaning & Deep Cleaning Packages\n• Move-In And Move-Out Cleaning Service\n• Post Construction Cleaning\n• Wall Washing and Wall Cleaning" },
   { question: "Do you offer discounts?", answer: "We offer recurring discounts for our Standard and Deep Cleaning Packages.\n\nIf you avail of our recurring discount, on your next cleaning:\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off" },
   { question: "What's included in a deep cleaning?", answer: "Deep cleaning adds the following to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned" },
-  { question: "What is your 100% satisfaction guarantee policy?", answer: "Not fully satisfied? Let us know within 24 hours and we'll come back and put it right at no charge." },
+  { question: "What happens if something is missed?", answer: "Not fully satisfied? Let us know within 24 hours and we'll come back and put it right at no charge." },
 ];
 
 const structuredData = buildLocationSchema({
@@ -181,8 +178,8 @@ export default function MountRoyal() {
                 <div className="flex flex-wrap justify-center lg:justify-start gap-6">
                   {[
                     { icon: CheckCircle2, text: "Pay After Your Clean" },
-                    { icon: CalendarCheck, text: "Flexible Scheduling Available" },
-                    { icon: Award, text: "100% Satisfaction Guarantee" },
+                    { icon: CalendarCheck, text: "Open 7 Days a Week" },
+                    { icon: Award, text: "24-Hour Re-Clean Guarantee" },
                   ].map((badge, i) => (
                     <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                       <badge.icon className="w-4 h-4 text-accent" />
@@ -205,31 +202,6 @@ export default function MountRoyal() {
           </div>
         </section>
 
-        {/* About the Neighbourhood */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <AnimatedSection>
-              <div className="max-w-4xl mx-auto">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">About the Neighbourhood</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Cleaning Services Tailored to Mount Royal Living</h2>
-                <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
-                  <p>
-                    Mount Royal is one of Calgary's most prestigious neighbourhoods, established in the early 1900s and renowned for its stately heritage homes and tree-lined streets. Close to{" "}
-                    <a href="https://www.google.com/maps/place/17+Avenue+SW,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">17th Avenue SW</a>{" "}
-                    and the historic{" "}
-                    <a href="https://www.google.com/maps/search/Mount+Royal+Park+Calgary" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Mount Royal Park</a>,
-                    this community offers stunning views of the downtown skyline and Rocky Mountains.
-                  </p>
-                  <p>
-                    Many homes feature grand Tudor and Georgian revival architecture with heritage designations. Whether you own an elegant mansion near{" "}
-                    <a href="https://www.google.com/maps/search/Elbow+Park+Calgary" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Elbow Park</a>{" "}
-                    or a refined estate in Upper Mount Royal, we provide premium cleaning suited to heritage properties and fine finishes.
-                  </p>
-                </div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
 
         {/* Interactive Map */}
         <section className="py-16 bg-background">
@@ -325,7 +297,7 @@ export default function MountRoyal() {
               </div>
             </AnimatedSection>
             <AnimatedSection>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
                 {whyUsItems.map((item, i) => <WhyUsCard key={i} {...item} />)}
               </div>
             </AnimatedSection>
@@ -371,7 +343,7 @@ export default function MountRoyal() {
           <div className="absolute bottom-0 left-20 w-80 h-80 bg-accent/10 rounded-full blur-3xl" />
           <div className="container mx-auto px-4 relative z-10 text-center">
             <AnimatedSection>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready for a Spotless Home in Mount Royal?</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Book a Clean in Mount Royal?</h2>
               <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">See your flat rate before you book. Nothing is charged until the clean is done.</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>

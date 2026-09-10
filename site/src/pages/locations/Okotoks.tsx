@@ -60,12 +60,11 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning for a spotless, fresh reset in one visit.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Okotoks" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Every corner, baseboard, and hidden surface, cleaned top to bottom.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Okotoks" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for moving day — leave or arrive to a pristine home.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Okotoks" },
+  { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Okotoks" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Okotoks" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Okotoks" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Okotoks.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Okotoks" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Okotoks" },
-  { icon: Building2, title: "Commercial Cleaning", description: "Professional office and commercial space cleaning for Okotoks businesses of all sizes." },
 ];
 
 const whyUsItems = [
@@ -92,10 +91,8 @@ const whyUsItems = [
       </>
     ),
   },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day slots when the schedule allows. We work around your busy life." },
-  { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
-  { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
-  { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
+  { icon: Leaf, title: "All Supplies Brought For You", description: "The team brings all supplies and equipment. Leave the water and power on until the clean is done." },
+  { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
 const nearbyAreas = ["Sheep River Valley", "Cimarron", "D'Arcy", "Crystal Shores", "Drake Landing", "Air Ranch", "Westmount", "Heritage Hills"];
@@ -119,19 +116,19 @@ export default function Okotoks() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Okotoks?",
-      answer: `Every service we run can be booked locally:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `Every service we run can be booked locally:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
-      answer: `Yes, recurring visits cost less every time:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+      answer: `Yes, recurring visits cost less every time:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
       question: "What's included in a deep cleaning?",
       answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
     },
     {
-      question: "What is your 100% satisfaction guarantee policy?",
-      answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back to your Okotoks home and make it right — at no extra cost!"
+      question: "What happens if something is missed?",
+      answer: "Tell us within 24 hours and the team comes back to your Okotoks home to re-clean what was missed, at no charge. Photos help but are not required."
     }
   ];
   const faqJsonLd = {
@@ -199,8 +196,8 @@ export default function Okotoks() {
                 <div className="flex flex-wrap justify-center lg:justify-start gap-6">
                   {[
                     { icon: CheckCircle2, text: "Pay After Your Clean" },
-                    { icon: CalendarCheck, text: "Flexible Scheduling Available" },
-                    { icon: Award, text: "100% Satisfaction Guarantee" },
+                    { icon: CalendarCheck, text: "Open 7 Days a Week" },
+                    { icon: Award, text: "24-Hour Re-Clean Guarantee" },
                   ].map((badge, i) => (
                     <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                       <badge.icon className="w-4 h-4 text-accent" />
@@ -221,36 +218,6 @@ export default function Okotoks() {
           </div>
         </section>
 
-        {/* About the Neighbourhood */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <AnimatedSection>
-              <div className="max-w-4xl mx-auto">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">About the Neighbourhood</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                  Cleaning Services Tailored to Okotoks Living
-                </h2>
-                <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
-                  <p>
-                    Okotoks is a town on the{" "}
-                    <a href="https://www.google.com/maps/place/Sheep+River,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Sheep River</a>,
-                    just south of Calgary. Known for its small-town charm and vibrant community, it's home to landmarks like the famous{" "}
-                    <a href="https://www.google.com/maps/place/Big+Rock+(Okotoks+Erratic)/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Okotoks Erratic (Big Rock)</a>{" "}
-                    — one of the world's largest glacial erratics — and the scenic{" "}
-                    <a href="https://www.google.com/maps/place/Sheep+River+Provincial+Park/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Sheep River Provincial Park</a>.
-                  </p>
-                  <p>
-                    From the family-friendly streets of{" "}
-                    <a href="https://www.google.com/maps/place/Cimarron,+Okotoks,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Cimarron</a>{" "}
-                    to the eco-conscious community of{" "}
-                    <a href="https://www.google.com/maps/place/Drake+Landing,+Okotoks,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Drake Landing</a>,
-                    our team knows Okotoks well and provides flexible scheduling and cleaning suited to every household.
-                  </p>
-                </div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
 
       {/* Things To Do */}
       <section className="py-20 bg-muted/30">
@@ -378,12 +345,12 @@ export default function Okotoks() {
                   Why Okotoks Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by families across the Calgary region for reliable, thorough cleaning.
+                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
             <AnimatedSection>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
                 {whyUsItems.map((item, i) => (
                   <WhyUsCard key={i} {...item} />
                 ))}
@@ -398,7 +365,7 @@ export default function Okotoks() {
             <AnimatedSection>
               <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
               <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
-                Proudly Serving Okotoks & Surrounding Areas
+                House Cleaning in Okotoks & Surrounding Areas
               </h2>
               <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
                 We provide professional house cleaning services throughout Okotoks and nearby communities in the Calgary region.
@@ -406,12 +373,6 @@ export default function Okotoks() {
               <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                 View All Service Areas →
               </Link>
-            <p className="mt-6 text-sm text-muted-foreground">
-              Run a business in Okotoks? We also handle{" "}
-              <Link to="/commercial-cleaning-services-calgary/" className="text-primary underline underline-offset-2 font-medium">
-                commercial and office cleaning across the Calgary region
-              </Link>.
-            </p>
 
             </AnimatedSection>
           </div>
@@ -445,7 +406,7 @@ export default function Okotoks() {
           <div className="container mx-auto px-4 relative z-10 text-center">
             <AnimatedSection>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                Ready for a Spotless Home in Okotoks?
+                Ready to Book a Clean in Okotoks?
               </h2>
               <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
                 See your flat rate before you book. Nothing is charged until the clean is done.

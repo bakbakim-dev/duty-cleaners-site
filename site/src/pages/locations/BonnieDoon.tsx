@@ -81,9 +81,9 @@ const OFF_BIWEEKLY = pctOff(4);
 const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning that resets the whole home, room by room.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Bonnie Doon" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "A full top-to-bottom reset — corners, baseboards, and the surfaces regular visits skip.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Bonnie Doon" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth Bonnie Doon move — leave or arrive to a pristine home.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Bonnie Doon" },
+  { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Bonnie Doon" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Bonnie Doon" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Bonnie Doon" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Post-renovation dust and debris, professionally removed.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Bonnie Doon" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Bonnie Doon" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
@@ -118,10 +118,8 @@ const whyUsItems = [
       </>
     ),
   },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day slots when the schedule allows. We work around your busy life." },
-  { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
-  { icon: Users, title: "Experienced Team", description: "Vetted cleaners trained to Duty Cleaners' exacting quality standards." },
-  { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "Not happy? Let us know within 24 hours and we'll re-clean at no additional charge." },
+  { icon: Leaf, title: "All Supplies Brought For You", description: "The team brings all supplies and equipment. Leave the water and power on until the clean is done." },
+  { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
 export default function BonnieDoon() {
@@ -135,19 +133,19 @@ export default function BonnieDoon() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Bonnie Doon?",
-      answer: `The full service menu is available here:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `The full service menu is available here:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
-      answer: `Yes. A recurring schedule earns a standing discount:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+      answer: `Yes. A recurring schedule earns a standing discount:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
       question: "What's included in a deep cleaning?",
       answer: `A deep clean layers these onto the standard visit:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
     },
     {
-      question: "What is your 100% satisfaction guarantee policy?",
-      answer: "If you're not 100% satisfied, call us within 24 hours and we'll re-clean the missed areas — at no extra cost!"
+      question: "What happens if something is missed?",
+      answer: "Tell us within 24 hours and the team comes back to your Bonnie Doon home to re-clean what was missed, at no charge. Photos help but are not required."
     }
   ];
   const faqJsonLd = {
@@ -224,8 +222,8 @@ export default function BonnieDoon() {
                 <div className="flex flex-wrap justify-center lg:justify-start gap-4">
                   {[
                     { icon: CheckCircle2, text: "Pay After Your Clean" },
-                    { icon: CalendarCheck, text: "Flexible Scheduling Available" },
-                    { icon: Award, text: "100% Satisfaction Guarantee" },
+                    { icon: CalendarCheck, text: "Open 7 Days a Week" },
+                    { icon: Award, text: "24-Hour Re-Clean Guarantee" },
                   ].map((badge, i) => (
                     <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                       <badge.icon className="w-4 h-4 text-accent" />
@@ -248,30 +246,6 @@ export default function BonnieDoon() {
           </div>
         </section>
 
-        {/* About */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <AnimatedSection>
-              <div className="max-w-4xl mx-auto">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">About the Neighbourhood</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Residential Cleaning in Bonnie Doon</h2>
-                <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
-                  <p>
-                    Bonnie Doon is a beloved southeast Edmonton neighbourhood of character bungalows, modern infills and walkable streets close to the Mill Creek Ravine. The people who live here take pride in their homes, and at Duty Cleaners, we're proud to be part of the rhythm of daily life in Bonnie Doon.
-                  </p>
-                  <p>
-                    Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Bonnie+Doon+Shopping+Centre/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Bonnie Doon Centre</a>,
-                    steps from <a href="https://www.google.com/maps/place/Mill+Creek+Ravine+Park/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Mill Creek Ravine</a>,
-                    minutes from <a href="https://www.google.com/maps/search/Bonnie+Doon+Park+Edmonton/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Bonnie Doon Park</a>,
-                    or close to <a href="https://www.google.com/maps/place/Whyte+Ave,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Whyte Avenue</a>,
-                    we bring a personal, attentive approach to every visit.
-                  </p>
-                </div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
 
         {/* Services */}
         <section className="py-20 bg-muted/30">
@@ -331,7 +305,7 @@ export default function BonnieDoon() {
               </div>
             </AnimatedSection>
             <AnimatedSection>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
                 {whyUsItems.map((item, i) => (
                   <WhyUsCard key={i} {...item} />
                 ))}
@@ -425,7 +399,7 @@ export default function BonnieDoon() {
           <div className="container mx-auto px-4 relative z-10 text-center">
             <AnimatedSection>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                Ready for a Spotless Home in Bonnie Doon?
+                Ready to Book a Clean in Bonnie Doon?
               </h2>
               <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
                 See your flat rate before you book. Nothing is charged until the clean is done.

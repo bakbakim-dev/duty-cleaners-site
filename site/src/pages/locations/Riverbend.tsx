@@ -62,11 +62,10 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your established Riverbend home welcoming and fresh.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Riverbend" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning — from hardwood floors to baseboards, handled with care.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Riverbend" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for smooth transitions in Riverbend's active real estate market.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Riverbend" },
+  { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Riverbend" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Riverbend" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Riverbend" },
   { icon: HardHat, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations to established homes." },
-  { icon: Building2, title: "Office & Commercial Cleaning", description: "Professional workspace cleaning for businesses near Southgate Centre." },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Riverbend" },
 ];
 
@@ -94,10 +93,8 @@ const whyUsItems = [
       </>
     ),
   },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day slots when the schedule allows. We work around your busy life." },
-  { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
-  { icon: Users, title: "Experienced Team", description: "Professional cleaners experienced with mature homes and delicate surfaces." },
-  { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
+  { icon: Leaf, title: "All Supplies Brought For You", description: "The team brings all supplies and equipment. Leave the water and power on until the clean is done." },
+  { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
 export default function Riverbend() {
@@ -123,19 +120,19 @@ export default function Riverbend() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Riverbend?",
-      answer: `The full service menu is available here:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `The full service menu is available here:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
-      answer: `Yes, recurring visits cost less every time:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+      answer: `Yes, recurring visits cost less every time:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
       question: "What's included in a deep cleaning?",
       answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
     },
     {
-      question: "What is your 100% satisfaction guarantee policy?",
-      answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back and put it right — at no extra cost!"
+      question: "What happens if something is missed?",
+      answer: "Tell us within 24 hours and the team comes back to your Riverbend home to re-clean what was missed, at no charge. Photos help but are not required."
     }
   ];
   const faqJsonLd = {
@@ -207,8 +204,8 @@ export default function Riverbend() {
                 <div className="flex flex-wrap justify-center lg:justify-start gap-6">
                   {[
                     { icon: CheckCircle2, text: "Pay After Your Clean" },
-                    { icon: CalendarCheck, text: "Flexible Scheduling Available" },
-                    { icon: Award, text: "100% Satisfaction Guarantee" },
+                    { icon: CalendarCheck, text: "Open 7 Days a Week" },
+                    { icon: Award, text: "24-Hour Re-Clean Guarantee" },
                   ].map((badge, i) => (
                     <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                       <badge.icon className="w-4 h-4 text-accent" />
@@ -229,25 +226,6 @@ export default function Riverbend() {
           </div>
         </section>
 
-        {/* About Riverbend */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <AnimatedSection>
-              <div className="max-w-4xl mx-auto">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">About the Neighbourhood</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Residential Cleaning in Riverbend</h2>
-                <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
-                  <p>
-                    Riverbend is one of Southwest Edmonton's most treasured neighbourhoods, known for its mature trees, established homes, and incredible sense of community. For decades, families have chosen Riverbend for its proximity to <a href="https://www.google.com/maps/search/Southgate+Centre+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">Southgate Centre</a>, excellent schools, and beautiful parks.
-                  </p>
-                  <p>
-                    Whether you live in a classic family home near <a href="https://www.google.com/maps/search/Brander+Gardens+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">Brander Gardens</a> or a well-kept property along <a href="https://www.google.com/maps/search/Riverbend+Road+Edmonton" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 font-medium">Riverbend Road</a>, we bring experience with mature homes and a personal, attentive approach to every visit.
-                  </p>
-                </div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
 
         {/* Services */}
         <section className="py-20 bg-muted/30">
@@ -313,7 +291,7 @@ export default function Riverbend() {
               </div>
             </AnimatedSection>
             <AnimatedSection>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
                 {whyUsItems.map((item, i) => <WhyUsCard key={i} {...item} />)}
               </div>
             </AnimatedSection>

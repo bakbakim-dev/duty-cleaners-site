@@ -59,12 +59,11 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning that resets the whole home, room by room.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Scenic Acres" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Top-to-bottom detail that reaches what weekly cleaning never does.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Scenic Acres" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for smooth transitions — leave or arrive to a pristine home near Crowfoot Crossing.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Scenic Acres" },
+  { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Scenic Acres" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Scenic Acres" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Scenic Acres" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Scenic Acres.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Scenic Acres" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Scenic Acres" },
-  { icon: Building2, title: "Commercial Cleaning", description: "Professional office and commercial space cleaning for businesses near Scenic Acres." },
 ];
 
 const whyUsItems = [
@@ -91,10 +90,8 @@ const whyUsItems = [
       </>
     ),
   },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability in Scenic Acres. We work around your busy life." },
-  { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
-  { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
-  { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
+  { icon: Leaf, title: "All Supplies Brought For You", description: "The team brings all supplies and equipment. Leave the water and power on until the clean is done." },
+  { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
 const nearbyAreas = ["Tuscany", "Arbour Lake", "Citadel", "Hawkwood", "Ranchlands", "Varsity", "Silver Springs", "Dalhousie"];
@@ -106,18 +103,18 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Scenic Acres?",
-    answer: `We offer:\n\n• Commercial Cleaning\n• Standard Cleaning & Deep Cleaning Packages\n• Move-In And Move-Out Cleaning Service\n• Post Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `We offer:\n\n• Standard Cleaning & Deep Cleaning Packages\n• Move-In And Move-Out Cleaning Service\n• Post Construction Cleaning\n• Wall Washing and Wall Cleaning`
   },
   {
     question: "Do you offer discounts?",
-    answer: `We offer recurring discounts for our Standard and Deep Cleaning Packages.\n\nIf you avail of our recurring discount, on your next cleaning:\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+    answer: `We offer recurring discounts for our Standard and Deep Cleaning Packages.\n\nIf you avail of our recurring discount, on your next cleaning:\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
   },
   {
     question: "What's included in a deep cleaning?",
     answer: `Deep cleaning adds the following to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
   },
   {
-    question: "What is your 100% satisfaction guarantee policy?",
+    question: "What happens if something is missed?",
     answer: "If anything was missed, call within 24 hours and we'll re-clean the areas of concern free of charge."
   }
 ];
@@ -203,8 +200,8 @@ export default function ScenicAcres() {
                 <div className="flex flex-wrap justify-center lg:justify-start gap-6">
                   {[
                     { icon: CheckCircle2, text: "Pay After Your Clean" },
-                    { icon: CalendarCheck, text: "Flexible Scheduling Available" },
-                    { icon: Award, text: "100% Satisfaction Guarantee" },
+                    { icon: CalendarCheck, text: "Open 7 Days a Week" },
+                    { icon: Award, text: "24-Hour Re-Clean Guarantee" },
                   ].map((badge, i) => (
                     <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                       <badge.icon className="w-4 h-4 text-accent" />
@@ -227,35 +224,6 @@ export default function ScenicAcres() {
           </div>
         </section>
 
-        {/* About the Neighbourhood */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <AnimatedSection>
-              <div className="max-w-4xl mx-auto">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">About the Neighbourhood</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                  Cleaning Services Tailored to Scenic Acres Living
-                </h2>
-                <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
-                  <p>
-                    Scenic Acres is one of Calgary's most peaceful and established neighbourhoods, located in the northwest, close to the{" "}
-                    <a href="https://www.google.com/maps/place/Twelve+Mile+Coulee+Natural+Environment+Park,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Twelve Mile Coulee</a>.
-                    This community is perfect for nature lovers, offering immediate access to some of the city's most scenic trails and green spaces. Residents enjoy watching wildlife, hiking through natural prairies, and taking in stunning views of the city and mountains.
-                  </p>
-                  <p>
-                    The neighbourhood has a friendly, family-oriented atmosphere with excellent schools, quiet streets, and mature trees. Conveniently located near{" "}
-                    <a href="https://www.google.com/maps/place/Crowfoot+Crossing,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Crowfoot Crossing</a>{" "}
-                    and with easy access to the{" "}
-                    <a href="https://www.google.com/maps/place/Crowfoot+Station,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Crowfoot LRT Station</a>,
-                    Scenic Acres provides all the amenities you need while maintaining its tranquil, nature-focused character. After a day of exploring{" "}
-                    <a href="https://www.google.com/maps/place/Scenic+Acres+Community+Association,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Scenic Acres Community Centre</a>{" "}
-                    or the nearby trails, let Duty Cleaners take care of your home so you can relax in a spotless space.
-                  </p>
-                </div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
 
         {/* Interactive Map */}
         <section className="py-16 bg-background">
@@ -291,7 +259,10 @@ export default function ScenicAcres() {
                   Scenic Acres & Nearby Neighbourhoods We Serve
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  We proudly serve families and homeowners across Scenic Acres and surrounding NW Calgary communities.
+                  Duty Cleaners cleans homes across Scenic Acres and the communities around it.{" "}
+                  <Link to="/locations/" className="text-primary underline underline-offset-2">
+                    See every area we serve
+                  </Link>.
                 </p>
               </div>
               <CoverageChips areas={nearbyAreas} />
@@ -365,12 +336,12 @@ export default function ScenicAcres() {
                   Why Scenic Acres Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by families across the Calgary region for reliable, thorough cleaning.
+                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
             <AnimatedSection>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
                 {whyUsItems.map((item, i) => (
                   <WhyUsCard key={i} {...item} />
                 ))}
@@ -411,7 +382,7 @@ export default function ScenicAcres() {
           <div className="container mx-auto px-4 relative z-10 text-center">
             <AnimatedSection>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                Ready for a Spotless Home in Scenic Acres?
+                Ready to Book a Clean in Scenic Acres?
               </h2>
               <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
                 See your flat rate before you book. Nothing is charged until the clean is done.

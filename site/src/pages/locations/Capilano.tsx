@@ -71,9 +71,9 @@ const OFF_BIWEEKLY = pctOff(4);
 const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to bring the whole home back to baseline.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Capilano" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Top-to-bottom detail that reaches what weekly cleaning never does.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Capilano" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth Capilano move — leave or arrive to a pristine home.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Capilano" },
+  { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Capilano" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Capilano" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Capilano" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Post-renovation dust and debris, professionally removed.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Capilano" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Capilano" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
@@ -108,10 +108,8 @@ const whyUsItems = [
       </>
     ),
   },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability in Capilano. We work around your busy life." },
-  { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
-  { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
-  { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
+  { icon: Leaf, title: "All Supplies Brought For You", description: "The team brings all supplies and equipment. Leave the water and power on until the clean is done." },
+  { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
 export default function Capilano() {
@@ -200,8 +198,8 @@ export default function Capilano() {
               <div className="flex flex-wrap justify-center gap-6">
                 {[
                   { icon: CheckCircle2, text: "Pay After Your Clean" },
-                  { icon: CalendarCheck, text: "Flexible Scheduling Available" },
-                  { icon: Award, text: "100% Satisfaction Guarantee" },
+                  { icon: CalendarCheck, text: "Open 7 Days a Week" },
+                  { icon: Award, text: "24-Hour Re-Clean Guarantee" },
                 ].map((badge, i) => (
                   <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                     <badge.icon className="w-4 h-4 text-accent" />
@@ -213,35 +211,6 @@ export default function Capilano() {
           </div>
         </section>
 
-        {/* About Capilano */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <AnimatedSection>
-              <div className="max-w-4xl mx-auto">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">About the Neighbourhood</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Residential Cleaning in Capilano</h2>
-                <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
-                  <p>
-                    Capilano is a neighbourhood where community spirit meets natural beauty. With tree-lined streets, quick access to the river valley, and welcoming families, it's a part of Edmonton that feels both vibrant and close-knit. We're proud to serve this area with house cleaning that's reliable, friendly, and rooted in real connection.
-                  </p>
-                  <p>
-                    Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Capilano+Mall/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Capilano Mall</a>,
-                    steps from{" "}
-                    <a href="https://www.google.com/maps/place/Gold+Bar+Park/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Gold Bar Park</a>,
-                    close to{" "}
-                    <a href="https://www.google.com/maps/place/Capilano+Community+League/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Capilano Community League</a>,
-                    near{" "}
-                    <a href="https://www.google.com/maps/place/Hardisty+School/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Hardisty School</a>,
-                    or along{" "}
-                    <a href="https://www.google.com/maps/place/Capilano+Park/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Capilano Park</a>,
-                    we bring a personal, attentive approach to every visit.
-                  </p>
-                </div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
 
         {/* Services */}
         <section className="py-20 bg-muted/30">
@@ -301,7 +270,7 @@ export default function Capilano() {
               </div>
             </AnimatedSection>
             <AnimatedSection>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
                 {whyUsItems.map((item, i) => (
                   <WhyUsCard key={i} {...item} />
                 ))}
@@ -412,7 +381,7 @@ export default function Capilano() {
           <div className="container mx-auto px-4 relative z-10 text-center">
             <AnimatedSection>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                Ready for a Spotless Home in Capilano?
+                Ready to Book a Clean in Capilano?
               </h2>
               <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
                 See your flat rate before you book. Nothing is charged until the clean is done.

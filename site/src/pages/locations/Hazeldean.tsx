@@ -71,9 +71,9 @@ const OFF_BIWEEKLY = pctOff(4);
 const OFF_FOUR_WEEKLY = pctOff(2);
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning for a spotless, fresh reset in one visit.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Hazeldean" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Every corner, baseboard, and hidden surface, cleaned top to bottom.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Hazeldean" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Inspection-grade detail for moving out or settling in.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Hazeldean" },
+  { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Hazeldean" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Hazeldean" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Hazeldean" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared properly after renos and handovers.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Hazeldean" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Hazeldean" },
   // The sixth card was "Kitchen Deep Clean": the only one with no price and
@@ -108,10 +108,8 @@ const whyUsItems = [
       </>
     ),
   },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day openings most weeks. We work around your busy life." },
-  { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
-  { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
-  { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
+  { icon: Leaf, title: "All Supplies Brought For You", description: "The team brings all supplies and equipment. Leave the water and power on until the clean is done." },
+  { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
 const faqs = [
@@ -190,8 +188,8 @@ export default function Hazeldean() {
               <div className="flex flex-wrap justify-center gap-6">
                 {[
                   { icon: CheckCircle2, text: "Pay After Your Clean" },
-                  { icon: CalendarCheck, text: "Flexible Scheduling Available" },
-                  { icon: Award, text: "100% Satisfaction Guarantee" },
+                  { icon: CalendarCheck, text: "Open 7 Days a Week" },
+                  { icon: Award, text: "24-Hour Re-Clean Guarantee" },
                 ].map((badge, i) => (
                   <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                     <badge.icon className="w-4 h-4 text-accent" />
@@ -203,33 +201,6 @@ export default function Hazeldean() {
           </div>
         </section>
 
-        {/* About the Neighbourhood */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <AnimatedSection>
-              <div className="max-w-4xl mx-auto">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">About the Neighbourhood</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Residential Cleaning in Hazeldean</h2>
-                <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
-                  <p>
-                    Hazeldean is a quiet, mature neighbourhood in south-central Edmonton known for its tree-lined streets, character homes, and close-knit community feel. Residents here value their well-maintained properties and peaceful surroundings.
-                  </p>
-                  <p>
-                    Whether your home is near{" "}
-                    <a href="https://www.google.com/maps/place/Mill+Creek+Ravine+Park/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Mill Creek Ravine</a>,
-                    steps from{" "}
-                    <a href="https://www.google.com/maps/place/Donnan+Park/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Donnan Park</a>,
-                    close to{" "}
-                    <a href="https://www.google.com/maps/place/Hazeldean+Elementary+School/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Hazeldean Elementary</a>,
-                    or along{" "}
-                    <a href="https://www.google.com/maps/place/75+Ave+NW,+Edmonton,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">75 Avenue</a>,
-                    we bring a personal, attentive approach to every visit.
-                  </p>
-                </div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
 
         {/* Services */}
         <section className="py-20 bg-muted/30">
@@ -279,7 +250,7 @@ export default function Hazeldean() {
               </div>
             </AnimatedSection>
             <AnimatedSection>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
                 {whyUsItems.map((item, i) => <WhyUsCard key={i} {...item} />)}
               </div>
             </AnimatedSection>
@@ -373,7 +344,7 @@ export default function Hazeldean() {
           <div className="absolute bottom-0 left-20 w-80 h-80 bg-accent/10 rounded-full blur-3xl" />
           <div className="container mx-auto px-4 relative z-10 text-center">
             <AnimatedSection>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready for a Spotless Home in Hazeldean?</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Book a Clean in Hazeldean?</h2>
               <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">See your flat rate before you book. Nothing is charged until the clean is done.</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>

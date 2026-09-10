@@ -59,12 +59,11 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning that leaves your Auburn Bay home spotless and fresh.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Auburn Bay" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Comprehensive cleaning of the house — every corner, baseboard, and hidden surface.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Auburn Bay" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for smooth transitions — leave or arrive to a pristine lakeside home.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Auburn Bay" },
+  { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Auburn Bay" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Auburn Bay" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Auburn Bay" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Drywall and construction dust after a renovation or a new build in Auburn Bay.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Auburn Bay" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Auburn Bay" },
-  { icon: Building2, title: "Commercial Cleaning", description: "Professional office and commercial space cleaning for Auburn Bay businesses of all sizes." },
 ];
 
 const whyUsItems = [
@@ -91,10 +90,8 @@ const whyUsItems = [
       </>
     ),
   },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day openings most weeks. We work around your busy life." },
-  { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
-  { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
-  { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
+  { icon: Leaf, title: "All Supplies Brought For You", description: "The team brings all supplies and equipment. Leave the water and power on until the clean is done." },
+  { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
 const nearbyAreas = ["Auburn Bay Estates", "Auburn Bay Heights", "Auburn Bay Villas", "Mahogany", "Cranston", "Seton", "McKenzie Towne", "Copperfield"];
@@ -106,19 +103,19 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Auburn Bay?",
-    answer: `Around Auburn Bay we offer the full range:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `Around Auburn Bay we offer the full range:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
   },
   {
     question: "Do you offer discounts?",
-    answer: `Yes — customers in Auburn Bay on a recurring schedule save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+    answer: `Yes — customers in Auburn Bay on a recurring schedule save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
   },
   {
     question: "What's included in a deep cleaning?",
     answer: `In Auburn Bay, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
   },
   {
-    question: "What is your 100% satisfaction guarantee policy?",
-    answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back and put it right — at no extra cost!"
+    question: "What happens if something is missed?",
+    answer: "Tell us within 24 hours and the team comes back to your Auburn Bay home to re-clean what was missed, at no charge. Photos help but are not required."
   }
 ];
 
@@ -201,8 +198,8 @@ export default function AuburnBay() {
                 <div className="flex flex-wrap justify-center lg:justify-start gap-4">
                   {[
                     { icon: CheckCircle2, text: "Pay After Your Clean" },
-                    { icon: CalendarCheck, text: "Flexible Scheduling Available" },
-                    { icon: Award, text: "100% Satisfaction Guarantee" },
+                    { icon: CalendarCheck, text: "Open 7 Days a Week" },
+                    { icon: Award, text: "24-Hour Re-Clean Guarantee" },
                   ].map((badge, i) => (
                     <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                       <badge.icon className="w-4 h-4 text-accent" />
@@ -225,40 +222,6 @@ export default function AuburnBay() {
           </div>
         </section>
 
-        {/* About the Neighbourhood */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <AnimatedSection>
-              <div className="max-w-4xl mx-auto">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">About the Neighbourhood</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                  Cleaning Services Tailored to Auburn Bay Living
-                </h2>
-                <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
-                  <p>
-                    Auburn Bay is a vibrant lake community located in the southeast quadrant of Calgary, centered around a{" "}
-                    <a href="https://www.google.com/maps/place/Auburn+Bay,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">43-acre lake with a private beach</a>,
-                    making it one of Calgary's most desirable neighbourhoods for families and active individuals who love waterfront living.
-                  </p>
-                  <p>
-                    The community features a diverse range of homes and exclusive access to the{" "}
-                    <a href="https://www.google.com/maps/place/Auburn+House,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Auburn House</a>,
-                    a 14,000 sq ft residents' facility with a gymnasium and banquet room, beside a private lake used for skating in winter. Residents also enjoy proximity to the{" "}
-                    <a href="https://www.google.com/maps/place/South+Health+Campus,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">South Health Campus</a>{" "}
-                    and excellent schools.
-                  </p>
-                  <p>
-                    With easy access to{" "}
-                    <a href="https://www.google.com/maps/place/Stoney+Trail,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Stoney Trail</a>{" "}
-                    and{" "}
-                    <a href="https://www.google.com/maps/place/Deerfoot+Trail,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Deerfoot Trail</a>,
-                    Auburn Bay offers the perfect balance of suburban tranquility and urban convenience. After enjoying a day at the beach or skating on the frozen lake, let Duty Cleaners keep your home sparkling clean.
-                  </p>
-                </div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
 
         {/* Interactive Map */}
         <section className="py-16 bg-background">
@@ -294,7 +257,10 @@ export default function AuburnBay() {
                   Auburn Bay Neighbourhoods We Serve
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  We proudly serve families and homeowners across Auburn Bay and surrounding SE Calgary communities.
+                  Duty Cleaners cleans homes across Auburn Bay and the communities around it.{" "}
+                  <Link to="/locations/" className="text-primary underline underline-offset-2">
+                    See every area we serve
+                  </Link>.
                 </p>
               </div>
               <CoverageChips areas={nearbyAreas} />
@@ -368,12 +334,12 @@ export default function AuburnBay() {
                   Why Auburn Bay Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by families across SE Calgary for reliable, thorough cleaning.
+                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
             <AnimatedSection>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
                 {whyUsItems.map((item, i) => (
                   <WhyUsCard key={i} {...item} />
                 ))}
@@ -408,23 +374,6 @@ export default function AuburnBay() {
           </div>
         </section>
 
-        {/* Service Areas */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4 text-center">
-            <AnimatedSection>
-              <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-              <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
-                Proudly Serving Auburn Bay & SE Calgary
-              </h2>
-              <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-                We provide professional house cleaning services throughout Auburn Bay and nearby communities in southeast Calgary.
-              </p>
-              <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
-                View All Service Areas →
-              </Link>
-            </AnimatedSection>
-          </div>
-        </section>
 
         {/* CTA */}
         <section className="py-20 bg-brand-navy relative overflow-hidden">
@@ -432,7 +381,7 @@ export default function AuburnBay() {
           <div className="container mx-auto px-4 relative z-10 text-center">
             <AnimatedSection>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                Ready for a Spotless Home in Auburn Bay?
+                Ready to Book a Clean in Auburn Bay?
               </h2>
               <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
                 See your flat rate before you book. Nothing is charged until the clean is done.

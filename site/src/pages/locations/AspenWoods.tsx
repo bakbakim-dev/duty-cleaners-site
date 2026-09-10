@@ -58,12 +58,11 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your luxury Aspen Woods home spotless and fresh.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Aspen Woods" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Thorough top-to-bottom cleaning — perfect for granite countertops, hardwood floors, and premium finishes.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Aspen Woods" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for smooth transitions in Aspen Woods' active real estate market.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Aspen Woods" },
+  { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Aspen Woods" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Aspen Woods" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Aspen Woods" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or remodels in your estate home.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Aspen Woods" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Aspen Woods" },
-  { icon: Building2, title: "Commercial Cleaning", description: "Professional cleaning for businesses near Aspen Landing and the surrounding area." },
 ];
 
 const whyUsItems = [
@@ -90,20 +89,18 @@ const whyUsItems = [
       </>
     ),
   },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability. We work around your busy professional lifestyle." },
   { icon: Leaf, title: "Premium Products", description: "High-quality products suited to delicate surfaces and fine finishes." },
-  { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to handle premium fixtures and materials with care." },
-  { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
+  { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
 const nearbyAreas = ["West Springs", "Christie Park", "Springbank Hill", "Signal Hill", "Cougar Ridge", "Wentworth", "Patterson", "Coach Hill"];
 
 const faqs = [
   { question: "How long does an initial cleaning take?", answer: "We work to a checklist, not a clock. Your Aspen Woods team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
-  { question: "What cleaning services does Duty Cleaners offer in Aspen Woods?", answer: "We offer:\n\n• Commercial Cleaning\n• Standard Cleaning & Deep Cleaning Packages\n• Move-In And Move-Out Cleaning Service\n• Post Construction Cleaning\n• Wall Washing and Wall Cleaning" },
+  { question: "What cleaning services does Duty Cleaners offer in Aspen Woods?", answer: "We offer:\n\n• Standard Cleaning & Deep Cleaning Packages\n• Move-In And Move-Out Cleaning Service\n• Post Construction Cleaning\n• Wall Washing and Wall Cleaning" },
   { question: "Do you offer discounts?", answer: "We offer recurring discounts for our Standard and Deep Cleaning Packages.\n\nIf you avail of our recurring discount, on your next cleaning:\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off" },
   { question: "What's included in a deep cleaning?", answer: "Deep cleaning adds the following to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned" },
-  { question: "What is your 100% satisfaction guarantee policy?", answer: "If you're not 100% satisfied, tell us within 24 hours and we'll return and make it right at no additional charge." },
+  { question: "What happens if something is missed?", answer: "Tell us within 24 hours and the team comes back to your Aspen Woods home to re-clean what was missed, at no charge. Photos help but are not required." },
 ];
 
 const structuredData = buildLocationSchema({
@@ -183,8 +180,8 @@ export default function AspenWoods() {
                 <div className="flex flex-wrap justify-center lg:justify-start gap-6">
                   {[
                     { icon: CheckCircle2, text: "Pay After Your Clean" },
-                    { icon: CalendarCheck, text: "Flexible Scheduling Available" },
-                    { icon: Award, text: "100% Satisfaction Guarantee" },
+                    { icon: CalendarCheck, text: "Open 7 Days a Week" },
+                    { icon: Award, text: "24-Hour Re-Clean Guarantee" },
                   ].map((badge, i) => (
                     <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                       <badge.icon className="w-4 h-4 text-accent" />
@@ -207,31 +204,6 @@ export default function AspenWoods() {
           </div>
         </section>
 
-        {/* About the Neighbourhood */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <AnimatedSection>
-              <div className="max-w-4xl mx-auto">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">About the Neighbourhood</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Cleaning Services Tailored to Aspen Woods Living</h2>
-                <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
-                  <p>
-                    Aspen Woods is an upscale residential community in southwest Calgary, known for its luxurious estate homes and stunning mountain views. Near the popular{" "}
-                    <a href="https://www.google.com/maps/place/Aspen+Landing+Shopping+Centre,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Aspen Landing</a>{" "}
-                    shopping centre with upscale retailers and fine dining, this master-planned community offers an exceptional quality of life.
-                  </p>
-                  <p>
-                    Many homes back onto natural ravines and parks, offering privacy and direct access to an extensive pathway system. Whether you own a sprawling estate near the{" "}
-                    <a href="https://www.google.com/maps/search/Aspen+Woods+ravine+Calgary" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">ravine trails</a>{" "}
-                    or a luxury residence near{" "}
-                    <a href="https://www.google.com/maps/search/West+Springs+Calgary" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">West Springs</a>,
-                    we provide premium cleaning suited to every household.
-                  </p>
-                </div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
 
         {/* Interactive Map */}
         <section className="py-16 bg-background">
@@ -327,7 +299,7 @@ export default function AspenWoods() {
               </div>
             </AnimatedSection>
             <AnimatedSection>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
                 {whyUsItems.map((item, i) => <WhyUsCard key={i} {...item} />)}
               </div>
             </AnimatedSection>
@@ -373,7 +345,7 @@ export default function AspenWoods() {
           <div className="absolute bottom-0 left-20 w-80 h-80 bg-accent/10 rounded-full blur-3xl" />
           <div className="container mx-auto px-4 relative z-10 text-center">
             <AnimatedSection>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready for a Spotless Home in Aspen Woods?</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Book a Clean in Aspen Woods?</h2>
               <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">See your flat rate before you book. Nothing is charged until the clean is done.</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>

@@ -59,12 +59,11 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning that resets the whole home, room by room.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in West Calgary" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Every corner, baseboard, and hidden surface, cleaned top to bottom.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in West Calgary" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for moving day — leave or arrive to a pristine home.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in West Calgary" },
+  { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in West Calgary" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in West Calgary" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in West Calgary" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds on Calgary's west side.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in West Calgary" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in West Calgary" },
-  { icon: Building2, title: "Commercial Cleaning", description: "Professional office and commercial space cleaning for West Calgary businesses of all sizes." },
 ];
 
 const whyUsItems = [
@@ -91,34 +90,10 @@ const whyUsItems = [
       </>
     ),
   },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day openings most weeks. We work around your busy life." },
-  { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
-  { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
-  { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
+  { icon: Leaf, title: "All Supplies Brought For You", description: "The team brings all supplies and equipment. Leave the water and power on until the clean is done." },
+  { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
-const landmarks = [
-  {
-    "title": "Edworthy Park",
-    "url": "https://www.google.com/maps/place/Edworthy+Park,+Calgary,+AB/",
-    "description": "Sprawling riverside park with trails and picnic areas"
-  },
-  {
-    "title": "Westbrook Mall",
-    "url": "https://www.google.com/maps/place/Westbrook+Mall,+Calgary,+AB/",
-    "description": "Major shopping hub with grocery and services"
-  },
-  {
-    "title": "Westbrook C-Train Station",
-    "url": "https://www.google.com/maps/place/Westbrook+CTrain+Station,+Calgary,+AB/",
-    "description": "Convenient LRT access into downtown"
-  },
-  {
-    "title": "Bow River Pathway",
-    "url": "https://www.google.com/maps/place/Bow+River+Pathway,+Calgary,+AB/",
-    "description": "Endless scenic riverside walking and biking trails"
-  }
-];
 
 const nearbyAreas = ["Glendale","Wildwood","Spruce Cliff","Killarney-Glengarry","Shaganappi","Bowness"];
 
@@ -129,19 +104,19 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in West Calgary?",
-    answer: `Around West Calgary we offer the full range:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `Around West Calgary we offer the full range:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
   },
   {
     question: "Do you offer discounts?",
-    answer: `Yes — customers on the west side on a recurring schedule save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+    answer: `Yes — customers on the west side on a recurring schedule save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
   },
   {
     question: "What's included in a deep cleaning?",
     answer: `Beyond the standard scope, deep cleaning covers:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
   },
   {
-    question: "What is your 100% satisfaction guarantee policy?",
-    answer: "If you're not 100% satisfied, call us within 24 hours and we'll return and make it right — at no extra cost!"
+    question: "What happens if something is missed?",
+    answer: "Tell us within 24 hours and the team comes back to your West Calgary home to re-clean what was missed, at no charge. Photos help but are not required."
   }
 ];
 
@@ -221,8 +196,8 @@ export default function West() {
               <div className="flex flex-wrap justify-center gap-6">
                 {[
                   { icon: CheckCircle2, text: "Pay After Your Clean" },
-                  { icon: CalendarCheck, text: "Flexible Scheduling Available" },
-                  { icon: Award, text: "100% Satisfaction Guarantee" },
+                  { icon: CalendarCheck, text: "Open 7 Days a Week" },
+                  { icon: Award, text: "24-Hour Re-Clean Guarantee" },
                 ].map((badge, i) => (
                   <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                     <badge.icon className="w-4 h-4 text-accent" />
@@ -234,25 +209,6 @@ export default function West() {
           </div>
         </section>
 
-        {/* About the Neighbourhood */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <AnimatedSection>
-              <div className="max-w-4xl mx-auto">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">About the Neighbourhood</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Cleaning Services Tailored to West Calgary Living</h2>
-                <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
-                  <p>
-                    West Calgary covers the welcoming neighbourhoods along the city's western edge — quiet, family-friendly streets with quick access to the mountains, parks, and major routes.
-                  </p>
-                  <p>
-                    Detached house, townhome or condo: the visit is tailored to the space, and we bring every supply, including any product you'd rather we used.
-                  </p>
-                </div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
 
         {/* Services */}
         <section className="py-20 bg-muted/30">
@@ -291,36 +247,6 @@ export default function West() {
           </div>
         </section>
 
-        {/* Landmarks */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <AnimatedSection>
-              <div className="text-center mb-14 max-w-3xl mx-auto">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Landmarks</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Around the West Side</h2>
-                <p className="text-muted-foreground text-lg">
-                  We know the area inside and out — here are a few of the places that make this side of the city feel like home.
-                </p>
-              </div>
-            </AnimatedSection>
-            <AnimatedSection>
-              <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                {landmarks.map((l, i) => (
-                  <a key={i} href={l.url} target="_blank" rel="noopener noreferrer"
-                     className="group flex gap-4 bg-white rounded-xl border border-border p-5 transition-all duration-500 ease-out hover:-translate-y-1.5 hover:shadow-xl">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:rotate-12">
-                      <MapPin className="w-6 h-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold text-foreground mb-1 group-hover:text-primary transition-colors">{l.title}</h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed">{l.description}</p>
-                    </div>
-                  </a>
-                ))}
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
 
         {/* Map */}
         <section className="py-16 bg-muted/30">
@@ -387,7 +313,10 @@ export default function West() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  We proudly serve families and homeowners across West Calgary and surrounding communities.
+                  Duty Cleaners cleans homes across West Calgary and the communities around it.{" "}
+                  <Link to="/locations/" className="text-primary underline underline-offset-2">
+                    See every area we serve
+                  </Link>.
                 </p>
               </div>
               <CoverageChips areas={nearbyAreas} />
@@ -423,7 +352,7 @@ export default function West() {
               </div>
             </AnimatedSection>
             <AnimatedSection>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
                 {whyUsItems.map((item, i) => <WhyUsCard key={i} {...item} />)}
               </div>
             </AnimatedSection>
@@ -457,7 +386,7 @@ export default function West() {
           <div className="absolute bottom-0 left-20 w-80 h-80 bg-accent/10 rounded-full blur-3xl" />
           <div className="container mx-auto px-4 relative z-10 text-center">
             <AnimatedSection>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready for a Spotless Home in West Calgary?</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Book a Clean in West Calgary?</h2>
               <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
                 See your flat rate before you book. Nothing is charged until the clean is done.
               </p>

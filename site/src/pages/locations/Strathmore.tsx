@@ -60,12 +60,11 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning for a spotless, fresh reset in one visit.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Strathmore" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Top-to-bottom detail that reaches what weekly cleaning never does.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Strathmore" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for moving day — leave or arrive to a pristine home.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Strathmore" },
+  { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Strathmore" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Strathmore" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Strathmore" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Strathmore.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Strathmore" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Strathmore" },
-  { icon: Building2, title: "Commercial Cleaning", description: "Professional office and commercial space cleaning for Strathmore businesses of all sizes." },
 ];
 
 const whyUsItems = [
@@ -92,10 +91,8 @@ const whyUsItems = [
       </>
     ),
   },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day openings most weeks. We work around your busy life." },
-  { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
-  { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
-  { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
+  { icon: Leaf, title: "All Supplies Brought For You", description: "The team brings all supplies and equipment. Leave the water and power on until the clean is done." },
+  { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
 const nearbyAreas = ["Wheatland Crossing", "Lakewood Meadows", "Westmount", "Heritage Heights", "Hillview Estates", "Brentwood", "Canal Gardens", "Edgewater"];
@@ -120,19 +117,19 @@ export default function Strathmore() {
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Strathmore?",
-      answer: `Every service we run can be booked locally:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+      answer: `Every service we run can be booked locally:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
     },
     {
       question: "Do you offer discounts?",
-      answer: `Yes — the discount grows with visit frequency:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+      answer: `Yes — the discount grows with visit frequency:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
       question: "What's included in a deep cleaning?",
       answer: `In Strathmore, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
     },
     {
-      question: "What is your 100% satisfaction guarantee policy?",
-      answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back to your Strathmore home and make it right — at no extra cost!"
+      question: "What happens if something is missed?",
+      answer: "Tell us within 24 hours and the team comes back to your Strathmore home to re-clean what was missed, at no charge. Photos help but are not required."
     }
   ];
   const faqJsonLd = {
@@ -200,8 +197,8 @@ export default function Strathmore() {
                 <div className="flex flex-wrap justify-center lg:justify-start gap-6">
                   {[
                     { icon: CheckCircle2, text: "Pay After Your Clean" },
-                    { icon: CalendarCheck, text: "Flexible Scheduling Available" },
-                    { icon: Award, text: "100% Satisfaction Guarantee" },
+                    { icon: CalendarCheck, text: "Open 7 Days a Week" },
+                    { icon: Award, text: "24-Hour Re-Clean Guarantee" },
                   ].map((badge, i) => (
                     <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                       <badge.icon className="w-4 h-4 text-accent" />
@@ -222,39 +219,6 @@ export default function Strathmore() {
           </div>
         </section>
 
-        {/* About the Neighbourhood */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <AnimatedSection>
-              <div className="max-w-4xl mx-auto">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">About the Neighbourhood</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                  Cleaning Services Tailored to Strathmore Living
-                </h2>
-                <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
-                  <p>
-                    Strathmore is a charming town just 40 minutes east of Calgary along the{" "}
-                    <a href="https://www.google.com/maps/place/Trans-Canada+Hwy,+Alberta/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Trans-Canada Highway</a>,
-                    known for its friendly community spirit and rural charm. Whether your home is near the popular{" "}
-                    <a href="https://www.google.com/maps/place/Kinsmen+Park,+Strathmore,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Kinsmen Park</a>{" "}
-                    trail system, close to the{" "}
-                    <a href="https://www.google.com/maps/place/Strathmore+Golf+Club,+Strathmore,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Strathmore Golf Club</a>,
-                    or in one of the newer developments near{" "}
-                    <a href="https://www.google.com/maps/place/Strathmore+Aquatic+Centre,+Strathmore,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Strathmore Aquatic Centre</a>,
-                    our team knows Strathmore well and is ready to keep your home spotless.
-                  </p>
-                  <p>
-                    From the established streets of Westmount to the family-friendly community of Heritage Heights,
-                    we provide flexible scheduling and cleaning suited to every household in Strathmore.
-                    Don't miss the annual{" "}
-                    <a href="https://www.google.com/maps/place/Strathmore+Stampede+Grounds,+Strathmore,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Strathmore Stampede</a>
-                    — one of Canada's largest rodeos — while we take care of the cleaning at home.
-                  </p>
-                </div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
 
       {/* Things To Do */}
       <section className="py-20 bg-muted/30">
@@ -382,12 +346,12 @@ export default function Strathmore() {
                   Why Strathmore Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by families across the Calgary region for reliable, thorough cleaning.
+                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
             <AnimatedSection>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
                 {whyUsItems.map((item, i) => (
                   <WhyUsCard key={i} {...item} />
                 ))}
@@ -402,7 +366,7 @@ export default function Strathmore() {
             <AnimatedSection>
               <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
               <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
-                Proudly Serving Strathmore & Surrounding Areas
+                House Cleaning in Strathmore & Surrounding Areas
               </h2>
               <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
                 We provide professional house cleaning services throughout Strathmore and nearby communities in the Calgary region.
@@ -410,12 +374,6 @@ export default function Strathmore() {
               <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
                 View All Service Areas →
               </Link>
-            <p className="mt-6 text-sm text-muted-foreground">
-              Run a business in Strathmore? We also handle{" "}
-              <Link to="/commercial-cleaning-services-calgary/" className="text-primary underline underline-offset-2 font-medium">
-                commercial and office cleaning across the Calgary region
-              </Link>.
-            </p>
 
             </AnimatedSection>
           </div>
@@ -449,7 +407,7 @@ export default function Strathmore() {
           <div className="container mx-auto px-4 relative z-10 text-center">
             <AnimatedSection>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                Ready for a Spotless Home in Strathmore?
+                Ready to Book a Clean in Strathmore?
               </h2>
               <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
                 See your flat rate before you book. Nothing is charged until the clean is done.

@@ -59,12 +59,11 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to bring the whole home back to baseline.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Scarboro" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Top-to-bottom detail that reaches what weekly cleaning never does.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Scarboro" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for a smooth Scarboro move — leave or arrive to a pristine home.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Scarboro" },
+  { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Scarboro" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Scarboro" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Scarboro" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Expert dust and debris removal after renovations or new builds in Scarboro.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Scarboro" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Scarboro" },
-  { icon: Building2, title: "Commercial Cleaning", description: "Professional office and commercial space cleaning for Scarboro businesses of all sizes." },
 ];
 
 const whyUsItems = [
@@ -91,34 +90,10 @@ const whyUsItems = [
       </>
     ),
   },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day slots when the schedule allows. We work around your busy life." },
-  { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
-  { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
-  { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
+  { icon: Leaf, title: "All Supplies Brought For You", description: "The team brings all supplies and equipment. Leave the water and power on until the clean is done." },
+  { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
-const landmarks = [
-  {
-    "title": "17th Avenue SW",
-    "url": "https://www.google.com/maps/place/17+Avenue+SW,+Calgary,+AB/",
-    "description": "Calgary's iconic dining and shopping strip"
-  },
-  {
-    "title": "Shaganappi Park Golf Course",
-    "url": "https://www.google.com/maps/place/Shaganappi+Point+Golf+Course,+Calgary,+AB/",
-    "description": "Public course with downtown skyline views"
-  },
-  {
-    "title": "Bow Trail",
-    "url": "https://www.google.com/maps/place/Bow+Trail+SW,+Calgary,+AB/",
-    "description": "Direct route into downtown Calgary"
-  },
-  {
-    "title": "Sunalta LRT Station",
-    "url": "https://www.google.com/maps/place/Sunalta+CTrain+Station,+Calgary,+AB/",
-    "description": "Quick light-rail connection downtown"
-  }
-];
 
 const nearbyAreas = ["Sunalta", "Sunalta West", "Shaganappi", "Upper Mount Royal", "Bankview", "Spruce Cliff"];
 
@@ -129,19 +104,19 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Scarboro?",
-    answer: `The full service menu is available here:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `The full service menu is available here:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
   },
   {
     question: "Do you offer discounts?",
-    answer: `Yes — the discount grows with visit frequency:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+    answer: `Yes — the discount grows with visit frequency:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
   },
   {
     question: "What's included in a deep cleaning?",
     answer: `In Scarboro, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
   },
   {
-    question: "What is your 100% satisfaction guarantee policy?",
-    answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back to your Scarboro home and make it right — at no extra cost!"
+    question: "What happens if something is missed?",
+    answer: "Tell us within 24 hours and the team comes back to your Scarboro home to re-clean what was missed, at no charge. Photos help but are not required."
   }
 ];
 
@@ -221,8 +196,8 @@ export default function Scarboro() {
               <div className="flex flex-wrap justify-center gap-6">
                 {[
                   { icon: CheckCircle2, text: "Pay After Your Clean" },
-                  { icon: CalendarCheck, text: "Flexible Scheduling Available" },
-                  { icon: Award, text: "100% Satisfaction Guarantee" },
+                  { icon: CalendarCheck, text: "Open 7 Days a Week" },
+                  { icon: Award, text: "24-Hour Re-Clean Guarantee" },
                 ].map((badge, i) => (
                   <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                     <badge.icon className="w-4 h-4 text-accent" />
@@ -234,21 +209,6 @@ export default function Scarboro() {
           </div>
         </section>
 
-        {/* About the Neighbourhood */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <AnimatedSection>
-              <div className="max-w-4xl mx-auto">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">About the Neighbourhood</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Cleaning Services Tailored to Scarboro Heritage Homes</h2>
-                <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
-                  <p>Scarboro is one of Calgary's earliest planned communities, designed around its hillside terrain with curving streets and stately character homes built in the 1910s and 1920s. It's a tight-knit neighbourhood with deep history and quiet charm.</p>
-                  <p>Heritage homes need a careful hand — original woodwork, leaded windows, and classic finishes deserve respect. Our team brings professional products and detail-oriented care to every visit.</p>
-                </div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
 
         {/* Services */}
         <section className="py-20 bg-muted/30">
@@ -287,36 +247,6 @@ export default function Scarboro() {
           </div>
         </section>
 
-        {/* Landmarks */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <AnimatedSection>
-              <div className="text-center mb-14 max-w-3xl mx-auto">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Landmarks</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Around Scarboro</h2>
-                <p className="text-muted-foreground text-lg">
-                  We know the area inside and out — here are a few of the places that make Scarboro feel like home.
-                </p>
-              </div>
-            </AnimatedSection>
-            <AnimatedSection>
-              <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                {landmarks.map((l, i) => (
-                  <a key={i} href={l.url} target="_blank" rel="noopener noreferrer"
-                     className="group flex gap-4 bg-white rounded-xl border border-border p-5 transition-all duration-500 ease-out hover:-translate-y-1.5 hover:shadow-xl">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:rotate-12">
-                      <MapPin className="w-6 h-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold text-foreground mb-1 group-hover:text-primary transition-colors">{l.title}</h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed">{l.description}</p>
-                    </div>
-                  </a>
-                ))}
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
 
         {/* Map */}
         <section className="py-16 bg-muted/30">
@@ -383,7 +313,10 @@ export default function Scarboro() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Nearby Communities We Serve</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  We proudly serve families and homeowners across Scarboro and surrounding SW Calgary communities.
+                  Duty Cleaners cleans homes across Scarboro and the communities around it.{" "}
+                  <Link to="/locations/" className="text-primary underline underline-offset-2">
+                    See every area we serve
+                  </Link>.
                 </p>
               </div>
               <CoverageChips areas={nearbyAreas} />
@@ -414,12 +347,12 @@ export default function Scarboro() {
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Scarboro Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by Scarboro families for reliable, thorough cleaning.
+                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
             <AnimatedSection>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
                 {whyUsItems.map((item, i) => <WhyUsCard key={i} {...item} />)}
               </div>
             </AnimatedSection>
@@ -453,7 +386,7 @@ export default function Scarboro() {
           <div className="absolute bottom-0 left-20 w-80 h-80 bg-accent/10 rounded-full blur-3xl" />
           <div className="container mx-auto px-4 relative z-10 text-center">
             <AnimatedSection>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready for a Spotless Home in Scarboro?</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Book a Clean in Scarboro?</h2>
               <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
                 See your flat rate before you book. Nothing is charged until the clean is done.
               </p>

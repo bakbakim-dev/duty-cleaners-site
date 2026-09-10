@@ -58,12 +58,11 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to bring the whole home back to baseline.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Mahogany" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Comprehensive cleaning of the house reaching every corner, baseboard, and hidden surface.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Mahogany" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed cleaning for smooth transitions — leave or arrive to a pristine lakeside home.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Mahogany" },
+  { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Mahogany" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Mahogany" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Mahogany" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Drywall and construction dust after a renovation or a new build in Mahogany.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Mahogany" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Mahogany" },
-  { icon: Building2, title: "Commercial Cleaning", description: "Professional office and commercial space cleaning for Mahogany businesses of all sizes." },
 ];
 
 const whyUsItems = [
@@ -90,10 +89,8 @@ const whyUsItems = [
       </>
     ),
   },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability in Mahogany. We work around your busy life." },
-  { icon: Leaf, title: "All Supplies Brought For You", description: "We bring everything the job needs — and any product you would rather we used." },
-  { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
-  { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
+  { icon: Leaf, title: "All Supplies Brought For You", description: "The team brings all supplies and equipment. Leave the water and power on until the clean is done." },
+  { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
 const nearbyAreas = ["Mahogany Beach Club", "Mahogany Lake", "Mahogany Wetlands", "Mahogany Village", "Auburn Bay", "Cranston", "Copperfield", "Seton"];
@@ -105,19 +102,19 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Mahogany?",
-    answer: `Every service we run can be booked locally:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `Every service we run can be booked locally:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
   },
   {
     question: "Do you offer discounts?",
-    answer: `Yes — customers in Mahogany on a recurring schedule save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+    answer: `Yes — customers in Mahogany on a recurring schedule save:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
   },
   {
     question: "What's included in a deep cleaning?",
     answer: `In Mahogany, a deep clean adds to the standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
   },
   {
-    question: "What is your 100% satisfaction guarantee policy?",
-    answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back to your Mahogany home and make it right — at no extra cost!"
+    question: "What happens if something is missed?",
+    answer: "Tell us within 24 hours and the team comes back to your Mahogany home to re-clean what was missed, at no charge. Photos help but are not required."
   }
 ];
 
@@ -199,8 +196,8 @@ export default function Mahogany() {
               <div className="flex flex-wrap justify-center gap-6">
                 {[
                   { icon: CheckCircle2, text: "Pay After Your Clean" },
-                  { icon: CalendarCheck, text: "Flexible Scheduling Available" },
-                  { icon: Award, text: "100% Satisfaction Guarantee" },
+                  { icon: CalendarCheck, text: "Open 7 Days a Week" },
+                  { icon: Award, text: "24-Hour Re-Clean Guarantee" },
                 ].map((badge, i) => (
                   <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                     <badge.icon className="w-4 h-4 text-accent" />
@@ -212,38 +209,6 @@ export default function Mahogany() {
           </div>
         </section>
 
-        {/* About the Neighbourhood */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <AnimatedSection>
-              <div className="max-w-4xl mx-auto">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">About the Neighbourhood</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                  Cleaning Services Tailored to Mahogany Living
-                </h2>
-                <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
-                  <p>
-                    Mahogany is a stunning master-planned community in southeast Calgary, home to the spectacular{" "}
-                    <a href="https://www.google.com/maps/place/Mahogany+Lake,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">63-acre freshwater lake</a>
-                    —the largest in Calgary. With private beaches, boating, and year-round activities, it's one of the city's most desirable places to live.
-                  </p>
-                  <p>
-                    Residents enjoy access to the{" "}
-                    <a href="https://www.google.com/maps/place/Mahogany+Beach+Club,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Mahogany Beach Club</a>,
-                    extensive pathway systems, and natural wetlands that provide a peaceful retreat. The community features beautiful homes ranging from single-family residences to townhomes, all designed with modern amenities.
-                  </p>
-                  <p>
-                    With excellent schools, shopping at nearby{" "}
-                    <a href="https://www.google.com/maps/place/Seton,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Seton</a>,
-                    and quick access to{" "}
-                    <a href="https://www.google.com/maps/place/Stoney+Trail,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Stoney Trail</a>,
-                    Mahogany attracts families and active individuals who appreciate resort-style living. Let Duty Cleaners keep your home sparkling so you can focus on enjoying this exceptional community.
-                  </p>
-                </div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
 
         {/* Interactive Map */}
         <section className="py-16 bg-background">
@@ -279,7 +244,10 @@ export default function Mahogany() {
                   Mahogany Neighbourhoods We Serve
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  We proudly serve families and homeowners across Mahogany and surrounding SE Calgary communities.
+                  Duty Cleaners cleans homes across Mahogany and the communities around it.{" "}
+                  <Link to="/locations/" className="text-primary underline underline-offset-2">
+                    See every area we serve
+                  </Link>.
                 </p>
               </div>
               <CoverageChips areas={nearbyAreas} />
@@ -353,12 +321,12 @@ export default function Mahogany() {
                   Why Mahogany Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by families across SE Calgary for reliable, thorough cleaning.
+                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
             <AnimatedSection>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
                 {whyUsItems.map((item, i) => (
                   <WhyUsCard key={i} {...item} />
                 ))}
@@ -393,23 +361,6 @@ export default function Mahogany() {
           </div>
         </section>
 
-        {/* Service Areas */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4 text-center">
-            <AnimatedSection>
-              <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-              <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
-                Proudly Serving Mahogany & SE Calgary
-              </h2>
-              <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-                We provide professional house cleaning services throughout Mahogany and nearby communities in southeast Calgary.
-              </p>
-              <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
-                View All Service Areas →
-              </Link>
-            </AnimatedSection>
-          </div>
-        </section>
 
         {/* CTA */}
         <section className="py-20 bg-brand-navy relative overflow-hidden">
@@ -417,7 +368,7 @@ export default function Mahogany() {
           <div className="container mx-auto px-4 relative z-10 text-center">
             <AnimatedSection>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                Ready for a Spotless Home in Mahogany?
+                Ready to Book a Clean in Mahogany?
               </h2>
               <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
                 See your flat rate before you book. Nothing is charged until the clean is done.

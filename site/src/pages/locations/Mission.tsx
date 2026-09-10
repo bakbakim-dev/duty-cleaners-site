@@ -58,12 +58,11 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
 );
 
 const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A thorough one-time cleaning to refresh your Mission home or condo consistently fresh and tidy.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Mission" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "Comprehensive cleaning of the house — every baseboard, corner, and detail thoroughly addressed.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Mission" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Detailed turnover cleans for renters, owners, and landlords across Mission's condos and character homes.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Mission" },
+  { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Mission" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and reachable vents.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Mission" },
+  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Mission" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris removal after renovations in Mission's heritage homes and modern builds.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Mission" },
   { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Mission" },
-  { icon: Building2, title: "Commercial Cleaning", description: "Professional cleaning for 4th Street SW boutiques, cafés, and offices of all sizes." },
 ];
 
 const whyUsItems = [
@@ -90,10 +89,8 @@ const whyUsItems = [
       </>
     ),
   },
-  { icon: Clock, title: "Flexible Scheduling", description: "Same-day and next-day availability that works around your busy Mission lifestyle." },
-  { icon: Leaf, title: "All Supplies Brought For You", description: "Professional supplies and equipment that protect your home without compromising on clean." },
-  { icon: Users, title: "Experienced Team", description: "Professional cleaners trained to Duty Cleaners' exacting quality standards." },
-  { icon: ThumbsUp, title: "Satisfaction Guarantee", description: "If something was missed, tell us within 24 hours and we'll return to make it right — at no additional charge." },
+  { icon: Leaf, title: "All Supplies Brought For You", description: "The team brings all supplies and equipment. Leave the water and power on until the clean is done." },
+  { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
 const nearbyAreas = ["4th Street SW", "Cliff Bungalow", "Erlton", "Beltline", "Rideau Park", "Roxboro", "Elbow Park", "Victoria Park"];
@@ -105,19 +102,19 @@ const faqs = [
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Mission?",
-    answer: `Every service we run can be booked locally:\n\n• Commercial Cleaning\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
+    answer: `Every service we run can be booked locally:\n\n• Standard & Deep Cleaning Packages\n• Move-In & Move-Out Cleaning\n• Post-Construction Cleaning\n• Wall Washing and Wall Cleaning`
   },
   {
     question: "Do you offer discounts?",
-    answer: `Yes. A recurring schedule earns a standing discount:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off`
+    answer: `Yes. A recurring schedule earns a standing discount:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nDiscounts start from the second visit; the first clean is charged at the one-time rate.`
   },
   {
     question: "What's included in a deep cleaning?",
     answer: `The deep package extends the standard clean with:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Ceiling fans dusted and cleaned\n• Light switches fully cleaned\n• All reachable vents cleaned`
   },
   {
-    question: "What is your 100% satisfaction guarantee policy?",
-    answer: "If you're not 100% satisfied, call us within 24 hours and we'll come back and put it right — at no extra cost!"
+    question: "What happens if something is missed?",
+    answer: "Tell us within 24 hours and the team comes back to your Mission home to re-clean what was missed, at no charge. Photos help but are not required."
   }
 ];
 
@@ -199,8 +196,8 @@ export default function Mission() {
               <div className="flex flex-wrap justify-center gap-6">
                 {[
                   { icon: CheckCircle2, text: "Pay After Your Clean" },
-                  { icon: CalendarCheck, text: "Flexible Scheduling Available" },
-                  { icon: Award, text: "100% Satisfaction Guarantee" },
+                  { icon: CalendarCheck, text: "Open 7 Days a Week" },
+                  { icon: Award, text: "24-Hour Re-Clean Guarantee" },
                 ].map((badge, i) => (
                   <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                     <badge.icon className="w-4 h-4 text-accent" />
@@ -212,39 +209,6 @@ export default function Mission() {
           </div>
         </section>
 
-        {/* About the Neighbourhood */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <AnimatedSection>
-              <div className="max-w-4xl mx-auto">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">About the Neighbourhood</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
-                  Cleaning Services Tailored to Mission Living
-                </h2>
-                <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
-                  <p>
-                    Mission is one of Calgary's most beloved inner-city neighbourhoods, tucked along the{" "}
-                    <a href="https://www.google.com/maps/place/Elbow+River,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Elbow River</a>{" "}
-                    just south of downtown. Known for its character homes, modern condos, and the lively energy of{" "}
-                    <a href="https://www.google.com/maps/place/4+St+SW,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">4th Street SW</a>,
-                    Mission balances urban convenience with a true neighbourhood feel.
-                  </p>
-                  <p>
-                    Residents enjoy walkable access to the boutiques and restaurants of 4th Street, the green expanse of{" "}
-                    <a href="https://www.google.com/maps/place/Lindsay+Park,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Lindsay Park</a>,
-                    and the riverside pathways that wind toward downtown. The community sits steps from the iconic{" "}
-                    <a href="https://www.google.com/maps/place/Stampede+Park,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Stampede Park</a>{" "}
-                    and the{" "}
-                    <a href="https://www.google.com/maps/place/MNP+Community+%26+Sport+Centre,+Calgary,+AB/" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">MNP Community &amp; Sport Centre</a>.
-                  </p>
-                  <p>
-                    Whether you live in a heritage home on a tree-lined street or a modern high-rise overlooking the river, our team provides flexible scheduling and professional cleaning solutions designed for Mission's unique mix of households.
-                  </p>
-                </div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
 
         {/* Interactive Map */}
         <section className="py-16 bg-background">
@@ -354,12 +318,12 @@ export default function Mission() {
                   Why Mission Residents Choose Duty Cleaners
                 </h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Trusted by inner-city Calgary households for reliable, thorough cleaning.
+                  Checked before the first job, rated after every visit, and covered by a re-clean guarantee.
                 </p>
               </div>
             </AnimatedSection>
             <AnimatedSection>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
                 {whyUsItems.map((item, i) => (
                   <WhyUsCard key={i} {...item} />
                 ))}
@@ -400,7 +364,7 @@ export default function Mission() {
             <AnimatedSection>
               <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
               <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
-                Proudly Serving Mission & Inner-City Calgary
+                House Cleaning in Mission & Inner-City Calgary
               </h2>
               <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
                 We provide professional house cleaning services throughout Mission and nearby communities in southwest Calgary.
@@ -418,7 +382,7 @@ export default function Mission() {
           <div className="container mx-auto px-4 relative z-10 text-center">
             <AnimatedSection>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                Ready for a Spotless Home in Mission?
+                Ready to Book a Clean in Mission?
               </h2>
               <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
                 See your flat rate before you book. Nothing is charged until the clean is done.
