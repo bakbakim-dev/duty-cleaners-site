@@ -112,6 +112,11 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
    "duty-cleaners-edmonton-2", so check for a duplicate listing) and claim the Calgary profile.
 6. Book a real photo shoot (PHOTO-SHOOT-BRIEF.md): every people image is still AI-generated.
 7. The launch-gate items: production Netlify site, DNS, analytics, an end-to-end quote test.
+   Netlify refuses deploys on this account (403 Forbidden since 2026-09-11; the site stays up).
+   It is on the credit-based Free plan (300 credits a period, reset on the 4th of each month),
+   and 18 production deploys ran on 4-5 September, so the credits are most likely spent. The
+   production site is meant to go on this same account, so upgrade or top up before launch day,
+   or a launch deploy fails the same way. `netlify api getAccount` shows the plan.
 8. Decide what the $15 eco-friendly option buys. The cleaners choose their own products, so name a
    minimum the office can check (for example, products with ECOLOGO certification) or retire
    the option. Until then the site lists it as confirmed and makes no other environmental claim.
