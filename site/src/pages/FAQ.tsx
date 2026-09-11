@@ -24,7 +24,7 @@ const FAQ_DESCRIPTION =
 interface FAQCategory {
   title: string;
   icon: React.ElementType;
-  items: { question: string; answer: string }[];
+  items: { question: string; answer: string; link?: { text: string; href: string } }[];
 }
 
 const faqCategories: FAQCategory[] = [
@@ -131,6 +131,7 @@ const faqCategories: FAQCategory[] = [
       {
         question: "Does deep cleaning remove mould or mildew?",
         answer: "We may wipe light surface mildew where it is safe to, but we do not provide mould remediation or remove heavy mould.",
+        link: { text: "we do not provide mould remediation", href: "https://www.canada.ca/en/health-canada/services/publications/healthy-living/addressing-moisture-mould-your-home.html" },
       },
       {
         question: "What does a deep cleaning include?",
@@ -323,7 +324,7 @@ const FAQCategoryCard = ({ category, categoryIndex }: { category: FAQCategory; c
                   </span>
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground leading-relaxed text-sm pb-4 whitespace-pre-line">
-                  {item.answer}
+                  {renderAnswer(item)}
                 </AccordionContent>
               </AccordionItem>
             ))}
@@ -331,6 +332,24 @@ const FAQCategoryCard = ({ category, categoryIndex }: { category: FAQCategory; c
         </div>
       </div>
     </div>
+  );
+};
+
+/**
+ * An answer with one phrase linked to its official source. The FAQPage schema
+ * keeps the plain answer text; only the visible answer carries the link.
+ */
+const renderAnswer = (item: { answer: string; link?: { text: string; href: string } }) => {
+  const at = item.link ? item.answer.indexOf(item.link.text) : -1;
+  if (!item.link || at < 0) return item.answer;
+  return (
+    <>
+      {item.answer.slice(0, at)}
+      <a href={item.link.href} target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">
+        {item.link.text}
+      </a>
+      {item.answer.slice(at + item.link.text.length)}
+    </>
   );
 };
 

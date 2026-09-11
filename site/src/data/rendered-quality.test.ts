@@ -639,6 +639,31 @@ describe("price CTAs reach the price", () => {
   });
 
   /**
+   * Official sources behind the site's rule statements (2026-09-11): Alberta's
+   * tenancy rules on the move-out pages, the chemical-mixing and household
+   * chemical-safety warnings on the two product posts, and Health Canada's mould
+   * guide beside the mould exclusion. Plain followed links: these are trusted
+   * sources, and Google says to use nofollow only for sources you do not trust.
+   */
+  it("the pages that state official rules link their official source", () => {
+    if (allPages().length === 0) return;
+    const CITED: ReadonlyArray<readonly [string, string]> = [
+      ["/move-out-cleaning-edmonton/", "https://www.alberta.ca/ending-a-tenancy"],
+      ["/move-out-cleaning-calgary/", "https://www.alberta.ca/ending-a-tenancy"],
+      ["/cleaning-with-vinegar-and-baking-soda/", "https://tc.canada.ca/en/dangerous-goods/canutec/articles/improper-mixing-common-household-cleaning-products"],
+      ["/the-top-5-must-have-cleaning-products-for-a-spotless-home/", "https://www.canada.ca/en/health-canada/services/home-safety/household-chemical-safety.html"],
+      ["/faqs/", "https://www.canada.ca/en/health-canada/services/publications/healthy-living/addressing-moisture-mould-your-home.html"],
+    ];
+    const bad: string[] = [];
+    for (const [url, source] of CITED) {
+      const tag = new RegExp(`<a\\b[^>]*href="${escapeRe(source)}"[^>]*>`).exec(html(url))?.[0];
+      if (!tag) bad.push(`${url} does not link ${source}`);
+      else if (/rel="[^"]*(?:nofollow|sponsored|ugc)/.test(tag)) bad.push(`${url} qualifies its link to ${source}`);
+    }
+    expect(bad, "official sources missing or nofollowed").toEqual([]);
+  });
+
+  /**
    * Ratings rounded up to five.
    *
    * proof.ts records the real figure as 4.9 and carries the history: the site

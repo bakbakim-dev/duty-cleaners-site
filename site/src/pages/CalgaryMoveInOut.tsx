@@ -534,7 +534,7 @@ export default function CalgaryMoveInOut() {
           </h2>
           <div className="prose prose-lg max-w-none text-muted-foreground space-y-4">
             <p>
-              Under Alberta's Residential Tenancies Act the landlord completes a move-out
+              Under <a href="https://www.alberta.ca/ending-a-tenancy" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Alberta's Residential Tenancies Act</a> the landlord completes a move-out
               inspection report with the tenant, and the security deposit must be returned within
               10 days after the tenant moves out. The inspection is where cleaning gets cited, so
               an end of tenancy clean is timed for the day or two before it, after the furniture

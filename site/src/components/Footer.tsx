@@ -155,8 +155,11 @@ export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: 
           </div>
 
           <div className="mt-10">
+            {/* Yelp tiles removed 2026-09-11: the Edmonton Yelp profile shows the wrong address
+                (14250 85 Ave NW) and 3.6 stars, and the Calgary one is unclaimed. Restore them
+                once the owner has fixed and claimed both (see CLAUDE.md). */}
             <p className="mb-5 text-center text-sm font-semibold uppercase tracking-[0.2em] text-brand-navy-foreground/85">Review platforms</p>
-            <div className="mx-auto grid max-w-5xl grid-cols-2 gap-3 lg:grid-cols-4">
+            <div className="mx-auto grid max-w-2xl grid-cols-2 gap-3">
               <a href={GOOGLE_LISTINGS.edmonton.reviewsUrl} target="_blank" rel="nofollow noopener noreferrer" onClick={(event) => openGoogleListing(event, GOOGLE_LISTINGS.edmonton.reviewsUrl)} className="group flex min-h-16 items-center justify-center gap-2.5 rounded-lg border border-brand-navy-foreground/15 bg-brand-navy-foreground/5 px-3 text-brand-navy-foreground/85 transition-all hover:border-brand-gold/60 hover:bg-brand-navy-foreground/10 hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold">
                 <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-navy-foreground text-xs font-bold text-brand-navy" aria-hidden="true">G</span>
                 <span className="text-left text-xs leading-tight"><strong className="block text-brand-navy-foreground">Edmonton</strong>Google Reviews</span>
@@ -164,14 +167,6 @@ export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: 
               <a href={GOOGLE_LISTINGS.calgary.reviewsUrl} target="_blank" rel="nofollow noopener noreferrer" onClick={(event) => openGoogleListing(event, GOOGLE_LISTINGS.calgary.reviewsUrl)} className="group flex min-h-16 items-center justify-center gap-2.5 rounded-lg border border-brand-navy-foreground/15 bg-brand-navy-foreground/5 px-3 text-brand-navy-foreground/85 transition-all hover:border-brand-gold/60 hover:bg-brand-navy-foreground/10 hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold">
                 <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-navy-foreground text-xs font-bold text-brand-navy" aria-hidden="true">G</span>
                 <span className="text-left text-xs leading-tight"><strong className="block text-brand-navy-foreground">Calgary</strong>Google Reviews</span>
-              </a>
-              <a href="https://www.yelp.ca/biz/duty-cleaners-edmonton" target="_blank" rel="nofollow noopener noreferrer" className="group flex min-h-16 items-center justify-center gap-2.5 rounded-lg border border-brand-navy-foreground/15 bg-brand-navy-foreground/5 px-3 text-brand-navy-foreground/85 transition-all hover:border-brand-gold/60 hover:bg-brand-navy-foreground/10 hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-navy-foreground text-xs font-bold text-brand-navy" aria-hidden="true">Y</span>
-                <span className="text-left text-xs leading-tight"><strong className="block text-brand-navy-foreground">Edmonton</strong>Yelp Reviews</span>
-              </a>
-              <a href="https://www.yelp.ca/biz/duty-cleaners-calgary-calgary?osq=Duty+Cleaners+Calgary" target="_blank" rel="nofollow noopener noreferrer" className="group flex min-h-16 items-center justify-center gap-2.5 rounded-lg border border-brand-navy-foreground/15 bg-brand-navy-foreground/5 px-3 text-brand-navy-foreground/85 transition-all hover:border-brand-gold/60 hover:bg-brand-navy-foreground/10 hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-navy-foreground text-xs font-bold text-brand-navy" aria-hidden="true">Y</span>
-                <span className="text-left text-xs leading-tight"><strong className="block text-brand-navy-foreground">Calgary</strong>Yelp Reviews</span>
               </a>
             </div>
           </div>

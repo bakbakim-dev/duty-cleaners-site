@@ -365,8 +365,8 @@ export default function EdmontonMoveInOut() {
               </div>
               <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
                 <p>
-                  End of tenancy cleaning in Edmonton is judged at one moment: the move-out inspection. Under
-                  Alberta's Residential Tenancies Act the landlord completes a move-out inspection report with
+                  End of tenancy cleaning in Edmonton is judged at one moment: the move-out inspection. Under{" "}
+                  <a href="https://www.alberta.ca/ending-a-tenancy" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Alberta's Residential Tenancies Act</a> the landlord completes a move-out inspection report with
                   the tenant, and the security deposit, the damage deposit in everyday use, must be returned
                   within 10 days after the tenant moves out. That report is where a landlord notes cleaning, so
                   our <strong>move out cleaners in Edmonton</strong> clean to the inspection checklist rather

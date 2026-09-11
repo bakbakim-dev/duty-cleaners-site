@@ -576,6 +576,15 @@ export const GUARD_PROOFS: GuardProof[] = [
     dist: true,
   },
   {
+    guard: "src/data/rendered-quality.test.ts",
+    target: "dist/move-out-cleaning-edmonton/index.html",
+    find: 'href="https://www.alberta.ca/ending-a-tenancy"',
+    replace: 'href="https://www.alberta.ca/"',
+    failing: "the pages that state official rules link their official source",
+    why: "Drops the official source behind the Edmonton move-out page's tenancy-law sentence.",
+    dist: true,
+  },
+  {
     guard: "src/data/copy-quality.test.ts",
     target: "src/pages/Contact.tsx",
     find: '<SelectItem value="commercial">Office Cleaning</SelectItem>',

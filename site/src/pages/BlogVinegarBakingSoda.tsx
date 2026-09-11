@@ -271,7 +271,7 @@ export default function BlogVinegarBakingSoda() {
                           <strong>Vinegar and hydrogen peroxide.</strong> Combining them makes peracetic acid, which can irritate skin, eyes and airways. Use one, rinse the surface thoroughly, then use the other — never in the same container.
                         </li>
                         <li>
-                          <strong>Vinegar and bleach.</strong> This releases chlorine gas. This combination is genuinely dangerous, not merely ineffective.
+                          <strong>Vinegar and bleach.</strong> This <a href="https://tc.canada.ca/en/dangerous-goods/canutec/articles/improper-mixing-common-household-cleaning-products" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">releases chlorine gas</a>. This combination is genuinely dangerous, not merely ineffective.
                         </li>
                         <li>
                           <strong>Bleach and ammonia</strong> (including many glass cleaners). Releases chloramine vapour.

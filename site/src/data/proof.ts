@@ -153,9 +153,14 @@ export const SUPPORT_EMAIL = "support@dutycleaners.ca";
 
 /**
  * Every profile that represents this business elsewhere on the web, for schema
- * `sameAs`. These are all linked in the footer already; until now `sameAs`
- * carried only the two Google Maps permalinks, so the other seven did no
- * entity-disambiguation work at all. Keep this in sync with Footer.tsx.
+ * `sameAs`. Until the September audit `sameAs` carried only the two Google Maps
+ * permalinks, so the other profiles did no entity-disambiguation work at all.
+ *
+ * Edmonton's Yelp profile is left out (2026-09-11): it shows the wrong address
+ * (14250 85 Ave NW) and asserting it as this entity would feed that address into
+ * entity matching. Add it back once the owner has corrected it. Calgary's Yelp
+ * profile has the right address, so it stays here, though the footer no longer
+ * links it (it is unclaimed).
  *
  * The Calgary Yelp URL is stored without its leftover ?osq= search parameter —
  * a canonical profile URL, not the search that happened to find it.
@@ -163,7 +168,6 @@ export const SUPPORT_EMAIL = "support@dutycleaners.ca";
 export const BRAND_PROFILES = [
   "https://www.google.com/maps?cid=8192121191672692049",
   "https://www.google.com/maps?cid=6193344199307583189",
-  "https://www.yelp.ca/biz/duty-cleaners-edmonton",
   "https://www.yelp.ca/biz/duty-cleaners-calgary-calgary",
   "https://www.facebook.com/dutycleaners/",
   "https://www.instagram.com/dutycleaners/",
@@ -197,7 +201,6 @@ const SHARED_SOCIAL = [
 export const BRANCH_PROFILES: Record<"edmonton" | "calgary", readonly string[]> = {
   edmonton: [
     "https://www.google.com/maps?cid=8192121191672692049",
-    "https://www.yelp.ca/biz/duty-cleaners-edmonton",
     ...SHARED_SOCIAL,
   ],
   calgary: [

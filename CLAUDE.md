@@ -67,7 +67,14 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
 - Cleaners: reference-checked, customer-rated, and "under 5% of applicants are accepted"
   (`COMPANY.applicantAcceptanceRate`, the owner's figure). Always hiring: the JobPosting has a
   datePosted, no validThrough and no pay range (independent contractors paid per job).
-- No new-customer offer. The rebook rate stays unpublished. The legacy `/quote-redirect/` bridge
+- No new-customer offer. The rebook rate stays unpublished.
+- Yelp is not linked (2026-09-11): the Edmonton profile shows the wrong address (14250 85 Ave NW)
+  and 3.6 stars, and Calgary's is unclaimed. Edmonton's Yelp URL is out of `sameAs` too. Restore
+  both once the owner has fixed and claimed them.
+- Outbound citations: plain followed links to official sources, attached to the sentence they
+  support (move-out pages → Alberta's tenancy rules; product posts → Transport Canada and Health
+  Canada; FAQ mould answer → Health Canada). No nofollow on trusted sources, no sitewide or footer
+  citation links, no links to "best of" lists or directories. Guarded in rendered-quality.test.ts. The legacy `/quote-redirect/` bridge
   was removed with the old site.
 
 ## Rules
@@ -91,8 +98,10 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
 3. Paste `bk-header-fill.html` into BookingKoala → Theme Builder → Settings → Tracking & Conversion
    → Header code. It is not on the live booking page.
 4. Take down the old GitHub Pages preview (bakbakim-dev.github.io/dutycleaners-preview).
-5. Book a real photo shoot (PHOTO-SHOOT-BRIEF.md): every people image is still AI-generated.
-6. The launch-gate items: production Netlify site, DNS, analytics, an end-to-end quote test.
+5. Yelp: correct the Edmonton profile's address (it is claimed; the old URL now redirects to
+   "duty-cleaners-edmonton-2", so check for a duplicate listing) and claim the Calgary profile.
+6. Book a real photo shoot (PHOTO-SHOOT-BRIEF.md): every people image is still AI-generated.
+7. The launch-gate items: production Netlify site, DNS, analytics, an end-to-end quote test.
 
 ## Historical documents
 REBUILD-PLAN.md, SEO-AUDIT-2026.md, CWV-BASELINE.md, notes.md (the legacy WordPress site's lead

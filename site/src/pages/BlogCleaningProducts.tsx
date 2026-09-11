@@ -52,7 +52,15 @@ const THE_FIVE = [
     body:
       "Hard Alberta water leaves mineral scale on taps, shower glass and kettles. Scrubbing barely touches that cloudy film; a mild acid and a few minutes of patience remove it. This is the bottle that makes a bathroom look renewed rather than merely wiped.",
     look: "Citric, lactic or acetic acid in the ingredients. Give it dwell time: three to five minutes doing nothing is what does the work.",
-    watch: "Keep it off natural stone, and never mix it with anything containing bleach.",
+    watch: (
+      <>
+        Keep it off natural stone, and{" "}
+        <a href="https://www.canada.ca/en/health-canada/services/home-safety/household-chemical-safety.html" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">
+          never mix it with anything containing bleach
+        </a>
+        .
+      </>
+    ),
   },
   {
     n: "04",
