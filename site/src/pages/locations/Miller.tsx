@@ -362,7 +362,7 @@ export default function Miller() {
         heading="Miller's homes and their habits"
         paragraphs={[
           "Miller pairs 1990s and 2000s two-storeys with attached double garages, and the garage entry is the everyday front door — the mudroom route from garage to kitchen carries nearly all the household's tracking, while the formal entry stays clean. A visit that budgets its floor time by that reality serves these homes better than an even split.",
-          "The neighbourhood borders stormwater greens and pathway links. Fingerprint bands on stair rails, switch plates and appliance fronts are the visible difference a clean makes.",
+          "The neighbourhood borders stormwater greens and pathway links. Fingerprint bands on stair rails and appliance fronts are the visible difference a clean makes, and a deep clean adds the switch plates.",
         ]}
       />
 

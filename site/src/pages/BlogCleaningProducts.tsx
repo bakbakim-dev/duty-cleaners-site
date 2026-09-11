@@ -237,7 +237,7 @@ export default function BlogCleaningProducts() {
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed mt-4">
                   {/* Was "thousands of homes a year", which the site's own figure refutes:
-                      5,000+ homes since 2017 is about 700 a year. */}
+                      5,000+ bookings since 2017 is under 600 a year. */}
                   A cleaning kit does not need to be big. Duty Cleaners teams bring all of their own
                   supplies and equipment to homes in Edmonton and Calgary, and a short list of
                   well-chosen products covers almost every household surface. Buying more mostly

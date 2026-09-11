@@ -1,5 +1,5 @@
 import { POLICY } from "@/data/policy";
-import { CITY_PROOF, HOMES_CLEANED, RATING_CLAIM } from "@/data/proof";
+import { BOOKINGS, CITY_PROOF, RATING_CLAIM } from "@/data/proof";
 import { calgaryNeighborhoods, calgarySurrounding, edmontonNeighborhoods, edmontonSurrounding } from "@/data/city-locations";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -71,8 +71,8 @@ export default function AboutUs() {
                 sending.
               </p>
               <p>
-                The company runs out of two offices, Edmonton and Calgary, and has cleaned{" "}
-                {HOMES_CLEANED.alberta} Alberta homes between them.
+                The company runs out of two offices, Edmonton and Calgary, which have taken{" "}
+                {BOOKINGS} bookings between them.
               </p>
               <p>
                 If something gets missed, tell us within {POLICY.guaranteeWindowHours} hours and we come
@@ -96,8 +96,8 @@ export default function AboutUs() {
             <div className="grid gap-10 md:grid-cols-4 md:gap-6">
               {[
                 { title: "Since 2017", text: "Duty Cleaners has cleaned homes in Alberta since 2017, from an Edmonton branch and a Calgary branch." },
-                { title: `${HOMES_CLEANED.edmonton} Edmonton homes`, text: `The Edmonton office is at ${CITY_PROOF.edmonton.streetAddress} and answers on ${CITY_PROOF.edmonton.phone}. It covers ${edmontonNeighborhoods.length} Edmonton neighbourhoods and ${edmontonSurrounding.length} communities outside the city, including St. Albert, Sherwood Park and Spruce Grove.` },
-                { title: `${HOMES_CLEANED.calgary} Calgary homes`, text: `The Calgary office is at ${CITY_PROOF.calgary.streetAddress} and answers on ${CITY_PROOF.calgary.phone}. It covers ${calgaryNeighborhoods.length} Calgary neighbourhoods and ${calgarySurrounding.length} communities outside the city, including Airdrie, Cochrane and Okotoks.` },
+                { title: "Edmonton office", text: `The Edmonton office is at ${CITY_PROOF.edmonton.streetAddress} and answers on ${CITY_PROOF.edmonton.phone}. It covers ${edmontonNeighborhoods.length} Edmonton neighbourhoods and ${edmontonSurrounding.length} communities outside the city, including St. Albert, Sherwood Park and Spruce Grove.` },
+                { title: "Calgary office", text: `The Calgary office is at ${CITY_PROOF.calgary.streetAddress} and answers on ${CITY_PROOF.calgary.phone}. It covers ${calgaryNeighborhoods.length} Calgary neighbourhoods and ${calgarySurrounding.length} communities outside the city, including Airdrie, Cochrane and Okotoks.` },
                 { title: RATING_CLAIM, text: `${CITY_PROOF.edmonton.googleReviewCount} reviews on the Edmonton listing and ${CITY_PROOF.calgary.googleReviewCount} on the Calgary one. Google keeps the two counts separate, and so do we.` },
               ].map((step, index) => (
                 <div key={step.title} className="relative pl-10 md:pl-0 md:pt-10">

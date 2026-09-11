@@ -12,7 +12,7 @@ import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { MapPin, Phone, Star, CheckCircle2, Clock, Shield, Sparkles, Home as HomeIcon, Award, ArrowRight, BadgeCheck, Users, CalendarClock, Briefcase, Heart } from "lucide-react";
 import heroCleanHouse from "@/assets/hero-clean-house-cleaner.webp";
 import HonestReviewLink from "@/components/HonestReviewLink";
-import { COMPANY, HOMES_CLEANED, RATING_CLAIM } from "@/data/proof";
+import { BOOKINGS, BOOKINGS_CLAIM, COMPANY, RATING_CLAIM } from "@/data/proof";
 // Every figure here reads from src/data/proof.ts, the single source of truth
 // for numeric claims on the site. The two this replaced — "10+ Years Combined
 // Experience" and "95% Customer Retention" — did not appear anywhere in that
@@ -22,11 +22,10 @@ const stats = [{
   label: "Operating in Alberta",
   icon: Clock
 }, {
-  value: HOMES_CLEANED.alberta,
-  // The scope word is load-bearing: 4,000+ is Edmonton and 5,000+ is Alberta,
-  // so a bare "Homes Cleaned" makes the two figures look like a contradiction
-  // wherever both appear (they do, on /locations/).
-  label: "Alberta Homes Cleaned",
+  value: BOOKINGS,
+  // Bookings, not homes: the owner's confirmed figure counts every booking,
+  // and a recurring customer's home is booked many times over.
+  label: "Alberta Bookings",
   icon: HomeIcon
 }, {
   value: RATING_CLAIM,
@@ -177,7 +176,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
               label: "4.9 on Google"
             }, {
               icon: Users,
-              label: `${HOMES_CLEANED.alberta} Alberta homes cleaned`
+              label: BOOKINGS_CLAIM
             }].map((badge, i) => <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                   <badge.icon className="w-4 h-4 text-accent" />
                   <span className="text-white/90 text-sm font-medium">{badge.label}</span>
@@ -234,8 +233,8 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
 
                     <div className="space-y-2 mb-6">
                       <div className="flex items-center gap-2.5 text-white/90">
-                        <Star className="w-4 h-4 text-accent" />
-                        <span className="text-sm">4,000+ homes cleaned</span>
+                        <MapPin className="w-4 h-4 text-accent" />
+                        <span className="text-sm">Edmonton office at {CITY_PROOF.edmonton.streetAddress}</span>
                       </div>
                       <div className="flex items-center gap-2.5 text-white/90">
                         <Clock className="w-4 h-4 text-accent" />
@@ -295,8 +294,8 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
 
                     <div className="space-y-2 mb-6">
                       <div className="flex items-center gap-2.5 text-white/90">
-                        <Star className="w-4 h-4 text-accent" />
-                        <span className="text-sm">1,000+ homes cleaned</span>
+                        <MapPin className="w-4 h-4 text-accent" />
+                        <span className="text-sm">Calgary office at {CITY_PROOF.calgary.streetAddress}</span>
                       </div>
                       <div className="flex items-center gap-2.5 text-white/90">
                         <Clock className="w-4 h-4 text-accent" />
@@ -464,7 +463,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
               <span className="text-accent font-semibold text-sm uppercase tracking-wider">Track Record</span>
               <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Duty Cleaners by the Numbers</h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                {`Duty Cleaners has cleaned ${HOMES_CLEANED.alberta} homes in Alberta since ${COMPANY.foundedYear} and is rated ${RATING_CLAIM}.`}
+                {`Duty Cleaners has taken ${BOOKINGS} bookings in Alberta since ${COMPANY.foundedYear} and is rated ${RATING_CLAIM}.`}
               </p>
             </div>
 

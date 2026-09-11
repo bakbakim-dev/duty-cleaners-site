@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Pause, Play, Star, MapPin, BadgeCheck, ShieldCheck, ExternalLink } from "lucide-react";
 import type { RecentCleanReview } from "@/components/CityRecentCleans";
-import { HOMES_CLEANED, RATING_CLAIM, CITY_PROOF } from "@/data/proof";
+import { BOOKINGS_CLAIM, RATING_CLAIM, CITY_PROOF } from "@/data/proof";
 import { getListing, openGoogleListing } from "@/lib/google-listings";
 
 type RecentActivityStripProps = {
@@ -15,14 +15,13 @@ type RecentActivityStripProps = {
  *
  * With no verified review text on file we still owe the visitor proof at this
  * moment — so the slot falls back to claims we can stand behind (rating,
- * homes cleaned, customer-rated cleaners) plus a link to verify on Google. Blank
+ * bookings, customer-rated cleaners) plus a link to verify on Google. Blank
  * space at the conversion point is the one option that helps nobody.
  */
 const RecentActivityStrip = ({ city, reviews }: RecentActivityStripProps) => {
   if (reviews.length === 0) {
     const listing = getListing(city);
     const isCalgary = city.toLowerCase().startsWith("calgary");
-    const homes = isCalgary ? HOMES_CLEANED.calgary : HOMES_CLEANED.edmonton;
     const proof = isCalgary ? CITY_PROOF.calgary : CITY_PROOF.edmonton;
     const ratingLabel =
       proof.googleRating && proof.googleReviewCount
@@ -41,7 +40,7 @@ const RecentActivityStrip = ({ city, reviews }: RecentActivityStripProps) => {
           </span>
           <span className="inline-flex items-center gap-2">
             <BadgeCheck className="h-4 w-4 text-success" aria-hidden="true" />
-            {homes} {city} homes cleaned
+            {BOOKINGS_CLAIM}
           </span>
           <span className="inline-flex items-center gap-2">
             <ShieldCheck className="h-4 w-4 text-accent" aria-hidden="true" />

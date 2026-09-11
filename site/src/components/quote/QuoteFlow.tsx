@@ -62,7 +62,7 @@ import {
   type DcParking,
   type ResolvedExtra,
 } from "@/lib/booking-redirect";
-import { RESPONSE_TIME_PROMISE, SUPPORT_EMAIL, cityProofFor } from "@/data/proof";
+import { BOOKINGS_CLAIM, RESPONSE_TIME_PROMISE, SUPPORT_EMAIL, cityProofFor } from "@/data/proof";
 import { submitQuote, type QuotePayload } from "@/lib/quote-submit";
 import { captureTrackingParams } from "@/lib/tracking";
 import { setQuoteStep } from "@/lib/quote-progress";
@@ -1124,22 +1124,31 @@ export default function QuoteFlow({
                   </>
                 )}
 
-                {/* Hourly / per-site work never enters the self-serve funnel. */}
+                {/* Hourly and per-site work never enters the self-serve funnel. Short-term
+                    rentals are priced per hour on a callback, and office cleaning is the one
+                    commercial job quoted online (owner, 2026-09-10), through the contact form. */}
                 <p className="mt-3 text-base leading-relaxed text-foreground/80">
-                  Short-term rental (Airbnb/VRBO) or commercial property? We price those
-                  per-hour — call{" "}
+                  Turnover cleaning for an Airbnb or VRBO rental is priced per hour: call{" "}
                   <a href={proof.phoneLink} className="inline-flex min-h-[44px] items-center font-bold text-foreground underline underline-offset-4 hover:text-brand-navy">
                     {proof.phone}
                   </a>{" "}
                   or{" "}
                   <Link
-                    to="/contact-us/"
+                    to={`/contact-us/?topic=airbnb&city=${proof.city.toLowerCase()}`}
                     onClick={onClose}
                     className="inline-flex min-h-[44px] items-center font-bold text-foreground underline underline-offset-4 hover:text-brand-navy"
                   >
-                    request a quote
-                  </Link>{" "}
-                  and we'll set you up.
+                    request a callback
+                  </Link>
+                  . Office cleaning is quoted separately:{" "}
+                  <Link
+                    to={`/contact-us/?topic=office&city=${proof.city.toLowerCase()}`}
+                    onClick={onClose}
+                    className="inline-flex min-h-[44px] items-center font-bold text-foreground underline underline-offset-4 hover:text-brand-navy"
+                  >
+                    request an office quote
+                  </Link>
+                  .
                 </p>
               </fieldset>
 
@@ -1363,7 +1372,7 @@ export default function QuoteFlow({
 
               {/* Proof at the point of hesitation. */}
               <p className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
-                <span className="text-brand-gold" aria-hidden="true">★★★★★</span>
+                <span className="text-brand-gold" aria-hidden="true">★</span>
                 Rated 4.9 on Google by {proof.city} homeowners · customer-rated cleaners
               </p>
 
@@ -1385,8 +1394,7 @@ export default function QuoteFlow({
               >
                 {/* Proof at the moment of doubt: the price is the hesitation point. */}
                 <p className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
-                  <span className="text-brand-gold" aria-hidden="true">★★★★★</span>
-                  {proof.city === "Calgary" ? "1,000+" : "4,000+"} {proof.city} homes cleaned
+                  {BOOKINGS_CLAIM}
                   <span aria-hidden="true">·</span>
                   Pay after your clean
                   <span aria-hidden="true">·</span>

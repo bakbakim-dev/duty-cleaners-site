@@ -65,7 +65,7 @@ const rooms = [
       "Dusting furniture & shelves",
       "Vacuum carpets & rugs",
       "Hard floors mopped",
-      "Light switches & door handles",
+      // No light switches here: they belong to the deep package (owner, 2026-09-10).
       "Cobwebs removed",
     ],
   },

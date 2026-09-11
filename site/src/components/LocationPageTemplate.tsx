@@ -61,8 +61,8 @@ interface LocationPageProps {
   localNote?: { heading: string; paragraphs: string[] };
   /**
    * Set for places that are their OWN municipality rather than a neighbourhood
-   * of the region's main city. Black Diamond is a town near Calgary, not part
-   * of it, so "Black Diamond, Calgary, AB" is geographically false.
+   * of the region's main city. Black Diamond is half of the Town of Diamond
+   * Valley, outside Calgary, so "Black Diamond, Calgary, AB" is geographically false.
    */
   isOwnMunicipality?: boolean;
 }

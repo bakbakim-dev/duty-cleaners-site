@@ -182,7 +182,8 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
     { name: "Belmont", to: "/locations/belmont-edmonton/" },
   ],
   "/locations/black-diamond/": [
-    { name: "Turner Valley", to: "/locations/turner-valley/" },
+    // Labelled with the town both halves have formed since 1 January 2023.
+    { name: "Turner Valley (Diamond Valley)", to: "/locations/turner-valley/" },
   ],
   "/locations/bonnie-doon-edmonton/": [
     { name: "Avonmore", to: "/locations/avonmore-edmonton/" },
@@ -1013,7 +1014,8 @@ export const NEARBY: Readonly<Record<string, readonly NearbyPlace[]>> = {
     { name: "Capitol Hill", to: "/locations/capitol-hill-calgary/" },
   ],
   "/locations/turner-valley/": [
-    { name: "Black Diamond", to: "/locations/black-diamond/" },
+    // Labelled with the town both halves have formed since 1 January 2023.
+    { name: "Black Diamond (Diamond Valley)", to: "/locations/black-diamond/" },
   ],
   "/locations/tuscany/": [
     { name: "Arbour Lake", to: "/locations/arbour-lake/" },

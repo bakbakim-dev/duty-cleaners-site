@@ -237,4 +237,41 @@ describe("the copy does not read like a template filled in by a machine", () => 
     }
     expect(hits, "a commercial-cleaning offer on a house-cleaning page").toEqual([]);
   });
+
+  it("light switches are in the deep package, not the standard checklist", () => {
+    // Owner, 2026-09-10: light switches are wiped in the deep clean only. The
+    // hubs' standard checklist had listed "Light switches & door handles".
+    const src = stripComments(readFileSync(join(SRC, "components", "CityIncludedChapter.tsx"), "utf-8"));
+    const rooms = /const rooms[\s\S]*?\n\];/.exec(src)?.[0] ?? "";
+    expect(rooms, "CityIncludedChapter's checklist moved; point this guard at it").toMatch(/Living Areas/);
+    expect(rooms.toLowerCase(), "the standard checklist lists light switches").not.toContain("light switch");
+  });
+
+  it("online quotes are for office cleaning only, and short-term rentals get a callback", () => {
+    // Owner, 2026-09-10: the only commercial work quoted online is office
+    // cleaning. Airbnb and other short-term rentals are priced on a callback.
+    const contact = readFileSync(join(SRC, "pages", "Contact.tsx"), "utf-8");
+    expect(/<SelectItem value="commercial">([^<]*)<\/SelectItem>/.exec(contact)?.[1], "the contact form's commercial option").toBe("Office Cleaning");
+    for (const rel of ["components/quote/QuoteFlow.tsx", "components/quote/ServiceStartCard.tsx"]) {
+      const text = stripComments(readFileSync(join(SRC, rel), "utf-8")).toLowerCase();
+      expect(text, `${rel} offers a quote for commercial property`).not.toMatch(/commercial (?:property|properties|site)/);
+      expect(text, `${rel} no longer routes short-term rentals to the callback form`).toContain("/contact-us/?topic=airbnb");
+      expect(text, `${rel} offers a quote form where short-term rentals need a callback`).not.toMatch(/request a quote\b/);
+    }
+  });
+
+  it("no page or component labels a figure as homes cleaned", () => {
+    // Owner, 2026-09-10: the figure is 5,000+ bookings (proof.ts BOOKINGS), not
+    // homes, and not split by city. The prerendered check in
+    // rendered-quality.test.ts cannot see the quote flow or the gift-card badge,
+    // which render only in the browser, so this one reads the source.
+    const files = [...allTsx(join(SRC, "pages"), "pages/"), ...allTsx(join(SRC, "components"), "components/")];
+    const hits: string[] = [];
+    for (const rel of files) {
+      const text = stripComments(readFileSync(join(SRC, rel), "utf-8"));
+      const m = /homes cleaned\s*(?:["'`<]|$)|\b\d{1,3}(?:,\d{3})+\+\s+(?:[A-Z][a-z]+\s+)?homes\b/im.exec(text);
+      if (m) hits.push(`${rel}: "${m[0].trim()}"`);
+    }
+    expect(hits, "a homes-cleaned figure; use BOOKINGS or BOOKINGS_CLAIM from proof.ts").toEqual([]);
+  });
 });

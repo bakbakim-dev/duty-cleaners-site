@@ -70,15 +70,15 @@ export const CITY_PROOF: Record<"edmonton" | "calgary", CityProof> = {
 };
 
 /**
- * Canonical volume claims. Every "homes cleaned" figure on the site reads
- * from here so the numbers can never drift apart again. Review COUNTS are
- * deliberately absent — we say "Five-Star Rated", never a made-up total.
+ * The one volume claim the site makes; every page reads it from here.
+ *
+ * The owner confirmed "over 5,000 bookings" on 2026-09-10. It counts bookings,
+ * not homes: a recurring customer's home is booked again and again, so the
+ * figure must never be restated as homes cleaned. It is not split by city
+ * either. The site used to print "4,000+ Edmonton homes" and "1,000+ Calgary
+ * homes", a split nobody confirmed that added up to 5,000 homes.
  */
-export const HOMES_CLEANED = {
-  edmonton: "4,000+",
-  calgary: "1,000+",
-  alberta: "5,000+",
-} as const;
+export const BOOKINGS = confirm("5,000+", { by: "owner", on: "2026-09-10", note: "over 5,000 bookings, Alberta-wide" });
 
 /**
  * The site said "Five-Star Rated" on 170 pages, which rounds the real 4.9 up to
@@ -105,21 +105,24 @@ export const COMPANY = {
    * this slot as a string, which is exactly the shape a page would render.
    */
   applicantAcceptanceRate: null as Confirmed<string> | Unconfirmed,
-  /** TODO-OWNER: total cleans completed since 2017 (from BookingKoala). */
-  totalCleans: null as number | null,
   /** TODO-OWNER: percentage of customers who rebook. */
   rebookRate: null as number | null,
 };
 
+/** BOOKINGS with its scope and start year: "5,000+ Alberta bookings since 2017". */
+export const BOOKINGS_CLAIM = `${BOOKINGS} Alberta bookings since ${COMPANY.foundedYear}`;
+
 /**
  * Risk-reversal lines shown beside every submit button.
  * Set `enabled: false` for anything not operationally true.
- * TODO-OWNER: confirm each line before launch.
+ * The owner confirmed "No contracts" on 2026-09-10, and the reschedule line
+ * restates the 24-hour notice policy.ts confirms.
+ * TODO-OWNER: confirm "You won't be charged today" before launch.
  */
 export const RISK_REVERSAL: { id: string; label: string; enabled: boolean }[] = [
   { id: "no-charge", label: "You won't be charged today", enabled: true },
   { id: "reschedule", label: "Free to reschedule or cancel with 24 hours' notice", enabled: true },
-  { id: "no-contract", label: "No contracts — book one clean or many", enabled: true },
+  { id: "no-contract", label: confirm("No contracts — book one clean or many", { by: "owner", on: "2026-09-10" }), enabled: true },
 ];
 
 export const activeRiskReversal = () => RISK_REVERSAL.filter((line) => line.enabled);

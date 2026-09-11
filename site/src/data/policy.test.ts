@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { POLICY, PRICING_TERMS, SERVICE_TERMS } from "./policy";
-import { CITY_PROOF } from "./proof";
+import { BOOKINGS, CITY_PROOF, RISK_REVERSAL } from "./proof";
 import { confirm, PROVENANCE } from "./confirmed";
 import { travelFee } from "./addon-table";
 import { addOnFromPrice, formatPrice, FREQUENCIES } from "./pricing";
@@ -99,9 +99,15 @@ describe("every confirmed value carries its provenance", () => {
     const settled = Object.values(POLICY).filter((v) => v !== null).length;
     const google = Object.values(CITY_PROOF).flatMap((c) => [c.googleRating, c.googleReviewCount]).filter((v) => v !== null).length;
     expect(google).toBe(4);
+    // proof.ts's owner-confirmed claims (2026-09-10): the bookings figure and
+    // the "No contracts" line. Each must be registered, not typed in.
+    const ownerClaims = [BOOKINGS, RISK_REVERSAL.find((line) => line.id === "no-contract")?.label];
+    for (const claim of ownerClaims) {
+      expect(PROVENANCE.some((p) => p.by === "owner" && p.value === claim), `${String(claim)} carries no provenance`).toBe(true);
+    }
     // Registered at import time by confirm(); a value typed in without it
     // would compile only by bypassing the brand, and would be missing here.
-    expect(PROVENANCE.length).toBe(settled + google);
+    expect(PROVENANCE.length).toBe(settled + google + ownerClaims.length);
     for (const p of PROVENANCE) {
       expect(p.on, `${String(p.value).slice(0, 30)} has no recorded date`).toMatch(/^\d{4}-\d{2}-\d{2}$/);
       expect(["owner", "google-listing", "published-copy"]).toContain(p.by);

@@ -131,6 +131,37 @@ describe("location pages", () => {
     const loud = urls.filter((u) => mainText(read(u)).includes("!"));
     expect(loud, "location pages with an exclamation mark in their visible copy").toEqual([]);
   });
+
+  /**
+   * Black Diamond and Turner Valley have been one town, the Town of Diamond
+   * Valley, since 1 January 2023. Both pages keep their URLs, which hold the old
+   * search equity, so every link to either one names the town it is half of,
+   * and each page says so itself. Until 2026-09-10 the nearby block on each
+   * page linked the other as if it were still a separate town.
+   */
+  it("every link to either half of Diamond Valley names the town", () => {
+    if (!existsSync(DIST)) return;
+    const pages: string[] = [];
+    const walk = (dir: string) => {
+      for (const e of readdirSync(dir, { withFileTypes: true })) {
+        if (e.isDirectory()) walk(join(dir, e.name));
+        else if (e.name === "index.html") pages.push(join(dir, e.name));
+      }
+    };
+    walk(DIST);
+    const bad: string[] = [];
+    for (const file of pages) {
+      const html = readFileSync(file, "utf-8");
+      for (const m of html.matchAll(/<a\b[^>]*href="(\/locations\/(?:black-diamond|turner-valley)\/)"[^>]*>([\s\S]*?)<\/a>/g)) {
+        const text = decode(m[2].replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim());
+        if (!text.includes("Diamond Valley")) bad.push(`${file.slice(DIST.length)} -> ${m[1]}: "${text}"`);
+      }
+    }
+    for (const half of ["/locations/black-diamond/", "/locations/turner-valley/"]) {
+      if (!mainText(read(half)).includes("Diamond Valley")) bad.push(`${half} never says it is part of Diamond Valley`);
+    }
+    expect(bad, "links or pages that present Black Diamond or Turner Valley as a separate town").toEqual([]);
+  });
 });
 
 /**

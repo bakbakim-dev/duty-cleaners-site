@@ -278,6 +278,8 @@ export default function Contact() {
   // Airbnb / short-term rental is quoted by callback — carry the request over
   // so the visitor doesn't retype what they already told us.
   const isAirbnb = topic === "airbnb";
+  // Office cleaning is the one commercial job quoted online (owner, 2026-09-10).
+  const isOffice = topic === "office";
   const topicCity = searchParams.get("city");
   const giftDesign = searchParams.get("design");
   const giftDesignLabel = giftDesign
@@ -289,12 +291,14 @@ export default function Contact() {
     email: "",
     phone: "",
     city: topicCity === "edmonton" || topicCity === "calgary" ? topicCity : "",
-    service: isGiftCard ? "gift-card" : isAirbnb ? "airbnb" : "",
+    service: isGiftCard ? "gift-card" : isAirbnb ? "airbnb" : isOffice ? "commercial" : "",
     message: isGiftCard
       ? `I'd like to buy a Duty Cleaners gift card${giftDesignLabel ? ` (${giftDesignLabel} design)` : ""}. Please send me the details.`
       : isAirbnb
         ? "I'd like a callback about Airbnb / short-term rental turnover cleaning."
-        : "",
+        : isOffice
+          ? "I'd like a quote for office cleaning."
+          : "",
   });
 
   const [errors, setErrors] = useState<Partial<Record<keyof ContactFormData, string>>>({});
@@ -630,7 +634,7 @@ Sun: 9:00am–3:00pm"
                           <SelectItem value="post-construction">Post-Construction Cleaning</SelectItem>
                           <SelectItem value="airbnb">Airbnb Cleaning</SelectItem>
                           <SelectItem value="gift-card">Gift Card</SelectItem>
-                          <SelectItem value="commercial">Office & Commercial Cleaning</SelectItem>
+                          <SelectItem value="commercial">Office Cleaning</SelectItem>
                           <SelectItem value="other">Other</SelectItem>
                         </SelectContent>
                       </Select>

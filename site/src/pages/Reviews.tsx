@@ -1,6 +1,6 @@
 import { REVIEWS, type CityReview } from "@/data/reviews";
 import { CITY_PROOF, COMPANY, RATING_CLAIM } from "@/data/proof";
-import { HOMES_CLEANED } from "@/data/proof";
+import { BOOKINGS } from "@/data/proof";
 import { PROVENANCE } from "@/data/confirmed";
 import { POLICY } from "@/data/policy";
 import { quoteHrefFor } from "@/lib/quote-link";
@@ -265,7 +265,7 @@ export default function Reviews() {
           {/* Stats Row */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 max-w-4xl mx-auto">
             <StatCard icon={Star} value={String(CITY_PROOF.edmonton.googleRating)} label="Rating on Google" />
-            <StatCard icon={ThumbsUp} value={HOMES_CLEANED.alberta} label="Alberta Homes Cleaned" />
+            <StatCard icon={ThumbsUp} value={BOOKINGS} label="Alberta Bookings" />
             {/* Was value="100%" label="Satisfaction Rate". A "rate" reads as a measured
             outcome, and nothing measures it -- proof.ts has rebookRate: null. It also
             sat directly above "4.9 out of 5" on this page, which refutes it: a 4.9 mean

@@ -113,7 +113,9 @@ const whyUsItems = [
   { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
 ];
 
-const nearbyAreas = ["Diamond Valley", "Okotoks"];
+// Turner Valley is itself half of Diamond Valley. The nearby block further down links
+// Black Diamond, the other half, so the chips name only Okotoks.
+const nearbyAreas = ["Okotoks"];
 
 const structuredData = buildLocationSchema({
   name: "Duty Cleaners - Turner Valley",

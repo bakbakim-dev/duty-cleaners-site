@@ -20,8 +20,8 @@ as a tested 209-page site with two separate branch businesses.
 - **Passages that stand alone.** The guide credits this to MUVERA, a 2024 Google Research
   retrieval method that Google has not said it uses in Search. Google does document a
   passage-ranking system, so the advice holds either way. The September audit found six FAQ
-  answers on this site that fail the test because they point at "the table above" or "this
-  page", and all six are still live.
+  answers on this site that failed the test because they pointed at "the table above" or "this
+  page". All six were rewritten on 10 September 2026 to state the figure instead.
 - **Clear referents and no keyword fragments.**
 
 **Changed**
@@ -102,8 +102,9 @@ Where each fact lives, under site/src:
 | T5 | `SERVICE_TERMS` in data/policy.ts |
 | T6 | components/DutyCleanPromise.tsx |
 | T7 | `NOT_INCLUDED` in data/policy.ts |
+| T9 | `RISK_REVERSAL` in data/proof.ts |
 | R1 | `CITY_PROOF` and `RATING_CLAIM` in data/proof.ts |
-| R3 | `HOMES_CLEANED` in data/proof.ts |
+| R3 | `BOOKINGS` and `BOOKINGS_CLAIM` in data/proof.ts |
 | A1, A2 | data/city-locations.ts |
 
 ## The prompt
@@ -154,9 +155,9 @@ R1  Rated 4.9 on Google. The Edmonton listing has 236 reviews and the Calgary li
     together: Google publishes no combined figure.
 R2  Every cleaner is reference-checked before a first job and rated by the customer after each
     visit, and the ratings decide who we keep sending.
-R3  Published volume figures: 4,000+ Edmonton homes, 1,000+ Calgary homes, 5,000+ across
-    Alberta. No dated owner confirmation is on file for these, so prefer R1 wherever either
-    would do, and never change them.
+R3  Over 5,000 bookings across Alberta since 2017, confirmed by the owner on 10 September 2026.
+    Write it as "5,000+ bookings". It counts bookings, not homes: never write "homes cleaned",
+    and never split it by city.
 R4  Quote a customer review only if it is given to you verbatim with the reviewer's name, city
     and month. Never paraphrase one, shorten one into a new meaning, or write one.
 
@@ -173,7 +174,8 @@ P1  Standard clean, one visit, for an apartment or condo:
     More bathrooms, a larger home type or add-ons raise the price; the instant price shows the
     exact figure.
 P2  Deep clean, same sizes: $255, $315, $372, $444, $485. It is the standard checklist plus the
-    deep-clean package.
+    deep-clean package: baseboards, doors, light switches, wall outlets and vent covers. Light
+    switches belong to the deep package only; never list them on the standard checklist.
 P3  Move-in or move-out clean, same sizes: $284, $361, $424, $501, $539.
 P4  Recurring: the standard clean on a schedule. Weekly 20% off, bi-weekly 15% off, every 4 weeks
     10% off, from the second visit; the first clean is charged at the one-time rate. Name the 10%
@@ -231,6 +233,10 @@ T8  Move-out law, these two facts only: under Alberta's Residential Tenancies Ac
     completes a move-out inspection report with the tenant, and the security deposit must be
     returned within 10 days after the tenant moves out. Never promise the deposit comes back;
     the landlord decides.
+T9  No contracts: a customer books one clean or many.
+T10 Quotes: the instant price covers home cleaning. Airbnb and short-term rental turnovers are
+    priced on a callback. The only commercial work quoted online is office cleaning, through the
+    contact form.
 
 Service area
 A1  Edmonton branch: 80 Edmonton neighbourhoods, plus 9 communities outside the city: St. Albert,
@@ -239,6 +245,8 @@ A1  Edmonton branch: 80 Edmonton neighbourhoods, plus 9 communities outside the 
 A2  Calgary branch: 66 Calgary neighbourhoods, plus 9 communities outside the city: Airdrie,
     Cochrane, Okotoks, Chestermere, Strathmore, High River, Langdon, Crossfield, Diamond Valley.
     Black Diamond and Turner Valley amalgamated as the Town of Diamond Valley on 1 January 2023.
+    Both keep their own pages, and a link to either one names the town: "Black Diamond (Diamond
+    Valley)", "Turner Valley (Diamond Valley)".
 A3  Name only places on these lists. The one area the site says it does not serve is Red Deer.
     For any other address that is not listed, tell the reader to call the branch; never say
     whether it is served.
@@ -312,7 +320,9 @@ one dash in a sentence. Use the "X, not Y" pattern no more than twice on a page,
 - Tourism: restaurants, attractions, "things to do", founding years, population figures. Local
   content is about homes: how they are built, what the weather does to them, how people get in
   and out, when people sleep.
-- Commercial or office cleaning. It is out of scope.
+- Commercial cleaning on a house-cleaning page. The only commercial line the site carries is
+  the quote form's pointer to an office-cleaning quote (T10); the commercial pages are written
+  separately.
 - A page or a section for every place-and-service pair, or sections that differ only by the
   place name.
 - Copy that depends on the visitor's location. The URL decides the city.

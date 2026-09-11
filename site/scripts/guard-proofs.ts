@@ -498,6 +498,58 @@ export const GUARD_PROOFS: GuardProof[] = [
     dist: true,
   },
 
+  // ---- the owner's answers of 2026-09-10 ---------------------------------
+  {
+    guard: "src/data/rendered-quality.test.ts",
+    target: "dist/reviews/index.html",
+    find: "Alberta Bookings",
+    replace: "Alberta Bookings, 4,000+ Edmonton homes cleaned",
+    failing: "states volume only as the owner's confirmed bookings figure",
+    why: "Restores the unconfirmed per-city homes figure the owner replaced with 5,000+ bookings.",
+    dist: true,
+  },
+  {
+    guard: "src/data/location-pages.test.ts",
+    target: "dist/locations/black-diamond/index.html",
+    find: ">Turner Valley (Diamond Valley)</a>",
+    replace: ">Turner Valley</a>",
+    failing: "every link to either half of Diamond Valley names the town",
+    why: "Links Turner Valley from Black Diamond as if the two were still separate towns.",
+    dist: true,
+  },
+  {
+    guard: "src/data/copy-quality.test.ts",
+    target: "src/components/CityIncludedChapter.tsx",
+    find: '"Hard floors mopped",',
+    replace: '"Hard floors mopped", "Light switches & door handles",',
+    failing: "light switches are in the deep package, not the standard checklist",
+    why: "Puts light switches back on the standard checklist, which the owner keeps for the deep clean.",
+  },
+  {
+    guard: "src/data/copy-quality.test.ts",
+    target: "src/components/quote/ServiceStartCard.tsx",
+    find: 'to="/contact-us/?topic=airbnb" className="font-semibold',
+    replace: 'to="/contact-us/" className="font-semibold',
+    failing: "online quotes are for office cleaning only, and short-term rentals get a callback",
+    why: "Sends Airbnb hosts to the general quote form again instead of the callback request.",
+  },
+  {
+    guard: "src/data/copy-quality.test.ts",
+    target: "src/components/RecentActivityStrip.tsx",
+    find: "            {BOOKINGS_CLAIM}",
+    replace: "            4,000+ {city} homes cleaned",
+    failing: "no page or component labels a figure as homes cleaned",
+    why: "Restores the per-city homes figure in a strip that renders only in the browser, where the prerendered check cannot see it.",
+  },
+  {
+    guard: "src/data/copy-quality.test.ts",
+    target: "src/pages/Contact.tsx",
+    find: '<SelectItem value="commercial">Office Cleaning</SelectItem>',
+    replace: '<SelectItem value="commercial">Office & Commercial Cleaning</SelectItem>',
+    failing: "online quotes are for office cleaning only, and short-term rentals get a callback",
+    why: "Offers online quotes for all commercial work again, when the owner quotes only offices online.",
+  },
+
   // ---- and this registry itself ------------------------------------------
   {
     guard: "src/data/guard-proofs.test.ts",

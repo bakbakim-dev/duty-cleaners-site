@@ -1,5 +1,5 @@
 import { CITY_PROOF } from "@/data/proof";
-import { COMPANY, HOMES_CLEANED, RATING_CLAIM } from "@/data/proof";
+import { COMPANY, RATING_CLAIM } from "@/data/proof";
 import { formatPrice } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
 import Navigation from "@/components/Navigation";
@@ -29,7 +29,6 @@ import {
   Calculator,
   ArrowRight,
   Building2,
-  Home,
   WashingMachine
 } from "lucide-react";
 
@@ -42,6 +41,11 @@ const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
 // rating and once again in the stats box directly below it, word for word. Both
 // cards also carried the identical "Serving Alberta since 2017", which the hero
 // badge above already states once. Each proof now appears once.
+//
+// The stats box then read "4,000+ Edmonton homes cleaned" and "1,000+ Calgary
+// homes cleaned", a split the owner never confirmed: the confirmed figure is
+// 5,000+ bookings, Alberta-wide (proof.ts BOOKINGS). It now shows the review
+// count each city's own Google listing carries.
 const mainLocations = [
   {
     name: "Edmonton",
@@ -50,7 +54,7 @@ const mainLocations = [
     phoneHref: CITY_PROOF.edmonton.phoneLink,
     address: CITY_PROOF.edmonton.streetAddress,
     addressLine2: `Edmonton, AB ${CITY_PROOF.edmonton.postalCode}`,
-    homesCleaned: `${HOMES_CLEANED.edmonton} Edmonton homes cleaned`,
+    reviews: `${CITY_PROOF.edmonton.googleReviewCount} Google reviews`,
     neighbourhoods: [
       { name: "Glenora", link: "/locations/glenora-edmonton/" },
       { name: "Westmount", link: "/locations/westmount-edmonton/" },
@@ -74,7 +78,7 @@ const mainLocations = [
     phoneHref: CITY_PROOF.calgary.phoneLink,
     address: CITY_PROOF.calgary.streetAddress,
     addressLine2: `Calgary, AB ${CITY_PROOF.calgary.postalCode}`,
-    homesCleaned: `${HOMES_CLEANED.calgary} Calgary homes cleaned`,
+    reviews: `${CITY_PROOF.calgary.googleReviewCount} Google reviews`,
     neighbourhoods: [
       { name: "Kensington", link: "/locations/kensington/" },
       { name: "Tuscany", link: "/locations/tuscany/" },
@@ -359,8 +363,8 @@ function LocationCard({ location }: { location: typeof mainLocations[0] }) {
       {/* Coverage stats */}
       <div className="bg-white/5 rounded-xl p-5 mb-6 border border-white/10 relative z-10">
         <div className="flex items-center gap-3 mb-2">
-          <Home className="w-5 h-5 text-accent" />
-          <span className="text-xl font-bold text-white">{location.homesCleaned}</span>
+          <Star className="w-5 h-5 text-accent" aria-hidden="true" />
+          <span className="text-xl font-bold text-white">{location.reviews}</span>
         </div>
         {coverage && (
           <div className="flex items-center gap-3 pt-2 border-t border-white/10">

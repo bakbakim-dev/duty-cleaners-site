@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest";
 import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { displayNameFor } from "./place-names";
+import { BOOKINGS } from "./proof";
 
 /**
  * Guards distilled from the multi-agent content audit. Each one exists
@@ -547,12 +548,12 @@ describe("price CTAs reach the price", () => {
    * "hundreds of happy clients each month", "thousands of satisfied customers",
    * "trusted by thousands of Alberta families" on 150 location pages, and
    * "thousands of Edmonton and Calgary homes a year", which the site's own
-   * 5,000-since-2017 figure puts at roughly 700.
+   * 5,000-bookings-since-2017 figure puts at under 600.
    *
    * "Verified Google reviews" is here for a different reason: Google does not
    * verify reviews, so the phrase claims a check nobody performed.
    *
-   * Scoped counts read from proof.ts ("5,000+ Alberta homes cleaned") are fine
+   * Scoped counts read from proof.ts ("5,000+ Alberta bookings since 2017") are fine
    * and are what these were replaced with — the pattern only matches the vague
    * plural, which is the form that cannot be checked.
    */
@@ -578,10 +579,42 @@ describe("price CTAs reach the price", () => {
     expect(
       bad,
       `These pages claim a volume nobody can check:\n${bad.join("\n")}\n` +
-        `Use a scoped figure from proof.ts (HOMES_CLEANED, CITY_PROOF.googleReviewCount) ` +
+        `Use a scoped figure from proof.ts (BOOKINGS_CLAIM, CITY_PROOF.googleReviewCount) ` +
         `or drop the claim. The owner has not confirmed a customer total, which is why ` +
         `proof.ts holds it null.`,
     ).toEqual([]);
+  });
+
+  /**
+   * The owner confirmed "over 5,000 bookings" on 2026-09-10 (proof.ts BOOKINGS).
+   * Until then the site printed "4,000+ Edmonton homes cleaned" and "1,000+
+   * Calgary homes cleaned": a split nobody confirmed, counting homes where the
+   * real figure counts bookings. A figure of homes, or any other bookings
+   * figure, is a claim nobody has checked.
+   */
+  // "4,000+ Edmonton homes", "cleaned 5,000 homes", "1,000 homes cleaned". A plain
+  // count of dwellings in a local note ("1,700 homes built") is not a volume claim.
+  const HOMES_FIGURE =
+    /\b\d{1,3}(?:,\d{3})+\+\s+(?:[A-Z][a-z]+\s+)?[Hh]omes\b|\bcleaned\s+(?:over\s+|more than\s+)?\d{1,3}(?:,\d{3})+\+?\s+(?:[A-Z][a-z]+\s+)?homes\b|\b\d{1,3}(?:,\d{3})+\+?\s+(?:[A-Z][a-z]+\s+)?[Hh]omes [Cc]leaned\b/;
+  const BOOKINGS_FIGURE = /\b(\d{1,3}(?:,\d{3})+\+?)\s+(?:[A-Z][a-z]+\s+)?[Bb]ookings\b/g;
+
+  it("states volume only as the owner's confirmed bookings figure", () => {
+    const pages = allPages();
+    if (pages.length === 0) return;
+    const sources = pages.map((url) => ({
+      url,
+      text: html(url).replace(/<script[\s\S]*?<\/script>/g, " ").replace(/<[^>]+>/g, " ").replace(/\s+/g, " "),
+    }));
+    for (const f of ["llms.txt", "llms-full.txt"]) {
+      if (existsSync(join(DIST, f))) sources.push({ url: `/${f}`, text: readFileSync(join(DIST, f), "utf-8") });
+    }
+    const bad: string[] = [];
+    for (const { url, text } of sources) {
+      const homes = HOMES_FIGURE.exec(text);
+      if (homes) bad.push(`${url}: "${homes[0]}"`);
+      for (const m of text.matchAll(BOOKINGS_FIGURE)) if (m[1] !== BOOKINGS) bad.push(`${url}: "${m[0]}"`);
+    }
+    expect(bad, `volume figures other than proof.ts BOOKINGS (${BOOKINGS} bookings)`).toEqual([]);
   });
 
   /**
