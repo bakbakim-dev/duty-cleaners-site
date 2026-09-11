@@ -153,7 +153,7 @@ const faqs = [
   {
     value: "next-steps",
     question: "I already applied, now what?",
-    answer: "The office reads every application and calls the applicants whose experience fits. To check on an application, phone the office for the city you applied to: Edmonton at (780) 913-6565 or Calgary at (403) 768-1341."
+    answer: `The office reads every application and calls the applicants whose experience fits. To check on an application, phone the office for the city you applied to: Edmonton at ${CITY_PROOF.edmonton.phone}, Calgary at ${CITY_PROOF.calgary.phone} or Red Deer at ${CITY_PROOF.reddeer.phone}.`
   }
 ];
 
@@ -281,19 +281,19 @@ export default function JoinTheTeam() {
   return (
     <>
       <Helmet>
-        <title>Cleaning Jobs Edmonton & Calgary | Duty Cleaners Careers</title>
+        <title>Cleaning Jobs Edmonton, Calgary & Red Deer | Duty Cleaners</title>
         <meta
           name="description"
-          content="House cleaning jobs with Duty Cleaners in Edmonton and Calgary: paid per job, you choose your areas and days, and there are no night shifts."
+          content="House cleaning jobs with Duty Cleaners in Edmonton, Calgary and Red Deer: paid per job, you choose your areas and days, and there are no night shifts."
         />
         <link rel="canonical" href="https://dutycleaners.ca/join-the-team/" />
-        <meta property="og:title" content="Cleaning Jobs Edmonton & Calgary | Duty Cleaners Careers" />
-        <meta property="og:description" content="House cleaning jobs with Duty Cleaners in Edmonton and Calgary: paid per job, you choose your areas and days, and there are no night shifts." />
+        <meta property="og:title" content="Cleaning Jobs Edmonton, Calgary & Red Deer | Duty Cleaners" />
+        <meta property="og:description" content="House cleaning jobs with Duty Cleaners in Edmonton, Calgary and Red Deer: paid per job, you choose your areas and days, and there are no night shifts." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/join-the-team/" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Cleaning Jobs Edmonton & Calgary | Duty Cleaners Careers" />
-        <meta name="twitter:description" content="House cleaning jobs with Duty Cleaners in Edmonton and Calgary: paid per job, you choose your areas and days, and there are no night shifts." />
+        <meta name="twitter:title" content="Cleaning Jobs Edmonton, Calgary & Red Deer | Duty Cleaners" />
+        <meta name="twitter:description" content="House cleaning jobs with Duty Cleaners in Edmonton, Calgary and Red Deer: paid per job, you choose your areas and days, and there are no night shifts." />
         {/* Mirrors the FAQ accordion rendered on this page. */}
         <script type="application/ld+json">
           {JSON.stringify({
@@ -316,7 +316,7 @@ export default function JoinTheTeam() {
               "@type": "JobPosting",
               title: "House Cleaner",
               description:
-                "Duty Cleaners is hiring experienced house cleaners in Edmonton and Calgary. Cleaners work as independent contractors, are paid per job, choose their areas and days, work no night shifts, and can take weekends off.",
+                "Duty Cleaners is hiring experienced house cleaners in Edmonton, Calgary and Red Deer. Cleaners work as independent contractors, are paid per job, choose their areas and days, work no night shifts, and can take weekends off.",
               datePosted: CLEANER_JOB_POSTING.datePosted,
               ...(CLEANER_JOB_POSTING.validThrough
                 ? { validThrough: CLEANER_JOB_POSTING.validThrough }
@@ -327,7 +327,7 @@ export default function JoinTheTeam() {
                 name: "Duty Cleaners",
                 sameAs: "https://dutycleaners.ca/",
               },
-              jobLocation: (["edmonton", "calgary"] as const).map((key) => ({
+              jobLocation: (["edmonton", "calgary", "reddeer"] as const).map((key) => ({
                 "@type": "Place",
                 address: {
                   "@type": "PostalAddress",
@@ -371,7 +371,7 @@ export default function JoinTheTeam() {
               </div>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-                House Cleaning Jobs in <span className="text-accent">Edmonton and Calgary</span>
+                House Cleaning Jobs in <span className="text-accent">Edmonton, Calgary and Red Deer</span>
               </h1>
 
               <p className="text-xl md:text-2xl text-white/80 leading-relaxed mb-10">
@@ -695,6 +695,7 @@ export default function JoinTheTeam() {
                       <SelectContent>
                         <SelectItem value="edmonton">Edmonton</SelectItem>
                         <SelectItem value="calgary">Calgary</SelectItem>
+                        <SelectItem value="reddeer">Red Deer</SelectItem>
                       </SelectContent>
                     </Select>
                     {errors.location && <p className="text-sm text-destructive">{errors.location}</p>}

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { Phone, MapPin, Clock, CheckCircle2, CalendarCheck, Award, Home, Sparkles, Truck, Repeat } from "lucide-react";
+import { Phone, MapPin, Clock, CheckCircle2, CalendarCheck, Award, Home, Sparkles, Truck, Repeat, HardHat, PaintRoller, KeyRound, Building2 } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -35,7 +35,10 @@ import {
   homeTypeOptions,
   PRICING_TIERS,
   FREQUENCIES,
+  HOURLY_RATE,
+  startingPrice,
 } from "@/data/pricing";
+import { TRAVEL_FEE_KEY, travelFee } from "@/data/addon-table";
 import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
 import { RED_DEER_LISTING } from "@/lib/google-listings";
 
@@ -51,10 +54,11 @@ import { RED_DEER_LISTING } from "@/lib/google-listings";
  * What this page deliberately does NOT say:
  *  - no rating or review count. The Red Deer listing has no reviews yet, and
  *    RATING_CLAIM is the Edmonton and Calgary listings' figure;
- *  - no surrounding communities. None is on file for the Red Deer office, so
- *    an address outside the city is told to call it;
- *  - no post-construction, wall washing, Airbnb, march-out or commercial work,
- *    which the owner has not confirmed for Red Deer;
+ *  - no surrounding communities by name. An address outside Red Deer city
+ *    limits pays the standard travel fee and books online (owner, 2026-09-11);
+ *  - no march-out work (military housing is an Edmonton service). Post-
+ *    construction, wall washing, Airbnb turnovers and office cleaning are
+ *    offered in Red Deer (owner, 2026-09-11) on the other branches' terms;
  *  - no local colour. Nothing about Red Deer's homes or weather has been
  *    checked against an authoritative source, so none is written.
  */
@@ -93,6 +97,14 @@ const EXAMPLE_BASE = formatPrice(exampleQuote(homeTypeOptions("standard")[0]?.id
 const EXAMPLE_BASE_TEXT = EXAMPLE_BASE === EXAMPLE_TIER.price ? EXAMPLE_BASE : `${EXAMPLE_BASE} (${EXAMPLE_TIER.price} in the table, which rounds to the dollar)`;
 const EXAMPLE_PRICE = formatPrice(exampleQuote(90));
 const EXAMPLE_WITH_PET = formatPrice(exampleQuote(90, ["must-choose-if-you-have-pets"]));
+
+// The standard out-of-town travel fee, for an address outside Red Deer city limits.
+const TRAVEL_FEE = formatPrice(addOnFromPrice("standard", TRAVEL_FEE_KEY) ?? 0);
+// Post-construction carries its own out-of-town travel fee.
+const POST_TRAVEL_FEE = formatPrice(travelFee("post-construction") ?? 0);
+const POST_FROM = formatPrice(startingPrice("post-construction"));
+const WALL_SPOT = formatPrice(addOnFromPrice("standard", "spot-cleaning-inside-walls") ?? 0);
+const TURNOVER_RATE = formatPrice(HOURLY_RATE);
 
 const paymentTerm = (pattern: RegExp) => PAYMENT_TERMS.find((term) => pattern.test(term)) ?? "";
 
@@ -137,7 +149,7 @@ const FAQS = [
   },
   {
     question: "Is there a travel fee for house cleaning in Red Deer?",
-    answer: `No. Duty Cleaners has an office in Red Deer, at ${OFFICE.streetAddress}, so an address inside Red Deer city limits pays no travel fee. The price is the same price list the Edmonton and Calgary branches use. For an address outside Red Deer, call the Red Deer office at ${OFFICE.phone} before you book.`,
+    answer: `No. Duty Cleaners has an office in Red Deer, at ${OFFICE.streetAddress}, so an address inside Red Deer city limits pays no travel fee. The price is the same price list the Edmonton and Calgary branches use. An address outside Red Deer city limits pays the ${TRAVEL_FEE} travel fee, shown on the quote before you book.`,
   },
   {
     question: "What are the Red Deer office's hours?",
@@ -207,6 +219,34 @@ const SERVICES = [
     text: `A recurring clean is the standard clean on a schedule, at ${RECURRING_LINE} from the second visit.`,
     to: "/edmonton/recurring-cleaning/",
     anchor: "Recurring cleaning schedules",
+  },
+  {
+    icon: HardHat,
+    title: "Post-construction cleaning",
+    text: `The fine dust a build or renovation leaves, cleared once the trades are out, priced by square footage from ${POST_FROM} before GST.`,
+    to: "/post-construction-cleaning/",
+    anchor: "Post-construction cleaning in full",
+  },
+  {
+    icon: PaintRoller,
+    title: "Wall washing",
+    text: `Wall washing is added to a clean, not booked on its own, from ${WALL_SPOT} for spot cleaning, before GST.`,
+    to: "/wall-washing-wall-cleaning/",
+    anchor: "Wall washing prices and limits",
+  },
+  {
+    icon: KeyRound,
+    title: "Airbnb turnovers",
+    text: `Turnovers between guests are priced by the hour, at ${TURNOVER_RATE} per cleaner-hour before GST, after a call from the Red Deer office.`,
+    to: "/contact-us/?topic=airbnb&city=reddeer",
+    anchor: "Request a Red Deer turnover quote",
+  },
+  {
+    icon: Building2,
+    title: "Office cleaning",
+    text: "Office cleaning is scoped at a walkthrough and confirmed in a written quote before any work is booked.",
+    to: "/contact-us/?topic=office&city=reddeer",
+    anchor: "Request a Red Deer office cleaning quote",
   },
 ];
 
@@ -399,12 +439,13 @@ export default function RedDeer() {
             <div className="container mx-auto px-4">
               <div className="mx-auto max-w-5xl">
                 <span className="text-sm font-semibold uppercase tracking-wider text-primary">Services</span>
-                <h2 className="mb-4 mt-2 text-3xl font-bold text-foreground">Cleaning services the Red Deer office books online</h2>
+                <h2 className="mb-4 mt-2 text-3xl font-bold text-foreground">Cleaning services from the Red Deer office</h2>
                 <p className="mb-8 max-w-3xl text-lg leading-relaxed text-muted-foreground">
-                  The Red Deer office books four kinds of home cleaning through the instant price, on the same checklists as the
-                  other branches. The checklist pages below are written for Edmonton, and the prices on them are the Red Deer prices
-                  too. For any other kind of cleaning in Red Deer, call the Red Deer office at{" "}
-                  <a href={OFFICE.phoneLink} className="text-primary underline underline-offset-2">{OFFICE.phone}</a> and ask.
+                  The Red Deer office books the same services as the other branches, on the same checklists and prices. Home
+                  cleaning and post-construction are priced instantly online; Airbnb turnovers and office cleaning are quoted by
+                  the office. The service pages linked below are written for Edmonton; their prices are the Red Deer prices too.
+                  Questions go to the Red Deer office at{" "}
+                  <a href={OFFICE.phoneLink} className="text-primary underline underline-offset-2">{OFFICE.phone}</a>.
                 </p>
                 <div className="grid gap-6 md:grid-cols-2">
                   {SERVICES.map((s) => (
@@ -461,8 +502,10 @@ export default function RedDeer() {
                     is one short page.
                   </p>
                   <p>
-                    The Red Deer page covers addresses inside Red Deer city limits. For an address outside the city, call the Red
-                    Deer office at {OFFICE.phone} before you book, or write through{" "}
+                    The Red Deer page covers addresses inside Red Deer city limits. An address outside the city books the same
+                    way and pays the {TRAVEL_FEE} travel fee on a home clean or {POST_TRAVEL_FEE} on post-construction, shown on
+                    the quote. For anything else, call the Red Deer office at{" "}
+                    {OFFICE.phone}, or write through{" "}
                     <Link to="/contact-us/?city=reddeer" className="text-primary underline underline-offset-2">
                       the contact form for the Red Deer office
                     </Link>

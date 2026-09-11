@@ -1204,9 +1204,7 @@ export default function QuoteFlow({
 
                   <div className="grid gap-3 sm:grid-cols-2">
 
-                    {/* Red Deer is confirmed for home cleaning only (owner, 2026-09-11):
-                        post-construction there is a question for the Red Deer office. */}
-                    {SELECTABLE_SERVICES.filter((option) => proof.key !== "reddeer" || option.id !== "post-construction").map((option) => (
+                    {SELECTABLE_SERVICES.map((option) => (
                       <button
                         key={option.id}
                         type="button"
@@ -1245,16 +1243,6 @@ export default function QuoteFlow({
                 {/* Hourly and per-site work never enters the self-serve funnel. Short-term
                     rentals are priced per hour on a callback, and office cleaning is the one
                     commercial job quoted online (owner, 2026-09-10), through the contact form. */}
-                {proof.key === "reddeer" ? (
-                <p className="mt-3 text-base leading-relaxed text-foreground/80">
-                  The Red Deer office books house cleaning online. For any other kind of cleaning in
-                  Red Deer, call the Red Deer office at{" "}
-                  <a href={proof.phoneLink} className="inline-flex min-h-[44px] items-center font-bold text-foreground underline underline-offset-4 hover:text-brand-navy">
-                    {proof.phone}
-                  </a>{" "}
-                  and ask.
-                </p>
-                ) : (
                 <p className="mt-3 text-base leading-relaxed text-foreground/80">
                   Turnover cleaning for an Airbnb or VRBO rental is priced per hour: call{" "}
                   <a href={proof.phoneLink} className="inline-flex min-h-[44px] items-center font-bold text-foreground underline underline-offset-4 hover:text-brand-navy">
@@ -1278,7 +1266,6 @@ export default function QuoteFlow({
                   </Link>
                   .
                 </p>
-                )}
               </fieldset>
 
 

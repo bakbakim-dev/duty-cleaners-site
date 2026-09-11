@@ -327,8 +327,9 @@ export default function Contact() {
   }, [presetCity, presetService, presetMessage]);
 
   // ?city=reddeer selects the Red Deer office. presetCity above covers the two
-  // cities the commercial and Airbnb pages link with; Red Deer has neither page,
-  // so its preset is carried separately and never overwrites a chosen city.
+  // cities the commercial and Airbnb pages link with; the Red Deer page links here
+  // with city=reddeer, so its preset is carried separately and never overwrites a
+  // chosen city.
   const presetRedDeer = topicCity === "reddeer";
   useEffect(() => {
     if (presetRedDeer) setFormData((prev) => ({ ...prev, city: prev.city || "reddeer" }));

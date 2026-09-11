@@ -459,7 +459,7 @@ function RedDeerOfficeCard() {
             ))}
           </div>
           <p className="mb-6 text-sm text-white/80">
-            For an address outside Red Deer, call the Red Deer office before you book.
+            An address outside Red Deer city limits books online and pays the standard travel fee, shown on the quote.
           </p>
           <Button asChild size="lg" className="h-12 w-full bg-accent text-base font-semibold text-accent-foreground shadow-md hover:bg-accent/90">
             <Link to={RED_DEER_PATH}>

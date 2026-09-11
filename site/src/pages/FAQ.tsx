@@ -220,7 +220,7 @@ const faqCategories: FAQCategory[] = [
     items: [
       {
         question: "What is post-construction cleaning?",
-        answer: `Post-construction cleaning removes the fine dust and residue left after building or renovation work: detailed dusting of every surface, window sills, vacuuming, mopping, and detailed cleaning of the kitchen and bathrooms. It is priced by square footage rather than by bedrooms. Outside Edmonton or Calgary city limits a post-construction clean carries its own travel fee of ${POST_CONSTRUCTION_TRAVEL_FEE} per visit.`,
+        answer: `Post-construction cleaning removes the fine dust and residue left after building or renovation work: detailed dusting of every surface, window sills, vacuuming, mopping, and detailed cleaning of the kitchen and bathrooms. It is priced by square footage rather than by bedrooms. Outside Edmonton, Calgary or Red Deer city limits a post-construction clean carries its own travel fee of ${POST_CONSTRUCTION_TRAVEL_FEE} per visit.`,
       },
       {
         question: "What is NOT included in post-construction cleaning?",
@@ -280,7 +280,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "Which areas do you serve?",
-        answer: `The Edmonton office covers 80 Edmonton neighbourhoods plus St. Albert, Sherwood Park, Spruce Grove, Leduc, Beaumont, Fort Saskatchewan, Stony Plain, Morinville and Devon. The Calgary office covers 66 Calgary neighbourhoods plus Airdrie, Cochrane, Okotoks, Chestermere, Strathmore, High River, Langdon, Crossfield and Diamond Valley, which includes Black Diamond and Turner Valley. There is no trip fee inside either city's limits; outside them a ${TRAVEL_FEE} travel fee is added per visit on a home clean. Red Deer has its own office at ${CITY_PROOF.reddeer.streetAddress}, on ${CITY_PROOF.reddeer.phone}, with the same price list and no travel fee inside Red Deer city limits; for an address outside Red Deer, call the Red Deer office. For any other address that is not listed, call the branch.`,
+        answer: `The Edmonton office covers 80 Edmonton neighbourhoods plus St. Albert, Sherwood Park, Spruce Grove, Leduc, Beaumont, Fort Saskatchewan, Stony Plain, Morinville and Devon. The Calgary office covers 66 Calgary neighbourhoods plus Airdrie, Cochrane, Okotoks, Chestermere, Strathmore, High River, Langdon, Crossfield and Diamond Valley, which includes Black Diamond and Turner Valley. There is no trip fee inside either city's limits; outside them a ${TRAVEL_FEE} travel fee is added per visit on a home clean. Red Deer has its own office at ${CITY_PROOF.reddeer.streetAddress}, on ${CITY_PROOF.reddeer.phone}, with the same price list and no travel fee inside Red Deer city limits; an address outside Red Deer pays the ${TRAVEL_FEE} travel fee, like any other out-of-town address. For any other address that is not listed, call the branch.`,
       },
     ],
   },
