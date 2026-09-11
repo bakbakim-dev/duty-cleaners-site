@@ -34,7 +34,15 @@ import {
   moveInOutTierRows, formatPrice, addOnFromPrice, calculateQuote, homeTypeOptions, PRICING_TIERS, GST_RATE,
 } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
-import { schemaAddressFor, BRANCH_ID, ORG_ID, RATING_CLAIM, BRANCH_IDENTITY } from "@/data/proof";
+import {
+  schemaAddressFor,
+  BRANCH_ID,
+  ORG_ID,
+  RATING_CLAIM,
+  BRANCH_IDENTITY,
+  openingHoursShortFor,
+  openingHoursSpecFor,
+} from "@/data/proof";
 
 // Derived, never hand-typed (published-prices.test.ts): the cheapest
 // move-in/out tier from bk-config is the honest floor.
@@ -171,8 +179,9 @@ export default function EdmontonMoveInOut() {
   }, []);
 
   /**
-   * Carries priceRange and opening hours, the two properties
-   * buildServiceSchema does not model. It reuses BRANCH_ID so it merges into
+   * The branch node. It carried the hours because buildServiceSchema did not
+   * model them; since 2026-09-11 that builder publishes them too, from the
+   * same proof.ts helper, so the two agree. It reuses BRANCH_ID so it merges into
    * the existing Edmonton entity rather than declaring a second, anonymous
    * business under a different name.
    *
@@ -195,7 +204,8 @@ export default function EdmontonMoveInOut() {
        publishes the site-wide band, and a second value on the same @id made
        one business advertise two different ranges. The move-out band belongs
        to the SERVICE, and the price list below renders the tier table. */
-    openingHours: ["Mo-Sa 08:00-20:00", "Su 09:00-15:00"],
+    openingHours: openingHoursShortFor("edmonton"),
+    openingHoursSpecification: openingHoursSpecFor("edmonton"),
     parentOrganization: { "@id": ORG_ID },
   };
 

@@ -1,6 +1,12 @@
 import { CITY_PROOF, RATING_CLAIM, COMPANY } from "@/data/proof";
 import { canonicalUrlForPath } from "@/data/legacy-urls";
-import { BRANCH_ID, BRANCH_IDENTITY } from "@/data/proof";
+import {
+  BRANCH_ID,
+  BRANCH_IDENTITY,
+  schemaAddressFor,
+  openingHoursShortFor,
+  openingHoursSpecFor,
+} from "@/data/proof";
 import { GST_RATE, moveInOutTierRows } from "@/data/pricing";
 import { ARRIVAL_WINDOWS, POLICY } from "@/data/policy";
 import React from "react";
@@ -200,14 +206,15 @@ const serviceSchema = {
     name: BRANCH_IDENTITY.edmonton.name,
     url: BRANCH_IDENTITY.edmonton.url,
     telephone: CITY_PROOF.edmonton.phoneE164,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "18615 71 Ave NW",
-      addressLocality: "Edmonton",
-      addressRegion: "AB",
-      postalCode: "T5T 2V9",
-      addressCountry: "CA",
-    },
+    // One authority for the address (data/proof.ts). The street and postal code
+    // were retyped here: correct on the day they were typed, and a second copy
+    // of the office address is a copy that drifts the day the branch moves.
+    address: schemaAddressFor("edmonton"),
+    // This provider is the only LocalBusiness node the march-out page emits, so
+    // without hours the page published a business that never says when it
+    // answers — one of the 17 the 2026-09-11 AuditSpur scan counted.
+    openingHours: openingHoursShortFor("edmonton"),
+    openingHoursSpecification: openingHoursSpecFor("edmonton"),
   },
   areaServed: { "@type": "City", name: "Edmonton" },
   url: canonicalUrlForPath("/edmonton/march-out-cleaning"),

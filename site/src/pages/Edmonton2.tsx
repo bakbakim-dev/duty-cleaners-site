@@ -1,6 +1,12 @@
 import { CITY_PROOF, COMPANY, RATING_CLAIM } from "@/data/proof";
 import LocalMarketNote from "@/components/LocalMarketNote";
-import { BRANCH_PROFILES, BRANCH_IDENTITY } from "@/data/proof";
+import {
+  BRANCH_PROFILES,
+  BRANCH_IDENTITY,
+  schemaAddressFor,
+  openingHoursShortFor,
+  openingHoursSpecFor,
+} from "@/data/proof";
 import { POLICY } from "@/data/policy";
 import { travelFee } from "@/data/addon-table";
 import { useEffect, useState } from "react";
@@ -231,14 +237,11 @@ export default function Edmonton2() {
     logo: "https://dutycleaners.ca/logo.png",
     telephone: CITY_PROOF.edmonton.phoneE164,
     email: "support@dutycleaners.ca",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "18615 71 Ave NW",
-      addressLocality: "Edmonton",
-      addressRegion: "AB",
-      postalCode: "T5T 2V9",
-      addressCountry: "CA"
-    },
+    // One authority for the address (data/proof.ts), as the Calgary twin
+    // already did. The street and postal code were retyped here: right on the
+    // day they were typed, and a second copy of the office address is a copy
+    // that drifts the day the branch moves.
+    address: schemaAddressFor("edmonton"),
     geo: { "@type": "GeoCoordinates", ...CITY_PROOF.edmonton.geo },
     hasMap: "https://www.google.com/maps?cid=8192121191672692049",
     sameAs: [...BRANCH_PROFILES.edmonton],
@@ -250,16 +253,11 @@ export default function Edmonton2() {
       name,
     })),
     priceRange: sitePriceRange(),
-    openingHours: ["Mo-Sa 08:00-20:00", "Su 09:00-15:00"],
-    openingHoursSpecification: [
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-        opens: "08:00",
-        closes: "20:00",
-      },
-      { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "09:00", closes: "15:00" },
-    ]
+    // Read from data/proof.ts, not retyped. Both runs were literals here, and
+    // a second copy of the hours is a copy that drifts the day the office
+    // changes them — the same reason the priceRange above is derived.
+    openingHours: openingHoursShortFor("edmonton"),
+    openingHoursSpecification: openingHoursSpecFor("edmonton")
   };
   // Every answer rests on the content prompt's FACTS block (A1, A3, C1, P1-P4,
   // P9-P11, T1, T3-T5) or on this page's local note, and stands on its own:

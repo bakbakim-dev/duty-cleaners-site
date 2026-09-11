@@ -1,4 +1,14 @@
-import { schemaAddressFor, BRANCH_PROFILES, ORG_ID, BRANCH_ID, BRANCH_IDENTITY, CITY_PROOF } from "@/data/proof";
+import {
+  schemaAddressFor,
+  BRANCH_PROFILES,
+  ORG_ID,
+  BRANCH_ID,
+  BRANCH_IDENTITY,
+  CITY_PROOF,
+  openingHoursShortFor,
+  openingHoursSpecFor,
+} from "@/data/proof";
+import { sitePriceRange } from "@/data/pricing";
 import { canonicalUrlForPath } from "@/data/legacy-urls";
 
 /**
@@ -77,6 +87,15 @@ export function buildServiceSchema(input: {
       // structured-data.test.ts never saw it: nodesOf() walks top-level blocks
       // and @graph arrays, and does not recurse into provider.
       telephone: CITY_PROOF[input.city].phoneE164,
+      // The same branch facts location-schema.ts publishes. This node shares
+      // the branch @id, but on wall washing and post-construction it is the
+      // only LocalBusiness the page emits, so whatever it leaves off is simply
+      // absent for a reader of that page: an AuditSpur scan of 2026-09-11 found
+      // 17 pages publishing the branch with no hours at all. Read from
+      // data/proof.ts, never retyped, so all three builders agree.
+      openingHours: openingHoursShortFor(input.city),
+      openingHoursSpecification: openingHoursSpecFor(input.city),
+      priceRange: sitePriceRange(),
       parentOrganization: { "@id": ORG_ID },
       sameAs: [...BRANCH_PROFILES[input.city]],
     },

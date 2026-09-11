@@ -22,7 +22,15 @@ import MoveOutServiceAreas from "@/components/MoveOutServiceAreas";
 import { moveInOutTierRows, addOnFromPrice, formatPrice } from "@/data/pricing";
 import { TRAVEL_FEE_KEY } from "@/data/addon-table";
 import { buildServiceSchema } from "@/lib/service-schema";
-import { schemaAddressFor, BRANCH_ID, ORG_ID, RATING_CLAIM, BRANCH_IDENTITY } from "@/data/proof";
+import {
+  schemaAddressFor,
+  BRANCH_ID,
+  ORG_ID,
+  RATING_CLAIM,
+  BRANCH_IDENTITY,
+  openingHoursShortFor,
+  openingHoursSpecFor,
+} from "@/data/proof";
 
 /*
   Every figure on this page is derived. The three price cards and the travel
@@ -57,8 +65,9 @@ const META_DESCRIPTION = `End of tenancy and move-out cleaning in Calgary is ${M
 const PAGE_TITLE = `Move Out Cleaning Calgary from ${MOVE_FROM} | Duty Cleaners`;
 
 /**
- * The branch node, carrying the two properties buildServiceSchema does not
- * model: priceRange and opening hours. It reuses BRANCH_ID, so this merges
+ * The branch node. It used to carry the hours because buildServiceSchema did
+ * not model them; since 2026-09-11 that builder publishes them too, from the
+ * same proof.ts helper, so the two agree. It reuses BRANCH_ID, so this merges
  * into the existing Calgary entity instead of declaring a second anonymous
  * business — which is what the Edmonton twin was doing with a hardcoded
  * street address that could drift from proof.ts.
@@ -77,7 +86,8 @@ const branchSchema = () => {
        which publishes the site-wide band, and a second value on the same @id
        made one business advertise two different ranges. The move-out band
        belongs to the SERVICE; the tier table on the page carries it. */
-    openingHours: ["Mo-Sa 08:00-20:00", "Su 09:00-15:00"],
+    openingHours: openingHoursShortFor("calgary"),
+    openingHoursSpecification: openingHoursSpecFor("calgary"),
     parentOrganization: { "@id": ORG_ID },
   };
 };

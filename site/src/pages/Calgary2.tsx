@@ -2,7 +2,7 @@ import { CITY_PROOF, COMPANY, RATING_CLAIM } from "@/data/proof";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, useState } from "react";
 import { CALGARY_REVIEWS } from "@/data/reviews";
-import { schemaAddressFor, BRANCH_PROFILES, BRANCH_IDENTITY } from "@/data/proof";
+import { schemaAddressFor, BRANCH_PROFILES, BRANCH_IDENTITY, openingHoursShortFor, openingHoursSpecFor } from "@/data/proof";
 import { POLICY } from "@/data/policy";
 import { travelFee } from "@/data/addon-table";
 import { Helmet } from "react-helmet-async";
@@ -250,16 +250,11 @@ export default function Calgary2() {
       name,
     })),
     priceRange: sitePriceRange(),
-    openingHours: ["Mo-Sa 08:00-20:00", "Su 09:00-15:00"],
-    openingHoursSpecification: [
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-        opens: "08:00",
-        closes: "20:00",
-      },
-      { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "09:00", closes: "15:00" },
-    ]
+    // Read from data/proof.ts, not retyped. Both runs were literals here, and
+    // a second copy of the hours is a copy that drifts the day the office
+    // changes them — the same reason the priceRange above is derived.
+    openingHours: openingHoursShortFor("calgary"),
+    openingHoursSpecification: openingHoursSpecFor("calgary")
   };
   // Written for Calgary, not copied from the homepage and re-labelled: the
   // money-page contract measures how much of this page repeats the Edmonton

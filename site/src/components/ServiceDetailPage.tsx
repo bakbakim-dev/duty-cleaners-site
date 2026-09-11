@@ -1,8 +1,16 @@
-import { formatPrice, addOnFromPrice } from "@/data/pricing";
+import { formatPrice, addOnFromPrice, sitePriceRange } from "@/data/pricing";
 import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
 import { GST_RATE } from "@/data/pricing";
 import { canonicalForPath, canonicalUrlForPath } from "@/data/legacy-urls";
-import { schemaAddressFor, BRANCH_ID, BRANCH_IDENTITY, CITY_PROOF, RATING_CLAIM } from "@/data/proof";
+import {
+  schemaAddressFor,
+  BRANCH_ID,
+  BRANCH_IDENTITY,
+  CITY_PROOF,
+  RATING_CLAIM,
+  openingHoursShortFor,
+  openingHoursSpecFor,
+} from "@/data/proof";
 import { POLICY } from "@/data/policy";
 import CityCrossLink from "@/components/CityCrossLink";
 import { useState, useEffect, type ReactNode } from "react";
@@ -249,6 +257,13 @@ const ServiceDetailPage = ({
       // node used to carry none — on every service×city page, ~165 of the 175
       // address-less LocalBusiness nodes an AuditSpur build audit found.
       address: schemaAddressFor(city),
+      // Hours and the published band, from data/proof.ts and data/pricing.ts.
+      // On a service×city page this provider is often the only LocalBusiness
+      // node, and a business with no stated hours is exactly what the
+      // 2026-09-11 AuditSpur scan counted on 17 pages.
+      openingHours: openingHoursShortFor(city),
+      openingHoursSpecification: openingHoursSpecFor(city),
+      priceRange: sitePriceRange(),
     },
     areaServed: { "@type": "City", name: `${cityName}, AB` },
     ...(pricingBySize && pricingBySize.length > 0

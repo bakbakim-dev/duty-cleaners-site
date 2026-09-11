@@ -1216,6 +1216,24 @@ export const GUARD_PROOFS: GuardProof[] = [
     failing: "the Organization names the services it sells",
     why: "Removes the Organization's knowsAbout list.",
   },
+  // ---- AuditSpur findings, 2026-09-11 16:21 ----
+  {
+    guard: "src/data/auditspur-1621.test.ts",
+    target: "dist/edmonton/march-out-cleaning/index.html",
+    find: ',"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday"',
+    replace: ',"openingHoursSpecificationX":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday"',
+    failing: "every LocalBusiness the site publishes says when it is open",
+    why: "Puts back a branch node that never says when it answers, as 21 nodes did.",
+    dist: true,
+  },
+  {
+    guard: "src/data/auditspur-1621.test.ts",
+    target: "src/pages/EdmontonMarchOut.tsx",
+    find: 'openingHours: openingHoursShortFor("edmonton"),',
+    replace: 'openingHours: ["Mo-Sa 08:00-20:00", "Su 09:00-15:00"],',
+    failing: "the office hours and address are read from proof.ts, never retyped",
+    why: "Retypes the hours next to proof.ts, the copy that goes stale the day the office changes them.",
+  },
   // ---- and this registry itself ------------------------------------------
   {
     guard: "src/data/guard-proofs.test.ts",
