@@ -3,8 +3,8 @@ import { createPortal } from "react-dom";
 import { ArrowLeft, Phone, Star, X } from "lucide-react";
 import { useQuoteOverlay } from "@/hooks/use-quote-overlay";
 import { useLocation } from "react-router-dom";
-import { isCalgaryPath } from "@/lib/city-from-path";
-import { RATING_CLAIM, cityProofFor } from "@/data/proof";
+import { branchFromPath, isCalgaryPath } from "@/lib/city-from-path";
+import { RATING_CLAIM, cityProofFor, hasGoogleRating } from "@/data/proof";
 
 /**
  * The funnel (with react-hook-form + zod + the whole pricing engine) used to be
@@ -21,6 +21,7 @@ const QuoteFlow = lazy(() => import("@/components/quote/QuoteFlow"));
  */
 const pageLabel = (pathname: string) => {
   if (pathname === "/" || pathname.startsWith("/edmonton")) return "Edmonton cleaning";
+  if (branchFromPath(pathname) === "reddeer") return "Red Deer cleaning";
   if (isCalgaryPath(pathname)) return "Calgary cleaning";
   if (pathname.startsWith("/blog")) return "the blog";
   if (pathname.startsWith("/pricing") || pathname.includes("pricing")) return "pricing";
@@ -48,7 +49,7 @@ export default function QuoteOverlay() {
   const openerRef = useRef<HTMLElement | null>(null);
   const scrollYRef = useRef(0);
   // The branch's own number, from data/proof.ts: never typed here.
-  const { phone, phoneLink } = cityProofFor(pathname);
+  const { phone, phoneLink, key } = cityProofFor(pathname);
 
   // Lock the page behind the takeover, trap focus, and support Escape.
   useEffect(() => {
@@ -137,6 +138,9 @@ export default function QuoteOverlay() {
             Back to {pageLabel(pathname)}
           </button>
           <span className="hidden h-5 w-px bg-border md:inline-block" />
+          {/* The Edmonton and Calgary listings' rating: the Red Deer listing has
+              no reviews yet, so the Red Deer page's takeover shows none. */}
+          {hasGoogleRating(key) && (
           <span className="flex items-center gap-1.5">
             <span className="flex gap-0.5" aria-hidden="true">
               {[...Array(5)].map((_, index) => (
@@ -147,6 +151,7 @@ export default function QuoteOverlay() {
               {RATING_CLAIM}
             </span>
           </span>
+          )}
         </div>
 
         <div className="flex items-center gap-2">

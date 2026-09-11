@@ -9,7 +9,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Phone, HelpCircle, Home, Truck, Building2, HardHat, DollarSign, Award, Sparkles, MessageSquare, Shield, Heart } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import heroFaqLivingRoom from "@/assets/hero-faq-living-room.webp";
-import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
+import { CITY_PROOF, RATING_CLAIM, hoursLineFor } from "@/data/proof";
 
 /** Figures read from bk-config, so an answer cannot drift from the booking form. */
 const STANDARD_FROM = standardTierRows()[0].price;
@@ -84,7 +84,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "What are your operating hours?",
-        answer: "The Edmonton and Calgary offices answer Monday to Saturday from 8:00 AM to 8:00 PM and Sunday from 9:00 AM to 3:00 PM. Cleans are booked into an arrival window of 9:00 to 10:00 AM, 12:00 to 1:00 PM or 3:00 to 4:00 PM.",
+        answer: `The Edmonton and Calgary offices answer ${hoursLineFor("edmonton")}. The Red Deer office answers ${hoursLineFor("reddeer")}. Cleans are booked into an arrival window of 9:00 to 10:00 AM, 12:00 to 1:00 PM or 3:00 to 4:00 PM.`,
       },
       {
         question: "Do I need to be home during the cleaning?",
@@ -280,7 +280,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "Which areas do you serve?",
-        answer: `The Edmonton office covers 80 Edmonton neighbourhoods plus St. Albert, Sherwood Park, Spruce Grove, Leduc, Beaumont, Fort Saskatchewan, Stony Plain, Morinville and Devon. The Calgary office covers 66 Calgary neighbourhoods plus Airdrie, Cochrane, Okotoks, Chestermere, Strathmore, High River, Langdon, Crossfield and Diamond Valley, which includes Black Diamond and Turner Valley. There is no trip fee inside either city's limits; outside them a ${TRAVEL_FEE} travel fee is added per visit on a home clean. Red Deer is served as well: call the Edmonton office at ${CITY_PROOF.edmonton.phone} or the Calgary office at ${CITY_PROOF.calgary.phone} to book a Red Deer clean and confirm the travel charge. For any other address that is not listed, call the branch.`,
+        answer: `The Edmonton office covers 80 Edmonton neighbourhoods plus St. Albert, Sherwood Park, Spruce Grove, Leduc, Beaumont, Fort Saskatchewan, Stony Plain, Morinville and Devon. The Calgary office covers 66 Calgary neighbourhoods plus Airdrie, Cochrane, Okotoks, Chestermere, Strathmore, High River, Langdon, Crossfield and Diamond Valley, which includes Black Diamond and Turner Valley. There is no trip fee inside either city's limits; outside them a ${TRAVEL_FEE} travel fee is added per visit on a home clean. Red Deer has its own office at ${CITY_PROOF.reddeer.streetAddress}, on ${CITY_PROOF.reddeer.phone}, with the same price list and no travel fee inside Red Deer city limits; for an address outside Red Deer, call the Red Deer office. For any other address that is not listed, call the branch.`,
       },
     ],
   },
@@ -518,13 +518,13 @@ export default function FAQ() {
             <div className="relative z-10">
               <Sparkles className="w-10 h-10 text-accent mx-auto mb-4" />
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Call the Edmonton or Calgary office
+                Call the Edmonton, Calgary or Red Deer office
               </h2>
               <p className="text-lg text-white/80 mb-3 max-w-2xl mx-auto">
-                The office answers the phone seven days a week, or you can see your price online in
-                about a minute.
+                The Edmonton and Calgary offices answer the phone seven days a week and the Red Deer
+                office Monday to Saturday, or you can see your price online in about a minute.
               </p>
-              <p className="text-sm text-white/90 mb-8">Mon&ndash;Sat 8 AM&ndash;8 PM &middot; Sun 9 AM&ndash;3 PM</p>
+              <p className="text-sm text-white/90 mb-8">Edmonton and Calgary: {hoursLineFor("edmonton")}. Red Deer: {hoursLineFor("reddeer")}.</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
                   href="#quote"

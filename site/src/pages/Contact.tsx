@@ -26,10 +26,16 @@ import { travelFee } from "@/data/addon-table";
 import { submitQuote } from "@/lib/quote-submit";
 import { toast } from "sonner";
 import { z } from "zod";
-import { CITY_PROOF, SUPPORT_EMAIL, schemaAddressFor, BRANCH_IDENTITY, BRANCH_PROFILES, ORG_ID, RATING_CLAIM } from "@/data/proof";
+import { CITY_PROOF, SUPPORT_EMAIL, schemaAddressFor, BRANCH_IDENTITY, BRANCH_PROFILES, ORG_ID, RATING_CLAIM, RED_DEER_PATH, hasGoogleRating, hoursLineFor, hoursRowsFor, openingHoursSpecFor, type Branch } from "@/data/proof";
 
-const TITLE = "Contact Duty Cleaners | Edmonton & Calgary";
-const DESCRIPTION = `Contact Duty Cleaners in Edmonton or Calgary. Call ${CITY_PROOF.edmonton.phone} or ${CITY_PROOF.calgary.phone}, Mon-Sat 8am-8pm and Sun 9am-3pm, or send the form.`;
+const TITLE = "Contact Duty Cleaners | Edmonton, Calgary & Red Deer";
+const DESCRIPTION = `Call Duty Cleaners in Edmonton ${CITY_PROOF.edmonton.phone}, Calgary ${CITY_PROOF.calgary.phone} or Red Deer ${CITY_PROOF.reddeer.phone}, or send the form. Hours for each office are listed.`;
+
+/** The three branch offices, in the order the site lists them. */
+const BRANCHES: readonly Branch[] = ["edmonton", "calgary", "reddeer"];
+
+/** "Mon to Sat: 7:00 AM to 9:00 PM" lines for an office card, from proof.ts. */
+const hoursText = (branch: Branch) => hoursRowsFor(branch).map(([days, time]) => `${days}: ${time}`).join("\n");
 
 const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
 /* Post-construction carries its own, larger travel-fee row in bk-config. */
@@ -54,21 +60,6 @@ const PAYMENT_SEQUENCE = [
   .filter(Boolean)
   .join(" ");
 
-/** The two offices keep the same hours; stated once so the schema and the cards agree. */
-const OPENING_HOURS = [
-  {
-    "@type": "OpeningHoursSpecification",
-    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-    opens: "08:00",
-    closes: "20:00",
-  },
-  {
-    "@type": "OpeningHoursSpecification",
-    dayOfWeek: "Sunday",
-    opens: "09:00",
-    closes: "15:00",
-  },
-];
 
 /**
  * The questions that decide whether someone needs to call at all. Each answer
@@ -98,7 +89,7 @@ const CONTACT_FAQS: { q: string; a: string; more: { to: string; label: string } 
   },
   {
     q: "Which areas do you serve?",
-    a: `The Edmonton office covers Edmonton plus St. Albert, Sherwood Park, Spruce Grove, Leduc, Beaumont, Fort Saskatchewan, Stony Plain, Morinville and Devon. The Calgary office covers Calgary plus Airdrie, Cochrane, Okotoks, Chestermere, Strathmore, High River, Langdon, Crossfield and Diamond Valley. Inside city limits there is no trip fee; outside them a ${TRAVEL_FEE} travel fee is added per visit on a home clean, or ${POST_CONSTRUCTION_TRAVEL_FEE} on post-construction, shown on the quote before you book. For an address that is not listed, call the branch.`,
+    a: `The Edmonton office covers Edmonton plus St. Albert, Sherwood Park, Spruce Grove, Leduc, Beaumont, Fort Saskatchewan, Stony Plain, Morinville and Devon. The Calgary office covers Calgary plus Airdrie, Cochrane, Okotoks, Chestermere, Strathmore, High River, Langdon, Crossfield and Diamond Valley. The Red Deer office covers Red Deer. Inside city limits there is no trip fee; outside them a ${TRAVEL_FEE} travel fee is added per visit on a home clean, or ${POST_CONSTRUCTION_TRAVEL_FEE} on post-construction, shown on the quote before you book. For an address that is not listed, call the branch.`,
     more: { to: "/locations", label: "Every area we serve" },
   },
   {
@@ -160,6 +151,7 @@ const OfficeCard = ({
   hours,
   linkTo,
   reviewCount,
+  showRating = true,
   accentColor = "primary"
 }: {
   city: string;
@@ -170,6 +162,8 @@ const OfficeCard = ({
   linkTo: string;
   /** This branch's own Google review count; never the two added together. */
   reviewCount?: number | null;
+  /** False for a branch whose Google listing has no rating yet (Red Deer). */
+  showRating?: boolean;
   accentColor?: string;
 }) => (
   <div 
@@ -184,10 +178,12 @@ const OfficeCard = ({
       </div>
       <div>
         <h2 className="text-2xl font-bold text-white transition-transform duration-300 group-hover:translate-x-1">{city} Office</h2>
+        {showRating && (
         <div className="flex items-center gap-1 text-sm text-white/90">
           <Star className="w-4 h-4 text-accent fill-accent" />
           <span>{RATING_CLAIM}{reviewCount ? `, ${reviewCount} reviews` : ""}</span>
         </div>
+        )}
       </div>
     </div>
 
@@ -330,6 +326,14 @@ export default function Contact() {
     });
   }, [presetCity, presetService, presetMessage]);
 
+  // ?city=reddeer selects the Red Deer office. presetCity above covers the two
+  // cities the commercial and Airbnb pages link with; Red Deer has neither page,
+  // so its preset is carried separately and never overwrites a chosen city.
+  const presetRedDeer = topicCity === "reddeer";
+  useEffect(() => {
+    if (presetRedDeer) setFormData((prev) => ({ ...prev, city: prev.city || "reddeer" }));
+  }, [presetRedDeer]);
+
   const [errors, setErrors] = useState<Partial<Record<keyof ContactFormData, string>>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -370,7 +374,7 @@ export default function Contact() {
       setIsSubmitting(false);
 
       if (!outcome.ok) {
-        toast.error("We couldn't send that. Please call the Edmonton or Calgary office instead.");
+        toast.error("We couldn't send that. Please call the office for your city instead.");
         return;
       }
 
@@ -403,7 +407,7 @@ export default function Contact() {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@graph": [
-              ...(["edmonton", "calgary"] as const).map((key) => {
+              ...BRANCHES.map((key) => {
                 const office = CITY_PROOF[key];
                 return {
                   "@type": "LocalBusiness",
@@ -424,10 +428,10 @@ export default function Contact() {
                     email: SUPPORT_EMAIL,
                     areaServed: { "@type": "City", name: office.city },
                     availableLanguage: "English",
-                    hoursAvailable: OPENING_HOURS,
+                    hoursAvailable: openingHoursSpecFor(key),
                   },
                   areaServed: { "@type": "City", name: office.city },
-                  openingHoursSpecification: OPENING_HOURS,
+                  openingHoursSpecification: openingHoursSpecFor(key),
                 };
               }),
               {
@@ -467,11 +471,11 @@ export default function Contact() {
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-sm mb-6">
               <MessageSquare className="w-4 h-4 text-accent" />
-              <span>Edmonton and Calgary offices</span>
+              <span>Edmonton, Calgary and Red Deer offices</span>
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-              Contact Duty Cleaners in <span className="text-brand-gold">Edmonton and Calgary</span>
+              Contact Duty Cleaners in <span className="text-brand-gold">Edmonton, Calgary and Red Deer</span>
             </h1>
 
             {/* Office cleaning and Airbnb turnovers have no instant price, so
@@ -511,15 +515,21 @@ export default function Contact() {
                 </Button>
               )}
               <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 h-12 px-6" asChild>
-                <a href="tel:7809136565">
+                <a href={CITY_PROOF.edmonton.phoneLink}>
                   <Phone className="mr-2 w-5 h-5" />
                   Call Edmonton
                 </a>
               </Button>
               <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 h-12 px-6" asChild>
-                <a href="tel:4037681341">
+                <a href={CITY_PROOF.calgary.phoneLink}>
                   <Phone className="mr-2 w-5 h-5" />
                   Call Calgary
+                </a>
+              </Button>
+              <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 h-12 px-6" asChild>
+                <a href={CITY_PROOF.reddeer.phoneLink}>
+                  <Phone className="mr-2 w-5 h-5" />
+                  Call Red Deer
                 </a>
               </Button>
             </div>
@@ -532,33 +542,42 @@ export default function Contact() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <span className="text-accent font-semibold text-sm uppercase tracking-wide">Our Locations</span>
-            <h2 className="text-3xl md:text-4xl font-bold mt-2">The Edmonton and Calgary offices</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mt-2">The Edmonton, Calgary and Red Deer offices</h2>
             <p className="text-muted-foreground mt-3 max-w-xl mx-auto">
-              Call the office for the city the home is in. Both branches are rated {RATING_CLAIM},
-              each on its own Google listing.
+              Call the office for the city the home is in. The Edmonton and Calgary branches are
+              rated {RATING_CLAIM}, each on its own Google listing; the Red Deer listing has no
+              reviews yet.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <OfficeCard
               city="Edmonton"
-              phone="(780) 913-6565"
+              phone={CITY_PROOF.edmonton.phone}
               email={SUPPORT_EMAIL}
               reviewCount={CITY_PROOF.edmonton.googleReviewCount}
               address={`${CITY_PROOF.edmonton.streetAddress}, Edmonton, AB ${CITY_PROOF.edmonton.postalCode}`}
-              hours="Mon–Sat: 8:00am–8:00pm
-Sun: 9:00am–3:00pm"
+              hours={hoursText("edmonton")}
               linkTo="/"
             />
             <OfficeCard
               city="Calgary"
-              phone="(403) 768-1341"
+              phone={CITY_PROOF.calgary.phone}
               email={SUPPORT_EMAIL}
               reviewCount={CITY_PROOF.calgary.googleReviewCount}
               address={`${CITY_PROOF.calgary.streetAddress}, Calgary, AB ${CITY_PROOF.calgary.postalCode}`}
-              hours="Mon–Sat: 8:00am–8:00pm
-Sun: 9:00am–3:00pm"
+              hours={hoursText("calgary")}
               linkTo={canonicalForPath("/calgary")}
+            />
+            {/* No rating: the Red Deer listing has no reviews yet (proof.ts). */}
+            <OfficeCard
+              city="Red Deer"
+              phone={CITY_PROOF.reddeer.phone}
+              email={SUPPORT_EMAIL}
+              showRating={hasGoogleRating("reddeer")}
+              address={`${CITY_PROOF.reddeer.streetAddress}, Red Deer, AB ${CITY_PROOF.reddeer.postalCode}`}
+              hours={hoursText("reddeer")}
+              linkTo={RED_DEER_PATH}
             />
           </div>
         </div>
@@ -606,7 +625,7 @@ Sun: 9:00am–3:00pm"
 
                 <div className="mb-8">
                   <span className="text-accent font-semibold text-sm uppercase tracking-wide">Send a Message</span>
-                  <h2 className="text-3xl md:text-4xl font-bold mt-2">Send a message to either office</h2>
+                  <h2 className="text-3xl md:text-4xl font-bold mt-2">Send a message to your office</h2>
                   {isCallbackTopic ? (
                     <p className="text-muted-foreground mt-3">
                       {isOffice
@@ -690,6 +709,7 @@ Sun: 9:00am–3:00pm"
                         <SelectContent>
                           <SelectItem value="edmonton">Edmonton</SelectItem>
                           <SelectItem value="calgary">Calgary</SelectItem>
+                          <SelectItem value="reddeer">Red Deer</SelectItem>
                         </SelectContent>
                       </Select>
                       {errors.city && <p className="text-sm text-destructive">{errors.city}</p>}
@@ -757,8 +777,8 @@ Sun: 9:00am–3:00pm"
                     />
                     <FeatureHighlight
                       icon={Users}
-                      title="One Email for Both Cities"
-                      description={`Write to ${SUPPORT_EMAIL} for either the Edmonton or the Calgary office.`}
+                      title="One Email for Every Office"
+                      description={`Write to ${SUPPORT_EMAIL} for the Edmonton, Calgary or Red Deer office.`}
                     />
                     <FeatureHighlight
                       icon={Shield}
@@ -791,16 +811,23 @@ Sun: 9:00am–3:00pm"
                   <ContactInfoCard
                     icon={Phone}
                     label="Edmonton"
-                    value="(780) 913-6565"
-                    href="tel:7809136565"
+                    value={CITY_PROOF.edmonton.phone}
+                    href={CITY_PROOF.edmonton.phoneLink}
                     index={0}
                   />
                   <ContactInfoCard
                     icon={Phone}
                     label="Calgary"
-                    value="(403) 768-1341"
-                    href="tel:4037681341"
+                    value={CITY_PROOF.calgary.phone}
+                    href={CITY_PROOF.calgary.phoneLink}
                     index={1}
+                  />
+                  <ContactInfoCard
+                    icon={Phone}
+                    label="Red Deer"
+                    value={CITY_PROOF.reddeer.phone}
+                    href={CITY_PROOF.reddeer.phoneLink}
+                    index={2}
                   />
                 </div>
               </div>
@@ -824,7 +851,8 @@ Sun: 9:00am–3:00pm"
               Before you call
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-5">
-              We answer Monday to Saturday, 8:00 AM to 8:00 PM, and Sunday 9:00 AM to 3:00 PM.{" "}
+              The Edmonton and Calgary offices answer {hoursLineFor("edmonton")}; the Red Deer
+              office answers {hoursLineFor("reddeer")}.{" "}
               {isCallbackTopic ? (
                 <>
                   An office or turnover job is priced once the office knows what it involves, so

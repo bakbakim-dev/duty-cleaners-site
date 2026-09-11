@@ -93,7 +93,11 @@ export const LEGACY_URLS: LegacyUrl[] = [
   { legacy: "/airbnb-cleaning-service", target: "/edmonton/airbnb-cleaning", mode: "redirect", impressions: 918 },
   { legacy: "/cleaning-services-strathmore", target: "/locations/strathmore", mode: "redirect", impressions: 855 },
   { legacy: "/march-out-cleaning-edmonton", target: "/edmonton/march-out-cleaning", mode: "redirect", impressions: 806 },
-  { legacy: "/cleaning-services-red-deer", target: "/locations", mode: "redirect", impressions: 600 },
+  // PRESERVED since 2026-09-11. Red Deer is a branch with its own office and
+  // Google Business Profile, and the listing's Website button links this URL,
+  // so it serves the Red Deer page and is canonical here (it used to 301 to
+  // /locations/). /locations/red-deer is the modern route it renders.
+  { legacy: "/cleaning-services-red-deer", target: "/locations/red-deer", mode: "preserve", impressions: 600 },
   { legacy: "/cleaning-services-glenora-edmonton-ab", target: "/locations/glenora-edmonton", mode: "redirect", impressions: 528 },
   { legacy: "/1848/house-cleaning-hacks-easy-tips-for-busy-lives", target: "/blog", mode: "redirect", impressions: 521 },
   // PRESERVE, matching the cost and vinegar posts above: the numeric WordPress

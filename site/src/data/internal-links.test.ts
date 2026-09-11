@@ -54,8 +54,16 @@ function mainHtml(url: string): string {
   return m ? m[1] : "";
 }
 
-/** Which branch a page belongs to, read from the phone number it publishes. */
+/**
+ * Which branch a page belongs to, read from the phone number it publishes.
+ *
+ * The Red Deer page (2026-09-11) belongs to a branch with no service pages of
+ * its own. Its checklists and prices are the ones the Edmonton service pages
+ * publish, so it links those, and counts as Edmonton here: it must never link
+ * the Calgary set, and it must link some service page like every other place.
+ */
 function cityOf(url: string): "edmonton" | "calgary" {
+  if (url === "/cleaning-services-red-deer/") return "edmonton";
   const s = html(url);
   const edm = (s.match(/\(780\) 913-6565|780-913-6565/g) ?? []).length;
   const cal = (s.match(/\(403\) 768-1341|403-768-1341/g) ?? []).length;

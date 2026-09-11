@@ -4,11 +4,29 @@
  * hide the element rather than print an invented figure.
  */
 
-import { cityFromPath } from "@/lib/city-from-path";
+import { branchFromPath, type Branch } from "@/lib/city-from-path";
 import { confirm, type Confirmed, type Unconfirmed } from "./confirmed";
 
+export type { Branch } from "@/lib/city-from-path";
+
+/** The days of the week, in schema.org's spelling. */
+export const WEEKDAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] as const;
+export type Weekday = (typeof WEEKDAYS)[number];
+
+/**
+ * One run of opening hours: the days it covers and the times, 24-hour "HH:MM".
+ * A day that appears in no run is a day the office is closed.
+ */
+export interface OfficeHours {
+  days: readonly Weekday[];
+  opens: string;
+  closes: string;
+}
+
 export interface CityProof {
-  city: "Edmonton" | "Calgary";
+  /** The branch key, e.g. for a ?city= link. */
+  key: Branch;
+  city: "Edmonton" | "Calgary" | "Red Deer";
   phone: string;
   phoneLink: string;
   /**
@@ -40,10 +58,26 @@ export interface CityProof {
   googleReviewCount: Confirmed<number> | Unconfirmed;
   /** The office pin, for the hub's LocalBusiness `geo`. */
   geo: Confirmed<{ latitude: number; longitude: number }>;
+  /**
+   * The office's opening hours. Edmonton and Calgary keep the same hours; Red
+   * Deer's differ, so the hours are per branch rather than one shared line.
+   */
+  hours: readonly OfficeHours[];
 }
 
-export const CITY_PROOF: Record<"edmonton" | "calgary", CityProof> = {
+/**
+ * Edmonton and Calgary's hours: Monday to Saturday 8:00 AM to 8:00 PM, Sunday
+ * 9:00 AM to 3:00 PM. These are the hours every Edmonton and Calgary surface
+ * has published (policy.ts SERVICE_TERMS, the footer, the schema).
+ */
+const METRO_HOURS: readonly OfficeHours[] = [
+  { days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], opens: "08:00", closes: "20:00" },
+  { days: ["Sunday"], opens: "09:00", closes: "15:00" },
+];
+
+export const CITY_PROOF: Record<Branch, CityProof> = {
   edmonton: {
+    key: "edmonton",
     city: "Edmonton",
     phone: "(780) 913-6565",
     phoneLink: "tel:7809136565",
@@ -60,8 +94,10 @@ export const CITY_PROOF: Record<"edmonton" | "calgary", CityProof> = {
     // Maps URL), read 2026-09-10. A click on the pin icon reads a point on the
     // drawn marker instead; the owner's click landed about 16 m north.
     geo: confirm({ latitude: 53.504317, longitude: -113.64391 }, { by: "owner", on: "2026-09-10", note: "Google listing pin, CID 8192121191672692049" }),
+    hours: METRO_HOURS,
   },
   calgary: {
+    key: "calgary",
     city: "Calgary",
     phone: "(403) 768-1341",
     phoneLink: "tel:4037681341",
@@ -74,8 +110,90 @@ export const CITY_PROOF: Record<"edmonton" | "calgary", CityProof> = {
     googleReviewCount: confirm(51, { by: "google-listing", on: "2026-09-01", note: "CID 6193344199307583189" }),
     // Same source as Edmonton: the listing's own pin, read 2026-09-10.
     geo: confirm({ latitude: 51.029252, longitude: -114.142131 }, { by: "owner", on: "2026-09-10", note: "Google listing pin, CID 6193344199307583189" }),
+    hours: METRO_HOURS,
+  },
+  /**
+   * The Red Deer branch (owner, 2026-09-11: "a gbp listing is up for it ... no
+   * travel charge because it has its own office"). Name, address, phone, hours
+   * and pin are read from its Google Business Profile on 2026-09-11, reached
+   * through CID 10449244954117051184 ("Duty Cleaners House Cleaning Services
+   * Red Deer", located in Heritage Village).
+   *
+   * The listing has NO reviews yet, so the rating and count are null: the site
+   * renders no rating for Red Deer, and RATING_CLAIM (the Edmonton and Calgary
+   * listings' 4.9) must never be presented as Red Deer's.
+   */
+  reddeer: {
+    key: "reddeer",
+    city: "Red Deer",
+    phone: "(587) 570-6979",
+    phoneLink: "tel:5875706979",
+    phoneE164: "+1-587-570-6979",
+    address: "5212 48 St, Red Deer, AB",
+    streetAddress: "5212 48 St",
+    postalCode: "T4N 1S4",
+    googleRating: null,
+    googleReviewCount: null,
+    geo: confirm({ latitude: 52.2673285, longitude: -113.8189323 }, { by: "owner", on: "2026-09-11", note: "Google listing pin, CID 10449244954117051184" }),
+    // Monday to Saturday 7:00 AM to 9:00 PM; closed Sunday (the listing, 2026-09-11).
+    hours: [{ days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], opens: "07:00", closes: "21:00" }],
   },
 };
+
+/** "07:00" -> "7:00 AM", "21:00" -> "9:00 PM". */
+const clock = (hhmm: string) => {
+  const [h, m] = hhmm.split(":").map(Number);
+  const suffix = h >= 12 ? "PM" : "AM";
+  const hour = h % 12 === 0 ? 12 : h % 12;
+  return `${hour}:${String(m).padStart(2, "0")} ${suffix}`;
+};
+
+/** "Monday to Saturday" for a consecutive run, "Sunday" for one day. */
+const dayRange = (days: readonly Weekday[]) =>
+  days.length === 1 ? days[0] : `${days[0]} to ${days[days.length - 1]}`;
+
+/**
+ * The branch's hours as a sentence fragment, e.g. "Monday to Saturday 8:00 AM
+ * to 8:00 PM, and Sunday 9:00 AM to 3:00 PM", or "Monday to Saturday 7:00 AM
+ * to 9:00 PM, and not on Sunday". It reads after "is open" or "answers".
+ */
+export function hoursLineFor(branch: Branch): string {
+  const runs = CITY_PROOF[branch].hours.map((h) => `${dayRange(h.days)} ${clock(h.opens)} to ${clock(h.closes)}`);
+  const open = new Set(CITY_PROOF[branch].hours.flatMap((h) => h.days));
+  const closed = WEEKDAYS.filter((d) => !open.has(d));
+  const parts = [...runs, ...(closed.length ? [`not on ${closed.join(" or ")}`] : [])];
+  return parts.length > 1 ? `${parts.slice(0, -1).join(", ")}, and ${parts[parts.length - 1]}` : parts[0];
+}
+
+/** Per-run display rows for an hours table: ["Mon to Sat", "7:00 AM to 9:00 PM"], plus closed days. */
+export function hoursRowsFor(branch: Branch): Array<[string, string]> {
+  const short = (d: Weekday) => d.slice(0, 3);
+  const rows: Array<[string, string]> = CITY_PROOF[branch].hours.map((h) => [
+    h.days.length === 1 ? h.days[0] : `${short(h.days[0])} to ${short(h.days[h.days.length - 1])}`,
+    `${clock(h.opens)} to ${clock(h.closes)}`,
+  ]);
+  const open = new Set(CITY_PROOF[branch].hours.flatMap((h) => h.days));
+  for (const d of WEEKDAYS) if (!open.has(d)) rows.push([d, "Closed"]);
+  return rows;
+}
+
+/** schema.org `openingHoursSpecification` for the branch. */
+export function openingHoursSpecFor(branch: Branch) {
+  return CITY_PROOF[branch].hours.map((h) => ({
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: h.days.length === 1 ? h.days[0] : [...h.days],
+    opens: h.opens,
+    closes: h.closes,
+  }));
+}
+
+/** schema.org `openingHours` shorthand for the branch, e.g. "Mo-Sa 08:00-20:00". */
+export function openingHoursShortFor(branch: Branch): string[] {
+  const ab = (d: Weekday) => d.slice(0, 2);
+  return CITY_PROOF[branch].hours.map((h) =>
+    `${h.days.length === 1 ? ab(h.days[0]) : `${ab(h.days[0])}-${ab(h.days[h.days.length - 1])}`} ${h.opens}-${h.closes}`,
+  );
+}
 
 /**
  * The one volume claim the site makes; every page reads it from here.
@@ -95,14 +213,22 @@ export const BOOKINGS = confirm("5,000+", { by: "owner", on: "2026-09-10", note:
  * defined once, in CITY_PROOF.<city>.googleRating (read from each Google listing);
  * this line is built from it. Both listings read 4.9. If they ever differ, make
  * this per-branch rather than picking one.
+ *
+ * It is the Edmonton and Calgary listings' rating. The Red Deer listing has no
+ * reviews yet (2026-09-11), so a Red Deer surface shows no rating at all; see
+ * `hasGoogleRating`.
  */
 export const RATING_CLAIM = `${CITY_PROOF.edmonton.googleRating} on Google`;
+
+/** Whether this branch's own Google listing carries a rating the site may show. */
+export const hasGoogleRating = (branch: Branch) => CITY_PROOF[branch].googleRating !== null;
 
 export const cityProofFor = (pathname: string) =>
   // Canonical-aware. A bare startsWith("/calgary") missed every preserved
   // legacy Calgary URL (/cleaning-services-calgary/ chief among them), so the
   // quote flow showed Edmonton's phone and address on Calgary's biggest page.
-  cityFromPath(pathname) === "calgary" ? CITY_PROOF.calgary : CITY_PROOF.edmonton;
+  // The Red Deer page resolves to the Red Deer office.
+  CITY_PROOF[branchFromPath(pathname)];
 
 /** Company-wide facts. Operating since 2017 — never "10+ years". */
 export const COMPANY = {
@@ -168,6 +294,7 @@ export const SUPPORT_EMAIL = "support@dutycleaners.ca";
 export const BRAND_PROFILES = [
   "https://www.google.com/maps?cid=8192121191672692049",
   "https://www.google.com/maps?cid=6193344199307583189",
+  "https://www.google.com/maps?cid=10449244954117051184",
   "https://www.yelp.ca/biz/duty-cleaners-calgary-calgary",
   "https://www.facebook.com/dutycleaners/",
   "https://www.instagram.com/dutycleaners/",
@@ -198,7 +325,7 @@ const SHARED_SOCIAL = [
   "https://x.com/Dutycleaners",
 ] as const;
 
-export const BRANCH_PROFILES: Record<"edmonton" | "calgary", readonly string[]> = {
+export const BRANCH_PROFILES: Record<Branch, readonly string[]> = {
   edmonton: [
     "https://www.google.com/maps?cid=8192121191672692049",
     ...SHARED_SOCIAL,
@@ -206,6 +333,12 @@ export const BRANCH_PROFILES: Record<"edmonton" | "calgary", readonly string[]> 
   calgary: [
     "https://www.google.com/maps?cid=6193344199307583189",
     "https://www.yelp.ca/biz/duty-cleaners-calgary-calgary",
+    ...SHARED_SOCIAL,
+  ],
+  // The Red Deer Google Business Profile (CID read 2026-09-11). No Yelp profile
+  // is on file for Red Deer.
+  reddeer: [
+    "https://www.google.com/maps?cid=10449244954117051184",
     ...SHARED_SOCIAL,
   ],
 };
@@ -217,6 +350,7 @@ export const ORG_ID = "https://dutycleaners.ca/#org";
 export const BRANCH_ID = {
   edmonton: "https://dutycleaners.ca/#edmonton",
   calgary: "https://dutycleaners.ca/#calgary",
+  reddeer: "https://dutycleaners.ca/#reddeer",
 } as const;
 
 /**
@@ -237,7 +371,16 @@ export const BRANCH_IDENTITY = {
     url: "https://dutycleaners.ca/cleaning-services-calgary/",
     name: "Duty Cleaners Calgary",
   },
+  // The Red Deer page is the branch's only page, so it is the entity's url. The
+  // name is the Google Business Profile's own, character for character.
+  reddeer: {
+    url: "https://dutycleaners.ca/cleaning-services-red-deer/",
+    name: "Duty Cleaners House Cleaning Services Red Deer",
+  },
 } as const;
+
+/** The Red Deer page's canonical path: the preserved legacy URL. */
+export const RED_DEER_PATH = "/cleaning-services-red-deer/";
 
 
 /**
@@ -280,7 +423,7 @@ export const CLEANER_JOB_POSTING: {
  * pages whose LocalBusiness carried no address because three emitters each
  * built their own.
  */
-export const schemaAddressFor = (city: "edmonton" | "calgary") => {
+export const schemaAddressFor = (city: Branch) => {
   const p = CITY_PROOF[city];
   return {
     "@type": "PostalAddress",

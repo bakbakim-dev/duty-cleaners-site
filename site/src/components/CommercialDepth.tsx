@@ -22,7 +22,10 @@ import { CheckCircle2, Clock, ClipboardList, Building2, Sparkles } from "lucide-
  * operating hours, vetting, the 24-hour re-clean window). No pricing figures,
  * certifications or client names are invented — where a number would need
  * owner confirmation, the copy describes the process instead of asserting a
- * value. The cleaners are subcontractors who choose their own products (owner,
+ * value. Owner, 2026-09-11: the late-cancellation fee and the re-clean window
+ * apply to commercial clients as they do to homes (read from POLICY, never
+ * typed), and evening and weekend work outside the office's regular hours can
+ * be arranged. No deposit claim is made: none is confirmed. The cleaners are subcontractors who choose their own products (owner,
  * 2026-09-11), so nothing here claims what a product does: the copy says what
  * the team does, and product requirements are confirmed in writing per site.
  */
@@ -41,13 +44,18 @@ export function commercialFaqs(city: "Edmonton" | "Calgary", phone: string) {
     },
     {
       q: "Can you clean outside our business hours?",
-      a: "Most commercial schedules run before opening or after close, so cleaning does not interrupt staff or customers. Our standard operating window is Monday to Saturday 8 AM to 8 PM and Sunday 9 AM to 3 PM. Ask at the walkthrough about times outside that window; the visit times we agree go into the written quote.",
+      // Owner, 2026-09-11: work outside the office's regular hours, evenings and
+      // weekends included, can be arranged. The answer used to say "ask at the
+      // walkthrough"; it now says yes.
+      a: `Yes. Most commercial schedules run before opening or after close, so cleaning does not interrupt staff or customers, and evening and weekend visits outside the ${city} office's regular hours can be arranged. The visit times agreed at the walkthrough go into the written quote.`,
     },
     {
       q: "Do we need to sign a long-term contract?",
       // Was "no cancellation penalty", inside FAQPage schema, against a policy of
       // $50 inside 24 hours. The real point — no lock-in — survives intact.
-      a: `No. Recurring schedules are the most common arrangement, and on one we send your regular team where we can. There is no lock-in period and no penalty for ending the schedule. Individual visits follow the same notice rule as everyone else: ${POLICY.cancellationNoticeHours} hours to move or cancel one, ${POLICY.cancellationFee} inside that. If you would rather start with a single deep clean before committing to a schedule, that is a normal way to begin.`,
+      // Owner, 2026-09-11: the late-cancellation fee applies to commercial
+      // clients as it does to homes; both figures are read from policy.ts.
+      a: `No. Recurring schedules are the most common arrangement, and on one we send your regular team where we can. There is no lock-in period and no penalty for ending the schedule. Commercial clients have the same cancellation rule as homes: a visit can be moved or cancelled with ${POLICY.cancellationNoticeHours} hours' notice, and inside that window the fee is ${POLICY.cancellationFee}. If you would rather start with a single deep clean before committing to a schedule, that is a normal way to begin.`,
     },
     {
       q: "How are your cleaners vetted, and what about insurance?",
@@ -59,7 +67,9 @@ export function commercialFaqs(city: "Edmonton" | "Calgary", phone: string) {
     },
     {
       q: "What happens if something is missed?",
-      a: `Tell us within ${POLICY.guaranteeWindowHours} hours of the clean and we return to clean what was missed at no additional charge. For recurring commercial accounts we would rather hear about a missed bin than have it quietly noted, because that feedback is what keeps a long-running schedule accurate.`,
+      // Owner, 2026-09-11: the re-clean window applies to commercial clients as
+      // it does to homes, and it runs from the clean.
+      a: `Commercial clients have the same re-clean guarantee as homes. Tell us within ${POLICY.guaranteeWindowHours} hours of the clean if something in the agreed scope was missed, and the team comes back and cleans it at no charge. For recurring commercial accounts we would rather hear about a missed bin than have it quietly noted, because that feedback is what keeps a long-running schedule accurate.`,
     },
     {
       q: "Do you supply your own equipment and products?",

@@ -83,6 +83,26 @@ export const GOOGLE_LISTINGS: Record<CityKey, GoogleListing> = {
   ),
 };
 
+/**
+ * The Red Deer branch's Google Business Profile (owner, 2026-09-11; read from
+ * the public listing the same day).
+ *
+ * Kept apart from GOOGLE_LISTINGS on purpose. Only the CID and the knowledge
+ * graph id are on file, not the ChIJ Place ID, so there is no write-a-review
+ * link to build; and the listing has no reviews yet, so there is nothing to
+ * cite as review proof. Link the profile itself, never a review count.
+ */
+export const RED_DEER_LISTING = {
+  name: "Duty Cleaners House Cleaning Services Red Deer",
+  cid: "10449244954117051184",
+  /** The CID in hex, as it appears in the listing's own Maps data blob. */
+  cidHex: "0x91032cec5d309330",
+  kgmid: "/g/11zb59jy5j",
+  url: "https://www.google.com/maps?cid=10449244954117051184",
+  /** The primary category the listing showed on 2026-09-11. */
+  primaryCategory: "Janitorial service",
+} as const;
+
 /** Resolve a listing from a free-text city label such as "Calgary". */
 export function getListing(city: string): GoogleListing {
   return city.trim().toLowerCase().startsWith("calgary")

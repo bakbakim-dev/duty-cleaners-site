@@ -20,6 +20,7 @@ export default function TrustPageCta({
 }: TrustPageCtaProps) {
   const edmonton = CITY_PROOF.edmonton;
   const calgary = CITY_PROOF.calgary;
+  const redDeer = CITY_PROOF.reddeer;
 
   return (
     <section className="mt-14 rounded-2xl bg-brand-navy p-8 text-brand-navy-foreground shadow-xl">
@@ -51,6 +52,10 @@ export default function TrustPageCta({
           Calgary?{" "}
           <a href={calgary.phoneLink} className="font-semibold text-accent hover:underline">
             {calgary.phone}
+          </a>
+          {" "}&middot; Red Deer?{" "}
+          <a href={redDeer.phoneLink} className="font-semibold text-accent hover:underline">
+            {redDeer.phone}
           </a>
         </p>
 

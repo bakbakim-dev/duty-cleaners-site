@@ -134,8 +134,10 @@ describe("structured data", () => {
     ).toEqual([]);
   });
 
+  // The title predates Red Deer; since 2026-09-11 there are three branch
+  // numbers, and the allowed set is every CITY_PROOF entry.
   it("every schema telephone is one of the two real numbers, in one format", () => {
-    const allowed = new Set([CITY_PROOF.edmonton.phoneE164, CITY_PROOF.calgary.phoneE164]);
+    const allowed = new Set(Object.values(CITY_PROOF).map((c) => c.phoneE164));
     const bad: string[] = [];
     for (const { url, html } of pages()) {
       for (const n of nodesOf(html)) {
@@ -146,8 +148,7 @@ describe("structured data", () => {
     expect(
       [...new Set(bad)],
       `Schema telephone values that are not the canonical E.164 form:\n${[...new Set(bad)].join("\n")}\n` +
-        `The two real numbers are ${CITY_PROOF.edmonton.phoneE164} and ` +
-        `${CITY_PROOF.calgary.phoneE164}, both in data/proof.ts. Read them from ` +
+        `The real numbers are ${[...allowed].join(", ")}, all in data/proof.ts. Read them from ` +
         `there rather than writing the digits again.`,
     ).toEqual([]);
   });
@@ -222,6 +223,8 @@ describe("each branch carries the office pin the owner confirmed", () => {
     const hubs = [
       ["edmonton", "index.html"],
       ["calgary", join("cleaning-services-calgary", "index.html")],
+      // The Red Deer branch page is that branch's hub (2026-09-11).
+      ["reddeer", join("cleaning-services-red-deer", "index.html")],
     ] as const;
     for (const [key, file] of hubs) {
       const html = readFileSync(join(DIST, file), "utf-8");
@@ -259,9 +262,10 @@ describe("NAP consistency in what the visitor sees", () => {
    * on. Presenting one of them two ways is the inconsistency that costs
    * nothing to avoid and is invisible until someone counts.
    */
-  const DISPLAY = [CITY_PROOF.edmonton.phone, CITY_PROOF.calgary.phone];
-  const TEL = [CITY_PROOF.edmonton.phoneLink, CITY_PROOF.calgary.phoneLink];
-  const PHONE_LIKE = /\(?\b(?:780|403)\)?[\s.-]?\d{3}[\s.-]?\d{4}/g;
+  // Every branch, Red Deer included (2026-09-11).
+  const DISPLAY = Object.values(CITY_PROOF).map((c) => c.phone);
+  const TEL = Object.values(CITY_PROOF).map((c) => c.phoneLink);
+  const PHONE_LIKE = /\(?\b(?:780|403|587)\)?[\s.-]?\d{3}[\s.-]?\d{4}/g;
 
   const visible = (html: string) =>
     html
@@ -284,7 +288,7 @@ describe("NAP consistency in what the visitor sees", () => {
     expect(
       lines,
       `Phone numbers shown in a format other than the canonical one:\n${lines.join("\n")}\n` +
-        `The two are "${DISPLAY[0]}" and "${DISPLAY[1]}", both in data/proof.ts.`,
+        `They are ${DISPLAY.map((d) => `"${d}"`).join(", ")}, all in data/proof.ts.`,
     ).toEqual([]);
   });
 

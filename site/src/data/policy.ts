@@ -19,6 +19,7 @@
 import { confirm, type Confirmed, type Unconfirmed } from "./confirmed";
 import { addOnFromPrice, formatPrice, FREQUENCIES } from "./pricing";
 import { travelFee } from "./addon-table";
+import { hoursLineFor } from "./proof";
 
 export interface ServicePolicy {
   guaranteeWindowHours: Confirmed<number> | Unconfirmed;
@@ -227,7 +228,7 @@ export const PRICING_TERMS = [
   // "no trip fees" line was shipping inside FAQPage JSON-LD. Naming the amount
   // matters too — /terms/ is a binding document and /locations/ promotes
   // nineteen communities that all sit outside those limits.
-  `No trip fee or diagnostic fee inside Edmonton and Calgary city limits. Outside them, a travel fee applies: ${money(travelFee("standard"))} for home cleaning, ${money(travelFee("post-construction"))} for post-construction.`,
+  `No trip fee or diagnostic fee inside Edmonton, Calgary and Red Deer city limits. Outside them, a travel fee applies: ${money(travelFee("standard"))} for home cleaning, ${money(travelFee("post-construction"))} for post-construction.`,
   // Compulsory, not an add-on: BookingKoala's extra is literally named "Must
   // choose if you have pets", and it recurs on every visit.
   `Homes with pets are charged ${money(addOnFromPrice("standard", "must-choose-if-you-have-pets"))} per visit — paw prints, nose marks on glass and shed hair add real time in every room. It appears on your quote before you book, and litter boxes and animal waste stay outside what we handle.`,
@@ -266,7 +267,8 @@ export const SERVICE_TERMS = [
   `We bring all cleaning supplies and equipment. Optional alternative products are available for ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}. That charge is before GST.`,
   "Running water is required. Some tasks, including vacuuming, may not be possible without electricity.",
   "Tell us about pets, parking, how to get in, and any rooms to skip when you book — the booking form asks for each of these.",
-  "Our operating hours are Monday to Saturday 8:00 AM to 8:00 PM, and Sunday 9:00 AM to 3:00 PM.",
+  // Per branch, from proof.ts: the Red Deer office keeps different hours.
+  `The Edmonton and Calgary offices are open ${hoursLineFor("edmonton")}. The Red Deer office is open ${hoursLineFor("reddeer")}.`,
   "We schedule to an arrival window rather than an exact time, so traffic or an earlier job running long does not push your whole day.",
 ] as const;
 

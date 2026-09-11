@@ -334,14 +334,23 @@ describe("the quote overlay reads its facts from proof.ts", () => {
   });
 });
 
-describe("Red Deer postal codes go to the phone, not the standard travel fee", () => {
-  it("QuoteFlow adds no travel fee and no online booking for a Red Deer code", () => {
+/*
+ * Changed 2026-09-11 (owner): Red Deer is a branch with its own office, no
+ * travel fee inside the city, and BookingKoala accepts its postal codes. The
+ * earlier guard here pinned the interim behaviour (no fee, but no online
+ * booking and a "call Edmonton or Calgary" note). A Red Deer code is now an
+ * in-city code in booking-redirect.ts, so QuoteFlow needs no Red Deer branch at
+ * all: this guard pins that it has none, so the phone-only path cannot return.
+ */
+describe("Red Deer postal codes book online like any in-city code", () => {
+  it("QuoteFlow has no Red Deer exception to the travel fee or the booking link", () => {
     const src = codeOf("src/components/quote/QuoteFlow.tsx");
-    expect(src).toMatch(/const redDeer = isRedDeerPostalCode\(details\.postalCode\);/);
-    expect(src, "a Red Deer code is charged the Edmonton/Calgary travel fee again").toMatch(
-      /const outsideCity =\s*!redDeer && /,
+    expect(src, "the travel fee decision is the postal code's alone").toMatch(
+      /const outsideCity = cityStatus === "unknown" \? insideCity === false : cityStatus === "outside";/,
     );
-    expect(src).toMatch(/bookingQuery === null \|\| redDeer \? null/);
-    expect(src).toMatch(/Red Deer is served:/);
+    expect(src, "a Red Deer code lost its online booking again").toMatch(
+      /const bookingUrl = bookingQuery === null \? null : `\$\{BOOKING_ORIGIN\}\/booknow\?\$\{bookingQuery\}`;/,
+    );
+    expect(src).not.toMatch(/isRedDeerPostalCode|Red Deer is served:/);
   });
 });

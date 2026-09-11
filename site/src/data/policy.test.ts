@@ -108,6 +108,8 @@ describe("every confirmed value carries its provenance", () => {
       RISK_REVERSAL.find((line) => line.id === "no-charge")?.label,
       CITY_PROOF.edmonton.geo,
       CITY_PROOF.calgary.geo,
+      // The Red Deer office pin (2026-09-11), read from its Google listing.
+      CITY_PROOF.reddeer.geo,
       COMPANY.applicantAcceptanceRate,
     ];
     for (const claim of ownerClaims) {

@@ -1,6 +1,8 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { commercialFaqs } from "@/components/CommercialDepth";
+import { POLICY } from "@/data/policy";
 
 /**
  * The owner's decisions of 2026-09-11 for the two commercial pages, the
@@ -88,9 +90,42 @@ describe("the commercial pages (owner, 2026-09-11)", () => {
       expect(href, `${rel} quote link`).toBe(`/contact-us/?topic=office&city=${city}`);
       const ctas = [...src.matchAll(/<Link to=\{QUOTE_HREF\}>([^<]+)<\/Link>/g)].map((m) => m[1].trim());
       expect(ctas.length, `${rel} has no CTA on QUOTE_HREF`).toBeGreaterThanOrEqual(2);
-      for (const label of ctas) expect(label).toBe("Request a Commercial Cleaning Quote");
+      // Owner, 2026-09-11: the label names office cleaning, the only commercial
+      // work quoted online; other premises start with a call.
+      for (const label of ctas) expect(label).toBe("Request an Office Cleaning Quote");
       expect(src, `${rel} still links the bare contact form`).not.toMatch(/to="\/contact-us\/"/);
     }
+  });
+
+  it("the commercial FAQ says evening and weekend work can be arranged", () => {
+    // Owner, 2026-09-11: work outside the office's regular hours can be
+    // arranged. The answer had said to ask at the walkthrough.
+    for (const city of ["Edmonton", "Calgary"] as const) {
+      const answer = commercialFaqs(city, "(000) 000-0000").find((f) => /outside our business hours/i.test(f.q))?.a ?? "";
+      expect(answer, "the out-of-hours answer is gone").not.toBe("");
+      expect(answer).toMatch(/^Yes\./);
+      expect(answer).toContain(`evening and weekend visits outside the ${city} office's regular hours can be arranged`);
+      expect(answer, "hedged again").not.toMatch(/ask at the walkthrough about times|outside that window/i);
+    }
+  });
+
+  it("the commercial FAQ applies the home cancellation fee and re-clean window, read from policy.ts", () => {
+    // Owner, 2026-09-11: both apply to commercial clients as they do to homes.
+    const src = stripComments(read("components/CommercialDepth.tsx"));
+    for (const field of ["cancellationNoticeHours", "cancellationFee", "guaranteeWindowHours"]) {
+      expect(src, `the FAQ no longer reads POLICY.${field}`).toContain("${POLICY." + field + "}");
+    }
+    expect(src, "a dollar figure typed into the commercial FAQ").not.toMatch(/\$\d/);
+    const faqs = commercialFaqs("Calgary", "(000) 000-0000");
+    const contract = faqs.find((f) => /long-term contract/i.test(f.q))?.a ?? "";
+    expect(contract).toContain(
+      `Commercial clients have the same cancellation rule as homes: a visit can be moved or cancelled with ${POLICY.cancellationNoticeHours} hours' notice, and inside that window the fee is ${POLICY.cancellationFee}.`,
+    );
+    const missed = faqs.find((f) => /something is missed/i.test(f.q))?.a ?? "";
+    expect(missed).toContain(
+      `Commercial clients have the same re-clean guarantee as homes. Tell us within ${POLICY.guaranteeWindowHours} hours of the clean`,
+    );
+    expect(faqs.map((f) => f.a).join(" "), "a deposit claim nobody confirmed").not.toMatch(/deposit/i);
   });
 
   it("premises other than offices are scoped by phone, not quoted online", () => {

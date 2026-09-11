@@ -55,7 +55,6 @@ import {
   DC_NOTES_MAX,
   postalCodeCityStatus,
   postalCodeCityName,
-  isRedDeerPostalCode,
   normalizePostalCode,
 
   type CleanerDetails,
@@ -63,7 +62,7 @@ import {
   type DcParking,
   type ResolvedExtra,
 } from "@/lib/booking-redirect";
-import { BOOKINGS_CLAIM, CITY_PROOF, RATING_CLAIM, RESPONSE_TIME_PROMISE, SUPPORT_EMAIL, cityProofFor } from "@/data/proof";
+import { BOOKINGS_CLAIM, RATING_CLAIM, RESPONSE_TIME_PROMISE, SUPPORT_EMAIL, cityProofFor, hasGoogleRating } from "@/data/proof";
 import { submitQuote, type QuotePayload } from "@/lib/quote-submit";
 import { captureTrackingParams, pageServiceFor, serviceOnOpen } from "@/lib/tracking";
 import { setQuoteStep } from "@/lib/quote-progress";
@@ -345,13 +344,11 @@ export default function QuoteFlow({
    */
   const cityStatus = postalCodeCityStatus(details.postalCode);
   /**
-   * Red Deer is served, but its travel charge and online booking are not on
-   * file: the funnel adds no Edmonton/Calgary travel fee and sends the visitor
-   * to the phone (or a callback) instead of the booking page.
+   * Red Deer is a branch with its own office (owner, 2026-09-11): its postal
+   * codes (T4N, T4P, T4R) are in-city codes in booking-redirect.ts, so they
+   * carry no travel fee and book online like an Edmonton or Calgary address.
    */
-  const redDeer = isRedDeerPostalCode(details.postalCode);
-  const outsideCity =
-    !redDeer && (cityStatus === "unknown" ? insideCity === false : cityStatus === "outside");
+  const outsideCity = cityStatus === "unknown" ? insideCity === false : cityStatus === "outside";
 
   const startedAtRef = useRef(Date.now());
   /**
@@ -453,7 +450,7 @@ export default function QuoteFlow({
     setServiceExpanded(!(preset || pageApplied));
 
     track("quote_start", {
-      city: proof.city.toLowerCase(),
+      city: proof.key,
       service: next,
       intent: initialIntent === "deep" && next === "standard" ? "deep" : "none",
     });
@@ -558,7 +555,7 @@ export default function QuoteFlow({
 
   /** The non-personal props every funnel event carries (see lib/analytics.ts). */
   const funnelProps = () => ({
-    city: proof.city.toLowerCase(),
+    city: proof.key,
     service,
     intent: deepCleanIntent ? "deep" : "none",
     frequency: selected.supportsRecurring ? frequency : "one-time",
@@ -787,7 +784,9 @@ export default function QuoteFlow({
   /** Home details in GoHighLevel's own option wording. */
   const homeFields = () => ({
     source: "dutycleaners.ca instant quote",
-    city: proof.city.toLowerCase(),
+    // The branch key: "edmonton", "calgary" or "reddeer", the same values the
+    // contact form sends, so the GoHighLevel city tag is one spelling per branch.
+    city: proof.key,
     service: GHL_SERVICE_LABELS[service] ?? selected.label,
     home_type:
       (homeType !== null ? GHL_HOME_TYPE_LABELS[homeType] : undefined) ??
@@ -910,10 +909,7 @@ export default function QuoteFlow({
   );
 
 
-  // No online booking for a Red Deer postal code: the CTA falls back to the
-  // callback request, which carries the postal code to the office.
-  const bookingUrl =
-    bookingQuery === null || redDeer ? null : `${BOOKING_ORIGIN}/booknow?${bookingQuery}`;
+  const bookingUrl = bookingQuery === null ? null : `${BOOKING_ORIGIN}/booknow?${bookingQuery}`;
 
   /**
    * There used to be a Speculation Rules prefetch of `bookingUrl` here with
@@ -1208,7 +1204,9 @@ export default function QuoteFlow({
 
                   <div className="grid gap-3 sm:grid-cols-2">
 
-                    {SELECTABLE_SERVICES.map((option) => (
+                    {/* Red Deer is confirmed for home cleaning only (owner, 2026-09-11):
+                        post-construction there is a question for the Red Deer office. */}
+                    {SELECTABLE_SERVICES.filter((option) => proof.key !== "reddeer" || option.id !== "post-construction").map((option) => (
                       <button
                         key={option.id}
                         type="button"
@@ -1247,6 +1245,16 @@ export default function QuoteFlow({
                 {/* Hourly and per-site work never enters the self-serve funnel. Short-term
                     rentals are priced per hour on a callback, and office cleaning is the one
                     commercial job quoted online (owner, 2026-09-10), through the contact form. */}
+                {proof.key === "reddeer" ? (
+                <p className="mt-3 text-base leading-relaxed text-foreground/80">
+                  The Red Deer office books house cleaning online. For any other kind of cleaning in
+                  Red Deer, call the Red Deer office at{" "}
+                  <a href={proof.phoneLink} className="inline-flex min-h-[44px] items-center font-bold text-foreground underline underline-offset-4 hover:text-brand-navy">
+                    {proof.phone}
+                  </a>{" "}
+                  and ask.
+                </p>
+                ) : (
                 <p className="mt-3 text-base leading-relaxed text-foreground/80">
                   Turnover cleaning for an Airbnb or VRBO rental is priced per hour: call{" "}
                   <a href={proof.phoneLink} className="inline-flex min-h-[44px] items-center font-bold text-foreground underline underline-offset-4 hover:text-brand-navy">
@@ -1254,7 +1262,7 @@ export default function QuoteFlow({
                   </a>{" "}
                   or{" "}
                   <Link
-                    to={`/contact-us/?topic=airbnb&city=${proof.city.toLowerCase()}`}
+                    to={`/contact-us/?topic=airbnb&city=${proof.key}`}
                     onClick={onClose}
                     className="inline-flex min-h-[44px] items-center font-bold text-foreground underline underline-offset-4 hover:text-brand-navy"
                   >
@@ -1262,7 +1270,7 @@ export default function QuoteFlow({
                   </Link>
                   . Office cleaning is quoted separately:{" "}
                   <Link
-                    to={`/contact-us/?topic=office&city=${proof.city.toLowerCase()}`}
+                    to={`/contact-us/?topic=office&city=${proof.key}`}
                     onClick={onClose}
                     className="inline-flex min-h-[44px] items-center font-bold text-foreground underline underline-offset-4 hover:text-brand-navy"
                   >
@@ -1270,6 +1278,7 @@ export default function QuoteFlow({
                   </Link>
                   .
                 </p>
+                )}
               </fieldset>
 
 
@@ -1493,7 +1502,10 @@ export default function QuoteFlow({
               {/* Proof at the point of hesitation. */}
               <p className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
                 <span className="text-brand-gold" aria-hidden="true">★</span>
-                Rated {RATING_CLAIM} · {proof.city} customers rate every cleaner
+                {/* The rating is the Edmonton and Calgary listings'. The Red Deer
+                    listing has no reviews yet, so a Red Deer quote shows none. */}
+                {hasGoogleRating(proof.key) ? <>Rated {RATING_CLAIM} · </> : null}
+                {proof.city} customers rate every cleaner
               </p>
 
             </form>
@@ -2127,26 +2139,11 @@ export default function QuoteFlow({
                   </p>
                 )}
 
-                {redDeer && (
-                  <p className="mt-3 rounded-sm bg-secondary/60 p-3 text-base leading-relaxed text-foreground">
-                    <span className="font-semibold">Red Deer is served:</span> call the Edmonton
-                    office at{" "}
-                    <a href={CITY_PROOF.edmonton.phoneLink} className="font-semibold underline underline-offset-4">
-                      {CITY_PROOF.edmonton.phone}
-                    </a>{" "}
-                    or the Calgary office at{" "}
-                    <a href={CITY_PROOF.calgary.phoneLink} className="font-semibold underline underline-offset-4">
-                      {CITY_PROOF.calgary.phone}
-                    </a>{" "}
-                    to book and confirm the travel charge.
-                  </p>
-                )}
-
-                {travelExtra && cityStatus === "outside" && !redDeer && (
+                {travelExtra && cityStatus === "outside" && (
                   <p className="mt-3 rounded-sm bg-secondary/60 p-3 text-base leading-relaxed text-foreground">
                     <span className="font-semibold">
-                      {normalizePostalCode(details.postalCode)} is outside Edmonton/Calgary city
-                      limits
+                      {normalizePostalCode(details.postalCode)} is outside Edmonton, Calgary and
+                      Red Deer city limits
                     </span>{" "}
                     — a {formatPrice(travelExtra.price)} travel fee applies; it covers the extra
                     travel time.
@@ -2158,7 +2155,7 @@ export default function QuoteFlow({
                 {travelExtra && cityStatus === "unknown" && (details.postalCode ?? "").length >= 6 && (
                   <fieldset className="mt-5 rounded-sm border border-border bg-card p-4">
                     <legend className="px-1 text-base font-bold text-foreground">
-                      Is your service address inside Edmonton or Calgary city limits?
+                      Is your service address inside Edmonton, Calgary or Red Deer city limits?
                     </legend>
                     <div className="mt-2 flex flex-wrap gap-3">
                       {[
@@ -2191,8 +2188,8 @@ export default function QuoteFlow({
 
 
                 <Callout label="Travel fee" className="mt-4">
-                  Addresses outside Edmonton or Calgary city limits include a travel fee — we
-                  confirm before your clean.
+                  Addresses outside Edmonton, Calgary and Red Deer city limits include a travel
+                  fee — we confirm before your clean.
                 </Callout>
 
                 <div className="mt-5">

@@ -144,6 +144,7 @@ const Garneau = lazy(() => import("./pages/locations/Garneau"));
 const OldStrathcona = lazy(() => import("./pages/locations/OldStrathcona"));
 const Airdrie = lazy(() => import("./pages/locations/Airdrie"));
 const Cochrane = lazy(() => import("./pages/locations/Cochrane"));
+const RedDeer = lazy(() => import("./pages/locations/RedDeer"));
 const Okotoks = lazy(() => import("./pages/locations/Okotoks"));
 const Chestermere = lazy(() => import("./pages/locations/Chestermere"));
 const Crossfield = lazy(() => import("./pages/locations/Crossfield"));
@@ -414,6 +415,7 @@ const App = () => (
           <Route path="/locations/old-strathcona" element={<OldStrathcona />} />
           <Route path="/locations/airdrie" element={<Airdrie />} />
           <Route path="/locations/cochrane" element={<Cochrane />} />
+          <Route path="/locations/red-deer" element={<RedDeer />} />
           <Route path="/locations/okotoks" element={<Okotoks />} />
           <Route path="/locations/chestermere" element={<Chestermere />} />
           <Route path="/locations/crossfield" element={<Crossfield />} />
@@ -534,6 +536,9 @@ const App = () => (
           <Route path="/wall-washing-wall-cleaning" element={<WallWashingEdmonton />} />
           <Route path="/cleaning-services-fort-saskatchewan" element={<FortSaskatchewan />} />
           <Route path="/cleaning-services-cochrane" element={<Cochrane />} />
+          {/* Preserved since 2026-09-11: the Red Deer branch's page, which its
+              Google listing's Website button links. It used to 301 to /locations/. */}
+          <Route path="/cleaning-services-red-deer" element={<RedDeer />} />
           <Route path="/wall-washing-wall-cleaning-calgary" element={<WallWashingCalgary />} />
           <Route path="/cleaning-services-stony-plain" element={<StonyPlain />} />
           <Route path="/cleaning-services-windermere" element={<Windermere />} />
@@ -563,7 +568,6 @@ const App = () => (
           <Route path="/airbnb-cleaning-service" element={<Navigate to="/edmonton/airbnb-cleaning/" replace />} />
           <Route path="/cleaning-services-strathmore" element={<Navigate to="/locations/strathmore/" replace />} />
           <Route path="/march-out-cleaning-edmonton" element={<Navigate to="/edmonton/march-out-cleaning/" replace />} />
-          <Route path="/cleaning-services-red-deer" element={<Navigate to="/locations/" replace />} />
           <Route path="/cleaning-services-glenora-edmonton-ab" element={<Navigate to="/locations/glenora-edmonton/" replace />} />
           <Route path="/1848/house-cleaning-hacks-easy-tips-for-busy-lives" element={<Navigate to="/blog/" replace />} />
           <Route path="/how-often-should-a-cleaning-service-clean-my-house" element={<BlogCleaningFrequency />} />

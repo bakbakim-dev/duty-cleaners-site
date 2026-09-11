@@ -209,7 +209,7 @@ P9  Home type: the table prices an apartment or condo. A bungalow or a basement 
     a townhouse $40, a two-storey house $55.
 P10 Homes with pets: $19.99 per visit. It is compulsory, and it shows on the quote before
     booking.
-P11 No trip fee inside Edmonton or Calgary city limits. Outside them the travel fee is $29.99 for
+P11 No trip fee inside Edmonton, Calgary or Red Deer city limits. Outside them the travel fee is $29.99 for
     home cleaning and $50 for post-construction.
 P12 Optional alternative products: $15 before GST. Ask the office which products are available
     and suitable for your surfaces when you book. Never call them eco-friendly, green, non-toxic or
@@ -273,10 +273,12 @@ A2  Calgary branch: 66 Calgary neighbourhoods, plus 9 communities outside the ci
     Black Diamond and Turner Valley amalgamated as the Town of Diamond Valley on 1 January 2023.
     Both keep their own pages, and a link to either one names the town: "Black Diamond (Diamond
     Valley)", "Turner Valley (Diamond Valley)".
-A3  Name only places on these lists. Red Deer is served too (owner, 2026-09-11): tell the reader
-    to call the Edmonton or Calgary office to book it and confirm the travel charge. For any
-    other address that is not listed, tell the reader to call the branch; never say whether it
-    is served.
+A3  Name only places on these lists. For any other address that is not listed, tell the reader
+    to call the branch; never say whether it is served.
+A4  Red Deer branch (since 2026-09-11): its own office at 5212 48 St, Red Deer, (587) 570-6979,
+    Monday to Saturday 7:00 AM to 9:00 PM, closed Sunday. Same prices, no travel fee inside Red
+    Deer, booked online like the other branches. It has no Google reviews yet: never give it the
+    4.9 rating. No surrounding communities are on file for it.
 
 City conditions you may use
 C1  Edmonton holds its cold rather than cycling through thaws, so the sand and salt tracked in

@@ -3,7 +3,7 @@ import { CITY_PROOF } from "@/data/proof";
 // shape, the NAP and the hours — individual pages only supply their name, URL,
 // and (optionally) geo, description and area.
 
-import { getListing } from "@/lib/google-listings";
+import { getListing, RED_DEER_LISTING } from "@/lib/google-listings";
 import { withTrailingSlash } from "@/data/legacy-urls";
 import {
   schemaAddressFor,
@@ -11,6 +11,9 @@ import {
   ORG_ID,
   BRANCH_ID,
   BRANCH_IDENTITY,
+  openingHoursSpecFor,
+  openingHoursShortFor,
+  type Branch,
 } from "@/data/proof";
 import { geoFor } from "@/data/location-geo";
 import { sitePriceRange } from "@/data/pricing";
@@ -19,7 +22,7 @@ import { sitePriceRange } from "@/data/pricing";
 export interface LocationSchemaInput {
   /** e.g. "Duty Cleaners - Windsor Park Calgary" */
   name: string;
-  city: "edmonton" | "calgary";
+  city: Branch;
   /** Absolute canonical URL of the location page */
   url: string;
   /**
@@ -42,10 +45,11 @@ export interface LocationSchemaInput {
   areaServed?: string;
 }
 
-const CITY_CONTACT = {
-  edmonton: { telephone: CITY_PROOF.edmonton.phoneE164, locality: "Edmonton" },
-  calgary: { telephone: CITY_PROOF.calgary.phoneE164, locality: "Calgary" },
-} as const;
+const CITY_CONTACT: Record<Branch, { telephone: string; locality: string; hasMap: string }> = {
+  edmonton: { telephone: CITY_PROOF.edmonton.phoneE164, locality: "Edmonton", hasMap: getListing("Edmonton").url },
+  calgary: { telephone: CITY_PROOF.calgary.phoneE164, locality: "Calgary", hasMap: getListing("Calgary").url },
+  reddeer: { telephone: CITY_PROOF.reddeer.phoneE164, locality: "Red Deer", hasMap: RED_DEER_LISTING.url },
+};
 
 
 /** Absolute URL with the site's canonical trailing slash. */
@@ -153,23 +157,12 @@ export function buildLocationSchema(input: LocationSchemaInput) {
       // Derived, and the same on every page of the branch. See the note on the
       // deprecated `priceRange` input above for what it replaces.
       priceRange: sitePriceRange(),
-      openingHours: ["Mo-Sa 08:00-20:00", "Su 09:00-15:00"],
-      openingHoursSpecification: [
-        {
-          "@type": "OpeningHoursSpecification",
-          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          opens: "08:00",
-          closes: "20:00",
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          dayOfWeek: "Sunday",
-          opens: "09:00",
-          closes: "15:00",
-        },
-      ],
+      // Per branch, from data/proof.ts: Red Deer keeps different hours from
+      // Edmonton and Calgary, so the hours are no longer one shared literal.
+      openingHours: openingHoursShortFor(input.city),
+      openingHoursSpecification: openingHoursSpecFor(input.city),
       // Permalink to the actual Google Business Profile, not a search query.
-      hasMap: getListing(contact.locality).url,
+      hasMap: contact.hasMap,
       // Per-branch, never brand-wide: BRANCH_PROFILES keeps the Edmonton node
       // off Calgary's listing and vice versa.
       sameAs: [...BRANCH_PROFILES[input.city]],

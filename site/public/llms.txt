@@ -1,6 +1,6 @@
 # Duty Cleaners
 
-> Professional house cleaning services in Edmonton, Calgary, and surrounding Alberta communities. Pay after your clean, rated 4.9 on Google, serving Alberta since 2017. Instant online quotes in about 60 seconds for home cleaning (standard, deep, move-in/move-out and post-construction).
+> Professional house cleaning services in Edmonton, Calgary, Red Deer, and surrounding Alberta communities. Pay after your clean, rated 4.9 on Google in Edmonton and Calgary, serving Alberta since 2017. Instant online quotes in about 60 seconds for home cleaning (standard, deep, move-in/move-out and post-construction).
 
 ## About
 
@@ -12,18 +12,19 @@ Duty Cleaners provides professional residential and commercial cleaning across E
 - 5,000+ bookings across Alberta since 2017 (a count of bookings, not of separate homes)
 - 80 Edmonton neighbourhoods + 9 surrounding communities served
 - 66 Calgary neighbourhoods + 9 surrounding communities served
+- Red Deer branch: its own office at 5212 48 St, Red Deer, AB T4N 1S4, phone (587) 570-6979, open Monday–Saturday 7:00 AM–9:00 PM and closed on Sunday (its hours differ from the Edmonton and Calgary offices'). Red Deer is priced on the same price list as Edmonton and Calgary, with no travel fee inside Red Deer city limits, and it is booked through the same instant quote. For an address outside Red Deer, call the Red Deer office. The Red Deer Google listing (https://www.google.com/maps?cid=10449244954117051184) is new and has no reviews yet; the 4.9 rating belongs to the Edmonton and Calgary listings only.
 - Reference-checked, customer-rated cleaners; under 5% of applicants are accepted
 - Google rating: 4.9 from 236 reviews on the Edmonton listing, and 4.9 from 51 reviews on the Calgary listing. Both counts were read from the listings themselves on 2026-09-01. The two are separate listings and separate counts; do not add them together.
 - All cleaning supplies and equipment brought to every job; optional alternative products available on request as a $15 add-on before GST — ask the office which products are available and suitable for your surfaces when you book; it is not a checkbox on the form. The cleaners are subcontractors who choose their own products, so the site makes no environmental or product-safety claim for them
 - Instant online quote in about 60 seconds for home cleaning (standard, deep, move-in/move-out and post-construction). Airbnb / short-term rental turnovers and commercial work are not priced by the instant quote — see below
-- Online bookings need at least 24 hours' notice; same-day or next-day slots are by phone only, when the schedule has availability — Edmonton (780) 913-6565, Calgary (403) 768-1341
+- Online bookings need at least 24 hours' notice; same-day or next-day slots are by phone only, when the schedule has availability — Edmonton (780) 913-6565, Calgary (403) 768-1341, Red Deer (587) 570-6979
 - After a quote request we text you within 24 hours to confirm the time
 - No contracts — book one clean or many
 - Payment: nothing is charged when you book. The day before your appointment a temporary hold is placed on your card to confirm it is valid. It can look like a charge in your banking app, but no money moves. Your card is charged once the clean is complete.
 - Airbnb / short-term rental turnovers are priced per hour on a callback: request one through the contact form's "Airbnb Cleaning" option (https://dutycleaners.ca/contact-us/) or phone the city office
 - Commercial: office cleaning is the only commercial work quoted online, through the contact form's "Office Cleaning" option (https://dutycleaners.ca/contact-us/), and the paths /contact-us/?topic=office&city=edmonton and /contact-us/?topic=office&city=calgary open it with Office Cleaning and the city chosen. The work is scoped at a walkthrough, priced per square foot and confirmed in a written quote that states the areas and the visit frequency
 - 24-hour re-clean satisfaction guarantee; photos help but are not required
-- Hours: Monday–Saturday 8:00 AM–8:00 PM, Sunday 9:00 AM–3:00 PM
+- Hours: the Edmonton and Calgary offices are open Monday–Saturday 8:00 AM–8:00 PM and Sunday 9:00 AM–3:00 PM; the Red Deer office Monday–Saturday 7:00 AM–9:00 PM, closed on Sunday
 - Arrival windows: 9:00–10:00 AM, 12:00–1:00 PM, 3:00–4:00 PM
 - Cancellation: 24 hours' notice; $50 inside that window
 - Lockout: if the team cannot get in, half the cost of the scheduled service
@@ -50,8 +51,8 @@ Published tier prices are STARTING ESTIMATES for an apartment or condo, not the 
 - Other hourly cleaning (a few rooms, a one-off task list, or a home that fits no size tier): from $65 per cleaner-hour, before GST.
 - Airbnb Turnover: charged by the hour at $60 per cleaner-hour, before GST. Hourly work has a minimum of 3 hours for one cleaner, or 2 hours for two cleaners, so the smallest turnover is $180 (one cleaner, 3 hours) or $240 (two cleaners, 2 hours each), before GST. Not priced by the instant online quote — turnovers are arranged on a callback.
 - Office & Commercial Cleaning: scoped at a walkthrough, priced per square foot and confirmed in a written quote. Not priced by the instant online quote.
-- Travel fee: a $29.99 travel fee is added to cleaning bookings OUTSIDE Edmonton and Calgary proper. It applies to the surrounding communities — St. Albert, Sherwood Park, Spruce Grove, Leduc, Beaumont, Fort Saskatchewan, Stony Plain, Morinville and Devon near Edmonton; Airdrie, Chestermere, Cochrane, Okotoks, High River, Strathmore, Crossfield, Langdon and Diamond Valley (formerly the separate towns of Black Diamond and Turner Valley) near Calgary — and is charged by postal code at booking. There is no trip fee inside Edmonton or Calgary. Post-construction cleaning carries a $50 travel fee instead.
-- Prices are identical in Edmonton and Calgary; there is no city premium
+- Travel fee: a $29.99 travel fee is added to cleaning bookings OUTSIDE Edmonton, Calgary and Red Deer proper. It applies to the surrounding communities — St. Albert, Sherwood Park, Spruce Grove, Leduc, Beaumont, Fort Saskatchewan, Stony Plain, Morinville and Devon near Edmonton; Airdrie, Chestermere, Cochrane, Okotoks, High River, Strathmore, Crossfield, Langdon and Diamond Valley (formerly the separate towns of Black Diamond and Turner Valley) near Calgary — and is charged by postal code at booking. There is no trip fee inside Edmonton, Calgary or Red Deer. Post-construction cleaning carries a $50 travel fee instead.
+- Prices are identical in Edmonton, Calgary and Red Deer; there is no city premium
 - All published prices are before 5% GST
 
 ## Services
@@ -75,7 +76,7 @@ Published tier prices are STARTING ESTIMATES for an apartment or condo, not the 
 - [Edmonton](https://dutycleaners.ca/): 80 neighbourhoods plus St. Albert, Sherwood Park, Spruce Grove, Leduc, Beaumont, Fort Saskatchewan, Stony Plain, Morinville, and Devon
 - [Calgary](https://dutycleaners.ca/cleaning-services-calgary/): 66 neighbourhoods plus Airdrie, Cochrane, Chestermere, Okotoks, High River, and more
 - [All Locations](https://dutycleaners.ca/locations/): Full list of neighbourhoods and communities we serve
-- Red Deer is served. To book a Red Deer clean, call the Edmonton office, (780) 913-6565, or the Calgary office, (403) 768-1341, and confirm the travel charge when you book.
+- [Red Deer](https://dutycleaners.ca/cleaning-services-red-deer/): the Red Deer office, 5212 48 St, Red Deer, AB T4N 1S4, (587) 570-6979, Monday–Saturday 7:00 AM–9:00 PM, closed on Sunday. The same prices as Edmonton and Calgary and no travel fee inside Red Deer city limits; for an address outside Red Deer, call the Red Deer office. Its Google listing has no reviews yet.
 
 ## Documentation
 

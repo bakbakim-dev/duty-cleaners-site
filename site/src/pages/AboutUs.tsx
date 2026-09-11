@@ -1,5 +1,5 @@
 import { POLICY } from "@/data/policy";
-import { BOOKINGS, CITY_PROOF, COMPANY, RATING_CLAIM } from "@/data/proof";
+import { BOOKINGS, CITY_PROOF, COMPANY, RATING_CLAIM, hoursLineFor } from "@/data/proof";
 import { calgaryNeighborhoods, calgarySurrounding, edmontonNeighborhoods, edmontonSurrounding } from "@/data/city-locations";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -14,15 +14,15 @@ export default function AboutUs() {
   return <div className="min-h-screen">
       <Helmet>
         <title>About Duty Cleaners | Edmonton & Calgary House Cleaning</title>
-        <meta name="description" content="Duty Cleaners has cleaned Alberta homes since 2017 from offices in Edmonton and Calgary, with cleaners reference-checked and rated after every visit." />
+        <meta name="description" content="Duty Cleaners has cleaned homes since 2017 from offices in Edmonton, Calgary and Red Deer, with reference-checked, customer-rated cleaners." />
         <link rel="canonical" href="https://dutycleaners.ca/about-us/" />
         <meta property="og:title" content="About Duty Cleaners | Edmonton & Calgary House Cleaning" />
-        <meta property="og:description" content="Duty Cleaners has cleaned Alberta homes since 2017 from offices in Edmonton and Calgary, with cleaners reference-checked and rated after every visit." />
+        <meta property="og:description" content="Duty Cleaners has cleaned homes since 2017 from offices in Edmonton, Calgary and Red Deer, with reference-checked, customer-rated cleaners." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/about-us/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="About Duty Cleaners | Edmonton & Calgary House Cleaning" />
-        <meta name="twitter:description" content="Duty Cleaners has cleaned Alberta homes since 2017 from offices in Edmonton and Calgary, with cleaners reference-checked and rated after every visit." />
+        <meta name="twitter:description" content="Duty Cleaners has cleaned homes since 2017 from offices in Edmonton, Calgary and Red Deer, with reference-checked, customer-rated cleaners." />
       </Helmet>
       <Navigation />
       <main id="main-content" tabIndex={-1}>
@@ -44,7 +44,7 @@ export default function AboutUs() {
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="display-serif text-4xl md:text-5xl mb-6 font-bold text-white lg:text-7xl">About Duty Cleaners</h1>
             <p className="text-xl md:text-2xl mb-8 text-white/85 font-semibold">
-              Duty Cleaners cleans homes from an Edmonton office and a Calgary office, and both are rated {RATING_CLAIM}.
+              Duty Cleaners cleans homes from offices in Edmonton, Calgary and Red Deer; the Edmonton and Calgary offices are rated {RATING_CLAIM}.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90" asChild>
@@ -71,8 +71,8 @@ export default function AboutUs() {
                 sending.
               </p>
               <p>
-                The company runs out of two offices, Edmonton and Calgary, which have taken{" "}
-                {BOOKINGS} bookings between them.
+                The company runs out of three offices, in Edmonton, Calgary and Red Deer, which have
+                taken {BOOKINGS} bookings between them.
               </p>
               <p>
                 If something gets missed, tell us within {POLICY.guaranteeWindowHours} hours and we come
@@ -87,17 +87,20 @@ export default function AboutUs() {
       {/* Our Journey */}
       <section className="py-20 bg-muted/20">
         <div className="container mx-auto px-4">
-          <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-4">Two offices, one company</h2>
+          <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-4">Three offices, one company</h2>
           <p className="text-center text-muted-foreground mb-14 max-w-2xl mx-auto">
-            Each office has its own address, phone number and Google listing, and both charge the same prices and give the same guarantee.
+            Each office has its own address, phone number and Google listing, and all three charge the same prices and give the same guarantee.
           </p>
           <div className="relative max-w-5xl mx-auto">
             <div className="absolute left-[7px] top-2 bottom-2 w-0.5 bg-brand-gold/40 md:left-0 md:right-0 md:top-[7px] md:bottom-auto md:h-0.5 md:w-auto" aria-hidden="true" />
-            <div className="grid gap-10 md:grid-cols-4 md:gap-6">
+            <div className="grid gap-10 md:grid-cols-5 md:gap-6">
               {[
                 { title: "Since 2017", text: "Duty Cleaners has cleaned homes in Alberta since 2017, from an Edmonton branch and a Calgary branch." },
                 { title: "Edmonton office", text: `The Edmonton office is at ${CITY_PROOF.edmonton.streetAddress} and answers on ${CITY_PROOF.edmonton.phone}. It covers ${edmontonNeighborhoods.length} Edmonton neighbourhoods and ${edmontonSurrounding.length} communities outside the city, including St. Albert, Sherwood Park and Spruce Grove.` },
                 { title: "Calgary office", text: `The Calgary office is at ${CITY_PROOF.calgary.streetAddress} and answers on ${CITY_PROOF.calgary.phone}. It covers ${calgaryNeighborhoods.length} Calgary neighbourhoods and ${calgarySurrounding.length} communities outside the city, including Airdrie, Cochrane and Okotoks.` },
+                // Red Deer (owner, 2026-09-11): its own office and Google listing. No
+                // surrounding communities are on file for it, so none are named.
+                { title: "Red Deer office", text: `The Red Deer office is at ${CITY_PROOF.reddeer.streetAddress} and answers on ${CITY_PROOF.reddeer.phone}. It covers Red Deer, with no travel fee inside the city, and its Google listing is new.` },
                 { title: RATING_CLAIM, text: `${CITY_PROOF.edmonton.googleReviewCount} reviews on the Edmonton listing and ${CITY_PROOF.calgary.googleReviewCount} on the Calgary one. Google keeps the two counts separate, and so do we.` },
               ].map((step, index) => (
                 <div key={step.title} className="relative pl-10 md:pl-0 md:pt-10">
@@ -200,8 +203,9 @@ export default function AboutUs() {
             <p className="text-lg text-muted-foreground mb-8">
               Each visit is booked into an arrival window: 9:00 to 10:00 AM, 12:00 to 1:00 PM, or 3:00 to
               4:00 PM. Changing or cancelling a booking needs {POLICY.cancellationNoticeHours} hours'
-              notice, and inside that the fee is {POLICY.cancellationFee}. Office hours are Monday to
-              Saturday 8:00 AM to 8:00 PM, and Sunday 9:00 AM to 3:00 PM.
+              notice, and inside that the fee is {POLICY.cancellationFee}. The Edmonton and Calgary
+              offices are open {hoursLineFor("edmonton")}; the Red Deer office is open{" "}
+              {hoursLineFor("reddeer")}.
             </p>
             <p className="text-lg text-muted-foreground mb-8">
               Some things are outside every service: outdoor work and exterior windows, anything beyond a

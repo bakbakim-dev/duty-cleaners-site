@@ -88,3 +88,30 @@ export function cityFromPath(pathname: string): City {
 }
 
 export const isCalgaryPath = (pathname: string) => cityFromPath(pathname) === "calgary";
+
+/**
+ * The three branches. Red Deer is a branch with its own office, phone, hours
+ * and Google listing (owner, 2026-09-11), but it has ONE page and no service,
+ * pricing or neighbourhood pages of its own. So `City` stays the two cities
+ * that own a hub, a price list and a set of service pages, and `Branch` adds
+ * Red Deer for the things that follow the office rather than the page family:
+ * the phone number, the address, the hours and the schema entity.
+ */
+export type Branch = City | "reddeer";
+
+/** Every URL that serves the Red Deer page: the canonical one and its modern route. */
+const RED_DEER_PATHS: ReadonlySet<string> = new Set([
+  "/cleaning-services-red-deer",
+  "/locations/red-deer",
+]);
+
+/**
+ * Which branch office a URL belongs to. The Red Deer page is the only Red Deer
+ * URL; everything else resolves exactly as `cityFromPath` does, so the
+ * Edmonton and Calgary behaviour is unchanged.
+ */
+export function branchFromPath(pathname: string): Branch {
+  const path = (pathname || "/").toLowerCase().replace(/\/+$/, "") || "/";
+  if (RED_DEER_PATHS.has(path)) return "reddeer";
+  return cityFromPath(pathname);
+}

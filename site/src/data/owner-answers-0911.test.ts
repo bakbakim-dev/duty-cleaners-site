@@ -123,7 +123,7 @@ describe("the owner's answers of 2026-09-11", () => {
       const m = DENIAL.exec(prose(read(full)));
       if (m) hits.push(`${rel(full)}: "${m[0]}"`);
     }
-    expect(hits, "the owner serves Red Deer; say to call the Edmonton or Calgary office").toEqual([]);
+    expect(hits, "the owner serves Red Deer from its own office").toEqual([]);
   });
 
   it("the Edmonton price list shows the balcony / garage sweep add-on", () => {

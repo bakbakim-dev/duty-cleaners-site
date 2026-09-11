@@ -21,7 +21,7 @@
  * (pages/PrivacyPolicy.tsx) describes exactly this.
  */
 
-import { cityFromPath } from "@/lib/city-from-path";
+import { branchFromPath } from "@/lib/city-from-path";
 import { TRACKED_PARAMS } from "@/lib/tracking";
 
 declare global {
@@ -319,7 +319,8 @@ export function initContactClickTracking(): void {
       const anchor = target?.closest?.('a[href^="tel:"], a[href^="mailto:"]');
       if (!anchor) return;
       const href = anchor.getAttribute("href") ?? "";
-      const city = cityFromPath(window.location.pathname);
+      // The branch, so a call from the Red Deer page records "reddeer".
+      const city = branchFromPath(window.location.pathname);
       track(href.startsWith("tel:") ? "phone_click" : "email_click", { city });
     },
     { capture: true, passive: true },

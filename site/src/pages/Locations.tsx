@@ -1,4 +1,4 @@
-import { CITY_PROOF } from "@/data/proof";
+import { CITY_PROOF, RED_DEER_PATH, hoursRowsFor } from "@/data/proof";
 import { COMPANY, RATING_CLAIM } from "@/data/proof";
 import { formatPrice } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
@@ -29,7 +29,8 @@ import {
   Calculator,
   ArrowRight,
   Building2,
-  WashingMachine
+  WashingMachine,
+  Clock
 } from "lucide-react";
 
 /** Charged per visit outside either city's limits; read from bk-config. */
@@ -411,6 +412,67 @@ function LocationCard({ location }: { location: typeof mainLocations[0] }) {
   );
 }
 
+/** The Red Deer office, read from proof.ts. It has one page and no neighbourhood list. */
+function RedDeerOfficeCard() {
+  const office = CITY_PROOF.reddeer;
+  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${office.streetAddress}, Red Deer, AB ${office.postalCode}`)}`;
+  return (
+    <div className="mx-auto mt-8 max-w-5xl rounded-2xl border border-white/10 bg-brand-navy p-8 text-white shadow-lg">
+      <div className="grid gap-8 md:grid-cols-2">
+        <div>
+          <h2 className="mb-3 text-3xl font-bold text-white">Red Deer</h2>
+          <p className="mb-6 text-white/85">
+            The Red Deer office books house cleaning in Red Deer on the same price list as Edmonton
+            and Calgary, and there is no travel fee inside Red Deer city limits.
+          </p>
+          <div className="space-y-4">
+            <div className="flex items-center gap-4">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/10">
+                <Phone className="h-5 w-5 text-accent" />
+              </div>
+              <a href={office.phoneLink} className="text-xl font-bold text-white transition-colors hover:text-accent hover:underline">
+                {office.phone}
+              </a>
+            </div>
+            <div className="flex items-start gap-4">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/10">
+                <MapPin className="h-5 w-5 text-accent" />
+              </div>
+              <a href={mapsUrl} target="_blank" rel="noopener noreferrer" className="decoration-accent/60 underline-offset-4 hover:underline">
+                <div className="font-semibold text-white">{office.streetAddress}</div>
+                <div className="text-white/90">Red Deer, AB {office.postalCode}</div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div className="mb-6 rounded-xl border border-white/10 bg-white/5 p-5">
+            <div className="mb-2 flex items-center gap-2 font-semibold text-white">
+              <Clock className="h-5 w-5 text-accent" aria-hidden="true" />
+              Red Deer office hours
+            </div>
+            {hoursRowsFor("reddeer").map(([days, time]) => (
+              <div key={days} className="flex justify-between gap-3 text-sm text-white/90">
+                <span>{days}</span>
+                <span>{time}</span>
+              </div>
+            ))}
+          </div>
+          <p className="mb-6 text-sm text-white/80">
+            For an address outside Red Deer, call the Red Deer office before you book.
+          </p>
+          <Button asChild size="lg" className="h-12 w-full bg-accent text-base font-semibold text-accent-foreground shadow-md hover:bg-accent/90">
+            <Link to={RED_DEER_PATH}>
+              House cleaning in Red Deer
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /**
  * Town anchors say what the destination is. Every one of these was a bare town
  * name, so nothing on this page told a crawler the pages were about cleaning.
@@ -457,10 +519,9 @@ function NeighborhoodLink({ name, link, variant = "edmonton" }: { name: string; 
 
 const TITLE = "House Cleaning Locations in Alberta | Duty Cleaners";
 const DESCRIPTION =
-  "House cleaning in Edmonton, Calgary and the towns around each, from two offices, with no travel fee inside city limits and reference-checked cleaners.";
+  "House cleaning in Edmonton, Calgary, Red Deer and the towns around Edmonton and Calgary, with no travel fee inside city limits.";
 
 export default function Locations() {
-  const calgaryQuote = `${canonicalForPath("/calgary")}#quote`;
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
@@ -504,14 +565,14 @@ export default function Locations() {
             {/* "Our Service Locations" named no place, on the one page whose
                 whole job is naming places. */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              House cleaning in <span className="text-accent">Edmonton and Calgary</span>, and the
-              Alberta towns around each
+              House cleaning in <span className="text-accent">Edmonton, Calgary and Red Deer</span>, and
+              the Alberta towns around Edmonton and Calgary
             </h1>
 
             <p className="text-xl text-white/80 leading-relaxed mb-10">
-              Each city has its own office and its own price list, and a travel fee applies only
-              outside city limits. Every neighbourhood and town the two offices cover is listed by
-              city, each linked to its own page.
+              Each city has its own office, and a travel fee applies only outside city limits.
+              Every neighbourhood and town the Edmonton and Calgary offices cover is listed by city,
+              each linked to its own page, and the Red Deer office has a page of its own.
             </p>
 
             {/* Trust Badges */}
@@ -522,7 +583,7 @@ export default function Locations() {
               </div>
               <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-5 py-3 rounded-full border border-white/20">
                 <Award className="w-5 h-5 text-accent" />
-                <span className="font-medium text-white">{RATING_CLAIM}</span>
+                <span className="font-medium text-white">{RATING_CLAIM} (Edmonton and Calgary)</span>
               </div>
               <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-5 py-3 rounded-full border border-white/20">
                 <Users className="w-5 h-5 text-accent" />
@@ -550,7 +611,7 @@ export default function Locations() {
       <section className="py-20 bg-secondary/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Two offices: Edmonton and Calgary</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Three offices: Edmonton, Calgary and Red Deer</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Call the office for your city, or see your price online in about a minute. Nothing is
               charged until the clean is done.
@@ -562,6 +623,11 @@ export default function Locations() {
               <LocationCard key={location.name} location={location} />
             ))}
           </div>
+
+          {/* The Red Deer branch (owner, 2026-09-11): its own office, phone and
+              hours, the same price list, and no travel fee inside Red Deer. No
+              rating: its Google listing has no reviews yet. */}
+          <RedDeerOfficeCard />
         </div>
       </section>
 
@@ -729,10 +795,10 @@ export default function Locations() {
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Where the Edmonton and Calgary offices clean</h2>
             <p className="text-muted-foreground max-w-3xl mx-auto">
-              The map shows both cities and the communities around each. Red Deer is served too:
-              to book a Red Deer clean, call the Edmonton office at {CITY_PROOF.edmonton.phone} or
-              the Calgary office at {CITY_PROOF.calgary.phone} and confirm the travel charge. For any
-              other address that is not listed, call the Edmonton or Calgary office and ask.
+              The map shows both cities and the communities around each. Red Deer has its own
+              office, on {CITY_PROOF.reddeer.phone}, with no travel fee inside Red Deer city limits.
+              For any other address that is not listed, call the Edmonton, Calgary or Red Deer office
+              and ask.
             </p>
           </div>
 
@@ -753,11 +819,11 @@ export default function Locations() {
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
               <Star className="w-4 h-4 text-accent" />
-              <span className="text-white/90 text-sm font-medium">{RATING_CLAIM}</span>
+              <span className="text-white/90 text-sm font-medium">{RATING_CLAIM} (Edmonton and Calgary)</span>
             </div>
 
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              See your price in Edmonton or Calgary
+              See your price in Edmonton, Calgary or Red Deer
             </h2>
 
             <p className="text-xl text-white/80 mb-10">
@@ -781,20 +847,30 @@ export default function Locations() {
                 </a>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10">
-                <a href={calgaryQuote}>
+                <Link to={canonicalForPath("/calgary")}>
                   <Calculator className="w-5 h-5 mr-2" />
-                  See My Instant Price, Calgary
-                </a>
+                  See Calgary Prices
+                </Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10">
+                <Link to={RED_DEER_PATH}>
+                  <Calculator className="w-5 h-5 mr-2" />
+                  See Red Deer Prices
+                </Link>
               </Button>
             </div>
             <p className="mt-8 text-white/80">
               Or call:{" "}
               <a href={CITY_PROOF.edmonton.phoneLink} className="text-accent underline underline-offset-2">
                 Edmonton {CITY_PROOF.edmonton.phone}
-              </a>{" "}
-              and{" "}
+              </a>
+              ,{" "}
               <a href={CITY_PROOF.calgary.phoneLink} className="text-accent underline underline-offset-2">
                 Calgary {CITY_PROOF.calgary.phone}
+              </a>
+              {" "}and{" "}
+              <a href={CITY_PROOF.reddeer.phoneLink} className="text-accent underline underline-offset-2">
+                Red Deer {CITY_PROOF.reddeer.phone}
               </a>
               . Questions that are not about price go through{" "}
               <Link to="/contact-us/" className="text-accent underline underline-offset-2">

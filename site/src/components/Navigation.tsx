@@ -1,4 +1,4 @@
-import { CITY_PROOF } from "@/data/proof";
+import { CITY_PROOF, RED_DEER_PATH, type Branch } from "@/data/proof";
 import { quoteHrefFor } from "@/lib/quote-link";
 import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -31,6 +31,12 @@ import AnnouncementBar from "@/components/AnnouncementBar";
 
 interface NavigationProps {
   city?: "edmonton" | "calgary";
+  /**
+   * The branch office whose phone the nav shows, when it is not the city's.
+   * Only the Red Deer page passes it: Red Deer has its own office and phone
+   * but no service pages of its own, so the service links stay Edmonton's.
+   */
+  branch?: Branch;
 }
 
 interface DropdownItem {
@@ -122,7 +128,7 @@ function NavLink({
   );
 }
 
-export default function Navigation({ city }: NavigationProps) {
+export default function Navigation({ city, branch: branchKey }: NavigationProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
@@ -209,7 +215,7 @@ export default function Navigation({ city }: NavigationProps) {
   // Both were written out by hand here, and they disagreed: Calgary got
   // parentheses and Edmonton did not, on every page of the site. proof.ts is
   // the NAP authority — read it rather than restating the number.
-  const branch = CITY_PROOF[city === "calgary" ? "calgary" : "edmonton"];
+  const branch = CITY_PROOF[branchKey ?? (city === "calgary" ? "calgary" : "edmonton")];
   const phone = branch.phone;
   const phoneLink = branch.phoneLink;
   // NOTE: cityPath composes MODERN routes (/edmonton/pricing). Several of
@@ -232,6 +238,7 @@ export default function Navigation({ city }: NavigationProps) {
   const locationsItems: DropdownItem[] = [
     { to: "/", icon: MapPin, title: "Edmonton", description: "Edmonton neighbourhoods and nearby communities" },
     { to: canonicalForPath("/calgary"), icon: MapPin, title: "Calgary", description: "Calgary neighbourhoods and nearby communities" },
+    { to: RED_DEER_PATH, icon: MapPin, title: "Red Deer", description: "The Red Deer office" },
     { to: "/locations/", icon: Globe2, title: "All Locations", description: "See everywhere we clean" },
   ];
 
@@ -243,7 +250,7 @@ export default function Navigation({ city }: NavigationProps) {
     { to: canonicalForPath(`${cityPath}/wall-washing`), icon: Sparkles, title: "Wall Washing", description: "Spot cleaning or a full wash, booked with a clean" },
     { to: canonicalForPath(`${cityPath}/airbnb-cleaning`), icon: KeyRound, title: "Airbnb Turnovers", description: "Changeovers between guests, priced hourly" },
     // March-out is Edmonton-only military housing work, quoted by phone.
-    ...(city === "calgary"
+    ...(city === "calgary" || branchKey === "reddeer"
       ? []
       : [{
           to: "/edmonton/march-out-cleaning/",

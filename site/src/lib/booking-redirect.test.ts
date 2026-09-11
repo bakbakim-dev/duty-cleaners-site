@@ -556,6 +556,31 @@ describe("Red Deer postal codes", () => {
       expect(isRedDeerPostalCode(code), String(code)).toBe(false);
     }
   });
+
+  // Owner, 2026-09-11: Red Deer has its own office, so a Red Deer code pays no
+  // travel fee and is named as Red Deer on the no-fee confirmation line.
+  it("prices a Red Deer code as in-city, with no travel fee", () => {
+    for (const code of ["T4N 1S4", "T4P 2B2", "T4R 3C3"]) {
+      expect(postalCodeCityStatus(code), code).toBe("inside");
+      expect(postalCodeCityName(code), code).toBe("Red Deer");
+    }
+  });
+
+  it("keeps T4S (Sylvan Lake and Red Deer County) and the other T4 codes outside", () => {
+    for (const code of ["T4S 1A1", "T4E 1A1", "T4G 1A1", "T4L 1A1"]) {
+      expect(postalCodeCityStatus(code), code).toBe("outside");
+    }
+  });
+});
+
+describe("Tsuut'ina Nation (T3T)", () => {
+  // Owner, 2026-09-11: Tsuut'ina Nation addresses do not pay the travel fee.
+  // T3T falls under Calgary's T3 prefix rule, which already charges no fee;
+  // this pins it so a future FSA exception cannot start charging it.
+  it("adds no travel fee for a T3T postal code", () => {
+    expect(postalCodeCityStatus("T3T 0A1")).toBe("inside");
+    expect(postalCodeCityStatus("t3t1b2")).toBe("inside");
+  });
 });
 
 

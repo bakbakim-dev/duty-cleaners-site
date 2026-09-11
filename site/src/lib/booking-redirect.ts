@@ -182,7 +182,7 @@ export function normalizePostalCode(input: string | undefined | null): string | 
 
 /**
  * Which city's limits a postal code lies in, for the travel fee (none inside
- * either city) and the confirmation line.
+ * Edmonton, Calgary or Red Deer) and the confirmation line.
  *
  * Checked on 2026-09-11 by overlaying Statistics Canada's 2021 Forward
  * Sortation Area boundary file (catalogue 92-179-X, as republished by the City
@@ -210,19 +210,38 @@ const CITY_BY_PREFIX: Record<string, string> = {
   T3: "Calgary",
 };
 
-/** Whole-FSA exceptions to CITY_BY_PREFIX; null means outside both cities. */
+/**
+ * Red Deer's FSAs. Red Deer is a branch with its own office (owner,
+ * 2026-09-11): no travel fee inside the city, and BookingKoala accepts these
+ * codes, so they are priced and booked online like an in-city Edmonton or
+ * Calgary code.
+ *
+ * Checked on 2026-09-11 by overlaying Statistics Canada's 2021 FSA boundary
+ * file (lfsa000b21a, served as layer 14 of geo.statcan.gc.ca's 2021
+ * Cartographic_boundary_files MapServer) on the 2021 census subdivision
+ * boundary of the City of Red Deer (CSDUID 4808011, layer 9), sampled on a
+ * 100 m grid:
+ *
+ *  - T4P and T4R lie entirely inside the city (100% of their land).
+ *  - T4N (central Red Deer, including the office at 5212 48 St) is 71.5% inside
+ *    the city; the rest is rural land just south of the city limit. It keeps
+ *    the city rule, like the straddling Calgary FSAs above.
+ *  - T4S is Sylvan Lake's FSA, with the surrounding Red Deer County: only 11.3%
+ *    of its land is inside the city (the north end). It stays an outside code
+ *    and pays the travel fee.
+ *  - T4E, T4G, T4J and T4L have no land inside the city.
+ *
+ * T3T (Tsuut'ina Nation) stays inside Calgary's rule and pays no travel fee
+ * (owner, 2026-09-11); booking-redirect.test.ts pins it.
+ */
+const RED_DEER_FSAS = ["T4N", "T4P", "T4R"];
+
+/** Whole-FSA exceptions to CITY_BY_PREFIX; null means outside every branch city. */
 const CITY_BY_FSA: Record<string, string | null> = {
   T1Y: "Calgary",
   T3Z: null,
+  ...Object.fromEntries(RED_DEER_FSAS.map((fsa) => [fsa, "Red Deer"])),
 };
-
-/**
- * Red Deer's FSAs (Canada Post: T4N central, T4P north, T4R south; their 2021
- * boundaries cover the city). Red Deer is served, but its travel charge and
- * whether it can be booked online are not on file, so the funnel sends these
- * codes to the phone instead of adding the Edmonton/Calgary travel fee.
- */
-const RED_DEER_FSAS = ["T4N", "T4P", "T4R"];
 
 function cityForPostalCode(normalized: string): string | null {
   const fsa = normalized.slice(0, 3);
@@ -231,8 +250,8 @@ function cityForPostalCode(normalized: string): string | null {
 }
 
 /**
- * Whether an address is inside Edmonton/Calgary city limits, judged by the
- * postal code alone. "unknown" means we couldn't tell and the funnel should
+ * Whether an address is inside Edmonton, Calgary or Red Deer city limits,
+ * judged by the postal code alone. "unknown" means we couldn't tell and the funnel should
  * fall back to asking.
  */
 export function postalCodeCityStatus(

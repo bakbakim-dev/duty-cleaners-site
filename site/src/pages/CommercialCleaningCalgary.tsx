@@ -164,7 +164,7 @@ export default function CommercialCleaningCalgary() {
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
                 <Button size="lg" className="bg-accent hover:bg-accent/90 text-white h-12 px-6" asChild>
-                  <Link to={QUOTE_HREF}>Request a Commercial Cleaning Quote</Link>
+                  <Link to={QUOTE_HREF}>Request an Office Cleaning Quote</Link>
                 </Button>
                 <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 h-12 px-6" asChild>
                   <a href={CITY_PROOF.calgary.phoneLink}>
@@ -272,7 +272,7 @@ export default function CommercialCleaningCalgary() {
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
                 <FeatureItem icon={Shield} title="Customer-Rated Cleaners" description="Every cleaner is reference-checked before their first job and rated after every visit. Those ratings decide who keeps working on your site." />
                 <FeatureItem icon={Award} title="Experienced Professionals" description="Cleaning in Alberta since 2017. For contracts needing specific insurance certificates or security clearances, ask at the walkthrough and we confirm in writing what we can provide." />
-                <FeatureItem icon={CalendarCheck} title="Flexible Scheduling" description="We work around your business hours with options for early morning and weekend cleanings." />
+                <FeatureItem icon={CalendarCheck} title="Flexible Scheduling" description="Early-morning, evening and weekend visits outside the Calgary office's regular hours can be arranged around the hours your business keeps." />
                 <FeatureItem icon={ThumbsUp} title="Missed Items Re-Cleaned" description={`Tell us within ${POLICY.guaranteeWindowHours} hours of the clean if something in the agreed scope was missed, and the team comes back to clean it at no charge.`} />
                 <FeatureItem icon={Star} title="Written Quotes" description="Priced per square foot, with the areas, the visit frequency and the pricing basis set out in writing before anything is booked." />
                 <FeatureItem icon={ClipboardCheck} title="Products and Site Protocols" description="Tell us about required products and site protocols at the walkthrough. We confirm in writing which requirements we can meet before you book." />
@@ -337,7 +337,7 @@ export default function CommercialCleaningCalgary() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button size="lg" className="bg-accent hover:bg-accent/90 text-white h-12 px-8" asChild>
-                    <Link to={QUOTE_HREF}>Request a Commercial Cleaning Quote</Link>
+                    <Link to={QUOTE_HREF}>Request an Office Cleaning Quote</Link>
                   </Button>
                   <Button size="lg" variant="outline" className="h-12 px-8" asChild>
                     <a href={CITY_PROOF.calgary.phoneLink}>

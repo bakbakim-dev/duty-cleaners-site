@@ -4,8 +4,9 @@ Read this first. It is the current state as of 2026-09-11; where any other docum
 repo disagrees with it or with the code, the code and this file win.
 
 ## What this is
-A prerendered React/Vite rebuild of dutycleaners.ca: a house-cleaning company with two branches
-(Edmonton and Calgary), each with its own address, phone and Google listing. The app is in
+A prerendered React/Vite rebuild of dutycleaners.ca: a house-cleaning company with three branches
+(Edmonton, Calgary and, since 2026-09-11, Red Deer), each with its own address, phone and Google
+listing. Edmonton and Calgary have full city hubs; Red Deer has one branch page. The app is in
 `site/`. Leads go to GoHighLevel through the API v2 contacts/upsert relay (`site/src/config/ghl.ts`,
 `site/supabase/functions/ghl-quote`); bookings hand off to BookingKoala
 (`site/src/lib/booking-redirect.ts`, `BOOKING_ORIGIN`). The site is NOT live yet: DNS still points
@@ -17,7 +18,7 @@ BookingKoala header script.
 - `bunx vite build` — fast build, no generators.
 - `bun run build` — prebuild generators (post dates, sitemaps, redirects, .htaccess; they date
   sitemaps from git) then vite build.
-- `bun run prerender:all` — prerenders all 209 pages into `dist/` (about 47 s). Run it after any
+- `bun run prerender:all` — prerenders all 210 pages into `dist/` (about 47 s). Run it after any
   build: many tests read `dist/`.
 - `bunx vitest run` — the suite (32 files). `bun run typecheck` — tsc.
 - `bun run prove` — break-it proofs: every guard test has an entry in `scripts/guard-proofs.ts`
@@ -43,7 +44,7 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
 - Owner-settled values are wrapped in `confirm()` (`confirmed.ts`) with who and when. In proof.ts
   a `null` means "not confirmed; render nothing". policy.ts allows no nulls.
 - Coverage lists: `city-locations.ts`. Nearby links: `nearby.ts`, generated from coordinates.
-- Legacy WordPress URLs: `legacy-urls.ts` (31 preserved, 139 redirected). Trailing slash is canonical.
+- Legacy WordPress URLs: `legacy-urls.ts` (32 preserved, 138 redirected; /cleaning-services-red-deer/ is the Red Deer branch page). Trailing slash is canonical.
 - Copy rules and facts: `DUTY-CLEANERS-CONTENT-PROMPT.md` (also published as a private artifact;
   edit the markdown, then republish the artifact to the same URL).
 
@@ -68,6 +69,8 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
   2026-09-11: "Office & Commercial Cleaning <city>", priced per square foot, scoped at a
   walkthrough and confirmed in a written quote; primary CTA `/contact-us/?topic=office&city=<city>`.
   Each city homepage and services hub carries one pointer to its commercial page, nothing more.
+  The button reads "Request an Office Cleaning Quote". The late-cancellation fee and the 24-hour
+  re-clean apply to commercial clients too, and work outside office hours can be arranged (owner).
 - Black Diamond + Turner Valley are the Town of Diamond Valley: both URLs stay; every link and
   label names Diamond Valley.
 - Office pins are the Google listings' own coordinates (`CITY_PROOF.geo`); the addresses match
@@ -83,12 +86,21 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
   ask the office which products are available and suitable for your surfaces. Never eco, green,
   non-toxic or pet-safe. Guarded.
 - Garage/balcony sweep (2026-09-11): a real add-on, offered mostly in summer when the weather
-  allows; a sweep, not a full garage clean. Garages and patios are otherwise excluded.
+  allows; a sweep, not a full garage clean. Garages and patios are otherwise excluded. It stays
+  bookable year-round in BookingKoala; the site note is enough (owner).
 - Move-out: interior window cleaning is a paid add-on, never part of the move-out clean (window
   sills and tracks are wiped).
-- Red Deer is served (2026-09-11). Which office, the travel charge and online booking are not on
-  file (to-do 11): copy says to call the Edmonton or Calgary office. The old Red Deer URL still
-  redirects to /locations/ until a page can be written from real details.
+- Red Deer is a third branch (owner, 2026-09-11) with its own office and Google listing: "Duty
+  Cleaners House Cleaning Services Red Deer", 5212 48 St, Red Deer, AB T4N 1S4, (587) 570-6979,
+  Mon-Sat 7 AM-9 PM, Sunday closed, pin 52.2673285,-113.8189323, CID 10449244954117051184. Same
+  prices, no travel fee inside Red Deer, bookable online (BookingKoala accepts Red Deer postal
+  codes). The listing's website button points to /cleaning-services-red-deer/, which is the
+  branch page (no longer a redirect). No Google reviews yet: never give Red Deer a rating.
+- Travel-fee postal codes (2026-09-11): T1Y is Calgary (no fee), T3Z pays the fee, Tsuut'ina
+  Nation (T3T) pays no fee (owner). FSAs that straddle a city limit (T2Y, T3L, T3P, T3R, T2P, T1X,
+  T4A) stay as they are (owner).
+- Worked price examples show exact cents beside the rounded table card (owner OK). Individual
+  Google review links are not needed; review links open the branch profile and say so.
 - Alberta deposit rule (alberta.ca/ending-a-tenancy): within 10 days of the tenant moving out the
   landlord returns the deposit, or the balance with a statement of deductions (an estimate is
   allowed, final statement within 30 days). Never the bare "returned within 10 days". Guarded.
@@ -146,8 +158,8 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
 10. Redeploy the ghl-quote relay (Supabase) so it accepts the new preview origin; the code
    allows it since 2026-09-11, but until the relay is redeployed the quote form on
    duty-cleaners-preview.netlify.app cannot submit. Touches the lead pipeline: owner go-ahead first.
-11. Red Deer: which office serves it, the travel charge, and whether BookingKoala accepts Red
-   Deer postal codes. With those, a real Red Deer page can replace the redirect to /locations/.
+11. Red Deer Google listing: its primary category shows "Janitorial service"; "House cleaning
+   service" matches what the branch sells. It has no reviews yet: ask real Red Deer customers.
 12. Tracking: create a Google Analytics 4 property and send the Measurement ID. It goes in
    `site/.env.production.local` as `VITE_GA4_MEASUREMENT_ID` (git-ignored; read by the local
    production build that deploy.mjs uploads with --no-build, never by Netlify's environment).

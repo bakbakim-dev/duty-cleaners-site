@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { canonicalForPath } from "@/data/legacy-urls";
-import { cityFromPath } from "@/lib/city-from-path";
+import { branchFromPath, cityFromPath } from "@/lib/city-from-path";
+import { CITY_PROOF, RED_DEER_PATH, hoursRowsFor, type Branch } from "@/data/proof";
 import ThresholdLine from "@/components/ThresholdLine";
 import type { ReactNode } from "react";
 import {
@@ -67,6 +68,30 @@ function FooterLink({ to, children }: { to: string; children: ReactNode }) {
   );
 }
 
+/** The three branch offices, in the order the site lists them. */
+const FOOTER_OFFICES: { key: Branch; to: string; label: string }[] = [
+  { key: "edmonton", to: "/", label: "Edmonton Office" },
+  { key: "calgary", to: "/cleaning-services-calgary/", label: "Calgary Office" },
+  { key: "reddeer", to: RED_DEER_PATH, label: "Red Deer Office" },
+];
+
+function FooterOffice({ branch, to, label }: { branch: Branch; to: string; label: string }) {
+  const office = CITY_PROOF[branch];
+  return (
+    <div>
+      <Link to={to} className="group flex min-h-12 items-center gap-2 font-semibold transition-colors hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"><MapPin className="h-4 w-4 text-brand-gold" aria-hidden="true" /><span>{label}</span></Link>
+      <a href={office.phoneLink} className="flex min-h-12 items-center gap-2 text-sm text-brand-navy-foreground/85 transition-colors hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"><Phone className="h-4 w-4" aria-hidden="true" />{office.phone}</a>
+      <p className="text-sm leading-6 text-brand-navy-foreground/85">{office.streetAddress}<br />{office.city}, AB {office.postalCode}</p>
+      <div className="mt-2 space-y-1 text-sm leading-6 text-brand-navy-foreground/85">
+        <span className="sr-only">Hours: </span>
+        {hoursRowsFor(branch).map(([days, time]) => (
+          <div key={days} className="flex justify-between gap-3"><span className="inline-flex items-center gap-2"><Clock className="h-3.5 w-3.5 text-brand-gold" aria-hidden="true" />{days}</span><span>{time}</span></div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // hasQuoteSection: the four pages that render their own id="quote" form pass
 // this so the footer's sitewide fallback target doesn't duplicate the id.
 export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: boolean } = {}) {
@@ -75,11 +100,10 @@ export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: 
   // /cleaning-services-calgary/, which a startsWith("/calgary") test misses.
   const city = cityFromPath(pathname);
   const quoteHref = `${city === "calgary" ? canonicalForPath("/calgary") : "/"}#quote`;
-  // The footer CTA must call the office the visitor is actually looking at.
-  const cityPhone =
-    city === "calgary"
-      ? { tel: "4037681341", display: "(403) 768-1341" }
-      : { tel: "7809136565", display: "(780) 913-6565" };
+  // The footer CTA must call the office the visitor is actually looking at:
+  // on the Red Deer page, the Red Deer office. Read from proof.ts, not typed.
+  const office = CITY_PROOF[branchFromPath(pathname)];
+  const cityPhone = { href: office.phoneLink, display: office.phone };
 
 
   return (
@@ -113,7 +137,7 @@ export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: 
               variant="outline"
               className="min-h-12 border-brand-navy-foreground/30 px-6 text-brand-navy-foreground hover:border-brand-gold hover:bg-brand-gold/10 hover:text-brand-gold"
             >
-              <a href={`tel:${cityPhone.tel}`}>
+              <a href={cityPhone.href}>
                 <Phone aria-hidden="true" />
                 Call {cityPhone.display}
               </a>
@@ -177,7 +201,7 @@ export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: 
           <div>
             <Link to="/" className="inline-flex rounded bg-brand-gold px-4 py-2 text-xl font-bold text-brand-gold-foreground transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-navy">DUTY CLEANERS</Link>
             <p className="mt-4 text-sm font-medium text-brand-gold">Cleaning Alberta homes since 2017</p>
-            <p className="mt-3 max-w-sm text-sm leading-6 text-brand-navy-foreground/85">House cleaning in Edmonton, Calgary and nearby communities, from an Edmonton branch and a Calgary branch.</p>
+            <p className="mt-3 max-w-sm text-sm leading-6 text-brand-navy-foreground/85">House cleaning in Edmonton, Calgary, Red Deer and nearby communities, from a branch office in each of the three cities.</p>
             <div className="mt-6 flex flex-wrap gap-2">
               {socialLinks.map(({ label, href, icon: Icon }) => (
                 <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="flex h-11 w-11 items-center justify-center rounded-full border border-brand-navy-foreground/15 text-brand-navy-foreground/85 transition-colors hover:border-brand-gold hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold" aria-label={label}>
@@ -229,7 +253,7 @@ export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: 
                   {label}
                 </FooterLink>
               ))}
-              {city !== "calgary" && (
+              {city !== "calgary" && office.key !== "reddeer" && (
                 <FooterLink to={canonicalForPath("/edmonton/march-out-cleaning")}>March Out Cleaning</FooterLink>
               )}
             </nav>
@@ -238,23 +262,11 @@ export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: 
           <div>
             <FooterHeading>Locations & contact</FooterHeading>
             <div className="space-y-6">
-              <div>
-                <Link to="/" className="group flex min-h-12 items-center gap-2 font-semibold transition-colors hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"><MapPin className="h-4 w-4 text-brand-gold" aria-hidden="true" /><span>Edmonton Office</span></Link>
-                <a href="tel:7809136565" className="flex min-h-12 items-center gap-2 text-sm text-brand-navy-foreground/85 transition-colors hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"><Phone className="h-4 w-4" aria-hidden="true" />(780) 913-6565</a>
-                <p className="text-sm leading-6 text-brand-navy-foreground/85">18615 71 Ave NW<br />Edmonton, AB T5T 2V9</p>
-              </div>
-              <div>
-                <Link to="/cleaning-services-calgary/" className="group flex min-h-12 items-center gap-2 font-semibold transition-colors hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"><MapPin className="h-4 w-4 text-brand-gold" aria-hidden="true" /><span>Calgary Office</span></Link>
-                <a href="tel:4037681341" className="flex min-h-12 items-center gap-2 text-sm text-brand-navy-foreground/85 transition-colors hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"><Phone className="h-4 w-4" aria-hidden="true" />(403) 768-1341</a>
-                <p className="text-sm leading-6 text-brand-navy-foreground/85">2835 37 Street SW #24<br />Calgary, AB T3E 3B3</p>
-              </div>
-              <div className="border-t border-brand-navy-foreground/15 pt-5">
-                <div className="flex min-h-12 items-center gap-2 font-semibold"><Clock className="h-4 w-4 text-brand-gold" aria-hidden="true" /><span>Hours</span></div>
-                <div className="space-y-1 text-sm leading-6 text-brand-navy-foreground/85">
-                  <div className="flex justify-between gap-3"><span>Mon to Sat</span><span>8:00 AM to 8:00 PM</span></div>
-                  <div className="flex justify-between gap-3"><span>Sunday</span><span>9:00 AM to 3:00 PM</span></div>
-                </div>
-              </div>
+              {/* One block per branch office, each with its own hours: Red Deer's
+                  differ from Edmonton's and Calgary's (proof.ts). */}
+              {FOOTER_OFFICES.map(({ key, to, label }) => (
+                <FooterOffice key={key} branch={key} to={to} label={label} />
+              ))}
             </div>
           </div>
         </div>
