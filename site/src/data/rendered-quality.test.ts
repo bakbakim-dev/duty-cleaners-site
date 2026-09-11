@@ -543,8 +543,8 @@ describe("price CTAs reach the price", () => {
   /**
    * Volume claims the business cannot source.
    *
-   * proof.ts keeps the customer total null on purpose and says so in a comment:
-   * never a made-up total. Four separate phrasings had leaked past it anyway —
+   * The one volume figure the owner has confirmed is proof.ts BOOKINGS (5,000+
+   * bookings); there is no customer or homes total. Four separate phrasings had leaked past it anyway —
    * "hundreds of happy clients each month", "thousands of satisfied customers",
    * "trusted by thousands of Alberta families" on 150 location pages, and
    * "thousands of Edmonton and Calgary homes a year", which the site's own
@@ -580,8 +580,8 @@ describe("price CTAs reach the price", () => {
       bad,
       `These pages claim a volume nobody can check:\n${bad.join("\n")}\n` +
         `Use a scoped figure from proof.ts (BOOKINGS_CLAIM, CITY_PROOF.googleReviewCount) ` +
-        `or drop the claim. The owner has not confirmed a customer total, which is why ` +
-        `proof.ts holds it null.`,
+        `or drop the claim. The only volume figure the owner has confirmed is ` +
+        `BOOKINGS_CLAIM (5,000+ Alberta bookings since 2017); there is no customer or homes total.`,
     ).toEqual([]);
   });
 

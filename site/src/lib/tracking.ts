@@ -3,7 +3,8 @@
  *
  * Captures gclid + UTM parameters from the landing URL into sessionStorage
  * (first-touch wins), so they can be forwarded through the quote funnel —
- * including the GHL form -> /quote-redirect -> BookingKoala chain.
+ * onto the BookingKoala handoff (src/lib/booking-redirect.ts). /quote-redirect
+ * is a legacy bridge for the old WordPress site's GHL form (see QuoteRedirect.tsx).
  *
  * Also tracks the `service` context (from ?service=<slug> deep links) so the
  * quote section can personalize its heading. Unlike ad params, service intent

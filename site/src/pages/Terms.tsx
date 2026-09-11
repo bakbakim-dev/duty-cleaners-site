@@ -17,14 +17,15 @@ import {
 /**
  * Bump when the terms below change. Same convention as PrivacyPolicy.tsx.
  */
-const LAST_UPDATED = "August 2026";
+const LAST_UPDATED = "September 2026";
 
 /**
  * Every clause here is drawn from copy already published elsewhere on the site
  * and consistent across it — this page puts it in one place rather than making
- * new commitments. Anything the business has never settled, or currently states
- * two ways, lives in policy.ts as `null` and simply does not render. See the
- * TODO-OWNER notes there.
+ * new commitments. Every POLICY value is owner-confirmed with provenance
+ * (policy.ts; policy.test.ts fails the build on any null), so every section
+ * renders. The null-renders-nothing checks remain only as a guard for fields
+ * added later.
  */
 export default function Terms() {
   return (

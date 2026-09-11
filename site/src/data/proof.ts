@@ -91,10 +91,12 @@ export const BOOKINGS = confirm("5,000+", { by: "owner", on: "2026-09-10", note:
 /**
  * The site said "Five-Star Rated" on 170 pages, which rounds the real 4.9 up to
  * a number the business has not earned — and sat on the same page as "4.9 out of
- * 5", contradicting it. This states the sourced figure instead. GOOGLE_RATING
- * below is the single place it is defined; nothing should hand-type a rating.
+ * 5", contradicting it. This states the sourced figure instead. The rating is
+ * defined once, in CITY_PROOF.<city>.googleRating (read from each Google listing);
+ * this line is built from it. Both listings read 4.9. If they ever differ, make
+ * this per-branch rather than picking one.
  */
-export const RATING_CLAIM = "4.9 on Google";
+export const RATING_CLAIM = `${CITY_PROOF.edmonton.googleRating} on Google`;
 
 export const cityProofFor = (pathname: string) =>
   // Canonical-aware. A bare startsWith("/calgary") missed every preserved
@@ -109,11 +111,16 @@ export const COMPANY = {
   /**
    * Applicant acceptance rate. NOT published anywhere, and unconfirmed — the
    * figure floated was "under 5%", which stays here as a note and nowhere
-   * else until the owner checks it against BookingKoala. It used to sit in
-   * this slot as a string, which is exactly the shape a page would render.
+   * else. It used to sit in this slot as a string, which is exactly the shape a
+   * page would render. Open question put to the owner on 2026-09-10: publish a
+   * real figure, or never?
    */
   applicantAcceptanceRate: null as Confirmed<string> | Unconfirmed,
-  /** TODO-OWNER: percentage of customers who rebook. */
+  /**
+   * Percentage of customers who rebook. Null by the owner's choice (2026-09-10):
+   * the site publishes no rebook rate. Do not ask again or fill it in unless the
+   * owner raises it.
+   */
   rebookRate: null as number | null,
 };
 

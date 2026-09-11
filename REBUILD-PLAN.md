@@ -1,14 +1,26 @@
 # Duty Cleaners — Website Rebuild Plan
 
+> **STATUS (2026-09-10): HISTORICAL BUILD SPEC — not current instructions.** This is the plan the
+> rebuild was built from (Aug 2026). Wherever it disagrees with the code or with the owner
+> decisions recorded in `site/src/data/proof.ts` and `site/src/data/policy.ts`, the code and those
+> decisions win. Do not "execute phases in order". The site is no longer a Lovable app: it is built,
+> tested and prerendered in this repo and deployed to Netlify through `site/scripts/deploy.mjs`
+> (see `site/README.md`); the site is not live yet (DNS still on WordPress). Leads reach GHL through
+> the API v2 contacts/upsert relay (`site/src/config/ghl.ts`, `GHL-INTEGRATION-BRIEF.md`), not a
+> form endpoint. **Still valid as reference:** Appendix G (the BK Header-Code auto-scroll script)
+> and its same-day go-live list. Read "Lovable" there as this repo, and `BOOKING_ORIGIN` as the
+> constant in `site/src/lib/booking-redirect.ts`. Stale lines below carry dated
+> "SUPERSEDED 2026-09-10" notes.
+
 **Purpose of this document:** A complete, self-contained build specification for the Duty Cleaners marketing site (currently a Lovable/React app at `preview--dutycleaners-clone-project.lovable.app`). It merges a competitive teardown of SimplyMaid.com.au (a best-in-class cleaning booking site) with a design review, into one prioritized plan. Execute phases in order — Phase 1 is the engine; everything else supports it.
 
 **Business context the builder needs:**
-- Duty Cleaners is a house-cleaning company serving **Edmonton** (main, phone 780-913-6565, office 18615 71 Ave NW) and **Calgary** (403-768-1341, office 2835 37 Street SW #24). Operating **since 2017**. Services: Standard Cleaning, Deep Cleaning, Move In/Out, Post-Construction, Commercial.
+- Duty Cleaners is a house-cleaning company serving **Edmonton** (main, phone 780-913-6565, office 18615 71 Ave NW) and **Calgary** (403-768-1341, office 2835 37 Street SW #24). Operating **since 2017**. Services: Standard Cleaning, Deep Cleaning, Move In/Out, Post-Construction, Commercial. *(SUPERSEDED 2026-09-10: online commercial quotes are office cleaning only — contact form topic "Office Cleaning"; Airbnb/short-term-rental turnovers are priced per hour on a callback via `/contact-us/?topic=airbnb`.)*
 - Leads currently flow into **GoHighLevel (GHL)**; scheduling/booking runs on **BookingKoala**. The current site embeds a default-styled GHL 2-step form that collects name/email/phone and promises an "instant quote" — but **no price is ever shown on-page**. That is the single biggest problem this rebuild fixes.
 - Brand: navy / warm gold / orange, local-Alberta identity. **Keep it.** Do not restyle toward a pastel/editorial look.
 
 **Golden rules (apply to every task below):**
-1. Every claim on the site must be literally true and verifiable (real review counts, real insurer, real dates). Placeholder numbers must be flagged `TODO-OWNER` for the owner to fill, never invented.
+1. Every claim on the site must be literally true and verifiable (real review counts, real dates; the vetting/insurance wording is `insuranceClaim` in `site/src/data/policy.ts` — reference-checked only, and the insured/bonded claim is not reintroduced). Placeholder numbers must be flagged `TODO-OWNER` for the owner to fill, never invented.
 2. One primary CTA per screen-height, in orange; orange is used for booking actions only.
 3. Verb-first, quantified copy ("See your price in 60 seconds"), not adjectives ("premium quality service").
 4. One source of truth for all prices and all review numbers — a single config/data file that every component reads. Never hard-code a price or count in two places.
@@ -28,6 +40,7 @@ Replace the embedded GHL iframe form with a **native React quote flow** that com
 - If exact pricing isn't possible for a service (e.g. Post-Construction), show an honest range: "Estimated $X–$Y — lock in your exact price by picking a time."
 - On submit, POST to the hidden GHL form endpoint (see Phase 1.5 — the account has no Inbound Webhook trigger) with the **computed quote, service, home size, and frequency as custom fields** so leads arrive pre-qualified. Then hand off to BookingKoala for scheduling where applicable.
 - Contact step heading: "Where should we send your quote?" with button "See my price →". Two POSTs to the GHL form: one at step 2 (the lead: contact + home selections), one at the step-3 confirm (GHL merges by email and adds the site-quoted price + chosen extras). These are a CRM snapshot of what the customer was shown — BookingKoala remains the source of the true final price at booking time.
+- *(SUPERSEDED 2026-08-15: the two bullets above describe POSTs to the hidden GHL form. That path is dead; both calls are GHL API v2 contacts/upsert through the relay — see 1.5.2 and `GHL-INTEGRATION-BRIEF.md`.)*
 - Step 3 is a **pure payoff screen** (decision 2026-08-15, conversion review): the price with a
   "+ 5% GST" note, NO extras selection anywhere in the site funnel. **[CORRECTED 2026-08-15:
   the original technical premise was wrong — BK's URL prefill DOES carry extras via
@@ -40,21 +53,22 @@ Replace the embedded GHL iframe form with a **native React quote flow** that com
   postal-code/service-area gating.
 
 ### 1.2 Recurring-revenue architecture
-- Replace the frequency dropdown with **chips that print the discount**, using BookingKoala's real frequency list and real recurring discounts from the config snapshot (BK's live frequencies: One-Time / Weekly / Bi-Weekly / Every 4 Weeks; the bi-weekly recurring discount observed live is ~10.7%, e.g. $154.99 first clean → $138.33 recurring). Pre-select Bi-Weekly with a "Most Popular" badge.
+- Replace the frequency dropdown with **chips that print the discount**, using BookingKoala's real frequency list and real recurring discounts from the config snapshot (BK's live frequencies: One-Time / Weekly / Bi-Weekly / Every 4 Weeks; the bi-weekly recurring discount is 15% per `bk-config.json`; e.g. $154.99 first clean → $138.33 recurring, where $138.33 is the GST-inclusive recurring total: 154.99 × 0.85 × 1.05, see `bk-config.md`). Pre-select Bi-Weekly with a "Most Popular" badge.
 - Price panel splits into "First clean $X · then $Y per visit" whenever a recurring option is selected.
-- New-customer offer in the announcement bar: "$20 off a one-time clean · $40 off your first recurring clean — applied automatically" (amounts `TODO-OWNER`). Build it so the bar can be toggled/scheduled per campaign — the owner has not decided whether it runs permanently.
+- ~~New-customer offer in the announcement bar: "$20 off a one-time clean · $40 off your first recurring clean — applied automatically" (amounts `TODO-OWNER`).~~ — DECIDED 2026-09-10: no new-customer offer. OFFER was removed from `proof.ts`; do not add an offer bar or /offers page.
 
 ### 1.3 Hero = Step 1 of the funnel
 - H1 becomes a measurable action promise. Recommended: keep the local emotional line as an eyebrow and make the H1 verb-first — Eyebrow: "Bonded, insured, and locally trusted" · H1: "See your Edmonton cleaning price in 60 seconds." · Support: "Book rigorously vetted local pros on your schedule — no phone call needed."
 - Replace the current informational hero card ("YOUR CLEAN STARTS HERE" — it has no input and no button) with the **real first step of the quote flow**: ONE control only (service type selector, or city/postal-code with an Edmonton placeholder like "Try T6X or Windermere"), a "Step 1 of 3" progress bar, and a Continue button that carries the answer into the full flow.
-- Directly under the H1: one review metric ("4.8 ★ from N Google reviews in Edmonton" — real numbers, see 2.1), plus "No phone call needed" and "Bonded & insured". Maximum three proof points in the hero; move the rest below the fold.
+- Directly under the H1: one review metric ("4.8 ★ from N Google reviews in Edmonton" — real numbers, see 2.1; *superseded: the figure is `RATING_CLAIM` in `site/src/data/proof.ts`, "4.9 on Google"*), plus "No phone call needed" and "Bonded & insured". Maximum three proof points in the hero; move the rest below the fold.
+- *(SUPERSEDED 2026-09-10: do not use "Bonded, insured" / "Bonded & insured" anywhere in this plan — `policy.ts` `insuranceClaim` says reference-checked only, and the insured/bonded claim must not be reintroduced. The volume claim is "5,000+ Alberta bookings since 2017", `BOOKINGS_CLAIM` in `proof.ts`.)*
 
 ### 1.4 Risk-reversal at the point of commitment
 Adjacent to every submit/continue button (not in the FAQ):
 - "You won't be charged today"
 - "Free rescheduling or cancellation up to 24 hours before your clean"
 - "No contracts — book one clean or many"
-Only ship lines that are operationally true (`TODO-OWNER` to confirm each). Repeat the same trust row on the BookingKoala handoff page (BK supports custom header/footer content) so reassurance doesn't vanish mid-funnel.
+Only ship lines that are operationally true. *(Confirmed by the owner 2026-09-10: "You won't be charged today" and "No contracts"; the reschedule line reads "Free to reschedule or cancel with 24 hours' notice" — `RISK_REVERSAL` in `proof.ts`, and the $50 fee inside that window is in `policy.ts`.)* Repeat the same trust row on the BookingKoala handoff page (BK supports custom header/footer content) so reassurance doesn't vanish mid-funnel.
 
 ---
 
@@ -106,7 +120,7 @@ Site quote form ──POST (form fields)──▶ Hidden GHL Form ──"Form Su
   contact custom fields must exist. Full payloads, owner setup, fallback (Plan B: captcha-off with
   mitigations, only if Private Integrations is unavailable), and test checklist: `GHL-INTEGRATION-BRIEF.md`.
 - **Lead safety net (unchanged):** the relay writes every attempt to a locked-down `quote_leads` table (home details, contact, quoted prices, extras, page URL, tracking params, GHL delivery outcome) BEFORE calling GHL. Step 3 still opens only on genuine GHL success; the table means a GHL outage never loses a lead. No public read access; inserts server-side only.
-- **Fields still missing from the form (owner adds in the form builder, can be hidden):** city, selected extras, first-clean price, recurring price, frequency discount %, page URL. (Postal code is intentionally NOT collected on the site — BookingKoala captures the full address at booking.) Until these exist, the funnel has nowhere to put the computed prices — add them BEFORE wiring.
+- *(SUPERSEDED: the relay writes contact custom fields, not form fields; `GHL-INTEGRATION-BRIEF.md` 4.2 records all of them as existing on 2026-08-16, and city travels as a tag only.)* ~~**Fields still missing from the form (owner adds in the form builder, can be hidden):** city, selected extras, first-clean price, recurring price, frequency discount %, page URL. (Postal code is intentionally NOT collected on the site — BookingKoala captures the full address at booking.) Until these exist, the funnel has nowhere to put the computed prices — add them BEFORE wiring.~~ *(The postal-code rule no longer holds either: the funnel now requires a postal code, which decides the travel fee and is passed to BookingKoala as `dc_zip` — `site/src/components/quote/QuoteFlow.tsx`, `site/src/lib/booking-redirect.ts`.)*
 - **Dropdown option values:** send the same option labels the public form shows (e.g. the service list on the form — verify by opening the public form URL once). Free-text mismatches will still store, but consistent values keep GHL workflow filters reliable.
 - Map every funnel value to its field; store the endpoint + form ID in one config constant. Reference payload (same data, JSON view):
 
@@ -132,12 +146,13 @@ Site quote form ──POST (form fields)──▶ Hidden GHL Form ──"Form Su
 }
 ```
 
-- **Success state:** only show the success message after a 2xx response. Success copy must match reality: "Request received — we'll text you within [X] to confirm your time." (`TODO-OWNER` for the real response-time promise.)
+- **Success state:** only show the success message after a 2xx response. Success copy must match reality: "Request received — we'll text you within 24 hours to confirm your time." (Owner-confirmed 2026-09-10: `RESPONSE_TIME_PROMISE` in `proof.ts`.)
 - **Failure state:** if the POST fails, do NOT show success. Show: "Something went wrong — call us at (780) 913-6565 or email support@dutycleaners.ca and we'll honour this price," and keep the entered data on screen. Optionally fire a fallback (e.g. mailto or retry) — but never silently drop a lead.
 - Basic spam protection: honeypot field + a minimum-time-on-form check. No CAPTCHA (adds friction; prohibited from being the customer's problem at this volume).
 
 ### 1.5.3 GHL workflow (owner/GHL side)
-Inside the workflow triggered by **"Form Submitted"** (select the "Website Instant Quote" form as the trigger filter):
+*(SUPERSEDED 2026-08-15: the trigger is now **Contact Tag Added = `instant-quote`**, plus optional `quote-confirmed` — see `GHL-INTEGRATION-BRIEF.md` §3. The actions below still apply.)*
+Inside the workflow triggered by ~~**"Form Submitted"** (select the "Website Instant Quote" form as the trigger filter)~~:
 1. Create/update contact; map custom fields for service, home size, frequency, quoted prices; tag `instant-quote` + city.
 2. Create an opportunity in the pipeline with the quoted value.
 3. Internal notification (SMS/email to office) with the full quote so a human can confirm scheduling fast — speed-to-lead is the point of this whole build.
@@ -152,10 +167,10 @@ Inside the workflow triggered by **"Form Submitted"** (select the "Website Insta
 
 **The live BK booking form** (`https://dutycleaners.bookingkoala.com/booknow`, public) has this real structure — mirror it, do not substitute the invented taxonomy currently in the Lovable funnel:
 - **Industries (tabs):** Home Cleaning · Post Construction Cleaning · Airbnb Cleaning · Office Cleaning. (Post-Construction and Commercial/Office are NOT services under Home Cleaning — they're separate industries with their own forms.)
-- **Services (Home Cleaning):** Standard Cleaning · Move in Move Out Cleaning. **"Deep Cleaning" is NOT a service — it's an extras package tiered by home size ($99.99–$179.99+).**
-- **Frequencies:** One-Time / Weekly / Bi-Weekly / Every 4 Weeks, with BK-configured recurring discounts (observed live: 1-bed standard $154.99 first clean → $138.33 recurring bi-weekly ≈ 10.7%).
+- **Services (Home Cleaning):** Standard Cleaning · Move in Move Out Cleaning. **"Deep Cleaning" is NOT a service — it's an extras package tiered by home size ($99.99–$219.99; per-size IDs and prices in Appendix F).**
+- **Frequencies:** One-Time / Weekly / Bi-Weekly / Every 4 Weeks, with BK-configured recurring discounts (`bk-config.json`: Weekly 20%, Bi-Weekly 15%, Every 4 Weeks 10%. Observed live: 1-bed standard $154.99 first clean → $138.33 recurring bi-weekly, which is the GST-inclusive total: 154.99 × 0.85 × 1.05, see `bk-config.md`).
 - **Pricing variables:** home type (Two Storey House / Duplex Townhouse / Bungalow / Basement Suite / Apartment-Condo), bedrooms 1–7 **with sqft definitions in the labels** ("3 Bedrooms (Under 1700sqft)"), full baths 1–7, half baths 0–4.
-- **Extras (real, with real prices from config):** Deep Cleaning (tiered), Inside Windows **$179.99** (the current Lovable funnel invented "+$45" — exactly the mismatch this section exists to prevent), wipe window blinds (per set), spot cleaning inside walls, complete wall washing, pets surcharge ("Must choose if you have pets"), Inside Oven, Inside Fridge, Inside cabinets, de-cluttering per hour, garage/balcony sweep, outside-Edmonton/Calgary travel fee.
+- **Extras (real, with real prices from config):** Deep Cleaning (tiered), Inside Windows **tiered $39.99 / $64.99 / $109.99 / $139.99 / $179.99** (per `bk-config.md` and `bk-config.json`; the then-Lovable funnel invented "+$45" — exactly the mismatch this section exists to prevent), wipe window blinds (per set), spot cleaning inside walls, complete wall washing, pets surcharge ("Must choose if you have pets"), Inside Oven, Inside Fridge, Inside cabinets, de-cluttering per hour, garage/balcony sweep, outside-Edmonton/Calgary travel fee.
 - Also on the BK form: entry method, cleanliness scale 1–5, flexibility, parking, date/time with 1-hour arrival windows, tips, coupon codes, gift cards, card hold day-before / charge after service.
 
 **How the site gets this data — generated snapshot (v1):**
@@ -279,7 +294,8 @@ Work top to bottom; P0 is where the money is. Exact replacement copy is provided
    ensure it shows the recurring line ("then $X every 2 weeks after your first clean") and names
    the discount.
 10. **Trust chips near payment**: add a small text/HTML block above the card fields mirroring the
-    site: "Bonded & insured · 24-hour re-clean promise · Cancel free up to 24h".
+    site: ~~"Bonded & insured · "~~"24-hour re-clean promise · Cancel free up to 24h". *(SUPERSEDED
+    2026-09-10: drop "Bonded & insured" — `policy.ts` `insuranceClaim` is reference-checked only.)*
 11. **Industry tabs review**: funnel arrivals land preselected on Home Cleaning; decide whether
     Post-Construction/Airbnb/Office tabs should stay visible here (each is an exit ramp — if they
     get few bookings from this page, give them dedicated links instead and hide the tabs).
@@ -319,7 +335,7 @@ zero customer-visible gain over the prefilled handoff.
 3. Edmonton page footer CTA links to `/edmonton-2#quote` and shows the **Calgary** phone (403-768-1341) — the Edmonton footer must use the Edmonton number (780-913-6565) and a clean route.
 4. City slugs `/calgary-2` and `/edmonton-2` — rename to `/calgary` and `/edmonton` (or `/`), with redirects.
 5. "How it works" Step 3 says "**Pick your time**" but the funnel never offers time selection — change to "Send your booking request" (or add real scheduling in v2). Advertised steps must match the actual flow.
-6. The three named homepage Google reviews (Jennifer M., Michael R., Sarah K.) must be replaced with verbatim real reviews from the linked Google Business Profile (`TODO-OWNER` to supply). Never ship invented reviews attributed to Google.
+6. ~~The three named homepage Google reviews (Jennifer M., Michael R., Sarah K.) must be replaced with verbatim real reviews from the linked Google Business Profile (`TODO-OWNER` to supply).~~ Done: `site/src/data/reviews.ts` is the one source of verbatim Google reviews, and none of the three names appears in `site/src`. Never ship invented reviews attributed to Google.
 7. Investigate a one-off UI freeze observed while stepping through the quote dialog (tab became unresponsive briefly); profile the dialog for render loops.
 
 ---
@@ -328,16 +344,16 @@ zero customer-visible gain over the prefilled handoff.
 
 ### 2.1 Numbers instead of superlatives
 - Pull the real Google rating and review count per city (Places API or a manual monthly update in the single data file): show it in the hero, beside the form submit, and under each review-platform logo tile (which currently show logos with no numbers).
-- Replace "Bonded & Insured" with the real figure and insurer: "$2M liability coverage through [insurer]" (`TODO-OWNER`).
-- Promote the existing "we accept fewer than 5% of applicants" stat from the buried Values section into the main vetting block; name the background-check provider if permitted.
-- Add 2–4 honest stat tiles from BookingKoala history, e.g. "11,200+ cleans since 2017 · 63% of customers rebook" (`TODO-OWNER` for real values). Small true numbers beat big fake ones.
+- ~~Replace "Bonded & Insured" with the real figure and insurer: "$2M liability coverage through [insurer]" (`TODO-OWNER`).~~ — SUPERSEDED 2026-09-10: no insurer or coverage claim. The vetting wording is `insuranceClaim` in `policy.ts` (reference-checked only); the insured/bonded claim must not be reintroduced.
+- ~~Promote the existing "we accept fewer than 5% of applicants" stat from the buried Values section into the main vetting block; name the background-check provider if permitted.~~ — SUPERSEDED: the policy is reference checks, not a background-check provider (`policy.ts`), and the acceptance rate is unconfirmed and unpublished (`COMPANY.applicantAcceptanceRate` is null in `proof.ts`).
+- Add 2–4 honest stat tiles from BookingKoala history. Small true numbers beat big fake ones. *(DECIDED 2026-09-10: the volume claim is "5,000+ Alberta bookings since 2017" — bookings, not homes, no city split (`BOOKINGS_CLAIM` in `proof.ts`). The rebook rate stays null by owner choice (`COMPANY.rebookRate`); do not publish one. The earlier example "11,200+ cleans since 2017 · 63% of customers rebook" was a placeholder, never a real figure.)*
 - Site-wide find-and-replace: every "10+ years" → "since 2017" (the site currently claims both; 2017 is correct).
 
 ### 2.2 Guarantee as a story, not an icon
 Build one dedicated section for the 24-Hour Re-Clean Promise (this window is a genuine competitive edge — SimplyMaid's is 48h): exactly what qualifies, how to report it (text/call/email), what the remedy is and by when, three reassurance chips, and a real human photo or the existing 1:18 team video. One CTA: "Read the full guarantee" → a full policy page. Everywhere else on the page, the guarantee appears at most as a one-liner linking here — kill the current 7× repetition of bonded/insured/vetted claims across the page.
 
 ### 2.3 Meet-the-team module
-4–8 static profile cards with written consent: real photo, first name, Edmonton/Calgary area, years with Duty, one-line bio, "Background-checked · Insured" badges. A homepage strip + a simple /team page. **No numeric per-cleaner ratings and no auto-generated per-cleaner pages** (the competitor ships "0.00" ratings and 404ing profile pages — that failure mode is worse than nothing).
+4–8 static profile cards with written consent: real photo, first name, Edmonton/Calgary area, years with Duty, one-line bio, ~~"Background-checked · Insured" badges~~ *(SUPERSEDED 2026-09-10: no such badges; cleaners are reference-checked only, `policy.ts` `insuranceClaim`)*. A homepage strip + a simple /team page. **No numeric per-cleaner ratings and no auto-generated per-cleaner pages** (the competitor ships "0.00" ratings and 404ing profile pages — that failure mode is worse than nothing).
 
 ### 2.4 Moderated review wall
 Syndicate Google reviews through a widget or Places API **with a manual approve queue**. Show name, neighbourhood, date, star value, and a running total ("Showing 12 of N reviews"). Approve honest 4-star reviews — an all-5.0 wall reads as curated. Never auto-publish (the competitor's raw feed displays review-selling spam on their own homepage).
@@ -379,7 +395,7 @@ One page publishing the real formula: base prices, per-bedroom/bathroom incremen
 - **Badges to keep:** BBB Accredited + Edmonton and Calgary Chamber of Commerce (third-party validators; the competitor only has self-issued seals).
 
 ### 4.4 Supporting pages (lowest priority)
-- `/offers`: 1–2 evergreen auto-applied codes with min-spend and max-discount caps (owns "duty cleaners promo code" searches). Build only after the calculator exists.
+- ~~`/offers`: 1–2 evergreen auto-applied codes with min-spend and max-discount caps (owns "duty cleaners promo code" searches). Build only after the calculator exists.~~ — DECIDED 2026-09-10: no new-customer offer, no /offers page.
 - Referral: "Give $25, get $25" page, tracked via code or GHL field (`TODO-OWNER` amounts).
 - Full satisfaction-guarantee policy page (linked from 2.2).
 
@@ -597,17 +613,19 @@ TEST CHECKLIST:
 8. Don't remove the phone path — it converts customers the form never will.
 
 ## Owner inputs required before launch (`TODO-OWNER` checklist)
+*(Status as of 2026-09-10 — ticked items are settled; the code carries the answers.)*
+
 - [ ] Approve the BK-snapshot approach and own the re-sync trigger: whenever you change BookingKoala pricing/settings, tell the builder (or run the capture script) so `bk-config.json` is regenerated
-- [ ] New-customer offer amounts, and whether the offer bar runs permanently or per-campaign
-- [ ] Insurer name and coverage amount; background-check provider name
-- [ ] Confirm: no charge before service? cancellation window? no contracts?
-- [ ] Real stats: total cleans since 2017, rebook %, Google ratings + counts for Edmonton and Calgary
+- [x] ~~New-customer offer amounts, and whether the offer bar runs permanently or per-campaign~~ — no offer; OFFER removed from `proof.ts`
+- [x] ~~Insurer name and coverage amount; background-check provider name~~ — superseded: no insurance claim and no background-check provider; reference-checked only (`policy.ts` `insuranceClaim`)
+- [x] Confirm: no charge before service? cancellation window? no contracts? — confirmed 2026-09-10: "You won't be charged today" (online bookings need 24 hours' notice; the day-before card hold is not a charge; the card is charged after the clean), "Free to reschedule or cancel with 24 hours' notice" ($50 inside that window, `policy.ts`), "No contracts" (`RISK_REVERSAL` in `proof.ts`)
+- [x] Real stats: ~~total cleans since 2017, rebook %~~ (settled: "5,000+ Alberta bookings since 2017", `BOOKINGS_CLAIM`; rebook rate stays null by owner choice), ~~Google ratings + counts for Edmonton and Calgary~~ — settled: `CITY_PROOF.<city>.googleRating` / `googleReviewCount` in `site/src/data/proof.ts`, read from the Google listings 2026-09-01: Edmonton 4.9 / 236, Calgary 4.9 / 51
 - [ ] Team members willing to be featured (photos + written consent)
 - [ ] Referral amounts
-- [ ] Add the missing fields to the existing "Website Form" (`AwJDnvuYtkojIN3aOysC`): postal code, city, add-ons, first-clean price, recurring price, discount %, page URL (hidden is fine) — the form endpoint IS the integration (no Inbound Webhook on this account); IDs/field keys already captured in 1.5.2
-- [ ] BookingKoala subdomain/booking-page URL (replaces `replace-with-your-bookingkoala-url.com`) and whether the BK plan includes API access
-- [ ] Realistic response-time promise for the post-submit message ("we'll text you within X")
-- [ ] Verbatim real Google reviews to replace the placeholder homepage reviews
+- [x] ~~Add the missing fields to the existing "Website Form" (`AwJDnvuYtkojIN3aOysC`): postal code, city, add-ons, first-clean price, recurring price, discount %, page URL (hidden is fine) — the form endpoint IS the integration (no Inbound Webhook on this account); IDs/field keys already captured in 1.5.2~~ — superseded 2026-08-15: the form endpoint is dead; leads go through the GHL API v2 contacts/upsert relay (`site/src/config/ghl.ts`, `GHL-INTEGRATION-BRIEF.md`), whose contact custom fields all exist; city is a tag, not a field
+- [x] ~~BookingKoala subdomain/booking-page URL (replaces `replace-with-your-bookingkoala-url.com`)~~ — superseded: BOOKING_KOALA_URL removed; the booking origin is `BOOKING_ORIGIN` in `site/src/lib/booking-redirect.ts`, the bare origin (currently `https://dutycleaners.bookingkoala.com`); the code appends `/booknow`. Switch it to `https://book.dutycleaners.ca` when the CNAME is live. Still open: whether the BK plan includes API access
+- [x] ~~Realistic response-time promise for the post-submit message ("we'll text you within X")~~ — 24 hours, owner-confirmed 2026-09-10 (`RESPONSE_TIME_PROMISE` in `proof.ts`)
+- [x] ~~Verbatim real Google reviews to replace the placeholder homepage reviews~~ — done: `site/src/data/reviews.ts` is the one source of verbatim Google reviews; the placeholder names no longer appear in `site/src`
 
 ## Acceptance checklist (what "done" means)
 - [ ] The funnel shows a real dollar price from `bk-config.json` immediately after the contact step — on screen, no callback, no "we'll email your quote"
@@ -884,6 +902,6 @@ At embed flip, rework using iframe-resizer's parentIFrame scroll API or postMess
 the parent. Until then (redirect mode) the plain script is correct.
 
 **Same-day items:** BK "Change My Domain" → book.dutycleaners.ca + CNAME; flip
-BOOKING_ORIGIN in Lovable; revalidation pass (7-size deep matrix, shelf parity, contact
+BOOKING_ORIGIN in `site/src/lib/booking-redirect.ts` (this repo, not Lovable); revalidation pass (7-size deep matrix, shelf parity, contact
 prefill, live test booking); check old site's signup/login links still resolve; BK-side
 basement/condo extras gating fix + Lovable config re-capture if not already done.

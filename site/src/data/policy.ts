@@ -7,19 +7,13 @@
  * of that copy ships inside FAQPage JSON-LD, so Google and AI assistants
  * reproduced the contradictions as authoritative answers.
  *
- * It follows the same convention proof.ts established:
- *
- *     null  =  not confirmed by the owner. Do not render it. Do not guess.
- *
- * and, since 2026-09-07, the other half of it is enforced by the compiler: a
- * non-null value must be wrapped in confirm() with who settled it and when.
- * See confirmed.ts. The date is the day the answer was recorded in this repo.
- *
- * A null here is not an oversight — it marks a real business decision that has
- * never been made, or one the site currently answers two ways. Rendering a
- * plausible-sounding default would be inventing a commitment on the company's
- * behalf, which is worse than saying nothing. The terms page simply omits any
- * section whose value is null.
+ * Every value below is settled and wrapped in confirm() with who settled it and
+ * when (see confirmed.ts; the date is the day the answer was recorded in this
+ * repo). policy.test.ts fails the build on any null, so a new field must be
+ * confirmed before it is added: a null here would mean a field left blank, not a
+ * pending decision. Open business questions belong in proof.ts, where a null
+ * still means "not confirmed; render nothing". Never render a plausible-sounding
+ * default in place of a confirmed value.
  */
 
 import { confirm, type Confirmed, type Unconfirmed } from "./confirmed";

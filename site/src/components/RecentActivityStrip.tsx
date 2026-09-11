@@ -26,7 +26,7 @@ const RecentActivityStrip = ({ city, reviews }: RecentActivityStripProps) => {
     const ratingLabel =
       proof.googleRating && proof.googleReviewCount
         ? `${proof.googleRating} on Google · ${proof.googleReviewCount} ${city} reviews`
-        : `${RATING_CLAIM} on Google in ${city}`;
+        : `${RATING_CLAIM} in ${city}`;
     return (
       <div className="border-y border-border bg-white py-3" aria-label={`${city} trust signals`}>
         <div className="container mx-auto flex flex-wrap items-center justify-center gap-x-6 gap-y-2 px-4 text-sm font-medium text-foreground">

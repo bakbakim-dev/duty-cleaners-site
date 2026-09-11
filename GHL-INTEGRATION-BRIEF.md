@@ -58,7 +58,7 @@ previous plan **stay exactly as designed** — that part was right.
 3. Copy the token immediately (it cannot be viewed again) and give it to Lovable **as a backend
    secret** (e.g. `GHL_PI_TOKEN`). It must never appear in client-side code, git, or the browser.
 4. Create the contact **custom fields** if not already present (Settings → Custom Fields):
-   service, home type, bedrooms, full bathrooms, half baths, frequency, city, selected extras,
+   service, home type, bedrooms, full bathrooms, half baths, frequency, selected extras,
    first-clean price, recurring price, page URL. (Some already exist from the Website Form —
    reuse those, don't duplicate.)
 5. **Workflow changes:** the old trigger was "Form Submitted". Replace with:
@@ -125,6 +125,9 @@ created in the General Info folder on this date):
 fields CHOOSE YOUR SERVICE / Bedrooms / FREQUENCY / Frequency of Service — legacy data lives there;
 do not delete, do not use.) Fail loudly at startup if any mapped key is missing.
 
+City is sent only as a tag; there is no city custom field (the relay, `site/supabase/functions/ghl-quote/index.ts`,
+only pushes `payload.city` into `tags`).
+
 ### 4.3 Step 2 — create the lead
 
 ```
@@ -150,7 +153,6 @@ Headers:
     { "id": "<full baths field id>",     "field_value": "2 Full Bath(s)" },
     { "id": "<half baths field id>",     "field_value": "1 Half Bath (With Only A Toilet or Sink)" },
     { "id": "<frequency field id>",      "field_value": "Bi-Weekly (Every 2 Weeks)" },
-    { "id": "<city field id>",           "field_value": "Edmonton" },
     { "id": "<page url field id>",       "field_value": "<page URL + UTM params>" }
   ]
 }

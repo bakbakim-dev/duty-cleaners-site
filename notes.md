@@ -1,5 +1,12 @@
 # Duty Cleaners — GHL → BookingKoala prefill
 
+> **Scope:** the LIVE legacy WordPress site (GHL embed form → /quote-redirect/ bridge.js →
+> BookingKoala), Aug 2026. It is not the rebuild's lead path — the React site in `site/` delivers
+> leads via the GHL API v2 contacts/upsert relay (`GHL-INTEGRATION-BRIEF.md`,
+> `site/supabase/functions/ghl-quote`, `site/src/config/ghl.ts`). Headings below such as
+> "Blocking work before this can ship" and "Go-live checklist" refer to that old WordPress bridge.
+> The BK option-ID tables below remain valid reference.
+
 Goal: stop asking the same 6 home-detail questions twice. GHL form captures the
 lead, then BookingKoala arrives pre-filled so it reads as "verify" not "re-enter."
 

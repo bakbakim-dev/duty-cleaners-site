@@ -241,10 +241,13 @@ export const SERVICES: ServicePricing[] = [
     hours: "2–4 hrs",
     exactPricing: false,
     estimateSpread: 0.2,
-    // $60, confirmed by the owner 2026-09-03. It was hand-typed at $65 while
-    // BookingKoala's only hourly service is named "$60 Per Hour/ Per Cleaner";
-    // the booking system was right. Every figure on the Airbnb pages derives
-    // from HOURLY_RATE, so this is the only place it is written.
+    // $60, confirmed by the owner 2026-09-03 for Airbnb turnovers: BookingKoala's
+    // Airbnb service is "Hourly Service $60 Per Hour/ Per Cleaner" (industry 28).
+    // BookingKoala ALSO has a Home Cleaning "Hourly Cleaning" service (id 17,
+    // admin-only) described as $65 per cleaner-hour. The site quotes $60 for all
+    // hourly work; whether general hourly work is $60 or $65 is an open owner
+    // question (2026-09-10). Every figure derives from HOURLY_RATE, so this is
+    // the only place it is written.
     rateNote: "Hourly service at $60 per hour, per cleaner.",
     supportsRecurring: false,
     asksHomeSize: true,
@@ -267,7 +270,7 @@ export const SERVICES: ServicePricing[] = [
     // Confirmed by the owner 2026-09-03: per square foot. The commercial pages
     // used to argue for hourly pricing against this record; they now agree.
     rateNote: "Charged by square footage — we confirm the rate after a quick walkthrough.",
-    // Priced per site, so BookingKoala's recurring discounts do not apply here.
+    // Quoted per site by square footage, so BookingKoala's recurring discounts do not apply.
     supportsRecurring: false,
 
     asksHomeSize: false,

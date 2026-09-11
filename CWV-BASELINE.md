@@ -1,5 +1,32 @@
 # Core Web Vitals baseline — pre-launch
 
+> **Historical / superseded in part (note added 2026-09-10).** The numbers
+> below are the pre-fix baseline of 2026-09-01, kept for comparison. Do not
+> plan work from them without checking the current state first:
+>
+> - **Script.** Commit 45ca010 (2026-09-09) found every page shipping 179 KB
+>   of gzipped JavaScript and cut the entry to 142 KB. The later performance
+>   round took it to 100 KB; `site/src/data/page-weight.test.ts` records
+>   137–178 KB of script per page, a 20 KB stylesheet and heroes of 14 to
+>   76 KB (measured 9 September 2026).
+> - **Leaflet.** The "Leaflet is properly code-split" finding below was
+>   wrong. The prerenderer had frozen Leaflet's preload into the HTML of 55
+>   pages. Since 45ca010 every map is a lazy shell behind a visibility gate,
+>   and the prerenderer strips the baked preload.
+> - **Hero.** The hub heroes now carry a 640/960/1280/1920w srcset with
+>   `sizes="100vw"` (`HERO_SRCSET` in `site/src/pages/Edmonton2.tsx` and
+>   `Calgary2.tsx`), so a phone gets the 640w file (25 KB on the homepage,
+>   per `site/src/components/CityConversionIntro.tsx`), not the 177 kB one.
+> - **Budgets are enforced** by `site/src/data/page-weight.test.ts`
+>   (`BUDGET`), per money page: HTML ≤60 KB gzipped, CSS ≤28 KB gzipped,
+>   scripts ≤170 KB gzipped (220 on support pages), the hero's phone
+>   rendition ≤100 KB, any single body image ≤100 KB, and images ≤800 KB in
+>   total. Separately, every image asset in `dist/assets` must be ≤100 KB. The
+>   "hero under 200 KB" in 45ca010's commit message is not the enforced value.
+>
+> Headroom items 1 and 2 below are therefore largely done; check them against
+> the test before starting on them.
+
 Measured 2026-09-01 against the built, fully prerendered site served locally
 (`bunx vite preview`, port 4178), homepage `/`.
 

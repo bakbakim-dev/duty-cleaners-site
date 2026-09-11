@@ -19,8 +19,10 @@ import RiskReversalRow from "@/components/quote/RiskReversalRow";
 /** Core choices stay prominent; specialty work is grouped so it never buries the CTA. */
 const CORE_SERVICE_IDS: ServiceId[] = ["standard", "move-in-out"];
 /**
- * Only self-serve work is selectable. Airbnb turnovers and commercial sites are
- * priced per hour / per site, so they route to a callback instead.
+ * Only self-serve work is selectable. Airbnb and short-term-rental turnovers are
+ * priced per hour on a callback (/contact-us/?topic=airbnb). Office cleaning, the
+ * only commercial work quoted online, is priced by square footage and requested
+ * through the contact form's "Office Cleaning" option.
  */
 const SPECIALTY_SERVICE_IDS: ServiceId[] = ["post-construction"];
 

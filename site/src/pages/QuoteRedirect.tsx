@@ -4,6 +4,19 @@ import { Loader2 } from "lucide-react";
 import { getStoredTracking, TRACKED_PARAMS } from "@/lib/tracking";
 
 /**
+ * LEGACY, NOT PART OF THE NEW SITE'S FUNNEL. Read this before editing.
+ *
+ * The rebuilt site never sends anyone here: its quote funnel delivers leads to
+ * GoHighLevel through the API v2 upsert (src/config/ghl.ts) and hands bookings
+ * to BookingKoala through src/lib/booking-redirect.ts (BOOKING_ORIGIN). This
+ * route exists only for the OLD WordPress site's GHL "Website Form", whose
+ * On-Submit redirect points at /quote-redirect/. BK_BASE below is still a
+ * placeholder, so today this page shows its "couldn't open the booking page"
+ * screen. Owner question (asked 2026-09-10): will that GHL redirect still be
+ * used after go-live? If not, delete this page, its App.tsx route and its
+ * _redirects/.htaccess rules. If yes, point BK_BASE at `${BOOKING_ORIGIN}/booknow`
+ * and port the verified option maps from bridge.js (fname/lname -> f_name/l_name).
+ *
  * Bridge page: GoHighLevel form redirect → BookingKoala pre-filled booking.
  *
  * GHL's On-Submit redirect sends merge-tag LABELS (e.g. "3 Bedrooms") as URL

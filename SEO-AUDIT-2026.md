@@ -3,6 +3,12 @@
 **Date:** August 23, 2026 · **Scope:** entire site (209 routes), Manus audit verification, 2026 local-SEO research, implemented fixes.
 **Method:** two parallel audits — a file-level inventory of all 209 routes, and a source-verified research pass on the mid-2026 local SEO landscape — plus live no-JS crawl testing.
 
+> **Historical / superseded in part (note added 2026-09-10).** This report records the state on Aug 23, 2026 and stays as written. It is not the current to-do list. These parts no longer hold:
+> - **Prerender scope (§3 item 1, §5 item 6).** Location pages no longer render client-side. `site/netlify.toml` builds with `bun run build && bun run prerender:all`, so every build ships static HTML for all 209 routes, and `prerender:all` takes about 47 s, not 10–15 min. It is not optional.
+> - **Office schema data (§5 item 5).** Both office pins are settled in `site/src/data/proof.ts` (`CITY_PROOF.*.geo`, confirmed 2026-09-10): Edmonton 53.504317, -113.64391; Calgary 51.029252, -114.142131. Do not ask the owner for them again. Both offices' street addresses and postal codes (18615 71 Ave NW, Edmonton T5T 2V9; 2835 37 Street SW #24, Calgary T3E 3B3) were checked against their Google listings on 2026-09-10 and match `proof.ts`, which feeds the schema through `schemaAddressFor`. The blog dates and hero images in the same item were done the same day (§6d).
+> - **Location-page `geo` (§5 item 7).** Closed. `site/src/data/location-geo.ts` supplies OpenStreetMap (Nominatim) coordinates for the 51 location pages that had none; the rest carry theirs inline, and `site/src/lib/location-schema.ts` falls back to `geoFor()` for any page without one. The coordinates were validated rather than typed: each result had to match the place name and land inside its region's box. `site/src/data/location-geo.test.ts` guards them: every pin sits inside Alberta and within 90 km of Edmonton or Calgary, none is within 500 m of a bare city centre (the Nominatim fallback), and no two share a pin. It also checks that every page in the location sitemaps carries a `GeoCoordinates` node on `areaServed`, never on the business node. The current `dist` has all 153 location pages carrying one.
+> - **Deploys (§6e).** Deploys now go through `site/scripts/deploy.mjs` (Netlify). See the note at the end of §6e.
+
 ---
 
 ## 1. Verdict on the Manus audit
@@ -30,7 +36,7 @@ Manus's structural instinct (validate rendered SEO; entity completeness) was rig
 ## 3. Implemented today (all verified in prerendered output)
 
 **Structural**
-1. **Build-time prerendering** (`site/scripts/prerender.mjs`, `bun run prerender` / `prerender:all`): all 40 core routes (main + blog) now ship real static HTML — correct per-route title, meta, canonical, H1, full body (~2,100+ words on city pages), and 3–4 JSON-LD blocks — to *every* crawler, JS or not. Location pages still render client-side (run `--all` before go-live if desired). Deploy script updated: prerenders on every publish, noindexes all 41 HTML files on staging, keeps the pristine SPA shell as the 404 fallback.
+1. **Build-time prerendering** (`site/scripts/prerender.mjs`, `bun run prerender` / `prerender:all`): all 40 core routes (main + blog) now ship real static HTML — correct per-route title, meta, canonical, H1, full body (~2,100+ words on city pages), and 3–4 JSON-LD blocks — to *every* crawler, JS or not. Location pages still render client-side (run `--all` before go-live if desired). *(Superseded 2026-09-10: `site/netlify.toml` runs `prerender:all` on every build, so all 209 routes, location pages included, ship static HTML.)* Deploy script updated: prerenders on every publish, noindexes all 41 HTML files on staging, keeps the pristine SPA shell as the 404 fallback.
 2. **Social cards:** branded 1200×630 `og-image.jpg` + square `logo.png` generated and wired into the static head (`og:image` + dimensions + alt + `twitter:image`) — visible to non-JS scrapers on every route.
 
 **Entity/schema**
@@ -57,8 +63,8 @@ Manus's structural instinct (validate rendered SEO; entity completeness) was rig
 2. **Claim Bing Places** (feeds Copilot/ChatGPT) and **Apple Business Connect** (Maps/Siri/Apple Intelligence) — 2026 table stakes, free, underused by competitors.
 3. Review engine: steady ask-cadence on both GBP profiles + reply to every review quickly and non-generically (reviews = ~20% of pack weight; 97% of consumers read them).
 4. Pursue placement on curated "best cleaners in Edmonton/Calgary" lists and keep Yelp complete — the #1 and #5 AI-visibility factors.
-5. Supply verified data to finish schema: Edmonton office lat/long (5+ decimals), Calgary postal code + lat/long, real publish dates + hero images for the 5 blog posts (Article schema is rich-result-ineligible without them).
-6. Consider `prerender:all` at go-live so all 204 URLs ship static HTML (adds ~10–15 min to the build).
+5. Supply verified data to finish schema: Edmonton office lat/long (5+ decimals), Calgary postal code + lat/long, real publish dates + hero images for the 5 blog posts (Article schema is rich-result-ineligible without them). *(Superseded 2026-09-10: both office pins are confirmed in `site/src/data/proof.ts` `CITY_PROOF.*.geo`; blog dates and images were done in §6d. Both offices' addresses and postal codes in `proof.ts` were checked against their Google listings the same day and match.)*
+6. Consider `prerender:all` at go-live so all 204 URLs ship static HTML (adds ~10–15 min to the build). *(Superseded 2026-09-10: `prerender:all` already runs on every Netlify build (`site/netlify.toml`) and takes about 47 s for 209 routes.)*
 7. Backfill `geo` on the 111 location pages missing it — data task, needs verified coordinates.
 
 **Deliberately NOT done:** aggregateRating markup (policy violation), keyword-expanding the homepage (against Google's people-first guidance and the page already ranks its intent), removing FAQPage markup (harmless), mass-editing 184 phone-format instances outside the Footer (cosmetic, wide diff).
@@ -160,3 +166,5 @@ Two problems found while fixing, neither previously known:
 **Verified live:** 154 `/locations/*` pages prerender with real content (e.g. `/locations/inglewood/` — 1,122 words, one H1); the 13 whose content is superseded by a preserved legacy URL correctly carry a 301 instead (`/locations/windermere/ → /cleaning-services-windermere/`), and that target is prerendered.
 
 Note: GitHub Pages ignores `_redirects`, so on staging those 13 render the SPA shell rather than redirecting. On Netlify they 301. This is the one behaviour staging still cannot reproduce.
+
+**Note added 2026-09-10 (historical / superseded in part).** Deploys now go through `site/scripts/deploy.mjs`, added 2026-09-05 in 81a7d17, which deploys to Netlify. `bun run deploy:preview` builds, prerenders and publishes the preview at `dutycleaners-preview.netlify.app`, adding the `X-Robots-Tag: noindex` block to `dist/_headers` for that target only. `bun run deploy:production -- --site <id> --verify-url <url>` checks that `dist/_headers` carries no `X-Robots-Tag: noindex` and that no built page carries a robots noindex meta other than the files noindexed by design (`NOINDEX_BY_DESIGN`: the render template `spa-shell.html` and `404.html`), then checks the `--verify-url` over HTTP after the deploy. The GitHub Pages preview described above, published by the root `deploy-preview.ps1` (last changed 2026-08-24, 3b73665), is the older path. Whether it is retired is an open owner question, so do not assume either way. The `_redirects` caveat above applies only to that GitHub Pages copy, since the Netlify preview serves `_redirects`. The site is not live yet: DNS still points at WordPress.

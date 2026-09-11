@@ -114,7 +114,7 @@ hide recurring options entirely — BookingKoala will not accept a recurring mov
 | 6 Bedroom (Under 3600sqft) | $431.25 | 5h45 |
 | 7 Bedroom (Under 4200sqft) | $468.75 | 6h15 |
 
-**Full bathrooms:** 1 = $39.99 · 2 = $79.99 · 3 = $119.99 · 4 = $159.99 · 5 = $199.99 · 6 = $239.99 (7 = follows pattern, verify)
+**Full bathrooms:** 1 = $39.99 · 2 = $79.99 · 3 = $119.99 · 4 = $159.99 · 5 = $199.99 · 6 = $239.99 (no 7th option exists in BK for Move In/Out — verified in bk-config.json and notes.md; never offer or compute one)
 **Half baths:** 0 = $0 · 1 = $25.00 · 2 = $50.00 · 3 = $75.00 · 4 = $110.00
 
 ---

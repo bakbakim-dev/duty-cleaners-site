@@ -11,7 +11,7 @@ import { Lock, Phone, Mail } from "lucide-react";
  * a stack change that added the BookingKoala handoff, the GoHighLevel form
  * embed and the map embeds, none of which the old text mentioned.
  */
-const LAST_UPDATED = "August 2026";
+const LAST_UPDATED = "September 2026";
 
 export default function PrivacyPolicy() {
   return (

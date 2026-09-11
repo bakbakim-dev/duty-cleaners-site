@@ -1,73 +1,66 @@
-# Welcome to your Lovable project
+# Duty Cleaners — marketing site (runbook)
 
-## Project info
+The rebuild of dutycleaners.ca: a Vite + React + TypeScript site (shadcn-ui, Tailwind) that is
+prerendered to static HTML (209 pages) and deployed to Netlify. It serves Edmonton and Calgary,
+shows live prices generated from the BookingKoala config, sends leads to GoHighLevel, and hands
+bookings off to BookingKoala.
 
-**URL**: https://lovable.dev/projects/dfbec971-4fe5-4c27-981a-73e671669e1b
+**Status (2026-09-10): not live yet.** DNS for dutycleaners.ca still points at the old WordPress
+site. The public preview is https://dutycleaners-preview.netlify.app, which is deliberately noindexed.
 
-## How can I edit this code?
+This folder started as a Lovable project. Lovable is no longer part of the workflow: the site is
+built, tested and deployed from this repo. (`lovable-tagger` is still a dev dependency in vite.config.ts.)
 
-There are several ways of editing your application.
+## Commands
 
-**Use Lovable**
+Run everything from `site/`, with [bun](https://bun.sh) installed.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/dfbec971-4fe5-4c27-981a-73e671669e1b) and start prompting.
+| Command | What it does |
+|---|---|
+| `bun install` | Install dependencies |
+| `bun run dev` | Dev server on port 8080 (the predev step regenerates post dates, sitemaps and redirects) |
+| `bunx vite build` | Fast build only, no generators |
+| `bun run build` | Full build: the prebuild generators re-date the sitemaps and post dates from git and regenerate redirects and .htaccess, then run vite build |
+| `bun run prerender:all` | Prerender all 209 pages into `dist/` (about 47 s). The dist tests read this output, so rebuild instead of leaving them red |
+| `bunx vitest run` | Test suite (32 files, about 1,556 tests). There is no `test` script in package.json |
+| `bun run typecheck` | `tsc` over the app, no emit |
+| `bun run prove` | Break-it proofs: every guard is broken on purpose and must fail. Targets must be committed first (the script refuses to run on dirty targets) |
+| `bun run deploy:preview` | Build, prerender, check the noindex header, deploy to the Netlify preview site |
+| `bun run deploy:production -- --site <id> --verify-url <url>` | Production deploy. It checks that no page is noindexed, then probes the live URL over HTTP |
 
-Changes made via Lovable will be committed automatically to this repo.
+Netlify's own build (netlify.toml) runs `bun run build && bun run prerender:all`.
 
-**Use your preferred IDE**
+## Commit order when content changes
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+1. Commit the content change.
+2. Run `bun run build` (the prebuild generators re-date the sitemaps and `post-dates.ts` from git).
+3. Commit only the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Where the truth lives
 
-Follow these steps:
+Change facts in these files and nowhere else. Never hard-code a price, count or claim in a component.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+| What | Where |
+|---|---|
+| Prices, options, labels, frequency discounts | `src/data/bk-config.json` (a captured snapshot of the live BookingKoala form), read through `src/data/pricing.ts`. BookingKoala is the source of truth: re-capture the snapshot after any BK admin change, never edit numbers by hand. See `bk-config.md` at the repo root |
+| Business facts and claims (bookings claim, risk-reversal lines, response time, city phones, addresses and office pins in `CITY_PROOF`, job posting) | `src/data/proof.ts` |
+| Policies (guarantee, cancellation, payment terms, vetting and insurance wording) | `src/data/policy.ts` |
+| Copywriting rules | `DUTY-CLEANERS-CONTENT-PROMPT.md` at the repo root |
+| Guard proofs | `scripts/guard-proofs.ts` (registry), run by `scripts/prove-guards.ts`. Every new guard needs a proof registered here |
+| GoHighLevel lead delivery | `src/config/ghl.ts` plus the `supabase/functions/ghl-quote` relay (API v2 `contacts/upsert`). The old hidden-form transport is dead. See `GHL-INTEGRATION-BRIEF.md` |
+| Booking host | `BOOKING_ORIGIN` in `src/lib/booking-redirect.ts` (switch it when book.dutycleaners.ca goes live) |
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## Deploying
 
-# Step 3: Install the necessary dependencies.
-npm i
+Use `scripts/deploy.mjs` through `bun run deploy:preview` and `bun run deploy:production`. It makes
+the noindex decision based on the target (preview is always noindexed, production never is) and
+checks it in every built page.
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+`deploy-preview.ps1` at the repo root is the older GitHub Pages preview path
+(bakbakim-dev.github.io/dutycleaners-preview). It is not the current deploy.
 
-**Edit a file directly in GitHub**
+## Older documents at the repo root
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/dfbec971-4fe5-4c27-981a-73e671669e1b) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+`REBUILD-PLAN.md` is the historical build spec. Where it disagrees with the code or the owner
+decisions recorded in `proof.ts` and `policy.ts`, the code wins. `notes.md` covers the legacy
+WordPress site's GHL-form-to-BookingKoala bridge, not this site's lead path.

@@ -88,25 +88,33 @@ Where each fact lives, under site/src:
 
 | FACTS id | Source |
 |---|---|
-| P1 | `standardTierRows()` in data/pricing.ts |
+| P1 | `standardTierRows()` in data/pricing.ts; the top row is the 5-bedroom tier (`PRICING_TIERS`, labelled "5+ Bedroom"), and the dearer 6- and 7-bedroom sizes are in `BK_PRICE_OVERRIDES` in data/bk-price-overrides.ts |
+| P1's conditions (flat rate; the team explains extra work) | `PRICING_TERMS` in data/policy.ts |
 | P2 | `deepCleanTierRows()` in data/pricing.ts |
 | P3 | `moveInOutTierRows()` in data/pricing.ts |
 | P4 | `FREQUENCIES` in data/pricing.ts |
 | P5 | `sqftTierOptions("post-construction")` in data/pricing.ts |
 | P6, P8, P10 | `addOnFromPrice(service, key)` in data/pricing.ts; the pet charge is key `must-choose-if-you-have-pets` |
-| P7 | `HOURLY_RATE` in data/pricing.ts |
+| P7 | `HOURLY_RATE` in data/pricing.ts; the 3-hour and 2-hour minimum is in `PRICING_TERMS` in data/policy.ts |
 | P9 | the home-type rows of `BK_PRICE_OVERRIDES` in data/bk-price-overrides.ts |
 | P11 | `travelFee(service)` in data/addon-table.ts |
 | P12, T1, T3, T4 | `POLICY` in data/policy.ts |
 | T2 | `PAYMENT_TERMS` in data/policy.ts |
-| T5 | `SERVICE_TERMS` in data/policy.ts |
+| T5, F5 | `SERVICE_TERMS` in data/policy.ts |
 | T6 | components/DutyCleanPromise.tsx |
 | T7 | `NOT_INCLUDED` in data/policy.ts |
 | T9 | `RISK_REVERSAL` in data/proof.ts |
+| T10 | the `topic` handling in pages/Contact.tsx: `topic=office` selects "Office Cleaning", `topic=airbnb` the Airbnb callback |
+| F1 | `COMPANY.foundedYear` and `COMPANY.sinceLabel` in data/proof.ts |
+| F2, F3 | `CITY_PROOF` in data/proof.ts |
+| F4 | `SUPPORT_EMAIL` in data/proof.ts |
+| F6 | `ARRIVAL_WINDOWS` in data/policy.ts |
 | F7 | `RESPONSE_TIME_PROMISE` in data/proof.ts |
-| R1 | `CITY_PROOF` and `RATING_CLAIM` in data/proof.ts |
+| R1 | `CITY_PROOF.<city>.googleRating` and `googleReviewCount` in data/proof.ts hold the figures; `RATING_CLAIM` there is the "4.9 on Google" phrase, so check it still matches `googleRating` |
+| R2 | `POLICY.insuranceClaim` in data/policy.ts |
 | R3 | `BOOKINGS` and `BOOKINGS_CLAIM` in data/proof.ts |
 | A1, A2 | data/city-locations.ts |
+| F8, T8, A3 | no constant. F8 is typed into pages/FAQ.tsx (the booking answer) and restated in the comment above `RISK_REVERSAL` in data/proof.ts; `POLICY.cancellationNoticeHours` is the cancellation window, not the booking notice. T8 is typed into the move-out pages' copy. A3's lists are data/city-locations.ts; the Red Deer line has no constant but is typed into pages/FAQ.tsx and pages/Locations.tsx |
 
 ## The prompt
 
@@ -174,15 +182,15 @@ P1  Standard clean, one visit, for an apartment or condo:
       2 bedrooms, 2 bathrooms                    $195
       3 bedrooms, 2 bathrooms and a half bath    $232
       4 bedrooms, 3 bathrooms and a half bath    $284
-      5+ bedrooms, 3 bathrooms and a half bath   $305
-    More bathrooms, a larger home type or add-ons raise the price; the instant price shows the
-    exact figure.
-P2  Deep clean, same sizes: $255, $315, $372, $444, $485. It is the standard checklist plus the
-    deep-clean package: baseboards, doors, light switches, wall outlets and vent covers, and
-    cobwebs where there are any. Light switches and cobwebs belong to the deep package only;
-    never list them on the standard checklist. Ceiling fans are in no package: the team dusts
-    them only on request, where a 3-step ladder reaches them safely.
-P3  Move-in or move-out clean, same sizes: $284, $361, $424, $501, $539.
+      5 bedrooms, 3 bathrooms and a half bath    $305
+    More bedrooms (six or seven), more bathrooms, a larger home type or add-ons raise the price;
+    the instant price shows the exact figure.
+P2  Deep clean, same sizes, 1 to 5 bedrooms: $255, $315, $372, $444, $485. It is the standard
+    checklist plus the deep-clean package: baseboards, doors, light switches, wall outlets and
+    vent covers, and cobwebs where there are any. Light switches and cobwebs belong to the deep
+    package only; never list them on the standard checklist. Ceiling fans are in no package: the
+    team dusts them only on request, where a 3-step ladder reaches them safely.
+P3  Move-in or move-out clean, same sizes, 1 to 5 bedrooms: $284, $361, $424, $501, $539.
 P4  Recurring: the standard clean on a schedule. Weekly 20% off, bi-weekly 15% off, every 4 weeks
     10% off, from the second visit; the first clean is charged at the one-time rate. Name the 10%
     tier "every 4 weeks", never "monthly": it is 13 visits a year, not 12. You may say that every
@@ -368,9 +376,10 @@ one dash in a sentence. Use the "X, not Y" pattern no more than twice on a page,
   twin lacks, counted with the city names taken out. Shared price tables are fine; shared
   paragraphs are not.
 - At least six internal links from sentences in the body, including the branch's price list:
-  /calgary/pricing/ on Calgary, Airdrie and Cochrane pages, /pricing/ on the rest. Each anchor
-  names the service and the place, such as "move-out cleaning in Sherwood Park". Never "click
-  here", and never the same anchor twice.
+  /calgary/pricing/ on every Calgary-branch page, including the Calgary-side towns under
+  /locations/; /pricing/ on every Edmonton-branch page. The BRANCH input decides it, not the
+  URL. Each anchor names the service and the place, such as "move-out cleaning in Sherwood
+  Park". Never "click here", and never the same anchor twice.
 - Image slots with alt text only. Alt text describes what the picture shows. Never claim a
   picture shows a real customer's home, a real landmark or a real before-and-after unless LOCAL
   NOTES says a real photo exists.
