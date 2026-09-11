@@ -18,6 +18,7 @@ import {
   splitName,
   postalCodeCityStatus,
   postalCodeCityName,
+  isRedDeerPostalCode,
 
   type BookingUrlInput,
 } from "./booking-redirect";
@@ -526,6 +527,34 @@ describe("postalCodeCityStatus", () => {
     expect(postalCodeCityStatus("")).toBe("unknown");
     expect(postalCodeCityStatus("T5J")).toBe("unknown");
     expect(postalCodeCityStatus(null)).toBe("unknown");
+  });
+
+  // Statistics Canada's 2021 FSA boundaries over each city's own boundary file
+  // (see the comment on CITY_BY_PREFIX in booking-redirect.ts).
+  it("counts T1Y (Rundle, Whitehorn, Monterey Park) as Calgary, with no travel fee", () => {
+    expect(postalCodeCityStatus("T1Y 5E4")).toBe("inside");
+    expect(postalCodeCityName("t1y5e4")).toBe("Calgary");
+  });
+
+  it("charges T3Z (Redwood Meadows, Bragg Creek) the travel fee: it lies outside Calgary", () => {
+    expect(postalCodeCityStatus("T3Z 1A1")).toBe("outside");
+    expect(postalCodeCityName("T3Z 1A1")).toBeNull();
+  });
+
+  it("keeps the neighbouring T1 codes outside: Chestermere and Airdrie", () => {
+    expect(postalCodeCityStatus("T1X 1A1")).toBe("outside");
+    expect(postalCodeCityStatus("T4A 1A1")).toBe("outside");
+  });
+});
+
+describe("Red Deer postal codes", () => {
+  it("recognises Red Deer's three FSAs and nothing else", () => {
+    for (const code of ["T4N 1A1", "t4p2b2", "T4R 3C3"]) {
+      expect(isRedDeerPostalCode(code), code).toBe(true);
+    }
+    for (const code of ["T4E 1A1", "T4S 1A1", "T5J 0N3", "T4N", "", null]) {
+      expect(isRedDeerPostalCode(code), String(code)).toBe(false);
+    }
   });
 });
 

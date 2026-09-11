@@ -479,9 +479,9 @@ export default function BlogCleaningProducts() {
                 <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
                   Duty Cleaners teams bring all supplies and equipment, so you do not need to supply
                   products. You do not need to clean first either: clear counters and floors get
-                  cleaned, and cluttered ones get worked around. If you would rather the team used
-                  eco-friendly products, that is a paid add-on: ask when you book and the office adds
-                  it. See the price for your home size before you book; the card is charged once the
+                  cleaned, and cluttered ones get worked around. Optional alternative products are a paid add-on:
+                  ask the office which products are available and suitable for your surfaces when you
+                  book. See the price for your home size before you book; the card is charged once the
                   clean is complete.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">

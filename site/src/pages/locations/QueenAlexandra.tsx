@@ -138,7 +138,8 @@ const QueenAlexandra = () => {
               Most homes in Queen Alexandra are rented, and possession dates cluster at month end. A move-out clean on a suite covers the oven, the fridge seals and every cabinet interior, whether the last tenant used them or not.
             </p>
             <p>
-              Under Alberta's Residential Tenancies Act, the landlord completes a move-out inspection report with the tenant, and the security deposit must be returned within 10 days after the tenant moves out. We do not promise the deposit comes back; the landlord decides.
+              Under Alberta's Residential Tenancies Act, the landlord completes a move-out inspection report with the tenant. Within 10 days of the tenant moving out, the landlord must return the deposit, or return what is left with a written statement of any deductions (an estimate is allowed, with the final statement within 30 days), as set out in{" "}
+              <a href="https://www.alberta.ca/ending-a-tenancy" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Alberta's rules on ending a tenancy</a>. We do not promise the deposit comes back; the landlord decides.
             </p>
 
             <h3 className="text-3xl font-bold">Arrival Windows, Keys and Lockboxes</h3>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { pageServiceFor } from "@/lib/tracking";
 import { Button } from "@/components/ui/button";
 import { getService, type ServiceId } from "@/data/pricing";
 import { useQuoteOverlay } from "@/hooks/use-quote-overlay";
@@ -47,7 +48,10 @@ export default function ServiceStartCard({
   variant = "form",
 }: ServiceStartCardProps) {
   const { openQuote, prewarmQuote } = useQuoteOverlay();
-  const [service, setService] = useState<ServiceId>("standard");
+  const { pathname } = useLocation();
+  // On a page about one service the card starts on that service, so pressing
+  // Continue without touching the tiles never quotes a different one.
+  const [service, setService] = useState<ServiceId>(() => pageServiceFor(pathname) ?? "standard");
   /**
    * Deep Cleaning is a BookingKoala package on top of a Standard clean, not a
    * service of its own — the chip selects Standard and carries the intent into

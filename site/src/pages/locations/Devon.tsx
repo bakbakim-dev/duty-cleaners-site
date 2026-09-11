@@ -4,13 +4,14 @@ import {
 import devonLandmark from "@/assets/gallery/devon-landmark.webp";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CoverageChips from "@/components/CoverageChips";
-import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice, addOnFromPrice } from "@/data/pricing";
-import { travelFee } from "@/data/addon-table";
+import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice, addOnFromPrice, calculateQuote, homeTypeOptions, PRICING_TIERS } from "@/data/pricing";
+import { travelFee, TRAVEL_FEE_KEY } from "@/data/addon-table";
 import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
 import { GOOGLE_LISTINGS } from "@/lib/google-listings";
 import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
 
 import LocationPricing from "@/components/LocationPricing";
+import GoogleMapEmbed from "@/components/GoogleMapEmbed";
 
 // Every figure on this page is derived from bk-config or policy.ts.
 const STANDARD = standardTierRows();
@@ -32,13 +33,17 @@ const HOME_TYPE = {
 };
 const EDMONTON_LISTING = GOOGLE_LISTINGS.edmonton;
 
-// A worked quote built from the same rows the price table uses: a
+// A worked quote run through calculateQuote, the booking funnel's own maths: a
 // two-bedroom bungalow on a standard clean, outside city limits, with a pet.
-const dollars = (price: string) => Number(price.replace(/[^0-9.]/g, ""));
+// The table rounds each size to the dollar, so no total is built from a table card.
+const EXAMPLE_SIZE = PRICING_TIERS[1];
 const EXAMPLE_TIER = STANDARD[1];
-const EXAMPLE_TOTAL = dollars(EXAMPLE_TIER.price) + BK_PRICE_OVERRIDES[54].price + (travelFee("standard") ?? 0);
-const EXAMPLE_PRICE = formatPrice(EXAMPLE_TOTAL);
-const EXAMPLE_WITH_PET = formatPrice(EXAMPLE_TOTAL + (addOnFromPrice("standard", "must-choose-if-you-have-pets") ?? 0));
+const exampleQuote = (homeType: number | null, addOns: string[] = []) =>
+  calculateQuote({ service: "standard", homeType, bedrooms: EXAMPLE_SIZE.beds, bathrooms: EXAMPLE_SIZE.bathrooms, halfBaths: EXAMPLE_SIZE.halfBaths, addOns, frequency: "one-time" }).firstClean;
+const EXAMPLE_BASE = formatPrice(exampleQuote(homeTypeOptions("standard")[0]?.id ?? null));
+const EXAMPLE_BASE_TEXT = EXAMPLE_BASE === EXAMPLE_TIER.price ? EXAMPLE_BASE : `${EXAMPLE_BASE} (${EXAMPLE_TIER.price} in the table, which rounds to the dollar)`;
+const EXAMPLE_PRICE = formatPrice(exampleQuote(54, [TRAVEL_FEE_KEY]));
+const EXAMPLE_WITH_PET = formatPrice(exampleQuote(54, [TRAVEL_FEE_KEY, "must-choose-if-you-have-pets"]));
 // Add-ons on a standard clean; the move-in/move-out clean includes both.
 const OVEN_FROM = formatPrice(addOnFromPrice("standard", "inside-oven") ?? 0);
 const FRIDGE_FROM = formatPrice(addOnFromPrice("standard", "inside-fridge") ?? 0);
@@ -159,7 +164,7 @@ export default function Devon() {
     },
     {
       question: "Do the cleaners bring their own supplies to Devon?",
-      answer: `Yes. The team brings all supplies and equipment, from products and cloths to the mop and the vacuum. Leave the water and power on until the clean is done: running water is required, and vacuuming may not be possible without electricity. If you want eco-friendly products, they are ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}.`
+      answer: `Yes. The team brings all supplies and equipment, from products and cloths to the mop and the vacuum. Leave the water and power on until the clean is done: running water is required, and vacuuming may not be possible without electricity. Optional alternative products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}.`
     },
     {
       question: "What happens if something is missed?",
@@ -171,7 +176,7 @@ export default function Devon() {
     },
     {
       question: "What is not included in a Devon house clean?",
-      answer: `Outdoor work is not included, which means exterior windows, garages, patios and other outdoor areas; in a Devon house backing the river valley, the mud gets cleaned once it is inside the door. The team does not lift anything over 25 lb or work beyond a 3-step ladder. Carpet steam cleaning, upholstery, mould remediation, pests, litter boxes, laundry and dishes are also out of scope. Heavy scrubbing of walls and doors is the separate wall-washing package, and decluttering or organising is a separate hourly add-on.`
+      answer: `Outdoor work is not included, which means exterior windows, garages, patios and other outdoor areas, apart from a balcony or garage sweep add-on offered mostly in summer when the weather allows; in a Devon house backing the river valley, the mud gets cleaned once it is inside the door. The team does not lift anything over 25 lb or work beyond a 3-step ladder. Carpet steam cleaning, upholstery, mould remediation, pests, litter boxes, laundry and dishes are also out of scope. Heavy scrubbing of walls and doors is the separate wall-washing package, and decluttering or organising is a separate hourly add-on.`
     }
   ];
   const faqJsonLd = {
@@ -273,16 +278,7 @@ export default function Devon() {
               </p>
             </div>
             <div className="max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-xl">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d38000.0!2d-113.73170!3d53.36335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a01f8b8b8b8b8b%3A0x8b8b8b8b8b8b8b8b!2sDevon%2C+AB!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca"
-                width="100%"
-                height="450"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer"
-                title="Devon Service Area Map"
-              />
+              <GoogleMapEmbed query="Devon, AB" title="Devon Service Area Map" />
             </div>
           </AnimatedSection>
         </div>
@@ -395,7 +391,8 @@ export default function Devon() {
                 <p>
                   For a rental handover, book{" "}
                   <Link to="/move-out-cleaning-edmonton/" className="text-primary underline underline-offset-2 font-medium">Devon move-out cleaning</Link>{" "}
-                  from {MOVE_FROM} for a one-bedroom apartment or condo, before GST, the travel fee and any house-type or pet surcharge, and empty the cupboards first. Under Alberta's Residential Tenancies Act the landlord completes a move-out inspection report with the tenant, and the security deposit must be returned within 10 days after the tenant moves out. We do not promise the deposit comes back; the landlord decides.
+                  from {MOVE_FROM} for a one-bedroom apartment or condo, before GST, the travel fee and any house-type or pet surcharge, and empty the cupboards first. Under Alberta's Residential Tenancies Act the landlord completes a move-out inspection report with the tenant. Within 10 days of the tenant moving out, the landlord must return the deposit, or return what is left with a written statement of any deductions (an estimate is allowed, with the final statement within 30 days), as set out in{" "}
+                  <a href="https://www.alberta.ca/ending-a-tenancy" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Alberta's rules on ending a tenancy</a>. We do not promise the deposit comes back; the landlord decides.
                 </p>
                 <p>
                   If the property is a short-term rental, the job is a turnover between guests rather than a scheduled clean. It is priced by the hour, with a minimum of 3 hours for one cleaner or 2 hours for two, on the{" "}
@@ -420,7 +417,7 @@ export default function Devon() {
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>
-                  Take a two-bedroom, two-bathroom bungalow in Devon, booked for a one-time standard clean. The table price for that size is {EXAMPLE_TIER.price}, which assumes an apartment or condo. A bungalow adds {HOME_TYPE.bungalow} and a Devon address adds the {TRAVEL_FEE} travel fee, so the quote comes to {EXAMPLE_PRICE} before 5% GST. If a dog or a cat lives there, the {PET_FEE} pet charge is compulsory on every visit and takes it to {EXAMPLE_WITH_PET}, still before GST.
+                  Take a two-bedroom, two-bathroom bungalow in Devon, booked for a one-time standard clean. The rate for that size is {EXAMPLE_BASE_TEXT}, which assumes an apartment or condo. A bungalow adds {HOME_TYPE.bungalow} and a Devon address adds the {TRAVEL_FEE} travel fee, so the quote comes to {EXAMPLE_PRICE} before 5% GST. If a dog or a cat lives there, the {PET_FEE} pet charge is compulsory on every visit and takes it to {EXAMPLE_WITH_PET}, still before GST.
                 </p>
                 <p>
                   What else moves the figure is the home and the extras, not the clock. More bathrooms than the table assumes raise it, and so do add-ons: on a standard clean, inside the oven is from {OVEN_FROM} and inside the fridge from {FRIDGE_FROM}, both before GST. How long the clean takes does not change it. If a home needs substantially more work than described, such as heavy build-up, the team explains what it found and the options before continuing.

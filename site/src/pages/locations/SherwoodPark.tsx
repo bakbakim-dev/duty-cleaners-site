@@ -6,11 +6,12 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
-import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice, addOnFromPrice } from "@/data/pricing";
-import { travelFee } from "@/data/addon-table";
+import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice, addOnFromPrice, calculateQuote, homeTypeOptions, PRICING_TIERS, DEEP_CLEAN_ADDON_ID } from "@/data/pricing";
+import { travelFee, TRAVEL_FEE_KEY } from "@/data/addon-table";
 import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
 import { GOOGLE_LISTINGS } from "@/lib/google-listings";
 import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
+import GoogleMapEmbed from "@/components/GoogleMapEmbed";
 
 // Prices are read from bk-config through pricing.ts, never typed here.
 const STANDARD = standardTierRows();
@@ -36,13 +37,17 @@ const EDMONTON_LISTING = GOOGLE_LISTINGS.edmonton;
 const PAGE_TITLE = `House Cleaning Sherwood Park from ${STANDARD_FROM} | Duty Cleaners`;
 const META_DESCRIPTION = `Sherwood Park cleans start at ${STANDARD_FROM} for a one-bedroom apartment or condo, before GST, a ${TRAVEL_FEE} travel fee and any pet or home-type charge.`;
 
-// A worked quote built from the same rows the price table uses: a three-bedroom
-// two-storey house on a deep clean, no pets, outside city limits.
-const dollars = (price: string) => Number(price.replace(/[^0-9.]/g, ""));
+// A worked quote run through calculateQuote, the booking funnel's own maths: a
+// three-bedroom two-storey house on a deep clean (a standard clean plus the
+// Deep Cleaning package), no pets, outside city limits. The table rounds each
+// size to the dollar, so no total is built from a table card.
+const EXAMPLE_SIZE = PRICING_TIERS[2];
 const EXAMPLE_TIER = DEEP[2];
-const EXAMPLE_PRICE = formatPrice(
-  Math.round((dollars(EXAMPLE_TIER.price) + BK_PRICE_OVERRIDES[90].price + (travelFee("standard") ?? 0)) * 100) / 100,
-);
+const exampleQuote = (homeType: number | null, addOns: string[] = []) =>
+  calculateQuote({ service: "standard", homeType, bedrooms: EXAMPLE_SIZE.beds, bathrooms: EXAMPLE_SIZE.bathrooms, halfBaths: EXAMPLE_SIZE.halfBaths, addOns: [DEEP_CLEAN_ADDON_ID, ...addOns], frequency: "one-time" }).firstClean;
+const EXAMPLE_BASE = formatPrice(exampleQuote(homeTypeOptions("standard")[0]?.id ?? null));
+const EXAMPLE_BASE_TEXT = EXAMPLE_BASE === EXAMPLE_TIER.price ? EXAMPLE_BASE : `${EXAMPLE_BASE} (${EXAMPLE_TIER.price} in the table, which rounds to the dollar)`;
+const EXAMPLE_PRICE = formatPrice(exampleQuote(90, [TRAVEL_FEE_KEY]));
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -152,7 +157,7 @@ export default function SherwoodPark() {
     },
     {
       question: "Do you bring your own supplies?",
-      answer: `Yes. The team brings all supplies and equipment to every Sherwood Park clean. Eco-friendly products are ${POLICY.ecoProductsFee} extra: ${POLICY.ecoProductsHowToRequest}. Running water is required, and vacuuming may not be possible without power.`
+      answer: `Yes. The team brings all supplies and equipment to every Sherwood Park clean. Optional alternative products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}. Running water is required, and vacuuming may not be possible without power.`
     },
     {
       question: "How long does a first clean in Sherwood Park take?",
@@ -264,7 +269,7 @@ export default function SherwoodPark() {
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>
-                  Say the home is a three-bedroom two-storey house in Sherwood Park, with two and a half bathrooms and no pets, booked for a deep clean. The deep clean for that size is {EXAMPLE_TIER.price} as an apartment or condo, the travel fee is {TRAVEL_FEE} and a two-storey house adds {HOME_TYPE.twoStorey}, so the quote comes to {EXAMPLE_PRICE} before 5% GST. A dog or a cat in the house would put the pet charge of {PET_FEE} on each visit as well.
+                  Say the home is a three-bedroom two-storey house in Sherwood Park, with two and a half bathrooms and no pets, booked for a deep clean. The deep clean for that size is {EXAMPLE_BASE_TEXT} as an apartment or condo, the travel fee is {TRAVEL_FEE} and a two-storey house adds {HOME_TYPE.twoStorey}, so the quote comes to {EXAMPLE_PRICE} before 5% GST. A dog or a cat in the house would put the pet charge of {PET_FEE} on each visit as well.
                 </p>
                 <p>
                   The deep clean is the standard checklist plus the deep-clean package: baseboards, doors, light switches, wall outlets and vent covers. Book a standard clean instead and the same house is quoted from the standard rate for its size, with the same surcharge and travel fee.
@@ -294,7 +299,9 @@ export default function SherwoodPark() {
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>Leaving a Sherwood Park rental, or taking the keys to a house someone else has lived in, calls for the move-in or move-out clean. Beyond the standard rooms it goes inside the oven, fridge and microwave, and inside every cabinet, drawer and closet, at a flat rate by home size plus the same travel fee as any Sherwood Park booking.</p>
-                <p>Alberta's Residential Tenancies Act has the landlord complete a move-out inspection report with the tenant, and it requires the security deposit to be returned within 10 days after the tenant moves out. Whether any of the deposit is kept is for the landlord to decide, and we do not promise it comes back.</p>
+                <p>
+                  Alberta's Residential Tenancies Act has the landlord complete a move-out inspection report with the tenant. Within 10 days of the tenant moving out, the landlord must return the deposit, or return what is left with a written statement of any deductions (an estimate is allowed, with the final statement within 30 days), as set out in{" "}
+                  <a href="https://www.alberta.ca/ending-a-tenancy" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Alberta's rules on ending a tenancy</a>. Whether any of the deposit is kept is for the landlord to decide, and we do not promise it comes back.</p>
                 <p>
                   The clean goes furthest in empty rooms: clear counters and floors get cleaned, and cluttered ones get worked around. Anything over 25 lb stays where it is, and garages, patios and exterior windows sit outside every checklist. Sherwood Park moves follow{" "}
                   <Link to="/move-out-cleaning-edmonton/" className="text-primary underline underline-offset-2 font-medium">the move-out checklist for Edmonton homes</Link>.
@@ -313,16 +320,7 @@ export default function SherwoodPark() {
               <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
               <h2 className="text-3xl font-bold text-foreground mt-2 mb-6">Sherwood Park Service Area</h2>
               <div className="rounded-2xl overflow-hidden shadow-xl">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d37826.07!2d-113.29663!3d53.52570!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a0184c30c1bced%3A0x8b04fae2f1a1a0f4!2sSherwood%20Park%2C%20AB!5e0!3m2!1sen!2sca!4v1700000000000"
-                  width="100%"
-                  height="450"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer"
-                  title="Sherwood Park Service Area Map"
-                />
+                <GoogleMapEmbed query="Sherwood Park, AB" title="Sherwood Park Service Area Map" />
               </div>
             </div>
           </AnimatedSection>

@@ -211,7 +211,9 @@ P10 Homes with pets: $19.99 per visit. It is compulsory, and it shows on the quo
     booking.
 P11 No trip fee inside Edmonton or Calgary city limits. Outside them the travel fee is $29.99 for
     home cleaning and $50 for post-construction.
-P12 Eco-friendly products: $15. Ask when you book and the office adds it.
+P12 Optional alternative products: $15 before GST. Ask the office which products are available
+    and suitable for your surfaces when you book. Never call them eco-friendly, green, non-toxic or
+    pet-safe.
 Every price you state needs its condition in the same sentence or the next one: that it is
 before GST, which home size it is for, and which compulsory charges can apply. Never present a
 price as the whole bill when the pet charge, the home-type surcharge or the travel fee can apply.
@@ -245,18 +247,22 @@ T6  You do not need to clean before the team comes. Clear counters and floors ge
 T7  Not included: lifting anything over 25 lb; outdoor work, including exterior windows; anything
     beyond a 3-step ladder; light bulbs and fragile fixtures; bodily fluids, animal waste and
     litter boxes; mould remediation (light surface mildew may be wiped where safe); pests and
-    rodents; garages, patios and outdoor areas; carpet steam cleaning and upholstery; furnace,
+    rodents; garages, patios and outdoor areas (a balcony or garage sweep is a separate add-on,
+    offered mostly in summer when the weather allows); carpet steam cleaning and upholstery; furnace,
     vent and duct cleaning; drains and plumbing; removing window screens; heavy scrubbing of
     walls and doors, which is the wall-washing package; hoarding situations and large debris
     removal; laundry and dishes.
-T8  Move-out law, these two facts only: under Alberta's Residential Tenancies Act the landlord
-    completes a move-out inspection report with the tenant, and the security deposit must be
-    returned within 10 days after the tenant moves out. Never promise the deposit comes back;
-    the landlord decides.
+T8  Move-out law, these facts only: under Alberta's Residential Tenancies Act the landlord
+    completes a move-out inspection report with the tenant. Within 10 days of the tenant moving
+    out, the landlord must return the deposit, or return what is left with a written statement
+    of any deductions (an estimate is allowed, with the final statement within 30 days). Never
+    write the bare "returned within 10 days", and never promise the deposit comes back; the
+    landlord decides. Interior window cleaning is an add-on on a move-out, never included.
 T9  No contracts: a customer books one clean or many.
 T10 Quotes: the instant price covers home cleaning. Airbnb and short-term rental turnovers are
     priced on a callback. The only commercial work quoted online is office cleaning, through the
-    contact form.
+    contact form. Commercial work is priced per square foot, scoped at a walkthrough and
+    confirmed in a written quote.
 
 Service area
 A1  Edmonton branch: 80 Edmonton neighbourhoods, plus 9 communities outside the city: St. Albert,
@@ -267,9 +273,10 @@ A2  Calgary branch: 66 Calgary neighbourhoods, plus 9 communities outside the ci
     Black Diamond and Turner Valley amalgamated as the Town of Diamond Valley on 1 January 2023.
     Both keep their own pages, and a link to either one names the town: "Black Diamond (Diamond
     Valley)", "Turner Valley (Diamond Valley)".
-A3  Name only places on these lists. The one area the site says it does not serve is Red Deer.
-    For any other address that is not listed, tell the reader to call the branch; never say
-    whether it is served.
+A3  Name only places on these lists. Red Deer is served too (owner, 2026-09-11): tell the reader
+    to call the Edmonton or Calgary office to book it and confirm the travel charge. For any
+    other address that is not listed, tell the reader to call the branch; never say whether it
+    is served.
 
 City conditions you may use
 C1  Edmonton holds its cold rather than cycling through thaws, so the sand and salt tracked in
@@ -341,7 +348,8 @@ one dash in a sentence. Use the "X, not Y" pattern no more than twice on a page,
   content is about homes: how they are built, what the weather does to them, how people get in
   and out, when people sleep.
 - Commercial cleaning in the body copy of a house-cleaning page. The commercial pages, the
-  footer link to them and the office-cleaning quote route (T10) are handled separately.
+  footer link to them and the office-cleaning quote route (T10) are handled separately; each
+  city homepage and services hub carries one pointer sentence to its commercial page.
 - A page or a section for every place-and-service pair, or sections that differ only by the
   place name.
 - Copy that depends on the visitor's location. The URL decides the city.

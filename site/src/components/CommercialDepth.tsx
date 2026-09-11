@@ -18,10 +18,13 @@ import { CheckCircle2, Clock, ClipboardList, Building2, Sparkles } from "lucide-
  *   retail space cleaning  ~2.2k
  *
  * Everything here is drawn from facts already published elsewhere on the site
- * (hourly quoting for commercial, operating hours, vetting, the 24-hour
- * make-it-right window). No pricing figures, certifications or client names are
- * invented — where a number would need owner confirmation, the copy describes
- * the process instead of asserting a value.
+ * (per-square-foot commercial pricing set at a walkthrough, owner 2026-09-03;
+ * operating hours, vetting, the 24-hour re-clean window). No pricing figures,
+ * certifications or client names are invented — where a number would need
+ * owner confirmation, the copy describes the process instead of asserting a
+ * value. The cleaners are subcontractors who choose their own products (owner,
+ * 2026-09-11), so nothing here claims what a product does: the copy says what
+ * the team does, and product requirements are confirmed in writing per site.
  */
 
 interface CommercialDepthProps {
@@ -34,17 +37,17 @@ export function commercialFaqs(city: "Edmonton" | "Calgary", phone: string) {
   return [
     {
       q: `How much does commercial cleaning cost in ${city}?`,
-      a: `Commercial work is priced per square foot of the area actually cleaned, and the rate is set at the walkthrough rather than off a floor plan — because two premises of the same size rarely take the same time. A call centre and a dental clinic have very different requirements, and washroom count, floor type and foot traffic all move the rate. You get that rate and the expected visit length in writing before anything is booked. Call ${phone} to arrange the walkthrough.`,
+      a: `Commercial cleaning in ${city} is priced per square foot of the area actually cleaned, and the rate is set at a walkthrough rather than off a floor plan, because two premises of the same size rarely take the same time. A call centre and a dental clinic have very different requirements, and washroom count, floor type and foot traffic all move the rate. The written quote states the areas, the visit frequency and the pricing basis before work is booked. Call ${phone} to arrange the walkthrough.`,
     },
     {
       q: "Can you clean outside our business hours?",
-      a: "Yes — most commercial contracts run before opening or after close so cleaning never interrupts staff or customers. Our standard operating window is Monday to Saturday 8 AM–8 PM and Sunday 9 AM–3 PM; work outside that window can be arranged as part of a scheduled contract.",
+      a: "Most commercial schedules run before opening or after close, so cleaning does not interrupt staff or customers. Our standard operating window is Monday to Saturday 8 AM to 8 PM and Sunday 9 AM to 3 PM. Ask at the walkthrough about times outside that window; the visit times we agree go into the written quote.",
     },
     {
       q: "Do we need to sign a long-term contract?",
       // Was "no cancellation penalty", inside FAQPage schema, against a policy of
       // $50 inside 24 hours. The real point — no lock-in — survives intact.
-      a: `No. Recurring schedules are the most common arrangement because they keep the same cleaners on your site, but there is no lock-in period and no penalty for ending the schedule. Individual visits follow the same notice rule as everyone else: ${POLICY.cancellationNoticeHours} hours to move or cancel one, ${POLICY.cancellationFee} inside that. If you would rather start with a single deep clean before committing to a schedule, that is a normal way to begin.`,
+      a: `No. Recurring schedules are the most common arrangement, and on one we send your regular team where we can. There is no lock-in period and no penalty for ending the schedule. Individual visits follow the same notice rule as everyone else: ${POLICY.cancellationNoticeHours} hours to move or cancel one, ${POLICY.cancellationFee} inside that. If you would rather start with a single deep clean before committing to a schedule, that is a normal way to begin.`,
     },
     {
       q: "How are your cleaners vetted, and what about insurance?",
@@ -52,15 +55,15 @@ export function commercialFaqs(city: "Edmonton" | "Calgary", phone: string) {
     },
     {
       q: "Will the same team clean our premises each visit?",
-      a: "That is the goal on any recurring schedule, and it is the main practical reason to move from ad-hoc to scheduled cleaning. A consistent team learns your alarm codes, access routine and the areas that matter most to you, which makes every subsequent visit faster and more thorough.",
+      a: "On a recurring schedule we send your regular team where we can, and that is the main practical reason to move from ad-hoc to scheduled cleaning. A team that knows your alarm codes, access routine and the areas that matter most to you spends less of each visit finding its way around.",
     },
     {
       q: "What happens if something is missed?",
-      a: "Tell us within 24 hours and we return to put it right at no additional charge. For recurring commercial accounts we would rather hear about a missed bin than have it quietly noted — the feedback is what keeps a long-running schedule accurate.",
+      a: `Tell us within ${POLICY.guaranteeWindowHours} hours of the clean and we return to clean what was missed at no additional charge. For recurring commercial accounts we would rather hear about a missed bin than have it quietly noted, because that feedback is what keeps a long-running schedule accurate.`,
     },
     {
       q: "Do you supply your own equipment and products?",
-      a: "Yes. Our teams arrive with everything needed for the agreed scope. If your site requires specific products — a particular disinfectant for a medical suite, or a low-odour option for a shared building — tell us during the walkthrough and we will work to it.",
+      a: "Yes. The team arrives with the equipment and products the agreed scope needs. Tell us about required products and site protocols at the walkthrough, such as a disinfectant your medical suite specifies or a low-odour option for a shared building. We confirm in writing which requirements we can meet before you book.",
     },
   ];
 }
@@ -70,14 +73,14 @@ const SPACES = [
     icon: Building2,
     title: "Office and professional space",
     blurb:
-      "Desks, keyboards and phones, meeting rooms, kitchens and break areas, glass partitions, washrooms, and all hard and soft flooring. Reception gets particular attention — it is the room your clients form an impression in.",
+      "Desks, keyboards and phones, meeting rooms, kitchens and break areas, glass partitions, washrooms, and hard and soft flooring. Reception is on every visit's list, because it is the room your clients see first.",
     cadence: "Most offices run nightly or 2–3 times a week.",
   },
   {
     icon: Sparkles,
     title: "Janitorial and building maintenance",
     blurb:
-      "The recurring routine that keeps a building running: washroom sanitation and restocking, waste and recycling removal, entryway and stairwell care, high-touch point disinfection, and floor maintenance on a rotating schedule.",
+      "The recurring routine that keeps a building running: washrooms cleaned and restocked, waste and recycling removed, entryways and stairwells cleaned, high-touch surfaces wiped down, and floor care on a rotating schedule.",
     cadence: "Daily through weekly, depending on foot traffic.",
   },
   {
@@ -117,7 +120,12 @@ export default function CommercialDepth({ city, phone, phoneLink }: CommercialDe
               Every contract is scoped to the premises, but these are the areas we are normally asked
               to cover. If something on your site is not listed — a server room, a plant floor, a
               shared strata lobby — it can still be included; it just needs to be in the walkthrough
-              so the quote reflects it.
+              so the quote reflects it. Office cleaning can be requested with the quote form; other
+              premises are scoped by phone and at a walkthrough with the {city} office, on{" "}
+              <a href={phoneLink} className="font-semibold text-primary underline underline-offset-4">
+                {phone}
+              </a>
+              .
             </p>
 
             <div className="grid gap-6 md:grid-cols-2">
@@ -156,8 +164,8 @@ export default function CommercialDepth({ city, phone, phoneLink }: CommercialDe
 
             <div className="mt-8 grid gap-5 md:grid-cols-3">
               {[
-                { n: "01", t: "Walkthrough", d: `We visit the premises in ${city} — or review a floor plan for a straightforward space — and agree exactly what is in scope.` },
-                { n: "02", t: "Written quote", d: "You get the rate per square foot and the expected visit length before anything is booked. No deposit, and nothing is charged to hold a slot." },
+                { n: "01", t: "Walkthrough", d: `We visit the premises in ${city} with you and agree which areas, rooms and surfaces are in scope, and how often.` },
+                { n: "02", t: "Written quote", d: "The written quote states the areas, the visit frequency and the pricing basis, per square foot, before work is booked." },
                 { n: "03", t: "Schedule and review", d: "We start on the agreed cadence, then check in after the first few visits and adjust the scope or timing if reality differs from the plan." },
               ].map(({ n, t, d }) => (
                 <div key={n} className="bg-card border border-border p-6">
@@ -205,7 +213,7 @@ export default function CommercialDepth({ city, phone, phoneLink }: CommercialDe
             <p className="mt-8 text-muted-foreground">
               Looking for home cleaning instead?{" "}
               <Link
-                to={city === "Edmonton" ? "/" : "/cleaning-services-calgary/"}
+                to={city === "Edmonton" ? "/pricing/" : "/calgary/pricing/"}
                 className="font-semibold text-primary underline underline-offset-4"
               >
                 See residential pricing for {city}

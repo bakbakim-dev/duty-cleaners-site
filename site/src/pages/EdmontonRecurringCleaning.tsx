@@ -8,6 +8,7 @@ import {
 import { travelFee } from "@/data/addon-table";
 import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
 import { Accent, AccentGold } from "@/components/Accent";
+import RecurringVisitPrices from "@/components/RecurringVisitPrices";
 import { Home, Bath, UtensilsCrossed } from "lucide-react";
 import heroImage from "@/assets/gallery/family-clean-home-edmonton.webp";
 import kitchenImage from "@/assets/gallery/summerside-cleaner-home.webp";
@@ -120,6 +121,10 @@ export default function EdmontonRecurringCleaning() {
                 weekly, {ongoing(2, BIWEEKLY?.id)} bi-weekly or {ongoing(2, FOUR_WEEKS?.id)} every 4 weeks, before GST;
                 on the bi-weekly plan that is {ongoingWithGst(2, BIWEEKLY?.id)} a visit once 5% GST is added.
               </p>
+              <RecurringVisitPrices
+                tiers={[0, 3]}
+                caption="Each Edmonton visit on a schedule, for the smallest home and a four-bedroom, at the apartment or condo rate before GST. The first visit is the one-time rate."
+              />
               <p>
                 Those figures are for an apartment or condo. A bungalow, townhouse or two-storey house costs more on
                 every visit, and a home with pets carries the compulsory pet charge; the quote shows both before you
@@ -186,7 +191,7 @@ export default function EdmontonRecurringCleaning() {
         "Mould remediation, bodily fluids, or pest removal",
         "Areas beyond the reach of a 3-step ladder",
         "Light bulbs and fragile fixtures",
-        "Garages, patios and outdoor areas, apart from the balcony or garage sweep add-on",
+        "Garages, patios and outdoor areas, apart from the balcony or garage sweep add-on, available mostly in summer when the weather allows",
         "Laundry and dishes",
       ]}
       faqs={[
@@ -195,7 +200,7 @@ export default function EdmontonRecurringCleaning() {
         { q: "Can I change or skip a scheduled cleaning?", a: `Yes. Any visit on the schedule can be moved or cancelled with ${POLICY.cancellationNoticeHours} hours' notice at no charge, and the schedule itself can be changed or stopped the same way. Inside ${POLICY.cancellationNoticeHours} hours the fee is ${POLICY.cancellationFee}. If we have to move a visit, because a cleaner is ill or the roads are unsafe, we say so as soon as we know and offer the earliest slot we have.` },
         { q: "Will I have the same cleaner each visit?", a: "We send your regular team where we can send them. Illness, leave and the schedule sometimes mean a different team. Every cleaner is reference-checked before a first job and rated by the customer after each visit, and those ratings decide who we keep sending." },
         { q: "Do I need to be home during the cleaning?", a: `No. Most customers on a schedule leave a key, a lockbox code or smart-lock access, and the team locks up after each visit. If the code changes between visits, tell us, because a team that arrives and cannot get in is a lockout, charged at ${POLICY.lockoutFee}.` },
-        { q: "Do I need to provide cleaning supplies?", a: `No. The team brings all the supplies and equipment to every visit. The home needs running water, and without electricity the vacuuming may not be possible. Eco-friendly products are available for ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}.` },
+        { q: "Do I need to provide cleaning supplies?", a: `No. The team brings all the supplies and equipment to every visit. The home needs running water, and without electricity the vacuuming may not be possible. Optional alternative products are available for ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}.` },
         ...(PET_FEE !== null
           ? [{ q: "Is there a charge for pets on a recurring plan?", a: `Yes. A home with pets carries a compulsory pet charge, ${formatPrice(PET_FEE)} on a one-time visit, and the quote shows it before you book, for the first visit and for the visits after it. Tell us about the pets on the booking so the team knows who it will meet.` }]
           : []),

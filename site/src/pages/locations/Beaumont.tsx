@@ -4,13 +4,14 @@ import {
 import beaumontLandmark from "@/assets/gallery/beaumont-landmark.webp";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CoverageChips from "@/components/CoverageChips";
-import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice, addOnFromPrice } from "@/data/pricing";
-import { travelFee } from "@/data/addon-table";
+import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice, addOnFromPrice, calculateQuote, homeTypeOptions, PRICING_TIERS } from "@/data/pricing";
+import { travelFee, TRAVEL_FEE_KEY } from "@/data/addon-table";
 import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
 import { GOOGLE_LISTINGS } from "@/lib/google-listings";
 import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
 
 import LocationPricing from "@/components/LocationPricing";
+import GoogleMapEmbed from "@/components/GoogleMapEmbed";
 
 // Every figure on this page is derived from bk-config or policy.ts.
 const STANDARD = standardTierRows();
@@ -37,11 +38,16 @@ const EDMONTON_LISTING = GOOGLE_LISTINGS.edmonton;
 const PAGE_TITLE = `House Cleaning Beaumont, AB from ${STANDARD_FROM} | Duty Cleaners`;
 const PAGE_DESCRIPTION = `Most homes we clean in Beaumont, Alberta are large, recent family houses; house cleaning here starts at ${STANDARD_FROM} before GST, plus a ${TRAVEL_FEE} travel fee.`;
 
-// A worked quote built from the same rows the price table uses: a
-// four-bedroom two-storey house on a standard clean, outside city limits.
-const dollars = (price: string) => Number(price.replace(/[^0-9.]/g, ""));
+// A worked quote run through calculateQuote, the booking funnel's own maths: a
+// four-bedroom two-storey house on a standard clean, outside city limits. The
+// table rounds each size to the dollar, so no total is built from a table card.
+const EXAMPLE_SIZE = PRICING_TIERS[3];
 const EXAMPLE_TIER = STANDARD[3];
-const EXAMPLE_PRICE = formatPrice(dollars(EXAMPLE_TIER.price) + BK_PRICE_OVERRIDES[90].price + (travelFee("standard") ?? 0));
+const exampleQuote = (homeType: number | null, addOns: string[] = []) =>
+  calculateQuote({ service: "standard", homeType, bedrooms: EXAMPLE_SIZE.beds, bathrooms: EXAMPLE_SIZE.bathrooms, halfBaths: EXAMPLE_SIZE.halfBaths, addOns, frequency: "one-time" }).firstClean;
+const EXAMPLE_BASE = formatPrice(exampleQuote(homeTypeOptions("standard")[0]?.id ?? null));
+const EXAMPLE_BASE_TEXT = EXAMPLE_BASE === EXAMPLE_TIER.price ? EXAMPLE_BASE : `${EXAMPLE_BASE} (${EXAMPLE_TIER.price} in the table, which rounds to the dollar)`;
+const EXAMPLE_PRICE = formatPrice(exampleQuote(90, [TRAVEL_FEE_KEY]));
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -161,7 +167,7 @@ export default function Beaumont() {
     },
     {
       question: "Do I need to have cleaning supplies at the house?",
-      answer: `No. The team brings all supplies and equipment. Running water is required, and vacuuming may not be possible without electricity, so both need to be on while the team works. Eco-friendly products are available for ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}.`
+      answer: `No. The team brings all supplies and equipment. Running water is required, and vacuuming may not be possible without electricity, so both need to be on while the team works. Optional alternative products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}.`
     },
     {
       question: "What happens if something is missed?",
@@ -389,7 +395,7 @@ export default function Beaumont() {
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>
-                  Much of what the team cleans in Beaumont is a large, recent family house, so take one: a two-storey with four bedrooms, three bathrooms and a half bath, on a one-time standard clean. The table puts that size at {EXAMPLE_TIER.price}. With the {TRAVEL_FEE} travel fee and the two-storey charge of {HOME_TYPE.twoStorey}, that makes {EXAMPLE_PRICE} before 5% GST. A pet in the house adds the pet charge on every visit, and a fourth full bathroom or an add-on raises the figure again; the instant price shows the exact total before you book.
+                  Much of what the team cleans in Beaumont is a large, recent family house, so take one: a two-storey with four bedrooms, three bathrooms and a half bath, on a one-time standard clean. The rate for that size is {EXAMPLE_BASE_TEXT}. With the {TRAVEL_FEE} travel fee and the two-storey charge of {HOME_TYPE.twoStorey}, that makes {EXAMPLE_PRICE} before 5% GST. A pet in the house adds the pet charge on every visit, and a fourth full bathroom or an add-on raises the figure again; the instant price shows the exact total before you book.
                 </p>
                 <p>
                   The size of the house sets the price, and the hours do not. A clean that runs longer than expected costs the same. If a house turns out to need substantially more work than described, such as heavy build-up or far more glass or cabinetry than the booking said, the team explains what it found and the options before carrying on. Add-ons such as the inside of the oven, the inside of the fridge and interior windows carry their own prices, shown on the quote.
@@ -422,7 +428,8 @@ export default function Beaumont() {
                   <Link to="/move-out-cleaning-edmonton/" className="text-primary underline underline-offset-2 font-medium">end of tenancy cleaning from the Edmonton branch</Link>.
                 </p>
                 <p>
-                  Tenants leaving a Beaumont rental are covered by Alberta's Residential Tenancies Act. The landlord completes a move-out inspection report with the tenant, and the security deposit must be returned within 10 days after the tenant moves out. We do not promise the deposit comes back; the landlord decides. Booking the clean for after the movers and before the inspection gives the team empty rooms to work in.
+                  Tenants leaving a Beaumont rental are covered by Alberta's Residential Tenancies Act. The landlord completes a move-out inspection report with the tenant. Under{" "}
+                  <a href="https://www.alberta.ca/ending-a-tenancy" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Alberta's rules on ending a tenancy</a>, within 10 days of the tenant moving out, the landlord must return the deposit, or return what is left with a written statement of any deductions (an estimate is allowed, with the final statement within 30 days). We do not promise the deposit comes back; the landlord decides. Booking the clean for after the movers and before the inspection gives the team empty rooms to work in.
                 </p>
               </div>
             </div>
@@ -444,16 +451,7 @@ export default function Beaumont() {
               </p>
             </div>
             <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-xl border border-border">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d38400.0!2d-113.41514!3d53.35255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a01e8b8b8b8b8b%3A0x8b8b8b8b8b8b8b8b!2sBeaumont%2C%20AB!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca"
-                width="100%"
-                height="450"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer"
-                title="Beaumont Service Area Map"
-              />
+              <GoogleMapEmbed query="Beaumont, AB" title="Beaumont Service Area Map" />
             </div>
           </AnimatedSection>
         </div>

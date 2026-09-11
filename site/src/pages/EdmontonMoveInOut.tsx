@@ -138,7 +138,7 @@ const whyUsItems = [
   { icon: DollarSign, title: "Flat rate by home size", description: "The price is set by bedrooms and bathrooms when you book, and it does not rise if the clean takes longer than expected." },
   { icon: Award, title: `${POLICY.guaranteeWindowHours}-hour re-clean`, description: `Walk through the home within ${POLICY.guaranteeWindowHours} hours of the clean and tell us anything missed, and we return to put it right at no charge. The window runs from the clean, not the inspection, so book the clean as close to the inspection as you can. Photos help but are not required.` },
   { icon: Package, title: "Supplies included", description: "The crew brings the products, the vacuum and the step ladder. You need the water left on, and power for the vacuum." },
-  { icon: Leaf, title: `Eco products for ${POLICY.ecoProductsFee}`, description: `Eco-friendly products are available for ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}.` },
+  { icon: Package, title: `Alternative products for ${POLICY.ecoProductsFee}`, description: `Optional alternative products are available for ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}.` },
   { icon: Clock, title: "Pay after the clean", description: "Nothing is charged when you book. A temporary hold goes on your card the day before, and the charge goes through once the clean is complete." },
 ];
 
@@ -367,8 +367,9 @@ export default function EdmontonMoveInOut() {
                 <p>
                   End of tenancy cleaning in Edmonton is judged at one moment: the move-out inspection. Under{" "}
                   <a href="https://www.alberta.ca/ending-a-tenancy" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Alberta's Residential Tenancies Act</a> the landlord completes a move-out inspection report with
-                  the tenant, and the security deposit, the damage deposit in everyday use, must be returned
-                  within 10 days after the tenant moves out. That report is where a landlord notes cleaning, so
+                  the tenant. Within 10 days of the tenant moving out, the landlord must return the security
+                  deposit (the damage deposit in everyday use), or return what is left with a written statement
+                  of any deductions (an estimate is allowed, with the final statement within 30 days). That report is where a landlord notes cleaning, so
                   our <strong>move out cleaners in Edmonton</strong> clean to the inspection checklist rather
                   than to how the home looks from the doorway.
                 </p>
@@ -421,7 +422,8 @@ export default function EdmontonMoveInOut() {
               <p className="text-sm text-muted-foreground max-w-3xl mx-auto mt-8 text-center leading-relaxed">
                 Not included: exterior windows, carpet steam cleaning, furnace and duct cleaning, anything
                 beyond the reach of a 3-step ladder, and moving anything over 25 pounds. Garages and balconies
-                are a sweep of the floor only, booked as an add-on. Marks on the paint are a separate row on
+                are a sweep of the floor only, booked as an add-on and offered mostly in summer, when the
+                weather allows. Marks on the paint are a separate row on
                 the same form: what a wash takes off, and what it costs by home size, is on{" "}
                 <Link to="/wall-washing-wall-cleaning/" className="text-primary underline underline-offset-4">wall washing in Edmonton</Link>.
                 The full list is on{" "}

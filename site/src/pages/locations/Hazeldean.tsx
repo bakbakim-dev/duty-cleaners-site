@@ -7,6 +7,7 @@ import { buildLocationSchema } from "@/lib/location-schema";
 import HonestReviewLink from "@/components/HonestReviewLink";
 
 import LocationPricing from "@/components/LocationPricing";
+import GoogleMapEmbed from "@/components/GoogleMapEmbed";
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
   return (
@@ -299,16 +300,7 @@ export default function Hazeldean() {
                   <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Hazeldean on the Map</h2>
                 </div>
                 <div className="rounded-xl overflow-hidden shadow-lg border border-border">
-                  <iframe
-                    title="Hazeldean Edmonton Map"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9456.5!2d-113.47734!3d53.50423!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a0220c1b5a1b5d%3A0x0!2sHazeldean%2C+Edmonton%2C+AB!5e0!3m2!1sen!2sca!4v1700000000000"
-                    width="100%"
-                    height="400"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer"
-                  />
+                  <GoogleMapEmbed query="Hazeldean, Edmonton, AB" title="Hazeldean Edmonton Map" height={400} />
                 </div>
               </div>
             </AnimatedSection>

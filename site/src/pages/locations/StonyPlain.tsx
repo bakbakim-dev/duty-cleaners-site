@@ -3,11 +3,12 @@ import {
 } from "lucide-react";
 import stonyPlainHome from "@/assets/gallery/stony-plain-home.webp";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice, addOnFromPrice } from "@/data/pricing";
-import { travelFee } from "@/data/addon-table";
+import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice, addOnFromPrice, calculateQuote, homeTypeOptions, PRICING_TIERS } from "@/data/pricing";
+import { travelFee, TRAVEL_FEE_KEY } from "@/data/addon-table";
 import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
 import { GOOGLE_LISTINGS } from "@/lib/google-listings";
 import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
+import GoogleMapEmbed from "@/components/GoogleMapEmbed";
 
 // Every figure on this page is derived from bk-config or policy.ts.
 const STANDARD = standardTierRows();
@@ -32,13 +33,16 @@ const EDMONTON_LISTING = GOOGLE_LISTINGS.edmonton;
 const PAGE_TITLE = `House Cleaning Stony Plain from ${STANDARD_FROM} | Duty Cleaners`;
 const PAGE_DESCRIPTION = `Wood, plaster and period tile in Stony Plain get a gentler method, and cleaning is from ${STANDARD_FROM} before GST for a one-bedroom condo plus a ${TRAVEL_FEE} travel fee.`;
 
-// A worked move-out quote built from the same rows the price table uses: a
-// two-bedroom bungalow, outside Edmonton city limits.
-const dollars = (price: string) => Number(price.replace(/[^0-9.]/g, ""));
-const cents = (value: number) => Math.round(value * 100) / 100;
+// A worked move-out quote run through calculateQuote, the booking funnel's own
+// maths: a two-bedroom bungalow, outside Edmonton city limits. The table rounds
+// each size to the dollar, so no total is built from a table card.
+const EXAMPLE_SIZE = PRICING_TIERS[1];
 const EXAMPLE_TIER = MOVE[1];
-const EXAMPLE_TOTAL = cents(dollars(EXAMPLE_TIER.price) + BK_PRICE_OVERRIDES[54].price + (travelFee("move-in-out") ?? travelFee("standard") ?? 0));
-const EXAMPLE_PRICE = formatPrice(EXAMPLE_TOTAL);
+const exampleQuote = (homeType: number | null, addOns: string[] = []) =>
+  calculateQuote({ service: "move-in-out", homeType, bedrooms: EXAMPLE_SIZE.beds, bathrooms: EXAMPLE_SIZE.bathrooms, halfBaths: EXAMPLE_SIZE.halfBaths, addOns, frequency: "one-time" }).firstClean;
+const EXAMPLE_BASE = formatPrice(exampleQuote(homeTypeOptions("move-in-out")[0]?.id ?? null));
+const EXAMPLE_BASE_TEXT = EXAMPLE_BASE === EXAMPLE_TIER.price ? EXAMPLE_BASE : `${EXAMPLE_BASE} (${EXAMPLE_TIER.price} in the table, which rounds to the dollar)`;
+const EXAMPLE_PRICE = formatPrice(exampleQuote(54, [TRAVEL_FEE_KEY]));
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -151,7 +155,7 @@ export default function StonyPlain() {
     },
     {
       question: "Should I leave out cleaning supplies?",
-      answer: `No. The team brings all supplies and equipment. Eco-friendly products are ${POLICY.ecoProductsFee} extra: ${POLICY.ecoProductsHowToRequest}. Running water is required, and vacuuming may not be possible without electricity.`
+      answer: `No. The team brings all supplies and equipment. Optional alternative products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}. Running water is required, and vacuuming may not be possible without electricity.`
     },
     {
       question: "What happens if something is missed?",
@@ -163,7 +167,7 @@ export default function StonyPlain() {
     },
     {
       question: "What is not included in a Stony Plain clean?",
-      answer: `Outdoor work is not part of any clean, so exterior windows, garages and patios are excluded, and so is removing window screens. In Stony Plain that matters, because the wind off the open country around the town lands on the screens and the outward face of the glass. Lifting anything over 25 lb, anything beyond a 3-step ladder, carpet steam cleaning, upholstery, laundry and dishes are also excluded.`
+      answer: `Outdoor work is not part of any clean, so exterior windows, garages and patios are excluded (apart from a balcony or garage sweep add-on, offered mostly in summer when the weather allows), and so is removing window screens. In Stony Plain that matters, because the wind off the open country around the town lands on the screens and the outward face of the glass. Lifting anything over 25 lb, anything beyond a 3-step ladder, carpet steam cleaning, upholstery, laundry and dishes are also excluded.`
     }
   ];
   const faqJsonLd = {
@@ -265,13 +269,14 @@ export default function StonyPlain() {
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>
-                  Say a two-bedroom, two-bathroom bungalow in Stony Plain is being handed back to its landlord. The move-in and move-out table price for that size is {EXAMPLE_TIER.price}, set for an apartment or condo. A bungalow adds {HOME_TYPE.bungalow}, and the {TRAVEL_FEE} travel fee applies because Stony Plain sits outside Edmonton city limits, which makes {EXAMPLE_PRICE} before 5% GST. A home with pets adds the {PET_FEE} pet charge on top; it is compulsory, and it shows on the quote before booking.
+                  Say a two-bedroom, two-bathroom bungalow in Stony Plain is being handed back to its landlord. The move-in and move-out rate for that size is {EXAMPLE_BASE_TEXT}, set for an apartment or condo. A bungalow adds {HOME_TYPE.bungalow}, and the {TRAVEL_FEE} travel fee applies because Stony Plain sits outside Edmonton city limits, which makes {EXAMPLE_PRICE} before 5% GST. A home with pets adds the {PET_FEE} pet charge on top; it is compulsory, and it shows on the quote before booking.
                 </p>
                 <p>
-                  For that figure the team works through the standard checklist and then the move-out extras: the inside of the oven, fridge and microwave, and the inside of every cabinet, drawer and closet. Under Alberta's Residential Tenancies Act the landlord completes a move-out inspection report with the tenant, and the security deposit must be returned within 10 days after the tenant moves out. We do not promise the deposit comes back; the landlord decides.
+                  For that figure the team works through the standard checklist and then the move-out extras: the inside of the oven, fridge and microwave, and the inside of every cabinet, drawer and closet. Under Alberta's Residential Tenancies Act the landlord completes a move-out inspection report with the tenant. Within 10 days of the tenant moving out, the landlord must return the deposit, or return what is left with a written statement of any deductions (an estimate is allowed, with the final statement within 30 days), as set out in{" "}
+                  <a href="https://www.alberta.ca/ending-a-tenancy" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Alberta's rules on ending a tenancy</a>. We do not promise the deposit comes back; the landlord decides.
                 </p>
                 <p>
-                  The same arithmetic works for any Stony Plain booking. The bedroom and bathroom count sets the table price, a townhouse adds {HOME_TYPE.townhouse} and a two-storey house {HOME_TYPE.twoStorey}, and eco-friendly products are {POLICY.ecoProductsFee} if you ask for them when you book. How long the clean runs never changes the price, and if a home needs far more work than described, the team says what it found and the options before going on. These are the rates the Edmonton branch charges for its{" "}
+                  The same arithmetic works for any Stony Plain booking. The bedroom and bathroom count sets the table price, a townhouse adds {HOME_TYPE.townhouse} and a two-storey house {HOME_TYPE.twoStorey}, and optional alternative products add {POLICY.ecoProductsFee} before GST: {POLICY.ecoProductsHowToRequest}. How long the clean runs never changes the price, and if a home needs far more work than described, the team says what it found and the options before going on. These are the rates the Edmonton branch charges for its{" "}
                   <Link to="/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Edmonton</Link>.
                 </p>
               </div>
@@ -294,16 +299,7 @@ export default function StonyPlain() {
               </p>
             </div>
             <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-xl">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d38000.0!2d-114.00487!3d53.52899!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x539ff70e3f41d2ad%3A0x4399e4bfc1b1e30d!2sStony%20Plain%2C%20AB!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca"
-                width="100%"
-                height="450"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer"
-                title="Stony Plain Service Area Map"
-              />
+              <GoogleMapEmbed query="Stony Plain, AB" title="Stony Plain Service Area Map" />
             </div>
           </AnimatedSection>
         </div>

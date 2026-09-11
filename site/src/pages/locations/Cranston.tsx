@@ -7,6 +7,7 @@ import { buildLocationSchema } from "@/lib/location-schema";
 import CoverageChips from "@/components/CoverageChips";
 import LocationPricing from "@/components/LocationPricing";
 import calgaryBathroom from "@/assets/gallery/calgary-bathroom-clean.webp";
+import GoogleMapEmbed from "@/components/GoogleMapEmbed";
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -214,11 +215,7 @@ export default function Cranston() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-6">Cranston Service Area</h2>
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10040.0!2d-114.0167!3d50.9017!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x537177c3d0a1e0a7%3A0x1b0d1e1e1e1e1e1e!2sCranston%2C+Calgary%2C+AB!5e0!3m2!1sen!2sca!4v1700000000000"
-                    width="100%" height="450" style={{ border: 0 }} allowFullScreen loading="lazy"
-                    referrerPolicy="no-referrer" title="Cranston Service Area Map"
-                  />
+                  <GoogleMapEmbed query="Cranston, Calgary, AB" title="Cranston Calgary Service Area Map" />
                 </div>
               </div>
             </AnimatedSection>

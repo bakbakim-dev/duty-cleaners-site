@@ -64,7 +64,10 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
   request, where a 3-step ladder reaches them safely.
 - Commercial: office cleaning is the only commercial work quoted online (contact form "Office
   Cleaning"). Airbnb/short-term-rental turnovers are priced per hour on a callback
-  (`/contact-us/?topic=airbnb`).
+  (`/contact-us/?topic=airbnb`). The owner approved strengthening the two commercial pages on
+  2026-09-11: "Office & Commercial Cleaning <city>", priced per square foot, scoped at a
+  walkthrough and confirmed in a written quote; primary CTA `/contact-us/?topic=office&city=<city>`.
+  Each city homepage and services hub carries one pointer to its commercial page, nothing more.
 - Black Diamond + Turner Valley are the Town of Diamond Valley: both URLs stay; every link and
   label names Diamond Valley.
 - Office pins are the Google listings' own coordinates (`CITY_PROOF.geo`); the addresses match
@@ -76,8 +79,19 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
 - Products (2026-09-11): the cleaners are subcontractors who choose their own products, so
   house-cleaning copy claims no product effect ("sanitised", "disinfected", "non-toxic",
   "hospital-grade"). It says what the team does: scrubbed, wiped down, cleaned. Guarded in
-  copy-quality.test.ts. The $15 eco-friendly option stays as confirmed on 2026-09-07 until the
-  owner defines it (to-do 8).
+  copy-quality.test.ts. The $15 option is "Optional alternative products" (owner, 2026-09-11):
+  ask the office which products are available and suitable for your surfaces. Never eco, green,
+  non-toxic or pet-safe. Guarded.
+- Garage/balcony sweep (2026-09-11): a real add-on, offered mostly in summer when the weather
+  allows; a sweep, not a full garage clean. Garages and patios are otherwise excluded.
+- Move-out: interior window cleaning is a paid add-on, never part of the move-out clean (window
+  sills and tracks are wiped).
+- Red Deer is served (2026-09-11). Which office, the travel charge and online booking are not on
+  file (to-do 11): copy says to call the Edmonton or Calgary office. The old Red Deer URL still
+  redirects to /locations/ until a page can be written from real details.
+- Alberta deposit rule (alberta.ca/ending-a-tenancy): within 10 days of the tenant moving out the
+  landlord returns the deposit, or the balance with a statement of deductions (an estimate is
+  allowed, final statement within 30 days). Never the bare "returned within 10 days". Guarded.
 - The re-clean window runs 24 hours from the clean, never from an inspection; move-out copy tells
   the customer to book the clean as close to the inspection as they can. Guarded.
 - March-out: worked from the cleaning items on CFHA's move-out checklist (linked). Never "to
@@ -95,9 +109,9 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
 ## Rules
 - Never log into the Google Business Profile. Don't change GoHighLevel or BookingKoala settings
   without the owner's explicit go-ahead; reading them is fine.
-- Do not edit the commercial-cleaning pages (`CommercialCleaning.tsx`,
-  `CommercialCleaningCalgary.tsx`, `CommercialDepth.tsx`), and keep commercial offers out of the
-  house-cleaning pages.
+- The commercial pages (`CommercialCleaning.tsx`, `CommercialCleaningCalgary.tsx`,
+  `CommercialDepth.tsx`) may be edited since the owner's go-ahead of 2026-09-11. Keep commercial
+  offers out of the body of house-cleaning pages beyond the one pointer per homepage and hub.
 - Never push without asking. Commit messages end with
   `Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>` (or the current model's line).
 - Location-page local notes are fact-checked. Never delete one to fix a guard: the duplicate-content
@@ -125,14 +139,23 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
    or a launch deploy fails the same way. `netlify api getAccount` shows the plan. The preview
    now lives on the lokkom team (300 fresh credits, about 20 deploys a month): batch deploys.
    Decide which team hosts production, then upgrade it (or move to Cloudflare Pages).
-8. Decide what the $15 eco-friendly option buys. The cleaners choose their own products, so name a
-   minimum the office can check (for example, products with ECOLOGO certification) or retire
-   the option. Until then the site lists it as confirmed and makes no other environmental claim.
+8. Say which products the $15 "optional alternative products" option means, if you want the site
+   to name them. Until then it sends people to the office and makes no environmental claim.
 9. Delete the stale dutycleaners-preview site on bakbakim's Netlify team (it still serves the
    5 September build, noindexed).
 10. Redeploy the ghl-quote relay (Supabase) so it accepts the new preview origin; the code
    allows it since 2026-09-11, but until the relay is redeployed the quote form on
    duty-cleaners-preview.netlify.app cannot submit. Touches the lead pipeline: owner go-ahead first.
+11. Red Deer: which office serves it, the travel charge, and whether BookingKoala accepts Red
+   Deer postal codes. With those, a real Red Deer page can replace the redirect to /locations/.
+12. Tracking: create a Google Analytics 4 property and send the Measurement ID. It goes in
+   `site/.env.production.local` as `VITE_GA4_MEASUREMENT_ID` (git-ignored; read by the local
+   production build that deploy.mjs uploads with --no-build, never by Netlify's environment).
+   Analytics loads only on dutycleaners.ca / www, never on previews. In the GA web stream first:
+   Enhanced measurement Outbound clicks OFF, Form interactions OFF, history-based page changes
+   OFF; Redact email on and redact the BookingKoala prefill query parameters (list in
+   site/.env.example); Google signals off. Then verify Search Console as a Domain property (DNS
+   TXT record) and add Bing Webmaster Tools on launch day.
 
 ## Historical documents
 REBUILD-PLAN.md, SEO-AUDIT-2026.md, CWV-BASELINE.md, notes.md (the legacy WordPress site's lead

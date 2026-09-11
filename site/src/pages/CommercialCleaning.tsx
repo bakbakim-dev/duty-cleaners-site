@@ -8,8 +8,10 @@ import { Button } from "@/components/ui/button";
 import {
   Building2, CheckCircle2, Clock, Shield, Award, Users, Phone,
   Star, Sparkles, Briefcase, Dumbbell, UtensilsCrossed, Stethoscope,
-  ShoppingBag, Warehouse, ThumbsUp, Leaf, CalendarCheck, LucideIcon,
+  ShoppingBag, Warehouse, ThumbsUp, ClipboardCheck, CalendarCheck, LucideIcon,
 } from "lucide-react";
+import { POLICY } from "@/data/policy";
+import { CITY_PROOF } from "@/data/proof";
 import { Link } from "react-router-dom";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import CommercialDepth, { commercialFaqs } from "@/components/CommercialDepth";
@@ -59,33 +61,42 @@ const FeatureItem = ({ icon: Icon, title, description }: { icon: LucideIcon; tit
   </div>
 );
 
+const TITLE = "Office & Commercial Cleaning Edmonton | Duty Cleaners";
+const DESCRIPTION =
+  "Office and commercial cleaning in Edmonton, scoped around your premises and schedule. Request a walkthrough and a written cleaning quote.";
+/** Office cleaning is the one commercial job quoted online (owner, 2026-09-10); Contact.tsx preselects it and the city. */
+const QUOTE_HREF = "/contact-us/?topic=office&city=edmonton";
+
 export default function CommercialCleaning() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  /* Owner, 2026-09-11: the cleaners are subcontractors who choose their own
+     products, so no card claims what a product does to a surface; each says
+     what the team does, inside the scope agreed at the walkthrough. */
   const industries = [
-    { icon: Briefcase, title: "Office Cleaning", description: "Maintain a professional, productive workspace. From desks and keyboards to common areas, we keep your office pristine and hygienic." },
-    { icon: Warehouse, title: "Warehouse Cleaning", description: "Industrial-strength cleaning for warehouses and storage facilities. We handle large spaces with specialized equipment and techniques." },
-    { icon: ShoppingBag, title: "Retail Cleaning", description: "Create a welcoming environment for customers with sparkling clean retail spaces that reflect your brand's commitment to excellence." },
-    { icon: Stethoscope, title: "Medical Office Cleaning", description: "Specialized cleaning for healthcare facilities with strict sanitation protocols to ensure a safe environment for patients and staff." },
-    { icon: UtensilsCrossed, title: "Restaurant Cleaning", description: "Commercial kitchen and dining area cleaning that keeps your restaurant spotless." },
-    { icon: Dumbbell, title: "Gym & Fitness Center", description: "High-touch surface sanitization and thorough cleaning to maintain a healthy environment for members and staff." },
+    { icon: Briefcase, title: "Office Cleaning", description: "Workstations, meeting rooms, kitchens, washrooms and floors, cleaned to the areas and visit frequency set out in your written quote." },
+    { icon: Warehouse, title: "Warehouse Cleaning", description: "Floors, loading bays, racking dust and staff washrooms, scoped at the walkthrough around your shifts and deliveries." },
+    { icon: ShoppingBag, title: "Retail Cleaning", description: "Sales floors, fitting rooms, counters, entry glass and customer washrooms, cleaned before opening or after close." },
+    { icon: Stethoscope, title: "Medical Office Cleaning", description: "Medical-office cleaning is scoped at a walkthrough. Before accepting the work, we confirm the rooms, surfaces, product requirements and documentation we can provide." },
+    { icon: UtensilsCrossed, title: "Restaurant Cleaning", description: "Kitchen and dining-area cleaning within the written scope agreed at the walkthrough." },
+    { icon: Dumbbell, title: "Gym & Fitness Center", description: "High-touch surfaces wiped down, and change rooms, washrooms and floors cleaned, to the scope agreed at the walkthrough." },
   ];
 
   return (
     <>
       <Helmet>
-        <title>Commercial Cleaning Services Edmonton | Duty Cleaners</title>
-        <meta name="description" content="Professional commercial cleaning services in Edmonton. Offices, warehouses, retail, medical facilities & more. Pay after your clean." />
+        <title>{TITLE}</title>
+        <meta name="description" content={DESCRIPTION} />
         <link rel="canonical" href="https://dutycleaners.ca/commercial-cleaning/" />
-        <meta property="og:title" content="Commercial Cleaning Services Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="Professional commercial cleaning services in Edmonton. Offices, warehouses, retail, medical facilities & more. Pay after your clean." />
+        <meta property="og:title" content={TITLE} />
+        <meta property="og:description" content={DESCRIPTION} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/commercial-cleaning/" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Commercial Cleaning Services Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional commercial cleaning services in Edmonton. Offices, warehouses, retail, medical facilities & more. Pay after your clean." />
+        <meta name="twitter:title" content={TITLE} />
+        <meta name="twitter:description" content={DESCRIPTION} />
         {/* These pages carried no structured data at all. Service ties the
             offering to the city LocalBusiness node; FAQPage mirrors the Q&A
             rendered further down the page. */}
@@ -94,7 +105,7 @@ export default function CommercialCleaning() {
             "@context": "https://schema.org",
             "@type": "Service",
             serviceType: "Commercial Cleaning",
-            name: "Commercial Cleaning Services Edmonton",
+            name: "Office & Commercial Cleaning Edmonton",
             url: "https://dutycleaners.ca/commercial-cleaning/",
             provider: { "@id": "https://dutycleaners.ca/#edmonton" },
             areaServed: { "@type": "City", name: "Edmonton" },
@@ -112,7 +123,7 @@ export default function CommercialCleaning() {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "FAQPage",
-            mainEntity: commercialFaqs("Edmonton", "(780) 913-6565").map((f) => ({
+            mainEntity: commercialFaqs("Edmonton", CITY_PROOF.edmonton.phone).map((f) => ({
               "@type": "Question",
               name: f.q,
               acceptedAnswer: { "@type": "Answer", text: f.a },
@@ -137,26 +148,28 @@ export default function CommercialCleaning() {
             <div className="max-w-3xl mx-auto text-center space-y-6">
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-sm">
                 <Building2 className="w-4 h-4 text-accent" />
-                <span>Trusted by Edmonton Businesses</span>
+                <span>The Edmonton office</span>
               </div>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                Commercial Cleaning{" "}<br />
-                Services in <span className="text-accent">Edmonton</span>
+                Office &amp; Commercial Cleaning{" "}<br />
+                in <span className="text-accent">Edmonton</span>
               </h1>
 
               <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto">
-                Professional, reliable cleaning tailored to your business. We keep your workspace spotless so you can focus on what matters most.
+                Offices and commercial premises in Edmonton, cleaned to a written scope. The areas,
+                the visit frequency and the pricing basis are agreed at a walkthrough before any
+                work is booked.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
                 <Button size="lg" className="bg-accent hover:bg-accent/90 text-white h-12 px-6" asChild>
-                  <Link to="/contact-us/">Get Free Estimate</Link>
+                  <Link to={QUOTE_HREF}>Request a Commercial Cleaning Quote</Link>
                 </Button>
                 <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 h-12 px-6" asChild>
-                  <a href="tel:7809136565">
+                  <a href={CITY_PROOF.edmonton.phoneLink}>
                     <Phone className="mr-2 w-5 h-5" />
-                    (780) 913-6565
+                    {CITY_PROOF.edmonton.phone}
                   </a>
                 </Button>
               </div>
@@ -164,15 +177,15 @@ export default function CommercialCleaning() {
               <div className="flex flex-wrap justify-center gap-6 pt-4 text-white/80 text-sm">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-accent" />
-                  <span>Flexible Scheduling</span>
+                  <span>Walkthrough before the quote</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-accent" />
-                  <span>Transparent Pricing</span>
+                  <span>Priced per square foot</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-accent" />
-                  <span>Industry-Specific Cleaning</span>
+                  <span>Scope confirmed in writing</span>
                 </div>
               </div>
             </div>
@@ -189,14 +202,16 @@ export default function CommercialCleaning() {
                   Commercial cleaning in Edmonton, scoped in writing
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  Edmonton businesses need clean, well-maintained spaces to provide a welcoming environment for clients 
-                  and a productive atmosphere for employees. At Duty Cleaners, we deliver top-quality commercial cleaning 
-                  customized to your business's needs.
+                  The Edmonton office cleans offices, retail units, clinics and warehouse space in the
+                  city and the communities around it. Every job starts with a walkthrough of the
+                  premises, where we agree which rooms and surfaces are in scope and how often the
+                  team comes.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  From corporate offices to warehouses and retail spaces, our trained cleaners handle routine cleaning, 
-                  deep cleaning, and specialty services. Regular professional cleaning shows your team they're 
-                  valued and helps them work with confidence and motivation.
+                  Commercial work is priced per square foot. After the walkthrough you get a written
+                  quote that states the areas, the visit frequency and the pricing basis, and nothing
+                  is booked until you have read it. If your building needs a named product, a key or
+                  fob arrangement, or evening access, raise it at the walkthrough so it is in the quote.
                 </p>
               </div>
             </div>
@@ -209,7 +224,7 @@ export default function CommercialCleaning() {
           paragraphs={[
             "Edmonton is the seat of provincial government, and that shapes the commercial cleaning market more than anything else does. A large share of the office, health and post-secondary space here answers to a procurement process rather than a single owner, which means documented scope, named products, and a contact who can sign off on what was done. We write scope in that form as a matter of course, because it is what most of our Edmonton clients have to file anyway.",
             "Downtown work clusters around the Ice District and the office stock along Jasper and 104th, where evening service after the building empties is the norm — the reverse of the early-morning pattern that dominates in Calgary. That has knock-on effects: parking, loading access and building security all have to be arranged for after hours, and a team that finishes at eleven needs a key or fob arrangement that a property manager has actually approved.",
-            "The rest of the volume sits away from the core — clinics and retail in the south around Windermere and Terwillegar, and warehouse and light-industrial space out in the northwest and toward Nisku. Those buildings have long floor runs, dock-level grit, and in the medical ones, disinfection and waste handling that a general office scope does not cover. They get quoted on their own terms rather than at an office rate.",
+            "The rest of the volume sits away from the core — clinics and retail in the south around Windermere and Terwillegar, and warehouse and light-industrial space out in the northwest and toward Nisku. Those buildings have long floor runs, dock-level grit, and in the medical ones, the clinic's own product and waste-handling requirements, which a general office scope does not cover. They are scoped by phone and at a walkthrough, on their own terms rather than at an office rate.",
           ]}
         />
 
@@ -227,6 +242,18 @@ export default function CommercialCleaning() {
                   <IndustryCard key={index} icon={industry.icon} title={industry.title} description={industry.description} index={index} />
                 ))}
               </div>
+
+              {/* Owner, 2026-09-10: office cleaning is the only commercial work
+                  quoted through the form; everything else starts with a call. */}
+              <p className="mt-8 text-center text-muted-foreground max-w-2xl mx-auto">
+                Office cleaning can be requested with the quote form. Warehouse, retail, medical,
+                restaurant and gym premises are scoped by phone and at a walkthrough with the
+                Edmonton office:{" "}
+                <a href={CITY_PROOF.edmonton.phoneLink} className="font-semibold text-primary underline underline-offset-4">
+                  call {CITY_PROOF.edmonton.phone}
+                </a>
+                .
+              </p>
             </div>
           </section>
         </AnimatedSection>
@@ -246,15 +273,15 @@ export default function CommercialCleaning() {
                 <FeatureItem icon={Shield} title="Customer-Rated Cleaners" description="Every cleaner is reference-checked before their first job and rated after every visit. Those ratings decide who keeps working on your site." />
                 <FeatureItem icon={Award} title="Experienced Professionals" description="Cleaning in Alberta since 2017. For contracts needing specific insurance certificates or security clearances, ask at the walkthrough and we confirm in writing what we can provide." />
                 <FeatureItem icon={CalendarCheck} title="Flexible Scheduling" description="We work around your business hours with options for weekend cleanings." />
-                <FeatureItem icon={ThumbsUp} title="100% Satisfaction Guaranteed" description="If you're not happy with our service, we’ll come back free of charge. Simply let us know within 24 hours after your cleaning, and we’ll make it right." />
-                <FeatureItem icon={Star} title="Transparent Pricing" description="Upfront, honest pricing with no hidden fees. We provide detailed quotes and work within your budget." />
-                <FeatureItem icon={Leaf} title="Safe Quality Products" description="Teams arrive with everything the agreed scope needs. If your site requires a particular disinfectant or a low-odour option, name it at the walkthrough and we work to it." />
+                <FeatureItem icon={ThumbsUp} title="Missed Items Re-Cleaned" description={`If something in the agreed scope was missed, tell us within ${POLICY.guaranteeWindowHours} hours of the clean and we come back and clean it at no charge.`} />
+                <FeatureItem icon={Star} title="Written Quotes" description="Commercial work is priced per square foot. The written quote states the areas, the visit frequency and the pricing basis before work is booked." />
+                <FeatureItem icon={ClipboardCheck} title="Products and Site Protocols" description="Tell us about required products and site protocols at the walkthrough. We confirm in writing which requirements we can meet before you book." />
               </div>
             </div>
           </section>
         </AnimatedSection>
 
-        <CommercialDepth city="Edmonton" phone="(780) 913-6565" phoneLink="tel:7809136565" />
+        <CommercialDepth city="Edmonton" phone={CITY_PROOF.edmonton.phone} phoneLink={CITY_PROOF.edmonton.phoneLink} />
 
         {/* Service areas — parity with the Calgary page, which added this after
             Search Console showed satellite-town commercial queries ranking at
@@ -269,8 +296,9 @@ export default function CommercialCleaning() {
                 </h2>
                 <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
                   We clean offices, retail units, warehouses and industrial space in Edmonton and the
-                  surrounding communities — same walkthrough, same written quote, same hourly rate
-                  wherever your premises are.
+                  surrounding communities. Commercial work is priced per square foot, scoped at a
+                  walkthrough and confirmed in a written quote that states the areas, visit
+                  frequency and pricing basis before work is booked.
                 </p>
                 <CoverageChips
                   areas={[
@@ -296,19 +324,20 @@ export default function CommercialCleaning() {
             <div className="container mx-auto px-4">
               <div className="max-w-3xl mx-auto bg-secondary/30 rounded-2xl p-10 text-center border border-border">
                 <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                  Ready to Get Started?
+                  Request a commercial cleaning quote in Edmonton
                 </h2>
                 <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-                  Contact us today for a free estimate and let us help you maintain a clean, professional workspace.
+                  Tell us the address, roughly how much floor space needs cleaning, and how often.
+                  The Edmonton office arranges the walkthrough and sends the written quote.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button size="lg" className="bg-accent hover:bg-accent/90 text-white h-12 px-8" asChild>
-                    <Link to="/contact-us/">Get Free Estimate</Link>
+                    <Link to={QUOTE_HREF}>Request a Commercial Cleaning Quote</Link>
                   </Button>
                   <Button size="lg" variant="outline" className="h-12 px-8" asChild>
-                    <a href="tel:7809136565">
+                    <a href={CITY_PROOF.edmonton.phoneLink}>
                       <Phone className="mr-2" />
-                      Call (780) 913-6565
+                      Call {CITY_PROOF.edmonton.phone}
                     </a>
                   </Button>
                 </div>

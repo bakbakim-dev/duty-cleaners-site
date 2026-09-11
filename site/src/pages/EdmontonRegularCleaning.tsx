@@ -231,7 +231,7 @@ export default function EdmontonRegularCleaning() {
         "Mould remediation, bodily fluids, or pest removal",
         "Areas beyond the reach of a 3-step ladder",
         "Light bulbs and fragile fixtures",
-        "Garages, patios and outdoor areas, apart from the balcony or garage sweep add-on",
+        "Garages, patios and outdoor areas, apart from the balcony or garage sweep add-on, available mostly in summer when the weather allows",
         "Laundry and dishes",
         "Carpet steam cleaning and upholstery",
       ]}
@@ -247,7 +247,7 @@ export default function EdmontonRegularCleaning() {
         // home-insurance policies exclude, next to a policy charging half the
         // visit when the team cannot get in.
         { q: "Do I need to be home during the cleaning?", a: `No. Most customers leave a key, a lockbox code or smart-lock access, and the team locks up when it leaves. Put the arrangement on the booking, because a team that arrives and cannot get in is a lockout, charged at ${POLICY.lockoutFee}.` },
-        { q: "Do I need to provide cleaning supplies?", a: `No. The team brings all the supplies and equipment it uses. The home needs running water, and without electricity the vacuuming may not be possible. Eco-friendly products are available for ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}.` },
+        { q: "Do I need to provide cleaning supplies?", a: `No. The team brings all the supplies and equipment it uses. The home needs running water, and without electricity the vacuuming may not be possible. Optional alternative products are available for ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}.` },
         { q: "What should I do to prepare?", a: "You do not need to clean before the team comes; clear counters and floors get cleaned and cluttered ones get worked around; decluttering and organising are a separate hourly add-on. What does help is telling us on the booking which room to start in and which to leave alone. If somebody works nights and will be asleep at two in the afternoon, say which room, and the order the house gets done in changes at no cost." },
         { q: "What if I need to cancel or move the visit?", a: `Give ${POLICY.cancellationNoticeHours} hours' notice and moving or cancelling costs nothing. Inside ${POLICY.cancellationNoticeHours} hours the fee is ${POLICY.cancellationFee}. If we have to move a booking, because a cleaner is ill or the roads are unsafe, we say so as soon as we know and offer the earliest slot we have, at no charge to you.` },
       ]}

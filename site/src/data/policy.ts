@@ -27,11 +27,13 @@ export interface ServicePolicy {
   cancellationFee: Confirmed<string> | Unconfirmed;
   lockoutFee: Confirmed<string> | Unconfirmed;
   /**
-   * Charge for supplying eco-friendly products instead of the standard range.
+   * Charge for optional alternative products instead of the team's usual ones.
+   * (The key keeps its old "eco" name so existing imports still compile; the
+   * copy never says "eco-friendly", see below.)
    *
    * It lives here rather than in bk-config because it is NOT a BookingKoala
-   * extra — there is no eco or green-products row at any price, and nothing in
-   * the config costs $15. The office arranges it, historically over the phone.
+   * extra — there is no such row at any price, and nothing in the config
+   * costs $15. The office arranges it, historically over the phone.
    */
   ecoProductsFee: Confirmed<string> | Unconfirmed;
   /** How that charge is arranged, since it cannot be selected at checkout. */
@@ -102,9 +104,16 @@ export const POLICY: ServicePolicy = {
    * This is why the figure is not derived: published-prices.test.ts bans dollar
    * literals on the service pages precisely so prices come from one place, and
    * for a charge BookingKoala does not carry, that place is here.
+   *
+   * Owner, 2026-09-11: the option is named "optional alternative products",
+   * never "eco-friendly". The cleaners are subcontractors who choose their own
+   * products, so nothing on file supports an environmental, green, non-toxic
+   * or pet-safe claim for them. The customer asks the office which products
+   * are available and suitable for their surfaces. Guarded in
+   * owner-answers-0911.test.ts.
    */
   ecoProductsFee: confirm("$15", { by: "owner", on: "2026-09-07" }),
-  ecoProductsHowToRequest: confirm("ask when you book and the office adds it", { by: "owner", on: "2026-09-07" }),
+  ecoProductsHowToRequest: confirm("ask the office which products are available and suitable for your surfaces when you book", { by: "owner", on: "2026-09-11" }),
 
   /**
    * Confirmed by the owner. Neither the current site nor the legacy mirror had
@@ -238,7 +247,10 @@ export const NOT_INCLUDED = [
   "Bodily fluids, animal waste, and cat litter boxes — a health call rather than a time one; the pet charge covers the extra time pets add everywhere else in the home",
   "Mould remediation and heavy mould removal — we may wipe light surface mildew where it is safe to do so",
   "Pest or rodent removal",
-  "Garages, patios and other outdoor areas",
+  // Owner, 2026-09-11: the balcony or garage sweep is a real BookingKoala
+  // add-on, offered mostly in summer because the rest of the year is usually
+  // too cold, wet or snowy. It is a sweep of the floor only.
+  "Garages, patios and other outdoor areas, apart from the balcony or garage sweep add-on, available mostly in summer when the weather allows",
   "Carpet steam cleaning and upholstery cleaning",
   "Furnace, vent and duct cleaning",
   "Drain cleaning and plumbing",
@@ -251,7 +263,7 @@ export const NOT_INCLUDED = [
 /** Access, scheduling and what we bring. Consistent across the FAQ and Prepare. */
 export const SERVICE_TERMS = [
   "You do not need to be home. Most customers leave a key, a lockbox code, or smart-lock access, and we lock up when we finish.",
-  `We bring all cleaning supplies and equipment. Eco-friendly products are available for ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}.`,
+  `We bring all cleaning supplies and equipment. Optional alternative products are available for ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}. That charge is before GST.`,
   "Running water is required. Some tasks, including vacuuming, may not be possible without electricity.",
   "Tell us about pets, parking, how to get in, and any rooms to skip when you book — the booking form asks for each of these.",
   "Our operating hours are Monday to Saturday 8:00 AM to 8:00 PM, and Sunday 9:00 AM to 3:00 PM.",

@@ -7,11 +7,12 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
-import { sitePriceRange, standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice, addOnFromPrice } from "@/data/pricing";
-import { travelFee } from "@/data/addon-table";
+import { sitePriceRange, standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice, addOnFromPrice, calculateQuote, homeTypeOptions, PRICING_TIERS } from "@/data/pricing";
+import { travelFee, TRAVEL_FEE_KEY } from "@/data/addon-table";
 import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
 import { GOOGLE_LISTINGS } from "@/lib/google-listings";
 import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
+import GoogleMapEmbed from "@/components/GoogleMapEmbed";
 
 // Every figure on this page is derived from bk-config or policy.ts.
 const STANDARD = standardTierRows();
@@ -37,11 +38,16 @@ const CALGARY_RATING = `${CITY_PROOF.calgary.googleRating} on Google`;
 const PAGE_TITLE = `House Cleaning Cochrane from ${STANDARD_FROM} | Duty Cleaners`;
 const PAGE_DESCRIPTION = `Cochrane house cleaning is charged to the card only once the clean is complete: from ${STANDARD_FROM} before GST for a one-bedroom, plus a ${TRAVEL_FEE} travel fee.`;
 
-// A worked quote built from the same rows the price table uses: a
-// two-bedroom townhouse on a standard clean, outside city limits.
-const dollars = (price: string) => Number(price.replace(/[^0-9.]/g, ""));
+// A worked quote run through calculateQuote, the booking funnel's own maths: a
+// two-bedroom townhouse on a standard clean, outside city limits. The table
+// rounds each size to the dollar, so no total is built from a table card.
+const EXAMPLE_SIZE = PRICING_TIERS[1];
 const EXAMPLE_TIER = STANDARD[1];
-const EXAMPLE_PRICE = formatPrice(dollars(EXAMPLE_TIER.price) + BK_PRICE_OVERRIDES[89].price + (travelFee("standard") ?? 0));
+const exampleQuote = (homeType: number | null, addOns: string[] = []) =>
+  calculateQuote({ service: "standard", homeType, bedrooms: EXAMPLE_SIZE.beds, bathrooms: EXAMPLE_SIZE.bathrooms, halfBaths: EXAMPLE_SIZE.halfBaths, addOns, frequency: "one-time" }).firstClean;
+const EXAMPLE_BASE = formatPrice(exampleQuote(homeTypeOptions("standard")[0]?.id ?? null));
+const EXAMPLE_BASE_TEXT = EXAMPLE_BASE === EXAMPLE_TIER.price ? EXAMPLE_BASE : `${EXAMPLE_BASE} (${EXAMPLE_TIER.price} in the table, which rounds to the dollar)`;
+const EXAMPLE_PRICE = formatPrice(exampleQuote(89, [TRAVEL_FEE_KEY]));
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -167,7 +173,7 @@ export default function Cochrane() {
     },
     {
       question: "Do I need to supply anything for the clean?",
-      answer: `No. The team brings all supplies and equipment. It does need running water, and vacuuming may not be possible without electricity, so leave the water and power on. Eco-friendly products are ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}.`
+      answer: `No. The team brings all supplies and equipment. It does need running water, and vacuuming may not be possible without electricity, so leave the water and power on. Optional alternative products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}.`
     },
     {
       question: "What happens if something is missed?",
@@ -273,16 +279,7 @@ export default function Cochrane() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-6">Cochrane Service Area</h2>
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d40123.45!2d-114.47107!3d51.18746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5371478edc30d4e5%3A0x9c71b01253e3dc5c!2sCochrane%2C+AB!5e0!3m2!1sen!2sca!4v1700000000000"
-                    width="100%"
-                    height="450"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer"
-                    title="Cochrane Service Area Map"
-                  />
+                  <GoogleMapEmbed query="Cochrane, AB" title="Cochrane Service Area Map" />
                 </div>
               </div>
             </AnimatedSection>
@@ -341,7 +338,7 @@ export default function Cochrane() {
                 </h2>
                 <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                   <p>
-                    A two-bedroom, two-bathroom townhouse in Cochrane on a one-time standard clean starts from the table price of {EXAMPLE_TIER.price}. The townhouse charge adds {HOME_TYPE.townhouse}, and the travel fee for an address outside Calgary city limits adds {TRAVEL_FEE}, for {EXAMPLE_PRICE} before 5% GST. If a cat or a dog lives there, the pet charge goes on as well, and it appears on the quote before booking like the rest.
+                    A two-bedroom, two-bathroom townhouse in Cochrane on a one-time standard clean starts from the rate of {EXAMPLE_BASE_TEXT}. The townhouse charge adds {HOME_TYPE.townhouse}, and the travel fee for an address outside Calgary city limits adds {TRAVEL_FEE}, for {EXAMPLE_PRICE} before 5% GST. If a cat or a dog lives there, the pet charge goes on as well, and it appears on the quote before booking like the rest.
                   </p>
                   <p>
                     Bedrooms, bathrooms, the type of home, pets and add-ons are what change a Cochrane price. The inside of the oven, the inside of the fridge and interior windows are add-ons with their own prices. How long the clean takes is no part of it: the rate is flat by home size and does not rise because a visit ran long. When a home needs substantially more work than described, such as heavy build-up, the team explains what it found and the options before it goes on.
@@ -373,7 +370,8 @@ export default function Cochrane() {
                     <Link to="/move-out-cleaning-calgary/" className="text-primary underline underline-offset-2">move-out cleaning in Calgary</Link>.
                   </p>
                   <p>
-                    Renters leaving a Cochrane home fall under Alberta's Residential Tenancies Act, which has the landlord complete a move-out inspection report with the tenant and return the security deposit within 10 days after the tenant moves out. We never promise the deposit comes back, because the landlord decides. What a move-out clean does is finish the home to the checklist before that inspection.
+                    Renters leaving a Cochrane home fall under Alberta's Residential Tenancies Act, which has the landlord complete a move-out inspection report with the tenant. Within 10 days of the tenant moving out, the landlord must return the deposit, or return what is left with a written statement of any deductions (an estimate is allowed, with the final statement within 30 days), as set out in{" "}
+                    <a href="https://www.alberta.ca/ending-a-tenancy" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Alberta's rules on ending a tenancy</a>. We never promise the deposit comes back, because the landlord decides. What a move-out clean does is finish the home to the checklist before that inspection.
                   </p>
                 </div>
               </div>

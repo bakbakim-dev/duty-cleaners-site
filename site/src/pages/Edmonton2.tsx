@@ -286,7 +286,7 @@ export default function Edmonton2() {
     answer: "No. Most Edmonton customers leave a key, a lockbox code or smart-lock access, and the team locks up when they finish. Running water is required, and vacuuming may not be possible without electricity."
   }, {
     question: "Do I need to provide cleaning supplies?",
-    answer: `No. The team brings all supplies and equipment, so there is nothing to buy or set out before the visit. Eco-friendly products are available for ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}.`
+    answer: `No. The team brings all supplies and equipment, so there is nothing to buy or set out before the visit. Optional alternative products are available for ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}.`
   }, {
     question: "What happens if something is missed on an Edmonton clean?",
     answer: `Tell us within ${POLICY.guaranteeWindowHours} hours and a team comes back to re-clean it at no charge. Photos help but are not required. The commitment is the return visit, and it does not come as a refund; a customer who wants something else can call the Edmonton office and talk about it.`
@@ -422,6 +422,13 @@ export default function Edmonton2() {
                   2 hours for two, and{" "}
                   <Link to="/services/" className="font-semibold text-primary hover:underline">all Edmonton cleaning services and prices</Link>{" "}
                   sit on one page.
+                </p>
+                {/* Owner, 2026-09-11: one line routes office work to its own
+                    page, kept apart from the home-cleaning prices. */}
+                <p>
+                  For an office or business premises, see our{" "}
+                  <Link to="/commercial-cleaning/" className="font-semibold text-primary hover:underline">office and commercial cleaning in Edmonton</Link>.
+                  Commercial work is quoted separately from home cleaning.
                 </p>
               </div>
             </div>

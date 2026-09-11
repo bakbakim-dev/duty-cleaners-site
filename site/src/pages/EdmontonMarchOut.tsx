@@ -183,7 +183,7 @@ const faqs = [
   },
   {
     q: "What does a march-out clean not include?",
-    a: "A march-out clean does not include lifting anything over 25 lb, exterior windows or other outdoor work, garages, anything beyond a 3-step ladder, carpet steam cleaning, furnace and duct cleaning, furnace filters, light bulbs, repairs, or mould remediation. Light surface mildew may be wiped where it is safe to do so. If the inspection list asks for any of these, tell the Edmonton office on the call so the quote says plainly what the team will and will not do.",
+    a: "A march-out clean does not include lifting anything over 25 lb, exterior windows or other outdoor work, garages (a balcony or garage sweep is a separate add-on, offered mostly in summer when the weather allows), anything beyond a 3-step ladder, carpet steam cleaning, furnace and duct cleaning, furnace filters, light bulbs, repairs, or mould remediation. Light surface mildew may be wiped where it is safe to do so. If the inspection list asks for any of these, tell the Edmonton office on the call so the quote says plainly what the team will and will not do.",
   },
 ];
 

@@ -7,6 +7,7 @@ import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
 import { sitePriceRange } from "@/data/pricing";
+import GoogleMapEmbed from "@/components/GoogleMapEmbed";
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
   return (
@@ -218,16 +219,7 @@ export default function Tuscany() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-6">Tuscany Service Area</h2>
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20073.5!2d-114.225!3d51.129!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5371655a3e0c6e3b%3A0x2b0e4c14c3fc6b0!2sTuscany%2C+Calgary%2C+AB!5e0!3m2!1sen!2sca!4v1700000000000"
-                    width="100%"
-                    height="450"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer"
-                    title="Tuscany Calgary Service Area Map"
-                  />
+                  <GoogleMapEmbed query="Tuscany, Calgary, AB" title="Tuscany Calgary Service Area Map" />
                 </div>
               </div>
             </AnimatedSection>

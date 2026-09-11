@@ -6,6 +6,7 @@ import {
   moveInOutTierRows,
   FREQUENCIES,
   HOURLY_RATE,
+  HOME_HOURLY_RATE,
   formatPrice,
   addOnFromPrice,
   calculateQuote,
@@ -52,7 +53,19 @@ const cleaningTypes = [
   },
   {
     title: "Move-in or move-out clean",
-    description: "Done once the home is empty: the inside of cabinets, drawers, closets, the oven and the fridge, window tracks and reachable interior glass, and walls spot-cleaned. Full wall washing is a separate add-on.",
+    // Owner, 2026-09-11: interior window cleaning is a paid add-on on a
+    // move-out, and so are blinds and walls. The sills and tracks are wiped
+    // (SERVICES "move-in-out" inclusions in data/pricing.ts).
+    description: (
+      <>
+        Done once the home is empty: the inside of cabinets, drawers, closets, the oven and the
+        fridge, window sills and tracks wiped, and baseboards, doors and light switches wiped.
+        Interior window cleaning, blinds, spot wall cleaning and full wall washing are separate
+        add-ons. Details are on{" "}
+        <Link to="/move-out-cleaning-edmonton/" className="text-primary underline">end of tenancy cleaning in Edmonton</Link> and{" "}
+        <Link to="/move-out-cleaning-calgary/" className="text-primary underline">end of tenancy cleaning in Calgary</Link>.
+      </>
+    ),
     pricedBy: "Flat by home size"
   },
   {
@@ -75,7 +88,32 @@ const DEEPEST = RECURRING[RECURRING.length - 1];
 const PET_FEE = formatPrice(addOnFromPrice("standard", "must-choose-if-you-have-pets") ?? 0);
 const OVEN_FEE = formatPrice(addOnFromPrice("standard", "inside-oven") ?? 0);
 const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
+/** Airbnb and short-term rental turnovers only. */
 const HOURLY = formatPrice(HOURLY_RATE);
+/** Any other hourly home cleaning: a minimum, so the copy says "from". */
+const HOME_HOURLY = formatPrice(HOME_HOURLY_RATE);
+
+/**
+ * Other companies' published prices, for the market ranges in the per-hour
+ * section. Not our prices, so nothing in bk-config can supply them: each
+ * figure is the low or high end of a sample of six Edmonton and Calgary
+ * companies' own published prices, read on 2026-09-11 and recorded with
+ * company, URL and job in site/docs/cost-guide-price-sample-2026-09.md.
+ * Figures are taken as each company published them: some before GST, one
+ * including it, some not saying. The source line under the ranges says so.
+ * A range uses only prices published for that job and size (no "any size"
+ * starting price, no two-person team rate read as a per-cleaner rate).
+ * commercial-costguide-0911.test.ts checks these numbers against that file's
+ * "Ranges used on the page" table, so change both together.
+ */
+const MARKET_SAMPLE = {
+  companies: 6,
+  checked: "September 2026",
+  standardTwoBedroom: [139, 300],
+  moveOutTwoBedroom: [199, 387],
+  hourlyPerCleaner: [42, 75],
+} as const;
+const marketRange = ([low, high]: readonly [number, number]) => `${formatPrice(low)} to ${formatPrice(high)}`;
 /** The largest home-type surcharge (a two-storey house), over the apartment or condo price. */
 const HOUSE_MAX = formatPrice(Math.max(0, ...homeTypeOptions("standard").map((option) => option.price)));
 
@@ -157,7 +195,7 @@ const SECTIONS = [
     id: "per-hour",
     h2: "How much does house cleaning cost per hour?",
     q: "How much does house cleaning cost per hour?",
-    a: `Duty Cleaners does not charge by the hour for a home clean: standard, deep and move-out cleans are flat rates by home size, so the price stays the same if a clean runs long. Airbnb and short-term rental turnovers are billed by the hour instead, at ${HOURLY} per cleaner-hour before 5% GST, with a minimum of 3 hours for one cleaner or 2 hours for two. Outside Edmonton or Calgary city limits, a home clean also carries a ${TRAVEL_FEE} travel fee.`,
+    a: `At Duty Cleaners, whole-home standard, deep and move-out cleans are priced flat by home size, so the price stays the same if a clean runs long. Partial or unusual home-cleaning jobs, such as a few rooms, a one-off task list or a home no size tier fits, are quoted by the hour from ${HOME_HOURLY} per cleaner-hour before 5% GST, with a minimum of 3 hours for one cleaner or 2 hours for two. Airbnb and short-term rental turnovers have a separate rate of ${HOURLY} per cleaner-hour before GST, with the same minimums. Outside Edmonton or Calgary city limits, a home clean also carries a ${TRAVEL_FEE} travel fee.`,
   },
   {
     id: "edmonton",
@@ -207,7 +245,7 @@ const readableDate = (iso: string) => {
  * stated once here so the header cannot drift from the copy again; update it
  * when the prose changes materially.
  */
-const WORD_COUNT = 1550;
+const WORD_COUNT = 1750;
 const READ_MINUTES = Math.max(1, Math.round(WORD_COUNT / 220));
 
 const TierTable = ({
@@ -392,9 +430,10 @@ export default function BlogHouseCleaningCost() {
               <div className="mb-12 p-6 bg-muted/40 rounded-xl border-l-4 border-primary">
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   <strong className="text-foreground">About the figures in this guide.</strong>{" "}
-                  Every price in this guide is a Duty Cleaners price in Canadian dollars before 5%
-                  GST, read from our booking system, so it matches what the booking form shows for
-                  the same home.
+                  Every Duty Cleaners price in this guide is in Canadian dollars before 5% GST, read
+                  from our booking system, so it matches what the booking form shows for the same
+                  home. The market ranges in the per-hour section are other companies&rsquo;
+                  published prices, with their source and date beside them.
                 </p>
               </div>
 
@@ -426,7 +465,12 @@ export default function BlogHouseCleaningCost() {
                     <ul className="text-muted-foreground text-sm space-y-2">
                       <li>• The bill is the rate times the hours worked, so a slow clean costs more.</li>
                       <li>• Hourly bookings often carry a minimum number of hours.</li>
-                      <li>• At Duty Cleaners, Airbnb and short-term rental turnovers are billed this way, and home cleans are not.</li>
+                      <li>
+                        • At Duty Cleaners, partial or unusual home-cleaning jobs are billed this way, from {HOME_HOURLY} per
+                        cleaner-hour (see{" "}
+                        <Link to="/pricing/" className="text-primary underline">hourly home cleaning on the Edmonton price list</Link>
+                        ), and Airbnb turnovers at their own rate of {HOURLY}. Whole-home cleans are priced flat.
+                      </li>
                     </ul>
                   </div>
                   <div className="p-6 bg-accent/10 rounded-xl border border-accent/20">
@@ -455,12 +499,32 @@ export default function BlogHouseCleaningCost() {
                   <div className="p-6 bg-muted/30 rounded-xl border">
                     <h3 className="font-bold text-foreground mb-3 text-lg">Cleaning company</h3>
                     <p className="text-muted-foreground text-sm mb-4">
-                      Many price flat by home size and show the number before you book; some quote per hour with a minimum. Duty Cleaners prices every home clean flat by size, discounts recurring visits from the second one, and re-cleans anything missed at no charge if you tell us within 24 hours.
+                      Many price flat by home size and show the number before you book; some quote per hour with a minimum. Duty Cleaners prices whole-home standard, deep and move-out cleans flat by size, quotes partial jobs by the hour, discounts recurring visits from the second one, and re-cleans anything missed at no charge if you tell us within 24 hours.
                     </p>
                     <div className="bg-primary/10 rounded-lg p-3">
                       <p className="text-primary font-semibold text-center">Discounts for recurring visits</p>
                     </div>
                   </div>
+                </div>
+
+                {/* Market ranges: other companies' own published prices, sampled
+                    and recorded in site/docs/cost-guide-price-sample-2026-09.md. */}
+                <div className="mt-8 p-6 bg-muted/30 rounded-xl border">
+                  <h3 className="font-bold text-foreground mb-3 text-lg">What other Edmonton and Calgary companies publish</h3>
+                  <p className="text-muted-foreground text-sm mb-3 leading-relaxed">
+                    Among Edmonton and Calgary cleaning companies that publish their prices, a
+                    standard clean of a 2-bedroom home ran {marketRange(MARKET_SAMPLE.standardTwoBedroom)},
+                    and a move-out clean of a 2-bedroom home {marketRange(MARKET_SAMPLE.moveOutTwoBedroom)}.
+                    Companies that bill by the hour charged {marketRange(MARKET_SAMPLE.hourlyPerCleaner)} per
+                    cleaner-hour. For a {PRICING_TIERS[1].beds}-bedroom, {PRICING_TIERS[1].bathrooms}-bathroom
+                    apartment or condo, ours is {STANDARD[1].price} for a standard clean and {MOVE[1].price} for
+                    a move-out clean, and hourly home cleaning is from {HOME_HOURLY} per cleaner-hour.
+                  </p>
+                  <p className="text-muted-foreground text-xs leading-relaxed">
+                    Ranges from the published prices of {MARKET_SAMPLE.companies} Edmonton and Calgary
+                    cleaning companies, checked {MARKET_SAMPLE.checked}, taken as each company
+                    published them: before GST, including GST, or not saying. Your own quote may differ.
+                  </p>
                 </div>
               </div>
 

@@ -327,8 +327,8 @@ const BENEFIT_COPY: [string, string][] = [
   ["finished basement", "Full clean of the finished space"],
   ["unfinished basement", "Sweep & tidy only"],
   ["de-cluttering", "A pro organizer, by the hour"],
-  ["sweep only of garage", "Sweep-out only"],
-  ["sweep of garage", "Sweep-out only"],
+  ["sweep only of garage", "A sweep only, not a full garage clean; offered mostly in summer, when the weather allows"],
+  ["sweep of garage", "A sweep only, not a full garage clean; offered mostly in summer, when the weather allows"],
 ];
 
 export function benefitForExtra(name: string): string {

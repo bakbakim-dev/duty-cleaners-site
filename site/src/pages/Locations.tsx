@@ -729,9 +729,10 @@ export default function Locations() {
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Where the Edmonton and Calgary offices clean</h2>
             <p className="text-muted-foreground max-w-3xl mx-auto">
-              The map shows both cities and the communities around each. Duty Cleaners does not
-              serve Red Deer. For an address that is not listed, call the Edmonton or Calgary
-              office and ask.
+              The map shows both cities and the communities around each. Red Deer is served too:
+              to book a Red Deer clean, call the Edmonton office at {CITY_PROOF.edmonton.phone} or
+              the Calgary office at {CITY_PROOF.calgary.phone} and confirm the travel charge. For any
+              other address that is not listed, call the Edmonton or Calgary office and ask.
             </p>
           </div>
 

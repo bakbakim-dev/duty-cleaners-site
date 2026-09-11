@@ -4,13 +4,14 @@ import {
 import fortSaskKitchen from "@/assets/gallery/fort-saskatchewan-kitchen-clean.webp";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CoverageChips from "@/components/CoverageChips";
-import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice, addOnFromPrice } from "@/data/pricing";
-import { travelFee } from "@/data/addon-table";
+import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice, addOnFromPrice, calculateQuote, homeTypeOptions, PRICING_TIERS } from "@/data/pricing";
+import { travelFee, TRAVEL_FEE_KEY } from "@/data/addon-table";
 import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
 import { GOOGLE_LISTINGS } from "@/lib/google-listings";
 import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
 
 import LocationPricing from "@/components/LocationPricing";
+import GoogleMapEmbed from "@/components/GoogleMapEmbed";
 
 // Every figure on this page is derived from bk-config or policy.ts.
 const STANDARD = standardTierRows();
@@ -35,11 +36,16 @@ const EDMONTON_LISTING = GOOGLE_LISTINGS.edmonton;
 const PAGE_TITLE = `House Cleaning Fort Saskatchewan from ${STANDARD_FROM} | Duty Cleaners`;
 const PAGE_DESCRIPTION = `Fort Saskatchewan cleans start at ${STANDARD_FROM} for a one-bedroom apartment or condo before GST, plus a ${TRAVEL_FEE} travel fee and any pet or home-type charge.`;
 
-// A worked quote built from the same rows the price table uses: a
-// three-bedroom two-storey house on a move-in clean, outside city limits.
-const dollars = (price: string) => Number(price.replace(/[^0-9.]/g, ""));
+// A worked quote run through calculateQuote, the booking funnel's own maths: a
+// three-bedroom two-storey house on a move-in clean, outside city limits. The
+// table rounds each size to the dollar, so no total is built from a table card.
+const EXAMPLE_SIZE = PRICING_TIERS[2];
 const EXAMPLE_TIER = MOVE[2];
-const EXAMPLE_PRICE = formatPrice(dollars(EXAMPLE_TIER.price) + BK_PRICE_OVERRIDES[90].price + (travelFee("standard") ?? 0));
+const exampleQuote = (homeType: number | null, addOns: string[] = []) =>
+  calculateQuote({ service: "move-in-out", homeType, bedrooms: EXAMPLE_SIZE.beds, bathrooms: EXAMPLE_SIZE.bathrooms, halfBaths: EXAMPLE_SIZE.halfBaths, addOns, frequency: "one-time" }).firstClean;
+const EXAMPLE_BASE = formatPrice(exampleQuote(homeTypeOptions("move-in-out")[0]?.id ?? null));
+const EXAMPLE_BASE_TEXT = EXAMPLE_BASE === EXAMPLE_TIER.price ? EXAMPLE_BASE : `${EXAMPLE_BASE} (${EXAMPLE_TIER.price} in the table, which rounds to the dollar)`;
+const EXAMPLE_PRICE = formatPrice(exampleQuote(90, [TRAVEL_FEE_KEY]));
 // An add-on on a standard clean; the move-in/move-out clean includes it.
 const OVEN_FROM = formatPrice(addOnFromPrice("standard", "inside-oven") ?? 0);
 
@@ -154,7 +160,7 @@ export default function FortSaskatchewan() {
     },
     {
       question: "Do I have to provide cleaning products?",
-      answer: `No. The team brings all supplies and equipment, including the vacuum. Leave the water and power on until the clean is done, because running water is required and vacuuming may not be possible without electricity. Eco-friendly products cost ${POLICY.ecoProductsFee} extra: ${POLICY.ecoProductsHowToRequest}.`
+      answer: `No. The team brings all supplies and equipment, including the vacuum. Leave the water and power on until the clean is done, because running water is required and vacuuming may not be possible without electricity. Optional alternative products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}.`
     },
     {
       question: "What happens if something is missed?",
@@ -166,7 +172,7 @@ export default function FortSaskatchewan() {
     },
     {
       question: "Will the team clean a storage room or clear clutter?",
-      answer: `The team cleans clear floors and counters and works around whatever is stacked on them, so a storage room in a long-settled Fort Saskatchewan home has to be emptied before it can be cleaned. Decluttering or organising is a separate hourly add-on. Lifting anything over 25 lb, hoarding situations and large debris removal are not included, and nor are garages or outdoor areas.`
+      answer: `The team cleans clear floors and counters and works around whatever is stacked on them, so a storage room in a long-settled Fort Saskatchewan home has to be emptied before it can be cleaned. Decluttering or organising is a separate hourly add-on. Lifting anything over 25 lb, hoarding situations and large debris removal are not included, and nor are garages or outdoor areas, apart from a balcony or garage sweep add-on offered mostly in summer when the weather allows.`
     }
   ];
   const faqJsonLd = {
@@ -268,16 +274,7 @@ export default function FortSaskatchewan() {
               </p>
             </div>
             <div className="max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-xl">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d75200.0!2d-113.21489!3d53.71286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a03e0e0bffffff%3A0x9a3a0e0e0bffffff!2sFort+Saskatchewan%2C+AB!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca"
-                width="100%"
-                height="450"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer"
-                title="Fort Saskatchewan Service Area Map"
-              />
+              <GoogleMapEmbed query="Fort Saskatchewan, AB" title="Fort Saskatchewan Service Area Map" />
             </div>
           </AnimatedSection>
         </div>
@@ -413,7 +410,7 @@ export default function FortSaskatchewan() {
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>
-                  Take a three-bedroom, two-storey house in Fort Saskatchewan that nobody has lived in yet, with two bathrooms and a half bath, booked for a move-in clean. The table price for that size is {EXAMPLE_TIER.price}, which assumes an apartment or condo. A two-storey house adds {HOME_TYPE.twoStorey} and a Fort Saskatchewan address adds the {TRAVEL_FEE} travel fee, so the quote comes to {EXAMPLE_PRICE} before 5% GST. Once a pet lives there, every visit also carries the compulsory {PET_FEE} pet charge.
+                  Take a three-bedroom, two-storey house in Fort Saskatchewan that nobody has lived in yet, with two bathrooms and a half bath, booked for a move-in clean. The rate for that size is {EXAMPLE_BASE_TEXT}, which assumes an apartment or condo. A two-storey house adds {HOME_TYPE.twoStorey} and a Fort Saskatchewan address adds the {TRAVEL_FEE} travel fee, so the quote comes to {EXAMPLE_PRICE} before 5% GST. Once a pet lives there, every visit also carries the compulsory {PET_FEE} pet charge.
                 </p>
                 <p>
                   The figure moves with the home and the extras; how long the clean takes does not change it. More bathrooms than the table assumes raise it. On a later standard clean, an add-on such as inside the oven, from {OVEN_FROM} before GST, raises the price of that visit. If a home needs substantially more work than described, such as heavy build-up, the team explains what it found and the options before continuing.

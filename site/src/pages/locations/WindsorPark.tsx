@@ -8,6 +8,7 @@ import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
 import { sitePriceRange } from "@/data/pricing";
+import GoogleMapEmbed from "@/components/GoogleMapEmbed";
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
   return (
@@ -261,16 +262,7 @@ export default function WindsorPark() {
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
-                  <iframe
-                    src="https://www.google.com/maps?q=Windsor+Park,+Calgary,+AB&output=embed"
-                    width="100%"
-                    height="450"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer"
-                    title="Windsor Park Calgary Service Area Map"
-                  />
+                  <GoogleMapEmbed query="Windsor Park, Calgary, AB" title="Windsor Park Calgary Service Area Map" />
                 </div>
               </div>
             </AnimatedSection>

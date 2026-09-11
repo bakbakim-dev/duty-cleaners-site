@@ -6,8 +6,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
-import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice, addOnFromPrice } from "@/data/pricing";
-import { travelFee } from "@/data/addon-table";
+import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice, addOnFromPrice, calculateQuote, homeTypeOptions, PRICING_TIERS } from "@/data/pricing";
+import { travelFee, TRAVEL_FEE_KEY } from "@/data/addon-table";
 import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
 import { GOOGLE_LISTINGS } from "@/lib/google-listings";
 import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
@@ -36,13 +36,17 @@ const EDMONTON_LISTING = GOOGLE_LISTINGS.edmonton;
 const PAGE_TITLE = `House Cleaning Spruce Grove from ${STANDARD_FROM} | Duty Cleaners`;
 const META_DESCRIPTION = `Spruce Grove house cleaning starts at ${STANDARD_FROM} for a one-bedroom apartment or condo before GST, plus a ${TRAVEL_FEE} travel fee and any pet or home-type charge.`;
 
-// A worked quote built from the same rows the price table uses: a four-bedroom
-// two-storey house on a move-in clean, no pets, outside city limits.
-const dollars = (price: string) => Number(price.replace(/[^0-9.]/g, ""));
+// A worked quote run through calculateQuote, the booking funnel's own maths: a
+// four-bedroom two-storey house on a move-in clean, no pets, outside city
+// limits. The table rounds each size to the dollar, so no total is built from a
+// table card.
+const EXAMPLE_SIZE = PRICING_TIERS[3];
 const EXAMPLE_TIER = MOVE[3];
-const EXAMPLE_PRICE = formatPrice(
-  Math.round((dollars(EXAMPLE_TIER.price) + BK_PRICE_OVERRIDES[90].price + (travelFee("standard") ?? 0)) * 100) / 100,
-);
+const exampleQuote = (homeType: number | null, addOns: string[] = []) =>
+  calculateQuote({ service: "move-in-out", homeType, bedrooms: EXAMPLE_SIZE.beds, bathrooms: EXAMPLE_SIZE.bathrooms, halfBaths: EXAMPLE_SIZE.halfBaths, addOns, frequency: "one-time" }).firstClean;
+const EXAMPLE_BASE = formatPrice(exampleQuote(homeTypeOptions("move-in-out")[0]?.id ?? null));
+const EXAMPLE_BASE_TEXT = EXAMPLE_BASE === EXAMPLE_TIER.price ? EXAMPLE_BASE : `${EXAMPLE_BASE} (${EXAMPLE_TIER.price} in the table, which rounds to the dollar)`;
+const EXAMPLE_PRICE = formatPrice(exampleQuote(90, [TRAVEL_FEE_KEY]));
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -155,7 +159,7 @@ export default function SpruceGrove() {
     },
     {
       question: "Do you bring the supplies?",
-      answer: `Yes. The team brings all supplies and equipment. Eco-friendly products cost ${POLICY.ecoProductsFee} more: ${POLICY.ecoProductsHowToRequest}. Running water is required, and vacuuming needs power.`
+      answer: `Yes. The team brings all supplies and equipment. Optional alternative products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}. Running water is required, and vacuuming needs power.`
     },
     {
       question: "How long does a first clean in Spruce Grove take?",
@@ -267,7 +271,7 @@ export default function SpruceGrove() {
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>
-                  Picture a four-bedroom two-storey house in Spruce Grove with three and a half bathrooms, booked for a move-in clean before the boxes arrive. The move-in rate for that size is {EXAMPLE_TIER.price} as an apartment or condo, the travel fee is {TRAVEL_FEE} and the two-storey surcharge is {HOME_TYPE.twoStorey}, which makes {EXAMPLE_PRICE} before 5% GST. With no pets in the empty house there is no pet charge; a home with pets pays {PET_FEE} a visit.
+                  Picture a four-bedroom two-storey house in Spruce Grove with three and a half bathrooms, booked for a move-in clean before the boxes arrive. The move-in rate for that size is {EXAMPLE_BASE_TEXT} as an apartment or condo, the travel fee is {TRAVEL_FEE} and the two-storey surcharge is {HOME_TYPE.twoStorey}, which makes {EXAMPLE_PRICE} before 5% GST. With no pets in the empty house there is no pet charge; a home with pets pays {PET_FEE} a visit.
                 </p>
                 <p>
                   The quote is set before the team arrives and does not grow because the clean takes longer than expected. It goes up for what is booked: more bathrooms, a larger home type, a pet or an add-on such as interior windows. If a house turns out to need substantially more work than was described, such as heavy build-up or far more glass or cabinetry than stated, the team explains what it found and the options before continuing.
@@ -294,7 +298,9 @@ export default function SpruceGrove() {
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>The same move-in or move-out clean works in the other direction for anyone leaving a Spruce Grove home. It covers the standard rooms and goes inside the oven, fridge and microwave, and inside every cabinet, drawer and closet, priced flat by home size with the Spruce Grove travel fee on top.</p>
-                <p>For tenants, Alberta's Residential Tenancies Act sets two things: the landlord completes a move-out inspection report with the tenant, and the security deposit must be returned within 10 days after the tenant moves out. The landlord decides what happens to the deposit, and we do not promise it comes back.</p>
+                <p>
+                  For tenants, Alberta's Residential Tenancies Act sets two things. The landlord completes a move-out inspection report with the tenant. Within 10 days of the tenant moving out, the landlord must return the deposit, or return what is left with a written statement of any deductions (an estimate is allowed, with the final statement within 30 days), as set out in{" "}
+                  <a href="https://www.alberta.ca/ending-a-tenancy" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Alberta's rules on ending a tenancy</a>. The landlord decides what happens to the deposit, and we do not promise it comes back.</p>
                 <p>
                   Empty rooms make the best move-out clean, because a cupboard with plates still in it cannot be cleaned inside. No one needs to be home: most customers leave a key, a lockbox code or smart-lock access, and the team locks up. Anything beyond a 3-step ladder is outside the checklist, and so are exterior windows and garages. The checklist is shared with{" "}
                   <Link to="/move-out-cleaning-edmonton/" className="text-primary underline underline-offset-2 font-medium">move-out cleaning across Edmonton</Link>.

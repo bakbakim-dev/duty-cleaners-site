@@ -95,6 +95,7 @@ const whole = (value: number) => formatPrice(Math.round(value));
 const APARTMENT = homeTypeOptions("standard")[0]?.id ?? null;
 const TWO_STOREY = homeTypeOptions("standard").find((o) => /two storey house/i.test(o.label))?.id ?? null;
 const BI_WEEKLY = FREQUENCIES.find((f) => f.discount === 0.15)?.id ?? "one-time";
+const BI_WEEKLY_PCT = `${Math.round((FREQUENCIES.find((f) => f.id === BI_WEEKLY)?.discount ?? 0) * 100)}%`;
 const quote = (input: { homeType: number | null; bedrooms: number; bathrooms: number; halfBaths: number; addOns?: string[]; frequency?: string }) =>
   calculateQuote({ service: "standard", addOns: [], frequency: "one-time", ...input });
 
@@ -125,7 +126,7 @@ const standardAddOns = [
   "Inside cabinets",
   "Interior windows",
   "Wall washing",
-  "Garage or balcony sweep",
+  "Garage or balcony sweep, mostly in summer",
   "Decluttering and organising, by the hour",
   "Finished basement",
 ];
@@ -157,13 +158,13 @@ const faqItems = [
   { value: "trust", question: "Who are the house cleaners who come to a Calgary home?", answer: "Every cleaner on a Calgary crew was reference-checked before their first job with us, and the customer rates each visit afterwards. Those ratings decide who we keep sending to Calgary homes." },
   { value: "included", question: "What is included in maid service in Calgary?", answer: "A standard clean in Calgary covers the kitchen (sink, stovetop, counters, the inside and outside of the microwave, the outside of the other appliances), every bathroom (toilets, showers, tubs, sinks), and the bedrooms and living areas (dusting, mirrors, window sills, chairs and tables, vacuuming and mopping). The inside of the fridge, the oven and the cabinets are add-ons on a standard clean and part of a move-in/out clean. Baseboards are in the Deep Cleaning package." },
   { value: "duration", question: "How long does a typical house cleaning take?", answer: "As long as the checklist takes. A Beltline one-bedroom and a Mahogany four-bedroom are each billed at their flat rate whether the crew finishes early or runs long, because the rate is set by the home and not by the clock. Deep and move-in/out cleans have longer lists and run longer." },
-  { value: "supplies", question: "Are there discounts if I provide my own cleaning supplies?", answer: `No. The crew arrives with its own supplies and equipment, and the rate already assumes that. If there is a product you want used on a particular surface, leave it out and note it on the booking; that costs nothing extra. Eco-friendly products are ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}.` },
+  { value: "supplies", question: "Are there discounts if I provide my own cleaning supplies?", answer: `No. The crew arrives with its own supplies and equipment, and the rate already assumes that. If there is a product you want used on a particular surface, leave it out and note it on the booking; that costs nothing extra. Optional alternative products are ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}.` },
   { value: "recurring", question: "Do you offer recurring service discounts?", answer: "Weekly is 20% off, bi-weekly 15% off, every 4 weeks 10% off. The discount begins on the second visit and the first is charged at the one-time rate. When that first visit is a deep clean, the package part is billed once and never discounted, and the visits after it are standard cleans at the discounted price. Move-out cleans do not recur, so they carry no discount." },
   { value: "pricing-types", question: "What's the difference between Hourly Cleaning and flat-rate pricing?", answer: `Flat rate: one figure set by bedrooms, bathrooms and home type, unchanged if the clean runs long. Hourly, from ${formatPrice(HOME_HOURLY_RATE)} per cleaner per hour before GST: for a few rooms, a one-off task list, or a home no size tier fits, with a minimum of 3 hours for one cleaner or 2 hours for two. A Calgary condo owner who only wants the kitchen and one bathroom done is an hourly job; the same condo done end to end is a flat rate.` },
   // A FAQ with this title has to name the charges customers call hidden. Both
   // are published on /terms/ and both read from POLICY, so this answer can
   // never drift away from the terms it summarises.
-  { value: "hidden-fees", question: "Are there any hidden fees?", answer: `Every card price is before 5% GST, and these are the only other charges. Home type: the cards price an apartment or condo, and a bungalow or basement suite adds ${HOME_TYPE_EXTRA.bungalow}, a townhouse ${HOME_TYPE_EXTRA.townhouse} and a two-storey house ${HOME_TYPE_EXTRA.twoStorey}. Pets: ${PET_FEE} a visit, because shed hair and nose marks on glass add time in every room. An address outside Calgary city limits, such as Airdrie, Cochrane, Okotoks or Chestermere: a ${TRAVEL_FEE} travel fee on home cleaning, or ${POST_TRAVEL_FEE} on a post-construction clean. Cancelling or moving a booking inside ${POLICY.cancellationNoticeHours} hours: ${POLICY.cancellationFee}. A lockout, where the crew arrives and cannot get in: ${POLICY.lockoutFee}. Eco-friendly products: ${POLICY.ecoProductsFee}, and since the form has no box for them, ${POLICY.ecoProductsHowToRequest}. The flat rate itself does not rise because a clean ran long. It changes only when a home needs substantially more work than the booking described, and the crew tells you what they found before continuing.` },
+  { value: "hidden-fees", question: "Are there any hidden fees?", answer: `Every card price is before 5% GST, and these are the only other charges. Home type: the cards price an apartment or condo, and a bungalow or basement suite adds ${HOME_TYPE_EXTRA.bungalow}, a townhouse ${HOME_TYPE_EXTRA.townhouse} and a two-storey house ${HOME_TYPE_EXTRA.twoStorey}. Pets: ${PET_FEE} a visit, because shed hair and nose marks on glass add time in every room. An address outside Calgary city limits, such as Airdrie, Cochrane, Okotoks or Chestermere: a ${TRAVEL_FEE} travel fee on home cleaning, or ${POST_TRAVEL_FEE} on a post-construction clean. Cancelling or moving a booking inside ${POLICY.cancellationNoticeHours} hours: ${POLICY.cancellationFee}. A lockout, where the crew arrives and cannot get in: ${POLICY.lockoutFee}. Optional alternative products: ${POLICY.ecoProductsFee}, and since the form has no box for them, ${POLICY.ecoProductsHowToRequest}. The flat rate itself does not rise because a clean ran long. It changes only when a home needs substantially more work than the booking described, and the crew tells you what they found before continuing.` },
   { value: "satisfaction", question: "What if I'm not satisfied with the cleaning?", answer: `Tell us within ${POLICY.guaranteeWindowHours} hours and the crew comes back to re-clean whatever was missed, at no cost. Photos help, but they are not required. The commitment is that return visit, and a Calgary customer who wants something else can call (403) 768-1341 and talk it through.` },
   { value: "same-as-edmonton", question: "Is the price different in Calgary than in Edmonton?", answer: "No. One price sheet covers both cities and neither carries a premium. What can differ is which service a Calgary home needs: after a winter of chinook melt-and-grit cycles, sand and de-icer settle along baseboards and carpet edges, and baseboards are in the deep-clean package. That is a difference in what you choose, not in what we charge." },
 ];
@@ -338,8 +339,9 @@ export default function CalgaryPricing() {
               Reading the cards: left to right is bedroom count, and each card assumes an apartment or condo with a
               set number of bathrooms: {PRICING_TIERS[0].bathrooms} for the one-bedroom, {PRICING_TIERS[1].bathrooms} for the two-bedroom, and{" "}
               {fourBedTier.bathrooms} full plus a half bath by the four-bedroom. A Beltline one-bedroom with one
-              bathroom is the first card exactly; a four-bedroom in Mahogany with two bathrooms comes in under the
-              fourth card, because that card assumes {fourBedTier.bathrooms} full bathrooms and a half bath. The{" "}
+              bathroom is the first card exactly; a four-bedroom in Mahogany with two bathrooms starts under the
+              fourth card, before its home type and any pet charge are added, because that card assumes{" "}
+              {fourBedTier.bathrooms} full bathrooms and a half bath. The{" "}
               <Link to="/calgary/regular-cleaning/" className="text-accent underline underline-offset-4 hover:text-accent/80">Calgary standard cleaning</Link>{" "}
               rate is the base for everything. A{" "}
               <Link to="/calgary/deep-cleaning/" className="text-accent underline underline-offset-4 hover:text-accent/80">deep clean in Calgary</Link>{" "}
@@ -493,7 +495,9 @@ export default function CalgaryPricing() {
 
             <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto mt-6 text-center">
               Every add-on price is per visit and before 5% GST. Pick the add-ons on the booking form and each
-              one appears as its own line on the Calgary quote, beside the flat rate for the home.
+              one appears as its own line on the Calgary quote, beside the flat rate for the home. The
+              balcony / garage sweep is a sweep of the floor only, offered mostly in summer when the
+              weather allows; the rest of a garage or patio stays outside the clean.
             </p>
           </div>
         </div>
@@ -554,8 +558,8 @@ export default function CalgaryPricing() {
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   One bedroom, one bathroom, no pets: the first card, {standardPricing[0].price} for a standard clean
-                  plus GST. Booked bi-weekly, the second visit and every one after it is{" "}
-                  {whole(beltline.ongoing ?? beltline.firstClean)}. Start with a deep clean instead and that first
+                  plus GST. Booked bi-weekly, the second visit and every one after it is about{" "}
+                  {whole(beltline.ongoing ?? beltline.firstClean)} ({formatPrice(beltline.ongoing ?? beltline.firstClean)} exactly). Start with a deep clean instead and that first
                   visit is {deepPricing[0].price}, the {deepPricing[0].standard} standard rate plus the{" "}
                   {deepPricing[0].packagePrice} package, before the bi-weekly rate takes over.
                 </p>
@@ -567,10 +571,14 @@ export default function CalgaryPricing() {
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   A two-storey house with four bedrooms, two bathrooms and a dog. Four bedrooms and two bathrooms
-                  set {whole(mahoganyBase.firstClean)}; the two-storey house adds {HOME_TYPE_EXTRA.twoStorey}; the
-                  pet charge is {PET_FEE} a visit. That is {whole(mahogany.firstClean)} before GST, under the
-                  fourth card because the card assumes {fourBedTier.bathrooms} full bathrooms, and{" "}
-                  {whole(mahogany.ongoing ?? mahogany.firstClean)} a visit from the second clean on a bi-weekly plan.
+                  set about {whole(mahoganyBase.firstClean)} ({formatPrice(mahoganyBase.firstClean)} exactly), which is
+                  under the fourth card's {standardPricing[3]?.price} because that card assumes{" "}
+                  {fourBedTier.bathrooms} full bathrooms and a half bath. The two-storey house adds{" "}
+                  {HOME_TYPE_EXTRA.twoStorey} and the pet charge is {PET_FEE} a visit, so the first clean is about{" "}
+                  {whole(mahogany.firstClean)} before GST ({formatPrice(mahogany.firstClean)}), more than the fourth
+                  card. On a bi-weekly plan each visit from the second is about{" "}
+                  {whole(mahogany.ongoing ?? mahogany.firstClean)} before GST, because the {BI_WEEKLY_PCT} discount
+                  applies to the whole visit, the home-type and pet charges included.
                 </p>
               </div>
             </div>

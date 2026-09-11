@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { Calculator } from "lucide-react";
 import { quoteHrefFor } from "@/lib/quote-link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -286,20 +286,49 @@ export default function Contact() {
     ? GIFT_CARD_DESIGN_LABELS[giftDesign] ?? giftDesign.replace(/-/g, " ")
     : null;
 
+  // Office cleaning and Airbnb turnovers are quoted by the office, not by the
+  // instant price, so those visitors get the callback prompt instead of the
+  // home-pricing pitch.
+  const isCallbackTopic = isOffice || isAirbnb;
+  const presetCity = topicCity === "edmonton" || topicCity === "calgary" ? topicCity : "";
+  const presetService = isGiftCard ? "gift-card" : isAirbnb ? "airbnb" : isOffice ? "commercial" : "";
+  const presetMessage = isGiftCard
+    ? `I'd like to buy a Duty Cleaners gift card${giftDesignLabel ? ` (${giftDesignLabel} design)` : ""}. Please send me the details.`
+    : isAirbnb
+      ? "I'd like a callback about Airbnb / short-term rental turnover cleaning."
+      : isOffice
+        ? "I'd like a quote for office cleaning."
+        : "";
+
   const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     email: "",
     phone: "",
-    city: topicCity === "edmonton" || topicCity === "calgary" ? topicCity : "",
-    service: isGiftCard ? "gift-card" : isAirbnb ? "airbnb" : isOffice ? "commercial" : "",
-    message: isGiftCard
-      ? `I'd like to buy a Duty Cleaners gift card${giftDesignLabel ? ` (${giftDesignLabel} design)` : ""}. Please send me the details.`
-      : isAirbnb
-        ? "I'd like a callback about Airbnb / short-term rental turnover cleaning."
-        : isOffice
-          ? "I'd like a quote for office cleaning."
-          : "",
+    city: presetCity,
+    service: presetService,
+    message: presetMessage,
   });
+
+  // A visitor already on /contact-us/ who follows a ?topic= link stays on the
+  // same component, so the initial state above never re-runs. Carry the new
+  // topic and city into the form without wiping anything they have typed: the
+  // message is replaced only while it is empty or still the last preset we
+  // wrote (the visitor has not edited it).
+  const lastPresetMessage = useRef(presetMessage);
+  useEffect(() => {
+    // Read before the ref moves on: the updater below may run later.
+    const previousPreset = lastPresetMessage.current;
+    if (presetMessage) lastPresetMessage.current = presetMessage;
+    setFormData((prev) => {
+      const untouched = !prev.message.trim() || prev.message === previousPreset;
+      return {
+        ...prev,
+        city: presetCity || prev.city,
+        service: presetService || prev.service,
+        message: presetMessage && untouched ? presetMessage : prev.message,
+      };
+    });
+  }, [presetCity, presetService, presetMessage]);
 
   const [errors, setErrors] = useState<Partial<Record<keyof ContactFormData, string>>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -445,21 +474,42 @@ export default function Contact() {
               Contact Duty Cleaners in <span className="text-brand-gold">Edmonton and Calgary</span>
             </h1>
 
-            <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-8">
-              The fastest answer to most questions is the price itself, which takes about a minute
-              to see. For anything else, call the office for your city during opening hours, or
-              send a message with the form.
-            </p>
+            {/* Office cleaning and Airbnb turnovers have no instant price, so
+                those visitors are sent to the form and the phones instead. */}
+            {isCallbackTopic ? (
+              <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-8">
+                {isOffice
+                  ? "Office cleaning is priced per square foot after a walkthrough of the premises, so it has no instant price."
+                  : "Airbnb and short-term rental turnovers are priced per hour on a callback, so they have no instant price."}{" "}
+                Send the form below with a phone number and the office can call you back, or call
+                the office for your city during opening hours.
+              </p>
+            ) : (
+              <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-8">
+                The fastest answer to most questions is the price itself, which takes about a minute
+                to see. For anything else, call the office for your city during opening hours, or
+                send a message with the form.
+              </p>
+            )}
 
             <div className="flex flex-wrap justify-center gap-4">
               {/* This page once offered no way to book at all: two phone numbers
                   and a message form, under a line inviting the reader to book. */}
-              <Button size="lg" className="bg-accent hover:bg-accent/90 text-white h-12 px-6" asChild>
-                <a href={quoteHrefFor(pathname)}>
-                  <Calculator className="mr-2 w-5 h-5" />
-                  See My Instant Price
-                </a>
-              </Button>
+              {isCallbackTopic ? (
+                <Button size="lg" className="bg-accent hover:bg-accent/90 text-white h-12 px-6" asChild>
+                  <a href="#contact-form">
+                    <Send className="mr-2 w-5 h-5" />
+                    Request a Callback
+                  </a>
+                </Button>
+              ) : (
+                <Button size="lg" className="bg-accent hover:bg-accent/90 text-white h-12 px-6" asChild>
+                  <a href={quoteHrefFor(pathname)}>
+                    <Calculator className="mr-2 w-5 h-5" />
+                    See My Instant Price
+                  </a>
+                </Button>
+              )}
               <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 h-12 px-6" asChild>
                 <a href="tel:7809136565">
                   <Phone className="mr-2 w-5 h-5" />
@@ -523,32 +573,55 @@ Sun: 9:00am–3:00pm"
               <div className="lg:col-span-3">
                 {/* The page says the instant price is faster than the form, so
                     the price comes first and the form second. */}
-                <div className="mb-8 rounded-2xl border-2 border-accent/30 bg-accent/10 p-6">
-                  <p className="text-lg font-semibold text-foreground">
-                    To book, or to see what a clean costs, skip the form.
-                  </p>
-                  <p className="mt-1 text-muted-foreground">
-                    Answer a few questions about the home and the price is on screen in about a
-                    minute, before GST. Nothing is charged when you book.
-                  </p>
-                  <Button size="lg" className="mt-4 bg-accent hover:bg-accent/90 text-white h-12 px-6" asChild>
-                    <a href={quoteHrefFor(pathname)}>
-                      <Calculator className="mr-2 w-5 h-5" />
-                      See My Instant Price
-                    </a>
-                  </Button>
-                </div>
+                {isCallbackTopic ? (
+                  /* Office cleaning and Airbnb turnovers are not priced by the
+                     instant quote, so the home-pricing pitch would send these
+                     visitors the wrong way. */
+                  <div className="mb-8 rounded-2xl border-2 border-accent/30 bg-accent/10 p-6">
+                    <p className="text-lg font-semibold text-foreground">
+                      {isOffice ? "Office cleaning quote" : "Airbnb and short-term rental turnovers"}
+                    </p>
+                    <p className="mt-1 text-muted-foreground">
+                      Tell us about the premises or turnover, timing and required scope. The office
+                      will confirm the applicable quote.
+                    </p>
+                  </div>
+                ) : (
+                  <div className="mb-8 rounded-2xl border-2 border-accent/30 bg-accent/10 p-6">
+                    <p className="text-lg font-semibold text-foreground">
+                      To book, or to see what a clean costs, skip the form.
+                    </p>
+                    <p className="mt-1 text-muted-foreground">
+                      Answer a few questions about the home and the price is on screen in about a
+                      minute, before GST. Nothing is charged when you book.
+                    </p>
+                    <Button size="lg" className="mt-4 bg-accent hover:bg-accent/90 text-white h-12 px-6" asChild>
+                      <a href={quoteHrefFor(pathname)}>
+                        <Calculator className="mr-2 w-5 h-5" />
+                        See My Instant Price
+                      </a>
+                    </Button>
+                  </div>
+                )}
 
                 <div className="mb-8">
                   <span className="text-accent font-semibold text-sm uppercase tracking-wide">Send a Message</span>
                   <h2 className="text-3xl md:text-4xl font-bold mt-2">Send a message to either office</h2>
-                  <p className="text-muted-foreground mt-3">
-                    For questions the price cannot answer: an unusual home, a fixed inspection
-                    date, a gift card. Leave a phone number and the office can call you back.
-                  </p>
+                  {isCallbackTopic ? (
+                    <p className="text-muted-foreground mt-3">
+                      {isOffice
+                        ? "Tell us the address, roughly how much floor space needs cleaning, and how often. Leave a phone number and the office can call you back to arrange the walkthrough."
+                        : "Tell us where the rental is, its size, and how often guests turn over. Leave a phone number and the office can call you back to quote the turnovers."}
+                    </p>
+                  ) : (
+                    <p className="text-muted-foreground mt-3">
+                      For questions the price cannot answer: an unusual home, a fixed inspection
+                      date, a gift card. Leave a phone number and the office can call you back.
+                    </p>
+                  )}
                 </div>
 
-                <form onSubmit={handleSubmit} className="bg-white rounded-2xl border border-border shadow-sm p-6 md:p-8 space-y-5">
+                <form id="contact-form" onSubmit={handleSubmit} className="scroll-mt-24 bg-white rounded-2xl border border-border shadow-sm p-6 md:p-8 space-y-5">
                   {isGiftCard && (
                     <div className="rounded-xl border border-accent/30 bg-accent/10 p-4">
                       <p className="font-semibold text-foreground">
@@ -751,20 +824,32 @@ Sun: 9:00am–3:00pm"
               Before you call
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-5">
-              We answer Monday to Saturday, 8:00 AM to 8:00 PM, and Sunday 9:00 AM to 3:00 PM. If
-              you already know your home's size and roughly what you want done, the instant quote
-              gives you the figure faster than a phone call can, before 5% GST, with the pet charge,
-              the home-type surcharge or the travel fee included where they apply. Call when the
-              home is unusual, when you are working to a specific inspection date, or when you
-              would rather talk it through.
+              We answer Monday to Saturday, 8:00 AM to 8:00 PM, and Sunday 9:00 AM to 3:00 PM.{" "}
+              {isCallbackTopic ? (
+                <>
+                  An office or turnover job is priced once the office knows what it involves, so
+                  say what the premises or the turnover need and when, and the office confirms the
+                  quote.
+                </>
+              ) : (
+                <>
+                  If you already know your home's size and roughly what you want done, the instant
+                  quote gives you the figure faster than a phone call can, before 5% GST, with the
+                  pet charge, the home-type surcharge or the travel fee included where they apply.
+                  Call when the home is unusual, when you are working to a specific inspection date,
+                  or when you would rather talk it through.
+                </>
+              )}
             </p>
-            <p className="text-muted-foreground leading-relaxed mb-5">
-              Two things speed up any booking call: the number of bedrooms and bathrooms, and
-              whether the home has been professionally cleaned recently. Those two answers decide
-              which service fits, and they usually settle whether the home needs the standard rate
-              or the deep-clean rate. If you are not sure, describe the place and we will tell you
-              the cheaper of the two that still does the job.
-            </p>
+            {!isCallbackTopic && (
+              <p className="text-muted-foreground leading-relaxed mb-5">
+                Two things speed up any booking call: the number of bedrooms and bathrooms, and
+                whether the home has been professionally cleaned recently. Those two answers decide
+                which service fits, and they usually settle whether the home needs the standard rate
+                or the deep-clean rate. If you are not sure, describe the place and we will tell you
+                the cheaper of the two that still does the job.
+              </p>
+            )}
             <p className="text-muted-foreground leading-relaxed mb-8">
               We schedule to an arrival window rather than an exact time, so one job running long
               does not push your whole day. The windows are{" "}
@@ -791,7 +876,8 @@ Sun: 9:00am–3:00pm"
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* CTA Section: home pricing, so not shown to office or turnover enquiries. */}
+      {!isCallbackTopic && (
       <section className="relative bg-brand-navy text-white py-16 overflow-hidden">
         <div className="absolute top-0 left-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
@@ -825,6 +911,7 @@ Sun: 9:00am–3:00pm"
           </div>
         </div>
       </section>
+      )}
       </main>
 
       <Footer />

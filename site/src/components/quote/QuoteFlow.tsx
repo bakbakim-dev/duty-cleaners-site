@@ -55,6 +55,7 @@ import {
   DC_NOTES_MAX,
   postalCodeCityStatus,
   postalCodeCityName,
+  isRedDeerPostalCode,
   normalizePostalCode,
 
   type CleanerDetails,
@@ -62,10 +63,12 @@ import {
   type DcParking,
   type ResolvedExtra,
 } from "@/lib/booking-redirect";
-import { BOOKINGS_CLAIM, RESPONSE_TIME_PROMISE, SUPPORT_EMAIL, cityProofFor } from "@/data/proof";
+import { BOOKINGS_CLAIM, CITY_PROOF, RATING_CLAIM, RESPONSE_TIME_PROMISE, SUPPORT_EMAIL, cityProofFor } from "@/data/proof";
 import { submitQuote, type QuotePayload } from "@/lib/quote-submit";
-import { captureTrackingParams } from "@/lib/tracking";
+import { captureTrackingParams, pageServiceFor, serviceOnOpen } from "@/lib/tracking";
 import { setQuoteStep } from "@/lib/quote-progress";
+import { track } from "@/lib/analytics";
+import { useQuoteOverlay } from "@/hooks/use-quote-overlay";
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
@@ -75,6 +78,9 @@ const STEP_LABELS = [
   "Your price",
   "Pick your time",
 ];
+
+/** Step ids sent with quote_step; the details pane of step 3 is its own id. */
+const STEP_IDS = ["home", "contact", "price", "time"];
 
 /**
  * Quantity extras price per unit — BookingKoala names carry the unit, so the
@@ -338,8 +344,14 @@ export default function QuoteFlow({
    * radio is the fallback only while it can't.
    */
   const cityStatus = postalCodeCityStatus(details.postalCode);
+  /**
+   * Red Deer is served, but its travel charge and online booking are not on
+   * file: the funnel adds no Edmonton/Calgary travel fee and sends the visitor
+   * to the phone (or a callback) instead of the booking page.
+   */
+  const redDeer = isRedDeerPostalCode(details.postalCode);
   const outsideCity =
-    cityStatus === "unknown" ? insideCity === false : cityStatus === "outside";
+    !redDeer && (cityStatus === "unknown" ? insideCity === false : cityStatus === "outside");
 
   const startedAtRef = useRef(Date.now());
   /**
@@ -374,13 +386,78 @@ export default function QuoteFlow({
     });
   };
 
-  useEffect(() => {
-    setService(initialService);
-  }, [initialService]);
+  /*
+    The overlay stays mounted from page to page, so this flow's state outlives
+    the page it was chosen on. It used to follow `initialService` only when that
+    value CHANGED, and a bare #quote link carries no service at all: a reviewer
+    who had chosen Standard earlier opened the quote on the Calgary move-out page
+    and was quoted Standard. Now every open decides again (serviceOnOpen in
+    lib/tracking.ts): the CTA's service, then the page's, then the flow's own.
+  */
+  const { isOpen } = useQuoteOverlay();
+  /** The path the visitor last picked a service on inside the flow. */
+  const choicePathRef = useRef<string | null>(null);
+  const wasOpenRef = useRef(false);
+  const openPathRef = useRef<string | null>(null);
+  /** The city the funnel was in when the visitor last changed step. */
+  const stepCityRef = useRef(proof.city);
+  /** Last quote_step reported, so a re-render never reports it twice. */
+  const lastStepKeyRef = useRef<string | null>(null);
+  /**
+   * The service an open has just switched to. setService() lands on the next
+   * render, so the step report waits for it rather than sending the old one.
+   */
+  const pendingServiceRef = useRef<ServiceId | null>(null);
+
+  const pickService = (next: ServiceId) => {
+    // The page address with its query: a later open of the same path with a
+    // different ?service= slug is a new request, not this choice.
+    choicePathRef.current = pathname + search;
+    pendingServiceRef.current = null;
+    setService(next);
+  };
 
   useEffect(() => {
-    setServiceExpanded(!servicePreset);
-  }, [servicePreset]);
+    const opened = isOpen && (!wasOpenRef.current || openPathRef.current !== pathname);
+    wasOpenRef.current = isOpen;
+    if (!opened) return;
+    openPathRef.current = pathname;
+
+    const preset = servicePreset ? initialService : null;
+    const pageService = pageServiceFor(pathname, search);
+    const next = serviceOnOpen({
+      current: service,
+      preset,
+      pageService,
+      choicePath: choicePathRef.current,
+      pathname,
+      search,
+    });
+    const pageApplied =
+      !preset && pageService !== null && next === pageService && choicePathRef.current !== pathname + search;
+    // A lead sent for another service or city is not this quote: start again
+    // at step 1 (the contact details stay filled in).
+    const restart = step > 0 && (next !== service || stepCityRef.current !== proof.city);
+
+    if (next !== service) {
+      pendingServiceRef.current = next;
+      setService(next);
+      if (next !== "standard") setDeepCleanIntent(false);
+    }
+    if (restart) {
+      lastStepKeyRef.current = "restart";
+      setStep(0);
+    } else {
+      lastStepKeyRef.current = null;
+    }
+    setServiceExpanded(!(preset || pageApplied));
+
+    track("quote_start", {
+      city: proof.city.toLowerCase(),
+      service: next,
+      intent: initialIntent === "deep" && next === "standard" ? "deep" : "none",
+    });
+  }, [isOpen, pathname, search, servicePreset, initialService, initialIntent, service, step, proof.city]);
 
   // Re-opening the overlay from a deep CTA re-arms the intent.
   useEffect(() => {
@@ -395,8 +472,9 @@ export default function QuoteFlow({
   // visitor back into an unfinished quote instead of repeating itself.
   useEffect(() => {
     setQuoteStep(step);
+    stepCityRef.current = proof.city;
     if (step !== 2) setPricePane("price");
-  }, [step]);
+  }, [step]); // eslint-disable-line react-hooks/exhaustive-deps -- the city is recorded as of the step change
 
   // Announce the step change. Skipped on first mount so opening the page
   // doesn't yank focus away from wherever the visitor already is.
@@ -477,6 +555,40 @@ export default function QuoteFlow({
       }),
     [service, homeType, bedrooms, bathrooms, halfBaths, frequency]
   );
+
+  /** The non-personal props every funnel event carries (see lib/analytics.ts). */
+  const funnelProps = () => ({
+    city: proof.city.toLowerCase(),
+    service,
+    intent: deepCleanIntent ? "deep" : "none",
+    frequency: selected.supportsRecurring ? frequency : "one-time",
+  });
+
+  // quote_step for each screen the visitor reaches, and quote_price_view when a
+  // price is on it: the "starts from" figure on step 2, the exact price on 3.
+  useEffect(() => {
+    if (!isOpen) return;
+    // An open that switched the service reports once the switch has rendered
+    // (this effect re-runs on `service`), so the event names the service shown.
+    if (pendingServiceRef.current !== null && pendingServiceRef.current !== service) return;
+    pendingServiceRef.current = null;
+    if (lastStepKeyRef.current === "restart" && step !== 0) return;
+    const key = `${step}:${step === 2 ? pricePane : ""}`;
+    if (lastStepKeyRef.current === key) return;
+    lastStepKeyRef.current = key;
+    const stepId = step === 2 && pricePane === "details" ? "cleaner_details" : STEP_IDS[step];
+    track("quote_step", { ...funnelProps(), step: stepId, step_number: step + 1 });
+    if (step === 1 && !quote.quoteOnly) {
+      track("quote_price_view", { ...funnelProps(), step: stepId, price_type: "starting" });
+    }
+    if (step === 2 && pricePane === "price") {
+      track("quote_price_view", {
+        ...funnelProps(),
+        step: stepId,
+        price_type: quote.quoteOnly ? "custom" : quote.isEstimate ? "estimate" : "exact",
+      });
+    }
+  }, [isOpen, step, pricePane, service]); // eslint-disable-line react-hooks/exhaustive-deps -- reported once per screen (the key), not per price change
 
   /**
    * Exact Deep Cleaning package price for the selected home size, read from the
@@ -667,7 +779,8 @@ export default function QuoteFlow({
   const priceLabel = quote.quoteOnly
     ? "Custom quote"
     : quote.isEstimate
-      ? `${formatPrice(quote.rangeLow + addOnTotal)}–${formatPrice(quote.rangeHigh + addOnTotal)}`
+      ? // Never below BookingKoala's tier price (see PricePanel).
+        `${formatPrice(quote.firstClean + addOnTotal)}–${formatPrice(quote.rangeHigh + addOnTotal)}`
       : formatPrice(firstCleanTotal);
 
 
@@ -734,6 +847,9 @@ export default function QuoteFlow({
     setSubmitting(false);
 
     if (result.ok) {
+      // Only a confirmed 2xx from the relay counts as a lead; the honeypot
+      // path above never reaches here.
+      track("generate_lead", funnelProps());
       setStep(2);
       return;
     }
@@ -794,7 +910,10 @@ export default function QuoteFlow({
   );
 
 
-  const bookingUrl = bookingQuery === null ? null : `${BOOKING_ORIGIN}/booknow?${bookingQuery}`;
+  // No online booking for a Red Deer postal code: the CTA falls back to the
+  // callback request, which carries the postal code to the office.
+  const bookingUrl =
+    bookingQuery === null || redDeer ? null : `${BOOKING_ORIGIN}/booknow?${bookingQuery}`;
 
   /**
    * There used to be a Speculation Rules prefetch of `bookingUrl` here with
@@ -878,6 +997,7 @@ export default function QuoteFlow({
   const goToBooking = () => {
     if (!bookingQuery || !bookingUrl) return;
     if (!requireCleanerDetails()) return;
+    track("booking_handoff", funnelProps());
     // A fresh, deliberate click always hands off — clear any stale guard first.
     clearHandoffFlag();
     // Fire and forget: the lead already exists from step 2, and the relay
@@ -1073,7 +1193,7 @@ export default function QuoteFlow({
                       <button
                         type="button"
                         onClick={() => {
-                          setService("standard");
+                          pickService("standard");
                           setDeepCleanIntent(true);
                         }}
                         className="inline-flex min-h-[44px] items-center font-bold text-foreground underline underline-offset-4 hover:text-brand-navy"
@@ -1094,7 +1214,7 @@ export default function QuoteFlow({
                         type="button"
                         aria-pressed={option.id === service}
                         onClick={() => {
-                          setService(option.id);
+                          pickService(option.id);
                           if (option.id !== "standard") setDeepCleanIntent(false);
                         }}
                         className={`min-h-[48px] rounded-sm border p-4 text-left transition-colors ${
@@ -1247,7 +1367,7 @@ export default function QuoteFlow({
                   <Callout label="Your starting price" className="mt-4">
                     Your {proof.city} {selected.label.toLowerCase()} starts from{" "}
                     <span className="font-bold text-foreground">
-                      {formatPrice(quote.isEstimate ? quote.rangeLow : quote.firstClean)}
+                      {formatPrice(quote.firstClean)}
                     </span>{" "}
                     — add your details and the exact number appears on the next screen.
                   </Callout>
@@ -1373,7 +1493,7 @@ export default function QuoteFlow({
               {/* Proof at the point of hesitation. */}
               <p className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
                 <span className="text-brand-gold" aria-hidden="true">★</span>
-                Rated 4.9 on Google by {proof.city} homeowners · customer-rated cleaners
+                Rated {RATING_CLAIM} · {proof.city} customers rate every cleaner
               </p>
 
             </form>
@@ -1513,7 +1633,8 @@ export default function QuoteFlow({
                 )}
 
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  Not happy? We re-clean within 24 hours of notice — free.
+                  Missed something? Tell us within 24 hours of the clean and we come back and
+                  re-clean it at no charge.
                 </p>
 
               </div>
@@ -2006,7 +2127,22 @@ export default function QuoteFlow({
                   </p>
                 )}
 
-                {travelExtra && cityStatus === "outside" && (
+                {redDeer && (
+                  <p className="mt-3 rounded-sm bg-secondary/60 p-3 text-base leading-relaxed text-foreground">
+                    <span className="font-semibold">Red Deer is served:</span> call the Edmonton
+                    office at{" "}
+                    <a href={CITY_PROOF.edmonton.phoneLink} className="font-semibold underline underline-offset-4">
+                      {CITY_PROOF.edmonton.phone}
+                    </a>{" "}
+                    or the Calgary office at{" "}
+                    <a href={CITY_PROOF.calgary.phoneLink} className="font-semibold underline underline-offset-4">
+                      {CITY_PROOF.calgary.phone}
+                    </a>{" "}
+                    to book and confirm the travel charge.
+                  </p>
+                )}
+
+                {travelExtra && cityStatus === "outside" && !redDeer && (
                   <p className="mt-3 rounded-sm bg-secondary/60 p-3 text-base leading-relaxed text-foreground">
                     <span className="font-semibold">
                       {normalizePostalCode(details.postalCode)} is outside Edmonton/Calgary city

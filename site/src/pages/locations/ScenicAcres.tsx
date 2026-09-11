@@ -8,6 +8,7 @@ import { buildLocationSchema } from "@/lib/location-schema";
 import CoverageChips from "@/components/CoverageChips";
 import LocationPricing from "@/components/LocationPricing";
 import calgaryKitchen from "@/assets/gallery/calgary-kitchen-clean.webp";
+import GoogleMapEmbed from "@/components/GoogleMapEmbed";
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -234,16 +235,7 @@ export default function ScenicAcres() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-6">Scenic Acres Service Area</h2>
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20000!2d-114.1933!3d51.0983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53716e0d1b0a1e5d%3A0x2c8e5e3a1b0d8f1a!2sScenic+Acres%2C+Calgary%2C+AB!5e0!3m2!1sen!2sca!4v1700000000000"
-                    width="100%"
-                    height="450"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer"
-                    title="Scenic Acres Service Area Map"
-                  />
+                  <GoogleMapEmbed query="Scenic Acres, Calgary, AB" title="Scenic Acres Calgary Service Area Map" />
                 </div>
               </div>
             </AnimatedSection>

@@ -85,7 +85,7 @@ const FAQS = [
   },
   {
     q: "What is never included in a clean?",
-    a: "Moving anything over 25 pounds, anything past the reach of a 3-step ladder, outdoor work including exterior windows, light bulbs and chandeliers, bodily fluids and litter boxes, mould remediation, pest removal, carpet steam cleaning, duct cleaning, plumbing, hoarding clean-outs, laundry and dishes. Heavy scrubbing of walls is a separate wall-washing package rather than an exclusion.",
+    a: "Moving anything over 25 pounds, anything past the reach of a 3-step ladder, outdoor work including exterior windows, garages and patios (a balcony or garage sweep is an add-on, offered mostly in summer when the weather allows), light bulbs and chandeliers, bodily fluids and litter boxes, mould remediation, pest removal, carpet steam cleaning, duct cleaning, plumbing, hoarding clean-outs, laundry and dishes. Heavy scrubbing of walls is a separate wall-washing package rather than an exclusion.",
   },
   {
     q: "What happens if something on the checklist was missed?",

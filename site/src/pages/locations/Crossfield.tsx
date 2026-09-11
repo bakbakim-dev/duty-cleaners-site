@@ -9,6 +9,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import LocationPricing from "@/components/LocationPricing";
 import { sitePriceRange, addOnFromPrice, formatPrice } from "@/data/pricing";
 import { TRAVEL_FEE_KEY } from "@/data/addon-table";
+import GoogleMapEmbed from "@/components/GoogleMapEmbed";
 
 /** The travel fee outside Calgary city limits (P11), read from bk-config the way <LocationPricing> reads it. */
 const TRAVEL_FEE = formatPrice(addOnFromPrice("standard", TRAVEL_FEE_KEY) ?? 0);
@@ -234,16 +235,7 @@ export default function Crossfield() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-6">Crossfield Service Area</h2>
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20000!2d-114.03099!3d51.42727!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x537161d1e1e1e1e1%3A0x1e1e1e1e1e1e1e1e!2sCrossfield%2C+AB!5e0!3m2!1sen!2sca!4v1700000000000"
-                    width="100%"
-                    height="450"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer"
-                    title="Crossfield Service Area Map"
-                  />
+                  <GoogleMapEmbed query="Crossfield, AB" title="Crossfield Service Area Map" />
                 </div>
               </div>
             </AnimatedSection>

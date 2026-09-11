@@ -141,14 +141,16 @@ const standardAddOns = [
   "Inside cabinets",
   "Interior windows",
   "Wall washing",
+  "Balcony or garage sweep, mostly in summer",
   "Decluttering and organising, by the hour",
   "Basement",
 ];
 
 /* Derived from bk-config — see src/data/addon-table.ts. */
-/* Less the garage/balcony sweep: policy T7 puts garages, patios and outdoor
-   areas outside every clean, and this page says so under the table. */
-const addOnServices = addOnTableRows("edmonton").filter((row) => !/garage/i.test(row.service));
+/* Every row is shown, the balcony / garage sweep included: the owner
+   confirmed on 2026-09-11 that it is a real add-on, offered mostly in summer,
+   and the note under the table says so. */
+const addOnServices = addOnTableRows("edmonton");
 
 /** Add-on rows that have a service page of their own. */
 const ADD_ON_PAGE: Record<string, string> = {
@@ -180,7 +182,7 @@ const faqItems = [
   { value: "trust", question: "Can I trust my house cleaners?", answer: "Every cleaner is reference-checked before their first job, and every visit is rated by the customer afterwards. Those ratings decide who we send back." },
   { value: "included", question: "What is included in maid service in Edmonton?", answer: "A standard clean covers dusting all surfaces, vacuuming carpets, mopping floors, mirrors, window sills, the kitchen (sink, stovetop, countertops, inside and outside the microwave, the outside of the other appliances) and the bathrooms (toilets, showers, tubs, sinks). Inside the fridge, the oven and the cabinets are add-ons on a standard clean and included on a move-in/out clean. Baseboards come with the Deep Cleaning package." },
   { value: "duration", question: "How long does a typical house cleaning take?", answer: "We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes. Deep cleaning and move-in/out services cover more tasks than a standard clean, so they take longer." },
-  { value: "supplies", question: "Are there discounts if I provide my own cleaning supplies?", answer: `No. We bring all cleaning supplies and equipment, and the rate already assumes that. Eco-friendly products are ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}.` },
+  { value: "supplies", question: "Are there discounts if I provide my own cleaning supplies?", answer: `No. We bring all cleaning supplies and equipment, and the rate already assumes that. Optional alternative products are ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}.` },
   { value: "recurring", question: "Do you offer recurring service discounts?", answer: "Yes: 20% off weekly, 15% off bi-weekly and 10% off every 4 weeks. Every 4 weeks comes to 13 visits a year rather than 12. The discount starts from your second visit; the first is at the one-time rate. If you start with a deep clean, the deep-cleaning package is charged once on that first visit and is not discounted, and the visits after it are standard cleans at the discounted rate." },
   { value: "pricing-types", question: "What's the difference between Hourly Cleaning and flat-rate pricing?", answer: `A flat rate is fixed by home size and service type, and it does not change if the clean takes longer than expected. Hourly Cleaning (from ${formatPrice(HOME_HOURLY_RATE)} per hour per cleaner, before GST) is for partial or unusual jobs: a few rooms, a one-off task list, or a home that does not fit a size tier. The minimum hourly booking is 3 hours for 1 cleaner or 2 hours for 2 cleaners.` },
   // A FAQ with this title has to name the charges customers call hidden. Both
@@ -188,7 +190,7 @@ const faqItems = [
   // never drift away from the terms it summarises.
   // It is also lifted on its own from the FAQPage markup, so it names the
   // home-type charges and an add-on's price instead of "the table above".
-  { value: "hidden-fees", question: "Are there any hidden fees?", answer: `No. The quote shows every charge added to the flat rate for your home size before you book, each before 5% GST: a bungalow or basement suite adds ${HOME_TYPE_EXTRA.bungalow}, a townhouse ${HOME_TYPE_EXTRA.townhouse} and a two-storey house ${HOME_TYPE_EXTRA.twoStorey} to the apartment or condo rate, a home with pets adds ${PET_FEE} a visit, and an address outside Edmonton city limits adds a ${TRAVEL_FEE} travel fee to a home clean or ${POST_TRAVEL_FEE} to a post-construction clean, with no trip fee inside the city. Cancelling or rescheduling inside ${POLICY.cancellationNoticeHours} hours is ${POLICY.cancellationFee}, and if the team arrives and cannot get in, the visit is charged at ${POLICY.lockoutFee}. Add-ons such as the inside of the oven at ${OVEN_FEE} before GST are optional, each a tick-box on the booking form with its price beside it, except eco-friendly products at ${POLICY.ecoProductsFee}, which are not on the form, so ${POLICY.ecoProductsHowToRequest}. The flat rate does not change because a clean took longer; it changes only if the home needs substantially more work than it was described as needing, and the team explains what they found before continuing.` },
+  { value: "hidden-fees", question: "Are there any hidden fees?", answer: `No. The quote shows every charge added to the flat rate for your home size before you book, each before 5% GST: a bungalow or basement suite adds ${HOME_TYPE_EXTRA.bungalow}, a townhouse ${HOME_TYPE_EXTRA.townhouse} and a two-storey house ${HOME_TYPE_EXTRA.twoStorey} to the apartment or condo rate, a home with pets adds ${PET_FEE} a visit, and an address outside Edmonton city limits adds a ${TRAVEL_FEE} travel fee to a home clean or ${POST_TRAVEL_FEE} to a post-construction clean, with no trip fee inside the city. Cancelling or rescheduling inside ${POLICY.cancellationNoticeHours} hours is ${POLICY.cancellationFee}, and if the team arrives and cannot get in, the visit is charged at ${POLICY.lockoutFee}. Add-ons such as the inside of the oven at ${OVEN_FEE} before GST are optional, each a tick-box on the booking form with its price beside it, except optional alternative products at ${POLICY.ecoProductsFee}, which are not on the form, so ${POLICY.ecoProductsHowToRequest}. The flat rate does not change because a clean took longer; it changes only if the home needs substantially more work than it was described as needing, and the team explains what they found before continuing.` },
   { value: "satisfaction", question: "What if I'm not satisfied with the cleaning?", answer: `Tell us within ${POLICY.guaranteeWindowHours} hours and we come back and re-clean the areas that were missed at no additional cost. Photos help but are not required. The commitment is the return visit; it is not a money-back guarantee, though you can call the Edmonton office at (780) 913-6565 to talk about anything else.` },
 ];
 
@@ -524,9 +526,10 @@ export default function EdmontonPricing() {
                 content prompt keeps commercial work off the house-cleaning
                 pages, so it went, and the space now says what no add-on buys. */}
             <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto mt-6 text-center">
-              Some jobs stay outside every Edmonton clean, with or without add-ons: exterior windows,
-              garages, patios, carpet steam cleaning, furnace and duct cleaning, and lifting anything over
-              25 lb. Decluttering and organising are a separate hourly add-on, not part of the flat rate.
+              The balcony / garage sweep is a sweep of the floor only, and it is available mostly in
+              summer, when the weather allows. Some jobs stay outside every Edmonton clean, with or
+              without add-ons: exterior windows, cleaning a garage or patio beyond that sweep, carpet
+              steam cleaning, furnace and duct cleaning, and lifting anything over 25 lb. Decluttering and organising are a separate hourly add-on, not part of the flat rate.
             </p>
           </div>
         </div>

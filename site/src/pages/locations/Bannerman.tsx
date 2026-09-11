@@ -1,5 +1,6 @@
 import { getListing } from "@/lib/google-listings";
 import { standardTierRows, FREQUENCIES } from "@/data/pricing";
+import { POLICY } from "@/data/policy";
 import {
   CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import { useEffect } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import {   Phone, CheckCircle2, Star, Shield, Clock, Award, Home, Sparkles, Truck, SprayCan, Bath, Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail, PaintRoller
 } from "lucide-react";
@@ -9,6 +10,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
+import GoogleMapEmbed from "@/components/GoogleMapEmbed";
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
   return (
@@ -142,7 +144,7 @@ const faqs = [
   },
   {
     question: "Do the cleaners bring their own products?",
-    answer: "Yes. The team brings all supplies and equipment to a Bannerman clean, and needs running water, plus power for the vacuum. Eco-friendly products cost extra: ask when you book and the office adds them.",
+    answer: `Yes. The team brings all supplies and equipment to a Bannerman clean, and needs running water, plus power for the vacuum. Optional alternative products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}.`,
   },
   {
     question: "How long does an initial cleaning take?",
@@ -332,16 +334,7 @@ export default function Bannerman() {
                   </p>
                 </div>
                 <div className="rounded-xl overflow-hidden shadow-lg border border-border">
-                  <iframe
-                    title="Bannerman Edmonton Map"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9400!2d-113.37908!3d53.60372!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a02440c6a2b3d1%3A0x4a0b1e3c5f7d9e2a!2sBannerman%2C+Edmonton%2C+AB!5e0!3m2!1sen!2sca!4v1700000000000"
-                    width="100%"
-                    height="400"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer"
-                  />
+                  <GoogleMapEmbed query="Bannerman, Edmonton, AB" title="Bannerman Edmonton Map" height={400} />
                 </div>
               </div>
             </AnimatedSection>

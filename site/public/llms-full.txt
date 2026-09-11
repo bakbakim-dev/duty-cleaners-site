@@ -4,7 +4,7 @@
 
 ## Company
 
-Duty Cleaners is an Alberta house cleaning company, operating since 2017, and has taken 5,000+ bookings across Alberta in that time. Our vetted cleaners are reference-checked and customer-rated, and under 5% of applicants are accepted. We bring all cleaning supplies and equipment; eco-friendly products are available on request as a $15 add-on.
+Duty Cleaners is an Alberta house cleaning company, operating since 2017, and has taken 5,000+ bookings across Alberta in that time. Our vetted cleaners are reference-checked and customer-rated, and under 5% of applicants are accepted. We bring all cleaning supplies and equipment; optional alternative products are available on request as a $15 add-on (before GST).
 
 - Edmonton phone: (780) 913-6565
 - Calgary phone: (403) 768-1341
@@ -33,7 +33,7 @@ HOME TYPE: every tier price in this document is for an apartment or condo. A bun
 
 PETS: $19.99 per visit, charged on every visit whenever pets are present. Compulsory, not an optional add-on.
 
-ECO-FRIENDLY PRODUCTS: $15, available on any service. It is NOT selectable on the BookingKoala form — the customer asks when booking and the office adds it, so a quote built only from the booking form will not show it.
+OPTIONAL ALTERNATIVE PRODUCTS: $15 before GST, available on any service. It is NOT selectable on the BookingKoala form — the customer asks the office which products are available and suitable for their surfaces when booking, so a quote built only from the booking form will not show it. The cleaners are subcontractors who choose their own products, so make no claim about what those products do to the environment, to people or to pets.
 
 TRAVEL FEE: a $29.99 travel fee is added to cleaning bookings OUTSIDE Edmonton and Calgary proper. It applies to the surrounding communities — St. Albert, Sherwood Park, Spruce Grove, Leduc, Beaumont, Fort Saskatchewan, Stony Plain, Morinville and Devon near Edmonton; Airdrie, Chestermere, Cochrane, Okotoks, High River, Strathmore, Crossfield, Langdon and Diamond Valley (formerly the separate towns of Black Diamond and Turner Valley) near Calgary — and is charged by postal code at booking. Any price quoted for one of those communities must include it. Post-construction cleaning carries a $50 travel fee instead.
 
@@ -55,7 +55,7 @@ Everything in Standard plus the deep-clean package: baseboards, doors, light swi
 
 ### Move-In / Move-Out Cleaning (from $284)
 
-Top-to-bottom cleaning for empty homes: inside cabinets and drawers, appliance interiors, closets, and every bathroom scrubbed.
+Top-to-bottom cleaning for empty homes: inside cabinets and drawers, appliance interiors, closets, window sills and tracks wiped, and every bathroom scrubbed. Interior window cleaning and wall washing are paid add-ons, not part of the move-out clean.
 
 - 1 Bedroom: $284 · 2 Bedroom: $361 · 3 Bedroom: $424 · 4 Bedroom: $501 · 5 Bedroom: $539 · 6–7 Bedroom: priced by the instant quote
 - Edmonton: https://dutycleaners.ca/move-out-cleaning-edmonton/
@@ -81,19 +81,19 @@ Priced by square-footage band rather than by bedroom count: $550 under 1,000 sq 
 
 Short-term rental turnover cleaning. Beds are changed with the host's own clean linen, and supplies are restocked from what the host leaves out. Turnovers are NOT priced by the instant online quote: request a callback through the contact form at https://dutycleaners.ca/contact-us/ (service "Airbnb Cleaning"), or phone the Edmonton office at (780) 913-6565 or the Calgary office at (403) 768-1341.
 
-Charged by the hour rather than by home size: $60 per cleaner-hour, before 5% GST. That rate is for turnovers only; any other hourly cleaning starts at $65 per cleaner-hour. Hourly work has a minimum of 3 hours for one cleaner, or 2 hours for two cleaners.
+Charged by the hour rather than by home size: $60 per cleaner-hour, before 5% GST. That rate is for turnovers only; any other hourly cleaning starts at $65 per cleaner-hour. Hourly work has a minimum of 3 hours for one cleaner, or 2 hours for two cleaners, so the smallest turnover is $180 (one cleaner for 3 hours) or $240 (two cleaners for 2 hours each), before GST.
 
 - Edmonton: https://dutycleaners.ca/edmonton/airbnb-cleaning/
 - Calgary: https://dutycleaners.ca/airbnb-cleaning-services-calgary/
 
-### Commercial Cleaning
+### Office & Commercial Cleaning
 
-Office and commercial cleaning: dusting, vacuuming, mopping, bathroom cleaning, breakroom cleaning, disinfecting touchpoints, and common areas. Recurring schedules available.
+Office and commercial cleaning: dusting, vacuuming, mopping, bathroom cleaning, breakroom cleaning, touchpoints wiped down, and common areas. Recurring schedules available.
 
-Commercial work is NOT priced by the instant online quote. Office cleaning is the only commercial work quoted online: request it through the contact form at https://dutycleaners.ca/contact-us/ (service "Office Cleaning"). It is charged by square footage, and the rate is confirmed after a quick walkthrough. For any other commercial work, phone the city office.
+Commercial work is NOT priced by the instant online quote. It is scoped at a walkthrough, priced per square foot and confirmed in a written quote that states the areas and the visit frequency. Office cleaning is the only commercial work quoted online: request it through the contact form at https://dutycleaners.ca/contact-us/ (service "Office Cleaning"); the paths /contact-us/?topic=office&city=edmonton and /contact-us/?topic=office&city=calgary open the form with Office Cleaning and the city chosen. For any other commercial work, phone the city office.
 
-- Edmonton: https://dutycleaners.ca/commercial-cleaning/
-- Calgary: https://dutycleaners.ca/commercial-cleaning-services-calgary/
+- Office & Commercial Cleaning Edmonton: https://dutycleaners.ca/commercial-cleaning/
+- Office & Commercial Cleaning Calgary: https://dutycleaners.ca/commercial-cleaning-services-calgary/
 
 ### Wall Washing
 
@@ -116,6 +116,10 @@ Full neighbourhood list: https://dutycleaners.ca/locations/
 
 Surrounding communities: Airdrie, Okotoks, Cochrane, Chestermere, Diamond Valley (formerly the separate towns of Black Diamond and Turner Valley, amalgamated 1 January 2023), Crossfield, High River, Langdon, Strathmore.
 
+### Red Deer
+
+Red Deer is served. To book a Red Deer clean, call the Edmonton office at (780) 913-6565 or the Calgary office at (403) 768-1341, and confirm the travel charge when you book.
+
 ## Policies
 
 ### Satisfaction Guarantee
@@ -131,6 +135,8 @@ Instant online quotes in about 60 seconds for home cleaning (standard, deep, mov
 ### What's Included
 
 Full room-by-room checklist: https://dutycleaners.ca/whats-included/
+
+Not included in any clean: garages, patios and other outdoor areas, apart from the balcony or garage sweep add-on (a sweep of the floor only), which is available mostly in summer when the weather allows.
 
 ### FAQ
 

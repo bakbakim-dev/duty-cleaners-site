@@ -8,6 +8,7 @@ import {
 import { travelFee } from "@/data/addon-table";
 import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
 import { Accent, AccentGold } from "@/components/Accent";
+import RecurringVisitPrices from "@/components/RecurringVisitPrices";
 import { Home, Bath, UtensilsCrossed } from "lucide-react";
 import heroImage from "@/assets/gallery/calgary-living-room-clean.webp";
 import kitchenImage from "@/assets/gallery/calgary-spotless-kitchen.webp";
@@ -87,6 +88,10 @@ export default function CalgaryRecurringCleaning() {
                 {ongoing(1, BIWEEKLY?.id)} ({pct(BIWEEKLY?.discount)} off) and every 4 weeks to{" "}
                 {ongoing(1, FOUR_WEEKS?.id)} ({pct(FOUR_WEEKS?.discount)} off), all before GST.
               </p>
+              <RecurringVisitPrices
+                tiers={[0, 3]}
+                caption="What a Calgary visit costs on each schedule, for a one-bedroom and a four-bedroom apartment or condo, before GST. The first visit of any plan is charged at the one-time rate."
+              />
               <p>
                 Every 4 weeks is what many people mean by monthly house cleaning, and it is how the booking system
                 schedules the 10% tier: 13 visits across the year instead of 12, so the day moves through the month
@@ -177,7 +182,7 @@ export default function CalgaryRecurringCleaning() {
         "Mould remediation, bodily fluids and pest removal",
         "Anything higher than a 3-step ladder reaches",
         "Light bulbs, chandeliers and fragile fixtures",
-        "Garages, patios and balconies (a balcony sweep is an add-on)",
+        "Garages, patios and balconies, apart from the balcony or garage sweep add-on, available mostly in summer when the weather allows",
       ]}
       faqs={[
         { q: "How often should I book in Calgary specifically?", a: `A Calgary home takes in sand and de-icer from November to April, as chinooks thaw and refreeze the streets, so bi-weekly through those months and every 4 weeks through the summer is a sensible place to start. A home with a dog, a garage entry or young children may want bi-weekly all year. Start on one cadence and change it with ${POLICY.cancellationNoticeHours} hours' notice once you see how the house holds up.` },
@@ -185,7 +190,7 @@ export default function CalgaryRecurringCleaning() {
         { q: "What notice do you need to move or skip a visit?", a: `${POLICY.cancellationNoticeHours} hours. A visit moved or skipped with that much notice costs nothing. Inside ${POLICY.cancellationNoticeHours} hours the ${POLICY.cancellationFee} cancellation fee applies, and a visit where the team arrives and cannot get in is billed at ${POLICY.lockoutFee}.` },
         { q: "Will the same Calgary team come every time?", a: "We send your regular team where we can send them. Illness, holidays and the schedule mean that is not always possible, and when it is not, another Calgary team works through the same checklist. If you would rather wait for your regular team, tell us and we will offer another date instead." },
         { q: "What if nobody is home when the team arrives?", a: "Nobody needs to be home for a recurring visit: most customers leave a key, a lockbox code or smart-lock access, and a fob left with the concierge works in a Calgary tower. Tell us which when you book. The team locks up when they leave." },
-        { q: "Do I need to leave out cleaning products?", a: `No. The team brings its own products and equipment to every visit. If there is something you want used, or something you want kept away from a surface, note it on the booking. Eco-friendly products are ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}.` },
+        { q: "Do I need to leave out cleaning products?", a: `No. The team brings its own products and equipment to every visit. If there is something you want used, or something you want kept away from a surface, note it on the booking. Optional alternative products are ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}.` },
         { q: "Can I just book one clean and decide later?", a: `Yes. A one-time standard clean is priced flat by home size, from ${FROM} for a one-bedroom before GST. If you later put the standard clean on a schedule, the first visit of the plan is charged at the one-time rate and the discount applies from the second.` },
       ]}
       closingSections={[

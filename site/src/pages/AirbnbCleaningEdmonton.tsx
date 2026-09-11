@@ -59,6 +59,8 @@ const MIN_ONE = formatPrice(HOURLY_RATE * 3);
 const MIN_ONE_GST = formatPrice(withGst(HOURLY_RATE * 3));
 const MIN_TWO = formatPrice(HOURLY_RATE * 2 * 2);
 const FOUR_HOURS = formatPrice(HOURLY_RATE * 4);
+/** Turnovers are quoted on a callback (owner, 2026-09-10), so the primary button asks for one. */
+const TURNOVER_QUOTE = "/contact-us/?topic=airbnb&city=edmonton";
 const GST_PCT = `${Math.round(GST_RATE * 100)}%`;
 const TRAVEL = travelFee("airbnb");
 const TRAVEL_LINE = TRAVEL === null ? "a travel fee, quoted when you book" : `a ${formatPrice(TRAVEL)} travel fee per visit`;
@@ -207,7 +209,7 @@ const AirbnbCleaningEdmonton = () => {
     { icon: Clock, title: "A booked arrival window", description: `The team arrives in one of three windows: ${WINDOWS_LINE}. When checkout and check-in fall on the same day, tell us both times and we look for the window that fits between them.` },
     { icon: Star, title: RATING_CLAIM, description: `That is the rating across ${proof.googleReviewCount} reviews on the Edmonton Google listing, for a company that has cleaned Alberta homes ${COMPANY.sinceLabel}. Every cleaner is reference-checked before their first job and rated by the customer after every visit.` },
     { icon: Calendar, title: "Paid after the turnover", description: "Nothing is charged when you book. The day before, a temporary hold confirms the card, and the charge goes through once the turnover is complete. Book one turnover or a run of them." },
-    { icon: Shield, title: "We bring the supplies", description: `Products and equipment come with the team. Eco-friendly products are available for ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}.` },
+    { icon: Shield, title: "We bring the supplies", description: `Products and equipment come with the team. Optional alternative products are available for ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}.` },
   ];
 
   const gallery = [
@@ -332,8 +334,9 @@ const AirbnbCleaningEdmonton = () => {
             Airbnb Cleaning Service in Edmonton
           </h1>
           <p className="text-xl md:text-2xl mb-6 text-white/90 font-medium">
-            Turnovers are {RATE} per cleaner-hour before GST, with a 3-hour minimum for one cleaner or 2 hours
-            for two, and the Edmonton listing is rated {RATING_CLAIM} across {proof.googleReviewCount} reviews.
+            Turnovers are {RATE} per cleaner-hour before GST. The smallest booking is {MIN_ONE} for one
+            cleaner for 3 hours, or {MIN_TWO} for two cleaners for 2 hours each, before GST. The Edmonton
+            listing is rated {RATING_CLAIM} across {proof.googleReviewCount} reviews.
           </p>
           <p className="text-lg mb-8 text-white/90 max-w-3xl mx-auto leading-relaxed">
             Between guests the team works to the same checklist every visit: beds stripped and remade
@@ -342,20 +345,20 @@ const AirbnbCleaningEdmonton = () => {
             is charged until it is done.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            {/* This page is priced by the hour. The button used to read "See my
-                price" and open the flat-rate list, which is a different way of
-                buying; it now says what it shows. */}
+            {/* This page is priced by the hour, on a callback. The primary button
+                asks for a turnover quote; the flat-rate list is a different way of
+                buying, so its button says that it is a comparison. */}
             <Button asChild size="lg" className="text-lg bg-accent text-accent-foreground hover:bg-accent/90">
-              <Link to={PRICING}>See flat-rate prices by home size</Link>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="text-lg border-white/20 text-white hover:bg-white/10">
-              <Link to="/contact-us/?topic=airbnb&city=edmonton">Request a callback</Link>
+              <Link to={TURNOVER_QUOTE}>Request an Edmonton Turnover Quote</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="text-lg border-white/20 text-white hover:bg-white/10">
               <a href={proof.phoneLink}>
                 <Phone className="w-4 h-4 mr-2" />
                 Call {proof.phone}
               </a>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="text-lg border-white/20 text-white hover:bg-white/10">
+              <Link to={PRICING}>Compare flat-rate home cleaning</Link>
             </Button>
           </div>
           <div className="flex flex-wrap justify-center gap-6 text-white/80 text-sm">
@@ -670,20 +673,21 @@ const AirbnbCleaningEdmonton = () => {
             Book the next Edmonton turnover
           </h2>
           <p className="text-xl mb-8 text-white/80">
-            {RATE} per cleaner-hour, before GST. Send the checkout time and how to get in.
+            {RATE} per cleaner-hour, before GST: at least {MIN_ONE} with one cleaner or {MIN_TWO} with two.
+            Send the checkout time and how to get in.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="text-lg bg-accent text-accent-foreground hover:bg-accent/90">
-              <Link to={PRICING}>See the Edmonton price list</Link>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="text-lg border-white/20 text-white hover:bg-white/10">
-              <Link to="/contact-us/?topic=airbnb&city=edmonton">Request a callback</Link>
+              <Link to={TURNOVER_QUOTE}>Request an Edmonton Turnover Quote</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="text-lg border-white/20 text-white hover:bg-white/10">
               <a href={proof.phoneLink}>
                 <Phone className="w-4 h-4 mr-2" />
                 Call {proof.phone}
               </a>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="text-lg border-white/20 text-white hover:bg-white/10">
+              <Link to={PRICING}>Compare flat-rate home cleaning</Link>
             </Button>
           </div>
         </div>

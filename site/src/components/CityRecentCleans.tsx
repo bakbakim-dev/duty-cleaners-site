@@ -11,6 +11,8 @@ export interface RecentCleanReview {
   location: string;
   date: string;
   text: string;
+  /** Stars as left on Google (data/reviews.ts). No stars are drawn without it. */
+  rating?: number;
   /** Optional per-review Google share link. Overrides the listing permalink. */
   sourceUrl?: string;
 }
@@ -33,9 +35,55 @@ const GoogleMark = ({ className }: { className?: string }) => (
   </svg>
 );
 
+/**
+ * The review's own star rating, read from the data. The stars carry
+ * information, so the group is one image with the rating as its name; the
+ * individual icons stay hidden. It used to be a plain <div aria-label="Google
+ * review"> with five hard-coded stars: a label on a role-less div is ignored by
+ * most screen readers, and "Google review" never said how many stars.
+ */
+function ReviewStars({ rating, size }: { rating?: number; size: string }) {
+  if (typeof rating !== "number") return null;
+  const stars = Math.max(0, Math.min(5, Math.round(rating)));
+  return (
+    <div className="flex gap-0.5" role="img" aria-label={`${stars} out of 5 stars`}>
+      {[1, 2, 3, 4, 5].map((star) => (
+        <Star
+          key={star}
+          className={`${size} ${star <= stars ? "text-brand-gold fill-brand-gold" : "text-muted-foreground/40"}`}
+          aria-hidden="true"
+        />
+      ))}
+    </div>
+  );
+}
+
+/**
+ * The link under each review. Without a per-review share URL the href is the
+ * branch's reviews page, so the link says exactly that; it used to be labelled
+ * "Read <name>'s review on our Google Business Profile" while opening the
+ * general profile. The visible text is the whole accessible name either way,
+ * so what a screen reader announces matches what a sighted reader sees.
+ */
+function ReviewSourceLink({ review, city, iconSize }: { review: RecentCleanReview; city: string; iconSize: string }) {
+  const perReview = Boolean(review.sourceUrl?.trim());
+  const href = reviewSourceUrl(city, review.sourceUrl);
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="nofollow noopener noreferrer"
+      onClick={(event) => openGoogleListing(event, href)}
+      className="inline-flex items-center gap-1 font-semibold text-primary underline-offset-2 hover:text-accent hover:underline"
+    >
+      {perReview ? "Read this review on Google" : `View ${city} Google reviews`}
+      <ExternalLink className={iconSize} aria-hidden="true" />
+    </a>
+  );
+}
+
 function CleanCard({ review, index, city }: { review: RecentCleanReview; index: number; city: string }) {
   const { ref, isVisible } = useScrollAnimation(0.15);
-  const href = reviewSourceUrl(city, review.sourceUrl);
   return (
 
     <article
@@ -64,10 +112,8 @@ function CleanCard({ review, index, city }: { review: RecentCleanReview; index: 
         <GoogleMark className="w-5 h-5 shrink-0" />
       </div>
 
-      <div className="flex gap-0.5 mb-3" aria-label="Google review">
-        {[1, 2, 3, 4, 5].map((star) => (
-          <Star key={star} className="w-4 h-4 text-brand-gold fill-brand-gold" aria-hidden="true" />
-        ))}
+      <div className="mb-3">
+        <ReviewStars rating={review.rating} size="w-4 h-4" />
       </div>
 
       <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
@@ -79,17 +125,7 @@ function CleanCard({ review, index, city }: { review: RecentCleanReview; index: 
           <CheckCircle2 className="w-3.5 h-3.5 text-green-500" aria-hidden="true" />
           Posted on Google
         </span>
-        <a
-          href={href}
-          target="_blank"
-          rel="nofollow noopener noreferrer"
-          onClick={(event) => openGoogleListing(event, href)}
-          className="inline-flex items-center gap-1 font-semibold text-primary underline-offset-2 hover:text-accent hover:underline"
-          aria-label={`Read ${review.name}'s review on our Google Business Profile`}
-        >
-          Read it on Google
-          <ExternalLink className="w-3 h-3" aria-hidden="true" />
-        </a>
+        <ReviewSourceLink review={review} city={city} iconSize="w-3 h-3" />
       </div>
 
     </article>
@@ -99,7 +135,6 @@ function CleanCard({ review, index, city }: { review: RecentCleanReview; index: 
 /** Offset pull-quote treatment for the lead review. */
 function PullQuote({ review, city }: { review: RecentCleanReview; city: string }) {
   const { ref, isVisible } = useScrollAnimation(0.15);
-  const href = reviewSourceUrl(city, review.sourceUrl);
   return (
     <figure
       ref={ref}
@@ -108,11 +143,7 @@ function PullQuote({ review, city }: { review: RecentCleanReview; city: string }
       }`}
     >
       <div className="flex items-center justify-between">
-        <div className="flex gap-0.5" aria-label="Google review">
-          {[1, 2, 3, 4, 5].map((star) => (
-            <Star key={star} className="h-5 w-5 fill-brand-gold text-brand-gold" aria-hidden="true" />
-          ))}
-        </div>
+        <ReviewStars rating={review.rating} size="h-5 w-5" />
         <GoogleMark className="h-6 w-6 shrink-0" />
       </div>
       <blockquote className="display-serif mt-5 text-2xl font-semibold leading-snug md:text-[1.75rem]">
@@ -124,17 +155,7 @@ function PullQuote({ review, city }: { review: RecentCleanReview; city: string }
           <MapPin className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
           {review.location} · {review.date}
         </span>
-        <a
-          href={href}
-          target="_blank"
-          rel="nofollow noopener noreferrer"
-          onClick={(event) => openGoogleListing(event, href)}
-          className="inline-flex items-center gap-1 font-semibold text-primary underline-offset-2 hover:text-accent hover:underline"
-          aria-label={`Read ${review.name}'s review on our Google Business Profile`}
-        >
-          Read it on Google
-          <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
-        </a>
+        <ReviewSourceLink review={review} city={city} iconSize="h-3.5 w-3.5" />
       </figcaption>
     </figure>
   );

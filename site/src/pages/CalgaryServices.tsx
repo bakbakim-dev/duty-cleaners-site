@@ -488,7 +488,8 @@ export default function CalgaryServices() {
             <p className="text-muted-foreground leading-relaxed mb-4">{GUIDE_OPENER}</p>
             <p className="text-muted-foreground leading-relaxed">
               Three of the five published sizes are on every home-priced card: a one-bedroom, a
-              three-bedroom and the five-or-more tier, before {GST_PCT} GST. A pet, an add-on, a
+              three-bedroom and the five-bedroom tier, before {GST_PCT} GST. Six- and seven-bedroom
+              homes are priced separately in the quote form. A pet, an add-on, a
               two-storey house or an address outside Calgary city limits raises the figure, and the
               quote shows the full total first.
             </p>
@@ -507,6 +508,19 @@ export default function CalgaryServices() {
             <Button asChild size="lg" variant="outline" className="text-lg">
               <Link to={PRICING}>Every Calgary price by home size</Link>
             </Button>
+          </div>
+          {/* Owner, 2026-09-11: office work gets its own route off this hub,
+              kept apart from the home-cleaning cards and the calculator. */}
+          <div className="max-w-3xl mx-auto mt-12 border-t border-border pt-8 text-center">
+            <h2 className="text-xl font-bold text-foreground mb-2">Office cleaning in Calgary</h2>
+            <p className="text-muted-foreground leading-relaxed">
+              A Calgary office is priced per square foot after a walkthrough, and the quote is kept
+              separate from home cleaning.{" "}
+              <Link to="/commercial-cleaning-services-calgary/" className="text-primary font-semibold underline underline-offset-2">
+                Request a commercial cleaning quote
+              </Link>
+              .
+            </p>
           </div>
         </div>
       </section>

@@ -15,6 +15,7 @@ import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
 import { POLICY } from "@/data/policy";
+import GoogleMapEmbed from "@/components/GoogleMapEmbed";
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
   return (
@@ -89,8 +90,8 @@ const OFF_FOUR_WEEKLY = pctOff(2);
 const TRUST_ANSWER = "Every cleaner is reference-checked before a first job and rated by the customer after each visit, and those ratings decide who we keep sending to Bellevue homes. If you book a recurring clean, you get your regular team where we can send them.";
 const COST_ANSWER = `A standard clean in Bellevue starts at ${RECURRING_FROM} before 5% GST, for a one-bedroom, one-bathroom apartment or condo. A bungalow, basement suite, townhouse or two-storey house adds a home-type charge, and a home with pets adds a compulsory pet charge. There is no trip fee inside Edmonton city limits, and the instant price shows every charge before you book.`;
 
-/** Shared by the visible FAQ and its FAQPage schema. The eco figure and how to ask for it come from POLICY (P12). */
-const PRODUCTS_ANSWER = `We bring all the products and equipment the job needs. Eco-friendly products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}.`;
+/** Shared by the visible FAQ and its FAQPage schema. The alternative-products fee comes from POLICY (P12). */
+const PRODUCTS_ANSWER = `We bring all the products and equipment the job needs. Optional alternative products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}.`;
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Bellevue" },
@@ -312,16 +313,7 @@ export default function Bellevue() {
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving Bellevue & Surrounding Areas</h2>
               </div>
               <div className="max-w-4xl mx-auto rounded-xl overflow-hidden shadow-lg border border-border">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9444.5!2d-113.44485!3d53.56474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a0224e7f0b0f0d%3A0x0!2sBellevue%2C+Edmonton%2C+AB!5e0!3m2!1sen!2sca!4v1700000000000"
-                  width="100%"
-                  height="400"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer"
-                  title="Bellevue, Edmonton Map"
-                />
+                <GoogleMapEmbed query="Bellevue, Edmonton, AB" title="Bellevue, Edmonton Map" height={400} />
               </div>
             </AnimatedSection>
           </div>

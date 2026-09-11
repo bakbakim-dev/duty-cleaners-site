@@ -43,6 +43,21 @@ describe("_headers", () => {
     }
   });
 
+  it("allows the Google Analytics 4 loader's origins in the directives it uses", () => {
+    // src/lib/analytics.ts injects gtag.js (script-src) when VITE_GA4_MEASUREMENT_ID
+    // is set, and gtag.js sends its hits by fetch/beacon (connect-src) or pixel
+    // (img-src). Checked per directive, off the policy line.
+    const policy =
+      headers
+        .split(/\r?\n/)
+        .find((line) => /^\s*Content-Security-Policy-Report-Only:/.test(line)) ?? "";
+    const directive = (name: string) => new RegExp(`${name}([^;]*)`).exec(policy)?.[1] ?? "";
+    expect(directive("script-src")).toContain("https://www.googletagmanager.com");
+    expect(directive("connect-src")).toContain("https://*.google-analytics.com");
+    expect(directive("connect-src")).toContain("https://*.analytics.google.com");
+    expect(directive("img-src")).toContain("https://*.google-analytics.com");
+  });
+
   /**
    * The list above is hand-maintained, which is why it could not catch the one
    * that mattered: connect-src allowed api.bookin60.com — the HighLevel form

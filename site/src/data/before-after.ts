@@ -1,9 +1,10 @@
 /**
  * REAL before/after pairs, owner-supplied only.
  *
- * Ships EMPTY on purpose — the gallery renders a designed placeholder state
- * rather than inventing pairs. Drop real photos into `src/assets/gallery/`,
- * import them here, and the section fills itself in.
+ * Ships EMPTY on purpose. The gallery renders nothing at all (no section, no
+ * placeholder line) until a city has approved pairs, rather than inventing
+ * any. Drop real, homeowner-approved photos into `src/assets/gallery/`,
+ * import them here, and the section appears.
  */
 export interface BeforeAfterPair {
   /** Imported image module for the "before" frame. */

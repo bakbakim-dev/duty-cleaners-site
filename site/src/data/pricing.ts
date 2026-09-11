@@ -186,8 +186,10 @@ export const SERVICES: ServicePricing[] = [
     inclusions: [
       "Inside all cabinets, drawers and closets",
       "Inside oven and fridge",
-      "Window tracks and reachable interior glass",
-      "Walls spot-cleaned, marks removed where possible",
+      // Owner, 2026-09-11: interior window cleaning and wall washing are paid
+      // add-ons on a move-out, not part of it. The sills and tracks are wiped.
+      "Window sills and tracks wiped",
+      "Baseboards, doors and light switches wiped",
     ],
     hours: "5–8 hrs",
     exactPricing: true,
@@ -258,7 +260,7 @@ export const SERVICES: ServicePricing[] = [
     label: "Commercial / Office",
     blurb: "Offices, clinics and common areas on a schedule that suits you.",
     inclusions: [
-      "Desks, common areas and touchpoints disinfected",
+      "Desks, common areas and touchpoints wiped down",
       "Washrooms and breakroom cleaned and restocked",
       "Floors vacuumed and mopped",
       "Waste and recycling removed",
@@ -817,6 +819,47 @@ export const serviceTierRows = (id: ServiceId) =>
   }));
 
 export const standardTierRows = () => serviceTierRows("standard");
+
+/**
+ * What a standard clean costs on each recurring schedule, for the published
+ * tiers asked for: the first visit at the one-time rate, then each discounted
+ * visit, all through calculateQuote so the figures are BookingKoala's own and
+ * not a reader's 20/15/10% arithmetic on a rounded table price. Apartment or
+ * condo, no add-ons, no pet charge, before GST.
+ *
+ * Every cell carries cents ("$227.00" beside "$123.99"): formatPrice drops
+ * them from whole dollars, which reads unevenly in one table column.
+ */
+const formatCents = (value: number) =>
+  `$${value.toLocaleString("en-CA", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+export const recurringVisitRows = (tierIndexes: number[]) => {
+  const schedules = FREQUENCIES.filter((f) => f.discount > 0).sort((a, b) => b.discount - a.discount);
+  return tierIndexes
+    .map((index) => PRICING_TIERS[index])
+    .filter((tier): tier is PricingTier => Boolean(tier))
+    .map((tier) => {
+      const quote = (frequency: FrequencyId) =>
+        calculateQuote({
+          service: "standard",
+          homeType: homeTypeOptions("standard")[0]?.id ?? null,
+          bedrooms: tier.beds,
+          bathrooms: tier.bathrooms,
+          halfBaths: tier.halfBaths,
+          addOns: [],
+          frequency,
+        });
+      const oneTime = FREQUENCIES.find((f) => f.discount === 0)?.id ?? "one-time";
+      return {
+        tier,
+        firstVisit: formatCents(quote(oneTime).firstClean),
+        visits: schedules.map((f) => {
+          const q = quote(f.id);
+          return { id: f.id, label: f.label, discountPct: Math.round(f.discount * 100), price: formatCents(q.ongoing ?? q.firstClean) };
+        }),
+      };
+    });
+};
 export const moveInOutTierRows = () => serviceTierRows("move-in-out");
 
 /**

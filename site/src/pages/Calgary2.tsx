@@ -286,13 +286,13 @@ export default function Calgary2() {
     answer: "No. A key, a lockbox code or a smart-lock code is how most Calgary customers handle it, and the team locks the door behind them. The water has to be on, and without electricity the vacuuming may not be possible."
   }, {
     question: "Whose products and equipment are used?",
-    answer: `The products are ours: the team brings every supply and every piece of equipment. Eco-friendly products cost ${POLICY.ecoProductsFee} extra: ${POLICY.ecoProductsHowToRequest}.`
+    answer: `The products are ours: the team brings every supply and every piece of equipment. Optional alternative products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}.`
   }, {
     question: "Is there a charge for pets in a Calgary home?",
     answer: `Yes. A home with pets carries ${PET_FEE} per visit, before GST. The charge is compulsory, and it shows on the quote before you book. Litter boxes and animal waste are outside what the team cleans.`
   }, {
     question: "What will the Calgary team not clean?",
-    answer: "The team does no outdoor work, which rules out exterior windows, garages and patios, and it will not lift anything over 25 lb or climb beyond a 3-step ladder. Mould remediation, pests, bodily fluids, carpet steam cleaning, upholstery, ducts, drains, laundry and dishes are also outside the service. Heavy scrubbing of walls and doors belongs to the wall-washing package, and decluttering or organising is a separate hourly add-on."
+    answer: "The team does no outdoor work, which rules out exterior windows, garages and patios (a balcony or garage sweep is an add-on, offered mostly in summer when the weather allows), and it will not lift anything over 25 lb or climb beyond a 3-step ladder. Mould remediation, pests, bodily fluids, carpet steam cleaning, upholstery, ducts, drains, laundry and dishes are also outside the service. Heavy scrubbing of walls and doors belongs to the wall-washing package, and decluttering or organising is a separate hourly add-on."
   }];
   // Schema must mirror the FAQs actually rendered on the page.
   const faqSchema = {
@@ -411,9 +411,12 @@ export default function Calgary2() {
                 </p>
                 <p>
                   Move-out cleans start at {FROM_MOVE}, also before GST at the one-bedroom size, and those same charges
-                  apply. Alberta's Residential Tenancies Act has the landlord complete a move-out inspection report with
-                  the tenant, and the security deposit must be returned within 10 days after the tenant moves out. The
-                  landlord decides what happens to it, and we do not promise it comes back. The details are on{" "}
+                  apply. Under{" "}
+                  <a href="https://www.alberta.ca/ending-a-tenancy" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Alberta's rules on ending a tenancy</a>{" "}
+                  the landlord completes a move-out inspection report with the tenant. Within 10 days of the tenant
+                  moving out, the landlord must return the deposit, or return what is left with a written statement of
+                  any deductions (an estimate is allowed, with the final statement within 30 days). The landlord decides
+                  what happens to the deposit, and we do not promise it comes back. The details are on{" "}
                   <Link to="/move-out-cleaning-calgary/" className="font-semibold text-primary hover:underline">move-out cleaning in Calgary</Link>.
                 </p>
                 <p>
@@ -426,6 +429,13 @@ export default function Calgary2() {
                   by the hour: {AIRBNB_RATE} per cleaner-hour before GST, with at least 3 hours for one cleaner or 2 for a
                   pair. Every service, with its starting price, is on{" "}
                   <Link to="/calgary/services/" className="font-semibold text-primary hover:underline">the Calgary services page</Link>.
+                </p>
+                {/* Owner, 2026-09-11: one line routes office work to its own
+                    page, kept apart from the home-cleaning prices. */}
+                <p>
+                  For an office or business premises, see our{" "}
+                  <Link to="/commercial-cleaning-services-calgary/" className="font-semibold text-primary hover:underline">office and commercial cleaning in Calgary</Link>.
+                  Commercial work is quoted separately from home cleaning.
                 </p>
               </div>
             </div>
@@ -573,7 +583,12 @@ export default function Calgary2() {
 
 
         {/* Service Areas — full-width tonal field with a domestic-life crop */}
-        <section className="border-y border-border bg-blue-grey-100 py-16 md:py-20">
+        {/* bg-background, not bg-blue-grey-100 (2026-09-11): on the blue-grey the
+            muted paragraphs measured 4.38:1 and the primary links 4.44:1, under
+            the 4.5:1 WCAG AA asks of normal text. On --background they are
+            4.83:1 and 4.90:1, and the links are underlined so colour is not
+            the only thing marking them. */}
+        <section className="border-y border-border bg-background py-16 md:py-20">
           <div className="container mx-auto px-4">
             <div className="mb-12 grid items-start gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.3fr)] lg:gap-14">
               <div>
@@ -588,15 +603,15 @@ export default function Calgary2() {
                     /locations/; Airdrie and Cochrane keep their legacy URLs. */}
                 <p className="text-muted-foreground mt-3 max-w-[55ch] leading-relaxed">
                   Beyond the limits the Calgary branch does{" "}
-                  <Link to="/cleaning-services-airdrie/" className="font-semibold text-primary hover:underline">house cleaning in Airdrie</Link>, works as{" "}
-                  <Link to="/cleaning-services-cochrane/" className="font-semibold text-primary hover:underline">Cochrane house cleaners</Link>, and covers{" "}
-                  <Link to="/locations/okotoks/" className="font-semibold text-primary hover:underline">cleaning services in Okotoks</Link> and{" "}
-                  <Link to="/locations/chestermere/" className="font-semibold text-primary hover:underline">Chestermere house cleaning</Link>, with{" "}
+                  <Link to="/cleaning-services-airdrie/" className="font-semibold text-primary underline underline-offset-2">house cleaning in Airdrie</Link>, works as{" "}
+                  <Link to="/cleaning-services-cochrane/" className="font-semibold text-primary underline underline-offset-2">Cochrane house cleaners</Link>, and covers{" "}
+                  <Link to="/locations/okotoks/" className="font-semibold text-primary underline underline-offset-2">cleaning services in Okotoks</Link> and{" "}
+                  <Link to="/locations/chestermere/" className="font-semibold text-primary underline underline-offset-2">Chestermere house cleaning</Link>, with{" "}
                   {HOME_TRAVEL_FEE} on a home clean and {POST_TRAVEL_FEE} on a post-construction job, both before GST.{" "}
                   {joinNames(OUTER_TOWNS)} are covered on the same terms.
                 </p>
                 <p className="text-muted-foreground mt-3 max-w-[55ch] leading-relaxed">
-                  <Link to="/calgary/pricing/" className="font-semibold text-primary hover:underline">Calgary house cleaning prices by home size</Link>{" "}
+                  <Link to="/calgary/pricing/" className="font-semibold text-primary underline underline-offset-2">Calgary house cleaning prices by home size</Link>{" "}
                   are on one page, and the same list applies past the city limits with only the travel fee added.
                 </p>
                 <ThresholdLine className="mt-6 max-w-[220px]" />

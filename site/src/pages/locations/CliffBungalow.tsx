@@ -8,6 +8,7 @@ import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
 import { sitePriceRange } from "@/data/pricing";
+import GoogleMapEmbed from "@/components/GoogleMapEmbed";
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
   return (
@@ -261,16 +262,7 @@ export default function CliffBungalow() {
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
-                  <iframe
-                    src="https://www.google.com/maps?q=Cliff+Bungalow,+Calgary,+AB&output=embed"
-                    width="100%"
-                    height="450"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer"
-                    title="Cliff Bungalow Calgary Service Area Map"
-                  />
+                  <GoogleMapEmbed query="Cliff Bungalow, Calgary, AB" title="Cliff Bungalow Calgary Service Area Map" />
                 </div>
               </div>
             </AnimatedSection>
@@ -289,7 +281,8 @@ export default function CliffBungalow() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">What to expect</span>
                   <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Suites Handed Back in Cliff Bungalow</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    When a Cliff Bungalow suite is handed back, the landlord completes a move-out inspection report with the tenant under Alberta's Residential Tenancies Act, and the security deposit must be returned within 10 days after the tenant moves out. We do not promise the deposit comes back; the landlord decides.
+                    When a Cliff Bungalow suite is handed back, the landlord completes a move-out inspection report with the tenant under Alberta's Residential Tenancies Act. Within 10 days of the tenant moving out, the landlord must return the deposit, or return what is left with a written statement of any deductions (an estimate is allowed, with the final statement within 30 days), as set out in{" "}
+                    <a href="https://www.alberta.ca/ending-a-tenancy" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Alberta's rules on ending a tenancy</a>. We do not promise the deposit comes back; the landlord decides.
                   </p>
                   <ul className="space-y-3">
                     {["Leave a key, a lockbox code or smart-lock access","Charged once the clean is complete","Free re-clean if told within 24 hours"].map((t,i)=>(

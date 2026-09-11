@@ -6,11 +6,12 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
-import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice, addOnFromPrice } from "@/data/pricing";
-import { travelFee } from "@/data/addon-table";
+import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice, addOnFromPrice, calculateQuote, homeTypeOptions, PRICING_TIERS } from "@/data/pricing";
+import { travelFee, TRAVEL_FEE_KEY } from "@/data/addon-table";
 import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
 import { GOOGLE_LISTINGS } from "@/lib/google-listings";
 import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
+import GoogleMapEmbed from "@/components/GoogleMapEmbed";
 
 // Prices come from bk-config through pricing.ts; the page types none.
 const STANDARD = standardTierRows();
@@ -36,19 +37,17 @@ const EDMONTON_LISTING = GOOGLE_LISTINGS.edmonton;
 const PAGE_TITLE = `House Cleaning Morinville from ${STANDARD_FROM} | Duty Cleaners`;
 const META_DESCRIPTION = `Morinville house cleaning starts at ${STANDARD_FROM} before GST for a one-bedroom apartment, plus a ${TRAVEL_FEE} travel fee and any pet or home-type charge.`;
 
-// A worked quote built from the same rows the price table uses: a two-bedroom,
-// two-bathroom townhouse with a pet, on a standard clean, outside city limits.
-const dollars = (price: string) => Number(price.replace(/[^0-9.]/g, ""));
+// A worked quote run through calculateQuote, the booking funnel's own maths: a
+// two-bedroom, two-bathroom townhouse with a pet, on a standard clean, outside
+// city limits. The table rounds each size to the dollar, so no total is built
+// from a table card.
+const EXAMPLE_SIZE = PRICING_TIERS[1];
 const EXAMPLE_TIER = STANDARD[1];
-const EXAMPLE_PRICE = formatPrice(
-  Math.round(
-    (dollars(EXAMPLE_TIER.price) +
-      BK_PRICE_OVERRIDES[89].price +
-      (addOnFromPrice("standard", "must-choose-if-you-have-pets") ?? 0) +
-      (travelFee("standard") ?? 0)) *
-      100,
-  ) / 100,
-);
+const exampleQuote = (homeType: number | null, addOns: string[] = []) =>
+  calculateQuote({ service: "standard", homeType, bedrooms: EXAMPLE_SIZE.beds, bathrooms: EXAMPLE_SIZE.bathrooms, halfBaths: EXAMPLE_SIZE.halfBaths, addOns, frequency: "one-time" }).firstClean;
+const EXAMPLE_BASE = formatPrice(exampleQuote(homeTypeOptions("standard")[0]?.id ?? null));
+const EXAMPLE_BASE_TEXT = EXAMPLE_BASE === EXAMPLE_TIER.price ? EXAMPLE_BASE : `${EXAMPLE_BASE} (${EXAMPLE_TIER.price} in the table, which rounds to the dollar)`;
+const EXAMPLE_PRICE = formatPrice(exampleQuote(89, [TRAVEL_FEE_KEY, "must-choose-if-you-have-pets"]));
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -161,7 +160,7 @@ export default function Morinville() {
     },
     {
       question: "Do you bring supplies out to Morinville?",
-      answer: `Yes. The team brings all supplies and equipment to every Morinville visit. Eco-friendly products are available for ${POLICY.ecoProductsFee}; ${POLICY.ecoProductsHowToRequest}. Running water is required, and vacuuming may not be possible without electricity.`
+      answer: `Yes. The team brings all supplies and equipment to every Morinville visit. Optional alternative products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}. Running water is required, and vacuuming may not be possible without electricity.`
     },
     {
       question: "How long does a first clean in Morinville take?",
@@ -273,7 +272,7 @@ export default function Morinville() {
               </h2>
               <div className="text-muted-foreground space-y-4 text-lg leading-relaxed">
                 <p>
-                  Take a two-bedroom, two-bathroom townhouse in Morinville with a dog, booked for a standard clean. The two-bedroom rate is {EXAMPLE_TIER.price}, the townhouse adds {HOME_TYPE.townhouse}, the pet charge is {PET_FEE} and the travel fee is {TRAVEL_FEE}, so the quote comes to {EXAMPLE_PRICE} before 5% GST. Each of those lines is on the quote before you confirm, and the card is charged once the clean is complete.
+                  Take a two-bedroom, two-bathroom townhouse in Morinville with a dog, booked for a standard clean. The two-bedroom rate is {EXAMPLE_BASE_TEXT}, the townhouse adds {HOME_TYPE.townhouse}, the pet charge is {PET_FEE} and the travel fee is {TRAVEL_FEE}, so the quote comes to {EXAMPLE_PRICE} before 5% GST. Each of those lines is on the quote before you confirm, and the card is charged once the clean is complete.
                 </p>
                 <p>
                   The rate is flat by home size, so it stays the same if the clean runs longer than expected. What raises it is what you book: more bathrooms than the table assumes, a larger home type, a pet, or an add-on such as the inside of the oven or the fridge. If a Morinville home needs substantially more work than was described, such as heavy build-up or far more glass or cabinetry than stated, the team explains what it found and the options before continuing.
@@ -300,9 +299,12 @@ export default function Morinville() {
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>A move-in or move-out clean in Morinville covers the standard rooms and then goes inside the oven, fridge and microwave, and inside every cabinet, drawer and closet. It is priced flat by home size, and the same travel fee applies as on any other Morinville booking.</p>
-                <p>If you rent, two facts from Alberta's Residential Tenancies Act are worth knowing before the last day. The landlord completes a move-out inspection report with the tenant, and the security deposit must be returned within 10 days after the tenant moves out. We do not promise the deposit comes back; the landlord decides.</p>
                 <p>
-                  Book the clean for after the furniture has gone. Empty cupboards can be cleaned inside, while shelves that still hold things get worked around. Garages, patios and exterior windows are not part of any clean. The checklist is the one used for{" "}
+                  If you rent, two facts from Alberta's Residential Tenancies Act are worth knowing before the last day. The landlord completes a move-out inspection report with the tenant. Within 10 days of the tenant moving out, the landlord must return the deposit, or return what is left with a written statement of any deductions (an estimate is allowed, with the final statement within 30 days), as set out in{" "}
+                  <a href="https://www.alberta.ca/ending-a-tenancy" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Alberta's rules on ending a tenancy</a>. We do not promise the deposit comes back; the landlord decides.
+                </p>
+                <p>
+                  Book the clean for after the furniture has gone. Empty cupboards can be cleaned inside, while shelves that still hold things get worked around. Garages, patios and exterior windows are not part of any clean, apart from a balcony or garage sweep add-on offered mostly in summer when the weather allows. The checklist is the one used for{" "}
                   <Link to="/move-out-cleaning-edmonton/" className="text-primary underline underline-offset-2">end of tenancy cleaning in Edmonton</Link>.
                 </p>
               </div>
@@ -319,16 +321,7 @@ export default function Morinville() {
               <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
               <h2 className="text-3xl font-bold text-foreground mt-2 mb-6">Morinville Service Area</h2>
               <div className="rounded-2xl overflow-hidden shadow-xl">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d37826.07!2d-113.65066!3d53.80093!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a0306b0e1e5b3d%3A0x4c0b0e1e5b3d!2sMorinville%2C%20AB!5e0!3m2!1sen!2sca!4v1700000000000"
-                  width="100%"
-                  height="450"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer"
-                  title="Morinville Service Area Map"
-                />
+                <GoogleMapEmbed query="Morinville, AB" title="Morinville Service Area Map" />
               </div>
             </div>
           </AnimatedSection>

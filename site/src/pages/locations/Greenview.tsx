@@ -8,6 +8,7 @@ import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
 import { sitePriceRange } from "@/data/pricing";
+import GoogleMapEmbed from "@/components/GoogleMapEmbed";
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
   return (
@@ -261,16 +262,7 @@ export default function Greenview() {
                   </p>
                 </div>
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-border">
-                  <iframe
-                    src="https://www.google.com/maps?q=Greenview,+Calgary,+AB&output=embed"
-                    width="100%"
-                    height="450"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer"
-                    title="Greenview Calgary Service Area Map"
-                  />
+                  <GoogleMapEmbed query="Greenview, Calgary, AB" title="Greenview Calgary Service Area Map" />
                 </div>
               </div>
             </AnimatedSection>
@@ -289,7 +281,8 @@ export default function Greenview() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Moving out</span>
                   <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Move-Out Cleaning for Greenview Rentals</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    About two thirds of Greenview's housing is rented, so move-outs are a normal part of the month here. A move-out clean is priced flat by home size before 5% GST, and the instant price shows the figure before you book. Under Alberta's Residential Tenancies Act the landlord completes a move-out inspection report with the tenant, and the security deposit must be returned within 10 days after the tenant moves out. We do not promise the deposit comes back; the landlord decides.
+                    About two thirds of Greenview's housing is rented, so move-outs are a normal part of the month here. A move-out clean is priced flat by home size before 5% GST, and the instant price shows the figure before you book. Under Alberta's Residential Tenancies Act the landlord completes a move-out inspection report with the tenant. Within 10 days of the tenant moving out, the landlord must return the deposit, or return what is left with a written statement of any deductions (an estimate is allowed, with the final statement within 30 days), as set out in{" "}
+                    <a href="https://www.alberta.ca/ending-a-tenancy" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Alberta's rules on ending a tenancy</a>. We do not promise the deposit comes back; the landlord decides.
                   </p>
                   <ul className="space-y-3">
                     {["Rated by the customer after every visit","Supplies and equipment brought by the team","Arrival windows starting at 9:00 AM, 12:00 PM or 3:00 PM"].map((t,i)=>(

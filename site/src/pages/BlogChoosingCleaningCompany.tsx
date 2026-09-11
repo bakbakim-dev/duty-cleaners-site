@@ -22,7 +22,7 @@ const keyFactors = [
     icon: Users,
     title: "Assessing Your Cleaning Needs",
     description: "Start with what the home needs. Regular upkeep, a one-time deep clean and a move-out clean are different jobs with different checklists, so a quote should say which one it covers. Note the type of home as well: at Duty Cleaners, for example, a two-storey house costs more than a condo with the same number of bedrooms.",
-    details: "Write down anything specific before you call, such as pets, a product preference or a room that needs extra time. Ask about the jobs a company does not do, too. Duty Cleaners, for example, does not do carpet steam cleaning, upholstery, exterior windows or garages, so those jobs need a specialist."
+    details: "Write down anything specific before you call, such as pets, a product preference or a room that needs extra time. Ask about the jobs a company does not do, too. Duty Cleaners, for example, does not do carpet steam cleaning, upholstery or exterior windows, so those jobs need a specialist. It does not clean garages either: the only garage work is a balcony or garage sweep add-on, offered mostly in summer when the weather allows."
   },
   {
     icon: Star,
@@ -49,7 +49,7 @@ const customizationOptions = [
   },
   {
     title: "Special Requests",
-    description: "If you prefer particular products or want the team to focus on high-traffic areas, say so before booking. At Duty Cleaners, eco-friendly products are a paid add-on: ask when you book and the office adds it."
+    description: "If you prefer particular products or want the team to focus on high-traffic areas, say so before booking. At Duty Cleaners, optional alternative products are a paid add-on: ask the office which products are available and suitable for your surfaces when you book."
   },
   {
     title: "Adjustable Frequency",

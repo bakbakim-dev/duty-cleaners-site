@@ -8,8 +8,10 @@ import { Button } from "@/components/ui/button";
 import {
   Building2, CheckCircle2, Shield, Award, Phone,
   Star, Sparkles, Briefcase, Dumbbell, UtensilsCrossed, Stethoscope,
-  ShoppingBag, Warehouse, ThumbsUp, Leaf, CalendarCheck, LucideIcon,
+  ShoppingBag, Warehouse, ThumbsUp, ClipboardCheck, CalendarCheck, LucideIcon,
 } from "lucide-react";
+import { POLICY } from "@/data/policy";
+import { CITY_PROOF } from "@/data/proof";
 import { Link } from "react-router-dom";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import CommercialDepth, { commercialFaqs } from "@/components/CommercialDepth";
@@ -59,33 +61,43 @@ const FeatureItem = ({ icon: Icon, title, description }: { icon: LucideIcon; tit
   </div>
 );
 
+const TITLE = "Office & Commercial Cleaning Calgary | Duty Cleaners";
+const DESCRIPTION =
+  "Office and commercial cleaning in Calgary, scoped around your premises and schedule. Request a walkthrough and a written cleaning quote.";
+/** Office cleaning is the one commercial job quoted online (owner, 2026-09-10); Contact.tsx preselects it and the city. */
+const QUOTE_HREF = "/contact-us/?topic=office&city=calgary";
+
 export default function CommercialCleaningCalgary() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  /* Owner, 2026-09-11: the cleaners are subcontractors who choose their own
+     products, so no card claims what a product does to a surface or that the
+     work meets an inspector's standard; each says what the team does, inside
+     the scope agreed at the walkthrough. */
   const industries = [
-    { icon: Briefcase, title: "Office Cleaning", description: "Maintain a professional, productive workspace. From desks and keyboards to common areas, we keep your office pristine and hygienic." },
-    { icon: Warehouse, title: "Warehouse Cleaning", description: "Industrial-strength cleaning for warehouses and storage facilities. We handle large spaces with specialized equipment and techniques." },
-    { icon: ShoppingBag, title: "Retail Cleaning", description: "Create a welcoming environment for customers with sparkling clean retail spaces that reflect your brand's commitment to excellence." },
-    { icon: Stethoscope, title: "Medical Office Cleaning", description: "Specialized cleaning for healthcare facilities with strict sanitation protocols to ensure a safe environment for patients and staff." },
-    { icon: UtensilsCrossed, title: "Restaurant Cleaning", description: "Commercial kitchen and dining area cleaning that meets health department standards and keeps your establishment spotless." },
-    { icon: Dumbbell, title: "Gym & Fitness Center", description: "High-touch surface sanitization and thorough cleaning to maintain a healthy environment for members and staff." },
+    { icon: Briefcase, title: "Office Cleaning", description: "Desks, meeting rooms, break rooms, washrooms and floors, on the visit frequency set out in your written quote." },
+    { icon: Warehouse, title: "Warehouse Cleaning", description: "Long floor runs, dock areas, racking dust and site washrooms, scoped at the walkthrough so cleaning never blocks a shift." },
+    { icon: ShoppingBag, title: "Retail Cleaning", description: "Counters, fitting rooms, entry glass, sales floors and customer washrooms, timed around opening hours." },
+    { icon: Stethoscope, title: "Medical Office Cleaning", description: "Medical-office cleaning is scoped at a walkthrough. Before accepting the work, we confirm the rooms, surfaces, product requirements and documentation we can provide." },
+    { icon: UtensilsCrossed, title: "Restaurant Cleaning", description: "Kitchen and dining-area cleaning within the written scope agreed at the walkthrough." },
+    { icon: Dumbbell, title: "Gym & Fitness Center", description: "High-touch surfaces wiped down, and change rooms, washrooms and floors cleaned, to the scope agreed at the walkthrough." },
   ];
 
   return (
     <>
       <Helmet>
-        <title>Commercial Cleaning Services Calgary | Duty Cleaners</title>
-        <meta name="description" content="Professional commercial cleaning services in Calgary. Offices, warehouses, retail, medical facilities & more. Pay after your clean." />
+        <title>{TITLE}</title>
+        <meta name="description" content={DESCRIPTION} />
         <link rel="canonical" href="https://dutycleaners.ca/commercial-cleaning-services-calgary/" />
-        <meta property="og:title" content="Commercial Cleaning Services Calgary | Duty Cleaners" />
-        <meta property="og:description" content="Professional commercial cleaning services in Calgary. Offices, warehouses, retail, medical facilities & more. Pay after your clean." />
+        <meta property="og:title" content={TITLE} />
+        <meta property="og:description" content={DESCRIPTION} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/commercial-cleaning-services-calgary/" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Commercial Cleaning Services Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Professional commercial cleaning services in Calgary. Offices, warehouses, retail, medical facilities & more. Pay after your clean." />
+        <meta name="twitter:title" content={TITLE} />
+        <meta name="twitter:description" content={DESCRIPTION} />
         {/* These pages carried no structured data at all. Service ties the
             offering to the city LocalBusiness node; FAQPage mirrors the Q&A
             rendered further down the page. */}
@@ -94,7 +106,7 @@ export default function CommercialCleaningCalgary() {
             "@context": "https://schema.org",
             "@type": "Service",
             serviceType: "Commercial Cleaning",
-            name: "Commercial Cleaning Services Calgary",
+            name: "Office & Commercial Cleaning Calgary",
             url: "https://dutycleaners.ca/commercial-cleaning-services-calgary/",
             provider: { "@id": "https://dutycleaners.ca/#calgary" },
             areaServed: { "@type": "City", name: "Calgary" },
@@ -112,7 +124,7 @@ export default function CommercialCleaningCalgary() {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "FAQPage",
-            mainEntity: commercialFaqs("Calgary", "(403) 768-1341").map((f) => ({
+            mainEntity: commercialFaqs("Calgary", CITY_PROOF.calgary.phone).map((f) => ({
               "@type": "Question",
               name: f.q,
               acceptedAnswer: { "@type": "Answer", text: f.a },
@@ -137,26 +149,27 @@ export default function CommercialCleaningCalgary() {
             <div className="max-w-3xl mx-auto text-center space-y-6">
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-sm">
                 <Building2 className="w-4 h-4 text-accent" />
-                <span>Trusted by Calgary Businesses</span>
+                <span>The Calgary office</span>
               </div>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                Commercial Cleaning{" "}<br />
-                Services in <span className="text-accent">Calgary</span>
+                Office &amp; Commercial Cleaning{" "}<br />
+                in <span className="text-accent">Calgary</span>
               </h1>
 
               <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto">
-                Professional, reliable cleaning tailored to your business. We keep your workspace spotless so you can focus on what matters most.
+                Calgary offices, shops, clinics and warehouses, cleaned to a scope you agree at a
+                walkthrough and see in writing before the first visit is booked.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
                 <Button size="lg" className="bg-accent hover:bg-accent/90 text-white h-12 px-6" asChild>
-                  <Link to="/contact-us/">Get Free Estimate</Link>
+                  <Link to={QUOTE_HREF}>Request a Commercial Cleaning Quote</Link>
                 </Button>
                 <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 h-12 px-6" asChild>
-                  <a href="tel:4037681341">
+                  <a href={CITY_PROOF.calgary.phoneLink}>
                     <Phone className="mr-2 w-5 h-5" />
-                    (403) 768-1341
+                    {CITY_PROOF.calgary.phone}
                   </a>
                 </Button>
               </div>
@@ -164,15 +177,15 @@ export default function CommercialCleaningCalgary() {
               <div className="flex flex-wrap justify-center gap-6 pt-4 text-white/80 text-sm">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-accent" />
-                  <span>Flexible Scheduling</span>
+                  <span>Walkthrough before the quote</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-accent" />
-                  <span>Transparent Pricing</span>
+                  <span>Priced per square foot</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-accent" />
-                  <span>Industry-Specific Cleaning</span>
+                  <span>Scope confirmed in writing</span>
                 </div>
               </div>
             </div>
@@ -189,14 +202,15 @@ export default function CommercialCleaningCalgary() {
                   Commercial cleaning in Calgary, scoped in writing
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  Calgary businesses need clean, well-maintained spaces to provide a welcoming environment for clients 
-                  and a productive atmosphere for employees. At Duty Cleaners, we deliver top-quality commercial cleaning 
-                  customized to your business's needs.
+                  A commercial job with the Calgary office begins on site. Someone from the office
+                  walks the premises with you, notes the floor types, the washrooms and the rooms that
+                  matter most, and asks when the building is empty enough to clean.
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  From corporate offices to warehouses and retail spaces, our trained cleaners handle routine cleaning, 
-                  deep cleaning, and specialty services. Regular professional cleaning shows your team they're 
-                  valued and helps them work with confidence and motivation.
+                  The price is per square foot of the area cleaned. You receive it as a written quote
+                  listing the areas, the visit frequency and the pricing basis, and the first visit is
+                  booked only once you have agreed to it. Access, alarm codes and any product your
+                  site requires belong in that conversation too.
                 </p>
               </div>
             </div>
@@ -210,7 +224,7 @@ export default function CommercialCleaningCalgary() {
           paragraphs={[
             "Downtown Calgary has spent the better part of a decade carrying some of the highest office vacancy in the country, and the City's downtown incentive program has been paying to convert empty towers into apartments. That has changed what commercial cleaning in the core actually looks like. Fewer floors are running a full nine-to-five with a hundred desks; more are half-tenanted, subdivided, or a construction zone on one level and occupied on the next. Scope written for a full floor plate does not fit any of that, so we quote after a walkthrough rather than by square footage alone.",
             "The energy and professional-services tenants that remain tend to want cleaning that is finished before the building fills up, not after it empties. Early-morning service before seven is a more common request here than evening service, and it changes the practicalities — building access, freight elevator booking, and security sign-in all have to be arranged around a window that opens before most property managers are reachable.",
-            "Outside the core it is a different job again. The industrial and warehouse stock through the northeast toward the airport, and the retail and clinic space in the newer south and far-north communities, come with their own constraints: dock-level dust, long unbroken floor runs, and in medical space, disinfection standards and waste handling that a general office scope does not cover. We price those separately rather than folding them into a single rate.",
+            "Outside the core it is a different job again. The industrial and warehouse stock through the northeast toward the airport, and the retail and clinic space in the newer south and far-north communities, come with their own constraints: dock-level dust, long unbroken floor runs, and in medical space, the clinic's own product and waste-handling requirements, which a general office scope does not cover. We scope those by phone and at a walkthrough and price them separately rather than folding them into a single rate.",
           ]}
         />
 
@@ -228,6 +242,18 @@ export default function CommercialCleaningCalgary() {
                   <IndustryCard key={index} icon={industry.icon} title={industry.title} description={industry.description} index={index} />
                 ))}
               </div>
+
+              {/* Owner, 2026-09-10: office cleaning is the only commercial work
+                  quoted through the form; everything else starts with a call. */}
+              <p className="mt-8 text-center text-muted-foreground max-w-2xl mx-auto">
+                Office cleaning can be requested with the quote form. Warehouse, retail, medical,
+                restaurant and gym premises are scoped by phone and at a walkthrough with the
+                Calgary office:{" "}
+                <a href={CITY_PROOF.calgary.phoneLink} className="font-semibold text-primary underline underline-offset-4">
+                  call {CITY_PROOF.calgary.phone}
+                </a>
+                .
+              </p>
             </div>
           </section>
         </AnimatedSection>
@@ -247,15 +273,15 @@ export default function CommercialCleaningCalgary() {
                 <FeatureItem icon={Shield} title="Customer-Rated Cleaners" description="Every cleaner is reference-checked before their first job and rated after every visit. Those ratings decide who keeps working on your site." />
                 <FeatureItem icon={Award} title="Experienced Professionals" description="Cleaning in Alberta since 2017. For contracts needing specific insurance certificates or security clearances, ask at the walkthrough and we confirm in writing what we can provide." />
                 <FeatureItem icon={CalendarCheck} title="Flexible Scheduling" description="We work around your business hours with options for early morning and weekend cleanings." />
-                <FeatureItem icon={ThumbsUp} title="100% Satisfaction Guaranteed" description="If you're not happy with our service, we’ll come back free of charge. Simply let us know within 24 hours after your cleaning, and we’ll make it right." />
-                <FeatureItem icon={Star} title="Transparent Pricing" description="Upfront, honest pricing with no hidden fees. We provide detailed quotes and work within your budget." />
-                <FeatureItem icon={Leaf} title="Safe Quality Products" description="Teams arrive with everything the agreed scope needs. If your site requires a particular disinfectant or a low-odour option, name it at the walkthrough and we work to it." />
+                <FeatureItem icon={ThumbsUp} title="Missed Items Re-Cleaned" description={`Tell us within ${POLICY.guaranteeWindowHours} hours of the clean if something in the agreed scope was missed, and the team comes back to clean it at no charge.`} />
+                <FeatureItem icon={Star} title="Written Quotes" description="Priced per square foot, with the areas, the visit frequency and the pricing basis set out in writing before anything is booked." />
+                <FeatureItem icon={ClipboardCheck} title="Products and Site Protocols" description="Tell us about required products and site protocols at the walkthrough. We confirm in writing which requirements we can meet before you book." />
               </div>
             </div>
           </section>
         </AnimatedSection>
 
-        <CommercialDepth city="Calgary" phone="(403) 768-1341" phoneLink="tel:4037681341" />
+        <CommercialDepth city="Calgary" phone={CITY_PROOF.calgary.phone} phoneLink={CITY_PROOF.calgary.phoneLink} />
 
         {/* Service areas.
             Search Console shows real, entirely unserved demand for commercial
@@ -274,8 +300,9 @@ export default function CommercialCleaningCalgary() {
                 </h2>
                 <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
                   We clean offices, retail units, warehouses and industrial space in Calgary and the
-                  surrounding towns — including Cochrane, Airdrie, Okotoks and Chestermere. Same
-                  walkthrough, same written quote, same hourly rate wherever your premises are.
+                  surrounding towns, including Cochrane, Airdrie, Okotoks and Chestermere. Commercial
+                  work is priced per square foot, scoped at a walkthrough and confirmed in a written
+                  quote that states the areas, visit frequency and pricing basis before work is booked.
                 </p>
                 <CoverageChips
                   areas={[
@@ -287,8 +314,8 @@ export default function CommercialCleaningCalgary() {
                     "High River",
                     "Langdon",
                     "Crossfield",
-                    "Black Diamond",
-                    "Turner Valley",
+                    // Black Diamond and Turner Valley are one town since 2023.
+                    "Diamond Valley",
                   ]}
                 />
               </div>
@@ -302,19 +329,20 @@ export default function CommercialCleaningCalgary() {
             <div className="container mx-auto px-4">
               <div className="max-w-3xl mx-auto bg-secondary/30 rounded-2xl p-10 text-center border border-border">
                 <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                  Ready to Get Started?
+                  Request a commercial cleaning quote in Calgary
                 </h2>
                 <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-                  Contact us today for a free estimate and let us help you maintain a clean, professional workspace.
+                  Send the address, the approximate area to be cleaned and the visit frequency you
+                  have in mind. The Calgary office books the walkthrough and follows it with a written quote.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button size="lg" className="bg-accent hover:bg-accent/90 text-white h-12 px-8" asChild>
-                    <Link to="/contact-us/">Get Free Estimate</Link>
+                    <Link to={QUOTE_HREF}>Request a Commercial Cleaning Quote</Link>
                   </Button>
                   <Button size="lg" variant="outline" className="h-12 px-8" asChild>
-                    <a href="tel:4037681341">
+                    <a href={CITY_PROOF.calgary.phoneLink}>
                       <Phone className="mr-2" />
-                      Call (403) 768-1341
+                      Call {CITY_PROOF.calgary.phone}
                     </a>
                   </Button>
                 </div>

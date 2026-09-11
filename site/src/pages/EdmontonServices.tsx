@@ -226,7 +226,9 @@ const services: Service[] = [
     description: "Cleaned to the standard a move-out inspection looks for, or ready to move into.",
     features: [
       "All deep cleaning tasks",
-      "Inside all cabinets, drawers, and the kitchen walls",
+      // Owner, 2026-09-11: walls are an add-on (wall washing), not part of a
+      // move-out, so the card no longer lists them.
+      "Inside all cabinets, drawers and closets",
       "Cleaning of inside and outside appliances",
       "Vacuuming and mopping of all floors, including carpet vacuuming"
     ],
@@ -312,7 +314,7 @@ const faqs = [
   },
   {
     q: "Is move-out cleaning the same as a deep clean?",
-    a: `No. Move-out cleaning includes every deep cleaning task and then goes where a landlord's inspection goes: inside every cabinet and drawer, inside the oven and fridge, the kitchen walls, and every floor including carpet. A one-bedroom apartment is ${MOVE_PRICE} before GST, against ${DEEP_ROW.price} for a deep clean, with the pet charge, a home-type surcharge or the travel fee added to either where they apply. Under Alberta's Residential Tenancies Act the landlord completes a move-out inspection report with the tenant and decides what happens to the damage deposit, so we do not guarantee it comes back.`,
+    a: `No. Move-out cleaning includes every deep cleaning task and then goes where a landlord's inspection goes: inside every cabinet and drawer, inside the oven and fridge, and every floor including carpet. Wall washing and interior windows are add-ons. A one-bedroom apartment is ${MOVE_PRICE} before GST, against ${DEEP_ROW.price} for a deep clean, with the pet charge, a home-type surcharge or the travel fee added to either where they apply. Under Alberta's Residential Tenancies Act the landlord completes a move-out inspection report with the tenant and decides what happens to the damage deposit, so we do not guarantee it comes back.`,
   },
   {
     q: "Do the prices include GST?",
@@ -523,8 +525,9 @@ export default function EdmontonServices() {
             <p className="text-muted-foreground leading-relaxed mb-4">{GUIDE_OPENER}</p>
             <p className="text-muted-foreground leading-relaxed">
               Each card prices three of the five published sizes: a one-bedroom, a three-bedroom and
-              the five-or-more tier, all before {GST_PCT} GST. Pets, add-ons and the type of home
-              move the figure, and the quote form shows the total before you commit to anything.
+              the five-bedroom tier, all before {GST_PCT} GST. Six- and seven-bedroom homes are priced
+              separately in the quote form. Pets, add-ons and the type of home move the figure, and the
+              quote form shows the total before you commit to anything.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto items-stretch">
@@ -541,6 +544,19 @@ export default function EdmontonServices() {
             <Button asChild size="lg" variant="outline" className="text-lg">
               <Link to={PRICING}>Compare every price by home size</Link>
             </Button>
+          </div>
+          {/* Owner, 2026-09-11: office work gets its own route off this hub,
+              kept apart from the home-cleaning cards and the calculator. */}
+          <div className="max-w-3xl mx-auto mt-12 border-t border-border pt-8 text-center">
+            <h2 className="text-xl font-bold text-foreground mb-2">Office cleaning in Edmonton</h2>
+            <p className="text-muted-foreground leading-relaxed">
+              Office cleaning is priced per square foot after a walkthrough and quoted separately from
+              home cleaning.{" "}
+              <Link to="/commercial-cleaning/" className="text-primary font-semibold underline underline-offset-2">
+                Request a commercial cleaning quote
+              </Link>
+              .
+            </p>
           </div>
         </div>
       </section>

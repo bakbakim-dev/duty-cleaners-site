@@ -308,7 +308,8 @@ export default function CalgaryMoveInOut() {
               pounds. Inside windows, blinds,{" "}
               <Link to="/wall-washing-wall-cleaning-calgary/" className="text-primary underline underline-offset-4">wall washing in Calgary</Link>,
               the basement and a garage sweep are add-ons you pick at booking, each a separate line
-              on the quote.
+              on the quote. The garage or balcony sweep is offered mostly in summer, when the weather
+              allows.
             </p>
           </div>
         </div>
@@ -535,8 +536,9 @@ export default function CalgaryMoveInOut() {
           <div className="prose prose-lg max-w-none text-muted-foreground space-y-4">
             <p>
               Under <a href="https://www.alberta.ca/ending-a-tenancy" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Alberta's Residential Tenancies Act</a> the landlord completes a move-out
-              inspection report with the tenant, and the security deposit must be returned within
-              10 days after the tenant moves out. The inspection is where cleaning gets cited, so
+              inspection report with the tenant. Within 10 days of the tenant moving out, the
+              landlord must return the deposit, or return what is left with a written statement of
+              any deductions (an estimate is allowed, with the final statement within 30 days). The inspection is where cleaning gets cited, so
               an end of tenancy clean is timed for the day before it, after the furniture
               has gone and before the keys do.
             </p>
@@ -643,8 +645,8 @@ export default function CalgaryMoveInOut() {
               </div>
               <h3 className="text-xl font-bold mb-3">Supplies and equipment included</h3>
               <p className="text-muted-foreground leading-relaxed">
-                The team brings everything. Eco-friendly products are available for{" "}
-                {POLICY.ecoProductsFee}: {POLICY.ecoProductsHowToRequest}. You only need the power and
+                The team brings everything. Optional alternative products are available for{" "}
+                {POLICY.ecoProductsFee} before GST: {POLICY.ecoProductsHowToRequest}. You only need the power and
                 running water on at the address.
               </p>
             </div>

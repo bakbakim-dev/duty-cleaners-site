@@ -354,7 +354,7 @@ export default function BlogVinegarBakingSoda() {
                   When the Grime Has Built Up
                 </h3>
                 <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                  When built-up grime is past what vinegar and baking soda can shift, a deep clean is the standard checklist plus the deep-clean package for baseboards, doors, light switches, wall outlets and vent covers. Duty Cleaners books <Link to="/edmonton/deep-cleaning/" className="text-primary underline underline-offset-2 font-medium">deep cleaning in Edmonton</Link> and <Link to="/calgary/deep-cleaning/" className="text-primary underline underline-offset-2 font-medium">deep cleaning in Calgary</Link>. The team brings all supplies and equipment, and eco-friendly products are an add-on: ask when you book and the office adds it.
+                  When built-up grime is past what vinegar and baking soda can shift, a deep clean is the standard checklist plus the deep-clean package for baseboards, doors, light switches, wall outlets and vent covers. Duty Cleaners books <Link to="/edmonton/deep-cleaning/" className="text-primary underline underline-offset-2 font-medium">deep cleaning in Edmonton</Link> and <Link to="/calgary/deep-cleaning/" className="text-primary underline underline-offset-2 font-medium">deep cleaning in Calgary</Link>. The team brings all supplies and equipment, and optional alternative products are a paid add-on: ask the office which products are available and suitable for your surfaces when you book.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button size="lg" variant="accent" className="w-full sm:w-auto min-h-[52px] text-base font-bold" asChild>

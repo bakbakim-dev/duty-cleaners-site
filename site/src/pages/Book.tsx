@@ -10,6 +10,13 @@ import { CITY_PROOF } from "@/data/proof";
 /**
  * Step 4 of the funnel, kept on our domain. A deliberately minimal shell:
  * no nav, no escape hatches mid-checkout.
+ *
+ * Only used when BOOKING_MODE is "embed" (it is "redirect" today). Before
+ * switching: this URL carries the visitor's name, email and phone for the
+ * BookingKoala prefill. Google Analytics (lib/analytics.ts) strips the query string
+ * from page_location (safePageLocation), but the prefill still sits in this page's
+ * address bar in embed mode: strip those parameters from the URL, or exclude /book
+ * from analytics, in the same change.
  */
 export default function Book() {
   const location = useLocation();

@@ -180,16 +180,55 @@ export function normalizePostalCode(input: string | undefined | null): string | 
   return `${raw.slice(0, 3)} ${raw.slice(3)}`;
 }
 
-/** Forward sortation areas we service without a travel fee. */
-const IN_CITY_PREFIXES = ["T5", "T6", "T2", "T3"];
-
-/** Which city an in-city prefix belongs to, for the confirmation line. */
+/**
+ * Which city's limits a postal code lies in, for the travel fee (none inside
+ * either city) and the confirmation line.
+ *
+ * Checked on 2026-09-11 by overlaying Statistics Canada's 2021 Forward
+ * Sortation Area boundary file (catalogue 92-179-X, as republished by the City
+ * of Calgary: data.calgary.ca dataset 929h-pxfz) on each city's own boundary
+ * (data.calgary.ca erra-cqp9, updated 2026-09; data.edmonton.ca qqvh-dp5m, the
+ * boundary since 1 January 2019):
+ *
+ *  - Every T5 and T6 FSA lies inside Edmonton (97% or more of each one's land;
+ *    the rest is where the two files' lines differ).
+ *  - T1Y (Rundle, Whitehorn, Monterey Park: north-east Calgary) is a Calgary FSA
+ *    although it starts with T1: 98.6% of it is inside the city.
+ *  - T3Z (Redwood Meadows, Bragg Creek) starts with T3 but 99.7% of its land is
+ *    outside Calgary, so it pays the travel fee like any other outside code.
+ *
+ * FSAs that straddle a boundary keep the rule of their prefix, because the
+ * postal code alone cannot say which side an address is on: T2Y, T3L, T3P,
+ * T3R and a rural part of T2P (partly outside Calgary, charged no fee), and
+ * T1X (Chestermere) and T4A (Airdrie), which each reach a little way inside
+ * Calgary's limits (charged the fee). The office confirms before the clean.
+ */
 const CITY_BY_PREFIX: Record<string, string> = {
   T5: "Edmonton",
   T6: "Edmonton",
   T2: "Calgary",
   T3: "Calgary",
 };
+
+/** Whole-FSA exceptions to CITY_BY_PREFIX; null means outside both cities. */
+const CITY_BY_FSA: Record<string, string | null> = {
+  T1Y: "Calgary",
+  T3Z: null,
+};
+
+/**
+ * Red Deer's FSAs (Canada Post: T4N central, T4P north, T4R south; their 2021
+ * boundaries cover the city). Red Deer is served, but its travel charge and
+ * whether it can be booked online are not on file, so the funnel sends these
+ * codes to the phone instead of adding the Edmonton/Calgary travel fee.
+ */
+const RED_DEER_FSAS = ["T4N", "T4P", "T4R"];
+
+function cityForPostalCode(normalized: string): string | null {
+  const fsa = normalized.slice(0, 3);
+  if (fsa in CITY_BY_FSA) return CITY_BY_FSA[fsa];
+  return CITY_BY_PREFIX[normalized.slice(0, 2)] ?? null;
+}
 
 /**
  * Whether an address is inside Edmonton/Calgary city limits, judged by the
@@ -201,14 +240,20 @@ export function postalCodeCityStatus(
 ): "inside" | "outside" | "unknown" {
   const normalized = normalizePostalCode(input);
   if (!normalized) return "unknown";
-  return IN_CITY_PREFIXES.includes(normalized.slice(0, 2)) ? "inside" : "outside";
+  return cityForPostalCode(normalized) ? "inside" : "outside";
 }
 
 /** "T5J 0N3" → "Edmonton"; null when the code isn't an in-city one. */
 export function postalCodeCityName(input: string | undefined | null): string | null {
   const normalized = normalizePostalCode(input);
   if (!normalized) return null;
-  return CITY_BY_PREFIX[normalized.slice(0, 2)] ?? null;
+  return cityForPostalCode(normalized);
+}
+
+/** True for a complete Red Deer postal code (see RED_DEER_FSAS). */
+export function isRedDeerPostalCode(input: string | undefined | null): boolean {
+  const normalized = normalizePostalCode(input);
+  return normalized !== null && RED_DEER_FSAS.includes(normalized.slice(0, 3));
 }
 
 /** Optional booking-page answers collected on step 3. */

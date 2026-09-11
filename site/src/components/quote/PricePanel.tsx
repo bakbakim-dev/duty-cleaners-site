@@ -37,8 +37,11 @@ export default function PricePanel({
   const firstClean = firstCleanOverride ?? quote.firstClean;
   const ongoing = quote.ongoing === null ? null : (ongoingOverride ?? quote.ongoing);
   const savings = savingsOverride ?? quote.savings;
+  // The low end of an estimate is BookingKoala's own tier price, never the
+  // spread below it: "$495" for a post-construction tier published at $550
+  // quoted a figure BookingKoala does not charge.
   const priceLabel = quote.isEstimate
-    ? `${formatPrice(quote.rangeLow)}–${formatPrice(quote.rangeHigh)}`
+    ? `${formatPrice(quote.firstClean)}–${formatPrice(quote.rangeHigh)}`
     : formatPrice(firstClean);
 
   /**

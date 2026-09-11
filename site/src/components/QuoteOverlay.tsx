@@ -4,6 +4,7 @@ import { ArrowLeft, Phone, Star, X } from "lucide-react";
 import { useQuoteOverlay } from "@/hooks/use-quote-overlay";
 import { useLocation } from "react-router-dom";
 import { isCalgaryPath } from "@/lib/city-from-path";
+import { RATING_CLAIM, cityProofFor } from "@/data/proof";
 
 /**
  * The funnel (with react-hook-form + zod + the whole pricing engine) used to be
@@ -46,9 +47,8 @@ export default function QuoteOverlay() {
   const panelRef = useRef<HTMLDivElement>(null);
   const openerRef = useRef<HTMLElement | null>(null);
   const scrollYRef = useRef(0);
-  const isCalgary = isCalgaryPath(pathname);
-  const phone = isCalgary ? "(403) 768-1341" : "(780) 913-6565";
-  const phoneLink = isCalgary ? "tel:4037681341" : "tel:7809136565";
+  // The branch's own number, from data/proof.ts: never typed here.
+  const { phone, phoneLink } = cityProofFor(pathname);
 
   // Lock the page behind the takeover, trap focus, and support Escape.
   useEffect(() => {
@@ -144,7 +144,7 @@ export default function QuoteOverlay() {
               ))}
             </span>
             <span className="truncate text-xs font-semibold text-muted-foreground sm:text-sm">
-              4.9 on Google
+              {RATING_CLAIM}
             </span>
           </span>
         </div>

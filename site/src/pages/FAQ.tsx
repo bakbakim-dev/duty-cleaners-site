@@ -9,7 +9,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Phone, HelpCircle, Home, Truck, Building2, HardHat, DollarSign, Award, Sparkles, MessageSquare, Shield, Heart } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import heroFaqLivingRoom from "@/assets/hero-faq-living-room.webp";
-import { RATING_CLAIM } from "@/data/proof";
+import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
 
 /** Figures read from bk-config, so an answer cannot drift from the booking form. */
 const STANDARD_FROM = standardTierRows()[0].price;
@@ -100,7 +100,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "Do I need to provide cleaning supplies?",
-        answer: `No. The team brings all cleaning supplies and equipment. Eco-friendly products are available for ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}.`,
+        answer: `No. The team brings all cleaning supplies and equipment. Optional alternative products are available for ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}.`,
       },
       {
         question: "Do you take out the trash after cleaning?",
@@ -280,7 +280,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "Which areas do you serve?",
-        answer: `The Edmonton office covers 80 Edmonton neighbourhoods plus St. Albert, Sherwood Park, Spruce Grove, Leduc, Beaumont, Fort Saskatchewan, Stony Plain, Morinville and Devon. The Calgary office covers 66 Calgary neighbourhoods plus Airdrie, Cochrane, Okotoks, Chestermere, Strathmore, High River, Langdon, Crossfield and Diamond Valley, which includes Black Diamond and Turner Valley. There is no trip fee inside either city's limits; outside them a ${TRAVEL_FEE} travel fee is added per visit on a home clean. Red Deer is not served, and for any other address that is not listed, call the branch.`,
+        answer: `The Edmonton office covers 80 Edmonton neighbourhoods plus St. Albert, Sherwood Park, Spruce Grove, Leduc, Beaumont, Fort Saskatchewan, Stony Plain, Morinville and Devon. The Calgary office covers 66 Calgary neighbourhoods plus Airdrie, Cochrane, Okotoks, Chestermere, Strathmore, High River, Langdon, Crossfield and Diamond Valley, which includes Black Diamond and Turner Valley. There is no trip fee inside either city's limits; outside them a ${TRAVEL_FEE} travel fee is added per visit on a home clean. Red Deer is served as well: call the Edmonton office at ${CITY_PROOF.edmonton.phone} or the Calgary office at ${CITY_PROOF.calgary.phone} to book a Red Deer clean and confirm the travel charge. For any other address that is not listed, call the branch.`,
       },
     ],
   },

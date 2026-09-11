@@ -2,40 +2,29 @@ import { BEFORE_AFTER } from "@/data/before-after";
 import useRevealOnScroll from "@/hooks/use-reveal-on-scroll";
 
 /**
- * Real before/after pairs for a city. Until the owner supplies photos the
- * section is one honest line, not a heading, an icon and two paragraphs about
- * a photo shoot: that was sixty words of padding on the two pages where the
- * word count matters most, and it repeated verbatim on both.
+ * Real before/after pairs for a city, owner-approved only (data/before-after.ts).
  *
- * The line used to end "We do not publish stand-ins" while sitting directly
- * under a six-photo mosaic of generated images on both hubs. The mosaic is
- * gone; the line is the whole section again, and shorter.
+ * With no approved pairs on file the section renders nothing at all. It used
+ * to render one line promising photos later: a placeholder for content that
+ * does not exist yet, on the two city hubs, telling the reader about the site
+ * rather than about the clean. Before that it was a heading and two paragraphs about a
+ * photo shoot, and before that a mosaic of generated images under a caption
+ * saying the site does not publish stand-ins.
+ *
+ * Add real pairs to BEFORE_AFTER and the section below renders as it is.
  */
-const EMPTY_LINE = {
-  Edmonton: "Before-and-after photos from Edmonton cleans go up here once the homeowners have approved them.",
-  Calgary: "Before-and-after photos from Calgary cleans go up here once the homeowners have approved them.",
-} as const;
-
 export default function BeforeAfterGallery({ city }: { city: "Edmonton" | "Calgary" }) {
   const pairs = BEFORE_AFTER[city];
   const reveal = useRevealOnScroll<HTMLDivElement>();
 
-  if (pairs.length === 0) {
-    return (
-      <section className="band band-tight band-white band-hairline" aria-label={`Before and after cleans in ${city}`}>
-        <div className="container mx-auto px-4">
-          <p className="mx-auto max-w-3xl text-center text-sm leading-relaxed text-muted-foreground">{EMPTY_LINE[city]}</p>
-        </div>
-      </section>
-    );
-  }
+  if (pairs.length === 0) return null;
 
   return (
     <section className="band band-white band-hairline" aria-label={`Before and after cleans in ${city}`}>
       <div className="container mx-auto px-4">
         <div className="mb-10 text-center">
           <span className="text-sm font-semibold uppercase tracking-wide text-accent">Before &amp; After</span>
-          <h2 className="display-serif display-2 mt-2 text-foreground">Real {city} homes, real results</h2>
+          <h2 className="display-serif display-2 mt-2 text-foreground">Before-and-after photos from {city} cleans</h2>
         </div>
 
         <div ref={reveal.ref} className={`motion-reveal mx-auto max-w-5xl ${reveal.className}`}>

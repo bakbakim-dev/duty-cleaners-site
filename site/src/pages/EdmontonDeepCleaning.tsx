@@ -177,7 +177,7 @@ export default function EdmontonDeepCleaning() {
         "Mould remediation, bodily fluids, or pest removal",
         "Areas beyond the reach of a 3-step ladder",
         "Light bulbs and fragile fixtures",
-        "Garages, patios, and outdoor areas",
+        "Garages, patios and outdoor areas, apart from the balcony or garage sweep add-on, available mostly in summer when the weather allows",
         "Laundry and dishes",
       ]}
       faqs={[
@@ -189,7 +189,7 @@ export default function EdmontonDeepCleaning() {
         { q: "How long does a deep cleaning take?", a: "We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
         { q: "How is deep cleaning different from regular cleaning?", a: "A standard clean is the surfaces you use: floors, bathrooms, kitchen counters, and dusting whatever is in reach. The deep clean adds the package on top, which is the trim and door frames, the switch plates, the outlet covers, the vent covers, the shower glass, and the stovetop, grates and fridge top. In a house that has been sealed since October, that is where the furnace dust and the boot grit have gone." },
         { q: "Do I need to prepare anything?", a: "Two things help, and neither of them is cleaning. Tell us how the team gets in, whether that is a lockbox, a smart-lock code, a garage code or a key with a concierge. Then tell us which rooms matter most and which to leave alone, because a deep clean spends its hours on trim and edges and there is no sense spending them in a room you would rather we skipped." },
-        { q: "Are your products safe for kids and pets?", a: `We bring our own standard professional products. Tell us about any sensitivities, or anything you would rather we did not use, when you book. Eco-friendly products are available for ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}.` },
+        { q: "Are your products safe for kids and pets?", a: `We bring our own standard professional products. Tell us about any sensitivities, or anything you would rather we did not use, when you book. Optional alternative products are ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}.` },
         { q: "How often should I get a deep cleaning?", a: "There is no fixed interval, and a number of months is the wrong way to decide it. What sets it is how long the edges have been left: if the trim, the vents and the tops of the door frames have not been touched since the last one, it is due. A home where the furnace runs all winter and everybody comes in through the same door reaches that point sooner. Standard visits on a schedule in between are what keep the gap long." },
         { q: "What happens if something is missed?", a: `Tell us within ${POLICY.guaranteeWindowHours} hours and the team comes back to re-clean it at no charge. Photos help but are not required. The commitment is the return visit rather than a refund, though you can call the Edmonton office on (780) 913-6565 to talk through anything else.` },
       ]}

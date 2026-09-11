@@ -154,7 +154,7 @@ export default function CalgaryDeepCleaning() {
         "Mould remediation, bodily fluids and pest removal",
         "Anything higher than a 3-step ladder reaches",
         "Light bulbs, chandeliers and fragile fixtures",
-        "Garages, patios and balconies (a balcony sweep is an add-on)",
+        "Garages, patios and balconies, apart from the balcony or garage sweep add-on, available mostly in summer when the weather allows",
       ]}
       faqs={[
         { q: "Is there a best time of year for a deep clean in Calgary?", a: "Late winter or early spring clears a whole winter of road sand and de-icer at once. Calgary thaws and refreezes on chinooks from November to April, so entryways and baseboards collect grit again and again rather than staying frozen over. Late autumn is the other sensible window, resetting the house before that cycle starts. If a particular date matters, book ahead: same-day and next-day slots depend on the schedule." },
@@ -164,7 +164,7 @@ export default function CalgaryDeepCleaning() {
         { q: "Will the team deal with mould in the shower?", a: "Light surface mildew on grout or caulking gets wiped where it is safe to. Anything heavier is mould remediation, which is a different trade, and we will tell you so rather than scrub at it." },
         { q: "How long will a Calgary deep clean take?", a: "We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
         { q: "What does a deep clean do that a standard clean does not?", a: "The standard clean keeps a kept-up home kept up: floors, bathrooms, kitchen surfaces, dusting. The deep-clean package goes to what those visits pass over, the baseboards and door frames, the switch plates and outlet covers, the vents, the tile and shower glass, and the range hood and stovetop grease. It is the reset; the standard visits are the maintenance." },
-        { q: "Are the products safe around children and pets?", a: `We bring standard professional products. If anyone in the house has a sensitivity, or there is a product you would rather we did not use, say so when you book. Eco-friendly products are available for ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}. A home with pets carries a ${addOnLabel("must-choose-if-you-have-pets")} charge on each visit, and it shows on the quote before you book.` },
+        { q: "Are the products safe around children and pets?", a: `We bring standard professional products. If anyone in the house has a sensitivity, or there is a product you would rather we did not use, say so when you book. Optional alternative products are available for ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}. A home with pets carries a ${addOnLabel("must-choose-if-you-have-pets")} charge on each visit, and it shows on the quote before you book.` },
         { q: "How often does a Calgary home need a deep clean?", a: "Twice a year is a sensible rhythm for a Calgary home: once in spring, after the chinook season that runs from November to April, and once in late autumn before it starts again. Between them, the standard clean on a schedule keeps the build-up from returning, at 10% to 20% off from the second visit. A home with a dog or a garage entry may want the second deep clean sooner." },
       ]}
       closingSections={[

@@ -651,6 +651,24 @@ describe("price CTAs reach the price", () => {
     const CITED: ReadonlyArray<readonly [string, string]> = [
       ["/move-out-cleaning-edmonton/", "https://www.alberta.ca/ending-a-tenancy"],
       ["/move-out-cleaning-calgary/", "https://www.alberta.ca/ending-a-tenancy"],
+      // 2026-09-11: the pages that state the deposit rule now state it accurately
+      // (full deposit, or the balance with a statement of deductions) and cite it.
+      ...[
+        "/cleaning-services-calgary/",
+        "/cleaning-services-airdrie/",
+        "/cleaning-services-beaumont/",
+        "/cleaning-services-cochrane/",
+        "/cleaning-services-devon/",
+        "/cleaning-services-leduc/",
+        "/cleaning-services-morinville/",
+        "/cleaning-services-sherwood-park/",
+        "/cleaning-services-spruce-grove/",
+        "/cleaning-services-st-albert/",
+        "/cleaning-services-stony-plain/",
+        "/locations/cliff-bungalow-calgary/",
+        "/locations/greenview-calgary/",
+        "/locations/queen-alexandra-edmonton/",
+      ].map((url) => [url, "https://www.alberta.ca/ending-a-tenancy"] as const),
       ["/cleaning-with-vinegar-and-baking-soda/", "https://tc.canada.ca/en/dangerous-goods/canutec/articles/improper-mixing-common-household-cleaning-products"],
       ["/the-top-5-must-have-cleaning-products-for-a-spotless-home/", "https://www.canada.ca/en/health-canada/services/home-safety/household-chemical-safety.html"],
       ["/faqs/", "https://www.canada.ca/en/health-canada/services/publications/healthy-living/addressing-moisture-mould-your-home.html"],

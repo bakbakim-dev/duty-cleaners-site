@@ -44,8 +44,8 @@ export function handoffAlreadyFired(): boolean {
  *
  * It goes up instantly on click — before any network call — so the hop feels
  * like one continuous funnel. If navigation hasn't happened after 3 seconds
- * (blocked script, dead network) a plain link to the exact same URL appears,
- * so a visitor can never be stranded here.
+ * (blocked script, dead network) a button to the exact same URL appears, so a
+ * visitor can never be stranded here.
  */
 export default function BookingHandoff({
   priceLabel,
@@ -95,13 +95,18 @@ export default function BookingHandoff({
         </p>
       </div>
 
+      {/* A button, not a link: the booking URL carries the visitor's name,
+          email, phone, postal code and notes, and Google Analytics' enhanced
+          measurement records the href of any outbound link that is clicked.
+          A button has no href for it to read. */}
       {stalled && (
-        <a
-          href={bookingUrl}
-          className="mt-2 min-h-[48px] bg-brand-gold px-6 py-3 font-bold text-brand-gold-foreground underline-offset-4 hover:underline"
+        <button
+          type="button"
+          onClick={() => window.location.assign(bookingUrl)}
+          className="mt-2 min-h-[48px] bg-brand-gold px-6 py-3 font-bold text-brand-gold-foreground underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-gold"
         >
           Taking longer than expected — continue to booking
-        </a>
+        </button>
       )}
     </div>
   );

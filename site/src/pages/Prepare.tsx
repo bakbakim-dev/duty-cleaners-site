@@ -211,7 +211,7 @@ export default function Prepare() {
                   {[
                     "Your move date — and the latest time the clean can finish.",
                     "Whether the home will be empty. An empty home cleans faster and far more thoroughly; if furniture is staying, tell us what it is.",
-                    "Priority rooms and appliances, such as inside the oven, the fridge and the cabinets. Garages are outside every clean.",
+                    "Priority rooms and appliances, such as inside the oven, the fridge and the cabinets. A garage is outside every clean, apart from a sweep of the floor, which is an add-on available mostly in summer when the weather allows.",
                     "Access: keys, lockbox, buzzer code, elevator booking, parking.",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-3">
@@ -240,6 +240,8 @@ export default function Prepare() {
             </div>
           </section>
 
+          {/* On bg-blue-grey-100 the muted-foreground paragraphs measured 4.38:1,
+              under WCAG AA; foreground at 80% is 6.36:1 (2026-09-11). */}
           <section className="border-y border-border bg-blue-grey-100 py-14 md:py-20">
             <div className="container mx-auto px-4">
               <div className="mx-auto max-w-3xl">
@@ -249,7 +251,7 @@ export default function Prepare() {
                 <h2 className="display-serif display-2 mt-3 text-foreground">
                   The details that help
                 </h2>
-                <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+                <p className="mt-5 text-lg leading-relaxed text-foreground/80">
                   None of this is a test. These are simply the four things that, when missing, cost
                   time on the day:
                 </p>
@@ -268,14 +270,14 @@ export default function Prepare() {
                     </div>
                   ))}
                 </div>
-                <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
+                <p className="mt-6 text-lg leading-relaxed text-foreground/80">
                   The booking form asks about pets, parking and entry, and its notes field takes a
                   room to skip, so nobody has to remember any of it on the doorstep.
                 </p>
                 {/* This page asks about access four separate times and never said what
                     happens when it fails — the most expensive thing preparation can get
                     wrong, and the one thing on this page that costs money. */}
-                <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+                <p className="mt-4 text-lg leading-relaxed text-foreground/80">
                   Worth knowing: if the team arrives and cannot get in, the visit is charged at{" "}
                   {POLICY.lockoutFee}. A lockbox code or a buzzer code you have tested is all it
                   takes to avoid it.

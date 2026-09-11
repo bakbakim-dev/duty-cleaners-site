@@ -7,11 +7,12 @@ import stAlbertHome from "@/assets/gallery/family-clean-home-edmonton.webp";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 import LocationPricing from "@/components/LocationPricing";
-import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice, addOnFromPrice } from "@/data/pricing";
-import { travelFee } from "@/data/addon-table";
+import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice, addOnFromPrice, calculateQuote, homeTypeOptions, PRICING_TIERS } from "@/data/pricing";
+import { travelFee, TRAVEL_FEE_KEY } from "@/data/addon-table";
 import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
 import { GOOGLE_LISTINGS } from "@/lib/google-listings";
 import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
+import GoogleMapEmbed from "@/components/GoogleMapEmbed";
 
 // Every figure below is read from bk-config through pricing.ts; the page never
 // types a price of its own.
@@ -40,15 +41,19 @@ const EDMONTON_LISTING = GOOGLE_LISTINGS.edmonton;
 const PAGE_TITLE = `House Cleaning St. Albert from ${STANDARD_FROM} | Duty Cleaners`;
 const META_DESCRIPTION = `House cleaners in St. Albert from ${STANDARD_FROM} for a one-bedroom apartment or condo before GST, plus a ${TRAVEL_FEE} travel fee and any pet or home-type charge.`;
 
-// A worked quote built from the same rows the price table uses: a
+// A worked quote run through calculateQuote, the booking funnel's own maths: a
 // three-bedroom two-storey house on a one-time standard clean, outside
-// Edmonton city limits, first without and then with a pet.
-const dollars = (price: string) => Number(price.replace(/[^0-9.]/g, ""));
-const cents = (value: number) => Math.round(value * 100) / 100;
+// Edmonton city limits, first without and then with a pet. The table card for
+// that size is rounded to the dollar, so the example states the exact rate and
+// never builds an exact-cent total from the rounded card.
+const EXAMPLE_SIZE = PRICING_TIERS[2];
 const EXAMPLE_TIER = STANDARD[2];
-const EXAMPLE_TOTAL = cents(dollars(EXAMPLE_TIER.price) + BK_PRICE_OVERRIDES[90].price + (travelFee("standard") ?? 0));
-const EXAMPLE_PRICE = formatPrice(EXAMPLE_TOTAL);
-const EXAMPLE_WITH_PET = formatPrice(cents(EXAMPLE_TOTAL + (addOnFromPrice("standard", "must-choose-if-you-have-pets") ?? 0)));
+const exampleQuote = (homeType: number | null, addOns: string[] = []) =>
+  calculateQuote({ service: "standard", homeType, bedrooms: EXAMPLE_SIZE.beds, bathrooms: EXAMPLE_SIZE.bathrooms, halfBaths: EXAMPLE_SIZE.halfBaths, addOns, frequency: "one-time" }).firstClean;
+const EXAMPLE_BASE = formatPrice(exampleQuote(homeTypeOptions("standard")[0]?.id ?? null));
+const EXAMPLE_BASE_TEXT = EXAMPLE_BASE === EXAMPLE_TIER.price ? EXAMPLE_BASE : `${EXAMPLE_BASE} (${EXAMPLE_TIER.price} in the table, which rounds to the dollar)`;
+const EXAMPLE_PRICE = formatPrice(exampleQuote(90, [TRAVEL_FEE_KEY]));
+const EXAMPLE_WITH_PET = formatPrice(exampleQuote(90, [TRAVEL_FEE_KEY, "must-choose-if-you-have-pets"]));
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -158,7 +163,7 @@ export default function StAlbert() {
     },
     {
       question: "Do you bring supplies?",
-      answer: `Yes. The team brings all supplies and equipment, so there is nothing to leave out. Eco-friendly products are available for ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}. Running water is required, and vacuuming may not be possible without electricity, so leave both on until the clean is done.`
+      answer: `Yes. The team brings all supplies and equipment, so there is nothing to leave out. Optional alternative products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}. Running water is required, and vacuuming may not be possible without electricity, so leave both on until the clean is done.`
     },
     {
       question: "Do I need to be home while my St. Albert house is cleaned?",
@@ -271,10 +276,10 @@ export default function StAlbert() {
               </h2>
               <div className="prose prose-lg text-muted-foreground max-w-none space-y-4">
                 <p>
-                  Take a three-bedroom two-storey house on one of St. Albert's older streets, with two bathrooms and a half bath, booked for a one-time standard clean. The table price for that size is {EXAMPLE_TIER.price}, which is the rate for an apartment or condo. A two-storey house adds {HOME_TYPE.twoStorey}, and the {TRAVEL_FEE} travel fee applies because St. Albert is outside Edmonton city limits, so the clean comes to {EXAMPLE_PRICE} before 5% GST. If the home has pets, the {PET_FEE} pet charge is compulsory and the figure becomes {EXAMPLE_WITH_PET}, still before GST.
+                  Take a three-bedroom two-storey house on one of St. Albert's older streets, with two bathrooms and a half bath, booked for a one-time standard clean. The apartment or condo rate for that size is {EXAMPLE_BASE_TEXT}. A two-storey house adds {HOME_TYPE.twoStorey}, and the {TRAVEL_FEE} travel fee applies because St. Albert is outside Edmonton city limits, so the clean comes to {EXAMPLE_PRICE} before 5% GST. If the home has pets, the {PET_FEE} pet charge is compulsory and the figure becomes {EXAMPLE_WITH_PET}, still before GST.
                 </p>
                 <p>
-                  More bathrooms, a larger home type and add-ons such as the inside of the oven, the inside of the fridge or interior windows all raise a St. Albert quote, and eco-friendly products add {POLICY.ecoProductsFee} when you ask for them at booking. How long the clean takes does not change it. If a home needs substantially more work than described, such as heavy build-up or far more glass than stated, the team explains what it found and the options before continuing.
+                  More bathrooms, a larger home type and add-ons such as the inside of the oven, the inside of the fridge or interior windows all raise a St. Albert quote, and optional alternative products add {POLICY.ecoProductsFee} before GST: {POLICY.ecoProductsHowToRequest}. How long the clean takes does not change it. If a home needs substantially more work than described, such as heavy build-up or far more glass than stated, the team explains what it found and the options before continuing.
                 </p>
                 <p>
                   The Edmonton branch cleans St. Albert homes to the same checklist and flat rates as its{" "}
@@ -394,7 +399,8 @@ export default function StAlbert() {
                   A move-in or move-out clean in St. Albert costs {MOVE_FROM} for a one-bedroom apartment or condo, up to {MOVE_TO} for five bedrooms, before 5% GST. The {TRAVEL_FEE} travel fee is added, along with the house-type surcharge or the pet charge where either applies. On top of the standard checklist, the clean covers the inside of the oven, fridge and microwave, and the inside of every cabinet, drawer and closet.
                 </p>
                 <p>
-                  For a tenant, Alberta's Residential Tenancies Act sets out two parts of the handover: the landlord completes a move-out inspection report with the tenant, and the security deposit has to be returned within 10 days after the tenant moves out. We do not promise the deposit comes back; that decision is the landlord's.
+                  For a tenant, Alberta's Residential Tenancies Act sets out two parts of the handover. The landlord completes a move-out inspection report with the tenant. Within 10 days of the tenant moving out, the landlord must return the deposit, or return what is left with a written statement of any deductions (an estimate is allowed, with the final statement within 30 days), as set out in{" "}
+                  <a href="https://www.alberta.ca/ending-a-tenancy" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Alberta's rules on ending a tenancy</a>. We do not promise the deposit comes back; that decision is the landlord's.
                 </p>
                 <p>
                   Some things sit outside every clean, a move-out included: outdoor work such as exterior windows, garages and patios, carpet steam cleaning, lifting anything over 25 lb, and removing window screens. That last exclusion matters in spring on the older streets, where elm seed mats into the screens, because the team leaves them in place. The{" "}
@@ -421,16 +427,7 @@ export default function StAlbert() {
               </p>
             </div>
             <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-xl border border-border">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d38000.0!2d-113.62884!3d53.63324!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a035b1a1a1a1a1%3A0x1a1a1a1a1a1a1a1a!2sSt.%20Albert%2C%20AB!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca"
-                width="100%"
-                height="450"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer"
-                title="St. Albert Service Area Map"
-              />
+              <GoogleMapEmbed query="St. Albert, AB" title="St. Albert Service Area Map" />
             </div>
           </AnimatedSection>
         </div>

@@ -111,17 +111,18 @@ function BookingEmbed({ query, warmup = false }: { query: string; warmup?: boole
               ? "Opening the secure booking page\u2026"
               : "Loading your secure booking page\u2026"}
           </p>
+          {/* A button, not a link: the URL carries the visitor's contact
+              details, and analytics' outbound-click capture reads link hrefs. */}
           {(slow || blocked) && (
-            <a
-              href={fallbackUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={() => window.open(fallbackUrl, "_blank", "noopener,noreferrer")}
               className="min-h-[48px] bg-brand-gold px-6 py-3 font-bold text-brand-gold-foreground"
             >
               {blocked
                 ? "Continue to the secure booking page \u2192"
                 : "Taking too long? Open the secure booking page \u2192"}
-            </a>
+            </button>
           )}
         </div>
       )}

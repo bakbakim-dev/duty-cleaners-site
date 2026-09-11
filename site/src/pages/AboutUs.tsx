@@ -151,9 +151,9 @@ export default function AboutUs() {
                 title: "All Cleaning Supplies & Equipment Provided",
                 // "Premium products and top-tier equipment" implies one company-chosen kit.
                 // Cleaners work as contractors and bring their own, which /join-the-team/
-                // states plainly. What is true is that you supply nothing; the eco-products
+                // states plainly. What is true is that you supply nothing; the alternative-products
                 // option and its fee read from policy.ts.
-                text: `The team brings all supplies and equipment, so you provide nothing. Eco-friendly products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}.`,
+                text: `The team brings all supplies and equipment, so you provide nothing. Optional alternative products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}.`,
               },
               {
                 icon: Clock,

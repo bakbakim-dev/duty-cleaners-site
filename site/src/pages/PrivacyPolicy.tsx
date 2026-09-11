@@ -115,16 +115,23 @@ export default function PrivacyPolicy() {
                 <li>Request deletion of your information (subject to legal requirements)</li>
               </ul>
 
-              {/* Every claim in the next three sections is checked against the code:
-                  no first-party tracking cookies are set (only sessionStorage, which
-                  the browser clears with the tab), and the third parties named below
-                  are exactly the external origins the site actually contacts. If an
-                  embed, analytics tag or pixel is ever added, it belongs here too. */}
+              {/* Every claim in the next four sections is checked against the code:
+                  the site itself sets no cookies (only sessionStorage, which the
+                  browser clears with the tab); Google Analytics loads only when
+                  VITE_GA4_MEASUREMENT_ID is set and only on dutycleaners.ca, sends
+                  page addresses through safePageLocation(), with Google signals and ad
+                  personalisation off, not on GPC / Do Not Track browsers, and every
+                  event passes filterEventProps() in src/lib/analytics.ts first; and the
+                  third parties named below are exactly the external origins the site
+                  contacts. If an embed, analytics tag or pixel is ever added, it
+                  belongs here too. */}
               <h2 className="text-2xl font-bold mb-4 text-foreground">Cookies and Website Storage</h2>
               <p className="mb-4">
-                We do not set advertising or analytics cookies on this website, and we do not use cross-site
-                tracking pixels. The site stores a small amount of information in your browser's session
-                storage, which your browser discards as soon as you close the tab:
+                This website sets no cookies of its own, and we do not use advertising cookies or cross-site
+                tracking pixels. Google Analytics, when it is on, sets its own cookies, described in the next
+                section, and the third-party services listed further down this page may set theirs. The site
+                also stores a small amount of information in your browser's session storage, which your
+                browser discards as soon as you close the tab:
               </p>
               <ul className="list-disc pl-6 mb-4">
                 <li>
@@ -137,6 +144,38 @@ export default function PrivacyPolicy() {
               <p className="mb-8">
                 None of this identifies you personally, and none of it survives the browser session. You can
                 also block or clear storage and cookies through your browser settings.
+              </p>
+
+              <h2 className="text-2xl font-bold mb-4 text-foreground">Website Analytics</h2>
+              <p className="mb-4">
+                We may use Google Analytics to count visits to this website and to see how far visitors get
+                through the instant-price steps: which city and type of clean a quote was started for, which
+                step was reached, whether a price was shown, and whether someone went on to book or tapped a
+                phone number or email link. When it is on, Google Analytics sets its own cookies (named _ga)
+                in your browser so it can tell a returning browser from a new one, and Google receives your
+                IP address and technical details about your browser. We have switched off Google signals and
+                ad personalisation for it.
+              </p>
+              <p className="mb-4">
+                We do not send your name, email address, phone number, address, postal code or anything you
+                type into a form to Google Analytics. The site removes those details before any analytics
+                event leaves your browser, and the phone number or email address in a link you tap is not
+                sent either. The page addresses it records have their query string removed, apart from
+                ad-campaign tags.
+              </p>
+              <p className="mb-8">
+                Google Analytics does not load at all if your browser sends a Global Privacy Control or Do Not
+                Track signal. You can also block or delete its cookies in your browser settings, or install
+                Google&rsquo;s{" "}
+                <a
+                  href="https://tools.google.com/dlpage/gaoptout"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary underline"
+                >
+                  Google Analytics opt-out browser add-on
+                </a>
+                .
               </p>
 
               <h2 className="text-2xl font-bold mb-4 text-foreground">Third-Party Services on This Website</h2>
@@ -156,7 +195,16 @@ export default function PrivacyPolicy() {
                 </li>
                 <li>
                   <strong>HighLevel</strong> — our CRM. Nothing of theirs is embedded on this site any more;
-                  our relay sends your enquiry to them over their API once you submit it.
+                  our relay sends your enquiry to them over their API once you submit it. When you ask for an
+                  instant price, the name, email address and phone number you enter go to this customer system
+                  with your home&rsquo;s details, so the office can reply to you. If you then continue to
+                  booking or ask for a callback, the price you were shown and your notes for the cleaner go
+                  there too.
+                </li>
+                <li>
+                  <strong>Google Analytics</strong> — counts visits and quote steps when it is switched on, as
+                  described in the Website Analytics section. It receives no names, email addresses, phone
+                  numbers or addresses.
                 </li>
                 <li>
                   <strong>Google Maps</strong> — the service-area map embedded on many of our neighbourhood
@@ -188,8 +236,9 @@ export default function PrivacyPolicy() {
                 name, address, phone number, email and any access instructions) are stored and processed
                 on servers outside Canada. While your information is in another country it is subject to
                 that country&rsquo;s laws, and may be accessible to its courts and government authorities.
-                If you would rather not have your details handled that way, call us instead and we will
-                take your booking over the phone.
+                Google Analytics, when it is on, also processes visit data on Google&rsquo;s servers outside
+                Canada. If you would rather not have your details handled that way, call us instead and we
+                will take your booking over the phone.
               </p>
 
               <h2 className="text-2xl font-bold mb-4 text-foreground">How Long We Keep It</h2>

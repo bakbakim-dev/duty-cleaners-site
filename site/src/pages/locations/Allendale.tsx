@@ -131,7 +131,7 @@ const whyUsItems = [
 
 const faqs = [
   { q: "How much does residential cleaning typically cost in Allendale?", a: `A standard clean of a one-bedroom, one-bathroom apartment or condo in Allendale is ${RECURRING_FROM} before 5% GST, and larger homes are priced by size. A bungalow, townhouse or two-storey house adds a home-type charge and a home with pets adds a per-visit pet charge; both show on the quote before you book.` },
-  { q: "Do you bring supplies, or should I provide my own?", a: "The team brings all supplies and equipment to an Allendale clean, so you do not need to provide anything. Running water is required, and vacuuming may not be possible without electricity. Eco-friendly products are an add-on: ask when you book and the office adds them." },
+  { q: "Do you bring supplies, or should I provide my own?", a: `The team brings all supplies and equipment to an Allendale clean, so you do not need to provide anything. Running water is required, and vacuuming may not be possible without electricity. Optional alternative products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}.` },
   { q: "What if I need to reschedule or cancel a visit?", a: `Cancelling or changing an Allendale booking needs 24 hours' notice; inside 24 hours the fee is ${POLICY.cancellationFee}. If we have to move a booking, we say so as soon as we know and offer the earliest slot we have.` },
 ];
 

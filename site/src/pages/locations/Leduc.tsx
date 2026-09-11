@@ -6,11 +6,12 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
-import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice, addOnFromPrice } from "@/data/pricing";
-import { travelFee } from "@/data/addon-table";
+import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice, addOnFromPrice, calculateQuote, homeTypeOptions, PRICING_TIERS } from "@/data/pricing";
+import { travelFee, TRAVEL_FEE_KEY } from "@/data/addon-table";
 import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
 import { GOOGLE_LISTINGS } from "@/lib/google-listings";
 import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
+import GoogleMapEmbed from "@/components/GoogleMapEmbed";
 
 // Every price on this page is read from bk-config through pricing.ts.
 const STANDARD = standardTierRows();
@@ -36,12 +37,16 @@ const EDMONTON_LISTING = GOOGLE_LISTINGS.edmonton;
 const PAGE_TITLE = `House Cleaning Leduc from ${STANDARD_FROM} | Duty Cleaners`;
 const META_DESCRIPTION = `Leduc house cleaning is priced by home size, from ${STANDARD_FROM} before GST for a one-bedroom condo, plus a ${TRAVEL_FEE} travel fee and any pet or home-type charge.`;
 
-// A worked quote built from the same rows the price table uses: a
-// three-bedroom bungalow on a standard clean, outside city limits.
-const dollars = (price: string) => Number(price.replace(/[^0-9.]/g, ""));
+// A worked quote run through calculateQuote, the booking funnel's own maths: a
+// three-bedroom bungalow on a standard clean, outside city limits. The table
+// rounds each size to the dollar, so no total is built from a table card.
+const EXAMPLE_SIZE = PRICING_TIERS[2];
 const EXAMPLE_TIER = STANDARD[2];
-const EXAMPLE_TOTAL = dollars(EXAMPLE_TIER.price) + BK_PRICE_OVERRIDES[54].price + (travelFee("standard") ?? 0);
-const EXAMPLE_PRICE = formatPrice(EXAMPLE_TOTAL);
+const exampleQuote = (homeType: number | null, addOns: string[] = []) =>
+  calculateQuote({ service: "standard", homeType, bedrooms: EXAMPLE_SIZE.beds, bathrooms: EXAMPLE_SIZE.bathrooms, halfBaths: EXAMPLE_SIZE.halfBaths, addOns, frequency: "one-time" }).firstClean;
+const EXAMPLE_BASE = formatPrice(exampleQuote(homeTypeOptions("standard")[0]?.id ?? null));
+const EXAMPLE_BASE_TEXT = EXAMPLE_BASE === EXAMPLE_TIER.price ? EXAMPLE_BASE : `${EXAMPLE_BASE} (${EXAMPLE_TIER.price} in the table, which rounds to the dollar)`;
+const EXAMPLE_PRICE = formatPrice(exampleQuote(54, [TRAVEL_FEE_KEY]));
 // An add-on on a standard clean; the move-in/move-out clean includes it.
 const OVEN_FROM = formatPrice(addOnFromPrice("standard", "inside-oven") ?? 0);
 
@@ -157,7 +162,7 @@ export default function Leduc() {
     },
     {
       question: "Do you bring supplies to Leduc?",
-      answer: `Yes. The team brings all supplies and equipment, from products and cloths to the vacuum and mop. Leduc's post-war bungalows and its newest subdivisions have different surfaces, painted softwood and original tile on one and sealed stone and engineered plank on the other, and the kit covers both. Leave the water and power on until the clean is done. Eco-friendly products are ${POLICY.ecoProductsFee} extra, and the way to get them is to ${POLICY.ecoProductsHowToRequest}.`
+      answer: `Yes. The team brings all supplies and equipment, from products and cloths to the vacuum and mop. Leduc's post-war bungalows and its newest subdivisions have different surfaces, painted softwood and original tile on one and sealed stone and engineered plank on the other, and the kit covers both. Leave the water and power on until the clean is done. Optional alternative products cost ${POLICY.ecoProductsFee} extra, before GST: ${POLICY.ecoProductsHowToRequest}.`
     },
     {
       question: "How long does a first clean in Leduc take?",
@@ -274,16 +279,7 @@ export default function Leduc() {
               </p>
             </div>
             <div className="max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-xl">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d75904.04936517384!2d-113.55117!3d53.26078!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a018e7b3e3f5ab%3A0x60e2ac0e20373bfa!2sLeduc%2C%20AB!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca"
-                width="100%"
-                height="450"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer"
-                title="Leduc Service Area Map"
-              />
+              <GoogleMapEmbed query="Leduc, AB" title="Leduc Service Area Map" />
             </div>
           </AnimatedSection>
         </div>
@@ -390,7 +386,7 @@ export default function Leduc() {
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>
-                  Take a three-bedroom post-war bungalow near the old core, with two bathrooms and a half bath, on a one-time standard clean. The table price for that size is {EXAMPLE_TIER.price}, which assumes an apartment or condo. A bungalow adds {HOME_TYPE.bungalow} and a Leduc address adds the {TRAVEL_FEE} travel fee, so the quote comes to {EXAMPLE_PRICE} before 5% GST. A home with pets adds the compulsory {PET_FEE} pet charge on every visit.
+                  Take a three-bedroom post-war bungalow near the old core, with two bathrooms and a half bath, on a one-time standard clean. The rate for that size is {EXAMPLE_BASE_TEXT}, which assumes an apartment or condo. A bungalow adds {HOME_TYPE.bungalow} and a Leduc address adds the {TRAVEL_FEE} travel fee, so the quote comes to {EXAMPLE_PRICE} before 5% GST. A home with pets adds the compulsory {PET_FEE} pet charge on every visit.
                 </p>
                 <p>
                   The clean itself is priced the way our{" "}
@@ -422,7 +418,8 @@ export default function Leduc() {
                 <p>
                   For a handover, book{" "}
                   <Link to="/move-out-cleaning-edmonton/" className="text-primary underline underline-offset-2 font-medium">end of tenancy cleaning in Leduc</Link>{" "}
-                  from {MOVE_FROM} for a one-bedroom apartment or condo, before GST, the travel fee and any house-type or pet surcharge, once the last box has left. Under Alberta's Residential Tenancies Act the landlord completes a move-out inspection report with the tenant, and the security deposit must be returned within 10 days after the tenant moves out.
+                  from {MOVE_FROM} for a one-bedroom apartment or condo, before GST, the travel fee and any house-type or pet surcharge, once the last box has left. Under Alberta's Residential Tenancies Act the landlord completes a move-out inspection report with the tenant. Within 10 days of the tenant moving out, the landlord must return the deposit, or return what is left with a written statement of any deductions (an estimate is allowed, with the final statement within 30 days), as set out in{" "}
+                  <a href="https://www.alberta.ca/ending-a-tenancy" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Alberta's rules on ending a tenancy</a>.
                 </p>
                 <p>
                   A suite listed as a short-term rental needs a turnover between guests rather than a scheduled clean, priced by the hour with a minimum of 3 hours for one cleaner or 2 hours for two. Leduc hosts can book it as{" "}

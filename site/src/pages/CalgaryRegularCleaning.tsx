@@ -172,7 +172,7 @@ export default function CalgaryRegularCleaning() {
         "Mould remediation, bodily fluids and pest removal",
         "Anything higher than a 3-step ladder reaches",
         "Light bulbs, chandeliers and fragile fixtures",
-        "Garages, patios and balconies (a balcony sweep is an add-on)",
+        "Garages, patios and balconies, apart from the balcony or garage sweep add-on, available mostly in summer when the weather allows",
       ]}
       faqs={[
         { q: "Is a standard clean the same as a maid service in Calgary?", a: "Yes. Whatever you call it, a maid service, a housekeeper or a cleaner, the visit is the same: the kitchen, bathrooms, bedrooms and floors worked through from a checklist at a flat rate set by home size. Nobody lives in and nothing is billed by the hour. If you want the maid back every week or two, book it as recurring cleaning and the discount starts on the second visit." },
@@ -182,7 +182,7 @@ export default function CalgaryRegularCleaning() {
         { q: "Is the price by the hour?", a: "No. The rate is fixed by home size before the team arrives, and it stays fixed if the visit takes longer than expected. The team works to the checklist, not to a clock, and leaves when the checklist is done." },
         { q: "How often do Calgary homes need a standard clean?", a: "One visit is one visit; book it when the house needs it. To keep a Calgary home at one level, put the standard clean on a schedule: weekly visits are 20% off, bi-weekly 15% off and every 4 weeks 10% off. The discount starts on the second visit, and the first is charged at the one-time rate." },
         { q: "Can the team get in if I am at work?", a: `Yes. You do not need to be home: most customers leave a key, a lockbox code or smart-lock access, and in a Calgary tower a fob left with the concierge does the same job. Tell us which when you book, and the team locks up on the way out. If the team cannot get in, the lockout charge is ${POLICY.lockoutFee}.` },
-        { q: "Who supplies the products and the vacuum?", a: `We do. The team brings every product and piece of equipment, the vacuum included. If there is a product you want used or avoided, say so when you book. Eco-friendly products are ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}.` },
+        { q: "Who supplies the products and the vacuum?", a: `We do. The team brings every product and piece of equipment, the vacuum included. If there is a product you want used or avoided, say so when you book. Optional alternative products are ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}.` },
         { q: "How should I get the house ready?", a: "You do not need to clean before the team comes; clear counters and floors get cleaned and cluttered ones get worked around; decluttering and organising are a separate hourly add-on. If a room should be skipped, or one deserves extra time, note it on the booking." },
       ]}
       closingSections={[

@@ -1,10 +1,17 @@
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import { captureTrackingParams } from "./lib/tracking";
+import { initAnalytics, initContactClickTracking } from "./lib/analytics";
 import "./index.css";
 
 // Capture gclid/UTM attribution from the landing URL (first-touch wins).
 captureTrackingParams();
+
+// Google Analytics 4 loads only when a measurement ID is set at build time
+// (VITE_GA4_MEASUREMENT_ID, see .env.example); without one this adds nothing.
+initAnalytics(import.meta.env.VITE_GA4_MEASUREMENT_ID);
+// phone_click / email_click for every tel: and mailto: link, without the number.
+initContactClickTracking();
 
 // Prevent the browser from restoring previous scroll position on refresh —
 // our <ScrollToTop /> handles scroll on every route change. Without this,
