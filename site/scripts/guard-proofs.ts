@@ -1104,8 +1104,8 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/red-deer-branch.test.ts",
     target: "index.html",
-    find: "{ \"@id\": \"https://dutycleaners.ca/#reddeer\" }",
-    replace: "{ \"@id\": \"https://dutycleaners.ca/#red-deer\" }",
+    find: "\"@id\": \"https://dutycleaners.ca/#reddeer\", \"@type\": \"LocalBusiness\"",
+    replace: "\"@id\": \"https://dutycleaners.ca/#red-deer\", \"@type\": \"LocalBusiness\"",
     failing: "the Organization schema lists the Red Deer branch",
     why: "Detaches the Organization's subOrganization from the Red Deer branch entity's @id.",
   },
@@ -1233,6 +1233,14 @@ export const GUARD_PROOFS: GuardProof[] = [
     replace: 'openingHours: ["Mo-Sa 08:00-20:00", "Su 09:00-15:00"],',
     failing: "the office hours and address are read from proof.ts, never retyped",
     why: "Retypes the hours next to proof.ts, the copy that goes stale the day the office changes them.",
+  },
+  {
+    guard: "src/data/auditspur-1621.test.ts",
+    target: "index.html",
+    find: '"name": "Duty Cleaners Calgary"',
+    replace: '"name": "Duty Cleaners Calgary Cleaning"',
+    failing: "the Organization's branch references name the entity they point at",
+    why: "Drifts a branch name hand-typed in static HTML away from data/proof.ts, which is exactly what that file cannot import.",
   },
   // ---- and this registry itself ------------------------------------------
   {

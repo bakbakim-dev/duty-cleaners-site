@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync, existsSync, readdirSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
+import { BRANCH_IDENTITY } from "./proof";
 
 /**
  * The real finding of the second AuditSpur scan of the preview (2026-09-11, 16:21):
@@ -77,6 +78,11 @@ describe("AuditSpur findings of 2026-09-11 16:21 stay fixed", () => {
           continue;
         }
         for (const node of localBusinesses(graph)) {
+          // A REFERENCE node — @id, @type, name and url, with no address and no telephone —
+          // only says "this is that entity"; the full listing lives on the branch's own page.
+          // Requiring hours here would force the office address and hours onto all 210 pages
+          // that merely point at a branch, which is the duplication the @id exists to avoid.
+          if (!node.address && !node.telephone) continue;
           seen++;
           if (!node.openingHoursSpecification) offenders.push(`${page}: ${String(node["@id"] ?? node.name)}`);
         }
@@ -113,6 +119,33 @@ describe("AuditSpur findings of 2026-09-11 16:21 stay fixed", () => {
     // And the builders that had no hours at all now read them.
     for (const rel of ["lib/service-schema.ts", "lib/pricing-schema.ts", "components/ServiceDetailPage.tsx"]) {
       expect(src(rel), `${rel} publishes the branch hours`).toMatch(/openingHoursSpecification: openingHoursSpecFor\(/);
+    }
+  });
+
+  it("the Organization's branch references name the entity they point at", () => {
+    /*
+      All 210 built pages carry this subOrganization block, but #edmonton is DEFINED on 101 of
+      them, #calgary on 87 and #reddeer on 2 — so most pages referenced a branch they never
+      described, and a reader of one page alone could not tell what #reddeer was.
+
+      A cross-page @id is legitimate JSON-LD, so the fix is not to repeat the listing on 210
+      pages: it is to let each reference say what it points at. Address, hours and geo stay on
+      the branch's own page, which is why these stay reference-shaped and the hours guard above
+      deliberately skips them.
+
+      The three values are hand-typed in static HTML, which cannot import proof.ts — so this
+      guard is what keeps them from drifting from the authority, the same risk that put the
+      office hours and the Edmonton street address into five other files.
+    */
+    const html = readFileSync(join(SITE, "index.html"), "utf-8");
+    const block = /"subOrganization": \[([\s\S]*?)\]/.exec(html)?.[1];
+    expect(block, "the subOrganization block in index.html").toBeTruthy();
+    for (const [key, identity] of Object.entries(BRANCH_IDENTITY)) {
+      const entry = new RegExp(`\\{[^}]*#${key}"[^}]*\\}`).exec(block!)?.[0];
+      expect(entry, `a subOrganization entry for #${key}`).toBeTruthy();
+      expect(entry, `#${key} says what type of thing it is`).toContain('"@type": "LocalBusiness"');
+      expect(entry, `#${key} name matches data/proof.ts`).toContain(`"name": "${identity.name}"`);
+      expect(entry, `#${key} url matches data/proof.ts`).toContain(`"url": "${identity.url}"`);
     }
   });
 });
