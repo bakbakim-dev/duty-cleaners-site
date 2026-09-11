@@ -165,9 +165,10 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
 11. Red Deer Google listing: its primary category shows "Janitorial service"; "House cleaning
    service" matches what the branch sells. It has no reviews yet: ask real Red Deer customers.
 12. Tracking: the GA4 property exists (account "Dutycleaners", property "Duty Cleaners - GA4",
-   web stream 3636867999, Measurement ID G-5WNJ12G60D). Add the ID only after the stream settings
-   below are done (checked 2026-09-11: Enhanced measurement still has Outbound clicks on, and
-   Redact email / query parameters are inactive). It goes in
+   web stream 3636867999, Measurement ID G-5WNJ12G60D). Stream settings done 2026-09-11 (Outbound clicks, Form
+   interactions and history-based page changes off; Redact email on; the nine BookingKoala
+   prefill parameters redacted; stream URL https). The ID is in site/.env.production.local, so
+   the next production build switches GA on; it loads only on dutycleaners.ca / www. It goes in
    `site/.env.production.local` as `VITE_GA4_MEASUREMENT_ID` (git-ignored; read by the local
    production build that deploy.mjs uploads with --no-build, never by Netlify's environment).
    Analytics loads only on dutycleaners.ca / www, never on previews. In the GA web stream first:
