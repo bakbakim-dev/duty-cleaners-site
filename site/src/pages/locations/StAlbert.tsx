@@ -145,7 +145,7 @@ export default function StAlbert() {
     },
     {
       question: "What does a standard clean in St. Albert cost?",
-      answer: `A standard clean in St. Albert is ${STANDARD_FROM} for a one-bedroom, one-bathroom apartment or condo, rising by size to ${STANDARD_TO} for five or more bedrooms, before 5% GST. The ${TRAVEL_FEE} travel fee is added to every St. Albert home-cleaning booking, and the pet charge and the house-type surcharge apply where they fit the home. A deep clean is ${DEEP_FROM} to ${DEEP_TO} on the same terms. On a recurring schedule the discount is 20% weekly, 15% every two weeks and 10% every four weeks. Discounts start from the second visit; the first clean is charged at the one-time rate.`
+      answer: `A standard clean in St. Albert is ${STANDARD_FROM} for a one-bedroom, one-bathroom apartment or condo, rising by size to ${STANDARD_TO} for five bedrooms, before 5% GST. The ${TRAVEL_FEE} travel fee is added to every St. Albert home-cleaning booking, and the pet charge and the house-type surcharge apply where they fit the home. A deep clean is ${DEEP_FROM} to ${DEEP_TO} on the same terms. On a recurring schedule the discount is 20% weekly, 15% every two weeks and 10% every four weeks. Discounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
       question: "How soon can a cleaner come to St. Albert?",
@@ -391,7 +391,7 @@ export default function StAlbert() {
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>
-                  A move-in or move-out clean in St. Albert costs {MOVE_FROM} for a one-bedroom apartment or condo, up to {MOVE_TO} for five or more bedrooms, before 5% GST. The {TRAVEL_FEE} travel fee is added, along with the house-type surcharge or the pet charge where either applies. On top of the standard checklist, the clean covers the inside of the oven, fridge and microwave, and the inside of every cabinet, drawer and closet.
+                  A move-in or move-out clean in St. Albert costs {MOVE_FROM} for a one-bedroom apartment or condo, up to {MOVE_TO} for five bedrooms, before 5% GST. The {TRAVEL_FEE} travel fee is added, along with the house-type surcharge or the pet charge where either applies. On top of the standard checklist, the clean covers the inside of the oven, fridge and microwave, and the inside of every cabinet, drawer and closet.
                 </p>
                 <p>
                   For a tenant, Alberta's Residential Tenancies Act sets out two parts of the handover: the landlord completes a move-out inspection report with the tenant, and the security deposit has to be returned within 10 days after the tenant moves out. We do not promise the deposit comes back; that decision is the landlord's.

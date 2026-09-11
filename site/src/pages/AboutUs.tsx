@@ -1,5 +1,5 @@
 import { POLICY } from "@/data/policy";
-import { BOOKINGS, CITY_PROOF, RATING_CLAIM } from "@/data/proof";
+import { BOOKINGS, CITY_PROOF, COMPANY, RATING_CLAIM } from "@/data/proof";
 import { calgaryNeighborhoods, calgarySurrounding, edmontonNeighborhoods, edmontonSurrounding } from "@/data/city-locations";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -133,7 +133,7 @@ export default function AboutUs() {
                 iconWrap: "bg-accent/10",
                 iconColor: "text-accent",
                 title: "Reference-Checked & Customer-Rated",
-                text: "Every cleaner is reference-checked before a first job and rated by the customer after each visit.",
+                text: `Every cleaner is reference-checked before a first job and rated by the customer after each visit, and ${COMPANY.applicantAcceptanceRate} of applicants are accepted.`,
               },
               {
                 icon: Users,

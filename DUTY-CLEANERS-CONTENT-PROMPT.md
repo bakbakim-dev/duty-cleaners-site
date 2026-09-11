@@ -88,7 +88,7 @@ Where each fact lives, under site/src:
 
 | FACTS id | Source |
 |---|---|
-| P1 | `standardTierRows()` in data/pricing.ts; the top row is the 5-bedroom tier (`PRICING_TIERS`, labelled "5+ Bedroom"), and the dearer 6- and 7-bedroom sizes are in `BK_PRICE_OVERRIDES` in data/bk-price-overrides.ts |
+| P1 | `standardTierRows()` in data/pricing.ts; the top row is the 5-bedroom tier (`PRICING_TIERS`, labelled "5 Bedroom"), and the dearer 6- and 7-bedroom sizes are in `BK_PRICE_OVERRIDES` in data/bk-price-overrides.ts |
 | P1's conditions (flat rate; the team explains extra work) | `PRICING_TERMS` in data/policy.ts |
 | P2 | `deepCleanTierRows()` in data/pricing.ts |
 | P3 | `moveInOutTierRows()` in data/pricing.ts |
@@ -166,7 +166,8 @@ R1  Rated 4.9 on Google. The Edmonton listing has 236 reviews and the Calgary li
     1 September 2026. Use the count of the branch this page belongs to. Never add the two
     together: Google publishes no combined figure.
 R2  Every cleaner is reference-checked before a first job and rated by the customer after each
-    visit, and the ratings decide who we keep sending.
+    visit, and the ratings decide who we keep sending. Under 5% of applicants are accepted (the
+    owner's figure, COMPANY.applicantAcceptanceRate).
 R3  Over 5,000 bookings across Alberta since 2017, confirmed by the owner on 10 September 2026.
     Write it as "5,000+ bookings". It counts bookings, not homes: never write "homes cleaned",
     and never split it by city.
@@ -199,7 +200,7 @@ P5  Post-construction, by square footage: $550 for under 1,000 sq ft, up to $1,9
     4,500 to 4,999 sq ft.
 P6  Wall washing is booked together with a clean, not on its own. Spot cleaning from $39.99, a
     full wash from $119.99, by home size.
-P7  Airbnb and short-term rental turnovers are priced by the hour: $60 per cleaner-hour, with a
+P7  Airbnb and short-term rental turnovers are priced by the hour: $65 per cleaner-hour, with a
     minimum of 3 hours for one cleaner or 2 hours for two.
 P8  Add-ons include inside the oven $59.99, inside the fridge $59.99, and interior windows from
     $39.99.

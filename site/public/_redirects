@@ -367,8 +367,6 @@
 # Real routes that must resolve but are not indexable.
 /book/  /spa-shell.html  200
 /book  /spa-shell.html  200
-/quote-redirect/  /spa-shell.html  200
-/quote-redirect  /spa-shell.html  200
 /locations/all/  /spa-shell.html  200
 /locations/all  /spa-shell.html  200
 /gift-cards/  /spa-shell.html  200

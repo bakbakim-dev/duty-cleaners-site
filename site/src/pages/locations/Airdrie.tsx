@@ -166,7 +166,7 @@ export default function Airdrie() {
     },
     {
       question: "What does a standard clean cost in Airdrie?",
-      answer: `${STANDARD_FROM} for a one-bedroom apartment or condo through ${STANDARD_TOP} for five or more bedrooms, before GST, plus the ${TRAVEL_FEE} travel fee. A house adds a home-type charge, and a home with pets adds the pet charge on every visit. Recurring schedules take 20% off weekly, 15% off bi-weekly and 10% off every 4 weeks. Discounts start from the second visit; the first clean is charged at the one-time rate.`
+      answer: `${STANDARD_FROM} for a one-bedroom apartment or condo through ${STANDARD_TOP} for five bedrooms, before GST, plus the ${TRAVEL_FEE} travel fee. A house adds a home-type charge, and a home with pets adds the pet charge on every visit. Recurring schedules take 20% off weekly, 15% off bi-weekly and 10% off every 4 weeks. Discounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
       question: "Do the cleaners bring supplies to Airdrie?",
@@ -344,7 +344,7 @@ export default function Airdrie() {
                 </h2>
                 <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                   <p>
-                    A deep clean in Airdrie is {DEEP_FROM} for a one-bedroom apartment or condo and {DEEP_TOP} for five or more bedrooms, before GST, plus the {TRAVEL_FEE} travel fee and any house-type or pet charge. It is the standard checklist plus the deep-clean package: baseboards, doors, light switches, wall outlets and vent covers. Book it once to catch up, then keep the home on a standard schedule. The{" "}
+                    A deep clean in Airdrie is {DEEP_FROM} for a one-bedroom apartment or condo and {DEEP_TOP} for five bedrooms, before GST, plus the {TRAVEL_FEE} travel fee and any house-type or pet charge. It is the standard checklist plus the deep-clean package: baseboards, doors, light switches, wall outlets and vent covers. Book it once to catch up, then keep the home on a standard schedule. The{" "}
                     <Link to="/calgary/deep-cleaning/" className="text-primary underline underline-offset-2">deep cleaning in Calgary</Link>{" "}
                     page has the full checklist and the price at every bedroom count.
                   </p>

@@ -19,7 +19,7 @@ import { resolve } from "node:path";
 import { LEGACY_URLS, canonicalForPath, withTrailingSlash } from "../src/data/legacy-urls";
 
 /** Routes that must resolve but are intentionally absent from the sitemap. */
-const APP_ONLY_ROUTES = ["/book", "/quote-redirect", "/locations/all", "/gift-cards"];
+const APP_ONLY_ROUTES = ["/book", "/locations/all", "/gift-cards"];
 
 const slash = (p: string) => (p === "/" ? p : withTrailingSlash(p));
 

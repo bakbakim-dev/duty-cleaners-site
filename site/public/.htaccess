@@ -29,7 +29,6 @@ DirectoryIndex index.html
   # which carries its own noindex, rather than index.html — four extra URLs
   # rendering the homepage body would be soft duplicates of the best page.
   RewriteRule ^book/?$ /spa-shell.html [L]
-  RewriteRule ^quote-redirect/?$ /spa-shell.html [L]
   RewriteRule ^locations/all/?$ /spa-shell.html [L]
   RewriteRule ^gift-cards/?$ /spa-shell.html [L]
 

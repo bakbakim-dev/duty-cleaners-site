@@ -1,15 +1,17 @@
 # Duty Cleaners — dutycleaners.ca rebuild
 
-Read this first. It is the current state as of 2026-09-10; where any other document in this
+Read this first. It is the current state as of 2026-09-11; where any other document in this
 repo disagrees with it or with the code, the code and this file win.
 
 ## What this is
 A prerendered React/Vite rebuild of dutycleaners.ca: a house-cleaning company with two branches
 (Edmonton and Calgary), each with its own address, phone and Google listing. The app is in
-`site/`. Leads go to GoHighLevel through the API v2 contacts/upsert relay (`site/src/config/ghl.ts`);
-bookings hand off to BookingKoala (`site/src/lib/booking-redirect.ts`, `BOOKING_ORIGIN`).
-The site is NOT live yet: DNS still points at the old WordPress site. The launch checklist is the
-"Duty Cleaners Launch Gate" artifact; REBUILD-PLAN.md Appendix G holds the BookingKoala header script.
+`site/`. Leads go to GoHighLevel through the API v2 contacts/upsert relay (`site/src/config/ghl.ts`,
+`site/supabase/functions/ghl-quote`); bookings hand off to BookingKoala
+(`site/src/lib/booking-redirect.ts`, `BOOKING_ORIGIN`). The site is NOT live yet: DNS still points
+at the old WordPress site, which the owner will stop using once this one is on the domain. The
+launch checklist is the "Duty Cleaners Launch Gate" artifact; REBUILD-PLAN.md Appendix G holds the
+BookingKoala header script.
 
 ## Commands (run from `site/`, with bun)
 - `bunx vite build` — fast build, no generators.
@@ -22,8 +24,8 @@ The site is NOT live yet: DNS still points at the old WordPress site. The launch
   that breaks its target and must make the named `it()` fail. Proof targets must be committed
   first (it refuses dirty targets). Add a guard, add its proof.
 - Deploy: `bun run deploy:preview` / `bun run deploy:production -- --site <id> --verify-url <url>`
-  (`scripts/deploy.mjs`, Netlify). `deploy-preview.ps1` at the repo root is the older GitHub
-  Pages path.
+  (`scripts/deploy.mjs`, Netlify). The Netlify preview is the only preview; the old GitHub Pages
+  preview and its `deploy-preview.ps1` were retired on 2026-09-11.
 
 **Commit order when content changes:** commit the content, run `bun run build`, then commit only
 the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
@@ -40,13 +42,16 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
 - Copy rules and facts: `DUTY-CLEANERS-CONTENT-PROMPT.md` (also published as a private artifact;
   edit the markdown, then republish the artifact to the same URL).
 
-## Owner decisions (2026-09-10) — do not contradict or re-ask
+## Owner decisions (2026-09-10 and 11) — do not contradict or re-ask
 - Volume claim: "5,000+ Alberta bookings since 2017" (`BOOKINGS_CLAIM`). Bookings, not homes;
   never split by city.
 - "No contracts" and "You won't be charged today" are confirmed. Online bookings need at least 24
   hours' notice; a temporary card hold goes on the day before the clean (not a charge); the card
   is charged after the clean. Same-day or next-day slots: by phone, when the schedule allows.
 - After a quote request we text within 24 hours (`RESPONSE_TIME_PROMISE`).
+- Prices: the tables stop at five bedrooms (`PRICING_TIERS`, "5 Bedroom"); six and seven bedrooms
+  cost more and are priced by the instant quote. Never write "5+" or "five or more".
+- Hourly work, Airbnb turnovers included: $65 per cleaner-hour (`HOURLY_RATE`).
 - Deep package: baseboards, doors, light switches, wall outlets, vent covers, plus cobwebs.
   Light switches and cobwebs are deep-only. Ceiling fans are in no package: dusted only on
   request, where a 3-step ladder reaches them safely.
@@ -55,12 +60,17 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
   (`/contact-us/?topic=airbnb`).
 - Black Diamond + Turner Valley are the Town of Diamond Valley: both URLs stay; every link and
   label names Diamond Valley.
-- Office pins are the Google listings' own coordinates (`CITY_PROOF.geo`).
-- Always hiring: the JobPosting has a datePosted and no validThrough.
-- No new-customer offer. The rebook rate stays unpublished.
+- Office pins are the Google listings' own coordinates (`CITY_PROOF.geo`); the addresses match
+  the listings.
+- Cleaners: reference-checked, customer-rated, and "under 5% of applicants are accepted"
+  (`COMPANY.applicantAcceptanceRate`, the owner's figure). Always hiring: the JobPosting has a
+  datePosted, no validThrough and no pay range (independent contractors paid per job).
+- No new-customer offer. The rebook rate stays unpublished. The legacy `/quote-redirect/` bridge
+  was removed with the old site.
 
 ## Rules
-- Never log into the Google Business Profile.
+- Never log into the Google Business Profile. Don't change GoHighLevel or BookingKoala settings
+  without the owner's explicit go-ahead; reading them is fine.
 - Do not edit the commercial-cleaning pages (`CommercialCleaning.tsx`,
   `CommercialCleaningCalgary.tsx`, `CommercialDepth.tsx`), and keep commercial offers out of the
   house-cleaning pages.
@@ -70,22 +80,25 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
   guards depend on them. Geographic claims need an independent check.
 - `_redirects` and `.htaccess` are generated; never hand-edit them.
 
-## Open questions for the owner (asked 2026-09-10; record answers here and in the code)
-1. Price tables label the top row "5+ Bedroom" at the 5-bedroom price, but BookingKoala prices 6
-   and 7 bedrooms higher. Relabel to "5 Bedroom"?
-2. General hourly work: $60 (what the site says) or BookingKoala's separate Home Cleaning
-   "Hourly Cleaning" service?
-3. Will the old GHL "Website Form" redirect to `/quote-redirect/` still be used after go-live?
-   (`QuoteRedirect.tsx` is legacy and not configured.)
-4. Is the GitHub Pages preview retired in favour of the Netlify preview?
-5. GHL token rotated? "Instant Quote Automation" workflow published? BK header script installed?
-6. Any real photography yet? Every people image is AI-generated.
-7. Publish an applicant acceptance rate, or never? 8. A pay range on the job posting, or never?
+## Owner to-dos before or on launch day (checked 2026-09-11)
+1. Publish the GoHighLevel "Instant Quote Automation" workflow. It is still a Draft with 0
+   enrolled, so leads get no admin email, customer text or pipeline card.
+2. Rotate the GoHighLevel Private Integration token ("dutycleaners.ca website funnel", created and
+   last updated Aug 14 2026, exposed in a screenshot), then put the new token in the relay's secret
+   in the same step, or leads stop arriving.
+3. Paste `bk-header-fill.html` into BookingKoala → Theme Builder → Settings → Tracking & Conversion
+   → Header code. It is not on the live booking page.
+4. Rename BookingKoala's Airbnb service ("Hourly Service $60 Per Hour/ Per Cleaner") to $65, then
+   re-capture bk-config.json.
+5. Take down the old GitHub Pages preview (bakbakim-dev.github.io/dutycleaners-preview).
+6. Book a real photo shoot (PHOTO-SHOOT-BRIEF.md): every people image is still AI-generated.
+7. The launch-gate items: production Netlify site, DNS, analytics, an end-to-end quote test.
 
 ## Historical documents
 REBUILD-PLAN.md, SEO-AUDIT-2026.md, CWV-BASELINE.md, notes.md (the legacy WordPress site's lead
-path), `_home.txt` / `_cal.txt` (page snapshots) and `site/.lovable/plan/` are dated records.
-Each carries a note saying what superseded it; do not take instructions or copy from them.
+path), `bridge.js` / `build.js` / `template.html` (that site's retired /quote-redirect bridge),
+`_home.txt` / `_cal.txt` (page snapshots) and `site/.lovable/plan/` are dated records. Each doc
+carries a note saying what superseded it; do not take instructions or copy from them.
 
 ## Windows tooling
 Bash may start with an empty PATH: prefix

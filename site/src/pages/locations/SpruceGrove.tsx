@@ -142,7 +142,7 @@ export default function SpruceGrove() {
     },
     {
       question: "What does a standard clean cost in Spruce Grove?",
-      answer: `A standard clean in Spruce Grove is ${STANDARD_FROM} for a one-bedroom apartment or condo, up to ${STANDARD_TO} for five or more bedrooms, before the travel fee and 5% GST; a house and a pet add their own charges. The deep clean package on top brings the range to ${DEEP_FROM} to ${DEEP_TO}. Weekly, bi-weekly and every-four-weeks schedules are discounted 20%, 15% and 10%. Discounts start from the second visit; the first clean is charged at the one-time rate.`
+      answer: `A standard clean in Spruce Grove is ${STANDARD_FROM} for a one-bedroom apartment or condo, up to ${STANDARD_TO} for five bedrooms, before the travel fee and 5% GST; a house and a pet add their own charges. The deep clean package on top brings the range to ${DEEP_FROM} to ${DEEP_TO}. Weekly, bi-weekly and every-four-weeks schedules are discounted 20%, 15% and 10%. Discounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
       question: "How soon can you clean in Spruce Grove?",

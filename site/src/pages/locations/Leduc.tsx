@@ -152,7 +152,7 @@ export default function Leduc() {
     },
     {
       question: "Do you do move-out cleaning in Leduc?",
-      answer: `Yes. A move-in or move-out clean in Leduc runs from ${MOVE_FROM} for a one-bedroom apartment or condo to ${MOVE_TO} for five or more bedrooms, before GST, plus the ${TRAVEL_FEE} travel fee and any house-type or pet surcharge. It includes inside the oven, fridge and microwave, and inside every cabinet, drawer and closet, without add-ons. We do not promise the deposit comes back; the landlord decides.`,
+      answer: `Yes. A move-in or move-out clean in Leduc runs from ${MOVE_FROM} for a one-bedroom apartment or condo to ${MOVE_TO} for five bedrooms, before GST, plus the ${TRAVEL_FEE} travel fee and any house-type or pet surcharge. It includes inside the oven, fridge and microwave, and inside every cabinet, drawer and closet, without add-ons. We do not promise the deposit comes back; the landlord decides.`,
       link: { to: "/move-out-cleaning-edmonton/", text: "Move-out cleaning in Leduc and Edmonton" }
     },
     {

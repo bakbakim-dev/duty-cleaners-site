@@ -22,7 +22,7 @@ const dollars = (t: Tier) => Number(t.price.replace(/[^0-9.]/g, ""));
 const covers = (rows: Tier[], amount: number): Tier | null =>
   rows.filter((r) => dollars(r) <= amount).at(-1) ?? null;
 
-/** "1 Bedroom" -> "a 1-bedroom home"; "5+ Bedroom" -> "a 5+ bedroom home". */
+/** "1 Bedroom" -> "a 1-bedroom home"; "5 Bedroom" -> "a 5-bedroom home". */
 const home = (beds: string) => `a ${beds.replace(" Bedroom", "-bedroom").replace("+-", "+ ")} home`;
 
 export type GiftCardTier = { amount: string; description: string };

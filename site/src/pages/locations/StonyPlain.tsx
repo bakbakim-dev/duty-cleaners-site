@@ -147,7 +147,7 @@ export default function StonyPlain() {
     },
     {
       question: "What is the price of a standard clean in Stony Plain?",
-      answer: `${STANDARD_FROM} for a one-bedroom apartment or condo, up to ${STANDARD_TOP} for five or more bedrooms, before GST, with the ${TRAVEL_FEE} travel fee on top and the house-type or pet charge where it applies. A deep clean of a one-bedroom is ${DEEP_FROM} on the same terms. Book weekly and the standard price drops 20%; bi-weekly drops it 15% and every four weeks drops it 10%. Discounts start from the second visit; the first clean is charged at the one-time rate.`
+      answer: `${STANDARD_FROM} for a one-bedroom apartment or condo, up to ${STANDARD_TOP} for five bedrooms, before GST, with the ${TRAVEL_FEE} travel fee on top and the house-type or pet charge where it applies. A deep clean of a one-bedroom is ${DEEP_FROM} on the same terms. Book weekly and the standard price drops 20%; bi-weekly drops it 15% and every four weeks drops it 10%. Discounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
       question: "Should I leave out cleaning supplies?",

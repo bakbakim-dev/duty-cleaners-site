@@ -61,7 +61,6 @@ const Terms = lazy(() => import("./pages/Terms"));
 const GiftCards = lazy(() => import("./pages/GiftCards"));
 const GiftCard = lazy(() => import("./pages/GiftCard"));
 const Prepare = lazy(() => import("./pages/Prepare"));
-const QuoteRedirect = lazy(() => import("./pages/QuoteRedirect"));
 const Book = lazy(() => import("./pages/Book"));
 
 
@@ -332,7 +331,6 @@ const App = () => (
           <Route path="/gift-cards" element={<GiftCards />} />
           <Route path="/gift-card" element={<GiftCard />} />
           <Route path="/prepare" element={<Prepare />} />
-          <Route path="/quote-redirect" element={<QuoteRedirect />} />
           <Route path="/book" element={<Book />} />
 
           

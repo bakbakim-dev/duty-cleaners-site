@@ -163,7 +163,7 @@ export default function Cochrane() {
     },
     {
       question: "How much is a standard clean in Cochrane?",
-      answer: `${STANDARD_FROM} for a one-bedroom apartment or condo and ${STANDARD_TOP} for five or more bedrooms, before GST, plus the ${TRAVEL_FEE} travel fee; a house-type charge and the pet charge can apply on top. The deep clean starts at ${DEEP_FROM}. Put the standard clean on a weekly schedule and it is 20% less; bi-weekly is 15% less, every 4 weeks 10% less. Discounts start from the second visit; the first clean is charged at the one-time rate.`
+      answer: `${STANDARD_FROM} for a one-bedroom apartment or condo and ${STANDARD_TOP} for five bedrooms, before GST, plus the ${TRAVEL_FEE} travel fee; a house-type charge and the pet charge can apply on top. The deep clean starts at ${DEEP_FROM}. Put the standard clean on a weekly schedule and it is 20% less; bi-weekly is 15% less, every 4 weeks 10% less. Discounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
       question: "Do I need to supply anything for the clean?",

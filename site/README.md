@@ -56,8 +56,8 @@ Use `scripts/deploy.mjs` through `bun run deploy:preview` and `bun run deploy:pr
 the noindex decision based on the target (preview is always noindexed, production never is) and
 checks it in every built page.
 
-`deploy-preview.ps1` at the repo root is the older GitHub Pages preview path
-(bakbakim-dev.github.io/dutycleaners-preview). It is not the current deploy.
+The old GitHub Pages preview (`deploy-preview.ps1`) was retired on 2026-09-11; the Netlify
+preview is the only preview.
 
 ## Older documents at the repo root
 

@@ -173,7 +173,7 @@ const sizeLabel = (label: string) => label.replace(/(\d)\s*sqft/gi, (_match, dig
  *
  * The hero quotes the top of each range, and those two figures ($109.99 and
  * $234.99) live in the sixth and seventh rows. Built off PRICING_TIERS the
- * table stopped at a "5+ Bedroom" row of $89.99 / $194.99, so the hero appeared
+ * table stopped at a "5 Bedroom" row of $89.99 / $194.99, so the hero appeared
  * to quote prices the page never showed, and the "+" in that label promised the
  * six- and seven-bedroom homes a rate they are not charged.
  */

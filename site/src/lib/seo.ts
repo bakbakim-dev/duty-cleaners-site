@@ -2,7 +2,7 @@
  * Small helpers for structured data that has to carry absolute URLs.
  *
  * Vite rewrites asset imports to a hashed, base-prefixed path (`/assets/x-h.jpg`
- * in production, `/dutycleaners-preview/assets/x-h.jpg` on the staging build).
+ * in production, or under a sub-path when a build sets Vite's base).
  * Schema needs a fully-qualified https URL on the real domain, so the base
  * prefix is stripped before the origin is applied — otherwise the staging base
  * would leak into the emitted markup.

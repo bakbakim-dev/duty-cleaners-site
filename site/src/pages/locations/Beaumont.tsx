@@ -153,7 +153,7 @@ export default function Beaumont() {
     },
     {
       question: "How much does a standard clean cost in Beaumont?",
-      answer: `${STANDARD_FROM} for a one-bedroom apartment or condo up to ${STANDARD_TOP} for five or more bedrooms, before GST, plus the ${TRAVEL_FEE} travel fee; a house-type charge and the pet charge can apply on top. A deep clean starts at ${DEEP_FROM}. The rate is flat: it is set by the size of the home, and it does not change because a clean took longer than expected.`
+      answer: `${STANDARD_FROM} for a one-bedroom apartment or condo up to ${STANDARD_TOP} for five bedrooms, before GST, plus the ${TRAVEL_FEE} travel fee; a house-type charge and the pet charge can apply on top. A deep clean starts at ${DEEP_FROM}. The rate is flat: it is set by the size of the home, and it does not change because a clean took longer than expected.`
     },
     {
       question: "Is there a discount for regular cleaning in Beaumont?",
@@ -418,7 +418,7 @@ export default function Beaumont() {
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>
-                  A move-out clean in Beaumont starts at {MOVE_FROM} before GST for a one-bedroom apartment or condo and runs to {MOVE_TOP} for five or more bedrooms, with the {TRAVEL_FEE} travel fee added because the address is outside Edmonton city limits. The house-type and pet charges apply as they do on any clean. For a family house that is being sold or handed back, the full checklist is on the page for{" "}
+                  A move-out clean in Beaumont starts at {MOVE_FROM} before GST for a one-bedroom apartment or condo and runs to {MOVE_TOP} for five bedrooms, with the {TRAVEL_FEE} travel fee added because the address is outside Edmonton city limits. The house-type and pet charges apply as they do on any clean. For a family house that is being sold or handed back, the full checklist is on the page for{" "}
                   <Link to="/move-out-cleaning-edmonton/" className="text-primary underline underline-offset-2 font-medium">end of tenancy cleaning from the Edmonton branch</Link>.
                 </p>
                 <p>

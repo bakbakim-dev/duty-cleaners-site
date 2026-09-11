@@ -12,7 +12,7 @@ Duty Cleaners provides professional residential and commercial cleaning across E
 - 5,000+ bookings across Alberta since 2017 (a count of bookings, not of separate homes)
 - 80 Edmonton neighbourhoods + 9 surrounding communities served
 - 66 Calgary neighbourhoods + 9 surrounding communities served
-- Reference-checked, customer-rated cleaners
+- Reference-checked, customer-rated cleaners; under 5% of applicants are accepted
 - Google rating: 4.9 from 236 reviews on the Edmonton listing, and 4.9 from 51 reviews on the Calgary listing. Both counts were read from the listings themselves on 2026-09-01. The two are separate listings and separate counts; do not add them together.
 - All cleaning supplies and equipment brought to every job; eco-friendly products available on request as a $15 add-on — ask in the booking notes or on the confirmation call, it is not a checkbox on the form
 - Instant online quote in about 60 seconds for home cleaning (standard, deep, move-in/move-out and post-construction). Airbnb / short-term rental turnovers and commercial work are not priced by the instant quote — see below
@@ -36,16 +36,17 @@ Duty Cleaners provides professional residential and commercial cleaning across E
 
 Published tier prices are STARTING ESTIMATES for an apartment or condo, not the final amount — home type and pets change the figure and both are listed below. Recurring customers save 10–20% depending on frequency. Estimates are shaped by home size, service type, condition, and add-ons.
 
-- Standard Cleaning: from $155 (1 bedroom) to $305 (5+ bedrooms)
-- Deep Cleaning: from $255 (1 bedroom) to $485 (5+ bedrooms)
-- Move-In / Move-Out Cleaning: from $284 (1 bedroom) to $539 (5+ bedrooms)
+- Standard Cleaning: from $155 (1 bedroom) to $305 (5 bedrooms)
+- Deep Cleaning: from $255 (1 bedroom) to $485 (5 bedrooms)
+- Move-In / Move-Out Cleaning: from $284 (1 bedroom) to $539 (5 bedrooms)
+- Six- and seven-bedroom homes cost more; the instant quote shows the exact price.
 - Home type: the tier prices above are for an APARTMENT OR CONDO. A bungalow or basement suite adds $15, a townhouse $40, and a two-storey house $55. Any quote for a house must include it.
 - Pets: $19.99 per visit, on every visit, whenever pets are present. It is compulsory rather than an optional add-on.
 - Eco-friendly products: $15, on any service. Not on the booking form — ask when you book and the office adds it.
 - Recurring discounts: 20% weekly, 15% bi-weekly, 10% every 4 weeks, applied from the second visit
 - First clean is charged at the standard one-time rate
 - Post-Construction Cleaning: priced by square-footage band, from $550 under 1,000 sq ft to $1,900 for 4,500-4,999 sq ft, before GST. Bands step at roughly 500 sq ft; the exact band is confirmed once we know the size.
-- Airbnb Turnover: charged by the hour at $60 per cleaner-hour, before GST. Hourly work has a minimum of 3 hours for one cleaner, or 2 hours for two cleaners. Not priced by the instant online quote — turnovers are arranged on a callback.
+- Airbnb Turnover: charged by the hour at $65 per cleaner-hour, before GST. Hourly work has a minimum of 3 hours for one cleaner, or 2 hours for two cleaners. Not priced by the instant online quote — turnovers are arranged on a callback.
 - Commercial (office) cleaning: charged by square footage; the rate is confirmed after a quick walkthrough. Not priced by the instant online quote.
 - Travel fee: a $29.99 travel fee is added to cleaning bookings OUTSIDE Edmonton and Calgary proper. It applies to the surrounding communities — St. Albert, Sherwood Park, Spruce Grove, Leduc, Beaumont, Fort Saskatchewan, Stony Plain, Morinville and Devon near Edmonton; Airdrie, Chestermere, Cochrane, Okotoks, High River, Strathmore, Crossfield, Langdon and Diamond Valley (formerly the separate towns of Black Diamond and Turner Valley) near Calgary — and is charged by postal code at booking. There is no trip fee inside Edmonton or Calgary. Post-construction cleaning carries a $50 travel fee instead.
 - Prices are identical in Edmonton and Calgary; there is no city premium

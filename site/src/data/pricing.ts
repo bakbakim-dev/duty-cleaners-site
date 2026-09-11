@@ -241,18 +241,17 @@ export const SERVICES: ServicePricing[] = [
     hours: "2–4 hrs",
     exactPricing: false,
     estimateSpread: 0.2,
-    // $60, confirmed by the owner 2026-09-03 for Airbnb turnovers: BookingKoala's
-    // Airbnb service is "Hourly Service $60 Per Hour/ Per Cleaner" (industry 28).
-    // BookingKoala ALSO has a Home Cleaning "Hourly Cleaning" service (id 17,
-    // admin-only) described as $65 per cleaner-hour. The site quotes $60 for all
-    // hourly work; whether general hourly work is $60 or $65 is an open owner
-    // question (2026-09-10). Every figure derives from HOURLY_RATE, so this is
-    // the only place it is written.
-    rateNote: "Hourly service at $60 per hour, per cleaner.",
+    // $65 per cleaner-hour for all hourly work, Airbnb turnovers included: the
+    // owner set it on 2026-09-11 ("the new hourly is $65"), matching BookingKoala's
+    // Home Cleaning "Hourly Cleaning" service (id 17). BookingKoala's Airbnb
+    // service (industry 28) is still named "Hourly Service $60 Per Hour/ Per
+    // Cleaner" in bk-config.json until the owner renames it in BookingKoala.
+    // Every figure derives from HOURLY_RATE, so this is the only place it is written.
+    rateNote: "Hourly service at $65 per hour, per cleaner.",
     supportsRecurring: false,
     asksHomeSize: true,
     selfServe: false,
-    source: { industryId: 28, serviceCategoryId: 16, model: "hourly", hourlyRate: 60 },
+    source: { industryId: 28, serviceCategoryId: 16, model: "hourly", hourlyRate: 65 },
   },
   {
     id: "commercial",
@@ -665,9 +664,9 @@ export const startingPrice = (id: ServiceId) => {
 };
 
 /**
- * Hourly rate BookingKoala charges per cleaner. Read from the hourly service
- * row so marketing pages can never advertise a rate the booking form
- * disagrees with.
+ * Hourly rate per cleaner ($65, set by the owner 2026-09-11). Read from the
+ * Airbnb service row so every page quotes the same figure. BookingKoala's Airbnb
+ * service name still says $60 until the owner updates it there.
  */
 export const HOURLY_RATE = getService("airbnb").source.hourlyRate ?? 0;
 
@@ -749,7 +748,9 @@ export const PRICING_TIERS: PricingTier[] = [
   { beds: 2, label: "2 Bedroom", bathrooms: 2, halfBaths: 0 },
   { beds: 3, label: "3 Bedroom", bathrooms: 2, halfBaths: 1 },
   { beds: 4, label: "4 Bedroom", bathrooms: 3, halfBaths: 1 },
-  { beds: 5, label: "5+ Bedroom", bathrooms: 3, halfBaths: 1 },
+  // The top row is five bedrooms. Six and seven cost more and are priced by the
+  // instant quote (owner, 2026-09-11), so no table or sentence may say "5+".
+  { beds: 5, label: "5 Bedroom", bathrooms: 3, halfBaths: 1 },
 ];
 
 const tierStandardPrice = (tier: PricingTier) =>

@@ -17,7 +17,6 @@ const EXCLUDED = new Set([
   "/calgary-2",
   "/commercial-cleaning-calgary",
   "/insurance-liability",
-  "/quote-redirect",
   "/book",
   "/locations/all",
   // /gift-cards is a design-picker variant that declares /gift-card/ as its

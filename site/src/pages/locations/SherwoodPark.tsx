@@ -139,7 +139,7 @@ export default function SherwoodPark() {
     },
     {
       question: "What does a standard clean in Sherwood Park cost?",
-      answer: `A one-bedroom apartment or condo is ${STANDARD_FROM} and a home with five or more bedrooms is ${STANDARD_TO}, with the sizes between priced in steps. Add the travel fee and 5% GST, plus the home-type surcharge for a house and the pet charge if there are pets. A deep clean runs ${DEEP_FROM} to ${DEEP_TO}, and a recurring schedule takes 20% off weekly, 15% bi-weekly and 10% every 4 weeks. Discounts start from the second visit; the first clean is charged at the one-time rate.`
+      answer: `A one-bedroom apartment or condo is ${STANDARD_FROM} and a home with five bedrooms is ${STANDARD_TO}, with the sizes between priced in steps. Add the travel fee and 5% GST, plus the home-type surcharge for a house and the pet charge if there are pets. A deep clean runs ${DEEP_FROM} to ${DEEP_TO}, and a recurring schedule takes 20% off weekly, 15% bi-weekly and 10% every 4 weeks. Discounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
       question: "How soon can a team get to Sherwood Park?",

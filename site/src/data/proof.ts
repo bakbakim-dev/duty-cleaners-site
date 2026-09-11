@@ -109,13 +109,12 @@ export const COMPANY = {
   foundedYear: 2017,
   sinceLabel: "since 2017",
   /**
-   * Applicant acceptance rate. NOT published anywhere, and unconfirmed — the
-   * figure floated was "under 5%", which stays here as a note and nowhere
-   * else. It used to sit in this slot as a string, which is exactly the shape a
-   * page would render. Open question put to the owner on 2026-09-10: publish a
-   * real figure, or never?
+   * Applicant acceptance rate: "under 5%". The owner asked on 2026-09-11 to
+   * publish the figure most likely to be accurate. This is the only figure on
+   * record (the old site printed it), so it is published as the owner's figure.
+   * Replace it if hiring records show otherwise.
    */
-  applicantAcceptanceRate: null as Confirmed<string> | Unconfirmed,
+  applicantAcceptanceRate: confirm("under 5%", { by: "owner", on: "2026-09-11", note: "the owner's figure, carried over from the old site" }) as Confirmed<string> | Unconfirmed,
   /**
    * Percentage of customers who rebook. Null by the owner's choice (2026-09-10):
    * the site publishes no rebook rate. Do not ask again or fill it in unless the
@@ -249,8 +248,9 @@ export const RESPONSE_TIME_PROMISE = confirm("24 hours", { by: "owner", on: "202
  *
  * JobPosting structured data is only emitted when `datePosted` is set, because
  * Google demotes and eventually drops postings with stale or missing dates — a
- * wrong date is worse than no markup. `baseSalary` is deliberately absent until
- * the owner confirms a real range; the site never prints an invented figure.
+ * wrong date is worse than no markup. `baseSalary` is deliberately absent:
+ * cleaners are independent contractors paid per job, and the owner chose on
+ * 2026-09-11 not to publish a pay range.
  *
  * The owner hires continuously (2026-09-10). Google's job-posting guidance says
  * to leave validThrough out when a posting never expires, so it stays null.

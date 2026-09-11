@@ -146,11 +146,11 @@ export default function FortSaskatchewan() {
     },
     {
       question: "Do you offer move-out cleaning in Fort Saskatchewan?",
-      answer: `Yes. A move-in or move-out clean in Fort Saskatchewan runs from ${MOVE_FROM} for a one-bedroom apartment or condo to ${MOVE_TOP} for five or more bedrooms, before GST, plus the ${TRAVEL_FEE} travel fee and any house-type or pet surcharge. It covers what a standard clean leaves closed: inside the oven, fridge and microwave, and inside every cabinet, drawer and closet. For a house nobody has lived in yet, it is also the right clean to book before the furniture arrives. Under Alberta's Residential Tenancies Act the landlord completes a move-out inspection report with the tenant, and we do not promise the deposit comes back; the landlord decides.`
+      answer: `Yes. A move-in or move-out clean in Fort Saskatchewan runs from ${MOVE_FROM} for a one-bedroom apartment or condo to ${MOVE_TOP} for five bedrooms, before GST, plus the ${TRAVEL_FEE} travel fee and any house-type or pet surcharge. It covers what a standard clean leaves closed: inside the oven, fridge and microwave, and inside every cabinet, drawer and closet. For a house nobody has lived in yet, it is also the right clean to book before the furniture arrives. Under Alberta's Residential Tenancies Act the landlord completes a move-out inspection report with the tenant, and we do not promise the deposit comes back; the landlord decides.`
     },
     {
       question: "How much is a standard house clean in Fort Saskatchewan?",
-      answer: `A standard clean in Fort Saskatchewan is ${STANDARD_FROM} for a one-bedroom apartment or condo, rising to ${STANDARD_TOP} for five or more bedrooms, before GST and the ${TRAVEL_FEE} travel fee; a house or a home with pets adds its surcharge. A deep clean of the same one-bedroom is ${DEEP_FROM}. On a weekly schedule the standard rate is 20% less, bi-weekly 15% less and every 4 weeks 10% less. Discounts start from the second visit; the first clean is charged at the one-time rate.`
+      answer: `A standard clean in Fort Saskatchewan is ${STANDARD_FROM} for a one-bedroom apartment or condo, rising to ${STANDARD_TOP} for five bedrooms, before GST and the ${TRAVEL_FEE} travel fee; a house or a home with pets adds its surcharge. A deep clean of the same one-bedroom is ${DEEP_FROM}. On a weekly schedule the standard rate is 20% less, bi-weekly 15% less and every 4 weeks 10% less. Discounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
       question: "Do I have to provide cleaning products?",

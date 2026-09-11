@@ -54,7 +54,7 @@ const noindexShell = (html) => {
 // template (and the on-disk fallback during rendering), so stamping it here
 // would noindex every prerendered page — audit #439's blocked gate proved it.
 
-// The built asset base ("/": production, "/dutycleaners-preview/": staging).
+// The built asset base ("/" in production; a sub-path when a build sets Vite's base).
 const shell = readFileSync(join(DIST, "spa-shell.html"), "utf-8");
 const baseMatch = shell.match(/src="([^"]*?)assets\//);
 const BASE = baseMatch ? baseMatch[1] : "/";

@@ -156,7 +156,7 @@ const sizeLabel = (label: string) => label.replace(/(\d)\s*sqft/gi, (_match, dig
  * Both wall extras at every size bk-config prices them at, and the full wash
  * with GST on it.
  *
- * The table used to be built off PRICING_TIERS, which stops at a "5+ Bedroom"
+ * The table used to be built off PRICING_TIERS, which stops at a "5 Bedroom"
  * row — so it ended at $89.99 / $194.99 while the hero quoted $109.99 and
  * $234.99, the six- and seven-bedroom figures the table never showed. Seven
  * rows, seven prices, and the hero's two ends are now the first and last of

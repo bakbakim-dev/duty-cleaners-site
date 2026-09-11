@@ -151,11 +151,11 @@ export default function Devon() {
     },
     {
       question: "Can you do a move-out clean in Devon?",
-      answer: `Yes. A move-in or move-out clean in Devon runs from ${MOVE_FROM} for a one-bedroom apartment or condo to ${MOVE_TOP} for five or more bedrooms, before GST, plus the ${TRAVEL_FEE} travel fee and any house-type or pet surcharge. Unlike a standard clean, it includes inside the oven, fridge and microwave, and inside every cabinet, drawer and closet. Empty the house before the team arrives, because a cupboard that still holds plates gets worked around rather than cleaned inside. We do not promise the deposit comes back; the landlord decides.`
+      answer: `Yes. A move-in or move-out clean in Devon runs from ${MOVE_FROM} for a one-bedroom apartment or condo to ${MOVE_TOP} for five bedrooms, before GST, plus the ${TRAVEL_FEE} travel fee and any house-type or pet surcharge. Unlike a standard clean, it includes inside the oven, fridge and microwave, and inside every cabinet, drawer and closet. Empty the house before the team arrives, because a cupboard that still holds plates gets worked around rather than cleaned inside. We do not promise the deposit comes back; the landlord decides.`
     },
     {
       question: "What does a standard clean cost in Devon?",
-      answer: `A standard clean of a one-bedroom apartment or condo in Devon is ${STANDARD_FROM} before GST, and five or more bedrooms is ${STANDARD_TOP}. A Devon address adds the ${TRAVEL_FEE} travel fee, and a house or a home with pets adds its surcharge on top. The deep clean, which adds baseboards, doors, light switches, wall outlets and vent covers, starts at ${DEEP_FROM} on the same terms. Weekly, bi-weekly and every-4-weeks schedules take 20%, 15% and 10% off. Discounts start from the second visit; the first clean is charged at the one-time rate.`
+      answer: `A standard clean of a one-bedroom apartment or condo in Devon is ${STANDARD_FROM} before GST, and five bedrooms is ${STANDARD_TOP}. A Devon address adds the ${TRAVEL_FEE} travel fee, and a house or a home with pets adds its surcharge on top. The deep clean, which adds baseboards, doors, light switches, wall outlets and vent covers, starts at ${DEEP_FROM} on the same terms. Weekly, bi-weekly and every-4-weeks schedules take 20%, 15% and 10% off. Discounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
       question: "Do the cleaners bring their own supplies to Devon?",
