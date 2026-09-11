@@ -101,6 +101,7 @@ const ALLOWED_ORIGINS = [
   "https://dutycleaners.ca",
   "https://www.dutycleaners.ca",
   "https://dutycleaners-preview.netlify.app",
+  "https://duty-cleaners-preview.netlify.app",
 ];
 const MIN_DWELL_MS = 3_000;
 

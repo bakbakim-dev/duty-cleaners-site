@@ -24,8 +24,10 @@ BookingKoala header script.
   that breaks its target and must make the named `it()` fail. Proof targets must be committed
   first (it refuses dirty targets). Add a guard, add its proof.
 - Deploy: `bun run deploy:preview` / `bun run deploy:production -- --site <id> --verify-url <url>`
-  (`scripts/deploy.mjs`, Netlify). The Netlify preview is the only preview; the old GitHub Pages
-  preview and its `deploy-preview.ps1` were retired on 2026-09-11.
+  (`scripts/deploy.mjs`, Netlify). The preview is https://duty-cleaners-preview.netlify.app on the
+  owner's lokkom Netlify team (since 2026-09-11; the CLI must be logged in as lokkom@gmail.com).
+  The old dutycleaners-preview site on bakbakim's team is stale: that team spent its free credits.
+  The old GitHub Pages preview and its `deploy-preview.ps1` were retired on 2026-09-11.
 
 **Commit order when content changes:** commit the content, run `bun run build`, then commit only
 the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
@@ -117,10 +119,17 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
    and 18 production deploys ran on 4-5 September, so the credits are spent (confirmed: the dashboard banner says production deploys are paused
    until an upgrade or the next billing cycle). The
    production site is meant to go on this same account, so upgrade or top up before launch day,
-   or a launch deploy fails the same way. `netlify api getAccount` shows the plan.
+   or a launch deploy fails the same way. `netlify api getAccount` shows the plan. The preview
+   now lives on the lokkom team (300 fresh credits, about 20 deploys a month): batch deploys.
+   Decide which team hosts production, then upgrade it (or move to Cloudflare Pages).
 8. Decide what the $15 eco-friendly option buys. The cleaners choose their own products, so name a
    minimum the office can check (for example, products with ECOLOGO certification) or retire
    the option. Until then the site lists it as confirmed and makes no other environmental claim.
+9. Delete the stale dutycleaners-preview site on bakbakim's Netlify team (it still serves the
+   5 September build, noindexed).
+10. Redeploy the ghl-quote relay (Supabase) so it accepts the new preview origin; the code
+   allows it since 2026-09-11, but until the relay is redeployed the quote form on
+   duty-cleaners-preview.netlify.app cannot submit. Touches the lead pipeline: owner go-ahead first.
 
 ## Historical documents
 REBUILD-PLAN.md, SEO-AUDIT-2026.md, CWV-BASELINE.md, notes.md (the legacy WordPress site's lead

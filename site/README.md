@@ -6,7 +6,7 @@ shows live prices generated from the BookingKoala config, sends leads to GoHighL
 bookings off to BookingKoala.
 
 **Status (2026-09-10): not live yet.** DNS for dutycleaners.ca still points at the old WordPress
-site. The public preview is https://dutycleaners-preview.netlify.app, which is deliberately noindexed.
+site. The public preview is https://duty-cleaners-preview.netlify.app, which is deliberately noindexed.
 
 This folder started as a Lovable project. Lovable is no longer part of the workflow: the site is
 built, tested and deployed from this repo. (`lovable-tagger` is still a dev dependency in vite.config.ts.)

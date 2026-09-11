@@ -1,7 +1,7 @@
 // Build, prerender and deploy, with the noindex decision made by the target
 // rather than by whoever remembered to re-append it.
 //
-// The preview at dutycleaners-preview.netlify.app is a public copy of a site
+// The preview at duty-cleaners-preview.netlify.app is a public copy of a site
 // whose real domain still serves WordPress. It must never be indexed, or it
 // competes with the pages it is a preview of. The header that stops that lives
 // in dist/_headers, which vite regenerates from public/_headers on every build
@@ -30,9 +30,14 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = join(ROOT, "dist");
 const HEADERS = join(DIST, "_headers");
 
-/** The preview site. Hardcoded because getting it wrong points a noindex at production. */
-const PREVIEW_SITE = "3a87e230-033a-48e9-9a4d-ce797ab93d5e";
-const PREVIEW_URL = "https://dutycleaners-preview.netlify.app";
+/**
+ * The preview site. Hardcoded because getting it wrong points a noindex at production.
+ * It moved on 2026-09-11 to the owner's lokkom Netlify team: the old site
+ * (dutycleaners-preview, 3a87e230-..., bakbakim's team) spent that team's free credits
+ * and Netlify paused its deploys. The CLI must be logged in as lokkom@gmail.com.
+ */
+const PREVIEW_SITE = "bec37074-fba8-4ca6-854f-7307632df4a0";
+const PREVIEW_URL = "https://duty-cleaners-preview.netlify.app";
 
 /** Pages the prerenderer noindexes on purpose: the render template and the SPA fallback. */
 const NOINDEX_BY_DESIGN = new Set(["spa-shell.html", "404.html"]);
