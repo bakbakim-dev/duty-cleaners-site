@@ -560,7 +560,7 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/structured-data.test.ts",
     target: "dist/index.html",
-    find: '"latitude":53.504464',
+    find: '"latitude":53.504317',
     replace: '"latitude":53.5',
     failing: "the hub's LocalBusiness geo equals proof.ts",
     why: "Publishes an Edmonton office pin that is not the one the owner confirmed.",

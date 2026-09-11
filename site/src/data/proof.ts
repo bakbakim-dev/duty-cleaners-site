@@ -56,8 +56,10 @@ export const CITY_PROOF: Record<"edmonton" | "calgary", CityProof> = {
     // legacy site's embedded widget, which lagged the real count by 12.
     googleRating: confirm(4.9, { by: "google-listing", on: "2026-09-01", note: "CID 8192121191672692049" }),
     googleReviewCount: confirm(236, { by: "google-listing", on: "2026-09-01", note: "CID 8192121191672692049" }),
-    // The office pin, read from Google Maps by the owner on 2026-09-10.
-    geo: confirm({ latitude: 53.504464, longitude: -113.643899 }, { by: "owner", on: "2026-09-10" }),
+    // The office pin as the Google listing stores it (the !3d/!4d pair in its
+    // Maps URL), read 2026-09-10. A click on the pin icon reads a point on the
+    // drawn marker instead; the owner's click landed about 16 m north.
+    geo: confirm({ latitude: 53.504317, longitude: -113.64391 }, { by: "owner", on: "2026-09-10", note: "Google listing pin, CID 8192121191672692049" }),
   },
   calgary: {
     city: "Calgary",
@@ -70,8 +72,8 @@ export const CITY_PROOF: Record<"edmonton" | "calgary", CityProof> = {
     // Same source and date as Edmonton, via CID 6193344199307583189.
     googleRating: confirm(4.9, { by: "google-listing", on: "2026-09-01", note: "CID 6193344199307583189" }),
     googleReviewCount: confirm(51, { by: "google-listing", on: "2026-09-01", note: "CID 6193344199307583189" }),
-    // The office pin, read from Google Maps by the owner on 2026-09-10.
-    geo: confirm({ latitude: 51.029407, longitude: -114.142163 }, { by: "owner", on: "2026-09-10" }),
+    // Same source as Edmonton: the listing's own pin, read 2026-09-10.
+    geo: confirm({ latitude: 51.029252, longitude: -114.142131 }, { by: "owner", on: "2026-09-10", note: "Google listing pin, CID 6193344199307583189" }),
   },
 };
 
