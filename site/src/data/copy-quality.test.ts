@@ -274,4 +274,29 @@ describe("the copy does not read like a template filled in by a machine", () => 
     }
     expect(hits, "a homes-cleaned figure; use BOOKINGS or BOOKINGS_CLAIM from proof.ts").toEqual([]);
   });
+
+  it("ceiling fans are an on-request extra, never part of a package", () => {
+    // Owner, 2026-09-10: the deep package is baseboards, doors, light switches,
+    // wall outlets and vent covers, and cobwebs where there are any. Ceiling
+    // fans are dusted only on request, where they can be reached safely; 146
+    // pages had listed them in the package. Blog tips are general advice and
+    // image alt text describes a photo, so neither counts.
+    const files = [...allTsx(join(SRC, "pages"), "pages/"), ...allTsx(join(SRC, "components"), "components/")].filter(
+      (f) => !/Blog|Commercial/.test(f),
+    );
+    const hits: string[] = [];
+    for (const rel of files) {
+      const text = stripComments(readFileSync(join(SRC, rel), "utf-8"));
+      for (const m of text.matchAll(/ceiling fan/gi)) {
+        const before = text.slice(0, m.index);
+        const after = text.slice(m.index);
+        const start = Math.max(before.lastIndexOf(". "), before.lastIndexOf('"'), before.lastIndexOf("`"), before.lastIndexOf("•"), before.lastIndexOf(">"));
+        const end = after.search(/\. |"|`|\\n|</);
+        const sentence = text.slice(start + 1, m.index + (end < 0 ? after.length : end));
+        const line = text.slice(text.lastIndexOf("\n", m.index) + 1, m.index);
+        if (!/request/i.test(sentence) && !/\balt\b/.test(line)) hits.push(`${rel}: "${sentence.trim().slice(0, 120)}"`);
+      }
+    }
+    expect(hits, "ceiling fans listed as included; they are dusted on request only").toEqual([]);
+  });
 });

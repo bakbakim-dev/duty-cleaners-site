@@ -116,7 +116,7 @@ const WhyUsCard = ({
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Fort Saskatchewan" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Fort Saskatchewan" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: baseboards, doors, light switches, wall outlets and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Fort Saskatchewan" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Fort Saskatchewan" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a build or a renovation, priced by square footage.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Fort Saskatchewan" },
   { icon: PaintRoller, title: "Wall Washing", description: "Spot cleaning or a full wash of painted walls, booked together with a clean rather than on its own.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Fort Saskatchewan" },
@@ -388,7 +388,7 @@ export default function FortSaskatchewan() {
                   from {MOVE_FROM} for a one-bedroom apartment or condo, before GST, the travel fee and any house-type or pet surcharge, and have it done before the furniture arrives, while every cabinet, drawer and closet is still empty.
                 </p>
                 <p>
-                  A long-settled home on the older streets near the fort site is better started with a deep clean, from {DEEP_FROM} on the same terms, which adds cobwebs, ceiling fans, light switches, outlet covers and vent covers to the standard checklist. After that, the standard clean from {STANDARD_FROM} on the same terms keeps it. A storage room has to be emptied before the team can clean it, because clutter gets worked around rather than cleared.
+                  A long-settled home on the older streets near the fort site is better started with a deep clean, from {DEEP_FROM} on the same terms, which adds baseboards, doors, light switches, wall outlets and vent covers to the standard checklist. After that, the standard clean from {STANDARD_FROM} on the same terms keeps it. A storage room has to be emptied before the team can clean it, because clutter gets worked around rather than cleared.
                 </p>
                 <p>
                   A suite listed as a short-term rental needs a turnover between guests rather than a scheduled clean, priced by the hour with a minimum of 3 hours for one cleaner or 2 hours for two; the{" "}

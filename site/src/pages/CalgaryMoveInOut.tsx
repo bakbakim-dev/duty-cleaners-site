@@ -409,7 +409,7 @@ export default function CalgaryMoveInOut() {
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
-                  <span>Ceiling fans and window sills dusted</span>
+                  <span>Window sills dusted, and ceiling fans on request where safely reachable</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />

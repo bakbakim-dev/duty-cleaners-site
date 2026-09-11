@@ -69,7 +69,7 @@ const last = <T,>(rows: T[]) => rows[rows.length - 1];
 const FAQS = [
   {
     q: "What is the difference between a standard clean and a deep clean?",
-    a: `A deep clean is the standard checklist plus the deep package: baseboards, doors, light switches, wall outlets and vent covers, ceiling fan blades within reach, and a detailed stovetop, grates and fridge top. The package adds ${DEEP[0].packagePrice} to a 1-bedroom standard clean and ${last(DEEP).packagePrice} to a 5-bedroom, so a deep clean runs ${DEEP[0].price} to ${last(DEEP).price} against ${STANDARD[0].price} to ${last(STANDARD).price} for standard, before GST.`,
+    a: `A deep clean is the standard checklist plus the deep package: baseboards, doors, light switches, wall outlets and vent covers, cobwebs where there are any, and a detailed stovetop, grates and fridge top. Ceiling fans are not part of the package; the team dusts them on request, where a 3-step ladder reaches them safely. The package adds ${DEEP[0].packagePrice} to a 1-bedroom standard clean and ${last(DEEP).packagePrice} to a 5-bedroom, so a deep clean runs ${DEEP[0].price} to ${last(DEEP).price} against ${STANDARD[0].price} to ${last(STANDARD).price} for standard, before GST.`,
   },
   {
     q: "Is the inside of the oven included?",
@@ -305,7 +305,6 @@ export default function WhatsIncluded() {
 
   const deepItems = [
     { icon: Check, text: "Everything on the standard checklist" },
-    { icon: Fan, text: "Ceiling fan blades, where a 3-step ladder reaches them" },
     { icon: Paintbrush, text: "Baseboards, doors, light switches, wall outlets and vent covers" },
     { icon: Refrigerator, text: "Detailed stovetop, grates and fridge top; inside the oven and fridge stay add-ons" },
   ];
@@ -544,7 +543,6 @@ export default function WhatsIncluded() {
                     group: "Deeper attention",
                     rows: [
                       { item: "Baseboards, doors, light switches, wall outlets & vent covers", standard: "package", deep: "yes", move: "yes" },
-                      { item: "Ceiling fan blades (safely reachable)", standard: "no", deep: "yes", move: "yes" },
                       { item: "Detailed stovetop, grates & fridge top", standard: "package", deep: "yes", move: "yes" },
                     ],
                   },

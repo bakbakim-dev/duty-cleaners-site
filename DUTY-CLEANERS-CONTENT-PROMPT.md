@@ -174,9 +174,10 @@ P1  Standard clean, one visit, for an apartment or condo:
     More bathrooms, a larger home type or add-ons raise the price; the instant price shows the
     exact figure.
 P2  Deep clean, same sizes: $255, $315, $372, $444, $485. It is the standard checklist plus the
-    deep-clean package, which BookingKoala describes as baseboards, doors, light switches, wall
-    outlets and vent covers. Light switches belong to the deep package only; never list them on
-    the standard checklist. Name no other package items until the owner settles them.
+    deep-clean package: baseboards, doors, light switches, wall outlets and vent covers, and
+    cobwebs where there are any. Light switches belong to the deep package only; never list them
+    on the standard checklist. Ceiling fans are in no package: the team dusts them only on
+    request, where a 3-step ladder reaches them safely.
 P3  Move-in or move-out clean, same sizes: $284, $361, $424, $501, $539.
 P4  Recurring: the standard clean on a schedule. Weekly 20% off, bi-weekly 15% off, every 4 weeks
     10% off, from the second visit; the first clean is charged at the one-time rate. Name the 10%

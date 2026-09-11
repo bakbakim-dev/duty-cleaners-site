@@ -134,7 +134,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "What does a deep cleaning include?",
-        answer: "A deep clean covers everything in a standard clean plus the deep package: baseboards, doors and door frames, light switches, wall outlets and vent covers, ceiling fan blades within reach of a 3-step ladder, and a detailed stovetop, grates and fridge top. Inside the oven and fridge stay add-ons.",
+        answer: "A deep clean covers everything in a standard clean plus the deep package: baseboards, doors and door frames, light switches, wall outlets and vent covers, cobwebs where there are any, and a detailed stovetop, grates and fridge top. Inside the oven and fridge stay add-ons.",
       },
       {
         question: "How often should I book a deep clean?",
@@ -142,7 +142,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "Do you clean grout, hard-water stains, or fixtures like fans and chandeliers?",
-        answer: "Grout restoration is not offered, but hard-water stains are cleaned: hard Alberta water leaves mineral scale on taps and shower glass. Ceiling fan blades are cleaned on a deep or move-out clean where a 3-step ladder reaches them. Chandeliers, light bulbs and other fragile fixtures are not included.",
+        answer: "Grout restoration is not offered, but hard-water stains are cleaned: hard Alberta water leaves mineral scale on taps and shower glass. Ceiling fans are not part of any package: the team dusts them on request, where a 3-step ladder reaches them safely. Chandeliers, light bulbs and other fragile fixtures are not included.",
       },
       {
         question: "What if my home needs extra attention or is very dirty?",

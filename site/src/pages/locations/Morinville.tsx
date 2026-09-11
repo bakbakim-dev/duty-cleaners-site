@@ -123,7 +123,7 @@ const WhyUsCard = ({
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Morinville" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Morinville" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: baseboards, doors, light switches, wall outlets and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Morinville" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Priced flat by home size, for moving out of a Morinville home or into one.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Morinville" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Priced by square footage, for the dust a renovation or a new build leaves behind.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Morinville" },
   { icon: PaintRoller, title: "Wall Washing", description: "Booked together with a clean, as spot cleaning or a full wash, priced by home size.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Morinville" },

@@ -66,7 +66,7 @@ export default function EdmontonDeepCleaning() {
       serviceName="Deep House Cleaning in Edmonton"
       canonical="https://dutycleaners.ca/edmonton/deep-cleaning"
       heroHeading={<>Deep Cleaning Services in <AccentGold>Edmonton</AccentGold></>}
-      heroSubheading={`A deep clean is everything in a standard clean plus the build-up a standard clean does not reach: baseboards, door frames, switches and outlet covers, vents and ceiling fans, tile and shower glass, and the stovetop, grates and fridge top detailed. It is priced flat by home size, from ${TIERS[0].price} for a one-bedroom apartment or condo before GST, with any home-type, pet or travel charge shown on the quote.`}
+      heroSubheading={`A deep clean is everything in a standard clean plus the build-up a standard clean does not reach: baseboards, door frames, switches and outlet covers, vent covers, tile and shower glass, and the stovetop, grates and fridge top detailed. It is priced flat by home size, from ${TIERS[0].price} for a one-bedroom apartment or condo before GST, with any home-type, pet or travel charge shown on the quote.`}
       heroBadges={["Standard Checklist Plus the Deep Package", "All Supplies Brought For You", `${POLICY.guaranteeWindowHours}-Hour Re-Clean Guarantee`]}
       heroImage={heroImage}
       heroImageAlt="Kitchen after a deep clean"
@@ -79,7 +79,7 @@ export default function EdmontonDeepCleaning() {
           A deep clean is the <Link to="/edmonton/regular-cleaning/">standard cleaning checklist</Link> plus the
           deep-clean package, and both halves are priced flat by home size.
         </>,
-        "Edmonton earns its deep cleans the hard way. The city holds its cold rather than thawing and refreezing, so the sand and salt tracked in from November arrive dry and stay, and by spring they have worked into carpet edges and along the baseboards where a vacuum no longer lifts them. The spring melt, in late March and April, brings a whole winter of grit indoors in about three weeks. Meanwhile the furnace has been running since October, and a house sealed up that long cycles dust faster, onto ceiling fans, vent covers and the tops of door frames.",
+        "Edmonton earns its deep cleans the hard way. The city holds its cold rather than thawing and refreezing, so the sand and salt tracked in from November arrive dry and stay, and by spring they have worked into carpet edges and along the baseboards where a vacuum no longer lifts them. The spring melt, in late March and April, brings a whole winter of grit indoors in about three weeks. Meanwhile the furnace has been running since October, and a house sealed up that long cycles dust faster, onto vent covers, baseboards and the tops of door frames.",
         "What the work looks like depends on the home. In an older house, painted trim and panelled doors hold dust along every edge of the profile, and most of the job is hand-wiping. In the bathrooms, hard Alberta water leaves mineral scale on the taps and the shower glass; scale does not scrub off, and it comes away with a mild acid given a few minutes to work. In an apartment or condo there is less trim, so more of the job is the kitchen and the bathrooms. Our team works top to bottom, room by room: scrubbing baseboards and door frames, hand-wiping switches and outlet covers, detailing the stovetop, grates and fridge top, and detail-cleaning bathrooms.",
       ]}
       sections={[
@@ -147,7 +147,7 @@ export default function EdmontonDeepCleaning() {
         "Exterior of all kitchen appliances cleaned",
         "Cabinet fronts and handles wiped",
         "Tile and shower glass detailed",
-        "Vents and ceiling fans dusted",
+        "Vent covers wiped",
         "Detailed cobweb and corner cleaning",
         "Floors thoroughly mopped and vacuumed",
       ]}
@@ -187,7 +187,7 @@ export default function EdmontonDeepCleaning() {
         { q: "Does a deep clean remove mould or mildew?", a: "No. Mould remediation is a different trade, and it is not what a deep clean buys. Light mildew on shower grout or caulking is wiped when it is safe to. Past that we stop, tell you where it is and what it looks like, and leave it to somebody equipped for it." },
         { q: "When should I book a deep cleaning?", a: "In Edmonton, book for the spring melt, when a whole winter of sanding grit comes off boots and paws in about three weeks; a booking in late March or April clears it before it is ground into the floors. Fall, just before furnace season closes the windows until April, is the other good time. Outside those two, book one before guests arrive, after a long stretch without a clean, or as the first visit before a recurring schedule starts." },
         { q: "How long does a deep cleaning take?", a: "We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
-        { q: "How is deep cleaning different from regular cleaning?", a: "A standard clean is the surfaces you use: floors, bathrooms, kitchen counters, and dusting whatever is in reach. The deep clean adds the package on top, which is the trim and door frames, the switch plates, the outlet covers, the vents and ceiling fans, the shower glass, and the stovetop, grates and fridge top. In a house that has been sealed since October, that is where the furnace dust and the boot grit have gone." },
+        { q: "How is deep cleaning different from regular cleaning?", a: "A standard clean is the surfaces you use: floors, bathrooms, kitchen counters, and dusting whatever is in reach. The deep clean adds the package on top, which is the trim and door frames, the switch plates, the outlet covers, the vent covers, the shower glass, and the stovetop, grates and fridge top. In a house that has been sealed since October, that is where the furnace dust and the boot grit have gone." },
         { q: "Do I need to prepare anything?", a: "Two things help, and neither of them is cleaning. Tell us how the team gets in, whether that is a lockbox, a smart-lock code, a garage code or a key with a concierge. Then tell us which rooms matter most and which to leave alone, because a deep clean spends its hours on trim and edges and there is no sense spending them in a room you would rather we skipped." },
         { q: "Are your products safe for kids and pets?", a: `We bring our own standard professional products. Tell us about any sensitivities, or anything you would rather we did not use, when you book. Eco-friendly products are available for ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}.` },
         { q: "How often should I get a deep cleaning?", a: "There is no fixed interval, and a number of months is the wrong way to decide it. What sets it is how long the edges have been left: if the trim, the vents and the tops of the door frames have not been touched since the last one, it is due. A home where the furnace runs all winter and everybody comes in through the same door reaches that point sooner. Standard visits on a schedule in between are what keep the gap long." },

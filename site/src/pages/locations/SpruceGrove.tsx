@@ -117,7 +117,7 @@ const WhyUsCard = ({
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Spruce Grove" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Spruce Grove" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: baseboards, doors, light switches, wall outlets and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Spruce Grove" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Priced flat by home size, for moving out of a Spruce Grove home or into one.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Spruce Grove" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Priced by square footage, for the drywall dust a renovation or a new build leaves.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Spruce Grove" },
   { icon: PaintRoller, title: "Wall Washing", description: "Spot cleaning or a full wash, added to a clean and priced by home size.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Spruce Grove" },

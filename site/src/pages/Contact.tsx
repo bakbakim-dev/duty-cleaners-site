@@ -78,7 +78,7 @@ const OPENING_HOURS = [
 const CONTACT_FAQS: { q: string; a: string; more: { to: string; label: string } }[] = [
   {
     q: "What is included in a clean?",
-    a: "A standard clean covers dusting, floors, the kitchen surfaces and appliance exteriors, the bathrooms, and inside the microwave. A deep clean adds baseboards, doors, light switches, vent covers and ceiling fan blades within reach; a move-out clean adds inside the oven, fridge, cabinets and closets. On a standard or deep clean, inside the oven and fridge are add-ons.",
+    a: "A standard clean covers dusting, floors, the kitchen surfaces and appliance exteriors, the bathrooms, and inside the microwave. A deep clean adds baseboards, doors, light switches, wall outlets and vent covers; a move-out clean adds inside the oven, fridge, cabinets and closets. On a standard or deep clean, inside the oven and fridge are add-ons.",
     more: { to: "/whats-included", label: "The full checklist, service by service" },
   },
   {

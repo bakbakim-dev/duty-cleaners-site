@@ -123,7 +123,7 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: LucideIcon; title
 const services = [
   { icon: UtensilsCrossed, title: "Kitchen", description: "Stovetop, grates, range hood and backsplash degreased. Counters, sink and taps scrubbed. Inside and outside the oven, microwave and fridge, and inside all cabinets and drawers." },
   { icon: Bath, title: "Bathrooms", description: "Toilets, tubs and showers scrubbed and sanitized. Soap scum and hard-water scale taken off tile, glass and taps. Mirrors, counters, vanities and cabinet fronts wiped, and the inside of the vanity cabinets." },
-  { icon: Home, title: "Living areas and bedrooms", description: "All floors vacuumed and mopped. Baseboards, doors, door frames, light switches, outlets and vent covers wiped. Ceiling fan blades where safely reachable, window sills and tracks, and the inside of closets and built-in storage." },
+  { icon: Home, title: "Living areas and bedrooms", description: "All floors vacuumed and mopped. Baseboards, doors, door frames, light switches, outlets and vent covers wiped. Window sills and tracks wiped, and closets and built-in storage cleaned inside. Ceiling fans are dusted on request, where they can be reached safely." },
   { icon: Package, title: "Add-ons on the booking form", description: "Interior windows, window blinds by the set, spot or full wall washing, a finished or unfinished basement, and a sweep of the garage or balcony. Each has its own price on the booking form and is added only if you choose it." },
 ];
 

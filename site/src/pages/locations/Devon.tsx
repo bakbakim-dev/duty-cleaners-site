@@ -121,7 +121,7 @@ const WhyUsCard = ({
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Devon" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Devon" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: baseboards, doors, light switches, wall outlets and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Devon" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Devon" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or a new build, priced by square footage.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Devon" },
   { icon: PaintRoller, title: "Wall Washing", description: "Spot cleaning or a full wash of painted walls, booked together with a clean rather than on its own.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Devon" },
@@ -155,7 +155,7 @@ export default function Devon() {
     },
     {
       question: "What does a standard clean cost in Devon?",
-      answer: `A standard clean of a one-bedroom apartment or condo in Devon is ${STANDARD_FROM} before GST, and five or more bedrooms is ${STANDARD_TOP}. A Devon address adds the ${TRAVEL_FEE} travel fee, and a house or a home with pets adds its surcharge on top. The deep clean, which adds cobwebs, ceiling fans, light switches, outlet covers and vent covers, starts at ${DEEP_FROM} on the same terms. Weekly, bi-weekly and every-4-weeks schedules take 20%, 15% and 10% off. Discounts start from the second visit; the first clean is charged at the one-time rate.`
+      answer: `A standard clean of a one-bedroom apartment or condo in Devon is ${STANDARD_FROM} before GST, and five or more bedrooms is ${STANDARD_TOP}. A Devon address adds the ${TRAVEL_FEE} travel fee, and a house or a home with pets adds its surcharge on top. The deep clean, which adds baseboards, doors, light switches, wall outlets and vent covers, starts at ${DEEP_FROM} on the same terms. Weekly, bi-weekly and every-4-weeks schedules take 20%, 15% and 10% off. Discounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
       question: "Do the cleaners bring their own supplies to Devon?",
@@ -390,7 +390,7 @@ export default function Devon() {
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>
-                  For a house that is kept up, book the standard clean, from {STANDARD_FROM} for a one-bedroom apartment or condo, before GST, the travel fee and any house-type or pet surcharge, and put it on a repeating schedule for the discount. The deep clean, from {DEEP_FROM} on the same terms, is the better first visit for a house that has not had a professional clean, because it adds cobwebs, ceiling fans, light switches, outlet covers and vent covers to the standard checklist.
+                  For a house that is kept up, book the standard clean, from {STANDARD_FROM} for a one-bedroom apartment or condo, before GST, the travel fee and any house-type or pet surcharge, and put it on a repeating schedule for the discount. The deep clean, from {DEEP_FROM} on the same terms, is the better first visit for a house that has not had a professional clean, because it adds baseboards, doors, light switches, wall outlets and vent covers to the standard checklist.
                 </p>
                 <p>
                   For a rental handover, book{" "}

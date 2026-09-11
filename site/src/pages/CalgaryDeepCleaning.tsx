@@ -46,7 +46,7 @@ export default function CalgaryDeepCleaning() {
       serviceName="Deep House Cleaning in Calgary"
       canonical="https://dutycleaners.ca/calgary/deep-cleaning"
       heroHeading={<>Deep Cleaning Services in <AccentGold>Calgary</AccentGold></>}
-      heroSubheading={`Everything in a standard clean, plus what a standard clean does not reach: baseboards and door frames, switches and outlet covers, vents and ceiling fans, tile and shower glass, the stovetop and range hood degreased. From ${TIERS[0].price} before GST for a one-bedroom, flat by home size, with any pet charge, home-type charge or travel fee added on the quote. The inside of the oven and fridge are add-ons.`}
+      heroSubheading={`Everything in a standard clean, plus what a standard clean does not reach: baseboards and door frames, switches and outlet covers, vent covers, tile and shower glass, the stovetop and range hood degreased. From ${TIERS[0].price} before GST for a one-bedroom, flat by home size, with any pet charge, home-type charge or travel fee added on the quote. The inside of the oven and fridge are add-ons.`}
       heroBadges={["Baseboards & Door Frames by Hand", "All Supplies Brought For You", `Missed Spots Re-Cleaned if Reported Within ${POLICY.guaranteeWindowHours} Hours`]}
       heroImage={heroImage}
       heroImageAlt="Long kitchen with granite counters, a gas cooktop under a range hood and two stainless-steel fridges"
@@ -124,7 +124,7 @@ export default function CalgaryDeepCleaning() {
         "Exterior of all kitchen appliances cleaned",
         "Cabinet fronts and handles wiped",
         "Tile and shower glass detailed",
-        "Vents and ceiling fans dusted",
+        "Vent covers wiped",
         "Detailed cobweb and corner cleaning",
         "Floors thoroughly mopped and vacuumed",
       ]}

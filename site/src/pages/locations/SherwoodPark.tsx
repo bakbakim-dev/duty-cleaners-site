@@ -117,7 +117,7 @@ const WhyUsCard = ({
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Sherwood Park" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Sherwood Park" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: baseboards, doors, light switches, wall outlets and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Sherwood Park" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Priced flat by home size, for moving out of a Sherwood Park home or into one.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Sherwood Park" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Priced by square footage, for the fine dust left after renovation work.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Sherwood Park" },
   { icon: PaintRoller, title: "Wall Washing", description: "Spot cleaning or a full wash of painted walls, booked together with a clean and priced by home size.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Sherwood Park" },
@@ -267,7 +267,7 @@ export default function SherwoodPark() {
                   Say the home is a three-bedroom two-storey house in Sherwood Park, with two and a half bathrooms and no pets, booked for a deep clean. The deep clean for that size is {EXAMPLE_TIER.price} as an apartment or condo, the travel fee is {TRAVEL_FEE} and a two-storey house adds {HOME_TYPE.twoStorey}, so the quote comes to {EXAMPLE_PRICE} before 5% GST. A dog or a cat in the house would put the pet charge of {PET_FEE} on each visit as well.
                 </p>
                 <p>
-                  The deep clean is the standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers. Book a standard clean instead and the same house is quoted from the standard rate for its size, with the same surcharge and travel fee.
+                  The deep clean is the standard checklist plus the deep-clean package: baseboards, doors, light switches, wall outlets and vent covers. Book a standard clean instead and the same house is quoted from the standard rate for its size, with the same surcharge and travel fee.
                 </p>
                 <p>
                   Size and home type set the rate, and a clean that runs long costs the same. The figure moves for more bathrooms than the table assumes, a larger home type, a pet or an add-on. When a home needs substantially more work than was described, such as heavy build-up or far more glass or cabinetry, the team says what it found and sets out the options before carrying on.

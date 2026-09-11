@@ -113,7 +113,7 @@ const WhyUsCard = ({
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Stony Plain" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Stony Plain" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: baseboards, doors, light switches, wall outlets and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Stony Plain" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Stony Plain" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "The final clean after a renovation or a new build, priced by square footage rather than bedrooms.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Stony Plain" },
   { icon: PaintRoller, title: "Wall Washing", description: "Spot cleaning or a full wash of the walls, added to a booked clean and priced by home size.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Stony Plain" },
@@ -375,7 +375,7 @@ export default function StonyPlain() {
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>
-                  A house that is kept up wants the standard clean, from {STANDARD_FROM}. A house in one of the newer subdivisions that has never had a professional clean starts better with the deep clean from {DEEP_FROM}, so the ceiling fans, light switches and vent covers are done once before a standard schedule takes over. A handover needs{" "}
+                  A house that is kept up wants the standard clean, from {STANDARD_FROM}. A house in one of the newer subdivisions that has never had a professional clean starts better with the deep clean from {DEEP_FROM}, so the baseboards, light switches and vent covers are done once before a standard schedule takes over. A handover needs{" "}
                   <Link to="/move-out-cleaning-edmonton/" className="text-primary underline underline-offset-2 font-medium">move-in and move-out cleaning in Stony Plain</Link>, from {MOVE_FROM}. All three figures are before GST for a one-bedroom apartment or condo, and the house-type surcharge and the pet charge apply to each where they fit the home.
                 </p>
                 <p>

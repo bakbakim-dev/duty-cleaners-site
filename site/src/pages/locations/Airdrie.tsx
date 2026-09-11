@@ -120,7 +120,7 @@ const WhyUsCard = ({
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Airdrie" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Airdrie" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: baseboards, doors, light switches, wall outlets and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Airdrie" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Airdrie" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after renovations and new builds in Airdrie, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Airdrie" },
   { icon: PaintRoller, title: "Wall Washing", description: "Spot cleaning or a full wash of the walls, priced by home size and booked together with a clean.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Airdrie" },
@@ -344,7 +344,7 @@ export default function Airdrie() {
                 </h2>
                 <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                   <p>
-                    A deep clean in Airdrie is {DEEP_FROM} for a one-bedroom apartment or condo and {DEEP_TOP} for five or more bedrooms, before GST, plus the {TRAVEL_FEE} travel fee and any house-type or pet charge. It is the standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers. Book it once to catch up, then keep the home on a standard schedule. The{" "}
+                    A deep clean in Airdrie is {DEEP_FROM} for a one-bedroom apartment or condo and {DEEP_TOP} for five or more bedrooms, before GST, plus the {TRAVEL_FEE} travel fee and any house-type or pet charge. It is the standard checklist plus the deep-clean package: baseboards, doors, light switches, wall outlets and vent covers. Book it once to catch up, then keep the home on a standard schedule. The{" "}
                     <Link to="/calgary/deep-cleaning/" className="text-primary underline underline-offset-2">deep cleaning in Calgary</Link>{" "}
                     page has the full checklist and the price at every bedroom count.
                   </p>

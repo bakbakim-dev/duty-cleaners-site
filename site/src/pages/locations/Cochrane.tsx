@@ -116,7 +116,7 @@ const WhyUsCard = ({
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Cochrane" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Cochrane" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: baseboards, doors, light switches, wall outlets and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Cochrane" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Cochrane" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared from a renovation or a new build in Cochrane, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Cochrane" },
   { icon: PaintRoller, title: "Wall Washing", description: "Booked with a clean rather than on its own: spot cleaning or a full wash, priced by home size.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Cochrane" },
@@ -314,7 +314,7 @@ export default function Cochrane() {
                 </h2>
                 <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                   <p>
-                    A house in Sunset Ridge or Fireside that the trades only recently left can start with the deep clean, which adds the deep-clean package to the standard checklist: cobwebs, ceiling fans, light switches, outlet covers and vent covers. The deep clean is {DEEP_FROM} before GST for a one-bedroom apartment or condo, and on top of that come the {TRAVEL_FEE} travel fee, the home-type charge for a house and the pet charge where there is a pet. Construction dust keeps working out of the ductwork for months in a house like that, so wiping the vent covers earns its place, though cleaning inside the ducts is not part of any clean. After that, the standard clean keeps the house up. The{" "}
+                    A house in Sunset Ridge or Fireside that the trades only recently left can start with the deep clean, which adds the deep-clean package to the standard checklist: baseboards, doors, light switches, wall outlets and vent covers. The deep clean is {DEEP_FROM} before GST for a one-bedroom apartment or condo, and on top of that come the {TRAVEL_FEE} travel fee, the home-type charge for a house and the pet charge where there is a pet. Construction dust keeps working out of the ductwork for months in a house like that, so wiping the vent covers earns its place, though cleaning inside the ducts is not part of any clean. After that, the standard clean keeps the house up. The{" "}
                     <Link to="/calgary/deep-cleaning/" className="text-primary underline underline-offset-2">Calgary deep cleaning</Link>{" "}
                     page has the checklist and the price at every bedroom count.
                   </p>

@@ -116,7 +116,7 @@ const WhyUsCard = ({
 
 const services = [
   { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Beaumont" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: cobwebs, ceiling fans, light switches, outlet covers and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Beaumont" },
+  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: baseboards, doors, light switches, wall outlets and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Beaumont" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Beaumont" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or a new build, priced by square footage.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Beaumont" },
   { icon: PaintRoller, title: "Wall Washing", description: "Spot cleaning or a full wash, booked together with a clean and priced by home size.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Beaumont" },
@@ -362,7 +362,7 @@ export default function Beaumont() {
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>
-                  A home that is kept up wants the standard clean, from {STANDARD_FROM}. A home that has gone a season without one wants the deep clean, from {DEEP_FROM}, which adds the deep-clean package to the standard checklist: cobwebs, ceiling fans, light switches, outlet covers and vent covers. An empty home on handover day wants{" "}
+                  A home that is kept up wants the standard clean, from {STANDARD_FROM}. A home that has gone a season without one wants the deep clean, from {DEEP_FROM}, which adds the deep-clean package to the standard checklist: baseboards, doors, light switches, wall outlets and vent covers. An empty home on handover day wants{" "}
                   <Link to="/move-out-cleaning-edmonton/" className="text-primary underline underline-offset-2 font-medium">the Beaumont move-out clean</Link>, from {MOVE_FROM}, because that checklist opens the oven, the fridge and every cupboard, and a standard clean does not. Each of those figures is for a one-bedroom apartment or condo, before 5% GST; a house adds its home-type charge, a pet adds the pet charge, and a Beaumont address adds the {TRAVEL_FEE} travel fee.
                 </p>
                 <p>

@@ -543,6 +543,14 @@ export const GUARD_PROOFS: GuardProof[] = [
   },
   {
     guard: "src/data/copy-quality.test.ts",
+    target: "src/components/LocationPageTemplate.tsx",
+    find: "• Baseboards and doors wiped",
+    replace: "• Ceiling fans dusted and cleaned",
+    failing: "ceiling fans are an on-request extra, never part of a package",
+    why: "Puts ceiling fans back in the deep package's FAQ list, as it read on 129 location pages.",
+  },
+  {
+    guard: "src/data/copy-quality.test.ts",
     target: "src/pages/Contact.tsx",
     find: '<SelectItem value="commercial">Office Cleaning</SelectItem>',
     replace: '<SelectItem value="commercial">Office & Commercial Cleaning</SelectItem>',
