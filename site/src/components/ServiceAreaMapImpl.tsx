@@ -57,8 +57,8 @@ const locations: LocationPin[] = [
   { name: "Langdon", lat: 51.0340, lng: -113.7315 },
   { name: "Okotoks", lat: 50.7250, lng: -113.9752 },
   { name: "Strathmore", lat: 51.0378, lng: -113.4001 },
-  { name: "Turner Valley", lat: 50.6817, lng: -114.2805 },
-  { name: "Black Diamond", lat: 50.6917, lng: -114.2352 },
+  { name: "Turner Valley (Diamond Valley)", lat: 50.6817, lng: -114.2805 },
+  { name: "Black Diamond (Diamond Valley)", lat: 50.6917, lng: -114.2352 },
 ];
 
 export default function ServiceAreaMapImpl() {

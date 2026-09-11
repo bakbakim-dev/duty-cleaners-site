@@ -174,8 +174,9 @@ P1  Standard clean, one visit, for an apartment or condo:
     More bathrooms, a larger home type or add-ons raise the price; the instant price shows the
     exact figure.
 P2  Deep clean, same sizes: $255, $315, $372, $444, $485. It is the standard checklist plus the
-    deep-clean package: baseboards, doors, light switches, wall outlets and vent covers. Light
-    switches belong to the deep package only; never list them on the standard checklist.
+    deep-clean package, which BookingKoala describes as baseboards, doors, light switches, wall
+    outlets and vent covers. Light switches belong to the deep package only; never list them on
+    the standard checklist. Name no other package items until the owner settles them.
 P3  Move-in or move-out clean, same sizes: $284, $361, $424, $501, $539.
 P4  Recurring: the standard clean on a schedule. Weekly 20% off, bi-weekly 15% off, every 4 weeks
     10% off, from the second visit; the first clean is charged at the one-time rate. Name the 10%
@@ -320,9 +321,8 @@ one dash in a sentence. Use the "X, not Y" pattern no more than twice on a page,
 - Tourism: restaurants, attractions, "things to do", founding years, population figures. Local
   content is about homes: how they are built, what the weather does to them, how people get in
   and out, when people sleep.
-- Commercial cleaning on a house-cleaning page. The only commercial line the site carries is
-  the quote form's pointer to an office-cleaning quote (T10); the commercial pages are written
-  separately.
+- Commercial cleaning in the body copy of a house-cleaning page. The commercial pages, the
+  footer link to them and the office-cleaning quote route (T10) are handled separately.
 - A page or a section for every place-and-service pair, or sections that differ only by the
   place name.
 - Copy that depends on the visitor's location. The URL decides the city.

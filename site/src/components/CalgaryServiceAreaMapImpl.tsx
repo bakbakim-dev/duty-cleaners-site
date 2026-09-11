@@ -40,7 +40,7 @@ interface LocationPin {
 const locations: LocationPin[] = [
   { name: "Calgary", lat: 51.0447, lng: -114.0719, major: true },
   { name: "Airdrie", lat: 51.2917, lng: -114.0144 },
-  { name: "Black Diamond", lat: 50.6917, lng: -114.2352 },
+  { name: "Black Diamond (Diamond Valley)", lat: 50.6917, lng: -114.2352 },
   { name: "Chestermere", lat: 51.0501, lng: -113.8228 },
   { name: "Cochrane", lat: 51.1895, lng: -114.4670 },
   { name: "Crossfield", lat: 51.4327, lng: -114.0300 },
@@ -48,7 +48,7 @@ const locations: LocationPin[] = [
   { name: "Langdon", lat: 51.0340, lng: -113.7315 },
   { name: "Okotoks", lat: 50.7250, lng: -113.9752 },
   { name: "Strathmore", lat: 51.0378, lng: -113.4001 },
-  { name: "Turner Valley", lat: 50.6817, lng: -114.2805 },
+  { name: "Turner Valley (Diamond Valley)", lat: 50.6817, lng: -114.2805 },
 ];
 
 export default function CalgaryServiceAreaMapImpl() {
