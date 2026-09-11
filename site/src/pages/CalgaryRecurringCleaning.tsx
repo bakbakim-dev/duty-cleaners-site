@@ -150,20 +150,20 @@ export default function CalgaryRecurringCleaning() {
       includedSubheading="Kitchen, bathrooms, bedrooms and living areas, on every visit."
       included={[
         { icon: UtensilsCrossed, title: "Kitchen Cleaning", description: "Counters, sink and stovetop wiped, the outside of the fridge, oven and dishwasher and the cabinet fronts done, then the floor vacuumed and mopped." },
-        { icon: Bath, title: "Bathroom Sanitization", description: "Toilet, tub and shower scrubbed, soap scum taken off tile and glass, mirror and vanity polished, floor washed." },
+        { icon: Bath, title: "Bathrooms", description: "Toilet, tub and shower scrubbed, soap scum taken off tile and glass, mirror and vanity polished, floor washed." },
         { icon: Home, title: "Bedrooms & Living Areas", description: "Reachable surfaces dusted, carpets and rugs vacuumed, hard floors mopped, room by room through the home." },
       ]}
       bullets={[
         "Kitchen, bathrooms, and living areas cleaned",
         "Floors vacuumed and mopped",
         "Dusting of all accessible surfaces and furniture",
-        "Bathrooms scrubbed and sanitized",
+        "Bathrooms scrubbed and wiped down",
         "Mirrors and glass surfaces polished",
         "Trash emptied",
       ]}
       roomTasks={[
         { name: "Kitchen", tasks: 4, sample: "the counters, the stovetop and the sink" },
-        { name: "Bathrooms", tasks: 4, sample: "the toilet, tub and shower sanitized" },
+        { name: "Bathrooms", tasks: 4, sample: "the toilet, tub and shower scrubbed" },
         { name: "Living Areas", tasks: 4, sample: "dusting, then vacuuming and mopping" },
         { name: "Bedrooms", tasks: 3, sample: "surfaces dusted and under the bed vacuumed" },
       ]}

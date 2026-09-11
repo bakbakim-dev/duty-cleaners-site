@@ -249,7 +249,7 @@ export default function Navigation({ city }: NavigationProps) {
           to: "/edmonton/march-out-cleaning/",
           icon: ShieldCheck,
           title: "March Out Cleaning",
-          description: "Military housing, CFHA inspection standards",
+          description: "Military housing move-outs, by phone",
         } as DropdownItem]),
   ];
 

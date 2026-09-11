@@ -40,10 +40,10 @@ const rooms = [
     icon: Bath,
     title: "Bathrooms",
     items: [
-      "Toilets sanitised inside & out",
+      "Toilets scrubbed inside & out",
       "Tubs, showers & tile scrubbed",
       "Mirrors & glass streak-free",
-      "Counters & sinks disinfected",
+      "Counters & sinks wiped down",
       "Floors washed",
     ],
   },

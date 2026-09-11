@@ -235,7 +235,7 @@ export const SERVICES: ServicePricing[] = [
     inclusions: [
       "Full reset of every room between stays",
       "Beds stripped and remade with your linen",
-      "Kitchen and bathrooms sanitised",
+      "Kitchen and bathrooms cleaned",
       "Restocking of supplies you leave on site",
     ],
     hours: "2–4 hrs",

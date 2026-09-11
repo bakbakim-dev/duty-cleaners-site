@@ -317,7 +317,7 @@ export default function WhatsIncluded() {
   ];
 
   const bathroomItems = [
-    "Scrub and sanitize toilets, tubs and showers",
+    "Scrub toilets, tubs and showers",
     "Clean mirrors, countertops and vanities",
     "Remove soap scum from tiles and glass",
     "Wipe the outside of the cabinets",
@@ -535,7 +535,7 @@ export default function WhatsIncluded() {
                       { item: "Dust all accessible surfaces & furniture", standard: "yes", deep: "yes", move: "yes" },
                       { item: "Vacuum & mop all floors", standard: "yes", deep: "yes", move: "yes" },
                       { item: "Kitchen counters, sink & appliance exteriors", standard: "yes", deep: "yes", move: "yes" },
-                      { item: "Bathrooms scrubbed & sanitized", standard: "yes", deep: "yes", move: "yes" },
+                      { item: "Bathrooms scrubbed & wiped down", standard: "yes", deep: "yes", move: "yes" },
                       { item: "Inside & outside microwave", standard: "yes", deep: "yes", move: "yes" },
                     ],
                   },

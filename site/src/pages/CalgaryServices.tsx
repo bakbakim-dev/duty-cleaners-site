@@ -165,7 +165,7 @@ const services: Service[] = [
     description: "A single visit at a flat rate set by the size of the home. Dusting, vacuuming, kitchen surfaces, bathrooms and floors, with the price fixed before the team arrives.",
     features: [
       "Every room dusted and vacuumed",
-      "Bathrooms scrubbed and disinfected",
+      "Bathrooms scrubbed and wiped down",
       "Kitchen counters, sink and the outside of appliances and cabinets",
       "Hard floors mopped after vacuuming"
     ],
@@ -267,7 +267,7 @@ const services: Service[] = [
     description: `Hourly turnovers for short-term rental hosts at ${HOURLY} per cleaner before GST, with a minimum of 3 hours for one cleaner or 2 hours for two.`,
     features: [
       "Beds stripped and remade with your linen",
-      "Kitchen and bathrooms sanitised",
+      "Kitchen and bathrooms cleaned",
       "Guest supplies topped up from your stock",
       "The same checklist on every turnover"
     ],

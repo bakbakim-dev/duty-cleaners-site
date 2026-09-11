@@ -53,7 +53,7 @@ const includedServices = [
   { icon: Droplets, title: "Bathrooms, for first use", desc: "Tubs, showers, toilets, vanities, mirrors and tile, with the grout haze new tile carries taken off rather than spread." },
   { icon: SprayCan, title: "Floors, vacuumed before mopped", desc: "Hardwood, tile, vinyl and laminate. The grit is lifted first, because a mop grinds it into a floor that is a week old." },
   { icon: Shield, title: "Windows and mirrors, indoors", desc: "Paint flecks and label adhesive come off first; polishing over either one is how a new pane gets scratched." },
-  { icon: Wind, title: "Doors, switches and sills", desc: "The handles and plates a trade opened all week, plus the baseboards and window sills below them, wiped and sanitized." },
+  { icon: Wind, title: "Doors, switches and sills", desc: "The handles and plates a trade opened all week, plus the baseboards and window sills below them, wiped clean." },
 ];
 
 const excludedServices = [
@@ -106,7 +106,7 @@ const faqs: Faq[] = [
   },
   {
     q: "Can you clean my Edmonton home after a kitchen or bathroom renovation?",
-    a: "Yes. Post-renovation cleaning of a single room is the same service on a smaller footprint. We detail cabinets inside and out and sanitize tubs and tile. The drywall dust travels into the rooms around the one that was worked on, so tell us at booking which of those rooms took it.",
+    a: "Yes. Post-renovation cleaning of a single room is the same service on a smaller footprint. We detail cabinets inside and out and scrub tubs and tile. The drywall dust travels into the rooms around the one that was worked on, so tell us at booking which of those rooms took it.",
   },
   {
     q: "How is post-construction cleaning different from a regular deep clean?",

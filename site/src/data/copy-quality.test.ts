@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
+import { SERVICES } from "./pricing";
 
 /**
  * The money pages do not read like a template filled in by a machine.
@@ -280,21 +281,25 @@ describe("the copy does not read like a template filled in by a machine", () => 
     // wall outlets and vent covers, and cobwebs where there are any. Ceiling
     // fans are dusted only on request, where they can be reached safely; 146
     // pages had listed them in the package. Blog tips are general advice and
-    // image alt text describes a photo, so neither counts.
+    // image alt text describes a photo, so neither counts. Plain "fans" counts
+    // too where it sits in a package sentence or on a deep-clean page: both
+    // deep pages listed "vents, fans" in the package until 2026-09-11, while
+    // "dust settles on fans" on a recurring page describes a home, not a package.
     const files = [...allTsx(join(SRC, "pages"), "pages/"), ...allTsx(join(SRC, "components"), "components/")].filter(
       (f) => !/Blog|Commercial/.test(f),
     );
     const hits: string[] = [];
     for (const rel of files) {
       const text = stripComments(readFileSync(join(SRC, rel), "utf-8"));
-      for (const m of text.matchAll(/ceiling fan/gi)) {
+      for (const m of text.matchAll(/ceiling fan|\bfans\b/gi)) {
         const before = text.slice(0, m.index);
         const after = text.slice(m.index);
         const start = Math.max(before.lastIndexOf(". "), before.lastIndexOf('"'), before.lastIndexOf("`"), before.lastIndexOf("•"), before.lastIndexOf(">"));
         const end = after.search(/\. |"|`|\\n|</);
         const sentence = text.slice(start + 1, m.index + (end < 0 ? after.length : end));
         const line = text.slice(text.lastIndexOf("\n", m.index) + 1, m.index);
-        if (!/request/i.test(sentence) && !/\balt\b/.test(line)) hits.push(`${rel}: "${sentence.trim().slice(0, 120)}"`);
+        const inPackage = /ceiling/i.test(m[0]) || /package|deep/i.test(sentence) || /Deep/.test(rel);
+        if (inPackage && !/request/i.test(sentence) && !/\balt\b/.test(line)) hits.push(`${rel}: "${sentence.trim().slice(0, 120)}"`);
       }
     }
     expect(hits, "ceiling fans listed as included; they are dusted on request only").toEqual([]);
@@ -313,5 +318,89 @@ describe("the copy does not read like a template filled in by a machine", () => 
     ];
     const hits = files.filter((rel) => /cobweb/i.test(stripComments(readFileSync(join(SRC, rel), "utf-8"))));
     expect(hits, "cobwebs listed outside the deep package").toEqual([]);
+  });
+
+  it("service copy promises cleaning, not sanitising or disinfecting", () => {
+    // Owner, 2026-09-11: the cleaners are subcontractors who bring the products
+    // they work best with, so the office cannot say which product touched a
+    // surface. "Sanitised" and "disinfected" describe what a product does to
+    // germs (a disinfectant carries a Health Canada DIN and a label contact
+    // time), and 20 house-cleaning files made the claim. The copy now says what
+    // the team does: scrubbed, wiped down, cleaned. The three product posts
+    // discuss disinfectants in general and the commercial pages are out of
+    // scope, so neither counts; the other blog posts describe our own service
+    // and do. The data and lib files feed rendered copy and JSON-LD, so they are
+    // read too (pricing.ts through SERVICES, which skips the commercial tier;
+    // reviews stay verbatim).
+    const CLAIM = /sanitis|sanitiz|disinfect|non-?toxic|chemical-free|hospital-grade/i;
+    const files = [...allTsx(join(SRC, "pages"), "pages/"), ...allTsx(join(SRC, "components"), "components/")].filter(
+      (f) => !/BlogCleaningProducts|BlogVinegarBakingSoda|BlogSpotlessHomeTips|Commercial/.test(f),
+    );
+    for (const dir of ["data", "lib"]) {
+      for (const name of readdirSync(join(SRC, dir))) {
+        if (name.endsWith(".ts") && !name.endsWith(".test.ts") && name !== "pricing.ts" && !/review/i.test(name)) files.push(`${dir}/${name}`);
+      }
+    }
+    const hits: string[] = [];
+    for (const rel of files) {
+      const text = stripComments(readFileSync(join(SRC, rel), "utf-8"));
+      const m = CLAIM.exec(text);
+      if (m) hits.push(`${rel}: "${text.slice(Math.max(0, m.index - 40), m.index + 40).replace(/\s+/g, " ")}"`);
+    }
+    for (const s of SERVICES.filter((x) => x.id !== "commercial")) {
+      for (const line of [s.blurb, ...s.inclusions]) if (CLAIM.test(line)) hits.push(`pricing.ts ${s.id}: "${line}"`);
+    }
+    for (const name of ["llms.txt", "llms-full.txt"]) {
+      for (const line of readFileSync(join(SRC, "..", "public", name), "utf-8").split("\n")) {
+        const commercialOnly = /commercial|office/i.test(line) && !/residential|home|house/i.test(line);
+        if (CLAIM.test(line) && !commercialOnly) hits.push(`${name}: "${line.trim().slice(0, 100)}"`);
+      }
+    }
+    expect(hits, "a product-effect claim on house-cleaning copy; say what the team does").toEqual([]);
+  });
+
+  it("the march-out copy works from CFHA's checklist and never claims its standards", () => {
+    // CFHA's move-out checklist (the Occupant Handbook, linked from the march-out
+    // page) covers repairs, bulbs, the furnace filter, the yard, steam-cleaned
+    // carpets and exterior windows as well as cleaning. The team does none of
+    // those, so "done to CFHA's march-out inspection standards", on five
+    // surfaces until 2026-09-11, claimed more than the service delivers.
+    const files = [...allTsx(join(SRC, "pages"), "pages/"), ...allTsx(join(SRC, "components"), "components/")];
+    const hits: string[] = [];
+    for (const rel of files) {
+      const m = /CFHA[^.<"`]{0,40}standards?/i.exec(stripComments(readFileSync(join(SRC, rel), "utf-8")));
+      if (m) hits.push(`${rel}: "${m[0].replace(/\s+/g, " ")}"`);
+    }
+    expect(hits, "a claim to meet CFHA's inspection standards").toEqual([]);
+  });
+
+  it("a re-clean tied to an inspection is promised only inside the window that runs from the clean", () => {
+    // policy.ts: a miss is reported within guaranteeWindowHours of the clean.
+    // Both move-out pages said "if the inspection or your own walkthrough finds
+    // something missed ... we return", and one said "come back if the inspection
+    // finds something we missed", which reads as a promise that holds whenever
+    // the inspection happens. A sentence that ties the return visit to an
+    // inspection must state the window: within N hours of the clean. An FAQ
+    // question that names the inspection and an answer that promises the
+    // return are one promise, so each q and a are read together; the Edmonton
+    // move-out FAQ slipped past the sentence check that way.
+    const files = [...allTsx(join(SRC, "pages"), "pages/"), ...allTsx(join(SRC, "components"), "components/")].filter(
+      (f) => !/Commercial/.test(f),
+    );
+    // "we/the team come back", not "the deposit comes back".
+    const RETURN = /\b(?:we|team|crew)(?: will)? (?:return|come back|comes back)\b|\bre-clean|\bto come back\b|\bcome back (?:at no charge|for)\b/i;
+    const WINDOW = /within (?:\$?\{[^}]+\}|24|twenty-four) hours (?:of|from|after) (?:the|your) clean|window runs from the clean/i;
+    const tied = (unit: string) => /\binspect(?:ion|or)s?\b/i.test(unit) && RETURN.test(unit) && !WINDOW.test(unit);
+    const hits: string[] = [];
+    for (const rel of files) {
+      const text = stripComments(readFileSync(join(SRC, rel), "utf-8")).replace(/\{" "\}/g, " ").replace(/\s+/g, " ");
+      for (const sentence of text.split(/[.?!](?=\s)|["`<>]/)) {
+        if (tied(sentence)) hits.push(`${rel}: "${sentence.trim().slice(0, 140)}"`);
+      }
+      for (const m of text.matchAll(/\bq(?:uestion)?:\s*(["`])(.*?)\1,\s*a(?:nswer)?:\s*(["`])(.*?)\3/g)) {
+        if (tied(`${m[2]} ${m[4]}`)) hits.push(`${rel}: Q "${m[2].slice(0, 70)}" A "${m[4].slice(0, 110)}"`);
+      }
+    }
+    expect(hits, "a re-clean tied to the inspection, without the window that runs from the clean").toEqual([]);
   });
 });

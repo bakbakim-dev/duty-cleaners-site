@@ -180,7 +180,7 @@ const AirbnbCleaningCalgary = () => {
      items twice, once with photos and once with icons. */
   const whatWeClean = [
     { image: imgBedroom, title: "Beds and bedrooms", description: "Sheets off, fresh set on from the linen you have left out, pillows plumped, nightstands and window sills dusted, floor vacuumed under the bed frame." },
-    { image: imgBathroom, title: "Bathrooms", description: "Toilet, sink, tub and shower disinfected, glass and taps wiped dry so they do not spot, drain cover cleared, towels replaced." },
+    { image: imgBathroom, title: "Bathrooms", description: "Toilet, sink, tub and shower scrubbed, glass and taps wiped dry so they do not spot, drain cover cleared, towels replaced." },
     { image: imgKitchen, title: "Kitchen", description: "Sink and counters scrubbed, stovetop and appliance fronts wiped, microwave interior cleaned, fridge checked for anything the last guest left." },
     { image: imgLiving, title: "Living room and entry", description: "Gravel and grit vacuumed from the entry mat and floor edges, surfaces dusted, cushions and throws reset to the listing photo, remotes back in their place." },
     { image: imgLaundry, title: "Supplies and equipment", description: "The team brings all its own cleaning products and equipment. Washing linen and doing dishes are not part of a turnover, so leave a clean set of sheets and towels in the unit for the beds and the bathroom." },
@@ -325,7 +325,7 @@ const AirbnbCleaningCalgary = () => {
           </p>
           <p className="text-lg mb-8 text-white/90 max-w-3xl mx-auto leading-relaxed">
             A turnover here is the same six-area checklist however long the guest stayed: beds remade with your linen, bathrooms and kitchen
-            disinfected, the entry cleared of gravel, your supplies topped up and the bins out. You are
+            cleaned, the entry cleared of gravel, your supplies topped up and the bins out. You are
             billed for the hours it took, after it is done.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">

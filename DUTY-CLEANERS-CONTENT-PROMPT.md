@@ -217,8 +217,9 @@ before GST, which home size it is for, and which compulsory charges can apply. N
 price as the whole bill when the pet charge, the home-type surcharge or the travel fee can apply.
 
 Terms
-T1  The guarantee: if something was missed, tell us within 24 hours and we come back and
-    re-clean it at no charge. Photos help but are not required. The commitment is the return
+T1  The guarantee: if something was missed, tell us within 24 hours of the clean and we come
+    back and re-clean it at no charge. The window runs from the clean, not from a move-out
+    inspection. Photos help but are not required. The commitment is the return
     visit. It is not a money-back guarantee, though a customer who wants something else can
     call and talk about it.
 T2  Payment: nothing is charged at booking. The day before, a temporary hold is placed on the
@@ -234,7 +235,10 @@ T4  If the team arrives and cannot get in, the lockout charge is half the cost o
     service.
 T5  You do not need to be home: most customers leave a key, a lockbox code or smart-lock access,
     and the team locks up. The team brings all supplies and equipment. Running water is
-    required, and vacuuming may not be possible without electricity.
+    required, and vacuuming may not be possible without electricity. The cleaners are
+    subcontractors who choose their own products, so never claim what a product does: no
+    "sanitised", "disinfected", "non-toxic", "hospital-grade" or "safe for pets". Say what the
+    team does: scrubbed, wiped down, cleaned.
 T6  You do not need to clean before the team comes. Clear counters and floors get cleaned,
     cluttered ones get worked around, and decluttering or organising is a separate hourly
     add-on.
@@ -422,8 +426,8 @@ Service page
                         "construction cleaning"
     wall washing        "wall washing", "wall cleaning service"
     Airbnb turnover     "Airbnb cleaning", "turnover cleaning", "short-term rental cleaning"
-    march-out           Edmonton only: military housing move-outs cleaned to CFHA's march-out
-                        inspection standards
+    march-out           Edmonton only: military housing move-outs, worked from the cleaning
+                        items on the CFHA move-out checklist (never "to CFHA's standards")
 
 Pricing page (/pricing/, /calgary/pricing/)
   Owns: "<city> house cleaning prices", "house cleaning rates <city>", "cleaning cost".

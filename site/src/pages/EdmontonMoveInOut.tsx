@@ -122,7 +122,7 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: LucideIcon; title
 // move-in/out column on /whats-included/ and the add-on rows in bk-config.
 const services = [
   { icon: UtensilsCrossed, title: "Kitchen", description: "Stovetop, grates, range hood and backsplash degreased. Counters, sink and taps scrubbed. Inside and outside the oven, microwave and fridge, and inside all cabinets and drawers." },
-  { icon: Bath, title: "Bathrooms", description: "Toilets, tubs and showers scrubbed and sanitized. Soap scum and hard-water scale taken off tile, glass and taps. Mirrors, counters, vanities and cabinet fronts wiped, and the inside of the vanity cabinets." },
+  { icon: Bath, title: "Bathrooms", description: "Toilets, tubs and showers scrubbed. Soap scum and hard-water scale taken off tile, glass and taps. Mirrors, counters, vanities and cabinet fronts wiped, and the inside of the vanity cabinets." },
   { icon: Home, title: "Living areas and bedrooms", description: "All floors vacuumed and mopped. Baseboards, doors, door frames, light switches, outlets and vent covers wiped. Window sills and tracks wiped, and closets and built-in storage cleaned inside. Ceiling fans are dusted on request, where they can be reached safely." },
   { icon: Package, title: "Add-ons on the booking form", description: "Interior windows, window blinds by the set, spot or full wall washing, a finished or unfinished basement, and a sweep of the garage or balcony. Each has its own price on the booking form and is added only if you choose it." },
 ];
@@ -136,7 +136,7 @@ const whyUsItems = [
   // are actually stated: the flat rate, and the re-clean window. The window is
   // in the card title, so the description does not say the number again.
   { icon: DollarSign, title: "Flat rate by home size", description: "The price is set by bedrooms and bathrooms when you book, and it does not rise if the clean takes longer than expected." },
-  { icon: Award, title: `${POLICY.guaranteeWindowHours}-hour re-clean`, description: "If the inspection or your own walkthrough finds something missed, say so and we return to put it right at no charge. Photos help but are not required." },
+  { icon: Award, title: `${POLICY.guaranteeWindowHours}-hour re-clean`, description: `Walk through the home within ${POLICY.guaranteeWindowHours} hours of the clean and tell us anything missed, and we return to put it right at no charge. The window runs from the clean, not the inspection, so book the clean as close to the inspection as you can. Photos help but are not required.` },
   { icon: Package, title: "Supplies included", description: "The crew brings the products, the vacuum and the step ladder. You need the water left on, and power for the vacuum." },
   { icon: Leaf, title: `Eco products for ${POLICY.ecoProductsFee}`, description: `Eco-friendly products are available for ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}.` },
   { icon: Clock, title: "Pay after the clean", description: "Nothing is charged when you book. A temporary hold goes on your card the day before, and the charge goes through once the clean is complete." },
@@ -148,7 +148,7 @@ const faqs = [
   { q: "How long does a move out clean take?", a: "We work to a checklist, not a clock. The crew stays until each item on the move-out list is done, and the flat rate does not change because it took longer. You get an arrival window when you book rather than an exact time." },
   { q: "Do I need to be there?", a: `No. Most customers leave a key in a lockbox or with the property manager, or give us a buzzer code. We lock up when we finish. If the crew arrives and cannot get in, the lockout fee is ${POLICY.lockoutFee}, so check that the access you give us works.` },
   { q: "Are the oven and fridge interiors included?", a: "Yes. Inside the oven, fridge and microwave, and inside all cabinets, drawers and closets, are part of a move-out clean at no extra charge. On a standard or deep clean they are add-ons; on a move-out they are the point of the service. The crew does not move anything over 25 pounds, so the oven and fridge stay where they are." },
-  { q: "What if the landlord finds something at the inspection?", a: `Tell us within ${POLICY.guaranteeWindowHours} hours and we come back to put it right at no charge. Photos help but are not a condition. We cannot decide what a landlord does with the deposit, so the promise is the re-clean, not the deposit.` },
+  { q: "What if the landlord finds something at the inspection?", a: `Tell us within ${POLICY.guaranteeWindowHours} hours of the clean and we come back to put it right at no charge. The window runs from the clean, not the inspection, so book the clean as close to the inspection as you can. Photos help but are not a condition. We cannot decide what a landlord does with the deposit, so the promise is the re-clean, not the deposit.` },
   { q: "Can you clean the same day I hand over the keys?", a: "Same-day and next-day slots depend on the schedule, so book as soon as you have the handover date. The team arrives in a booked window, 9:00 to 10:00 AM, 12:00 to 1:00 PM or 3:00 to 4:00 PM, rather than at an exact time. The safer plan is the day before the handover, which leaves time for a walkthrough of your own." },
   // Was "the home must be fully empty", which contradicted the graduated answer
   // on /faqs/ — the one that is actually the policy. A few pieces of furniture
@@ -393,8 +393,8 @@ export default function EdmontonMoveInOut() {
                       it from the whole site. This page is where the reader who
                       needs it actually is. */}
                   Not every handover is a landlord's. Families leaving military housing in Edmonton are held
-                  to a CFHA march-out inspection instead of a landlord's walkthrough. What that inspection
-                  checks, and how the clean is booked around a posting date, is set out on{" "}
+                  to a CFHA march-out inspection instead of a landlord's walkthrough. What CFHA's checklist
+                  asks for, and how the clean is booked around the inspection date, is set out on{" "}
                   <Link to="/edmonton/march-out-cleaning/" className="text-primary underline underline-offset-4">march-out cleaning in Edmonton</Link>.
                 </p>
               </div>

@@ -189,7 +189,7 @@ const AirbnbCleaningEdmonton = () => {
      with icons, and the two had drifted apart. */
   const whatWeClean = [
     { image: imgBedroom, title: "Bedrooms and beds", description: "Beds stripped and remade with the linen you leave out, nightstands and surfaces dusted, floors vacuumed." },
-    { image: imgBathroom, title: "Bathrooms sanitised", description: "Toilets, sinks, tubs and showers disinfected, mirrors and chrome wiped dry, hair cleared from the drain cover." },
+    { image: imgBathroom, title: "Bathrooms", description: "Toilets, sinks, tubs and showers scrubbed, mirrors and chrome wiped dry, hair cleared from the drain cover." },
     { image: imgKitchen, title: "Kitchen reset", description: "Counters and sink scrubbed, appliance exteriors and the inside of the microwave wiped. Dishes and laundry sit outside the checklist, so leave the dishwasher for the guest or for yourself." },
     { image: imgLiving, title: "Living areas", description: "Floors vacuumed and mopped, surfaces dusted, cushions straightened." },
     { image: imgLaundry, title: "Linen changes", description: "Beds stripped and remade with the clean linen you leave out. A second set of sheets and towels on site is what lets the beds go straight back on." },
@@ -337,7 +337,7 @@ const AirbnbCleaningEdmonton = () => {
           </p>
           <p className="text-lg mb-8 text-white/90 max-w-3xl mx-auto leading-relaxed">
             Between guests the team works to the same checklist every visit: beds stripped and remade
-            with your linen, bathrooms and kitchen sanitised, supplies restocked from what you leave on
+            with your linen, bathrooms and kitchen cleaned, supplies restocked from what you leave on
             site, bins out and the door locked. You pay for the hours the turnover takes, and nothing
             is charged until it is done.
           </p>

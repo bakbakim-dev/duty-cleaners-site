@@ -200,7 +200,7 @@ export default function EdmontonRegularCleaning() {
       includedSubheading="Kitchen, bathrooms, bedrooms and living areas, in one visit."
       included={[
         { icon: UtensilsCrossed, title: "Kitchen Cleaning", description: "Wipe-down of countertops, sinks, stovetop, exterior appliances, and cabinet fronts. Floors mopped and vacuumed." },
-        { icon: Bath, title: "Bathroom Sanitization", description: "Toilets, tubs and showers scrubbed and sanitized, soap scum off the tile and glass, mirrors and vanities polished, floors washed." },
+        { icon: Bath, title: "Bathrooms", description: "Toilets, tubs and showers scrubbed, soap scum off the tile and glass, mirrors and vanities polished, floors washed." },
         { icon: Home, title: "Bedrooms & Living Areas", description: "Dusting accessible surfaces, vacuuming carpets and rugs, and mopping hard flooring throughout the home." },
       ]}
       bullets={[
@@ -212,13 +212,13 @@ export default function EdmontonRegularCleaning() {
         // /whats-included/ lists the microwave interior in every service.
         // These checklists left it out.
         "Microwave cleaned inside and out",
-        "Bathrooms scrubbed and sanitized",
+        "Bathrooms scrubbed and wiped down",
         "Mirrors and glass surfaces polished",
         "Trash emptied",
       ]}
       roomTasks={[
         { name: "Kitchen", tasks: 4, sample: "countertops, stovetop and sink" },
-        { name: "Bathrooms", tasks: 4, sample: "sanitizing toilets, tubs and showers" },
+        { name: "Bathrooms", tasks: 4, sample: "scrubbing toilets, tubs and showers" },
         { name: "Living Areas", tasks: 4, sample: "dusting, vacuuming and mopping" },
         { name: "Bedrooms", tasks: 3, sample: "dusting surfaces and vacuuming under beds" },
       ]}
@@ -239,7 +239,7 @@ export default function EdmontonRegularCleaning() {
         { q: "Is this the same as a maid service?", a: "Yes. Maid service, housekeeping and standard cleaning all describe the same visit here: a checklist clean of the kitchen, bathrooms, bedrooms and living areas at a flat rate by home size. We do not place live-in or hourly maids. If you want the visit repeated, book it as recurring cleaning and the discount applies from the second visit." },
         { q: "What does a standard clean cost in Edmonton, all in?", a: `A standard clean is ${FROM} for a one-bedroom apartment or condo and ${THREE_BED} for a three-bedroom, before 5% GST. A bungalow or basement suite, a townhouse or a two-storey house adds a home-type charge to that figure${PET_FEE !== null ? `, and a home with pets adds ${formatPrice(PET_FEE)} per visit, which is compulsory` : ""}. Inside Edmonton city limits there is no travel fee; outside them it is ${TRAVEL}. The quote lists each of these before you book, and nothing is charged until the clean is complete.` },
         { q: "Does standard cleaning include cleaning the kitchen?", a: "Yes. The team wipes the counters and the cupboard fronts, cleans the sink and the stovetop, does the microwave inside and out, wipes the fridge, oven and dishwasher on the outside, then vacuums and mops the floor. The oven and fridge interiors are add-ons, and the grease on the range hood is deep-clean work." },
-        { q: "What's the difference between standard and deep cleaning?", a: `A standard clean keeps up a home that is lived in and looked after: dusting, vacuuming, mopping, and the kitchen and bathrooms cleaned and sanitized. A deep clean is the same checklist plus the deep-clean package, which adds baseboards, doors and door frames, light switches, outlet covers, vents, and the grease on the stovetop and range hood. It starts at ${DEEP_FROM} for a one-bedroom apartment or condo, before GST and before any home-type or pet charge, and it is the better first booking for a home that has gone a long while without a clean.` },
+        { q: "What's the difference between standard and deep cleaning?", a: `A standard clean keeps up a home that is lived in and looked after: dusting, vacuuming, mopping, and the kitchen and bathrooms cleaned. A deep clean is the same checklist plus the deep-clean package, which adds baseboards, doors and door frames, light switches, outlet covers, vents, and the grease on the stovetop and range hood. It starts at ${DEEP_FROM} for a one-bedroom apartment or condo, before GST and before any home-type or pet charge, and it is the better first booking for a home that has gone a long while without a clean.` },
         { q: "How long does a standard cleaning take?", a: "We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes. The booking gives an arrival window rather than an exact time: 9:00 to 10:00 AM, 12:00 to 1:00 PM, or 3:00 to 4:00 PM." },
         { q: "How often should I schedule standard cleaning?", a: `A standard clean is a single visit, so book it when the home needs one. For the same clean on a schedule, recurring cleaning is ${tierPct(WEEKLY)} off weekly, ${tierPct(BIWEEKLY)} off bi-weekly and ${tierPct(FOUR_WEEKS)} off every 4 weeks, from the second visit on. The first visit on any schedule is charged at the one-time rate.` },
         // Was "or leave the keys under the mat", inside FAQPage schema. A cleaning

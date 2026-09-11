@@ -159,20 +159,20 @@ export default function EdmontonRecurringCleaning() {
       includedSubheading="Kitchen, bathrooms, bedrooms and living areas, every visit."
       included={[
         { icon: UtensilsCrossed, title: "Kitchen Cleaning", description: "Wipe-down of countertops, sinks, stovetop, exterior appliances, and cabinet fronts. Floors mopped and vacuumed." },
-        { icon: Bath, title: "Bathroom Sanitization", description: "Toilets, tubs and showers scrubbed and sanitized, soap scum off the tile and glass, mirrors and vanities polished, floors washed." },
+        { icon: Bath, title: "Bathrooms", description: "Toilets, tubs and showers scrubbed, soap scum off the tile and glass, mirrors and vanities polished, floors washed." },
         { icon: Home, title: "Bedrooms & Living Areas", description: "Dusting accessible surfaces, vacuuming carpets and rugs, and mopping hard flooring throughout the home." },
       ]}
       bullets={[
         "Kitchen, bathrooms, and living areas cleaned",
         "Floors vacuumed and mopped",
         "Dusting of all accessible surfaces and furniture",
-        "Bathrooms scrubbed and sanitized",
+        "Bathrooms scrubbed and wiped down",
         "Mirrors and glass surfaces polished",
         "Trash emptied",
       ]}
       roomTasks={[
         { name: "Kitchen", tasks: 4, sample: "countertops, stovetop, and sink" },
-        { name: "Bathrooms", tasks: 4, sample: "sanitizing toilets, tubs, and showers" },
+        { name: "Bathrooms", tasks: 4, sample: "scrubbing toilets, tubs, and showers" },
         { name: "Living Areas", tasks: 4, sample: "dusting, vacuuming, and mopping" },
         { name: "Bedrooms", tasks: 3, sample: "dusting surfaces and vacuuming under beds" },
       ]}

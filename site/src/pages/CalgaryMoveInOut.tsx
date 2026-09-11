@@ -108,7 +108,7 @@ const faqs = [
   },
   {
     q: "Can you clean the same day I hand over the keys?",
-    a: `Same-day and next-day slots depend on the schedule, so a key-day clean is not something we promise. The team arrives in a booked window rather than at an exact time: ${ARRIVAL_WINDOWS.map((w) => w.replace(/\s*–\s*/, " to ")).join(", ")}. The safer booking is the day before the inspection, which leaves room to come back if the walkthrough cites anything.`,
+    a: `Same-day and next-day slots depend on the schedule, so a key-day clean is not something we promise. The team arrives in a booked window rather than at an exact time: ${ARRIVAL_WINDOWS.map((w) => w.replace(/\s*–\s*/, " to ")).join(", ")}. The safer booking is the day before the inspection. Walk through the home yourself and tell us within ${POLICY.guaranteeWindowHours} hours of the clean if anything was missed, and we come back for it.`,
   },
   {
     q: "What do I need to do before the team arrives?",
@@ -369,7 +369,7 @@ export default function CalgaryMoveInOut() {
               <ul className="space-y-3 text-muted-foreground">
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-                  <span>Toilets, tubs, showers and sinks disinfected</span>
+                  <span>Toilets, tubs, showers and sinks scrubbed</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
@@ -537,20 +537,22 @@ export default function CalgaryMoveInOut() {
               Under <a href="https://www.alberta.ca/ending-a-tenancy" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Alberta's Residential Tenancies Act</a> the landlord completes a move-out
               inspection report with the tenant, and the security deposit must be returned within
               10 days after the tenant moves out. The inspection is where cleaning gets cited, so
-              an end of tenancy clean is timed for the day or two before it, after the furniture
+              an end of tenancy clean is timed for the day before it, after the furniture
               has gone and before the keys do.
             </p>
             <p>
               A room that looks right from the doorway can still be cited once somebody opens the
               oven or runs a finger along a closet shelf, which is why the move-out checklist goes
-              inside things. If the inspection cites something we missed, tell us within{" "}
-              {POLICY.guaranteeWindowHours} hours of the clean and we come back at no charge.
-              Photos help the team find it and are not a condition.
+              inside things. Walk through the home yourself once the team leaves, and tell us within{" "}
+              {POLICY.guaranteeWindowHours} hours of the clean if anything was missed; we come back at
+              no charge. The window runs from the clean, not the inspection, so book the clean as close
+              to the inspection as you can. Photos help the team find it and are not a condition.
             </p>
             <p>
               We do not promise the deposit. The landlord decides that, and a clean cannot fix
               anything that is not cleaning. What we can do is clean to the move-out checklist and
-              come back if the inspection finds something we missed.
+              come back for anything missed that you report within{" "}
+              {POLICY.guaranteeWindowHours} hours of the clean.
             </p>
           </div>
         </div>
@@ -653,9 +655,10 @@ export default function CalgaryMoveInOut() {
               </div>
               <h3 className="text-xl font-bold mb-3">A {POLICY.guaranteeWindowHours}-hour window to report a miss</h3>
               <p className="text-muted-foreground leading-relaxed">
-                If the inspection or your own walkthrough finds something missed, tell us within{" "}
-                {POLICY.guaranteeWindowHours} hours and we return at no charge. Photos help and are not
-                required.
+                Walk through the home after the clean and tell us within{" "}
+                {POLICY.guaranteeWindowHours} hours of it if anything was missed; we return at no
+                charge. Book the clean as close to the inspection as you can, since the window runs
+                from the clean. Photos help and are not required.
               </p>
             </div>
 

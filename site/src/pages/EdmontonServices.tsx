@@ -167,7 +167,7 @@ const services: Service[] = [
     description: "One visit, flat rate by home size. Kitchen, bathrooms, floors and dusting in every room, and the price does not move if it takes longer than planned.",
     features: [
       "All rooms dusted and vacuumed",
-      "Bathrooms properly cleaned and sanitised",
+      "Bathrooms scrubbed and wiped down",
       "Kitchen cleaned (counters, sink, appliance and cabinet exteriors only)",
       "Floors mopped and vacuumed"
     ],
@@ -255,7 +255,7 @@ const services: Service[] = [
   },
   {
     title: "March Out Cleaning",
-    description: "Military housing move-out cleaning in Edmonton, done to CFHA's march-out inspection standards and priced by phone from the inspection list for the home.",
+    description: "Military housing move-out cleaning in Edmonton, worked from the CFHA move-out checklist and priced by phone from the inspection list for the home.",
     features: [
       "Appliance interiors, edges and baseboards",
       "Bathrooms scrubbed, scale worked off taps and glass",
@@ -289,7 +289,7 @@ const services: Service[] = [
     description: `Turnovers between guests for short-term rental hosts, billed by the hour at ${HOURLY} per cleaner with a 3-hour minimum.`,
     features: [
       "Beds remade with your linen",
-      "Kitchen and bathrooms sanitised",
+      "Kitchen and bathrooms cleaned",
       "Supplies restocked from your stock",
       "Same checklist on every turnover"
     ],

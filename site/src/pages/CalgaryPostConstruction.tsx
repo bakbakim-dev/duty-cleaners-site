@@ -44,7 +44,7 @@ const includedServices = [
   { icon: Sparkles, title: "Kitchen and bathrooms", desc: "Cabinets and drawers inside and out, counters, sinks, tubs and showers, grout haze off new tile, and the outside of the new appliances once their film and stickers are off." },
   { icon: Droplets, title: "Floors", desc: "Vacuumed before they are mopped, so the grit is lifted rather than ground into new hardwood or vinyl by the mop." },
   { icon: SprayCan, title: "Interior glass", desc: "Windows, mirrors and glass doors, with paint flecks and adhesive lifted before the glass is polished." },
-  { icon: Shield, title: "Doors, handles and switches", desc: "The surfaces a trade touched with a dusty hand, wiped and sanitized." },
+  { icon: Shield, title: "Doors, handles and switches", desc: "The surfaces a trade touched with a dusty hand, wiped clean." },
 ];
 
 const excludedServices = [

@@ -38,7 +38,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "What is included in the standard cleaning service?",
-        answer: "A standard clean, one-time or recurring, covers dusting reachable surfaces and furniture, vacuuming carpets and rugs, mopping hard floors, and scrubbing and sanitizing the bathrooms: toilets, tubs, showers, sinks and mirrors. In the kitchen it covers the counters, sink, stovetop, the outside of the appliances and cabinets, and inside and outside the microwave. Bins are emptied and the bags tied. Decluttering and organising are a separate hourly add-on.",
+        answer: "A standard clean, one-time or recurring, covers dusting reachable surfaces and furniture, vacuuming carpets and rugs, mopping hard floors, and scrubbing the bathrooms: toilets, tubs, showers, sinks and mirrors. In the kitchen it covers the counters, sink, stovetop, the outside of the appliances and cabinets, and inside and outside the microwave. Bins are emptied and the bags tied. Decluttering and organising are a separate hourly add-on.",
       },
       {
         question: "Do you make beds during standard cleaning?",

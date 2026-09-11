@@ -77,7 +77,7 @@ export default function CalgaryDeepCleaning() {
                 charge on each visit.
               </p>
               <p>
-                The package is what buys the hours on trim, doors, switch plates, vents, fans and the kitchen
+                The package is what buys the hours on trim, doors, switch plates, vents and the kitchen
                 degrease, so it rises with the bedroom count. The oven interior, the fridge interior and the insides of
                 cabinets are not in it: inside the oven is {addOnLabel("inside-oven")}, inside the fridge{" "}
                 {addOnLabel("inside-fridge")}, and inside the cabinets from{" "}
@@ -110,10 +110,10 @@ export default function CalgaryDeepCleaning() {
       includedHeading="What a deep clean adds"
       includedSubheading="The places a standard visit passes over, room by room."
       included={[
-        { icon: UtensilsCrossed, title: "Kitchen Detail Clean", description: "The stovetop and range hood degreased, appliance exteriors, cabinet fronts and the backsplash wiped, and every prep surface sanitized." },
+        { icon: UtensilsCrossed, title: "Kitchen Detail Clean", description: "The stovetop and range hood degreased, appliance exteriors, cabinet fronts and the backsplash wiped, and every prep surface wiped down." },
         { icon: Bath, title: "Bathroom Deep Scrub", description: "Tile, grout and shower glass worked over, soap scum and mineral scale lifted off tubs and fixtures, toilets done inside and out, vanities and mirrors polished." },
         { icon: Layers, title: "Edges & Details", description: "Baseboards, door frames, light switches, outlet covers, vents and the corners that hold dust, all wiped by hand." },
-        { icon: Sparkles, title: "Full Dust Reset", description: "Fans, vents and the high and low surfaces a reach can get to, dusted through the whole home." },
+        { icon: Sparkles, title: "Full Dust Reset", description: "Vents and the high and low surfaces a 3-step ladder reaches, dusted through the whole home. Ceiling fans on request, where they can be reached safely." },
       ]}
       bullets={[
         "All standard cleaning tasks included",
@@ -163,7 +163,7 @@ export default function CalgaryDeepCleaning() {
         { q: "Is deep cleaning more expensive than standard cleaning?", a: `Yes, by the price of the deep-clean package. For a one-bedroom that is ${DEEP.packagePrice}: ${DEEP.price} for the deep clean against ${DEEP.standard} for a standard clean. The package rises with each bedroom, to ${DEEP5.packagePrice} on a five-bedroom home, where a deep clean is ${DEEP5.price} against ${DEEP5.standard}. Those are apartment or condo rates before GST; a townhouse or two-storey house, a home with pets and an address outside Calgary city limits each add a charge on the quote.` },
         { q: "Will the team deal with mould in the shower?", a: "Light surface mildew on grout or caulking gets wiped where it is safe to. Anything heavier is mould remediation, which is a different trade, and we will tell you so rather than scrub at it." },
         { q: "How long will a Calgary deep clean take?", a: "We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
-        { q: "What does a deep clean do that a standard clean does not?", a: "The standard clean keeps a kept-up home kept up: floors, bathrooms, kitchen surfaces, dusting. The deep-clean package goes to what those visits pass over, the baseboards and door frames, the switch plates and outlet covers, the vents and fans, the tile and shower glass, and the range hood and stovetop grease. It is the reset; the standard visits are the maintenance." },
+        { q: "What does a deep clean do that a standard clean does not?", a: "The standard clean keeps a kept-up home kept up: floors, bathrooms, kitchen surfaces, dusting. The deep-clean package goes to what those visits pass over, the baseboards and door frames, the switch plates and outlet covers, the vents, the tile and shower glass, and the range hood and stovetop grease. It is the reset; the standard visits are the maintenance." },
         { q: "Are the products safe around children and pets?", a: `We bring standard professional products. If anyone in the house has a sensitivity, or there is a product you would rather we did not use, say so when you book. Eco-friendly products are available for ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}. A home with pets carries a ${addOnLabel("must-choose-if-you-have-pets")} charge on each visit, and it shows on the quote before you book.` },
         { q: "How often does a Calgary home need a deep clean?", a: "Twice a year is a sensible rhythm for a Calgary home: once in spring, after the chinook season that runs from November to April, and once in late autumn before it starts again. Between them, the standard clean on a schedule keeps the build-up from returning, at 10% to 20% off from the second visit. A home with a dog or a garage entry may want the second deep clean sooner." },
       ]}

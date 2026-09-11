@@ -40,6 +40,13 @@ const PHONE_DISPLAY = "(780) 913-6565";
 const PHONE_TEL = "tel:7809136565";
 // /contact force-301s to /contact-us/ and a redirect may drop the prefill.
 const CALLBACK_HREF = "/contact-us/?topic=march-out&city=edmonton";
+/* CFHA's own move-out checklist, in the Occupant Handbook. Until 11 September 2026
+   this page said the clean was "done to CFHA's march-out inspection standards", but
+   that checklist also covers repairs, bulbs, the furnace filter, the yard, exterior
+   windows and steam-cleaned carpets, none of which the team does. The page now
+   links the checklist and says which part of it the clean covers. */
+const CFHA_MOVING_OUT =
+  "https://www.canada.ca/en/department-national-defence/services/benefits-military/military-housing/occupant-handbook/moving-out.html";
 
 const proof = CITY_PROOF.edmonton;
 const GST_PCT = `${Math.round(GST_RATE * 100)}%`;
@@ -58,7 +65,7 @@ const PAGE_TITLE = "March Out Cleaning Edmonton | Military Housing Move-Outs";
 /* One sentence for description, og and twitter alike. The old one promised a
    "same-day quote", which is a response time nobody has confirmed. */
 const META_DESCRIPTION =
-  "March out cleaning in Edmonton for military housing, done to CFHA's march-out inspection standards and quoted by phone on (780) 913-6565.";
+  "March out cleaning in Edmonton for military housing, worked from your CFHA move-out checklist and quoted by phone on (780) 913-6565.";
 
 const AnimatedSection = ({
   children,
@@ -144,11 +151,11 @@ const callPrep = [
 const faqs = [
   {
     q: "What is a march-out clean?",
-    a: `A march-out clean is the move-out clean for military housing, done to CFHA's march-out inspection standards. Duty Cleaners quotes it by phone from the Edmonton office at ${PHONE_DISPLAY}, because the scope follows the inspection list for each home.`,
+    a: `A march-out clean is the move-out clean for a home managed by CFHA, the Canadian Forces Housing Agency, worked from the cleaning items on the CFHA move-out checklist. Duty Cleaners quotes it by phone from the Edmonton office at ${PHONE_DISPLAY}, because the scope follows the inspection list for each home.`,
   },
   {
     q: "How is a march-out clean different from a regular move-out clean?",
-    a: `A civilian move-out clean in Edmonton is booked online at a flat rate by home size, from ${MOVE_FROM} for a one-bedroom apartment before ${GST_PCT} GST, with a house, pets or an address outside the city adding to that figure. The landlord judges it at the move-out inspection that Alberta's Residential Tenancies Act requires. A march-out clean is judged against CFHA's march-out inspection standards instead, which is why it is quoted by phone from the list for the home.`,
+    a: `A civilian move-out clean in Edmonton is booked online at a flat rate by home size, from ${MOVE_FROM} for a one-bedroom apartment before ${GST_PCT} GST, with a house, pets or an address outside the city adding to that figure. The landlord judges it at the move-out inspection that Alberta's Residential Tenancies Act requires. A march-out is judged at CFHA's final inspection on move-out day instead, against a checklist that covers the yard, repairs and the furnace filter as well as the cleaning, which is why it is quoted by phone from the list for the home.`,
   },
   {
     q: "Are wall washing and interior windows included in a march-out clean?",
@@ -176,7 +183,7 @@ const faqs = [
   },
   {
     q: "What does a march-out clean not include?",
-    a: "A march-out clean does not include lifting anything over 25 lb, exterior windows or other outdoor work, garages, anything beyond a 3-step ladder, carpet steam cleaning, furnace and duct cleaning, or mould remediation. Light surface mildew may be wiped where it is safe to do so. If the inspection list asks for any of these, tell the Edmonton office on the call so the quote says plainly what the team will and will not do.",
+    a: "A march-out clean does not include lifting anything over 25 lb, exterior windows or other outdoor work, garages, anything beyond a 3-step ladder, carpet steam cleaning, furnace and duct cleaning, furnace filters, light bulbs, repairs, or mould remediation. Light surface mildew may be wiped where it is safe to do so. If the inspection list asks for any of these, tell the Edmonton office on the call so the quote says plainly what the team will and will not do.",
   },
 ];
 
@@ -186,7 +193,7 @@ const serviceSchema = {
   name: "March Out Cleaning Edmonton",
   serviceType: "Military housing march-out cleaning",
   description:
-    "Military housing move-out cleaning in Edmonton, cleaned to CFHA march-out inspection standards. Quoted by phone.",
+    "Military housing move-out cleaning in Edmonton, worked from the cleaning items on the CFHA move-out checklist. Quoted by phone.",
   provider: {
     "@type": "LocalBusiness",
     "@id": BRANCH_ID.edmonton,
@@ -260,7 +267,7 @@ export default function EdmontonMarchOut() {
             March Out Cleaning in Edmonton
           </h1>
           <p className="text-xl md:text-2xl mb-6 text-white/90 font-medium">
-            Cleaned to CFHA march-out inspection standards
+            Worked from your CFHA move-out checklist
           </p>
           <p className="text-lg mb-8 text-white/90 max-w-3xl mx-auto leading-relaxed">
             A march-out clean is the move-out clean for military housing. The Edmonton team works through
@@ -320,9 +327,18 @@ export default function EdmontonMarchOut() {
               <p className="text-muted-foreground leading-relaxed mb-6">
                 A civilian tenancy in Alberta ends with the landlord completing a move-out inspection report
                 with the tenant, as the Residential Tenancies Act requires, and the landlord decides what
-                happens to the deposit. A march-out is measured against CFHA&rsquo;s march-out inspection
-                standards instead, so the clean starts from the list for the home. What to have ready when
-                you call the Edmonton office:
+                happens to the deposit. A march-out ends with a final inspection on move-out day, against
+                the move-out checklist in the{" "}
+                <a
+                  href={CFHA_MOVING_OUT}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary underline underline-offset-2"
+                >
+                  CFHA Occupant Handbook
+                </a>
+                , so the clean starts from the list for the home. What to have ready when you call the
+                Edmonton office:
               </p>
               <div className="space-y-3">
                 {callPrep.map((item) => (
@@ -333,8 +349,16 @@ export default function EdmontonMarchOut() {
                 ))}
               </div>
               <p className="mt-6 text-muted-foreground leading-relaxed">
-                The team works from the list you give us. Anything it misses that you report within{" "}
-                {GUARANTEE_HOURS} hours of the clean is re-cleaned at no charge.
+                The team works from the list you give us. Most of the cleaning on a CFHA list is in the
+                cards below. Wall washing, interior windows and an unfinished basement are add-ons that go
+                into the quote, and anything else the list names, such as the ceilings, goes on the call so
+                the quote says whether the team does it. Some of the list is yours to arrange, including
+                steam-cleaning carpets, exterior windows and screens, the yard, snow and sheds, the garage,
+                light bulbs, repairs and the furnace filter.
+              </p>
+              <p className="mt-4 text-muted-foreground leading-relaxed">
+                Anything the team misses that you report within {GUARANTEE_HOURS} hours of the clean is
+                re-cleaned at no charge.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-4">

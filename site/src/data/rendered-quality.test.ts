@@ -642,7 +642,8 @@ describe("price CTAs reach the price", () => {
    * Official sources behind the site's rule statements (2026-09-11): Alberta's
    * tenancy rules on the move-out pages, the chemical-mixing and household
    * chemical-safety warnings on the two product posts, and Health Canada's mould
-   * guide beside the mould exclusion. Plain followed links: these are trusted
+   * guide beside the mould exclusion, and CFHA's move-out checklist on the
+   * march-out page. Plain followed links: these are trusted
    * sources, and Google says to use nofollow only for sources you do not trust.
    */
   it("the pages that state official rules link their official source", () => {
@@ -653,6 +654,7 @@ describe("price CTAs reach the price", () => {
       ["/cleaning-with-vinegar-and-baking-soda/", "https://tc.canada.ca/en/dangerous-goods/canutec/articles/improper-mixing-common-household-cleaning-products"],
       ["/the-top-5-must-have-cleaning-products-for-a-spotless-home/", "https://www.canada.ca/en/health-canada/services/home-safety/household-chemical-safety.html"],
       ["/faqs/", "https://www.canada.ca/en/health-canada/services/publications/healthy-living/addressing-moisture-mould-your-home.html"],
+      ["/edmonton/march-out-cleaning/", "https://www.canada.ca/en/department-national-defence/services/benefits-military/military-housing/occupant-handbook/moving-out.html"],
     ];
     const bad: string[] = [];
     for (const [url, source] of CITED) {
