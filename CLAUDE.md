@@ -114,7 +114,8 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
 7. The launch-gate items: production Netlify site, DNS, analytics, an end-to-end quote test.
    Netlify refuses deploys on this account (403 Forbidden since 2026-09-11; the site stays up).
    It is on the credit-based Free plan (300 credits a period, reset on the 4th of each month),
-   and 18 production deploys ran on 4-5 September, so the credits are most likely spent. The
+   and 18 production deploys ran on 4-5 September, so the credits are spent (confirmed: the dashboard banner says production deploys are paused
+   until an upgrade or the next billing cycle). The
    production site is meant to go on this same account, so upgrade or top up before launch day,
    or a launch deploy fails the same way. `netlify api getAccount` shows the plan.
 8. Decide what the $15 eco-friendly option buys. The cleaners choose their own products, so name a
