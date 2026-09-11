@@ -190,7 +190,11 @@ if (flag("dry-run")) {
   process.exit(0);
 }
 
-run(`bunx netlify deploy --prod --dir dist --site ${site}`);
+// --no-build: since netlify-cli 18 `deploy` runs netlify.toml's build command first
+// unless told not to, and that rebuild rewrote dist/_headers, dropping the noindex this
+// script stamped (2026-09-11, first deploy of the lokkom preview). Upload exactly the
+// dist/ checked above, nothing rebuilt behind it.
+run(`bunx netlify deploy --prod --no-build --dir dist --site ${site}`);
 
 // ------------------------------------------------- verify what actually shipped
 
@@ -218,6 +222,16 @@ const hasNoindex = /noindex/i.test(live);
 console.log(`   ${probe}`);
 console.log(`   HTTP ${response.status}, X-Robots-Tag: ${live || "(none)"}`);
 
+// A new Netlify team puts sites behind "visitor access" by default: an anonymous request
+// gets 401 and a script redirect to Netlify's login (app.netlify.com/edge-access). Nothing
+// behind it is readable, so nothing is indexable, and its headers cannot be read from here.
+// That is a protected preview, not a failed one. Production never takes this branch.
+if (wantsNoindex && response.status === 401 && /edge-access/.test(await response.text())) {
+  console.log("   protected by Netlify visitor access (401, login redirect): not publicly readable,");
+  console.log("   so not indexable. The noindex stamp shipped in dist/_headers behind it.");
+  console.log(`\n   ${target} deploy verified (protected).\n`);
+  process.exit(0);
+}
 if (wantsNoindex && !hasNoindex) {
   die("the preview is LIVE AND INDEXABLE. Netlify did not apply _headers.\n" +
       "         Fix before Google recrawls.");

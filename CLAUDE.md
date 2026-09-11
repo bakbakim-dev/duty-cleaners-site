@@ -27,6 +27,9 @@ BookingKoala header script.
   (`scripts/deploy.mjs`, Netlify). The preview is https://duty-cleaners-preview.netlify.app on the
   owner's lokkom Netlify team (since 2026-09-11; the CLI must be logged in as lokkom@gmail.com).
   The old dutycleaners-preview site on bakbakim's team is stale: that team spent its free credits.
+  The new site sits behind Netlify visitor access (401 + login redirect for anyone not signed in
+  to the lokkom team), so it is private, not just noindexed; turning that off is the owner's call.
+  deploy.mjs uploads with `--no-build` (newer netlify-cli rebuilds by default, wiping the noindex).
   The old GitHub Pages preview and its `deploy-preview.ps1` were retired on 2026-09-11.
 
 **Commit order when content changes:** commit the content, run `bun run build`, then commit only
