@@ -567,6 +567,15 @@ export const GUARD_PROOFS: GuardProof[] = [
     dist: true,
   },
   {
+    guard: "src/data/rendered-quality.test.ts",
+    target: "dist/pricing/index.html",
+    find: "from $65/hour",
+    replace: "$60/hour",
+    failing: "prices Airbnb turnovers at the turnover rate and other hourly work from the home rate",
+    why: "Quotes the Airbnb turnover rate as the Edmonton price list's hourly-cleaning rate, as it did for a day.",
+    dist: true,
+  },
+  {
     guard: "src/data/copy-quality.test.ts",
     target: "src/pages/Contact.tsx",
     find: '<SelectItem value="commercial">Office Cleaning</SelectItem>',

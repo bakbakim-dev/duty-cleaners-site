@@ -25,7 +25,7 @@ import {
   formatPrice,
   FREQUENCIES,
   homeTypeOptions,
-  HOURLY_RATE,
+  HOME_HOURLY_RATE,
   moveInOutTierRows,
   PRICING_TIERS,
   standardTierRows,
@@ -159,7 +159,7 @@ const faqItems = [
   { value: "duration", question: "How long does a typical house cleaning take?", answer: "As long as the checklist takes. A Beltline one-bedroom and a Mahogany four-bedroom are each billed at their flat rate whether the crew finishes early or runs long, because the rate is set by the home and not by the clock. Deep and move-in/out cleans have longer lists and run longer." },
   { value: "supplies", question: "Are there discounts if I provide my own cleaning supplies?", answer: `No. The crew arrives with its own supplies and equipment, and the rate already assumes that. If there is a product you want used on a particular surface, leave it out and note it on the booking; that costs nothing extra. Eco-friendly products are ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}.` },
   { value: "recurring", question: "Do you offer recurring service discounts?", answer: "Weekly is 20% off, bi-weekly 15% off, every 4 weeks 10% off. The discount begins on the second visit and the first is charged at the one-time rate. When that first visit is a deep clean, the package part is billed once and never discounted, and the visits after it are standard cleans at the discounted price. Move-out cleans do not recur, so they carry no discount." },
-  { value: "pricing-types", question: "What's the difference between Hourly Cleaning and flat-rate pricing?", answer: `Flat rate: one figure set by bedrooms, bathrooms and home type, unchanged if the clean runs long. Hourly, at ${formatPrice(HOURLY_RATE)} per cleaner per hour before GST: for a few rooms, a one-off task list, or a home no size tier fits, with a minimum of 3 hours for one cleaner or 2 hours for two. A Calgary condo owner who only wants the kitchen and one bathroom done is an hourly job; the same condo done end to end is a flat rate.` },
+  { value: "pricing-types", question: "What's the difference between Hourly Cleaning and flat-rate pricing?", answer: `Flat rate: one figure set by bedrooms, bathrooms and home type, unchanged if the clean runs long. Hourly, from ${formatPrice(HOME_HOURLY_RATE)} per cleaner per hour before GST: for a few rooms, a one-off task list, or a home no size tier fits, with a minimum of 3 hours for one cleaner or 2 hours for two. A Calgary condo owner who only wants the kitchen and one bathroom done is an hourly job; the same condo done end to end is a flat rate.` },
   // A FAQ with this title has to name the charges customers call hidden. Both
   // are published on /terms/ and both read from POLICY, so this answer can
   // never drift away from the terms it summarises.
@@ -256,7 +256,7 @@ export default function CalgaryPricing() {
             <p className="text-lg text-white/90 mb-10">
               Nothing about how the day goes moves the rate. A quote changes only when a home needs substantially more
               work than it was described as needing, and the crew explains what they found before they carry on. A
-              few rooms, or a home with no bedroom count that fits, is quoted hourly instead, at {formatPrice(HOURLY_RATE)}
+              few rooms, or a home with no bedroom count that fits, is quoted hourly instead, from {formatPrice(HOME_HOURLY_RATE)}
               per hour per cleaner before GST.
             </p>
 
@@ -617,8 +617,8 @@ export default function CalgaryPricing() {
             <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-10 text-center">
               A whole Calgary home is priced by its home type, bedrooms, bathrooms, add-ons and frequency.
               The one choice that pricing does not make for you is flat rate against hourly: a home cleaned
-              end to end is a flat rate, while a few rooms or a one-off task list is billed by the hour at{" "}
-              {formatPrice(HOURLY_RATE)} per cleaner before GST, with a minimum of 3 hours for one cleaner or 2 hours for two.
+              end to end is a flat rate, while a few rooms or a one-off task list is billed by the hour from{" "}
+              {formatPrice(HOME_HOURLY_RATE)} per cleaner before GST, with a minimum of 3 hours for one cleaner or 2 hours for two.
             </p>
 
             {/* No Hidden Fees Banner */}
@@ -669,7 +669,7 @@ export default function CalgaryPricing() {
                 icon={Clock}
                 title="Hourly Cleaning"
                 description="A few rooms, a one-off list, or a home no bedroom tier fits. You write the list, the crew works down it, and you pay for the hours it took."
-                price={`${formatPrice(HOURLY_RATE)}/hour`}
+                price={`from ${formatPrice(HOME_HOURLY_RATE)}/hour`}
                 priceLabel="Per cleaner, before 5% GST"
                 features={["3 hours minimum for one cleaner, 2 hours for two", "Your list, in your order", "Billed by the hour, per cleaner"]}
                 buttonText="Book Hourly Service"

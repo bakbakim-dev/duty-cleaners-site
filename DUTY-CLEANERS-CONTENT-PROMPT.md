@@ -95,7 +95,7 @@ Where each fact lives, under site/src:
 | P4 | `FREQUENCIES` in data/pricing.ts |
 | P5 | `sqftTierOptions("post-construction")` in data/pricing.ts |
 | P6, P8, P10 | `addOnFromPrice(service, key)` in data/pricing.ts; the pet charge is key `must-choose-if-you-have-pets` |
-| P7 | `HOURLY_RATE` in data/pricing.ts; the 3-hour and 2-hour minimum is in `PRICING_TERMS` in data/policy.ts |
+| P7 | `HOURLY_RATE` (Airbnb turnovers) and `HOME_HOURLY_RATE` (any other hourly work, read from BookingKoala's Home Cleaning hourly service) in data/pricing.ts; the 3-hour and 2-hour minimum is in `PRICING_TERMS` in data/policy.ts |
 | P9 | the home-type rows of `BK_PRICE_OVERRIDES` in data/bk-price-overrides.ts |
 | P11 | `travelFee(service)` in data/addon-table.ts |
 | P12, T1, T3, T4 | `POLICY` in data/policy.ts |
@@ -200,8 +200,9 @@ P5  Post-construction, by square footage: $550 for under 1,000 sq ft, up to $1,9
     4,500 to 4,999 sq ft.
 P6  Wall washing is booked together with a clean, not on its own. Spot cleaning from $39.99, a
     full wash from $119.99, by home size.
-P7  Airbnb and short-term rental turnovers are priced by the hour: $65 per cleaner-hour, with a
-    minimum of 3 hours for one cleaner or 2 hours for two.
+P7  Airbnb and short-term rental turnovers are priced by the hour: $60 per cleaner-hour, with a
+    minimum of 3 hours for one cleaner or 2 hours for two. Any other hourly cleaning (a few
+    rooms, a one-off task list, a home no size tier fits) is at least $65 per cleaner-hour.
 P8  Add-ons include inside the oven $59.99, inside the fridge $59.99, and interior windows from
     $39.99.
 P9  Home type: the table prices an apartment or condo. A bungalow or a basement suite adds $15,

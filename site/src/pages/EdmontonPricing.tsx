@@ -26,7 +26,7 @@ import {
   formatPrice,
   FREQUENCIES,
   homeTypeOptions,
-  HOURLY_RATE,
+  HOME_HOURLY_RATE,
   moveInOutTierRows,
   PRICING_TIERS,
   standardTierRows,
@@ -182,7 +182,7 @@ const faqItems = [
   { value: "duration", question: "How long does a typical house cleaning take?", answer: "We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes. Deep cleaning and move-in/out services cover more tasks than a standard clean, so they take longer." },
   { value: "supplies", question: "Are there discounts if I provide my own cleaning supplies?", answer: `No. We bring all cleaning supplies and equipment, and the rate already assumes that. Eco-friendly products are ${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}.` },
   { value: "recurring", question: "Do you offer recurring service discounts?", answer: "Yes: 20% off weekly, 15% off bi-weekly and 10% off every 4 weeks. Every 4 weeks comes to 13 visits a year rather than 12. The discount starts from your second visit; the first is at the one-time rate. If you start with a deep clean, the deep-cleaning package is charged once on that first visit and is not discounted, and the visits after it are standard cleans at the discounted rate." },
-  { value: "pricing-types", question: "What's the difference between Hourly Cleaning and flat-rate pricing?", answer: `A flat rate is fixed by home size and service type, and it does not change if the clean takes longer than expected. Hourly Cleaning (${formatPrice(HOURLY_RATE)} per hour per cleaner, before GST) is for partial or unusual jobs: a few rooms, a one-off task list, or a home that does not fit a size tier. The minimum hourly booking is 3 hours for 1 cleaner or 2 hours for 2 cleaners.` },
+  { value: "pricing-types", question: "What's the difference between Hourly Cleaning and flat-rate pricing?", answer: `A flat rate is fixed by home size and service type, and it does not change if the clean takes longer than expected. Hourly Cleaning (from ${formatPrice(HOME_HOURLY_RATE)} per hour per cleaner, before GST) is for partial or unusual jobs: a few rooms, a one-off task list, or a home that does not fit a size tier. The minimum hourly booking is 3 hours for 1 cleaner or 2 hours for 2 cleaners.` },
   // A FAQ with this title has to name the charges customers call hidden. Both
   // are published on /terms/ and both read from POLICY, so this answer can
   // never drift away from the terms it summarises.
@@ -292,7 +292,7 @@ export default function EdmontonPricing() {
             <p className="text-lg text-white/90 mb-10">
               The rate does not go up because a clean took longer. It changes only when a home needs substantially
               more work than it was described as needing, and the team says so before continuing. Partial jobs and
-              homes that fit no size tier are quoted hourly at {formatPrice(HOURLY_RATE)} per hour per cleaner
+              homes that fit no size tier are quoted hourly from {formatPrice(HOME_HOURLY_RATE)} per hour per cleaner
               before GST, with a minimum of 3 hours for one cleaner or 2 hours for two.
             </p>
 
@@ -651,7 +651,7 @@ export default function EdmontonPricing() {
           <div className="max-w-5xl mx-auto">
             <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-10 text-center">
               A flat rate prices a whole home. Ask for less than that, a few rooms or a one-off task
-              list, and the job is quoted hourly instead, at {formatPrice(HOURLY_RATE)} per hour per
+              list, and the job is quoted hourly instead, from {formatPrice(HOME_HOURLY_RATE)} per hour per
               cleaner before GST.
             </p>
 
@@ -703,7 +703,7 @@ export default function EdmontonPricing() {
                 icon={Clock}
                 title="Hourly Cleaning"
                 description="For partial or unusual jobs: a few rooms, a one-off task list, or a home that does not fit a size tier. You set what gets done and pay for the time it takes."
-                price={`${formatPrice(HOURLY_RATE)}/hour`}
+                price={`from ${formatPrice(HOME_HOURLY_RATE)}/hour`}
                 priceLabel="Per cleaner, before 5% GST"
                 features={["Minimum booking: 1 cleaner for 3 hours or 2 cleaners for 2 hours", "You set the task list and the order", "Billed by the hour, per cleaner"]}
                 buttonText="Book Hourly Service"

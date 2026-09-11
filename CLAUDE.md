@@ -51,7 +51,9 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
 - After a quote request we text within 24 hours (`RESPONSE_TIME_PROMISE`).
 - Prices: the tables stop at five bedrooms (`PRICING_TIERS`, "5 Bedroom"); six and seven bedrooms
   cost more and are priced by the instant quote. Never write "5+" or "five or more".
-- Hourly work, Airbnb turnovers included: $65 per cleaner-hour (`HOURLY_RATE`).
+- Hourly rates: Airbnb/short-term-rental turnovers are $60 per cleaner-hour (`HOURLY_RATE`), the
+  only work at $60. Any other hourly cleaning is at least $65 (`HOME_HOURLY_RATE`, read from
+  BookingKoala's Home Cleaning hourly service), quoted as "from $65".
 - Deep package: baseboards, doors, light switches, wall outlets, vent covers, plus cobwebs.
   Light switches and cobwebs are deep-only. Ceiling fans are in no package: dusted only on
   request, where a 3-step ladder reaches them safely.
@@ -88,11 +90,9 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
    in the same step, or leads stop arriving.
 3. Paste `bk-header-fill.html` into BookingKoala → Theme Builder → Settings → Tracking & Conversion
    → Header code. It is not on the live booking page.
-4. Rename BookingKoala's Airbnb service ("Hourly Service $60 Per Hour/ Per Cleaner") to $65, then
-   re-capture bk-config.json.
-5. Take down the old GitHub Pages preview (bakbakim-dev.github.io/dutycleaners-preview).
-6. Book a real photo shoot (PHOTO-SHOOT-BRIEF.md): every people image is still AI-generated.
-7. The launch-gate items: production Netlify site, DNS, analytics, an end-to-end quote test.
+4. Take down the old GitHub Pages preview (bakbakim-dev.github.io/dutycleaners-preview).
+5. Book a real photo shoot (PHOTO-SHOOT-BRIEF.md): every people image is still AI-generated.
+6. The launch-gate items: production Netlify site, DNS, analytics, an end-to-end quote test.
 
 ## Historical documents
 REBUILD-PLAN.md, SEO-AUDIT-2026.md, CWV-BASELINE.md, notes.md (the legacy WordPress site's lead

@@ -241,17 +241,17 @@ export const SERVICES: ServicePricing[] = [
     hours: "2–4 hrs",
     exactPricing: false,
     estimateSpread: 0.2,
-    // $65 per cleaner-hour for all hourly work, Airbnb turnovers included: the
-    // owner set it on 2026-09-11 ("the new hourly is $65"), matching BookingKoala's
-    // Home Cleaning "Hourly Cleaning" service (id 17). BookingKoala's Airbnb
-    // service (industry 28) is still named "Hourly Service $60 Per Hour/ Per
-    // Cleaner" in bk-config.json until the owner renames it in BookingKoala.
-    // Every figure derives from HOURLY_RATE, so this is the only place it is written.
-    rateNote: "Hourly service at $65 per hour, per cleaner.",
+    // $60 per cleaner-hour, for Airbnb and short-term-rental turnovers ONLY. The
+    // owner, 2026-09-11: "airbnb is the only clean we will do at $60 but any other
+    // standard cleaning rate is minimum $65". It matches BookingKoala's Airbnb service
+    // (industry 28, "Hourly Service $60 Per Hour/ Per Cleaner"). Any other hourly
+    // cleaning uses HOME_HOURLY_RATE below. Every Airbnb figure derives from
+    // HOURLY_RATE, so this is the only place it is written.
+    rateNote: "Hourly service at $60 per hour, per cleaner.",
     supportsRecurring: false,
     asksHomeSize: true,
     selfServe: false,
-    source: { industryId: 28, serviceCategoryId: 16, model: "hourly", hourlyRate: 65 },
+    source: { industryId: 28, serviceCategoryId: 16, model: "hourly", hourlyRate: 60 },
   },
   {
     id: "commercial",
@@ -664,11 +664,23 @@ export const startingPrice = (id: ServiceId) => {
 };
 
 /**
- * Hourly rate per cleaner ($65, set by the owner 2026-09-11). Read from the
- * Airbnb service row so every page quotes the same figure. BookingKoala's Airbnb
- * service name still says $60 until the owner updates it there.
+ * The Airbnb / short-term-rental turnover rate per cleaner-hour ($60), read from
+ * the Airbnb service row. It is ONLY for turnovers: every other hourly job is
+ * quoted from HOME_HOURLY_RATE.
  */
 export const HOURLY_RATE = getService("airbnb").source.hourlyRate ?? 0;
+
+/**
+ * The rate for any other hourly cleaning: a few rooms, a one-off task list, or a
+ * home no size tier fits. The owner, 2026-09-11: "any other standard cleaning rate
+ * is minimum $65". It is read from BookingKoala's Home Cleaning "Hourly Cleaning"
+ * service (id 17), whose description states the rate. It is a minimum, so pages
+ * quote it as "from".
+ */
+const homeHourlyService = (bkConfig.industries[0].services as unknown as Array<{ id: number; description?: string | null }>).find(
+  (service) => service.id === 17,
+);
+export const HOME_HOURLY_RATE = Number(/\$(\d+(?:\.\d+)?)\s*per hour/i.exec(homeHourlyService?.description ?? "")?.[1] ?? 0);
 
 /** Cheapest flat-rate home clean we publish ("Starting at $X"). */
 export const flatRateFromPrice = () => startingPrice("standard");

@@ -51,6 +51,7 @@ import {
   DEFAULT_FREQUENCY,
   FREQUENCIES,
   HOURLY_RATE,
+  HOME_HOURLY_RATE,
   PRICING_TIERS,
   type FrequencyId,
 } from "@/data/pricing";
@@ -110,6 +111,7 @@ const MOVE_FROM = `from ${MOVE_PRICE}`;
 const MOVE_SIZES = pickThree(MOVE_ROWS).map((row) => ({ label: row.beds, price: row.price }));
 const POST_FROM = from(startingPrice("post-construction"));
 const HOURLY = formatPrice(HOURLY_RATE);
+const HOME_HOURLY = formatPrice(HOME_HOURLY_RATE);
 const PET_FEE = addOnFromPrice("standard", "must-choose-if-you-have-pets");
 const PET_LINE = PET_FEE === null ? "a pet charge quoted when you book" : `${formatPrice(PET_FEE)} per visit`;
 const TRAVEL_HOME = travelFee("standard");
@@ -466,8 +468,8 @@ export default function EdmontonServices() {
             </h1>
 
             <p className="text-xl text-white/80 leading-relaxed mb-4">
-              Prices are flat by home size, {STANDARD_FROM} for a one-bedroom apartment before GST, or {HOURLY} per
-              cleaner-hour for partial jobs and Airbnb turnovers. Duty Cleaners is rated {RATING_CLAIM} across{" "}
+              Prices are flat by home size, {STANDARD_FROM} for a one-bedroom apartment before GST, {HOURLY} per
+              cleaner-hour for Airbnb turnovers, or from {HOME_HOURLY} per cleaner-hour for partial jobs. Duty Cleaners is rated {RATING_CLAIM} across{" "}
               {proof.googleReviewCount} Edmonton reviews and has cleaned Alberta homes {COMPANY.sinceLabel}.
             </p>
             <p className="text-lg text-white/70 leading-relaxed mb-8">

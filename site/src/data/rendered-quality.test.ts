@@ -3,6 +3,7 @@ import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { displayNameFor } from "./place-names";
 import { BOOKINGS } from "./proof";
+import { formatPrice, HOME_HOURLY_RATE, HOURLY_RATE } from "./pricing";
 
 /**
  * Guards distilled from the multi-agent content audit. Each one exists
@@ -615,6 +616,26 @@ describe("price CTAs reach the price", () => {
       for (const m of text.matchAll(BOOKINGS_FIGURE)) if (m[1] !== BOOKINGS) bad.push(`${url}: "${m[0]}"`);
     }
     expect(bad, `volume figures other than proof.ts BOOKINGS (${BOOKINGS} bookings)`).toEqual([]);
+  });
+
+  /**
+   * Two hourly rates (owner, 2026-09-11): Airbnb turnovers at HOURLY_RATE ($60),
+   * any other hourly cleaning from HOME_HOURLY_RATE ($65, a minimum). For a day
+   * the site quoted one rate for both.
+   */
+  it("prices Airbnb turnovers at the turnover rate and other hourly work from the home rate", () => {
+    if (allPages().length === 0) return;
+    const turnover = formatPrice(HOURLY_RATE);
+    const home = formatPrice(HOME_HOURLY_RATE);
+    expect(HOME_HOURLY_RATE, "the home hourly rate was not read from bk-config").toBeGreaterThan(HOURLY_RATE);
+    const text = (url: string) => html(url).replace(/<[^>]+>/g, " ").replace(/\s+/g, " ");
+    for (const url of ["/pricing/", "/calgary/pricing/"]) {
+      expect(text(url), `${url} never quotes the home hourly rate`).toContain(`from ${home}/hour`);
+      expect(text(url), `${url} quotes the Airbnb rate as its hourly-cleaning rate`).not.toContain(`${turnover}/hour`);
+    }
+    for (const url of ["/edmonton/airbnb-cleaning/", "/airbnb-cleaning-services-calgary/"]) {
+      expect(text(url), `${url} does not quote the turnover rate`).toContain(`${turnover} per cleaner`);
+    }
   });
 
   /**
