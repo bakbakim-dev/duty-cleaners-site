@@ -254,7 +254,6 @@ const services: Service[] = [
     features: [
       "Handprints and scuffs removed",
       "Smoke film washed back, with no promise it goes completely",
-      "Cobwebs and dust cleared",
       "Walls ready for paint or a listing photo"
     ],
     price: WALL_SPOT === null ? "Priced by home size" : `from ${formatPrice(WALL_SPOT)} with a clean`,

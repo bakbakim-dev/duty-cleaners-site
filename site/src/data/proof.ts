@@ -38,6 +38,8 @@ export interface CityProof {
   googleRating: Confirmed<number> | Unconfirmed;
   /** The listing's review count, same source and date. */
   googleReviewCount: Confirmed<number> | Unconfirmed;
+  /** The office pin, for the hub's LocalBusiness `geo`. */
+  geo: Confirmed<{ latitude: number; longitude: number }>;
 }
 
 export const CITY_PROOF: Record<"edmonton" | "calgary", CityProof> = {
@@ -54,6 +56,8 @@ export const CITY_PROOF: Record<"edmonton" | "calgary", CityProof> = {
     // legacy site's embedded widget, which lagged the real count by 12.
     googleRating: confirm(4.9, { by: "google-listing", on: "2026-09-01", note: "CID 8192121191672692049" }),
     googleReviewCount: confirm(236, { by: "google-listing", on: "2026-09-01", note: "CID 8192121191672692049" }),
+    // The office pin, read from Google Maps by the owner on 2026-09-10.
+    geo: confirm({ latitude: 53.504464, longitude: -113.643899 }, { by: "owner", on: "2026-09-10" }),
   },
   calgary: {
     city: "Calgary",
@@ -66,6 +70,8 @@ export const CITY_PROOF: Record<"edmonton" | "calgary", CityProof> = {
     // Same source and date as Edmonton, via CID 6193344199307583189.
     googleRating: confirm(4.9, { by: "google-listing", on: "2026-09-01", note: "CID 6193344199307583189" }),
     googleReviewCount: confirm(51, { by: "google-listing", on: "2026-09-01", note: "CID 6193344199307583189" }),
+    // The office pin, read from Google Maps by the owner on 2026-09-10.
+    geo: confirm({ latitude: 51.029407, longitude: -114.142163 }, { by: "owner", on: "2026-09-10" }),
   },
 };
 
@@ -115,37 +121,19 @@ export const BOOKINGS_CLAIM = `${BOOKINGS} Alberta bookings since ${COMPANY.foun
 /**
  * Risk-reversal lines shown beside every submit button.
  * Set `enabled: false` for anything not operationally true.
- * The owner confirmed "No contracts" on 2026-09-10, and the reschedule line
- * restates the 24-hour notice policy.ts confirms.
- * TODO-OWNER: confirm "You won't be charged today" before launch.
+ * The owner confirmed "No contracts" and the no-charge line on 2026-09-10, and
+ * the reschedule line restates the 24-hour notice policy.ts confirms. Online
+ * bookings need 24 hours' notice, so nothing is ever charged on the booking day.
+ * The card hold placed the day before the clean (PAYMENT_TERMS) is not a charge,
+ * though it can land on the booking day for a clean booked just over 24 hours out.
  */
 export const RISK_REVERSAL: { id: string; label: string; enabled: boolean }[] = [
-  { id: "no-charge", label: "You won't be charged today", enabled: true },
+  { id: "no-charge", label: confirm("You won't be charged today", { by: "owner", on: "2026-09-10" }), enabled: true },
   { id: "reschedule", label: "Free to reschedule or cancel with 24 hours' notice", enabled: true },
   { id: "no-contract", label: confirm("No contracts — book one clean or many", { by: "owner", on: "2026-09-10" }), enabled: true },
 ];
 
 export const activeRiskReversal = () => RISK_REVERSAL.filter((line) => line.enabled);
-
-/**
- * New-customer offer bar. Toggle `enabled` per campaign, and optionally set
- * an ISO start/end date so a campaign can be scheduled without a code change.
- * TODO-OWNER: confirm amounts and whether this runs permanently.
- */
-export const OFFER = {
-  enabled: false,
-  headline: "$20 off a one-time clean · $40 off your first recurring clean",
-  detail: "Applied automatically at checkout.",
-  startsAt: null as string | null,
-  endsAt: null as string | null,
-};
-
-export const isOfferLive = (now: Date = new Date()) => {
-  if (!OFFER.enabled) return false;
-  if (OFFER.startsAt && now < new Date(OFFER.startsAt)) return false;
-  if (OFFER.endsAt && now > new Date(OFFER.endsAt)) return false;
-  return true;
-};
 
 /**
  * Where completed quotes are submitted: see `src/config/ghl.ts`. Kept out of
@@ -242,13 +230,10 @@ export const BRANCH_IDENTITY = {
 
 
 /**
- * How fast we promise to come back after a booking request.
- * TODO-OWNER: confirm the real promise before launch.
+ * How soon we text back after a quote request to confirm the time. The owner
+ * set it at 24 hours on 2026-09-10; the site had said 1 hour.
  */
-export const RESPONSE_TIME_PROMISE = "1 hour during business hours";
-
-/** BookingKoala scheduling handoff — v2 only. TODO-OWNER: confirm the URL. */
-export const BOOKING_KOALA_URL: string | null = null;
+export const RESPONSE_TIME_PROMISE = confirm("24 hours", { by: "owner", on: "2026-09-10" });
 
 /**
  * Cleaner recruitment posting.
@@ -258,15 +243,16 @@ export const BOOKING_KOALA_URL: string | null = null;
  * wrong date is worse than no markup. `baseSalary` is deliberately absent until
  * the owner confirms a real range; the site never prints an invented figure.
  *
- * TODO-OWNER: set datePosted (ISO yyyy-mm-dd) and validThrough when recruiting,
- * and clear them when the role closes.
+ * The owner hires continuously (2026-09-10). Google's job-posting guidance says
+ * to leave validThrough out when a posting never expires, so it stays null.
+ * datePosted is the date this posting went up; set it to null if hiring stops.
  */
 export const CLEANER_JOB_POSTING: {
   datePosted: string | null;
   validThrough: string | null;
   employmentType: string;
 } = {
-  datePosted: null,
+  datePosted: "2026-09-10",
   validThrough: null,
   // /join-the-team/ requires a CRA Business Number, an own vehicle and own
   // equipment. That is contractor work; PART_TIME would misdescribe it in

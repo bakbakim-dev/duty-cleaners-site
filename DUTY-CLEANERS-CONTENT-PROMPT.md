@@ -103,6 +103,7 @@ Where each fact lives, under site/src:
 | T6 | components/DutyCleanPromise.tsx |
 | T7 | `NOT_INCLUDED` in data/policy.ts |
 | T9 | `RISK_REVERSAL` in data/proof.ts |
+| F7 | `RESPONSE_TIME_PROMISE` in data/proof.ts |
 | R1 | `CITY_PROOF` and `RATING_CLAIM` in data/proof.ts |
 | R3 | `BOOKINGS` and `BOOKINGS_CLAIM` in data/proof.ts |
 | A1, A2 | data/city-locations.ts |
@@ -148,6 +149,9 @@ F4  Email: support@dutycleaners.ca
 F5  Hours: Monday to Saturday 8:00 AM to 8:00 PM, Sunday 9:00 AM to 3:00 PM.
 F6  We book an arrival window, not an exact time: 9:00 to 10:00 AM, 12:00 to 1:00 PM, or 3:00 to
     4:00 PM.
+F7  After a quote request we text within 24 hours to confirm the time. Promise nothing faster.
+F8  Online bookings need at least 24 hours' notice. For anything sooner, the customer calls the
+    branch and asks what the schedule has open.
 
 Proof
 R1  Rated 4.9 on Google. The Edmonton listing has 236 reviews and the Calgary listing 51, read on
@@ -175,9 +179,9 @@ P1  Standard clean, one visit, for an apartment or condo:
     exact figure.
 P2  Deep clean, same sizes: $255, $315, $372, $444, $485. It is the standard checklist plus the
     deep-clean package: baseboards, doors, light switches, wall outlets and vent covers, and
-    cobwebs where there are any. Light switches belong to the deep package only; never list them
-    on the standard checklist. Ceiling fans are in no package: the team dusts them only on
-    request, where a 3-step ladder reaches them safely.
+    cobwebs where there are any. Light switches and cobwebs belong to the deep package only;
+    never list them on the standard checklist. Ceiling fans are in no package: the team dusts
+    them only on request, where a 3-step ladder reaches them safely.
 P3  Move-in or move-out clean, same sizes: $284, $361, $424, $501, $539.
 P4  Recurring: the standard clean on a schedule. Weekly 20% off, bi-weekly 15% off, every 4 weeks
     10% off, from the second visit; the first clean is charged at the one-time rate. Name the 10%
@@ -314,7 +318,7 @@ one dash in a sentence. Use the "X, not Y" pattern no more than twice on a page,
   next-day slots depend on the schedule."
 - "The same cleaner every time". The most you may say is "your regular team where we can send
   them".
-- A response-time promise, such as "we reply within an hour".
+- A response-time promise faster than F7, such as "we reply within an hour".
 - Licensed, insured, bonded, BBB, certified, top-rated, number one, best, award-winning,
   five-star, "trusted by thousands", money-back, "guaranteed results", non-toxic, "safe for the
   planet".

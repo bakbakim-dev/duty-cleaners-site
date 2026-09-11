@@ -274,7 +274,6 @@ const services: Service[] = [
     features: [
       "Remove handprints and smudges",
       "Lift nicotine tar and smoke residue",
-      "Clean dust and cobwebs",
       "Prepare walls for painting or a sale"
     ],
     price: from(addOnFromPrice("standard", "spot-cleaning-inside-walls") ?? 0),

@@ -218,8 +218,8 @@ export default function Edmonton2() {
   // Flagship LocalBusiness entity — same type pair and richness as the 178
   // location pages, plus a stable @id so every schema node on the site can
   // reference one Edmonton business. No aggregateRating: self-serving review
-  // markup is against Google policy. TODO-OWNER: add `geo` with the verified
-  // lat/long (5+ decimals) of the 71 Ave office when confirmed.
+  // markup is against Google policy. `geo` is the office pin the owner
+  // confirmed on 2026-09-10 (proof.ts).
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -239,6 +239,7 @@ export default function Edmonton2() {
       postalCode: "T5T 2V9",
       addressCountry: "CA"
     },
+    geo: { "@type": "GeoCoordinates", ...CITY_PROOF.edmonton.geo },
     hasMap: "https://www.google.com/maps?cid=8192121191672692049",
     sameAs: [...BRANCH_PROFILES.edmonton],
     // Read from city-locations.ts rather than hand-listed. The Calgary twin's

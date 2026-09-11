@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { POLICY, PRICING_TERMS, SERVICE_TERMS } from "./policy";
-import { BOOKINGS, CITY_PROOF, RISK_REVERSAL } from "./proof";
+import { BOOKINGS, CITY_PROOF, RESPONSE_TIME_PROMISE, RISK_REVERSAL } from "./proof";
 import { confirm, PROVENANCE } from "./confirmed";
 import { travelFee } from "./addon-table";
 import { addOnFromPrice, formatPrice, FREQUENCIES } from "./pricing";
@@ -101,7 +101,14 @@ describe("every confirmed value carries its provenance", () => {
     expect(google).toBe(4);
     // proof.ts's owner-confirmed claims (2026-09-10): the bookings figure and
     // the "No contracts" line. Each must be registered, not typed in.
-    const ownerClaims = [BOOKINGS, RISK_REVERSAL.find((line) => line.id === "no-contract")?.label];
+    const ownerClaims = [
+      BOOKINGS,
+      RESPONSE_TIME_PROMISE,
+      RISK_REVERSAL.find((line) => line.id === "no-contract")?.label,
+      RISK_REVERSAL.find((line) => line.id === "no-charge")?.label,
+      CITY_PROOF.edmonton.geo,
+      CITY_PROOF.calgary.geo,
+    ];
     for (const claim of ownerClaims) {
       expect(PROVENANCE.some((p) => p.by === "owner" && p.value === claim), `${String(claim)} carries no provenance`).toBe(true);
     }

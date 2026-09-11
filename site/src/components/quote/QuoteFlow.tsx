@@ -952,7 +952,7 @@ export default function QuoteFlow({
         </div>
         <h2 className="text-2xl font-bold text-foreground">Request received.</h2>
         <p className="mt-3 leading-relaxed text-muted-foreground">
-          We&rsquo;ll text you shortly (within {RESPONSE_TIME_PROMISE}) to confirm your time. Your{" "}
+          We&rsquo;ll text you within {RESPONSE_TIME_PROMISE} to confirm your time. Your{" "}
           {selected.label.toLowerCase()} in {proof.city} is quoted at {priceLabel}
           {ongoingTotal ? `, then ${formatPrice(ongoingTotal)} per visit` : ""}.
         </p>

@@ -551,6 +551,23 @@ export const GUARD_PROOFS: GuardProof[] = [
   },
   {
     guard: "src/data/copy-quality.test.ts",
+    target: "src/components/CityIncludedChapter.tsx",
+    find: '"Hard floors mopped",',
+    replace: '"Hard floors mopped", "Cobwebs removed",',
+    failing: "cobwebs are in the deep package, not a standard or wall-washing list",
+    why: "Puts cobwebs back on the hubs' standard checklist, which the owner keeps for the deep clean.",
+  },
+  {
+    guard: "src/data/structured-data.test.ts",
+    target: "dist/index.html",
+    find: '"latitude":53.504464',
+    replace: '"latitude":53.5',
+    failing: "the hub's LocalBusiness geo equals proof.ts",
+    why: "Publishes an Edmonton office pin that is not the one the owner confirmed.",
+    dist: true,
+  },
+  {
+    guard: "src/data/copy-quality.test.ts",
     target: "src/pages/Contact.tsx",
     find: '<SelectItem value="commercial">Office Cleaning</SelectItem>',
     replace: '<SelectItem value="commercial">Office & Commercial Cleaning</SelectItem>',

@@ -106,7 +106,7 @@ const wallProblems = [
 const includedItems = [
   { icon: Brush, title: "The full wash", description: "The team washes painted drywall in each room on the booking with a damp cloth and a bucket, from the top of the wall to the baseboard, within reach of a 3-step ladder." },
   { icon: Sparkles, title: "Marks first", description: "Scuffs, handprints and the odd crayon line are worked one at a time before the wash, so the wash does not spread them." },
-  { icon: Wind, title: "Corners and the ceiling line", description: "Cobwebs and the furnace halo come down before the wall is touched, or they end up back on it." },
+  { icon: Wind, title: "Corners and the ceiling line", description: "The furnace halo along the ceiling line is cleared before the wall is washed, or it ends up back on the wall." },
   { icon: Droplets, title: "Hard-water haze", description: "The mineral film around the shower and behind the taps is dissolved with a mild acid, so the paint underneath is left as it was." },
   { icon: Cloud, title: "Smoke and cooking film", description: "Cooking film comes off the wall. Smoke film fades with washing, and a smell held in the drywall may stay; we say that plainly if you ask before booking." },
   { icon: Shield, title: "Light mildew on bathroom walls", description: "Light surface mildew on a painted bathroom wall is wiped where it is safe to do so. Mould inside the drywall needs remediation, which the team does not do." },

@@ -299,4 +299,19 @@ describe("the copy does not read like a template filled in by a machine", () => 
     }
     expect(hits, "ceiling fans listed as included; they are dusted on request only").toEqual([]);
   });
+
+  it("cobwebs are in the deep package, not a standard or wall-washing list", () => {
+    // Owner, 2026-09-10: cobwebs are deep-clean only. The hubs' standard
+    // checklist, both services hubs' wall-washing bullets and both wall-washing
+    // pages had listed them.
+    const files = [
+      "components/CityIncludedChapter.tsx",
+      "pages/CalgaryServices.tsx",
+      "pages/EdmontonServices.tsx",
+      "pages/WallWashingCalgary.tsx",
+      "pages/WallWashingEdmonton.tsx",
+    ];
+    const hits = files.filter((rel) => /cobweb/i.test(stripComments(readFileSync(join(SRC, rel), "utf-8"))));
+    expect(hits, "cobwebs listed outside the deep package").toEqual([]);
+  });
 });

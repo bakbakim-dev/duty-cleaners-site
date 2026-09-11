@@ -108,7 +108,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "How do I schedule a cleaning appointment?",
-        answer: "Book online through the instant price, or call the Edmonton office at (780) 913-6565 or the Calgary office at (403) 768-1341. Same-day and next-day slots depend on the schedule.",
+        answer: "Book online through the instant price, or call the Edmonton office at (780) 913-6565 or the Calgary office at (403) 768-1341. Online bookings need at least 24 hours' notice; for anything sooner, call and ask what the schedule has open.",
       },
     ],
   },

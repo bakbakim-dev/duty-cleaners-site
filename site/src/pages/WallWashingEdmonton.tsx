@@ -105,7 +105,6 @@ const wallProblems = [
 const includedItems = [
   { icon: Brush, title: "Full wall wash", description: "Every painted wall in the rooms you book, washed top to bottom." },
   { icon: Sparkles, title: "Stain, smudge & mark removal", description: "Spots, smudges and marks worked on one at a time before the wall is washed." },
-  { icon: Wind, title: "Cobweb removal", description: "Corners and the ceiling line, before the wall itself is washed." },
   { icon: Droplets, title: "Spot treatment for grime & gentle mildew", description: "Built-up grime around switches and door frames, and light surface mildew on bathroom walls where the paint allows it." },
   { icon: Cigarette, title: "Nicotine & tar stain treatment", description: "Targeted cleaning to reduce yellow nicotine and tar buildup on walls in smoked-in homes." },
   { icon: Shield, title: "Paint-ready wall cleaning", description: "Dust, residue and film taken off so primer and paint go onto a clean wall." },

@@ -215,6 +215,33 @@ describe("structured data", () => {
   });
 });
 
+describe("each branch carries the office pin the owner confirmed", () => {
+  // Owner, 2026-09-10: the two office pins, read from Google Maps (proof.ts).
+  it("the hub's LocalBusiness geo equals proof.ts", () => {
+    if (!existsSync(DIST)) return;
+    const hubs = [
+      ["edmonton", "index.html"],
+      ["calgary", join("cleaning-services-calgary", "index.html")],
+    ] as const;
+    for (const [key, file] of hubs) {
+      const html = readFileSync(join(DIST, file), "utf-8");
+      const found: unknown[] = [];
+      const visit = (v: unknown): void => {
+        if (Array.isArray(v)) return v.forEach(visit);
+        if (v && typeof v === "object") {
+          const o = v as Record<string, unknown>;
+          if (o["@id"] === `https://dutycleaners.ca/#${key}` && o.geo) found.push(o.geo);
+          Object.values(o).forEach(visit);
+        }
+      };
+      for (const m of html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)) visit(JSON.parse(m[1]));
+      expect(found, `${key} hub LocalBusiness geo`).toEqual([
+        { "@type": "GeoCoordinates", latitude: CITY_PROOF[key].geo.latitude, longitude: CITY_PROOF[key].geo.longitude },
+      ]);
+    }
+  });
+});
+
 describe("NAP consistency in what the visitor sees", () => {
   /**
    * The schema was not the only place the number appeared in two shapes. The

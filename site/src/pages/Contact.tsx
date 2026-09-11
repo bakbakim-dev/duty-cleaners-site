@@ -672,9 +672,9 @@ Sun: 9:00am–3:00pm"
                   <div className="space-y-5">
                     {/* The "Quick Response — within 24 hours" item that stood
                         here promised a reply time nothing in the repository
-                        confirms (proof.ts RESPONSE_TIME_PROMISE is still
-                        TODO-OWNER and is rendered nowhere), so it is gone rather
-                        than replaced with another invented number. What the page
+                        confirmed at the time, so it went. The owner has since set
+                        24 hours (proof.ts RESPONSE_TIME_PROMISE), which the quote
+                        form's confirmation screen states. What the page
                         can honestly say is that most questions do not need a
                         reply at all. */}
                     <FeatureHighlight

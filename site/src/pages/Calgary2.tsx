@@ -222,8 +222,8 @@ export default function Calgary2() {
   // Flagship LocalBusiness entity — mirrors the Edmonton node. Street address
   // matches the one already published on the Contact section (GetInTouch).
   // No aggregateRating: self-serving review markup is against Google policy.
-  // TODO-OWNER: confirm postal code + verified lat/long for the 37 Street SW
-  // location, then add postalCode and `geo`.
+  // postalCode comes from proof.ts through schemaAddressFor, and `geo` is the
+  // office pin the owner confirmed on 2026-09-10.
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -239,6 +239,7 @@ export default function Calgary2() {
     // block was one of two stragglers still missing postalCode after the
     // provider-node sweep.
     address: schemaAddressFor("calgary"),
+    geo: { "@type": "GeoCoordinates", ...CITY_PROOF.calgary.geo },
     hasMap: "https://www.google.com/maps?cid=6193344199307583189",
     sameAs: [...BRANCH_PROFILES.calgary],
     // Hand-listed, this had fallen two towns behind the FAQ on the same page:
