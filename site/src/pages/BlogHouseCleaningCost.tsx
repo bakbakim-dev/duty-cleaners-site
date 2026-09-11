@@ -199,13 +199,13 @@ const SECTIONS = [
   },
   {
     id: "edmonton",
-    h2: "Edmonton house cleaning prices by home size",
+    h2: "How much does house cleaning cost in Edmonton?",
     q: "How much does house cleaning cost in Edmonton?",
     a: `In Edmonton a standard clean is ${STANDARD[0].price} for a 1-bedroom, 1-bathroom apartment or condo and ${last(STANDARD).price} for five bedrooms, a deep clean ${COST_SPANS.deep}, and a move-out clean ${COST_SPANS.moveInOut}. All are flat rates before 5% GST, and the figure does not change if the clean runs long. A bungalow, basement suite, townhouse or two-storey house adds up to ${HOUSE_MAX} over the apartment price, a home with pets adds ${PET_FEE} a visit, and an address outside Edmonton city limits adds a ${TRAVEL_FEE} travel fee.`,
   },
   {
     id: "calgary",
-    h2: "Calgary house cleaning prices by home size",
+    h2: "How much does house cleaning cost in Calgary?",
     q: "How much does house cleaning cost in Calgary?",
     a: `Calgary uses the same price list as Edmonton: ${COST_SPANS.standard} for a standard clean of an apartment or condo by bedroom count, before GST. A recurring booking is discounted from the second clean on (${FREQUENCY_DISCOUNTS}), and the first clean is charged at the one-time rate. On a ${DEEPEST.label.toLowerCase()} plan that takes a 1-bedroom home from ${STANDARD[0].price} to ${ongoingPrice(PRICING_TIERS[0], DEEPEST.id)} a visit, and five bedrooms from ${last(STANDARD).price} to ${ongoingPrice(last(PRICING_TIERS), DEEPEST.id)}. A house rather than an apartment, a home with pets (${PET_FEE} a visit), and an address outside Calgary city limits (${TRAVEL_FEE}) each add a charge.`,
   },
@@ -223,7 +223,7 @@ const SECTIONS = [
   },
   {
     id: "what-changes",
-    h2: "What changes the price",
+    h2: "What changes the price of a house cleaning?",
     q: "What changes the price of a house cleaning?",
     a: `The price of a house cleaning moves with the size and type of the home, the service, how often you book, and any add-ons. Three charges apply whenever they fit the home: up to ${HOUSE_MAX} for a house rather than an apartment or condo, ${PET_FEE} a visit for a home with pets, and a ${TRAVEL_FEE} travel fee outside Edmonton or Calgary city limits. Condition matters too: if a home needs substantially more work than described, the team explains what it found and the options before continuing.`,
   },

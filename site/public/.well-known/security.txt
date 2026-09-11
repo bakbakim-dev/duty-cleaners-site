@@ -1,0 +1,4 @@
+Contact: mailto:support@dutycleaners.ca
+Expires: 2027-09-10T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://dutycleaners.ca/.well-known/security.txt

@@ -156,7 +156,7 @@ export default function BlogCleaningProducts() {
           "@type": "Article",
           headline: title,
           description,
-          image: "https://dutycleaners.ca/og-image.jpg",
+          image: absoluteAssetUrl(heroImage),
           ...(publishedFor("/the-top-5-must-have-cleaning-products-for-a-spotless-home") ? { datePublished: publishedFor("/the-top-5-must-have-cleaning-products-for-a-spotless-home") } : {}),
           dateModified: modifiedOr("/the-top-5-must-have-cleaning-products-for-a-spotless-home"),
           author: { "@type": "Organization", name: "Duty Cleaners", url: "https://dutycleaners.ca/" },

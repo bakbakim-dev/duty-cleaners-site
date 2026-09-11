@@ -11,7 +11,7 @@ import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import BlogPostCard from "@/components/blog/BlogPostCard";
 import { absoluteAssetUrl, ARTICLE_AUTHOR } from "@/lib/seo";
 import { canonicalUrlForPath } from "@/data/legacy-urls";
-import { modifiedFor } from "@/data/post-dates";
+import { modifiedFor, POST_MODIFIED } from "@/data/post-dates";
 import { ORG_ID } from "@/data/proof";
 
 import cleaningScheduleHero from "@/assets/blog/cleaning-schedule-hero.webp";
@@ -212,12 +212,16 @@ export default function Blog() {
                 description: p.excerpt,
                 url: canonicalUrlForPath(p.slug!),
                 image: absoluteAssetUrl(p.image),
+                // Unknown publication date: omit datePublished, but the revision
+                // date is git's own record (post-dates.ts), so it is still stated.
                 ...(published
                   ? {
                       datePublished: published,
                       dateModified: modifiedFor(p.slug!, published),
                     }
-                  : {}),
+                  : POST_MODIFIED[p.slug!.replace(/\/+$/, "")]
+                    ? { dateModified: POST_MODIFIED[p.slug!.replace(/\/+$/, "")] }
+                    : {}),
                 author: ARTICLE_AUTHOR,
               };
             }),

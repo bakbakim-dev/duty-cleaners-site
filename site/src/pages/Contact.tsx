@@ -641,7 +641,7 @@ export default function Contact() {
                   )}
                 </div>
 
-                <form id="contact-form" onSubmit={handleSubmit} className="scroll-mt-24 bg-white rounded-2xl border border-border shadow-sm p-6 md:p-8 space-y-5">
+                <form id="contact-form" method="post" onSubmit={handleSubmit} className="scroll-mt-24 bg-white rounded-2xl border border-border shadow-sm p-6 md:p-8 space-y-5">
                   {isGiftCard && (
                     <div className="rounded-xl border border-accent/30 bg-accent/10 p-4">
                       <p className="font-semibold text-foreground">

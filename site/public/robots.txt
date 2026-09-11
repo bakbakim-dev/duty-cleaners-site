@@ -44,13 +44,22 @@ Allow: /
 User-agent: DuckAssistBot
 Allow: /
 
+# Amazon runs three crawlers (developer.amazon.com/amazonbot): Amzn-SearchBot makes pages
+# eligible for Alexa search, Amzn-User fetches pages for live Alexa questions; neither is
+# used for model training. Amazonbot, blocked below, may be.
+User-agent: Amzn-SearchBot
+Allow: /
+
+User-agent: Amzn-User
+Allow: /
+
 # Applebot-Extended is Apple's TRAINING opt-out control, not a retrieval
 # crawler: allowing it permits training use. Apple's search crawler is
 # plain Applebot, which the catch-all already allows.
 User-agent: Applebot-Extended
 Allow: /
 
-# Training-only crawlers — blocked
+# Training crawlers — blocked (Amazonbot: "may be used to train Amazon AI models")
 User-agent: CCBot
 Disallow: /
 
