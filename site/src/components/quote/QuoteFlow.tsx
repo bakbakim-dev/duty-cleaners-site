@@ -63,8 +63,8 @@ import {
   type ResolvedExtra,
 } from "@/lib/booking-redirect";
 import { BOOKINGS_CLAIM, RATING_CLAIM, RESPONSE_TIME_PROMISE, SUPPORT_EMAIL, cityProofFor, hasGoogleRating } from "@/data/proof";
-import { submitQuote, type QuotePayload } from "@/lib/quote-submit";
-import { captureTrackingParams, pageServiceFor, serviceOnOpen } from "@/lib/tracking";
+import { createQuoteRequestId, submitQuote, type QuotePayload } from "@/lib/quote-submit";
+import { captureTrackingParams, getStoredTracking, pageServiceFor, serviceOnOpen } from "@/lib/tracking";
 import { setQuoteStep } from "@/lib/quote-progress";
 import { track } from "@/lib/analytics";
 import { useQuoteOverlay } from "@/hooks/use-quote-overlay";
@@ -351,6 +351,12 @@ export default function QuoteFlow({
   const outsideCity = cityStatus === "unknown" ? insideCity === false : cityStatus === "outside";
 
   const startedAtRef = useRef(Date.now());
+  /** Stable receipts make a visible Retry safe and keep lead/confirm distinct. */
+  const leadRequestIdRef = useRef<string | null>(null);
+  const confirmRequestIdRef = useRef<string | null>(null);
+  if (leadRequestIdRef.current === null) leadRequestIdRef.current = createQuoteRequestId();
+  if (confirmRequestIdRef.current === null) confirmRequestIdRef.current = createQuoteRequestId();
+  const contactFormRef = useRef<HTMLFormElement>(null);
   /**
    * When the hero card already chose the service, step 1 opens with that shown
    * as a collapsed chip instead of re-asking. Expanded on request.
@@ -443,18 +449,20 @@ export default function QuoteFlow({
     }
     if (restart) {
       lastStepKeyRef.current = "restart";
+      leadRequestIdRef.current = createQuoteRequestId();
+      confirmRequestIdRef.current = createQuoteRequestId();
       setStep(0);
     } else {
       lastStepKeyRef.current = null;
     }
     setServiceExpanded(!(preset || pageApplied));
 
-    track("quote_start", {
+    track("quote_started", {
       city: proof.key,
       service: next,
       intent: initialIntent === "deep" && next === "standard" ? "deep" : "none",
     });
-  }, [isOpen, pathname, search, servicePreset, initialService, initialIntent, service, step, proof.city]);
+  }, [isOpen, pathname, search, servicePreset, initialService, initialIntent, service, step, proof.city, proof.key]);
 
   // Re-opening the overlay from a deep CTA re-arms the intent.
   useEffect(() => {
@@ -560,6 +568,11 @@ export default function QuoteFlow({
     intent: deepCleanIntent ? "deep" : "none",
     frequency: selected.supportsRecurring ? frequency : "one-time",
   });
+
+  const goToContact = () => {
+    track("property_details_completed", funnelProps());
+    setStep(1);
+  };
 
   // quote_step for each screen the visitor reaches, and quote_price_view when a
   // price is on it: the "starts from" figure on step 2, the exact price on 3.
@@ -807,7 +820,7 @@ export default function QuoteFlow({
     intent: deepCleanIntent ? ("deep" as const) : null,
   });
 
-  /** Step 2 → the lead itself. Step 3 only opens on a real 2xx. */
+  /** Step 2 → the lead itself. Step 3 opens only on a durable server receipt. */
   const submitLead = async (event: React.FormEvent) => {
     event.preventDefault();
     setFailed(false);
@@ -839,16 +852,21 @@ export default function QuoteFlow({
 
     setSubmitting(true);
     const fields = homeFields();
-    const result = await submitQuote({
-      ...fields,
-      source: tooFast ? `${fields.source} (fast fill — verify)` : fields.source,
-    } as Partial<QuotePayload>);
+    const result = await submitQuote(
+      {
+        ...fields,
+        source: tooFast ? `${fields.source} (fast fill — verify)` : fields.source,
+      } as Partial<QuotePayload>,
+      { requestId: leadRequestIdRef.current },
+    );
     setSubmitting(false);
 
     if (result.ok) {
-      // Only a confirmed 2xx from the relay counts as a lead; the honeypot
-      // path above never reaches here.
+      // This means the private lead row exists. GHL can be delivered or queued;
+      // either way, the required contact gate has done its job.
       track("generate_lead", funnelProps());
+      track("contact_submitted", funnelProps());
+      track("quote_revealed", funnelProps());
       setStep(2);
       return;
     }
@@ -892,6 +910,7 @@ export default function QuoteFlow({
         cleanerDetails: details,
         coupon: promoCode,
         contact,
+        tracking: getStoredTracking(),
       }),
     [
       service,
@@ -983,6 +1002,7 @@ export default function QuoteFlow({
 
   /** Pane A → pane B. Starts the second pane at the top, never mid-question. */
   const goToDetailsPane = () => {
+    if (addedCount > 0) track("extras_selected", funnelProps());
     setPricePane("details");
     window.requestAnimationFrame(() => {
       stepHeadingRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -990,15 +1010,23 @@ export default function QuoteFlow({
     });
   };
 
-  const goToBooking = () => {
+  const goToBooking = async () => {
     if (!bookingQuery || !bookingUrl) return;
     if (!requireCleanerDetails()) return;
     track("booking_handoff", funnelProps());
     // A fresh, deliberate click always hands off — clear any stale guard first.
     clearHandoffFlag();
-    // Fire and forget: the lead already exists from step 2, and the relay
-    // records every attempt in quote_leads, so a failure here never blocks.
-    void submitQuote(confirmFields()).catch(() => undefined);
+    setHandingOff(true);
+    markHandoffFired();
+
+    // Save the final extras and access details before leaving. This request is
+    // bounded, idempotent and keepalive-enabled; a relay outage never prevents
+    // the customer from reaching BookingKoala because the initial lead exists.
+    await submitQuote(confirmFields(), {
+      requestId: confirmRequestIdRef.current,
+      timeoutMs: 3_500,
+      keepalive: true,
+    });
 
     if (BOOKING_MODE === "embed") {
       // Same funnel, same domain — no interstitial needed. The intent flag is
@@ -1007,8 +1035,6 @@ export default function QuoteFlow({
       return;
     }
 
-    setHandingOff(true);
-    markHandoffFired();
     window.location.assign(bookingUrl);
   };
 
@@ -1018,7 +1044,7 @@ export default function QuoteFlow({
     if (step === 2 && !requireCleanerDetails()) return;
     setFailed(false);
     setSubmitting(true);
-    const result = await submitQuote(confirmFields());
+    const result = await submitQuote(confirmFields(), { requestId: confirmRequestIdRef.current });
     setSubmitting(false);
     if (result.ok) {
       setSubmitted(true);
@@ -1044,6 +1070,20 @@ export default function QuoteFlow({
         .
       </p>
       <div className="mt-3 flex flex-wrap gap-2">
+        <Button
+          type="button"
+          size="sm"
+          variant="outline"
+          className="min-h-[44px]"
+          disabled={submitting}
+          onClick={() => {
+            if (step === 1) contactFormRef.current?.requestSubmit();
+            else void requestCallback();
+          }}
+        >
+          {submitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" aria-hidden="true" />}
+          Try again
+        </Button>
         <Button asChild size="sm" className="min-h-[44px] bg-accent text-accent-foreground hover:bg-accent/90">
           <a href={proof.phoneLink}>
             <Phone className="mr-2 h-4 w-4" aria-hidden="true" />
@@ -1335,7 +1375,7 @@ export default function QuoteFlow({
                 <Button
                   size="lg"
                   className="min-h-[56px] w-full rounded-full bg-accent text-base font-bold text-accent-foreground hover:bg-accent/90 sm:w-auto sm:px-10"
-                  onClick={() => setStep(1)}
+                  onClick={goToContact}
                 >
                   Continue
                   <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
@@ -1347,7 +1387,7 @@ export default function QuoteFlow({
 
           {/* ------------- Step 2 — Where to send the quote ------------- */}
           {step === 1 && (
-            <form className="funnel-step" noValidate onSubmit={submitLead}>
+            <form ref={contactFormRef} className="funnel-step" noValidate onSubmit={submitLead}>
               <StepHeader
                 ref={step === 1 ? stepHeadingRef : null}
                 number="02"
@@ -1357,7 +1397,8 @@ export default function QuoteFlow({
               >
                 <p className="mt-3 text-muted-foreground">
                   Your {selected.label.toLowerCase()} details are saved. We ask for these so we can
-                  send your quote and hold your price — no spam, no obligation.
+                  save your quote and help you continue if booking is interrupted. There is no
+                  obligation to book.
                 </p>
                 {!quote.quoteOnly && (
                   <Callout label="Your starting price" className="mt-4">
@@ -1425,11 +1466,14 @@ export default function QuoteFlow({
                     required
                     autoComplete="tel"
                     aria-invalid={Boolean(errors.phone)}
-                    aria-describedby={errors.phone ? "phone-error" : undefined}
+                    aria-describedby={errors.phone ? "phone-help phone-error" : "phone-help"}
                     className="mt-2 h-12 text-base"
                     value={contact.phone}
                     onChange={(event) => setContact({ ...contact, phone: event.target.value })}
                   />
+                  <p id="phone-help" className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    We use your number only to follow up about this quote, your booking or schedule changes.
+                  </p>
                   {errors.phone && (
                     <p id="phone-error" role="alert" className="mt-2 text-base font-semibold text-destructive-ink">
                       {errors.phone}
@@ -1457,7 +1501,17 @@ export default function QuoteFlow({
                 above={
                   /* Reassurance sits ABOVE the button, where it is still read. */
                   <p className="text-sm text-muted-foreground">
-                    You won&rsquo;t be charged today · No spam, no obligation · Prefer to talk?{" "}
+                    You won&rsquo;t be charged today · No obligation · By continuing, you agree we may
+                    email or text about this quote. Standard message rates may apply. Read our{" "}
+                    <a
+                      href="/privacy-policy/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-semibold text-foreground underline"
+                    >
+                      privacy policy
+                    </a>
+                    . Prefer to talk?{" "}
                     <a href={proof.phoneLink} className="inline-flex min-h-[44px] items-center font-semibold text-foreground underline">
                       {proof.phone}
                     </a>
@@ -1507,7 +1561,7 @@ export default function QuoteFlow({
                 eyebrow="Your price"
                 title={
                   pricePane === "price"
-                    ? "Your price — lock in your time."
+                    ? "Your price — choose an available time."
                     : "Last details, then pick your time"
                 }
               >

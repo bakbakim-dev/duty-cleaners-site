@@ -1,0 +1,51 @@
+-- Run only after the quote-delivery migration and ghl-quote deployment.
+-- Create these three Vault secrets in the Supabase SQL editor first:
+--
+-- select vault.create_secret('https://YOUR_PROJECT_REF.supabase.co', 'project_url');
+-- select vault.create_secret('YOUR_PUBLISHABLE_KEY', 'publishable_key');
+-- select vault.create_secret('A_LONG_RANDOM_VALUE_MATCHING_QUOTE_RETRY_SECRET', 'quote_retry_secret');
+--
+-- QUOTE_RETRY_SECRET must also be an Edge Function secret. Do not put any of
+-- the values above in Git.
+
+create extension if not exists pg_cron with schema pg_catalog;
+create extension if not exists pg_net with schema extensions;
+
+select cron.schedule(
+  'retry-ghl-quote-delivery',
+  '*/5 * * * *',
+  $$
+  select net.http_post(
+    url := (
+      select decrypted_secret
+      from vault.decrypted_secrets
+      where name = 'project_url'
+    ) || '/functions/v1/ghl-quote',
+    headers := jsonb_build_object(
+      'Content-Type', 'application/json',
+      'apikey', (
+        select decrypted_secret
+        from vault.decrypted_secrets
+        where name = 'publishable_key'
+      ),
+      'Authorization', 'Bearer ' || (
+        select decrypted_secret
+        from vault.decrypted_secrets
+        where name = 'publishable_key'
+      ),
+      'x-quote-retry-secret', (
+        select decrypted_secret
+        from vault.decrypted_secrets
+        where name = 'quote_retry_secret'
+      )
+    ),
+    body := '{"operation":"retry_pending"}'::jsonb,
+    timeout_milliseconds := 20000
+  ) as request_id;
+  $$
+);
+
+-- Verify after five minutes:
+-- select jobid, jobname, schedule, active from cron.job where jobname = 'retry-ghl-quote-delivery';
+-- select status, return_message, start_time, end_time
+-- from cron.job_run_details order by start_time desc limit 10;

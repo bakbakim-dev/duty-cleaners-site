@@ -44,11 +44,10 @@ import GetInTouch from "@/components/GetInTouch";
 import { quoteCtaLabel, useQuoteProgress } from "@/lib/quote-progress";
 import { Suspense, lazy } from "react";
 const EdmontonServiceAreaMap = lazy(() => import("@/components/EdmontonServiceAreaMap"));
-import edmontonHeroRoom from "@/assets/hero-room-edmonton-manus.webp";
-import edmontonHeroRoom640 from "@/assets/hero-room-edmonton-manus-640w.webp";
-import edmontonHeroRoom960 from "@/assets/hero-room-edmonton-manus-960w.webp";
-import edmontonHeroRoom1280 from "@/assets/hero-room-edmonton-manus-1280w.webp";
-import edmontonHeroRoom1920 from "@/assets/hero-room-edmonton-manus-1920w.webp";
+import edmontonHeroRoom from "@/assets/generated/edmonton-cleaning-hero-v1.webp";
+import edmontonHeroRoom640 from "@/assets/generated/edmonton-cleaning-hero-v1-640w.webp";
+import edmontonHeroRoom960 from "@/assets/generated/edmonton-cleaning-hero-v1-960w.webp";
+import edmontonHeroRoom1280 from "@/assets/generated/edmonton-cleaning-hero-v1-1280w.webp";
 
 import galleryLivingRoom from "@/assets/gallery/living-room-clean.webp";
 import galleryMoveOutClean from "@/assets/gallery/move-out-clean.webp";
@@ -113,14 +112,14 @@ const PAGE_TITLE = `House Cleaning Services Edmonton from ${FROM_STANDARD} | Pay
 const PAGE_DESCRIPTION = "Explore house cleaning in Edmonton. Compare services, check what's included and see pricing for your home before you book with Duty Cleaners.";
 
 /* Width-descriptor set for the hero, the LCP element on this page. Without
-   it a phone pulled the same 1920px file as a desktop: hero-room-edmonton-manus at 1920w against
+   it a phone pulled the full file instead of the 640w variant it needs.
    the 640w variant a phone actually needs. sizes is 100vw because the hero
    is full-bleed. */
 const HERO_SRCSET = [
   `${edmontonHeroRoom640} 640w`,
   `${edmontonHeroRoom960} 960w`,
   `${edmontonHeroRoom1280} 1280w`,
-  `${edmontonHeroRoom1920} 1920w`,
+  `${edmontonHeroRoom} 1672w`,
 ].join(", ");
 
 /* The schema priceRange, derived. It was hand-typed as "$155-$539+" here and
@@ -331,9 +330,8 @@ export default function Edmonton2() {
            phoneLink="tel:7809136565"
            heroImage={edmontonHeroRoom}
            heroSrcSet={HERO_SRCSET}
-           heroAlt="Bright kitchen and dining area with a wooden table and a window onto trees"
-           heroPosition="center"
-           heroScrim="soft"
+           heroAlt="Professional cleaner wiping a kitchen island in a bright Edmonton home"
+           heroPosition="center 48%"
            processImages={[
              { src: galleryPostKitchen, alt: "Kitchen with white cabinets, grey counters and a stainless steel range" },
              { src: galleryLivingRoom, alt: "A dog lying on a living-room rug beside a vacuum cleaner" },

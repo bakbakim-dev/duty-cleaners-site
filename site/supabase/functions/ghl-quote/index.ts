@@ -2,12 +2,13 @@
  * Server-side relay for the quote funnel → GoHighLevel API v2.
  *
  * The site never talks to GHL directly: the browser posts the quote payload
- * here, this function records it in `quote_leads`, then upserts the contact
- * through GHL's official API using a Private Integration token that only ever
- * exists server-side.
+ * here, this function records it in `quote_leads`, returns that durable receipt,
+ * then upserts the contact through GHL's official API in the background using a
+ * Private Integration token that only ever exists server-side.
  *
- * The relay never invents success: only a 2xx carrying a contact id is
- * reported as ok, so the funnel can gate its next step on a real result.
+ * The relay never invents capture: only a successfully stored row is reported
+ * as ok. GHL delivery is a separate delivered/pending state and can be retried
+ * with the authenticated retry operation below.
  */
 
 import { createClient } from "npm:@supabase/supabase-js@2";
@@ -24,6 +25,15 @@ const GHL_VERSION = "2021-07-28";
 const LOCATION_ID = "4OROmtMn8LQqaDsUJPjC";
 const TIMEOUT_MS = 10_000;
 
+function createRelayClient() {
+  return createClient(
+    Deno.env.get("SUPABASE_URL")!,
+    Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
+  );
+}
+
+type RelayClient = ReturnType<typeof createRelayClient>;
+
 /** Field key in GHL → payload key coming from the funnel. */
 const FIELD_MAP: Record<string, string> = {
   "contact.what_type_of_service_would_you_like": "service",
@@ -39,6 +49,7 @@ const FIELD_MAP: Record<string, string> = {
 };
 
 const PayloadSchema = z.object({
+  request_id: z.string().uuid().optional(),
   stage: z.enum(["lead", "confirm"]).default("lead"),
   city: z.string().max(80).optional(),
   service: z.string().max(200).optional(),
@@ -102,6 +113,9 @@ const ALLOWED_ORIGINS = [
   "https://www.dutycleaners.ca",
   "https://dutycleaners-preview.netlify.app",
   "https://duty-cleaners-preview.netlify.app",
+  "https://mikaily131.sg-host.com",
+  "http://localhost:5173",
+  "http://127.0.0.1:5173",
 ];
 const MIN_DWELL_MS = 3_000;
 
@@ -110,7 +124,7 @@ function originAllowed(req: Request) {
   // Non-browser callers send no Origin. Those are not the abuse vector this
   // stops, and blocking them would break server-side testing.
   if (!origin) return true;
-  return ALLOWED_ORIGINS.includes(origin) || origin.startsWith("http://localhost");
+  return ALLOWED_ORIGINS.includes(origin);
 }
 
 async function turnstileOk(token: string | undefined, ip: string) {
@@ -297,6 +311,108 @@ async function upsertContact(payload: Payload, token: string) {
   return { ok: false, status: 0, contactId: undefined, error: lastError };
 }
 
+const RETRY_DELAY_MINUTES = [5, 30, 120, 720, 1440, 2880];
+
+/** Delivers one durably stored row and records whether another retry is due. */
+async function deliverStoredLead(
+  row: { id: string; ghl_attempts?: number | null },
+  payload: Payload,
+  token: string,
+  supabase: RelayClient,
+) {
+  const attempt = (row.ghl_attempts ?? 0) + 1;
+  let result: { ok: boolean; status: number; contactId?: string; error: string };
+  try {
+    result = await upsertContact(payload, token);
+  } catch (error) {
+    console.error("[ghl-quote] upsert failed", String(error));
+    result = { ok: false, status: 0, error: String(error) };
+  }
+
+  // Free-text contact messages belong in a GHL note, never a custom field.
+  // Best-effort: the durable row and contact already exist at this point.
+  if (result.ok && result.contactId && payload.notes?.trim()) {
+    try {
+      const noteRes = await ghlFetch(
+        `/contacts/${result.contactId}/notes`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ body: payload.notes.trim() }),
+        },
+        token,
+      );
+      if (!noteRes.ok) console.error("[ghl-quote] note failed", noteRes.status);
+    } catch (error) {
+      console.error("[ghl-quote] note failed", String(error));
+    }
+  }
+
+  const terminal = !result.ok && attempt >= RETRY_DELAY_MINUTES.length;
+  const delayMinutes = RETRY_DELAY_MINUTES[Math.min(attempt - 1, RETRY_DELAY_MINUTES.length - 1)];
+  const nextRetry = result.ok || terminal
+    ? null
+    : new Date(Date.now() + delayMinutes * 60_000).toISOString();
+
+  await supabase
+    .from("quote_leads")
+    .update({
+      ghl_ok: result.ok,
+      ghl_status: result.status,
+      ghl_contact_id: result.contactId ?? null,
+      ghl_error: result.error ? result.error.slice(0, 500) : null,
+      ghl_attempts: attempt,
+      ghl_last_attempt_at: new Date().toISOString(),
+      ghl_next_retry_at: nextRetry,
+      delivery_state: result.ok ? "delivered" : terminal ? "failed" : "pending",
+    })
+    .eq("id", row.id);
+
+  console.log("[ghl-quote] delivery", payload.stage, result.ok, result.status, attempt);
+  return result;
+}
+
+/** Authenticated target for a Supabase Cron invocation. */
+async function retryPendingLeads(
+  req: Request,
+  supabase: RelayClient,
+  token: string | undefined,
+) {
+  const expected = Deno.env.get("QUOTE_RETRY_SECRET");
+  if (!expected || req.headers.get("x-quote-retry-secret") !== expected) {
+    return { body: { ok: false, error: "unauthorized" }, status: 401 };
+  }
+  if (!token) return { body: { ok: false, error: "relay not configured" }, status: 503 };
+
+  const { data, error } = await supabase
+    .from("quote_leads")
+    .select("id,payload,ghl_attempts")
+    .eq("delivery_state", "pending")
+    .lt("ghl_attempts", RETRY_DELAY_MINUTES.length)
+    .lte("ghl_next_retry_at", new Date().toISOString())
+    .order("ghl_next_retry_at", { ascending: true })
+    .limit(10);
+
+  if (error) return { body: { ok: false, error: "queue unavailable" }, status: 503 };
+
+  let delivered = 0;
+  let pending = 0;
+  for (const queued of data ?? []) {
+    const parsed = PayloadSchema.safeParse(queued.payload);
+    if (!parsed.success) {
+      await supabase
+        .from("quote_leads")
+        .update({ delivery_state: "failed", ghl_error: "stored payload is invalid" })
+        .eq("id", queued.id);
+      continue;
+    }
+    const result = await deliverStoredLead(queued, parsed.data, token, supabase);
+    if (result.ok) delivered += 1;
+    else pending += 1;
+  }
+  return { body: { ok: true, checked: (data ?? []).length, delivered, pending }, status: 200 };
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
@@ -307,6 +423,15 @@ Deno.serve(async (req) => {
     });
 
   try {
+    const raw = await req.json();
+    const token = Deno.env.get("GHL_PI_TOKEN");
+    const supabase = createRelayClient();
+
+    if (raw && typeof raw === "object" && (raw as { operation?: unknown }).operation === "retry_pending") {
+      const retry = await retryPendingLeads(req, supabase, token);
+      return json(retry.body, retry.status);
+    }
+
     const ip =
       req.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
       req.headers.get("cf-connecting-ip") ??
@@ -315,131 +440,118 @@ Deno.serve(async (req) => {
       return json({ ok: false, status: 403, error: "forbidden origin" }, 403);
     }
     if (rateLimited(ip)) {
-      return json({ ok: false, status: 429, error: "rate limited" });
+      return json({ ok: false, status: 429, error: "rate limited" }, 429);
     }
 
-    const parsed = PayloadSchema.safeParse(await req.json());
+    const parsed = PayloadSchema.safeParse(raw);
     if (!parsed.success) {
       return json({ ok: false, status: 400, error: parsed.error.flatten().fieldErrors }, 400);
     }
     const payload = parsed.data;
 
     /*
-      Silent rejections. A bot gets the same shape of answer a success gives,
-      so probing tells it nothing about which control caught it — and a real
-      customer can never see these, because the honeypot is hidden and nobody
-      completes this form in three seconds.
+      Silent rejections. These use a generic accepted response but never claim
+      that a row was stored and never return a receipt id. The browser requires
+      that verifiable receipt before it reveals the complete price.
     */
     if (payload.website && payload.website.trim() !== "") {
-      return json({ ok: true, status: 202 });
+      return json({ ok: true, stored: false, delivery: "pending", status: 202 });
     }
     if (payload.formOpenedAt && Date.now() - payload.formOpenedAt < MIN_DWELL_MS) {
-      return json({ ok: true, status: 202 });
+      return json({ ok: true, stored: false, delivery: "pending", status: 202 });
     }
     if (!(await turnstileOk(payload.turnstileToken, ip))) {
       return json({ ok: false, status: 403, error: "verification failed" }, 403);
     }
 
-    const token = Deno.env.get("GHL_PI_TOKEN");
-    const supabase = createClient(
-      Deno.env.get("SUPABASE_URL")!,
-      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
-    );
-
-    // Backup capture first — a lead is never lost, whatever GHL does next.
-    const { data: row } = await supabase
+    // Backup capture first — the durable receipt, not GHL's availability, is
+    // what permits the customer to see the complete price.
+    const requestId = payload.request_id ?? crypto.randomUUID();
+    let { data: row } = await supabase
       .from("quote_leads")
-      .insert({
-        stage: payload.stage,
-        city: payload.city ?? null,
-        service: payload.service ?? null,
-        home_type: payload.home_type ?? null,
-        bedrooms: payload.bedrooms != null ? String(payload.bedrooms) : null,
-        full_bathrooms: payload.full_bathrooms != null ? String(payload.full_bathrooms) : null,
-        half_baths: payload.half_baths != null ? String(payload.half_baths) : null,
-        frequency: payload.frequency ?? null,
-        addons: payload.addons?.join("; ") ?? null,
-        first_clean_price: payload.first_clean_price ?? null,
-        recurring_price: payload.recurring_price ?? null,
-        currency: payload.currency ?? "CAD",
-        full_name: payload.full_name,
-        email: payload.email,
-        phone: toE164(payload.phone),
-        page_url: payload.page_url ?? null,
-        tracking: payload.tracking ?? {},
-        payload,
-      })
-      .select("id")
-      .single();
+      .select("id,ghl_ok,ghl_contact_id,ghl_attempts")
+      .eq("request_id", requestId)
+      .maybeSingle();
+
+    if (!row) {
+      const stored = await supabase
+        .from("quote_leads")
+        .insert({
+          request_id: requestId,
+          stage: payload.stage,
+          city: payload.city ?? null,
+          service: payload.service ?? null,
+          home_type: payload.home_type ?? null,
+          bedrooms: payload.bedrooms != null ? String(payload.bedrooms) : null,
+          full_bathrooms: payload.full_bathrooms != null ? String(payload.full_bathrooms) : null,
+          half_baths: payload.half_baths != null ? String(payload.half_baths) : null,
+          frequency: payload.frequency ?? null,
+          addons: payload.addons?.join("; ") ?? null,
+          first_clean_price: payload.first_clean_price ?? null,
+          recurring_price: payload.recurring_price ?? null,
+          currency: payload.currency ?? "CAD",
+          full_name: payload.full_name,
+          email: payload.email,
+          phone: toE164(payload.phone),
+          page_url: payload.page_url ?? null,
+          tracking: payload.tracking ?? {},
+          payload,
+        })
+        .select("id,ghl_ok,ghl_contact_id,ghl_attempts")
+        .single();
+      row = stored.data;
+      if (stored.error) {
+        // A concurrent same-id request may have won the unique-index race.
+        const existing = await supabase
+          .from("quote_leads")
+          .select("id,ghl_ok,ghl_contact_id,ghl_attempts")
+          .eq("request_id", requestId)
+          .maybeSingle();
+        row = existing.data;
+      }
+    }
+
+    if (!row?.id) {
+      console.error("[ghl-quote] durable capture failed");
+      return json({ ok: false, stored: false, status: 503, error: "capture unavailable" }, 503);
+    }
+
+    if (row.ghl_ok && row.ghl_contact_id) {
+      return json({
+        ok: true,
+        stored: true,
+        delivery: "delivered",
+        status: 200,
+        receiptId: row.id,
+        contactId: row.ghl_contact_id,
+      });
+    }
 
     if (!token) {
       console.error("[ghl-quote] GHL_PI_TOKEN is not set");
-      if (row?.id) {
-        await supabase
-          .from("quote_leads")
-          .update({ ghl_ok: false, ghl_status: 0, ghl_error: "token missing" })
-          .eq("id", row.id);
-      }
-      return json({ ok: false, status: 0, error: "relay not configured" });
-    }
-
-    let result: { ok: boolean; status: number; contactId?: string; error: string };
-    try {
-      result = await upsertContact(payload, token);
-    } catch (error) {
-      console.error("[ghl-quote] upsert failed", String(error));
-      result = { ok: false, status: 0, error: String(error) };
-    }
-
-    // The contact form's Message is free text with nowhere to go in FIELD_MAP,
-    // so it used to be dropped here. GHL keeps notes on their own endpoint.
-    // Best-effort: the contact is already saved, and a failed note is not a
-    // reason to report a failed submission.
-    if (result.ok && result.contactId && payload.notes?.trim()) {
-      try {
-        const noteRes = await ghlFetch(
-          `/contacts/${result.contactId}/notes`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ body: payload.notes.trim() }),
-          },
-          token
-        );
-        if (!noteRes.ok) {
-          console.error(
-            "[ghl-quote] note failed",
-            noteRes.status,
-            (await noteRes.text()).slice(0, 300)
-          );
-        }
-      } catch (error) {
-        console.error("[ghl-quote] note failed", String(error));
-      }
-    }
-
-    if (row?.id) {
       await supabase
         .from("quote_leads")
-        .update({
-          ghl_ok: result.ok,
-          ghl_status: result.status,
-          ghl_contact_id: result.contactId ?? null,
-          ghl_error: result.error || null,
-        })
+        .update({ ghl_ok: false, ghl_status: 0, ghl_error: "token missing", delivery_state: "pending" })
         .eq("id", row.id);
+      return json({ ok: true, stored: true, delivery: "pending", status: 202, receiptId: row.id });
     }
 
-    console.log("[ghl-quote]", payload.stage, result.ok, result.status, result.contactId ?? "");
+    const deliveryTask = deliverStoredLead(row, payload, token, supabase);
+    const runtime = globalThis as typeof globalThis & {
+      EdgeRuntime?: { waitUntil(promise: Promise<unknown>): void };
+    };
+    if (runtime.EdgeRuntime?.waitUntil) runtime.EdgeRuntime.waitUntil(deliveryTask);
+    else void deliveryTask;
 
     return json({
-      ok: result.ok,
-      status: result.status,
-      contactId: result.contactId ?? null,
-      error: result.ok ? undefined : result.error.slice(0, 300),
+      ok: true,
+      stored: true,
+      delivery: "pending",
+      status: 202,
+      receiptId: row.id,
     });
   } catch (error) {
     console.error("[ghl-quote] relay failed", String(error));
-    return json({ ok: false, status: 0, error: "relay error" });
+    return json({ ok: false, status: 500, error: "relay error" }, 500);
   }
 });

@@ -293,6 +293,14 @@ export const GUARD_PROOFS: GuardProof[] = [
     why: "Sends BookingKoala the 4-bedroom option id for a 3-bedroom home.",
   },
   {
+    guard: "src/lib/quote-submit.test.ts",
+    target: "src/lib/quote-submit.ts",
+    find: "const hasDurableReceipt = Boolean(result?.ok && result?.stored && result?.receiptId);",
+    replace: "const hasDurableReceipt = Boolean(result?.ok && result?.stored);",
+    failing: "does not unlock the quote without a verifiable durable receipt",
+    why: "Lets an unverified response reveal the quote even when the relay did not return a stored-row id.",
+  },
+  {
     guard: "src/lib/city-from-path.test.ts",
     target: "src/lib/city-from-path.ts",
     find: 'if (/(^|[/-])calgary($|[/-])/.test(path)) return "calgary";',

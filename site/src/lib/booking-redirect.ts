@@ -22,6 +22,7 @@ import {
   type CoverageGap,
   type ResolvedExtra,
 } from "@/lib/bk-extras";
+import { TRACKED_PARAMS } from "@/lib/tracking";
 
 export {
   resolveExtra,
@@ -315,6 +316,8 @@ export interface BookingUrlInput {
   /** Campaign coupon code, passed straight through to BookingKoala. */
   coupon?: string | null;
   contact?: { name?: string; email?: string; phone?: string };
+  /** First-touch campaign identifiers; only TRACKED_PARAMS can pass through. */
+  tracking?: Record<string, string>;
 
 }
 
@@ -423,6 +426,14 @@ export function buildBookingQuery(input: BookingUrlInput): string | null {
   const coupon = (input.coupon ?? "").trim();
   if (coupon) params.set("coupon", coupon);
 
+  // Keep the actual booking attributable to the campaign that produced the
+  // quote. Values are bounded and keys are fixed; contact and access details
+  // are never read from this object.
+  for (const key of TRACKED_PARAMS) {
+    const value = (input.tracking?.[key] ?? "").trim().slice(0, 300);
+    if (value) params.set(key, value);
+  }
+
 
 
 
@@ -513,4 +524,3 @@ if (import.meta.env?.DEV) {
     console.error("[bk-extras] unresolved BookingKoala extras — prefill will be omitted:", gaps);
   }
 }
-

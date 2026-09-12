@@ -42,8 +42,8 @@ export function handoffAlreadyFired(): boolean {
 /**
  * Branded transition between our funnel and the BookingKoala booking page.
  *
- * It goes up instantly on click — before any network call — so the hop feels
- * like one continuous funnel. If navigation hasn't happened after 3 seconds
+ * It goes up instantly on click while final quote details receive a bounded,
+ * durable save. If navigation hasn't happened after 3 seconds
  * (blocked script, dead network) a button to the exact same URL appears, so a
  * visitor can never be stranded here.
  */
@@ -85,13 +85,12 @@ export default function BookingHandoff({
 
       <div>
         <p className="text-lg font-semibold text-brand-navy-foreground">
-          Locking in your {priceLabel ?? "quote"}
-          {priceLabel ? " quote" : ""}&hellip;
+          Opening secure booking&hellip;
         </p>
         <p className="mt-1 text-brand-navy-foreground/75">
           {hasAddOns
-            ? "Your add-ons are already added — just pick your time."
-            : "Taking you to secure booking"}
+            ? `Your ${priceLabel ?? "quote"} and add-ons will carry over. Choose an available time next.`
+            : `Your ${priceLabel ?? "quote"} will carry over. Choose an available time next.`}
         </p>
       </div>
 

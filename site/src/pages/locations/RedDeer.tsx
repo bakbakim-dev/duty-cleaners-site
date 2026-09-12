@@ -41,6 +41,10 @@ import {
 import { TRAVEL_FEE_KEY, travelFee } from "@/data/addon-table";
 import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
 import { RED_DEER_LISTING } from "@/lib/google-listings";
+import redDeerHero from "@/assets/generated/red-deer-cleaning-hero-v1.webp";
+import redDeerHero640 from "@/assets/generated/red-deer-cleaning-hero-v1-640w.webp";
+import redDeerHero960 from "@/assets/generated/red-deer-cleaning-hero-v1-960w.webp";
+import redDeerHero1280 from "@/assets/generated/red-deer-cleaning-hero-v1-1280w.webp";
 
 /**
  * The Red Deer branch page, at the preserved legacy URL /cleaning-services-red-deer/.
@@ -112,6 +116,12 @@ const PAGE_TITLE = `House Cleaning Red Deer from ${STANDARD_FROM} | Duty Cleaner
 const PAGE_DESCRIPTION = `House cleaning in Red Deer from ${STANDARD_FROM} before GST, with no travel fee inside the city. Book the Red Deer office online and pay after the clean.`;
 
 const FULL_ADDRESS = `${OFFICE.streetAddress}, Red Deer, AB ${OFFICE.postalCode}`;
+const HERO_SRCSET = [
+  `${redDeerHero640} 640w`,
+  `${redDeerHero960} 960w`,
+  `${redDeerHero1280} 1280w`,
+  `${redDeerHero} 1672w`,
+].join(", ");
 
 /**
  * The branch entity, the same shape as the Edmonton and Calgary hubs' nodes:
@@ -268,6 +278,7 @@ export default function RedDeer() {
         <meta name="twitter:title" content={PAGE_TITLE} />
         <meta name="twitter:description" content={PAGE_DESCRIPTION} />
         <link rel="canonical" href={PAGE_URL} />
+        <link rel="preload" as="image" href={redDeerHero} imageSrcSet={HERO_SRCSET} imageSizes="100vw" />
         <script type="application/ld+json">{JSON.stringify(branchJsonLd)}</script>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       </Helmet>
@@ -281,6 +292,19 @@ export default function RedDeer() {
 
           {/* Hero */}
           <section className="relative overflow-hidden bg-brand-navy py-20 md:py-24">
+            <img
+              src={redDeerHero}
+              srcSet={HERO_SRCSET}
+              sizes="100vw"
+              alt="Professional cleaner wiping a dining table in a Red Deer home"
+              width={1672}
+              height={941}
+              loading="eager"
+              decoding="async"
+              {...{ fetchpriority: "high" } as Record<string, string>}
+              className="absolute inset-0 h-full w-full object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/95 via-brand-navy/82 to-brand-navy/30" />
             <div className="absolute left-10 top-20 h-72 w-72 rounded-full bg-accent/10 blur-3xl" />
             <div className="container relative z-10 mx-auto px-4">
               <div className="mx-auto max-w-4xl text-center lg:text-left">

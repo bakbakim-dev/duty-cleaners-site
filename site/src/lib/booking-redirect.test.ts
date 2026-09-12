@@ -242,6 +242,25 @@ describe("buildBookingQuery / buildBookingEmbedUrl", () => {
     const query = buildBookingQuery({ ...base, service: "move-in-out", frequencyBkId: 4 })!;
     expect(new URL(buildBookingEmbedUrl(query)).searchParams.get("frequency_id")).toBe("1");
   });
+
+  it("passes only allowlisted campaign attribution into the booking handoff", () => {
+    const query = buildBookingQuery({
+      ...base,
+      tracking: {
+        gclid: "click-123",
+        utm_source: "google",
+        utm_campaign: "move-out",
+        email: "must-not-pass@example.com",
+        arbitrary: "must-not-pass",
+      },
+    })!;
+    const params = new URLSearchParams(query);
+    expect(params.get("gclid")).toBe("click-123");
+    expect(params.get("utm_source")).toBe("google");
+    expect(params.get("utm_campaign")).toBe("move-out");
+    expect(params.has("arbitrary")).toBe(false);
+    expect(query).not.toContain("must-not-pass");
+  });
 });
 
 describe("deep cleaning extras prefill", () => {

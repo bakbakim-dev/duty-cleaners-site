@@ -10,7 +10,10 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { MapPin, Phone, Star, CheckCircle2, Clock, Shield, Sparkles, Home as HomeIcon, Award, ArrowRight, BadgeCheck, Users, CalendarClock, Briefcase, Heart } from "lucide-react";
-import heroCleanHouse from "@/assets/hero-clean-house-cleaner.webp";
+import heroCleanHouse from "@/assets/generated/alberta-cleaning-hero-v1.webp";
+import heroCleanHouse640 from "@/assets/generated/alberta-cleaning-hero-v1-640w.webp";
+import heroCleanHouse960 from "@/assets/generated/alberta-cleaning-hero-v1-960w.webp";
+import heroCleanHouse1280 from "@/assets/generated/alberta-cleaning-hero-v1-1280w.webp";
 import HonestReviewLink from "@/components/HonestReviewLink";
 import { BOOKINGS, BOOKINGS_CLAIM, COMPANY, RATING_CLAIM } from "@/data/proof";
 // Every figure here reads from src/data/proof.ts, the single source of truth
@@ -29,7 +32,7 @@ const stats = [{
   icon: HomeIcon
 }, {
   value: RATING_CLAIM,
-  label: "Rated by Alberta Homeowners",
+  label: "Edmonton + Calgary Google Rating",
   icon: Star
 }, {
   value: `${POLICY.guaranteeWindowHours}-Hour`,
@@ -53,6 +56,12 @@ const services = [{
   title: "Recurring Service",
   desc: "The standard clean on a schedule: weekly 20% off, bi-weekly 15%, every 4 weeks 10%, from the second visit."
 }];
+const HERO_SRCSET = [
+  `${heroCleanHouse640} 640w`,
+  `${heroCleanHouse960} 960w`,
+  `${heroCleanHouse1280} 1280w`,
+  `${heroCleanHouse} 1672w`,
+].join(", ");
 
 // Each branch's count stands alone. Google publishes no combined figure, and
 // this card used to print the two added together.
@@ -129,7 +138,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
         <>
           <Helmet>
             <title>Professional House Cleaning Across Alberta | Duty Cleaners</title>
-            <meta name="description" content="House cleaning in Edmonton and Calgary since 2017, rated 4.9 on Google. Nothing is charged when you book, and the card is charged after the clean." />
+            <meta name="description" content="House cleaning in Edmonton, Calgary and Red Deer since 2017. See your price before booking; nothing is charged today and the card is charged after the clean." />
           </Helmet>
           <Navigation />
         </>
@@ -138,11 +147,18 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
       <Shell standalone={!hideFooter}>
       {/* Hero Section */}
       <section className="bg-brand-navy py-20 md:py-32 relative overflow-hidden">
+        {!hideFooter && (
+          <Helmet>
+            <link rel="preload" as="image" href={heroCleanHouse} imageSrcSet={HERO_SRCSET} imageSizes="100vw" />
+          </Helmet>
+        )}
         <img
           src={heroCleanHouse}
-          alt="A cleaner at work in a living room"
-          width={1376}
-          height={768}
+          srcSet={HERO_SRCSET}
+          sizes="100vw"
+          alt="Professional cleaner wiping a kitchen counter in an Alberta home"
+          width={1672}
+          height={941}
           className="absolute inset-0 w-full h-full object-cover opacity-40 blur-[2px]"
          loading="eager" fetchPriority="high"/>
         <div className="absolute inset-0 bg-gradient-to-b from-brand-navy/80 via-brand-navy/70 to-brand-navy/85" />
@@ -154,7 +170,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
           <div className="max-w-5xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-6 py-2.5 rounded-full mb-8 border border-white/15">
               <BadgeCheck className="w-4 h-4 text-accent" />
-              <span className="text-sm font-medium text-white/90">{`Cleaning Alberta homes since ${COMPANY.foundedYear} · ${RATING_CLAIM}`}</span>
+              <span className="text-sm font-medium text-white/90">{`Cleaning Alberta homes since ${COMPANY.foundedYear} · Edmonton and Calgary ${RATING_CLAIM}`}</span>
             </div>
 
             {/* When embedded inside another page (Locations) that page owns the
@@ -164,7 +180,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
               <span className="text-accent">Across Alberta</span>
             </HeroHeading>
             <p className="text-xl md:text-2xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-              House cleaning from two branches, one in Edmonton and one in Calgary. You see the flat price for your home size before you book, and the card is charged once the clean is complete.
+              House cleaning from branches in Edmonton, Calgary and Red Deer. You see the flat price for your home size before you book, and the card is charged once the clean is complete.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4 mb-10">
@@ -173,7 +189,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
               label: "Pay After Your Clean"
             }, {
               icon: Star,
-              label: "4.9 on Google"
+              label: `Edmonton + Calgary: ${RATING_CLAIM}`
             }, {
               icon: Users,
               label: BOOKINGS_CLAIM
@@ -189,14 +205,14 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
       {/* City Selection Cards */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4" ref={locationsRef}>
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <span className="text-accent font-semibold text-sm uppercase tracking-wider">Our Locations</span>
               <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Choose Your Location</h2>
               <p className="text-lg text-muted-foreground">Select your city to view services, pricing, and availability</p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid gap-8 lg:grid-cols-3">
               {/* Edmonton Card */}
               <div className="group block" style={{
               perspective: "1000px"
@@ -228,7 +244,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
 
                     <div className="flex items-center gap-2 mb-5 text-white/90">
                       <Phone className="w-4 h-4" />
-                      <span className="font-semibold text-white">(780) 913-6565</span>
+                      <span className="font-semibold text-white">{CITY_PROOF.edmonton.phone}</span>
                     </div>
 
                     <div className="space-y-2 mb-6">
@@ -289,7 +305,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
 
                     <div className="flex items-center gap-2 mb-5 text-white/90">
                       <Phone className="w-4 h-4" />
-                      <span className="font-semibold text-white">(403) 768-1341</span>
+                      <span className="font-semibold text-white">{CITY_PROOF.calgary.phone}</span>
                     </div>
 
                     <div className="space-y-2 mb-6">
@@ -313,6 +329,47 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
                       >
                         View Calgary services
                         <ArrowRight className="w-5 h-5 ml-2" />
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Red Deer has its own office and booking path, but no Google
+                  reviews yet, so this card deliberately has no star rating. */}
+              <div className="group block" style={{ perspective: "1000px" }}>
+                <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-brand-navy text-white transition-all duration-500 ease-out group-hover:-translate-y-2 group-hover:shadow-xl group-hover:scale-[1.02]" style={{ transformStyle: "preserve-3d" }}>
+                  <div className="absolute right-0 top-0 h-40 w-40 rounded-full bg-accent/10 blur-3xl pointer-events-none" />
+                  <div className="relative z-10 p-8">
+                    <div className="mb-4 flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 transition-transform duration-500 group-hover:rotate-6">
+                          <MapPin className="h-6 w-6 text-accent" />
+                        </div>
+                        <div>
+                          <h3 className="text-2xl font-bold md:text-3xl">Red Deer</h3>
+                          <span className="text-sm text-white/80">Alberta, Canada</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="mb-5 flex items-center gap-2 text-white/90">
+                      <Phone className="h-4 w-4" />
+                      <span className="font-semibold text-white">{CITY_PROOF.reddeer.phone}</span>
+                    </div>
+                    <div className="mb-6 space-y-2">
+                      <div className="flex items-center gap-2.5 text-white/90">
+                        <MapPin className="h-4 w-4 text-accent" />
+                        <span className="text-sm">Red Deer office at {CITY_PROOF.reddeer.streetAddress}</span>
+                      </div>
+                      <div className="flex items-center gap-2.5 text-white/90">
+                        <Clock className="h-4 w-4 text-accent" />
+                        <span className="text-sm">Online booking available</span>
+                      </div>
+                    </div>
+                    <Button asChild className="h-12 w-full bg-accent text-base font-semibold text-accent-foreground shadow-md transition-all hover:bg-accent/90 hover:shadow-lg">
+                      <Link to="/cleaning-services-red-deer/" className="after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
+                        View Red Deer services
+                        <ArrowRight className="ml-2 h-5 w-5" />
                       </Link>
                     </Button>
                   </div>
@@ -390,7 +447,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12">
               <span className="text-accent font-semibold text-sm uppercase tracking-wider">What We Offer</span>
-              <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">House Cleaning Services in Edmonton and Calgary</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">House Cleaning Services Across Alberta</h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 These four services are priced flat by home size before GST. The instant price shows the exact figure for your home, including any pet, home-type or travel charge.
               </p>
@@ -515,23 +572,29 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
                 <div className="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-6 rotate-3 hover:rotate-0 transition-transform duration-500">
                   <Sparkles className="w-8 h-8 text-accent" />
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Book a House Clean in Edmonton or Calgary</h2>
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Book a House Clean in Edmonton, Calgary or Red Deer</h2>
                 <p className="text-lg text-white/90 mb-8 leading-relaxed max-w-2xl mx-auto">
                   See the price for your home size before you book, choose a time that suits you, and pay
                   once the clean is done.
                 </p>
 
-                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-                  <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-10 py-6 h-auto font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5" asChild>
-                    <a href="tel:7809136565">
+                <div className="grid gap-4 mb-8 md:grid-cols-3">
+                  <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-5 py-6 h-auto font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5" asChild>
+                    <a href={CITY_PROOF.edmonton.phoneLink}>
                       <Phone className="w-5 h-5 mr-2" />
-                      Edmonton: (780) 913-6565
+                      Edmonton: {CITY_PROOF.edmonton.phone}
                     </a>
                   </Button>
-                  <Button size="lg" className="bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 text-lg px-10 py-6 h-auto font-semibold transition-all duration-300" asChild>
-                    <a href="tel:4037681341">
+                  <Button size="lg" className="bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 text-base px-5 py-6 h-auto font-semibold transition-all duration-300" asChild>
+                    <a href={CITY_PROOF.calgary.phoneLink}>
                       <Phone className="w-5 h-5 mr-2" />
-                      Calgary: (403) 768-1341
+                      Calgary: {CITY_PROOF.calgary.phone}
+                    </a>
+                  </Button>
+                  <Button size="lg" className="bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 text-base px-5 py-6 h-auto font-semibold transition-all duration-300" asChild>
+                    <a href={CITY_PROOF.reddeer.phoneLink}>
+                      <Phone className="w-5 h-5 mr-2" />
+                      Red Deer: {CITY_PROOF.reddeer.phone}
                     </a>
                   </Button>
                 </div>
