@@ -36,11 +36,11 @@ export default function CalgaryRegularCleaning() {
       quoteService="regular-cleaning"
       phone="(403) 768-1341"
       phoneHref="tel:4037681341"
-      seoTitle={`Standard Cleaning & Maid Service Calgary from ${FROM}`}
-      seoDescription={`A Calgary maid service visit is a standard clean at a flat rate by home size: ${FROM} before GST for a one-bedroom apartment, charged after the clean.`}
+      seoTitle="One-Time Standard & Maid Cleaning Calgary | Duty Cleaners"
+      seoDescription="Need a single clean in Calgary? Review Duty Cleaners' standard cleaning checklist, add-ons and pricing before booking."
       serviceName="Standard House Cleaning in Calgary"
       canonical="https://dutycleaners.ca/calgary/regular-cleaning"
-      heroHeading={<>Standard Cleaning in <AccentGold>Calgary</AccentGold></>}
+      heroHeading={<>One-Time Standard Cleaning in <AccentGold>Calgary</AccentGold></>}
       heroSubheading={`Kitchen, bathrooms, bedrooms and floors in one visit, at a flat rate by home size that starts at ${FROM} before GST for a one-bedroom apartment, with any pet or home-type charge added on the quote. Put the same clean on a schedule and every visit after the first is discounted.`}
       heroBadges={["Reference-Checked Cleaners", "All Supplies Brought For You", "Missed Spots Re-Cleaned Free"]}
       heroImage={heroImage}
@@ -66,7 +66,7 @@ export default function CalgaryRegularCleaning() {
       ]}
       sections={[
         {
-          heading: "Maid service in Calgary: what it covers and what it costs",
+          heading: "Booking a one-time maid visit: scope and price",
           body: (
             <>
               <p>
@@ -92,7 +92,7 @@ export default function CalgaryRegularCleaning() {
           ),
         },
         {
-          heading: "Standard cleaning for Calgary condos and apartments",
+          heading: "What a standard visit covers in an apartment or condo",
           body: (
             <>
               <p>
@@ -110,7 +110,7 @@ export default function CalgaryRegularCleaning() {
           ),
         },
         {
-          heading: "Outside Calgary city limits, and the jobs a standard clean does not cover",
+          heading: "Standard cleaning coverage and service limits in Calgary",
           body: (
             <>
               <p>

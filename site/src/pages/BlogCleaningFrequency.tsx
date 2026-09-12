@@ -24,21 +24,10 @@ import calendarImage from "@/assets/blog/cleaning-calendar.webp";
 const RECURRING = FREQUENCIES.filter((frequency) => frequency.discount > 0).sort(
   (a, b) => b.discount - a.discount,
 );
-const FREQUENCY_DISCOUNTS = RECURRING.map(
-  (frequency) => `${Math.round(frequency.discount * 100)}% ${frequency.label.toLowerCase()}`,
-).join(", ");
+
 // Each price carries its own frequency word. A bare "$123.99 / $131.74 /
 // $139.49" makes the reader map three numbers onto three plans from position.
-const STANDARD_EXAMPLE = {
-  base: formatPrice(flatRateFromPrice()),
-  perVisit: RECURRING.map((frequency, index) => {
-    const price = formatPrice(
-      Math.round(flatRateFromPrice() * (1 - frequency.discount) * 100) / 100,
-    );
-    const plan = frequency.label.toLowerCase();
-    return index === RECURRING.length - 1 ? `or ${price} ${plan}` : `${price} ${plan}`;
-  }).join(", "),
-};
+
 // The smallest recurring discount is the "Every 4 Weeks" tier: 13 visits a
 // year, so the article never calls it "monthly" when it means our plan.
 const EVERY_FOUR_WEEKS = RECURRING[RECURRING.length - 1];
@@ -67,7 +56,7 @@ const factors = [
   {
     icon: DollarSign,
     title: "Budget",
-    description: `A visit every 4 weeks costs least per month. A weekly one costs least per visit, because recurring plans are discounted from the second clean on: ${FREQUENCY_DISCOUNTS}. On the ${STANDARD_EXAMPLE.base} standard clean of a one-bedroom, one-bathroom apartment or condo, that works out to ${STANDARD_EXAMPLE.perVisit}. Those prices are before 5% GST, the first clean is charged at the one-time rate, and a pet charge, a home-type surcharge or a travel fee outside city limits can apply. Decide which of the two numbers your budget feels.`
+    description: "Compare the total you can spend across a month or year, not just the price per visit. More frequent visits can have a lower per-visit rate but a higher overall cost. Allow for the first clean, required charges and tax; use the recurring service pages for current plan prices."
   }
 ];
 
@@ -75,20 +64,20 @@ const frequencyOptions = [
   {
     title: "Weekly Cleaning",
     ideal: "Households with children or pets, larger homes, and anyone who cannot do routine cleaning themselves",
-    description: "Weekly cleaning suits a household that needs steady upkeep, especially with children and pets at home or a larger house. Each visit covers the surfaces of the home and the high-traffic areas, so nothing has time to build up.",
-    benefit: `Weekly carries the largest recurring discount at Duty Cleaners. The discounts are ${FREQUENCY_DISCOUNTS}, from the second visit on and before 5% GST.`
+    description: "Weekly cleaning suits a household that needs steady upkeep, especially with children and pets at home or a larger house. Each visit covers the surfaces of the home and the high-traffic areas, with household upkeep between visits.",
+    benefit: "Choose weekly if the home needs that cadence, not just because a per-visit discount looks attractive."
   },
   {
     title: "Bi-Weekly Cleaning",
     ideal: "Couples, people who tidy regularly, medium-sized homes",
     description: "Bi-weekly cleaning suits a home that stays fairly tidy day to day but still needs a proper clean more often than once a month. It works well when someone in the household keeps up with general tidying between visits.",
-    benefit: "Two weeks is long enough that a visit feels like a reset, and short enough that dust and kitchen grease never get ahead of you."
+    benefit: "Two weeks is long enough that a visit feels like a reset, but adjust the interval if your household needs more help between visits."
   },
   {
     title: "Monthly Cleaning",
     ideal: "Smaller homes, people who clean regularly, homes that are lightly used",
     description: "A cleaner comes about once a month and does a thorough clean of the home. It suits a home with less mess to clean up, or a household that does most of the housework and wants a regular reset.",
-    benefit: `At Duty Cleaners the closest plan is ${EVERY_FOUR_WEEKS.label.toLowerCase()}, which is what many people mean by monthly. It is 13 visits a year, not 12, at ${Math.round(EVERY_FOUR_WEEKS.discount * 100)}% off from the second visit, before 5% GST.`
+    benefit: `At Duty Cleaners the closest plan is ${EVERY_FOUR_WEEKS.label.toLowerCase()}: 13 visits a year, not 12. Check the recurring pages for current discounts and first-visit terms.`
   },
   {
     title: "One-time or Special Events",
@@ -106,30 +95,30 @@ export default function BlogCleaningFrequency() {
   return (
     <>
       <Helmet>
-        <title>How Often Should You Get Your House Cleaned? | Duty Cleaners</title>
+        <title>How Often Should You Hire a House Cleaner?</title>
         <meta
           name="description"
-          content="Household size, pets, how you use the home and budget decide whether a house needs cleaning weekly, bi-weekly or monthly, and what each costs."
+          content="Decide how often to hire a house cleaner based on household needs, upkeep and budget. Compare weekly, biweekly and less frequent visits."
         />
         {/* Canonical is the preserved WordPress slug, matching the cost and vinegar
             posts. /blog/cleaning-frequency is the modern route and now 301s here. */}
         <link rel="canonical" href="https://dutycleaners.ca/how-often-should-a-cleaning-service-clean-my-house/" />
-        <meta property="og:title" content="How Often Should You Get Your House Cleaned? | Duty Cleaners" />
-        <meta property="og:description" content="Household size, pets, how you use the home and budget decide whether a house needs cleaning weekly, bi-weekly or monthly, and what each costs." />
+        <meta property="og:title" content="How Often Should You Hire a House Cleaner?" />
+        <meta property="og:description" content="Decide how often to hire a house cleaner based on household needs, upkeep and budget. Compare weekly, biweekly and less frequent visits." />
         <meta name="twitter:card" content="summary_large_image" />
         {/* This post's own hero, so a share card shows the article rather
             than the generic site image. */}
         <meta property="og:image" content={absoluteAssetUrl(heroImage)} />
         <meta name="twitter:image" content={absoluteAssetUrl(heroImage)} />
-        <meta name="twitter:title" content="How Often Should You Get Your House Cleaned? | Duty Cleaners" />
-        <meta name="twitter:description" content="Household size, pets, how you use the home and budget decide whether a house needs cleaning weekly, bi-weekly or monthly, and what each costs." />
+        <meta name="twitter:title" content="How Often Should You Hire a House Cleaner?" />
+        <meta name="twitter:description" content="Decide how often to hire a house cleaner based on household needs, upkeep and budget. Compare weekly, biweekly and less frequent visits." />
         <meta property="og:type" content="article" />
         <meta property="og:url" content="https://dutycleaners.ca/how-often-should-a-cleaning-service-clean-my-house/" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Article",
-          "headline": "How Often Should A Cleaning Service Clean My House",
-          "description": "Household size, pets, how you use the home and budget decide whether a house needs cleaning weekly, bi-weekly or monthly, and what each costs.",
+          "headline": "How Often Should You Book Professional House Cleaning?",
+          "description": "Decide how often to hire a house cleaner based on household needs, upkeep and budget. Compare weekly, biweekly and less frequent visits.",
           "image": absoluteAssetUrl(heroImage),
           ...(publishedFor("/how-often-should-a-cleaning-service-clean-my-house") ? { datePublished: publishedFor("/how-often-should-a-cleaning-service-clean-my-house") } : {}),
           "dateModified": modifiedOr("/how-often-should-a-cleaning-service-clean-my-house"),
@@ -167,13 +156,11 @@ export default function BlogCleaningFrequency() {
                 </span>
                 <span className="flex items-center gap-1">
                   <Clock className="h-4 w-4" />
-                  10 min read
+                  5 min read
                 </span>
               </div>
 
-              <h1 className="text-3xl md:text-5xl font-bold mb-6 text-foreground leading-tight">
-                How Often Should A Cleaning Service Clean My House?
-              </h1>
+              <h1 className="text-3xl md:text-5xl font-bold mb-6 text-foreground leading-tight">How Often Should You Book Professional House Cleaning?</h1>
               
               <p className="text-xl text-muted-foreground mb-8">
                 The right cleaning frequency depends on household size, pets, how much tidying you already do and what you want to spend.
@@ -207,13 +194,13 @@ export default function BlogCleaningFrequency() {
               {/* Quick Examples */}
               <div className="grid md:grid-cols-2 gap-6 mb-12">
                 <div className="p-6 bg-primary/10 rounded-xl border border-primary/20">
-                  <h2 className="font-bold text-foreground mb-2">Weekly Cleaning Recommended</h2>
+                  <h2 className="font-bold text-foreground mb-2">When weekly visits may suit</h2>
                   <p className="text-muted-foreground text-sm">
                     A large house with a dog that sheds and young children, in a family with no time for even basic cleaning, is the clearest case for a weekly visit.
                   </p>
                 </div>
                 <div className="p-6 bg-secondary/30 rounded-xl border border-secondary/30">
-                  <h2 className="font-bold text-foreground mb-2">Monthly Cleaning Sufficient</h2>
+                  <h2 className="font-bold text-foreground mb-2">When less frequent visits may suit</h2>
                   <p className="text-muted-foreground text-sm">
                     One person in a one-bedroom, one-bathroom apartment who tidies regularly can do well on a monthly schedule.
                   </p>

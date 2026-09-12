@@ -13,6 +13,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { Link, useLocation } from "react-router-dom";
+import AreaScopeNote from "@/components/AreaScopeNote";
 import { quoteHrefFor } from "@/lib/quote-link";
 import { Helmet } from "react-helmet-async";
 import { buildLocationSchema } from "@/lib/location-schema";
@@ -347,6 +348,7 @@ export default function LocationPageTemplate({
       </Helmet>
       <Navigation city={region} />
       <main id="main-content" tabIndex={-1}>
+        <AreaScopeNote />
       <div className="container mx-auto px-4 pt-4">
         <Breadcrumbs />
       </div>

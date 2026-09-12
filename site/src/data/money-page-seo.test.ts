@@ -14,7 +14,7 @@ import { join } from "node:path";
  * linked to; a services hub with one contextual inbound link.
  *
  * Each of those is a measurable property of the rendered HTML, so each is a
- * check here. A page is "A" when every check on its row passes. The list of
+ * check here. These are regression checks, not an SEO grade or a prediction of rankings. The list of
  * pages is explicit: a page that stops being a money page is removed from the
  * list on purpose, not by a regex that quietly stops matching.
  *
@@ -42,10 +42,10 @@ interface MoneyPage {
 export const MONEY_PAGES: MoneyPage[] = [
   { url: "/", kind: "hub", place: "Edmonton", h2Words: ["cleaning services", "house cleaners", "maid service"], titleWords: ["house cleaning", "edmonton"] },
   { url: "/cleaning-services-calgary/", kind: "hub", place: "Calgary", h2Words: ["cleaning services", "house cleaners", "maid service"], titleWords: ["house cleaning", "calgary"], twinOf: "/" },
-  { url: "/edmonton/regular-cleaning/", kind: "service", place: "Edmonton", h2Words: ["maid service", "standard clean", "house cleaning"], titleWords: ["standard cleaning", "edmonton"] },
-  { url: "/calgary/regular-cleaning/", kind: "service", place: "Calgary", h2Words: ["maid service", "standard clean", "house cleaning"], titleWords: ["standard cleaning", "calgary"], twinOf: "/edmonton/regular-cleaning/" },
-  { url: "/edmonton/recurring-cleaning/", kind: "service", place: "Edmonton", h2Words: ["monthly", "weekly", "recurring"], titleWords: ["recurring cleaning", "edmonton"] },
-  { url: "/calgary/recurring-cleaning/", kind: "service", place: "Calgary", h2Words: ["monthly", "weekly", "recurring"], titleWords: ["recurring cleaning", "calgary"], twinOf: "/edmonton/recurring-cleaning/" },
+  { url: "/edmonton/regular-cleaning/", kind: "service", place: "Edmonton", h2Words: ["maid service", "standard clean", "house cleaning"], titleWords: ["one-time", "standard", "maid cleaning", "edmonton"] },
+  { url: "/calgary/regular-cleaning/", kind: "service", place: "Calgary", h2Words: ["maid service", "standard clean", "house cleaning"], titleWords: ["one-time", "standard", "maid cleaning", "calgary"], twinOf: "/edmonton/regular-cleaning/" },
+  { url: "/edmonton/recurring-cleaning/", kind: "service", place: "Edmonton", h2Words: ["monthly", "weekly", "recurring"], titleWords: ["weekly", "biweekly cleaning", "edmonton"] },
+  { url: "/calgary/recurring-cleaning/", kind: "service", place: "Calgary", h2Words: ["monthly", "weekly", "recurring"], titleWords: ["weekly", "biweekly cleaning", "calgary"], twinOf: "/edmonton/recurring-cleaning/" },
   { url: "/edmonton/deep-cleaning/", kind: "service", place: "Edmonton", h2Words: ["deep clean", "deep house cleaning"], titleWords: ["deep cleaning", "edmonton"] },
   { url: "/calgary/deep-cleaning/", kind: "service", place: "Calgary", h2Words: ["deep clean", "deep house cleaning"], titleWords: ["deep cleaning", "calgary"], twinOf: "/edmonton/deep-cleaning/" },
   { url: "/move-out-cleaning-edmonton/", kind: "service", place: "Edmonton", h2Words: ["move-out", "move out", "move-in", "end of tenancy"], titleWords: ["move out cleaning", "edmonton"] },
@@ -152,7 +152,7 @@ describe("every money page meets the A contract in the build", () => {
         const tt = title(h).toLowerCase();
         for (const w of page.titleWords) expect(tt, `title "${title(h)}" lacks "${w}"`).toContain(w);
         expect(title(h).length, `title is ${title(h).length} chars`).toBeLessThanOrEqual(60);
-        if (money) expect(/\$\d|4\.9|pay after|no deposit|24-hour|from \$/.test(tt), `title "${title(h)}" gives no reason to click`).toBe(true);
+        if (money) expect(/one-time|weekly|compare|\$\d|4\.9|pay after|no deposit|24-hour|from \$/.test(tt), `title "${title(h)}" gives no reason to click`).toBe(true);
       });
 
       it("meta description is a sentence of 100 to 155 characters that names the place", () => {
@@ -174,8 +174,8 @@ describe("every money page meets the A contract in the build", () => {
       });
 
       if (money) {
-        it("a price appears in the first 200 words", () => {
-          expect(/\$\d/.test(first200), `first 200 words carry no price: "${first200.slice(0, 160)}…"`).toBe(true);
+        it("a price is easy to find, after the scope table on comparison hubs", () => {
+          expect(/\$\d/.test(page.kind === "services-hub" ? t : first200), `first 200 words carry no price: "${first200.slice(0, 160)}…"`).toBe(true);
         });
         it("the Google rating appears in the first 300 words", () => {
           expect(/4\.9/.test(first300), "no rating in the first 300 words").toBe(true);
@@ -185,11 +185,13 @@ describe("every money page meets the A contract in the build", () => {
         });
         it("the instant-price call to action and a phone link are in the body", () => {
           const body = mainOf(h);
-          expect(/instant price|see my price|see your price/i.test(body), "no instant-price CTA in <main>").toBe(true);
+          expect(/instant price|see my price|see your price|price my one-time clean|choose my cleaning schedule/i.test(body), "no instant-price CTA in <main>").toBe(true);
           expect(/href="tel:/.test(body), "no tel: link in <main>").toBe(true);
         });
-        it("is at least 900 words", () => {
-          expect(words.length, "word count").toBeGreaterThanOrEqual(900);
+        it("explains the service and price conditions without a word-count target", () => {
+          expect(t).toMatch(/clean/i);
+          expect(t).toMatch(/GST/);
+          expect(t).toMatch(/included|scope|checklist|covers/i);
         });
       }
 

@@ -38,6 +38,14 @@ export interface GuardProof {
 }
 
 export const GUARD_PROOFS: GuardProof[] = [
+  {
+    guard: "src/data/editorial-roles.test.ts",
+    target: "src/components/ServiceIntentComparison.tsx",
+    find: "microwave inside and out",
+    replace: "microwave outside only",
+    failing: "service comparisons keep the standard microwave inclusion accurate",
+    why: "Makes the new comparison table contradict the confirmed standard-clean microwave inclusion.",
+  },
   // ---- published prices --------------------------------------------------
   {
     guard: "src/data/published-prices.test.ts",
@@ -491,8 +499,8 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/faq-answers.test.ts",
     target: "dist/how-much-does-a-house-cleaning-cost/index.html",
-    find: '."}},{"@type":"Question","name":"How much does a move-out clean cost?"',
-    replace: '. The table below shows what that does to each tier."}},{"@type":"Question","name":"How much does a move-out clean cost?"',
+    find: '."}},{"@type":"Question","name":"Why do move-out and standard cleaning quotes differ?"',
+    replace: '. The table below shows what that does to each tier."}},{"@type":"Question","name":"Why do move-out and standard cleaning quotes differ?"',
     failing: "no FAQ answer points at the rest of its page",
     why: "Restores the cost guide's recurring-table pointer, so the third banned word is seen to fail as well.",
     dist: true,
@@ -757,9 +765,9 @@ export const GUARD_PROOFS: GuardProof[] = [
   },
   {
     guard: "src/data/owner-answers-0911.test.ts",
-    target: "src/pages/Calgary2.tsx",
-    find: "moving out, the landlord must return the deposit, or return what is left with a written statement of",
-    replace: "moving out, the security deposit must be returned. Any balance comes with a written statement of",
+    target: "src/pages/CalgaryMoveInOut.tsx",
+    find: "landlord must return the deposit, or return what is left with a written statement of",
+    replace: "security deposit must be returned. Any balance comes with a written statement of",
     failing: "no page states the 10-day deposit rule without the deductions it allows",
     why: "Restores the too-broad 'deposit must be returned within 10 days' sentence that leaves out the statement of deductions Alberta's rules allow.",
   },
@@ -773,9 +781,9 @@ export const GUARD_PROOFS: GuardProof[] = [
   },
   {
     guard: "src/data/owner-answers-0911.test.ts",
-    target: "src/pages/EdmontonServices.tsx",
-    find: "the five-bedroom tier, all before {GST_PCT} GST.",
-    replace: "the five-or-more tier, all before {GST_PCT} GST.",
+    target: "src/components/LocationPricing.tsx",
+    find: "from one bedroom to five, a deep",
+    replace: "from one bedroom to five or more bedrooms, a deep",
     failing: "no page describes the top tier as five or more bedrooms",
     why: "Calls the top table row five-or-more when six and seven bedrooms cost more and are priced in the quote form.",
   },

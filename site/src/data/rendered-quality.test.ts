@@ -654,7 +654,7 @@ describe("price CTAs reach the price", () => {
       // 2026-09-11: the pages that state the deposit rule now state it accurately
       // (full deposit, or the balance with a statement of deductions) and cite it.
       ...[
-        "/cleaning-services-calgary/",
+        // City landing-page legal copy moved to the already-cited move-out owner (EB-01).
         "/cleaning-services-airdrie/",
         "/cleaning-services-beaumont/",
         "/cleaning-services-cochrane/",

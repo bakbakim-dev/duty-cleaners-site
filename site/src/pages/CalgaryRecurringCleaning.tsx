@@ -54,11 +54,11 @@ export default function CalgaryRecurringCleaning() {
       quoteService="recurring-cleaning"
       phone="(403) 768-1341"
       phoneHref="tel:4037681341"
-      seoTitle={`Recurring Cleaning Calgary from ${FROM} | Weekly 20% Off`}
-      seoDescription={`Weekly, bi-weekly or every-4-weeks house cleaning in Calgary: 20%, 15% or 10% off from visit two. A one-bedroom first clean is ${FROM} before GST.`}
+      seoTitle="Weekly & Biweekly Cleaning Calgary | Duty Cleaners"
+      seoDescription="Plan recurring house cleaning in Calgary. Compare visit frequencies, first-clean pricing and ongoing booking details with Duty Cleaners."
       serviceName="Recurring House Cleaning in Calgary"
       canonical="https://dutycleaners.ca/calgary/recurring-cleaning"
-      heroHeading={<>Recurring Cleaning in <AccentGold>Calgary</AccentGold></>}
+      heroHeading={<>Recurring House Cleaning in <AccentGold>Calgary</AccentGold></>}
       heroSubheading={`Weekly, bi-weekly or every-4-weeks visits of the standard clean. Your first visit is at the one-time rate, ${FROM} before GST for a one-bedroom apartment plus any pet or home-type charge; every visit after it is 20% off weekly, 15% off bi-weekly or 10% off every 4 weeks.`}
       heroBadges={["Weekly 20% Off", "Bi-Weekly 15% Off", "Every 4 Weeks 10% Off"]}
       heroImage={heroImage}
@@ -73,12 +73,12 @@ export default function CalgaryRecurringCleaning() {
           weekly, bi-weekly or every 4 weeks. The first visit is charged at the one-time rate; from the second, weekly
           is 20% off, bi-weekly 15% off and every 4 weeks 10% off. You pick the cadence; we keep to it.
         </>,
-        "Choosing that cadence in Calgary comes down to the season and the front door. The city thaws and refreezes on chinooks all winter, so sand and de-icer reach the doormat again and again from November to April and settle along baseboards and carpet edges. A home that holds up on a visit every 4 weeks through the summer may want one every 2 weeks once that starts. A dog, a garage entry or children coming straight in from the yard all carry more of it inside.",
-        `Frequency also tracks how you live. A Beltline or Mission apartment where two people leave early and come back late holds up on a visit every 4 weeks. A family house in a newer suburb such as Mahogany, Seton or Livingston has construction dust to deal with as well as a full kitchen, and weekly or bi-weekly suits it better. You can start on one cadence, see how the house fares through a Calgary winter, and change it with ${POLICY.cancellationNoticeHours} hours' notice.`,
+        "Choose the interval by how you use the home and the cleaning you do between visits. A Calgary condo does not automatically need a different schedule from a house: cooking, pets, visitors and your available time are more useful questions than a neighbourhood label.",
+        `Start with a manageable schedule and review how the rooms hold up between visits. Tell the Calgary office about changing entry instructions or room priorities. You can change a booking with ${POLICY.cancellationNoticeHours} hours' notice.`,
       ]}
       sections={[
         {
-          heading: "Weekly, bi-weekly or every-4-weeks cleaning in Calgary: what each one costs",
+          heading: "Choose weekly, biweekly or every-four-weeks cleaning in Calgary",
           body: (
             <>
               <p>
@@ -107,32 +107,17 @@ export default function CalgaryRecurringCleaning() {
           ),
         },
         {
-          heading: "Planning a Calgary cleaning schedule around the seasons",
+          heading: "Review the frequency as your household changes",
           body: (
             <>
-              <p>
-                One way to plan a Calgary year: every 4 weeks from May to October, bi-weekly from November to April.
-                The switch is not about the house being dirtier in a general way; it is the front hall, the stairs and
-                the kitchen floor taking road sand every time a chinook turns the streets to slush and the next cold
-                snap freezes it again. A visit every two weeks lifts that grit before it has a month to work into the
-                carpet edges.
-              </p>
-              <p>
-                Weekly is for the households where the kitchen never gets a day off. A garage entry counts as a second
-                front door for grit; a dog counts as a third. If you are unsure, start bi-weekly in November, look at
-                the floors in January, and move up or down. A change made with {POLICY.cancellationNoticeHours} hours'
-                notice costs nothing.
-              </p>
-              <p>
-                If the house is already behind, book a <Link to="/calgary/deep-cleaning/">Calgary deep clean</Link>{" "}
-                to clear the build-up, then start the schedule. The first standard visit of the plan is charged at the
-                one-time rate, and the discount applies from the second.
-              </p>
+              <p>Review the interval after the first few visits. If kitchen and bathroom work is regularly falling behind between appointments, a shorter interval may help. If you keep up comfortably, a less frequent visit may be enough.</p>
+              <p>Your first schedule is not a permanent commitment. Discuss the work you want help with, what you will maintain yourself and the overall budget. Give {POLICY.cancellationNoticeHours} hours' notice to change a scheduled booking.</p>
+              <p>If the home needs tasks beyond the standard checklist, compare <Link to="/calgary/deep-cleaning/">Calgary deep cleaning</Link> before booking. A deep clean is not automatically required for a new recurring customer.</p>
             </>
           ),
         },
         {
-          heading: "Recurring cleaning in Airdrie, Cochrane and for short-term rentals",
+          heading: "Recurring cleaning coverage around Calgary",
           body: (
             <>
               <p>
@@ -194,6 +179,8 @@ export default function CalgaryRecurringCleaning() {
         { q: "Can I just book one clean and decide later?", a: `Yes. A one-time standard clean is priced flat by home size, from ${FROM} for a one-bedroom before GST. If you later put the standard clean on a schedule, the first visit of the plan is charged at the one-time rate and the discount applies from the second.` },
       ]}
       closingSections={[
+        { heading: "Changing or rescheduling your visits", body: <><p>Move, skip or cancel a visit with {POLICY.cancellationNoticeHours} hours' notice. Inside that window the cancellation fee is {POLICY.cancellationFee}. If we move a booking and the new date does not suit you, cancelling that booking carries no fee.</p><p>Read the <Link to="/terms/">booking and cancellation terms</Link>, and tell the Calgary office if your access instructions or room preferences change.</p></> },
+        { heading: "Does your first visit need a deep clean?", body: <p>Describe the condition of the home before choosing the first visit. Compare <Link to="/calgary/deep-cleaning/">deep cleaning in Calgary</Link> when the extra tasks are needed; a deep clean is not automatically required just because you want a recurring schedule.</p> },
         {
           heading: "Starting a recurring plan in Calgary",
           body: (

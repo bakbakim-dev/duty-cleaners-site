@@ -47,8 +47,8 @@ const dailyTasks = [
     description: "Keep a sponge and multi-purpose cleaner in your bathroom to quickly clean and wipe down bathroom surfaces."
   },
   {
-    title: "Rinse the Bathroom Floor",
-    description: "After you shower, rinse the bathroom floor and use a squeegee to push the water down the drain. This helps in removing mild floor stains while drying the surface quickly to prevent more stains."
+    title: "Wipe Bathroom Floor Splashes",
+    description: "Wipe up splashes after a shower and leave the floor dry. Do not flood a bathroom floor: most household bathrooms are not designed as wet rooms. Follow the flooring manufacturer's cleaning instructions."
   },
   {
     title: "Dust Furniture",
@@ -122,28 +122,28 @@ export default function BlogCleaningSchedule() {
   return (
     <>
       <Helmet>
-        <title>A Cleaning Schedule That Actually Holds Up | Duty Cleaners</title>
+        <title>DIY House Cleaning Schedule: Daily, Weekly & Monthly</title>
         <meta
           name="description"
-          content="A realistic cleaning schedule with daily, weekly and monthly tasks, so your home stays clean without the weekend blitz."
+          content="Organize household chores with a practical DIY cleaning schedule: daily upkeep, weekly room tasks and monthly jobs, adapted to your home."
         />
         <link rel="canonical" href="https://dutycleaners.ca/blog/cleaning-schedule/" />
-        <meta property="og:title" content="A Cleaning Schedule That Actually Holds Up | Duty Cleaners" />
-        <meta property="og:description" content="A realistic cleaning schedule with daily, weekly and monthly tasks, so your home stays clean without the weekend blitz." />
+        <meta property="og:title" content="DIY House Cleaning Schedule: Daily, Weekly & Monthly" />
+        <meta property="og:description" content="Organize household chores with a practical DIY cleaning schedule: daily upkeep, weekly room tasks and monthly jobs, adapted to your home." />
         <meta name="twitter:card" content="summary_large_image" />
         {/* This post's own hero, so a share card shows the article rather
             than the generic site image. */}
         <meta property="og:image" content={absoluteAssetUrl(heroImage)} />
         <meta name="twitter:image" content={absoluteAssetUrl(heroImage)} />
-        <meta name="twitter:title" content="A Cleaning Schedule That Actually Holds Up | Duty Cleaners" />
-        <meta name="twitter:description" content="A realistic cleaning schedule with daily, weekly and monthly tasks, so your home stays clean without the weekend blitz." />
+        <meta name="twitter:title" content="DIY House Cleaning Schedule: Daily, Weekly & Monthly" />
+        <meta name="twitter:description" content="Organize household chores with a practical DIY cleaning schedule: daily upkeep, weekly room tasks and monthly jobs, adapted to your home." />
         <meta property="og:type" content="article" />
         <meta property="og:url" content="https://dutycleaners.ca/blog/cleaning-schedule/" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Article",
-          "headline": "A Cleaning Schedule That Actually Holds Up",
-          "description": "A realistic cleaning schedule with daily, weekly and monthly tasks, so your home stays clean without the weekend blitz.",
+          "headline": "A Daily, Weekly and Monthly DIY Cleaning Schedule",
+          "description": "Organize household chores with a practical DIY cleaning schedule: daily upkeep, weekly room tasks and monthly jobs, adapted to your home.",
           "image": absoluteAssetUrl(heroImage),
           ...(publishedFor("/blog/cleaning-schedule") ? { datePublished: publishedFor("/blog/cleaning-schedule") } : {}),
           "dateModified": modifiedOr("/blog/cleaning-schedule"),
@@ -181,13 +181,11 @@ export default function BlogCleaningSchedule() {
                 </span>
                 <span className="flex items-center gap-1">
                   <Clock className="h-4 w-4" />
-                  12 min read
+                  6 min read
                 </span>
               </div>
 
-              <h1 className="text-3xl md:text-5xl font-bold mb-6 text-foreground leading-tight">
-                A Cleaning Schedule That Actually Holds Up
-              </h1>
+              <h1 className="text-3xl md:text-5xl font-bold mb-6 text-foreground leading-tight">A Daily, Weekly and Monthly DIY Cleaning Schedule</h1>
               
               <p className="text-xl text-muted-foreground mb-8">
                 Split the housework into daily, weekly and monthly jobs, and no single day has to carry all of it.
@@ -204,6 +202,7 @@ export default function BlogCleaningSchedule() {
           </div>
         </section>
 
+        <div className="container mx-auto px-4 max-w-4xl pb-8"><p>This is a DIY task schedule. To decide how often to hire help, read <Link className="text-primary underline" to="/how-often-should-a-cleaning-service-clean-my-house/">how often to book professional house cleaning</Link>.</p></div>
         {/* Article Content */}
         <section className="pb-20">
           <div className="container mx-auto px-4">
@@ -373,7 +372,7 @@ export default function BlogCleaningSchedule() {
               {/* CTA */}
               <div className="bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 rounded-2xl p-8 text-center">
                 <h3 className="text-2xl font-bold mb-4 text-foreground">
-                  Let Duty Cleaners Handle Your Cleaning Schedule
+                  Want help with part of the routine?
                 </h3>
                 <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
                   The team brings all supplies and equipment, and you do not need to be home: most customers leave a key, a lockbox code or smart-lock access, and the team locks up. See the price for your home before you book.

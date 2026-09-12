@@ -71,11 +71,11 @@ const blogPosts: BlogPost[] = [
   },
   {
     id: 13,
-    title: "Cleaning Services Calgary: What to Look For Before You Book",
-    excerpt: "Four things separate a reliable Calgary cleaning company from a risky one. Here is what to check before you book.",
+    title: "Hiring a Calgary Cleaner: Condo Access, Quotes & Coverage",
+    excerpt: "Check building access, the Calgary branch, regional coverage and the quote for your actual home before confirming a cleaning visit.",
     category: "Hiring Guide",
     date: "August 24, 2026",
-    readTime: "7 min read",
+    readTime: "4 min read",
     image: calgaryCleanerHero,
     slug: "/blog/cleaning-services-calgary/"
   },
@@ -101,11 +101,11 @@ const blogPosts: BlogPost[] = [
   },
   {
     id: 10,
-    title: "How Much Does a House Cleaning Cost?",
-    excerpt: "Home size, the type of clean and hourly or flat-rate billing all change what a house cleaning costs. Here is what to expect to pay for each type of clean.",
+    title: "House Cleaning Costs Explained: Rates, Scope and Extras",
+    excerpt: "Learn to compare scope, hourly and flat-rate quotes, required extras and GST. Includes an illustrative example and links to our local price lists.",
     category: "Pricing Guide",
     date: "January 25, 2026",
-    readTime: "7 min read",
+    readTime: "9 min read",
     image: houseCleaningCostHero,
     slug: "/how-much-does-a-house-cleaning-cost/"
   },
@@ -121,21 +121,21 @@ const blogPosts: BlogPost[] = [
   },
   {
     id: 8,
-    title: "How Often Should A Cleaning Service Clean My House?",
+    title: "How Often Should You Hire a House Cleaner?",
     excerpt: "Weekly, bi-weekly and monthly house cleaning each suit a different home. Household size, pets, how you use the home and your budget decide which one fits.",
     category: "Home Care",
     date: "January 22, 2026",
-    readTime: "10 min read",
+    readTime: "5 min read",
     image: cleaningFrequencyHero,
     slug: "/how-often-should-a-cleaning-service-clean-my-house/"
   },
   {
     id: 7,
-    title: "A Cleaning Schedule That Actually Holds Up",
+    title: "DIY House Cleaning Schedule: Daily, Weekly & Monthly",
     excerpt: "A realistic schedule splits the cleaning into daily, weekly and monthly tasks, so no single day has to carry the whole house.",
     category: "Cleaning Tips",
     date: "January 20, 2026",
-    readTime: "7 min read",
+    readTime: "6 min read",
     image: cleaningScheduleHero,
     slug: "/blog/cleaning-schedule/"
   }

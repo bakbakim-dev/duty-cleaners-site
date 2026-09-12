@@ -251,10 +251,11 @@ export default function CityServicesChapter({
             to={canonicalForPath(`${basePath}/services`)}
             className="inline-flex min-h-[44px] items-center font-semibold text-primary hover:underline"
           >
-            View all {city} services <ExternalLink className="ml-1 h-4 w-4" aria-hidden="true" />
+            Compare cleaning services in {city} <ExternalLink className="ml-1 h-4 w-4" aria-hidden="true" />
           </Link>
         </div>
       </div>
-    </section>
+    <p className="container mx-auto px-4 pb-8 text-center text-sm text-muted-foreground">For a workplace, <Link to={city === "Edmonton" ? "/commercial-cleaning/" : "/commercial-cleaning-services-calgary/"} className="text-primary underline">request an office cleaning quote in {city}</Link>. Office work is scoped separately from residential cleaning.</p>
+      </section>
   );
 }

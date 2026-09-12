@@ -1,4 +1,5 @@
 import { useLocation } from "react-router-dom";
+import AreaScopeNote from "@/components/AreaScopeNote";
 import { Link } from "react-router-dom";
 import { canonicalForPath } from "@/data/legacy-urls";
 import { cityFromPath } from "@/lib/city-from-path";
@@ -98,6 +99,7 @@ export default function LocationPricing({ place }: LocationPricingProps) {
 
   return (
     <section className="py-16 md:py-20 bg-background border-t border-border">
+      <AreaScopeNote />
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
           <span className="text-primary text-sm font-semibold tracking-wider uppercase">

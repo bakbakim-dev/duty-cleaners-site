@@ -289,9 +289,9 @@ const ExclusionItem = ({ text }: { text: string }) => (
   </li>
 );
 
-const TITLE = "House Cleaning Checklist: Edmonton & Calgary | Duty Cleaners";
+const TITLE = "Duty Cleaners Checklist: Standard, Deep & Move-Out";
 const DESCRIPTION =
-  "What is included in a standard, deep and move-out clean in Edmonton and Calgary: a room-by-room checklist, add-on prices and what we never do.";
+  "Compare Duty Cleaners service inclusions, room-by-room tasks, optional add-ons and exclusions for standard, deep and move-out cleaning.";
 
 export default function WhatsIncluded() {
   const { pathname } = useLocation();
@@ -412,10 +412,7 @@ export default function WhatsIncluded() {
               <span>The checklist the team works to</span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-              What's Included in{" "}<br />
-              Your <span className="text-accent">House Cleaning</span>
-            </h1>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">What Each Duty Cleaners Service Includes</h1>
 
             <p className="text-lg text-white/80 max-w-2xl mx-auto mb-8">
               We work to a checklist, not a clock. Here is that checklist for Edmonton and

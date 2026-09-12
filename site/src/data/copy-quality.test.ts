@@ -316,7 +316,15 @@ describe("the copy does not read like a template filled in by a machine", () => 
       "pages/WallWashingCalgary.tsx",
       "pages/WallWashingEdmonton.tsx",
     ];
-    const hits = files.filter((rel) => /cobweb/i.test(stripComments(readFileSync(join(SRC, rel), "utf-8"))));
+    const hits = files.filter((rel) => {
+      let source = stripComments(readFileSync(join(SRC, rel), "utf-8"));
+      // Comparison hubs also describe the deep package. Exclude only that
+      // card and its deep-comparison FAQ; keep standard/wall lists guarded.
+      if (/Services\.tsx$/.test(rel)) source = source
+        .replace(/title: "Deep Cleaning",[\s\S]*?accent: true/g, "")
+        .replace(/q: "[^"]*(?:deep|Deep)[^"]*",\s*a: `[^`]*`/g, "");
+      return /cobweb/i.test(source);
+    });
     expect(hits, "cobwebs listed outside the deep package").toEqual([]);
   });
 

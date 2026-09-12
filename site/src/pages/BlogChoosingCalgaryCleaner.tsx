@@ -24,35 +24,12 @@ import teamImage from "@/assets/calgary-cleaning-team.webp";
  * search intent, using only real facts already established in proof.ts.
  */
 
-const WHAT_TO_CHECK = [
-  {
-    title: "Flat pricing, quoted before booking",
-    good: "You see a price for your specific home before you commit to anything, with no \"we'll assess on arrival\" surprise.",
-    bad: "Vague hourly estimates with no upper bound, or pricing that only appears after a phone call.",
-  },
-  {
-    title: "Screened cleaners, rated after each visit",
-    good: "The company can tell you how cleaners are screened before a first job, and how customers rate them after each visit.",
-    // Was "No mention of background checks" — which flagged this company,
-    // since policy.ts records reference checks, not background checks.
-    bad: "No answer on how cleaners are screened, or a different unnamed contractor every time.",
-  },
-  {
-    title: "A clear written scope",
-    good: "A checklist of what each service includes, so there is no ambiguity about what a \"standard clean\" covers.",
-    bad: "Marketing copy about being \"thorough\" with no list of tasks.",
-  },
-  {
-    title: "A guarantee with a process behind it",
-    good: "A specific window, such as 24 hours, to report anything missed, and a return visit to re-clean it at no charge.",
-    bad: "A satisfaction slogan with no deadline, no remedy and no process for what happens if you are not satisfied.",
-  },
-];
+
 
 const FAQS = [
   {
-    q: "What should I look for when choosing a cleaning service in Calgary?",
-    a: "Look for four things in a Calgary cleaning company: a flat price quoted before you book, a clear answer on how cleaners are screened and rated, a written list of what each service includes, and a guarantee with a deadline and a remedy.",
+    q: "What should I confirm before a Calgary condo cleaning?",
+    a: "Ask your building about entry, visitor registration, parking and any elevator booking. Give the Calgary office the agreed access instructions and describe the home accurately for the quote. Building requirements vary; confirm them before the visit.",
   },
   {
     q: "How much does a house cleaning cost in Calgary?",
@@ -77,20 +54,20 @@ export default function BlogChoosingCalgaryCleaner() {
   // Retitled from "Cleaning Services Calgary: What to Look For Before You Book" —
   // the exact-match front-load competed with the money page for its own head
   // term. The slug is a preserved legacy URL and deliberately unchanged.
-  const title = "How to Choose a Cleaning Company in Calgary";
+  const title = "Hiring a Calgary Cleaner: Condo Access, Quotes & Coverage";
   const description =
-    "A practical buyer's guide to hiring a house cleaning service in Calgary: what separates a reliable company from a risky one, and what to check first.";
+    "Before hiring a Calgary cleaner, check building access, service coverage, quote details and branch reviews. Use this practical booking checklist.";
 
   return (
     <>
       <Helmet>
-        <title>{`${title} | Duty Cleaners`}</title>
+        <title>{`${title}`}</title>
         <meta name="description" content={description} />
         <link rel="canonical" href={canonical} />
-        <meta property="og:title" content={`${title} | Duty Cleaners`} />
+        <meta property="og:title" content={`${title}`} />
         <meta property="og:description" content={description} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${title} | Duty Cleaners`} />
+        <meta name="twitter:title" content={`${title}`} />
         <meta name="twitter:description" content={description} />
         <meta property="og:type" content="article" />
         <meta property="og:url" content={canonical} />
@@ -149,19 +126,13 @@ export default function BlogChoosingCalgaryCleaner() {
                 </span>
                 <span className="flex items-center gap-1">
                   <Clock className="h-4 w-4" />
-                  7 min read
+                  4 min read
                 </span>
               </div>
 
-              <h1 className="text-3xl md:text-5xl font-bold mb-6 text-foreground leading-tight">
-                How to Choose a Cleaning Company in Calgary
-              </h1>
+              <h1 className="text-3xl md:text-5xl font-bold mb-6 text-foreground leading-tight">What to Check Before Hiring a Cleaner in Calgary</h1>
 
-              <p className="text-xl text-muted-foreground mb-8">
-                Calgary has no shortage of cleaning companies. The difference between a good one and a
-                risky one usually shows up in four specific places — here's what to check before you
-                book <Link to="/cleaning-services-calgary/" className="text-primary underline underline-offset-2 font-medium">house cleaning services in Calgary</Link>.
-              </p>
+              <p className="text-xl text-muted-foreground mb-8">Before choosing a cleaner for your Calgary home, confirm access to your building, the service area, the home type and what the quote includes. Use these booking questions alongside our <Link to="/blog/choosing-cleaning-company/" className="text-primary underline">general guide to choosing a cleaning company</Link>.</p>
 
               <div className="aspect-video rounded-2xl overflow-hidden mb-12">
                 <img
@@ -194,23 +165,7 @@ export default function BlogChoosingCalgaryCleaner() {
                 <h2 className="text-2xl md:text-3xl font-bold mb-8 text-foreground">
                   Four things that separate a reliable company from a risky one
                 </h2>
-                <div className="space-y-6">
-                  {WHAT_TO_CHECK.map((item) => (
-                    <div key={item.title} className="border-t border-border pt-6">
-                      <h3 className="text-xl font-bold text-foreground mb-3">{item.title}</h3>
-                      <div className="grid gap-3 sm:grid-cols-2">
-                        <div className="flex gap-3 p-4 bg-primary/10 rounded-lg border border-primary/20">
-                          <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                          <p className="text-muted-foreground text-sm">{item.good}</p>
-                        </div>
-                        <div className="flex gap-3 p-4 bg-destructive/10 rounded-lg border border-destructive/20">
-                          <XCircle className="h-5 w-5 text-destructive flex-shrink-0 mt-0.5" />
-                          <p className="text-muted-foreground text-sm">{item.bad}</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <div className="mb-16"><h2 className="text-2xl md:text-3xl font-bold mb-6">Check access with your condo building</h2><p className="text-muted-foreground mb-4">For a condo in <Link className="text-primary underline" to="/locations/beltline-calgary/">Beltline</Link>, <Link className="text-primary underline" to="/locations/mission/">Mission</Link> or <Link className="text-primary underline" to="/locations/eau-claire-calgary/">Eau Claire</Link>, ask your building whether cleaners need visitor registration, an elevator reservation or a particular entry point. These are questions to confirm with the building, not requirements shared by every Calgary condo.</p><p className="text-muted-foreground">Give the office the approved entry instructions and parking information before the visit. Do not put a private access code in a public review or photograph. If the building changes its arrangements, update the booking instructions.</p></div>
               </div>
 
               {/* Local team */}
@@ -245,66 +200,9 @@ export default function BlogChoosingCalgaryCleaner() {
                 two sections below answer what a reader at that moment actually
                 still has to decide.
               */}
-              <div className="mb-16">
-                <h2 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">
-                  Questions worth asking before you book
-                </h2>
-                <p className="text-muted-foreground leading-relaxed mb-4">
-                  Most of what separates companies does not show up on a website, and the
-                  answers are quick to collect on the phone. Ask what happens if the clean takes
-                  longer than expected. A flat rate should not move, and if the answer is vague
-                  you are being quoted an estimate rather than a price. Ask who will come, and
-                  whether a recurring booking keeps your regular team where the company can send
-                  them. A team that already knows a home needs fewer instructions.
-                </p>
-                <p className="text-muted-foreground leading-relaxed mb-4">
-                  Ask what is <em>not</em> included, and be wary of a company that says
-                  everything is. Duty Cleaners, for example, does not lift anything over 25 lb,
-                  clean exterior windows, handle bodily fluids or litter boxes, or work beyond a
-                  three-step ladder. A firm that will not name its exclusions up front is one you
-                  are likely to disagree with later. Ask how payment works, too. Paying in full
-                  before any work happens leaves you little to stand on if something goes wrong.
-                  Duty Cleaners charges nothing at booking: a temporary hold the day before
-                  confirms the card is valid, and the card is charged once the clean is complete.
-                </p>
-                <p className="text-muted-foreground leading-relaxed">
-                  Finally, ask about the guarantee in specifics. A promise of total satisfaction
-                  means nothing on its own. What is the deadline for reporting a problem, what is
-                  the remedy, and does claiming it require photographs? A company that can answer
-                  those three questions immediately has a process; one that cannot has a
-                  marketing line.
-                </p>
-              </div>
+              <div className="mb-16"><h2 className="text-2xl md:text-3xl font-bold mb-4">Confirm the Calgary branch and service coverage</h2><p className="text-muted-foreground mb-4">Duty Cleaners' Calgary office is at {CITY_PROOF.calgary.address}. Call <a className="text-primary underline" href={CITY_PROOF.calgary.phoneLink}>{CITY_PROOF.calgary.phone}</a> to discuss an address or access arrangement. Read the Calgary branch's feedback on our <Link className="text-primary underline" to="/reviews/">reviews page</Link>; another branch's reviews are not a substitute.</p><p className="text-muted-foreground">There is no trip fee inside Calgary city limits. A booking in <Link className="text-primary underline" to="/cleaning-services-airdrie/">Airdrie</Link> or <Link className="text-primary underline" to="/cleaning-services-cochrane/">Cochrane</Link> carries a travel charge. Check the <Link className="text-primary underline" to="/calgary/pricing/">Calgary price list and regional fees</Link> and ask the office about an address not listed in our coverage.</p></div>
 
-              <div className="mb-16">
-                <h2 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">
-                  What is specific to Calgary
-                </h2>
-                <p className="text-muted-foreground leading-relaxed mb-4">
-                  Two local things change what you should book. The first is the chinook cycle.
-                  Calgary thaws and refreezes on chinooks all winter, so sand and de-icer arrive at
-                  the door again and again from November to April and settle along baseboards and
-                  carpet edges. By late winter a home can need{" "}
-                  <Link to="/calgary/deep-cleaning/" className="text-primary underline underline-offset-2 font-medium">deep cleaning in Calgary</Link>{" "}
-                  rather than a standard visit, and a company that books a standard clean without
-                  asking about the season is not paying attention.
-                </p>
-                <p className="text-muted-foreground leading-relaxed mb-4">
-                  The second is the housing split. Apartments and condos in the Beltline, Mission,
-                  Eau Claire and the downtown towers are the simplest jobs. Houses in newer suburbs
-                  such as Mahogany, Seton and Livingston carry construction dust, and Calgary's dry
-                  air and wind keep fine grit airborne for most of the year. A quote that asks only
-                  about bedrooms misses the home type, which is why the Duty Cleaners price list
-                  adds a set surcharge for a bungalow, a basement suite, a townhouse or a
-                  two-storey house.
-                </p>
-                <p className="text-muted-foreground leading-relaxed">
-                  One thing that should <em>not</em> vary locally is the price. Duty Cleaners
-                  charges one flat price list with no city premium, and there is no trip fee inside
-                  Calgary city limits; outside them a travel fee applies. Every published figure is
-                  before 5% GST. If a company quotes a Calgary surcharge, ask what it covers.
-                </p>
-              </div>
+              <div className="mb-16"><h2 className="text-2xl md:text-3xl font-bold mb-4">Compare the quote for your actual home</h2><p className="text-muted-foreground mb-4">A condo and a two-storey house with the same bedroom count have different home-type pricing. Include bathrooms, pets and any appliance interiors you want cleaned. Describe renovation dust rather than assuming it is included in routine upkeep; compare <Link className="text-primary underline" to="/post-construction-cleaning-calgary/">post-construction cleaning in Calgary</Link> for a renovation job.</p><p className="text-muted-foreground mb-4">For an occupied home, compare the <Link className="text-primary underline" to="/calgary/regular-cleaning/">one-time standard checklist</Link> with <Link className="text-primary underline" to="/calgary/deep-cleaning/">Calgary deep cleaning</Link>. For an empty property handover, review <Link className="text-primary underline" to="/move-out-cleaning-calgary/">Calgary move-out cleaning</Link>, including the exclusions.</p><h3 className="text-xl font-bold mb-3">Before confirming the booking</h3><ul className="list-disc pl-5 text-muted-foreground space-y-2"><li>Confirm the service, property address and home type.</li><li>Check all required charges, add-ons and GST.</li><li>Arrange entry, building access and parking.</li><li>Read the <Link className="text-primary underline" to="/terms/">cancellation and access terms</Link>.</li><li>Choose the appropriate <Link className="text-primary underline" to="/cleaning-services-calgary/">Calgary house cleaning booking</Link>.</li></ul></div>
 
               {/* FAQ */}
               <div className="mb-16">

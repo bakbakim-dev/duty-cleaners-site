@@ -27,7 +27,7 @@ const keyFactors = [
   {
     icon: Star,
     title: "Evaluating Experience and Expertise",
-    description: `Ask how long the company has been cleaning homes in your city, and who will come to the door. A company that has cleaned homes for years has usually settled its checklists and its booking process. Duty Cleaners has cleaned homes in Alberta ${COMPANY.sinceLabel}, from an Edmonton branch and a Calgary branch.`,
+    description: `Ask how long the company has been cleaning homes in your city, and who will come to the door. A company that has cleaned homes for years has usually settled its checklists and its booking process. Ask for relevant, attributable examples rather than assuming years in business prove every claim.`,
     details: "Experience shows in how a company answers questions, more than in the number of years on its website. Ask what happens if a clean takes longer than expected, what the team does with a cluttered counter, and how a missed spot gets fixed. Clear, specific answers are a better sign than a long list of adjectives."
   },
   {
@@ -45,7 +45,7 @@ const customizationOptions = [
   },
   {
     title: "Clear Scheduling",
-    description: "A good cleaning company tells you plainly when it can arrive. Duty Cleaners books an arrival window rather than an exact time: 9:00 to 10:00 AM, 12:00 to 1:00 PM, or 3:00 to 4:00 PM."
+    description: "A good cleaning company tells you plainly when it can arrive. Ask whether you are booking an arrival window or an exact time, and how schedule changes are communicated."
   },
   {
     title: "Special Requests",
@@ -53,7 +53,7 @@ const customizationOptions = [
   },
   {
     title: "Adjustable Frequency",
-    description: "Depending on the home, you may want a cleaner weekly, bi-weekly or about once a month. Duty Cleaners' recurring plans run weekly, bi-weekly or every 4 weeks, which is what many people mean by monthly."
+    description: "Compare the intervals offered, when any discount starts, and the rules for pausing or changing a plan. Every four weeks is not the same as one visit per calendar month."
   },
   {
     title: "Add-Ons Without a Bigger Package",
@@ -72,7 +72,7 @@ const customerSupportPoints = [
   },
   {
     title: "Problem Resolution",
-    description: "Ask what happens if something is missed. At Duty Cleaners, a customer who tells us within 24 hours gets a return visit to re-clean it at no charge, and photos help but are not required."
+    description: "Ask what happens if something is missed. Ask for the reporting deadline, what remedy is offered and whether it costs extra. Read the written policy before relying on a satisfaction slogan."
   },
   {
     title: "Knowledgeable Staff",

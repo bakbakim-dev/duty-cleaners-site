@@ -227,6 +227,7 @@ const ServiceDetailPage = ({
   // can personalize (e.g. "Your Deep Cleaning price — ready in 60 seconds").
   // Deep Cleaning is a BookingKoala package, not a service: the funnel needs
   // the intent flag so it can show the Standard + package breakdown.
+  const quoteLabel = quoteService === "recurring-cleaning" ? "Choose My Cleaning Schedule" : quoteService === "regular-cleaning" ? "Price My One-Time Clean" : "See My Instant Price";
   const quoteQuery = quoteService
     ? `?service=${quoteService}${quoteService === "deep-cleaning" ? "&intent=deep" : ""}`
     : "";
@@ -381,7 +382,7 @@ const ServiceDetailPage = ({
                 >
                   <Link to={quoteLink} className="inline-flex items-center gap-2">
                     <CalendarCheck className="w-5 h-5" aria-hidden="true" />
-                    See My Instant Price
+                    {quoteLabel}
                   </Link>
                 </Button>
                 <Button
@@ -569,7 +570,7 @@ const ServiceDetailPage = ({
               Pricing by Home Size
             </span>
             <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mt-2 mb-4">
-              Pricing by home size
+              {quoteService === "recurring-cleaning" ? "What your first visit and later visits cost" : "Pricing by home size"}
             </h2>
             <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
               Each price is a flat rate for the home size shown, and it does not change because a clean took longer than expected. If a home needs substantially more work than described, the team explains what it found and the options before continuing.
@@ -738,7 +739,7 @@ const ServiceDetailPage = ({
             >
               <Link to={quoteLink} className="inline-flex items-center gap-2">
                 <CalendarCheck className="w-5 h-5" aria-hidden="true" />
-                See My Instant Price
+                {quoteLabel}
               </Link>
             </Button>
             <Button
@@ -822,7 +823,7 @@ const ServiceDetailPage = ({
               >
                 <Link to={quoteLink} className="inline-flex items-center gap-2">
                   <CalendarCheck className="w-4 h-4" aria-hidden="true" />
-                  See My Instant Price
+                  {quoteLabel}
                 </Link>
               </Button>
             </div>

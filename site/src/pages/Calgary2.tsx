@@ -108,7 +108,7 @@ const OUTER_TOWNS = calgarySurrounding
   hub takes the phrase; the services hub is being retitled off it separately.
 */
 const PAGE_TITLE = `House Cleaning Services Calgary from ${FROM_STANDARD} | Pay After`;
-const PAGE_DESCRIPTION = `Calgary house cleaning services start at ${FROM_STANDARD} plus GST in a one-bedroom condo, and your card is charged only once the clean is complete.`;
+const PAGE_DESCRIPTION = "Find the right house cleaning service for your Calgary home. Review scope, prices and booking details with Duty Cleaners.";
 
 /* Width-descriptor set for the hero, the LCP element on this page. Without
    it a phone pulled the same 1920px file as a desktop: hero-room-calgary at 1920w against
@@ -384,58 +384,7 @@ export default function Calgary2() {
         {/* The services in prose, with the from-prices, in Calgary's own
             words. The cards above name the services; this says what each one
             is and who in Calgary books it. */}
-        <section className="py-16 md:py-20 bg-background border-b border-border">
-          <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-3xl">
-              <Eyebrow>By the job</Eyebrow>
-              <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Cleaning services in Calgary, by the job</h2>
-              <div className="mt-6 space-y-5 leading-relaxed text-muted-foreground">
-                <p>
-                  Upkeep is the standard clean's job, from {FROM_STANDARD} for a one-bedroom, one-bathroom condo and{" "}
-                  {FROM_STANDARD_3BED} for a three-bedroom condo, both before 5% GST. It is priced flat by size, so the
-                  number does not move if the team is slow. A two-storey house, townhouse, bungalow or basement suite
-                  adds a home-type charge, and pets or an address past the city limits add their own charges. What the
-                  visit covers is on the{" "}
-                  <Link to="/calgary/regular-cleaning/" className="font-semibold text-primary hover:underline">Calgary standard cleaning page</Link>.
-                </p>
-                <p>
-                  Add the deep-clean package and it becomes a deep clean, from {FROM_DEEP} before GST at the one-bedroom
-                  condo size, with the same home-type, pet and travel charges on top. It is the clean for the grit a
-                  chinook winter works into a house, and the room-by-room list is under{" "}
-                  <Link to="/calgary/deep-cleaning/" className="font-semibold text-primary hover:underline">Calgary deep cleaning</Link>.
-                </p>
-                <p>
-                  Move-out cleans start at {FROM_MOVE}, also before GST at the one-bedroom size, and those same charges
-                  apply. Under{" "}
-                  <a href="https://www.alberta.ca/ending-a-tenancy" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Alberta's rules on ending a tenancy</a>{" "}
-                  the landlord completes a move-out inspection report with the tenant. Within 10 days of the tenant
-                  moving out, the landlord must return the deposit, or return what is left with a written statement of
-                  any deductions (an estimate is allowed, with the final statement within 30 days). The landlord decides
-                  what happens to the deposit, and we do not promise it comes back. The details are on{" "}
-                  <Link to="/move-out-cleaning-calgary/" className="font-semibold text-primary hover:underline">move-out cleaning in Calgary</Link>.
-                </p>
-                <p>
-                  <Link to="/post-construction-cleaning-calgary/" className="font-semibold text-primary hover:underline">Post-construction cleaning in Calgary</Link>{" "}
-                  goes by square footage, since renovation dust lands wherever the work was. Walls are a package added to
-                  a clean, so{" "}
-                  <Link to="/wall-washing-wall-cleaning-calgary/" className="font-semibold text-primary hover:underline">wall cleaning in Calgary</Link>{" "}
-                  is never booked by itself. Short-term rental hosts book{" "}
-                  <Link to="/airbnb-cleaning-services-calgary/" className="font-semibold text-primary hover:underline">turnover cleaning for Calgary Airbnbs</Link>{" "}
-                  by the hour: {AIRBNB_RATE} per cleaner-hour before GST, with at least 3 hours for one cleaner or 2 for a
-                  pair. Every service, with its starting price, is on{" "}
-                  <Link to="/calgary/services/" className="font-semibold text-primary hover:underline">the Calgary services page</Link>.
-                </p>
-                {/* Owner, 2026-09-11: one line routes office work to its own
-                    page, kept apart from the home-cleaning prices. */}
-                <p>
-                  For an office or business premises, see our{" "}
-                  <Link to="/commercial-cleaning-services-calgary/" className="font-semibold text-primary hover:underline">office and commercial cleaning in Calgary</Link>.
-                  Commercial work is quoted separately from home cleaning.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+
 
         <section className="py-16 md:py-20 bg-secondary/30 border-b border-border">
           <div className="container mx-auto px-4">

@@ -3,6 +3,7 @@ import { RATING_CLAIM, CITY_PROOF, COMPANY } from "@/data/proof";
 import { POLICY } from "@/data/policy";
 import { travelFee } from "@/data/addon-table";
 import { canonicalForPath } from "@/data/legacy-urls";
+import ServiceIntentComparison from "@/components/ServiceIntentComparison";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import Navigation from "@/components/Navigation";
 import { buildServiceSchema } from "@/lib/service-schema";
@@ -130,8 +131,8 @@ const PRICING = canonicalForPath("/pricing");
  * at "/" has to own — and drew 78,000 impressions at position 25 for the
  * trouble. The title now says what the page is: every service, priced.
  */
-const TITLE = `All Edmonton Cleaning Services & Prices from ${STANDARD_PRICE}`;
-const DESCRIPTION = `Every Edmonton cleaning service with its starting price, and the flat rates for a one-, three- and five-bedroom home, from ${STANDARD_PRICE} before GST.`;
+const TITLE = "Compare Cleaning Services in Edmonton | Duty Cleaners";
+const DESCRIPTION = "Compare standard, recurring, deep and move-out cleaning in Edmonton. Check the differences, pricing basis and scope before choosing a service.";
 
 /* The opening paragraph of the choosing guide. It sits above the cards; the
    rest of the guide sits below them, where a reader who has already found the
@@ -201,14 +202,14 @@ const services: Service[] = [
   },
   {
     title: "Deep Cleaning",
-    description: "A standard clean plus the Deep Cleaning package: grout, descaling, degreasing and the trim a regular visit walks past.",
+    description: "The standard checklist plus baseboards, doors, switches, wall outlets, vent covers and cobweb removal.",
     // Was four bullets: two copied verbatim from the Standard card above and
     // one repeating another inside this card. These are the four scope items
     // the deep-cleaning page itself publishes.
     features: [
       "Everything in a standard clean, plus the build-up a regular visit skips",
-      "Tile, grout and shower glass scrubbed; tubs and fixtures descaled",
-      "Stovetops, range hoods and cabinet fronts degreased",
+      "Standard kitchen and bathroom tasks retained",
+      "Cobwebs removed within safe reach",
       "Baseboards, door frames, switches, outlets and vent covers hand-wiped"
     ],
     price: DEEP_FROM,
@@ -310,7 +311,7 @@ const services: Service[] = [
 const faqs = [
   {
     q: "What is the difference between standard and deep cleaning?",
-    a: `Deep cleaning is a standard clean with the Deep Cleaning package added. The standard visit covers dusting, vacuuming, bathrooms, kitchen surfaces and floors. The package adds the build-up a regular visit does not touch: tile, grout and shower glass scrubbed, tubs and taps descaled, stovetop and cabinet fronts degreased, and baseboards, door frames, switches and vent covers wiped by hand. For a one-bedroom home the standard clean is ${DEEP_ROW.standard}, the package ${DEEP_ROW.packagePrice}, ${DEEP_ROW.price} together before GST.`,
+    a: `Deep cleaning is a standard clean with the Deep Cleaning package added. The standard visit covers dusting, vacuuming, bathrooms, kitchen surfaces and floors. The package adds the build-up a regular visit does not touch: baseboards and doors, light switches, wall outlets and vent covers wiped, plus cobweb removal. For a one-bedroom home the standard clean is ${DEEP_ROW.standard}, the package ${DEEP_ROW.packagePrice}, ${DEEP_ROW.price} together before GST.`,
   },
   {
     q: "Is move-out cleaning the same as a deep clean?",
@@ -380,21 +381,7 @@ function ServiceCard({ service }: { service: ServiceLocal }) {
       </ul>
 
       <div className="pt-6 border-t border-border/50 mt-auto">
-        {service.sizes && (
-          <div className="mb-4">
-            <dl className="space-y-1.5">
-              {service.sizes.map((size) => (
-                <div key={size.label} className="flex items-baseline justify-between gap-3 text-sm">
-                  <dt className="text-muted-foreground">{size.label}</dt>
-                  <dd className="font-semibold text-foreground tabular-nums">{size.price}</dd>
-                </div>
-              ))}
-            </dl>
-            {service.sizesNote && (
-              <p className="pt-2 text-xs text-muted-foreground">{service.sizesNote}</p>
-            )}
-          </div>
-        )}
+
         <div className="text-xl font-bold mb-4 text-primary">
           {service.price}
         </div>
@@ -465,15 +452,10 @@ export default function EdmontonServices() {
             </div>
 
             <h1 className="display-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              Every <span className="text-accent">Edmonton</span> cleaning service, with its
-              starting price
+              Which cleaning service do you need in <span className="text-accent">Edmonton</span>?
             </h1>
 
-            <p className="text-xl text-white/80 leading-relaxed mb-4">
-              Prices are flat by home size, {STANDARD_FROM} for a one-bedroom apartment before GST, {HOURLY} per
-              cleaner-hour for Airbnb turnovers, or from {HOME_HOURLY} per cleaner-hour for partial jobs. Duty Cleaners is rated {RATING_CLAIM} across{" "}
-              {proof.googleReviewCount} Edmonton reviews and has cleaned Alberta homes {COMPANY.sinceLabel}.
-            </p>
+            <p className="text-xl text-white/80 leading-relaxed mb-4">Choose by the job: a one-time standard visit, ongoing upkeep, a deeper reset or an empty-home handover. Compare the scope below, then open the service page for its checklist, exclusions and booking options.</p>
             <p className="text-lg text-white/70 leading-relaxed mb-8">
               Answer a few questions about the home and the quote form shows your price before anything is
               booked, with the pet charge, the home type, any travel fee and any add-ons already in it. Nothing is charged
@@ -511,6 +493,7 @@ export default function EdmontonServices() {
         </div>
       </section>
 
+      <ServiceIntentComparison city="edmonton" />
       {/* Services Grid.
           The list and the prices are what this page is searched for, so they
           sit directly under the hero. The guide that used to run for three
@@ -519,16 +502,9 @@ export default function EdmontonServices() {
       <section className="py-20 bg-secondary/30">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto mb-12">
-            <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-4 text-center">
-              Standard, deep, move-out and recurring cleaning, priced by home size
-            </h2>
+            <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-4 text-center">Explore each service and its starting price</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">{GUIDE_OPENER}</p>
-            <p className="text-muted-foreground leading-relaxed">
-              Each card prices three of the five published sizes: a one-bedroom, a three-bedroom and
-              the five-bedroom tier, all before {GST_PCT} GST. Six- and seven-bedroom homes are priced
-              separately in the quote form. Pets, add-ons and the type of home move the figure, and the
-              quote form shows the total before you commit to anything.
-            </p>
+            <p className="text-muted-foreground leading-relaxed">The cards identify the scope and starting price of each service. Full home-size tiers and add-ons stay on the city price list. Pets, home type and an address outside city limits can add charges; the quote shows the applicable total before booking.</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto items-stretch">
             {services.map((service) => (
@@ -573,34 +549,11 @@ export default function EdmontonServices() {
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
-            <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-6">
-              How to choose between standard, deep, recurring and move-out cleaning
-            </h2>
+            <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-6">Other jobs, reviews and regional coverage</h2>
             <div className="space-y-5 text-muted-foreground leading-relaxed">
-              <p>
-                Start with the standard clean unless you can name what it would miss. It is priced flat by
-                home size, {STANDARD_FROM}, and the rate does not change if the team is there longer than
-                expected. If what you can name is grout, a scaled shower door, a greasy range hood or grey
-                baseboards, that is the Deep Cleaning package, {DEEP_FROM} for a one-bedroom apartment before
-                GST, and the sensible way to buy it is once, then drop back to standard visits.
-              </p>
-              <p>
-                Recurring cleaning is the standard clean on a standing booking, and it is the cheapest way to
-                keep a lived-in home at the same level: the first visit is charged at the one-time rate and
-                every visit after it is discounted by how often we come. It suits a family home, a rental you
-                manage for a long-term tenant, and a host who lives in the unit most of the year; for the guest
-                weeks,{" "}
-                <Link to="/edmonton/airbnb-cleaning/" className="text-accent underline underline-offset-2">
-                  Airbnb cleaning in Edmonton
-                </Link>{" "}
-                is billed by the hour instead.
-              </p>
-              <p>
-                Move-out cleaning is for a walk-through date. It is the deep clean plus the inside of every
-                cabinet, drawer and appliance, {MOVE_FROM}, and the deposit decision stays with the landlord.
-                Post-construction cleaning is a different job again: fine dust rather than dirt, {POST_FROM},
-                and it is worth booking after the trades have finished, not between them.
-              </p>
+
+              <p>Guest changeovers have a different scope from scheduled cleaning of your own home. See <Link to="/edmonton/airbnb-cleaning/" className="text-accent underline underline-offset-2">Edmonton Airbnb turnover cleaning</Link> for hourly pricing and access arrangements.</p>
+              <p>For a home after building or renovation work, review <Link to="/post-construction-cleaning/" className="text-accent underline underline-offset-2">post-construction cleaning in Edmonton</Link>. Confirm the dust, debris and readiness requirements with the office.</p>
               <p>
                 Every price here is on{" "}
                 <Link to={PRICING} className="text-accent underline underline-offset-2">

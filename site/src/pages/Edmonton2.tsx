@@ -110,7 +110,7 @@ const EDMONTON_REVIEW_COUNT = CITY_PROOF.edmonton.googleReviewCount;
   keeps the reason to click; /services/ is being retitled off it separately.
 */
 const PAGE_TITLE = `House Cleaning Services Edmonton from ${FROM_STANDARD} | Pay After`;
-const PAGE_DESCRIPTION = `House cleaning services in Edmonton from ${FROM_STANDARD} before GST for a one-bedroom condo, rated ${RATING_CLAIM}, and nothing is charged until the clean is done.`;
+const PAGE_DESCRIPTION = "Explore house cleaning in Edmonton. Compare services, check what's included and see pricing for your home before you book with Duty Cleaners.";
 
 /* Width-descriptor set for the hero, the LCP element on this page. Without
    it a phone pulled the same 1920px file as a desktop: hero-room-edmonton-manus at 1920w against
@@ -323,8 +323,8 @@ export default function Edmonton2() {
       <div className="min-h-screen bg-background">
         <Navigation city="edmonton" />
         <main id="main-content" tabIndex={-1}>
-        
-        
+
+
          <CityConversionIntro
            city="Edmonton"
            phone="(780) 913-6565"
@@ -388,50 +388,7 @@ export default function Edmonton2() {
             carries — three paragraphs that told a reader who had just scrolled
             past the cards nothing new. What is left is the part the cards do
             not do: the routes, and the prices that are not in the table. */}
-        <section className="band band-paper band-hairline">
-          <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-3xl">
-              <Eyebrow>By the job</Eyebrow>
-              <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Cleaning services in Edmonton, by the job</h2>
-              <div className="mt-6 space-y-5 leading-relaxed text-muted-foreground">
-                <p>
-                  The upkeep visit is the{" "}
-                  <Link to="/edmonton/regular-cleaning/" className="font-semibold text-primary hover:underline">standard clean</Link>,
-                  priced flat by bedrooms and bathrooms, and the price does not change because a clean took longer than
-                  expected. Add the deep-clean package and it becomes a{" "}
-                  <Link to="/edmonton/deep-cleaning/" className="font-semibold text-primary hover:underline">deep clean in Edmonton</Link>{" "}
-                  from {FROM_DEEP}. That figure is before 5% GST for a one-bedroom,
-                  one-bathroom apartment or condo, and a house, a pet or an address outside the city adds to it.
-                </p>
-                <p>
-                  A <Link to="/move-out-cleaning-edmonton/" className="font-semibold text-primary hover:underline">move-out clean</Link>{" "}
-                  starts at {FROM_MOVE}, before GST at the same one-bedroom size, and the same house, pet and travel
-                  charges can apply to it. Book it ahead of the move-out inspection the landlord completes with the
-                  tenant under Alberta's Residential Tenancies Act. We do not promise the deposit comes back; the
-                  landlord decides.
-                </p>
-                <p>
-                  <Link to="/post-construction-cleaning/" className="font-semibold text-primary hover:underline">Post-construction cleaning in Edmonton</Link>{" "}
-                  is priced on floor area, because drywall dust does not care how many bedrooms there are.{" "}
-                  <Link to="/wall-washing-wall-cleaning/" className="font-semibold text-primary hover:underline">Wall washing in Edmonton</Link>{" "}
-                  is only booked together with a clean. Short-term rental hosts book{" "}
-                  <Link to="/edmonton/airbnb-cleaning/" className="font-semibold text-primary hover:underline">Airbnb cleaning in Edmonton</Link>{" "}
-                  by the hour, at {AIRBNB_RATE} per cleaner-hour before GST, with a minimum of 3 hours for one cleaner or
-                  2 hours for two, and{" "}
-                  <Link to="/services/" className="font-semibold text-primary hover:underline">all Edmonton cleaning services and prices</Link>{" "}
-                  sit on one page.
-                </p>
-                {/* Owner, 2026-09-11: one line routes office work to its own
-                    page, kept apart from the home-cleaning prices. */}
-                <p>
-                  For an office or business premises, see our{" "}
-                  <Link to="/commercial-cleaning/" className="font-semibold text-primary hover:underline">office and commercial cleaning in Edmonton</Link>.
-                  Commercial work is quoted separately from home cleaning.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+
 
         <section className="band band-white band-hairline">
           <div className="container mx-auto px-4">

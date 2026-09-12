@@ -1,5 +1,28 @@
 # Duty Cleaners content prompt
 
+## Current editorial override — approved implementation, 12 September 2026
+
+The approved editing brief and `site/docs/editing-brief-implementation.md` supersede
+the older quantitative writing targets below. Main city pages own the broad hire
+decision; service indexes compare options; standard pages explain a single visit;
+recurring pages explain schedules; local price lists own full rates. The cost
+guide teaches quote comparison, the Calgary hiring guide covers local booking
+checks, and the DIY schedule is not a booking-frequency landing page.
+
+Do not use a minimum word count, keyword frequency, repeated H2 phrases, FAQ count,
+positivity score or an AI-format recipe as a writing requirement. Regression tests
+are implementation checks, not an SEO grade or evidence of Google's preferences.
+Keep important price and scope disclosures; link lengthy specialist explanations
+to their owner pages. Titles should describe the task accurately, not all repeat
+the same sales claim. Do not create synonym, schedule or service-by-neighbourhood
+pages. Shared truthful service facts may repeat; fabricated local differences may not.
+
+Use the current `proof.ts`, `policy.ts`, `pricing.ts` and BookingKoala snapshot,
+including the Red Deer branch, before the historical fact tables below. Preserve
+all URLs unless a separate retirement is approved. Parkhill/Stanley Park merger
+and Upper Mount Royal narrowing remain drafts. Do not publish invented jobs,
+reviews or AI pictures presented as real customer evidence.
+
 Adapted from "The Content Blueprint" (ai-content-building-that-rank.netlify.app) for
 dutycleaners.ca. Every fact below was checked on 10 September 2026 against the repository, the
 Search Console analysis from the September audits, and the sources listed at the end.

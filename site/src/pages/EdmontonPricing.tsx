@@ -333,10 +333,9 @@ export default function EdmontonPricing() {
 
       <LocalMarketNote
         eyebrow="Edmonton pricing, in plain terms"
-        heading="Why your Edmonton quote lands where it does"
+        heading="Choosing the service for your Edmonton home"
         paragraphs={[
           "Our prices are identical in Edmonton and Calgary — there is no city premium and no trip fee within either city. What varies is which service a given home needs. Furnace season in Edmonton runs from October into April, and a house sealed up that long cycles dust faster. A home booked in early spring after that season may need the deep clean rather than the standard one, and it is cheaper to hear that up front than to book the wrong tier.",
-          "Every figure here is before tax; 5% GST is added on top. Recurring discounts of 20% weekly, 15% bi-weekly and 10% every four weeks apply from the second visit, with the first clean charged at the one-time rate. If a home turns out to need substantially more work than it was described as needing, the team explains what they found and the options before carrying on — not afterwards on the invoice.",
         ]}
       />
 
@@ -578,7 +577,7 @@ export default function EdmontonPricing() {
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-10">
               <span className="text-accent font-semibold text-sm uppercase tracking-wider">Worked examples</span>
-              <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-4">Two Edmonton quotes, worked through</h2>
+              <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-4">Illustrative Edmonton quotes, worked through</h2>
               <p className="text-lg text-muted-foreground">The same arithmetic the booking form does, with the figures shown.</p>
             </div>
 
@@ -695,11 +694,7 @@ export default function EdmontonPricing() {
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4" ref={optionsRef}>
           <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <span className="text-accent font-semibold text-sm uppercase tracking-wider">Two ways to pay</span>
-              <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-4">Flat rate or hourly: which one costs you less</h2>
-              <p className="text-lg text-muted-foreground">Whole homes are flat. A few rooms or a one-off list is hourly.</p>
-            </div>
+            <div className="text-center mb-12"><h2 className="display-serif text-3xl md:text-4xl font-bold mb-4">Comparing flat-rate and hourly quotes</h2><p className="text-muted-foreground leading-relaxed">Compare the written scope as well as the total. A whole-home flat rate and an hourly booking for selected tasks answer different needs. Check minimum hours, how many cleaners the rate covers, any extras and GST before choosing.</p><p className="mt-4"><Link className="text-primary underline" to="/how-much-does-a-house-cleaning-cost/">How to compare cleaning quotes and price factors</Link></p></div>
 
             <div className="grid md:grid-cols-2 gap-8">
               <PricingOptionCard

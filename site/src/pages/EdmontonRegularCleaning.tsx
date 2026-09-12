@@ -68,11 +68,11 @@ export default function EdmontonRegularCleaning() {
       quoteService="regular-cleaning"
       phone="(780) 913-6565"
       phoneHref="tel:7809136565"
-      seoTitle={`Standard Cleaning & Maid Service Edmonton from ${FROM}`}
-      seoDescription={`Maid service and standard house cleaning in Edmonton from ${FROM} before GST for a one-bedroom condo, and nothing is charged until the clean is done.`}
+      seoTitle="One-Time Standard & Maid Cleaning Edmonton | Duty Cleaners"
+      seoDescription="Book a one-time standard clean in Edmonton. Review the room checklist, exclusions and pricing for your home before choosing your visit."
       serviceName="Standard House Cleaning in Edmonton"
       canonical="https://dutycleaners.ca/edmonton/regular-cleaning"
-      heroHeading={<>Standard Cleaning Services in <AccentGold>Edmonton</AccentGold></>}
+      heroHeading={<>One-Time Standard Cleaning in <AccentGold>Edmonton</AccentGold></>}
       heroSubheading={`A standard clean is one visit covering the kitchen, bathrooms, bedrooms and living areas, priced flat by home size: ${FROM} for a one-bedroom apartment or condo, before GST. A larger home type, a pet or an address outside the city limits adds its own line to the quote.`}
       heroBadges={["Reference-Checked Cleaners", "All Supplies Brought For You", `${POLICY.guaranteeWindowHours}-Hour Re-Clean Guarantee`]}
       heroImage={heroImage}
@@ -98,7 +98,7 @@ export default function EdmontonRegularCleaning() {
       ]}
       sections={[
         {
-          heading: "Maid service in Edmonton: what people mean, and what it costs",
+          heading: "Booking a one-time maid visit: scope and price",
           body: (
             <>
               <p>
@@ -121,16 +121,12 @@ export default function EdmontonRegularCleaning() {
                   added.
                 </p>
               )}
-              <p>
-                If what you want is a maid on a schedule rather than a single visit, that is recurring cleaning: the same
-                checklist, {WEEKLY ? pct(WEEKLY.discount) : ""} off weekly, {BIWEEKLY ? pct(BIWEEKLY.discount) : ""} off
-                bi-weekly and {FOUR_WEEKS ? pct(FOUR_WEEKS.discount) : ""} off every 4 weeks, from the second visit on.
-              </p>
+              <p>For ongoing visits, compare <Link to="/edmonton/recurring-cleaning/">Edmonton recurring cleaning plans</Link>. This page covers a single standard visit; you do not need a contract or standing booking.</p>
             </>
           ),
         },
         {
-          heading: "Apartment and condo cleaning in Edmonton",
+          heading: "What a standard visit covers in an apartment or condo",
           body: (
             <>
               <p>
@@ -161,7 +157,7 @@ export default function EdmontonRegularCleaning() {
           ),
         },
         {
-          heading: "House cleaning in Edmonton and the towns around it",
+          heading: "Standard cleaning coverage and service limits in Edmonton",
           body: (
             <>
               <p>
@@ -190,7 +186,7 @@ export default function EdmontonRegularCleaning() {
               </p>
               <p>
                 Everything else we do in the city, with a starting price beside each one, is on{" "}
-                <Link to="/services/">all Edmonton cleaning services and prices</Link>.
+                <Link to="/services/">compare cleaning services in Edmonton</Link>.
               </p>
             </>
           ),

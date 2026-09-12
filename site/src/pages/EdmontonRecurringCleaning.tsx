@@ -78,11 +78,11 @@ export default function EdmontonRecurringCleaning() {
       quoteService="recurring-cleaning"
       phone="(780) 913-6565"
       phoneHref="tel:7809136565"
-      seoTitle={`Recurring Cleaning Edmonton from ${FROM} | Weekly 20% Off`}
-      seoDescription={`Weekly, bi-weekly or every-4-weeks house cleaning in Edmonton: the first visit to a one-bedroom condo is ${FROM} before GST, then ${pct(WEEKLY?.discount)}, ${pct(BIWEEKLY?.discount)} or ${pct(FOUR_WEEKS?.discount)} off.`}
+      seoTitle="Weekly & Biweekly Cleaning Edmonton | Duty Cleaners"
+      seoDescription="Compare weekly, biweekly and every-four-weeks cleaning in Edmonton. Understand first-visit pricing and ongoing service before choosing a schedule."
       serviceName="Recurring House Cleaning in Edmonton"
       canonical="https://dutycleaners.ca/edmonton/recurring-cleaning"
-      heroHeading={<>Recurring Cleaning in <AccentGold>Edmonton</AccentGold></>}
+      heroHeading={<>Recurring House Cleaning in <AccentGold>Edmonton</AccentGold></>}
       heroSubheading={`Recurring cleaning is the standard clean on a weekly, bi-weekly or every-4-weeks schedule. The first visit is charged at the one-time rate, from ${FROM} for a one-bedroom apartment or condo before GST; from the second, it is ${pct(WEEKLY?.discount)} off weekly, ${pct(BIWEEKLY?.discount)} off bi-weekly and ${pct(FOUR_WEEKS?.discount)} off every 4 weeks. Home type, pets and an address outside the city limits are priced separately on the quote.`}
       heroBadges={["Weekly 20% Off", "Bi-Weekly 15% Off", "Every 4 Weeks 10% Off"]}
       heroImage={heroImage}
@@ -98,11 +98,11 @@ export default function EdmontonRecurringCleaning() {
           you change it.
         </>,
         "The first visit is charged at the one-time rate, and the schedule discount starts with the second. Each visit goes to your regular team where we can send them, and the cleaners bring all the supplies and equipment.",
-        "A schedule suits an Edmonton home for a plain reason. Furnace season runs from October into April, and a house sealed up that long cycles dust faster, onto fans, sills and the tops of the door frames. Through the winter, the sand and salt tracked in from November arrive dry and stay, and a visit every week or two lifts that grit before it is ground into the entry floors and the stair treads. When the spring melt brings the rest of the winter indoors, in late March and April, a home already on a schedule has clean floors to start from.",
+        "Choose an interval around how much upkeep your household wants help with. Weekly visits may suit a busy kitchen or frequently used rooms; biweekly leaves more upkeep to you between visits; every four weeks may suit a lightly used home. These are options to try, not rules based on bedroom count or neighbourhood.",
       ]}
       sections={[
         {
-          heading: "Weekly, bi-weekly and every-4-weeks house cleaning in Edmonton",
+          heading: "Choose weekly, biweekly or every-four-weeks cleaning in Edmonton",
           body: (
             <>
               <p>
@@ -205,9 +205,11 @@ export default function EdmontonRecurringCleaning() {
           ? [{ q: "Is there a charge for pets on a recurring plan?", a: `Yes. A home with pets carries a compulsory pet charge, ${formatPrice(PET_FEE)} on a one-time visit, and the quote shows it before you book, for the first visit and for the visits after it. Tell us about the pets on the booking so the team knows who it will meet.` }]
           : []),
         { q: "What if I only need a single cleaning?", a: "Book a standard clean or a deep clean as a one-time visit instead. Either can be put on a schedule later, and the discount starts from the second visit." },
-        { q: "Which schedule suits an Edmonton home?", a: `It depends on how many people come through the door and how long the house stays sealed. Furnace season runs from October into April, and a bi-weekly visit through those months keeps ahead of the dust that settles on fans and sills. A family with a dog may want weekly through the spring melt and bi-weekly after it, while a condo for one may hold well at every 4 weeks. The schedule can be changed with ${POLICY.cancellationNoticeHours} hours' notice whenever the household does.` },
+        { q: "Which schedule suits an Edmonton home?", a: `Choose by how quickly the rooms need attention and how much cleaning you do between visits. Weekly may suit a busy household, biweekly regular help alongside your own upkeep, and every four weeks a lighter-use home. You can adjust the schedule with ${POLICY.cancellationNoticeHours} hours' notice as your needs change.` },
       ]}
       closingSections={[
+        { heading: "Changing or rescheduling your visits", body: <><p>Move, skip or cancel a visit with {POLICY.cancellationNoticeHours} hours' notice. Inside that window the cancellation fee is {POLICY.cancellationFee}. If we move a booking and the new date does not suit you, cancelling that booking carries no fee.</p><p>Read the <Link to="/terms/">booking and cancellation terms</Link>, and tell the Edmonton office if your access instructions or room preferences change.</p></> },
+        { heading: "Does your first visit need a deep clean?", body: <p>Describe the condition of the home before choosing the first visit. Compare <Link to="/edmonton/deep-cleaning/">deep cleaning in Edmonton</Link> when the extra tasks are needed; a deep clean is not automatically required just because you want a recurring schedule.</p> },
         {
           heading: "Recurring cleaning in Edmonton, before you commit",
           body: (

@@ -3,6 +3,7 @@ import { RATING_CLAIM, CITY_PROOF, COMPANY } from "@/data/proof";
 import { POLICY } from "@/data/policy";
 import { travelFee } from "@/data/addon-table";
 import { canonicalForPath } from "@/data/legacy-urls";
+import ServiceIntentComparison from "@/components/ServiceIntentComparison";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import Navigation from "@/components/Navigation";
 import { buildServiceSchema } from "@/lib/service-schema";
@@ -127,8 +128,8 @@ const PRICING = canonicalForPath("/calgary/pricing");
  * query family that page has to own. The title now describes what a visitor
  * gets here instead: the whole list, with the prices attached.
  */
-const TITLE = `All Calgary Cleaning Services & Prices from ${STANDARD_PRICE}`;
-const DESCRIPTION = `Every Calgary cleaning service with its starting price before GST: standard from ${STANDARD_PRICE}, plus deep, move-out, recurring, wall and turnover cleaning.`;
+const TITLE = "Compare Cleaning Services in Calgary | Duty Cleaners";
+const DESCRIPTION = "Compare cleaning services in Calgary, from one-time visits to recurring and move-out cleaning. Find the scope and pricing basis that fit your job.";
 
 /** Spot wall cleaning, the cheapest wall add-on, from bk-config. */
 const WALL_SPOT = addOnFromPrice("standard", "spot-cleaning-inside-walls");
@@ -202,8 +203,8 @@ const services: Service[] = [
     description: "The standard clean with the Deep Cleaning package on top, for the grit and scale a Calgary winter leaves behind.",
     features: [
       "The whole standard clean, then the build-up it does not reach",
-      "Shower glass, tile and grout scrubbed; taps and tubs descaled",
-      "Range hood, stovetop and cabinet fronts degreased",
+      "Standard kitchen and bathroom tasks retained",
+      "Cobwebs removed within safe reach",
       "Baseboards, door frames, switches, outlets and vent covers wiped by hand"
     ],
     price: DEEP_FROM,
@@ -284,7 +285,7 @@ const services: Service[] = [
 const faqs = [
   {
     q: "Standard or deep cleaning for a Calgary home?",
-    a: `If the home has been cleaned in the last couple of months, standard. If you can point at scale on the shower glass, grit in the carpet edges or a greasy range hood, that is the Deep Cleaning package, which is the standard clean plus grout, descaling, degreasing and hand-wiped trim. On a one-bedroom apartment or condo the standard clean is ${DEEP_ROW.standard} and the package adds ${DEEP_ROW.packagePrice}, so ${DEEP_ROW.price} before GST, with any home-type, pet or travel charge added on the quote. Book the deep clean once, then go back to standard visits.`,
+    a: `If the home has been cleaned in the last couple of months, standard. If you can point at scale on the shower glass, grit in the carpet edges or a greasy range hood, that is the Deep Cleaning package, which is the standard checklist plus baseboards, doors, light switches, wall outlets, vent covers and cobweb removal. On a one-bedroom apartment or condo the standard clean is ${DEEP_ROW.standard} and the package adds ${DEEP_ROW.packagePrice}, so ${DEEP_ROW.price} before GST, with any home-type, pet or travel charge added on the quote. Book the deep clean once, then go back to standard visits.`,
   },
   {
     q: "When do I need move-out cleaning rather than a deep clean?",
@@ -344,21 +345,7 @@ function ServiceCard({ service }: { service: Service }) {
       </ul>
 
       <div className="pt-6 border-t border-border/50 mt-auto">
-        {service.sizes && (
-          <div className="mb-4">
-            <dl className="space-y-1.5">
-              {service.sizes.map((size) => (
-                <div key={size.label} className="flex items-baseline justify-between gap-3 text-sm">
-                  <dt className="text-muted-foreground">{size.label}</dt>
-                  <dd className="font-semibold text-foreground tabular-nums">{size.price}</dd>
-                </div>
-              ))}
-            </dl>
-            {service.sizesNote && (
-              <p className="pt-2 text-xs text-muted-foreground">{service.sizesNote}</p>
-            )}
-          </div>
-        )}
+
         <div className="text-xl font-bold mb-4 text-primary">
           {service.price}
         </div>
@@ -428,17 +415,10 @@ export default function CalgaryServices() {
             </div>
 
             <h1 className="display-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              Every <span className="text-accent">Calgary</span> cleaning service, and what it
-              starts at
+              Which cleaning service do you need in <span className="text-accent">Calgary</span>?
             </h1>
 
-            <p className="text-xl text-white/80 leading-relaxed mb-4">
-              Home cleaning in Calgary {STANDARD_FROM} before GST, priced flat by the size of the home,
-              and Airbnb turnovers by the hour at {HOURLY} per cleaner-hour before GST, with a minimum of
-              3 hours for one cleaner or 2 hours for two.
-              {" "}{RATING_CLAIM} across {proof.googleReviewCount} reviews on the Calgary listing, and
-              Duty Cleaners has cleaned Alberta homes {COMPANY.sinceLabel}.
-            </p>
+            <p className="text-xl text-white/80 leading-relaxed mb-4">Choose the service for your Calgary home before comparing the price. Use the side-by-side scope guide for everyday upkeep, a deep clean or a property handover, with specialist options below.</p>
             <p className="text-lg text-white/70 leading-relaxed mb-8">
               The quote form asks about bedrooms, bathrooms, pets and add-ons and shows the price
               before you book. Nothing is booked until you say so.
@@ -474,6 +454,7 @@ export default function CalgaryServices() {
         </div>
       </section>
 
+      <ServiceIntentComparison city="calgary" />
       {/* Services Grid.
           The list and the prices are what this page is searched for, so they
           sit directly under the hero. The guide that used to run for three
@@ -482,17 +463,9 @@ export default function CalgaryServices() {
       <section className="py-20 bg-secondary/30">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto mb-12">
-            <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-4 text-center">
-              What a standard, deep, move-out or recurring clean costs in Calgary
-            </h2>
+            <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-4 text-center">Explore each service and its starting price</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">{GUIDE_OPENER}</p>
-            <p className="text-muted-foreground leading-relaxed">
-              Three of the five published sizes are on every home-priced card: a one-bedroom, a
-              three-bedroom and the five-bedroom tier, before {GST_PCT} GST. Six- and seven-bedroom
-              homes are priced separately in the quote form. A pet, an add-on, a
-              two-storey house or an address outside Calgary city limits raises the figure, and the
-              quote shows the full total first.
-            </p>
+            <p className="text-muted-foreground leading-relaxed">The cards identify the scope and starting price of each service. Full home-size tiers and add-ons stay on the city price list. Pets, home type and an address outside city limits can add charges; the quote shows the applicable total before booking.</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto items-stretch">
             {services.map((service) => (
@@ -539,34 +512,11 @@ export default function CalgaryServices() {
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
-            <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-6">
-              Standard, deep, recurring or move-out: picking the right one in Calgary
-            </h2>
+            <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-6">Other jobs, reviews and regional coverage</h2>
             <div className="space-y-5 text-muted-foreground leading-relaxed">
-              <p>
-                The standard clean is the default, {STANDARD_FROM} before GST for a one-bedroom apartment or
-                condo, and it stays the default until you can say what it would leave behind. After a Calgary
-                winter the answer can be the grit in the entry carpet and the scale on the shower glass, and
-                both belong to the Deep Cleaning package. Buy that once, when the winter is over, and go back to standard visits after.
-              </p>
-              <p>
-                A standing booking keeps a Calgary house at one level without anyone having to remember
-                to book. Recurring cleaning charges the first visit at the one-time rate and discounts each
-                one after that by frequency. It also suits a host who lives in the unit for most of the year
-                and lists it for Stampede and ski season: recurring visits for your own months, and{" "}
-                <Link to="/airbnb-cleaning-services-calgary/" className="text-accent underline underline-offset-2">
-                  short-term rental turnover cleaning in Calgary
-                </Link>{" "}
-                by the hour for the guest weeks.
-              </p>
-              <p>
-                Book move-out cleaning when a property manager is going to walk the empty home with a
-                checklist. It is the deep clean plus the inside of the oven, fridge and microwave and of every
-                cabinet, drawer and closet, {MOVE_FROM} before GST for a one-bedroom apartment or condo, and the
-                deposit stays the manager's call. A house fresh from the builder in
-                Seton or Livingston wants post-construction cleaning instead, {POST_FROM}, once the last
-                trade has handed back the keys.
-              </p>
+
+              <p>Guest changeovers have a different scope from scheduled cleaning of your own home. See <Link to="/airbnb-cleaning-services-calgary/" className="text-accent underline underline-offset-2">Calgary Airbnb turnover cleaning</Link> for hourly pricing and access arrangements.</p>
+              <p>For a home after building or renovation work, review <Link to="/post-construction-cleaning-calgary/" className="text-accent underline underline-offset-2">post-construction cleaning in Calgary</Link>. Confirm the dust, debris and readiness requirements with the office.</p>
               <p>
                 Every one of those figures is laid out by bedroom count on{" "}
                 <Link to={PRICING} className="text-accent underline underline-offset-2">

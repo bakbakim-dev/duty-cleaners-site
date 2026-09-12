@@ -300,11 +300,10 @@ export default function CalgaryPricing() {
       <LocalMarketNote
         accent="calgary"
         eyebrow="Calgary pricing, in plain terms"
-        heading="Why your Calgary quote lands where it does"
+        heading="Choosing the service for your Calgary home"
         paragraphs={[
           "Our prices are the same in Calgary as in Edmonton — we do not charge a city premium, and there is no trip fee inside either city. What can differ is which service a Calgary home needs. Because the chinooks keep putting the roads through melt-and-grit cycles all winter, sand and de-icer accumulate along baseboards and carpet edges in a way that a standard clean is not scoped to remove.",
           "Home type moves the number more than neighbourhood does. A Beltline or Mission condo is one of the simplest jobs in the city, and it prices at the apartment or condo rate with no home-type charge. Houses in newer suburbs such as Mahogany, Seton and Livingston carry construction dust, and a two-storey house there adds the home-type charge.",
-          "Everything quoted here is before tax; 5% GST is added on top. Recurring discounts of 20% weekly, 15% bi-weekly and 10% every four weeks start from your second visit, and the first clean is charged at the one-time rate. If the home turns out to need substantially more work than described, the team explains what they found and your options before continuing rather than adjusting the bill afterwards.",
         ]}
       />
 
@@ -546,7 +545,7 @@ export default function CalgaryPricing() {
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-10">
               <span className="text-accent font-semibold text-sm uppercase tracking-wider">Worked quotes</span>
-              <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-4">What two Calgary homes actually pay</h2>
+              <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-4">Illustrative Calgary quotes, worked through</h2>
               <p className="text-lg text-muted-foreground">The form's own arithmetic, with every figure shown.</p>
             </div>
 
@@ -666,11 +665,7 @@ export default function CalgaryPricing() {
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4" ref={optionsRef}>
           <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <span className="text-accent font-semibold text-sm uppercase tracking-wider">Two ways to price a job</span>
-              <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-4">Hourly or flat rate: which costs a Calgary home less</h2>
-              <p className="text-lg text-muted-foreground">A whole home goes flat. A few rooms or a one-off list goes by the hour.</p>
-            </div>
+            <div className="text-center mb-12"><h2 className="display-serif text-3xl md:text-4xl font-bold mb-4">Comparing flat-rate and hourly quotes</h2><p className="text-muted-foreground leading-relaxed">Compare the written scope as well as the total. A whole-home flat rate and an hourly booking for selected tasks answer different needs. Check minimum hours, how many cleaners the rate covers, any extras and GST before choosing.</p><p className="mt-4"><Link className="text-primary underline" to="/how-much-does-a-house-cleaning-cost/">How to compare cleaning quotes and price factors</Link></p></div>
 
             <div className="grid md:grid-cols-2 gap-8">
               <PricingOptionCard

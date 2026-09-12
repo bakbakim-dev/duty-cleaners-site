@@ -254,7 +254,7 @@ export default function WallWashingEdmonton() {
                 Wall Washing & Cleaning <span className="text-accent">Edmonton</span>
               </h1>
               <p className="text-lg text-white/80 mb-10 leading-relaxed max-w-2xl">
-                The team washes painted walls by hand. Scuffs, handprints, cooking film and the grey band along the stairwell come off without stripping the finish.
+                The team washes painted walls by hand. The team assesses scuffs, handprints and cooking film against the paint finish before washing. Some marks remain, and fragile finishes may need a lighter treatment.
               </p>
               {/* The sentence names the three cleans this add-on rides on and
                   used to link none of them, on a page that cannot be booked
