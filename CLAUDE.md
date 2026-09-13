@@ -139,6 +139,8 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
 - `_redirects` and `.htaccess` are generated; never hand-edit them.
 
 ## Owner to-dos before or on launch day (checked 2026-09-11)
+Owner reminder request (2026-09-13): when the owner announces launch, review and present every remaining task in `site/docs/launch-day-reminder.md`. A quiet launch-announcement heartbeat is registered. SiteGround is the selected production host; older Netlify production-plan details below are historical and must not be treated as required launch purchases.
+
 1. Publish the GoHighLevel "Instant Quote Automation" workflow. It is still a Draft with 0
    enrolled, so leads get no admin email, customer text or pipeline card.
 2. Rotate the GoHighLevel Private Integration token ("dutycleaners.ca website funnel", created and
