@@ -39,6 +39,7 @@ export interface GuardProof {
 
 export const GUARD_PROOFS: GuardProof[] = [
   { guard: "src/data/seo-editorial.test.ts", target: "src/data/service-copy.ts", find: "some marks may remain", replace: "every mark disappears", failing: "qualifies wall-washing results in the shared description", why: "Reintroduces an unconditional wall-washing result promise." },
+  { guard: "src/data/seo-editorial.test.ts", target: "scripts/content-revisions.ts", find: "if (previous?.hash === hash) return previous;", replace: "if (false) return previous;", failing: "does not change revision dates for CSS or date-only edits", why: "Advances a revision date even though the content fingerprint is unchanged." },
   { guard: "src/lib/form-health.test.ts", target: "src/lib/form-health.ts", find: "path: currentPath(),", replace: 'path: "/?email=customer@example.com",', failing: "reports fixed diagnostics without form values or URL parameters", why: "Leaks a customer's email-shaped query value into the operational alert." },
   { guard: "src/lib/form-health-php.test.ts", target: "public/api/form-health.php", find: "$allowedKeys = ['event', 'form', 'stage', 'category', 'status', 'path'];", replace: "$allowedKeys = ['event', 'form', 'stage', 'category', 'status', 'path', 'email'];", failing: "accepts authenticated server reports and rejects foreign browsers or extra data", why: "Allows a customer email field into the monitoring request contract." },
   { guard: "src/lib/siteground-handoff.test.ts", target: "public/api/booking-handoff.php", find: "if (!$isWebsite && !$isBooking) {", replace: "if (false) {", failing: "keeps the SiteGround endpoint origin-bound, expiring and self-hosted", why: "Accepts requests from an unapproved origin." },
@@ -372,9 +373,9 @@ export const GUARD_PROOFS: GuardProof[] = [
     guard: "src/data/money-page-seo.test.ts",
     target: "dist/move-out-cleaning-edmonton/index.html",
     find: "<title>Move Out Cleaning Edmonton from $284 | Duty Cleaners</title>",
-    replace: "<title>Move Out Cleaning Edmonton | Duty Cleaners</title>",
+    replace: "<title>Welcome | Duty Cleaners</title>",
     failing: "title identifies the intended service and place within the project's copy budget",
-    why: "Strips the price hook from a money-page title, the click-through defect the audit found on 20 pages.",
+    why: "Removes the service and city from a money-page title, making the target unclear. A price hook is optional.",
     dist: true,
   },
   {

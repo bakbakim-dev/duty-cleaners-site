@@ -4,12 +4,12 @@
 export const POST_MODIFIED: Readonly<Record<string, string>> = {
   "/blog/choosing-cleaning-company": "2026-09-12",
   "/blog/cleaning-schedule": "2026-09-12",
-  "/blog/cleaning-services-calgary": "2026-09-12",
-  "/blog/spotless-home-tips": "2026-09-10",
-  "/cleaning-with-vinegar-and-baking-soda": "2026-09-11",
-  "/how-much-does-a-house-cleaning-cost": "2026-09-12",
+  "/blog/cleaning-services-calgary": "2026-09-13",
+  "/blog/spotless-home-tips": "2026-09-13",
+  "/cleaning-with-vinegar-and-baking-soda": "2026-09-13",
+  "/how-much-does-a-house-cleaning-cost": "2026-09-13",
   "/how-often-should-a-cleaning-service-clean-my-house": "2026-09-12",
-  "/the-top-5-must-have-cleaning-products-for-a-spotless-home": "2026-09-11",
+  "/the-top-5-must-have-cleaning-products-for-a-spotless-home": "2026-09-13",
 };
 
 export function modifiedFor(path: string, datePublished: string): string {

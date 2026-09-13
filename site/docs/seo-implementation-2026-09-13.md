@@ -47,4 +47,16 @@ The launch checklist retains SiteGround deployment/credentials, relay and email 
 - [Moen: faucet finish care](https://solutions.moen.com/Article_Library/Faucet_Finish_Care_and_Cleaning)
 - [Whirlpool: vinegar and washing machines](https://www.whirlpool.com/blog/washers-and-dryers/should-you-clean-washing-machine-with-vinegar.html)
 
-Verification results will be recorded after the final build, full prerender and regression run.
+## Verification results
+
+- Full production build and prerender: **210/210 pages**, zero render failures, zero snapshots hiding below-hero content.
+- Regression suite: **47 test files; 1,659 passed, two skipped, zero failed**. The changed count reflects removal of unsupported per-city wording-overlap tests and addition of editorial/date guards, not an SEO score.
+- Mutation proofs: **6/6 caught their injected defects**, including an unqualified wall promise, a date advance without content change, incorrect published prices and a title stripped of its service/city. All targets restored.
+- Reviewed content dates: **zero drift across 210 routes** after approval and regeneration. The three reading-badge-only articles retain their previous revision dates.
+- Rendered crawl: no missing pages, missing/multiple H1s, unexpected noindex, wrong canonicals, duplicate titles/descriptions, unresolved internal page destinations, redirect-only internal page links or orphan pages. All JSON-LD scripts parse. This does not establish rich-result eligibility, fragment-target correctness or external link uptime.
+- The prior wall-finish promise appears on **zero** rendered pages, down from 117.
+- Homepage main-text counts decreased from approximately **3,788 to 3,458 words** (Edmonton) and **3,616 to 3,320 words** (Calgary), preserving price/scope disclosures. These are editorial measurements, not ranking limits or performance scores.
+- Browser QA: desktop blog cards; mobile blog and homepage at 390×844; quote opening and step-one-to-contact-step navigation. Name/email/phone remain before full price. No contact data, form submission, payment or booking was sent. Browser viewport restored afterwards.
+- Live hosting, email delivery, BookingKoala receiver/availability and field Core Web Vitals still need the production/staging environment. No external deployment was performed.
+
+The detailed machine-readable post-change crawl is saved in the task workspace as `duty-audit-after-implementation-2026-09-13.json`; the original audit data was preserved.

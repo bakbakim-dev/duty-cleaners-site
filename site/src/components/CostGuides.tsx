@@ -12,19 +12,19 @@ const GUIDES = {
     heading: "Know what’s reasonable before you book.",
     items: [
       {
-        meta: "Pricing · 6 min read",
+        meta: "Pricing guide",
         title: "What house cleaning actually costs in Alberta.",
         blurb: "Flat-rate vs hourly, what moves the number, and how to read a quote before you book.",
         to: "/how-much-does-a-house-cleaning-cost/",
       },
       {
-        meta: "Planning · 5 min read",
+        meta: "Planning guide",
         title: "How often should a home actually be cleaned?",
         blurb: "Weekly, bi-weekly or every four weeks: an honest schedule for how your home is really lived in.",
         to: "/how-often-should-a-cleaning-service-clean-my-house/",
       },
       {
-        meta: "Hiring · 5 min read",
+        meta: "Hiring guide",
         title: "How to choose a cleaning company you can trust.",
         blurb: "The questions worth asking about vetting and guarantees, and the flags to walk away from.",
         to: "/blog/choosing-cleaning-company/",
@@ -35,19 +35,19 @@ const GUIDES = {
     heading: "Know the going rate before you book.",
     items: [
       {
-        meta: "Pricing · 6 min read",
+        meta: "Pricing guide",
         title: "What house cleaning actually costs in Alberta.",
         blurb: "Flat rate against hourly, what pushes a quote up, and how to read one line by line.",
         to: "/how-much-does-a-house-cleaning-cost/",
       },
       {
-        meta: "Planning · 5 min read",
+        meta: "Planning guide",
         title: "How often should a home actually be cleaned?",
         blurb: "Every week, every two, or every four: a schedule matched to how the home is used, not to a sales target.",
         to: "/how-often-should-a-cleaning-service-clean-my-house/",
       },
       {
-        meta: "Hiring · 5 min read",
+        meta: "Hiring guide",
         title: "How to choose a cleaning company you can trust.",
         blurb: "What to ask before you hire anyone, and the answers that should end the call.",
         to: "/blog/choosing-cleaning-company/",
