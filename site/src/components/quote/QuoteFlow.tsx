@@ -1073,10 +1073,10 @@ export default function QuoteFlow({
     >
       <p className="flex items-start gap-2 font-semibold">
         <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-destructive" aria-hidden="true" />
-        We couldn&rsquo;t send your callback request.
+        That didn&rsquo;t go through.
       </p>
       <p className="mt-2 leading-relaxed text-muted-foreground">
-        Your displayed price and details are still on screen. Retry, call {proof.phone}, or email{" "}
+        Nothing was booked or charged. Your price and answers are still here. Try again, call {proof.phone}, or email{" "}
         <a href={`mailto:${SUPPORT_EMAIL}`} className="inline-flex min-h-[44px] items-center font-semibold text-foreground underline">
           {SUPPORT_EMAIL}
         </a>
@@ -1590,13 +1590,13 @@ export default function QuoteFlow({
 
               {leadCaptureFailed && (
                 <div role="alert" className="mb-5 border border-amber-600/40 bg-amber-50 p-4 text-sm text-foreground">
-                  <p className="font-semibold">Your price is ready below, but we couldn&rsquo;t confirm your contact details were saved.</p>
+                  <p className="font-semibold">Your price is ready below.</p>
                   <p className="mt-2 leading-relaxed text-muted-foreground">
-                    This does not change your price, and nothing has been booked or charged. You can retry now or continue reviewing your quote; we&rsquo;ll try saving it again before opening the schedule.
+                    We had trouble connecting, so we may not have received your contact details. Nothing has been booked or charged. You can try again or continue reviewing your price; we&rsquo;ll try once more before opening the schedule.
                   </p>
                   <Button type="button" size="sm" variant="outline" className="mt-3 min-h-[44px]" disabled={submitting} onClick={() => void retryLeadCapture()}>
                     {submitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" aria-hidden="true" />}
-                    Retry saving details
+                    Try again
                   </Button>
                 </div>
               )}

@@ -359,8 +359,11 @@ describe("price reveal survives a lead-relay outage", () => {
   it("shows the calculated price with accurate stage-specific recovery copy", () => {
     const src = codeOf("src/components/quote/QuoteFlow.tsx");
     expect(src).toMatch(/track\("contact_submission_failed"[\s\S]*setLeadCaptureFailed\(true\);[\s\S]*setStep\(2\);/);
-    expect(src).toContain("Your price is ready below, but we couldn&rsquo;t confirm your contact details were saved.");
-    expect(src).toContain("We couldn&rsquo;t send your callback request.");
+    expect(src).toContain("Your price is ready below.");
+    expect(src).toContain("We had trouble connecting, so we may not have received your contact details.");
+    expect(src).toContain("That didn&rsquo;t go through.");
+    expect(src).toContain("Nothing was booked or charged. Your price and answers are still here.");
+    expect(src).not.toMatch(/callback request|lead relay|crm|durable receipt/i);
     expect(src).not.toMatch(/honour your quote/i);
   });
 });
