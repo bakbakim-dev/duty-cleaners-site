@@ -4,9 +4,10 @@
  * token never touches the browser).
  *
  * Two rules this module exists to enforce:
- *   1. The price opens only after the relay returns a durable receipt for the
- *      private quote_leads table. GHL delivery happens behind that receipt and
- *      may be retried without holding the customer on this screen.
+ *   1. A successful result requires a durable receipt for the private
+ *      quote_leads table. The funnel may still reveal its locally calculated
+ *      price on failure, with an honest retry notice, so a CRM outage does not
+ *      become a customer-facing calculator outage.
  *   2. A lead is never silently dropped: a timeout, rejected request or failed
  *      durable write returns `{ ok: false }` so the UI can retain every field
  *      and offer a same-request retry.

@@ -54,6 +54,10 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
 - "No contracts" and "You won't be charged today" are confirmed. Online bookings need at least 24
   hours' notice; a temporary card hold goes on the day before the clean (not a charge); the card
   is charged after the clean. Same-day or next-day slots: by phone, when the schedule allows.
+- Name, email and phone remain required before the full price and extras. A lead-relay failure must
+  never hide the locally calculated price after those valid fields were provided. Show the price
+  with an accurate capture-retry notice; never say "honour your quote" before a price has appeared
+  (owner correction, 2026-09-13).
 - After a quote request we text within 24 hours (`RESPONSE_TIME_PROMISE`).
 - Prices: the tables stop at five bedrooms (`PRICING_TIERS`, "5 Bedroom"); six and seven bedrooms
   cost more and are priced by the instant quote. Never write "5+" or "five or more".

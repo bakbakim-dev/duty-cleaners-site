@@ -11,7 +11,7 @@ This is the handoff for the implementation that follows the owner's settled deci
 
 1. The browser quote request has a 12-second deadline and a visible same-request retry.
 2. Lead and confirmation submissions carry separate idempotency UUIDs.
-3. The relay unlocks the price only after `quote_leads` returns a durable row ID as its verifiable receipt.
+3. A successful lead capture requires `quote_leads` to return a durable row ID as its verifiable receipt. A relay failure no longer hides the locally calculated price: the customer sees the price with a precise, non-blocking retry notice, and the same idempotent request is retried from that screen and before BookingKoala opens.
 4. GHL delivery runs as a Supabase background task and is recorded as pending, delivered or failed.
 5. Failed deliveries have a protected retry operation, exponential retry dates and a six-attempt limit.
 6. The final price, extras and cleaner details receive a bounded, keepalive-enabled save before BookingKoala opens.

@@ -36,7 +36,7 @@ describe("durable quote submission", () => {
     expect(JSON.parse(String(init!.body))).toMatchObject({ request_id: requestId, stage: "lead" });
   });
 
-  it("does not unlock the quote without a verifiable durable receipt", async () => {
+  it("classifies a response without a verifiable receipt as failed capture", async () => {
     vi.stubGlobal(
       "fetch",
       vi.fn(async () =>

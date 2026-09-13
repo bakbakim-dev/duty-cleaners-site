@@ -354,3 +354,13 @@ describe("Red Deer postal codes book online like any in-city code", () => {
     expect(src).not.toMatch(/isRedDeerPostalCode|Red Deer is served:/);
   });
 });
+
+describe("price reveal survives a lead-relay outage", () => {
+  it("shows the calculated price with accurate stage-specific recovery copy", () => {
+    const src = codeOf("src/components/quote/QuoteFlow.tsx");
+    expect(src).toMatch(/track\("contact_submission_failed"[\s\S]*setLeadCaptureFailed\(true\);[\s\S]*setStep\(2\);/);
+    expect(src).toContain("Your price is ready below, but we couldn&rsquo;t confirm your contact details were saved.");
+    expect(src).toContain("We couldn&rsquo;t send your callback request.");
+    expect(src).not.toMatch(/honour your quote/i);
+  });
+});

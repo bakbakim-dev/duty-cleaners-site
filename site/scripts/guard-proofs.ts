@@ -309,8 +309,16 @@ export const GUARD_PROOFS: GuardProof[] = [
     target: "src/lib/quote-submit.ts",
     find: "const hasDurableReceipt = Boolean(result?.ok && result?.stored && result?.receiptId);",
     replace: "const hasDurableReceipt = Boolean(result?.ok && result?.stored);",
-    failing: "does not unlock the quote without a verifiable durable receipt",
-    why: "Lets an unverified response reveal the quote even when the relay did not return a stored-row id.",
+    failing: "classifies a response without a verifiable receipt as failed capture",
+    why: "Misclassifies an unverified response as a successful lead capture.",
+  },
+  {
+    guard: "src/data/quote-funnel-0911.test.ts",
+    target: "src/components/quote/QuoteFlow.tsx",
+    find: "setLeadCaptureFailed(true);\n    setStep(2);",
+    replace: "setLeadCaptureFailed(true);\n    return;",
+    failing: "shows the calculated price with accurate stage-specific recovery copy",
+    why: "Hides the locally calculated price when the external lead relay fails.",
   },
   {
     guard: "src/lib/city-from-path.test.ts",

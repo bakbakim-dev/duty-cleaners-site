@@ -303,6 +303,7 @@ export default function QuoteFlow({
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [failed, setFailed] = useState(false);
+  const [leadCaptureFailed, setLeadCaptureFailed] = useState(false);
   const [honeypot, setHoneypot] = useState("");
   const [errors, setErrors] = useState<{ name?: string; email?: string; phone?: string }>({});
   /** Focus lands on the new step's heading so SR users hear where they are. */
@@ -822,6 +823,7 @@ export default function QuoteFlow({
   const submitLead = async (event: React.FormEvent) => {
     event.preventDefault();
     setFailed(false);
+    setLeadCaptureFailed(false);
 
     // Inline, focus-managed validation — the browser bubble is not announced
     // reliably and disappears on the next keystroke.
@@ -855,7 +857,7 @@ export default function QuoteFlow({
         ...fields,
         source: tooFast ? `${fields.source} (fast fill — verify)` : fields.source,
       } as Partial<QuotePayload>,
-      { requestId: leadRequestIdRef.current },
+      { requestId: leadRequestIdRef.current, timeoutMs: 5_000 },
     );
     setSubmitting(false);
 
@@ -868,7 +870,26 @@ export default function QuoteFlow({
       setStep(2);
       return;
     }
-    setFailed(true);
+    // The visitor has supplied the required contact fields. A CRM/relay outage
+    // must not conceal a price that is calculated entirely in this browser.
+    // Keep the same request id for the visible retry and final-details retry.
+    track("contact_submission_failed", funnelProps());
+    track("quote_revealed", funnelProps());
+    setLeadCaptureFailed(true);
+    setStep(2);
+  };
+
+  const retryLeadCapture = async () => {
+    setSubmitting(true);
+    const result = await submitQuote(homeFields(), {
+      requestId: leadRequestIdRef.current,
+      timeoutMs: 5_000,
+    });
+    setSubmitting(false);
+    if (!result.ok) return;
+    setLeadCaptureFailed(false);
+    track("generate_lead", funnelProps());
+    track("contact_submitted", funnelProps());
   };
 
   /** The step-3 payload: same contact, now carrying the quoted prices. */
@@ -1003,7 +1024,7 @@ export default function QuoteFlow({
     // Save the final extras and access details before leaving. This request is
     // bounded, idempotent and keepalive-enabled; a relay outage never prevents
     // the customer from reaching BookingKoala because the initial lead exists.
-    const [, secureUrl] = await Promise.all([
+    const [confirmation, secureUrl] = await Promise.all([
       submitQuote(confirmFields(), {
         requestId: confirmRequestIdRef.current,
         timeoutMs: 3_500,
@@ -1011,6 +1032,7 @@ export default function QuoteFlow({
       }),
       prepareBookingHandoff(bookingQuery),
     ]);
+    if (confirmation.ok) setLeadCaptureFailed(false);
     if (!secureUrl) {
       handoffBusy.current = false;
       clearHandoffFlag();
@@ -1051,10 +1073,10 @@ export default function QuoteFlow({
     >
       <p className="flex items-start gap-2 font-semibold">
         <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-destructive" aria-hidden="true" />
-        Something went wrong — call {proof.phone} and we&rsquo;ll honour your quote.
+        We couldn&rsquo;t send your callback request.
       </p>
       <p className="mt-2 leading-relaxed text-muted-foreground">
-        Your details are still on screen. You can also email{" "}
+        Your displayed price and details are still on screen. Retry, call {proof.phone}, or email{" "}
         <a href={`mailto:${SUPPORT_EMAIL}`} className="inline-flex min-h-[44px] items-center font-semibold text-foreground underline">
           {SUPPORT_EMAIL}
         </a>
@@ -1566,7 +1588,18 @@ export default function QuoteFlow({
                 </p>
               </StepHeader>
 
-
+              {leadCaptureFailed && (
+                <div role="alert" className="mb-5 border border-amber-600/40 bg-amber-50 p-4 text-sm text-foreground">
+                  <p className="font-semibold">Your price is ready below, but we couldn&rsquo;t confirm your contact details were saved.</p>
+                  <p className="mt-2 leading-relaxed text-muted-foreground">
+                    This does not change your price, and nothing has been booked or charged. You can retry now or continue reviewing your quote; we&rsquo;ll try saving it again before opening the schedule.
+                  </p>
+                  <Button type="button" size="sm" variant="outline" className="mt-3 min-h-[44px]" disabled={submitting} onClick={() => void retryLeadCapture()}>
+                    {submitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" aria-hidden="true" />}
+                    Retry saving details
+                  </Button>
+                </div>
+              )}
 
               {pricePane === "price" && (
                 <>
