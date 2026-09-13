@@ -257,7 +257,7 @@ export default function CalgaryPricing() {
             <p className="text-lg text-white/90 mb-10">
               Nothing about how the day goes moves the rate. A quote changes only when a home needs substantially more
               work than it was described as needing, and the crew explains what they found before they carry on. A
-              few rooms, or a home with no bedroom count that fits, is quoted hourly instead, from {formatPrice(HOME_HOURLY_RATE)}
+              few rooms, or a home with no bedroom count that fits, is quoted hourly instead, from {formatPrice(HOME_HOURLY_RATE)}{" "}
               per hour per cleaner before GST.
             </p>
 

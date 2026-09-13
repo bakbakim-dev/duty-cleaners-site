@@ -73,7 +73,7 @@ export default function Terms() {
             <div className="prose prose-lg max-w-none text-muted-foreground">
               <p className="mb-8 text-lg">
                 These terms cover residential and commercial cleaning booked from Duty Cleaners in
-                Edmonton, Calgary and the surrounding communities we serve. Booking a clean means
+                Edmonton, Calgary, Red Deer and the surrounding communities we serve. Booking a clean means
                 agreeing to them. If anything here is unclear, call us before you book and we will
                 talk it through.
               </p>

@@ -37,7 +37,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import calgaryHero from "@/assets/hero-calgary-skyline.webp";
+import calgaryHero from "@/assets/hero-room-calgary.webp";
 import { Helmet } from "react-helmet-async";
 import {
   deepCleanTierRows,
@@ -398,9 +398,9 @@ export default function CalgaryServices() {
 
       {/* Hero Section */}
       <section className="relative py-20 bg-brand-navy overflow-hidden">
-        <img width={1600} height={900}
+        <img width={1920} height={1080}
           src={calgaryHero}
-          alt="Calgary skyline"
+          alt="Illustrative bright living room with clean floors and white seating"
           className="absolute inset-0 w-full h-full object-cover opacity-40"
          loading="eager" fetchPriority="high"/>
         <div className="absolute inset-0 bg-gradient-to-b from-brand-navy/70 via-brand-navy/60 to-brand-navy/80" />

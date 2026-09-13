@@ -3,6 +3,19 @@
 Read this first. It is the current state as of 2026-09-11; where any other document in this
 repo disagrees with it or with the code, the code and this file win.
 
+### Revision-date workflow override — 2026-09-13
+
+Revision dates now come from `site/src/data/content-revisions.json`, not component
+git timestamps. After editing content: build and fully prerender, run
+`bun run content-dates` from `site/`, review the reported changes and approve the
+actual revision date with `bun run content-dates --approve YYYY-MM-DD`. Rebuild and
+prerender again, then rerun the check to ensure stable content and matching dates.
+Commit the ledger and regenerated dates/sitemaps. Existing deployment scripts gate
+on this check. Do not advance dates merely for deployment or unrelated commits.
+This supersedes the old git-date commit-order explanation below. The baseline
+retains previously published sitemap dates, not newly recovered publication dates.
+See `site/docs/seo-implementation-2026-09-13.md` for scope and limitations.
+
 ## What this is
 A prerendered React/Vite rebuild of dutycleaners.ca: a house-cleaning company with three branches
 (Edmonton, Calgary and, since 2026-09-11, Red Deer), each with its own address, phone and Google

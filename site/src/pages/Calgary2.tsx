@@ -271,7 +271,7 @@ export default function Calgary2() {
     answer: "It changes what people book, not how we work. Every thaw and refreeze brings sand and de-icer back to the door between November and April, and the grit settles along baseboards and carpet edges. When the roads are unsafe and a booking has to move, the office tells you once it knows and offers its earliest open slot."
   }, {
     question: "Do you clean condos in the Beltline and downtown towers?",
-    answer: "Yes. Apartments and condos in the Beltline, Mission, Eau Claire and the downtown towers are the simplest jobs the Calgary team does, and they carry no home-type charge on top of the size table, which is before 5% GST. Put the building's rules on the booking: desk sign-in, visitor parking, and how the team gets through the door. If the team reaches the door and cannot get in, you are billed half of what the scheduled clean would have cost."
+    answer: "Yes. Apartments and condos in the Beltline, Mission, Eau Claire and the downtown towers carry no home-type charge on top of the size table, which is before 5% GST. Put the building's rules on the booking: desk sign-in, visitor parking, and how the team gets through the door. If the team reaches the door and cannot get in, you are billed half of what the scheduled clean would have cost."
   }, {
     question: "Can I get a same-day clean in Calgary?",
     answer: "Same-day and next-day slots depend on the schedule. Phone the Calgary line at (403) 768-1341 and the office can check what the day has open."
@@ -348,8 +348,8 @@ export default function Calgary2() {
           eyebrow="Cleaning in Calgary"
           heading="What a Calgary house needs, and when"
           paragraphs={[
-            "Calgary is hard on floors and easy on nothing. Because the chinooks keep pushing the city above freezing and back down again, the roads are gritted, melted and gritted again rather than staying frozen through to spring — so sand and de-icer arrive at the door repeatedly from November to April instead of once. It works along baseboards, into carpet edges, down the sides of stair treads and under furniture, and by February it is past the point a vacuum reaches.",
-            "In the Beltline and Mission, apartments and condos are the simplest jobs, and the dry air and wind keep fine grit airborne for most of the year. In newer suburbs such as Mahogany, Seton and Livingston, houses carry construction dust.",
+            "If boots are tracking grit or slush into your Calgary home, flag the entryway and floors when you book. Choose the service by the condition of the rooms and the checklist you need, not by the season alone. Carpet steam cleaning is outside our service.",
+            "For a Beltline or Mission condo, include concierge, fob and visitor-parking instructions. If renovation work has left construction dust in any neighbourhood, ask about post-construction cleaning instead of assuming it is part of a standard visit.",
             "We serve the city and the ring of towns around it, including Airdrie, Cochrane, Okotoks and Chestermere, with no trip fee inside Calgary itself. Prices are the same here as in Edmonton, with no city premium, and every figure quoted is before the 5% GST. If you are not sure whether your home needs a standard or a deep clean, describe it on the phone and we will tell you which is the cheaper honest answer.",
           ]}
         />
@@ -398,23 +398,21 @@ export default function Calgary2() {
                     recurring page only promises our best effort at the same
                     team, and policy.ts has no continuity term at all. */}
                 <p>
-                  Ask for a maid service in Calgary and what you get is a standard clean on repeat: the same checklist
-                  each time, your regular team where we can send them, every week, every two weeks or every four weeks.
-                  The visit itself is{" "}
+                  Book the standard checklist once or repeat it weekly, bi-weekly or every four weeks.
+                  Compare the scope for{" "}
                   <Link to="/calgary/regular-cleaning/" className="font-semibold text-primary hover:underline">maid service in Calgary</Link>,
                   and putting it on{" "}
                   <Link to="/calgary/recurring-cleaning/" className="font-semibold text-primary hover:underline">a repeating Calgary schedule</Link>{" "}
                   is what starts the discount at visit two: {RECURRING_DISCOUNTS}.
                 </p>
                 <p>
-                  The first clean is billed at the one-time rate, which is the same price as booking a{" "}
+                  The first visit uses the one-time rate for a{" "}
                   <Link to="/calgary/regular-cleaning/" className="font-semibold text-primary hover:underline">single standard clean in Calgary</Link>,
-                  so nothing is lost by trying one visit and deciding later.
+                  with recurring discounts starting at visit two.
                 </p>
                 <p>
-                  A house in Mahogany or Cranston and a condo in the Beltline or Mission can each go on any of the three
-                  schedules. Either way you need not be in: a lockbox code or a smart lock works, and
-                  the team locks up. If the clean is for somebody else,{" "}
+                  You need not be home: provide approved entry instructions. Laundry and dishes are excluded.
+                  For someone else,{" "}
                   <Link to="/gift-card/" className="font-semibold text-primary hover:underline">a gift card</Link> lets you
                   give it.
                 </p>
@@ -434,11 +432,9 @@ export default function Calgary2() {
               <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">The cleaning company on the other end of the Calgary line</h2>
               <div className="mt-6 space-y-5 leading-relaxed text-muted-foreground">
                 <p>
-                  There is a Calgary office, at {CITY_PROOF.calgary.streetAddress}, and the business running it has been
-                  cleaning Alberta homes {COMPANY.sinceLabel}. The Calgary homes it cleans range from condos in the
-                  Beltline to houses in Mahogany and the towns out past the ring road. Every cleaner who arrives at a
-                  Calgary address is reference-checked before a first job, and home cleaning is quoted off the published
-                  list rather than sized up on your doorstep.
+                  Our Calgary office is at {CITY_PROOF.calgary.streetAddress}.
+                  Duty Cleaners has cleaned Alberta homes {COMPANY.sinceLabel}. Cleaners are reference-checked before
+                  their first job and customer-rated after each visit. <Link to="/about-us/" className="font-semibold text-primary hover:underline">Learn how Duty Cleaners works</Link>.
                 </p>
                 <p>
                   The Calgary line,{" "}
@@ -446,6 +442,7 @@ export default function Calgary2() {
                   open from 8:00 AM until 8:00 PM Monday to Saturday and from 9:00 AM until 3:00 PM on Sundays, and written
                   questions go to support@dutycleaners.ca. Nobody books an exact minute: a Calgary visit gets one of three
                   hour-long arrival windows, starting at 9:00 AM, 12:00 PM or 3:00 PM.
+                  For building-access and quote checks, read our <Link to="/blog/cleaning-services-calgary/" className="font-semibold text-primary hover:underline">Calgary cleaner hiring guide</Link>.
                 </p>
               </div>
             </div>
@@ -457,34 +454,6 @@ export default function Calgary2() {
 
         <CityRecentCleans city="Calgary" reviews={googleReviews} />
 
-        {/* Who turns up. Same facts as the homepage, from policy.ts and
-            proof.ts, said in Calgary's words with Calgary's review count. */}
-        <section className="py-16 md:py-20 bg-background border-b border-border">
-          <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-3xl">
-              <Eyebrow>Who turns up</Eyebrow>
-              <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Calgary house cleaners you rate after every visit</h2>
-              <div className="mt-6 space-y-5 leading-relaxed text-muted-foreground">
-                <p>
-                  A cleaner's references are checked before their first Calgary job. Then the customer rates each
-                  visit, and those ratings decide which cleaners we keep sending.
-                </p>
-                <p>
-                  That is also why the guarantee is workable. Report a miss within {POLICY.guaranteeWindowHours} hours
-                  and a team comes back and redoes it without charge. Photos make the miss easier to find, but the
-                  return visit does not depend on them. That visit is the whole of the guarantee, and a refund is not
-                  part of it; if you want something else, call the Calgary line and talk it over.
-                </p>
-                <p>
-                  Calgary customers have left {CALGARY_REVIEW_COUNT} reviews on the branch's listing, which is rated{" "}
-                  {RATING_CLAIM}. The{" "}
-                  <Link to="/reviews/" className="font-semibold text-primary hover:underline">reviews page</Link> reprints
-                  them as posted, and the listing itself is a click away if you would rather check the source.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* FAQ — full-bleed tinted band + two-column split. */}
         <section className="py-16 md:py-20 bg-quote-shelf border-y border-quote-shelf-border">

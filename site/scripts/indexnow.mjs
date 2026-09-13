@@ -4,14 +4,9 @@
 //   node scripts/indexnow.mjs /pricing/  # submit specific paths
 //
 // WHY THIS EXISTS
-// ChatGPT Search retrieves through Bing's index — a page Bing has not indexed
-// cannot be cited, no matter how good it is. Bing, Yandex and Seznam all honour
-// IndexNow, and it is the only push-notification channel this site has: Google
-// ignores IndexNow entirely and finds pages through the sitemap instead.
-//
-// Bing Webmaster Tools is also currently the only free source of AI-citation
-// data available to a Canadian site — Google's equivalent report launched in
-// June 2026 but is still limited to a subset of UK properties.
+// Notify participating search engines when public content changes. Submission
+// does not guarantee crawling, indexing, ranking or an AI citation. Keep normal
+// crawl access, internal links and the sitemap in place; this is supplementary.
 //
 // SAFE TO RUN REPEATEDLY. IndexNow is idempotent; resubmitting an unchanged URL
 // is a no-op at the receiving end.

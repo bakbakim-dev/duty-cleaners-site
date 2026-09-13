@@ -35,7 +35,7 @@ const HOME_TYPE = {
 const CALGARY_LISTING = GOOGLE_LISTINGS.calgary;
 const CALGARY_RATING = `${CITY_PROOF.calgary.googleRating} on Google`;
 
-const PAGE_TITLE = `House Cleaning Cochrane from ${STANDARD_FROM} | Duty Cleaners`;
+const PAGE_TITLE = `House Cleaning Cochrane | Duty Cleaners`;
 const PAGE_DESCRIPTION = `Cochrane house cleaning is charged to the card only once the clean is complete: from ${STANDARD_FROM} before GST for a one-bedroom, plus a ${TRAVEL_FEE} travel fee.`;
 
 // A worked quote run through calculateQuote, the booking funnel's own maths: a

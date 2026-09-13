@@ -320,10 +320,6 @@ export default function BlogHouseCleaningCost() {
                   <Calendar className="h-4 w-4" />
                   Updated {readableDate(modified)}
                 </span>
-                <span className="flex items-center gap-1">
-                  <Clock className="h-4 w-4" />
-                  {READ_MINUTES} min read
-                </span>
               </div>
 
               <h1 className="text-3xl md:text-5xl font-bold mb-6 text-foreground leading-tight">House Cleaning Costs Explained: Rates, Scope and Extras</h1>
@@ -354,7 +350,7 @@ export default function BlogHouseCleaningCost() {
                     paragraph of the site's highest-intent article — the one
                     people land on while deciding whether to hire anyone at all.
                   */}
-                  Cleaning is the job that loses. Work, children and errands all have deadlines attached; the kitchen floor does not, so it waits, and by the time it stops waiting it is a bigger job than it was. When people start pricing a cleaner, the question is usually whether the hours are worth buying back.
+                  Compare cleaning quotes by the work included, the size and condition of the home, required extras and GST. A lower headline price is not necessarily a lower total for the same job.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed mt-4">Compare the same home, tasks and visit frequency before judging two quotes. Separate the base service from mandatory fees, optional extras and tax. A low starting figure does not tell you what your own booking will cost.</p>
               </div>
@@ -364,7 +360,7 @@ export default function BlogHouseCleaningCost() {
               <div className="mb-10 p-6 bg-primary/5 rounded-xl border-2 border-primary/20">
                 <p className="text-xl font-bold text-foreground mb-3">What Duty Cleaners charges</p>
                 <p className="text-muted-foreground leading-relaxed mb-3">
-                  In Edmonton and Calgary a standard clean is {COST_SPANS.standard} depending on the size
+                  At Duty Cleaners, a standard clean in Edmonton or Calgary is {COST_SPANS.standard} depending on the size
                   of the home, a deep clean {COST_SPANS.deep}, and a move-in or move-out clean{" "}
                   {COST_SPANS.moveInOut}. Those are flat rates in Canadian dollars before 5% GST for an
                   apartment or condo, and they do not change because a clean ran long. A house rather than an apartment, a

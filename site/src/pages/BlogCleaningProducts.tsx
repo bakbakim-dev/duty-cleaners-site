@@ -32,8 +32,8 @@ const THE_FIVE = [
     name: "A pH-neutral all-purpose cleaner",
     role: "Most of the everyday work in a home",
     body:
-      "One bottle handles counters, appliance exteriors, painted walls, light switches, cabinet fronts and most sealed floors. The pH matters: a neutral cleaner can go on sealed stone, hardwood and laminate without the etching or dulling an acidic or alkaline one can cause, which is what stops you needing four bottles.",
-    look: "\"pH neutral\" on the label, or a note that it can be used on natural stone. Skip anything advertising bleach or ammonia for this slot.",
+      "Start with the surfaces you need to clean, then choose a product whose label permits those uses. A pH-neutral cleaner may suit routine cleaning, but pH alone does not establish compatibility with stone, wood, laminate or painted finishes. Follow both the product label and the surface manufacturer's care instructions.",
+    look: "Your specific surface on the approved-use list, with dilution, application and rinsing directions. Test an inconspicuous area as the care instructions allow.",
     watch: "Degreasers and bathroom sprays are not all-purpose cleaners. They are alkaline or acidic on purpose and can dull stone and strip floor finish.",
   },
   {
@@ -50,8 +50,8 @@ const THE_FIVE = [
     name: "A bathroom cleaner that dissolves scale",
     role: "For the limescale an all-purpose cleaner leaves behind",
     body:
-      "Hard Alberta water leaves mineral scale on taps, shower glass and kettles. Scrubbing barely touches that cloudy film; a mild acid and a few minutes of patience remove it. This is the bottle that makes a bathroom look renewed rather than merely wiped.",
-    look: "Citric, lactic or acetic acid in the ingredients. Give it dwell time: three to five minutes doing nothing is what does the work.",
+      "For mineral deposits, choose a scale remover approved for the specific fixture and finish. An acidic product can damage incompatible stone, coatings or metals. Do not treat every bathroom surface alike, and do not use a bathroom product inside a kettle unless its label expressly permits that use.",
+    look: "The approved surfaces and the exact contact time, dilution and rinsing directions on the label. There is no universal three-to-five-minute dwell time.",
     watch: (
       <>
         Keep it off natural stone, and{" "}
@@ -65,7 +65,7 @@ const THE_FIVE = [
   {
     n: "04",
     name: "A dedicated glass cleaner",
-    role: "Mirrors, windows, glass cooktops, shower doors",
+    role: "Compatible windows, mirrors and shower glass",
     body:
       "Glass is the one surface where streaks are the whole result, so it earns its own bottle. Technique matters more than brand: spray the cloth rather than the glass, work top to bottom, then buff dry with a second clean cloth.",
     look: "Fast-evaporating and residue-free. A vinegar-and-water mix works on plain glass if you prefer to make it yourself.",
@@ -74,18 +74,18 @@ const THE_FIVE = [
   {
     n: "05",
     name: "Baking soda",
-    role: "The cheap abrasive that replaces most scouring powders",
+    role: "An optional abrasive for compatible surfaces",
     body:
-      "For baked-on pans, oven floors, grout lines and the inside of a fridge, a baking soda paste gives gentle abrasion with little risk of scratching. It also absorbs odours: an open box in the fridge deals with smells that a spray only covers.",
+      "Baking soda can act as an abrasive, which also means it can scratch or dull some finishes. Check the pan, appliance or surface care instructions before using it; do not assume it is suitable for an oven lining, grout or a coated surface. Remove the source of a smell instead of relying on a deodorizer.",
     look: "The plain grocery box. There is no premium version worth paying for.",
-    watch: "Do not pre-mix it with vinegar in a bottle, because the two neutralise each other into salty water. Use them one after the other.",
+    watch: "Do not mix cleaning products or store vinegar and baking soda together in a closed container. Choose one suitable cleaning method and follow its instructions.",
   },
 ];
 
 const SKIP = [
   {
     title: "A separate cleaner for every room",
-    why: "Kitchen sprays, living-room sprays and \"granite\" sprays are often the same kind of pH-neutral formula in different bottles. One good all-purpose cleaner replaces the lot.",
+    why: "Compare the approved surfaces before buying overlapping products. One cleaner may cover several jobs, but keep a specialist product if your surface manufacturer requires it.",
   },
   {
     title: "Antibacterial everything",
@@ -104,15 +104,15 @@ const SKIP = [
 const FAQS = [
   {
     q: "What is the best all-purpose cleaner for a home?",
-    a: "For most homes, a pH-neutral all-purpose cleaner is the one to buy, because the same bottle can go on sealed stone, hardwood, laminate and painted surfaces. Acidic and alkaline cleaners are made for narrower jobs, such as limescale and grease, and can dull stone or strip floor finish. Brand matters less than choosing pH-neutral and giving the cleaner a minute on the surface before wiping.",
+    a: "Choose by the surfaces you own and their care instructions. A pH-neutral cleaner may be useful for routine work, but pH alone does not make it suitable for every finish. Check the approved uses, dilution, contact time and rinsing directions. This guide compares product categories, not brands tested head to head.",
   },
   {
     q: "How many cleaning products does a home actually need?",
-    a: "Five products cover almost every surface in a home: a pH-neutral all-purpose cleaner, microfibre cloths, an acidic bathroom cleaner for hard-water scale, a glass cleaner, and baking soda. Most other bottles under a typical sink duplicate one of those five.",
+    a: "There is no fixed number. This guide covers five useful categories to consider, not a required shopping list. Your surfaces may need fewer products or a manufacturer-specified cleaner, and an abrasive or acidic product may not be suitable at all.",
   },
   {
-    q: "Are natural cleaning products as effective as chemical ones?",
-    a: "For everyday soil, vinegar and baking soda work well: vinegar handles mineral scale and baking soda gives gentle abrasion. Where they fall short is disinfection and heavy grease. A practical approach is vinegar and baking soda for routine cleaning, and a targeted commercial product for the few jobs that need one.",
+    q: "Does natural mean a cleaning product is safer or more effective?",
+    a: "No. Vinegar and baking soda are chemicals too. Suitability depends on the product, surface and task, not a natural label. Neither should be assumed to disinfect. Follow the label and the surface manufacturer's instructions, and never mix household cleaning products.",
   },
   {
     q: "What cleaning products do professional cleaners use?",
@@ -130,9 +130,9 @@ export default function BlogCleaningProducts() {
   }, []);
 
   const canonical = "https://dutycleaners.ca/the-top-5-must-have-cleaning-products-for-a-spotless-home/";
-  const title = "The 5 Cleaning Products You Actually Need";
+  const title = "5 Cleaning Product Types & Surface Limits";
   const description =
-    "Most homes need only five cleaning products. This guide explains what each one does, what the label should say, and which bottles you can stop buying.";
+    "Compare five cleaning product categories, check surface compatibility and learn what to look for on labels. A practical guide, not a tested brand ranking.";
 
   return (
     <>
@@ -204,10 +204,6 @@ export default function BlogCleaningProducts() {
                   <Calendar className="h-4 w-4" />
                   August 23, 2026
                 </span>
-                <span className="flex items-center gap-1">
-                  <Clock className="h-4 w-4" />
-                  9 min read
-                </span>
               </div>
 
               <h1 className="text-3xl md:text-5xl font-bold mb-6 text-foreground leading-tight">
@@ -247,19 +243,19 @@ export default function BlogCleaningProducts() {
                   {/* Was "thousands of homes a year", which the site's own figure refutes:
                       5,000+ bookings since 2017 is under 600 a year. */}
                   A cleaning kit does not need to be big. Duty Cleaners teams bring all of their own
-                  supplies and equipment to homes in Edmonton and Calgary, and a short list of
-                  well-chosen products covers almost every household surface. Buying more mostly
-                  means buying duplicates.
+                  supplies and equipment. The right kit depends on the surfaces in your home.
+                  This is a guide to product categories and label checks, not a comparison based on
+                  laboratory testing or a claim that one kit suits every home.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed mt-4">
-                  Here is the list, what each one is for, and the products you can stop replacing.
+                  Use the categories below to check what you already own and identify any surface-specific gaps.
                 </p>
               </div>
 
               {/* The five */}
               <div className="mb-16">
                 <h2 className="text-2xl md:text-3xl font-bold mb-8 text-foreground">
-                  The five products that do almost everything
+                  Five categories to consider for your cleaning kit
                 </h2>
 
                 <div className="space-y-8">
@@ -306,7 +302,7 @@ export default function BlogCleaningProducts() {
               {/* Room by room */}
               <div className="mb-16">
                 <h2 className="text-2xl md:text-3xl font-bold mb-6 text-foreground">
-                  How the five cover each room
+                  Check the product against the room's surfaces
                 </h2>
 
                 <div className="grid md:grid-cols-2 gap-6 mb-8">
@@ -322,10 +318,9 @@ export default function BlogCleaningProducts() {
                     </div>
                     <h3 className="font-bold text-foreground mb-2">Kitchen</h3>
                     <p className="text-muted-foreground text-sm">
-                      Use the all-purpose cleaner on counters, cabinet fronts and appliance exteriors.
-                      A baking soda paste lifts baked-on rings and cleans the oven floor, and the glass
-                      cleaner handles the cooktop and the inside of the microwave door. The only thing
-                      worth adding is a proper degreaser if you often cook with oil at high heat.
+                      Check the care instructions for counters, cabinet fronts and appliance exteriors.
+                      Use only approved products, particularly on cooktops and oven linings.
+                      Follow the product's directions for any food-contact surface, including rinsing.
                     </p>
                   </div>
                   <div>
@@ -340,9 +335,9 @@ export default function BlogCleaningProducts() {
                     </div>
                     <h3 className="font-bold text-foreground mb-2">Bathroom</h3>
                     <p className="text-muted-foreground text-sm">
-                      This is where the acidic cleaner earns its place, on taps, glass, tile and the
-                      toilet bowl. Let it sit while you do something else, then come back. Glass
-                      cleaner and a dry cloth finish the mirror, and baking soda handles grout.
+                      Match each cleaner to the fixture and finish. Do not assume an acidic cleaner
+                      belongs on every tap or tile, or that baking soda is suitable for grout.
+                      Follow the labelled contact time and never combine bathroom cleaning products.
                     </p>
                   </div>
                 </div>
@@ -350,10 +345,9 @@ export default function BlogCleaningProducts() {
                 <div className="p-6 bg-secondary/10 rounded-xl border border-secondary/20">
                   <h3 className="font-bold text-foreground mb-2">Bedrooms, living areas and floors</h3>
                   <p className="text-muted-foreground text-sm">
-                    These rooms need little more than the all-purpose cleaner and dry microfibre.
-                    Dust before you vacuum, and work top to bottom so anything you dislodge lands on a
-                    surface you have not cleaned yet. On sealed hardwood, use the cloth barely damp,
-                    because standing water is what damages the finish.
+                    Dust before you vacuum and work from higher surfaces to lower ones.
+                    Use a floor cleaner and moisture level approved by the flooring manufacturer;
+                    an all-purpose label is not permission to use a product on every finish.
                   </p>
                 </div>
               </div>
@@ -361,11 +355,11 @@ export default function BlogCleaningProducts() {
               {/* Skip list */}
               <div className="mb-16">
                 <h2 className="text-2xl md:text-3xl font-bold mb-6 text-foreground">
-                  What you can stop buying
+                  Check before buying another bottle
                 </h2>
                 <p className="text-muted-foreground mb-6">
-                  These four categories take up a lot of cupboard space and do little that the five
-                  products cannot.
+                  These purchases may overlap with products you already have. Compare approved uses
+                  and keep any specialist product required by your surfaces' care instructions.
                 </p>
                 <div className="space-y-4">
                   {SKIP.map((item) => (
@@ -402,10 +396,10 @@ export default function BlogCleaningProducts() {
                     <ShoppingCart className="h-6 w-6 text-primary flex-shrink-0 mt-0.5" />
                     <div>
                       <h3 className="font-bold text-foreground mb-3">
-                        The five products, as a shopping list
+                        Categories to check against your surfaces
                       </h3>
                       <ul className="space-y-2 text-muted-foreground text-sm">
-                        <li>• pH-neutral all-purpose cleaner (a concentrate is cheapest per use)</li>
+                        <li>• A compatible all-purpose cleaner</li>
                         <li>• A dozen or more microfibre cloths, in at least three colours</li>
                         <li>• Acidic bathroom / descaling cleaner</li>
                         <li>• Glass cleaner, plus one flat-weave cloth kept only for glass</li>

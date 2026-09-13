@@ -34,7 +34,7 @@ const HOME_TYPE = {
   twoStorey: formatPrice(BK_PRICE_OVERRIDES[90].price),
 };
 const EDMONTON_LISTING = GOOGLE_LISTINGS.edmonton;
-const PAGE_TITLE = `House Cleaning Morinville from ${STANDARD_FROM} | Duty Cleaners`;
+const PAGE_TITLE = `House Cleaning Morinville | Duty Cleaners`;
 const META_DESCRIPTION = `Morinville house cleaning starts at ${STANDARD_FROM} before GST for a one-bedroom apartment, plus a ${TRAVEL_FEE} travel fee and any pet or home-type charge.`;
 
 // A worked quote run through calculateQuote, the booking funnel's own maths: a

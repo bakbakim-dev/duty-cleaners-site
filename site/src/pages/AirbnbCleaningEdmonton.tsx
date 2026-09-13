@@ -89,7 +89,7 @@ const QUOTE = `${HUB}#quote`;
    minimum at the hourly rate. A bare hourly rate in the Offer would advertise
    a price nobody can buy. */
 const MINIMUM_BOOKING = HOURLY_RATE * 3;
-const TITLE = `Airbnb Cleaning Edmonton from ${RATE}/hour | Duty Cleaners`;
+const TITLE = `Airbnb Cleaning Edmonton | ${RATE}/Cleaner-Hour | Duty Cleaners`;
 const DESCRIPTION = `Airbnb turnover cleaning in Edmonton is ${RATE} per cleaner-hour before GST, with a 3-hour minimum for one cleaner or 2 hours for two, and beds remade.`;
 
 const AnimatedSection = ({
@@ -388,7 +388,7 @@ const AirbnbCleaningEdmonton = () => {
         eyebrow="Edmonton turnovers"
         heading="What running a short-term rental in Edmonton actually demands"
         paragraphs={[
-          "Winter is the season that damages a listing's rating. Edmonton holds its cold rather than cycling through it, so the salt and sand tracked in from November onward arrives dry and stays put. It works into entry mats, along baseboards and into the grout at the door. Guests notice it immediately because it is the first thing they step on.",
+          "For an Edmonton turnover, tell us the guest departure and next check-in times, how to enter, and which rooms need attention. If entry mats or floors have tracked-in grit, flag that condition when arranging the visit. Cleaning cannot guarantee a guest rating or a turnaround window that has not been confirmed.",
           "A guest may ask what a cleaning fee covers. We work to a fixed checklist, so you can say precisely what is covered on each visit.",
         ]}
       />

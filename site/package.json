@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "content-dates": "bunx tsx scripts/review-content-dates.ts",
     "predev": "bunx tsx scripts/generate-post-dates.ts && bunx tsx scripts/generate-sitemap.ts && bunx tsx scripts/generate-redirects.ts",
     "dev": "vite",
     "prebuild": "bunx tsx scripts/generate-post-dates.ts && bunx tsx scripts/generate-sitemap.ts && bunx tsx scripts/generate-redirects.ts && bunx tsx scripts/generate-htaccess.ts",

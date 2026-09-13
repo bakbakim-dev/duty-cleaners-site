@@ -37,7 +37,7 @@ const HOME_TYPE = {
 const CALGARY_LISTING = GOOGLE_LISTINGS.calgary;
 const CALGARY_RATING = `${CITY_PROOF.calgary.googleRating} on Google`;
 
-const PAGE_TITLE = `House Cleaning Airdrie from ${STANDARD_FROM} | Duty Cleaners`;
+const PAGE_TITLE = `House Cleaning Airdrie | Duty Cleaners`;
 const PAGE_DESCRIPTION = `Airdrie homes get a ${POLICY.guaranteeWindowHours}-hour re-clean guarantee and a flat rate by home size: house cleaning from ${STANDARD_FROM} before GST, plus a ${TRAVEL_FEE} travel fee.`;
 
 // A worked quote run through calculateQuote, the booking funnel's own maths: a

@@ -178,7 +178,7 @@ describe("the cost guide's first-party price claims", () => {
     const [deepLo, deepHi] = ends(deepCleanTierRows());
     const [moveLo, moveHi] = ends(moveInOutTierRows());
 
-    const sentence = html.match(/In Edmonton and Calgary a standard clean is[^<]*/)?.[0];
+    const sentence = html.match(/At Duty Cleaners, a standard clean in Edmonton or Calgary is[^<]*/)?.[0];
     expect(sentence, "the guide no longer states what Duty Cleaners charges").toBeTruthy();
 
     // Escaped because the figures carry a "$", which is a regex anchor.
@@ -207,7 +207,7 @@ describe("the cost guide's first-party price claims", () => {
     // Runs with or without a build, so the pair is never silently vacuous.
     const src = readFileSync(join(PAGES_DIR, "BlogHouseCleaningCost.tsx"), "utf-8");
     for (const marker of [
-      "In Edmonton and Calgary a standard clean is",
+      "At Duty Cleaners, a standard clean in Edmonton or Calgary is",
       "Ask any company for two numbers before you book",
     ]) {
       const at = src.indexOf(marker);

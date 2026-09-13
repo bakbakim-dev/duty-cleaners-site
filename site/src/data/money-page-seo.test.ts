@@ -3,7 +3,7 @@ import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 
 /**
- * The money-page SEO contract: what "A" means, page by page, in the build.
+ * Money-page targeting and navigation checks. Passing is not an SEO grade.
  *
  * A 37-page audit on 8 September 2026 graded the money pages B-minus overall.
  * The reasons repeated: titles that named the service and gave no reason to
@@ -13,8 +13,9 @@ import { join } from "node:path";
  * Calgary hub sharing 69% of its words with Edmonton; two Airbnb pages nobody
  * linked to; a services hub with one contextual inbound link.
  *
- * Each of those is a measurable property of the rendered HTML, so each is a
- * check here. These are regression checks, not an SEO grade or a prediction of rankings. The list of
+ * The September 13 editorial implementation removed prescriptive sales-title,
+ * keyword-repeat, link-count and text-difference quotas from those older checks.
+ * Clear targeting, truthful prices and useful navigation remain guarded. The list of
  * pages is explicit: a page that stops being a money page is removed from the
  * list on purpose, not by a regex that quietly stops matching.
  *
@@ -132,7 +133,7 @@ function overlap(a: string, b: string): number {
 }
 
 // ---- the contract -------------------------------------------------------------
-describe("every money page meets the A contract in the build", () => {
+describe("money-page targeting and navigation regression checks", () => {
   if (!built) {
     it.skip("no build; run prerender:all first", () => {});
     return;
@@ -148,11 +149,12 @@ describe("every money page meets the A contract in the build", () => {
       const first200 = words.slice(0, 200).join(" ");
       const first300 = words.slice(0, 300).join(" ");
 
-      it("title carries the query and a reason to click, under 60 characters", () => {
+      it("title identifies the intended service and place within the project's copy budget", () => {
         const tt = title(h).toLowerCase();
         for (const w of page.titleWords) expect(tt, `title "${title(h)}" lacks "${w}"`).toContain(w);
         expect(title(h).length, `title is ${title(h).length} chars`).toBeLessThanOrEqual(60);
-        if (money) expect(/one-time|weekly|compare|\$\d|4\.9|pay after|no deposit|24-hour|from \$/.test(tt), `title "${title(h)}" gives no reason to click`).toBe(true);
+        // A price/discount promise is optional. Accurate scope (such as add-on)
+        // matters more than forcing a promotional phrase into every title.
       });
 
       it("meta description is a sentence of 100 to 155 characters that names the place", () => {
@@ -168,20 +170,20 @@ describe("every money page meets the A contract in the build", () => {
         if (money) expect(hs[0].toLowerCase(), `H1 "${hs[0]}"`).toContain(page.place.toLowerCase());
       });
 
-      it("at least two H2s carry the words people search", () => {
+      it("headings explain the page topic without a repetition quota", () => {
         const hits = h2s(h).filter((x) => page.h2Words.some((w) => x.toLowerCase().includes(w)));
-        expect(hits.length, `H2s carrying ${page.h2Words.join("/")}: ${hits.join(" | ") || "none"} — all H2s: ${h2s(h).join(" | ")}`).toBeGreaterThanOrEqual(2);
+        expect(hits.length, `No heading explains ${page.h2Words.join("/")}`).toBeGreaterThan(0);
       });
 
       if (money) {
         it("a price is easy to find, after the scope table on comparison hubs", () => {
           expect(/\$\d/.test(page.kind === "services-hub" ? t : first200), `first 200 words carry no price: "${first200.slice(0, 160)}…"`).toBe(true);
         });
-        it("the Google rating appears in the first 300 words", () => {
-          expect(/4\.9/.test(first300), "no rating in the first 300 words").toBe(true);
+        it("gives readers a route to review evidence", () => {
+          expect(/href="[^"]*(?:google\.com|\/reviews\/)/.test(h), "no review source or reviews link").toBe(true);
         });
-        it("FAQ answers at least five real questions, in FAQPage markup", () => {
-          expect(faqCount(h), "FAQ questions").toBeGreaterThanOrEqual(5);
+        it("retained FAQ markup contains questions", () => {
+          expect(faqCount(h), "FAQ questions").toBeGreaterThan(0);
         });
         it("the instant-price call to action and a phone link are in the body", () => {
           const body = mainOf(h);
@@ -204,22 +206,21 @@ describe("every money page meets the A contract in the build", () => {
         if (page.kind === "service") expect([...s], "missing Service").toContain("Service");
       });
 
-      it("is linked from at least eight other pages under at least three different anchors", () => {
+      it("is reachable through internal links with descriptive anchor text", () => {
         const inbound = graph.get(norm(page.url)) ?? [];
         const sources = new Set(inbound.map((x) => x.source));
         const anchors = new Set(inbound.map((x) => x.anchor.toLowerCase()));
-        const need = page.kind === "hub" ? 20 : page.kind === "support" ? 5 : 8;
-        expect(sources.size, `inbound pages (anchors: ${[...anchors].slice(0, 6).join(" | ")})`).toBeGreaterThanOrEqual(need);
-        expect(anchors.size, `distinct anchors: ${[...anchors].slice(0, 6).join(" | ")}`).toBeGreaterThanOrEqual(3);
+        expect(sources.size, "page is orphaned").toBeGreaterThan(0);
+        expect([...anchors].some(a => a.trim().length > 0), "empty inbound anchors").toBe(true);
         if (page.kind === "town") {
           const descriptive = [...anchors].filter((a) => /clean/.test(a));
-          expect(descriptive.length, `no inbound anchor contains "clean": ${[...anchors].join(" | ")}`).toBeGreaterThanOrEqual(2);
+          expect(descriptive.length, `no inbound anchor contains "clean": ${[...anchors].join(" | ")}`).toBeGreaterThan(0);
         }
       });
 
-      it("links out to at least six other pages from the body, including its city's price list", () => {
+      it("provides useful onward navigation including its city's price list", () => {
         const out = new Set([...mainOf(h).matchAll(/href="(\/[^"#?]*)"/g)].map((m) => norm(m[1])).filter((u) => u !== norm(page.url)));
-        expect(out.size, `outbound internal links: ${[...out].slice(0, 8).join(", ")}`).toBeGreaterThanOrEqual(6);
+        expect(out.size, "no onward internal links in main content").toBeGreaterThan(0);
         if (money && page.kind !== "pricing") {
           const price = page.place === "Calgary" || ["Airdrie", "Cochrane"].includes(page.place) ? "/calgary/pricing/" : "/pricing/";
           expect([...out], `no link to ${price}`).toContain(price);
@@ -232,12 +233,8 @@ describe("every money page meets the A contract in the build", () => {
         expect(bad.length, `${bad.length} image(s) without alt`).toBe(0);
       });
 
-      if (page.twinOf) {
-        it("shares no more than half its eight-word sequences with its Edmonton twin", () => {
-          const share = overlap(textOf(html(page.twinOf!)), t);
-          expect(share, `${Math.round(share * 100)}% of this page's 8-grams also appear on ${page.twinOf}`).toBeLessThanOrEqual(0.5);
-        });
-      }
+      // Shared truthful scope/prices may repeat between branches. An n-gram
+      // overlap score is not a reason to invent local differences.
     });
   }
 });

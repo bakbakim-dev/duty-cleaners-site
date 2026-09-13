@@ -121,6 +121,9 @@ if (flag("skip-build")) {
 
 // ------------------------------------------------------------ dist is sane
 
+step("checking reviewed content dates");
+run("bun run content-dates");
+
 step("checking dist/");
 
 if (!existsSync(HEADERS)) die("dist/_headers is missing; the header rules would not ship.");

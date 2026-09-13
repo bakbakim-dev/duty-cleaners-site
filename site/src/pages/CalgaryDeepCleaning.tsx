@@ -59,8 +59,8 @@ export default function CalgaryDeepCleaning() {
           A deep clean is the full <Link to="/calgary/regular-cleaning/">Calgary standard clean</Link> with the
           deep-clean package on top, priced flat by home size and starting at {TIERS[0].price} before GST for a one-bedroom.
         </>,
-        "In Calgary the build-up a deep clean removes has a winter cause. The city thaws and refreezes on chinooks from November to April, so the roads are gritted, melted and gritted again, and sand and de-icer arrive at the door with every thaw. That grit does not stop at the mat. It works along baseboards, into carpet edges, down the sides of stair treads and under furniture, and by late winter it sits where an ordinary vacuum pass no longer reaches. A deep clean is what takes it back out.",
-        "The rest depends on where you live. A Beltline or Eau Claire condo is one of the simplest jobs in the city, and its build-up is the fine grit that dry air and wind keep moving around the city for most of the year. In a newer house in Mahogany, Seton or Livingston the build-up is construction dust. A deep clean covers scrubbing baseboards and door frames, hand-wiping switches and outlet covers, degreasing stovetops and range hoods, and detailing tile and shower glass.",
+        "Choose a deep clean when the standard checklist is not enough for the buildup you want addressed. The package adds baseboards, doors, switches, outlet and vent covers, cobwebs and detailed kitchen tasks. Tell us about fragile finishes or marks that may need assessment; cleaning does not repair worn surfaces.",
+        "For a Beltline or Eau Claire condo, include building access and parking instructions. In any Calgary neighbourhood, dust left by building or renovation work needs a post-construction scope, not a deep clean selected solely because the home is new.",
       ]}
       sections={[
         {
@@ -157,7 +157,7 @@ export default function CalgaryDeepCleaning() {
         "Garages, patios and balconies, apart from the balcony or garage sweep add-on, available mostly in summer when the weather allows",
       ]}
       faqs={[
-        { q: "Is there a best time of year for a deep clean in Calgary?", a: "Late winter or early spring clears a whole winter of road sand and de-icer at once. Calgary thaws and refreezes on chinooks from November to April, so entryways and baseboards collect grit again and again rather than staying frozen over. Late autumn is the other sensible window, resetting the house before that cycle starts. If a particular date matters, book ahead: same-day and next-day slots depend on the schedule." },
+        { q: "Is there a best time of year for a deep clean in Calgary?", a: "Book when the home's condition and your plans call for the extra checklist, whether after a period of limited upkeep or before guests arrive. There is no required season. Online bookings need at least 24 hours' notice; call for closer availability, which is not guaranteed." },
         { q: "Can I book a deep clean for only part of the house?", a: `The deep clean is priced flat for the whole home by its size, from ${TIERS[0].price} for a one-bedroom before GST, so the quote covers every room. If one room needs more attention than the rest, note it on the booking so the team knows before it arrives. For a job that is only one or two rooms, call the Calgary office at (403) 768-1341 and describe it before you book.` },
         { q: "How should I get the house ready?", a: "You do not need to clean before the team comes; clear counters and floors get cleaned and cluttered ones get worked around; decluttering and organising are a separate hourly add-on. Clutter matters more on a deep clean than on a standard one, because the package is surfaces, baseboards and trim: nobody can wipe a baseboard behind a row of boxes or degrease a stovetop under a drying rack. If a room should be skipped, say so on the booking." },
         { q: "Is deep cleaning more expensive than standard cleaning?", a: `Yes, by the price of the deep-clean package. For a one-bedroom that is ${DEEP.packagePrice}: ${DEEP.price} for the deep clean against ${DEEP.standard} for a standard clean. The package rises with each bedroom, to ${DEEP5.packagePrice} on a five-bedroom home, where a deep clean is ${DEEP5.price} against ${DEEP5.standard}. Those are apartment or condo rates before GST; a townhouse or two-storey house, a home with pets and an address outside Calgary city limits each add a charge on the quote.` },
@@ -165,7 +165,7 @@ export default function CalgaryDeepCleaning() {
         { q: "How long will a Calgary deep clean take?", a: "We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
         { q: "What does a deep clean do that a standard clean does not?", a: "The standard clean keeps a kept-up home kept up: floors, bathrooms, kitchen surfaces, dusting. The deep-clean package goes to what those visits pass over, the baseboards and door frames, the switch plates and outlet covers, the vents, the tile and shower glass, and the range hood and stovetop grease. It is the reset; the standard visits are the maintenance." },
         { q: "Are the products safe around children and pets?", a: `We bring standard professional products. If anyone in the house has a sensitivity, or there is a product you would rather we did not use, say so when you book. Optional alternative products are available for ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}. A home with pets carries a ${addOnLabel("must-choose-if-you-have-pets")} charge on each visit, and it shows on the quote before you book.` },
-        { q: "How often does a Calgary home need a deep clean?", a: "Twice a year is a sensible rhythm for a Calgary home: once in spring, after the chinook season that runs from November to April, and once in late autumn before it starts again. Between them, the standard clean on a schedule keeps the build-up from returning, at 10% to 20% off from the second visit. A home with a dog or a garage entry may want the second deep clean sooner." },
+        { q: "How often does a Calgary home need a deep clean?", a: "There is no fixed interval for every home. Check the condition of baseboards, doors and other deep-package items, along with the upkeep you do between visits. Recurring standard cleaning can help with routine tasks but does not include every deep-clean item." },
       ]}
       closingSections={[
         {
@@ -173,7 +173,7 @@ export default function CalgaryDeepCleaning() {
           body: (
             <>
               <p>
-                A deep clean resets the house; it does not stop the chinooks. The usual next step is the standard
+                For ongoing help after a deep clean, you can book the standard
                 checklist on a schedule, and{" "}
                 <Link to="/calgary/recurring-cleaning/">recurring cleaning in Calgary</Link> takes 20% off weekly, 15%
                 off bi-weekly and 10% off every 4 weeks from the second visit. Scuffed or greasy walls are a separate

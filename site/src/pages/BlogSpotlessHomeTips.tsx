@@ -82,9 +82,9 @@ export default function BlogSpotlessHomeTips() {
   }, []);
 
   const canonical = "https://dutycleaners.ca/blog/spotless-home-tips/";
-  const title = "House Cleaning Tips for a Spotless Home";
+  const title = "House Cleaning Tips: Keep Up Between Cleans";
   const description =
-    "Low-effort habits that keep a home clean between visits, with daily routines, a room-by-room guide and a cleaning schedule that sticks.";
+    "Practical upkeep between cleans: tackle tracked-in dirt, clutter, kitchen splashes and bathroom buildup without repeating a full-house clean.";
 
   return (
     <>
@@ -151,10 +151,6 @@ export default function BlogSpotlessHomeTips() {
                 <span className="flex items-center gap-1">
                   <Calendar className="h-4 w-4" />
                   August 24, 2026
-                </span>
-                <span className="flex items-center gap-1">
-                  <Clock className="h-4 w-4" />
-                  8 min read
                 </span>
               </div>
 
@@ -240,23 +236,22 @@ export default function BlogSpotlessHomeTips() {
               {/* Cleaning schedule */}
               <div className="mb-16">
                 <h2 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">
-                  Build a schedule with three tiers, not one
+                  Match the small job to what keeps coming back
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  Most cleaning schedules fail because they try to do everything every week. Split
-                  tasks into three tiers instead:
+                  Start with the problem that returns between cleans, rather than repeating the whole checklist:
                 </p>
                 <ul className="space-y-2 text-muted-foreground mb-4">
-                  <li>• <strong className="text-foreground">Daily</strong>: the five daily habits. Each takes a couple of minutes.</li>
-                  <li>• <strong className="text-foreground">Weekly</strong>: vacuuming, mopping, a thorough wipe of the bathroom and kitchen, and dusting. Allow thirty to sixty minutes.</li>
-                  <li>• <strong className="text-foreground">Monthly</strong>: baseboards, behind and under appliances, window tracks and light fixtures. These jobs do not need weekly attention, but they do need to happen.</li>
+                  <li>• <strong className="text-foreground">Tracked-in dirt</strong>: keep shoes near the entrance and clean the affected floor using its care instructions.</li>
+                  <li>• <strong className="text-foreground">Cluttered surfaces</strong>: put items away so the counter or table can be wiped without moving the same pile repeatedly.</li>
+                  <li>• <strong className="text-foreground">Recurring splashes</strong>: address them promptly with a surface-compatible method instead of letting residue accumulate.</li>
                 </ul>
                 <p className="text-muted-foreground leading-relaxed">
-                  If you're building this from scratch, our own{" "}
-                  <Link to="/whats-included/" className="text-primary underline underline-offset-2 font-medium">
-                    cleaning checklist
+                  For a full daily, weekly and monthly task plan, use our{" "}
+                  <Link to="/blog/cleaning-schedule/" className="text-primary underline underline-offset-2 font-medium">
+                    DIY cleaning schedule
                   </Link>{" "}
-                  is a reasonable starting template: it lists what our teams do on each service.
+                  rather than turning every small touch-up into a full clean.
                 </p>
               </div>
 
@@ -371,8 +366,8 @@ export default function BlogSpotlessHomeTips() {
                   Or hand off the weekly jobs
                 </h3>
                 <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                  If a three-tier schedule sounds like more than you want to manage yourself, Duty
-                  Cleaners can take on the weekly jobs as recurring cleaning, booked weekly, bi-weekly
+                  If you want help with the routine cleaning alongside these small touch-ups, Duty
+                  Cleaners offers the standard checklist as recurring cleaning, booked weekly, bi-weekly
                   or every 4 weeks, with a discount from the second visit. Nothing is charged at
                   booking, and the card is charged once the clean is complete.
                 </p>

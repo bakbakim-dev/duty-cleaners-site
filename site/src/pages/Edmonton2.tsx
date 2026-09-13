@@ -351,7 +351,7 @@ export default function Edmonton2() {
           eyebrow="Cleaning in Edmonton"
           heading="What an Edmonton house needs, and when"
           paragraphs={[
-            "Edmonton's winter holds. The sand and salt tracked in from November arrive dry and stay, working into carpet edges and along baseboards, and the spring melt in late March and April brings a whole winter of grit indoors in about three weeks.",
+            "If winter grit or spring mud is being tracked into your Edmonton home, tell us which entryways and floors need attention. A standard clean covers routine floor care; baseboards are part of the deep-clean package. Carpet steam cleaning is not included.",
             "The same bedroom count can be two quite different jobs, so describe the home rather than only its size.",
             "We clean across Edmonton and the surrounding communities: St. Albert, Sherwood Park, Spruce Grove, Leduc, Beaumont, Fort Saskatchewan, Stony Plain, Morinville and Devon, with no trip fee inside the city itself. Prices are identical to Calgary's; there is no city premium, and every figure is before 5% GST. If you are not sure whether your home needs a standard clean or a deep one, the booking form asks when it was last properly cleaned and recommends from your answer.",
           ]}
@@ -399,21 +399,19 @@ export default function Edmonton2() {
                     clean, so the phrase now points where it goes and the
                     schedule keeps its own link, for the discount. */}
                 <p>
-                  A maid service is a standard clean on a regular day: the same checklist, your regular team where we
-                  can send them, every week, every two weeks or every four. The page for that visit is{" "}
+                  Book the standard checklist once or repeat it weekly, bi-weekly or every four weeks.
+                  Compare the scope for{" "}
                   <Link to="/edmonton/regular-cleaning/" className="font-semibold text-primary hover:underline">maid service in Edmonton</Link>.
                   Put it on a schedule and it becomes{" "}
                   <Link to="/edmonton/recurring-cleaning/" className="font-semibold text-primary hover:underline">recurring cleaning in Edmonton</Link>.
                 </p>
                 <p>
-                  The first visit is charged at the one-time rate, so a single standard clean is the same booking as the
-                  first of a series; decide afterwards whether you want another. Every four weeks is what many people
-                  mean by monthly, though it comes to 13 visits a year where monthly would be 12.
+                  The first visit uses the one-time rate; recurring discounts begin at visit two.
+                  Every four weeks means 13 visits a year, not 12 calendar-month visits.
                 </p>
                 <p>
-                  A schedule suits people who are out. Leave a key, a lockbox code or smart-lock access and the team
-                  locks up on the way out. Somebody may be asleep at two in the afternoon; tell us which room, because
-                  the order a house gets done in is easy to change. If the clean is for someone else, you can{" "}
+                  You need not be home: provide approved entry instructions and tell us about rooms to avoid.
+                  Laundry and dishes are not included. For someone else, you can{" "}
                   <Link to="/gift-card/" className="font-semibold text-primary hover:underline">give a clean as a gift</Link>.
                 </p>
               </div>
@@ -433,11 +431,9 @@ export default function Edmonton2() {
               <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">The cleaning company behind the Edmonton team</h2>
               <div className="mt-6 space-y-5 leading-relaxed text-muted-foreground">
                 <p>
-                  Duty Cleaners is a cleaning company with its own Edmonton office, at {CITY_PROOF.edmonton.streetAddress},
-                  and has cleaned Alberta homes {COMPANY.sinceLabel}. The work is residential: houses, condos, basement
-                  suites and homes in the communities past the city limits. Each cleaner's references are checked before
-                  they take a first job with us, and home cleaning is quoted from the same list the booking form charges
-                  from, so there is nothing to work out on the doorstep.
+                  Our Edmonton office is at {CITY_PROOF.edmonton.streetAddress}.
+                  Duty Cleaners has cleaned Alberta homes {COMPANY.sinceLabel}. Cleaners are reference-checked before
+                  their first job and customer-rated after each visit. <Link to="/about-us/" className="font-semibold text-primary hover:underline">Learn how Duty Cleaners works</Link>.
                 </p>
                 <p>
                   Call the Edmonton office on{" "}
@@ -462,18 +458,14 @@ export default function Edmonton2() {
               <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Apartment and condo cleaning in Edmonton</h2>
               <div className="mt-6 space-y-5 leading-relaxed text-muted-foreground">
                 <p>
-                  Getting in is the part that differs. A building may want a fob or a key left for the lobby, a visitor
-                  stall or a spot in the parkade, a sign-in at the desk, and in some cases the service elevator booked
-                  for a slot. Put what your building needs on the booking, with the arrival window you picked, because a
-                  team that cannot get in means a lockout charge of half the cost of the scheduled service.
+                  Include lobby access, visitor parking and any required elevator booking.
+                  If the team cannot enter, the lockout charge is half the scheduled service cost.
                 </p>
                 <p>
-                  The price is simpler than the access. The size table is written for an apartment or condo, so a condo
-                  carries no home-type charge, where a bungalow, townhouse or two-storey house does. The checklist and
-                  the guarantee are the same for a condo as for a house, and that holds for{" "}
+                  Apartments and condos have no home-type surcharge; houses do.
+                  The same service checklist and guarantee apply to{" "}
                   <Link to="/locations/downtown-edmonton/" className="font-semibold text-primary hover:underline">house cleaning in downtown Edmonton</Link>{" "}
-                  as much as anywhere else in the city. A one-bedroom condo is a short visit and a three-bedroom
-                  apartment is not, which is the whole of why the number changes.
+                  and homes elsewhere in the city.
                 </p>
               </div>
             </div>
@@ -486,28 +478,6 @@ export default function Edmonton2() {
         {/* Reviews */}
         <CityRecentCleans city="Edmonton" reviews={googleReviews} />
 
-        {/* Who turns up, and what keeps them on the list. The facts are the
-            ones policy.ts confirms; nothing about licensing or insurance. */}
-        <section className="band band-white band-hairline">
-          <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-3xl">
-              <Eyebrow>Who turns up</Eyebrow>
-              <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Edmonton house cleaners you rate after every visit</h2>
-              <div className="mt-6 space-y-5 leading-relaxed text-muted-foreground">
-                <p>
-                  Before a cleaner takes a first Edmonton job with us, we check their references. After every visit, the
-                  customer rates the clean. Those ratings are not decoration: they decide who we keep sending, and a
-                  cleaner who stops earning them stops getting work from us.
-                </p>
-                <p>
-                  The Edmonton listing is rated {RATING_CLAIM} across {EDMONTON_REVIEW_COUNT} reviews, and the{" "}
-                  <Link to="/reviews/" className="font-semibold text-primary hover:underline">Duty Cleaners reviews page</Link>{" "}
-                  reprints what Edmonton customers wrote there, unedited. Read a few before you book.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* FAQ — objection handling, last before the ask. Full-bleed tinted
             band + two-column split so it doesn't resolve like every other

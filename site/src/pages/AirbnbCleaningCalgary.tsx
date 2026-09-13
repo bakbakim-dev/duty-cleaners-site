@@ -80,7 +80,7 @@ const QUOTE = `${HUB}#quote`;
    hourly rate. An Offer quoting the bare hourly rate would advertise a price
    nobody can buy. */
 const MINIMUM_BOOKING = HOURLY_RATE * 3;
-const TITLE = `Airbnb Cleaning Calgary from ${RATE}/hour | Duty Cleaners`;
+const TITLE = `Airbnb Cleaning Calgary | ${RATE}/Cleaner-Hour | Duty Cleaners`;
 const DESCRIPTION = `Airbnb turnover cleaning in Calgary at ${RATE} per cleaner-hour before GST, 3-hour minimum: beds remade, kitchen and bathrooms reset, supplies restocked.`;
 
 const AnimatedSection = ({
@@ -375,9 +375,9 @@ const AirbnbCleaningCalgary = () => {
       <LocalMarketNote
         accent="calgary"
         eyebrow="Calgary turnovers"
-        heading="What Calgary's chinooks and dry air do to a short-term rental"
+        heading="Planning a Calgary short-term rental turnover"
         paragraphs={[
-          "Calgary thaws and refreezes on chinooks all winter. Every thaw brings sand and de-icer back to the door of a rental unit from November to April, and it settles along baseboards and carpet edges; dry air and wind keep the finer grit airborne for most of the year.",
+          "Send the Calgary office the guest departure and next check-in times, the access instructions and the rooms to clean. For a condo, include concierge and visitor-parking rules. Arrange laundry and dishes separately: they are not included in our turnover checklist. The office must confirm the requested service window.",
         ]}
       />
 

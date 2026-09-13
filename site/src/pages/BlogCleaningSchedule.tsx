@@ -179,10 +179,6 @@ export default function BlogCleaningSchedule() {
                   <Calendar className="h-4 w-4" />
                   January 20, 2026
                 </span>
-                <span className="flex items-center gap-1">
-                  <Clock className="h-4 w-4" />
-                  6 min read
-                </span>
               </div>
 
               <h1 className="text-3xl md:text-5xl font-bold mb-6 text-foreground leading-tight">A Daily, Weekly and Monthly DIY Cleaning Schedule</h1>

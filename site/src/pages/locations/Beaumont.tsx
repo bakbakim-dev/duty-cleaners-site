@@ -35,7 +35,7 @@ const EDMONTON_LISTING = GOOGLE_LISTINGS.edmonton;
 
 // "Beaumont" alone reads as the Texas city to a search engine, and most of this
 // page's impressions were for that one. Title and H1 both say Alberta now.
-const PAGE_TITLE = `House Cleaning Beaumont, AB from ${STANDARD_FROM} | Duty Cleaners`;
+const PAGE_TITLE = `House Cleaning Beaumont, AB | Duty Cleaners`;
 const PAGE_DESCRIPTION = `Most homes we clean in Beaumont, Alberta are large, recent family houses; house cleaning here starts at ${STANDARD_FROM} before GST, plus a ${TRAVEL_FEE} travel fee.`;
 
 // A worked quote run through calculateQuote, the booking funnel's own maths: a

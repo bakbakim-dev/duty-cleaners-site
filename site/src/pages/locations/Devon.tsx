@@ -50,7 +50,7 @@ const FRIDGE_FROM = formatPrice(addOnFromPrice("standard", "inside-fridge") ?? 0
 
 // Unqualified, "Devon" is an English county, and that is where most of this
 // page's impressions came from. Title and H1 both carry Alberta now.
-const PAGE_TITLE = `House Cleaning Devon, AB from ${STANDARD_FROM} | Duty Cleaners`;
+const PAGE_TITLE = `House Cleaning Devon, AB | Duty Cleaners`;
 const PAGE_DESCRIPTION = `Flat-rate house cleaning in Devon, Alberta, about 26 km southwest of Edmonton, starts at ${STANDARD_FROM} before GST for a one-bedroom, plus a ${TRAVEL_FEE} travel fee.`;
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {

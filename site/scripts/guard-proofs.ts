@@ -38,6 +38,7 @@ export interface GuardProof {
 }
 
 export const GUARD_PROOFS: GuardProof[] = [
+  { guard: "src/data/seo-editorial.test.ts", target: "src/data/service-copy.ts", find: "some marks may remain", replace: "every mark disappears", failing: "qualifies wall-washing results in the shared description", why: "Reintroduces an unconditional wall-washing result promise." },
   { guard: "src/lib/form-health.test.ts", target: "src/lib/form-health.ts", find: "path: currentPath(),", replace: 'path: "/?email=customer@example.com",', failing: "reports fixed diagnostics without form values or URL parameters", why: "Leaks a customer's email-shaped query value into the operational alert." },
   { guard: "src/lib/form-health-php.test.ts", target: "public/api/form-health.php", find: "$allowedKeys = ['event', 'form', 'stage', 'category', 'status', 'path'];", replace: "$allowedKeys = ['event', 'form', 'stage', 'category', 'status', 'path', 'email'];", failing: "accepts authenticated server reports and rejects foreign browsers or extra data", why: "Allows a customer email field into the monitoring request contract." },
   { guard: "src/lib/siteground-handoff.test.ts", target: "public/api/booking-handoff.php", find: "if (!$isWebsite && !$isBooking) {", replace: "if (false) {", failing: "keeps the SiteGround endpoint origin-bound, expiring and self-hosted", why: "Accepts requests from an unapproved origin." },
@@ -241,7 +242,7 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/onpage-seo.test.ts",
     target: "dist/faqs/index.html",
-    find: "<title>House Cleaning FAQs – Edmonton &amp; Calgary | Duty Cleaners</title>",
+    find: "<title>House Cleaning FAQs | Duty Cleaners Alberta</title>",
     replace: "<title>House Cleaning Frequently Asked Questions for Homeowners Across Edmonton &amp; Calgary | Duty Cleaners</title>",
     failing: "titles and descriptions fit the width Google gives a snippet",
     why: "Pushes a built title past the pixel width a snippet gets.",
@@ -372,7 +373,7 @@ export const GUARD_PROOFS: GuardProof[] = [
     target: "dist/move-out-cleaning-edmonton/index.html",
     find: "<title>Move Out Cleaning Edmonton from $284 | Duty Cleaners</title>",
     replace: "<title>Move Out Cleaning Edmonton | Duty Cleaners</title>",
-    failing: "title carries the query and a reason to click, under 60 characters",
+    failing: "title identifies the intended service and place within the project's copy budget",
     why: "Strips the price hook from a money-page title, the click-through defect the audit found on 20 pages.",
     dist: true,
   },

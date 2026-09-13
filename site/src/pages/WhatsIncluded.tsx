@@ -415,8 +415,8 @@ export default function WhatsIncluded() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">What Each Duty Cleaners Service Includes</h1>
 
             <p className="text-lg text-white/80 max-w-2xl mx-auto mb-8">
-              We work to a checklist, not a clock. Here is that checklist for Edmonton and
-              Calgary: what a standard, deep and move-out clean covers, what is an add-on with
+              Here is our residential checklist for Edmonton, Calgary and Red Deer:
+              what a standard, deep and move-out clean covers, what is an add-on with
               its price, and what we do not do.
             </p>
 

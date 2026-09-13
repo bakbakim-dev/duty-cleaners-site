@@ -115,13 +115,13 @@ const includedItems = [
    true for all of them. */
 const steps = [
   { icon: ClipboardCheck, title: "Tick it on the booking form", description: "Choose the clean first, then add spot cleaning or the full wash for your home size. The price shows before you book." },
-  { icon: Search, title: "We assess the walls", description: "On arrival the team checks the paint finish in each room. Very flat or delicate finishes get a gentler spot-clean." },
+  { icon: Search, title: "We assess the walls", description: "On arrival the team checks the paint finish in each room. Flat or delicate finishes may need limited treatment or may not be washable." },
   { icon: Brush, title: "We wash the walls", description: "By hand, top to bottom, with products suited to painted surfaces. Marks are worked on first, then the whole wall." },
   { icon: ThumbsUp, title: "Locked up, then paid", description: "You do not need to be home: most customers leave a key, a lockbox code or smart-lock access, and the team locks up. The card is charged once the clean is complete." },
 ];
 
 const whyUs = [
-  { icon: Sparkles, title: "What comes off", description: "Cooking film, nicotine, handprints, scuffs and the grey furnace-dust film." },
+  { icon: Sparkles, title: "Marks we assess", description: "Cooking film, smoke stains, handprints and scuffs. Results depend on the mark and paint finish; some marks may remain." },
   { icon: Shield, title: "What stays", description: "The paint finish. Very flat or delicate paint limits how hard a mark can be worked, and some stains only fade." },
   { icon: Home, title: "When to book it", description: "Before painting, after a tenant moves out, or with a move-out clean." },
   { icon: Droplets, title: "What the team leaves alone", description: "Wallpaper, bare drywall and unpainted wood are not washed, and nothing is reached from higher than a 3-step ladder." },
@@ -141,8 +141,8 @@ const whyUs = [
   off, which fade, and what the crew will not touch.
 */
 const faqs = [
-  { q: "Can all wall stains be removed?", a: "Some come off, some only lighten. The furnace-dust film, cooking film, handprints and scuffs wash off. Nicotine lightens and rarely leaves altogether. Ink, crayon and a mark that has sat on flat paint for years often leave a ghost, because the pigment has gone into the paint. The team looks at the finish before it starts and tells you which kind you have." },
-  { q: "Do you clean all types of painted walls?", a: "Painted drywall, yes, and the finish decides the method. Satin and semi-gloss take a proper wash. A flat or matte finish polishes to a shine wherever it is rubbed hard, so a mark on one of those is worked gently and left faint. Wallpaper, bare drywall and unpainted wood are not washed at all." },
+  { q: "Can all wall stains be removed?", a: "No. Surface film and marks may lighten or come off, but stains held in paint or drywall can remain. Results depend on the mark, finish and condition. The team assesses the walls before washing; wall cleaning does not include repainting or repairs." },
+  { q: "Do you clean all types of painted walls?", a: "Not every finish is suitable. The team assesses painted walls first, and delicate, damaged or flat finishes may need limited treatment or may not be washable. Wallpaper, bare drywall and unpainted wood are not washed. Tell us about the finish and any care instructions before booking." },
   { q: "Do you remove mould from walls?", a: "Light surface mildew on a painted wall, yes — the spots that come up in a bathroom after a winter of shut windows. Mould that has gone into the drywall or behind it, no. Washing the face of that hides it and fixes nothing, so if the crew finds it they stop, tell you, and leave it for a remediation contractor." },
   { q: "Do I need to move furniture?", a: "Only what you want the wall behind. The crew washes as far as it can reach without dragging furniture about, and it does not move anything over 25 pounds. Pictures, mirrors and shelves are worth taking down the night before: the wall under them is the cleanest part of the room, and the outline shows once the rest is washed." },
   { q: "Do you offer wall cleaning for rentals or move-outs?", a: `Yes. Wall washing is an add-on on the move-out booking form, and it takes in the band of salt and grit beside an Edmonton entry. Book spot cleaning for the marks, from ${formatPrice(addOnFromPrice("standard", "spot-cleaning-inside-walls") ?? 0)}, or the full wash for every wall in the rooms you choose, from ${formatPrice(addOnFromPrice("standard", "complete-inside-wall-washing") ?? 0)}, by home size and before GST.` },
@@ -196,7 +196,7 @@ const PET_LINE = PET_FEE === null ? "a pet charge" : `${formatPrice(PET_FEE)} a 
 const TRAVEL_LINE = formatPrice(travelFee("standard") ?? 0);
 const PROOF = CITY_PROOF.edmonton;
 
-const PAGE_TITLE = `Wall Washing & Cleaning Edmonton from ${formatPrice(WALL_FROM)} | Duty Cleaners`;
+const PAGE_TITLE = "Wall Washing Add-On Edmonton | Duty Cleaners";
 const META_DESCRIPTION = `Wall washing in Edmonton from ${formatPrice(WALL_FROM)} before GST, by home size: handprints and cooking film off painted walls, with a standard or move-out clean.`;
 
 export default function WallWashingEdmonton() {
@@ -310,7 +310,7 @@ export default function WallWashingEdmonton() {
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="text-center mb-12 max-w-3xl mx-auto">
-              <span className="text-accent font-semibold text-sm uppercase tracking-wider">What comes off</span>
+              <span className="text-accent font-semibold text-sm uppercase tracking-wider">What we assess</span>
               <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">
                 What wall cleaning takes off an Edmonton wall
               </h2>

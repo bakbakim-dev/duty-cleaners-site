@@ -1,3 +1,4 @@
+import { WALL_WASHING_DESCRIPTION } from "@/data/service-copy";
 import { sitePriceRange } from "@/data/pricing";
 import { getListing } from "@/lib/google-listings";
 import {
@@ -64,7 +65,7 @@ const services = [
   { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: baseboards, doors, light switches, wall outlets and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Inglewood, Calgary" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Inglewood, Calgary" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "After a renovation, dust and debris are cleared at a price set by the home's square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Inglewood, Calgary" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Inglewood, Calgary" },
+  { icon: PaintRoller, title: "Wall Washing", description: WALL_WASHING_DESCRIPTION, to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Inglewood, Calgary" },
 ];
 
 const whyUsItems = [

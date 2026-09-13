@@ -56,7 +56,7 @@ export default function CalgaryRegularCleaning() {
           rate holds if the visit runs long, and{" "}
           <Link to="/calgary/pricing/">Calgary house cleaning prices by home size</Link> lists the rest.
         </>,
-        "In Calgary most of that job is dust and grit. Dry air and wind keep fine grit airborne for most of the year, so it lands on sills, shelves and the tops of frames between visits. From November to April the city thaws and refreezes on chinooks, and every thaw carries road sand and de-icer back through the front door on boots, where it settles along the baseboards and into the carpet edges.",
+        "A standard visit covers routine dusting and floor care in the rooms you book. Tell us about tracked-in grit, heavily used rooms or unusual buildup. Baseboards and detailed fixtures belong to the deep-clean package; dust left by renovation work needs a post-construction scope.",
         <>
           The cheaper way to stay ahead of that, in a Beltline condo or a two-storey house in Seton, is the
           same clean on a schedule; <Link to="/calgary/recurring-cleaning/">recurring cleaning in Calgary</Link> lists
@@ -70,10 +70,9 @@ export default function CalgaryRegularCleaning() {
           body: (
             <>
               <p>
-                In Calgary a maid service, a housekeeper visit and a standard clean are one product under three names,
-                and the Calgary office books all three the same way. A team
-                arrives with its own supplies, works from a room-by-room checklist, and leaves the kitchen, bathrooms,
-                bedrooms and floors done. Nobody lives in and nobody runs a meter.
+                If you are looking for a maid service or housekeeping help in Calgary, our standard checklist
+                can be booked once or repeatedly. The team brings supplies and cleans the kitchen, bathrooms,
+                bedrooms and floors. This is a flat-rate cleaning visit, not live-in help; laundry and dishes are excluded.
               </p>
               <p>
                 The price is fixed before the team arrives: {FROM} for a one-bedroom apartment and {THREE_BED} for three
@@ -96,8 +95,8 @@ export default function CalgaryRegularCleaning() {
           body: (
             <>
               <p>
-                Apartments and condos in the Beltline, Mission, Eau Claire and the downtown towers are the simplest job
-                we price: the apartment rate with no home-type charge, {FROM} for one bedroom and {TWO_BED} for two.
+                Apartments and condos in the Beltline, Mission, Eau Claire and the downtown towers use
+                the apartment rate with no home-type charge, {FROM} for one bedroom and {TWO_BED} for two.
               </p>
               <p>
                 Two things are different in a tower. Access: the team has to get past the lobby, so leave a fob with the
@@ -175,8 +174,8 @@ export default function CalgaryRegularCleaning() {
         "Garages, patios and balconies, apart from the balcony or garage sweep add-on, available mostly in summer when the weather allows",
       ]}
       faqs={[
-        { q: "Is a standard clean the same as a maid service in Calgary?", a: "Yes. Whatever you call it, a maid service, a housekeeper or a cleaner, the visit is the same: the kitchen, bathrooms, bedrooms and floors worked through from a checklist at a flat rate set by home size. Nobody lives in and nothing is billed by the hour. If you want the maid back every week or two, book it as recurring cleaning and the discount starts on the second visit." },
-        { q: "Why does my Calgary home get dusty so quickly?", a: "Dry air and wind keep fine grit airborne in Calgary for most of the year, and from November to April road sand comes in on boots each time a chinook melts the streets. It is not something you are doing wrong; a standard clean takes it back off the floors, sills and entryway in one visit." },
+        { q: "Is a standard clean the same as a maid service in Calgary?", a: "For routine cleaning help, our standard checklist can be booked once or repeatedly at a flat rate by home size. It covers kitchens, bathrooms, bedrooms and floors, not live-in housekeeping, laundry or dishes. Choose recurring cleaning for a regular schedule; discounts start on the second visit." },
+        { q: "Can a standard clean help with dust and tracked-in grit?", a: "Yes, routine dusting, vacuuming and mopping are on the standard checklist. Tell us about unusual buildup before booking. Baseboards are part of the deep-clean package, renovation dust needs a post-construction scope, and carpet steam cleaning is not offered." },
         { q: "What does a Calgary standard clean do in the kitchen?", a: "Counters, the sink and the stovetop are cleaned, the microwave is done inside and out, the outside of the fridge, oven and dishwasher and the cabinet fronts are wiped, and the floor is vacuumed and mopped. The inside of the oven and fridge are separate add-ons." },
         { q: "When is a deep clean the better choice?", a: "A deep clean is the better choice once the grit has already worked in. A standard clean resets a Calgary home that is basically kept up. If the baseboards, door frames, switch plates, vents and the range hood have not been touched in months, book the deep clean first and keep it up with standard visits after that." },
         { q: "Is the price by the hour?", a: "No. The rate is fixed by home size before the team arrives, and it stays fixed if the visit takes longer than expected. The team works to the checklist, not to a clock, and leaves when the checklist is done." },

@@ -290,6 +290,10 @@ export default function Prepare() {
             <div className="container mx-auto px-4">
               <div className="mx-auto max-w-3xl">
                 <h2 className="display-serif display-2 text-foreground">Common questions</h2>
+                <p className="mt-5 text-muted-foreground">
+                  For upkeep after your visit, see our <Link to="/blog/spotless-home-tips/" className="text-primary underline">between-clean maintenance tips</Link>.
+                  Planning your own tasks? Use the <Link to="/blog/cleaning-schedule/" className="text-primary underline">DIY cleaning schedule</Link>.
+                </p>
                 <dl className="mt-8 space-y-7">
                   {faqs.map((faq) => (
                     <div key={faq.question}>

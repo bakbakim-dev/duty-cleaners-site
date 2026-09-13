@@ -239,10 +239,10 @@ export default function CalgaryPostConstruction() {
       <LocalMarketNote
         accent="calgary"
         eyebrow="Calgary builds"
-        heading="Where the post-construction work in Calgary actually is"
+        heading="When to schedule your Calgary post-construction clean"
         paragraphs={[
-          "Houses in newer suburbs such as Mahogany, Seton and Livingston carry construction dust. Where the lots around a finished home are still being built, drywall dust from the lot next door keeps arriving after your own build is done, which is why a final clean too early gets undone and why we would rather come after the last trade than before.",
-          "Calgary's freeze-thaw cycle makes the timing harder than it is elsewhere. Calgary thaws and refreezes on chinooks all winter, so sand and de-icer arrive at the door again and again from November to April. That grit ends up ground into new flooring and pushed into the corners of window channels, and it has to be lifted before anything wet touches it, or it just spreads.",
+          "Whether the work is a renovation or a new home in Mahogany, Seton or Livingston, describe the actual construction cleanup needed. Do not choose the service from the age or neighbourhood of the house alone. Tell the office which trades still need access before agreeing on a final-clean date.",
+          "Confirm safe entry, working utilities and any care instructions for new flooring, fixtures or finishes. If work will continue after the clean, further dust may settle. Repairs, hazardous-material cleanup and duct cleaning are outside this service.",
         ]}
       />
 

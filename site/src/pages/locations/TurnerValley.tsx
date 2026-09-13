@@ -166,11 +166,11 @@ export default function TurnerValley() {
   return (
     <>
       <Helmet>
-        <title>House Cleaning Services in Turner Valley, AB | Duty Cleaners</title>
+        <title>Diamond Valley Cleaning: Turner Valley | Duty Cleaners</title>
         <meta name="description" content="From 1920s cottages to houses finished last year, Turner Valley homes get house cleaning with a mudroom pass for the wet grit chinook thaws bring in." />
-        <meta property="og:title" content="House Cleaning Services in Turner Valley, AB | Duty Cleaners" />
+        <meta property="og:title" content="Diamond Valley Cleaning: Turner Valley | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning Services in Turner Valley, AB | Duty Cleaners" />
+        <meta name="twitter:title" content="Diamond Valley Cleaning: Turner Valley | Duty Cleaners" />
         <meta name="twitter:description" content="From 1920s cottages to houses finished last year, Turner Valley homes get house cleaning with a mudroom pass for the wet grit chinook thaws bring in." />
         <meta property="og:description" content="From 1920s cottages to houses finished last year, Turner Valley homes get house cleaning with a mudroom pass for the wet grit chinook thaws bring in." />
         <meta property="og:type" content="website" />
@@ -199,7 +199,7 @@ export default function TurnerValley() {
                   <span className="text-white/90 text-sm font-medium">Serving Turner Valley, Calgary Region</span>
                 </div>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                  Professional House Cleaning in Turner Valley
+                  House Cleaning in Diamond Valley — Turner Valley Area
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
                   Turner Valley has been part of the Town of Diamond Valley since 1 January 2023, and one street here can hold a 1920s worker's cottage and a house finished last year. Our Calgary branch cleans both at flat rates by home size, plus a travel fee because the town is outside Calgary city limits.

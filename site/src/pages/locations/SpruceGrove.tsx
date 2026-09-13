@@ -33,7 +33,7 @@ const HOME_TYPE = {
   twoStorey: formatPrice(BK_PRICE_OVERRIDES[90].price),
 };
 const EDMONTON_LISTING = GOOGLE_LISTINGS.edmonton;
-const PAGE_TITLE = `House Cleaning Spruce Grove from ${STANDARD_FROM} | Duty Cleaners`;
+const PAGE_TITLE = `House Cleaning Spruce Grove | Duty Cleaners`;
 const META_DESCRIPTION = `Spruce Grove house cleaning starts at ${STANDARD_FROM} for a one-bedroom apartment or condo before GST, plus a ${TRAVEL_FEE} travel fee and any pet or home-type charge.`;
 
 // A worked quote run through calculateQuote, the booking funnel's own maths: a

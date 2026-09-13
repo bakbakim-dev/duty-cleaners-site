@@ -27,6 +27,8 @@ import { ArrowRight,
 
 interface LocationPageProps {
   city: string;
+  /** Current municipal label without changing the preserved route or area key. */
+  heroTitle?: string;
   region: "edmonton" | "calgary";
   title: string;
   /** Hero blurb. Prose, so it runs long — NOT the meta description. */
@@ -265,6 +267,7 @@ const whyUsItems = (region: "edmonton" | "calgary") => [
 
 export default function LocationPageTemplate({
   city,
+  heroTitle,
   region,
   title,
   description,
@@ -378,7 +381,7 @@ export default function LocationPageTemplate({
               </span>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-              Professional House Cleaning in {city}
+              {heroTitle ?? `Professional House Cleaning in ${city}`}
             </h1>
             <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
               {description}

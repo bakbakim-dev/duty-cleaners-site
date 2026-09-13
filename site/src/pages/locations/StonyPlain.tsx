@@ -30,7 +30,7 @@ const HOME_TYPE = {
 };
 const EDMONTON_LISTING = GOOGLE_LISTINGS.edmonton;
 
-const PAGE_TITLE = `House Cleaning Stony Plain from ${STANDARD_FROM} | Duty Cleaners`;
+const PAGE_TITLE = `House Cleaning Stony Plain | Duty Cleaners`;
 const PAGE_DESCRIPTION = `Wood, plaster and period tile in Stony Plain get a gentler method, and cleaning is from ${STANDARD_FROM} before GST for a one-bedroom condo plus a ${TRAVEL_FEE} travel fee.`;
 
 // A worked move-out quote run through calculateQuote, the booking funnel's own

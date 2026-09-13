@@ -19,7 +19,7 @@ const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
 const POST_CONSTRUCTION_TRAVEL_FEE = formatPrice(travelFee("post-construction") ?? 0);
 
 const FAQ_DESCRIPTION =
-  "Answers about house cleaning in Edmonton and Calgary: prices before GST, what each clean includes, access, payment and the 24-hour re-clean.";
+  "Answers about Duty Cleaners in Edmonton, Calgary and Red Deer: prices before GST, cleaning checklists, access, payment and the re-clean guarantee.";
 
 interface FAQCategory {
   title: string;
@@ -368,13 +368,13 @@ export default function FAQ() {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>House Cleaning FAQs – Edmonton & Calgary | Duty Cleaners</title>
+        <title>House Cleaning FAQs | Duty Cleaners Alberta</title>
         <meta name="description" content={FAQ_DESCRIPTION} />
         <meta name="keywords" content="cleaning FAQ, house cleaning questions, Edmonton cleaning, Calgary cleaning, cleaning service hours" />
         <link rel="canonical" href="https://dutycleaners.ca/faqs/" />
-        <meta property="og:title" content="House Cleaning FAQs – Edmonton & Calgary | Duty Cleaners" />
+        <meta property="og:title" content="House Cleaning FAQs | Duty Cleaners Alberta" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="House Cleaning FAQs – Edmonton & Calgary | Duty Cleaners" />
+        <meta name="twitter:title" content="House Cleaning FAQs | Duty Cleaners Alberta" />
         <meta name="twitter:description" content={FAQ_DESCRIPTION} />
         <meta property="og:description" content={FAQ_DESCRIPTION} />
         <meta property="og:url" content="https://dutycleaners.ca/faqs/" />
@@ -406,11 +406,11 @@ export default function FAQ() {
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-              House Cleaning FAQs for Edmonton and Calgary
+              House Cleaning FAQs for Edmonton, Calgary and Red Deer
             </h1>
             <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
               Prices, what each clean includes, access, payment and the 24-hour re-clean
-              guarantee, answered for both cities.
+              guarantee, answered for all three branches.
             </p>
 
             {/* Quick Contact */}

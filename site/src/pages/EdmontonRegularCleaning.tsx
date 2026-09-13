@@ -102,9 +102,9 @@ export default function EdmontonRegularCleaning() {
           body: (
             <>
               <p>
-                Maid service, housekeeping and standard cleaning are one service at Duty Cleaners. A cleaner or a team
-                comes to the house, works through the kitchen, bathrooms, bedrooms and living areas from a checklist, and
-                leaves. Nobody lives in, and the visit is not billed by the hour. The price is flat by home size, {FROM} for a
+                Looking for a maid service or help with housekeeping? Our standard clean covers the kitchen,
+                bathrooms, bedrooms and living areas from a checklist, once or on a recurring schedule.
+                It is not live-in help and does not include laundry or dishes. The price is flat by home size, {FROM} for a
                 one-bedroom and {THREE_BED} for a three-bedroom apartment or condo before GST, and it does not move if the
                 visit runs long.
               </p>
@@ -161,11 +161,9 @@ export default function EdmontonRegularCleaning() {
           body: (
             <>
               <p>
-                In a house, the Edmonton winter decides where a standard clean spends its time. The city holds its cold
-                rather than thawing and refreezing, so the sand and salt tracked in from November arrive dry and stay,
-                working into carpet edges and along the baseboards nearest the door. The spring melt, in late March and
-                April, brings a whole winter of grit indoors in about three weeks, through the front hall and up the
-                stairs.
+                Tell us about entryway grit or rooms needing extra attention. Standard cleaning includes routine
+                vacuuming and mopping; baseboards belong to the deep-clean package. Carpet steam cleaning and
+                restoration of damaged floors are not included.
               </p>
               <p>
                 Inside Edmonton city limits there is no travel fee. St. Albert, Sherwood Park and Spruce Grove sit outside
@@ -232,7 +230,7 @@ export default function EdmontonRegularCleaning() {
         "Carpet steam cleaning and upholstery",
       ]}
       faqs={[
-        { q: "Is this the same as a maid service?", a: "Yes. Maid service, housekeeping and standard cleaning all describe the same visit here: a checklist clean of the kitchen, bathrooms, bedrooms and living areas at a flat rate by home size. We do not place live-in or hourly maids. If you want the visit repeated, book it as recurring cleaning and the discount applies from the second visit." },
+        { q: "Is this the same as a maid service?", a: "If you mean routine cleaning help, our standard checklist can be booked once or on a recurring schedule. It covers kitchens, bathrooms, bedrooms and living areas at a flat rate by home size. It is not live-in housekeeping and does not include laundry or dishes. Recurring discounts apply from the second visit." },
         { q: "What does a standard clean cost in Edmonton, all in?", a: `A standard clean is ${FROM} for a one-bedroom apartment or condo and ${THREE_BED} for a three-bedroom, before 5% GST. A bungalow or basement suite, a townhouse or a two-storey house adds a home-type charge to that figure${PET_FEE !== null ? `, and a home with pets adds ${formatPrice(PET_FEE)} per visit, which is compulsory` : ""}. Inside Edmonton city limits there is no travel fee; outside them it is ${TRAVEL}. The quote lists each of these before you book, and nothing is charged until the clean is complete.` },
         { q: "Does standard cleaning include cleaning the kitchen?", a: "Yes. The team wipes the counters and the cupboard fronts, cleans the sink and the stovetop, does the microwave inside and out, wipes the fridge, oven and dishwasher on the outside, then vacuums and mops the floor. The oven and fridge interiors are add-ons, and the grease on the range hood is deep-clean work." },
         { q: "What's the difference between standard and deep cleaning?", a: `A standard clean keeps up a home that is lived in and looked after: dusting, vacuuming, mopping, and the kitchen and bathrooms cleaned. A deep clean is the same checklist plus the deep-clean package, which adds baseboards, doors and door frames, light switches, outlet covers, vents, and the grease on the stovetop and range hood. It starts at ${DEEP_FROM} for a one-bedroom apartment or condo, before GST and before any home-type or pet charge, and it is the better first booking for a home that has gone a long while without a clean.` },

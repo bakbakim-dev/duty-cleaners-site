@@ -11,7 +11,7 @@ import { COMPANY, CITY_PROOF, RATING_CLAIM } from "@/data/proof";
 import { flatRateFromPrice, formatPrice } from "@/data/pricing";
 
 import { modifiedFor } from "@/data/post-dates";
-import heroImage from "@/assets/hero-calgary-skyline.webp";
+import heroImage from "@/assets/hero-room-calgary-960w.webp";
 import teamImage from "@/assets/calgary-cleaning-team.webp";
 
 /**
@@ -124,10 +124,6 @@ export default function BlogChoosingCalgaryCleaner() {
                   <Calendar className="h-4 w-4" />
                   August 24, 2026
                 </span>
-                <span className="flex items-center gap-1">
-                  <Clock className="h-4 w-4" />
-                  4 min read
-                </span>
               </div>
 
               <h1 className="text-3xl md:text-5xl font-bold mb-6 text-foreground leading-tight">What to Check Before Hiring a Cleaner in Calgary</h1>
@@ -139,7 +135,7 @@ export default function BlogChoosingCalgaryCleaner() {
                   width={1600}
                   height={900}
                   src={heroImage}
-                  alt="The Calgary skyline"
+                  alt="Illustrative bright living room with a sofa, armchairs and clean floors"
                   className="w-full h-full object-cover"
                  loading="eager" fetchPriority="high"/>
               </div>

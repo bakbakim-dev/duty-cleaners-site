@@ -220,10 +220,10 @@ export default function CommercialCleaning() {
 
         <LocalMarketNote
           eyebrow="Edmonton commercial"
-          heading="The Edmonton buildings we spend most of our time in"
+          heading="Planning cleaning for your Edmonton premises"
           paragraphs={[
-            "Edmonton is the seat of provincial government, and that shapes the commercial cleaning market more than anything else does. A large share of the office, health and post-secondary space here answers to a procurement process rather than a single owner, which means documented scope, named products, and a contact who can sign off on what was done. We write scope in that form as a matter of course, because it is what most of our Edmonton clients have to file anyway.",
-            "Downtown work clusters around the Ice District and the office stock along Jasper and 104th, where evening service after the building empties is the norm — the reverse of the early-morning pattern that dominates in Calgary. That has knock-on effects: parking, loading access and building security all have to be arranged for after hours, and a team that finishes at eleven needs a key or fob arrangement that a property manager has actually approved.",
+            "If your Edmonton premises use a procurement process, send the requirements before requesting a quote. Include the rooms, surfaces, proposed frequency and any product, documentation or security requirements. We confirm the agreed scope in writing; do not assume that a general office clean meets a specialist contract.",
+            "For a downtown building near the Ice District or Jasper Avenue, tell us the approved cleaning hours, parking and loading arrangements, and who authorizes key or fob access. Early or late service must be arranged for your building rather than assumed from its location.",
             "The rest of the volume sits away from the core — clinics and retail in the south around Windermere and Terwillegar, and warehouse and light-industrial space out in the northwest and toward Nisku. Those buildings have long floor runs, dock-level grit, and in the medical ones, the clinic's own product and waste-handling requirements, which a general office scope does not cover. They are scoped by phone and at a walkthrough, on their own terms rather than at an office rate.",
           ]}
         />

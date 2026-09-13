@@ -75,7 +75,7 @@ const RecentActivityStrip = ({ city, reviews }: RecentActivityStripProps) => {
       className={`marquee-hover-pause relative overflow-hidden border-y border-border bg-white py-3${
         paused ? " marquee-paused" : ""
       }`}
-      aria-label={`Recent Google reviews from ${city} customers`}
+      aria-label={`Google reviews from ${city} customers`}
     >
       <button
         type="button"

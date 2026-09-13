@@ -13,16 +13,16 @@ import { Helmet } from "react-helmet-async";
 export default function AboutUs() {
   return <div className="min-h-screen">
       <Helmet>
-        <title>About Duty Cleaners | Edmonton & Calgary House Cleaning</title>
-        <meta name="description" content="Duty Cleaners has cleaned homes since 2017 from offices in Edmonton, Calgary and Red Deer, with reference-checked, customer-rated cleaners." />
+        <title>About Duty Cleaners | Cleaning Alberta Homes Since 2017</title>
+        <meta name="description" content="Cleaning Alberta homes since 2017. Duty Cleaners now serves Edmonton, Calgary and Red Deer with reference-checked, customer-rated cleaners." />
         <link rel="canonical" href="https://dutycleaners.ca/about-us/" />
-        <meta property="og:title" content="About Duty Cleaners | Edmonton & Calgary House Cleaning" />
-        <meta property="og:description" content="Duty Cleaners has cleaned homes since 2017 from offices in Edmonton, Calgary and Red Deer, with reference-checked, customer-rated cleaners." />
+        <meta property="og:title" content="About Duty Cleaners | Cleaning Alberta Homes Since 2017" />
+        <meta property="og:description" content="Cleaning Alberta homes since 2017. Duty Cleaners now serves Edmonton, Calgary and Red Deer with reference-checked, customer-rated cleaners." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/about-us/" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="About Duty Cleaners | Edmonton & Calgary House Cleaning" />
-        <meta name="twitter:description" content="Duty Cleaners has cleaned homes since 2017 from offices in Edmonton, Calgary and Red Deer, with reference-checked, customer-rated cleaners." />
+        <meta name="twitter:title" content="About Duty Cleaners | Cleaning Alberta Homes Since 2017" />
+        <meta name="twitter:description" content="Cleaning Alberta homes since 2017. Duty Cleaners now serves Edmonton, Calgary and Red Deer with reference-checked, customer-rated cleaners." />
       </Helmet>
       <Navigation />
       <main id="main-content" tabIndex={-1}>
@@ -71,13 +71,14 @@ export default function AboutUs() {
                 sending.
               </p>
               <p>
-                The company runs out of three offices, in Edmonton, Calgary and Red Deer, which have
-                taken {BOOKINGS} bookings between them.
+                Duty Cleaners has handled {BOOKINGS} Alberta bookings since 2017.
+                Today, the company serves customers from three offices: Edmonton, Calgary and Red Deer.
               </p>
               <p>
                 If something gets missed, tell us within {POLICY.guaranteeWindowHours} hours and we come
-                back and re-clean it at no charge. That is the whole of the guarantee, and it is the
-                same one whichever page you read it on.
+                back and re-clean the missed checklist items at no charge. See our{" "}
+                <Link to="/satisfaction-guarantee/" className="text-primary underline">re-clean guarantee</Link>{" "}
+                for how to report an issue and what is covered.
               </p>
             </div>
           </div>
@@ -95,7 +96,7 @@ export default function AboutUs() {
             <div className="absolute left-[7px] top-2 bottom-2 w-0.5 bg-brand-gold/40 md:left-0 md:right-0 md:top-[7px] md:bottom-auto md:h-0.5 md:w-auto" aria-hidden="true" />
             <div className="grid gap-10 md:grid-cols-5 md:gap-6">
               {[
-                { title: "Since 2017", text: "Duty Cleaners has cleaned homes in Alberta since 2017, from an Edmonton branch and a Calgary branch." },
+                { title: "Since 2017", text: "Duty Cleaners has cleaned homes in Alberta since 2017. Today, we serve customers from offices in Edmonton, Calgary and Red Deer." },
                 { title: "Edmonton office", text: `The Edmonton office is at ${CITY_PROOF.edmonton.streetAddress} and answers on ${CITY_PROOF.edmonton.phone}. It covers ${edmontonNeighborhoods.length} Edmonton neighbourhoods and ${edmontonSurrounding.length} communities outside the city, including St. Albert, Sherwood Park and Spruce Grove.` },
                 { title: "Calgary office", text: `The Calgary office is at ${CITY_PROOF.calgary.streetAddress} and answers on ${CITY_PROOF.calgary.phone}. It covers ${calgaryNeighborhoods.length} Calgary neighbourhoods and ${calgarySurrounding.length} communities outside the city, including Airdrie, Cochrane and Okotoks.` },
                 // Red Deer (owner, 2026-09-11): its own office and Google listing. No

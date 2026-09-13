@@ -19,39 +19,39 @@ import laundryImage from "@/assets/blog/laundry-natural-cleaning.webp";
 const whatToClean = [
   {
     title: "Kitchen Sink",
-    description: "A sink that looks clean still holds a film around the drain and the overflow. Sprinkle baking soda on the surface, scrub, and rinse it off. Soak paper towels in distilled white vinegar and let them line the sink for 20 minutes before wiping the sink down."
+    description: "Identify the sink material and coating first. Use the manufacturer's recommended cleaner and a compatible cloth. Vinegar and abrasive powders are not suitable for every sink, so do not apply a generic soaking recipe to an unknown finish."
   },
   {
     title: "Clogged Drains and Garbage Disposals",
-    description: "To clear a slow drain, pour in baking soda and then 2 cups of white vinegar. The fizzing helps lift grime, grease and dirt. Wait until the bubbling stops, then flush the drain with hot water. For a garbage disposal, pour in half a cup of baking soda and leave it for 10 minutes to deodorise, then pour in vinegar and let the mixture bubble."
+    description: "Do not rely on a fizzing mixture to clear a blockage, and never add it to a drain containing another cleaner. Follow the disposal's maintenance instructions. If a drain stays slow or blocked, stop adding products and seek appropriate plumbing help. Drain clearing is not a Duty Cleaners service."
   },
   {
     title: "Faucets",
-    description: "Wrap the tap in a paper towel soaked in white vinegar and leave it 15 minutes to soften the scale. Peel the towel away, then scrub with a paste of baking soda and a little water, rinse, and buff dry with a cloth. Use the two one after the other rather than mixed together."
+    description: "Follow the care guide for the exact faucet finish. Some manufacturers permit a diluted vinegar solution briefly on certain finishes and prohibit harsh or abrasive cleaners on others. Do not wrap an unknown finish in vinegar or scrub it with baking soda."
   },
   {
     title: "Refrigerator",
-    description: "The fridge can be cleaned with baking soda and vinegar separately. Fill a spray bottle with equal parts vinegar and water to wipe down your surfaces in the refrigerator. Mix baking soda with hot water and wipe it onto the fridge's interior. Leave it for a few minutes, then rinse it cleanly."
+    description: "Use your refrigerator's care instructions for liners, shelves and seals. Remove food before cleaning and follow the specified washing, rinsing and drying steps. Do not assume vinegar or an abrasive paste is approved for every internal surface."
   },
   {
     title: "Bathroom Surfaces",
-    description: "Sprinkle baking soda over the tub and tiles, scrub with a damp nylon-backed sponge, and rinse. Then spray the glass and chrome with half white vinegar, half water and wipe dry. Do the two steps one after the other: in the same bottle they cancel out and you are spraying salty water."
+    description: "Check whether the tub, tile, grout and shower glass have coatings or special care requirements. Choose a compatible product and follow its label; an acid or abrasive can damage an unsuitable surface. Never mix bathroom cleaners."
   },
   {
     title: "Showerheads",
-    description: "If your showerhead is clogged with minerals, vinegar can help clear it. Mix 1 cup of vinegar into a litre of water. Let the showerhead soak in the mixture for 15 minutes. Afterwards, rinse it off before replacing the showerhead."
+    description: "Consult the showerhead manufacturer's descaling instructions. The finish and internal parts determine whether vinegar is permitted and, if so, the dilution and contact time. Do not substitute a general soaking time for those instructions."
   },
   {
     title: "Toilet Bowl",
-    description: "Add equal parts baking soda and hydrogen peroxide. Use a toilet brush to rub the mixture around the bowl. Leave the solution for at least 15 minutes, then scrub and rinse the bowl."
+    description: "Use a toilet-cleaning product approved for your fixture and follow the label. Do not add vinegar, hydrogen peroxide or another product to a bowl that contains cleaner, including an in-tank cleaning product. This guide does not recommend homemade mixtures."
   },
   {
     title: "Carpet Stains",
-    description: "Combine two tablespoons of salt with four tablespoons of white vinegar and lightly rub into carpet stains. Wait to vacuum until the solution has dried."
+    description: "Follow the carpet manufacturer's stain guide for the fibre and stain involved. Test an approved product in a hidden area as directed. A generic vinegar recipe can affect dyes or backing, and cleaning does not guarantee removal of a stain."
   },
   {
-    title: "Laundry Detergent Booster",
-    description: "Add half a cup of baking soda to the drum with your clothes before the wash cycle, then add vinegar to the rinse cycle. Baking soda gives the detergent a boost, and vinegar in the rinse helps with odours and leaves the fabric softer. Never add vinegar to a load that has bleach in it."
+    title: "Laundry and Washing Machines",
+    description: "Use the detergent and maintenance products specified for your machine, and follow garment care labels. Do not routinely add vinegar as a softener or washer cleaner: some manufacturers warn that its acidity can damage seals and hoses. Never combine it with bleach."
   }
 ];
 
@@ -139,10 +139,6 @@ export default function BlogVinegarBakingSoda() {
                   <Calendar className="h-4 w-4" />
                   January 25, 2026
                 </span>
-                <span className="flex items-center gap-1">
-                  <Clock className="h-4 w-4" />
-                  15 min read
-                </span>
               </div>
 
               <h1 className="text-3xl md:text-5xl font-bold mb-6 text-foreground leading-tight">
@@ -179,7 +175,7 @@ export default function BlogVinegarBakingSoda() {
                     "skilled", which objects cannot be. The rest of the article is
                     recent and accurate; only the intro had been left behind.
                   */}
-                  Most cleaning aisles are built around strong, single-purpose products, and plenty of homes have good reasons to want fewer of them around — young children, pets, sensitive skin, or a bathroom with no window and nowhere for fumes to go.
+                  Vinegar and baking soda are inexpensive household ingredients, but natural does not mean harmless or suitable for every surface. Keep cleaning supplies away from children and pets, follow labels and provide the ventilation the instructions require.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed mt-4">
                   <strong>Vinegar and baking soda</strong> cover a lot of that ground between them, and both are cheap enough to be worth trying. What follows is where each one works, where it does not, and what happens when you combine them, which is the part many guides get wrong.
@@ -241,16 +237,16 @@ export default function BlogVinegarBakingSoda() {
                 </div>
 
                 <p className="text-muted-foreground mb-6">
-                  If you do combine them, the mixture keeps some cleaning power only while it stays either acidic or basic, so <strong>do not use equal parts of baking soda and vinegar</strong>.
+                  Choose a cleaning method approved for the surface. <strong>Do not improvise mixtures or store vinegar and baking soda together in a sealed container.</strong>
                 </p>
 
                 <div className="p-6 bg-accent/20 rounded-xl border border-accent/30 mb-6">
                   <div className="flex items-start gap-3">
                     <AlertTriangle className="h-6 w-6 text-accent-foreground flex-shrink-0 mt-0.5" />
                     <div>
-                      <h3 className="font-bold text-foreground mb-2">Pro Tip: Use It While It's Still Fizzing</h3>
+                      <h3 className="font-bold text-foreground mb-2">Fizzing is not proof of a better clean</h3>
                       <p className="text-muted-foreground text-sm">
-                        If you do combine them, use the mixture straight away. The carbon dioxide bubbles do the useful work by lifting loose debris, so the mixture is at its most helpful while it is still fizzing. Once it stops, the acid and base have neutralised each other and what remains is close to plain water. That is the whole reason we suggest using them one after the other rather than pre-mixed.
+                        Bubbles show that a reaction is occurring, not that a surface is disinfected or a drain is cleared. Use an appropriate product as directed instead of treating the reaction as a cleaning-performance test.
                       </p>
                     </div>
                   </div>
@@ -268,7 +264,7 @@ export default function BlogVinegarBakingSoda() {
                       <h4 className="font-bold text-foreground mb-2">Never mix these, whatever you read online</h4>
                       <ul className="text-muted-foreground text-sm list-disc pl-5 space-y-1.5">
                         <li>
-                          <strong>Vinegar and hydrogen peroxide.</strong> Combining them makes peracetic acid, which can irritate skin, eyes and airways. Use one, rinse the surface thoroughly, then use the other — never in the same container.
+                          <strong>Vinegar and hydrogen peroxide.</strong> Combining them can form irritating peracetic acid. Do not mix them or improvise a sequence of different cleaners.
                         </li>
                         <li>
                           <strong>Vinegar and bleach.</strong> This <a href="https://tc.canada.ca/en/dangerous-goods/canutec/articles/improper-mixing-common-household-cleaning-products" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">releases chlorine gas</a>. This combination is genuinely dangerous, not merely ineffective.
@@ -278,7 +274,7 @@ export default function BlogVinegarBakingSoda() {
                         </li>
                       </ul>
                       <p className="text-muted-foreground text-sm mt-3">
-                        Whenever you switch products, rinse the surface with water first, and open a window. If you ever notice a sharp smell or start coughing, leave the room and let it air out.
+                        Follow <a href="https://www.canada.ca/en/health-canada/services/home-safety/household-chemical-safety.html" target="_blank" rel="noopener noreferrer" className="text-primary underline">Health Canada's household chemical safety guidance</a> and the product label. If you suspect harmful exposure, move away from the source and contact your poison centre or emergency services as appropriate; do not stay in the room to troubleshoot.
                       </p>
                     </div>
                   </div>
@@ -288,11 +284,11 @@ export default function BlogVinegarBakingSoda() {
               {/* What to Clean */}
               <div className="mb-16">
                 <h2 className="text-2xl md:text-3xl font-bold mb-6 text-foreground">
-                  What to Clean with Vinegar and Baking Soda
+                  Where to Check Before Using Vinegar or Baking Soda
                 </h2>
 
                 <p className="text-muted-foreground mb-6">
-                  Both baking soda and vinegar are versatile in the many areas and surfaces they can clean. However, it's important to remember that the same combination of ingredients might only work for some things. You may need to create different mixtures for different surfaces.
+                  These are compatibility checks, not universal recipes. See the <a href="https://solutions.moen.com/Article_Library/Faucet_Finish_Care_and_Cleaning" target="_blank" rel="noopener noreferrer" className="text-primary underline">Moen finish-care guide</a> for an example of finish-specific directions and <a href="https://www.whirlpool.com/blog/washers-and-dryers/should-you-clean-washing-machine-with-vinegar.html" target="_blank" rel="noopener noreferrer" className="text-primary underline">Whirlpool's vinegar guidance</a> for appliance limitations. Use the guide for your own make and model.
                 </p>
 
                 <div className="space-y-4">

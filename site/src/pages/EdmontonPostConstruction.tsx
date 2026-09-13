@@ -251,10 +251,10 @@ export default function EdmontonPostConstruction() {
 
       <LocalMarketNote
         eyebrow="Edmonton builds"
-        heading="Where the post-construction work in Edmonton actually is"
+        heading="When to schedule your Edmonton post-construction clean"
         paragraphs={[
-          "In a community still being built, the lots around a finished home keep producing dust long after that home is done, so a final clean scheduled before the neighbouring builds are closed in gets partly undone. We would rather come after the last trade has left than be the reason you clean twice.",
-          "Furnace season runs from October into April, and a house sealed up that long cycles dust faster. In a winter-finished Edmonton home the drywall dust settles into the tops of door frames and closet shelves.",
+          "Arrange the final clean after your own trades have finished the work that creates dust. If work will continue on site, tell the Edmonton office what remains and when it is scheduled so you can agree on a suitable cleaning date.",
+          "Describe the renovation, the affected rooms and any delicate new finishes. Confirm that utilities and safe access are available. A post-construction clean does not replace trade repairs, hazardous-material cleanup or duct cleaning.",
         ]}
       />
 

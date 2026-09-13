@@ -108,7 +108,7 @@ const includedItems = [
   { icon: Sparkles, title: "Marks first", description: "Scuffs, handprints and the odd crayon line are worked one at a time before the wash, so the wash does not spread them." },
   { icon: Wind, title: "Corners and the ceiling line", description: "The furnace halo along the ceiling line is cleared before the wall is washed, or it ends up back on the wall." },
   { icon: Droplets, title: "Hard-water haze", description: "Describe mineral marks around the shower and taps before booking. The team checks the surface and paint finish; washing is not a promise that all marks will lift." },
-  { icon: Cloud, title: "Smoke and cooking film", description: "Cooking film comes off the wall. Smoke film fades with washing, and a smell held in the drywall may stay; we say that plainly if you ask before booking." },
+  { icon: Cloud, title: "Smoke and cooking film", description: "Washing may reduce surface cooking and smoke film. Stains and odours held in paint or drywall may remain; tell us about them before booking so we can discuss the limits." },
   { icon: Shield, title: "Light mildew on bathroom walls", description: "Light surface mildew on a painted bathroom wall is wiped where it is safe to do so. Mould inside the drywall needs remediation, which the team does not do." },
 ];
 
@@ -130,8 +130,8 @@ const whyUs = [
 
 const faqs = [
   { q: "What does wall washing cost in Calgary?", a: `Spot cleaning is ${formatPrice(addOnFromPrice("standard", "spot-cleaning-inside-walls") ?? 0)} to ${formatPrice(addOnMaxPrice("standard", "spot-cleaning-inside-walls") ?? 0)} and the full wash ${formatPrice(addOnFromPrice("standard", "complete-inside-wall-washing") ?? 0)} to ${formatPrice(addOnMaxPrice("standard", "complete-inside-wall-washing") ?? 0)}, set by home size and before 5% GST. Either one is added to a standard, deep or move-out clean, and that clean is priced on its own, from ${standardTierRows()[0]?.price ?? ""} for a one-bedroom apartment or condo. The clean can also carry the ${formatPrice(addOnFromPrice("standard", "must-choose-if-you-have-pets") ?? 0)} pet charge, a home-type charge for a bungalow, basement suite, townhouse or two-storey house, and a ${formatPrice(travelFee("standard") ?? 0)} travel fee outside Calgary city limits. Every one of those lines is on the quote before you book.` },
-  { q: "Can all wall stains be removed?", a: "No, and we will not tell you otherwise on the phone. Handprints, scuffs, the dust film and cooking grease come off. Nicotine fades but rarely disappears. A mark that has been on a matte wall for years may leave a shadow where the paint has taken the stain in. The team checks the paint when it arrives and tells you which kind you have." },
-  { q: "Do you clean all types of painted walls?", a: "Most of them. Eggshell, satin and semi-gloss take a proper wash. Flat and matte paint burnishes if it is rubbed, so those rooms get a lighter spot-clean and we say which rooms that was." },
+  { q: "Can all wall stains be removed?", a: "No. Handprints, scuffs and surface film may lighten or come off, but stains and odours held in paint or drywall can remain. The result depends on the finish and condition. We assess the walls first and explain the limits; the add-on does not include painting or repairs." },
+  { q: "Do you clean all types of painted walls?", a: "Not every finish is suitable. We assess the paint first; flat, fragile or damaged finishes may need limited treatment or may not be washable. Tell us about the finish and any care instructions before you book." },
   { q: "Do you remove mould from walls?", a: "Light surface mildew on a painted bathroom wall, yes, where it is safe to wipe it. Mould that has grown into the drywall or the wall behind it, no; that is a remediation job, and washing the face of it hides the problem without fixing it. If we find that, we tell you and leave it alone." },
   { q: "Do I need to move furniture?", a: "Move what you can. A wall behind a sofa gets washed to where we can reach without dragging the sofa, and we do not move anything over 25 pounds. Pictures and shelves come down before we arrive if you want the wall behind them done." },
   { q: "Do you offer wall cleaning for rentals or move-outs?", a: `Yes. The wall add-on is on the move-out booking form as well as the standard one, priced by home size from ${formatPrice(addOnFromPrice("standard", "spot-cleaning-inside-walls") ?? 0)} for spot cleaning before GST. Spot cleaning the entry wall and the stairwell, where hands and bags touch the paint, is the lighter choice for a Calgary rental; the full wash suits a repaint or a listing.` },
@@ -180,7 +180,7 @@ const WALL_ROWS = bedroomOptions("standard").map((bedroom) => {
 const STANDARD_FROM = STANDARD_ROWS[0]?.price ?? "";
 const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
 
-const PAGE_TITLE = `Wall Washing & Cleaning Calgary from ${formatPrice(WALL_FROM)} | Duty Cleaners`;
+const PAGE_TITLE = "Wall Washing Add-On Calgary | Duty Cleaners";
 const META_DESCRIPTION = `Wall washing in Calgary from ${formatPrice(WALL_FROM)} before GST, added to a standard, deep or move-out clean: dust film, hard-water haze and cooking film.`;
 
 export default function WallWashingCalgary() {
@@ -284,9 +284,9 @@ export default function WallWashingCalgary() {
         eyebrow="Why Calgary walls"
         heading="What actually ends up on a wall in Calgary"
         paragraphs={[
-          "Dry air and wind keep fine grit airborne in Calgary for most of the year, so it circulates and clings. Walls above baseboards, around vents and behind doors pick up a grey film that a duster moves around rather than removes, because static is holding it there. That film comes off with a wash.",
+          "If walls around vents, baseboards or doorways have a visible film, tell us where it is and what finish is on the wall. Wall washing is an add-on to a cleaning visit, not a repair or repainting service. We assess the finish and marks before deciding what can be washed.",
           "The chinooks add grit of their own: the city thaws and refreezes all winter, so sand and de-icer reach the door again and again from November to April and settle along the baseboards. Above the registers and along the ceiling line, dust shows as a soft dark halo.",
-          "The other Calgary problem is water. Hard Alberta water leaves mineral scale on taps and shower glass. In bathrooms it also leaves a mineral haze on the wall around the shower and behind the sink, and in kitchens it combines with cooking grease into a film on the backsplash surround. Both come off when the wall is washed.",
+          "Kitchen splashes and bathroom marks need different care depending on the painted surface. Some marks may remain, and damaged or fragile paint may not be suitable for washing. Include these details when you request the add-on so the team can set expectations before the visit.",
         ]}
       />
 

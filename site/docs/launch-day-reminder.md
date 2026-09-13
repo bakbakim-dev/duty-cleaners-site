@@ -25,6 +25,11 @@ SiteGround is the chosen production host. `mikaily131.sg-host.com` is the stagin
 
 ## Outstanding integrations and follow-ups
 
+- Run the rendered-content date check (`bun run content-dates`) after the final build and full prerender. Review changes and explicitly approve their revision date, then rebuild/prerender again. Do not stamp all URLs with the launch date. Historical baseline dates remain inherited from the earlier build, not newly verified original publication dates.
+- Confirm Red Deer gift-card redemption eligibility before adding it to gift-card claims. Recover the four unknown legacy article publication dates from WordPress if possible; until then, keep publication dates omitted and use labelled revision dates.
+- Supply consent-cleared team/subcontractor profiles, real job photos and documented case examples. An owner's portrait is not required. Do not substitute invented jobs, certifications or generated people presented as staff.
+- Use fresh query-by-page Search Console data, booking evidence and backlinks before approving any location-page consolidation (including Parkhill/Stanley Park and the Diamond Valley historical areas). Preserve the existing URLs until a specific retirement and redirect is approved.
+- Measure production mobile Core Web Vitals and repeat the key booking journeys after hosting, caching and third-party integrations are active. Local checks do not establish field performance or live availability.
 - Reconcile BookingKoala booking-created/updated/cancelled/completed/charged/declined events with GHL; deduplicate by booking ID and stop quote follow-up after booking. Confirm the exact supported triggers before setup. Avoid duplicate customer reminders or counting automatic recurring bookings as new acquisitions.
 - Correct Edmonton Yelp address/duplicate issues and claim Calgary before reconsidering those links. Review Red Deer's business category and start requesting genuine customer reviews through the business's normal process.
 - Replace generated people images with permission-cleared photographs of the actual team and jobs; retain the existing real-photo brief.

@@ -217,9 +217,9 @@ export default function CityRecentCleans({ city, reviews, reviewsTo = "/reviews/
     <section className="band band-paper band-hairline">
       <div className="container mx-auto px-4">
         <div className="mb-10 max-w-2xl">
-          <Eyebrow>Fresh From Google</Eyebrow>
+          <Eyebrow>Customer Reviews</Eyebrow>
           <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">
-            Recent Google reviews from <Accent>{city}</Accent>
+            Google reviews from <Accent>{city}</Accent>
           </h2>
           <p className="text-muted-foreground mt-3 max-w-[55ch] leading-relaxed">
             Each review is copied word for word from Google; a long one is cut only at the end of a sentence, marked […].

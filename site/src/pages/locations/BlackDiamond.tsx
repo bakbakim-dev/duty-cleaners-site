@@ -4,8 +4,9 @@ export default function BlackDiamond() {
   return (
     <LocationPageTemplate
       city="Black Diamond"
+      heroTitle="House Cleaning in Diamond Valley — Black Diamond Area"
       region="calgary"
-      title="House Cleaning Services Black Diamond | Duty Cleaners"
+      title="Diamond Valley Cleaning: Black Diamond | Duty Cleaners"
       description="Dust off the surrounding gravel roads is a steady cleaning job in Black Diamond homes: it films window ledges and dulls hard floors all summer. The team damp-wipes sills and door tops, because dry cloths only move it, and gives mudrooms their own pass."
       seoDescription="Black Diamond house cleaning from the Calgary branch: gravel-road dust and chinook grit damp-wiped off sills and door tops."
       localNote={{

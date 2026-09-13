@@ -1,6 +1,6 @@
 /**
  * Publication dates for blog posts — hand-maintained, unlike `post-dates.ts`,
- * which is generated from git and holds `dateModified`.
+ * which is generated from the reviewed content ledger and holds `dateModified`.
  *
  * WHY THIS FILE EXISTS. Four posts kept their WordPress URLs when the site was
  * rebuilt, and their Article schema declared `datePublished` in January 2026.

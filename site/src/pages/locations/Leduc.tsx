@@ -34,7 +34,7 @@ const HOME_TYPE = {
   twoStorey: formatPrice(BK_PRICE_OVERRIDES[90].price),
 };
 const EDMONTON_LISTING = GOOGLE_LISTINGS.edmonton;
-const PAGE_TITLE = `House Cleaning Leduc from ${STANDARD_FROM} | Duty Cleaners`;
+const PAGE_TITLE = `House Cleaning Leduc | Duty Cleaners`;
 const META_DESCRIPTION = `Leduc house cleaning is priced by home size, from ${STANDARD_FROM} before GST for a one-bedroom condo, plus a ${TRAVEL_FEE} travel fee and any pet or home-type charge.`;
 
 // A worked quote run through calculateQuote, the booking funnel's own maths: a

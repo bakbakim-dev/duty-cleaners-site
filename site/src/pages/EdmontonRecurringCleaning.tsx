@@ -107,11 +107,11 @@ export default function EdmontonRecurringCleaning() {
             <>
               <p>
                 There are three schedules and one checklist. Weekly is {pct(WEEKLY?.discount)} off from the second visit
-                and suits a full house: children, a dog, a kitchen that is cooked in every night. Bi-weekly is{" "}
-                {pct(BIWEEKLY?.discount)} off and suits a household that keeps things tidy between visits and wants the
-                cleaning itself done for it. Every 4 weeks is {pct(FOUR_WEEKS?.discount)} off, and it is what many people
-                mean by monthly house cleaning: it fits a condo, or a household of one or two that mostly needs the
-                floors and bathrooms reset.
+                and offers the shortest gap between cleans. Bi-weekly is{" "}
+                {pct(BIWEEKLY?.discount)} off and leaves more upkeep to you between visits.
+                Every 4 weeks is {pct(FOUR_WEEKS?.discount)} off and means fewer paid visits,
+                but more time for dirt to build up. Choose around your rooms' condition,
+                your own cleaning routine and budget, then adjust if the interval is not working.
               </p>
               <p>
                 The tier is every 4 weeks rather than the calendar month because that is how the booking system

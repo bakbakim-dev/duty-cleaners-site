@@ -22,36 +22,18 @@ import choosingCleaningCompanyHero from "@/assets/blog/choosing-cleaning-company
 import heroBlogSupplies from "@/assets/hero-blog-cleaning-supplies.webp";
 import cleaningProductsHero from "@/assets/hero-blog-cleaning-supplies.webp";
 import spotlessHomeTipsHero from "@/assets/blog/family-household.webp";
-import calgaryCleanerHero from "@/assets/hero-calgary-skyline.webp";
+import calgaryCleanerHero from "@/assets/hero-room-calgary-640w.webp";
 
 interface BlogPost {
   id: number;
   title: string;
   excerpt: string;
   category: string;
-  date: string;
-  readTime: string;
   image: string;
   slug?: string;
 }
 
 
-/**
- * "August 24, 2026" -> "2026-08-24".
- *
- * The `date` field on these entries is a display string for the card. Schema
- * requires ISO 8601, and emitting the display form would publish an invalid
- * date rather than no date — which is the worse of the two. Anything that does
- * not parse returns undefined so the property is dropped entirely.
- */
-const MONTHS = ["january","february","march","april","may","june","july","august","september","october","november","december"];
-function isoDate(display: string): string | undefined {
-  const m = /^([A-Za-z]+)\s+(\d{1,2}),\s*(\d{4})$/.exec(display.trim());
-  if (!m) return undefined;
-  const month = MONTHS.indexOf(m[1].toLowerCase());
-  if (month < 0) return undefined;
-  return `${m[3]}-${String(month + 1).padStart(2, "0")}-${m[2].padStart(2, "0")}`;
-}
 
 // Only posts that actually exist are listed. Six entries used to sit here
 // with no `slug`, hotlinked Unsplash images and invented Feb-Mar 2024 dates.
@@ -61,11 +43,9 @@ function isoDate(display: string): string | undefined {
 const blogPosts: BlogPost[] = [
   {
     id: 14,
-    title: "House Cleaning Tips for a Spotless Home",
-    excerpt: "Small, consistent habits beat one big weekend clean. The post covers daily routines, a room-by-room guide and a three-tier schedule that holds up.",
+    title: "House Cleaning Tips: Keep Up Between Cleans",
+    excerpt: "Practical upkeep for tracked-in dirt, clutter, kitchen splashes and bathroom buildup between cleaning visits.",
     category: "Cleaning Tips",
-    date: "August 24, 2026",
-    readTime: "8 min read",
     image: spotlessHomeTipsHero,
     slug: "/blog/spotless-home-tips/"
   },
@@ -74,18 +54,14 @@ const blogPosts: BlogPost[] = [
     title: "Hiring a Calgary Cleaner: Condo Access, Quotes & Coverage",
     excerpt: "Check building access, the Calgary branch, regional coverage and the quote for your actual home before confirming a cleaning visit.",
     category: "Hiring Guide",
-    date: "August 24, 2026",
-    readTime: "4 min read",
     image: calgaryCleanerHero,
     slug: "/blog/cleaning-services-calgary/"
   },
   {
     id: 12,
-    title: "The Top 5 Must-Have Cleaning Products for a Spotless Home",
-    excerpt: "Five products cover almost every surface in a home. Here is what each one is for, what to look for on the label, and what you can stop buying.",
+    title: "5 Cleaning Product Types & Surface Limits",
+    excerpt: "Compare five product categories and check labels and manufacturer care instructions. A practical guide to suitable uses, not a tested brand ranking.",
     category: "Cleaning Supplies",
-    date: "August 23, 2026",
-    readTime: "9 min read",
     image: cleaningProductsHero,
     slug: "/the-top-5-must-have-cleaning-products-for-a-spotless-home/"
   },
@@ -94,8 +70,6 @@ const blogPosts: BlogPost[] = [
     title: "Choosing the Right Cleaning Company for Your Needs",
     excerpt: "Comparing house cleaning companies comes down to a few checks: what your home needs, how cleaners are screened, what reviews tell you and what a quote includes.",
     category: "Hiring Guide",
-    date: "January 27, 2026",
-    readTime: "14 min read",
     image: choosingCleaningCompanyHero,
     slug: "/blog/choosing-cleaning-company/"
   },
@@ -104,18 +78,14 @@ const blogPosts: BlogPost[] = [
     title: "House Cleaning Costs Explained: Rates, Scope and Extras",
     excerpt: "Learn to compare scope, hourly and flat-rate quotes, required extras and GST. Includes an illustrative example and links to our local price lists.",
     category: "Pricing Guide",
-    date: "January 25, 2026",
-    readTime: "9 min read",
     image: houseCleaningCostHero,
     slug: "/how-much-does-a-house-cleaning-cost/"
   },
   {
     id: 9,
     title: "Cleaning with Vinegar and Baking Soda",
-    excerpt: "Vinegar and baking soda can clean a good part of the house. Here is how to use each one, and which surfaces they can damage.",
-    category: "Green Cleaning",
-    date: "January 25, 2026",
-    readTime: "15 min read",
+    excerpt: "Check surface compatibility and manufacturer instructions before trying household cleaning ingredients, and learn which combinations to avoid.",
+    category: "Product Safety",
     image: vinegarBakingSodaHero,
     slug: "/cleaning-with-vinegar-and-baking-soda/"
   },
@@ -124,8 +94,6 @@ const blogPosts: BlogPost[] = [
     title: "How Often Should You Hire a House Cleaner?",
     excerpt: "Weekly, bi-weekly and monthly house cleaning each suit a different home. Household size, pets, how you use the home and your budget decide which one fits.",
     category: "Home Care",
-    date: "January 22, 2026",
-    readTime: "5 min read",
     image: cleaningFrequencyHero,
     slug: "/how-often-should-a-cleaning-service-clean-my-house/"
   },
@@ -134,8 +102,6 @@ const blogPosts: BlogPost[] = [
     title: "DIY House Cleaning Schedule: Daily, Weekly & Monthly",
     excerpt: "A realistic schedule splits the cleaning into daily, weekly and monthly tasks, so no single day has to carry the whole house.",
     category: "Cleaning Tips",
-    date: "January 20, 2026",
-    readTime: "6 min read",
     image: cleaningScheduleHero,
     slug: "/blog/cleaning-schedule/"
   }
@@ -316,8 +282,7 @@ export default function Blog() {
                   title={post.title}
                   excerpt={post.excerpt}
                   category={post.category}
-                  date={post.date}
-                  readTime={post.readTime}
+                  date={modifiedFor(post.slug ?? "", "")}
                   image={post.image}
                   slug={post.slug}
                   index={index}

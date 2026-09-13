@@ -10,7 +10,7 @@ import { Helmet } from "react-helmet-async";
 const ServiceAreaMap = lazy(() => import("@/components/ServiceAreaMap"));
 import { Link } from "react-router-dom";
 import { canonicalForPath, withTrailingSlash } from "@/data/legacy-urls";
-import heroAlbertaMap from "@/assets/hero-calgary-skyline.webp";
+import heroAlbertaMap from "@/assets/hero-room-calgary.webp";
 import { Button } from "@/components/ui/button";
 import {
   edmontonNeighborhoods as edmHoods,
@@ -546,7 +546,7 @@ export default function Locations() {
       <section className="relative py-20 bg-brand-navy overflow-hidden">
         <img width={1920} height={1080}
           src={heroAlbertaMap}
-          alt="City skyline at dusk seen across the river, with downtown towers lit"
+          alt="Illustrative bright living room with clean floors and white seating"
           className="absolute inset-0 w-full h-full object-cover object-center opacity-40 pointer-events-none"
          loading="eager" fetchPriority="high"/>
         <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/90 via-brand-navy/75 to-brand-navy/90" />

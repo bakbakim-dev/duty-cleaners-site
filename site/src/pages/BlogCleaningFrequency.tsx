@@ -154,10 +154,6 @@ export default function BlogCleaningFrequency() {
                   <Calendar className="h-4 w-4" />
                   January 22, 2026
                 </span>
-                <span className="flex items-center gap-1">
-                  <Clock className="h-4 w-4" />
-                  5 min read
-                </span>
               </div>
 
               <h1 className="text-3xl md:text-5xl font-bold mb-6 text-foreground leading-tight">How Often Should You Book Professional House Cleaning?</h1>

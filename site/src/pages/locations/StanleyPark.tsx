@@ -1,3 +1,4 @@
+import { WALL_WASHING_DESCRIPTION } from "@/data/service-copy";
 import { getListing } from "@/lib/google-listings";
 import {
   CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import { useEffect } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"; import {   Phone, CheckCircle2, Star, Shield, Clock, Award, Home, Sparkles, Truck, SprayCan, Bath, Building2, Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail, PaintRoller
@@ -64,7 +65,7 @@ const services = [
   { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: baseboards, doors, light switches, wall outlets and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Stanley Park" },
   { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Stanley Park" },
   { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or new build, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Stanley Park" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film off painted walls, without stripping the finish.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Stanley Park" },
+  { icon: PaintRoller, title: "Wall Washing", description: WALL_WASHING_DESCRIPTION, to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Stanley Park" },
 ];
 
 const whyUsItems = [
@@ -138,12 +139,12 @@ export default function StanleyPark() {
     <>
       <Helmet>
         <title>Stanley Park, Calgary House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="In Stanley Park, Calgary, summer brings sunscreen film and river grit indoors, and basements redone after the 2013 flood have sealed floors." />
+        <meta name="description" content="House cleaning in Calgary's Stanley Park area. Compare standard, deep and move-out cleaning, check inclusions and see your price before booking." />
         <meta property="og:title" content="Stanley Park, Calgary House Cleaning | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Stanley Park, Calgary House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="In Stanley Park, Calgary, summer brings sunscreen film and river grit indoors, and basements redone after the 2013 flood have sealed floors." />
-        <meta property="og:description" content="In Stanley Park, Calgary, summer brings sunscreen film and river grit indoors, and basements redone after the 2013 flood have sealed floors." />
+        <meta name="twitter:description" content="House cleaning in Calgary's Stanley Park area. Compare standard, deep and move-out cleaning, check inclusions and see your price before booking." />
+        <meta property="og:description" content="House cleaning in Calgary's Stanley Park area. Compare standard, deep and move-out cleaning, check inclusions and see your price before booking." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/stanley-park-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/stanley-park-calgary/" />
@@ -184,7 +185,7 @@ export default function StanleyPark() {
                 Professional House Cleaning in Stanley Park
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Stanley Park's houses sit above the Elbow River flats. In summer, the outdoor pool leaves sunscreen film on floors, and the river pathway sends grit indoors on every pair of shoes.
+                Book house cleaning for the Stanley Park area through our Calgary branch. Tell us about the rooms, their condition and access to the home so the quote matches the service you need.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -320,8 +321,8 @@ export default function StanleyPark() {
         eyebrow="What we see here"
         heading="The pool below the houses"
         paragraphs={[
-          "Twenty-one hectares of river flats sit below the houses on this community's western edge — an outdoor pool and wading pool in summer, a toboggan hill and a lawn bowling green the rest of the year, and Elbow River pathway the length of it. What comes back indoors is seasonal and predictable: sunscreen film on floors in July, chlorine on towels, and river grit off the pathway on every pair of shoes.",
-          "Stanley Park/Elboya was one of 26 Calgary neighbourhoods placed under mandatory evacuation in June 2013, and the Elbow has not moved since. Window wells on the low side silt up every spring and want clearing before they fill. Where a lower level was redone after the flood, its finishes are newer than the house above — sealed floors that abrasive powder will haze.",
+          "Stanley Park sits beside the Elbow River pathway and includes an outdoor pool and wading pool. If trips to the park have left tracked-in dirt at home, flag the entryway when you book; your cleaning scope depends on the rooms and their condition, not proximity to the park.",
+          "If your home has a renovated lower level, identify the floor materials and any special care instructions. Exterior window-well clearing, flood restoration and mould remediation are not part of our residential cleaning service. Ask about scope before booking if those are the jobs you need.",
         ]}
         accent="calgary"
       />

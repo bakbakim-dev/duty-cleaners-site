@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Calendar, Clock, ArrowRight, Sparkles } from "lucide-react";
+import { Calendar, ArrowRight, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface BlogPostCardProps {
@@ -9,7 +9,6 @@ interface BlogPostCardProps {
   excerpt: string;
   category: string;
   date: string;
-  readTime: string;
   image: string;
   slug?: string;
   index: number;
@@ -36,7 +35,7 @@ interface BlogPostCardProps {
  * now the span it always looked like, hidden from the accessibility tree so it
  * is not announced as a second, unreachable control.
  */
-export default function BlogPostCard({ title, excerpt, category, date, readTime, image, slug, index }: BlogPostCardProps) {
+export default function BlogPostCard({ title, excerpt, category, date, image, slug, index }: BlogPostCardProps) {
   return (
     <div
       className="opacity-0 animate-fade-slide-up"
@@ -63,12 +62,6 @@ export default function BlogPostCard({ title, excerpt, category, date, readTime,
                 {category}
               </span>
             </div>
-            <div className="absolute top-4 right-4">
-              <span className="inline-flex items-center gap-1.5 text-xs font-semibold bg-brand-navy/85 backdrop-blur-sm text-white px-3 py-1.5 rounded-full shadow-sm">
-                <Clock className="h-3 w-3" />
-                {readTime}
-              </span>
-            </div>
           </div>
           <CardContent className="p-6 flex flex-col flex-1">
             <h3 className="text-lg font-bold mb-2 text-foreground group-hover:text-primary transition-colors duration-300 line-clamp-2">
@@ -89,11 +82,7 @@ export default function BlogPostCard({ title, excerpt, category, date, readTime,
             <div className="flex items-center justify-between text-xs text-muted-foreground mb-4 pt-3 border-t border-primary/10">
               <span className="flex items-center gap-1.5">
                 <Calendar className="h-3.5 w-3.5 text-primary/60" />
-                {date}
-              </span>
-              <span className="flex items-center gap-1.5">
-                <Clock className="h-3.5 w-3.5 text-primary/60" />
-                {readTime}
+                {date ? <>Updated <time dateTime={date}>{date}</time></> : "Cleaning guide"}
               </span>
             </div>
             <span
