@@ -1,7 +1,7 @@
 import { BOOKING_ORIGIN } from "./booking-redirect";
 import { TRACKED_PARAMS } from "./tracking";
 
-const ENDPOINT = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/booking-handoff`;
+const ENDPOINT = "/api/booking-handoff.php";
 export const PRIVATE_HANDOFF_KEYS = ["f_name", "l_name", "email", "phone", "dc_entry", "dc_clean", "dc_park", "dc_flex", "dc_notes", "dc_addr", "dc_apt", "dc_city", "dc_prov", "dc_zip"] as const;
 
 export function splitBookingQuery(query: string) {

@@ -2,9 +2,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { CLEANLINESS_OPTIONS, validateCleanerDetails, cleanerNotesLimit } from "./booking-details";
 import { publicBookingUrl, prepareBookingHandoff, splitBookingQuery } from "./booking-handoff";
 import { buildBookingQuery, type CleanerDetails } from "./booking-redirect";
-import { PRIVATE_KEYS, seal, unseal, TTL_MS } from "../../supabase/functions/booking-handoff/crypto";
 import { PRIVATE_HANDOFF_KEYS } from "./booking-handoff";
-import { createHandler } from "../../supabase/functions/booking-handoff/handler";
 
 afterEach(() => vi.unstubAllGlobals());
 const details: CleanerDetails = { address: "123 Test Street", apartment: "4", city: "Edmonton", province: "AB", postalCode: "T5J 0N3", entry: "lockbox", cleanliness: 2, parking: "street", flexibility: "none", notes: "Test instructions" };
@@ -26,7 +24,7 @@ describe("booking handoff data contract", () => {
     expect(validateCleanerDetails({ ...details, notes: "x".repeat(cleanerNotesLimit(details) + 1) })).toHaveProperty("notes");
   });
   it("separates all personal fields from navigation and strips arbitrary parameters", () => {
-    expect(PRIVATE_HANDOFF_KEYS).toEqual(PRIVATE_KEYS);
+    expect(PRIVATE_HANDOFF_KEYS).toEqual(["f_name", "l_name", "email", "phone", "dc_entry", "dc_clean", "dc_park", "dc_flex", "dc_notes", "dc_addr", "dc_apt", "dc_city", "dc_prov", "dc_zip"]);
     const query = buildBookingQuery(input)! + "&unexpected=secret&date=2026-10-01";
     const parts = splitBookingQuery(query);
     expect(parts.fields.email).toBe("test@example.com");
@@ -44,49 +42,6 @@ describe("booking handoff data contract", () => {
     expect(JSON.parse(fetchMock.mock.calls[0][1].body).fields.dc_addr).toBe(details.address);
     fetchMock.mockResolvedValue({ ok: false });
     expect(await prepareBookingHandoff(buildBookingQuery(input)!)).toBeNull();
-  });
-});
-
-describe("encrypted handoff envelope", () => {
-  const secret = "unit-test-secret-not-for-deployment-0123456789";
-  it("limits endpoint origins, actions, body size and traffic without granting booking access", async () => {
-    const handler = createHandler(() => secret);
-    const website = "https://duty-cleaners-preview.netlify.app";
-    const booking = "https://dutycleaners.bookingkoala.com";
-    const request = (origin: string, body: unknown, method = "POST") => new Request("https://example.com/handoff", { method, headers: { origin, "Content-Type": "application/json" }, ...(method === "POST" ? { body: JSON.stringify(body) } : {}) });
-    expect((await handler(request("https://untrusted.example", {}, "OPTIONS"))).status).toBe(403);
-    expect((await handler(request(website, {}, "GET"))).status).toBe(405);
-    expect((await handler(request(website, {}, "OPTIONS"))).status).toBe(204);
-    expect((await createHandler(() => "")(request(website, {}))).status).toBe(503);
-    const fields = { dc_city: "Edmonton", dc_notes: "Test instructions" };
-    const sealed = await handler(request(website, { action: "seal", fields }));
-    expect(sealed.status).toBe(200);
-    expect(sealed.headers.get("Access-Control-Allow-Origin")).toBe(website);
-    expect(sealed.headers.get("Cache-Control")).toBe("no-store");
-    const { token } = await sealed.json();
-    expect((await handler(request(website, { action: "unseal", token }))).status).toBe(400);
-    expect((await handler(request(booking, { action: "seal", fields }))).status).toBe(400);
-    expect(await (await handler(request(booking, { action: "unseal", token }))).json()).toEqual({ fields });
-    expect((await handler(request(website, { action: "book", fields }))).status).toBe(400);
-    expect((await handler(request(website, { action: "seal", fields: { card_number: "test" } }))).status).toBe(400);
-    expect((await handler(request(website, { action: "seal", fields: { dc_notes: "x".repeat(17000) } }))).status).toBe(413);
-    const rateLimited = createHandler(() => secret);
-    for (let i = 0; i < 30; i++) await rateLimited(request(website, { action: "invalid" }));
-    expect((await rateLimited(request(website, { action: "seal", fields }))).status).toBe(429);
-  });
-  it("round trips without plaintext and rejects tampering, expiry, wrong keys and foreign fields", async () => {
-    const fields = splitBookingQuery(buildBookingQuery(input)!).fields;
-    const token = await seal(fields, secret, 1000);
-    expect(token).not.toContain("123 Test Street");
-    expect(token).not.toContain("test@example.com");
-    expect(await unseal(token, secret, 2000)).toEqual(fields);
-    await expect(unseal(token, secret, 1000 + TTL_MS)).rejects.toThrow();
-    await expect(unseal(token, secret + "wrong", 2000)).rejects.toThrow();
-    await expect(unseal(token.slice(0, 20) + (token[20] === "a" ? "b" : "a") + token.slice(21), secret, 2000)).rejects.toThrow();
-    await expect(seal({ card_number: "test" }, secret)).rejects.toThrow();
-    await expect(seal({ dc_notes: "x".repeat(501) }, secret)).rejects.toThrow();
-    await expect(seal(fields, "short")).rejects.toThrow();
-    expect(await seal(fields, secret, 1000)).not.toEqual(token);
   });
 });
 

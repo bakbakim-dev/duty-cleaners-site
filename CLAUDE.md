@@ -143,9 +143,10 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
 3. BookingKoala receiver v2 is now published in Theme Builder → Settings → Tracking & Conversion
    → Header code (owner-approved, 2026-09-12). Source: `bk-prefill-v2.js`; regenerate the pasteable
    snippet with `node site/scripts/build-booking-prefill.mjs`. Native-field transfer was verified
-   on five public test cases without submitting a booking. The new encrypted funnel handoff is
-   NOT yet launch-ready: Supabase CLI is unauthenticated, so `booking-handoff` and its dedicated
-   `BOOKING_HANDOFF_SECRET` still need deployment, followed by an end-to-end test. See
+   on five public test cases without submitting a booking. The encrypted funnel handoff now runs
+   as `site/public/api/booking-handoff.php` on SiteGround; Supabase is not required for it. It is
+   NOT yet launch-ready: the PHP endpoint and its private secret file must be uploaded to the
+   staging host, followed by an end-to-end test. See
    `site/docs/booking-handoff-implementation-2026-09-12.md`. Do not publish the new frontend first.
 4. Take down the old GitHub Pages preview (bakbakim-dev.github.io/dutycleaners-preview).
 5. Yelp: correct the Edmonton profile's address (it is claimed; the old URL now redirects to

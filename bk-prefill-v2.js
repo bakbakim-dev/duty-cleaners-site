@@ -2,7 +2,8 @@
   'use strict';
   if (!/^\/booknow\/?$/.test(location.pathname) || window.__dcPrefillV2) return;
   window.__dcPrefillV2 = true;
-  var ENDPOINT = 'https://exodbynxmeezenqytkvh.supabase.co/functions/v1/booking-handoff';
+  // Staging receiver. Change only after the same endpoint is live on the final domain.
+  var ENDPOINT = 'https://mikaily131.sg-host.com/api/booking-handoff.php';
   var KEYS = ['f_name','l_name','email','phone','dc_entry','dc_clean','dc_park','dc_flex','dc_notes','dc_addr','dc_apt','dc_city','dc_prov','dc_zip'];
   var q = new URLSearchParams(location.search), fields = {}, states = {}, edited = {}, busy = false;
   var began = Date.now(), timer, banner, text, retry, lastMessage = '', applying = false;

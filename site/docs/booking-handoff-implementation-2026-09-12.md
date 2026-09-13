@@ -2,7 +2,7 @@
 
 ## Status
 
-The BookingKoala companion receiver is published and its native-field adapter works in the live public booking form. The funnel changes and encrypted transfer endpoint are implemented locally. **The encrypted end-to-end journey is not yet verified or ready to launch.** Supabase CLI reports that no access token is available. The owner has been asked to run `npx supabase login` on this computer; no credentials should be pasted into chat.
+The BookingKoala companion receiver is published and its native-field adapter works in the live public booking form. The funnel changes and encrypted transfer endpoint are implemented locally. **The encrypted end-to-end journey is not yet verified or ready to launch.** The endpoint is a PHP file designed for the SiteGround host; Supabase is not required for this handoff. It still must be uploaded to `mikaily131.sg-host.com` with its private secret file before staging verification.
 
 No booking was submitted, no payment was entered, and no customer contact data was used in the live tests. The website frontend has not been deployed by this change. BookingKoala retains authority over availability, final prices, card collection and booking confirmation.
 
@@ -22,20 +22,20 @@ No booking was submitted, no payment was entered, and no customer contact data w
 ## How personal information travels
 
 1. The funnel builds its existing field-mapping contract in memory.
-2. `booking-handoff` seals only allowlisted contact/address/custom-answer fields using AES-GCM and a dedicated server-side secret. Nothing is persisted in a database by this endpoint.
+2. `/api/booking-handoff.php` seals only allowlisted contact/address/custom-answer fields using AES-256-GCM and a dedicated server-side secret stored outside `public_html`. Nothing is persisted in a database by this endpoint.
 3. Service selections remain in the normal BookingKoala query string. Personal answers travel as an authenticated encrypted envelope in `#dc_handoff=…`, not as plain-text navigation parameters.
 4. The BookingKoala-side receiver removes that fragment when session storage is available, retains ciphertext only for reload/back recovery, and asks the endpoint to decrypt it.
 5. The receiver fills visible native controls through normal input/change/blur events. It does not touch the calendar, Stripe iframe, consent or submit buttons.
 
-The envelope expires after 20 minutes. It is a bearer capability, not a one-time token: someone possessing it can redeem it until expiry. CORS is a browser restriction, not authentication against arbitrary HTTP clients. The endpoint grants no account, customer-database or booking API access. Its in-memory request limiter is per edge instance, not global abuse protection. Do not log request bodies, tokens or secrets in monitoring. Other scripts on the booking page can see the filled form as they can see ordinary user input; encryption does not change that trust boundary.
+The envelope expires after 20 minutes. It is a bearer capability, not a one-time token: someone possessing it can redeem it until expiry. CORS is a browser restriction, not authentication against arbitrary HTTP clients. The endpoint grants no account, customer-database or booking API access. Do not log request bodies, tokens or secrets in monitoring. Other scripts on the booking page can see the filled form as they can see ordinary user input; encryption does not change that trust boundary.
 
 Legacy query parameters remain accepted by the receiver for compatibility and controlled synthetic testing. The new funnel does not navigate with those personal parameters.
 
 ## Verification completed
 
-Final local checks: TypeScript and Deno checks passed; the production build passed; all 210 routes prerendered; all 1,666 tests in 43 files passed. All 12 new mutation proofs failed for their intended defects and restored their targets successfully. Ordinary `/booknow` visits were verified to show no receiver banner, while an invalid encrypted handoff showed the unavailable/retry message and left the native form usable.
+The SiteGround endpoint includes a PHP integration test for AES-GCM seal/unseal, origin and action separation, tamper rejection, field allowlisting, response headers and the request-size limit. The locally installed PHP 8.3 build does not include its OpenSSL extension, so that two-test integration group is skipped on this computer; PHP syntax and security-contract tests pass. It must run and pass against SiteGround before launch. SiteGround documents PHP management in Site Tools and says its servers default to PHP 8.2.
 
-Automated checks cover field validation, personal/public parameter separation, authenticated-encryption round trips, tampering, expiry, wrong keys, body size, origin/action restrictions, basic rate limiting and safe failures. A small DOM fixture exercises native-control writes, delayed controls, ambiguity rejection and edit protection; it does not simulate Angular's internal model.
+The automated checks that run locally cover field validation, personal/public parameter separation, endpoint origin/expiry/crypto contracts and safe failures. A small DOM fixture exercises native-control writes, delayed controls, ambiguity rejection and edit protection; it does not simulate Angular's internal model.
 
 The exhaustive mapping test evaluates 9,100 input combinations across Standard and Move In/Out, five home types, supported bedroom/bathroom/half-bath counts and all four incoming frequency choices. Move In/Out correctly stays one-time. These are automated mapping combinations, not 9,100 live bookings.
 
@@ -55,10 +55,10 @@ No date, card or final booking submission was tested. A success banner verifies 
 
 ## Deployment and rollback
 
-1. Authenticate the Supabase CLI and confirm access to project `exodbynxmeezenqytkvh`.
-2. Set a new cryptographically random `BOOKING_HANDOFF_SECRET` of at least 32 characters in that project's Edge Function secrets. Do not reuse the GHL integration token or expose the secret in source, chat, URLs or logs.
-3. Deploy `supabase/functions/booking-handoff` with JWT verification disabled as configured in `supabase/config.toml`. This is a limited public encryption service, not an authenticated booking endpoint. No database migration is required for this function.
-4. Verify seal requests from the intended website origin, unseal requests from the BookingKoala origin, rejection/expiry paths, real browser field readback and history behavior.
+1. Build and upload the site to the SiteGround staging document root. Vite copies `public/api/booking-handoff.php` into `dist/api/booking-handoff.php`.
+2. Generate a new cryptographically random secret of at least 32 characters. Copy `hosting/siteground-private/booking-handoff-secret.php.example` to `/home/customer/www/mikaily131.sg-host.com/private/booking-handoff-secret.php`, outside `public_html`, and put the secret there. Do not reuse the GHL integration token or expose the secret in source, chat, URLs or logs.
+3. Verify the PHP endpoint returns 200 for a staging-origin seal request and allows unseal only from the BookingKoala origin. Confirm rejection/expiry paths, real browser field readback and history behavior.
+4. Before the final DNS switch, change the receiver endpoint from the staging host to `https://dutycleaners.ca/api/booking-handoff.php`, regenerate `bk-header-fill.html`, and Save & Publish it in BookingKoala after the production endpoint is reachable.
 5. Resolve the separate existing GHL durable-receipt relay deployment/migration requirements before a full funnel test. Do not weaken the existing contact gate to bypass that dependency.
 6. Only then publish the rebuilt frontend and test the complete journey with owner-approved contact data. Do not auto-submit a real booking during tests.
 
