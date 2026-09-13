@@ -1,0 +1,12 @@
+<?php
+// Upload as ../private/form-health-config.php beside public_html, never inside
+// public_html. Replace the shared secret with at least 32 random characters.
+return [
+    'recipients' => ['support@dutycleaners.ca'],
+    'from' => 'website-alerts@dutycleaners.ca',
+    'shared_secret' => 'REPLACE-WITH-A-RANDOM-SECRET-AT-LEAST-32-CHARACTERS',
+    'cooldown_seconds' => 1800,
+    'email_enabled' => true,
+    // Optional HTTPS endpoint for a second alert path (for example Make or Zapier).
+    'webhook_url' => '',
+];

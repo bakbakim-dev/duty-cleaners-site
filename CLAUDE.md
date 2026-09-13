@@ -186,6 +186,11 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
    OFF; Redact email on and redact the BookingKoala prefill query parameters (list in
    site/.env.example); Google signals off. Then verify Search Console as a Domain property (DNS
    TXT record) and add Bing Webmaster Tools on launch day.
+13. Form-health monitoring is implemented in source but not deployed. Upload
+   `public/api/form-health.php`, install the private config outside `public_html`, verify a real
+   alert and recovery email, then set `FORM_HEALTH_URL` and `FORM_HEALTH_SECRET` on the GHL relay
+   before redeploying it. Add an external uptime check because SiteGround cannot report its own
+   outage. See `site/docs/form-health-monitoring.md`.
 
 ## Historical documents
 REBUILD-PLAN.md, SEO-AUDIT-2026.md, CWV-BASELINE.md, notes.md (the legacy WordPress site's lead

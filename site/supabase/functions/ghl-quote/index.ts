@@ -25,6 +25,41 @@ const GHL_VERSION = "2021-07-28";
 const LOCATION_ID = "4OROmtMn8LQqaDsUJPjC";
 const TIMEOUT_MS = 10_000;
 
+/**
+ * Independent operational alert path. This intentionally sends no payload or
+ * customer data: SiteGround receives only fixed diagnostic labels. If the
+ * notifier is unavailable, lead storage and GHL retries continue unchanged.
+ */
+async function reportFormHealth(
+  event: "failed" | "recovered",
+  stage: "ghl-delivery" | "durable-capture",
+  category: "storage" | "delivery" | "configuration",
+  status: number,
+  source?: string,
+) {
+  const url = Deno.env.get("FORM_HEALTH_URL");
+  const secret = Deno.env.get("FORM_HEALTH_SECRET");
+  if (!url || !secret) return;
+  const form = source?.startsWith("contact-form")
+    ? "contact-form"
+    : source?.startsWith("careers-application")
+      ? "careers-application"
+      : "quote-funnel";
+  try {
+    await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Form-Health-Secret": secret,
+      },
+      body: JSON.stringify({ event, form, stage, category, status, path: "/server/ghl-quote" }),
+      signal: AbortSignal.timeout(5_000),
+    });
+  } catch (error) {
+    console.error("[ghl-quote] form-health report failed", String(error));
+  }
+}
+
 function createRelayClient() {
   return createClient(
     Deno.env.get("SUPABASE_URL")!,
@@ -368,6 +403,18 @@ async function deliverStoredLead(
     })
     .eq("id", row.id);
 
+  if (result.ok && (row.ghl_attempts ?? 0) > 0) {
+    await reportFormHealth("recovered", "ghl-delivery", "delivery", result.status, payload.source);
+  } else if (!result.ok) {
+    await reportFormHealth(
+      "failed",
+      "ghl-delivery",
+      "delivery",
+      result.status,
+      payload.source,
+    );
+  }
+
   console.log("[ghl-quote] delivery", payload.stage, result.ok, result.status, attempt);
   return result;
 }
@@ -513,8 +560,11 @@ Deno.serve(async (req) => {
 
     if (!row?.id) {
       console.error("[ghl-quote] durable capture failed");
+      await reportFormHealth("failed", "durable-capture", "storage", 503, payload.source);
       return json({ ok: false, stored: false, status: 503, error: "capture unavailable" }, 503);
     }
+
+    await reportFormHealth("recovered", "durable-capture", "storage", 200, payload.source);
 
     if (row.ghl_ok && row.ghl_contact_id) {
       return json({
@@ -533,6 +583,7 @@ Deno.serve(async (req) => {
         .from("quote_leads")
         .update({ ghl_ok: false, ghl_status: 0, ghl_error: "token missing", delivery_state: "pending" })
         .eq("id", row.id);
+      await reportFormHealth("failed", "ghl-delivery", "configuration", 0, payload.source);
       return json({ ok: true, stored: true, delivery: "pending", status: 202, receiptId: row.id });
     }
 

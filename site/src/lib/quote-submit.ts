@@ -14,6 +14,12 @@
  */
 
 import { getStoredTracking } from "@/lib/tracking";
+import {
+  monitoredFormForSource,
+  reportFormFailure,
+  reportFormRecovery,
+  type FailureCategory,
+} from "@/lib/form-health";
 
 /**
  * The relay is a Supabase Edge Function, but reaching it is a single
@@ -91,6 +97,10 @@ export async function submitQuote(
   payload: Partial<QuotePayload>,
   options: SubmitQuoteOptions = {},
 ): Promise<SubmitResult> {
+  const form = monitoredFormForSource(payload.source);
+  const stage = form === "quote-funnel"
+    ? (stageFor(payload) === "confirm" ? "confirmation" : "lead")
+    : "form-submit";
   const controller = new AbortController();
   const timeoutMs = options.timeoutMs ?? 12_000;
   const timer = globalThis.setTimeout(() => controller.abort(), timeoutMs);
@@ -123,10 +133,11 @@ export async function submitQuote(
       // Never log the response body: a proxy or validation error can echo
       // submitted personal data back to the browser console.
       console.error("[quote] relay error", response.status);
+      reportFormFailure({ form, stage, category: "http", status: response.status });
       return { ok: false, status: response.status };
     }
 
-    const result = (await response.json()) as {
+    let result: {
       ok?: boolean;
       stored?: boolean;
       delivery?: "delivered" | "pending";
@@ -134,8 +145,20 @@ export async function submitQuote(
       receiptId?: string | null;
       contactId?: string | null;
     };
+    try {
+      result = await response.json();
+    } catch {
+      console.error("[quote] relay returned invalid JSON");
+      reportFormFailure({ form, stage, category: "invalid-response", status: response.status });
+      return { ok: false, status: response.status };
+    }
     const hasDurableReceipt = Boolean(result?.ok && result?.stored && result?.receiptId);
-    if (!hasDurableReceipt) console.error("[quote] relay did not issue a durable receipt");
+    if (!hasDurableReceipt) {
+      console.error("[quote] relay did not issue a durable receipt");
+      reportFormFailure({ form, stage, category: "invalid-response", status: result?.status ?? response.status });
+    } else {
+      reportFormRecovery({ form, stage, category: "invalid-response", status: result?.status ?? response.status });
+    }
     return {
       ok: hasDurableReceipt,
       status: result?.status ?? 0,
@@ -145,10 +168,14 @@ export async function submitQuote(
       contactId: result?.contactId ?? null,
     };
   } catch (error) {
+    const category: FailureCategory = error instanceof Error && error.name === "AbortError"
+      ? "timeout"
+      : "network";
     console.error(
       "[quote] submission failed",
-      error instanceof Error && error.name === "AbortError" ? "timeout" : "network",
+      category,
     );
+    reportFormFailure({ form, stage, category, status: 0 });
     return { ok: false, status: 0 };
   } finally {
     globalThis.clearTimeout(timer);

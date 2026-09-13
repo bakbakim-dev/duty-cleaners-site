@@ -1,5 +1,6 @@
 import { BOOKING_ORIGIN } from "./booking-redirect";
 import { TRACKED_PARAMS } from "./tracking";
+import { reportFormFailure, reportFormRecovery } from "./form-health";
 
 const ENDPOINT = "/api/booking-handoff.php";
 export const PRIVATE_HANDOFF_KEYS = ["f_name", "l_name", "email", "phone", "dc_entry", "dc_clean", "dc_park", "dc_flex", "dc_notes", "dc_addr", "dc_apt", "dc_city", "dc_prov", "dc_zip"] as const;
@@ -30,10 +31,31 @@ export async function prepareBookingHandoff(query: string): Promise<string | nul
       signal: controller.signal, cache: "no-store", credentials: "omit",
       body: JSON.stringify({ action: "seal", fields }),
     });
-    if (!response.ok) return null;
-    const body = await response.json();
-    if (typeof body.token !== "string" || !/^[\w-]{16}\.[\w-]{32,10000}$/.test(body.token)) return null;
+    if (!response.ok) {
+      reportFormFailure({ form: "booking-handoff", stage: "secure-transfer", category: "http", status: response.status });
+      return null;
+    }
+    let body: { token?: unknown };
+    try {
+      body = await response.json();
+    } catch {
+      reportFormFailure({ form: "booking-handoff", stage: "secure-transfer", category: "invalid-response", status: response.status });
+      return null;
+    }
+    if (typeof body.token !== "string" || !/^[\w-]{16}\.[\w-]{32,10000}$/.test(body.token)) {
+      reportFormFailure({ form: "booking-handoff", stage: "secure-transfer", category: "invalid-response", status: response.status });
+      return null;
+    }
+    reportFormRecovery({ form: "booking-handoff", stage: "secure-transfer", category: "invalid-response", status: response.status });
     return `${BOOKING_ORIGIN}/booknow?${publicQuery}#dc_handoff=${body.token}`;
-  } catch { return null; }
+  } catch (error) {
+    reportFormFailure({
+      form: "booking-handoff",
+      stage: "secure-transfer",
+      category: error instanceof Error && error.name === "AbortError" ? "timeout" : "network",
+      status: 0,
+    });
+    return null;
+  }
   finally { clearTimeout(timer); }
 }
