@@ -171,7 +171,7 @@ const PARAMS_BY_SERVICE: Record<string, ParamGroup> = {
 /** Hard cap on the free-text note, matched by the funnel's textarea. */
 export const DC_NOTES_MAX = 500;
 
-export type DcEntry = "home" | "mailbox" | "code" | "other";
+export type DcEntry = "home" | "mailbox" | "lockbox" | "code" | "other";
 export type DcParking = "street" | "visitor" | "driveway" | "paid";
 
 /** "t5j0n3" → "T5J 0N3"; anything that isn't a full Canadian code → null. */
@@ -285,6 +285,11 @@ export interface CleanerDetails {
   notes?: string | null;
   /** Canadian postal code; also decides the travel fee. */
   postalCode?: string | null;
+  address?: string | null;
+  apartment?: string | null;
+  city?: string | null;
+  province?: string | null;
+  flexibility?: "both" | "time" | "date" | "none" | null;
 }
 
 
@@ -417,10 +422,21 @@ export function buildBookingQuery(input: BookingUrlInput): string | null {
   if (details.entry) params.set("dc_entry", details.entry);
   if (details.cleanliness) params.set("dc_clean", String(details.cleanliness));
   if (details.parking) params.set("dc_park", details.parking);
-  const notes = (details.notes ?? "").trim().slice(0, DC_NOTES_MAX);
+  if (details.flexibility) params.set("dc_flex", details.flexibility);
+  const notes = [details.entry === "lockbox" ? "Entry: Key in a lockbox." : "", (details.notes ?? "").trim()]
+    .filter(Boolean).join("\n").slice(0, DC_NOTES_MAX);
   if (notes) params.set("dc_notes", notes);
   const postalCode = normalizePostalCode(details.postalCode);
-  if (postalCode) params.set("dc_zip", postalCode);
+  if (postalCode) {
+    params.set("zipcode", postalCode);
+    params.set("dc_zip", postalCode);
+  }
+  for (const [key, value] of Object.entries({
+    dc_addr: details.address, dc_apt: details.apartment,
+    dc_city: details.city, dc_prov: details.province,
+  })) {
+    if (value?.trim()) params.set(key, value.trim().slice(0, 120));
+  }
 
 
   const coupon = (input.coupon ?? "").trim();

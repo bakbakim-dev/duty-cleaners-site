@@ -1,5 +1,3 @@
-<!-- Duty Cleaners booking handoff v2: BEGIN -->
-<script>
 (function () {
   'use strict';
   if (!/^\/booknow\/?$/.test(location.pathname) || window.__dcPrefillV2) return;
@@ -173,6 +171,3 @@
   });
   if (token) { fields = {}; redeem(); } else tick();
 })();
-
-</script>
-<!-- Duty Cleaners booking handoff v2: END -->

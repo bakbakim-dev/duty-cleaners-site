@@ -41,7 +41,6 @@ import BookingHandoff, {
   handoffAlreadyFired,
   markHandoffFired,
 } from "@/components/quote/BookingHandoff";
-import BookingEmbed from "@/components/quote/BookingEmbed";
 import {
   BOOKING_MODE,
   BOOKING_ORIGIN,
@@ -52,7 +51,6 @@ import {
   groupExtras,
   benefitForExtra,
   extraDisplayName,
-  DC_NOTES_MAX,
   postalCodeCityStatus,
   postalCodeCityName,
   normalizePostalCode,
@@ -67,6 +65,8 @@ import { createQuoteRequestId, submitQuote, type QuotePayload } from "@/lib/quot
 import { captureTrackingParams, getStoredTracking, pageServiceFor, serviceOnOpen } from "@/lib/tracking";
 import { setQuoteStep } from "@/lib/quote-progress";
 import { track } from "@/lib/analytics";
+import { CLEANLINESS_OPTIONS, FLEXIBILITY_OPTIONS, cleanerNotesLimit, validateCleanerDetails } from "@/lib/booking-details";
+import { prepareBookingHandoff, publicBookingUrl } from "@/lib/booking-handoff";
 import { useQuoteOverlay } from "@/hooks/use-quote-overlay";
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -97,7 +97,7 @@ const DC_ENTRY_OPTIONS: { value: DcEntry; label: string }[] = [
   { value: "home", label: "Someone will be home" },
   // Was "Key in mailbox" — the same idea as the key under the mat this audit
   // took off five pages, and a community mailbox is Canada Post property.
-  { value: "mailbox", label: "Key in a lockbox" },
+  { value: "lockbox", label: "Key in a lockbox" },
   { value: "code", label: "Access code" },
   { value: "other", label: "Other" },
 ];
@@ -109,15 +109,7 @@ const DC_PARKING_OPTIONS: { value: DcParking; label: string }[] = [
   { value: "paid", label: "Paid nearby" },
 ];
 
-/* Same dc_clean 1-5 scale, asked as a question people can actually answer:
-   "when was it last cleaned" instead of a self-rated 1-5 condition score. */
-const DC_CLEANLINESS_OPTIONS = [
-  { value: 1, label: "Within 2 weeks" },
-  { value: 2, label: "A few weeks ago" },
-  { value: 3, label: "A few months ago" },
-  { value: 4, label: "6+ months ago" },
-  { value: 5, label: "Never professionally" },
-];
+const DC_CLEANLINESS_OPTIONS = CLEANLINESS_OPTIONS;
 
 const DC_CLEANLINESS_LABELS: Record<number, string> = Object.fromEntries(
   DC_CLEANLINESS_OPTIONS.map((option) => [option.value, option.label]),
@@ -320,6 +312,8 @@ export default function QuoteFlow({
   const emailRef = useRef<HTMLInputElement>(null);
   const phoneRef = useRef<HTMLInputElement>(null);
   const [handingOff, setHandingOff] = useState(false);
+  const [handoffFailed, setHandoffFailed] = useState(false);
+  const handoffBusy = useRef(false);
   /**
    * The add-on basket: BookingKoala extra name → quantity. Keyed by name, not
    * id, because the id is size-specific — it is resolved at handoff from the
@@ -335,7 +329,7 @@ export default function QuoteFlow({
    */
   const [insideCity, setInsideCity] = useState<boolean | null>(null);
   /** Optional answers that pre-fill the booking page's own questions. */
-  const [details, setDetails] = useState<CleanerDetails>({});
+  const [details, setDetails] = useState<CleanerDetails>({ province: "AB" });
   /** The condition nudge is advice, so it can be dismissed for good. */
   const [deepNudgeDismissed, setDeepNudgeDismissed] = useState(false);
   /**
@@ -498,11 +492,15 @@ export default function QuoteFlow({
   // still hands off normally.
   useEffect(() => {
     if (handoffAlreadyFired()) {
+      handoffBusy.current = false;
+      setHandoffFailed(false);
       setHandingOff(false);
       clearHandoffFlag();
     }
     const onPageShow = (event: PageTransitionEvent) => {
       if (!event.persisted) return;
+      handoffBusy.current = false;
+      setHandoffFailed(false);
       setHandingOff(false);
       clearHandoffFlag();
     };
@@ -887,10 +885,12 @@ export default function QuoteFlow({
 
       ...(details.entry ? [`Entry: ${DC_ENTRY_LABELS[details.entry]}`] : []),
       ...(details.cleanliness
-        ? [`Last cleaned: ${DC_CLEANLINESS_LABELS[details.cleanliness]}`]
+        ? [`Cleanliness: ${DC_CLEANLINESS_LABELS[details.cleanliness]}`]
         : []),
       ...(details.parking ? [`Parking: ${DC_PARKING_LABELS[details.parking]}`] : []),
       ...(details.postalCode?.trim() ? [`Postal code: ${details.postalCode.trim()}`] : []),
+      ...(details.address?.trim() ? [`Service address: ${[details.address, details.apartment, details.city, details.province].filter(Boolean).join(", ")}`] : []),
+      ...(details.flexibility ? [`Date/time flexibility: ${FLEXIBILITY_OPTIONS.find(option => option.value === details.flexibility)?.label}`] : []),
       ...(details.notes?.trim() ? [`Notes: ${details.notes.trim()}`] : []),
 
     ],
@@ -928,28 +928,18 @@ export default function QuoteFlow({
   );
 
 
-  const bookingUrl = bookingQuery === null ? null : `${BOOKING_ORIGIN}/booknow?${bookingQuery}`;
+  const bookingUrl = bookingQuery === null ? null : publicBookingUrl(bookingQuery);
 
   /**
    * There used to be a Speculation Rules prefetch of `bookingUrl` here with
    * `eagerness: "immediate"`, to make the hop to BookingKoala paint instantly.
    * It was removed because that URL is not safe to send speculatively.
    *
-   * buildBookingQuery() puts the visitor's first and last name, email, phone,
-   * postal code and free-text entry instructions ("key is under the mat") in
-   * the query string. Those ride along on the real navigation too, which is
-   * BookingKoala's own form contract and something the visitor opts into by
-   * pressing Book. A prefetch is different: it fires with no click at all, and
-   * the effect re-ran on every keystroke, so a visitor who typed an address and
-   * then abandoned the form still had their details written into the booking
-   * host's access logs — repeatedly, in plaintext, having consented to nothing.
-   *
-   * Prefetching a PII-free URL instead would not help: the prefetch cache is
-   * keyed on the exact URL, so it would never be used and would simply be a
-   * wasted request. The `preconnect` and `dns-prefetch` tags below already
-   * remove DNS, TCP and TLS from the hop, which is the dominant cost of a
-   * cross-origin navigation. What is left on the table is small; what was
-   * being leaked was not.
+   * buildBookingQuery() remains the internal mapping contract. Before actual
+   * navigation, prepareBookingHandoff() separates and encrypts its personal
+   * fields. The fallback bookingUrl contains only service selections.
+   * No hidden iframe or speculative request receives the visitor's answers;
+   * preconnect and dns-prefetch below warm only the booking origin.
    */
 
 
@@ -976,27 +966,15 @@ export default function QuoteFlow({
    * present; otherwise it marks the gaps and moves focus to the first one.
    */
   const requireCleanerDetails = () => {
-    const errors: Record<string, string> = {};
-    if (!details.entry) errors.entry = "Tell us how we get in.";
-    if (!details.cleanliness) errors.cleanliness = "Pick when it was last properly cleaned.";
-    if (!details.parking) errors.parking = "Tell us where to park.";
-    if (!normalizePostalCode(details.postalCode)) {
-      errors.postalCode = "Enter your postal code, e.g. T5J 0N3.";
-    }
+    const errors = validateCleanerDetails(details);
     setDetailErrors(errors);
-    const first = ["entry", "cleanliness", "parking", "postalCode"].find((key) => errors[key]);
+    const first = ["address", "apartment", "city", "province", "entry", "cleanliness", "parking", "flexibility", "postalCode", "notes"].find((key) => errors[key]);
     if (!first) return true;
-    const target = document.getElementById(
-      first === "postalCode"
-        ? "dc-zip"
-        : first === "cleanliness"
-          ? "dc-clean-group"
-          : first === "parking"
-            ? "dc-park-group"
-            : "dc-entry-group"
-    );
+    const targets: Record<string, string> = { postalCode: "dc-zip", cleanliness: "dc-clean-group", parking: "dc-park-group", entry: "dc-entry-group", flexibility: "dc-flexibility" };
+    const target = document.getElementById(targets[first] ?? `dc-${first}`);
     target?.scrollIntoView({ behavior: "smooth", block: "center" });
-    if (target instanceof HTMLInputElement) target.focus({ preventScroll: true });
+    const focusTarget = target?.matches("input,select,textarea") ? target : target?.querySelector("button,input,select,textarea");
+    (focusTarget as HTMLElement | null)?.focus({ preventScroll: true });
     return false;
   };
 
@@ -1011,8 +989,11 @@ export default function QuoteFlow({
   };
 
   const goToBooking = async () => {
+    if (handoffBusy.current) return;
     if (!bookingQuery || !bookingUrl) return;
     if (!requireCleanerDetails()) return;
+    handoffBusy.current = true;
+    setHandoffFailed(false);
     track("booking_handoff", funnelProps());
     // A fresh, deliberate click always hands off — clear any stale guard first.
     clearHandoffFlag();
@@ -1022,20 +1003,30 @@ export default function QuoteFlow({
     // Save the final extras and access details before leaving. This request is
     // bounded, idempotent and keepalive-enabled; a relay outage never prevents
     // the customer from reaching BookingKoala because the initial lead exists.
-    await submitQuote(confirmFields(), {
-      requestId: confirmRequestIdRef.current,
-      timeoutMs: 3_500,
-      keepalive: true,
-    });
+    const [, secureUrl] = await Promise.all([
+      submitQuote(confirmFields(), {
+        requestId: confirmRequestIdRef.current,
+        timeoutMs: 3_500,
+        keepalive: true,
+      }),
+      prepareBookingHandoff(bookingQuery),
+    ]);
+    if (!secureUrl) {
+      handoffBusy.current = false;
+      clearHandoffFlag();
+      setHandoffFailed(true);
+      return;
+    }
 
     if (BOOKING_MODE === "embed") {
       // Same funnel, same domain — no interstitial needed. The intent flag is
       // ours only: /book strips it before handing the query to BookingKoala.
-      navigate(`/book?${bookingQuery}${deepCleanIntent ? "&intent=deep" : ""}`);
+      const destination = new URL(secureUrl);
+      navigate(`/book${destination.search}${deepCleanIntent ? "&intent=deep" : ""}${destination.hash}`);
       return;
     }
 
-    window.location.assign(bookingUrl);
+    window.location.assign(secureUrl);
   };
 
 
@@ -1979,18 +1970,35 @@ export default function QuoteFlow({
                 <>
               {/* Details for your cleaner. The booking page requires these to
                   confirm the clean, so they are asked here, in the open — the
-                  answers ride along as dc_* and are never typed twice. */}
+                  answers use the encrypted handoff; failed transfers offer retry. */}
               <div
                 id="dc-group"
                 className="scroll-mt-24 rounded-lg border border-quote-detail-border bg-quote-detail p-5"
               >
                 <h3 className="text-lg font-bold text-foreground">Details for your cleaner</h3>
                 <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                  Your booking can&rsquo;t be confirmed without these — answer them here and skip
-                  them at checkout.
+                  Enter these once here. We&rsquo;ll transfer them to secure booking, where you can
+                  review them before choosing your time and confirming.
                 </p>
-
-
+                <fieldset className="mt-5 grid gap-4 sm:grid-cols-2">
+                  <legend className="mb-3 text-base font-bold">Address Details — Where would you like us to clean?</legend>
+                  {([
+                    ["address", "Address", "street-address", "e.g. 123 Main Street", true],
+                    ["apartment", "Apt/Unit # (if it is a house leave blank)", "address-line2", "Unit or apartment", false],
+                    ["city", "City", "address-level2", "City or town", true],
+                    ["province", "Province", "address-level1", "AB", true],
+                  ] as const).map(([key, label, autocomplete, placeholder, required]) => (
+                    <div key={key}>
+                      <Label htmlFor={`dc-${key}`}>{label}{required && " *"}</Label>
+                      <Input id={`dc-${key}`} autoComplete={autocomplete} maxLength={120}
+                        placeholder={placeholder} value={details[key] ?? ""} required={required}
+                        aria-invalid={Boolean(detailErrors[key])} aria-describedby={detailErrors[key] ? `dc-${key}-error` : undefined}
+                        onChange={event => setDetails(current => ({ ...current, [key]: event.target.value }))}
+                        className="mt-2 min-h-[48px] text-base" />
+                      {detailErrors[key] && <p id={`dc-${key}-error`} className="mt-2 text-sm font-semibold text-destructive">{detailErrors[key]}</p>}
+                    </div>
+                  ))}
+                </fieldset>
                 <fieldset id="dc-entry-group" className="mt-4 scroll-mt-24">
                   <legend className="text-base font-bold text-foreground">
                     How do we enter the home? <span className="text-accent">*</span>
@@ -2024,7 +2032,7 @@ export default function QuoteFlow({
 
                 <fieldset id="dc-clean-group" className="mt-5 scroll-mt-24">
                   <legend className="text-base font-bold text-foreground">
-                    When was it last properly cleaned? <span className="text-accent">*</span>
+                    On a scale of 1-5, how clean is your house? <span className="text-accent">*</span>
                   </legend>
                   <div className="mt-2 flex flex-wrap gap-3">
                     {DC_CLEANLINESS_OPTIONS.map((option) => (
@@ -2234,26 +2242,41 @@ export default function QuoteFlow({
                 </Callout>
 
                 <div className="mt-5">
+                  <Label htmlFor="dc-flexibility" className="text-base font-bold">Is your date/time flexible? *</Label>
+                  <select id="dc-flexibility" value={details.flexibility ?? ""}
+                    aria-invalid={Boolean(detailErrors.flexibility)} aria-describedby="dc-flexibility-help"
+                    onChange={event => setDetails(current => ({ ...current, flexibility: event.target.value as CleanerDetails["flexibility"] }))}
+                    className="mt-2 min-h-[48px] w-full rounded-sm border border-input bg-card p-3 text-base">
+                    <option value="">Select Option</option>
+                    {FLEXIBILITY_OPTIONS.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}
+                  </select>
+                  <p id="dc-flexibility-help" className="mt-2 text-sm text-muted-foreground">If flexible, specify the dates or times that work in the notes below. You will choose a live available arrival window next.</p>
+                  {detailErrors.flexibility && <p role="alert" className="mt-2 text-sm font-semibold text-destructive">{detailErrors.flexibility}</p>}
+                </div>
+                <div className="mt-5">
                   <Label htmlFor="dc-notes" className="text-base font-bold text-foreground">
-                    Anything we should know? <span className="font-normal text-muted-foreground">(optional)</span>
+                    Special Notes &amp; Instructions <span className="font-normal text-muted-foreground">{details.flexibility && details.flexibility !== "none" ? "(include your date/time flexibility)" : "(optional)"}</span>
                   </Label>
                   <textarea
                     id="dc-notes"
                     rows={3}
-                    maxLength={DC_NOTES_MAX}
+                    maxLength={cleanerNotesLimit(details)}
+                    aria-invalid={Boolean(detailErrors.notes)}
+                    aria-describedby="dc-notes-help"
                     value={details.notes ?? ""}
                     onChange={(event) =>
                       setDetails((current) => ({
                         ...current,
-                        notes: event.target.value.slice(0, DC_NOTES_MAX),
+                        notes: event.target.value.slice(0, cleanerNotesLimit(current)),
                       }))
                     }
                     className="mt-2 w-full rounded-sm border border-input bg-card p-3 text-base text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
                     placeholder="Pets, fragile items, a room to skip…"
                   />
-                  <p className="mt-1 text-sm text-fine-print">
-                    {(details.notes ?? "").length}/{DC_NOTES_MAX} characters
+                  <p id="dc-notes-help" className="mt-1 text-sm text-fine-print">
+                    {(details.notes ?? "").length}/{cleanerNotesLimit(details)} characters. Include entry instructions and flexibility where relevant.
                   </p>
+                  {detailErrors.notes && <p role="alert" className="mt-2 text-sm font-semibold text-destructive">{detailErrors.notes}</p>}
                 </div>
               </div>
 
@@ -2301,7 +2324,7 @@ export default function QuoteFlow({
               {bookingUrl && (
                 <div className="space-y-2">
                   <p className="text-sm text-muted-foreground">
-                    Pick your time, add your address &amp; card — about 90 seconds.
+                    Review your details, choose an available time and add your card. You won&rsquo;t be charged today.
                     {deepCleanIntent
                       ? " Your Deep Cleaning package is already added."
                       : ""}
@@ -2420,17 +2443,14 @@ export default function QuoteFlow({
         </div>
       )}
 
-      {/* Embed mode: load the booking form invisibly while the visitor reads
-          their price, so /book paints from cache with a warm connection. */}
-      {BOOKING_MODE === "embed" && step === 2 && bookingQuery && (
-        <BookingEmbed query={bookingQuery} warmup />
-      )}
-
       {handingOff && bookingUrl && (
         <BookingHandoff
           priceLabel={priceLabel}
           bookingUrl={bookingUrl}
           hasAddOns={Object.keys(extrasBasket).length > 0}
+          failed={handoffFailed}
+          onRetry={goToBooking}
+          onBack={() => { setHandingOff(false); clearHandoffFlag(); }}
         />
       )}
 

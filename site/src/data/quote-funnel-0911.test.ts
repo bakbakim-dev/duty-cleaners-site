@@ -349,7 +349,7 @@ describe("Red Deer postal codes book online like any in-city code", () => {
       /const outsideCity = cityStatus === "unknown" \? insideCity === false : cityStatus === "outside";/,
     );
     expect(src, "a Red Deer code lost its online booking again").toMatch(
-      /const bookingUrl = bookingQuery === null \? null : `\$\{BOOKING_ORIGIN\}\/booknow\?\$\{bookingQuery\}`;/,
+      /const bookingUrl = bookingQuery === null \? null : publicBookingUrl\(bookingQuery\);/,
     );
     expect(src).not.toMatch(/isRedDeerPostalCode|Red Deer is served:/);
   });

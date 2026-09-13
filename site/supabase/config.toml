@@ -1,1 +1,4 @@
 project_id = "exodbynxmeezenqytkvh"
+
+[functions.booking-handoff]
+verify_jwt = false

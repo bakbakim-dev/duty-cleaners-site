@@ -12,11 +12,9 @@ import { CITY_PROOF } from "@/data/proof";
  * no nav, no escape hatches mid-checkout.
  *
  * Only used when BOOKING_MODE is "embed" (it is "redirect" today). Before
- * switching: this URL carries the visitor's name, email and phone for the
- * BookingKoala prefill. Google Analytics (lib/analytics.ts) strips the query string
- * from page_location (safePageLocation), but the prefill still sits in this page's
- * address bar in embed mode: strip those parameters from the URL, or exclude /book
- * from analytics, in the same change.
+ * switching, verify the iframe journey separately. Funnel handoffs now use
+ * service-only query parameters and an expiring encrypted fragment. The live
+ * receiver owns field transfer status; this shell must not promise success.
  */
 export default function Book() {
   const location = useLocation();
@@ -25,7 +23,7 @@ export default function Book() {
   const params = new URLSearchParams(location.search);
   const deepIntent = params.get("intent") === "deep";
   params.delete("intent");
-  const query = params.toString();
+  const query = params.toString() + (/^#dc_handoff=[\w.-]+$/.test(location.hash) ? location.hash : "");
 
   useEffect(() => {
     track("booking_page_view");
@@ -59,11 +57,11 @@ export default function Book() {
         <h1 className="mb-5 text-base font-semibold text-muted-foreground">
           {deepIntent ? (
             <>
-              Step 4 of 4: your Deep Cleaning package is already added, so just pick your time.
+              Step 4 of 4: review your Deep Cleaning selection, choose a time and add your card.
             </>
           ) : (
             <>
-              Step 4 of 4: pick your time. Your details are carried over. Add-ons like the Deep
+              Step 4 of 4: review your details, choose a time and add your card. Add-ons like the Deep
               Cleaning package are under &ldquo;Select Extras&rdquo;.
             </>
           )}

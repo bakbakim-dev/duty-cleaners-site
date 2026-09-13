@@ -43,19 +43,24 @@ export function handoffAlreadyFired(): boolean {
  * Branded transition between our funnel and the BookingKoala booking page.
  *
  * It goes up instantly on click while final quote details receive a bounded,
- * durable save. If navigation hasn't happened after 3 seconds
- * (blocked script, dead network) a button to the exact same URL appears, so a
- * visitor can never be stranded here.
+ * durable save and encrypted handoff preparation. A failure offers retry,
+ * back to answers, or an explicitly selected service-only fallback.
  */
 export default function BookingHandoff({
   priceLabel,
   bookingUrl,
   hasAddOns = false,
+  failed = false,
+  onRetry,
+  onBack,
 }: {
   priceLabel: string | null;
   bookingUrl: string;
   /** Add-on chips picked on step 3 ride along in the URL — say so. */
   hasAddOns?: boolean;
+  failed?: boolean;
+  onRetry?: () => void;
+  onBack?: () => void;
 }) {
   const [stalled, setStalled] = useState(false);
   const reducedMotion =
@@ -85,27 +90,30 @@ export default function BookingHandoff({
 
       <div>
         <p className="text-lg font-semibold text-brand-navy-foreground">
-          Opening secure booking&hellip;
+          {failed ? "Your secure transfer could not be prepared" : "Preparing your secure booking transfer…"}
         </p>
         <p className="mt-1 text-brand-navy-foreground/75">
-          {hasAddOns
+          {failed ? "Your answers are still here. Retry the transfer, or continue to BookingKoala and enter your personal details there." : hasAddOns
             ? `Your ${priceLabel ?? "quote"} and add-ons will carry over. Choose an available time next.`
             : `Your ${priceLabel ?? "quote"} will carry over. Choose an available time next.`}
         </p>
       </div>
 
-      {/* A button, not a link: the booking URL carries the visitor's name,
-          email, phone, postal code and notes, and Google Analytics' enhanced
-          measurement records the href of any outbound link that is clicked.
-          A button has no href for it to read. */}
-      {stalled && (
+      {/* The fallback URL contains service selections only. Personal answers
+          are transferred only through the successfully sealed handoff. */}
+      {stalled && !failed && <p className="text-brand-navy-foreground/75">Still preparing your details. This will time out safely if the connection fails.</p>}
+      {failed && (
+        <div className="flex max-w-lg flex-col gap-3">
+        <button type="button" onClick={onRetry} className="min-h-[48px] bg-brand-gold px-6 py-3 font-bold text-brand-gold-foreground">Retry secure transfer</button>
+        <button type="button" onClick={onBack} className="min-h-[48px] px-6 py-3 text-brand-navy-foreground underline">Back to my answers</button>
         <button
           type="button"
           onClick={() => window.location.assign(bookingUrl)}
           className="mt-2 min-h-[48px] bg-brand-gold px-6 py-3 font-bold text-brand-gold-foreground underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-gold"
         >
-          Taking longer than expected — continue to booking
+          Continue without transferring my personal details
         </button>
+        </div>
       )}
     </div>
   );
