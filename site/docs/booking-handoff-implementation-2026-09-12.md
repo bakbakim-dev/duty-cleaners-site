@@ -33,6 +33,8 @@ Legacy query parameters remain accepted by the receiver for compatibility and co
 
 ## Verification completed
 
+Final local checks: TypeScript and Deno checks passed; the production build passed; all 210 routes prerendered; all 1,666 tests in 43 files passed. All 12 new mutation proofs failed for their intended defects and restored their targets successfully. Ordinary `/booknow` visits were verified to show no receiver banner, while an invalid encrypted handoff showed the unavailable/retry message and left the native form usable.
+
 Automated checks cover field validation, personal/public parameter separation, authenticated-encryption round trips, tampering, expiry, wrong keys, body size, origin/action restrictions, basic rate limiting and safe failures. A small DOM fixture exercises native-control writes, delayed controls, ambiguity rejection and edit protection; it does not simulate Angular's internal model.
 
 The exhaustive mapping test evaluates 9,100 input combinations across Standard and Move In/Out, five home types, supported bedroom/bathroom/half-bath counts and all four incoming frequency choices. Move In/Out correctly stays one-time. These are automated mapping combinations, not 9,100 live bookings.
