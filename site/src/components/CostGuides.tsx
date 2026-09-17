@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
 
 /**
  * The three guides are the same articles on both hubs; the headline is the
@@ -90,7 +89,7 @@ export default function CostGuides({ city = "Edmonton" }: { city?: "Edmonton" | 
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{blurb}</p>
                 <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-accent">
                   Read guide
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                  <span className="dc-icon dc-icon-arrow-right h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                 </span>
               </div>
             ))}

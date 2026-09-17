@@ -7,28 +7,7 @@ import { canonicalForPath } from "@/data/legacy-urls";
 import { explicitBranchFromPath } from "@/lib/city-from-path";
 import { rememberBranch, useBranchPreference } from "@/lib/branch-preference";
 import { useQuoteOverlay } from "@/hooks/use-quote-overlay";
-import {
-  Menu,
-  X,
-  ChevronDown,
-  KeyRound,
-  Phone,
-  Calculator,
-  MapPin,
-  Globe2,
-  Sparkles,
-  ClipboardList,
-  Truck,
-  HardHat,
-  MessageSquare,
-  Gift,
-  HelpCircle,
-  ShieldCheck,
-  Star,
-  Users,
-
-  type LucideIcon,
-} from "lucide-react";
+import { Menu, X, ChevronDown, KeyRound, Calculator, Globe2, ClipboardList, Truck, HardHat, MessageSquare, Gift, HelpCircle, ShieldCheck, Star, LucideIcon, MapPin, Phone, Sparkles, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import AnnouncementBar from "@/components/AnnouncementBar";
 
@@ -77,7 +56,7 @@ function OfficePanel({ open, id }: { open: boolean; id: string }) {
               href={office.phoneLink}
               className="flex min-h-[44px] items-center gap-3 rounded-lg px-3 py-2 text-[0.95rem] text-foreground transition-colors hover:bg-secondary hover:text-accent"
             >
-              <Phone className="w-4 h-4 text-brand-gold" aria-hidden="true" />
+              <span className="dc-icon dc-icon-phone w-4 h-4 text-brand-gold" aria-hidden="true" />
               <span className="font-semibold">{office.city}</span>
               <span className="ml-auto">{office.phone}</span>
             </a>
@@ -251,8 +230,6 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
     };
   }, [mobileCtaHidden, location.pathname]);
 
-
-
   // Both were written out by hand here, and they disagreed: Calgary got
   // parentheses and Edmonton did not, on every page of the site. proof.ts is
   // the NAP authority — read it rather than restating the number.
@@ -328,8 +305,6 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
     { to: "/join-the-team/", icon: Users, title: "Careers", description: "Join our cleaning team" },
     { to: canonicalForPath("/contact"), icon: MessageSquare, title: "Contact Us", description: "Phone, email and office addresses" },
   ];
-
-
 
   const dropdownButton = (label: string, id: string) => (
     <button
@@ -431,7 +406,6 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
               <DropdownPanel items={contactItems} align="right" open={openDropdown === "contact"} id={`nav-panel-contact`} />
             </div>
 
-
             {neutral ? (
               <div
                 className="relative"
@@ -446,7 +420,7 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
                 href={phoneLink}
                 className="inline-flex min-h-[44px] items-center gap-1.5 text-[0.95rem] font-semibold text-foreground transition-colors hover:text-accent"
               >
-                <Phone className="w-4 h-4 text-brand-gold" aria-hidden="true" />
+                <span className="dc-icon dc-icon-phone w-4 h-4 text-brand-gold" aria-hidden="true" />
                 {phone}
               </a>
             )}
@@ -460,7 +434,6 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
               </Link>
             </Button>
           </div>
-
 
           {/* Mobile Menu Button */}
           <button
@@ -592,14 +565,14 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
             {neutral ? (
               OFFICES.map((key) => (
                 <a key={key} href={CITY_PROOF[key].phoneLink} className="flex min-h-[48px] items-center gap-2 py-3 px-2 text-accent font-bold">
-                  <Phone className="w-4 h-4" aria-hidden="true" />
+                  <span className="dc-icon dc-icon-phone w-4 h-4" aria-hidden="true" />
                   <span className="text-foreground font-medium">{CITY_PROOF[key].city}</span>
                   {CITY_PROOF[key].phone}
                 </a>
               ))
             ) : (
               <a href={phoneLink} className="flex min-h-[48px] items-center gap-2 py-3 px-2 text-accent font-bold">
-                <Phone className="w-4 h-4" aria-hidden="true" />
+                <span className="dc-icon dc-icon-phone w-4 h-4" aria-hidden="true" />
                 {phone}
               </a>
             )}
@@ -618,7 +591,7 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
             className="min-h-[48px] shrink-0 border-brand-navy-foreground/40 bg-transparent px-4 text-base font-bold text-brand-navy-foreground hover:bg-brand-navy-foreground/10 hover:text-brand-navy-foreground"
           >
             <a href={neutral ? OFFICES_ANCHOR : phoneLink} aria-label={neutral ? "Call an office" : `Call ${phone}`}>
-              <Phone className="mr-2 h-5 w-5" aria-hidden="true" />
+              <span className="dc-icon dc-icon-phone mr-2 h-5 w-5" aria-hidden="true" />
               Call
             </a>
           </Button>

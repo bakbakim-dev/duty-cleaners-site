@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Sparkles } from "lucide-react";
+import { BookOpen, Check } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import BlogPostCard from "@/components/blog/BlogPostCard";
 import { absoluteAssetUrl, ARTICLE_AUTHOR } from "@/lib/seo";
@@ -33,8 +33,6 @@ interface BlogPost {
   image: string;
   slug?: string;
 }
-
-
 
 // Only posts that actually exist are listed. Six entries used to sit here
 // with no `slug`, hotlinked Unsplash images and invented Feb-Mar 2024 dates.
@@ -243,7 +241,7 @@ export default function Blog() {
           <div className="container mx-auto px-4">
             <div className="text-center mb-14">
               <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-4">
-                <Sparkles className="w-4 h-4 text-primary" />
+                <span className="dc-icon dc-icon-sparkles w-4 h-4 text-primary" aria-hidden="true" />
                 <span className="text-primary text-sm font-medium">Latest Articles</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">Browse Our Blog</h2>
@@ -299,7 +297,7 @@ export default function Blog() {
           <div className={`container mx-auto px-4 relative z-10 transition-all duration-700 ${ctaVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
             <div className="max-w-2xl mx-auto text-center">
               <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-5 py-2 mb-6 backdrop-blur-sm">
-                <Sparkles className="w-4 h-4 text-accent" />
+                <span className="dc-icon dc-icon-sparkles w-4 h-4 text-accent" aria-hidden="true" />
                 <span className="text-white/90 text-sm font-medium">Book a house cleaning</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">See your price before you book</h2>

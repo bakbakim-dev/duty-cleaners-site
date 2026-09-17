@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Pause, Play, Star, MapPin, BadgeCheck, ShieldCheck, ExternalLink } from "lucide-react";
+import Stars from "@/components/Stars";
+import { Pause, Play, BadgeCheck, ShieldCheck } from "lucide-react";
 import type { RecentCleanReview } from "@/components/CityRecentCleans";
 import { BOOKINGS_CLAIM, RATING_CLAIM, CITY_PROOF } from "@/data/proof";
 import { getListing, openGoogleListing } from "@/lib/google-listings";
@@ -32,11 +33,7 @@ const RecentActivityStrip = ({ city, reviews }: RecentActivityStripProps) => {
       <div className="border-y border-border bg-white py-3" aria-label={`${city} trust signals`}>
         <div className="container mx-auto flex flex-wrap items-center justify-center gap-x-6 gap-y-2 px-4 text-sm font-medium text-foreground">
           <span className="inline-flex items-center gap-2">
-            <span className="flex gap-0.5" aria-hidden="true">
-              {[...Array(5)].map((_, index) => (
-                <Star key={index} className="h-3.5 w-3.5 fill-brand-gold text-brand-gold" />
-              ))}
-            </span>
+            <Stars size={0.875} />
             {ratingLabel}
           </span>
           <span className="inline-flex items-center gap-2">
@@ -55,7 +52,7 @@ const RecentActivityStrip = ({ city, reviews }: RecentActivityStripProps) => {
             className="inline-flex min-h-[44px] items-center gap-1.5 font-semibold text-primary underline-offset-2 hover:text-accent hover:underline"
           >
             Read the reviews
-            <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+            <span className="dc-icon dc-icon-external-link h-3.5 w-3.5" aria-hidden="true" />
           </a>
         </div>
       </div>
@@ -92,15 +89,11 @@ const RecentActivityStrip = ({ city, reviews }: RecentActivityStripProps) => {
             key={`${review.name}-${index}`}
             className="inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-border bg-secondary/40 px-4 py-2 text-xs font-medium text-foreground"
           >
-            <span className="flex gap-0.5" aria-hidden="true">
-              {[...Array(5)].map((_, starIndex) => (
-                <Star key={starIndex} className="h-3 w-3 fill-brand-gold text-brand-gold" />
-              ))}
-            </span>
-            <MapPin className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
+            <Stars size={0.75} />
+            <span className="dc-icon dc-icon-map-pin h-3.5 w-3.5 text-accent" aria-hidden="true" />
             {review.location}
             <span className="text-muted-foreground">· {review.date}</span>
-            <BadgeCheck className="h-3.5 w-3.5 text-success" aria-hidden="true" />
+            <span className="dc-icon dc-icon-badge-check h-3.5 w-3.5 text-success" aria-hidden="true" />
             {/* Google publishes reviews; it does not verify them, and the
                 review cards further down the page already say "Posted on
                 Google". Two labels for one fact, one of them untrue. */}

@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { Calendar, Clock, ArrowLeft, CheckCircle2, XCircle } from "lucide-react";
+import { Calendar, Clock, ArrowLeft, CheckCircle2, XCircle, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { COMPANY, CITY_PROOF, RATING_CLAIM } from "@/data/proof";

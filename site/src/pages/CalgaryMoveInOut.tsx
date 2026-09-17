@@ -14,7 +14,7 @@ import calgaryWindowCleaning from "@/assets/gallery/calgary-window-cleaning.webp
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
-import { CheckCircle2, Phone, Home, Shield, Star, Clock, DollarSign, Award, MapPin, Calculator, Sparkles } from "lucide-react";
+import { CheckCircle2, Home, Shield, Star, DollarSign, Award, Calculator } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import MoveOutDepth from "@/components/MoveOutDepth";
@@ -220,7 +220,7 @@ export default function CalgaryMoveInOut() {
                 </Button>
                 <Button size="lg" className="bg-white/95 text-brand-navy hover:bg-white text-lg px-8 h-14" asChild>
                   <a href="tel:4037681341">
-                    <Phone className="mr-2 w-5 h-5" />
+                    <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />
                     (403) 768-1341
                   </a>
                 </Button>
@@ -324,7 +324,6 @@ export default function CalgaryMoveInOut() {
           </div>
         </div>
       </section>
-
 
       {/* Services Breakdown */}
       <section className="py-20 bg-muted/20">
@@ -651,7 +650,7 @@ export default function CalgaryMoveInOut() {
 
             <div className="bg-gradient-to-br from-orange-50 to-white border-2 border-accent/20 rounded-xl p-8 transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.02] hover:shadow-xl hover:shadow-[hsl(200,30%,70%)]/30">
               <div className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mb-4">
-                <Sparkles className="w-8 h-8 text-accent" />
+                <span className="dc-icon dc-icon-sparkles w-8 h-8 text-accent" aria-hidden="true" />
               </div>
               <h3 className="text-xl font-bold mb-3">Supplies and equipment included</h3>
               <p className="text-muted-foreground leading-relaxed">
@@ -676,7 +675,7 @@ export default function CalgaryMoveInOut() {
 
             <div className="bg-gradient-to-br from-yellow-50 to-white border-2 border-yellow-200 rounded-xl p-8 transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.02] hover:shadow-xl hover:shadow-[hsl(200,30%,70%)]/30">
               <div className="w-16 h-16 bg-yellow-100 rounded-2xl flex items-center justify-center mb-4">
-                <Clock className="w-8 h-8 text-yellow-600" />
+                <span className="dc-icon dc-icon-clock w-8 h-8 text-yellow-600" aria-hidden="true" />
               </div>
               <h3 className="text-xl font-bold mb-3">Pay after the clean</h3>
               <p className="text-muted-foreground leading-relaxed">
@@ -797,7 +796,7 @@ export default function CalgaryMoveInOut() {
             </Button>
             <Button size="lg" className="bg-accent hover:bg-accent/90 text-white text-lg px-8 h-14" asChild>
               <a href="tel:4037681341">
-                <Phone className="mr-2 w-5 h-5" />
+                <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />
                 Call (403) 768-1341
               </a>
             </Button>
@@ -823,7 +822,6 @@ export default function CalgaryMoveInOut() {
 
       </section>
       </main>
-
 
       <Footer hasQuoteSection />
     </div>;

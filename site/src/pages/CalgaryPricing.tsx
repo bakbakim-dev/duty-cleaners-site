@@ -32,11 +32,7 @@ import {
   startingPrice,
 } from "@/data/pricing";
 import { addOnTableRows } from "@/data/addon-table";
-import {
-  CheckCircle2, Phone, Calculator, Sparkles, Shield, Clock,
-  Star, BadgeCheck, Home, CalendarClock,
-  HelpCircle, Award, Users, Info, MapPin, Receipt
-} from "lucide-react";
+import { CheckCircle2, Calculator, Shield, Star, BadgeCheck, Home, CalendarClock, HelpCircle, Award, Info, Receipt, Clock, Users, Check } from "lucide-react";
 import { CITY_PROOF, COMPANY, RATING_CLAIM } from "@/data/proof";
 
 /* Derived from bk-config — never hand-typed, so the table can never
@@ -286,7 +282,7 @@ export default function CalgaryPricing() {
               </Button>
               <Button size="lg" className="bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 text-lg px-8 py-6 h-auto font-semibold transition-all duration-300" asChild>
                 <a href="tel:4037681341">
-                  <Phone className="w-5 h-5 mr-2" />
+                  <span className="dc-icon dc-icon-phone w-5 h-5 mr-2" aria-hidden="true" />
                   (403) 768-1341
                 </a>
               </Button>
@@ -387,7 +383,7 @@ export default function CalgaryPricing() {
                   <div className="bg-card rounded-xl border border-border/50 shadow-sm overflow-hidden">
                     <div className="bg-brand-navy p-5 flex items-center gap-3">
                       <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
-                        <Sparkles className="w-5 h-5 text-accent" />
+                        <span className="dc-icon dc-icon-sparkles w-5 h-5 text-accent" aria-hidden="true" />
                       </div>
                       <h3 className="text-lg font-bold text-white">Available as Add-ons</h3>
                     </div>
@@ -590,7 +586,7 @@ export default function CalgaryPricing() {
         <div className="container mx-auto px-4" ref={travelRef}>
           <div className="max-w-3xl mx-auto">
             <div className="flex items-center gap-2 mb-4">
-              <MapPin className="w-5 h-5 text-accent" />
+              <span className="dc-icon dc-icon-map-pin w-5 h-5 text-accent" aria-hidden="true" />
               <span className="text-accent font-semibold text-sm uppercase tracking-wider">Beyond city limits</span>
             </div>
             <h2 className="display-serif text-2xl md:text-3xl font-bold mb-6 text-balance">Outside Calgary city limits: what the travel fee covers</h2>
@@ -650,7 +646,7 @@ export default function CalgaryPricing() {
                   </Button>
                   <Button className="bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-all" asChild>
                     <a href="tel:4037681341">
-                      <Phone className="w-5 h-5 mr-2" />
+                      <span className="dc-icon dc-icon-phone w-5 h-5 mr-2" aria-hidden="true" />
                       Call for Quote
                     </a>
                   </Button>
@@ -789,7 +785,7 @@ export default function CalgaryPricing() {
         <div className="container mx-auto px-4 relative z-10" ref={ctaRef}>
           <div className="max-w-2xl mx-auto text-center">
             <div className="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-6 rotate-3 hover:rotate-0 transition-transform duration-500">
-              <Sparkles className="w-8 h-8 text-accent" />
+              <span className="dc-icon dc-icon-sparkles w-8 h-8 text-accent" aria-hidden="true" />
             </div>
             <h2 className="display-serif text-3xl md:text-4xl font-bold mb-4 text-white">See your Calgary price</h2>
             <p className="text-lg text-white/75 mb-8 leading-relaxed">
@@ -805,7 +801,7 @@ export default function CalgaryPricing() {
               </Button>
               <Button size="lg" className="bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 text-lg px-8 py-6 h-auto font-semibold transition-all duration-300" asChild>
                 <a href="tel:4037681341">
-                  <Phone className="w-5 h-5 mr-2" />
+                  <span className="dc-icon dc-icon-phone w-5 h-5 mr-2" aria-hidden="true" />
                   Calgary: (403) 768-1341
                 </a>
               </Button>

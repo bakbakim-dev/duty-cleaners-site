@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { MapPin, ExternalLink } from "lucide-react";
 
 /**
  * A Google Maps embed that loads nothing from Google until the reader asks.
@@ -69,7 +68,7 @@ export default function GoogleMapEmbed({ query, title, height = 450, embedSrc }:
       className="flex w-full flex-col items-center justify-center gap-4 bg-muted/40 p-6 text-center"
       style={{ minHeight: height }}
     >
-      <MapPin className="h-8 w-8 text-primary" aria-hidden="true" />
+      <span className="dc-icon dc-icon-map-pin h-8 w-8 text-primary" aria-hidden="true" />
       <p className="text-lg font-semibold text-foreground">{query}</p>
       <div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-6">
         <button
@@ -77,7 +76,7 @@ export default function GoogleMapEmbed({ query, title, height = 450, embedSrc }:
           onClick={() => setShowMap(true)}
           className="inline-flex min-h-[44px] items-center gap-2 rounded-md bg-primary px-5 font-semibold text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         >
-          <MapPin className="h-4 w-4" aria-hidden="true" />
+          <span className="dc-icon dc-icon-map-pin h-4 w-4" aria-hidden="true" />
           Show map
         </button>
         <a
@@ -87,7 +86,7 @@ export default function GoogleMapEmbed({ query, title, height = 450, embedSrc }:
           className="inline-flex min-h-[44px] items-center gap-1.5 font-semibold text-primary underline underline-offset-2 hover:text-accent"
         >
           Open {query} in Google Maps
-          <ExternalLink className="h-4 w-4" aria-hidden="true" />
+          <span className="dc-icon dc-icon-external-link h-4 w-4" aria-hidden="true" />
         </a>
       </div>
     </div>

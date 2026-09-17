@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
+import Stars from "@/components/Stars";
 import ThresholdLine from "@/components/ThresholdLine";
-import { ArrowRight, CalendarCheck, HeartHandshake, Phone, ShieldCheck, Star, UserCheck } from "lucide-react";
+import { ArrowRight, CalendarCheck, HeartHandshake, Phone, ShieldCheck, UserCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { canonicalForPath } from "@/data/legacy-urls";
@@ -140,7 +141,6 @@ const SUBHEAD = {
   Edmonton: `Standard cleans start at ${FROM_PRICE} before GST for a one-bedroom, one-bathroom apartment or condo, priced flat by size. A pet charge, a surcharge for other home types and a travel fee outside city limits can apply, and nothing is charged until the clean is done.`,
   Calgary: `A standard clean of a one-bedroom, one-bathroom condo starts at ${FROM_PRICE} before GST; pets, home types other than an apartment or condo, and addresses outside city limits each add a charge. You see the figure for your own home before you choose a date, and you pay after the clean.`,
 } as const;
-
 
 export default function CityConversionIntro({
   city,
@@ -307,11 +307,7 @@ export default function CityConversionIntro({
                 rel="noopener noreferrer"
                 className="mt-6 inline-flex min-h-[44px] items-center gap-2 text-sm font-semibold text-white/80 underline-offset-4 hover:text-white hover:underline"
               >
-                <span className="flex gap-0.5" aria-hidden="true">
-                  {[...Array(5)].map((_, index) => (
-                    <Star key={index} className="h-4 w-4 fill-brand-gold text-brand-gold" />
-                  ))}
-                </span>
+                <Stars size={1} />
                 {ratingLine}
               </a>
             </div>
@@ -329,7 +325,6 @@ export default function CityConversionIntro({
 
         <ThresholdLine className="absolute inset-x-0 bottom-0 hidden lg:block" />
       </section>
-
 
       {/* One white plate straddling the hero seam, split into three numbered
           commitments — the first thing the eye lands on after the headline. */}

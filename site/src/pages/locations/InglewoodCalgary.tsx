@@ -2,8 +2,7 @@ import { WALL_WASHING_DESCRIPTION } from "@/data/service-copy";
 import { sitePriceRange } from "@/data/pricing";
 import { getListing } from "@/lib/google-listings";
 import {
-  CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import { useEffect } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"; import {   Phone, CheckCircle2, Star, Shield, Clock, Award, Home, Sparkles, Truck, SprayCan, Bath, Building2, Leaf, Users, CalendarCheck, ThumbsUp, MapPin, Mail, PaintRoller
-} from "lucide-react";
+  CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import { useEffect } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"; import { CheckCircle2, Star, Shield, Award, Home, Truck, SprayCan, Bath, Building2, Leaf, CalendarCheck, ThumbsUp, Mail, PaintRoller, Sparkles } from "lucide-react";
 import { buildLocationSchema } from "@/lib/location-schema";
 import CoverageChips from "@/components/CoverageChips";
 import LocationPricing from "@/components/LocationPricing";
@@ -163,7 +162,7 @@ export default function InglewoodCalgary() {
             <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
               <div className="flex-1 text-center lg:text-left">
                 <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-5 py-2 mb-6">
-                  <MapPin className="w-4 h-4 text-accent" />
+                  <span className="dc-icon dc-icon-map-pin w-4 h-4 text-accent" aria-hidden="true" />
                   <span className="text-white/90 text-sm font-medium">Serving Inglewood, Calgary</span>
                 </div>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
@@ -174,7 +173,7 @@ export default function InglewoodCalgary() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
-                    <a href="tel:4037681341"><Phone className="mr-2 w-5 h-5" />(403) 768-1341</a>
+                    <a href="tel:4037681341"><span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />(403) 768-1341</a>
                   </Button>
                   <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
                     <a href="#quote">See My Instant Price</a>
@@ -206,7 +205,6 @@ export default function InglewoodCalgary() {
             </div>
           </div>
         </section>
-
 
         {/* Interactive Map */}
         <section className="py-16 bg-background">
@@ -348,7 +346,7 @@ export default function InglewoodCalgary() {
               <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">See your flat rate before you book. Nothing is charged until the clean is done.</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
-                  <a href="tel:4037681341"><Phone className="mr-2 w-5 h-5" />Call (403) 768-1341</a>
+                  <a href="tel:4037681341"><span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />Call (403) 768-1341</a>
                 </Button>
                 <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
                   <a href="#quote"><Mail className="mr-2 w-5 h-5" />See My Instant Price</a>

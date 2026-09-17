@@ -37,7 +37,7 @@ import CostGuides from "@/components/CostGuides";
 import judgmentRoom from "@/assets/whats-included-hero.webp";
 import DirectContactPanel from "@/components/DirectContactPanel";
 import { Button } from "@/components/ui/button";
-import { Phone, Calculator, CheckCircle2, Sparkles, Home, HardHat, Star, Shield, Clock, MapPin, Award, Users, TrendingUp, Bed, Bath, Sofa, ChefHat, ChevronDown, ChevronUp, LucideIcon, Zap, ThumbsUp, Leaf, DollarSign, Truck, Calendar, MessageSquare, ExternalLink, Play, Heart, KeyRound, ArrowRight, BadgeCheck, CalendarCheck } from "lucide-react";
+import { Calculator, CheckCircle2, Home, HardHat, Star, Shield, Award, TrendingUp, Bed, Bath, Sofa, ChefHat, ChevronUp, LucideIcon, Zap, ThumbsUp, Leaf, DollarSign, Truck, Calendar, MessageSquare, Play, Heart, KeyRound, BadgeCheck, CalendarCheck, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import CityCrossLink from "@/components/CityCrossLink";
 import GetInTouch from "@/components/GetInTouch";
@@ -165,7 +165,6 @@ const CounterCard = ({
   </div>
 );
 
-
 // Feature card with icon
 const FeatureCard = ({
   icon: Icon,
@@ -194,7 +193,6 @@ export default function Edmonton2() {
   // then, so it never covers the form fields visitors are filling out.
   const [quoteInView, setQuoteInView] = useState(false);
   const quoteProgress = useQuoteProgress();
-
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -323,7 +321,6 @@ export default function Edmonton2() {
         <Navigation city="edmonton" />
         <main id="main-content" tabIndex={-1}>
 
-
          <CityConversionIntro
            city="Edmonton"
            phone="(780) 913-6565"
@@ -340,7 +337,6 @@ export default function Edmonton2() {
              { src: galleryModernKitchen, alt: "Kitchen with dark cabinets, a white island and a stainless fridge" },
            ]}
          />
-
 
         {/*
           Mirrors Calgary's note. The winter paragraph is FACTS C1 and nothing
@@ -388,7 +384,6 @@ export default function Edmonton2() {
             carries — three paragraphs that told a reader who had just scrolled
             past the cards nothing new. What is left is the part the cards do
             not do: the routes, and the prices that are not in the table. */}
-
 
         <section className="band band-white band-hairline">
           <div className="container mx-auto px-4">
@@ -474,12 +469,10 @@ export default function Edmonton2() {
           </div>
         </section>
 
-
         <BeforeAfterGallery city="Edmonton" />
 
         {/* Reviews */}
         <CityRecentCleans city="Edmonton" reviews={googleReviews} />
-
 
         {/* FAQ — objection handling, last before the ask. Full-bleed tinted
             band + two-column split so it doesn't resolve like every other
@@ -495,7 +488,7 @@ export default function Edmonton2() {
                   <p className="text-lg font-semibold">Ask the Edmonton office.</p>
                   <p className="mt-1 text-sm text-muted-foreground">Mon&ndash;Sat 8 AM&ndash;8 PM &middot; Sun 9 AM&ndash;3 PM</p>
                   <a href="tel:7809136565" className="mt-3 inline-flex min-h-[44px] items-center gap-2 font-semibold text-gold-ink transition-colors hover:text-brand-navy">
-                    <Phone className="h-4 w-4" aria-hidden="true" />
+                    <span className="dc-icon dc-icon-phone h-4 w-4" aria-hidden="true" />
                     Call (780) 913-6565
                   </a>
                 </div>
@@ -508,7 +501,7 @@ export default function Edmonton2() {
                         <span className="shrink-0 text-sm font-bold text-gold-ink">{String(index + 1).padStart(2, "0")}</span>
                         <span className="font-semibold pr-4">{faq.question}</span>
                       </span>
-                      {openFAQ === index ? <ChevronUp className="w-5 h-5 text-primary flex-shrink-0" /> : <ChevronDown className="w-5 h-5 text-muted-foreground flex-shrink-0" />}
+                      {openFAQ === index ? <ChevronUp className="w-5 h-5 text-primary flex-shrink-0" /> : <span className="dc-icon dc-icon-chevron-down w-5 h-5 text-muted-foreground flex-shrink-0" aria-hidden="true" />}
                     </button>
                     {/* Always in the DOM (hidden when collapsed) so the FAQPage
                         schema's answers match crawlable page content. */}
@@ -520,7 +513,6 @@ export default function Edmonton2() {
             </div>
           </div>
         </section>
-
 
         {/* Service Areas — full-width tonal field with a domestic-life crop */}
         <section className="band band-paper band-hairline">
@@ -585,7 +577,6 @@ export default function Edmonton2() {
               />
             </div>
 
-
             <NeighborhoodMarquee city="Edmonton" />
             <CityCoverageGrid
               city="Edmonton"
@@ -619,15 +610,12 @@ export default function Edmonton2() {
                 </p>
               </div>
 
-
               <div id="quote-form" className="mx-auto grid w-full max-w-4xl scroll-mt-20 items-stretch overflow-hidden border border-border shadow-xl shadow-brand-navy/10 lg:grid-cols-[minmax(0,1fr)_minmax(280px,20rem)]">
                 <div className="bg-card p-2 sm:p-4">
                   <ServiceStartCard phone="(780) 913-6565" phoneLink="tel:7809136565" />
                 </div>
                 <DirectContactPanel city="Edmonton" phone="(780) 913-6565" phoneLink="tel:7809136565" />
               </div>
-
-
 
               {/* What happens next */}
               <ul className="mt-8 grid gap-4 sm:grid-cols-3">
@@ -666,12 +654,11 @@ export default function Edmonton2() {
             </Button>
             <Button variant="outline" className="min-h-[48px] border-border bg-card px-6 text-base font-semibold shadow-xl" asChild>
               <a href="tel:7809136565">
-                <Phone className="w-4 h-4 mr-2" />
+                <span className="dc-icon dc-icon-phone w-4 h-4 mr-2" aria-hidden="true" />
                 Call
               </a>
             </Button>
           </aside>}
-
 
         <Footer hasQuoteSection />
       </div>

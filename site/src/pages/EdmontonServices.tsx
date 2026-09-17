@@ -15,27 +15,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import {
-  Sparkles,
-  ShieldCheck,
-  Home,
-  Truck,
-  HardHat,
-  PaintRoller,
-  BedDouble,
-  Repeat,
-  Phone,
-  MapPin,
-  Clock,
-  DollarSign,
-  Star,
-  MessageSquare,
-  Users,
-  CheckCircle2,
-  ArrowRight,
-  Shield,
-  Heart
-} from "lucide-react";
+import { ShieldCheck, Home, Truck, HardHat, PaintRoller, BedDouble, Repeat, DollarSign, Star, MessageSquare, CheckCircle2, Shield, Heart, Phone, Sparkles, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import edmontonHero from "@/assets/edmonton-hero-cleaner.webp";
@@ -140,7 +120,6 @@ const DESCRIPTION = "Compare standard, recurring, deep and move-out cleaning in 
    the content prompt's FACTS, nothing more. */
 const GUIDE_OPENER =
   "The short version: if the home is lived in and was cleaned in the last month or two, standard cleaning is the right service and the cheapest one. Deep cleaning is for the build-up a standard visit cannot reach, and an Edmonton winter produces plenty of it. Furnace season here runs from October into April, and a house sealed up that long cycles dust faster. Then the spring melt, in late March and April, brings a whole winter of grit indoors in about three weeks. If you can name what a standard clean would miss, book the deep clean once and go back to standard visits after it.";
-
 
 type Service = {
   title: string;
@@ -355,7 +334,7 @@ function ServiceCard({ service }: { service: ServiceLocal }) {
     >
       {badge && (
         <div className="absolute top-4 right-4 inline-flex items-center gap-1.5 bg-primary text-primary-foreground text-xs font-semibold px-3 py-1 rounded-full shadow">
-          <Sparkles className="w-3 h-3" /> {badge}
+          <span className="dc-icon dc-icon-sparkles w-3 h-3" aria-hidden="true" /> {badge}
         </div>
       )}
 
@@ -388,7 +367,7 @@ function ServiceCard({ service }: { service: ServiceLocal }) {
         <Button className="w-full group/btn bg-primary hover:bg-primary/90 text-primary-foreground" asChild>
           <Link to={service.link}>
             {service.linkText}
-            <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
+            <span className="dc-icon dc-icon-arrow-right w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" aria-hidden="true" />
           </Link>
         </Button>
       </div>
@@ -447,7 +426,7 @@ export default function EdmontonServices() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
-              <Sparkles className="w-4 h-4 text-accent" />
+              <span className="dc-icon dc-icon-sparkles w-4 h-4 text-accent" aria-hidden="true" />
               <span className="text-white/90 text-sm font-medium">{services.length} services, one price list</span>
             </div>
 
@@ -468,7 +447,7 @@ export default function EdmontonServices() {
               </Button>
               <Button asChild size="lg" variant="outline" className="text-lg border-white/20 text-white hover:bg-white/10">
                 <a href={proof.phoneLink}>
-                  <Phone className="w-4 h-4 mr-2" />
+                  <span className="dc-icon dc-icon-phone w-4 h-4 mr-2" aria-hidden="true" />
                   Call {proof.phone}
                 </a>
               </Button>
@@ -631,7 +610,7 @@ export default function EdmontonServices() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-4">
-              <Phone className="w-4 h-4 text-accent" />
+              <span className="dc-icon dc-icon-phone w-4 h-4 text-accent" aria-hidden="true" />
               <span className="text-white/90 text-sm font-medium">Contact Us</span>
             </div>
             <h2 className="display-serif text-3xl md:text-4xl font-bold text-white">Get In Touch</h2>
@@ -644,7 +623,7 @@ export default function EdmontonServices() {
               <div className="space-y-5">
                 <div className="flex items-center gap-4 group">
                   <div className="w-12 h-12 rounded-xl bg-accent/20 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:bg-accent/30">
-                    <Phone className="w-5 h-5 text-accent" />
+                    <span className="dc-icon dc-icon-phone w-5 h-5 text-accent" aria-hidden="true" />
                   </div>
                   <div>
                     <p className="text-sm text-white/80">Phone</p>
@@ -655,7 +634,7 @@ export default function EdmontonServices() {
                 </div>
                 <div className="flex items-center gap-4 group">
                   <div className="w-12 h-12 rounded-xl bg-accent/20 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:bg-accent/30">
-                    <MapPin className="w-5 h-5 text-accent" />
+                    <span className="dc-icon dc-icon-map-pin w-5 h-5 text-accent" aria-hidden="true" />
                   </div>
                   <div>
                     <p className="text-sm text-white/80">Address</p>
@@ -664,7 +643,7 @@ export default function EdmontonServices() {
                 </div>
                 <div className="flex items-center gap-4 group">
                   <div className="w-12 h-12 rounded-xl bg-accent/20 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:bg-accent/30">
-                    <Clock className="w-5 h-5 text-accent" />
+                    <span className="dc-icon dc-icon-clock w-5 h-5 text-accent" aria-hidden="true" />
                   </div>
                   <div>
                     <p className="text-sm text-white/80">Hours</p>
@@ -686,7 +665,7 @@ export default function EdmontonServices() {
                     <DollarSign className="w-5 h-5 text-accent" />
                   </div>
                   <span className="font-medium">View Pricing</span>
-                  <ArrowRight className="w-4 h-4 ml-auto opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
+                  <span className="dc-icon dc-icon-arrow-right w-4 h-4 ml-auto opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" aria-hidden="true" />
                 </Link>
                 <Link
                   to="/reviews/"
@@ -696,7 +675,7 @@ export default function EdmontonServices() {
                     <Star className="w-5 h-5 text-accent" />
                   </div>
                   <span className="font-medium">Read Reviews</span>
-                  <ArrowRight className="w-4 h-4 ml-auto opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
+                  <span className="dc-icon dc-icon-arrow-right w-4 h-4 ml-auto opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" aria-hidden="true" />
                 </Link>
                 <Link
                   to="/faqs/"
@@ -706,17 +685,17 @@ export default function EdmontonServices() {
                     <MessageSquare className="w-5 h-5 text-accent" />
                   </div>
                   <span className="font-medium">Full FAQ</span>
-                  <ArrowRight className="w-4 h-4 ml-auto opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
+                  <span className="dc-icon dc-icon-arrow-right w-4 h-4 ml-auto opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" aria-hidden="true" />
                 </Link>
                 <Link
                   to="/about-us/"
                   className="flex items-center gap-3 text-white/80 hover:text-accent transition-colors group"
                 >
                   <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:bg-accent/30">
-                    <Users className="w-5 h-5 text-accent" />
+                    <span className="dc-icon dc-icon-users w-5 h-5 text-accent" aria-hidden="true" />
                   </div>
                   <span className="font-medium">About Us</span>
-                  <ArrowRight className="w-4 h-4 ml-auto opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
+                  <span className="dc-icon dc-icon-arrow-right w-4 h-4 ml-auto opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" aria-hidden="true" />
                 </Link>
               </div>
             </div>

@@ -1,5 +1,5 @@
 import { type KeyboardEvent as ReactKeyboardEvent, useEffect, useMemo, useRef, useState } from "react";
-import { AlertTriangle, ArrowLeft, ArrowRight, Check, Loader2, Mail, Phone } from "lucide-react";
+import { AlertTriangle, ArrowLeft, Loader2, Mail, ArrowRight, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -138,16 +138,11 @@ const DC_PARKING_LABELS: Record<DcParking, string> = Object.fromEntries(
   DC_PARKING_OPTIONS.map((option) => [option.value, option.label])
 ) as Record<DcParking, string>;
 
-
-
-
 /** Types as "T5J 0N3": uppercase, one space after the third character. */
 const formatPostalInput = (value: string) => {
   const raw = value.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 6);
   return raw.length > 3 ? `${raw.slice(0, 3)} ${raw.slice(3)}` : raw;
 };
-
-
 
 /** Step 4 happens on the BookingKoala page, but it is part of the same funnel. */
 const TOTAL_STEPS = STEP_LABELS.length;
@@ -272,7 +267,6 @@ function NumberChips({
     </fieldset>
   );
 }
-
 
 export default function QuoteFlow({
   initialService = "standard",
@@ -508,7 +502,6 @@ export default function QuoteFlow({
     stepHeadingRef.current?.focus();
   }, [step]);
 
-
   // Back from BookingKoala must land on the quote, never on the interstitial
   // (which would fling the visitor straight back out). Covers both a fresh
   // load and a bfcache restore, then disarms so a second, deliberate click
@@ -691,7 +684,6 @@ export default function QuoteFlow({
   /** What renders: the interactive rows, plus the locked deep tile if any. */
   const shelfGroups = useMemo(() => groupExtras(shelf), [shelf]);
 
-
   // Any change of service or home size invalidates the resolved rows.
   useEffect(() => {
     setAddOns((current) => {
@@ -788,14 +780,12 @@ export default function QuoteFlow({
   const panelFirstClean =
     deepFirstClean ?? (addOnTotal > 0 && !quote.quoteOnly ? firstCleanTotal : null);
 
-
   const priceLabel = quote.quoteOnly
     ? "Custom quote"
     : quote.isEstimate
       ? // Never below BookingKoala's tier price (see PricePanel).
         `${formatPrice(quote.firstClean + addOnTotal)}–${formatPrice(quote.rangeHigh + addOnTotal)}`
       : formatPrice(firstCleanTotal);
-
 
   /** Home details in GoHighLevel's own option wording. */
   const homeFields = () => ({
@@ -971,7 +961,6 @@ export default function QuoteFlow({
     ]
   );
 
-
   const bookingUrl = bookingQuery === null ? null : publicBookingUrl(bookingQuery);
 
   /**
@@ -985,7 +974,6 @@ export default function QuoteFlow({
    * No hidden iframe or speculative request receives the visitor's answers;
    * preconnect and dns-prefetch below warm only the booking origin.
    */
-
 
   /**
    * Desktop keeps the summary bar out of the way while the real CTA is on
@@ -1088,7 +1076,6 @@ export default function QuoteFlow({
     window.location.assign(secureUrl);
   };
 
-
   /** Secondary CTA — the original callback request. */
   const requestCallback = async () => {
     if (step === 2 && !requireCleanerDetails()) return;
@@ -1139,7 +1126,7 @@ export default function QuoteFlow({
         </Button>
         <Button asChild size="sm" className="min-h-[44px] bg-accent text-accent-foreground hover:bg-accent/90">
           <a href={proof.phoneLink}>
-            <Phone className="mr-2 h-4 w-4" aria-hidden="true" />
+            <span className="dc-icon dc-icon-phone mr-2 h-4 w-4" aria-hidden="true" />
             Call {proof.phone}
           </a>
         </Button>
@@ -1157,7 +1144,7 @@ export default function QuoteFlow({
     return (
       <div className="mx-auto max-w-xl py-12 text-center">
         <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-brand-navy text-brand-gold">
-          <Check className="h-7 w-7" aria-hidden="true" />
+          <span className="dc-icon dc-icon-check h-7 w-7" aria-hidden="true" />
         </div>
         <h2 className="text-2xl font-bold text-foreground">Request received.</h2>
         <p className="mt-3 leading-relaxed text-muted-foreground">
@@ -1169,7 +1156,7 @@ export default function QuoteFlow({
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <Button asChild variant="outline" className="min-h-[48px]">
             <a href={proof.phoneLink}>
-              <Phone className="mr-2 h-4 w-4" aria-hidden="true" />
+              <span className="dc-icon dc-icon-phone mr-2 h-4 w-4" aria-hidden="true" />
               Call {proof.phone}
             </a>
           </Button>
@@ -1229,7 +1216,6 @@ export default function QuoteFlow({
         </div>
       </div>
 
-
       <div
         className={
           showPrice ? "grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px]" : "mx-auto max-w-2xl"
@@ -1253,7 +1239,7 @@ export default function QuoteFlow({
                 {!serviceExpanded ? (
                   <div className="flex flex-wrap items-center justify-between gap-3 rounded-sm border border-brand-navy/30 bg-secondary/50 p-4">
                     <span className="flex items-center gap-2 text-base font-bold text-foreground">
-                      <Check className="h-5 w-5 text-brand-navy" aria-hidden="true" />
+                      <span className="dc-icon dc-icon-check h-5 w-5 text-brand-navy" aria-hidden="true" />
                       {selected.label}
                       {deepCleanIntent ? " + Deep Cleaning package" : ""}
                     </span>
@@ -1293,7 +1279,6 @@ export default function QuoteFlow({
                       screen.
                     </p>
                   )}
-
 
                   <div className="grid gap-3 sm:grid-cols-2">
 
@@ -1360,7 +1345,6 @@ export default function QuoteFlow({
                   .
                 </p>
               </fieldset>
-
 
               {selected.asksHomeSize && (
                 <div ref={homeSizeRef} className="space-y-6">
@@ -1431,7 +1415,7 @@ export default function QuoteFlow({
                   onClick={goToContact}
                 >
                   Continue
-                  <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
+                  <span className="dc-icon dc-icon-arrow-right ml-2 h-5 w-5" aria-hidden="true" />
                 </Button>
               </StepFooter>
 
@@ -1589,7 +1573,7 @@ export default function QuoteFlow({
                 >
                   {submitting && <Loader2 className="mr-2 h-5 w-5 animate-spin" aria-hidden="true" />}
                   Show My Price
-                  <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
+                  <span className="dc-icon dc-icon-arrow-right ml-2 h-5 w-5" aria-hidden="true" />
                 </Button>
               </StepFooter>
 
@@ -1761,7 +1745,6 @@ export default function QuoteFlow({
 
               </div>
 
-
               {selected.supportsRecurring && (
                 <div>
                   <p className="mb-3 text-lg font-bold text-foreground">
@@ -1791,7 +1774,7 @@ export default function QuoteFlow({
                         </span>
                       </p>
                       <p className="mt-2 inline-flex items-center gap-2 rounded-sm bg-savings-foreground px-3 py-1.5 text-base font-bold text-savings">
-                        <Check className="h-4 w-4" aria-hidden="true" />
+                        <span className="dc-icon dc-icon-check h-4 w-4" aria-hidden="true" />
                         Frequency savings: {formatPrice(ongoingSavings)} per recurring visit
                         {basketRows.some((row) => row.extra.firstVisitOnly || row.extra.exemptFromFrequencyDiscount)
                           ? ""
@@ -1842,7 +1825,6 @@ export default function QuoteFlow({
                   )}
                 </fieldset>
               )}
-
 
               {shelfGroups.length > 0 && (
                 <div ref={shelfRef} className="rounded-lg border border-quote-shelf-border bg-quote-shelf p-5">
@@ -1969,10 +1951,7 @@ export default function QuoteFlow({
                                       <span className="flex items-start justify-between gap-3">
                                         <span className="flex items-start gap-2 text-base font-semibold">
                                           {added && (
-                                            <Check
-                                              className="mt-0.5 h-5 w-5 shrink-0"
-                                              aria-hidden="true"
-                                            />
+                                            <span className="dc-icon dc-icon-check mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
                                           )}
                                           <span>
                                             {extraDisplayName(extra.name)}{" "}
@@ -2025,11 +2004,6 @@ export default function QuoteFlow({
                 </div>
               )}
 
-
-
-
-
-
               <StepFooter
                 back={
                   <button
@@ -2048,7 +2022,7 @@ export default function QuoteFlow({
                   className="min-h-[56px] w-full rounded-full bg-accent px-8 text-base font-bold text-accent-foreground hover:bg-accent/90 sm:w-auto"
                 >
                   Continue
-                  <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
+                  <span className="dc-icon dc-icon-arrow-right ml-2 h-5 w-5" aria-hidden="true" />
                 </Button>
               </StepFooter>
                 </>
@@ -2217,8 +2191,6 @@ export default function QuoteFlow({
                 {/* Postal code now lives beside the price, where the travel
                     fee it controls is shown. */}
 
-
-
                 {/* Postal code sits with the price because it decides the
                     travel fee — one question, answered where it matters. */}
                 <div className="mt-5">
@@ -2255,7 +2227,6 @@ export default function QuoteFlow({
                     </p>
                   )}
                 </div>
-
 
                 {outsideCity && travelExtra && (
                   <p className="mt-3 text-base font-semibold text-foreground">
@@ -2323,7 +2294,6 @@ export default function QuoteFlow({
                   </fieldset>
                 )}
 
-
                 <Callout label="Travel fee" className="mt-4">
                   Addresses outside Edmonton, Calgary and Red Deer city limits include a travel
                   fee — we confirm before your clean.
@@ -2390,7 +2360,7 @@ export default function QuoteFlow({
                       className="min-h-[56px] w-full rounded-full bg-accent px-8 text-base font-bold text-accent-foreground hover:bg-accent/90 sm:w-auto"
                     >
                       Choose my date &amp; time
-                      <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
+                      <span className="dc-icon dc-icon-arrow-right ml-2 h-5 w-5" aria-hidden="true" />
                     </Button>
                   ) : (
                     <Button
@@ -2403,7 +2373,7 @@ export default function QuoteFlow({
                         <Loader2 className="mr-2 h-5 w-5 animate-spin" aria-hidden="true" />
                       )}
                       Request my booking
-                      <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
+                      <span className="dc-icon dc-icon-arrow-right ml-2 h-5 w-5" aria-hidden="true" />
                     </Button>
                   )}
                 </div>
@@ -2474,7 +2444,7 @@ export default function QuoteFlow({
                 href={proof.phoneLink}
                 className="mt-4 flex min-h-[48px] items-center justify-center gap-2 rounded-sm border border-border bg-card font-semibold text-foreground hover:bg-secondary"
               >
-                <Phone className="h-4 w-4 text-accent" aria-hidden="true" />
+                <span className="dc-icon dc-icon-phone h-4 w-4 text-accent" aria-hidden="true" />
                 Prefer to talk? {proof.phone}
               </a>
             </div>
@@ -2525,7 +2495,7 @@ export default function QuoteFlow({
               className="min-h-[52px] shrink-0 bg-accent px-5 text-base font-bold text-accent-foreground hover:bg-accent/90"
             >
               {pricePane === "price" ? "Continue" : bookingUrl ? "Choose my time" : "Request booking"}
-              <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
+              <span className="dc-icon dc-icon-arrow-right ml-2 h-5 w-5" aria-hidden="true" />
             </Button>
           </div>
         </div>

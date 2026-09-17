@@ -5,11 +5,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
-import {
-  Building2, CheckCircle2, Clock, Shield, Award, Users, Phone,
-  Star, Sparkles, Briefcase, Dumbbell, UtensilsCrossed, Stethoscope,
-  ShoppingBag, Warehouse, ThumbsUp, ClipboardCheck, CalendarCheck, LucideIcon,
-} from "lucide-react";
+import { Building2, CheckCircle2, Shield, Award, Star, Briefcase, Dumbbell, UtensilsCrossed, Stethoscope, ShoppingBag, Warehouse, ThumbsUp, ClipboardCheck, CalendarCheck, LucideIcon } from "lucide-react";
 import { POLICY } from "@/data/policy";
 import { CITY_PROOF } from "@/data/proof";
 import { Link } from "react-router-dom";
@@ -168,7 +164,7 @@ export default function CommercialCleaning() {
                 </Button>
                 <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 h-12 px-6" asChild>
                   <a href={CITY_PROOF.edmonton.phoneLink}>
-                    <Phone className="mr-2 w-5 h-5" />
+                    <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />
                     {CITY_PROOF.edmonton.phone}
                   </a>
                 </Button>
@@ -336,7 +332,7 @@ export default function CommercialCleaning() {
                   </Button>
                   <Button size="lg" variant="outline" className="h-12 px-8" asChild>
                     <a href={CITY_PROOF.edmonton.phoneLink}>
-                      <Phone className="mr-2" />
+                      <span className="dc-icon dc-icon-phone mr-2" aria-hidden="true" />
                       Call {CITY_PROOF.edmonton.phone}
                     </a>
                   </Button>

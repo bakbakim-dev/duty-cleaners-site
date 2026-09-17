@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowRight } from "lucide-react";
+
 import { Link, useLocation } from "react-router-dom";
 import { pageServiceFor } from "@/lib/tracking";
 import { Button } from "@/components/ui/button";
@@ -159,7 +159,7 @@ export default function ServiceStartCard({
               onClick={() => openQuote(service, deepIntent ? "deep" : null)}
             >
               Continue to Your Price
-              <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
+              <span className="dc-icon dc-icon-arrow-right ml-2 h-5 w-5" aria-hidden="true" />
             </Button>
             <p className="mt-3 text-center text-sm text-fine-print">
               No payment details needed to start.
@@ -222,7 +222,7 @@ export default function ServiceStartCard({
         onClick={() => openQuote(service, deepIntent ? "deep" : null)}
       >
         Continue
-        <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
+        <span className="dc-icon dc-icon-arrow-right ml-2 h-5 w-5" aria-hidden="true" />
       </Button>
       <RiskReversalRow className="mt-4 justify-center text-sm" />
 

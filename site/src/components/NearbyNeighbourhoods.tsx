@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { MapPin } from "lucide-react";
+
 import { canonicalForPath } from "@/data/legacy-urls";
 import { nearbyFor, placeNameFor } from "@/data/nearby";
 import { cityFromPath } from "@/lib/city-from-path";
@@ -56,7 +56,7 @@ export default function NearbyNeighbourhoods() {
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center">
           <div className="flex items-center justify-center gap-2 mb-3">
-            <MapPin className="w-4 h-4 text-primary" aria-hidden="true" />
+            <span className="dc-icon dc-icon-map-pin w-4 h-4 text-primary" aria-hidden="true" />
             <span className="text-sm font-medium uppercase tracking-wide text-primary">
               Close by
             </span>

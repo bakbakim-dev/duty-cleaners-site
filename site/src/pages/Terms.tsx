@@ -3,7 +3,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import TrustPageCta from "@/components/TrustPageCta";
-import { ScrollText, Phone, Mail } from "lucide-react";
+import { ScrollText, Mail } from "lucide-react";
 import { SUPPORT_EMAIL } from "@/data/proof";
 import {
   POLICY,
@@ -253,13 +253,13 @@ export default function Terms() {
                     href="tel:7809136565"
                     className="inline-flex items-center gap-2 text-accent hover:underline"
                   >
-                    <Phone className="w-4 h-4" /> Edmonton: (780) 913-6565
+                    <span className="dc-icon dc-icon-phone w-4 h-4" aria-hidden="true" /> Edmonton: (780) 913-6565
                   </a>
                   <a
                     href="tel:4037681341"
                     className="inline-flex items-center gap-2 text-accent hover:underline"
                   >
-                    <Phone className="w-4 h-4" /> Calgary: (403) 768-1341
+                    <span className="dc-icon dc-icon-phone w-4 h-4" aria-hidden="true" /> Calgary: (403) 768-1341
                   </a>
                   <a
                     href={`mailto:${SUPPORT_EMAIL}`}

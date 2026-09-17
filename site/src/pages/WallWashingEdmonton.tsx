@@ -1,4 +1,5 @@
 import { getListing } from "@/lib/google-listings";
+import Stars from "@/components/Stars";
 import { withTrailingSlash } from "@/data/legacy-urls";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import Navigation from "@/components/Navigation";
@@ -8,10 +9,7 @@ import { travelFee } from "@/data/addon-table";
 import { buildServiceSchema } from "@/lib/service-schema";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import {
-  CheckCircle, Phone, MapPin, Clock, Star, Shield, Sparkles, Droplets, Wind, Bug,
-  HandMetal, Baby, Cigarette, Home, Utensils, Cloud, ClipboardCheck, Search, Brush, ThumbsUp,
-} from "lucide-react";
+import { CheckCircle, Star, Shield, Droplets, Wind, Bug, HandMetal, Baby, Cigarette, Home, Utensils, Cloud, ClipboardCheck, Search, Brush, ThumbsUp, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -278,7 +276,7 @@ export default function WallWashingEdmonton() {
                 </Button>
                 <Button size="lg" variant="outline" className="w-full sm:w-auto text-base border-white/30 text-white hover:bg-white/10" asChild>
                   <a href="tel:7809136565">
-                    <Phone className="w-4 h-4 mr-2" />
+                    <span className="dc-icon dc-icon-phone w-4 h-4 mr-2" aria-hidden="true" />
                     (780) 913-6565
                   </a>
                 </Button>
@@ -507,7 +505,7 @@ export default function WallWashingEdmonton() {
                     to={withTrailingSlash(loc.path)}
                     className="inline-flex items-center gap-2 bg-white border border-border rounded-full px-5 py-2.5 text-sm font-medium text-foreground hover:border-primary hover:text-primary transition-colors duration-200"
                   >
-                    <MapPin className="w-3.5 h-3.5" />
+                    <span className="dc-icon dc-icon-map-pin w-3.5 h-3.5" aria-hidden="true" />
                     {loc.name}
                   </Link>
                 ))}
@@ -546,11 +544,7 @@ export default function WallWashingEdmonton() {
           <AnimatedSection>
             <div className="max-w-3xl mx-auto text-center">
               <div className="flex justify-center mb-6">
-                <div className="flex gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-7 h-7 fill-accent text-accent" />
-                  ))}
-                </div>
+                <Stars size={1.75} className="text-accent" />
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
                 Rated {CITY_PROOF.edmonton.googleRating} on Google across {CITY_PROOF.edmonton.googleReviewCount} Edmonton reviews
@@ -583,7 +577,7 @@ export default function WallWashingEdmonton() {
                 <Card className="text-center group transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
                   <CardContent className="pt-8 pb-6">
                     <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:rotate-12">
-                      <Phone className="w-6 h-6 text-primary" />
+                      <span className="dc-icon dc-icon-phone w-6 h-6 text-primary" aria-hidden="true" />
                     </div>
                     <h3 className="font-semibold text-lg mb-2">Give Us a Call</h3>
                     <p className="text-muted-foreground text-sm mb-3">Questions before you book</p>
@@ -594,7 +588,7 @@ export default function WallWashingEdmonton() {
                 <Card className="text-center group transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
                   <CardContent className="pt-8 pb-6">
                     <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:rotate-12">
-                      <MapPin className="w-6 h-6 text-primary" />
+                      <span className="dc-icon dc-icon-map-pin w-6 h-6 text-primary" aria-hidden="true" />
                     </div>
                     <h3 className="font-semibold text-lg mb-2">Our Office</h3>
                     <p className="text-muted-foreground text-sm mb-3">18615 71 Ave NW, Edmonton, AB</p>
@@ -612,7 +606,7 @@ export default function WallWashingEdmonton() {
                 <Card className="text-center group transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
                   <CardContent className="pt-8 pb-6">
                     <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:rotate-12">
-                      <Clock className="w-6 h-6 text-primary" />
+                      <span className="dc-icon dc-icon-clock w-6 h-6 text-primary" aria-hidden="true" />
                     </div>
                     <h3 className="font-semibold text-lg mb-2">Hours of Operation</h3>
                     <p className="text-muted-foreground text-sm"><strong>Mon–Sat:</strong> 8am – 8pm</p>
@@ -651,7 +645,7 @@ export default function WallWashingEdmonton() {
               </Button>
               <Button size="lg" variant="outline" className="w-full sm:w-auto text-base border-white/30 text-white hover:bg-white/10" asChild>
                 <a href="tel:7809136565">
-                  <Phone className="w-4 h-4 mr-2" />
+                  <span className="dc-icon dc-icon-phone w-4 h-4 mr-2" aria-hidden="true" />
                   Call Now
                 </a>
               </Button>
@@ -665,7 +659,6 @@ export default function WallWashingEdmonton() {
         </div>
       </section>
       </main>
-
 
       <Footer />
     </div>

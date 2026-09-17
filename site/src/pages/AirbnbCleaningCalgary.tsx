@@ -3,21 +3,7 @@ import { travelFee } from "@/data/addon-table";
 import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
 import { CITY_PROOF, RATING_CLAIM, COMPANY } from "@/data/proof";
 import { canonicalForPath } from "@/data/legacy-urls";
-import {
-  CheckCircle,
-  Clock,
-  Star,
-  Shield,
-  Calendar,
-  Sparkles,
-  Home,
-  Phone,
-  MapPin,
-  ClipboardCheck,
-  KeyRound,
-  Wand2,
-  DoorOpen,
-} from "lucide-react";
+import { CheckCircle, Star, Shield, Calendar, Home, ClipboardCheck, KeyRound, Wand2, DoorOpen, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { buildServiceSchema } from "@/lib/service-schema";
 import Navigation from "@/components/Navigation";
@@ -343,7 +329,7 @@ const AirbnbCleaningCalgary = () => {
             </Button>
             <Button asChild size="lg" variant="outline" className="text-lg border-white/20 text-white hover:bg-white/10">
               <a href={proof.phoneLink}>
-                <Phone className="w-4 h-4 mr-2" />
+                <span className="dc-icon dc-icon-phone w-4 h-4 mr-2" aria-hidden="true" />
                 Call {proof.phone}
               </a>
             </Button>
@@ -387,7 +373,7 @@ const AirbnbCleaningCalgary = () => {
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 bg-calgary/10 rounded-full px-4 py-2 mb-4">
-                <Sparkles className="w-4 h-4 text-calgary" />
+                <span className="dc-icon dc-icon-sparkles w-4 h-4 text-calgary" aria-hidden="true" />
                 <span className="text-calgary text-sm font-medium">Six areas, one order</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -554,7 +540,7 @@ const AirbnbCleaningCalgary = () => {
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 bg-calgary/10 rounded-full px-4 py-2 mb-4">
-                <Sparkles className="w-4 h-4 text-calgary" />
+                <span className="dc-icon dc-icon-sparkles w-4 h-4 text-calgary" aria-hidden="true" />
                 <span className="text-calgary text-sm font-medium">Before the next guest</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -639,7 +625,7 @@ const AirbnbCleaningCalgary = () => {
                 </div>
                 <div className="bg-muted/30 rounded-xl p-6 text-left">
                   <div className="flex items-center gap-2 mb-2">
-                    <MapPin className="w-4 h-4 text-calgary" />
+                    <span className="dc-icon dc-icon-map-pin w-4 h-4 text-calgary" aria-hidden="true" />
                     <h3 className="font-bold text-foreground">Calgary office</h3>
                   </div>
                   <p className="text-muted-foreground text-sm mb-1">
@@ -676,7 +662,7 @@ const AirbnbCleaningCalgary = () => {
             </Button>
             <Button asChild size="lg" variant="outline" className="text-lg border-white/20 text-white hover:bg-white/10">
               <a href={proof.phoneLink}>
-                <Phone className="w-4 h-4 mr-2" />
+                <span className="dc-icon dc-icon-phone w-4 h-4 mr-2" aria-hidden="true" />
                 Call {proof.phone}
               </a>
             </Button>
@@ -692,7 +678,6 @@ const AirbnbCleaningCalgary = () => {
         </div>
       </section>
       </main>
-
 
       <Footer />
     </div>

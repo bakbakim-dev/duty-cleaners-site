@@ -18,20 +18,7 @@ import {
   calgaryNeighborhoods as calHoods,
   calgarySurrounding as calSurrounding,
 } from "@/data/city-locations";
-import {
-  Star,
-  Phone,
-  MapPin,
-  CheckCircle2,
-  Award,
-  Users,
-  SprayCan,
-  Calculator,
-  ArrowRight,
-  Building2,
-  WashingMachine,
-  Clock
-} from "lucide-react";
+import { Star, CheckCircle2, Award, SprayCan, Calculator, Building2, WashingMachine } from "lucide-react";
 
 /** Charged per visit outside either city's limits; read from bk-config. */
 const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
@@ -338,7 +325,7 @@ function LocationCard({ location }: { location: typeof mainLocations[0] }) {
       <div className="space-y-4 mb-6 relative z-10">
         <div className="flex items-center gap-4 group/item">
           <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center transition-all duration-300 group-hover/item:scale-110">
-            <Phone className="w-5 h-5 text-accent" />
+            <span className="dc-icon dc-icon-phone w-5 h-5 text-accent" aria-hidden="true" />
           </div>
           <a href={location.phoneHref} className="text-xl font-bold text-white hover:text-accent transition-colors hover:underline">
             {location.phone}
@@ -347,7 +334,7 @@ function LocationCard({ location }: { location: typeof mainLocations[0] }) {
 
         <div className="flex items-start gap-4 group/item">
           <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center transition-all duration-300 group-hover/item:scale-110">
-            <MapPin className="w-5 h-5 text-accent" />
+            <span className="dc-icon dc-icon-map-pin w-5 h-5 text-accent" aria-hidden="true" />
           </div>
           <a
             href={mapsUrl}
@@ -369,7 +356,7 @@ function LocationCard({ location }: { location: typeof mainLocations[0] }) {
         </div>
         {coverage && (
           <div className="flex items-center gap-3 pt-2 border-t border-white/10">
-            <MapPin className="w-5 h-5 text-accent" />
+            <span className="dc-icon dc-icon-map-pin w-5 h-5 text-accent" aria-hidden="true" />
             <span className="text-sm font-semibold text-white/90">
               {coverage.neighbourhoods} neighbourhoods + {coverage.surrounding} surrounding communities
             </span>
@@ -405,7 +392,7 @@ function LocationCard({ location }: { location: typeof mainLocations[0] }) {
       <Button asChild size="lg" className="w-full bg-accent text-accent-foreground hover:bg-accent/90 font-semibold text-base h-12 shadow-md hover:shadow-lg transition-all group/btn relative z-10">
         <Link to={withTrailingSlash(location.link)}>
           {location.linkText}
-          <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover/btn:translate-x-1" />
+          <span className="dc-icon dc-icon-arrow-right w-5 h-5 ml-2 transition-transform group-hover/btn:translate-x-1" aria-hidden="true" />
         </Link>
       </Button>
     </div>
@@ -428,7 +415,7 @@ function RedDeerOfficeCard() {
           <div className="space-y-4">
             <div className="flex items-center gap-4">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/10">
-                <Phone className="h-5 w-5 text-accent" />
+                <span className="dc-icon dc-icon-phone h-5 w-5 text-accent" aria-hidden="true" />
               </div>
               <a href={office.phoneLink} className="text-xl font-bold text-white transition-colors hover:text-accent hover:underline">
                 {office.phone}
@@ -436,7 +423,7 @@ function RedDeerOfficeCard() {
             </div>
             <div className="flex items-start gap-4">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/10">
-                <MapPin className="h-5 w-5 text-accent" />
+                <span className="dc-icon dc-icon-map-pin h-5 w-5 text-accent" aria-hidden="true" />
               </div>
               <a href={mapsUrl} target="_blank" rel="noopener noreferrer" className="decoration-accent/60 underline-offset-4 hover:underline">
                 <div className="font-semibold text-white">{office.streetAddress}</div>
@@ -448,7 +435,7 @@ function RedDeerOfficeCard() {
         <div>
           <div className="mb-6 rounded-xl border border-white/10 bg-white/5 p-5">
             <div className="mb-2 flex items-center gap-2 font-semibold text-white">
-              <Clock className="h-5 w-5 text-accent" aria-hidden="true" />
+              <span className="dc-icon dc-icon-clock h-5 w-5 text-accent" aria-hidden="true" />
               Red Deer office hours
             </div>
             {hoursRowsFor("reddeer").map(([days, time]) => (
@@ -464,7 +451,7 @@ function RedDeerOfficeCard() {
           <Button asChild size="lg" className="h-12 w-full bg-accent text-base font-semibold text-accent-foreground shadow-md hover:bg-accent/90">
             <Link to={RED_DEER_PATH}>
               House cleaning in Red Deer
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <span className="dc-icon dc-icon-arrow-right ml-2 h-5 w-5" aria-hidden="true" />
             </Link>
           </Button>
         </div>
@@ -586,7 +573,7 @@ export default function Locations() {
                 <span className="font-medium text-white">{RATING_CLAIM} (Edmonton and Calgary)</span>
               </div>
               <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-5 py-3 rounded-full border border-white/20">
-                <Users className="w-5 h-5 text-accent" />
+                <span className="dc-icon dc-icon-users w-5 h-5 text-accent" aria-hidden="true" />
                 {/* "10+ Years Combined Experience" had no source anywhere in
                     the codebase (see src/data/proof.ts). The founding year is
                     the real, verifiable fact used everywhere else.
@@ -692,7 +679,7 @@ export default function Locations() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-4">
-              <MapPin className="w-4 h-4 text-accent" />
+              <span className="dc-icon dc-icon-map-pin w-4 h-4 text-accent" aria-hidden="true" />
               <span className="text-white/90 text-sm font-medium">Edmonton Region</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Edmonton Region Cleaning Services</h2>
@@ -741,7 +728,7 @@ export default function Locations() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-4">
-              <MapPin className="w-4 h-4 text-accent" />
+              <span className="dc-icon dc-icon-map-pin w-4 h-4 text-accent" aria-hidden="true" />
               <span className="text-white/90 text-sm font-medium">Calgary Region</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Calgary Region Cleaning Services</h2>
@@ -790,7 +777,7 @@ export default function Locations() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-4">
-              <MapPin className="w-4 h-4 text-primary" />
+              <span className="dc-icon dc-icon-map-pin w-4 h-4 text-primary" aria-hidden="true" />
               <span className="text-foreground text-sm font-medium">Service Coverage</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Where the Edmonton and Calgary offices clean</h2>

@@ -15,11 +15,7 @@ import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import giftCardsHero from "@/assets/gift-cards-hero.webp";
 import { giftCardGuide } from "@/data/gift-cards";
 import { POLICY } from "@/data/policy";
-import {
-  Gift, Heart, PartyPopper, Sparkles, Clock, CreditCard,
-  Send, Shield, Snowflake, Award, HeartHandshake, Home,
-  Star, Phone, BadgeCheck, Users
-} from "lucide-react";
+import { Gift, Heart, PartyPopper, CreditCard, Send, Shield, Snowflake, Award, HeartHandshake, Home, Star, BadgeCheck, Clock, Sparkles, Users } from "lucide-react";
 
 const giftCardDesigns = [
   { id: "congratulations", name: "Congratulations", icon: PartyPopper, gradient: "from-orange-400 via-orange-500 to-amber-600", bgPattern: "bg-gradient-to-br", description: "For a graduation, a promotion or a finish line" },
@@ -324,7 +320,7 @@ export default function GiftCards() {
           <div className="container mx-auto px-4 relative z-10" ref={ctaRef}>
             <div className="max-w-2xl mx-auto text-center">
               <div className="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-6 rotate-3 hover:rotate-0 transition-transform duration-500">
-                <Sparkles className="w-8 h-8 text-accent" />
+                <span className="dc-icon dc-icon-sparkles w-8 h-8 text-accent" aria-hidden="true" />
               </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Send a gift card today</h2>
               <p className="text-lg text-white/75 mb-8 leading-relaxed">

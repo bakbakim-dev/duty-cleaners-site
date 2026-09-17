@@ -16,9 +16,7 @@ import CityCrossLink from "@/components/CityCrossLink";
 import { useState, useEffect, type ReactNode } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import {
-  CheckCircle2, Star, Phone, Plus, Minus, CalendarCheck,
-} from "lucide-react";
+import { CheckCircle2, Star, Plus, Minus, CalendarCheck } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -392,7 +390,7 @@ const ServiceDetailPage = ({
                   asChild
                 >
                   <a href={phoneHref} className="inline-flex items-center gap-2">
-                    <Phone className="w-5 h-5" aria-hidden="true" />
+                    <span className="dc-icon dc-icon-phone w-5 h-5" aria-hidden="true" />
                     {phone}
                   </a>
                 </Button>
@@ -749,7 +747,7 @@ const ServiceDetailPage = ({
               asChild
             >
               <a href={phoneHref} className="inline-flex items-center gap-2">
-                <Phone className="w-5 h-5" aria-hidden="true" />
+                <span className="dc-icon dc-icon-phone w-5 h-5" aria-hidden="true" />
                 Call {phone}
               </a>
             </Button>
@@ -814,7 +812,7 @@ const ServiceDetailPage = ({
                 href={phoneHref}
                 className="inline-flex items-center gap-2 font-semibold text-primary hover:text-accent transition-colors text-sm"
               >
-                <Phone className="w-4 h-4" aria-hidden="true" />
+                <span className="dc-icon dc-icon-phone w-4 h-4" aria-hidden="true" />
                 {phone}
               </a>
               <Button

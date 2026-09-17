@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Calendar, ArrowRight, Sparkles } from "lucide-react";
+import { Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface BlogPostCardProps {
@@ -58,7 +58,7 @@ export default function BlogPostCard({ title, excerpt, category, date, image, sl
             />
             <div className="absolute top-4 left-4">
               <span className="inline-flex items-center gap-1.5 text-xs font-semibold bg-white/90 backdrop-blur-sm text-primary px-3 py-1.5 rounded-full shadow-sm">
-                <Sparkles className="h-3 w-3 group-hover:rotate-12 transition-transform duration-300" />
+                <span className="dc-icon dc-icon-sparkles h-3 w-3 group-hover:rotate-12 transition-transform duration-300" aria-hidden="true" />
                 {category}
               </span>
             </div>
@@ -93,7 +93,7 @@ export default function BlogPostCard({ title, excerpt, category, date, image, sl
               )}
             >
               Read Article
-              <ArrowRight className="ml-2 h-3.5 w-3.5 group-hover:translate-x-1 transition-transform duration-300" />
+              <span className="dc-icon dc-icon-arrow-right ml-2 h-3.5 w-3.5 group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true" />
             </span>
           </CardContent>
         </Card>

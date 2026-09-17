@@ -37,7 +37,7 @@ export default function DirectContactPanel({ phone, phoneLink, city = "Edmonton"
             href={phoneLink}
             className="mt-1.5 inline-flex items-center gap-2.5 text-lg font-bold text-white underline-offset-4 hover:underline"
           >
-            <Phone className="h-4 w-4 text-brand-gold" aria-hidden="true" />
+            <span className="dc-icon dc-icon-phone h-4 w-4 text-brand-gold" aria-hidden="true" />
             {phone}
           </a>
           <p className="mt-1 text-sm text-white/70">Mon–Sat 8 AM–8 PM · Sun 9 AM–3 PM</p>

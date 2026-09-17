@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { Calculator } from "lucide-react";
+import { Calculator, MapPin, Phone, Clock, Sparkles, Users, Star, Mail, CheckCircle2, MessageSquare, Heart, Shield, Building2, LucideIcon, Send } from "lucide-react";
 import { quoteHrefFor } from "@/lib/quote-link";
 import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
@@ -17,7 +17,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Phone, Mail, MapPin, Clock, CheckCircle2, MessageSquare, Sparkles, Heart, Shield, Star, Building2, Users, LucideIcon, Send } from "lucide-react";
 import { Link, useSearchParams } from "react-router-dom";
 import { canonicalForPath } from "@/data/legacy-urls";
 import { ARRIVAL_WINDOWS, PAYMENT_TERMS, POLICY } from "@/data/policy";
@@ -59,7 +58,6 @@ const PAYMENT_SEQUENCE = [
 ]
   .filter(Boolean)
   .join(" ");
-
 
 /**
  * The questions that decide whether someone needs to call at all. Each answer
@@ -191,7 +189,7 @@ const OfficeCard = ({
 
     <div className="space-y-4 mb-6 relative z-10">
       <div className="flex items-start gap-3 p-3 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 group-hover:bg-white/10">
-        <Phone className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
+        <span className="dc-icon dc-icon-phone w-5 h-5 text-accent mt-0.5 flex-shrink-0" aria-hidden="true" />
         <div>
           <div className="text-xs text-white/90 uppercase tracking-wide font-medium">Phone</div>
           <a href={`tel:${phone.replace(/\D/g, '')}`} className="text-white font-semibold hover:text-accent hover:underline">
@@ -211,7 +209,7 @@ const OfficeCard = ({
       </div>
 
       <div className="flex items-start gap-3 p-3 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 group-hover:bg-white/10">
-        <MapPin className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
+        <span className="dc-icon dc-icon-map-pin w-5 h-5 text-accent mt-0.5 flex-shrink-0" aria-hidden="true" />
         <div>
           <div className="text-xs text-white/90 uppercase tracking-wide font-medium">Address</div>
           <div className="text-white text-sm">{address}</div>
@@ -219,7 +217,7 @@ const OfficeCard = ({
       </div>
 
       <div className="flex items-start gap-3 p-3 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 group-hover:bg-white/10">
-        <Clock className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
+        <span className="dc-icon dc-icon-clock w-5 h-5 text-accent mt-0.5 flex-shrink-0" aria-hidden="true" />
         <div>
           <div className="text-xs text-white/90 uppercase tracking-wide font-medium">Hours</div>
           <div className="text-white text-sm whitespace-pre-line">{hours}</div>
@@ -229,7 +227,7 @@ const OfficeCard = ({
 
     <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90 h-12 text-base font-semibold transition-transform duration-300 group-hover:scale-[1.02] relative z-10">
       <Link to={linkTo}>
-        <Sparkles className="mr-2 w-5 h-5" />
+        <span className="dc-icon dc-icon-sparkles mr-2 w-5 h-5" aria-hidden="true" />
         Visit {city} Page
       </Link>
     </Button>
@@ -541,19 +539,19 @@ export default function Contact() {
               )}
               <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 h-12 px-6" asChild>
                 <a href={CITY_PROOF.edmonton.phoneLink}>
-                  <Phone className="mr-2 w-5 h-5" />
+                  <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />
                   Call Edmonton
                 </a>
               </Button>
               <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 h-12 px-6" asChild>
                 <a href={CITY_PROOF.calgary.phoneLink}>
-                  <Phone className="mr-2 w-5 h-5" />
+                  <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />
                   Call Calgary
                 </a>
               </Button>
               <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 h-12 px-6" asChild>
                 <a href={CITY_PROOF.reddeer.phoneLink}>
-                  <Phone className="mr-2 w-5 h-5" />
+                  <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />
                   Call Red Deer
                 </a>
               </Button>
@@ -957,7 +955,7 @@ export default function Contact() {
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
         
         <div className="container mx-auto px-4 relative z-10 text-center">
-          <Sparkles className="w-12 h-12 text-accent mx-auto mb-4" />
+          <span className="dc-icon dc-icon-sparkles w-12 h-12 text-accent mx-auto mb-4" aria-hidden="true" />
           <h2 className="text-3xl md:text-4xl font-bold mb-4">See your Edmonton or Calgary price before you book</h2>
           <p className="text-white/80 max-w-xl mx-auto mb-8">
             Prices are flat by home size, before GST, with no long-term contract, and nothing is

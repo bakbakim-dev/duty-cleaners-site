@@ -1,16 +1,6 @@
 import { Link } from "react-router-dom";
 import { canonicalForPath } from "@/data/legacy-urls";
-import {
-  Phone,
-  MapPin,
-  Clock,
-  DollarSign,
-  Star,
-  MessageSquare,
-  Users,
-  ArrowRight,
-  Mail,
-} from "lucide-react";
+import { DollarSign, Star, MessageSquare, Mail, Phone, Users } from "lucide-react";
 
 interface GetInTouchProps {
   city: "Edmonton" | "Calgary";
@@ -72,7 +62,7 @@ const GetInTouch = ({ city }: GetInTouchProps) => {
                 className="group flex items-start gap-4 rounded-xl p-3 -m-3 min-h-[48px] transition-colors hover:bg-white/10"
               >
                 <span className="w-12 h-12 shrink-0 rounded-xl bg-brand-gold/15 flex items-center justify-center transition-colors group-hover:bg-brand-gold">
-                  <Phone className="w-5 h-5 text-brand-gold transition-colors group-hover:text-brand-navy" aria-hidden="true" />
+                  <span className="dc-icon dc-icon-phone w-5 h-5 text-brand-gold transition-colors group-hover:text-brand-navy" aria-hidden="true" />
                 </span>
                 <span className="min-w-0">
                   <span className="block text-xs uppercase tracking-wider text-white/90">Phone</span>
@@ -88,20 +78,20 @@ const GetInTouch = ({ city }: GetInTouchProps) => {
                 className="group flex items-start gap-4 rounded-xl p-3 -m-3 min-h-[48px] transition-colors hover:bg-white/10"
               >
                 <span className="w-12 h-12 shrink-0 rounded-xl bg-brand-gold/15 flex items-center justify-center transition-colors group-hover:bg-brand-gold">
-                  <MapPin className="w-5 h-5 text-brand-gold transition-colors group-hover:text-brand-navy" aria-hidden="true" />
+                  <span className="dc-icon dc-icon-map-pin w-5 h-5 text-brand-gold transition-colors group-hover:text-brand-navy" aria-hidden="true" />
                 </span>
                 <span className="min-w-0">
                   <span className="block text-xs uppercase tracking-wider text-white/90">Address</span>
                   <span className="block text-lg font-semibold">{data.address}</span>
                   <span className="inline-flex items-center gap-1 text-sm text-brand-gold">
-                    Open in Google Maps <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+                    Open in Google Maps <span className="dc-icon dc-icon-arrow-right w-3.5 h-3.5" aria-hidden="true" />
                   </span>
                 </span>
               </a>
 
               <div className="flex items-start gap-4 p-3 -m-3">
                 <span className="w-12 h-12 shrink-0 rounded-xl bg-brand-gold/15 flex items-center justify-center">
-                  <Clock className="w-5 h-5 text-brand-gold" aria-hidden="true" />
+                  <span className="dc-icon dc-icon-clock w-5 h-5 text-brand-gold" aria-hidden="true" />
                 </span>
                 <span className="min-w-0">
                   <span className="block text-xs uppercase tracking-wider text-white/90">Hours</span>
@@ -131,7 +121,7 @@ const GetInTouch = ({ city }: GetInTouchProps) => {
               className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-6 py-4 text-base font-bold text-accent-foreground transition-colors hover:bg-accent/90 min-h-[48px]"
             >
               See My Instant Price
-              <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              <span className="dc-icon dc-icon-arrow-right w-4 h-4" aria-hidden="true" />
             </a>
           </div>
 
@@ -153,7 +143,7 @@ const GetInTouch = ({ city }: GetInTouchProps) => {
                       <span className="block font-semibold text-foreground leading-tight">{label}</span>
                       <span className="block text-xs text-muted-foreground">{hint}</span>
                     </span>
-                    <ArrowRight className="w-4 h-4 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-brand-navy" aria-hidden="true" />
+                    <span className="dc-icon dc-icon-arrow-right w-4 h-4 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-brand-navy" aria-hidden="true" />
                   </Link>
                 </li>
               ))}

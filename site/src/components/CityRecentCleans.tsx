@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { Star, CheckCircle2, MapPin, ArrowRight, ExternalLink } from "lucide-react";
+import Stars from "@/components/Stars";
+import { CheckCircle2, ExternalLink } from "lucide-react";
 import { Accent } from "@/components/Accent";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import Eyebrow from "@/components/Eyebrow";
@@ -25,7 +26,6 @@ interface CityRecentCleansProps {
 
 const avatarColors = ["bg-primary", "bg-accent", "bg-brand-navy", "bg-brand-gold"];
 
-
 const GoogleMark = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 24 24" className={className} xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26.67-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
@@ -42,20 +42,10 @@ const GoogleMark = ({ className }: { className?: string }) => (
  * review"> with five hard-coded stars: a label on a role-less div is ignored by
  * most screen readers, and "Google review" never said how many stars.
  */
-function ReviewStars({ rating, size }: { rating?: number; size: string }) {
+function ReviewStars({ rating, size }: { rating?: number; size: number }) {
   if (typeof rating !== "number") return null;
   const stars = Math.max(0, Math.min(5, Math.round(rating)));
-  return (
-    <div className="flex gap-0.5" role="img" aria-label={`${stars} out of 5 stars`}>
-      {[1, 2, 3, 4, 5].map((star) => (
-        <Star
-          key={star}
-          className={`${size} ${star <= stars ? "text-brand-gold fill-brand-gold" : "text-muted-foreground/40"}`}
-          aria-hidden="true"
-        />
-      ))}
-    </div>
-  );
+  return <Stars rating={stars} size={size} label={`${stars} out of 5 stars`} />;
 }
 
 /**
@@ -104,7 +94,7 @@ function CleanCard({ review, index, city }: { review: RecentCleanReview; index: 
           <div>
             <p className="font-bold leading-tight">{review.name}</p>
             <p className="text-xs text-muted-foreground inline-flex items-center gap-1 mt-0.5">
-              <MapPin className="w-3 h-3 text-accent" aria-hidden="true" />
+              <span className="dc-icon dc-icon-map-pin w-3 h-3 text-accent" aria-hidden="true" />
               {review.location} · {review.date}
             </p>
           </div>
@@ -113,7 +103,7 @@ function CleanCard({ review, index, city }: { review: RecentCleanReview; index: 
       </div>
 
       <div className="mb-3">
-        <ReviewStars rating={review.rating} size="w-4 h-4" />
+        <ReviewStars rating={review.rating} size={1} />
       </div>
 
       <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
@@ -143,7 +133,7 @@ function PullQuote({ review, city }: { review: RecentCleanReview; city: string }
       }`}
     >
       <div className="flex items-center justify-between">
-        <ReviewStars rating={review.rating} size="h-5 w-5" />
+        <ReviewStars rating={review.rating} size={1.25} />
         <GoogleMark className="h-6 w-6 shrink-0" />
       </div>
       <blockquote className="display-serif mt-5 text-2xl font-semibold leading-snug md:text-[1.75rem]">
@@ -152,7 +142,7 @@ function PullQuote({ review, city }: { review: RecentCleanReview; city: string }
       <figcaption className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
         <span className="font-bold text-foreground">{review.name}</span>
         <span className="inline-flex items-center gap-1">
-          <MapPin className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
+          <span className="dc-icon dc-icon-map-pin h-3.5 w-3.5 text-accent" aria-hidden="true" />
           {review.location} · {review.date}
         </span>
         <ReviewSourceLink review={review} city={city} iconSize="h-3.5 w-3.5" />
@@ -176,11 +166,7 @@ export default function CityRecentCleans({ city, reviews, reviewsTo = "/reviews/
       <section className="band band-tight band-paper band-hairline">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl rounded-2xl border border-border bg-white p-8 text-center shadow-sm">
-            <div className="mb-3 flex justify-center gap-1" aria-hidden="true">
-              {[1, 2, 3, 4, 5].map((star) => (
-                <Star key={star} className="h-5 w-5 fill-brand-gold text-brand-gold" />
-              ))}
-            </div>
+            <Stars size={1.25} className="block mx-auto mb-3" />
             <h2 className="text-2xl font-bold md:text-3xl">
               Rated 4.9 on Google by <Accent>{city}</Accent> customers
             </h2>
@@ -197,14 +183,14 @@ export default function CityRecentCleans({ city, reviews, reviewsTo = "/reviews/
                 className="inline-flex min-h-[48px] items-center gap-2 font-semibold text-primary transition-colors hover:text-accent"
               >
                 Read our {city} reviews on Google
-                <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                <span className="dc-icon dc-icon-external-link h-4 w-4" aria-hidden="true" />
               </a>
               <Link
                 to={reviewsTo}
                 className="inline-flex min-h-[48px] items-center gap-2 font-semibold text-muted-foreground transition-colors hover:text-accent"
               >
                 Read Duty Cleaners reviews
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                <span className="dc-icon dc-icon-arrow-right h-4 w-4" aria-hidden="true" />
               </Link>
             </div>
           </div>
@@ -241,7 +227,7 @@ export default function CityRecentCleans({ city, reviews, reviewsTo = "/reviews/
             className="inline-flex items-center gap-2 font-semibold text-primary hover:text-accent transition-colors"
           >
             Read more customer reviews
-            <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            <span className="dc-icon dc-icon-arrow-right w-4 h-4" aria-hidden="true" />
           </Link>
           <a
             href={getListing(city).reviewsUrl}
@@ -251,7 +237,7 @@ export default function CityRecentCleans({ city, reviews, reviewsTo = "/reviews/
             className="inline-flex items-center gap-2 font-semibold text-muted-foreground hover:text-accent transition-colors"
           >
             Verify every review on our {city} Google profile
-            <ExternalLink className="w-4 h-4" aria-hidden="true" />
+            <span className="dc-icon dc-icon-external-link w-4 h-4" aria-hidden="true" />
           </a>
         </div>
 

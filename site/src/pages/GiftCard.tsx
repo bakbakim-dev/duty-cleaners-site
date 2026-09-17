@@ -4,7 +4,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
-import { Gift, Mail, Wallet, Phone, Check } from "lucide-react";
+import { Gift, Mail, Wallet, Phone } from "lucide-react";
 import { standardTierRows, deepCleanTierRows, moveInOutTierRows } from "@/data/pricing";
 import { POLICY } from "@/data/policy";
 import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
@@ -307,7 +307,7 @@ export default function GiftCard() {
                   asChild
                 >
                   <a href={CITY_PROOF.edmonton.phoneLink}>
-                    <Phone className="mr-2 h-5 w-5" aria-hidden="true" />
+                    <span className="dc-icon dc-icon-phone mr-2 h-5 w-5" aria-hidden="true" />
                     Edmonton: {CITY_PROOF.edmonton.phone}
                   </a>
                 </Button>
@@ -317,7 +317,7 @@ export default function GiftCard() {
                   asChild
                 >
                   <a href={CITY_PROOF.calgary.phoneLink}>
-                    <Phone className="mr-2 h-5 w-5" aria-hidden="true" />
+                    <span className="dc-icon dc-icon-phone mr-2 h-5 w-5" aria-hidden="true" />
                     Calgary: {CITY_PROOF.calgary.phone}
                   </a>
                 </Button>
@@ -408,7 +408,7 @@ export default function GiftCard() {
               <ul className="space-y-5">
                 {FAQS.map((faq) => (
                   <li key={faq.q} className="flex items-start gap-3 text-base leading-relaxed">
-                    <Check className="mt-1 h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
+                    <span className="dc-icon dc-icon-check mt-1 h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
                     <span>
                       <strong className="text-foreground">{faq.q}</strong>{" "}
                       <span className="text-muted-foreground">{faq.a}</span>

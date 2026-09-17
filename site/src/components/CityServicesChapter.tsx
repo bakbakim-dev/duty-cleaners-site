@@ -1,7 +1,7 @@
 import { addOnFromPrice, formatPrice, FREQUENCIES } from "@/data/pricing";
 import { Link } from "react-router-dom";
 import { canonicalForPath } from "@/data/legacy-urls";
-import { ArrowRight, ExternalLink, HardHat, Home, KeyRound, PaintRoller, Repeat, Sparkles, Truck } from "lucide-react";
+import { HardHat, Home, KeyRound, PaintRoller, Repeat, Truck } from "lucide-react";
 import { Accent } from "@/components/Accent";
 import Eyebrow from "@/components/Eyebrow";
 import useRevealOnScroll from "@/hooks/use-reveal-on-scroll";
@@ -108,7 +108,7 @@ export default function CityServicesChapter({
             </div>
             <div className="flex flex-1 flex-col p-6 md:p-8">
               <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10">
-                <Sparkles className="h-7 w-7 text-primary" aria-hidden="true" />
+                <span className="dc-icon dc-icon-sparkles h-7 w-7 text-primary" aria-hidden="true" />
               </div>
               <h3 className="display-serif text-2xl font-bold md:text-3xl">Standard Cleaning</h3>
               <p className="mt-3 max-w-[52ch] text-muted-foreground leading-relaxed">{copy.standard}</p>
@@ -116,7 +116,7 @@ export default function CityServicesChapter({
                   to={canonicalForPath(`${basePath}/regular-cleaning`)}
                   className="mt-5 inline-flex items-center font-semibold text-primary transition-transform duration-300 group-hover:translate-x-1 after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 >
-                  Standard cleaning in {city} <ArrowRight className="ml-1.5 h-4 w-4" aria-hidden="true" />
+                  Standard cleaning in {city} <span className="dc-icon dc-icon-arrow-right ml-1.5 h-4 w-4" aria-hidden="true" />
               </Link>
             </div>
           </div>
@@ -144,7 +144,7 @@ export default function CityServicesChapter({
                   to={canonicalForPath(`${basePath}/deep-cleaning`)}
                   className="mt-3 inline-flex items-center text-sm font-semibold text-primary transition-transform duration-300 group-hover:translate-x-1 after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 >
-                  Deep cleaning in {city} <ExternalLink className="ml-1 h-4 w-4" aria-hidden="true" />
+                  Deep cleaning in {city} <span className="dc-icon dc-icon-external-link ml-1 h-4 w-4" aria-hidden="true" />
               </Link>
             </div>
           </div>
@@ -169,7 +169,7 @@ export default function CityServicesChapter({
               to={canonicalForPath(`${basePath}/move-in-move-out-cleaning`)}
               className="inline-flex items-center font-semibold text-accent-on-dark transition-transform duration-300 group-hover:translate-x-1 after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
-              Move-in and move-out cleaning in {city} <ArrowRight className="ml-1.5 h-4 w-4" aria-hidden="true" />
+              Move-in and move-out cleaning in {city} <span className="dc-icon dc-icon-arrow-right ml-1.5 h-4 w-4" aria-hidden="true" />
           </Link>
         </div>
 
@@ -194,7 +194,7 @@ export default function CityServicesChapter({
               to={canonicalForPath(`${basePath}/recurring-cleaning`)}
               className="hidden items-center text-sm font-semibold text-accent transition-transform duration-300 group-hover:translate-x-1 sm:inline-flex after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
-              {city} recurring cleaning <ExternalLink className="ml-1 h-4 w-4" aria-hidden="true" />
+              {city} recurring cleaning <span className="dc-icon dc-icon-external-link ml-1 h-4 w-4" aria-hidden="true" />
           </Link>
         </div>
 
@@ -213,7 +213,7 @@ export default function CityServicesChapter({
               to={canonicalForPath(`${basePath}/post-construction-cleaning`)}
               className="hidden items-center text-sm font-semibold text-primary transition-transform duration-300 group-hover:translate-x-1 sm:inline-flex after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
-              {city} post-construction cleaning <ExternalLink className="ml-1 h-4 w-4" aria-hidden="true" />
+              {city} post-construction cleaning <span className="dc-icon dc-icon-external-link ml-1 h-4 w-4" aria-hidden="true" />
           </Link>
         </div>
 
@@ -238,7 +238,7 @@ export default function CityServicesChapter({
             to={canonicalForPath(`${basePath}/wall-washing`)}
             className="hidden items-center text-sm font-semibold text-primary transition-transform duration-300 group-hover:translate-x-1 sm:inline-flex after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
-            {city} wall washing <ExternalLink className="ml-1 h-4 w-4" aria-hidden="true" />
+            {city} wall washing <span className="dc-icon dc-icon-external-link ml-1 h-4 w-4" aria-hidden="true" />
           </Link>
         </div>
 
@@ -251,7 +251,7 @@ export default function CityServicesChapter({
             to={canonicalForPath(`${basePath}/services`)}
             className="inline-flex min-h-[44px] items-center font-semibold text-primary hover:underline"
           >
-            Compare cleaning services in {city} <ExternalLink className="ml-1 h-4 w-4" aria-hidden="true" />
+            Compare cleaning services in {city} <span className="dc-icon dc-icon-external-link ml-1 h-4 w-4" aria-hidden="true" />
           </Link>
         </div>
       </div>

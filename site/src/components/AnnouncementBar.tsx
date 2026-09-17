@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { quoteHrefFor } from "@/lib/quote-link";
-import { Sparkles, X } from "lucide-react";
+import { X } from "lucide-react";
 
 const DISMISS_KEY = "dc-announcement-dismissed";
 
@@ -29,7 +29,7 @@ export default function AnnouncementBar() {
   return (
     <aside aria-label="Site announcement" className="bg-brand-navy text-brand-navy-foreground">
       <div className="container mx-auto flex items-center gap-3 px-4 py-2">
-        <Sparkles className="h-3.5 w-3.5 shrink-0 text-brand-gold" aria-hidden="true" />
+        <span className="dc-icon dc-icon-sparkles h-3.5 w-3.5 shrink-0 text-brand-gold" aria-hidden="true" />
         <p className="flex-1 text-center text-sm text-white/85">
           {/* Was "Price first. See your cleaning price before you choose a time."
               The funnel asks for contact details before the exact number, and the
@@ -46,7 +46,6 @@ export default function AnnouncementBar() {
             See my price →
           </a>
         </p>
-
 
         <button
           type="button"

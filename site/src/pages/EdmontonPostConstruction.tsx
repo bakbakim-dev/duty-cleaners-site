@@ -6,11 +6,7 @@ import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import {
-  Phone, Shield, Sparkles, Droplets, Wind, SprayCan,
-  Ban, Star, Clock, MapPin, CheckCircle2, Heart,
-  Home, DollarSign, Calendar, Wrench
-} from "lucide-react";
+import { Shield, Droplets, Wind, SprayCan, Ban, Star, CheckCircle2, Heart, Home, DollarSign, Calendar, Wrench, MapPin, Phone, Clock, Sparkles } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
@@ -227,7 +223,7 @@ export default function EdmontonPostConstruction() {
                 </Button>
                 <Button asChild size="lg" className="bg-white/95 text-brand-navy hover:bg-white text-lg px-8">
                   <a href="tel:7809136565">
-                    <Phone className="mr-2 w-5 h-5" />
+                    <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />
                     (780) 913-6565
                   </a>
                 </Button>
@@ -606,7 +602,6 @@ export default function EdmontonPostConstruction() {
         </div>
       </section>
       </main>
-
 
       <Footer />
     </div>

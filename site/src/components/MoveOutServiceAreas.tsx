@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { MapPin } from "lucide-react";
+
 import {
   calgaryNeighborhoods,
   calgarySurrounding,
@@ -45,7 +45,7 @@ export default function MoveOutServiceAreas({ city }: MoveOutServiceAreasProps) 
             to={withTrailingSlash(canonicalForPath(place.to))}
             className="flex items-center gap-2 text-sm text-foreground transition-colors hover:text-accent"
           >
-            <MapPin className="h-4 w-4 flex-shrink-0 text-primary" aria-hidden="true" />
+            <span className="dc-icon dc-icon-map-pin h-4 w-4 flex-shrink-0 text-primary" aria-hidden="true" />
             <span>{place.name}</span>
           </Link>
         ))}

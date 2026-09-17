@@ -22,7 +22,7 @@ import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { absoluteAssetUrl, ARTICLE_AUTHOR, ARTICLE_PUBLISHER } from "@/lib/seo";
 import { canonicalUrlForPath } from "@/data/legacy-urls";
-import { Calendar, Clock, ArrowLeft, DollarSign, Home, Users, Sparkles, Clock3, MapPin, Package } from "lucide-react";
+import { Calendar, Clock, ArrowLeft, DollarSign, Home, Users, Sparkles, Clock3, MapPin, Package, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 

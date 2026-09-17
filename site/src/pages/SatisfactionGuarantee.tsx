@@ -6,7 +6,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import TrustPageCta from "@/components/TrustPageCta";
-import { Shield, CheckCircle2, Phone, Mail } from "lucide-react";
+import { Shield, CheckCircle2, Mail } from "lucide-react";
 
 const TITLE = `${POLICY.guaranteeWindowHours}-Hour Re-Clean Guarantee | Duty Cleaners`;
 const DESCRIPTION = `If something was missed in your Duty Cleaners clean, tell us within ${POLICY.guaranteeWindowHours} hours and we come back and re-clean it at no charge.`;
@@ -210,11 +210,11 @@ export default function SatisfactionGuarantee() {
                 </p>
                 <div className="space-y-2">
                   <a href="tel:7809136565" className="flex items-center gap-2 text-accent hover:underline">
-                    <Phone className="w-5 h-5" />
+                    <span className="dc-icon dc-icon-phone w-5 h-5" aria-hidden="true" />
                     Edmonton: (780) 913-6565
                   </a>
                   <a href="tel:4037681341" className="flex items-center gap-2 text-accent hover:underline">
-                    <Phone className="w-5 h-5" />
+                    <span className="dc-icon dc-icon-phone w-5 h-5" aria-hidden="true" />
                     Calgary: (403) 768-1341
                   </a>
                   <a href="mailto:support@dutycleaners.ca" className="flex items-center gap-2 text-accent hover:underline">

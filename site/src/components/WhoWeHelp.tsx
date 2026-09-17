@@ -1,4 +1,4 @@
-import { Accessibility, ArrowRight, Baby, Briefcase, Building2, Home, PawPrint, type LucideIcon } from "lucide-react";
+import { Accessibility, Baby, Briefcase, Building2, Home, PawPrint, type LucideIcon } from "lucide-react";
 import { Accent } from "@/components/Accent";
 import { addOnFromPrice, formatPrice, FREQUENCIES } from "@/data/pricing";
 import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
@@ -129,7 +129,7 @@ export function WhoWeHelp({ city }: { city: City }) {
             className="inline-flex min-h-[48px] items-center gap-2 rounded-lg bg-accent px-6 py-3 text-sm font-bold text-accent-foreground shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent/90 hover:shadow-md"
           >
             See My Instant Price
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            <span className="dc-icon dc-icon-arrow-right h-4 w-4" aria-hidden="true" />
           </a>
         </div>
       </div>

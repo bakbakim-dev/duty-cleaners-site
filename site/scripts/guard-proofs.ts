@@ -710,10 +710,10 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/area-template-0911.test.ts",
     target: "src/components/CityRecentCleans.tsx",
-    find: "role=\"img\" aria-label=",
-    replace: "aria-label=",
+    find: "label={`${stars} out of 5 stars`}",
+    replace: "label={`Google review`}",
     failing: "every star group is one image named with the review's own rating",
-    why: "Leaves the star group as a role-less labelled div, whose name screen readers ignore.",
+    why: "Names every star row 'Google review' instead of its rating, the label the guard was written to remove.",
   },
   {
     guard: "src/data/area-template-0911.test.ts",

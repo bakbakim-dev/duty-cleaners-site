@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { quoteHrefFor } from "@/lib/quote-link";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+
 import defaultRoom from "@/assets/gallery/living-room-clean.webp";
 
 interface JudgmentFreeProps {
@@ -79,7 +79,7 @@ export default function JudgmentFree({
             >
               <a href={quoteHrefFor(pathname)}>
                 See my price
-                <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
+                <span className="dc-icon dc-icon-arrow-right ml-2 h-5 w-5" aria-hidden="true" />
               </a>
             </Button>
           </div>

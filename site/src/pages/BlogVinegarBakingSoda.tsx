@@ -7,7 +7,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { absoluteAssetUrl, ARTICLE_AUTHOR, ARTICLE_PUBLISHER } from "@/lib/seo";
 import { modifiedFor } from "@/data/post-dates";
 import { canonicalUrlForPath } from "@/data/legacy-urls";
-import { Calendar, Clock, ArrowLeft, CheckCircle2, XCircle, AlertTriangle } from "lucide-react";
+import { Calendar, Clock, ArrowLeft, CheckCircle2, XCircle, AlertTriangle, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 

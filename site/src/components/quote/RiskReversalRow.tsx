@@ -1,4 +1,4 @@
-import { Check } from "lucide-react";
+
 import { activeRiskReversal } from "@/data/proof";
 
 /**
@@ -22,7 +22,7 @@ export default function RiskReversalRow({
     <ul className={`flex flex-wrap gap-x-5 gap-y-1.5 text-base ${text} ${className}`}>
       {lines.map((line) => (
         <li key={line.id} className="flex items-center gap-1.5">
-          <Check className="h-4 w-4 shrink-0 text-brand-gold" aria-hidden="true" />
+          <span className="dc-icon dc-icon-check h-4 w-4 shrink-0 text-brand-gold" aria-hidden="true" />
           {line.label}
         </li>
       ))}

@@ -10,7 +10,7 @@ import LocationPricing from "@/components/LocationPricing";
 import { POLICY } from "@/data/policy";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Phone } from "lucide-react";
+
 import HonestReviewLink from "@/components/HonestReviewLink";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import greenfieldCleanHome from "@/assets/gallery/family-clean-home-edmonton.webp";
@@ -53,7 +53,6 @@ export default function Greenfield() {
     })),
   };
 
-
   return (
     <>
       <Helmet>
@@ -93,7 +92,7 @@ export default function Greenfield() {
                 <a href="#quote">GET INSTANT PRICE</a>
               </Button>
               <a href="tel:7809136565" className="flex items-center gap-2 text-lg font-semibold text-primary hover:text-primary/80 transition-colors">
-                <Phone className="w-5 h-5" />
+                <span className="dc-icon dc-icon-phone w-5 h-5" aria-hidden="true" />
                 (780) 913-6565
               </a>
             </div>

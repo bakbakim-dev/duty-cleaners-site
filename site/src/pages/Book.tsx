@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useLocation } from "react-router-dom";
-import { Phone } from "lucide-react";
+
 import BookingEmbed from "@/components/quote/BookingEmbed";
 import { BOOKING_ORIGIN } from "@/lib/booking-redirect";
 import { track } from "@/lib/analytics";
@@ -47,7 +47,7 @@ export default function Book() {
             href={proof.phoneLink}
             className="inline-flex min-h-[48px] items-center gap-2 font-semibold text-brand-navy-foreground"
           >
-            <Phone className="h-4 w-4 text-brand-gold" aria-hidden="true" />
+            <span className="dc-icon dc-icon-phone h-4 w-4 text-brand-gold" aria-hidden="true" />
             Call {proof.phone}
           </a>
         </div>

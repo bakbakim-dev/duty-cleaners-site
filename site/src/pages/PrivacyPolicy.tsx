@@ -3,7 +3,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import TrustPageCta from "@/components/TrustPageCta";
-import { Lock, Phone, Mail } from "lucide-react";
+import { Lock, Mail } from "lucide-react";
 
 /**
  * Bump this whenever the sections below change — the policy itself promises
@@ -314,11 +314,11 @@ export default function PrivacyPolicy() {
                   </a>
                   <div className="flex flex-col sm:flex-row sm:gap-6 gap-2">
                     <a href="tel:7809136565" className="flex items-center gap-2 text-accent hover:underline">
-                      <Phone className="w-5 h-5" />
+                      <span className="dc-icon dc-icon-phone w-5 h-5" aria-hidden="true" />
                       Edmonton: (780) 913-6565
                     </a>
                     <a href="tel:4037681341" className="flex items-center gap-2 text-accent hover:underline">
-                      <Phone className="w-5 h-5" />
+                      <span className="dc-icon dc-icon-phone w-5 h-5" aria-hidden="true" />
                       Calgary: (403) 768-1341
                     </a>
                   </div>

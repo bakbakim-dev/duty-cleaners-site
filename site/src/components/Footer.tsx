@@ -5,19 +5,7 @@ import { useBranchPreference } from "@/lib/branch-preference";
 import { CITY_PROOF, RED_DEER_PATH, hoursRowsFor, type Branch } from "@/data/proof";
 import ThresholdLine from "@/components/ThresholdLine";
 import type { ReactNode } from "react";
-import {
-  Facebook,
-  Instagram,
-  Twitter,
-  Phone,
-  Clock,
-  Youtube,
-  Linkedin,
-  Shield,
-  CreditCard,
-  ArrowUpRight,
-  MapPin,
-} from "lucide-react";
+import { Facebook, Instagram, Twitter, Phone, Youtube, Linkedin, Shield, CreditCard, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { GOOGLE_LISTINGS, openGoogleListing } from "@/lib/google-listings";
 
@@ -80,13 +68,13 @@ function FooterOffice({ branch, to, label }: { branch: Branch; to: string; label
   const office = CITY_PROOF[branch];
   return (
     <div>
-      <Link to={to} className="group flex min-h-12 items-center gap-2 font-semibold transition-colors hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"><MapPin className="h-4 w-4 text-brand-gold" aria-hidden="true" /><span>{label}</span></Link>
-      <a href={office.phoneLink} className="flex min-h-12 items-center gap-2 text-sm text-brand-navy-foreground/85 transition-colors hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"><Phone className="h-4 w-4" aria-hidden="true" />{office.phone}</a>
+      <Link to={to} className="group flex min-h-12 items-center gap-2 font-semibold transition-colors hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"><span className="dc-icon dc-icon-map-pin h-4 w-4 text-brand-gold" aria-hidden="true" /><span>{label}</span></Link>
+      <a href={office.phoneLink} className="flex min-h-12 items-center gap-2 text-sm text-brand-navy-foreground/85 transition-colors hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"><span className="dc-icon dc-icon-phone h-4 w-4" aria-hidden="true" />{office.phone}</a>
       <p className="text-sm leading-6 text-brand-navy-foreground/85">{office.streetAddress}<br />{office.city}, AB {office.postalCode}</p>
       <div className="mt-2 space-y-1 text-sm leading-6 text-brand-navy-foreground/85">
         <span className="sr-only">Hours: </span>
         {hoursRowsFor(branch).map(([days, time]) => (
-          <div key={days} className="flex justify-between gap-3"><span className="inline-flex items-center gap-2"><Clock className="h-3.5 w-3.5 text-brand-gold" aria-hidden="true" />{days}</span><span>{time}</span></div>
+          <div key={days} className="flex justify-between gap-3"><span className="inline-flex items-center gap-2"><span className="dc-icon dc-icon-clock h-3.5 w-3.5 text-brand-gold" aria-hidden="true" />{days}</span><span>{time}</span></div>
         ))}
       </div>
     </div>
@@ -111,7 +99,6 @@ export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: 
   // on the Red Deer page, the Red Deer office. Read from proof.ts, not typed.
   const office = CITY_PROOF[shownBranch ?? "edmonton"];
   const cityPhone = { href: office.phoneLink, display: office.phone };
-
 
   return (
     <footer className="border-t border-brand-navy-foreground/10 bg-brand-navy text-brand-navy-foreground">

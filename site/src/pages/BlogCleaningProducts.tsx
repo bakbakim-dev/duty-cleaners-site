@@ -6,7 +6,7 @@ import { modifiedFor } from "@/data/post-dates";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { Calendar, Clock, ArrowLeft, CheckCircle2, XCircle, AlertTriangle, ShoppingCart } from "lucide-react";
+import { Calendar, Clock, ArrowLeft, CheckCircle2, XCircle, AlertTriangle, ShoppingCart, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 

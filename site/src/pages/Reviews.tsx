@@ -1,4 +1,5 @@
 import { REVIEWS, type CityReview } from "@/data/reviews";
+import Stars from "@/components/Stars";
 import { CITY_PROOF, COMPANY, RATING_CLAIM } from "@/data/proof";
 import { BOOKINGS } from "@/data/proof";
 import { PROVENANCE } from "@/data/confirmed";
@@ -8,12 +9,11 @@ import heroReviews from "@/assets/hero-reviews-testimonials.webp";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { Star, Quote, Heart, Phone, MapPin, Calculator, CheckCircle2, MessageSquare, ThumbsUp, Award } from "lucide-react";
+import { Star, Quote, Heart, Calculator, CheckCircle2, MessageSquare, ThumbsUp, Award } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { GOOGLE_LISTINGS, openGoogleListing } from "@/lib/google-listings";
 import { Helmet } from "react-helmet-async";
 import { Link, useLocation } from "react-router-dom";
-
 
 const ReviewCard = ({ review, index }: {review: CityReview;index: number;}) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -38,7 +38,7 @@ const ReviewCard = ({ review, index }: {review: CityReview;index: number;}) => {
             <div>
               <p className="font-semibold text-foreground">{review.name}</p>
               <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                <MapPin className="w-3 h-3" />
+                <span className="dc-icon dc-icon-map-pin w-3 h-3" aria-hidden="true" />
                 <span>{review.location}</span>
                 <span className="mx-1">·</span>
                 <span>{review.date}</span>
@@ -75,7 +75,6 @@ const StatCard = ({ icon: Icon, value, label }: {icon: React.ElementType;value: 
     <p className="text-3xl font-bold text-white mb-1">{value}</p>
     <p className="text-white/90 text-sm">{label}</p>
   </div>;
-
 
 /**
  * Verbatim customer reviews, transcribed from the business's public Google
@@ -251,9 +250,7 @@ export default function Reviews() {
             </p>
 
             <div className="flex items-center justify-center gap-2 mb-2">
-              {[...Array(5)].map((_, i) =>
-              <Star key={i} className="w-7 h-7 fill-yellow-400 text-yellow-400" />
-              )}
+              <Stars size={1.75} className="text-yellow-400" />
               <span className="text-2xl font-bold text-white ml-2">{RATING_CLAIM}</span>
             </div>
             <p className="text-white/90 text-sm">
@@ -410,13 +407,13 @@ export default function Reviews() {
                 <a
                   href={CITY_PROOF.edmonton.phoneLink}
                   className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-white text-brand-navy font-semibold rounded-lg hover:bg-white/90 transition-colors shadow-lg">
-                  <Phone className="w-4 h-4" />
+                  <span className="dc-icon dc-icon-phone w-4 h-4" aria-hidden="true" />
                   Edmonton: {CITY_PROOF.edmonton.phone}
                 </a>
                 <a
                   href={CITY_PROOF.calgary.phoneLink}
                   className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-white text-brand-navy font-semibold rounded-lg hover:bg-white/90 transition-colors shadow-lg">
-                  <Phone className="w-4 h-4" />
+                  <span className="dc-icon dc-icon-phone w-4 h-4" aria-hidden="true" />
                   Calgary: {CITY_PROOF.calgary.phone}
                 </a>
               </div>

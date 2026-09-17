@@ -9,7 +9,7 @@ import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import LocationPricing from "@/components/LocationPricing";
 import { Button } from "@/components/ui/button";
-import { Phone } from "lucide-react";
+
 import HonestReviewLink from "@/components/HonestReviewLink";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import strathconaCleanHome from "@/assets/gallery/old-strathcona-cleaner-home.webp";
@@ -89,7 +89,7 @@ const QueenAlexandra = () => {
                 </Button>
                 <Button size="lg" variant="outline" asChild>
                   <a href="tel:7809136565">
-                    <Phone className="mr-2 h-5 w-5" />
+                    <span className="dc-icon dc-icon-phone mr-2 h-5 w-5" aria-hidden="true" />
                     (780) 913-6565
                   </a>
                 </Button>

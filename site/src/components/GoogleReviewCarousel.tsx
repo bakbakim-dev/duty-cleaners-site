@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Star, CheckCircle2, ChevronLeft, ChevronRight } from "lucide-react";
+import Stars from "@/components/Stars";
+import { CheckCircle2, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface Review {
@@ -43,11 +44,7 @@ const ReviewCard = ({ review }: { review: Review }) => (
       <GoogleLogo className="w-5 h-5" />
     </div>
     <div className="flex items-center gap-2 mb-3">
-      <div className="flex gap-0.5">
-        {[1, 2, 3, 4, 5].map(star => (
-          <Star key={star} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-        ))}
-      </div>
+      <Stars size={1} className="text-yellow-400" />
       <span className="text-xs text-muted-foreground">{review.date}</span>
     </div>
     <p className="text-muted-foreground text-sm mb-3 leading-relaxed">
@@ -102,11 +99,7 @@ export default function GoogleReviewCarousel({
           </div>
           <div className="flex items-center gap-2 mb-2">
             <span className="text-4xl font-bold">{rating}</span>
-            <div className="flex gap-0.5">
-              {[1, 2, 3, 4, 5].map(star => (
-                <Star key={star} className="w-6 h-6 text-yellow-400 fill-yellow-400" />
-              ))}
-            </div>
+            <Stars size={1.5} className="text-yellow-400" />
           </div>
           <p className="text-muted-foreground">Based on {reviewCount} reviews</p>
           <a 

@@ -9,7 +9,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-import { MapPin, Phone, Star, CheckCircle2, Clock, Shield, Sparkles, Home as HomeIcon, Award, ArrowRight, BadgeCheck, Users, CalendarClock, Briefcase, Heart } from "lucide-react";
+import { Star, CheckCircle2, Shield, HomeIcon, Award, BadgeCheck, CalendarClock, Briefcase, Heart, Clock, Sparkles, Users } from "lucide-react";
 import heroCleanHouse from "@/assets/generated/alberta-cleaning-hero-v1.webp";
 import heroCleanHouse640 from "@/assets/generated/alberta-cleaning-hero-v1-640w.webp";
 import heroCleanHouse960 from "@/assets/generated/alberta-cleaning-hero-v1-960w.webp";
@@ -225,7 +225,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center gap-3">
                         <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center transition-transform duration-500 group-hover:rotate-6">
-                          <MapPin className="w-6 h-6 text-accent" />
+                          <span className="dc-icon dc-icon-map-pin w-6 h-6 text-accent" aria-hidden="true" />
                         </div>
                         <div>
                           <h3 className="text-2xl md:text-3xl font-bold">Edmonton</h3>
@@ -243,17 +243,17 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
                     </div>
 
                     <div className="flex items-center gap-2 mb-5 text-white/90">
-                      <Phone className="w-4 h-4" />
+                      <span className="dc-icon dc-icon-phone w-4 h-4" aria-hidden="true" />
                       <span className="font-semibold text-white">{CITY_PROOF.edmonton.phone}</span>
                     </div>
 
                     <div className="space-y-2 mb-6">
                       <div className="flex items-center gap-2.5 text-white/90">
-                        <MapPin className="w-4 h-4 text-accent" />
+                        <span className="dc-icon dc-icon-map-pin w-4 h-4 text-accent" aria-hidden="true" />
                         <span className="text-sm">Edmonton office at {CITY_PROOF.edmonton.streetAddress}</span>
                       </div>
                       <div className="flex items-center gap-2.5 text-white/90">
-                        <Clock className="w-4 h-4 text-accent" />
+                        <span className="dc-icon dc-icon-clock w-4 h-4 text-accent" aria-hidden="true" />
                         <span className="text-sm">Serving Alberta since {COMPANY.foundedYear}</span>
                       </div>
                     </div>
@@ -267,7 +267,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
                         className="after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                       >
                         View Edmonton services
-                        <ArrowRight className="w-5 h-5 ml-2" />
+                        <span className="dc-icon dc-icon-arrow-right w-5 h-5 ml-2" aria-hidden="true" />
                       </Link>
                     </Button>
                   </div>
@@ -286,7 +286,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center gap-3">
                         <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center transition-transform duration-500 group-hover:rotate-6">
-                          <MapPin className="w-6 h-6 text-accent" />
+                          <span className="dc-icon dc-icon-map-pin w-6 h-6 text-accent" aria-hidden="true" />
                         </div>
                         <div>
                           <h3 className="text-2xl md:text-3xl font-bold">Calgary</h3>
@@ -304,17 +304,17 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
                     </div>
 
                     <div className="flex items-center gap-2 mb-5 text-white/90">
-                      <Phone className="w-4 h-4" />
+                      <span className="dc-icon dc-icon-phone w-4 h-4" aria-hidden="true" />
                       <span className="font-semibold text-white">{CITY_PROOF.calgary.phone}</span>
                     </div>
 
                     <div className="space-y-2 mb-6">
                       <div className="flex items-center gap-2.5 text-white/90">
-                        <MapPin className="w-4 h-4 text-accent" />
+                        <span className="dc-icon dc-icon-map-pin w-4 h-4 text-accent" aria-hidden="true" />
                         <span className="text-sm">Calgary office at {CITY_PROOF.calgary.streetAddress}</span>
                       </div>
                       <div className="flex items-center gap-2.5 text-white/90">
-                        <Clock className="w-4 h-4 text-accent" />
+                        <span className="dc-icon dc-icon-clock w-4 h-4 text-accent" aria-hidden="true" />
                         <span className="text-sm">Serving Alberta since {COMPANY.foundedYear}</span>
                       </div>
                     </div>
@@ -328,7 +328,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
                         className="after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                       >
                         View Calgary services
-                        <ArrowRight className="w-5 h-5 ml-2" />
+                        <span className="dc-icon dc-icon-arrow-right w-5 h-5 ml-2" aria-hidden="true" />
                       </Link>
                     </Button>
                   </div>
@@ -344,7 +344,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
                     <div className="mb-4 flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 transition-transform duration-500 group-hover:rotate-6">
-                          <MapPin className="h-6 w-6 text-accent" />
+                          <span className="dc-icon dc-icon-map-pin h-6 w-6 text-accent" aria-hidden="true" />
                         </div>
                         <div>
                           <h3 className="text-2xl font-bold md:text-3xl">Red Deer</h3>
@@ -353,23 +353,23 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
                       </div>
                     </div>
                     <div className="mb-5 flex items-center gap-2 text-white/90">
-                      <Phone className="h-4 w-4" />
+                      <span className="dc-icon dc-icon-phone h-4 w-4" aria-hidden="true" />
                       <span className="font-semibold text-white">{CITY_PROOF.reddeer.phone}</span>
                     </div>
                     <div className="mb-6 space-y-2">
                       <div className="flex items-center gap-2.5 text-white/90">
-                        <MapPin className="h-4 w-4 text-accent" />
+                        <span className="dc-icon dc-icon-map-pin h-4 w-4 text-accent" aria-hidden="true" />
                         <span className="text-sm">Red Deer office at {CITY_PROOF.reddeer.streetAddress}</span>
                       </div>
                       <div className="flex items-center gap-2.5 text-white/90">
-                        <Clock className="h-4 w-4 text-accent" />
+                        <span className="dc-icon dc-icon-clock h-4 w-4 text-accent" aria-hidden="true" />
                         <span className="text-sm">Online booking available</span>
                       </div>
                     </div>
                     <Button asChild className="h-12 w-full bg-accent text-base font-semibold text-accent-foreground shadow-md transition-all hover:bg-accent/90 hover:shadow-lg">
                       <Link to="/cleaning-services-red-deer/" className="after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
                         View Red Deer services
-                        <ArrowRight className="ml-2 h-5 w-5" />
+                        <span className="dc-icon dc-icon-arrow-right ml-2 h-5 w-5" aria-hidden="true" />
                       </Link>
                     </Button>
                   </div>
@@ -433,7 +433,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
                     starts. It used to open the 24-hour contact inbox instead. */}
                 <a href={quoteHrefFor(pathname)}>
                   See My Instant Price
-                  <ArrowRight className="w-5 h-5 ml-2" />
+                  <span className="dc-icon dc-icon-arrow-right w-5 h-5 ml-2" aria-hidden="true" />
                 </a>
               </Button>
             </div>
@@ -472,7 +472,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
             <div className="text-center mt-10">
               <Link to="/locations/" className="inline-flex items-center gap-2 text-accent font-semibold hover:underline text-lg transition-colors">
                 View All Service Locations
-                <ArrowRight className="w-5 h-5" />
+                <span className="dc-icon dc-icon-arrow-right w-5 h-5" aria-hidden="true" />
               </Link>
             </div>
           </div>
@@ -548,11 +548,11 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
                 <span className="text-sm font-medium">{`${POLICY.guaranteeWindowHours}-Hour Re-Clean Guarantee`}</span>
               </div>
               <div className="inline-flex items-center gap-2 bg-card border border-border/50 px-4 py-2 rounded-full shadow-sm">
-                <Sparkles className="w-4 h-4 text-accent" />
+                <span className="dc-icon dc-icon-sparkles w-4 h-4 text-accent" aria-hidden="true" />
                 <span className="text-sm font-medium">All Supplies Brought For You</span>
               </div>
               <div className="inline-flex items-center gap-2 bg-card border border-border/50 px-4 py-2 rounded-full shadow-sm">
-                <Users className="w-4 h-4 text-accent" />
+                <span className="dc-icon dc-icon-users w-4 h-4 text-accent" aria-hidden="true" />
                 <span className="text-sm font-medium">Customer-Rated Cleaners</span>
               </div>
             </div>
@@ -570,7 +570,7 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
 
               <div className="relative z-10 text-center">
                 <div className="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-6 rotate-3 hover:rotate-0 transition-transform duration-500">
-                  <Sparkles className="w-8 h-8 text-accent" />
+                  <span className="dc-icon dc-icon-sparkles w-8 h-8 text-accent" aria-hidden="true" />
                 </div>
                 <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Book a House Clean in Edmonton, Calgary or Red Deer</h2>
                 <p className="text-lg text-white/90 mb-8 leading-relaxed max-w-2xl mx-auto">
@@ -581,19 +581,19 @@ export default function BrandHome({ hideFooter = false }: BrandHomeProps) {
                 <div className="grid gap-4 mb-8 md:grid-cols-3">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-5 py-6 h-auto font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5" asChild>
                     <a href={CITY_PROOF.edmonton.phoneLink}>
-                      <Phone className="w-5 h-5 mr-2" />
+                      <span className="dc-icon dc-icon-phone w-5 h-5 mr-2" aria-hidden="true" />
                       Edmonton: {CITY_PROOF.edmonton.phone}
                     </a>
                   </Button>
                   <Button size="lg" className="bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 text-base px-5 py-6 h-auto font-semibold transition-all duration-300" asChild>
                     <a href={CITY_PROOF.calgary.phoneLink}>
-                      <Phone className="w-5 h-5 mr-2" />
+                      <span className="dc-icon dc-icon-phone w-5 h-5 mr-2" aria-hidden="true" />
                       Calgary: {CITY_PROOF.calgary.phone}
                     </a>
                   </Button>
                   <Button size="lg" className="bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 text-base px-5 py-6 h-auto font-semibold transition-all duration-300" asChild>
                     <a href={CITY_PROOF.reddeer.phoneLink}>
-                      <Phone className="w-5 h-5 mr-2" />
+                      <span className="dc-icon dc-icon-phone w-5 h-5 mr-2" aria-hidden="true" />
                       Red Deer: {CITY_PROOF.reddeer.phone}
                     </a>
                   </Button>

@@ -1,4 +1,5 @@
-import { Star } from "lucide-react";
+
+import Stars from "@/components/Stars";
 import { getListing, openGoogleListing } from "@/lib/google-listings";
 
 interface HonestReviewLinkProps {
@@ -27,11 +28,7 @@ export default function HonestReviewLink({ city, area }: HonestReviewLinkProps) 
     <section className="py-16 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-xl border border-border bg-card p-8 text-center">
-          <span className="flex justify-center gap-0.5" aria-hidden="true">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} className="h-5 w-5 fill-brand-gold text-brand-gold" />
-            ))}
-          </span>
+          <Stars size={1.25} className="block mx-auto" />
           <p className="mt-3 text-foreground">
             See what real {city} customers say{area ? ` before booking in ${area}` : ""} — read the
             reviews on our Google Business Profile.

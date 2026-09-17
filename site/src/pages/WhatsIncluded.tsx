@@ -12,30 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import {
-  Sparkles,
-  Home,
-  Truck,
-  Star,
-  Phone,
-  Calculator,
-  SprayCan,
-  Refrigerator,
-  Fan,
-  DoorOpen,
-  Paintbrush,
-  Bath,
-  Utensils,
-  BedDouble,
-  Sofa,
-  Droplets,
-  LucideIcon,
-  CheckCircle2,
-  XCircle,
-  Check,
-  Plus,
-  Minus
-} from "lucide-react";
+import { Home, Truck, Star, Calculator, SprayCan, Refrigerator, Fan, DoorOpen, Paintbrush, Bath, Utensils, BedDouble, Sofa, Droplets, LucideIcon, CheckCircle2, XCircle, Plus, Minus, Sparkles, Check } from "lucide-react";
 
 // Cleaning service card component
 type MatrixLevel = "yes" | "addon" | "package" | "no";
@@ -97,7 +74,7 @@ const MatrixCell = ({ level }: { level: MatrixLevel }) => {
   if (level === "yes") {
     return (
       <span className="inline-flex items-center gap-1.5 font-medium text-foreground">
-        <Check className="h-4 w-4 text-brand-gold" aria-hidden="true" />
+        <span className="dc-icon dc-icon-check h-4 w-4 text-brand-gold" aria-hidden="true" />
         Included
       </span>
     );
@@ -408,7 +385,7 @@ export default function WhatsIncluded() {
         <div className="container mx-auto px-4 py-16 md:py-20 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-sm mb-6">
-              <Sparkles className="w-4 h-4 text-accent" />
+              <span className="dc-icon dc-icon-sparkles w-4 h-4 text-accent" aria-hidden="true" />
               <span>The checklist the team works to</span>
             </div>
 
@@ -429,13 +406,13 @@ export default function WhatsIncluded() {
               </Button>
               <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 h-12 px-6" asChild>
                 <a href={CITY_PROOF.edmonton.phoneLink}>
-                  <Phone className="mr-2 w-5 h-5" />
+                  <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />
                   Edmonton {CITY_PROOF.edmonton.phone}
                 </a>
               </Button>
               <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 h-12 px-6" asChild>
                 <a href={CITY_PROOF.calgary.phoneLink}>
-                  <Phone className="mr-2 w-5 h-5" />
+                  <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />
                   Calgary {CITY_PROOF.calgary.phone}
                 </a>
               </Button>
@@ -742,7 +719,7 @@ export default function WhatsIncluded() {
               </Button>
               <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 h-12 px-8" asChild>
                 <a href={cityProof.phoneLink}>
-                  <Phone className="mr-2 w-5 h-5" />{cityProof.phone}</a>
+                  <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />{cityProof.phone}</a>
               </Button>
             </div>
           </div>

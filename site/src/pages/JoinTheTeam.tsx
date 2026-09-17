@@ -4,25 +4,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
-import { 
-  CheckCircle2, 
-  DollarSign, 
-  Calendar, 
-  MapPin, 
-  Users, 
-  Clock, 
-  Briefcase, 
-  Car, 
-  Shield, 
-  FileCheck,
-  Sparkles,
-  Heart,
-  ArrowRight,
-  Phone,
-  Star,
-  HelpCircle,
-  Mail
-} from "lucide-react";
+import { CheckCircle2, DollarSign, Calendar, Briefcase, Car, Shield, FileCheck, Heart, Star, HelpCircle, Mail, MapPin, Phone, Clock, Users } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -436,7 +418,7 @@ export default function JoinTheTeam() {
                 onClick={scrollToForm}
               >
                 Apply Today
-                <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
+                <span className="dc-icon dc-icon-arrow-right w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" aria-hidden="true" />
               </Button>
             </div>
           </div>
@@ -447,7 +429,7 @@ export default function JoinTheTeam() {
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-4">
-                <Sparkles className="w-4 h-4 text-primary" />
+                <span className="dc-icon dc-icon-sparkles w-4 h-4 text-primary" aria-hidden="true" />
                 <span className="text-primary text-sm font-medium">Why Work With Us</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">What You Get</h2>
@@ -465,7 +447,7 @@ export default function JoinTheTeam() {
             <div className="text-center mt-12">
               <Button size="lg" onClick={scrollToForm} className="group">
                 Take Me to the Application
-                <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                <span className="dc-icon dc-icon-arrow-right w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" aria-hidden="true" />
               </Button>
             </div>
           </div>
@@ -502,7 +484,7 @@ export default function JoinTheTeam() {
                 className="bg-accent hover:bg-accent/90 text-accent-foreground group"
               >
                 I'm Ready to Apply
-                <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                <span className="dc-icon dc-icon-arrow-right w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" aria-hidden="true" />
               </Button>
             </div>
           </div>
@@ -513,7 +495,7 @@ export default function JoinTheTeam() {
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-4">
-                <ArrowRight className="w-4 h-4 text-primary" />
+                <span className="dc-icon dc-icon-arrow-right w-4 h-4 text-primary" aria-hidden="true" />
                 <span className="text-primary text-sm font-medium">How It Works</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">From Application to Your First Clean</h2>
@@ -544,7 +526,7 @@ export default function JoinTheTeam() {
                     <div className="space-y-2">
                       <div className="flex items-center gap-2"><CheckCircle2 className="h-3.5 w-3.5 text-success" /><div className="h-2.5 w-2/3 rounded-full bg-border" /></div>
                       <div className="flex items-center gap-2"><CheckCircle2 className="h-3.5 w-3.5 text-success" /><div className="h-2.5 w-1/2 rounded-full bg-border" /></div>
-                      <div className="flex items-center gap-2"><Clock className="h-3.5 w-3.5 text-accent" /><div className="h-2.5 w-3/5 rounded-full bg-border" /></div>
+                      <div className="flex items-center gap-2"><span className="dc-icon dc-icon-clock h-3.5 w-3.5 text-accent" aria-hidden="true" /><div className="h-2.5 w-3/5 rounded-full bg-border" /></div>
                     </div>
                   ),
                 },
@@ -636,7 +618,7 @@ export default function JoinTheTeam() {
               <div className="text-center mt-10">
                 <Button size="lg" onClick={scrollToForm} className="group">
                   I'm Ready to Apply
-                  <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                  <span className="dc-icon dc-icon-arrow-right w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                 </Button>
               </div>
             </div>

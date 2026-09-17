@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { Phone, MapPin, Clock, CheckCircle2, CalendarCheck, Award, Home, Sparkles, Truck, Repeat, HardHat, PaintRoller, KeyRound, Building2 } from "lucide-react";
+import { CheckCircle2, CalendarCheck, Award, Home, Truck, Repeat, HardHat, PaintRoller, KeyRound, Building2, Sparkles } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -309,7 +309,7 @@ export default function RedDeer() {
             <div className="container relative z-10 mx-auto px-4">
               <div className="mx-auto max-w-4xl text-center lg:text-left">
                 <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-5 py-2 backdrop-blur-sm">
-                  <MapPin className="h-4 w-4 text-accent" aria-hidden="true" />
+                  <span className="dc-icon dc-icon-map-pin h-4 w-4 text-accent" aria-hidden="true" />
                   <span className="text-sm font-medium text-white/90">The Red Deer office, {OFFICE.streetAddress}</span>
                 </div>
                 <h1 className="mb-6 text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
@@ -324,7 +324,7 @@ export default function RedDeer() {
                   </Button>
                   <Button size="lg" variant="outline" className="border-white/30 px-8 text-base text-white hover:bg-white/10" asChild>
                     <a href={OFFICE.phoneLink}>
-                      <Phone className="mr-2 h-5 w-5" aria-hidden="true" />
+                      <span className="dc-icon dc-icon-phone mr-2 h-5 w-5" aria-hidden="true" />
                       Call {OFFICE.phone}
                     </a>
                   </Button>
@@ -363,7 +363,7 @@ export default function RedDeer() {
                     </p>
                     <div className="rounded-xl border border-border bg-muted/30 p-5">
                       <div className="mb-3 flex items-center gap-2 font-semibold text-foreground">
-                        <Clock className="h-5 w-5 text-primary" aria-hidden="true" />
+                        <span className="dc-icon dc-icon-clock h-5 w-5 text-primary" aria-hidden="true" />
                         Red Deer office hours
                       </div>
                       <dl className="space-y-1 text-base">
@@ -573,7 +573,7 @@ export default function RedDeer() {
                 </Button>
                 <Button size="lg" variant="outline" className="border-white/30 px-8 text-base text-white hover:bg-white/10" asChild>
                   <a href={OFFICE.phoneLink}>
-                    <Phone className="mr-2 h-5 w-5" aria-hidden="true" />
+                    <span className="dc-icon dc-icon-phone mr-2 h-5 w-5" aria-hidden="true" />
                     Call the Red Deer office
                   </a>
                 </Button>

@@ -6,7 +6,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Phone, HelpCircle, Home, Truck, Building2, HardHat, DollarSign, Award, Sparkles, MessageSquare, Shield, Heart } from "lucide-react";
+import { HelpCircle, Home, Truck, Building2, HardHat, DollarSign, Award, MessageSquare, Shield, Heart, Sparkles } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import heroFaqLivingRoom from "@/assets/hero-faq-living-room.webp";
 import { CITY_PROOF, RATING_CLAIM, hoursLineFor } from "@/data/proof";
@@ -421,14 +421,14 @@ export default function FAQ() {
                   href="tel:7809136565"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-accent text-accent-foreground font-semibold rounded-lg hover:bg-accent/90 transition-colors text-sm"
                 >
-                  <Phone className="w-4 h-4" />
+                  <span className="dc-icon dc-icon-phone w-4 h-4" aria-hidden="true" />
                   Edmonton: (780) 913-6565
                 </a>
                 <a
                   href="tel:4037681341"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-brand-navy font-semibold rounded-lg hover:bg-white/90 transition-colors text-sm"
                 >
-                  <Phone className="w-4 h-4" />
+                  <span className="dc-icon dc-icon-phone w-4 h-4" aria-hidden="true" />
                   Calgary: (403) 768-1341
                 </a>
               </div>
@@ -516,7 +516,7 @@ export default function FAQ() {
             <div className="absolute bottom-0 right-0 w-56 h-56 bg-accent/10 rounded-full blur-3xl" />
 
             <div className="relative z-10">
-              <Sparkles className="w-10 h-10 text-accent mx-auto mb-4" />
+              <span className="dc-icon dc-icon-sparkles w-10 h-10 text-accent mx-auto mb-4" aria-hidden="true" />
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
                 Call the Edmonton, Calgary or Red Deer office
               </h2>

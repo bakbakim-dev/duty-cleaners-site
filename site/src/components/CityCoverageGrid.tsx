@@ -1,7 +1,7 @@
 import { withTrailingSlash } from "@/data/legacy-urls";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { MapPin, ChevronDown, ChevronUp, ArrowRight } from "lucide-react";
+import { ChevronUp } from "lucide-react";
 import { Accent } from "@/components/Accent";
 import type { CityLocation } from "@/data/city-locations";
 
@@ -22,7 +22,7 @@ function Chip({ name, to }: CityLocation) {
       to={withTrailingSlash(to)}
       className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-white rounded-full border border-border text-sm font-medium transition-all duration-200 hover:-translate-y-0.5 hover:border-accent hover:text-accent hover:shadow-md"
     >
-      <MapPin className="w-3.5 h-3.5 text-accent" aria-hidden="true" />
+      <span className="dc-icon dc-icon-map-pin w-3.5 h-3.5 text-accent" aria-hidden="true" />
       {name}
     </Link>
   );
@@ -85,7 +85,7 @@ export default function CityCoverageGrid({
               </>
             ) : (
               <>
-                Show all {neighbourhoods.length} areas <ChevronDown className="w-4 h-4" aria-hidden="true" />
+                Show all {neighbourhoods.length} areas <span className="dc-icon dc-icon-chevron-down w-4 h-4" aria-hidden="true" />
               </>
             )}
           </button>
@@ -107,7 +107,7 @@ export default function CityCoverageGrid({
           className="inline-flex items-center gap-2 font-semibold text-primary hover:text-accent transition-colors"
         >
           View all service locations
-          <ArrowRight className="w-4 h-4" aria-hidden="true" />
+          <span className="dc-icon dc-icon-arrow-right w-4 h-4" aria-hidden="true" />
         </Link>
       </div>
     </div>

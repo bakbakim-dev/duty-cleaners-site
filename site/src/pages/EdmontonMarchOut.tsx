@@ -12,19 +12,7 @@ import { ARRIVAL_WINDOWS, POLICY } from "@/data/policy";
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import {
-  ShieldCheck,
-  Phone,
-  CheckCircle,
-  ClipboardCheck,
-  Sparkles,
-  UtensilsCrossed,
-  Bath,
-  Footprints,
-  DoorOpen,
-  Search,
-  MapPin,
-} from "lucide-react";
+import { ShieldCheck, CheckCircle, ClipboardCheck, UtensilsCrossed, Bath, Footprints, DoorOpen, Search, Sparkles } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -286,7 +274,7 @@ export default function EdmontonMarchOut() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Button asChild size="lg" className="text-lg bg-accent text-accent-foreground hover:bg-accent/90">
               <a href={PHONE_TEL}>
-                <Phone className="w-4 h-4 mr-2" />
+                <span className="dc-icon dc-icon-phone w-4 h-4 mr-2" aria-hidden="true" />
                 Call {PHONE_DISPLAY}
               </a>
             </Button>
@@ -502,7 +490,7 @@ export default function EdmontonMarchOut() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="text-lg bg-accent text-accent-foreground hover:bg-accent/90">
                 <a href={PHONE_TEL}>
-                  <Phone className="w-4 h-4 mr-2" />
+                  <span className="dc-icon dc-icon-phone w-4 h-4 mr-2" aria-hidden="true" />
                   Call {PHONE_DISPLAY}
                 </a>
               </Button>
@@ -511,7 +499,7 @@ export default function EdmontonMarchOut() {
               </Button>
             </div>
             <p className="mt-8 text-sm text-muted-foreground inline-flex items-center gap-2 justify-center">
-              <MapPin className="w-4 h-4 text-primary" aria-hidden="true" />
+              <span className="dc-icon dc-icon-map-pin w-4 h-4 text-primary" aria-hidden="true" />
               18615 71 Ave NW, Edmonton · Mon–Sat 8am–8pm · Sun 9am–3pm
             </p>
           </div>

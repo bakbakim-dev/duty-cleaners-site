@@ -8,7 +8,7 @@ import { travelFee } from "@/data/addon-table";
 import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
 import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
 import { Accent, AccentGold } from "@/components/Accent";
-import { Sparkles, Bath, UtensilsCrossed, Layers } from "lucide-react";
+import { Sparkles, Bath, UtensilsCrossed, Layers, Check } from "lucide-react";
 import heroImage from "@/assets/gallery/calgary-kitchen-clean.webp";
 
 // Published figures come from bk-config via pricing.ts. Hand-typing them

@@ -31,7 +31,7 @@ import CostGuides from "@/components/CostGuides";
 import judgmentRoom from "@/assets/hero-faq-living-room.webp";
 import DirectContactPanel from "@/components/DirectContactPanel";
 import { Button } from "@/components/ui/button";
-import { Phone, Calculator, CheckCircle2, Sparkles, Home, HardHat, Star, Shield, Clock, MapPin, Award, Users, TrendingUp, Bed, Bath, Sofa, ChefHat, ChevronDown, ChevronUp, LucideIcon, Zap, ThumbsUp, Leaf, DollarSign, Truck, Calendar, MessageSquare, ExternalLink, Play, Heart, KeyRound, ArrowRight, BadgeCheck, CalendarCheck } from "lucide-react";
+import { Calculator, CheckCircle2, Home, HardHat, Star, Shield, Award, TrendingUp, Bed, Bath, Sofa, ChefHat, ChevronUp, LucideIcon, Zap, ThumbsUp, Leaf, DollarSign, Truck, Calendar, MessageSquare, Play, Heart, KeyRound, BadgeCheck, CalendarCheck, Phone, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import CityCrossLink from "@/components/CityCrossLink";
 import GetInTouch from "@/components/GetInTouch";
@@ -42,7 +42,6 @@ import calgaryHeroRoom from "@/assets/generated/calgary-cleaning-hero-v1.webp";
 import calgaryHeroRoom640 from "@/assets/generated/calgary-cleaning-hero-v1-640w.webp";
 import calgaryHeroRoom960 from "@/assets/generated/calgary-cleaning-hero-v1-960w.webp";
 import calgaryHeroRoom1280 from "@/assets/generated/calgary-cleaning-hero-v1-1280w.webp";
-
 
 /* The oven, bathroom and toilet crops left with the five-photo bento mosaic:
    generated images labelled as finished Calgary cleans, printed directly above
@@ -163,7 +162,6 @@ const CounterCard = ({
   </div>
 );
 
-
 // Feature card with icon
 const FeatureCard = ({
   icon: Icon,
@@ -192,7 +190,6 @@ export default function Calgary2() {
   // then, so it never covers the form fields visitors are filling out.
   const [quoteInView, setQuoteInView] = useState(false);
   const quoteProgress = useQuoteProgress();
-
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -344,7 +341,6 @@ export default function Calgary2() {
            ]}
           />
 
-
         <LocalMarketNote
           accent="calgary"
           eyebrow="Cleaning in Calgary"
@@ -359,7 +355,6 @@ export default function Calgary2() {
         {/* Recent activity — social proof right before the conversion point */}
         <RecentActivityStrip city="Calgary" reviews={googleReviews} />
 
-
         <StatBand city="Calgary" />
 
         <CityPricingTable />
@@ -367,7 +362,6 @@ export default function Calgary2() {
         <CostGuides city="Calgary" />
 
         <CityIncludedChapter city="Calgary" />
-
 
         <DutyCleanPromise city="Calgary" />
 
@@ -385,7 +379,6 @@ export default function Calgary2() {
         {/* The services in prose, with the from-prices, in Calgary's own
             words. The cards above name the services; this says what each one
             is and who in Calgary books it. */}
-
 
         <section className="py-16 md:py-20 bg-secondary/30 border-b border-border">
           <div className="container mx-auto px-4">
@@ -451,11 +444,9 @@ export default function Calgary2() {
           </div>
         </section>
 
-
         <BeforeAfterGallery city="Calgary" />
 
         <CityRecentCleans city="Calgary" reviews={googleReviews} />
-
 
         {/* FAQ — full-bleed tinted band + two-column split. */}
         <section className="py-16 md:py-20 bg-quote-shelf border-y border-quote-shelf-border">
@@ -469,7 +460,7 @@ export default function Calgary2() {
                   <p className="text-lg font-semibold">The Calgary office takes calls.</p>
                   <p className="mt-1 text-sm text-muted-foreground">Mon&ndash;Sat 8 AM&ndash;8 PM &middot; Sun 9 AM&ndash;3 PM</p>
                   <a href="tel:4037681341" className="mt-3 inline-flex min-h-[44px] items-center gap-2 font-semibold text-gold-ink transition-colors hover:text-brand-navy">
-                    <Phone className="h-4 w-4" aria-hidden="true" />
+                    <span className="dc-icon dc-icon-phone h-4 w-4" aria-hidden="true" />
                     Call (403) 768-1341
                   </a>
                 </div>
@@ -482,7 +473,7 @@ export default function Calgary2() {
                         <span className="shrink-0 text-sm font-bold text-gold-ink">{String(index + 1).padStart(2, "0")}</span>
                         <span className="font-semibold pr-4">{faq.question}</span>
                       </span>
-                      {openFAQ === index ? <ChevronUp className="w-5 h-5 text-primary flex-shrink-0" /> : <ChevronDown className="w-5 h-5 text-muted-foreground flex-shrink-0" />}
+                      {openFAQ === index ? <ChevronUp className="w-5 h-5 text-primary flex-shrink-0" /> : <span className="dc-icon dc-icon-chevron-down w-5 h-5 text-muted-foreground flex-shrink-0" aria-hidden="true" />}
                     </button>
                     {/* Always in the DOM (hidden when collapsed) so the FAQPage
                         schema's answers match crawlable page content. */}
@@ -494,7 +485,6 @@ export default function Calgary2() {
             </div>
           </div>
         </section>
-
 
         {/* Service Areas — full-width tonal field with a domestic-life crop */}
         {/* bg-background, not bg-blue-grey-100 (2026-09-11): on the blue-grey the
@@ -560,7 +550,6 @@ export default function Calgary2() {
               />
             </div>
 
-
             <NeighborhoodMarquee city="Calgary" />
             <CityCoverageGrid
               city="Calgary"
@@ -596,15 +585,12 @@ export default function Calgary2() {
                 </p>
               </div>
 
-
               <div id="quote-form" className="mx-auto grid w-full max-w-4xl scroll-mt-20 items-stretch overflow-hidden border border-border shadow-xl shadow-brand-navy/10 lg:grid-cols-[minmax(0,1fr)_minmax(280px,20rem)]">
                 <div className="bg-card p-2 sm:p-4">
                   <ServiceStartCard phone="(403) 768-1341" phoneLink="tel:4037681341" />
                 </div>
                 <DirectContactPanel city="Calgary" phone="(403) 768-1341" phoneLink="tel:4037681341" />
               </div>
-
-
 
               {/* What happens next */}
               <ul className="mt-8 grid gap-4 sm:grid-cols-3">
@@ -642,7 +628,7 @@ export default function Calgary2() {
             </Button>
             <Button variant="outline" className="min-h-[48px] border-border bg-card px-6 text-base font-semibold shadow-xl" asChild>
               <a href="tel:4037681341">
-                <Phone className="w-4 h-4 mr-2" />
+                <span className="dc-icon dc-icon-phone w-4 h-4 mr-2" aria-hidden="true" />
                 Call
               </a>
             </Button>

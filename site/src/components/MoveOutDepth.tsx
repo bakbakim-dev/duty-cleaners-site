@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { Star, ClipboardCheck, Sparkles, KeyRound } from "lucide-react";
+import Stars from "@/components/Stars";
+import { ClipboardCheck, Sparkles, KeyRound } from "lucide-react";
 import { moveInOutTierRows } from "@/data/pricing";
 import { getListing, openGoogleListing } from "@/lib/google-listings";
 
@@ -138,11 +139,7 @@ export default function MoveOutDepth({ city, showPricing = true }: MoveOutDepthP
       <section className="py-14 bg-white">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-2xl text-center border border-border p-8">
-            <span className="flex justify-center gap-0.5" aria-hidden="true">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-5 w-5 fill-brand-gold text-brand-gold" />
-              ))}
-            </span>
+            <Stars size={1.25} className="block mx-auto" />
             <p className="mt-3 text-foreground">
               Every cleaner is rated by the customer after each visit, and those ratings decide who we
               keep sending.{" "}

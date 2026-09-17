@@ -5,7 +5,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 
 /**
  * A calm, practical guide for the visitor between "I'm interested" and
@@ -46,7 +46,6 @@ export default function Prepare() {
       acceptedAnswer: { "@type": "Answer", text: faq.answer },
     })),
   };
-
 
   return (
     <>
@@ -189,7 +188,7 @@ export default function Prepare() {
                 >
                   <Link to="/#quote">
                     See My Instant Price
-                    <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
+                    <span className="dc-icon dc-icon-arrow-right ml-2 h-5 w-5" aria-hidden="true" />
                   </Link>
                 </Button>
               </div>
@@ -311,7 +310,7 @@ export default function Prepare() {
                 >
                   <Link to="/#quote">
                     See My Instant Price
-                    <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
+                    <span className="dc-icon dc-icon-arrow-right ml-2 h-5 w-5" aria-hidden="true" />
                   </Link>
                 </Button>
               </div>

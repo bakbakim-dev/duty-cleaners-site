@@ -8,12 +8,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
-import {
-  Phone, Calculator, CheckCircle2, Star, Shield, Clock, Award, MapPin,
-  Truck, ThumbsUp, Leaf, DollarSign, Sparkles, Home, Bath,
-  UtensilsCrossed, ChevronDown, ChevronUp, ExternalLink, Mail, Zap,
-  LucideIcon, Calendar, Package, Eye
-} from "lucide-react";
+import { Calculator, CheckCircle2, Star, Shield, Award, Truck, ThumbsUp, Leaf, DollarSign, Home, Bath, UtensilsCrossed, ChevronUp, Mail, Zap, LucideIcon, Calendar, Package, Eye, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import familyCleanHome from "@/assets/gallery/family-clean-home-edmonton.webp";
@@ -23,9 +18,6 @@ import livingRoomClean from "@/assets/gallery/living-room-clean.webp";
 import moveOutClean from "@/assets/gallery/move-out-clean.webp";
 import beforeAfter from "@/assets/gallery/before-after.webp";
 import windowCleaning from "@/assets/gallery/window-cleaning.webp";
-
-
-
 
 // Animated section wrapper
 import MoveOutDepth from "@/components/MoveOutDepth";
@@ -292,7 +284,7 @@ export default function EdmontonMoveInOut() {
                   </Button>
                   <Button size="lg" className="bg-white/95 text-brand-navy hover:bg-white text-lg px-8 h-14" asChild>
                     <a href="tel:7809136565">
-                      <Phone className="mr-2 w-5 h-5" />
+                      <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />
                       (780) 913-6565
                     </a>
                   </Button>
@@ -643,7 +635,7 @@ export default function EdmontonMoveInOut() {
                   <div key={i} className="bg-white rounded-xl border border-border overflow-hidden transition-all duration-300 hover:shadow-md">
                     <button type="button" onClick={() => setOpenFAQ(openFAQ === i ? null : i)} aria-expanded={openFAQ === i} className="w-full flex items-center justify-between p-5 text-left font-semibold">
                       <span>{faq.q}</span>
-                      {openFAQ === i ? <ChevronUp className="w-5 h-5 text-muted-foreground flex-shrink-0" /> : <ChevronDown className="w-5 h-5 text-muted-foreground flex-shrink-0" />}
+                      {openFAQ === i ? <ChevronUp className="w-5 h-5 text-muted-foreground flex-shrink-0" /> : <span className="dc-icon dc-icon-chevron-down w-5 h-5 text-muted-foreground flex-shrink-0" aria-hidden="true" />}
                     </button>
                     {/* Always in the DOM (hidden when collapsed) so the FAQPage
                         schema's answers match crawlable page content. */}
@@ -686,7 +678,7 @@ export default function EdmontonMoveInOut() {
                 </Button>
                 <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
                   <a href="tel:7809136565">
-                    <Phone className="mr-2 w-5 h-5" />Call (780) 913-6565
+                    <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />Call (780) 913-6565
                   </a>
                 </Button>
               </div>
@@ -699,7 +691,7 @@ export default function EdmontonMoveInOut() {
           <div className="fixed bottom-6 right-6 z-50 animate-in fade-in slide-in-from-bottom-4">
             <Button size="lg" className="bg-accent hover:bg-accent/90 text-white shadow-2xl rounded-full h-14 px-6" asChild>
               <a href="tel:7809136565">
-                <Phone className="w-5 h-5 mr-2" />
+                <span className="dc-icon dc-icon-phone w-5 h-5 mr-2" aria-hidden="true" />
                 Call Now
               </a>
             </Button>

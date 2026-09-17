@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { withTrailingSlash } from "@/data/legacy-urls";
 import { Link } from "react-router-dom";
 import {
@@ -38,6 +39,13 @@ export default function NeighborhoodMarquee({ city }: NeighborhoodMarqueeProps) 
     ...surrounding.slice(0, 5).map((place) => ({ ...place, qualifier: "AB" })),
   ];
 
+  // The seamless loop needs the list twice, but the second copy is pure
+  // animation: it carries no link a crawler needs (every one is in the first
+  // copy) and it cost every prerendered hub 60 nodes before hydration. Ship
+  // one copy; add the duplicate and start the animation once JavaScript is
+  // running. Until then the row simply sits still.
+  const [looping, setLooping] = useState(false);
+  useEffect(() => setLooping(true), []);
   const run = (ariaHidden: boolean) => (
     <div className="flex w-max items-baseline" aria-hidden={ariaHidden || undefined}>
       {places.map(({ name, to, qualifier }) => (
@@ -63,9 +71,9 @@ export default function NeighborhoodMarquee({ city }: NeighborhoodMarqueeProps) 
   return (
     <section className="band-hairline overflow-hidden bg-card py-10 md:py-14" aria-label={`Neighbourhoods and communities the ${city} branch serves`}>
       <div className="dc-marquee" title="Hover to pause">
-        <div className="dc-marquee-track flex w-max">
+        <div className={`flex w-max${looping ? " dc-marquee-track" : ""}`}>
           {run(false)}
-          {run(true)}
+          {looping && run(true)}
         </div>
       </div>
     </section>

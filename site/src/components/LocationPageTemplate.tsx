@@ -19,11 +19,7 @@ import { Helmet } from "react-helmet-async";
 import { buildLocationSchema } from "@/lib/location-schema";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { ArrowRight,
-  Phone, CheckCircle2, Star, Shield, Award,
-  Home, Sparkles, Truck, SprayCan, Bath,
-  Leaf, CalendarCheck, ThumbsUp, MapPin, Mail, PaintRoller
-} from "lucide-react";
+import { CheckCircle2, Star, Shield, Award, Home, Truck, SprayCan, Bath, Leaf, CalendarCheck, ThumbsUp, Mail, PaintRoller, Sparkles } from "lucide-react";
 
 interface LocationPageProps {
   city: string;
@@ -69,7 +65,6 @@ interface LocationPageProps {
    */
   isOwnMunicipality?: boolean;
 }
-
 
 /**
  * Prices shown on every location page, derived once from bk-config.
@@ -159,7 +154,7 @@ const ServiceCard = ({
         className="mt-4 inline-flex min-h-[44px] items-center font-semibold text-primary transition-colors hover:text-accent"
       >
         {linkText}
-        <ArrowRight className="ml-1.5 h-4 w-4" aria-hidden="true" />
+        <span className="dc-icon dc-icon-arrow-right ml-1.5 h-4 w-4" aria-hidden="true" />
       </Link>
     )}
   </div>
@@ -177,7 +172,6 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
     <p className="text-white/80 text-sm leading-relaxed">{description}</p>
   </div>
 );
-
 
 /*
  * There used to be a copy-spinner here: `variantOf` hashed the place name to
@@ -280,7 +274,6 @@ export default function LocationPageTemplate({
   // Falls back so an un-migrated page still renders; the test enforces the rest.
   const metaDescription = seoDescription ?? description;
 
-
   const { pathname } = useLocation();
   const regionLabel = region === "edmonton" ? "Edmonton" : "Calgary";
   // One resolved URL for canonical, og:url and JSON-LD. Using the raw pathname
@@ -373,7 +366,7 @@ export default function LocationPageTemplate({
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-5 py-2 mb-6">
-              <MapPin className="w-4 h-4 text-accent" />
+              <span className="dc-icon dc-icon-map-pin w-4 h-4 text-accent" aria-hidden="true" />
               {/* Same distinction as the schema name: "Serving Leduc, Edmonton"
                   misstates a separate town as part of the city. */}
               <span className="text-white/90 text-sm font-medium">
@@ -389,7 +382,7 @@ export default function LocationPageTemplate({
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
               <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
                 <a href={phoneLink}>
-                  <Phone className="mr-2 w-5 h-5" />{phone}
+                  <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />{phone}
                 </a>
               </Button>
               <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
@@ -638,7 +631,7 @@ export default function LocationPageTemplate({
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
                 <a href={phoneLink}>
-                  <Phone className="mr-2 w-5 h-5" />Call {phone}
+                  <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />Call {phone}
                 </a>
               </Button>
               <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>

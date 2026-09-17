@@ -9,7 +9,7 @@ import { modifiedFor } from "@/data/post-dates";
 import { canonicalUrlForPath } from "@/data/legacy-urls";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft, Calendar, Clock, Phone, CheckCircle2, Users, Shield, Star, Settings, MessageSquare, DollarSign } from "lucide-react";
+import { ArrowLeft, Calendar, CheckCircle2, Shield, Star, Settings, MessageSquare, DollarSign, Users, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 
 import { COMPANY, RATING_CLAIM } from "@/data/proof";
@@ -161,7 +161,7 @@ export default function BlogChoosingCleaningCompany() {
                   January 27, 2026
                 </span>
                 <span className="flex items-center gap-2">
-                  <Clock className="h-4 w-4" />
+                  <span className="dc-icon dc-icon-clock h-4 w-4" aria-hidden="true" />
                   14 min read
                 </span>
               </div>
@@ -334,13 +334,13 @@ export default function BlogChoosingCleaningCompany() {
                   <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                     <Button size="lg" variant="secondary" asChild className="text-primary">
                       <a href="tel:7809136565" className="flex items-center gap-2">
-                        <Phone className="h-5 w-5" />
+                        <span className="dc-icon dc-icon-phone h-5 w-5" aria-hidden="true" />
                         Edmonton: (780) 913-6565
                       </a>
                     </Button>
                     <Button size="lg" variant="secondary" asChild className="text-primary">
                       <a href="tel:4037681341" className="flex items-center gap-2">
-                        <Phone className="h-5 w-5" />
+                        <span className="dc-icon dc-icon-phone h-5 w-5" aria-hidden="true" />
                         Calgary: (403) 768-1341
                       </a>
                     </Button>

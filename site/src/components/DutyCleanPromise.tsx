@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { BadgeCheck, HeartHandshake, Receipt, RotateCcw, ArrowRight, type LucideIcon } from "lucide-react";
+import { BadgeCheck, HeartHandshake, Receipt, RotateCcw, type LucideIcon } from "lucide-react";
 import { POLICY } from "@/data/policy";
 
 interface Pillar {
@@ -97,7 +97,7 @@ export default function DutyCleanPromise({ city = "Edmonton" }: { city?: "Edmont
               className="mt-8 inline-flex min-h-[44px] items-center gap-2 text-accent-on-dark font-semibold hover:underline underline-offset-4 group"
             >
               How the re-clean guarantee works
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              <span className="dc-icon dc-icon-arrow-right w-4 h-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
             </Link>
           </div>
 

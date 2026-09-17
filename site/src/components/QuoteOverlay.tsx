@@ -1,6 +1,7 @@
 import { useEffect, useRef, lazy, Suspense } from "react";
+import Stars from "@/components/Stars";
 import { createPortal } from "react-dom";
-import { ArrowLeft, Phone, Star, X } from "lucide-react";
+import { ArrowLeft, X } from "lucide-react";
 import { useQuoteOverlay } from "@/hooks/use-quote-overlay";
 import { useLocation } from "react-router-dom";
 import { branchFromPath, isCalgaryPath } from "@/lib/city-from-path";
@@ -156,11 +157,7 @@ export default function QuoteOverlay() {
               no reviews yet, so the Red Deer page's takeover shows none. */}
           {hasGoogleRating(key) && (
           <span className="flex items-center gap-1.5">
-            <span className="flex gap-0.5" aria-hidden="true">
-              {[...Array(5)].map((_, index) => (
-                <Star key={index} className="h-3.5 w-3.5 fill-brand-gold text-brand-gold" />
-              ))}
-            </span>
+            <Stars size={0.875} />
             <span className="truncate text-xs font-semibold text-muted-foreground sm:text-sm">
               {RATING_CLAIM}
             </span>
@@ -173,7 +170,7 @@ export default function QuoteOverlay() {
             href={phoneLink}
             className="hidden items-center gap-1.5 text-sm font-bold text-accent hover:underline lg:inline-flex"
           >
-            <Phone className="h-4 w-4" aria-hidden="true" />
+            <span className="dc-icon dc-icon-phone h-4 w-4" aria-hidden="true" />
             Or book by phone: {phone}
           </a>
           <a
@@ -181,7 +178,7 @@ export default function QuoteOverlay() {
             aria-label={`Call ${phone}`}
             className="inline-flex h-11 w-11 items-center justify-center rounded-full text-accent hover:bg-secondary lg:hidden"
           >
-            <Phone className="h-5 w-5" aria-hidden="true" />
+            <span className="dc-icon dc-icon-phone h-5 w-5" aria-hidden="true" />
           </a>
           <button
             type="button"
