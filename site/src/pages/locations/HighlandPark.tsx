@@ -138,12 +138,12 @@ export default function HighlandPark() {
     <>
       <Helmet>
         <title>House Cleaners in Highland Park, Calgary | Duty Cleaners</title>
-        <meta name="description" content="Almost half of Highland Park's buildings are condos or apartments. Our Calgary team cleans suites and houses at a flat rate by home size." />
+        <meta name="description" content="One in five Highland Park homes is detached; most are apartments or flats. Our Calgary team cleans suites and houses flat-rate by home size." />
         <meta property="og:title" content="House Cleaners in Highland Park, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaners in Highland Park, Calgary | Duty Cleaners" />
-        <meta name="twitter:description" content="Almost half of Highland Park's buildings are condos or apartments. Our Calgary team cleans suites and houses at a flat rate by home size." />
-        <meta property="og:description" content="Almost half of Highland Park's buildings are condos or apartments. Our Calgary team cleans suites and houses at a flat rate by home size." />
+        <meta name="twitter:description" content="One in five Highland Park homes is detached; most are apartments or flats. Our Calgary team cleans suites and houses flat-rate by home size." />
+        <meta property="og:description" content="One in five Highland Park homes is detached; most are apartments or flats. Our Calgary team cleans suites and houses flat-rate by home size." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/highland-park-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/highland-park-calgary/" />
@@ -184,7 +184,7 @@ export default function HighlandPark() {
                 Professional House Cleaning in Highland Park
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Almost half of Highland Park's buildings are now condominiums or apartments, and roughly two thirds of its housing is rented. The Calgary team cleans the older detached houses and the rented suites alike, at a flat rate by home size and type.
+                Only one in five of Highland Park's homes is a detached house, most are apartments or duplex flats, and two thirds of its households rent in the <a href="https://www.calgary.ca/content/dam/www/programs-services/property-housing-and-neighbourhoods/neighbourhood-and-community-relationships/profiles/highland-park.pdf" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">2021 Census</a>. The Calgary team cleans the older detached houses and the rented suites alike, at a flat rate by home size and type.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -323,7 +323,7 @@ export default function HighlandPark() {
         heading="Queens Park Cemetery to the southwest"
         paragraphs={[
           "Queens Park Cemetery in the southwest corner puts open grass on one flank of the community, which means seed heads through late summer. Most of them land on the window screens rather than on the floors. Screens here repay coming out and being washed properly, but removing them is outside a Duty Cleaners visit, so that wash is left to the homeowner.",
-          "Almost half the buildings are now condominium or apartment, and roughly two thirds of the housing is rented. That mix produces two rhythms at once: long-settled owners on the older detached streets, and suites turning over against a possession date. Each needs different work for the same square footage.",
+          "In the 2021 Census only one home in five was a detached house, a third were apartments and another 36% flats in duplexes, and two thirds of households rented. That mix produces two rhythms at once: long-settled owners on the older detached streets, and suites turning over against a possession date. Each needs different work for the same square footage.",
         ]}
         accent="calgary"
       />

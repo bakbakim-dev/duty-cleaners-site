@@ -106,7 +106,7 @@ describe("the Apache and Netlify rule sets describe the same site", () => {
     ]);
   });
 
-  it("carries the security headers and does not quietly enable HSTS", () => {
+  it("carries the security headers and scopes HSTS to the production host, without includeSubDomains or preload", () => {
     if (!present) return;
     const text = readFileSync(join(PUBLIC, ".htaccess"), "utf-8");
     for (const header of [
@@ -118,12 +118,16 @@ describe("the Apache and Netlify rule sets describe the same site", () => {
     ]) {
       expect(text, `.htaccess does not set ${header}, which public/_headers does`).toContain(header);
     }
-    // HSTS is a one-way door and public/_headers records it as the owner's call
-    // to make knowingly. A generator must not introduce it as a side effect.
-    expect(
-      /Strict-Transport-Security/.test(text),
-      "the .htaccess enables HSTS; that is a deliberate owner decision, not a generated default",
-    ).toBe(false);
+    // HSTS is a one-way door the owner took on 2026-09-17, on these terms:
+    // production host only (the test host's www name has no certificate), a
+    // short max-age to start, no includeSubDomains (mail., ftp. and
+    // autodiscover. are not confirmed HTTPS) and no preload (leaving the list
+    // takes months). The ramp to 63072000 is a launch-day step.
+    const hsts = /^ *Header always set Strict-Transport-Security "([^"]*)"(.*)$/m.exec(text);
+    expect(hsts, "the .htaccess no longer sets HSTS").toBeTruthy();
+    expect(hsts![2].trim(), "HSTS must be scoped to the production host").toBe("env=DUTY_PRODUCTION_HOST");
+    expect(hsts![1], "HSTS must not carry includeSubDomains or preload yet").not.toMatch(/includeSubDomains|preload/i);
+    expect(text).toContain('SetEnvIfNoCase Host "^(www\\.)?dutycleaners\\.ca$" DUTY_PRODUCTION_HOST=1');
     // The enforced CSP must stay frame-ancestors only — the full policy ships
     // Report-Only until its allowlist is confirmed against real traffic.
     expect(

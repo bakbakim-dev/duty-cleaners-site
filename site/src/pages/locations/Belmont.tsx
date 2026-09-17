@@ -164,25 +164,25 @@ export default function Belmont() {
     <>
       <Helmet>
         <title>Belmont, Edmonton House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="In Belmont, Edmonton, 1970s duplexes and row houses stack their rooms, so house cleaning there spends more time on stair runs and landings." />
+        <meta name="description" content="In Belmont, Edmonton, row houses and duplexes stack their rooms, so house cleaning there spends more time on stair runs and landings." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Belmont, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/belmont-edmonton",
   areaServed: "Belmont, Edmonton, AB",
-  description: "In Belmont, Edmonton, 1970s duplexes and row houses stack their rooms, so house cleaning there spends more time on stair runs and landings.",
+  description: "In Belmont, Edmonton, row houses and duplexes stack their rooms, so house cleaning there spends more time on stair runs and landings.",
   geo: { latitude: "53.583", longitude: "-113.395" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/belmont-edmonton/" />
         <meta property="og:title" content="Belmont, Edmonton House Cleaning | Duty Cleaners" />
-        <meta property="og:description" content="In Belmont, Edmonton, 1970s duplexes and row houses stack their rooms, so house cleaning there spends more time on stair runs and landings." />
+        <meta property="og:description" content="In Belmont, Edmonton, row houses and duplexes stack their rooms, so house cleaning there spends more time on stair runs and landings." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/belmont-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Belmont, Edmonton House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="In Belmont, Edmonton, 1970s duplexes and row houses stack their rooms, so house cleaning there spends more time on stair runs and landings." />
+        <meta name="twitter:description" content="In Belmont, Edmonton, row houses and duplexes stack their rooms, so house cleaning there spends more time on stair runs and landings." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -208,7 +208,7 @@ export default function Belmont() {
                   Professional House Cleaning in Belmont
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  Belmont went up in the 1970s, and fewer than half its homes are single-family houses. In its duplexes and row houses, stair runs and landings take more of the clean than their floor area suggests.
+                  About half of Belmont's homes date from the 1960s and 1970s and most of the rest from the 1990s on, and fewer than two in five are single-family houses in the <a href="https://data.edmonton.ca/Census/2016-Census-Dwelling-Unit-by-Structure-Type-Neighb/xxgm-nnaq" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">City of Edmonton's 2016 municipal census</a>. In its duplexes and row houses, stair runs and landings take more of the clean than their floor area suggests.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -362,7 +362,7 @@ export default function Belmont() {
         eyebrow="Local knowledge"
         heading="Belmont homes, specifically"
         paragraphs={[
-          "Belmont went up almost entirely in the 1970s, and its housing mix is the detail that changes a clean: single-family homes are about 44% of the stock, with duplexes near 28% and row houses another 15%. Attached-wall homes stack their living space vertically, so stair runs, landings and stair-nose dust lines carry a share of the work well out of proportion to the floor area they occupy. Shared walls hold cooking humidity in the still corners longer than a detached plan does.",
+          "About half of Belmont's homes date from the 1960s and 1970s and two in five from the 1990s onward, and its housing mix is the detail that changes a clean: in the City's 2016 municipal census single-family houses were about 38% of the stock, row houses 28%, low-rise apartments 19% and duplexes or fourplexes 15%. Attached-wall homes stack their living space vertically, so stair runs, landings and stair-nose dust lines carry a share of the work well out of proportion to the floor area they occupy. Shared walls hold cooking humidity in the still corners longer than a detached plan does.",
           "The neighbourhood sits off 137 Avenue with steady traffic feeding the retail strip, so road grit rides in year-round rather than only in winter. Entry mats and the first two metres of hallway take the wear, and in homes near the avenue the front-facing sills pick up a grey film noticeably faster than the back of the house.",
         ]}
       />

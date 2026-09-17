@@ -669,6 +669,17 @@ describe("price CTAs reach the price", () => {
         "/locations/greenview-calgary/",
         "/locations/queen-alexandra-edmonton/",
       ].map((url) => [url, "https://www.alberta.ca/ending-a-tenancy"] as const),
+      // 2026-09-17: the neighbourhood housing figures were checked against the
+      // census (seven of eight sampled were wrong or mis-denominated) and
+      // corrected; each page links the table its headline figure comes from.
+      ["/locations/canora-edmonton/", "https://data.edmonton.ca/Census/2016-Census-Dwelling-Unit-by-Ownership-Neighbourho/d2xp-ctch"],
+      ["/locations/queen-alexandra-edmonton/", "https://data.edmonton.ca/Census/2016-Census-Dwelling-Unit-by-Ownership-Neighbourho/d2xp-ctch"],
+      ["/locations/belmont-edmonton/", "https://data.edmonton.ca/Census/2016-Census-Dwelling-Unit-by-Structure-Type-Neighb/xxgm-nnaq"],
+      ["/locations/bannerman/", "https://data.edmonton.ca/Census/2016-Census-Dwelling-Unit-by-Structure-Type-Neighb/xxgm-nnaq"],
+      ["/locations/highland-park-calgary/", "https://www.calgary.ca/content/dam/www/programs-services/property-housing-and-neighbourhoods/neighbourhood-and-community-relationships/profiles/highland-park.pdf"],
+      ["/locations/tuxedo-park-calgary/", "https://www.calgary.ca/content/dam/www/programs-services/property-housing-and-neighbourhoods/neighbourhood-and-community-relationships/profiles/tuxedo-park.pdf"],
+      ["/locations/montgomery-calgary/", "https://www.calgary.ca/content/dam/www/programs-services/property-housing-and-neighbourhoods/neighbourhood-and-community-relationships/profiles/montgomery.pdf"],
+      ["/locations/greenview-calgary/", "https://www.calgary.ca/content/dam/www/programs-services/property-housing-and-neighbourhoods/neighbourhood-and-community-relationships/profiles/greenview.pdf"],
       ["/cleaning-with-vinegar-and-baking-soda/", "https://tc.canada.ca/en/dangerous-goods/canutec/articles/improper-mixing-common-household-cleaning-products"],
       ["/the-top-5-must-have-cleaning-products-for-a-spotless-home/", "https://www.canada.ca/en/health-canada/services/home-safety/household-chemical-safety.html"],
       ["/faqs/", "https://www.canada.ca/en/health-canada/services/publications/healthy-living/addressing-moisture-mould-your-home.html"],

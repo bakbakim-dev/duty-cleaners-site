@@ -185,7 +185,7 @@ export default function Montgomery() {
                 Professional House Cleaning in Montgomery
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Only about one building in nine in Montgomery is a condominium or apartment, so the neighbourhood is mostly whole houses. Enough households work nights on hospital rotations that it pays to say which room someone will be asleep in, because the order the rooms get done in is easy to change.
+                Only about one home in eight in Montgomery is an apartment in the <a href="https://www.calgary.ca/content/dam/www/programs-services/property-housing-and-neighbourhoods/neighbourhood-and-community-relationships/profiles/montgomery.pdf" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">2021 Census</a>, so the neighbourhood is mostly whole houses. Enough households work nights on hospital rotations that it pays to say which room someone will be asleep in, because the order the rooms get done in is easy to change.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -220,7 +220,7 @@ export default function Montgomery() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Montgomery Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  With about a third of Montgomery's housing rented, move-out cleans run alongside the recurring visits here.
+                  With more than a third of Montgomery's households renting, move-out cleans run alongside the recurring visits here.
                 </p>
               </div>
             </AnimatedSection>
@@ -323,7 +323,7 @@ export default function Montgomery() {
         eyebrow="From the route"
         heading="Its own place, with the Bow on two sides"
         paragraphs={[
-          "Montgomery ran its own affairs until it was amalgamated into the city, and it still reads as a separate place, with the Bow River closing both the south and the west. About one building in nine is a condominium or apartment, so this is mostly whole houses, and a third of the housing is rented, which puts a steady run of possession-date work alongside the recurring visits.",
+          "Montgomery ran its own affairs until it was amalgamated into the city, and it still reads as a separate place, with the Bow River closing both the south and the west. About one home in eight is an apartment in the 2021 Census, so this is mostly whole houses, and 37% of households rent, which puts a steady run of possession-date work alongside the recurring visits.",
           "The Alberta Children's Hospital sits inside the community, and 32 Avenue closes the north. Hospital rotations are the practical detail: enough households here work nights that it is worth telling us which room someone sleeps in, because the order rooms get done in costs nothing to change and the vacuum is the part that carries.",
         ]}
         accent="calgary"

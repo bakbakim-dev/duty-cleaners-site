@@ -164,25 +164,25 @@ export default function Canora() {
     <>
       <Helmet>
         <title>House Cleaning in Canora, Edmonton | Duty Cleaners</title>
-        <meta name="description" content="House cleaning in Canora, Edmonton, where about 68% of homes are rented, and a move-out clean covers the oven, fridge seals and closet shelves." />
+        <meta name="description" content="House cleaning in Canora, Edmonton, where about seven in ten homes are rented, and a move-out clean covers the oven, fridge seals and closet shelves." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Canora, Edmonton",
   city: "edmonton",
   url: "https://dutycleaners.ca/locations/canora-edmonton",
   areaServed: "Canora, Edmonton, AB",
-  description: "House cleaning in Canora, Edmonton, where about 68% of homes are rented, and a move-out clean covers the oven, fridge seals and closet shelves.",
+  description: "House cleaning in Canora, Edmonton, where about seven in ten homes are rented, and a move-out clean covers the oven, fridge seals and closet shelves.",
   geo: { latitude: "53.536", longitude: "-113.557" },
 }))}
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/canora-edmonton/" />
         <meta property="og:title" content="House Cleaning in Canora, Edmonton | Duty Cleaners" />
-        <meta property="og:description" content="House cleaning in Canora, Edmonton, where about 68% of homes are rented, and a move-out clean covers the oven, fridge seals and closet shelves." />
+        <meta property="og:description" content="House cleaning in Canora, Edmonton, where about seven in ten homes are rented, and a move-out clean covers the oven, fridge seals and closet shelves." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/canora-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Canora, Edmonton | Duty Cleaners" />
-        <meta name="twitter:description" content="House cleaning in Canora, Edmonton, where about 68% of homes are rented, and a move-out clean covers the oven, fridge seals and closet shelves." />
+        <meta name="twitter:description" content="House cleaning in Canora, Edmonton, where about seven in ten homes are rented, and a move-out clean covers the oven, fridge seals and closet shelves." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -208,7 +208,7 @@ export default function Canora() {
                   Professional House Cleaning in Canora
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                  About 68% of Canora's homes are rented and roughly half are apartments, and seven of every eight buildings went up between the end of the Second World War and 1980. The Edmonton branch cleans Canora homes at a flat rate set by home size.
+                  About seven in ten of Canora's homes are rented and roughly half are apartments in the <a href="https://data.edmonton.ca/Census/2016-Census-Dwelling-Unit-by-Ownership-Neighbourho/d2xp-ctch" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">City of Edmonton's 2016 municipal census</a>, and three quarters of its housing was built before 1981. The Edmonton branch cleans Canora homes at a flat rate set by home size.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -363,7 +363,7 @@ export default function Canora() {
         heading="Where the LRT turns south"
         paragraphs={[
           "Stony Plain Road is Canora's southern boundary, and the Valley Line West alignment runs down the centre of it before turning south at 156 Street and leaving the neighbourhood behind. One flank is a live work zone through the 2026 season; the other three are not. Between visits, sills, screens and window tracks on the south blocks carry the concrete dust the cutting throws, which houses up at 107 Avenue never see.",
-          "Tenure shapes the rest of the work. About 68% of occupied dwellings are rented, roughly half the stock is apartments and another 28% duplex or fourplex, and seven of every eight buildings went up between the end of the Second World War and 1980. That mix puts more move-outs on the calendar here than in owner-occupied pockets: a suite handed back on possession day gets the oven, the fridge seals and the closet shelves whether anyone used them or not.",
+          "Tenure shapes the rest of the work. About seven in ten dwellings that reported their tenure in the City's 2016 municipal census are rented, roughly half the stock is apartments and another 30% duplex or fourplex, and three quarters of the homes were built before 1981. That mix puts more move-outs on the calendar here than in owner-occupied pockets: a suite handed back on possession day gets the oven, the fridge seals and the closet shelves whether anyone used them or not.",
         ]}
       />
 

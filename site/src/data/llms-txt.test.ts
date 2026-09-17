@@ -11,6 +11,7 @@ import {
 } from "./pricing";
 import { BK_PRICE_OVERRIDES } from "./bk-price-overrides";
 import { CITY_PROOF } from "./proof";
+import { PROVENANCE } from "./confirmed";
 
 /**
  * llms.txt exists for exactly one audience — machine readers that will not
@@ -335,12 +336,23 @@ describe("llms.txt review counts match the listings proof.ts read", () => {
       .map(String),
   );
 
+  // The date both listings were read, from the same provenance the counts carry.
+  const READ_ON = [...new Set(PROVENANCE.filter((p) => p.by === "google-listing").map((p) => p.on))];
+
   it("proof.ts actually holds a count for both cities", () => {
     // A guard that reads an empty set asserts nothing. This is the sentinel.
     expect(confirmed.size).toBe(2);
   });
 
   for (const [name, text] of [["llms.txt", llms], ["llms-full.txt", llmsFullRaw]] as const) {
+    // The count guard below matches numbers only, so a refresh that updates
+    // the counts can still leave "read ... on <old date>" standing on the one
+    // surface written to be quoted verbatim by machines. Hold the date too.
+    it(`${name} states the date the counts were read`, () => {
+      expect(READ_ON, "the four Google figures should share one read date").toHaveLength(1);
+      expect(text, `${name} must say the counts were read on ${READ_ON[0]}`).toContain(`on ${READ_ON[0]}`);
+    });
+
     it(`${name} publishes every confirmed count and no other`, () => {
       const published = [...text.matchAll(/([\d,]+)\s+reviews?\b/gi)].map((m) =>
         m[1].replace(/,/g, ""),
@@ -350,7 +362,7 @@ describe("llms.txt review counts match the listings proof.ts read", () => {
         wrong,
         `${name} quotes review counts proof.ts does not hold: ${wrong.join(", ")}. ` +
           `The confirmed counts are ${[...confirmed].join(" and ")}, read from the two ` +
-          `Google listings on 2026-09-01. A sum of the two is not a count either listing reports.`,
+          `Google listings on ${READ_ON.join("/")}. A sum of the two is not a count either listing reports.`,
       ).toEqual([]);
 
       const missing = [...confirmed].filter((n) => !published.includes(n));

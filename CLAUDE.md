@@ -58,6 +58,11 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
   a `null` means "not confirmed; render nothing". policy.ts allows no nulls.
 - Coverage lists: `city-locations.ts`. Nearby links: `nearby.ts`, generated from coordinates.
 - Legacy WordPress URLs: `legacy-urls.ts` (32 preserved, 138 redirected; /cleaning-services-red-deer/ is the Red Deer branch page). Trailing slash is canonical.
+- Google rating and review counts: `CITY_PROOF.<city>.googleRating` / `googleReviewCount` in proof.ts,
+  read from the two listings (CIDs in google-listings.ts). Re-read at least every 90 days —
+  policy.test.ts fails past that — and update in one step: the four confirm() calls, and the
+  count + read-date sentence in `public/llms.txt` and `public/llms-full.txt`. A count tick does
+  not move revision dates (content-revisions.ts masks the number); only /reviews/ re-dates.
 - Copy rules and facts: `DUTY-CLEANERS-CONTENT-PROMPT.md` (also published as a private artifact;
   edit the markdown, then republish the artifact to the same URL).
 
@@ -138,6 +143,17 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
   Canada; FAQ mould answer → Health Canada; march-out page → CFHA Occupant Handbook). No nofollow on trusted sources, no sitewide or footer
   citation links, no links to "best of" lists or directories. Guarded in rendered-quality.test.ts. The legacy `/quote-redirect/` bridge
   was removed with the old site.
+
+## Owner decisions (2026-09-17) — do not contradict or re-ask
+- HSTS is on for the production host only (`env=DUTY_PRODUCTION_HOST`), `max-age=86400` to start,
+  no includeSubDomains (mail., ftp. and autodiscover. exist and are not confirmed HTTPS), no
+  preload. Raise to 63072000 after a clean week on the domain (launch-day reminder).
+- The four preserved WordPress posts were published 2025-02-07 (read from the live site's
+  wp-json on 2026-09-17; IDs 8038, 8060, 8081, 8088). `post-published.ts` holds them.
+- /cleaning-services-red-deer/ keeps linking the Edmonton-titled service and pricing pages, as
+  disclosed on the page; no Red Deer service pages and no retitling of /pricing/ or /services/.
+- NGINX Direct Delivery is OFF on the SiteGround site (turned off 2026-09-17) so the generated
+  `.htaccess` cache rules apply; it must be off on the production site too.
 
 ## Rules
 - Never log into the Google Business Profile. Don't change GoHighLevel or BookingKoala settings

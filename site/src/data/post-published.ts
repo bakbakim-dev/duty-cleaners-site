@@ -11,26 +11,28 @@
  * untrue.
  *
  * The mirror does not carry the real dates (its only `datePublished` values are
- * relative strings from an embedded review widget), so they cannot be recovered
- * from anything in this repository. Until the owner reads them out of the
- * WordPress admin, these four are `null` and the schema simply omits the field.
+ * relative strings from an embedded review widget), so they could not be
+ * recovered from anything in this repository. They were read on 2026-09-17
+ * from the live WordPress site itself (wp-json/wp/v2/posts/<id>, the same
+ * "Published on" the admin shows): all four went up on 7 February 2025, post
+ * IDs 8038, 8060, 8081 and 8088. A null here still means "unknown" and still
+ * omits the field.
  *
  * That follows the rule proof.ts already applies to the job posting: "Google
  * demotes and eventually drops postings with stale or missing dates — a wrong
  * date is worse than no markup." An omitted date costs a minor signal. A false
  * one is a false statement in structured data.
  *
- * TO FIX: open each post in the WordPress admin, read its publish date, and put
- * it here as `YYYY-MM-DD`. Nothing else needs to change.
+ * To add a post whose date is not known: put `null`, never a guess.
  */
 import { modifiedFor } from "./post-dates";
 
 export const POST_PUBLISHED: Readonly<Record<string, string | null>> = {
-  // Preserved WordPress URLs — real dates unknown, see above.
-  "/how-much-does-a-house-cleaning-cost": null,
-  "/how-often-should-a-cleaning-service-clean-my-house": null,
-  "/cleaning-with-vinegar-and-baking-soda": null,
-  "/the-top-5-must-have-cleaning-products-for-a-spotless-home": null,
+  // Preserved WordPress URLs — dates read from the live site on 2026-09-17.
+  "/how-much-does-a-house-cleaning-cost": "2025-02-07",
+  "/how-often-should-a-cleaning-service-clean-my-house": "2025-02-07",
+  "/cleaning-with-vinegar-and-baking-soda": "2025-02-07",
+  "/the-top-5-must-have-cleaning-products-for-a-spotless-home": "2025-02-07",
 
   // Written for this site, so these dates are known and correct.
   "/blog/choosing-cleaning-company": "2026-01-27",

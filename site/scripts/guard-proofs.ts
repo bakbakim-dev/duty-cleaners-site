@@ -1317,6 +1317,39 @@ export const GUARD_PROOFS: GuardProof[] = [
     failing: "the immutable and the hourly Cache-Control sit in the SAME FilesMatch, split only by env=",
     why: "Drops the env=! condition, which is the exact shape of the bug this guard exists to catch: a Header set that is not actually scoped to non-asset files.",
   },
+  // ---- 2026-09-17: Google figures, their fingerprint, and HSTS ------------
+  {
+    guard: "src/data/llms-txt.test.ts",
+    target: "public/llms.txt",
+    find: "read from the listings themselves on 2026-09-17",
+    replace: "read from the listings themselves on 2026-09-01",
+    failing: "llms.txt states the date the counts were read",
+    why: "Leaves the counts right and the read date stale, the gap the numbers-only guard cannot see.",
+  },
+  {
+    guard: "src/data/policy.test.ts",
+    target: "src/data/proof.ts",
+    find: 'googleReviewCount: confirm(238, { by: "google-listing", on: "2026-09-17"',
+    replace: 'googleReviewCount: confirm(238, { by: "google-listing", on: "2026-01-17"',
+    failing: "the Google figures were re-read within the last 90 days",
+    why: "Backdates one read past the quarterly window.",
+  },
+  {
+    guard: "src/data/seo-editorial.test.ts",
+    target: "scripts/content-revisions.ts",
+    find: '.replace(/\\b\\d[\\d,]*(\\s+(?:Edmonton|Calgary|Red Deer|Google)?\\s*reviews?\\b|\\s+of them\\b)/gi, "N$1")',
+    replace: '.replace(/\\b\\d[\\d,]*(\\s+(?:Edmonton|Calgary|Red Deer|Google)?\\s*reviews?\\b|\\s+of them\\b)/gi, "$&")',
+    failing: "does not change a revision date when a Google review count is re-read",
+    why: "Turns the count mask into a no-op, so a re-read re-dates every page that prints the count.",
+  },
+  {
+    guard: "src/data/htaccess-parity.test.ts",
+    target: "public/.htaccess",
+    find: 'Header always set Strict-Transport-Security "max-age=86400" env=DUTY_PRODUCTION_HOST',
+    replace: 'Header always set Strict-Transport-Security "max-age=86400; includeSubDomains; preload"',
+    failing: "carries the security headers and scopes HSTS to the production host, without includeSubDomains or preload",
+    why: "Drops the host scope and adds the two directives the owner deferred: pins the test host and every subdomain.",
+  },
   // ---- and this registry itself ------------------------------------------
   {
     guard: "src/data/guard-proofs.test.ts",

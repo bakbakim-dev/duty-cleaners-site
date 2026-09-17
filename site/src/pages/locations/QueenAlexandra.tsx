@@ -53,15 +53,15 @@ const QueenAlexandra = () => {
     <>
       <Helmet>
         <title>House Cleaning in Queen Alexandra, Edmonton</title>
-        <meta name="description" content="Move-out and suite cleaning in Queen Alexandra, Edmonton, where eight in ten homes are rented and possession dates cluster at month end." />
+        <meta name="description" content="Move-out and suite cleaning in Queen Alexandra, Edmonton, where about seven in ten homes are rented and possession dates cluster at month end." />
         <link rel="canonical" href="https://dutycleaners.ca/locations/queen-alexandra-edmonton/" />
         <meta property="og:title" content="House Cleaning in Queen Alexandra, Edmonton" />
-        <meta property="og:description" content="Move-out and suite cleaning in Queen Alexandra, Edmonton, where eight in ten homes are rented and possession dates cluster at month end." />
+        <meta property="og:description" content="Move-out and suite cleaning in Queen Alexandra, Edmonton, where about seven in ten homes are rented and possession dates cluster at month end." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/queen-alexandra-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Queen Alexandra, Edmonton" />
-        <meta name="twitter:description" content="Move-out and suite cleaning in Queen Alexandra, Edmonton, where eight in ten homes are rented and possession dates cluster at month end." />
+        <meta name="twitter:description" content="Move-out and suite cleaning in Queen Alexandra, Edmonton, where about seven in ten homes are rented and possession dates cluster at month end." />
         <script type="application/ld+json">{JSON.stringify(buildLocationSchema({ name: "Duty Cleaners - Queen Alexandra Edmonton", city: "edmonton", url: "https://dutycleaners.ca/locations/queen-alexandra-edmonton", areaServed: "Queen Alexandra, Edmonton, AB",   geo: { latitude: "53.518", longitude: "-113.504" },
 }))}</script>
       </Helmet>
@@ -81,7 +81,7 @@ const QueenAlexandra = () => {
                 Queen Alexandra House Cleaning Professionals
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Just over half the homes in Queen Alexandra are low-rise walk-up apartments, and most are rented. Every clean is a flat rate by home size, shown before you book.
+                Just over half the homes in Queen Alexandra are low-rise walk-up apartments, and about seven in ten are rented in the <a href="https://data.edmonton.ca/Census/2016-Census-Dwelling-Unit-by-Ownership-Neighbourho/d2xp-ctch" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">City of Edmonton's 2016 municipal census</a>. Every clean is a flat rate by home size, shown before you book.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <Button size="lg" asChild>
@@ -102,9 +102,9 @@ const QueenAlexandra = () => {
 
       <LocalMarketNote
         eyebrow="What we see"
-        heading="Four fifths of it is rented"
+        heading="Seven in ten of it is rented"
         paragraphs={[
-          "Eight of every ten homes between Whyte Avenue and 70 Avenue are rented, and just over half the stock is low-rise walk-up apartments rather than houses. That shapes the calendar more than the method: possession dates cluster at month end, and a suite handed back gets the oven, the fridge seals and every cabinet interior whether the last tenant opened them or not.",
+          "Seven of every ten homes between Whyte Avenue and 70 Avenue that reported their tenure in the City's 2016 municipal census are rented, and just over half the stock is low-rise walk-up apartments rather than houses. That shapes the calendar more than the method: possession dates cluster at month end, and a suite handed back gets the oven, the fridge seals and every cabinet interior whether the last tenant opened them or not.",
           "Whyte Avenue's pedestrian strip closes the north side. Ground-floor suites and the first buildings in off the avenue take what the sidewalk carries — grit through winter, dust through summer, and a film on street-facing glass that comes back faster than anything the household itself produces.",
         ]}
       />

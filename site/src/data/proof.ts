@@ -85,11 +85,13 @@ export const CITY_PROOF: Record<Branch, CityProof> = {
     address: "18615 71 Ave NW, Edmonton, AB",
     streetAddress: "18615 71 Ave NW",
     postalCode: "T5T 2V9",
-    // Read directly from the Google listing on 2026-09-01, reached through the
-    // CID pinned in google-listings.ts (8192121191672692049) — not from the
-    // legacy site's embedded widget, which lagged the real count by 12.
-    googleRating: confirm(4.9, { by: "google-listing", on: "2026-09-01", note: "CID 8192121191672692049" }),
-    googleReviewCount: confirm(236, { by: "google-listing", on: "2026-09-01", note: "CID 8192121191672692049" }),
+    // Read directly from the Google listing, reached through the CID pinned in
+    // google-listings.ts (8192121191672692049) — not from the legacy site's
+    // embedded widget, which lagged the real count by 12. First read
+    // 2026-09-01 (236); re-read 2026-09-17. Re-read at least every 90 days
+    // (policy.test.ts), and update llms.txt and llms-full.txt in the same step.
+    googleRating: confirm(4.9, { by: "google-listing", on: "2026-09-17", note: "CID 8192121191672692049" }),
+    googleReviewCount: confirm(238, { by: "google-listing", on: "2026-09-17", note: "CID 8192121191672692049" }),
     // The office pin as the Google listing stores it (the !3d/!4d pair in its
     // Maps URL), read 2026-09-10. A click on the pin icon reads a point on the
     // drawn marker instead; the owner's click landed about 16 m north.
@@ -105,9 +107,10 @@ export const CITY_PROOF: Record<Branch, CityProof> = {
     address: "2835 37 Street SW #24, Calgary, AB",
     streetAddress: "2835 37 Street SW #24",
     postalCode: "T3E 3B3",
-    // Same source and date as Edmonton, via CID 6193344199307583189.
-    googleRating: confirm(4.9, { by: "google-listing", on: "2026-09-01", note: "CID 6193344199307583189" }),
-    googleReviewCount: confirm(51, { by: "google-listing", on: "2026-09-01", note: "CID 6193344199307583189" }),
+    // Same source and dates as Edmonton, via CID 6193344199307583189 (51 on
+    // both reads).
+    googleRating: confirm(4.9, { by: "google-listing", on: "2026-09-17", note: "CID 6193344199307583189" }),
+    googleReviewCount: confirm(51, { by: "google-listing", on: "2026-09-17", note: "CID 6193344199307583189" }),
     // Same source as Edmonton: the listing's own pin, read 2026-09-10.
     geo: confirm({ latitude: 51.029252, longitude: -114.142131 }, { by: "owner", on: "2026-09-10", note: "Google listing pin, CID 6193344199307583189" }),
     hours: METRO_HOURS,

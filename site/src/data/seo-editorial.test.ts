@@ -42,3 +42,23 @@ describe("SEO editorial integrity", () => {
     }
   });
 });
+
+/**
+ * The Google review counts are re-read from the listings, not written, and
+ * they sit in body copy on ~190 pages. Before 2026-09-17 a re-read moved every
+ * one of those pages' revision dates, which is exactly the lastmod noise that
+ * teaches a crawler to ignore lastmod. The fingerprint now masks the number
+ * and nothing else.
+ */
+describe("content fingerprints and live Google figures", () => {
+  const page = (body: string) =>
+    `<html><head><title>t</title></head><body><main>${body}</main></body></html>`;
+  it("does not change a revision date when a Google review count is re-read", () => {
+    const a = page("<p>4.9 on Google · 236 Edmonton reviews</p><p>236 reviews on our listing</p><p>236 Google reviews</p><p>carries 236 of them</p>");
+    const b = page("<p>4.9 on Google · 238 Edmonton reviews</p><p>238 reviews on our listing</p><p>238 Google reviews</p><p>carries 238 of them</p>");
+    expect(contentFingerprint(a)).toBe(contentFingerprint(b));
+    // Only the number is masked. Rewording the sentence is still a revision.
+    const c = page("<p>4.9 on Google · 236 Edmonton reviews</p><p>236 reviews on Google</p>");
+    expect(contentFingerprint(a)).not.toBe(contentFingerprint(c));
+  });
+});

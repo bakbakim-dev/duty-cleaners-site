@@ -21,6 +21,12 @@ export function contentFingerprint(html: string): string {
     .replace(/<(script|style|svg)\b[^>]*>[\s\S]*?<\/\1>/gi, "")
     .replace(/<time\b[^>]*data-content-revision(?:="[^"]*")?[^>]*>[\s\S]*?<\/time>/gi, "")
     .replace(/<[^>]+>/g, " ")
+    // The Google review counts (proof.ts) are body copy on ~190 pages and are
+    // re-read from the listings, not written: a tick from 236 to 238 is not a
+    // revision of those pages and must not move their lastmod. The sentence
+    // around the number still counts; only the number is masked. "N of them"
+    // is the Airbnb page's "the Edmonton listing carries 238 of them".
+    .replace(/\b\d[\d,]*(\s+(?:Edmonton|Calgary|Red Deer|Google)?\s*reviews?\b|\s+of them\b)/gi, "N$1")
     .replace(/\s+/g, " ").trim();
   const title = html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1] ?? "";
   const descriptions = [...html.matchAll(/<meta\b[^>]*(?:name|property)="(?:description|og:description)"[^>]*content="([^"]*)"[^>]*>/gi)].map(m => m[1]);

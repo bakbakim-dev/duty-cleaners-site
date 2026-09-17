@@ -139,12 +139,12 @@ export default function Greenview() {
     <>
       <Helmet>
         <title>Greenview, Calgary House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="About two thirds of Greenview's housing in Calgary is rented, so move-outs are routine, and industrial-park wind leaves grit in window channels." />
+        <meta name="description" content="Over half of Greenview's households in Calgary rent, so move-outs are routine, and industrial-park wind leaves grit in window channels." />
         <meta property="og:title" content="Greenview, Calgary House Cleaning | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Greenview, Calgary House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="About two thirds of Greenview's housing in Calgary is rented, so move-outs are routine, and industrial-park wind leaves grit in window channels." />
-        <meta property="og:description" content="About two thirds of Greenview's housing in Calgary is rented, so move-outs are routine, and industrial-park wind leaves grit in window channels." />
+        <meta name="twitter:description" content="Over half of Greenview's households in Calgary rent, so move-outs are routine, and industrial-park wind leaves grit in window channels." />
+        <meta property="og:description" content="Over half of Greenview's households in Calgary rent, so move-outs are routine, and industrial-park wind leaves grit in window channels." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/greenview-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/greenview-calgary/" />
@@ -185,7 +185,7 @@ export default function Greenview() {
                 Professional House Cleaning in Greenview
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Greenview sits against Deerfoot Trail and Greenview Industrial Park, with the airport lands off to the northeast. Nearly half its buildings are condos or apartments, and our Calgary branch prices a standard, deep or move-out clean flat by home size.
+                Greenview sits against Deerfoot Trail and Greenview Industrial Park, with the airport lands off to the northeast. Nearly half its homes are low-rise apartments and 55% of households rent in the <a href="https://www.calgary.ca/content/dam/www/programs-services/property-housing-and-neighbourhoods/neighbourhood-and-community-relationships/profiles/greenview.pdf" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">2021 Census</a>, and our Calgary branch prices a standard, deep or move-out clean flat by home size.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -282,7 +282,7 @@ export default function Greenview() {
                   <span className="text-primary text-sm font-semibold tracking-wider uppercase">Moving out</span>
                   <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Move-Out Cleaning for Greenview Rentals</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    About two thirds of Greenview's housing is rented, so move-outs are a normal part of the month here. A move-out clean is priced flat by home size before 5% GST, and the instant price shows the figure before you book. Under Alberta's Residential Tenancies Act the landlord completes a move-out inspection report with the tenant. Within 10 days of the tenant moving out, the landlord must return the deposit, or return what is left with a written statement of any deductions (an estimate is allowed, with the final statement within 30 days), as set out in{" "}
+                    Over half of Greenview's households rent, so move-outs are a normal part of the month here. A move-out clean is priced flat by home size before 5% GST, and the instant price shows the figure before you book. Under Alberta's Residential Tenancies Act the landlord completes a move-out inspection report with the tenant. Within 10 days of the tenant moving out, the landlord must return the deposit, or return what is left with a written statement of any deductions (an estimate is allowed, with the final statement within 30 days), as set out in{" "}
                     <a href="https://www.alberta.ca/ending-a-tenancy" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Alberta's rules on ending a tenancy</a>. We do not promise the deposit comes back; the landlord decides.
                   </p>
                   <ul className="space-y-3">
@@ -325,7 +325,7 @@ export default function Greenview() {
         heading="Industrial park on the Deerfoot side"
         paragraphs={[
           "Greenview Industrial Park adjoins this community along Deerfoot Trail, and the airport lands sit off the northeast. Between them they set the indoor conditions: a coarse, dark particulate that arrives on the wind rather than on shoes, and shows up first in window channels, on screen mesh and along the sills of whichever elevation faces the yards.",
-          "Nearly half the buildings are condominium or apartment and about two thirds of the housing is rented — high enough that move-outs are a normal part of the month rather than an occasional job.",
+          "Nearly half the homes are low-rise apartments and 55% of households rent in the 2021 Census — high enough that move-outs are a normal part of the month rather than an occasional job.",
         ]}
         accent="calgary"
       />

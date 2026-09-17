@@ -138,12 +138,12 @@ export default function TuxedoPark() {
     <>
       <Helmet>
         <title>Tuxedo Park, Calgary House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="Our Calgary house cleaners work in Tuxedo Park, where just over half the buildings are condos or apartments and about as much of the housing is rented." />
+        <meta name="description" content="Our Calgary house cleaners work in Tuxedo Park, where about half the homes are apartments or flats and just over half of households rent." />
         <meta property="og:title" content="Tuxedo Park, Calgary House Cleaning | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Tuxedo Park, Calgary House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="Our Calgary house cleaners work in Tuxedo Park, where just over half the buildings are condos or apartments and about as much of the housing is rented." />
-        <meta property="og:description" content="Our Calgary house cleaners work in Tuxedo Park, where just over half the buildings are condos or apartments and about as much of the housing is rented." />
+        <meta name="twitter:description" content="Our Calgary house cleaners work in Tuxedo Park, where about half the homes are apartments or flats and just over half of households rent." />
+        <meta property="og:description" content="Our Calgary house cleaners work in Tuxedo Park, where about half the homes are apartments or flats and just over half of households rent." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/tuxedo-park-calgary/" />
         <link rel="canonical" href="https://dutycleaners.ca/locations/tuxedo-park-calgary/" />
@@ -184,7 +184,7 @@ export default function TuxedoPark() {
                 Professional House Cleaning in Tuxedo Park
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Just over half of Tuxedo Park's buildings are condominiums or apartments, and about as much of the housing is rented. Our Calgary branch cleans suites and houses here at flat rates by home size.
+                About half of Tuxedo Park's homes are apartments or duplex flats, and just over half of its households rent in the <a href="https://www.calgary.ca/content/dam/www/programs-services/property-housing-and-neighbourhoods/neighbourhood-and-community-relationships/profiles/tuxedo-park.pdf" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">2021 Census</a>. Our Calgary branch cleans suites and houses here at flat rates by home size.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -323,7 +323,7 @@ export default function TuxedoPark() {
         heading="Centre Street through the middle"
         paragraphs={[
           "Centre Street runs north to south straight through this community rather than along an edge, and the Trans-Canada closes the south side. That leaves a lot of frontage on moving traffic. Homes on those blocks carry a road film on door hardware that returns well before anything indoors needs attention, while the interior streets hold their finish from one visit to the next. The same film settles on the outer panes facing Centre Street and the Trans-Canada, and that glass is outdoor work, left out of a clean.",
-          "Just over half the buildings are condominium or apartment, and about the same share of the housing is rented, so suite work and turnover cleans make up more of the week here than in the detached pockets either side.",
+          "In the 2021 Census about half the homes were apartments or duplex flats and 54% of households rented, so suite work and turnover cleans make up more of the week here than in the detached pockets either side.",
         ]}
         accent="calgary"
       />

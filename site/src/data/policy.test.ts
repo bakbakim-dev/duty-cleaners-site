@@ -157,3 +157,29 @@ describe("every confirmed value carries its provenance", () => {
     expect(terms).toContain(`${POLICY.ecoProductsFee}: ${POLICY.ecoProductsHowToRequest}`);
   });
 });
+
+/**
+ * The Google rating and review counts are body copy on ~190 pages and in
+ * llms.txt, all read from proof.ts. Nothing else changes them, so a stale
+ * read is invisible to every other guard. This is the reminder (owner
+ * decision, 2026-09-17): re-read both listings at least quarterly (CIDs in
+ * google-listings.ts), then update the four confirm() calls in proof.ts AND
+ * the count + read-date sentence in public/llms.txt and public/llms-full.txt.
+ * The fingerprint masks the counts, so a re-read re-dates only /reviews/,
+ * which prints the read date.
+ */
+describe("the Google figures are re-read at least quarterly", () => {
+  const MAX_AGE_DAYS = 90;
+  it("the Google figures were re-read within the last 90 days", () => {
+    const reads = PROVENANCE.filter((p) => p.by === "google-listing");
+    expect(reads.length).toBe(4);
+    for (const p of reads) {
+      const age = Math.floor((Date.now() - Date.parse(p.on)) / 86_400_000);
+      expect(
+        age,
+        `${p.note ?? "a Google figure"} was last read ${age} days ago (${p.on}). Re-read the listing, ` +
+          "then update proof.ts, public/llms.txt and public/llms-full.txt in the same step.",
+      ).toBeLessThanOrEqual(MAX_AGE_DAYS);
+    }
+  });
+});

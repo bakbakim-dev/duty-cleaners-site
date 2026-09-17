@@ -227,7 +227,7 @@ export default function Bannerman() {
                 Professional House Cleaning in Bannerman
               </h1>
               <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Most of Bannerman's housing went up in the 1970s, and over a third of it is row housing. East of the last houses the ground drops into the river valley, and its clay comes back up on boots and paws.
+                Most of Bannerman's housing went up in the 1970s, and over a third of it is row housing in the <a href="https://data.edmonton.ca/Census/2016-Census-Dwelling-Unit-by-Structure-Type-Neighb/xxgm-nnaq" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">City of Edmonton's 2016 municipal census</a>. East of the last houses the ground drops into the river valley, and its clay comes back up on boots and paws.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
