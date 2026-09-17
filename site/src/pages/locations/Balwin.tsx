@@ -16,6 +16,7 @@ import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
 import GoogleMapEmbed from "@/components/GoogleMapEmbed";
+import cleanHomeImg from "@/assets/hero-room-edmonton-manus-1280w.webp";
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
   return (
@@ -306,8 +307,13 @@ export default function Balwin() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Map</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Balwin Community</h2>
               </div>
-              <div className="max-w-4xl mx-auto rounded-xl overflow-hidden shadow-lg border border-border">
-                <GoogleMapEmbed query="Balwin, Edmonton, AB" title="Balwin Edmonton Map" height={400} />
+              <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+                <div className="rounded-xl overflow-hidden shadow-lg border border-border">
+                  <img width={1280} height={720} src={cleanHomeImg} alt="A kitchen with a light oak island, a spray bottle and folded cloths by the sink, and a dining table under a bright window" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                </div>
+                <div className="rounded-xl overflow-hidden shadow-lg border border-border">
+                  <GoogleMapEmbed query="Balwin, Edmonton, AB" title="Balwin Edmonton Map" height={400} />
+                </div>
               </div>
             </AnimatedSection>
           </div>

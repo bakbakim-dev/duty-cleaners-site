@@ -98,7 +98,12 @@ export default function EdmontonRecurringCleaning() {
           you change it.
         </>,
         "The first visit is charged at the one-time rate, and the schedule discount starts with the second. Each visit goes to your regular team where we can send them, and the cleaners bring all the supplies and equipment.",
-        "Choose an interval around how much upkeep your household wants help with. Weekly visits may suit a busy kitchen or frequently used rooms; biweekly leaves more upkeep to you between visits; every four weeks may suit a lightly used home. These are options to try, not rules based on bedroom count or neighbourhood.",
+        <>
+          Choose an interval around how much upkeep your household wants help with. Weekly visits may suit a busy
+          kitchen or frequently used rooms; biweekly leaves more upkeep to you between visits; every four weeks may
+          suit a lightly used home. These are options to try, not rules based on bedroom count or neighbourhood. Our
+          guide to <Link to="/how-often-should-a-cleaning-service-clean-my-house/">how often a cleaning service should clean your house</Link> works through that choice room by room.
+        </>,
       ]}
       sections={[
         {

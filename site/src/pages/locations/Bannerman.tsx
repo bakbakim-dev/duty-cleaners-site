@@ -12,6 +12,7 @@ import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
 import GoogleMapEmbed from "@/components/GoogleMapEmbed";
+import cleanHomeImg from "@/assets/whats-included-hero.webp";
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
   return (
@@ -334,8 +335,13 @@ export default function Bannerman() {
                     Bannerman is inside Edmonton city limits, so no trip fee is added to the price.
                   </p>
                 </div>
-                <div className="rounded-xl overflow-hidden shadow-lg border border-border">
-                  <GoogleMapEmbed query="Bannerman, Edmonton, AB" title="Bannerman Edmonton Map" height={400} />
+                <div className="grid md:grid-cols-2 gap-10 items-center">
+                  <div className="rounded-xl overflow-hidden shadow-lg border border-border">
+                    <img width={1280} height={720} src={cleanHomeImg} alt="A sunlit living room with white sofas, a glass coffee table and fresh flowers on polished hardwood" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  </div>
+                  <div className="rounded-xl overflow-hidden shadow-lg border border-border">
+                    <GoogleMapEmbed query="Bannerman, Edmonton, AB" title="Bannerman Edmonton Map" height={400} />
+                  </div>
                 </div>
               </div>
             </AnimatedSection>

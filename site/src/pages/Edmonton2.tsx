@@ -330,6 +330,8 @@ export default function Edmonton2() {
            phoneLink="tel:7809136565"
            heroImage={edmontonHeroRoom}
            heroSrcSet={HERO_SRCSET}
+           heroWidth={1672}
+           heroHeight={941}
            heroAlt="Professional cleaner wiping a kitchen island in a bright Edmonton home"
            heroPosition="center 48%"
            processImages={[

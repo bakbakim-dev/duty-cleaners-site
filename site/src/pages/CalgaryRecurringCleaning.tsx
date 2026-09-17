@@ -73,7 +73,12 @@ export default function CalgaryRecurringCleaning() {
           weekly, bi-weekly or every 4 weeks. The first visit is charged at the one-time rate; from the second, weekly
           is 20% off, bi-weekly 15% off and every 4 weeks 10% off. You pick the cadence; we keep to it.
         </>,
-        "Choose the interval by how you use the home and the cleaning you do between visits. A Calgary condo does not automatically need a different schedule from a house: cooking, pets, visitors and your available time are more useful questions than a neighbourhood label.",
+        <>
+          Choose the interval by how you use the home and the cleaning you do between visits. A Calgary condo does not
+          automatically need a different schedule from a house: cooking, pets, visitors and your available time are
+          more useful questions than a neighbourhood label. Our guide to <Link to="/how-often-should-a-cleaning-service-clean-my-house/">how often a cleaning service should clean your house</Link> works through those questions room by
+          room.
+        </>,
         `Start with a manageable schedule and review how the rooms hold up between visits. Tell the Calgary office about changing entry instructions or room priorities. You can change a booking with ${POLICY.cancellationNoticeHours} hours' notice.`,
       ]}
       sections={[

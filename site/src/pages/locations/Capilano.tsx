@@ -10,6 +10,7 @@ import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
 import GoogleMapEmbed from "@/components/GoogleMapEmbed";
+import cleanHomeImg from "@/assets/whats-included-hero.webp";
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
   return (
@@ -291,8 +292,13 @@ export default function Capilano() {
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Map</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Capilano on the Map</h2>
               </div>
-              <div className="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg border border-border">
-                <GoogleMapEmbed query="Capilano, Edmonton, AB" title="Capilano, Edmonton map" height={400} />
+              <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+                <div className="rounded-2xl overflow-hidden shadow-lg border border-border">
+                  <img width={1280} height={720} src={cleanHomeImg} alt="A sunlit living room with white sofas, a glass coffee table and fresh flowers on polished hardwood" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                </div>
+                <div className="rounded-2xl overflow-hidden shadow-lg border border-border">
+                  <GoogleMapEmbed query="Capilano, Edmonton, AB" title="Capilano, Edmonton map" height={400} />
+                </div>
               </div>
             </AnimatedSection>
           </div>

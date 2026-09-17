@@ -16,6 +16,7 @@ import CoverageChips from "@/components/CoverageChips";
 
 import LocationPricing from "@/components/LocationPricing";
 import GoogleMapEmbed from "@/components/GoogleMapEmbed";
+import cleanHomeImg from "@/assets/whats-included-hero.webp";
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
   return (
@@ -232,7 +233,11 @@ export default function McConachie() {
         <section className="py-20 bg-muted/20">
           <div className="container mx-auto px-4">
             <AnimatedSection>
-              <div className="max-w-4xl mx-auto">
+              <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+                <div className="rounded-2xl overflow-hidden shadow-xl">
+                  <img width={1280} height={720} src={cleanHomeImg} alt="A sunlit living room with white sofas, a glass coffee table and fresh flowers on polished hardwood" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                </div>
+                <div>
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Before the visit</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">Before a Clean in McConachie</h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
@@ -242,6 +247,7 @@ export default function McConachie() {
                   <p>
                     There is no need to tidy up before the team comes. Clear counters and floors get cleaned, cluttered ones get worked around, and decluttering or organising is a separate hourly add-on.
                   </p>
+                </div>
                 </div>
               </div>
             </AnimatedSection>

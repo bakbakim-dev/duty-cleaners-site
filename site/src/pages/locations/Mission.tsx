@@ -9,6 +9,7 @@ import CoverageChips from "@/components/CoverageChips";
 import LocationPricing from "@/components/LocationPricing";
 import { sitePriceRange } from "@/data/pricing";
 import GoogleMapEmbed from "@/components/GoogleMapEmbed";
+import cleanHomeImg from "@/assets/gallery/calgary-kitchen-clean.webp";
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
   return (
@@ -219,8 +220,13 @@ export default function Mission() {
               <div className="max-w-4xl mx-auto">
                 <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
                 <h2 className="text-3xl font-bold text-foreground mt-2 mb-6">Mission Service Area</h2>
-                <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <GoogleMapEmbed query="Mission, Calgary, AB" title="Mission Calgary Service Area Map" />
+                <div className="grid md:grid-cols-2 gap-10 items-center">
+                  <div className="rounded-2xl overflow-hidden shadow-xl">
+                    <img width={800} height={800} src={cleanHomeImg} alt="Kitchen with granite counters and a gas cooktop, opening onto a dining table by tall windows" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
+                  </div>
+                  <div className="rounded-2xl overflow-hidden shadow-xl">
+                    <GoogleMapEmbed query="Mission, Calgary, AB" title="Mission Calgary Service Area Map" />
+                  </div>
                 </div>
               </div>
             </AnimatedSection>

@@ -31,6 +31,14 @@ interface CityConversionIntroProps {
    * browser would preload the full-width file and then use a narrower one.
    */
   heroSrcSet?: string;
+  /**
+   * Intrinsic pixel size of the master file behind heroImage. Declared so the
+   * browser can reserve the hero box before the first byte arrives; the
+   * onpage-seo ratio guard checks it against the file, so read it from the
+   * .webp header rather than typing it from memory.
+   */
+  heroWidth?: number;
+  heroHeight?: number;
   /** Decorative background — leave empty unless the room carries meaning. */
   heroAlt?: string;
   /** CSS object-position for the hero crop, e.g. "center 60%". */
@@ -140,6 +148,8 @@ export default function CityConversionIntro({
   phoneLink,
   heroImage,
   heroSrcSet,
+  heroWidth,
+  heroHeight,
   heroAlt,
   heroPosition,
   heroScrim = "strong",
@@ -179,6 +189,8 @@ export default function CityConversionIntro({
           src={heroImage}
           {...(heroSrcSet ? { srcSet: heroSrcSet, sizes: "100vw" } : {})}
           alt={heroAlt ?? ""}
+          width={heroWidth}
+          height={heroHeight}
           loading="eager"
           decoding="async"
           {...{ fetchpriority: "high" } as Record<string, string>}

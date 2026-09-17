@@ -333,6 +333,8 @@ export default function Calgary2() {
            phoneLink="tel:4037681341"
            heroImage={calgaryHeroRoom}
            heroSrcSet={HERO_SRCSET}
+           heroWidth={1672}
+           heroHeight={941}
            heroAlt="Professional cleaner vacuuming a living-room rug in a bright Calgary home"
            heroPosition="center 52%"
            processImages={[
