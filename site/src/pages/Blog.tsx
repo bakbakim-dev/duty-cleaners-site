@@ -1,4 +1,5 @@
 import { publishedFor } from "@/data/post-published";
+import OfficeCallLink from "@/components/OfficeCallLink";
 import { useEffect, useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
@@ -310,7 +311,7 @@ export default function Blog() {
                   <Link to="/#quote">See My Instant Price</Link>
                 </Button>
                 <Button asChild size="lg" variant="outline" className="rounded-xl min-h-[52px] border-white/40 bg-transparent text-white hover:bg-white/10">
-                  <a href="tel:7809136565">Edmonton office: (780) 913-6565</a>
+                  <OfficeCallLink />
                 </Button>
               </div>
             </div>

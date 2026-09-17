@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { canonicalForPath } from "@/data/legacy-urls";
-import { branchFromPath, cityFromPath } from "@/lib/city-from-path";
+import { explicitBranchFromPath } from "@/lib/city-from-path";
+import { useBranchPreference } from "@/lib/branch-preference";
 import { CITY_PROOF, RED_DEER_PATH, hoursRowsFor, type Branch } from "@/data/proof";
 import ThresholdLine from "@/components/ThresholdLine";
 import type { ReactNode } from "react";
@@ -98,11 +99,17 @@ export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: 
   const { pathname } = useLocation();
   // Canonical-aware: the Calgary landing page's canonical URL is
   // /cleaning-services-calgary/, which a startsWith("/calgary") test misses.
-  const city = cityFromPath(pathname);
+  // Same rule as the header (Navigation.tsx): the page's own branch, else the
+  // remembered one on a page that belongs to none, else every office.
+  const pageBranch = explicitBranchFromPath(pathname);
+  const remembered = useBranchPreference();
+  const shownBranch: Branch | null = pageBranch ?? remembered;
+  const neutral = shownBranch === null;
+  const city: "edmonton" | "calgary" = shownBranch === "calgary" ? "calgary" : "edmonton";
   const quoteHref = `${city === "calgary" ? canonicalForPath("/calgary") : "/"}#quote`;
   // The footer CTA must call the office the visitor is actually looking at:
   // on the Red Deer page, the Red Deer office. Read from proof.ts, not typed.
-  const office = CITY_PROOF[branchFromPath(pathname)];
+  const office = CITY_PROOF[shownBranch ?? "edmonton"];
   const cityPhone = { href: office.phoneLink, display: office.phone };
 
 
@@ -132,17 +139,24 @@ export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: 
                 <ArrowUpRight aria-hidden="true" />
               </Link>
             </Button>
-            <Button
-              asChild
-              variant="outline"
-              className="min-h-12 border-brand-navy-foreground/30 px-6 text-brand-navy-foreground hover:border-brand-gold hover:bg-brand-gold/10 hover:text-brand-gold"
-            >
-              <a href={cityPhone.href}>
-                <Phone aria-hidden="true" />
-                Call {cityPhone.display}
-              </a>
-
-            </Button>
+            {/* A page that belongs to no branch offers every office; any
+                other page, or a remembered branch, calls that one office. */}
+            {(neutral ? FOOTER_OFFICES.map((o) => o.key) : [null]).map((key) => {
+              const target = key ? CITY_PROOF[key] : null;
+              return (
+                <Button
+                  key={key ?? "page"}
+                  asChild
+                  variant="outline"
+                  className="min-h-12 border-brand-navy-foreground/30 px-6 text-brand-navy-foreground hover:border-brand-gold hover:bg-brand-gold/10 hover:text-brand-gold"
+                >
+                  <a href={target ? target.phoneLink : cityPhone.href}>
+                    <Phone aria-hidden="true" />
+                    {target ? `Call ${target.city} ${target.phone}` : `Call ${cityPhone.display}`}
+                  </a>
+                </Button>
+              );
+            })}
           </div>
         </div>
 
@@ -261,7 +275,7 @@ export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: 
 
           <div>
             <FooterHeading>Locations & contact</FooterHeading>
-            <div className="space-y-6">
+            <div id="offices" className="space-y-6">
               {/* One block per branch office, each with its own hours: Red Deer's
                   differ from Edmonton's and Calgary's (proof.ts). */}
               {FOOTER_OFFICES.map(({ key, to, label }) => (

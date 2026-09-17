@@ -1,8 +1,11 @@
 import { CITY_PROOF, RED_DEER_PATH, type Branch } from "@/data/proof";
+import { OFFICES_ANCHOR } from "@/components/OfficeCallLink";
 import { quoteHrefFor } from "@/lib/quote-link";
 import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { canonicalForPath } from "@/data/legacy-urls";
+import { explicitBranchFromPath } from "@/lib/city-from-path";
+import { rememberBranch, useBranchPreference } from "@/lib/branch-preference";
 import { useQuoteOverlay } from "@/hooks/use-quote-overlay";
 import {
   Menu,
@@ -45,6 +48,44 @@ interface DropdownItem {
   title: string;
   description: string;
   onClick?: () => void;
+}
+
+/** The three offices, in the order the site lists them. */
+const OFFICES: ReadonlyArray<Branch> = ["edmonton", "calgary", "reddeer"];
+
+/**
+ * The "Call us" menu on pages that belong to no branch. Same always-rendered,
+ * CSS-hidden shape as DropdownPanel, so the three tel: links are in every
+ * prerendered neutral page for crawlers and stay out of the tab order while
+ * closed. Anchors, not Links: these are tel: hrefs.
+ */
+function OfficePanel({ open, id }: { open: boolean; id: string }) {
+  return (
+    <div
+      id={id}
+      className={`absolute right-0 w-72 z-50 pt-3 transition-opacity duration-200 ${
+        open ? "visible opacity-100" : "invisible opacity-0 pointer-events-none"
+      }`}
+      style={{ top: "100%" }}
+    >
+      <div className="rounded-xl border border-border bg-background p-2 shadow-xl">
+        {OFFICES.map((key) => {
+          const office = CITY_PROOF[key];
+          return (
+            <a
+              key={key}
+              href={office.phoneLink}
+              className="flex min-h-[44px] items-center gap-3 rounded-lg px-3 py-2 text-[0.95rem] text-foreground transition-colors hover:bg-secondary hover:text-accent"
+            >
+              <Phone className="w-4 h-4 text-brand-gold" aria-hidden="true" />
+              <span className="font-semibold">{office.city}</span>
+              <span className="ml-auto">{office.phone}</span>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  );
 }
 
 function DropdownPanel({
@@ -215,15 +256,33 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
   // Both were written out by hand here, and they disagreed: Calgary got
   // parentheses and Edmonton did not, on every page of the site. proof.ts is
   // the NAP authority — read it rather than restating the number.
-  const branch = CITY_PROOF[branchKey ?? (city === "calgary" ? "calgary" : "edmonton")];
+  // Which office this page belongs to. The props win (168 pages pass city=,
+  // the Red Deer page passes branch=); otherwise the URL decides, and a page
+  // that belongs to no branch — About, FAQs, the blog, the legal pages —
+  // resolves to null. A null page shows every office ("Call us") until the
+  // visitor has been to a city page, then that city. The choice lives in
+  // localStorage (branch-preference.ts), is read only after mount, and so is
+  // invisible to the prerender and to crawlers, which are stateless and get
+  // the neutral chrome. Body copy and JSON-LD never follow it.
+  const pageBranch: Branch | null = branchKey ?? city ?? explicitBranchFromPath(location.pathname);
+  const remembered = useBranchPreference();
+  useEffect(() => {
+    if (pageBranch) rememberBranch(pageBranch);
+  }, [pageBranch, location.pathname]);
+  const shownBranch: Branch | null = pageBranch ?? remembered;
+  const neutral = shownBranch === null;
+  const branch = CITY_PROOF[shownBranch ?? "edmonton"];
   const phone = branch.phone;
   const phoneLink = branch.phoneLink;
+  // Service links follow the city. Red Deer has no service pages of its own
+  // and shares Edmonton's, so a Red Deer choice keeps Edmonton links.
+  const linkCity: "edmonton" | "calgary" = city ?? (shownBranch === "calgary" ? "calgary" : "edmonton");
   // NOTE: cityPath composes MODERN routes (/edmonton/pricing). Several of
   // those have a preserved legacy canonical (/pricing), so every link built
   // from it is resolved through canonicalForPath — otherwise the sitewide nav
   // sends a 301 hop from every page on the site.
-  const cityPath = city ? `/${city}` : "/edmonton";
-  const quoteTarget = city === "calgary" ? `${canonicalForPath("/calgary")}#quote` : "/#quote";
+  const cityPath = `/${linkCity}`;
+  const quoteTarget = linkCity === "calgary" ? `${canonicalForPath("/calgary")}#quote` : "/#quote";
 
   // Quote CTAs open the full-screen booking takeover instead of scrolling
   // to an in-page section, so the form gets the whole viewport.
@@ -250,7 +309,7 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
     { to: canonicalForPath(`${cityPath}/wall-washing`), icon: Sparkles, title: "Wall Washing", description: "Spot cleaning or a full wash, booked with a clean" },
     { to: canonicalForPath(`${cityPath}/airbnb-cleaning`), icon: KeyRound, title: "Airbnb Turnovers", description: "Changeovers between guests, priced hourly" },
     // March-out is Edmonton-only military housing work, quoted by phone.
-    ...(city === "calgary" || branchKey === "reddeer"
+    ...(linkCity === "calgary" || shownBranch === "reddeer"
       ? []
       : [{
           to: "/edmonton/march-out-cleaning/",
@@ -373,13 +432,24 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
             </div>
 
 
-            <a
-              href={phoneLink}
-              className="inline-flex min-h-[44px] items-center gap-1.5 text-[0.95rem] font-semibold text-foreground transition-colors hover:text-accent"
-            >
-              <Phone className="w-4 h-4 text-brand-gold" aria-hidden="true" />
-              {phone}
-            </a>
+            {neutral ? (
+              <div
+                className="relative"
+                onMouseEnter={() => setOpenDropdown("call")}
+                onMouseLeave={() => setOpenDropdown(null)}
+              >
+                {dropdownButton("Call us", "call")}
+                <OfficePanel open={openDropdown === "call"} id="nav-panel-call" />
+              </div>
+            ) : (
+              <a
+                href={phoneLink}
+                className="inline-flex min-h-[44px] items-center gap-1.5 text-[0.95rem] font-semibold text-foreground transition-colors hover:text-accent"
+              >
+                <Phone className="w-4 h-4 text-brand-gold" aria-hidden="true" />
+                {phone}
+              </a>
+            )}
             <Button
               size="lg"
               className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold shadow-md shadow-accent/30 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/40"
@@ -519,10 +589,20 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
             <Link to="/blog/" className="block py-3 px-2 rounded-lg text-foreground hover:bg-secondary hover:text-accent transition-colors" onClick={() => setMobileMenuOpen(false)}>
               Blog
             </Link>
-            <a href={phoneLink} className="flex min-h-[48px] items-center gap-2 py-3 px-2 text-accent font-bold">
-              <Phone className="w-4 h-4" aria-hidden="true" />
-              {phone}
-            </a>
+            {neutral ? (
+              OFFICES.map((key) => (
+                <a key={key} href={CITY_PROOF[key].phoneLink} className="flex min-h-[48px] items-center gap-2 py-3 px-2 text-accent font-bold">
+                  <Phone className="w-4 h-4" aria-hidden="true" />
+                  <span className="text-foreground font-medium">{CITY_PROOF[key].city}</span>
+                  {CITY_PROOF[key].phone}
+                </a>
+              ))
+            ) : (
+              <a href={phoneLink} className="flex min-h-[48px] items-center gap-2 py-3 px-2 text-accent font-bold">
+                <Phone className="w-4 h-4" aria-hidden="true" />
+                {phone}
+              </a>
+            )}
           </div>
         )}
       </div>
@@ -537,7 +617,7 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
             variant="outline"
             className="min-h-[48px] shrink-0 border-brand-navy-foreground/40 bg-transparent px-4 text-base font-bold text-brand-navy-foreground hover:bg-brand-navy-foreground/10 hover:text-brand-navy-foreground"
           >
-            <a href={phoneLink} aria-label={`Call ${phone}`}>
+            <a href={neutral ? OFFICES_ANCHOR : phoneLink} aria-label={neutral ? "Call an office" : `Call ${phone}`}>
               <Phone className="mr-2 h-5 w-5" aria-hidden="true" />
               Call
             </a>

@@ -152,6 +152,12 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
   wp-json on 2026-09-17; IDs 8038, 8060, 8081, 8088). `post-published.ts` holds them.
 - /cleaning-services-red-deer/ keeps linking the Edmonton-titled service and pricing pages, as
   disclosed on the page; no Red Deer service pages and no retitling of /pricing/ or /services/.
+- Branch-neutral chrome (owner chose "option 1", 2026-09-17): pages that belong to no branch —
+  the set in `NEUTRAL_PATHS` (city-from-path.ts) plus /blog — show every office in the header
+  ("Call us" menu) and footer; a visitor's last branch is remembered in localStorage
+  (`duty-branch`, branch-preference.ts) and applied to the CHROME ONLY after mount, so the
+  prerender and crawlers always get the neutral default. Body copy and JSON-LD never follow
+  it. An Edmonton page never overwrites a Red Deer choice (Red Deer shares Edmonton's pages).
 - NGINX Direct Delivery is OFF on the SiteGround site (turned off 2026-09-17) so the generated
   `.htaccess` cache rules apply; it must be off on the production site too.
 

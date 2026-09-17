@@ -141,6 +141,12 @@ export default function PrivacyPolicy() {
                 <li>Whether you have dismissed the announcement bar, so it stays dismissed</li>
                 <li>A flag noting that you have been sent to our booking system, so the page can restore correctly if you come back</li>
               </ul>
+              <p className="mb-4">
+                One preference is kept in your browser's local storage, which survives closing the tab: the
+                office (Edmonton, Calgary or Red Deer) whose pages you last looked at, so that the phone number
+                and links in the header stay that office's on pages that belong to no city. It is never sent
+                anywhere, and clearing your browser's site data removes it.
+              </p>
               <p className="mb-8">
                 None of this identifies you personally, and none of it survives the browser session. You can
                 also block or clear storage and cookies through your browser settings.

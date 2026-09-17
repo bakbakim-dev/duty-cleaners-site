@@ -1,4 +1,5 @@
 import { POLICY } from "@/data/policy";
+import OfficeCallLink from "@/components/OfficeCallLink";
 import { BOOKINGS, CITY_PROOF, COMPANY, RATING_CLAIM, hoursLineFor } from "@/data/proof";
 import { calgaryNeighborhoods, calgarySurrounding, edmontonNeighborhoods, edmontonSurrounding } from "@/data/city-locations";
 import Navigation from "@/components/Navigation";
@@ -51,7 +52,7 @@ export default function AboutUs() {
                 <a href="#quote">See My Instant Price</a>
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10" asChild>
-                <a href="tel:7809136565">Call (780) 913-6565</a>
+                <OfficeCallLink />
               </Button>
             </div>
           </div>

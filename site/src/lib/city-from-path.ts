@@ -90,6 +90,50 @@ export function cityFromPath(pathname: string): City {
 export const isCalgaryPath = (pathname: string) => cityFromPath(pathname) === "calgary";
 
 /**
+ * Pages that belong to no branch: the company pages, the help pages, the blog
+ * and the legal pages. Their header shows every office until the visitor has
+ * been to a city page (branch-preference.ts). Every other page belongs to a
+ * branch: Calgary or Red Deer by the rules in this file, otherwise Edmonton,
+ * because the Edmonton hub, price list and service pages are the site's
+ * default family and `cityFromPath` has always said so.
+ */
+export const NEUTRAL_PATHS: ReadonlySet<string> = new Set([
+  "/about-us",
+  "/faqs",
+  "/faq",
+  "/reviews",
+  "/contact-us",
+  "/contact",
+  "/locations",
+  "/whats-included",
+  "/prepare",
+  "/gift-card",
+  "/gift-cards",
+  "/join-the-team",
+  "/satisfaction-guarantee",
+  "/insurance-liability",
+  "/privacy-policy",
+  "/terms",
+  "/book",
+  "/how-much-does-a-house-cleaning-cost",
+  "/how-often-should-a-cleaning-service-clean-my-house",
+  "/cleaning-with-vinegar-and-baking-soda",
+  "/the-top-5-must-have-cleaning-products-for-a-spotless-home",
+]);
+
+/**
+ * The branch a URL belongs to, or null for a page that belongs to none.
+ * Unlike `branchFromPath`, which must always answer (the quote flow needs an
+ * office), this one is allowed to say "no branch", and the chrome uses that
+ * to show every office instead of defaulting to one.
+ */
+export function explicitBranchFromPath(pathname: string): Branch | null {
+  const path = (pathname || "/").toLowerCase().replace(/\/+$/, "") || "/";
+  if (path.startsWith("/blog") || NEUTRAL_PATHS.has(path)) return null;
+  return branchFromPath(pathname);
+}
+
+/**
  * The three branches. Red Deer is a branch with its own office, phone, hours
  * and Google listing (owner, 2026-09-11), but it has ONE page and no service,
  * pricing or neighbourhood pages of its own. So `City` stays the two cities
