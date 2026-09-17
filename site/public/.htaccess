@@ -242,6 +242,10 @@ ErrorDocument 404 /404.html
   # policy that misses one takes the page down. HSTS is set above, scoped to
   # the production host; see that comment.
   Header always set X-Frame-Options "SAMEORIGIN"
+  # Origin isolation (PageSpeed best-practices, 2026-09-17). same-origin-allow-popups:
+  # our window is isolated from cross-origin openers, while the windows WE open
+  # (BookingKoala fallback, Google listings — both already noopener) are unaffected.
+  Header always set Cross-Origin-Opener-Policy "same-origin-allow-popups"
   Header always set X-Content-Type-Options "nosniff"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Content-Security-Policy "frame-ancestors 'self'"
