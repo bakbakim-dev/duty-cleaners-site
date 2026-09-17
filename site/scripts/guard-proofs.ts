@@ -1308,6 +1308,15 @@ export const GUARD_PROOFS: GuardProof[] = [
     why: "Drops the gift-card iframe's marker, which would let the frozen-embed check pass without examining anything.",
     dist: true,
   },
+  // ---- the /assets/ cache scope, found live on SiteGround, 2026-09-17 ----
+  {
+    guard: "src/data/htaccess-cache-scope.test.ts",
+    target: "public/.htaccess",
+    find: '    Header set Cache-Control "public, max-age=3600, must-revalidate" env=!DUTY_HASHED_ASSET',
+    replace: '    Header set Cache-Control "public, max-age=3600, must-revalidate"',
+    failing: "the immutable and the hourly Cache-Control sit in the SAME FilesMatch, split only by env=",
+    why: "Drops the env=! condition, which is the exact shape of the bug this guard exists to catch: a Header set that is not actually scoped to non-asset files.",
+  },
   // ---- and this registry itself ------------------------------------------
   {
     guard: "src/data/guard-proofs.test.ts",
