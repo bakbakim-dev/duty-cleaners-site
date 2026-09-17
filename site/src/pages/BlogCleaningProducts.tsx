@@ -6,7 +6,7 @@ import { modifiedFor } from "@/data/post-dates";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { Calendar, Clock, ArrowLeft, CheckCircle2, XCircle, AlertTriangle, ShoppingCart, Check } from "lucide-react";
+import { Calendar, ArrowLeft, AlertTriangle, ShoppingCart, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
@@ -274,7 +274,7 @@ export default function BlogCleaningProducts() {
 
                           <div className="mt-4 grid gap-3 sm:grid-cols-2">
                             <div className="flex gap-3 p-4 bg-primary/10 rounded-lg border border-primary/20">
-                              <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                              <span className="dc-icon dc-icon-circle-check h-5 w-5 text-primary flex-shrink-0 mt-0.5" aria-hidden="true" />
                               <div>
                                 <h4 className="font-semibold text-foreground text-sm mb-1">
                                   What to look for
@@ -367,7 +367,7 @@ export default function BlogCleaningProducts() {
                       key={item.title}
                       className="flex gap-4 p-4 bg-destructive/10 rounded-lg border border-destructive/20"
                     >
-                      <XCircle className="h-6 w-6 text-destructive flex-shrink-0 mt-0.5" />
+                      <span className="dc-icon dc-icon-circle-x h-6 w-6 text-destructive flex-shrink-0 mt-0.5" aria-hidden="true" />
                       <div>
                         <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
                         <p className="text-muted-foreground text-sm">{item.why}</p>

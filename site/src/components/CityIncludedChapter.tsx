@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Bath, Bed, ChefHat, CheckCircle2, Sofa } from "lucide-react";
+import { Bath, Bed, ChefHat, Sofa } from "lucide-react";
 import useRevealOnScroll from "@/hooks/use-reveal-on-scroll";
 import ThresholdLine from "@/components/ThresholdLine";
 import Eyebrow from "@/components/Eyebrow";
@@ -125,7 +125,7 @@ export default function CityIncludedChapter({ city }: CityIncludedChapterProps) 
                   <ul className="col-span-2 grid gap-x-8 gap-y-2 pt-1 sm:grid-cols-2 md:col-span-1">
                     {room.items.map((item) => (
                       <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-accent" aria-hidden="true" />
+                        <span className="dc-icon dc-icon-circle-check mt-0.5 h-4 w-4 flex-shrink-0 text-accent" aria-hidden="true" />
                         <span>{item}</span>
                       </li>
                     ))}

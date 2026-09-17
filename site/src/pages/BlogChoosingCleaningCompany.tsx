@@ -9,7 +9,7 @@ import { modifiedFor } from "@/data/post-dates";
 import { canonicalUrlForPath } from "@/data/legacy-urls";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft, Calendar, CheckCircle2, Shield, Star, Settings, MessageSquare, DollarSign, Users, Check } from "lucide-react";
+import { ArrowLeft, Calendar, Shield, Star, Settings, MessageSquare, DollarSign, Users, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 
 import { COMPANY, RATING_CLAIM } from "@/data/proof";
@@ -222,7 +222,7 @@ export default function BlogChoosingCleaningCompany() {
                   <Card key={index} className="bg-muted/30">
                     <CardContent className="p-5">
                       <div className="flex items-start gap-3">
-                        <CheckCircle2 className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                        <span className="dc-icon dc-icon-circle-check h-5 w-5 text-primary mt-1 flex-shrink-0" aria-hidden="true" />
                         <div>
                           <h3 className="font-semibold text-foreground mb-1">{option.title}</h3>
                           <p className="text-sm text-muted-foreground">{option.description}</p>
@@ -249,7 +249,7 @@ export default function BlogChoosingCleaningCompany() {
                   <Card key={index} className="bg-muted/30">
                     <CardContent className="p-5">
                       <div className="flex items-start gap-3">
-                        <CheckCircle2 className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                        <span className="dc-icon dc-icon-circle-check h-5 w-5 text-primary mt-1 flex-shrink-0" aria-hidden="true" />
                         <div>
                           <h3 className="font-semibold text-foreground mb-1">{point.title}</h3>
                           <p className="text-sm text-muted-foreground">{point.description}</p>

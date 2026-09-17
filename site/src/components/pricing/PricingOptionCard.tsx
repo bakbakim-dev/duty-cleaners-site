@@ -1,9 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { quoteHrefFor } from "@/lib/quote-link";
 import { Button } from "@/components/ui/button";
-import { CheckCircle2 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-
 
 interface PricingOptionCardProps {
   icon: LucideIcon;
@@ -52,7 +50,7 @@ const PricingOptionCard = ({
         <ul className="space-y-3 mb-8">
           {features.map((item) => (
             <li key={item} className="flex items-start gap-2.5">
-              <CheckCircle2 className="w-5 h-5 text-brand-gold mt-0.5 flex-shrink-0" />
+              <span className="dc-icon dc-icon-circle-check w-5 h-5 text-brand-gold mt-0.5 flex-shrink-0" aria-hidden="true" />
               <span className="text-sm text-white/90">{item}</span>
             </li>
           ))}

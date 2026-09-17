@@ -7,7 +7,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { absoluteAssetUrl, ARTICLE_AUTHOR, ARTICLE_PUBLISHER } from "@/lib/seo";
 import { modifiedFor } from "@/data/post-dates";
 import { canonicalUrlForPath, canonicalForPath } from "@/data/legacy-urls";
-import { Calendar, Clock, ArrowLeft, CheckCircle2 } from "lucide-react";
+import { Calendar, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
@@ -238,7 +238,7 @@ export default function BlogCleaningSchedule() {
                 <div className="space-y-4">
                   {dailyTasks.map((task, index) => (
                     <div key={index} className="flex gap-4 p-4 bg-muted/30 rounded-lg">
-                      <CheckCircle2 className="h-6 w-6 text-primary flex-shrink-0 mt-0.5" />
+                      <span className="dc-icon dc-icon-circle-check h-6 w-6 text-primary flex-shrink-0 mt-0.5" aria-hidden="true" />
                       <div>
                         <h3 className="font-semibold text-foreground mb-1">{task.title}</h3>
                         <p className="text-muted-foreground text-sm">{task.description}</p>
@@ -277,7 +277,7 @@ export default function BlogCleaningSchedule() {
                 <div className="space-y-4">
                   {weeklyTasks.map((task, index) => (
                     <div key={index} className="flex gap-4 p-4 bg-secondary/30 rounded-lg">
-                      <CheckCircle2 className="h-6 w-6 text-secondary-foreground flex-shrink-0 mt-0.5" />
+                      <span className="dc-icon dc-icon-circle-check h-6 w-6 text-secondary-foreground flex-shrink-0 mt-0.5" aria-hidden="true" />
                       <div>
                         <h3 className="font-semibold text-foreground mb-1">{task.title}</h3>
                         <p className="text-muted-foreground text-sm">{task.description}</p>
@@ -314,7 +314,7 @@ export default function BlogCleaningSchedule() {
                 <div className="space-y-4">
                   {monthlyTasks.map((task, index) => (
                     <div key={index} className="flex gap-4 p-4 bg-accent/30 rounded-lg">
-                      <CheckCircle2 className="h-6 w-6 text-accent-foreground flex-shrink-0 mt-0.5" />
+                      <span className="dc-icon dc-icon-circle-check h-6 w-6 text-accent-foreground flex-shrink-0 mt-0.5" aria-hidden="true" />
                       <div>
                         <h3 className="font-semibold text-foreground mb-1">{task.title}</h3>
                         <p className="text-muted-foreground text-sm">{task.description}</p>

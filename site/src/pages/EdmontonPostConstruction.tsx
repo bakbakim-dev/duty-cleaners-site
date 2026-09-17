@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Shield, Droplets, Wind, SprayCan, Ban, Star, CheckCircle2, Heart, Home, DollarSign, Calendar, Wrench, MapPin, Phone, Clock, Sparkles } from "lucide-react";
+import { Shield, Droplets, Wind, SprayCan, Ban, Star, Heart, Home, DollarSign, Calendar, Wrench, MapPin, Phone, Clock, Sparkles } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
@@ -229,9 +229,9 @@ export default function EdmontonPostConstruction() {
                 </Button>
               </div>
               <div className="flex flex-wrap justify-center lg:justify-start gap-6 text-white/80">
-                <div className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-accent" /><span>Priced by square footage</span></div>
-                <div className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-accent" /><span>Pay after the clean</span></div>
-                <div className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-accent" /><span>{POLICY.guaranteeWindowHours}-hour re-clean</span></div>
+                <div className="flex items-center gap-2"><span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent" aria-hidden="true" /><span>Priced by square footage</span></div>
+                <div className="flex items-center gap-2"><span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent" aria-hidden="true" /><span>Pay after the clean</span></div>
+                <div className="flex items-center gap-2"><span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent" aria-hidden="true" /><span>{POLICY.guaranteeWindowHours}-hour re-clean</span></div>
               </div>
             </div>
             <div className="flex-shrink-0 w-full lg:w-[500px]">

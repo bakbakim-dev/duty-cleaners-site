@@ -5,7 +5,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
-import { Building2, CheckCircle2, Shield, Award, Star, Briefcase, Dumbbell, UtensilsCrossed, Stethoscope, ShoppingBag, Warehouse, ThumbsUp, ClipboardCheck, CalendarCheck, LucideIcon } from "lucide-react";
+import { Building2, Shield, Award, Star, Briefcase, Dumbbell, UtensilsCrossed, Stethoscope, ShoppingBag, Warehouse, ThumbsUp, ClipboardCheck, CalendarCheck, LucideIcon } from "lucide-react";
 import { POLICY } from "@/data/policy";
 import { CITY_PROOF } from "@/data/proof";
 import { Link } from "react-router-dom";
@@ -172,15 +172,15 @@ export default function CommercialCleaning() {
 
               <div className="flex flex-wrap justify-center gap-6 pt-4 text-white/80 text-sm">
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-accent" />
+                  <span className="dc-icon dc-icon-circle-check w-4 h-4 text-accent" aria-hidden="true" />
                   <span>Walkthrough before the quote</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-accent" />
+                  <span className="dc-icon dc-icon-circle-check w-4 h-4 text-accent" aria-hidden="true" />
                   <span>Priced per square foot</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-accent" />
+                  <span className="dc-icon dc-icon-circle-check w-4 h-4 text-accent" aria-hidden="true" />
                   <span>Scope confirmed in writing</span>
                 </div>
               </div>

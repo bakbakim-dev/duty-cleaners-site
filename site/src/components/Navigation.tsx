@@ -7,7 +7,7 @@ import { canonicalForPath } from "@/data/legacy-urls";
 import { explicitBranchFromPath } from "@/lib/city-from-path";
 import { rememberBranch, useBranchPreference } from "@/lib/branch-preference";
 import { useQuoteOverlay } from "@/hooks/use-quote-overlay";
-import { Menu, X, ChevronDown, KeyRound, Calculator, Globe2, ClipboardList, Truck, HardHat, MessageSquare, Gift, HelpCircle, ShieldCheck, Star, LucideIcon, MapPin, Phone, Sparkles, Users } from "lucide-react";
+import { Menu, Calculator, Gift, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import AnnouncementBar from "@/components/AnnouncementBar";
 
@@ -21,9 +21,15 @@ interface NavigationProps {
   branch?: Branch;
 }
 
+/** Glyphs the nav uses, each traced as a CSS mask in index.css (.dc-icon-<name>). */
+type NavIcon =
+  | "map-pin" | "earth" | "sparkles" | "clipboard-list" | "truck" | "hard-hat"
+  | "key-round" | "shield-check" | "users" | "circle-help" | "gift" | "message-square";
+
 interface DropdownItem {
   to: string;
-  icon: LucideIcon;
+  /** Rendered as <span class="dc-icon dc-icon-{icon}">: one node, no inline SVG. */
+  icon: NavIcon;
   title: string;
   description: string;
   onClick?: () => void;
@@ -108,7 +114,7 @@ function DropdownPanel({
             className="group/item flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-secondary transition-colors"
           >
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-secondary text-primary transition-colors group-hover/item:bg-accent group-hover/item:text-accent-foreground">
-              <item.icon className="h-5 w-5" aria-hidden="true" />
+              <span className={`dc-icon dc-icon-${item.icon} h-5 w-5`} aria-hidden="true" />
             </span>
             <span className="min-w-0">
               <span className="block font-semibold text-foreground leading-tight group-hover/item:text-accent transition-colors">
@@ -272,25 +278,25 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
   const isActive = (path: string) => location.pathname === path;
 
   const locationsItems: DropdownItem[] = [
-    { to: "/", icon: MapPin, title: "Edmonton", description: "Edmonton neighbourhoods and nearby communities" },
-    { to: canonicalForPath("/calgary"), icon: MapPin, title: "Calgary", description: "Calgary neighbourhoods and nearby communities" },
-    { to: RED_DEER_PATH, icon: MapPin, title: "Red Deer", description: "The Red Deer office" },
-    { to: "/locations/", icon: Globe2, title: "All Locations", description: "See everywhere we clean" },
+    { to: "/", icon: "map-pin", title: "Edmonton", description: "Edmonton neighbourhoods and nearby communities" },
+    { to: canonicalForPath("/calgary"), icon: "map-pin", title: "Calgary", description: "Calgary neighbourhoods and nearby communities" },
+    { to: RED_DEER_PATH, icon: "map-pin", title: "Red Deer", description: "The Red Deer office" },
+    { to: "/locations/", icon: "earth", title: "All Locations", description: "See everywhere we clean" },
   ];
 
   const servicesItems: DropdownItem[] = [
-    { to: canonicalForPath(`${cityPath}/services`), icon: Sparkles, title: "All Services", description: "Standard, deep & specialty cleaning" },
-    { to: "/whats-included/", icon: ClipboardList, title: "What's Included", description: "Room-by-room cleaning checklists" },
-    { to: canonicalForPath(`${cityPath}/move-in-move-out-cleaning`), icon: Truck, title: "Move In/Out Cleaning", description: "Flat-priced cleans for moving in or out" },
-    { to: canonicalForPath(`${cityPath}/post-construction-cleaning`), icon: HardHat, title: "Post-Construction", description: "Construction dust after a build or renovation" },
-    { to: canonicalForPath(`${cityPath}/wall-washing`), icon: Sparkles, title: "Wall Washing", description: "Spot cleaning or a full wash, booked with a clean" },
-    { to: canonicalForPath(`${cityPath}/airbnb-cleaning`), icon: KeyRound, title: "Airbnb Turnovers", description: "Changeovers between guests, priced hourly" },
+    { to: canonicalForPath(`${cityPath}/services`), icon: "sparkles", title: "All Services", description: "Standard, deep & specialty cleaning" },
+    { to: "/whats-included/", icon: "clipboard-list", title: "What's Included", description: "Room-by-room cleaning checklists" },
+    { to: canonicalForPath(`${cityPath}/move-in-move-out-cleaning`), icon: "truck", title: "Move In/Out Cleaning", description: "Flat-priced cleans for moving in or out" },
+    { to: canonicalForPath(`${cityPath}/post-construction-cleaning`), icon: "hard-hat", title: "Post-Construction", description: "Construction dust after a build or renovation" },
+    { to: canonicalForPath(`${cityPath}/wall-washing`), icon: "sparkles", title: "Wall Washing", description: "Spot cleaning or a full wash, booked with a clean" },
+    { to: canonicalForPath(`${cityPath}/airbnb-cleaning`), icon: "key-round", title: "Airbnb Turnovers", description: "Changeovers between guests, priced hourly" },
     // March-out is Edmonton-only military housing work, quoted by phone.
     ...(linkCity === "calgary" || shownBranch === "reddeer"
       ? []
       : [{
           to: "/edmonton/march-out-cleaning/",
-          icon: ShieldCheck,
+          icon: "shield-check",
           title: "March Out Cleaning",
           description: "Military housing move-outs, by phone",
         } as DropdownItem]),
@@ -299,11 +305,11 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
   // Company paths sit behind one dropdown. Reviews is promoted to a top-level
   // link because it is the highest-trust page in the funnel.
   const contactItems: DropdownItem[] = [
-    { to: "/about-us/", icon: Users, title: "About Us", description: "Who we are and how cleaners are checked" },
-    { to: canonicalForPath("/faq"), icon: HelpCircle, title: "FAQ", description: "Answers to common questions" },
-    { to: "/gift-card/", icon: Gift, title: "Gift Cards", description: "Give a house clean as a gift" },
-    { to: "/join-the-team/", icon: Users, title: "Careers", description: "Join our cleaning team" },
-    { to: canonicalForPath("/contact"), icon: MessageSquare, title: "Contact Us", description: "Phone, email and office addresses" },
+    { to: "/about-us/", icon: "users", title: "About Us", description: "Who we are and how cleaners are checked" },
+    { to: canonicalForPath("/faq"), icon: "circle-help", title: "FAQ", description: "Answers to common questions" },
+    { to: "/gift-card/", icon: "gift", title: "Gift Cards", description: "Give a house clean as a gift" },
+    { to: "/join-the-team/", icon: "users", title: "Careers", description: "Join our cleaning team" },
+    { to: canonicalForPath("/contact"), icon: "message-square", title: "Contact Us", description: "Phone, email and office addresses" },
   ];
 
   const dropdownButton = (label: string, id: string) => (
@@ -324,8 +330,9 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
       }`}
     >
       {label}
-      <ChevronDown
-        className={`w-4 h-4 transition-transform duration-200 ${openDropdown === id ? "rotate-180" : ""}`}
+      <span
+        className={`dc-icon dc-icon-chevron-down w-4 h-4 transition-transform duration-200 ${openDropdown === id ? "rotate-180" : ""}`}
+        aria-hidden="true"
       />
     </button>
   );
@@ -444,7 +451,7 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
             className="md:hidden text-foreground p-2 -mr-2 rounded-lg hover:bg-secondary transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            {mobileMenuOpen ? <X size={28} aria-hidden="true" /> : <Menu size={28} aria-hidden="true" />}
+            <span className={`dc-icon w-7 h-7 ${mobileMenuOpen ? "dc-icon-x" : "dc-icon-menu"}`} aria-hidden="true" />
           </button>
         </div>
 
@@ -472,7 +479,7 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
                 onClick={() => setMobileLocationsOpen(!mobileLocationsOpen)}
               >
                 Locations
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileLocationsOpen ? "rotate-180" : ""}`} />
+                <span className={`dc-icon dc-icon-chevron-down w-4 h-4 transition-transform duration-200 ${mobileLocationsOpen ? "rotate-180" : ""}`} aria-hidden="true" />
               </button>
               {mobileLocationsOpen && (
                 <div className="pl-4 mt-1 space-y-1 animate-in fade-in-0 slide-in-from-top-1 duration-200">
@@ -483,7 +490,7 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
                       className="flex items-center gap-3 py-2.5 px-2 rounded-lg text-foreground hover:bg-secondary transition-colors"
                       onClick={() => setMobileMenuOpen(false)}
                     >
-                      <item.icon className="w-4 h-4 text-accent" aria-hidden="true" />
+                      <span className={`dc-icon dc-icon-${item.icon} w-4 h-4 text-accent`} aria-hidden="true" />
                       {item.title}
                     </Link>
                   ))}
@@ -504,7 +511,7 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
                 onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
               >
                 Services
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileServicesOpen ? "rotate-180" : ""}`} />
+                <span className={`dc-icon dc-icon-chevron-down w-4 h-4 transition-transform duration-200 ${mobileServicesOpen ? "rotate-180" : ""}`} aria-hidden="true" />
               </button>
               {mobileServicesOpen && (
                 <div className="pl-4 mt-1 space-y-1 animate-in fade-in-0 slide-in-from-top-1 duration-200">
@@ -515,7 +522,7 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
                       className="flex items-center gap-3 py-2.5 px-2 rounded-lg text-foreground hover:bg-secondary transition-colors"
                       onClick={() => setMobileMenuOpen(false)}
                     >
-                      <item.icon className="w-4 h-4 text-accent" aria-hidden="true" />
+                      <span className={`dc-icon dc-icon-${item.icon} w-4 h-4 text-accent`} aria-hidden="true" />
                       {item.title}
                     </Link>
                   ))}
@@ -540,7 +547,7 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
                 onClick={() => setMobileContactOpen(!mobileContactOpen)}
               >
                 Company
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileContactOpen ? "rotate-180" : ""}`} />
+                <span className={`dc-icon dc-icon-chevron-down w-4 h-4 transition-transform duration-200 ${mobileContactOpen ? "rotate-180" : ""}`} aria-hidden="true" />
               </button>
               {mobileContactOpen && (
                 <div className="pl-4 mt-1 space-y-1 animate-in fade-in-0 slide-in-from-top-1 duration-200">
@@ -551,7 +558,7 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
                       className="flex items-center gap-3 py-2.5 px-2 rounded-lg text-foreground hover:bg-secondary transition-colors"
                       onClick={() => setMobileMenuOpen(false)}
                     >
-                      <item.icon className="w-4 h-4 text-accent" aria-hidden="true" />
+                      <span className={`dc-icon dc-icon-${item.icon} w-4 h-4 text-accent`} aria-hidden="true" />
                       {item.title}
                     </Link>
                   ))}

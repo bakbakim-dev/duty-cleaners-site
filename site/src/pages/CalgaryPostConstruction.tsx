@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Shield, Droplets, Wind, SprayCan, Ban, Star, CheckCircle2, Heart, Home, DollarSign, Calendar, Wrench, MapPin, Phone, Clock, Sparkles } from "lucide-react";
+import { Shield, Droplets, Wind, SprayCan, Ban, Star, Heart, Home, DollarSign, Calendar, Wrench, MapPin, Phone, Clock, Sparkles } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
@@ -216,9 +216,9 @@ export default function CalgaryPostConstruction() {
                 </Button>
               </div>
               <div className="flex flex-wrap justify-center lg:justify-start gap-6 text-white/80">
-                <div className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-accent" /><span>Square-footage bands, before GST</span></div>
-                <div className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-accent" /><span>Charged after the clean</span></div>
-                <div className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-accent" /><span>Missed spots re-cleaned free if reported within {POLICY.guaranteeWindowHours} hours</span></div>
+                <div className="flex items-center gap-2"><span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent" aria-hidden="true" /><span>Square-footage bands, before GST</span></div>
+                <div className="flex items-center gap-2"><span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent" aria-hidden="true" /><span>Charged after the clean</span></div>
+                <div className="flex items-center gap-2"><span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent" aria-hidden="true" /><span>Missed spots re-cleaned free if reported within {POLICY.guaranteeWindowHours} hours</span></div>
               </div>
             </div>
             <div className="flex-shrink-0 w-full lg:w-[500px]">

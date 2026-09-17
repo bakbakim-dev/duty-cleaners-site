@@ -1,4 +1,3 @@
-import { CheckCircle2 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 interface GiftCardDesign {
@@ -41,7 +40,7 @@ const GiftCardDesignCard = ({ design, isSelected, onSelect }: GiftCardDesignCard
 
         {isSelected && (
           <div className="absolute -top-3 -right-3 w-8 h-8 bg-accent rounded-full flex items-center justify-center shadow-lg">
-            <CheckCircle2 className="w-5 h-5 text-accent-foreground" />
+            <span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent-foreground" aria-hidden="true" />
           </div>
         )}
       </div>

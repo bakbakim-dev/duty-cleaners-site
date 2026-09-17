@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Stars from "@/components/Stars";
-import { CheckCircle2, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface Review {
@@ -51,7 +51,7 @@ const ReviewCard = ({ review }: { review: Review }) => (
       "{review.text}"
     </p>
     <div className="flex items-center gap-1 text-xs text-muted-foreground">
-      <CheckCircle2 className="w-3.5 h-3.5 text-green-500" />
+      <span className="dc-icon dc-icon-circle-check w-3.5 h-3.5 text-green-500" aria-hidden="true" />
       <span>Posted on Google</span>
     </div>
   </div>

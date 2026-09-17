@@ -6,7 +6,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { HelpCircle, Home, Truck, Building2, HardHat, DollarSign, Award, MessageSquare, Shield, Heart, Sparkles } from "lucide-react";
+import { Home, Truck, Building2, HardHat, DollarSign, Award, MessageSquare, Shield, Heart, Sparkles } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import heroFaqLivingRoom from "@/assets/hero-faq-living-room.webp";
 import { CITY_PROOF, RATING_CLAIM, hoursLineFor } from "@/data/proof";
@@ -401,7 +401,7 @@ export default function FAQ() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6 border border-white/10">
-              <HelpCircle className="w-4 h-4 text-accent" />
+              <span className="dc-icon dc-icon-circle-help w-4 h-4 text-accent" aria-hidden="true" />
               <span className="text-white/90 text-sm font-medium">Your Questions, Answered</span>
             </div>
 

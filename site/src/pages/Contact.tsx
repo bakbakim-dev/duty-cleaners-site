@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { Calculator, MapPin, Phone, Clock, Sparkles, Users, Star, Mail, CheckCircle2, MessageSquare, Heart, Shield, Building2, LucideIcon, Send } from "lucide-react";
+import { Calculator, Phone, Users, Star, Mail, CheckCircle2, MessageSquare, Heart, Shield, Building2, LucideIcon, Send } from "lucide-react";
 import { quoteHrefFor } from "@/lib/quote-link";
 import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
@@ -836,7 +836,7 @@ export default function Contact() {
                 <div className="bg-gradient-to-br from-accent/10 to-primary/10 rounded-2xl p-8 border-2 border-accent/20">
                   <div className="flex items-center gap-4 mb-4">
                     <div className="w-14 h-14 bg-accent/20 rounded-full flex items-center justify-center">
-                      <CheckCircle2 className="w-7 h-7 text-accent" />
+                      <span className="dc-icon dc-icon-circle-check w-7 h-7 text-accent" aria-hidden="true" />
                     </div>
                     <div>
                       <h3 className="text-xl font-bold">The Re-Clean Guarantee</h3>

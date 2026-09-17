@@ -18,7 +18,7 @@ import {
   calgaryNeighborhoods as calHoods,
   calgarySurrounding as calSurrounding,
 } from "@/data/city-locations";
-import { Star, CheckCircle2, Award, SprayCan, Calculator, Building2, WashingMachine } from "lucide-react";
+import { Star, Award, SprayCan, Calculator, Building2, WashingMachine } from "lucide-react";
 
 /** Charged per visit outside either city's limits; read from bk-config. */
 const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
@@ -565,7 +565,7 @@ export default function Locations() {
             {/* Trust Badges */}
             <div className="flex flex-wrap justify-center gap-4">
               <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-5 py-3 rounded-full border border-white/20">
-                <CheckCircle2 className="w-5 h-5 text-accent" />
+                <span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent" aria-hidden="true" />
                 <span className="font-medium text-white">Pay After Your Clean</span>
               </div>
               <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-5 py-3 rounded-full border border-white/20">

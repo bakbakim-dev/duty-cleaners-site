@@ -4,7 +4,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
-import { CheckCircle2, DollarSign, Calendar, Briefcase, Car, Shield, FileCheck, Heart, Star, HelpCircle, Mail, MapPin, Phone, Clock, Users } from "lucide-react";
+import { CheckCircle2, DollarSign, Calendar, Briefcase, Car, Shield, FileCheck, Heart, Star, Mail, MapPin, Phone, Clock, Users } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -462,7 +462,7 @@ export default function JoinTheTeam() {
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-4">
-                <CheckCircle2 className="w-4 h-4 text-accent" />
+                <span className="dc-icon dc-icon-circle-check w-4 h-4 text-accent" aria-hidden="true" />
                 <span className="text-white/90 text-sm font-medium">Job Requirements</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">What You Need</h2>
@@ -524,8 +524,8 @@ export default function JoinTheTeam() {
                   text: "The office reads every application and calls the applicants whose experience fits.",
                   preview: (
                     <div className="space-y-2">
-                      <div className="flex items-center gap-2"><CheckCircle2 className="h-3.5 w-3.5 text-success" /><div className="h-2.5 w-2/3 rounded-full bg-border" /></div>
-                      <div className="flex items-center gap-2"><CheckCircle2 className="h-3.5 w-3.5 text-success" /><div className="h-2.5 w-1/2 rounded-full bg-border" /></div>
+                      <div className="flex items-center gap-2"><span className="dc-icon dc-icon-circle-check h-3.5 w-3.5 text-success" aria-hidden="true" /><div className="h-2.5 w-2/3 rounded-full bg-border" /></div>
+                      <div className="flex items-center gap-2"><span className="dc-icon dc-icon-circle-check h-3.5 w-3.5 text-success" aria-hidden="true" /><div className="h-2.5 w-1/2 rounded-full bg-border" /></div>
                       <div className="flex items-center gap-2"><span className="dc-icon dc-icon-clock h-3.5 w-3.5 text-accent" aria-hidden="true" /><div className="h-2.5 w-3/5 rounded-full bg-border" /></div>
                     </div>
                   ),
@@ -589,7 +589,7 @@ export default function JoinTheTeam() {
             <div className="max-w-3xl mx-auto">
               <div className="text-center mb-12">
                 <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-4">
-                  <HelpCircle className="w-4 h-4 text-primary" />
+                  <span className="dc-icon dc-icon-circle-help w-4 h-4 text-primary" aria-hidden="true" />
                   <span className="text-primary text-sm font-medium">FAQ</span>
                 </div>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Questions About Cleaning Jobs</h2>

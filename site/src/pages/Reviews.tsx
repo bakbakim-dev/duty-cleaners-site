@@ -9,7 +9,7 @@ import heroReviews from "@/assets/hero-reviews-testimonials.webp";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { Star, Quote, Heart, Calculator, CheckCircle2, MessageSquare, ThumbsUp, Award } from "lucide-react";
+import { Star, Quote, Heart, Calculator, MessageSquare, ThumbsUp, Award } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { GOOGLE_LISTINGS, openGoogleListing } from "@/lib/google-listings";
 import { Helmet } from "react-helmet-async";
@@ -55,7 +55,7 @@ const ReviewCard = ({ review, index }: {review: CityReview;index: number;}) => {
             {/* Was a green "Verified" tick on every card. Google does not verify
                 reviews and neither did we; the source is the honest claim. */}
             <div className="flex items-center gap-1 text-xs text-muted-foreground">
-              <CheckCircle2 className="w-3.5 h-3.5" />
+              <span className="dc-icon dc-icon-circle-check w-3.5 h-3.5" aria-hidden="true" />
               <span>Google review</span>
             </div>
           </div>

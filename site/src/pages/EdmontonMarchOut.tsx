@@ -12,7 +12,7 @@ import { ARRIVAL_WINDOWS, POLICY } from "@/data/policy";
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { ShieldCheck, CheckCircle, ClipboardCheck, UtensilsCrossed, Bath, Footprints, DoorOpen, Search, Sparkles } from "lucide-react";
+import { ShieldCheck, ClipboardCheck, UtensilsCrossed, Bath, Footprints, DoorOpen, Search, Sparkles } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -439,7 +439,7 @@ export default function EdmontonMarchOut() {
                   key={point}
                   className="flex items-start gap-3 rounded-xl border border-white/10 bg-white/5 p-5"
                 >
-                  <CheckCircle className="w-5 h-5 text-accent shrink-0 mt-0.5" aria-hidden="true" />
+                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent shrink-0 mt-0.5" aria-hidden="true" />
                   <span className="text-white/90 text-sm leading-relaxed">{point}</span>
                 </div>
               ))}

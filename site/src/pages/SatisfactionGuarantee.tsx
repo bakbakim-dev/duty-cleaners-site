@@ -6,7 +6,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import TrustPageCta from "@/components/TrustPageCta";
-import { Shield, CheckCircle2, Mail } from "lucide-react";
+import { Shield, Mail } from "lucide-react";
 
 const TITLE = `${POLICY.guaranteeWindowHours}-Hour Re-Clean Guarantee | Duty Cleaners`;
 const DESCRIPTION = `If something was missed in your Duty Cleaners clean, tell us within ${POLICY.guaranteeWindowHours} hours and we come back and re-clean it at no charge.`;
@@ -67,11 +67,11 @@ export default function SatisfactionGuarantee() {
                 </p>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="dc-icon dc-icon-circle-check w-5 h-5 text-primary mt-1 flex-shrink-0" aria-hidden="true" />
                     <span>Return to your home and re-clean the areas of concern at <strong>no additional cost</strong></span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="dc-icon dc-icon-circle-check w-5 h-5 text-primary mt-1 flex-shrink-0" aria-hidden="true" />
                     <span>Address any specific issues you identify within your scheduled cleaning scope</span>
                   </li>
                 </ul>
@@ -96,15 +96,15 @@ export default function SatisfactionGuarantee() {
               <h2 className="text-2xl font-bold mb-4 text-foreground">What's Covered</h2>
               <ul className="space-y-2 mb-8">
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
+                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <span>All services included in your original cleaning package</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
+                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <span>Missed spots or areas within the service scope</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
+                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <span>Quality concerns with completed work</span>
                 </li>
               </ul>

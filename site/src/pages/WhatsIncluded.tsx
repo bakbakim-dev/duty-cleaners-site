@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { Home, Truck, Star, Calculator, SprayCan, Refrigerator, Fan, DoorOpen, Paintbrush, Bath, Utensils, BedDouble, Sofa, Droplets, LucideIcon, CheckCircle2, XCircle, Plus, Minus, Sparkles, Check } from "lucide-react";
+import { Home, Truck, Star, Calculator, SprayCan, Refrigerator, DoorOpen, Paintbrush, Bath, Utensils, BedDouble, Sofa, Droplets, LucideIcon, Plus, Minus, Sparkles, Check } from "lucide-react";
 
 // Cleaning service card component
 type MatrixLevel = "yes" | "addon" | "package" | "no";
@@ -226,7 +226,7 @@ const RoomItem = ({
     <ul className="space-y-2">
       {items.map((item, idx) => (
         <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
-          <CheckCircle2 className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+          <span className="dc-icon dc-icon-circle-check w-4 h-4 text-accent mt-0.5 flex-shrink-0" aria-hidden="true" />
           <span>{item}</span>
         </li>
       ))}
@@ -261,7 +261,7 @@ const ExtraBadge = ({
 // Exclusion item
 const ExclusionItem = ({ text }: { text: string }) => (
   <li className="flex items-start gap-3 py-2 break-inside-avoid">
-    <XCircle className="w-5 h-5 text-muted-foreground mt-0.5 flex-shrink-0" />
+    <span className="dc-icon dc-icon-circle-x w-5 h-5 text-muted-foreground mt-0.5 flex-shrink-0" aria-hidden="true" />
     <span className="text-sm text-muted-foreground">{text}</span>
   </li>
 );

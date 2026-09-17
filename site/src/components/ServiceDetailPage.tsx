@@ -16,7 +16,7 @@ import CityCrossLink from "@/components/CityCrossLink";
 import { useState, useEffect, type ReactNode } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { CheckCircle2, Star, Plus, Minus, CalendarCheck } from "lucide-react";
+import { Star, Plus, Minus, CalendarCheck } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -366,7 +366,7 @@ const ServiceDetailPage = ({
                       key={badge}
                       className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/25 text-sm font-semibold backdrop-blur-sm"
                     >
-                      <CheckCircle2 className="w-4 h-4 text-brand-gold" aria-hidden="true" />
+                      <span className="dc-icon dc-icon-circle-check w-4 h-4 text-brand-gold" aria-hidden="true" />
                       {badge}
                     </span>
                   ))}
@@ -516,7 +516,7 @@ const ServiceDetailPage = ({
             <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-3">
               {bullets.map((bullet) => (
                 <li key={bullet} className="flex items-start gap-2.5">
-                  <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-0.5" aria-hidden="true" />
+                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent shrink-0 mt-0.5" aria-hidden="true" />
                   <span className="font-medium">{bullet}</span>
                 </li>
               ))}
@@ -640,7 +640,7 @@ const ServiceDetailPage = ({
                         className="flex items-center justify-between gap-4 border-b border-border/60 pb-3 last:border-0 last:pb-0"
                       >
                         <span className="flex items-center gap-2 font-medium">
-                          <CheckCircle2 className="w-4 h-4 text-accent shrink-0" aria-hidden="true" />
+                          <span className="dc-icon dc-icon-circle-check w-4 h-4 text-accent shrink-0" aria-hidden="true" />
                           {extra.name}
                         </span>
                         {extra.price && (

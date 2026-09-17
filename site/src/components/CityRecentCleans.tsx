@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Stars from "@/components/Stars";
-import { CheckCircle2, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { Accent } from "@/components/Accent";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import Eyebrow from "@/components/Eyebrow";
@@ -112,7 +112,7 @@ function CleanCard({ review, index, city }: { review: RecentCleanReview; index: 
 
       <div className="mt-4 flex items-center justify-between gap-3 text-xs">
         <span className="inline-flex items-center gap-1.5 text-muted-foreground">
-          <CheckCircle2 className="w-3.5 h-3.5 text-green-500" aria-hidden="true" />
+          <span className="dc-icon dc-icon-circle-check w-3.5 h-3.5 text-green-500" aria-hidden="true" />
           Posted on Google
         </span>
         <ReviewSourceLink review={review} city={city} iconSize="w-3 h-3" />

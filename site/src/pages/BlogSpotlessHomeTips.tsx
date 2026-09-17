@@ -5,7 +5,7 @@ import { modifiedFor } from "@/data/post-dates";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { Calendar, Clock, ArrowLeft, CheckCircle2 } from "lucide-react";
+import { Calendar, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
@@ -223,7 +223,7 @@ export default function BlogSpotlessHomeTips() {
                 <div className="space-y-4">
                   {DAILY_HABITS.map((h) => (
                     <div key={h.title} className="flex gap-4 p-4 bg-primary/10 rounded-lg border border-primary/20">
-                      <CheckCircle2 className="h-6 w-6 text-primary flex-shrink-0 mt-0.5" />
+                      <span className="dc-icon dc-icon-circle-check h-6 w-6 text-primary flex-shrink-0 mt-0.5" aria-hidden="true" />
                       <div>
                         <h3 className="font-semibold text-foreground mb-1">{h.title}</h3>
                         <p className="text-muted-foreground text-sm">{h.body}</p>

@@ -8,7 +8,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
-import { Calculator, CheckCircle2, Star, Shield, Award, Truck, ThumbsUp, Leaf, DollarSign, Home, Bath, UtensilsCrossed, ChevronUp, Mail, Zap, LucideIcon, Calendar, Package, Eye, Clock } from "lucide-react";
+import { Calculator, Shield, Award, DollarSign, Home, Bath, UtensilsCrossed, ChevronUp, Mail, LucideIcon, Package, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import familyCleanHome from "@/assets/gallery/family-clean-home-edmonton.webp";
@@ -292,15 +292,15 @@ export default function EdmontonMoveInOut() {
 
                 <div className="flex flex-wrap justify-center lg:justify-start gap-6 text-white/90">
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-5 h-5" />
+                    <span className="dc-icon dc-icon-circle-check w-5 h-5" aria-hidden="true" />
                     <span className="font-medium">{POLICY.guaranteeWindowHours}-hour re-clean guarantee</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-5 h-5" />
+                    <span className="dc-icon dc-icon-circle-check w-5 h-5" aria-hidden="true" />
                     <span className="font-medium">Nothing charged until the clean is done</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-5 h-5" />
+                    <span className="dc-icon dc-icon-circle-check w-5 h-5" aria-hidden="true" />
                     <span className="font-medium">{RATING_CLAIM}{REVIEWS ? `, ${REVIEWS} reviews` : ""}</span>
                   </div>
                 </div>
@@ -489,9 +489,9 @@ export default function EdmontonMoveInOut() {
                     you can.
                   </p>
                   <ul className="space-y-2 text-muted-foreground">
-                    <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" /><span>Same flat rate by home size as a move-out, plus 5% GST</span></li>
-                    <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" /><span>Inside the oven, fridge, microwave, cabinets, drawers and closets included</span></li>
-                    <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" /><span>Leaving one home and taking the keys to another: book both, each priced by its own size</span></li>
+                    <li className="flex items-start gap-2"><span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent flex-shrink-0 mt-0.5" aria-hidden="true" /><span>Same flat rate by home size as a move-out, plus 5% GST</span></li>
+                    <li className="flex items-start gap-2"><span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent flex-shrink-0 mt-0.5" aria-hidden="true" /><span>Inside the oven, fridge, microwave, cabinets, drawers and closets included</span></li>
+                    <li className="flex items-start gap-2"><span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent flex-shrink-0 mt-0.5" aria-hidden="true" /><span>Leaving one home and taking the keys to another: book both, each priced by its own size</span></li>
                   </ul>
                 </div>
               </div>

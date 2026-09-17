@@ -32,7 +32,7 @@ import {
   startingPrice,
 } from "@/data/pricing";
 import { addOnTableRows } from "@/data/addon-table";
-import { CheckCircle2, Calculator, Shield, Star, BadgeCheck, Home, CalendarClock, HelpCircle, Award, Info, Receipt, Clock, Users, Check } from "lucide-react";
+import { CheckCircle2, Calculator, Shield, Star, BadgeCheck, Home, CalendarClock, Award, Info, Receipt, Clock, Users, Check } from "lucide-react";
 import { CITY_PROOF, COMPANY, RATING_CLAIM } from "@/data/proof";
 
 /* Derived from bk-config — never hand-typed, so the table can never
@@ -364,7 +364,7 @@ export default function CalgaryPricing() {
                   <div className="bg-card rounded-xl border border-border/50 shadow-sm overflow-hidden">
                     <div className="bg-brand-navy p-5 flex items-center gap-3">
                       <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
-                        <CheckCircle2 className="w-5 h-5 text-accent" />
+                        <span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent" aria-hidden="true" />
                       </div>
                       <h3 className="text-lg font-bold text-white">What's Included</h3>
                     </div>
@@ -372,7 +372,7 @@ export default function CalgaryPricing() {
                       <ul className="space-y-3">
                         {standardIncludes.map((item) => (
                           <li key={item} className="flex items-start gap-2.5">
-                            <CheckCircle2 className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                            <span className="dc-icon dc-icon-circle-check w-4 h-4 text-accent mt-0.5 flex-shrink-0" aria-hidden="true" />
                             <span className="text-sm text-muted-foreground leading-relaxed">{item}</span>
                           </li>
                         ))}
@@ -755,7 +755,7 @@ export default function CalgaryPricing() {
             <div className="bg-card rounded-xl shadow-sm border border-border/50 overflow-hidden">
               <div className="bg-brand-navy p-5 flex items-center gap-3">
                 <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
-                  <HelpCircle className="w-5 h-5 text-accent" />
+                  <span className="dc-icon dc-icon-circle-help w-5 h-5 text-accent" aria-hidden="true" />
                 </div>
                 <h3 className="text-lg font-bold text-white">Pricing Questions</h3>
               </div>

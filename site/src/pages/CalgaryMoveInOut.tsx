@@ -14,7 +14,7 @@ import calgaryWindowCleaning from "@/assets/gallery/calgary-window-cleaning.webp
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
-import { CheckCircle2, Home, Shield, Star, DollarSign, Award, Calculator } from "lucide-react";
+import { Home, Shield, Star, DollarSign, Award, Calculator } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import MoveOutDepth from "@/components/MoveOutDepth";
@@ -228,15 +228,15 @@ export default function CalgaryMoveInOut() {
 
               <div className="flex flex-wrap justify-center lg:justify-start gap-6 text-white/90">
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5" />
+                  <span className="dc-icon dc-icon-circle-check w-5 h-5" aria-hidden="true" />
                   <span className="font-medium">{POLICY.guaranteeWindowHours}-hour re-clean</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5" />
+                  <span className="dc-icon dc-icon-circle-check w-5 h-5" aria-hidden="true" />
                   <span className="font-medium">Nothing charged until the clean is done</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5" />
+                  <span className="dc-icon dc-icon-circle-check w-5 h-5" aria-hidden="true" />
                   <span className="font-medium">{RATING_CLAIM}</span>
                 </div>
               </div>
@@ -346,23 +346,23 @@ export default function CalgaryMoveInOut() {
               </div>
               <ul className="space-y-3 text-muted-foreground">
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-[hsl(160,100%,30%)] mt-0.5 flex-shrink-0" />
+                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-[hsl(160,100%,30%)] mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <span>Countertops, sink and backsplash scrubbed</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-[hsl(160,100%,30%)] mt-0.5 flex-shrink-0" />
+                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-[hsl(160,100%,30%)] mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <span>Inside and outside of cabinets, drawers and appliances</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-[hsl(160,100%,30%)] mt-0.5 flex-shrink-0" />
+                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-[hsl(160,100%,30%)] mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <span>Grease off the stovetop, range hood and exhaust fan</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-[hsl(160,100%,30%)] mt-0.5 flex-shrink-0" />
+                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-[hsl(160,100%,30%)] mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <span>Inside the oven, fridge and microwave</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-[hsl(160,100%,30%)] mt-0.5 flex-shrink-0" />
+                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-[hsl(160,100%,30%)] mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <span>Kitchen floor vacuumed and mopped last</span>
                 </li>
               </ul>
@@ -378,23 +378,23 @@ export default function CalgaryMoveInOut() {
               </div>
               <ul className="space-y-3 text-muted-foreground">
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <span>Toilets, tubs, showers and sinks scrubbed</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <span>Tile, floors, mirrors and shower glass</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <span>Soap scum, hard-water scale and mineral deposits</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <span>Vents and baseboards within reach</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <span>Handles, knobs, switches and the inside of the vanity</span>
                 </li>
               </ul>
@@ -410,23 +410,23 @@ export default function CalgaryMoveInOut() {
               </div>
               <ul className="space-y-3 text-muted-foreground">
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
+                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <span>Floors vacuumed and mopped, carpet and hard surface</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
+                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <span>Doors, baseboards, switches, outlets and vent covers wiped</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
+                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <span>Window sills dusted, and ceiling fans on request where safely reachable</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
+                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <span>Inside closets, shelves and storage</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
+                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <span>Cobwebs from corners, and the road sand out of the front entry</span>
                 </li>
               </ul>
@@ -442,23 +442,23 @@ export default function CalgaryMoveInOut() {
               </div>
               <ul className="space-y-3 text-muted-foreground">
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
+                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <span>Inside windows{addOnLabel("inside-windows")}</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
+                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <span>Blinds, per set{addOnLabel("wipe-window-blinds-per-set")}</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
+                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <span>Wall washing, spot or full{addOnLabel("spot-cleaning-inside-walls")}</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
+                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <span>Basement, unfinished sweep or finished clean{addOnLabel("unfinished-basement-sweep")}</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
+                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <span>Garage or balcony sweep{addOnLabel("sweep-only-of-garage-or-balcony")}</span>
                 </li>
               </ul>
@@ -525,9 +525,9 @@ export default function CalgaryMoveInOut() {
                 travel fee is added only for an address outside city limits.
               </p>
               <ul className="space-y-2 text-muted-foreground">
-                <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" /><span>Same flat rate by home size as a move-out clean</span></li>
-                <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" /><span>Cabinet, drawer and closet interiors wiped before you fill them</span></li>
-                <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" /><span>Move-out and move-in booked as two visits, each priced by its own home size</span></li>
+                <li className="flex items-start gap-2"><span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent flex-shrink-0 mt-0.5" aria-hidden="true" /><span>Same flat rate by home size as a move-out clean</span></li>
+                <li className="flex items-start gap-2"><span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent flex-shrink-0 mt-0.5" aria-hidden="true" /><span>Cabinet, drawer and closet interiors wiped before you fill them</span></li>
+                <li className="flex items-start gap-2"><span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent flex-shrink-0 mt-0.5" aria-hidden="true" /><span>Move-out and move-in booked as two visits, each priced by its own home size</span></li>
               </ul>
             </div>
           </div>
@@ -635,7 +635,7 @@ export default function CalgaryMoveInOut() {
 
             <div className="bg-gradient-to-br from-green-50 to-white border-2 border-green-200 rounded-xl p-8 transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.02] hover:shadow-xl hover:shadow-[hsl(200,30%,70%)]/30">
               <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-4">
-                <CheckCircle2 className="w-8 h-8 text-green-600" />
+                <span className="dc-icon dc-icon-circle-check w-8 h-8 text-green-600" aria-hidden="true" />
               </div>
               <h3 className="text-xl font-bold mb-3">The charges outside the flat rate</h3>
               <p className="text-muted-foreground leading-relaxed">

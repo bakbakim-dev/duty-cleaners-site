@@ -15,7 +15,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Home, Truck, HardHat, PaintRoller, BedDouble, Repeat, DollarSign, Star, MessageSquare, CheckCircle2, Shield, Heart, Phone, Sparkles } from "lucide-react";
+import { Home, Truck, HardHat, PaintRoller, BedDouble, Repeat, DollarSign, Star, MessageSquare, Shield, Heart, Phone, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import calgaryHero from "@/assets/hero-room-calgary.webp";
@@ -318,7 +318,7 @@ function ServiceCard({ service }: { service: Service }) {
       <ul className="space-y-3 mb-8">
         {service.features.map((feature, i) => (
           <li key={i} className="flex items-start gap-3">
-            <CheckCircle2 className="w-5 h-5 mt-0.5 flex-shrink-0 text-primary" />
+            <span className="dc-icon dc-icon-circle-check w-5 h-5 mt-0.5 flex-shrink-0 text-primary" aria-hidden="true" />
             <span className="text-sm text-foreground/80">{feature}</span>
           </li>
         ))}

@@ -3,7 +3,7 @@ import { travelFee } from "@/data/addon-table";
 import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
 import { CITY_PROOF, RATING_CLAIM, COMPANY } from "@/data/proof";
 import { canonicalForPath } from "@/data/legacy-urls";
-import { CheckCircle, Star, Shield, Calendar, Home, ClipboardCheck, KeyRound, Wand2, DoorOpen, Clock } from "lucide-react";
+import { Star, Shield, Calendar, Home, ClipboardCheck, KeyRound, Wand2, DoorOpen, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { buildServiceSchema } from "@/lib/service-schema";
 import Navigation from "@/components/Navigation";
@@ -349,21 +349,21 @@ const AirbnbCleaningEdmonton = () => {
           </div>
           <div className="flex flex-wrap justify-center gap-6 text-white/80 text-sm">
             <div className="flex items-center gap-2">
-              <CheckCircle className="w-4 h-4 text-accent" />
+              <span className="dc-icon dc-icon-circle-check w-4 h-4 text-accent" aria-hidden="true" />
               <span>Nothing charged when you book</span>
             </div>
             <div className="flex items-center gap-2">
-              <CheckCircle className="w-4 h-4 text-accent" />
+              <span className="dc-icon dc-icon-circle-check w-4 h-4 text-accent" aria-hidden="true" />
               <span>Book one turnover or a run of them</span>
             </div>
             <div className="flex items-center gap-2">
-              <CheckCircle className="w-4 h-4 text-accent" />
+              <span className="dc-icon dc-icon-circle-check w-4 h-4 text-accent" aria-hidden="true" />
               <span>{GUARANTEE_HOURS}-hour re-clean guarantee</span>
             </div>
             {/* Rate first, then the minimum. Run together as one clause, this
                 read as though {RATE} bought two hours of two cleaners. */}
             <div className="flex items-center gap-2">
-              <CheckCircle className="w-4 h-4 text-accent" />
+              <span className="dc-icon dc-icon-circle-check w-4 h-4 text-accent" aria-hidden="true" />
               <span>{RATE} per cleaner-hour; minimum 3 hours, or 2 with two cleaners</span>
             </div>
           </div>
