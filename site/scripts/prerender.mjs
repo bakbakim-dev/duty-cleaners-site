@@ -109,7 +109,7 @@ const CHROME_ARGS = [
   "--virtual-time-budget=10000", "--timeout=20000", "--dump-dom",
 ];
 
-let done = 0, failed = 0, retried = 0, strippedTiles = 0, demotedPreloads = 0;
+let done = 0, failed = 0, retried = 0, strippedTiles = 0;
 // Scroll-reveal wrappers unhidden in the snapshot, and any that survived.
 let revealPages = 0, revealWrappers = 0, revealLeft = 0;
 // Third-party embeds settled to their loaded state, and any that survived.
@@ -183,15 +183,12 @@ async function renderRoute(route) {
     // visitor would preload 42 KB of map code before reading a word. Strip
     // them: the lazy import fetches the same chunks when the map is reached.
     out = out.replace(/<link rel="modulepreload"[^>]*href="\/assets\/(?:leaflet|[A-Za-z]+MapImpl)-[^"]*"[^>]*>\s*/g, "");
-    // The remaining frozen modulepreloads (22 on the homepage) were fetched at
-    // High priority the instant the document arrived, sharing Slow-4G
-    // bandwidth with the render-blocking stylesheet and the hero image; the
-    // hero was downloaded by ~0.5 s and painted at ~2.2 s. They stay — they
-    // warm hydration — but at fetchpriority=low, behind the paint-critical
-    // bytes. PageSpeed mobile, 2026-09-17.
-    const beforeDemote = out.length;
-    out = out.replace(/<link rel="modulepreload"(?![^>]*\bfetchpriority=)/g, '<link rel="modulepreload" fetchpriority="low"');
-    if (out.length !== beforeDemote) demotedPreloads++;
+    // NOT demoted to fetchpriority=low (tried 2026-09-17, reverted the same
+    // day): first paint came 1.2 s earlier, but hydration then landed AFTER
+    // first paint instead of before it, so PageSpeed mobile counted the long
+    // tasks as blocking time (TBT 0 -> 1.5 s) and the page read as unfinished
+    // for longer (Speed Index 3.0 -> 9.3 s): score 89 -> 56. The hints stay
+    // at their default priority.
     // Leaflet's baked popup close button is href="#close" — an id no page has.
     // Leaflet re-renders the popup on hydration, so the frozen anchor is inert;
     // neutralise the fragment rather than ship a link that lands nowhere.
@@ -279,7 +276,6 @@ console.log(
   `prerender complete: ${done} ok, ${failed} failed` +
     (retried ? ` (${retried} needed a retry)` : "") +
     (strippedTiles ? `; stripped baked map tiles from ${strippedTiles} pages` : "") +
-    (demotedPreloads ? `; demoted the modulepreload hints to low on ${demotedPreloads} pages` : "") +
     `; unhid ${revealWrappers} scroll-reveal wrappers on ${revealPages} pages` +
     `; ${revealLeft} snapshots still hide content below the hero` +
     `; settled ${embedPages} third-party embed page(s) to their loaded state`,
