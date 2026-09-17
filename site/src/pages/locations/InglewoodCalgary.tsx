@@ -7,7 +7,7 @@ import {
 import { buildLocationSchema } from "@/lib/location-schema";
 import CoverageChips from "@/components/CoverageChips";
 import LocationPricing from "@/components/LocationPricing";
-import calgaryCleanHome from "@/assets/gallery/calgary-clean-home-northwest.webp";
+import calgaryCleanHome from "@/assets/hero-room-calgary-1280w.webp";
 import GoogleMapEmbed from "@/components/GoogleMapEmbed";
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -196,9 +196,9 @@ export default function InglewoodCalgary() {
               <div className="flex-shrink-0 w-full lg:w-[500px]">
                 <img
                   src={calgaryCleanHome}
-                  alt="Bright living room with a cream sectional sofa, a glass coffee table and tall windows"
-                  width={1024}
-                  height={768}
+                  alt="A sunlit white living room with tall windows behind a white sofa, a glass coffee table with white flowers and a hardwood floor"
+                  width={1280}
+                  height={720}
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   loading="eager"
                   {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />

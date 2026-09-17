@@ -8,7 +8,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { buildLocationSchema } from "@/lib/location-schema";
 import CoverageChips from "@/components/CoverageChips";
 import LocationPricing from "@/components/LocationPricing";
-import calgaryCleanHome from "@/assets/gallery/calgary-clean-home-northwest.webp";
+import calgaryCleanHome from "@/assets/hero-room-calgary-1280w.webp";
 import GoogleMapEmbed from "@/components/GoogleMapEmbed";
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -216,9 +216,9 @@ export default function ArbourLake() {
               <div className="flex-shrink-0 w-full lg:w-[500px]">
                 <img
                   src={calgaryCleanHome}
-                  alt="A bright living room with a cream sectional sofa and a glass coffee table"
-                  width={1024}
-                  height={768}
+                  alt="A white living room with a white sofa and armchair, a glass coffee table holding white flowers and a hardwood floor in morning sun"
+                  width={1280}
+                  height={720}
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   loading="eager"
                   {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
