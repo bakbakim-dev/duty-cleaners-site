@@ -242,13 +242,21 @@ export default function GiftCard() {
                 payment on the secure form below.
               </p>
 
-              <div className="rounded-2xl border border-border/60 bg-card" aria-busy={!loaded}>
+              {/* data-embed-* marks the parts of this third-party embed that change
+                  when its iframe loads. scripts/prerender.mjs settles them to the
+                  loaded state in the snapshot: the load event comes from
+                  BookingKoala's server, so the frozen HTML used to be a race —
+                  loaded on one build, "Loading…" with the form hidden on the next.
+                  The prerender matches these markers, not the wording, so reword
+                  the placeholder freely; do not remove the markers. */}
+              <div className="rounded-2xl border border-border/60 bg-card" aria-busy={!loaded} data-embed-shell>
                 {!loaded && (
-                  <p className="flex min-h-[400px] items-center justify-center px-6 text-center text-lg font-semibold text-foreground">
+                  <p className="flex min-h-[400px] items-center justify-center px-6 text-center text-lg font-semibold text-foreground" data-embed-placeholder>
                     Loading the gift card form…
                   </p>
                 )}
                 <iframe
+                  data-embed-frame
                   src={GIFT_CARD_EMBED_URL}
                   title="Buy a Duty Cleaners gift card — secure BookingKoala form"
                   width="100%"

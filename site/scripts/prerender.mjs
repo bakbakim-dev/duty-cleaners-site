@@ -14,6 +14,7 @@ import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { join, dirname, extname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { settleEmbeds } from "./settle-embeds.mjs";
 
 const execFileP = promisify(execFile);
 const DIST = resolve(dirname(fileURLToPath(import.meta.url)), "..", "dist");
@@ -111,6 +112,8 @@ const CHROME_ARGS = [
 let done = 0, failed = 0, retried = 0, strippedTiles = 0;
 // Scroll-reveal wrappers unhidden in the snapshot, and any that survived.
 let revealPages = 0, revealWrappers = 0, revealLeft = 0;
+// Third-party embeds settled to their loaded state, and any that survived.
+let embedPages = 0, embedsLeft = 0;
 
 // The hidden half of the scroll-reveal wrapper, and the visible half the same
 // component renders once its observer fires. Both class pairs are Tailwind
@@ -210,6 +213,17 @@ async function renderRoute(route) {
       revealWrappers += hiddenWrappers;
     }
 
+    // Third-party embeds (the BookingKoala gift-card form) are frozen mid-load or
+    // loaded depending on whether another company's server answered before
+    // --dump-dom — a network race that made /gift-card's fingerprint flip between
+    // builds of identical code, and shipped a hidden purchase form to readers
+    // whose bundle never boots. Settle them to the loaded state. The reasoning,
+    // and why this lives in its own tested module, is in settle-embeds.mjs.
+    const embeds = settleEmbeds(out);
+    out = embeds.html;
+    if (embeds.settled) embedPages++;
+    if (embeds.frozen) embedsLeft++;
+
     const outDir = route === "/" ? DIST : join(DIST, route.replace(/^\//, ""));
     mkdirSync(outDir, { recursive: true });
     // Chrome's --dump-dom output already starts with <!DOCTYPE html>. Prepending
@@ -257,8 +271,15 @@ console.log(
     (retried ? ` (${retried} needed a retry)` : "") +
     (strippedTiles ? `; stripped baked map tiles from ${strippedTiles} pages` : "") +
     `; unhid ${revealWrappers} scroll-reveal wrappers on ${revealPages} pages` +
-    `; ${revealLeft} snapshots still hide content below the hero`,
+    `; ${revealLeft} snapshots still hide content below the hero` +
+    `; settled ${embedPages} third-party embed page(s) to their loaded state`,
 );
+if (embedsLeft > 0) {
+  console.error(
+    `${embedsLeft} snapshot(s) still freeze a third-party embed mid-load — they ship a placeholder and a hidden form to every reader whose bundle does not boot, and their content fingerprint changes from build to build.`,
+  );
+  process.exitCode = 1;
+}
 if (revealLeft > 0) {
   console.error(
     `${revealLeft} snapshot(s) still contain "${REVEAL_HIDDEN}" — those pages ship blank below the hero until React mounts.`,

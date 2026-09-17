@@ -1282,6 +1282,32 @@ export const GUARD_PROOFS: GuardProof[] = [
     failing: "the Organization's branch references name the entity they point at",
     why: "Drifts a branch name hand-typed in static HTML away from data/proof.ts, which is exactly what that file cannot import.",
   },
+  {
+    guard: "src/lib/booking-redirect.test.ts",
+    target: "src/lib/booking-redirect.ts",
+    find: 'if (!normalized.startsWith("T")) return "unknown";',
+    replace: 'if (false) return "unknown";',
+    failing: "does not price another province's code as an Alberta suburb",
+    why: "Calls a Toronto or Vancouver postal code an outside-city address, which is a claim that we serve it for a travel fee.",
+  },
+  // ---- third-party embeds settle to their loaded state, 2026-09-17 ----
+  {
+    guard: "src/data/prerender-embeds.test.ts",
+    target: "scripts/settle-embeds.mjs",
+    find: "return tag.replace('aria-busy=\"true\"', 'aria-busy=\"false\"');",
+    replace: "return tag;",
+    failing: "settles a snapshot caught mid-load into exactly the loaded bytes",
+    why: "Leaves a mid-load embed aria-busy, so the snapshot depends on whether BookingKoala answered before the prerender did.",
+  },
+  {
+    guard: "src/data/prerender-embeds.test.ts",
+    target: "dist/gift-card/index.html",
+    find: 'data-embed-frame="true"',
+    replace: 'data-embed-framex="true"',
+    failing: "the gift-card page ships a visible purchase form",
+    why: "Drops the gift-card iframe's marker, which would let the frozen-embed check pass without examining anything.",
+    dist: true,
+  },
   // ---- and this registry itself ------------------------------------------
   {
     guard: "src/data/guard-proofs.test.ts",
