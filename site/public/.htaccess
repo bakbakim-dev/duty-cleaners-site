@@ -226,14 +226,21 @@ ErrorDocument 404 /404.html
 # Production dutycleaners.ca does not match this condition.
 <IfModule mod_setenvif.c>
   SetEnvIfNoCase Host "^mikaily131\.sg-host\.com(:[0-9]+)?$" DUTY_STAGING_HOST=1
+  SetEnvIfNoCase Host "^(www\.)?dutycleaners\.ca$" DUTY_PRODUCTION_HOST=1
   SetEnvIf Request_URI "^/assets/" DUTY_HASHED_ASSET=1
 </IfModule>
 <IfModule mod_headers.c>
   Header always set X-Robots-Tag "noindex, nofollow" env=DUTY_STAGING_HOST
+  # HSTS (owner decision, 2026-09-17), on the production host only, so the
+  # test host — whose www name has no certificate — is never pinned. Starts
+  # at one day; raise to 63072000 after a clean week on the domain. No
+  # includeSubDomains until mail., ftp. and autodiscover. are confirmed
+  # HTTPS, and no preload: leaving that list takes months.
+  Header always set Strict-Transport-Security "max-age=86400" env=DUTY_PRODUCTION_HOST
   # Mirrors public/_headers. CSP ships Report-Only deliberately: the site
   # embeds four third-party origins plus one inline script, and enforcing a
-  # policy that misses one takes the page down. HSTS is deliberately NOT set —
-  # it is a one-way door and the owner's call to make knowingly.
+  # policy that misses one takes the page down. HSTS is set above, scoped to
+  # the production host; see that comment.
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set X-Content-Type-Options "nosniff"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
