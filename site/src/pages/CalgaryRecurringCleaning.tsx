@@ -12,7 +12,7 @@ import RecurringVisitPrices from "@/components/RecurringVisitPrices";
 import { Home, Bath, UtensilsCrossed } from "lucide-react";
 import heroImage from "@/assets/gallery/calgary-living-room-clean.webp";
 import kitchenImage from "@/assets/gallery/calgary-spotless-kitchen.webp";
-import livingRoomImage from "@/assets/gallery/calgary-clean-home-northwest.webp";
+import livingRoomImage from "@/assets/hero-room-calgary-1280w.webp";
 import cleanerImage from "@/assets/gallery/calgary-team-cleaning.webp";
 
 // Published figures come from bk-config via pricing.ts. Hand-typing them
@@ -210,7 +210,7 @@ export default function CalgaryRecurringCleaning() {
       ctaDescription={`Your first visit is at the one-time rate, from ${FROM} before GST for a one-bedroom apartment plus any pet or home-type charge; after that, weekly is 20% off, bi-weekly 15% off and every 4 weeks 10% off. Changing or skipping a visit needs ${POLICY.cancellationNoticeHours} hours' notice.`}
       galleryImages={[
         { src: kitchenImage, alt: "Kitchen with white cabinets, a stainless-steel fridge and range, and a quartz island" },
-        { src: livingRoomImage, alt: "Living room with a cream sectional sofa, potted plants and hardwood floors" },
+        { src: livingRoomImage, alt: "White living room with a white sofa and armchair, white flowers on a glass coffee table and a hardwood floor in morning sun" },
         { src: cleanerImage, alt: "Two cleaners in green aprons, one wiping a counter and one holding a spray bottle" },
       ]}
     />
