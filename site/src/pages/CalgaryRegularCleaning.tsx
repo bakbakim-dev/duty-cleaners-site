@@ -8,7 +8,7 @@ import { Accent, AccentGold } from "@/components/Accent";
 import { Home, Bath, UtensilsCrossed } from "lucide-react";
 import heroImage from "@/assets/gallery/calgary-living-room-clean.webp";
 import kitchenImage from "@/assets/gallery/calgary-spotless-kitchen.webp";
-import livingRoomImage from "@/assets/gallery/calgary-clean-home-northwest.webp";
+import livingRoomImage from "@/assets/hero-room-calgary-1280w.webp";
 import cleanerImage from "@/assets/gallery/calgary-team-cleaning.webp";
 
 // Published figures come from bk-config via pricing.ts. Hand-typing them
@@ -207,7 +207,7 @@ export default function CalgaryRegularCleaning() {
       ctaDescription="That figure is the one-bedroom apartment rate before GST. A townhouse or two-storey house adds a home-type charge, a home with pets adds the pet charge and an address outside Calgary city limits adds the travel fee, all shown on the quote before you book. Nothing is charged until the clean is complete."
       galleryImages={[
         { src: kitchenImage, alt: "Kitchen with white shaker cabinets, stainless-steel appliances and a quartz island with a double sink" },
-        { src: livingRoomImage, alt: "Bright living room with a cream sectional sofa, a glass coffee table and hardwood floors" },
+        { src: livingRoomImage, alt: "Sunlit white living room with tall windows behind a white sofa, white flowers on a glass coffee table and a hardwood floor" },
         { src: cleanerImage, alt: "Two cleaners in aprons and gloves, one wiping a kitchen counter and one holding a spray bottle" },
       ]}
     />

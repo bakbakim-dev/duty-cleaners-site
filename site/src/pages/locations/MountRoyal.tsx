@@ -7,7 +7,7 @@ import { buildLocationSchema } from "@/lib/location-schema";
 import CoverageChips from "@/components/CoverageChips";
 import LocationPricing from "@/components/LocationPricing";
 import { sitePriceRange } from "@/data/pricing";
-import calgaryCleanHome from "@/assets/gallery/calgary-clean-home-northwest.webp";
+import calgaryCleanHome from "@/assets/hero-room-calgary-1280w.webp";
 import GoogleMapEmbed from "@/components/GoogleMapEmbed";
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -194,9 +194,9 @@ export default function MountRoyal() {
               <div className="flex-shrink-0 w-full lg:w-[500px]">
                 <img
                   src={calgaryCleanHome}
-                  alt="Living room with a cream sectional sofa, a glass coffee table holding flowers, potted plants and tall windows over hardwood floors"
-                  width={1024}
-                  height={768}
+                  alt="A white living room with sheer curtains, a white sofa and armchair, white flowers on a glass coffee table and a polished hardwood floor"
+                  width={1280}
+                  height={720}
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                   loading="eager"
                   {...{ fetchpriority: "high" } as Record<string, string>} decoding="async" />
