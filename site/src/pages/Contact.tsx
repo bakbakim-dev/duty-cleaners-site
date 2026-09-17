@@ -23,8 +23,8 @@ import { canonicalForPath } from "@/data/legacy-urls";
 import { ARRIVAL_WINDOWS, PAYMENT_TERMS, POLICY } from "@/data/policy";
 import { formatPrice } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
-import { submitQuote } from "@/lib/quote-submit";
-import { toast } from "sonner";
+import { createQuoteRequestId, fingerprintQuotePayload, submitQuote } from "@/lib/quote-submit";
+import { track } from "@/lib/analytics";
 import { z } from "zod";
 import { CITY_PROOF, SUPPORT_EMAIL, schemaAddressFor, BRANCH_IDENTITY, BRANCH_PROFILES, ORG_ID, RATING_CLAIM, RED_DEER_PATH, hasGoogleRating, hoursLineFor, hoursRowsFor, openingHoursSpecFor, type Branch } from "@/data/proof";
 
@@ -101,8 +101,10 @@ const CONTACT_FAQS: { q: string; a: string; more: { to: string; label: string } 
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
-  email: z.string().trim().email("Please enter a valid email address").max(255, "Email must be less than 255 characters"),
-  phone: z.string().trim().min(1, "Phone is required").max(20, "Phone must be less than 20 characters").regex(/^[0-9\-()+ ]+$/, "Please enter a valid phone number"),
+  email: z.string().trim().email("Please enter a valid email address").max(200, "Email must be less than 200 characters"),
+  phone: z.string().trim().max(20, "Phone must be less than 20 characters")
+    .regex(/^[0-9\-()+ ]+$/, "Please enter a valid phone number")
+    .refine((value) => value.replace(/\D/g, "").length >= 10, "Enter a phone number with at least 10 digits"),
   city: z.string().min(1, "Please select a city"),
   service: z.string().min(1, "Please select a service"),
   message: z.string().trim().min(1, "Message is required").max(1000, "Message must be less than 1000 characters"),
@@ -337,10 +339,17 @@ export default function Contact() {
 
   const [errors, setErrors] = useState<Partial<Record<keyof ContactFormData, string>>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionStatus, setSubmissionStatus] = useState<{
+    kind: "success" | "error";
+    message: string;
+  } | null>(null);
+  const requestIdRef = useRef(createQuoteRequestId());
+  const requestFingerprintRef = useRef<string | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setErrors({});
+    setSubmissionStatus(null);
 
     const result = contactSchema.safeParse(formData);
 
@@ -351,7 +360,10 @@ export default function Contact() {
         fieldErrors[field] = error.message;
       });
       setErrors(fieldErrors);
-      toast.error("Please fix the errors in the form");
+      setSubmissionStatus({ kind: "error", message: "Please fix the highlighted fields and try again." });
+      const firstField = ["name", "phone", "email", "city", "service", "message"]
+        .find((field) => fieldErrors[field as keyof ContactFormData]);
+      window.requestAnimationFrame(() => document.getElementById(`contact-${firstField}`)?.focus());
       return;
     }
 
@@ -360,7 +372,7 @@ export default function Contact() {
     // Real submission through the same GHL relay the funnel uses — success is
     // only shown on a genuine 2xx, never on a timer.
     void (async () => {
-      const outcome = await submitQuote({
+      const payload = {
         source: "contact-form",
         city: formData.city || "Unspecified",
         service: formData.service || "General enquiry",
@@ -370,16 +382,28 @@ export default function Contact() {
         page_url: window.location.href,
         submitted_at: new Date().toISOString(),
         notes: formData.message,
-      } as Parameters<typeof submitQuote>[0]);
+      } as Parameters<typeof submitQuote>[0];
+      const fingerprint = fingerprintQuotePayload(payload);
+      if (requestFingerprintRef.current !== null && requestFingerprintRef.current !== fingerprint) {
+        requestIdRef.current = createQuoteRequestId();
+      }
+      requestFingerprintRef.current = fingerprint;
+      const outcome = await submitQuote(payload, { requestId: requestIdRef.current });
 
       setIsSubmitting(false);
 
       if (!outcome.ok) {
-        toast.error("We couldn't send that. Please call the office for your city instead.");
+        setSubmissionStatus({
+          kind: "error",
+          message: "We couldn't send your message. Your answers are still here—try again or call the office for your city.",
+        });
         return;
       }
 
-      toast.success("Message sent. It is with the office now.");
+      setSubmissionStatus({ kind: "success", message: "Message sent. It is with the office now." });
+      track("contact_enquiry_submitted", { city: formData.city, service: formData.service });
+      requestIdRef.current = createQuoteRequestId();
+      requestFingerprintRef.current = null;
       setFormData({
         name: "",
         email: "",
@@ -666,8 +690,10 @@ export default function Contact() {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         className={errors.name ? "border-destructive" : ""}
+                        aria-invalid={Boolean(errors.name)}
+                        aria-describedby={errors.name ? "contact-name-error" : undefined}
                       />
-                      {errors.name && <p className="text-sm text-destructive">{errors.name}</p>}
+                      {errors.name && <p id="contact-name-error" className="text-sm text-destructive">{errors.name}</p>}
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="contact-phone">Phone<span className="text-accent" aria-hidden="true"> *</span></Label>
@@ -680,8 +706,10 @@ export default function Contact() {
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         className={errors.phone ? "border-destructive" : ""}
+                        aria-invalid={Boolean(errors.phone)}
+                        aria-describedby={errors.phone ? "contact-phone-error" : undefined}
                       />
-                      {errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
+                      {errors.phone && <p id="contact-phone-error" className="text-sm text-destructive">{errors.phone}</p>}
                     </div>
                   </div>
 
@@ -696,15 +724,17 @@ export default function Contact() {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className={errors.email ? "border-destructive" : ""}
+                      aria-invalid={Boolean(errors.email)}
+                      aria-describedby={errors.email ? "contact-email-error" : undefined}
                     />
-                    {errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
+                    {errors.email && <p id="contact-email-error" className="text-sm text-destructive">{errors.email}</p>}
                   </div>
 
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div className="space-y-2">
-                      <Label>City<span className="text-accent" aria-hidden="true"> *</span></Label>
+                      <Label htmlFor="contact-city">City<span className="text-accent" aria-hidden="true"> *</span></Label>
                       <Select value={formData.city} onValueChange={(value) => setFormData({ ...formData, city: value })}>
-                        <SelectTrigger aria-label="City" className={errors.city ? "border-destructive" : ""}>
+                        <SelectTrigger id="contact-city" aria-label="City" aria-invalid={Boolean(errors.city)} aria-describedby={errors.city ? "contact-city-error" : undefined} className={errors.city ? "border-destructive" : ""}>
                           <SelectValue placeholder="Select your city" />
                         </SelectTrigger>
                         <SelectContent>
@@ -713,12 +743,12 @@ export default function Contact() {
                           <SelectItem value="reddeer">Red Deer</SelectItem>
                         </SelectContent>
                       </Select>
-                      {errors.city && <p className="text-sm text-destructive">{errors.city}</p>}
+                      {errors.city && <p id="contact-city-error" className="text-sm text-destructive">{errors.city}</p>}
                     </div>
                     <div className="space-y-2">
-                      <Label>Service<span className="text-accent" aria-hidden="true"> *</span></Label>
+                      <Label htmlFor="contact-service">Service<span className="text-accent" aria-hidden="true"> *</span></Label>
                       <Select value={formData.service} onValueChange={(value) => setFormData({ ...formData, service: value })}>
-                        <SelectTrigger aria-label="Service" className={errors.service ? "border-destructive" : ""}>
+                        <SelectTrigger id="contact-service" aria-label="Service" aria-invalid={Boolean(errors.service)} aria-describedby={errors.service ? "contact-service-error" : undefined} className={errors.service ? "border-destructive" : ""}>
                           <SelectValue placeholder="Select a service" />
                         </SelectTrigger>
                         <SelectContent>
@@ -732,7 +762,7 @@ export default function Contact() {
                           <SelectItem value="other">Other</SelectItem>
                         </SelectContent>
                       </Select>
-                      {errors.service && <p className="text-sm text-destructive">{errors.service}</p>}
+                      {errors.service && <p id="contact-service-error" className="text-sm text-destructive">{errors.service}</p>}
                     </div>
                   </div>
 
@@ -745,9 +775,24 @@ export default function Contact() {
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       className={errors.message ? "border-destructive" : ""}
+                      aria-invalid={Boolean(errors.message)}
+                      aria-describedby={errors.message ? "contact-message-error" : undefined}
                     />
-                    {errors.message && <p className="text-sm text-destructive">{errors.message}</p>}
+                    {errors.message && <p id="contact-message-error" className="text-sm text-destructive">{errors.message}</p>}
                   </div>
+
+                  {submissionStatus && (
+                    <div
+                      role={submissionStatus.kind === "error" ? "alert" : "status"}
+                      className={`rounded-lg border p-4 text-sm font-medium ${
+                        submissionStatus.kind === "error"
+                          ? "border-destructive/40 bg-destructive/5 text-foreground"
+                          : "border-primary/30 bg-primary/5 text-foreground"
+                      }`}
+                    >
+                      {submissionStatus.message}
+                    </div>
+                  )}
 
                   <Button type="submit" disabled={isSubmitting} className="w-full bg-accent text-accent-foreground hover:bg-accent/90 h-12 text-base font-semibold">
                     <Send className="mr-2 w-5 h-5" />

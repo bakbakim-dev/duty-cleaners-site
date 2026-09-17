@@ -21,8 +21,10 @@ addresses, postal codes, enquiry messages, booking notes and access instructions
 are never sent to this system.
 
 Repeated reports for the same form and step are logged but generate at most one
-notification per 30 minutes. The first recovery after an open incident generates
-one recovery notification.
+successful notification per 30 minutes. If every configured delivery channel
+fails, the next failure report retries the alert after 60 seconds. The first
+recovery after an open incident generates one recovery notification. The
+privacy-safe event log rotates at 5 MB by default.
 
 ## SiteGround setup
 

@@ -171,6 +171,48 @@ function dc_health_webhook(array $config, array $event, array $incident): bool
     return $status >= 200 && $status < 300;
 }
 
+function dc_health_alerts_configured(array $config): bool
+{
+    $emailConfigured = false;
+    if (($config['email_enabled'] ?? true) === true) {
+        $recipients = $config['recipients'] ?? [];
+        $from = $config['from'] ?? '';
+        $emailConfigured = is_array($recipients) && $recipients !== [] && is_string($from) &&
+            filter_var($from, FILTER_VALIDATE_EMAIL) !== false;
+        foreach (is_array($recipients) ? $recipients : [] as $recipient) {
+            if (!is_string($recipient) || filter_var($recipient, FILTER_VALIDATE_EMAIL) === false) {
+                $emailConfigured = false;
+            }
+        }
+    }
+    $webhook = $config['webhook_url'] ?? '';
+    $webhookConfigured = is_string($webhook) && filter_var($webhook, FILTER_VALIDATE_URL) !== false &&
+        str_starts_with(strtolower($webhook), 'https://') && function_exists('curl_init');
+    return $emailConfigured || $webhookConfigured;
+}
+
+function dc_health_mark_notification_sent(string $statePath, string $key, int $now): void
+{
+    $handle = @fopen($statePath, 'c+');
+    if ($handle === false || !flock($handle, LOCK_EX)) {
+        if (is_resource($handle)) fclose($handle);
+        return;
+    }
+    try {
+        $raw = stream_get_contents($handle);
+        $state = is_string($raw) && $raw !== '' ? json_decode($raw, true) : [];
+        if (!is_array($state) || !is_array($state[$key] ?? null)) return;
+        $state[$key]['last_notification_unix'] = $now;
+        rewind($handle);
+        ftruncate($handle, 0);
+        fwrite($handle, json_encode($state, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR));
+        fflush($handle);
+    } finally {
+        flock($handle, LOCK_UN);
+        fclose($handle);
+    }
+}
+
 function dc_health_record(array $config, array $event): array
 {
     $logDir = $config['log_dir'] ?? '';
@@ -194,24 +236,30 @@ function dc_health_record(array $config, array $event): array
         $incident = is_array($state[$key] ?? null) ? $state[$key] : [];
         $now = time();
         $cooldown = max(300, min(86400, (int) ($config['cooldown_seconds'] ?? 1800)));
+        // If every delivery channel fails, retry soon instead of treating the
+        // failed attempt as a successful 30-minute notification.
+        $retry = max(60, min(3600, (int) ($config['retry_seconds'] ?? 60)));
         $shouldNotify = false;
         if ($event['event'] === 'failed') {
             $wasOpen = ($incident['open'] ?? false) === true;
             $lastNotification = (int) ($incident['last_notification_unix'] ?? 0);
+            $lastAttempt = (int) ($incident['last_notification_attempt_unix'] ?? 0);
             $incident['open'] = true;
             $incident['first_failure_at'] = $wasOpen
                 ? ($incident['first_failure_at'] ?? $event['recorded_at'])
                 : $event['recorded_at'];
             $incident['failure_count'] = $wasOpen ? ((int) ($incident['failure_count'] ?? 0) + 1) : 1;
             $incident['last_failure_at'] = $event['recorded_at'];
-            $shouldNotify = !$wasOpen || $now - $lastNotification >= $cooldown;
+            $shouldNotify = !$wasOpen ||
+                ($lastNotification === 0 && $now - $lastAttempt >= $retry) ||
+                ($lastNotification > 0 && $now - $lastNotification >= $cooldown);
         } else {
             $shouldNotify = ($incident['open'] ?? false) === true;
             $incident['open'] = false;
             $incident['recovered_at'] = $event['recorded_at'];
         }
         if ($shouldNotify) {
-            $incident['last_notification_unix'] = $now;
+            $incident['last_notification_attempt_unix'] = $now;
         }
         $state[$key] = $incident;
         rewind($stateHandle);
@@ -225,12 +273,19 @@ function dc_health_record(array $config, array $event): array
 
     $emailSent = $shouldNotify && dc_health_email($config, $event, $incident);
     $webhookSent = $shouldNotify && dc_health_webhook($config, $event, $incident);
+    if ($emailSent || $webhookSent) {
+        dc_health_mark_notification_sent($statePath, $key, $now);
+    }
     $record = $event + [
         'notification_due' => $shouldNotify,
         'email_sent' => $emailSent,
         'webhook_sent' => $webhookSent,
     ];
     $logPath = rtrim($logDir, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . 'events.jsonl';
+    $maxLogBytes = max(102400, min(52428800, (int) ($config['max_log_bytes'] ?? 5242880)));
+    if (is_file($logPath) && filesize($logPath) >= $maxLogBytes) {
+        @rename($logPath, $logPath . '.1');
+    }
     $written = @file_put_contents(
         $logPath,
         json_encode($record, JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR) . "\n",
@@ -262,9 +317,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'GET') {
         if (!is_string($healthSecret) || strlen($healthSecret) < 32) {
             throw new RuntimeException('unconfigured');
         }
-        $emailEnabled = ($healthConfig['email_enabled'] ?? true) === true;
-        $webhook = $healthConfig['webhook_url'] ?? '';
-        $alertsEnabled = $emailEnabled || (is_string($webhook) && str_starts_with(strtolower($webhook), 'https://'));
+        $alertsEnabled = dc_health_alerts_configured($healthConfig);
         dc_health_json(200, [
             'ok' => true,
             'service' => 'form-health',

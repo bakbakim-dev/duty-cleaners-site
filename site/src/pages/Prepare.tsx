@@ -162,7 +162,7 @@ export default function Prepare() {
                   </div>
                 </div>
                 <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-                  The booking form asks when the home was last properly cleaned, and it shows the
+                  The quote asks you to rate the home&rsquo;s current cleanliness from 1 to 5, and it shows the
                   price for your home before you book. Both checklists and the prices by home size
                   are on{" "}
                   <Link to="/edmonton/regular-cleaning/" className="font-semibold text-foreground underline underline-offset-4">

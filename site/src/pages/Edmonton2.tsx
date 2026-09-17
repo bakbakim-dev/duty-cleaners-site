@@ -353,7 +353,7 @@ export default function Edmonton2() {
           paragraphs={[
             "If winter grit or spring mud is being tracked into your Edmonton home, tell us which entryways and floors need attention. A standard clean covers routine floor care; baseboards are part of the deep-clean package. Carpet steam cleaning is not included.",
             "The same bedroom count can be two quite different jobs, so describe the home rather than only its size.",
-            "We clean across Edmonton and the surrounding communities: St. Albert, Sherwood Park, Spruce Grove, Leduc, Beaumont, Fort Saskatchewan, Stony Plain, Morinville and Devon, with no trip fee inside the city itself. Prices are identical to Calgary's; there is no city premium, and every figure is before 5% GST. If you are not sure whether your home needs a standard clean or a deep one, the booking form asks when it was last properly cleaned and recommends from your answer.",
+            "We clean across Edmonton and the surrounding communities: St. Albert, Sherwood Park, Spruce Grove, Leduc, Beaumont, Fort Saskatchewan, Stony Plain, Morinville and Devon, with no trip fee inside the city itself. Prices are identical to Calgary's; there is no city premium, and every figure is before 5% GST. If you are not sure whether your home needs a standard clean or a deep one, the quote asks you to rate its current cleanliness from 1 to 5 and explains when the deep-clean package may fit.",
           ]}
         />
 

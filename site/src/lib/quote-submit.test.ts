@@ -1,11 +1,19 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { createQuoteRequestId, submitQuote } from "@/lib/quote-submit";
+import { createQuoteRequestId, fingerprintQuotePayload, submitQuote } from "@/lib/quote-submit";
 
 describe("durable quote submission", () => {
   afterEach(() => {
     vi.restoreAllMocks();
     vi.unstubAllGlobals();
     vi.useRealTimers();
+  });
+
+  it("treats a timestamp-only retry as identical but detects edited answers", () => {
+    const original = { full_name: "Test Customer", service: "Standard", submitted_at: "2026-09-12T00:00:00Z" };
+    expect(fingerprintQuotePayload({ ...original, submitted_at: "2026-09-13T00:00:00Z" }))
+      .toBe(fingerprintQuotePayload(original));
+    expect(fingerprintQuotePayload({ ...original, service: "Move Out" }))
+      .not.toBe(fingerprintQuotePayload(original));
   });
 
   it("accepts only a response carrying a durable storage receipt", async () => {

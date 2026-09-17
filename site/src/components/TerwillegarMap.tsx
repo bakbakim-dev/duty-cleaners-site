@@ -41,21 +41,15 @@ export default function TerwillegarMap() {
       { pos: [53.470, -113.578] as [number, number], label: "Terwillegar Community Recreation Centre" },
     ];
 
-    markers.forEach((m) => {
+    markers.forEach((m, index) => {
       // Named, not silenced: each pin is a real place and its label is
       // already to hand. Leaflet focuses markers by default and renders
       // them role="button", so without this they are unnamed controls.
-      L.marker(m.pos, { icon, alt: m.label, title: m.label })
+      const marker = L.marker(m.pos, { icon, alt: m.label, title: m.label })
         .addTo(map)
         .bindPopup(`<strong>${m.label}</strong>`);
+      if (index === 0) marker.openPopup();
     });
-
-    markers[0] &&
-      L.marker(markers[0].pos, {
-        icon,
-        alt: markers[0].label,
-        title: markers[0].label,
-      }).openPopup();
 
     return () => {
       map.stop();

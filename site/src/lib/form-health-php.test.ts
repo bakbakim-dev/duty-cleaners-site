@@ -76,9 +76,14 @@ describe.skipIf(!hasPhp)("SiteGround PHP form health endpoint", () => {
     expect(first.status).toBe(200);
     expect(await first.json()).toMatchObject({ ok: true, recorded: true, notification_due: true });
     expect(await (await request(failure, { origin: website })).json()).toMatchObject({ notification_due: false });
+    const statePath = join(scratch, "incidents.json");
+    const state = JSON.parse(readFileSync(statePath, "utf8"));
+    state["contact-form:form-submit"].last_notification_attempt_unix -= 61;
+    writeFileSync(statePath, JSON.stringify(state));
+    expect(await (await request(failure, { origin: website })).json()).toMatchObject({ notification_due: true });
     expect(await (await request({ ...failure, event: "recovered" }, { origin: website })).json()).toMatchObject({ notification_due: true });
     const lines = readFileSync(join(scratch, "events.jsonl"), "utf8").trim().split("\n").map((line) => JSON.parse(line));
-    expect(lines).toHaveLength(3);
+    expect(lines).toHaveLength(4);
     expect(lines[0]).not.toHaveProperty("email");
     expect(lines[0]).not.toHaveProperty("phone");
     expect(lines[0]).not.toHaveProperty("message");

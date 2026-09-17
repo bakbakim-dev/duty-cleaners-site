@@ -198,11 +198,15 @@ for (const name of ["Permissions-Policy", "Content-Security-Policy-Report-Only"]
 }
 out.push(
   "",
-  "  # Hashed build assets never change under the same name; HTML must not be",
-  "  # cached, or a deploy leaves visitors on the previous build.",
+  "  # Public filenames such as logo.png are mutable and revalidate hourly.",
+  "  # Vite's hashed /assets/ filenames never change under the same name, so",
+  "  # only that directory receives the one-year immutable policy.",
   '  <FilesMatch "\\.(js|css|woff2?|mp4|webm|webp|avif|png|jpe?g|svg|ico)$">',
-  '    Header set Cache-Control "public, max-age=31536000, immutable"',
+  '    Header set Cache-Control "public, max-age=3600, must-revalidate"',
   "  </FilesMatch>",
+  '  <If "%{REQUEST_URI} =~ m#^/assets/#">',
+  '    Header set Cache-Control "public, max-age=31536000, immutable"',
+  "  </If>",
   '  <FilesMatch "\\.html$">',
   '    Header set Cache-Control "public, max-age=0, must-revalidate"',
   "  </FilesMatch>",

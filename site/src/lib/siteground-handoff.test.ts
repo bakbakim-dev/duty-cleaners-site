@@ -72,4 +72,11 @@ describe.skipIf(!hasPhpCrypto)("SiteGround PHP booking handoff", () => {
     expect((await request(website, { action: "seal", fields: { card_number: "test" } })).status).toBe(400);
     expect((await request(website, { action: "seal", fields: { dc_notes: "x".repeat(17000) } })).status).toBe(413);
   });
+
+  it("counts UTF-8 notes in characters rather than bytes", async () => {
+    const valid = await request(website, { action: "seal", fields: { dc_notes: "é".repeat(500) } });
+    expect(valid.status).toBe(200);
+    const tooLong = await request(website, { action: "seal", fields: { dc_notes: "é".repeat(501) } });
+    expect(tooLong.status).toBe(400);
+  });
 });

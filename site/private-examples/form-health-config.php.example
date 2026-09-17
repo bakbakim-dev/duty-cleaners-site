@@ -6,6 +6,10 @@ return [
     'from' => 'website-alerts@dutycleaners.ca',
     'shared_secret' => 'REPLACE-WITH-A-RANDOM-SECRET-AT-LEAST-32-CHARACTERS',
     'cooldown_seconds' => 1800,
+    // Retry quickly when neither email nor webhook delivery succeeds.
+    'retry_seconds' => 60,
+    // Rotate the privacy-safe JSONL event log at 5 MB.
+    'max_log_bytes' => 5242880,
     'email_enabled' => true,
     // Optional HTTPS endpoint for a second alert path (for example Make or Zapier).
     'webhook_url' => '',

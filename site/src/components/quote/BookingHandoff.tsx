@@ -90,10 +90,10 @@ export default function BookingHandoff({
 
       <div>
         <p className="text-lg font-semibold text-brand-navy-foreground">
-          {failed ? "Your secure transfer could not be prepared" : "Preparing your secure booking transfer…"}
+          {failed ? "We couldn’t carry your answers over" : "Carrying your answers to the booking page…"}
         </p>
         <p className="mt-1 text-brand-navy-foreground/75">
-          {failed ? "Your answers are still here. Retry the transfer, or continue to BookingKoala and enter your personal details there." : hasAddOns
+          {failed ? "Your answers are still here. Try again, or continue and enter your personal details on the booking page." : hasAddOns
             ? `Your ${priceLabel ?? "quote"} and add-ons will carry over. Choose an available time next.`
             : `Your ${priceLabel ?? "quote"} will carry over. Choose an available time next.`}
         </p>
@@ -101,10 +101,10 @@ export default function BookingHandoff({
 
       {/* The fallback URL contains service selections only. Personal answers
           are transferred only through the successfully sealed handoff. */}
-      {stalled && !failed && <p className="text-brand-navy-foreground/75">Still preparing your details. This will time out safely if the connection fails.</p>}
+      {stalled && !failed && <p className="text-brand-navy-foreground/75">This is taking longer than usual. Your answers are still safe on this page.</p>}
       {failed && (
         <div className="flex max-w-lg flex-col gap-3">
-        <button type="button" onClick={onRetry} className="min-h-[48px] bg-brand-gold px-6 py-3 font-bold text-brand-gold-foreground">Retry secure transfer</button>
+        <button type="button" onClick={onRetry} className="min-h-[48px] bg-brand-gold px-6 py-3 font-bold text-brand-gold-foreground">Try carrying my answers over again</button>
         <button type="button" onClick={onBack} className="min-h-[48px] px-6 py-3 text-brand-navy-foreground underline">Back to my answers</button>
         <button
           type="button"

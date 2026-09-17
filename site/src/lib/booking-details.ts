@@ -1,4 +1,4 @@
-import { DC_NOTES_MAX, normalizePostalCode, type CleanerDetails } from "./booking-redirect";
+import { DC_NOTES_MAX, normalizePostalCode, postalCodeCityName, type CleanerDetails } from "./booking-redirect";
 
 // Equivalent to the live BookingKoala questions, verified 2026-09-12.
 export const CLEANLINESS_OPTIONS = [
@@ -23,8 +23,17 @@ export function validateCleanerDetails(details: CleanerDetails): Record<string, 
   const errors: Record<string, string> = {};
   if (!details.address?.trim()) errors.address = "Enter the street address where we will clean.";
   if (!details.city?.trim()) errors.city = "Enter your service address city or town.";
-  if (!details.province?.trim()) errors.province = "Enter the province.";
-  if (!normalizePostalCode(details.postalCode)) errors.postalCode = "Enter your complete Canadian postal code, e.g. T5J 0N3.";
+  const province = details.province?.trim().toUpperCase();
+  if (!province) errors.province = "Enter the province.";
+  else if (!['AB', 'ALBERTA'].includes(province)) errors.province = "Online booking is currently available for Alberta addresses.";
+  const postalCode = normalizePostalCode(details.postalCode);
+  if (!postalCode) errors.postalCode = "Enter your complete Canadian postal code, e.g. T5J 0N3.";
+  else if (!postalCode.startsWith("T")) errors.postalCode = "Enter an Alberta postal code beginning with T.";
+  const postalCity = postalCodeCityName(postalCode);
+  const enteredCity = details.city?.trim().toLowerCase().replace(/[^a-z]/g, "");
+  if (postalCity && enteredCity && ["edmonton", "calgary", "reddeer"].includes(enteredCity) && enteredCity !== postalCity.toLowerCase().replace(/[^a-z]/g, "")) {
+    errors.city = `This postal code is in ${postalCity}. Check the city and postal code.`;
+  }
   if (!["home", "mailbox", "lockbox", "code", "other"].includes(details.entry ?? "")) errors.entry = "Tell us how we get in.";
   if (!CLEANLINESS_OPTIONS.some(option => option.value === details.cleanliness)) errors.cleanliness = "Select your home's current cleanliness from 1 to 5.";
   if (!["street", "visitor", "driveway", "paid"].includes(details.parking ?? "")) errors.parking = "Tell us where to park.";

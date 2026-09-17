@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   findCoverageGaps,
   listExtrasFor,
+  recurringExtraTotals,
   petsExtraFor,
   resolveExtra,
   resolveExtraId,
@@ -357,6 +358,7 @@ describe("config-driven extra resolver", () => {
       price: 199.99,
       maxQuantity: 1,
       exemptFromFrequencyDiscount: false,
+      firstVisitOnly: false,
     });
     expect(deepCleaningExtraFor(7)?.id).toBe(151);
   });
@@ -422,6 +424,40 @@ describe("the add-on shelf", () => {
     expect(cabinets(87)).toBe(74.99); // 1 bed
     expect(cabinets(83)).toBe(129.99); // 4 bed
     expect(cabinets(86)).toBe(199.99); // 7 bed
+  });
+
+  it("carries BookingKoala's first-visit-only flag into the quote shelf", () => {
+    const shelf = listExtrasFor(6, 82);
+    expect(shelf.find((extra) => extra.name === "Inside Oven")?.firstVisitOnly).toBe(true);
+    expect(petsExtraFor(6, 82)?.firstVisitOnly).toBe(false);
+  });
+
+  it("excludes first-only extras and discounts only eligible recurring extras", () => {
+    const firstOnly = listExtrasFor(6, 82).find((extra) => extra.name === "Inside Oven");
+    const pets = petsExtraFor(6, 82);
+    expect(firstOnly).toBeDefined();
+    expect(pets).toBeDefined();
+    expect(recurringExtraTotals([
+      { extra: firstOnly!, quantity: 1 },
+      { extra: pets!, quantity: 1 },
+    ], 20)).toEqual({ total: 15.99, savings: 4 });
+  });
+
+  it("matches the BookingKoala flags across every standard shelf tier", () => {
+    for (const optionId of [87, 81, 82, 83, 84, 85, 86]) {
+      for (const extra of listExtrasFor(6, optionId)) {
+        const result = recurringExtraTotals([{ extra, quantity: 2 }], 20);
+        const line = extra.price * 2;
+        const expectedTotal = extra.firstVisitOnly
+          ? 0
+          : extra.exemptFromFrequencyDiscount
+            ? line
+            : line * 0.8;
+        const expectedSavings = extra.firstVisitOnly || extra.exemptFromFrequencyDiscount ? 0 : line * 0.2;
+        expect(result.total, `${optionId} ${extra.name}`).toBeCloseTo(expectedTotal, 2);
+        expect(result.savings, `${optionId} ${extra.name}`).toBeCloseTo(expectedSavings, 2);
+      }
+    }
   });
 
   it("grows with the home size", () => {
@@ -527,6 +563,7 @@ describe("details for your cleaner (dc_*)", () => {
   it("normalises the postal code into dc_zip", () => {
     expect(query({ cleanerDetails: { postalCode: "t5j0n3" } }).get("dc_zip")).toBe("T5J 0N3");
     expect(query({ cleanerDetails: { postalCode: "T5J" } }).get("dc_zip")).toBeNull();
+    expect(query({ cleanerDetails: { postalCode: "D5J 0N3" } }).get("dc_zip")).toBeNull();
   });
 });
 
@@ -537,9 +574,24 @@ describe("postalCodeCityStatus", () => {
     }
   });
 
-  it("treats any other complete code as outside", () => {
+  it("treats any other complete Alberta code as outside", () => {
     expect(postalCodeCityStatus("T7X 1A1")).toBe("outside");
-    expect(postalCodeCityStatus("M5V 2T6")).toBe("outside");
+  });
+
+  it("does not price another province's code as an Alberta suburb", () => {
+    /*
+      "outside" says more than "not one of our cities": it says we serve the
+      address for a travel fee, so the funnel prices it and carries on. This
+      case used to assert M5V (downtown Toronto) was "outside", which is the
+      behaviour rather than a typo — paying a travel fee does not make Toronto
+      serviceable.
+
+      Alberta postal codes all begin with T, so these fall back to asking, and
+      booking-details.ts rejects the province at the address step.
+    */
+    for (const code of ["M5V 2T6", "K1A 0B1", "V6B 1A1"]) {
+      expect(postalCodeCityStatus(code), code).toBe("unknown");
+    }
   });
 
   it("is unknown when the code is missing or incomplete", () => {

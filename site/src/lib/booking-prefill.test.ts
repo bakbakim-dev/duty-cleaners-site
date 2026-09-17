@@ -9,25 +9,25 @@ class Element {
   tagName: string; name = ""; placeholder = ""; value = ""; disabled = false; readOnly = false;
   options: { text: string; value: string }[] = []; style = {}; attrs: Record<string, string> = {};
   children: Element[] = []; events: string[] = []; hidden = false; textContent = ""; id = "";
-  listeners: Record<string, (e: any) => void> = {};
+  listeners: Record<string, (event: { type?: string; isTrusted?: boolean; target?: Element }) => void> = {};
   constructor(tag = "input") { this.tagName = tag.toUpperCase(); }
   getClientRects() { return [1]; }
   getAttribute(key: string) { return this.attrs[key] ?? null; }
   setAttribute(key: string, value: string) { this.attrs[key] = value; }
   appendChild(el: Element) { this.children.push(el); }
   insertBefore(el: Element) { this.children.unshift(el); }
-  addEventListener(name: string, listener: (e: any) => void) { this.listeners[name] = listener; }
+  addEventListener(name: string, listener: (event: { type?: string; isTrusted?: boolean; target?: Element }) => void) { this.listeners[name] = listener; }
   dispatchEvent(event: { type: string }) { this.events.push(event.type); }
 }
 function fixture(fields: Record<string, string>, controls: Element[]) {
   let tick = () => {}; let now = 0;
-  const listeners: Record<string, (e: any) => void> = {};
+  const listeners: Record<string, (event: { type?: string; isTrusted?: boolean; target?: Element }) => void> = {};
   const body = new Element("body");
   const document = {
     body, activeElement: null as Element | null,
     querySelectorAll: (tag: string) => controls.filter(el => el.tagName.toLowerCase() === tag),
     createElement: (tag: string) => new Element(tag),
-    addEventListener: (name: string, callback: (e: any) => void) => { listeners[name] = callback; },
+    addEventListener: (name: string, callback: (event: { type?: string; isTrusted?: boolean; target?: Element }) => void) => { listeners[name] = callback; },
   };
   const window = { addEventListener() {} };
   runInNewContext(source, {

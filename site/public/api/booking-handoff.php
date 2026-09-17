@@ -58,7 +58,10 @@ function dc_validate_fields(mixed $input): array
             throw new RuntimeException('invalid');
         }
         $max = $key === 'dc_notes' ? 500 : 120;
-        if (strlen($value) > $max) {
+        // Limits are characters, not UTF-8 bytes. A customer's accented name
+        // or multilingual note must not be rejected earlier than plain ASCII.
+        $characters = preg_match_all('/./us', $value, $matches);
+        if ($characters === false || $characters > $max) {
             throw new RuntimeException('invalid');
         }
         $output[$key] = $value;

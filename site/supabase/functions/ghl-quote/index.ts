@@ -94,7 +94,9 @@ const PayloadSchema = z.object({
   half_baths: z.union([z.string(), z.number()]).optional(),
   frequency: z.string().max(200).optional(),
   frequency_discount_pct: z.union([z.string(), z.number()]).optional(),
-  addons: z.array(z.string().max(200)).max(40).optional(),
+  // Address summary rows can legitimately exceed 200 characters even though
+  // every individual address field is capped at 120 characters.
+  addons: z.array(z.string().max(600)).max(40).optional(),
   first_clean_price: z.number().nullable().optional(),
   recurring_price: z.number().nullable().optional(),
   currency: z.string().max(8).optional(),
@@ -116,6 +118,16 @@ const PayloadSchema = z.object({
 });
 
 type Payload = z.infer<typeof PayloadSchema>;
+
+function sameIdempotentPayload(stored: unknown, incoming: Payload): boolean {
+  const parsed = PayloadSchema.safeParse(stored);
+  if (!parsed.success) return false;
+  const normalize = (value: Payload) => {
+    const { submitted_at: _submittedAt, ...stable } = value;
+    return stable;
+  };
+  return JSON.stringify(normalize(parsed.data)) === JSON.stringify(normalize(incoming));
+}
 
 /* ---------------------------------------------------------------- *
  * Simple in-memory per-IP rate limit (best effort across warm runs).
@@ -516,7 +528,7 @@ Deno.serve(async (req) => {
     const requestId = payload.request_id ?? crypto.randomUUID();
     let { data: row } = await supabase
       .from("quote_leads")
-      .select("id,ghl_ok,ghl_contact_id,ghl_attempts")
+      .select("id,ghl_ok,ghl_contact_id,ghl_attempts,payload")
       .eq("request_id", requestId)
       .maybeSingle();
 
@@ -544,14 +556,14 @@ Deno.serve(async (req) => {
           tracking: payload.tracking ?? {},
           payload,
         })
-        .select("id,ghl_ok,ghl_contact_id,ghl_attempts")
+        .select("id,ghl_ok,ghl_contact_id,ghl_attempts,payload")
         .single();
       row = stored.data;
       if (stored.error) {
         // A concurrent same-id request may have won the unique-index race.
         const existing = await supabase
           .from("quote_leads")
-          .select("id,ghl_ok,ghl_contact_id,ghl_attempts")
+          .select("id,ghl_ok,ghl_contact_id,ghl_attempts,payload")
           .eq("request_id", requestId)
           .maybeSingle();
         row = existing.data;
@@ -562,6 +574,13 @@ Deno.serve(async (req) => {
       console.error("[ghl-quote] durable capture failed");
       await reportFormHealth("failed", "durable-capture", "storage", 503, payload.source);
       return json({ ok: false, stored: false, status: 503, error: "capture unavailable" }, 503);
+    }
+
+    // Never acknowledge an older stored submission after the visitor edited
+    // fields but a buggy client reused the same request id. Identical retries
+    // may differ only by their transport timestamp.
+    if (!sameIdempotentPayload(row.payload, payload)) {
+      return json({ ok: false, stored: false, status: 409, error: "request id payload conflict" }, 409);
     }
 
     await reportFormHealth("recovered", "durable-capture", "storage", 200, payload.source);

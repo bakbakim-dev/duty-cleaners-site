@@ -19,6 +19,7 @@ type RecentActivityStripProps = {
  * space at the conversion point is the one option that helps nobody.
  */
 const RecentActivityStrip = ({ city, reviews }: RecentActivityStripProps) => {
+  const [paused, setPaused] = useState(false);
   if (reviews.length === 0) {
     const listing = getListing(city);
     const isCalgary = city.toLowerCase().startsWith("calgary");
@@ -60,7 +61,6 @@ const RecentActivityStrip = ({ city, reviews }: RecentActivityStripProps) => {
       </div>
     );
   }
-  const [paused, setPaused] = useState(false);
   const items = [...reviews, ...reviews]; // duplicated for a seamless loop
 
   return (

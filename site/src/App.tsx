@@ -2,6 +2,7 @@ import { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import SkipLink from "./components/SkipLink";
+import LoadErrorBoundary from "./components/LoadErrorBoundary";
 
 import QuoteOverlay from "./components/QuoteOverlay";
 import { QuoteOverlayProvider } from "./hooks/use-quote-overlay";
@@ -267,6 +268,7 @@ const App = () => (
         <ScrollToTop />
         <QuoteOverlay />
 
+        <LoadErrorBoundary>
         <Suspense
           fallback={
             <div className="flex min-h-dvh items-center justify-center" role="status" aria-live="polite">
@@ -636,6 +638,7 @@ const App = () => (
           <Route path="*" element={<NotFound />} />
         </Routes>
         </Suspense>
+        </LoadErrorBoundary>
         </QuoteOverlayProvider>
       </BrowserRouter>
     </>

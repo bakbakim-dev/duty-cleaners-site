@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -39,8 +39,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { submitQuote } from "@/lib/quote-submit";
-import { toast } from "sonner";
+import { createQuoteRequestId, fingerprintQuotePayload, submitQuote } from "@/lib/quote-submit";
+import { track } from "@/lib/analytics";
 import { z } from "zod";
 import heroCleanersSmiling from "@/assets/hero-cleaners-smiling.webp";
 import { CITY_PROOF, CLEANER_JOB_POSTING, COMPANY } from "@/data/proof";
@@ -48,12 +48,16 @@ import { CITY_PROOF, CLEANER_JOB_POSTING, COMPANY } from "@/data/proof";
 const applicationSchema = z.object({
   firstName: z.string().trim().min(1, "First name is required").max(50, "First name must be less than 50 characters"),
   lastName: z.string().trim().min(1, "Last name is required").max(50, "Last name must be less than 50 characters"),
-  phone: z.string().trim().min(1, "Phone is required").max(20, "Phone must be less than 20 characters").regex(/^[0-9\-()+ ]+$/, "Please enter a valid phone number"),
-  email: z.string().trim().email("Please enter a valid email address").max(255, "Email must be less than 255 characters"),
+  phone: z.string().trim().max(20, "Phone must be less than 20 characters")
+    .regex(/^[0-9\-()+ ]+$/, "Please enter a valid phone number")
+    .refine((value) => value.replace(/\D/g, "").length >= 10, "Enter a phone number with at least 10 digits"),
+  email: z.string().trim().email("Please enter a valid email address").max(200, "Email must be less than 200 characters"),
   location: z.string().min(1, "Please select a location"),
   experience: z.string().min(1, "Please select your experience level"),
   ownEquipment: z.string().min(1, "Please answer this question"),
   currentClients: z.string().min(1, "Please answer this question"),
+  interest: z.string().trim().max(700, "Please keep this answer under 700 characters").optional(),
+  hire: z.string().trim().max(700, "Please keep this answer under 700 characters").optional(),
 });
 
 type ApplicationFormData = z.infer<typeof applicationSchema>;
@@ -210,10 +214,18 @@ export default function JoinTheTeam() {
     experience: "",
     ownEquipment: "",
     currentClients: "",
+    interest: "",
+    hire: "",
   });
   
   const [errors, setErrors] = useState<Partial<Record<keyof ApplicationFormData, string>>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionStatus, setSubmissionStatus] = useState<{
+    kind: "success" | "error";
+    message: string;
+  } | null>(null);
+  const requestIdRef = useRef(createQuoteRequestId());
+  const requestFingerprintRef = useRef<string | null>(null);
 
   const scrollToForm = () => {
     document.getElementById('application-form')?.scrollIntoView({ behavior: 'smooth' });
@@ -222,6 +234,7 @@ export default function JoinTheTeam() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setErrors({});
+    setSubmissionStatus(null);
     
     const result = applicationSchema.safeParse(formData);
     
@@ -232,7 +245,10 @@ export default function JoinTheTeam() {
         fieldErrors[field] = error.message;
       });
       setErrors(fieldErrors);
-      toast.error("Please fix the errors in the form");
+      setSubmissionStatus({ kind: "error", message: "Please fix the highlighted fields and try again." });
+      const firstField = ["firstName", "lastName", "phone", "email", "location", "experience", "ownEquipment", "currentClients", "interest", "hire"]
+        .find((field) => fieldErrors[field as keyof ApplicationFormData]);
+      window.requestAnimationFrame(() => document.getElementById(firstField ?? "")?.focus());
       return;
     }
     
@@ -241,7 +257,7 @@ export default function JoinTheTeam() {
     // Real submission through the same relay the contact form uses — an
     // applicant is never told "submitted" unless the relay accepted it.
     void (async () => {
-      const outcome = await submitQuote({
+      const payload = {
         source: "careers-application",
         city: formData.location || "Unspecified",
         service: "Cleaner application",
@@ -254,17 +270,34 @@ export default function JoinTheTeam() {
           `Experience: ${formData.experience || "n/a"}`,
           `Own equipment: ${formData.ownEquipment || "n/a"}`,
           `Current clients: ${formData.currentClients || "n/a"}`,
+          ...(formData.interest ? [`Why interested: ${formData.interest}`] : []),
+          ...(formData.hire ? [`Why hire: ${formData.hire}`] : []),
         ].join(" | "),
-      } as Parameters<typeof submitQuote>[0]);
+      } as Parameters<typeof submitQuote>[0];
+      const fingerprint = fingerprintQuotePayload(payload);
+      if (requestFingerprintRef.current !== null && requestFingerprintRef.current !== fingerprint) {
+        requestIdRef.current = createQuoteRequestId();
+      }
+      requestFingerprintRef.current = fingerprint;
+      const outcome = await submitQuote(payload, { requestId: requestIdRef.current });
 
       setIsSubmitting(false);
 
       if (!outcome.ok) {
-        toast.error("We couldn't send that. Please email support@dutycleaners.ca and we'll pick it up.");
+        setSubmissionStatus({
+          kind: "error",
+          message: "We couldn't send your application. Your answers are still here—try again or email support@dutycleaners.ca.",
+        });
         return;
       }
 
-      toast.success("Application sent. The office reads every application and calls the applicants whose experience fits.");
+      setSubmissionStatus({
+        kind: "success",
+        message: "Application sent. The office reads every application and calls applicants whose experience fits.",
+      });
+      track("careers_application_submitted", { city: formData.location });
+      requestIdRef.current = createQuoteRequestId();
+      requestFingerprintRef.current = null;
       setFormData({
         firstName: "",
         lastName: "",
@@ -274,6 +307,8 @@ export default function JoinTheTeam() {
         experience: "",
         ownEquipment: "",
         currentClients: "",
+        interest: "",
+        hire: "",
       });
     })();
   };
@@ -638,8 +673,10 @@ export default function JoinTheTeam() {
                         value={formData.firstName}
                         onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                         className={`bg-secondary/30 border-primary/20 focus:border-primary ${errors.firstName ? "border-destructive" : ""}`}
+                        aria-invalid={Boolean(errors.firstName)}
+                        aria-describedby={errors.firstName ? "firstName-error" : undefined}
                       />
-                      {errors.firstName && <p className="text-sm text-destructive">{errors.firstName}</p>}
+                      {errors.firstName && <p id="firstName-error" className="text-sm text-destructive">{errors.firstName}</p>}
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="lastName" className="text-foreground font-medium">Last Name *</Label>
@@ -649,8 +686,10 @@ export default function JoinTheTeam() {
                         value={formData.lastName}
                         onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                         className={`bg-secondary/30 border-primary/20 focus:border-primary ${errors.lastName ? "border-destructive" : ""}`}
+                        aria-invalid={Boolean(errors.lastName)}
+                        aria-describedby={errors.lastName ? "lastName-error" : undefined}
                       />
-                      {errors.lastName && <p className="text-sm text-destructive">{errors.lastName}</p>}
+                      {errors.lastName && <p id="lastName-error" className="text-sm text-destructive">{errors.lastName}</p>}
                     </div>
                   </div>
 
@@ -665,8 +704,10 @@ export default function JoinTheTeam() {
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         className={`bg-secondary/30 border-primary/20 focus:border-primary ${errors.phone ? "border-destructive" : ""}`}
+                        aria-invalid={Boolean(errors.phone)}
+                        aria-describedby={errors.phone ? "phone-error" : undefined}
                       />
-                      {errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
+                      {errors.phone && <p id="phone-error" className="text-sm text-destructive">{errors.phone}</p>}
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="email" className="text-foreground font-medium">Email *</Label>
@@ -678,8 +719,10 @@ export default function JoinTheTeam() {
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         className={`bg-secondary/30 border-primary/20 focus:border-primary ${errors.email ? "border-destructive" : ""}`}
+                        aria-invalid={Boolean(errors.email)}
+                        aria-describedby={errors.email ? "email-error" : undefined}
                       />
-                      {errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
+                      {errors.email && <p id="email-error" className="text-sm text-destructive">{errors.email}</p>}
                     </div>
                   </div>
 
@@ -689,7 +732,7 @@ export default function JoinTheTeam() {
                       value={formData.location}
                       onValueChange={(value) => setFormData({ ...formData, location: value })}
                     >
-                      <SelectTrigger id="location" className={`bg-secondary/30 border-primary/20 ${errors.location ? "border-destructive" : ""}`}>
+                      <SelectTrigger id="location" aria-invalid={Boolean(errors.location)} aria-describedby={errors.location ? "location-error" : undefined} className={`bg-secondary/30 border-primary/20 ${errors.location ? "border-destructive" : ""}`}>
                         <SelectValue placeholder="Select location" />
                       </SelectTrigger>
                       <SelectContent>
@@ -698,7 +741,7 @@ export default function JoinTheTeam() {
                         <SelectItem value="reddeer">Red Deer</SelectItem>
                       </SelectContent>
                     </Select>
-                    {errors.location && <p className="text-sm text-destructive">{errors.location}</p>}
+                    {errors.location && <p id="location-error" className="text-sm text-destructive">{errors.location}</p>}
                   </div>
 
                   <div className="space-y-2">
@@ -707,7 +750,7 @@ export default function JoinTheTeam() {
                       value={formData.experience}
                       onValueChange={(value) => setFormData({ ...formData, experience: value })}
                     >
-                      <SelectTrigger id="experience" className={`bg-secondary/30 border-primary/20 ${errors.experience ? "border-destructive" : ""}`}>
+                      <SelectTrigger id="experience" aria-invalid={Boolean(errors.experience)} aria-describedby={errors.experience ? "experience-error" : undefined} className={`bg-secondary/30 border-primary/20 ${errors.experience ? "border-destructive" : ""}`}>
                         <SelectValue placeholder="Select experience" />
                       </SelectTrigger>
                       <SelectContent>
@@ -718,7 +761,7 @@ export default function JoinTheTeam() {
                         <SelectItem value="4-years">4 years and above</SelectItem>
                       </SelectContent>
                     </Select>
-                    {errors.experience && <p className="text-sm text-destructive">{errors.experience}</p>}
+                    {errors.experience && <p id="experience-error" className="text-sm text-destructive">{errors.experience}</p>}
                   </div>
 
                   <div className="space-y-2">
@@ -727,7 +770,7 @@ export default function JoinTheTeam() {
                       value={formData.ownEquipment}
                       onValueChange={(value) => setFormData({ ...formData, ownEquipment: value })}
                     >
-                      <SelectTrigger id="ownEquipment" className={`bg-secondary/30 border-primary/20 ${errors.ownEquipment ? "border-destructive" : ""}`}>
+                      <SelectTrigger id="ownEquipment" aria-invalid={Boolean(errors.ownEquipment)} aria-describedby={errors.ownEquipment ? "ownEquipment-error" : undefined} className={`bg-secondary/30 border-primary/20 ${errors.ownEquipment ? "border-destructive" : ""}`}>
                         <SelectValue placeholder="Select answer" />
                       </SelectTrigger>
                       <SelectContent>
@@ -735,7 +778,7 @@ export default function JoinTheTeam() {
                         <SelectItem value="no">No</SelectItem>
                       </SelectContent>
                     </Select>
-                    {errors.ownEquipment && <p className="text-sm text-destructive">{errors.ownEquipment}</p>}
+                    {errors.ownEquipment && <p id="ownEquipment-error" className="text-sm text-destructive">{errors.ownEquipment}</p>}
                   </div>
 
                   <div className="space-y-2">
@@ -744,7 +787,7 @@ export default function JoinTheTeam() {
                       value={formData.currentClients}
                       onValueChange={(value) => setFormData({ ...formData, currentClients: value })}
                     >
-                      <SelectTrigger id="currentClients" className={`bg-secondary/30 border-primary/20 ${errors.currentClients ? "border-destructive" : ""}`}>
+                      <SelectTrigger id="currentClients" aria-invalid={Boolean(errors.currentClients)} aria-describedby={errors.currentClients ? "currentClients-error" : undefined} className={`bg-secondary/30 border-primary/20 ${errors.currentClients ? "border-destructive" : ""}`}>
                         <SelectValue placeholder="Select answer" />
                       </SelectTrigger>
                       <SelectContent>
@@ -754,7 +797,7 @@ export default function JoinTheTeam() {
                         <SelectItem value="varies">Varies</SelectItem>
                       </SelectContent>
                     </Select>
-                    {errors.currentClients && <p className="text-sm text-destructive">{errors.currentClients}</p>}
+                    {errors.currentClients && <p id="currentClients-error" className="text-sm text-destructive">{errors.currentClients}</p>}
                   </div>
 
                   <div className="space-y-2">
@@ -762,8 +805,13 @@ export default function JoinTheTeam() {
                     <Textarea 
                       id="interest" 
                       rows={4} 
+                      value={formData.interest ?? ""}
+                      onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
+                      aria-invalid={Boolean(errors.interest)}
+                      aria-describedby={errors.interest ? "interest-error" : undefined}
                       className="bg-secondary/30 border-primary/20 focus:border-primary"
                     />
+                    {errors.interest && <p id="interest-error" className="text-sm text-destructive">{errors.interest}</p>}
                   </div>
 
                   <div className="space-y-2">
@@ -771,9 +819,27 @@ export default function JoinTheTeam() {
                     <Textarea 
                       id="hire" 
                       rows={4} 
+                      value={formData.hire ?? ""}
+                      onChange={(e) => setFormData({ ...formData, hire: e.target.value })}
+                      aria-invalid={Boolean(errors.hire)}
+                      aria-describedby={errors.hire ? "hire-error" : undefined}
                       className="bg-secondary/30 border-primary/20 focus:border-primary"
                     />
+                    {errors.hire && <p id="hire-error" className="text-sm text-destructive">{errors.hire}</p>}
                   </div>
+
+                  {submissionStatus && (
+                    <div
+                      role={submissionStatus.kind === "error" ? "alert" : "status"}
+                      className={`rounded-lg border p-4 text-sm font-medium ${
+                        submissionStatus.kind === "error"
+                          ? "border-destructive/40 bg-destructive/5 text-foreground"
+                          : "border-primary/30 bg-primary/5 text-foreground"
+                      }`}
+                    >
+                      {submissionStatus.message}
+                    </div>
+                  )}
 
                   <Button 
                     type="submit" 

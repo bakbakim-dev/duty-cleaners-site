@@ -82,7 +82,7 @@ export default function BlogPostCard({ title, excerpt, category, date, image, sl
             <div className="flex items-center justify-between text-xs text-muted-foreground mb-4 pt-3 border-t border-primary/10">
               <span className="flex items-center gap-1.5">
                 <Calendar className="h-3.5 w-3.5 text-primary/60" />
-                {date ? <>Updated <time dateTime={date}>{date}</time></> : "Cleaning guide"}
+                {date ? <>Updated <time data-content-revision dateTime={date}>{date}</time></> : "Cleaning guide"}
               </span>
             </div>
             <span

@@ -325,7 +325,7 @@ describe("every linked service has real body support", () => {
       const sources = locationPages().filter((url) => {
         // <nav> inside <main> is the breadcrumb; it is navigation, not an
         // editorial link, and counting it inflates every page by one.
-        const body = mainHtml(url).replace(/<nav[\s\S]*?<\/nav>/g, " ");
+        const body = mainHtml(url).replace(/<nav\b[\s\S]*?<\/nav>/g, " ");
         return body.includes(`href="${target}"`);
       });
       expect(

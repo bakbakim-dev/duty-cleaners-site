@@ -30,6 +30,8 @@ export interface BkExtraRow {
   enable_quantity_based?: string | null;
   /** BookingKoala flag: the row is charged in full on recurring visits. */
   exempt_extra_from_freq_disc?: boolean | null;
+  /** BookingKoala scope: `first-only` means the extra is not repeated. */
+  apply_to_bookings?: string | null;
   status?: number | null;
 }
 
@@ -55,6 +57,34 @@ export interface ResolvedExtra {
    * visit (no frequency discount). Read from the config row — never guessed.
    */
   exemptFromFrequencyDiscount: boolean;
+  /** True when BookingKoala charges the row on the first visit only. */
+  firstVisitOnly: boolean;
+}
+
+export interface ResolvedExtraLine {
+  extra: ResolvedExtra;
+  quantity: number;
+}
+
+/** Recurring add-on price and frequency savings, using BookingKoala's flags. */
+export function recurringExtraTotals(
+  rows: ResolvedExtraLine[],
+  discountPct: number,
+): { total: number; savings: number } {
+  const discount = discountPct / 100;
+  let total = 0;
+  let savings = 0;
+  for (const row of rows) {
+    if (row.extra.firstVisitOnly) continue;
+    const line = row.extra.price * row.quantity;
+    if (row.extra.exemptFromFrequencyDiscount) total += line;
+    else {
+      total += line * (1 - discount);
+      savings += line * discount;
+    }
+  }
+  const round2 = (value: number) => Math.round(value * 100) / 100;
+  return { total: round2(total), savings: round2(savings) };
 }
 
 /** Names carry stray spaces and casing drift in the config — normalise both. */
@@ -115,6 +145,7 @@ const toResolved = (row: BkExtraRow): ResolvedExtra => ({
   price: row.prices_ml?.[0] ?? 0,
   maxQuantity: isQuantityBased(row) ? Math.max(1, row.quantity_based ?? 1) : 1,
   exemptFromFrequencyDiscount: row.exempt_extra_from_freq_disc === true,
+  firstVisitOnly: row.apply_to_bookings === "first-only",
 });
 
 /**

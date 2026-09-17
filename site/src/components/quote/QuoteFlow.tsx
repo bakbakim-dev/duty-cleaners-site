@@ -54,6 +54,7 @@ import {
   postalCodeCityStatus,
   postalCodeCityName,
   normalizePostalCode,
+  recurringExtraTotals,
 
   type CleanerDetails,
   type DcEntry,
@@ -61,11 +62,12 @@ import {
   type ResolvedExtra,
 } from "@/lib/booking-redirect";
 import { BOOKINGS_CLAIM, RATING_CLAIM, RESPONSE_TIME_PROMISE, SUPPORT_EMAIL, cityProofFor, hasGoogleRating } from "@/data/proof";
-import { createQuoteRequestId, submitQuote, type QuotePayload } from "@/lib/quote-submit";
+import { createQuoteRequestId, fingerprintQuotePayload, submitQuote, type QuotePayload } from "@/lib/quote-submit";
 import { captureTrackingParams, getStoredTracking, pageServiceFor, serviceOnOpen } from "@/lib/tracking";
 import { setQuoteStep } from "@/lib/quote-progress";
 import { track } from "@/lib/analytics";
 import { CLEANLINESS_OPTIONS, FLEXIBILITY_OPTIONS, cleanerNotesLimit, validateCleanerDetails } from "@/lib/booking-details";
+import { calgarySurrounding, edmontonSurrounding } from "@/data/city-locations";
 import { prepareBookingHandoff, publicBookingUrl } from "@/lib/booking-handoff";
 import { useQuoteOverlay } from "@/hooks/use-quote-overlay";
 
@@ -77,6 +79,19 @@ const STEP_LABELS = [
   "Your price",
   "Pick your time",
 ];
+
+const normalizedPlace = (value: string | null | undefined) =>
+  (value ?? "").trim().toLowerCase().replace(/[^a-z]/g, "");
+
+const branchKeyForAddress = (details: CleanerDetails): "edmonton" | "calgary" | "reddeer" | null => {
+  const postalCity = postalCodeCityName(details.postalCode);
+  if (postalCity) return normalizedPlace(postalCity) as "edmonton" | "calgary" | "reddeer";
+  const city = normalizedPlace(details.city);
+  if (city === "reddeer") return "reddeer";
+  if (city === "edmonton" || edmontonSurrounding.some((place) => normalizedPlace(place.name) === city)) return "edmonton";
+  if (city === "calgary" || calgarySurrounding.some((place) => normalizedPlace(place.name) === city)) return "calgary";
+  return null;
+};
 
 /** Step ids sent with quote_step; the details pane of step 3 is its own id. */
 const STEP_IDS = ["home", "contact", "price", "time"];
@@ -323,6 +338,7 @@ export default function QuoteFlow({
   const [addOns, setAddOns] = useState<Record<string, number>>({});
   
   const [hasPets, setHasPets] = useState<boolean | null>(null);
+  const [petError, setPetError] = useState<string | null>(null);
   /**
    * "Is the address inside city limits?" — only asked as a fallback when the
    * postal code can't answer it. Unanswered is priced as inside (no fee) so
@@ -349,6 +365,9 @@ export default function QuoteFlow({
   /** Stable receipts make a visible Retry safe and keep lead/confirm distinct. */
   const leadRequestIdRef = useRef<string | null>(null);
   const confirmRequestIdRef = useRef<string | null>(null);
+  const leadPayloadFingerprintRef = useRef<string | null>(null);
+  const confirmPayloadFingerprintRef = useRef<string | null>(null);
+  const leadPayloadRef = useRef<Partial<QuotePayload> | null>(null);
   if (leadRequestIdRef.current === null) leadRequestIdRef.current = createQuoteRequestId();
   if (confirmRequestIdRef.current === null) confirmRequestIdRef.current = createQuoteRequestId();
   const contactFormRef = useRef<HTMLFormElement>(null);
@@ -446,6 +465,9 @@ export default function QuoteFlow({
       lastStepKeyRef.current = "restart";
       leadRequestIdRef.current = createQuoteRequestId();
       confirmRequestIdRef.current = createQuoteRequestId();
+      leadPayloadFingerprintRef.current = null;
+      confirmPayloadFingerprintRef.current = null;
+      leadPayloadRef.current = null;
       setStep(0);
     } else {
       lastStepKeyRef.current = null;
@@ -723,36 +745,18 @@ export default function QuoteFlow({
   const round2 = (value: number) => Math.round(value * 100) / 100;
 
   /**
-   * BookingKoala charges selected extras on EVERY visit of a recurring
-   * booking. Rows flagged `exempt_extra_from_freq_disc` (the travel fee, for
-   * one) are charged at full price; the rest follow the frequency discount.
-   * The flag is read from the config row — never hardcoded.
+   * BookingKoala can scope an extra to the first visit only. Of the remaining
+   * rows, `exempt_extra_from_freq_disc` rows are charged in full and the rest
+   * follow the frequency discount. Both flags come from the captured config.
    */
-  const recurringAddOnTotal = useMemo(() => {
-    if (quote.ongoing === null) return 0;
-    const discount = quote.discountPct / 100;
-    return round2(
-      basketRows.reduce((sum, row) => {
-        const line = row.extra.price * row.quantity;
-        return sum + (row.extra.exemptFromFrequencyDiscount ? line : line * (1 - discount));
-      }, 0)
-    );
-  }, [basketRows, quote.ongoing, quote.discountPct]);
-
-  /** Savings only ever claimed on the discountable portion. */
-  const recurringAddOnSavings = useMemo(() => {
-    if (quote.ongoing === null) return 0;
-    const discount = quote.discountPct / 100;
-    return round2(
-      basketRows.reduce(
-        (sum, row) =>
-          row.extra.exemptFromFrequencyDiscount
-            ? sum
-            : sum + row.extra.price * row.quantity * discount,
-        0
-      )
-    );
-  }, [basketRows, quote.ongoing, quote.discountPct]);
+  const recurringExtras = useMemo(
+    () => quote.ongoing === null
+      ? { total: 0, savings: 0 }
+      : recurringExtraTotals(basketRows, quote.discountPct),
+    [basketRows, quote.ongoing, quote.discountPct],
+  );
+  const recurringAddOnTotal = recurringExtras.total;
+  const recurringAddOnSavings = recurringExtras.savings;
 
   /** The real per-visit price, base + recurring add-ons. */
   const ongoingTotal =
@@ -819,6 +823,20 @@ export default function QuoteFlow({
     intent: deepCleanIntent ? ("deep" as const) : null,
   });
 
+  const requestIdForPayload = (
+    payload: Partial<QuotePayload>,
+    requestIdRef: React.MutableRefObject<string | null>,
+    fingerprintRef: React.MutableRefObject<string | null>,
+  ) => {
+    const fingerprint = fingerprintQuotePayload(payload);
+    if (fingerprintRef.current !== null && fingerprintRef.current !== fingerprint) {
+      requestIdRef.current = createQuoteRequestId();
+    }
+    fingerprintRef.current = fingerprint;
+    if (requestIdRef.current === null) requestIdRef.current = createQuoteRequestId();
+    return requestIdRef.current;
+  };
+
   /** Step 2 → the lead itself. Step 3 opens only on a durable server receipt. */
   const submitLead = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -852,13 +870,15 @@ export default function QuoteFlow({
 
     setSubmitting(true);
     const fields = homeFields();
-    const result = await submitQuote(
-      {
-        ...fields,
-        source: tooFast ? `${fields.source} (fast fill — verify)` : fields.source,
-      } as Partial<QuotePayload>,
-      { requestId: leadRequestIdRef.current, timeoutMs: 5_000 },
-    );
+    const payload = {
+      ...fields,
+      source: tooFast ? `${fields.source} (fast fill — verify)` : fields.source,
+    } as Partial<QuotePayload>;
+    leadPayloadRef.current = payload;
+    const result = await submitQuote(payload, {
+      requestId: requestIdForPayload(payload, leadRequestIdRef, leadPayloadFingerprintRef),
+      timeoutMs: 5_000,
+    });
     setSubmitting(false);
 
     if (result.ok) {
@@ -881,8 +901,9 @@ export default function QuoteFlow({
 
   const retryLeadCapture = async () => {
     setSubmitting(true);
-    const result = await submitQuote(homeFields(), {
-      requestId: leadRequestIdRef.current,
+    const payload = leadPayloadRef.current ?? homeFields();
+    const result = await submitQuote(payload, {
+      requestId: requestIdForPayload(payload, leadRequestIdRef, leadPayloadFingerprintRef),
       timeoutMs: 5_000,
     });
     setSubmitting(false);
@@ -895,6 +916,9 @@ export default function QuoteFlow({
   /** The step-3 payload: same contact, now carrying the quoted prices. */
   const confirmFields = () => ({
     ...homeFields(),
+    // Final routing follows the service address, even if the quote was opened
+    // from a page belonging to a different branch.
+    city: branchKeyForAddress(details) ?? proof.key,
     // With deep intent the quoted first clean is Standard + the package, and
     // any add-on chip is included too, so the office's quote-vs-booking check
     // compares like with like.
@@ -912,9 +936,8 @@ export default function QuoteFlow({
       ...(details.postalCode?.trim() ? [`Postal code: ${details.postalCode.trim()}`] : []),
       ...(details.address?.trim() ? [`Service address: ${[details.address, details.apartment, details.city, details.province].filter(Boolean).join(", ")}`] : []),
       ...(details.flexibility ? [`Date/time flexibility: ${FLEXIBILITY_OPTIONS.find(option => option.value === details.flexibility)?.label}`] : []),
-      ...(details.notes?.trim() ? [`Notes: ${details.notes.trim()}`] : []),
-
     ],
+    notes: details.notes?.trim() || undefined,
   }) as Partial<QuotePayload>;
 
   const bookingQuery = useMemo(
@@ -1001,6 +1024,13 @@ export default function QuoteFlow({
 
   /** Pane A → pane B. Starts the second pane at the top, never mid-question. */
   const goToDetailsPane = () => {
+    if (petsExtra && hasPets === null) {
+      setPetError("Choose Yes or No so your total includes the correct pet charge.");
+      const target = document.getElementById("dc-pets-group");
+      target?.scrollIntoView({ behavior: "smooth", block: "center" });
+      (target?.querySelector("button") as HTMLButtonElement | null)?.focus({ preventScroll: true });
+      return;
+    }
     if (addedCount > 0) track("extras_selected", funnelProps());
     setPricePane("details");
     window.requestAnimationFrame(() => {
@@ -1015,7 +1045,6 @@ export default function QuoteFlow({
     if (!requireCleanerDetails()) return;
     handoffBusy.current = true;
     setHandoffFailed(false);
-    track("booking_handoff", funnelProps());
     // A fresh, deliberate click always hands off — clear any stale guard first.
     clearHandoffFlag();
     setHandingOff(true);
@@ -1024,9 +1053,14 @@ export default function QuoteFlow({
     // Save the final extras and access details before leaving. This request is
     // bounded, idempotent and keepalive-enabled; a relay outage never prevents
     // the customer from reaching BookingKoala because the initial lead exists.
+    const confirmationPayload = confirmFields();
     const [confirmation, secureUrl] = await Promise.all([
-      submitQuote(confirmFields(), {
-        requestId: confirmRequestIdRef.current,
+      submitQuote(confirmationPayload, {
+        requestId: requestIdForPayload(
+          confirmationPayload,
+          confirmRequestIdRef,
+          confirmPayloadFingerprintRef,
+        ),
         timeoutMs: 3_500,
         keepalive: true,
       }),
@@ -1034,11 +1068,14 @@ export default function QuoteFlow({
     ]);
     if (confirmation.ok) setLeadCaptureFailed(false);
     if (!secureUrl) {
+      track("booking_handoff_failed", funnelProps());
       handoffBusy.current = false;
       clearHandoffFlag();
       setHandoffFailed(true);
       return;
     }
+
+    track("booking_handoff_succeeded", funnelProps());
 
     if (BOOKING_MODE === "embed") {
       // Same funnel, same domain — no interstitial needed. The intent flag is
@@ -1057,7 +1094,10 @@ export default function QuoteFlow({
     if (step === 2 && !requireCleanerDetails()) return;
     setFailed(false);
     setSubmitting(true);
-    const result = await submitQuote(confirmFields(), { requestId: confirmRequestIdRef.current });
+    const payload = confirmFields();
+    const result = await submitQuote(payload, {
+      requestId: requestIdForPayload(payload, confirmRequestIdRef, confirmPayloadFingerprintRef),
+    });
     setSubmitting(false);
     if (result.ok) {
       setSubmitted(true);
@@ -1666,11 +1706,16 @@ export default function QuoteFlow({
                 )}
                 {quote.ongoing !== null && recurringAddOnTotal > 0 && (
                   <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                    Your add-ons apply to every visit
-                    {basketRows.some((row) => row.extra.exemptFromFrequencyDiscount)
+                    Recurring add-ons apply to every visit
+                    {basketRows.some((row) => !row.extra.firstVisitOnly && row.extra.exemptFromFrequencyDiscount)
                       ? " — some, like the travel fee, are charged at full price"
                       : ""}
                     .
+                  </p>
+                )}
+                {quote.ongoing !== null && basketRows.some((row) => row.extra.firstVisitOnly) && (
+                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                    First-visit-only add-ons are not included in the recurring price.
                   </p>
                 )}
                 {showDeepBreakdown && quote.ongoing !== null && (
@@ -1747,8 +1792,8 @@ export default function QuoteFlow({
                       </p>
                       <p className="mt-2 inline-flex items-center gap-2 rounded-sm bg-savings-foreground px-3 py-1.5 text-base font-bold text-savings">
                         <Check className="h-4 w-4" aria-hidden="true" />
-                        Save {formatPrice(ongoingSavings)} per visit
-                        {basketRows.some((row) => row.extra.exemptFromFrequencyDiscount)
+                        Frequency savings: {formatPrice(ongoingSavings)} per recurring visit
+                        {basketRows.some((row) => row.extra.firstVisitOnly || row.extra.exemptFromFrequencyDiscount)
                           ? ""
                           : ` (${quote.discountPct}%)`}
                       </p>
@@ -1758,7 +1803,11 @@ export default function QuoteFlow({
               )}
 
               {petsExtra && (
-                <fieldset className="rounded-lg border border-quote-shelf-border bg-quote-shelf p-5">
+                <fieldset
+                  id="dc-pets-group"
+                  aria-describedby={petError ? "dc-pets-error" : undefined}
+                  className="rounded-lg border border-quote-shelf-border bg-quote-shelf p-5"
+                >
                   <legend className="px-1 text-lg font-bold text-foreground">
                     Do you have pets? (+{formatPrice(petsExtra.price)})
                   </legend>
@@ -1773,6 +1822,7 @@ export default function QuoteFlow({
                         aria-pressed={hasPets === option.value}
                         onClick={() => {
                           setHasPets(option.value);
+                          setPetError(null);
                           peek(shelfRef);
                         }}
                         className={`min-h-[48px] min-w-[96px] rounded-sm border px-4 py-2 text-base font-semibold transition-colors ${
@@ -1785,6 +1835,11 @@ export default function QuoteFlow({
                       </button>
                     ))}
                   </div>
+                  {petError && (
+                    <p id="dc-pets-error" role="alert" className="mt-3 text-sm font-semibold text-destructive">
+                      {petError}
+                    </p>
+                  )}
                 </fieldset>
               )}
 
@@ -2397,7 +2452,7 @@ export default function QuoteFlow({
                 savingsOverride={ongoingSavings}
                 ongoingNote={
                   recurringAddOnTotal > 0
-                    ? `Includes ${formatPrice(recurringAddOnTotal)} of add-ons charged every visit`
+                    ? `Includes ${formatPrice(recurringAddOnTotal)} of recurring add-ons per visit`
                     : undefined
                 }
                 firstCleanNote={

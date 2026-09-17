@@ -50,6 +50,8 @@ export interface QuotePayload {
   full_name: string;
   email: string;
   phone: string;
+  /** Free-form customer instructions are sent separately from short add-on labels. */
+  notes?: string;
   page_url: string;
   submitted_at: string;
   /** "deep" when the visitor came through a Deep Cleaning entry point. */
@@ -91,6 +93,15 @@ export function createQuoteRequestId(): string {
     return crypto.randomUUID();
   }
   return `dc-${Date.now()}-${Math.random().toString(36).slice(2, 12)}`;
+}
+
+/**
+ * A retry may reuse its request id only while the customer-visible payload is
+ * unchanged. Submission timestamps are transport metadata, so they are omitted.
+ */
+export function fingerprintQuotePayload(payload: Partial<QuotePayload>): string {
+  const { submitted_at: _submittedAt, request_id: _requestId, ...stable } = payload;
+  return JSON.stringify(stable, Object.keys(stable).sort());
 }
 
 export async function submitQuote(

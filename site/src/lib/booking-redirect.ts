@@ -36,6 +36,7 @@ export {
   groupForExtra,
   benefitForExtra,
   extraDisplayName,
+  recurringExtraTotals,
   EXTRA_GROUP_ORDER,
 } from "@/lib/bk-extras";
 export type { ResolvedExtra } from "@/lib/bk-extras";
@@ -174,10 +175,10 @@ export const DC_NOTES_MAX = 500;
 export type DcEntry = "home" | "mailbox" | "lockbox" | "code" | "other";
 export type DcParking = "street" | "visitor" | "driveway" | "paid";
 
-/** "t5j0n3" → "T5J 0N3"; anything that isn't a full Canadian code → null. */
+/** "t5j0n3" → "T5J 0N3"; rejects letters Canada Post never assigns. */
 export function normalizePostalCode(input: string | undefined | null): string | null {
   const raw = (input ?? "").toUpperCase().replace(/[^A-Z0-9]/g, "");
-  if (!/^[A-Z]\d[A-Z]\d[A-Z]\d$/.test(raw)) return null;
+  if (!/^[ABCEGHJKLMNPRSTVXY]\d[ABCEGHJKLMNPRSTVWXYZ]\d[ABCEGHJKLMNPRSTVWXYZ]\d$/.test(raw)) return null;
   return `${raw.slice(0, 3)} ${raw.slice(3)}`;
 }
 
@@ -254,12 +255,25 @@ function cityForPostalCode(normalized: string): string | null {
  * Whether an address is inside Edmonton, Calgary or Red Deer city limits,
  * judged by the postal code alone. "unknown" means we couldn't tell and the funnel should
  * fall back to asking.
+ *
+ * "outside" carries a second claim beyond "not in one of our cities": that we
+ * serve the address for a travel fee. Every Alberta postal code begins with T,
+ * so a code that does not is not a distant Alberta suburb — it is not in the
+ * service area at all. Returning "outside" for M5V (Toronto) or V6B
+ * (Vancouver) priced them as an Alberta suburb and let the funnel carry on,
+ * because paying a travel fee does not make an address serviceable.
+ *
+ * They are "unknown" instead: the caller falls back to the manual in-city
+ * question rather than asserting a fee-bearing coverage claim, and
+ * booking-details.ts rejects the province outright at the address step. This
+ * is a postal-code heuristic, never municipal-boundary verification.
  */
 export function postalCodeCityStatus(
   input: string | undefined | null
 ): "inside" | "outside" | "unknown" {
   const normalized = normalizePostalCode(input);
   if (!normalized) return "unknown";
+  if (!normalized.startsWith("T")) return "unknown";
   return cityForPostalCode(normalized) ? "inside" : "outside";
 }
 

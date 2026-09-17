@@ -5,6 +5,7 @@ import { useQuoteOverlay } from "@/hooks/use-quote-overlay";
 import { useLocation } from "react-router-dom";
 import { branchFromPath, isCalgaryPath } from "@/lib/city-from-path";
 import { RATING_CLAIM, cityProofFor, hasGoogleRating } from "@/data/proof";
+import LoadErrorBoundary from "@/components/LoadErrorBoundary";
 
 /**
  * The funnel (with react-hook-form + zod + the whole pricing engine) used to be
@@ -58,7 +59,14 @@ export default function QuoteOverlay() {
     openerRef.current = document.activeElement as HTMLElement | null;
     scrollYRef.current = window.scrollY;
     const previousOverflow = document.body.style.overflow;
+    const pageRoot = document.getElementById("root");
+    const previousRootInert = pageRoot?.inert ?? false;
+    const previousRootAriaHidden = pageRoot?.getAttribute("aria-hidden");
     document.body.style.overflow = "hidden";
+    if (pageRoot) {
+      pageRoot.inert = true;
+      pageRoot.setAttribute("aria-hidden", "true");
+    }
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -87,10 +95,11 @@ export default function QuoteOverlay() {
       if (focusable.length === 0) return;
       const first = focusable[0];
       const last = focusable[focusable.length - 1];
-      if (event.shiftKey && document.activeElement === first) {
+      const active = document.activeElement;
+      if (event.shiftKey && (active === first || active === panel || !panel.contains(active))) {
         event.preventDefault();
         last.focus();
-      } else if (!event.shiftKey && document.activeElement === last) {
+      } else if (!event.shiftKey && (active === last || !panel.contains(active))) {
         event.preventDefault();
         first.focus();
       }
@@ -101,6 +110,11 @@ export default function QuoteOverlay() {
 
     return () => {
       document.body.style.overflow = previousOverflow;
+      if (pageRoot) {
+        pageRoot.inert = previousRootInert;
+        if (previousRootAriaHidden === null) pageRoot.removeAttribute("aria-hidden");
+        else pageRoot.setAttribute("aria-hidden", previousRootAriaHidden);
+      }
       document.removeEventListener("keydown", onKeyDown);
       // Return the visitor exactly where they were, focus included.
       window.scrollTo(0, scrollYRef.current);
@@ -185,18 +199,20 @@ export default function QuoteOverlay() {
       <div className="funnel-canvas flex-1 overflow-y-auto">
         <div className="mx-auto w-full max-w-7xl px-4 py-6 md:px-6 md:py-8">
           <div className="rounded-lg border border-border bg-card p-5 shadow-[0_18px_40px_-32px_hsl(var(--brand-navy)/0.5)] md:p-8">
-            <Suspense
-              fallback={
-                <div className="min-h-[420px] animate-pulse rounded-md bg-muted/40" aria-hidden="true" />
-              }
-            >
-              <QuoteFlow
-                initialService={initialService}
-                initialIntent={initialIntent}
-                servicePreset={servicePreset}
-                onClose={closeQuote}
-              />
-            </Suspense>
+            <LoadErrorBoundary area="quote form" onDismiss={closeQuote}>
+              <Suspense
+                fallback={
+                  <div className="min-h-[420px] animate-pulse rounded-md bg-muted/40" aria-hidden="true" />
+                }
+              >
+                <QuoteFlow
+                  initialService={initialService}
+                  initialIntent={initialIntent}
+                  servicePreset={servicePreset}
+                  onClose={closeQuote}
+                />
+              </Suspense>
+            </LoadErrorBoundary>
           </div>
         </div>
       </div>

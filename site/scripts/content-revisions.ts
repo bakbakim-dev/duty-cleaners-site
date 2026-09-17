@@ -19,11 +19,8 @@ export function contentFingerprint(html: string): string {
   if (!main) throw new Error("Missing prerendered main content");
   const text = main
     .replace(/<(script|style|svg)\b[^>]*>[\s\S]*?<\/\1>/gi, "")
-    .replace(/<time\b[^>]*>[\s\S]*?<\/time>/gi, "")
+    .replace(/<time\b[^>]*data-content-revision(?:="[^"]*")?[^>]*>[\s\S]*?<\/time>/gi, "")
     .replace(/<[^>]+>/g, " ")
-    // Legacy visible revision labels do not all use a time element yet.
-    .replace(/\b\d{4}-\d{2}-\d{2}\b/g, "")
-    .replace(/\b(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},?\s+\d{4}\b/g, "")
     .replace(/\s+/g, " ").trim();
   const title = html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1] ?? "";
   const descriptions = [...html.matchAll(/<meta\b[^>]*(?:name|property)="(?:description|og:description)"[^>]*content="([^"]*)"[^>]*>/gi)].map(m => m[1]);

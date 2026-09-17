@@ -50,7 +50,7 @@ describe("satisfaction guarantee window", () => {
       /(within|after|more than)\s*48\s*hours?[^.]{0,40}(clean|cleaning|appointment|service|visit)/i;
     const offenders = sourceFiles()
       .filter((f) => claimWindow.test(stripComments(f.text)))
-      .map((f) => f.name.split(/[\/]/).pop());
+      .map((f) => f.name.split("/").pop());
     expect(offenders, `these state a 48-hour reporting window: ${offenders.join(", ")}`).toEqual([]);
   });
 });

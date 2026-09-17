@@ -15,6 +15,11 @@ describe("booking handoff data contract", () => {
     expect(Object.keys(validateCleanerDetails({}))).toEqual(expect.arrayContaining(["address", "city", "province", "postalCode", "entry", "cleanliness", "parking", "flexibility"]));
     expect(validateCleanerDetails({ ...details, flexibility: "time", notes: "" })).toHaveProperty("notes");
     expect(validateCleanerDetails({ ...details, cleanliness: 8 })).toHaveProperty("cleanliness");
+    expect(validateCleanerDetails({ ...details, province: "BC", postalCode: "V6B 1A1" })).toMatchObject({
+      province: expect.any(String),
+      postalCode: expect.any(String),
+    });
+    expect(validateCleanerDetails({ ...details, city: "Calgary" })).toHaveProperty("city");
   });
   it("transfers every new field without changing lockbox meaning or truncating its note", () => {
     const params = new URLSearchParams(buildBookingQuery(input)!);

@@ -16,7 +16,7 @@ describe("SEO editorial integrity", () => {
     const blog = src("pages/Blog.tsx");
     expect(blog).toContain('date={modifiedFor(post.slug ?? "", "")}');
     expect(blog).not.toMatch(/\b(?:date|readTime):\s*"/);
-    expect(src("components/blog/BlogPostCard.tsx")).toContain("Updated <time");
+    expect(src("components/blog/BlogPostCard.tsx")).toContain("Updated <time data-content-revision");
   });
   it("does not present the mislabelled skyline asset as Calgary", () => {
     for (const page of ["Blog", "BlogChoosingCalgaryCleaner", "CalgaryServices", "Locations"]) {
@@ -24,10 +24,11 @@ describe("SEO editorial integrity", () => {
     }
   });
   it("does not change revision dates for CSS or date-only edits", () => {
-    const html = '<title>Cleaning</title><main class="old"><h1>Price</h1><p>155</p><time>2026-09-12</time></main><script type="application/ld+json">{"dateModified":"2026-09-12","price":155}</script>';
+    const html = '<title>Cleaning</title><main class="old"><h1>Price</h1><p>155</p><time data-content-revision>2026-09-12</time></main><script type="application/ld+json">{"dateModified":"2026-09-12","price":155}</script>';
     const hash = contentFingerprint(html);
     expect(contentFingerprint(html.replace('class="old"', 'class="new"').replace(/2026-09-12/g, "2026-09-13"))).toBe(hash);
     expect(contentFingerprint(html.replace(/155/g, "165"))).not.toBe(hash);
+    expect(contentFingerprint(html.replace("Price", "Price updated September 12, 2026"))).not.toBe(hash);
     const previous = {hash, modified: "2026-09-12"};
     expect(revisionFor(previous, hash, "2026-09-13")).toEqual(previous);
     expect(revisionFor(previous, "changed", "2026-09-13").modified).toBe("2026-09-13");
