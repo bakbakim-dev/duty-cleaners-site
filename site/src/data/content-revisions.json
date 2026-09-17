@@ -40,11 +40,11 @@
     "modified": "2026-09-13"
   },
   "/calgary/recurring-cleaning": {
-    "hash": "c40abdbabed51efd3793d1e71b2c7d46a58f9e1a643fc99b9824a65e6655dabc",
+    "hash": "8be27550a29ec88c463d45e1f55ad392f9b88ba85919c0f05de208106d4032bb",
     "modified": "2026-09-17"
   },
   "/calgary/regular-cleaning": {
-    "hash": "0e172998e83a214d556c3ccdf13a983fb7e47e8530f856047239f9cd6c576fa0",
+    "hash": "95ee52545127f6b7feccdbdcfb034c2036518e06fa05260aebfed13c18846465",
     "modified": "2026-09-17"
   },
   "/calgary/services": {
@@ -184,7 +184,7 @@
     "modified": "2026-09-13"
   },
   "/locations/arbour-lake": {
-    "hash": "3293637990be4b10d27983b737e67bb8628cb3b7d46eb73ba169790e364c080c",
+    "hash": "e93f1f823a4f46dddf30e2c5546691905e2c4dcd5350d89b3d499d2714501edd",
     "modified": "2026-09-17"
   },
   "/locations/aspen-gardens-edmonton": {
@@ -228,7 +228,7 @@
     "modified": "2026-09-17"
   },
   "/locations/beltline-calgary": {
-    "hash": "5fc5d8ecadd8a01e8aef8c38d86a5904bbec7772cc839ec840639b4228116bb6",
+    "hash": "6b1dd5580d2798f2b0cac589ae4573362e2f077b529b4047dcfbf52bd55dfe99",
     "modified": "2026-09-17"
   },
   "/locations/belvedere-edmonton": {
@@ -244,7 +244,7 @@
     "modified": "2026-09-13"
   },
   "/locations/bowness-calgary": {
-    "hash": "791134a41d2a5298de46f4e379b092431624ac02b1b604e486f9a1b216991e49",
+    "hash": "a3297d89eb3751cb091adcf3b183a70d10cb37a15dea1725886eef8529d48050",
     "modified": "2026-09-17"
   },
   "/locations/boyle-street-edmonton": {
@@ -252,11 +252,11 @@
     "modified": "2026-09-13"
   },
   "/locations/brentwood-calgary": {
-    "hash": "de4e01718344e6dca0e4113163903a6d2670eaffdf553293ca9793a645474eb1",
+    "hash": "049fee5d348c5e5e117b19567464a1955574b10a2e02219b22edeba076e475e8",
     "modified": "2026-09-17"
   },
   "/locations/bridgeland-riverside-calgary": {
-    "hash": "1923f7920c059360113189f63cb0ce11182cabfcb946112e26e00c1ca40818bb",
+    "hash": "55b1d0e77d22bb9e86dd3c9af84f7af110f1d2f316d219f7247c0e4b01dee64e",
     "modified": "2026-09-17"
   },
   "/locations/brintnell-edmonton": {
@@ -276,7 +276,7 @@
     "modified": "2026-09-17"
   },
   "/locations/capitol-hill-calgary": {
-    "hash": "b95ecfa68193037d9ad01ad6d188ff071d28c51579ab7be66d596654b1f4f101",
+    "hash": "e05783ce624c9d9670b9207b6b20e5ce5e48de6225a222c51a5132e24b744cbf",
     "modified": "2026-09-17"
   },
   "/locations/casselman-edmonton": {
@@ -296,7 +296,7 @@
     "modified": "2026-09-13"
   },
   "/locations/cityscape": {
-    "hash": "cab7fab34b86a3e2c57eb80c8d8e655d4999727d732bbef6062e3cb399ab22bf",
+    "hash": "33bfa9f05839b527aa8e9b3b98d980dd1e2cf98794856c0357e0f1cfd32671b4",
     "modified": "2026-09-17"
   },
   "/locations/clareview": {
@@ -312,7 +312,7 @@
     "modified": "2026-09-13"
   },
   "/locations/crescent-heights-calgary": {
-    "hash": "e5cd698e1741be260cf5e419278ba3bc4bee23d5000c7a7aebde8c5f9fe57f3c",
+    "hash": "145752f3bd50b5781408185c3f5cded6862b7f8d91a62e125bcefe90966f4cbe",
     "modified": "2026-09-17"
   },
   "/locations/crossfield": {
@@ -320,7 +320,7 @@
     "modified": "2026-09-13"
   },
   "/locations/dalhousie-calgary": {
-    "hash": "9e6b6fbae4701e840381461f067dd97236fa64ace3b43b53499b26cf9587b814",
+    "hash": "b6718b37722eebfc2e32e154f7a6696382233202225371eadfdb7d362340e500",
     "modified": "2026-09-17"
   },
   "/locations/delton": {
@@ -340,11 +340,11 @@
     "modified": "2026-09-13"
   },
   "/locations/downtown-west-end-calgary": {
-    "hash": "d942a56473926ad4413ddc0e9b5c336213168476529a51175604da712844df3b",
+    "hash": "8e50d1a08bbab89b4844ee46e3ef764cedff64e54ee4d502660f32fb24c9682d",
     "modified": "2026-09-17"
   },
   "/locations/east-village-calgary": {
-    "hash": "00a615b242b3be7bafa6ce66a2bd306214b3d00bab9943b5f9f5c731fc2e50a9",
+    "hash": "3927fc29b31cde98da661ed9746cbd546e09ffe6c7047b7d3620feff0a2b408c",
     "modified": "2026-09-17"
   },
   "/locations/eastwood-edmonton": {
@@ -352,7 +352,7 @@
     "modified": "2026-09-13"
   },
   "/locations/eau-claire-calgary": {
-    "hash": "77c12e2cd758bbf8648308af2577585ce4e69c69f032c8c7ee9abc7c30a7b4a9",
+    "hash": "f8010d28476b88b88c978cbfedda46de2af9c3dd1dc916e12678633158ee0e89",
     "modified": "2026-09-17"
   },
   "/locations/eaux-claires-edmonton": {
@@ -432,7 +432,7 @@
     "modified": "2026-09-17"
   },
   "/locations/hillhurst-calgary": {
-    "hash": "4a4045feffb25acc607350500be442a6e8966e39bc7ce87ac276ab7de59413b5",
+    "hash": "7672f133563a3be87fa4d03537bc39eaf4ae1c851399e76842ab05b28b7fd2f4",
     "modified": "2026-09-17"
   },
   "/locations/hollick-kenyon-edmonton": {
@@ -452,7 +452,7 @@
     "modified": "2026-09-13"
   },
   "/locations/inglewood-calgary": {
-    "hash": "7de8fda329d60917bf55ef70a7d950d2ac8bb70e9f2f594c910c64537e40df89",
+    "hash": "bdc25e4dcfc2eb68100001cc64c5f0590142ab66fff79efa9421b5e70c0aeda8",
     "modified": "2026-09-17"
   },
   "/locations/kensington": {
@@ -576,7 +576,7 @@
     "modified": "2026-09-13"
   },
   "/locations/mount-royal": {
-    "hash": "c7e0485868c5204df67b77e56b41e5db25d3802ae104a905da9865fc90aab399",
+    "hash": "0bf9ea9be7bd9c8bfa21734aab60e6814c5de72fa5c2a6d7c3abd020b479d791",
     "modified": "2026-09-17"
   },
   "/locations/northmount-edmonton": {
@@ -628,7 +628,7 @@
     "modified": "2026-09-13"
   },
   "/locations/renfrew-calgary": {
-    "hash": "526f5b1e08f6ac45595bdd5bb61837cd0d57c8c10b210564cee600ba8a86c1ff",
+    "hash": "4e8b06b696cc2cab5ad3780cd3e3ead00e65035d4f0bbd3f8a62e3990b607b0e",
     "modified": "2026-09-17"
   },
   "/locations/richmond-calgary": {
@@ -684,7 +684,7 @@
     "modified": "2026-09-13"
   },
   "/locations/skyview-ranch": {
-    "hash": "2428c2a771bc17d9b3bdf4b1ac3f7ef0a70c2067b79b0460d6c2f1d0ee104acb",
+    "hash": "919f675156657d4d854e4d62273c380d8a1e067d87eb3c4fa2af059b422be055",
     "modified": "2026-09-17"
   },
   "/locations/southwood-calgary": {
@@ -720,7 +720,7 @@
     "modified": "2026-09-13"
   },
   "/locations/sunnyside-calgary": {
-    "hash": "a9422fdde348cee3ef612402f7dda030f043d7d334e32899b28f440720d23f00",
+    "hash": "0135efe274278bf8edf0ece92103671e781f95e1d076cea8683afe0272343e5b",
     "modified": "2026-09-17"
   },
   "/locations/tamarack-edmonton": {
@@ -748,7 +748,7 @@
     "modified": "2026-09-17"
   },
   "/locations/varsity-calgary": {
-    "hash": "ba2680ab8563172b8aa52b0dabd64d668fa4a83980cedaf8fbb98fa3852c190d",
+    "hash": "85eec9a75ddc0f7a89e2410301e5458872ebd042fe5b29bf9a2985f54e575ae3",
     "modified": "2026-09-17"
   },
   "/locations/victoria-park-calgary": {
