@@ -1337,10 +1337,10 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/seo-editorial.test.ts",
     target: "scripts/content-revisions.ts",
-    find: '.replace(/\\b\\d[\\d,]*(\\s+(?:Edmonton|Calgary|Red Deer|Google)?\\s*reviews?\\b|\\s+of them\\b)/gi, "N$1")',
-    replace: '.replace(/\\b\\d[\\d,]*(\\s+(?:Edmonton|Calgary|Red Deer|Google)?\\s*reviews?\\b|\\s+of them\\b)/gi, "$&")',
+    find: '/\\b\\d[\\d,]*(\\s+(?:Edmonton',
+    replace: '/\\bNEVER\\d[\\d,]*(\\s+(?:Edmonton',
     failing: "does not change a revision date when a Google review count is re-read",
-    why: "Turns the count mask into a no-op, so a re-read re-dates every page that prints the count.",
+    why: "Makes the count mask match nothing (a $-free break: the prover, like String.replace, would expand $& in a replacement), so a re-read re-dates every page that prints the count.",
   },
   {
     guard: "src/data/htaccess-parity.test.ts",
