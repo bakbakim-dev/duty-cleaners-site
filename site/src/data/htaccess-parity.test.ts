@@ -111,6 +111,7 @@ describe("the Apache and Netlify rule sets describe the same site", () => {
     const text = readFileSync(join(PUBLIC, ".htaccess"), "utf-8");
     for (const header of [
       "X-Frame-Options",
+      "Cross-Origin-Opener-Policy",
       "X-Content-Type-Options",
       "Referrer-Policy",
       "Permissions-Policy",

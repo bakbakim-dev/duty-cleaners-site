@@ -28,6 +28,11 @@
   X-Frame-Options: SAMEORIGIN
   Content-Security-Policy: frame-ancestors 'self'
 
+  # Origin isolation. same-origin-allow-popups keeps our window isolated from
+  # cross-origin openers while the windows we open ourselves (BookingKoala
+  # fallback, Google listings — both noopener) keep working.
+  Cross-Origin-Opener-Policy: same-origin-allow-popups
+
   # HSTS, see note 2. Netlify hosts only the private preview on *.netlify.app,
   # itself HSTS-preloaded, so this is parity with the Apache rules, where the
   # header is scoped to the production host.

@@ -182,6 +182,9 @@ export default function CityConversionIntro({
             rel="preload"
             as="image"
             href={heroImage}
+            // The <img> below carries fetchpriority=high; the preload must too,
+            // or the hint itself is fetched at Low behind the module preloads.
+            {...({ fetchpriority: "high" } as Record<string, string>)}
             {...(heroSrcSet ? { imagesrcset: heroSrcSet, imagesizes: "100vw" } : {})}
           />
         </Helmet>
