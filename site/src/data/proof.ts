@@ -382,6 +382,26 @@ export const BRANCH_IDENTITY = {
   },
 } as const;
 
+/**
+ * The branch office's pin as a schema.org GeoCoordinates node, for the
+ * LocalBusiness that carries the branch @id.
+ *
+ * On a business node `geo` means "where this business IS", so the only pin a
+ * branch node may carry is the one that matches the address beside it: the
+ * Google listing's, confirmed by the owner (CITY_PROOF[branch].geo). The pin of
+ * a neighbourhood the branch SERVES belongs on areaServed, never here — a
+ * business at 18615 71 Ave NW with a pin 30 km away in Leduc contradicts
+ * itself, and one address with 153 different pins is the shape of a
+ * location-page scheme. location-geo.test.ts holds both halves of that line.
+ *
+ * Built field by field rather than spread, so the confirm() brand never rides
+ * into the JSON and the node is exactly the three keys the hubs publish.
+ */
+export function branchGeoFor(branch: Branch) {
+  const pin = CITY_PROOF[branch].geo;
+  return { "@type": "GeoCoordinates", latitude: pin.latitude, longitude: pin.longitude } as const;
+}
+
 /** The Red Deer page's canonical path: the preserved legacy URL. */
 export const RED_DEER_PATH = "/cleaning-services-red-deer/";
 

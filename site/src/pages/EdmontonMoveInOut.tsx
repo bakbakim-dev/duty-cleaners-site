@@ -28,6 +28,7 @@ import {
 import { travelFee } from "@/data/addon-table";
 import {
   schemaAddressFor,
+  branchGeoFor,
   BRANCH_ID,
   ORG_ID,
   RATING_CLAIM,
@@ -191,6 +192,8 @@ export default function EdmontonMoveInOut() {
     telephone: CITY_PROOF.edmonton.phoneE164,
     email: "support@dutycleaners.ca",
     address: schemaAddressFor("edmonton"),
+    // The office pin, matching the address (data/proof.ts).
+    geo: branchGeoFor("edmonton"),
     url: BRANCH_IDENTITY.edmonton.url,
     /* No priceRange here. This node shares BRANCH_ID with the hub, which
        publishes the site-wide band, and a second value on the same @id made

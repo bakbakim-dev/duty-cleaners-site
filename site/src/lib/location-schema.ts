@@ -13,6 +13,7 @@ import {
   BRANCH_IDENTITY,
   openingHoursSpecFor,
   openingHoursShortFor,
+  branchGeoFor,
   type Branch,
 } from "@/data/proof";
 import { geoFor } from "@/data/location-geo";
@@ -91,11 +92,13 @@ function placeNameOf(input: LocationSchemaInput, locality: string): string {
  * branch, named once and referenced by @id, and what varies per page is the
  * SERVICE offered and the AREA it is offered in. So the page node is a Service
  * whose provider is the branch, and the coordinates stay where the previous
- * pass correctly put them — on areaServed, the place served, not on the
- * business, which is at its own address either way.
+ * pass correctly put them — on areaServed, the place served. The business
+ * carries its OWN pin: the branch office's, the same on every page of the
+ * branch and matching the address beside it (branchGeoFor in data/proof.ts).
  *
- * Nothing about the geo work changes: `geo` still hangs off `areaServed` and
- * never off a business node.
+ * So two pins per page, each true of the node it sits on: `geo` on
+ * `areaServed` is the place served, `geo` on the provider is where the
+ * office is. What never happens is the served place's pin on the business.
  */
 export function buildLocationSchema(input: LocationSchemaInput) {
   const contact = CITY_CONTACT[input.city];
@@ -154,6 +157,10 @@ export function buildLocationSchema(input: LocationSchemaInput) {
       // postal — which is a business that cannot be matched to its GBP listing
       // or its citations.
       address: schemaAddressFor(input.city),
+      // The OFFICE pin, matching that address — not the served place's, which
+      // is on areaServed above. Same value on every page of the branch, so the
+      // branch entity has one location wherever it is referenced.
+      geo: branchGeoFor(input.city),
       // Derived, and the same on every page of the branch. See the note on the
       // deprecated `priceRange` input above for what it replaces.
       priceRange: sitePriceRange(),

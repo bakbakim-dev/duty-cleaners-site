@@ -1,4 +1,4 @@
-import { CITY_PROOF } from "@/data/proof";
+import { CITY_PROOF, branchGeoFor } from "@/data/proof";
 import { schemaAddressFor, BRANCH_ID, BRANCH_IDENTITY, openingHoursShortFor, openingHoursSpecFor } from "@/data/proof";
 import { sitePriceRange } from "@/data/pricing";
 import { canonicalUrlForPath } from "@/data/legacy-urls";
@@ -77,6 +77,8 @@ export function buildPricingSchema({ city, standard, deep, moveInOut }: PricingS
       // One authority for the entity's address (data/proof.ts). This provider
       // node used to carry none at all — on every pricing page.
       address: schemaAddressFor(city),
+      // The office pin, matching the address (data/proof.ts).
+      geo: branchGeoFor(city),
       // The branch's hours and published band, from data/proof.ts and
       // data/pricing.ts. Same reason as service-schema.ts: a node that names a
       // business without saying when it answers is incomplete wherever it is

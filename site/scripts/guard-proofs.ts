@@ -1438,6 +1438,25 @@ export const GUARD_PROOFS: GuardProof[] = [
     failing: "the contact form and the quote overlay read the fragment",
     why: "Stops the contact form reading the fragment, so #topic=office would open a blank form.",
   },
+  // ---- the branch office pin on every branch node (scan 1131, 2026-09-17) ---
+  {
+    guard: "src/data/branch-geo.test.ts",
+    target: "dist/cleaning-services-leduc/index.html",
+    find: '"latitude":53.504317,"longitude":-113.64391',
+    replace: '"latitude":53.6,"longitude":-113.64391',
+    failing: "every branch node with an address carries that branch's office pin",
+    why: "Moves the Edmonton branch's pin on the Leduc page off the office, so one page's branch node points somewhere else.",
+    dist: true,
+  },
+  {
+    guard: "src/data/branch-geo.test.ts",
+    target: "dist/edmonton/march-out-cleaning/index.html",
+    find: '"image":"https://dutycleaners.ca/og-image.jpg"',
+    replace: '"imageless":"https://dutycleaners.ca/og-image.jpg"',
+    failing: "the march-out provider carries what the shared builders publish",
+    why: "Strips the image the march-out provider gained, back to the drifted shape scan 1131 found.",
+    dist: true,
+  },
   // ---- and this registry itself ------------------------------------------
   {
     guard: "src/data/guard-proofs.test.ts",

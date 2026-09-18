@@ -7,6 +7,7 @@ import {
   CITY_PROOF,
   openingHoursShortFor,
   openingHoursSpecFor,
+  branchGeoFor,
 } from "@/data/proof";
 import { sitePriceRange } from "@/data/pricing";
 import { canonicalUrlForPath } from "@/data/legacy-urls";
@@ -81,6 +82,8 @@ export function buildServiceSchema(input: {
       name: BRANCH_IDENTITY[input.city].name,
       url: BRANCH_IDENTITY[input.city].url,
       address: schemaAddressFor(input.city),
+      // The office pin, matching the address (data/proof.ts).
+      geo: branchGeoFor(input.city),
       // On wall-washing (both cities) and post-construction this nested provider
       // is the ONLY LocalBusiness node the page emits, so leaving the phone off
       // published a business with no way to call it on three money pages.

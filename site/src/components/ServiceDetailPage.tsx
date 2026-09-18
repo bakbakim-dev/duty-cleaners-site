@@ -11,6 +11,7 @@ import {
   RATING_CLAIM,
   openingHoursShortFor,
   openingHoursSpecFor,
+  branchGeoFor,
 } from "@/data/proof";
 import { POLICY } from "@/data/policy";
 import CityCrossLink from "@/components/CityCrossLink";
@@ -256,6 +257,8 @@ const ServiceDetailPage = ({
       // node used to carry none — on every service×city page, ~165 of the 175
       // address-less LocalBusiness nodes an AuditSpur build audit found.
       address: schemaAddressFor(city),
+      // The office pin, matching the address (data/proof.ts).
+      geo: branchGeoFor(city),
       // Hours and the published band, from data/proof.ts and data/pricing.ts.
       // On a service×city page this provider is often the only LocalBusiness
       // node, and a business with no stated hours is exactly what the

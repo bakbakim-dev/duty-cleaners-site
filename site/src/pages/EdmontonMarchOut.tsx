@@ -3,11 +3,13 @@ import { canonicalUrlForPath } from "@/data/legacy-urls";
 import {
   BRANCH_ID,
   BRANCH_IDENTITY,
+  BRANCH_PROFILES,
+  branchGeoFor,
   schemaAddressFor,
   openingHoursShortFor,
   openingHoursSpecFor,
 } from "@/data/proof";
-import { GST_RATE, moveInOutTierRows } from "@/data/pricing";
+import { GST_RATE, moveInOutTierRows, sitePriceRange } from "@/data/pricing";
 import { ARRIVAL_WINDOWS, POLICY } from "@/data/policy";
 import React from "react";
 import { Helmet } from "react-helmet-async";
@@ -203,6 +205,14 @@ const serviceSchema = {
     // answers — one of the 17 the 2026-09-11 AuditSpur scan counted.
     openingHours: openingHoursShortFor("edmonton"),
     openingHoursSpecification: openingHoursSpecFor("edmonton"),
+    // The rest of what the shared builders publish for the branch, from the
+    // same authorities. This node was hand-built and had drifted: scan 1131
+    // (2026-09-17) found it the only branch node with no price band, image or
+    // profiles, and no office pin.
+    geo: branchGeoFor("edmonton"),
+    priceRange: sitePriceRange(),
+    image: "https://dutycleaners.ca/og-image.jpg",
+    sameAs: [...BRANCH_PROFILES.edmonton],
   },
   areaServed: { "@type": "City", name: "Edmonton" },
   url: canonicalUrlForPath("/edmonton/march-out-cleaning"),

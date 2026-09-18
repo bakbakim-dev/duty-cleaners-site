@@ -26,7 +26,7 @@ import { travelFee } from "@/data/addon-table";
 import { createQuoteRequestId, fingerprintQuotePayload, submitQuote } from "@/lib/quote-submit";
 import { track } from "@/lib/analytics";
 import { z } from "zod";
-import { CITY_PROOF, SUPPORT_EMAIL, schemaAddressFor, BRANCH_IDENTITY, BRANCH_PROFILES, ORG_ID, RATING_CLAIM, RED_DEER_PATH, hasGoogleRating, hoursLineFor, hoursRowsFor, openingHoursSpecFor, type Branch } from "@/data/proof";
+import { CITY_PROOF, SUPPORT_EMAIL, schemaAddressFor, branchGeoFor, BRANCH_IDENTITY, BRANCH_PROFILES, ORG_ID, RATING_CLAIM, RED_DEER_PATH, hasGoogleRating, hoursLineFor, hoursRowsFor, openingHoursSpecFor, type Branch } from "@/data/proof";
 
 const TITLE = "Contact Duty Cleaners | Edmonton, Calgary & Red Deer";
 const DESCRIPTION = `Call Duty Cleaners in Edmonton ${CITY_PROOF.edmonton.phone}, Calgary ${CITY_PROOF.calgary.phone} or Red Deer ${CITY_PROOF.reddeer.phone}, or send the form. Hours for each office are listed.`;
@@ -446,6 +446,8 @@ export default function Contact() {
                   // One authority (data/proof.ts) — the split-on-comma inline
                   // version carried no postalCode.
                   address: schemaAddressFor(key),
+                  // The office pin, matching the address (data/proof.ts).
+                  geo: branchGeoFor(key),
                   contactPoint: {
                     "@type": "ContactPoint",
                     contactType: "customer service",

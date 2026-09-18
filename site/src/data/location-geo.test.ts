@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest";
 import { readFileSync, existsSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { LOCATION_GEO, geoFor } from "./location-geo";
+import { BRANCH_ID, CITY_PROOF, type Branch } from "./proof";
 import { calgarySurrounding, edmontonSurrounding } from "./city-locations";
 
 /**
@@ -174,10 +175,16 @@ describe("location pages emit GeoCoordinates", () => {
    * the business node.
    *
    * So it walks every node in the graph, at any depth, and asks the two
-   * questions separately: no business node anywhere carries `geo`, and each
-   * page still declares the pin on an area it serves.
+   * questions separately: a business node carries no pin but its own branch
+   * office's, and each page still declares the served place's pin on areaServed.
+   *
+   * The office pin (2026-09-17, scan 1131): the branch node MAY carry `geo`,
+   * and when it does it must be the pin that matches the address beside it —
+   * CITY_PROOF[branch].geo, keyed by the node's @id — the same value on every
+   * page of the branch. A neighbourhood's pin on a business node is the exact
+   * defect this guard exists for, and it still fails here.
    */
-  it("puts the coordinates on areaServed, never on the business node", () => {
+  it("puts the served pin on areaServed and only the office pin on the business node", () => {
     const urls = locationUrls();
     if (!urls.length) return;
 
@@ -214,7 +221,13 @@ describe("location pages emit GeoCoordinates", () => {
 
       for (const node of nodes) {
         if (!typesOf(node).some((t) => t.includes("LocalBusiness"))) continue;
-        if (node.geo) onBusiness.push(url);
+        if (!node.geo) continue;
+        const branch = (Object.keys(BRANCH_ID) as Branch[]).find((b) => BRANCH_ID[b] === node["@id"]);
+        const pin = node.geo as Record<string, unknown>;
+        const office = branch ? CITY_PROOF[branch].geo : null;
+        if (!office || pin.latitude !== office.latitude || pin.longitude !== office.longitude) {
+          onBusiness.push(`${url} (${String(node["@id"] ?? "no @id")}: ${pin.latitude},${pin.longitude})`);
+        }
       }
 
       // The page still has to publish its pin, and it has to publish it as the
@@ -224,7 +237,7 @@ describe("location pages emit GeoCoordinates", () => {
       );
       if (!declaresArea) missingOnArea.push(url);
     }
-    expect(onBusiness, "coordinates back on the business node").toEqual([]);
+    expect(onBusiness, "a business node carrying a pin that is not its own office's").toEqual([]);
     expect(missingOnArea, "areaServed carries no coordinates").toEqual([]);
   });
 

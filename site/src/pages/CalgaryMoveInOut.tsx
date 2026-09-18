@@ -24,6 +24,7 @@ import { TRAVEL_FEE_KEY } from "@/data/addon-table";
 import { buildServiceSchema } from "@/lib/service-schema";
 import {
   schemaAddressFor,
+  branchGeoFor,
   BRANCH_ID,
   ORG_ID,
   RATING_CLAIM,
@@ -81,6 +82,8 @@ const branchSchema = () => {
     telephone: CITY_PROOF.calgary.phoneE164,
     email: "support@dutycleaners.ca",
     address: schemaAddressFor("calgary"),
+    // The office pin, matching the address (data/proof.ts).
+    geo: branchGeoFor("calgary"),
     url: BRANCH_IDENTITY.calgary.url,
     /* No priceRange here. This node shares BRANCH_ID with the Calgary hub,
        which publishes the site-wide band, and a second value on the same @id
