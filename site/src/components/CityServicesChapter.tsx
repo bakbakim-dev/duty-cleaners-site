@@ -204,7 +204,7 @@ export default function CityServicesChapter({
           </div>
           <Link
               to={canonicalForPath(`${basePath}/recurring-cleaning`)}
-              className="hidden items-center text-sm font-semibold text-accent transition-transform duration-300 motion-safe:group-hover:translate-x-1 sm:inline-flex after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="inline-flex items-center text-sm font-semibold text-accent transition-transform duration-300 motion-safe:group-hover:translate-x-1 after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               {city} recurring cleaning <span className="dc-icon dc-icon-external-link ml-1 h-4 w-4" aria-hidden="true" />
           </Link>
@@ -223,7 +223,7 @@ export default function CityServicesChapter({
           </div>
           <Link
               to={canonicalForPath(`${basePath}/post-construction-cleaning`)}
-              className="hidden items-center text-sm font-semibold text-primary transition-transform duration-300 motion-safe:group-hover:translate-x-1 sm:inline-flex after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="inline-flex items-center text-sm font-semibold text-primary transition-transform duration-300 motion-safe:group-hover:translate-x-1 after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               {city} post-construction cleaning <span className="dc-icon dc-icon-external-link ml-1 h-4 w-4" aria-hidden="true" />
           </Link>
@@ -248,7 +248,7 @@ export default function CityServicesChapter({
           </div>
           <Link
             to={canonicalForPath(`${basePath}/wall-washing`)}
-            className="hidden items-center text-sm font-semibold text-primary transition-transform duration-300 motion-safe:group-hover:translate-x-1 sm:inline-flex after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            className="inline-flex items-center text-sm font-semibold text-primary transition-transform duration-300 motion-safe:group-hover:translate-x-1 after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
             {city} wall washing <span className="dc-icon dc-icon-external-link ml-1 h-4 w-4" aria-hidden="true" />
           </Link>

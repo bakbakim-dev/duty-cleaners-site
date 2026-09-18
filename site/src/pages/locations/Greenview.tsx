@@ -107,7 +107,7 @@ export default function Greenview() {
                 Professional House Cleaning in Greenview
               </h1>
               <p className="text-lg text-white/85 mb-8 max-w-3xl mx-auto leading-relaxed">
-                Greenview sits against Deerfoot Trail and Greenview Industrial Park, with the airport lands off to the northeast. Nearly half its homes are low-rise apartments and 55% of households rent in the <a href="https://www.calgary.ca/content/dam/www/programs-services/property-housing-and-neighbourhoods/neighbourhood-and-community-relationships/profiles/greenview.pdf" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">2021 Census</a>, and our Calgary branch prices a standard, deep or move-out clean flat by home size.
+                Greenview sits against Deerfoot Trail and Greenview Industrial Park, with the airport lands off to the northeast. Nearly half its homes are low-rise apartments and 55% of households rent in the <a href="https://www.calgary.ca/content/dam/www/programs-services/property-housing-and-neighbourhoods/neighbourhood-and-community-relationships/profiles/greenview.pdf" target="_blank" rel="noopener noreferrer" className="text-accent-on-dark underline underline-offset-2">2021 Census</a>, and our Calgary branch prices a standard, deep or move-out clean flat by home size.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>

@@ -106,7 +106,7 @@ export default function HighlandPark() {
                 Professional House Cleaning in Highland Park
               </h1>
               <p className="text-lg text-white/85 mb-8 max-w-3xl mx-auto leading-relaxed">
-                Only one in five of Highland Park's homes is a detached house, most are apartments or duplex flats, and two thirds of its households rent in the <a href="https://www.calgary.ca/content/dam/www/programs-services/property-housing-and-neighbourhoods/neighbourhood-and-community-relationships/profiles/highland-park.pdf" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">2021 Census</a>. The Calgary team cleans the older detached houses and the rented suites alike, at a flat rate by home size and type.
+                Only one in five of Highland Park's homes is a detached house, most are apartments or duplex flats, and two thirds of its households rent in the <a href="https://www.calgary.ca/content/dam/www/programs-services/property-housing-and-neighbourhoods/neighbourhood-and-community-relationships/profiles/highland-park.pdf" target="_blank" rel="noopener noreferrer" className="text-accent-on-dark underline underline-offset-2">2021 Census</a>. The Calgary team cleans the older detached houses and the rented suites alike, at a flat rate by home size and type.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>

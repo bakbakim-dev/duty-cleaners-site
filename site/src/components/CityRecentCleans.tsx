@@ -78,7 +78,7 @@ function CleanCard({ review, index, city }: { review: RecentCleanReview; index: 
     <article
       ref={ref}
       className={`group bg-white rounded-lg border border-border p-6 shadow-sm transition-all duration-500 ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
       }`}
       style={{ transitionDelay: `${index * 90}ms` }}
     >
@@ -128,7 +128,7 @@ function PullQuote({ review, city }: { review: RecentCleanReview; city: string }
     <figure
       ref={ref}
       className={`paper-rule relative rounded-lg border bg-white p-8 transition-all duration-500 md:p-10 ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
       }`}
     >
       <div className="flex items-center justify-between">

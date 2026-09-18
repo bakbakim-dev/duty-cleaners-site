@@ -210,7 +210,7 @@ export default function SherwoodPark() {
                 />
                 <div className="not-prose pt-1">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
-                    <a href="#quote">
+                    <a href="#quote&intent=deep">
                       <Calculator className="mr-2 w-5 h-5" />See My Instant Price
                     </a>
                   </Button>

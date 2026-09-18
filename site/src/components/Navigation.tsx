@@ -62,7 +62,7 @@ function OfficePanel({ open, id }: { open: boolean; id: string }) {
               href={office.phoneLink}
               className="flex min-h-[44px] items-center gap-3 rounded-lg px-3 py-2 text-[0.95rem] text-foreground transition-colors hover:bg-secondary hover:text-accent"
             >
-              <span className="dc-icon dc-icon-phone w-4 h-4 text-brand-gold" aria-hidden="true" />
+              <span className="dc-icon dc-icon-phone w-4 h-4 text-accent" aria-hidden="true" />
               <span className="font-semibold">{office.city}</span>
               <span className="ml-auto">{office.phone}</span>
             </a>
@@ -427,7 +427,7 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
                 href={phoneLink}
                 className="inline-flex min-h-[44px] items-center gap-1.5 text-[0.95rem] font-semibold text-foreground transition-colors hover:text-accent"
               >
-                <span className="dc-icon dc-icon-phone w-4 h-4 text-brand-gold" aria-hidden="true" />
+                <span className="dc-icon dc-icon-phone w-4 h-4 text-accent" aria-hidden="true" />
                 {phone}
               </a>
             )}

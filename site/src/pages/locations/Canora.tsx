@@ -118,7 +118,7 @@ export default function Canora() {
                   Professional House Cleaning in Canora
                 </h1>
                 <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                  About seven in ten of Canora's homes are rented and roughly half are apartments in the <a href="https://data.edmonton.ca/Census/2016-Census-Dwelling-Unit-by-Ownership-Neighbourho/d2xp-ctch" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">City of Edmonton's 2016 municipal census</a>, and three quarters of its housing was built before 1981. The Edmonton branch cleans Canora homes at a flat rate set by home size.
+                  About seven in ten of Canora's homes are rented and roughly half are apartments in the <a href="https://data.edmonton.ca/Census/2016-Census-Dwelling-Unit-by-Ownership-Neighbourho/d2xp-ctch" target="_blank" rel="noopener noreferrer" className="text-accent-on-dark underline underline-offset-2">City of Edmonton's 2016 municipal census</a>, and three quarters of its housing was built before 1981. The Edmonton branch cleans Canora homes at a flat rate set by home size.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>

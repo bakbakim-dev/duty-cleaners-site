@@ -75,8 +75,7 @@ export default function NeighborhoodMarquee({ city }: NeighborhoodMarqueeProps) 
         <button
           type="button"
           onClick={() => setPaused((was) => !was)}
-          aria-pressed={paused}
-          className="absolute right-2 top-2 z-10 inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-white/90 text-foreground shadow-sm transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          className="absolute right-2 top-2 z-10 motion-reduce:hidden inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-white/90 text-foreground shadow-sm transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         >
           {paused ? <Play className="h-4 w-4" aria-hidden="true" /> : <Pause className="h-4 w-4" aria-hidden="true" />}
           <span className="sr-only">{paused ? "Resume the scrolling place names" : "Pause the scrolling place names"}</span>

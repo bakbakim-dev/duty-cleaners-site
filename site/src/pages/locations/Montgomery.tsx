@@ -107,7 +107,7 @@ export default function Montgomery() {
                 Professional House Cleaning in Montgomery
               </h1>
               <p className="text-lg text-white/85 mb-8 max-w-3xl mx-auto leading-relaxed">
-                Only about one home in eight in Montgomery is an apartment in the <a href="https://www.calgary.ca/content/dam/www/programs-services/property-housing-and-neighbourhoods/neighbourhood-and-community-relationships/profiles/montgomery.pdf" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">2021 Census</a>, so the neighbourhood is mostly whole houses. Enough households work nights on hospital rotations that it pays to say which room someone will be asleep in, because the order the rooms get done in is easy to change.
+                Only about one home in eight in Montgomery is an apartment in the <a href="https://www.calgary.ca/content/dam/www/programs-services/property-housing-and-neighbourhoods/neighbourhood-and-community-relationships/profiles/montgomery.pdf" target="_blank" rel="noopener noreferrer" className="text-accent-on-dark underline underline-offset-2">2021 Census</a>, so the neighbourhood is mostly whole houses. Enough households work nights on hospital rotations that it pays to say which room someone will be asleep in, because the order the rooms get done in is easy to change.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>

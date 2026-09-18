@@ -106,7 +106,7 @@ export default function TuxedoPark() {
                 Professional House Cleaning in Tuxedo Park
               </h1>
               <p className="text-lg text-white/85 mb-8 max-w-3xl mx-auto leading-relaxed">
-                About half of Tuxedo Park's homes are apartments or duplex flats, and just over half of its households rent in the <a href="https://www.calgary.ca/content/dam/www/programs-services/property-housing-and-neighbourhoods/neighbourhood-and-community-relationships/profiles/tuxedo-park.pdf" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">2021 Census</a>. Our Calgary branch cleans suites and houses here at flat rates by home size.
+                About half of Tuxedo Park's homes are apartments or duplex flats, and just over half of its households rent in the <a href="https://www.calgary.ca/content/dam/www/programs-services/property-housing-and-neighbourhoods/neighbourhood-and-community-relationships/profiles/tuxedo-park.pdf" target="_blank" rel="noopener noreferrer" className="text-accent-on-dark underline underline-offset-2">2021 Census</a>. Our Calgary branch cleans suites and houses here at flat rates by home size.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>

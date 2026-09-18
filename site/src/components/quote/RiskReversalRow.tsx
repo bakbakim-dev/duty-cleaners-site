@@ -17,12 +17,14 @@ export default function RiskReversalRow({
   if (lines.length === 0) return null;
 
   const text = tone === "dark" ? "text-fine-print-on-dark" : "text-fine-print";
+  // Gold is for navy only: on a light card it measures 2.36:1.
+  const mark = tone === "dark" ? "text-brand-gold" : "text-accent";
 
   return (
     <ul className={`flex flex-wrap gap-x-5 gap-y-1.5 text-base ${text} ${className}`}>
       {lines.map((line) => (
         <li key={line.id} className="flex items-center gap-1.5">
-          <span className="dc-icon dc-icon-check h-4 w-4 shrink-0 text-brand-gold" aria-hidden="true" />
+          <span className={`dc-icon dc-icon-check h-4 w-4 shrink-0 ${mark}`} aria-hidden="true" />
           {line.label}
         </li>
       ))}

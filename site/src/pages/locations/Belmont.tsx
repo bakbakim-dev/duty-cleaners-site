@@ -118,7 +118,7 @@ export default function Belmont() {
                   Professional House Cleaning in Belmont
                 </h1>
                 <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                  About half of Belmont's homes date from the 1960s and 1970s and most of the rest from the 1990s on, and fewer than two in five are single-family houses in the <a href="https://data.edmonton.ca/Census/2016-Census-Dwelling-Unit-by-Structure-Type-Neighb/xxgm-nnaq" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">City of Edmonton's 2016 municipal census</a>. In its duplexes and row houses, stair runs and landings take more of the clean than their floor area suggests.
+                  About half of Belmont's homes date from the 1960s and 1970s and most of the rest from the 1990s on, and fewer than two in five are single-family houses in the <a href="https://data.edmonton.ca/Census/2016-Census-Dwelling-Unit-by-Structure-Type-Neighb/xxgm-nnaq" target="_blank" rel="noopener noreferrer" className="text-accent-on-dark underline underline-offset-2">City of Edmonton's 2016 municipal census</a>. In its duplexes and row houses, stair runs and landings take more of the clean than their floor area suggests.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>

@@ -81,7 +81,7 @@ const QueenAlexandra = () => {
                 Queen Alexandra House Cleaning Professionals
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Just over half the homes in Queen Alexandra are low-rise walk-up apartments, and about seven in ten are rented in the <a href="https://data.edmonton.ca/Census/2016-Census-Dwelling-Unit-by-Ownership-Neighbourho/d2xp-ctch" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">City of Edmonton's 2016 municipal census</a>. Every clean is a flat rate by home size, shown before you book.
+                Just over half the homes in Queen Alexandra are low-rise walk-up apartments, and about seven in ten are rented in the <a href="https://data.edmonton.ca/Census/2016-Census-Dwelling-Unit-by-Ownership-Neighbourho/d2xp-ctch" target="_blank" rel="noopener noreferrer" className="text-accent-on-dark underline underline-offset-2">City of Edmonton's 2016 municipal census</a>. Every clean is a flat rate by home size, shown before you book.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
