@@ -54,7 +54,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "How long does a house cleaning take?",
-        answer: "Time depends on the home's size, its condition and the service booked, so we do not quote a set number of hours. We work to a checklist, not a clock: the team stays until every task in the service scope is done. The rate is flat by home size, so it costs the same whether the clean runs short or long.",
+        answer: `For a two-bedroom, one-bathroom apartment, a standard clean usually takes ${POLICY.typicalVisitLength?.standard} and a deep clean ${POLICY.typicalVisitLength?.deep}. Size, condition and the service booked all change that, so a bigger home takes longer. We work to a checklist, not a clock: the team stays until every task in the service scope is done. The rate is flat by home size, so it costs the same whether the clean runs short or long.`,
       },
       {
         question: "Should I tip the cleaners?",
@@ -273,6 +273,10 @@ const faqCategories: FAQCategory[] = [
       {
         question: "Who will be cleaning my home?",
         answer: "Your clean is done by a cleaner from the Duty Cleaners team in your city. Every cleaner is reference-checked before a first job and rated by the customer after each visit, and those ratings decide who we keep sending. On a recurring schedule, you get your regular team where we can send them.",
+      },
+      {
+        question: "Do you carry insurance or a bond?",
+        answer: POLICY.insuranceStatus ?? "",
       },
       {
         question: "My home is in rough shape. Will you judge me?",

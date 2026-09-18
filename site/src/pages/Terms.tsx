@@ -213,7 +213,8 @@ export default function Terms() {
               {POLICY.insuranceClaim !== null && (
                 <>
                   <h2 className="text-2xl font-bold mb-4 text-foreground">Our Cleaners</h2>
-                  <p className="mb-8">{POLICY.insuranceClaim}</p>
+                  <p className="mb-4">{POLICY.insuranceClaim}</p>
+                  {POLICY.insuranceStatus && <p className="mb-8">{POLICY.insuranceStatus}</p>}
                 </>
               )}
 

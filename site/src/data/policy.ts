@@ -49,6 +49,10 @@ export interface ServicePolicy {
   /** A dollar ceiling, or "none" when there deliberately is not one. */
   giftCardMaxValue: Confirmed<string | "none"> | Unconfirmed;
   insuranceClaim: Confirmed<string> | Unconfirmed;
+  /** What the company does and does not carry, in the owner's words (2026-09-18). */
+  insuranceStatus: Confirmed<string> | Unconfirmed;
+  /** Typical time on site for a 2-bedroom, 1-bathroom apartment (owner, 2026-09-18). */
+  typicalVisitLength: Confirmed<{ standard: string; deep: string }> | Unconfirmed;
 }
 
 export const POLICY: ServicePolicy = {
@@ -187,6 +191,29 @@ export const POLICY: ServicePolicy = {
   insuranceClaim: confirm(
     "Every cleaner is reference-checked before their first job, and rated by the customer after every visit. Those ratings decide who we keep sending.",
     { by: "owner", on: "2026-08-24" },
+  ),
+
+  /**
+   * Owner, 2026-09-18: "The company is licensed, not insured or bonded. Some
+   * subcontractor cleaners can carry insurance and bonds, and if you need this,
+   * you'd have to specifically ask for it." Worded as "holds a business
+   * licence" because the only licence a cleaning company holds in Alberta is a
+   * business licence; the retired "licensed, insured and bonded" line stays
+   * retired (claims-and-links.test.ts, llms-txt.test.ts).
+   */
+  insuranceStatus: confirm(
+    "Duty Cleaners holds a business licence. The company does not carry insurance or a bond. Some of our cleaners, who work as independent subcontractors, carry their own insurance and bond; if you need a cleaner who does, ask for it specifically when you book.",
+    { by: "owner", on: "2026-09-18" },
+  ),
+
+  /**
+   * Owner, 2026-09-18: a standard clean of a 2-bedroom, 1-bathroom apartment
+   * usually takes about 2 hours 30 minutes, and a deep clean of the same
+   * apartment about 4 hours. The price stays flat whatever the time.
+   */
+  typicalVisitLength: confirm(
+    { standard: "about 2 hours 30 minutes", deep: "about 4 hours" },
+    { by: "owner", on: "2026-09-18" },
   ),
 };
 

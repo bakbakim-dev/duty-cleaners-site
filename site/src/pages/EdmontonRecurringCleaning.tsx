@@ -6,7 +6,7 @@ import {
   addOnFromPrice, GST_RATE,
 } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
-import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
+import { CITY_PROOF, RATING_CLAIM, hoursLineFor } from "@/data/proof";
 import { Accent } from "@/components/Accent";
 import RecurringVisitPrices from "@/components/RecurringVisitPrices";
 import { Home, Bath, UtensilsCrossed } from "lucide-react";
@@ -162,6 +162,32 @@ export default function EdmontonRecurringCleaning() {
                 <Link to="/cleaning-services-leduc/">Leduc cleaning company</Link>,{" "}
                 <Link to="/cleaning-services-beaumont/">house cleaning in Beaumont</Link> and{" "}
                 <Link to="/cleaning-services-devon/">house cleaners in Devon</Link>.
+              </p>
+            </>
+          ),
+        },
+        {
+          // Owner, 2026-09-18: written for older homeowners and for the family
+          // members who book for them. Every line is an existing term; bedding
+          // on request is the owner's confirmation of the same date.
+          heading: "House cleaning for seniors in Edmonton, booked by you or your family",
+          body: (
+            <>
+              <p>
+                If you are booking for yourself, or for a parent who would rather not manage it, the plan is the same:
+                a visit every week, every two weeks or every four weeks, with {pct(WEEKLY?.discount)},{" "}
+                {pct(BIWEEKLY?.discount)} or {pct(FOUR_WEEKS?.discount)} off from the second visit. We send your
+                regular team where we can.
+              </p>
+              <p>
+                A family member can make the booking and pay for it. Nothing is charged when you book, the card is
+                charged after each clean, and there is no contract. The home does not need tidying before the team
+                arrives, and the team will change the bedding if you ask, using the linens you leave out.
+              </p>
+              <p>
+                To talk it through with a person, call the Edmonton office on{" "}
+                <a href={CITY_PROOF.edmonton.phoneLink}>{CITY_PROOF.edmonton.phone}</a>. It answers{" "}
+                {hoursLineFor("edmonton")}.
               </p>
             </>
           ),

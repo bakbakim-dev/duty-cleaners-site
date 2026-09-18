@@ -6,7 +6,7 @@ import {
   addOnFromPrice,
 } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
-import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
+import { CITY_PROOF, RATING_CLAIM, hoursLineFor } from "@/data/proof";
 import { Accent } from "@/components/Accent";
 import RecurringVisitPrices from "@/components/RecurringVisitPrices";
 import { Home, Bath, UtensilsCrossed } from "lucide-react";
@@ -175,6 +175,29 @@ export default function CalgaryRecurringCleaning() {
                 than by home size, so hosts should see{" "}
                 <Link to="/airbnb-cleaning-services-calgary/">short-term rental turnover cleaning in Calgary</Link>{" "}
                 instead.
+              </p>
+            </>
+          ),
+        },
+        {
+          // Owner, 2026-09-18: the same terms as the Edmonton section, in
+          // Calgary's own words (the city-twin guard caps shared text).
+          heading: "Regular cleaning for seniors in Calgary",
+          body: (
+            <>
+              <p>
+                A plan for an older parent works the same way as any other: pick a visit every week, every two weeks
+                or every four weeks, and the discount of {pct(FOUR_WEEKS?.discount)} to {pct(WEEKLY?.discount)} starts
+                at the second visit. The Calgary office sends your regular team where it can.
+              </p>
+              <p>
+                Someone else in the family can book the plan and pay for it with their own card. The card is charged
+                after each clean rather than at booking, and nothing ties you to a contract. Nobody needs to tidy up
+                first, and the beds get fresh bedding if you ask and leave the linens out.
+              </p>
+              <p>
+                Questions go to a person at the Calgary office:{" "}
+                <a href={CITY_PROOF.calgary.phoneLink}>{CITY_PROOF.calgary.phone}</a>, {hoursLineFor("calgary")}.
               </p>
             </>
           ),

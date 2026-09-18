@@ -3,6 +3,7 @@ import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { addOnFromPrice, formatPrice } from "./pricing";
 import { TRAVEL_FEE_KEY } from "./addon-table";
+import { POLICY } from "./policy";
 
 /**
  * Guards for the defects the v2 audit found — every one of which survived six
@@ -194,6 +195,31 @@ describe("retired claims stay retired on every rendered page", () => {
       expect(hits.slice(0, 12)).toEqual([]);
     });
   }
+});
+
+/**
+ * Owner, 2026-09-18: the company holds a business licence and carries no
+ * insurance or bond; some subcontractor cleaners carry their own, on request.
+ * "Are they insured and bonded?" is one of the first questions people put to
+ * an AI assistant about a cleaner, and until this date the site had no answer,
+ * so an assistant was left to guess. The confirmed sentence must reach the FAQ
+ * page and both llms files word for word, and nowhere may it be softened into
+ * the retired "licensed, insured and bonded" (the FORBIDDEN lists above).
+ */
+describe("the confirmed insurance position reaches the pages assistants read", () => {
+  const status = POLICY.insuranceStatus ?? "";
+
+  it("the FAQ page and both llms files carry the owner's insurance sentence", () => {
+    expect(status, "policy.ts lost insuranceStatus").toMatch(/does not carry insurance or a bond/);
+    const surfaces: Array<[string, string]> = [
+      ["llms.txt", readFileSync(join(ROOT, "public", "llms.txt"), "utf-8")],
+      ["llms-full.txt", readFileSync(join(ROOT, "public", "llms-full.txt"), "utf-8")],
+    ];
+    const faq = join(DIST, "faqs", "index.html");
+    if (existsSync(faq)) surfaces.push(["/faqs/", visible(readFileSync(faq, "utf-8"))]);
+    const missing = surfaces.filter(([, text]) => !text.replace(/\s+/g, " ").includes(status)).map(([name]) => name);
+    expect(missing, "the confirmed insurance sentence is missing or reworded").toEqual([]);
+  });
 });
 
 describe("internal links use the canonical trailing-slash form", () => {

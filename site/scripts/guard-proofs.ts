@@ -428,6 +428,14 @@ export const GUARD_PROOFS: GuardProof[] = [
     why: "Puts a script preload ahead of the hero image hint, the order Helmet produced before the prerender moved it.",
     dist: true,
   },
+  {
+    guard: "src/data/claims-and-links.test.ts",
+    target: "public/llms.txt",
+    find: "- Insurance: Duty Cleaners holds a business licence.",
+    replace: "- Insurance: Duty Cleaners is fully insured and holds a business licence.",
+    failing: "the FAQ page and both llms files carry the owner's insurance sentence",
+    why: "Rewords the owner's insurance position in the file AI assistants read, the way the legacy site overstated it.",
+  },
   // ---- FAQ answers are lifted alone --------------------------------------
   // One proof per banned term, each putting back a sentence that really
   // shipped inside FAQPage markup.

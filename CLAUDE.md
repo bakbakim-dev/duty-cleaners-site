@@ -171,6 +171,16 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
 - NGINX Direct Delivery is OFF on the SiteGround site (turned off 2026-09-17) so the generated
   `.htaccess` cache rules apply; it must be off on the production site too.
 
+## Owner decisions (2026-09-18) — do not contradict or re-ask
+- Insurance: the company holds a business licence and does NOT carry insurance or a bond. Some
+  subcontractor cleaners carry their own insurance and bond; a customer who needs that must ask for it
+  when booking. The sentence lives in `POLICY.insuranceStatus` (policy.ts) and must reach /faqs/ and both
+  llms files verbatim (guarded). "Insured", "bonded" and "licensed" stay banned as claims.
+- Typical visit length (2-bedroom, 1-bathroom apartment): standard about 2 hours 30 minutes, deep about
+  4 hours (`POLICY.typicalVisitLength`). The price stays flat whatever the time.
+- Cleaners change the bedding on request, using linens the customer leaves out. A family member can book
+  and pay for someone else's recurring plan (the seniors sections on both recurring pages).
+
 ## Rules
 - Never log into the Google Business Profile. Don't change GoHighLevel or BookingKoala settings
   without the owner's explicit go-ahead; reading them is fine.
