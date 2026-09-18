@@ -419,6 +419,15 @@ export const GUARD_PROOFS: GuardProof[] = [
     failing: "every image asset is at most 10 KB",
     why: "Asset names are hashed per build, so the proof tightens the cap: it shows the scan really reads every image in dist, not an empty list.",
   },
+  {
+    guard: "src/data/onpage-seo.test.ts",
+    target: "dist/index.html",
+    find: '<meta charset="UTF-8">',
+    replace: '<meta charset="UTF-8"><link rel="modulepreload" href="/assets/rival.js">',
+    failing: "every hero preload comes before the stylesheet and every script preload",
+    why: "Puts a script preload ahead of the hero image hint, the order Helmet produced before the prerender moved it.",
+    dist: true,
+  },
   // ---- FAQ answers are lifted alone --------------------------------------
   // One proof per banned term, each putting back a sentence that really
   // shipped inside FAQPage markup.

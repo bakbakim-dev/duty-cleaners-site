@@ -401,4 +401,33 @@ describe("the hub heroes are responsive", () => {
       ).toMatch(/imagesrcset="[^"]*\d+w/);
     }
   });
+
+  /**
+   * Helmet writes the hero preload at the end of <head>, behind the stylesheet
+   * and about 25 module preloads, and the preload scanner issues hints in
+   * document order. scripts/prerender.mjs moves it to directly after the
+   * viewport meta (2026-09-18). This fails if that step is lost, or if anything
+   * that competes for the first round trip is placed ahead of it.
+   */
+  it("every hero preload comes before the stylesheet and every script preload", () => {
+    const built = pages();
+    if (!built.length) return;
+    const withPreload = built.filter((p) => /<link rel="preload" as="image"/.test(p.html));
+    expect(withPreload.length, "no page ships a hero image preload").toBeGreaterThanOrEqual(3);
+    const late: string[] = [];
+    for (const { url, html } of withPreload) {
+      const head = html.slice(0, html.indexOf("</head>"));
+      const hint = head.indexOf('<link rel="preload" as="image"');
+      const rivals = [
+        head.indexOf('rel="stylesheet"'),
+        head.indexOf('rel="modulepreload"'),
+        head.indexOf('as="font"'),
+        head.indexOf("<script"),
+      ].filter((i) => i >= 0);
+      if (rivals.some((i) => i < hint)) late.push(url);
+      const img = /<link rel="preload" as="image"[^>]*>/.exec(head)![0];
+      if (!/fetchpriority="high"/.test(img)) late.push(`${url} (no fetchpriority=high on the hint)`);
+    }
+    expect(late, "the hero preload is not the first request the head asks for").toEqual([]);
+  });
 });

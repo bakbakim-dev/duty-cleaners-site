@@ -109,7 +109,7 @@ const CHROME_ARGS = [
   "--virtual-time-budget=10000", "--timeout=20000", "--dump-dom",
 ];
 
-let done = 0, failed = 0, retried = 0, strippedTiles = 0;
+let done = 0, failed = 0, retried = 0, strippedTiles = 0, hoistedPreloads = 0;
 // Scroll-reveal wrappers unhidden in the snapshot, and any that survived.
 let revealPages = 0, revealWrappers = 0, revealLeft = 0;
 // Third-party embeds settled to their loaded state, and any that survived.
@@ -193,6 +193,27 @@ async function renderRoute(route) {
     // Leaflet re-renders the popup on hydration, so the frozen anchor is inert;
     // neutralise the fragment rather than ship a link that lands nowhere.
     out = out.replace(/(<a[^>]*leaflet-popup-close-button[^>]*href=")#close(")/g, "$1#$2");
+    // The hero image preload is the LCP hint, but Helmet writes it at the end of
+    // <head>: behind the font preload, the stylesheet and about 25 module
+    // preloads. The browser's preload scanner issues hints in document order,
+    // so the one request the first paint waits on was discovered last. Move it
+    // to directly after the viewport meta, the first thing the scanner reaches.
+    // (Research 2026-09-18: LCP load delay 240 ms and render delay 360 ms, both
+    // page-side; web.dev/articles/fetch-priority.) Pages without a hero preload
+    // are untouched.
+    {
+      const preloads = [];
+      out = out.replace(/\s*<link rel="preload" as="image"[^>]*>/g, (m) => {
+        preloads.push(m.trim());
+        return "";
+      });
+      if (preloads.length) {
+        const viewport = /<meta name="viewport"[^>]*>/;
+        if (!viewport.test(out)) throw new Error(`${route}: no viewport meta to anchor the hero preload after`);
+        out = out.replace(viewport, (m) => `${m}\n    ${preloads.join("\n    ")}`);
+        hoistedPreloads++;
+      }
+    }
     out = out.replace(/(<a[^>]*href=")#close("[^>]*leaflet-popup-close-button)/g, "$1#$2");
 
     // Scroll-reveal sections start hidden and are revealed by an
@@ -276,6 +297,7 @@ console.log(
   `prerender complete: ${done} ok, ${failed} failed` +
     (retried ? ` (${retried} needed a retry)` : "") +
     (strippedTiles ? `; stripped baked map tiles from ${strippedTiles} pages` : "") +
+    (hoistedPreloads ? `; moved the hero image preload to the top of <head> on ${hoistedPreloads} pages` : "") +
     `; unhid ${revealWrappers} scroll-reveal wrappers on ${revealPages} pages` +
     `; ${revealLeft} snapshots still hide content below the hero` +
     `; settled ${embedPages} third-party embed page(s) to their loaded state`,

@@ -271,7 +271,8 @@ export default function RedDeer() {
         <meta name="twitter:title" content={PAGE_TITLE} />
         <meta name="twitter:description" content={PAGE_DESCRIPTION} />
         <link rel="canonical" href={PAGE_URL} />
-        <link rel="preload" as="image" href={redDeerHero} imageSrcSet={HERO_SRCSET} imageSizes="100vw" />
+        {/* The <img> carries fetchpriority=high; the hint must too, or Chrome fetches it at Low. */}
+        <link rel="preload" as="image" href={redDeerHero} {...({ fetchpriority: "high" } as Record<string, string>)} imageSrcSet={HERO_SRCSET} imageSizes="100vw" />
         <script type="application/ld+json">{JSON.stringify(branchJsonLd)}</script>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       </Helmet>
