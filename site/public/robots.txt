@@ -59,6 +59,13 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
+# AuditSpur, the owner's own audit crawler, consults robots.txt as AuditSpurBot and
+# honours a declared Crawl-delay. SiteGround appends "Crawl-delay: 10" to the catch-all
+# group on every site it serves, which would stretch a 210-page scan to 35 minutes; a
+# group of its own carries no delay, and the longest-token match (RFC 9309) wins.
+User-agent: AuditSpurBot
+Allow: /
+
 # Training crawlers — blocked (Amazonbot: "may be used to train Amazon AI models")
 User-agent: CCBot
 Disallow: /
