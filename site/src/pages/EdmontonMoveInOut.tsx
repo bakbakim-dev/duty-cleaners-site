@@ -218,7 +218,6 @@ export default function EdmontonMoveInOut() {
       <Helmet>
         <title>{PAGE_TITLE}</title>
         <meta name="description" content={META_DESCRIPTION} />
-        <meta name="keywords" content="move out cleaning Edmonton, move in cleaning Edmonton, end of tenancy cleaning Edmonton, move out cleaners Edmonton, move out cleaning price list Edmonton, apartment move out cleaning Edmonton" />
         <link rel="canonical" href="https://dutycleaners.ca/move-out-cleaning-edmonton/" />
         <meta property="og:title" content={PAGE_TITLE} />
         <meta property="og:description" content={META_DESCRIPTION} />

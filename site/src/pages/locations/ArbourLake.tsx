@@ -140,7 +140,6 @@ export default function ArbourLake() {
       <Helmet>
         <title>House Cleaning Services Arbour Lake Calgary | Duty Cleaners</title>
         <meta name="description" content="In northwest Calgary, Arbour Lake beach sand works into carpet backing and hardwood seams, so house cleaning here means a slow vacuum pass." />
-        <meta name="keywords" content="house cleaning Arbour Lake Calgary, cleaning services Arbour Lake, maid service Arbour Lake Calgary, home cleaning Northwest Calgary" />
         <meta property="og:title" content="House Cleaning Services Arbour Lake Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning Services Arbour Lake Calgary | Duty Cleaners" />

@@ -140,7 +140,6 @@ export default function ScenicAcres() {
       <Helmet>
         <title>House Cleaning in Scenic Acres, Calgary | Duty Cleaners</title>
         <meta name="description" content="House cleaning in Scenic Acres, Calgary, where coulee trail mud and late-summer burrs end up on entry mats and stair treads. Rates go by home size." />
-        <meta name="keywords" content="house cleaning Scenic Acres Calgary, cleaning services Scenic Acres, maid service Scenic Acres Calgary, home cleaning Northwest Calgary" />
         <meta property="og:title" content="House Cleaning in Scenic Acres, Calgary | Duty Cleaners" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning in Scenic Acres, Calgary | Duty Cleaners" />

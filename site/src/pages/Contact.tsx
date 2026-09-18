@@ -421,7 +421,6 @@ export default function Contact() {
       <Helmet>
         <title>{TITLE}</title>
         <meta name="description" content={DESCRIPTION} />
-        <meta name="keywords" content="contact duty cleaners, cleaning services Edmonton, cleaning services Calgary, house cleaning contact" />
         <link rel="canonical" href="https://dutycleaners.ca/contact-us/" />
         {/* This page renders fully-authored NAP for both offices but carried no
             structured data at all. Both nodes use the same @id the rest of the
