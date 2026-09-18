@@ -233,7 +233,7 @@ export const PRICING_TERMS = [
   // choose if you have pets", and it recurs on every visit.
   `Homes with pets are charged ${money(addOnFromPrice("standard", "must-choose-if-you-have-pets"))} per visit — paw prints, nose marks on glass and shed hair add real time in every room. It appears on your quote before you book, and litter boxes and animal waste stay outside what we handle.`,
   "Most homes are priced flat by size. Your flat rate does not change because a clean took longer than expected.",
-  "If the home turns out to need substantially more work than described — heavy build-up, far more glass or cabinetry than stated — the team will explain what they found and your options before continuing.",
+  "If the home turns out to need substantially more work than described, such as heavy build-up or far more glass or cabinetry than stated, the team will explain what they found and your options before continuing.",
   `Recurring discounts of ${recurringDiscounts()} apply from your second visit. The first clean is charged at the standard one-time rate.`,
   "Hourly service has a minimum of 3 hours for one cleaner, or 2 hours for two cleaners.",
 ] as const;

@@ -7,9 +7,10 @@ import {
 import { travelFee } from "@/data/addon-table";
 import { POLICY } from "@/data/policy";
 import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
-import { Accent, AccentGold } from "@/components/Accent";
+import { Accent } from "@/components/Accent";
 import { Home, Bath, UtensilsCrossed } from "lucide-react";
-import heroImage from "@/assets/gallery/family-clean-home-edmonton.webp";
+// The recurring page keeps the family photo; this page had the same hero.
+import heroImage from "@/assets/gallery/glenora-cleaner-living-room.webp";
 import kitchenImage from "@/assets/gallery/lakeview-clean-kitchen.webp?card";
 import livingRoomImage from "@/assets/gallery/edmonton-standard-bathroom-shelves.webp?card";
 import cleanerImage from "@/assets/gallery/westmount-cleaner-kitchen.webp?card";
@@ -72,14 +73,13 @@ export default function EdmontonRegularCleaning() {
       seoDescription="Book a one-time standard clean in Edmonton. Review the room checklist, exclusions and pricing for your home before choosing your visit."
       serviceName="Standard House Cleaning in Edmonton"
       canonical="https://dutycleaners.ca/edmonton/regular-cleaning"
-      heroHeading={<>One-Time Standard Cleaning in <AccentGold>Edmonton</AccentGold></>}
-      heroSubheading={`A standard clean is one visit covering the kitchen, bathrooms, bedrooms and living areas, priced flat by home size: ${FROM} for a one-bedroom apartment or condo, before GST. A larger home type, a pet or an address outside the city limits adds its own line to the quote.`}
+      heroHeading={<>One-Time Standard Cleaning in <em className="italic text-accent-on-dark">Edmonton</em></>}
+      heroSubheading={`One visit covering the kitchen, bathrooms, bedrooms and living areas, from ${FROM} before GST for a one-bedroom apartment or condo. You pay once the clean is complete.`}
       heroBadges={["Reference-Checked Cleaners", "All Supplies Brought For You", `${POLICY.guaranteeWindowHours}-Hour Re-Clean Guarantee`]}
       heroImage={heroImage}
-      heroImageAlt="Bright, tidy living room after a standard house clean"
-      heroImageWidth={1024}
-      heroImageHeight={1024}
-      overviewEyebrow="Service Overview"
+      heroImageAlt="Cleaner in a blue uniform vacuuming the hardwood floor of a sunlit living room"
+      heroImageWidth={896}
+      heroImageHeight={672}
       overviewHeading={<>One visit, every room, <Accent>one flat price.</Accent></>}
       overviewParagraphs={[
         <>
@@ -93,9 +93,13 @@ export default function EdmontonRegularCleaning() {
         <>
           The microwave is cleaned inside and out. The inside of the oven and fridge are add-ons, and baseboards, vents,
           switches and other build-up belong to a <Link to="/edmonton/deep-cleaning/">deep clean in Edmonton</Link>.
+          The team brings its own supplies and equipment, so there is nothing to buy or set out before the visit.
         </>,
-        "The team brings its own supplies and equipment, so there is nothing to buy or set out before the visit.",
       ]}
+      // Only the scope-and-price section sits above the checklist. The condo
+      // and coverage sections read after the FAQ, with the closing prose: all
+      // of the copy is kept, and the page reaches the checklist and the price
+      // grid without 800 words of prose in the way.
       sections={[
         {
           heading: "Booking a one-time maid visit: scope and price",
@@ -114,17 +118,42 @@ export default function EdmontonRegularCleaning() {
                 the inside of the oven are priced per item.
               </p>
               {WORKED && (
-                <p>
-                  Take one visit to a three-bedroom two-storey house with a dog, inside the city limits. The {WORKED.rate}{" "}
-                  three-bedroom rate, which the price table rounds to {THREE_BED}, the {WORKED.house} house-type charge and
-                  the {WORKED.pet} pet charge come to {WORKED.beforeGst} before GST, and {WORKED.withGst} once 5% GST is
-                  added.
-                </p>
+                <>
+                  <p>
+                    Take one visit to a three-bedroom two-storey house with a dog, inside the city limits. The price
+                    table rounds the three-bedroom rate to {THREE_BED}, and the quote works from the exact figure:
+                  </p>
+                  {/* The worked example as a receipt. Every figure is computed above from calculateQuote. */}
+                  <dl className="max-w-md rounded-xl border border-border bg-white text-base text-foreground">
+                    <div className="flex items-baseline justify-between gap-6 px-5 py-3 border-b border-border/60">
+                      <dt>Three-bedroom rate</dt>
+                      <dd className="font-semibold tabular-nums">{WORKED.rate}</dd>
+                    </div>
+                    <div className="flex items-baseline justify-between gap-6 px-5 py-3 border-b border-border/60">
+                      <dt>Two-storey house-type charge</dt>
+                      <dd className="font-semibold tabular-nums">{WORKED.house}</dd>
+                    </div>
+                    <div className="flex items-baseline justify-between gap-6 px-5 py-3 border-b border-border/60">
+                      <dt>Pet charge</dt>
+                      <dd className="font-semibold tabular-nums">{WORKED.pet}</dd>
+                    </div>
+                    <div className="flex items-baseline justify-between gap-6 px-5 py-3 border-b border-border/60 font-bold">
+                      <dt>Total before GST</dt>
+                      <dd className="tabular-nums">{WORKED.beforeGst}</dd>
+                    </div>
+                    <div className="flex items-baseline justify-between gap-6 px-5 py-3 text-muted-foreground">
+                      <dt>With {Math.round(GST_RATE * 100)}% GST added</dt>
+                      <dd className="font-semibold tabular-nums">{WORKED.withGst}</dd>
+                    </div>
+                  </dl>
+                </>
               )}
               <p>For ongoing visits, compare <Link to="/edmonton/recurring-cleaning/">Edmonton recurring cleaning plans</Link>. This page covers a single standard visit; you do not need a contract or standing booking.</p>
             </>
           ),
         },
+      ]}
+      closingSections={[
         {
           heading: "What a standard visit covers in an apartment or condo",
           body: (
@@ -189,6 +218,24 @@ export default function EdmontonRegularCleaning() {
             </>
           ),
         },
+        {
+          heading: "Before you book a standard clean in Edmonton",
+          body: (
+            <>
+              <p>
+                Nothing is charged when you book. A temporary hold goes on the card the day before to confirm it is
+                valid; it can look like a charge in a banking app, but no money moves until the clean is complete. If
+                something was missed, tell us within {POLICY.guaranteeWindowHours} hours and the team comes back to
+                re-clean it at no charge.
+              </p>
+              <p>
+                Our Edmonton team is rated {RATING_CLAIM}{REVIEWS ? ` across ${REVIEWS} reviews` : ""};{" "}
+                <Link to="/reviews/">read the reviews</Link> before you decide, then compare every home size on{" "}
+                <Link to="/pricing/">the Edmonton house cleaning price list</Link>.
+              </p>
+            </>
+          ),
+        },
       ]}
       includedHeading="What a standard clean covers"
       includedSubheading="Kitchen, bathrooms, bedrooms and living areas, in one visit."
@@ -209,12 +256,6 @@ export default function EdmontonRegularCleaning() {
         "Bathrooms scrubbed and wiped down",
         "Mirrors and glass surfaces polished",
         "Trash emptied",
-      ]}
-      roomTasks={[
-        { name: "Kitchen", tasks: 4, sample: "countertops, stovetop and sink" },
-        { name: "Bathrooms", tasks: 4, sample: "scrubbing toilets, tubs and showers" },
-        { name: "Living Areas", tasks: 4, sample: "dusting, vacuuming and mopping" },
-        { name: "Bedrooms", tasks: 3, sample: "dusting surfaces and vacuuming under beds" },
       ]}
       pricingBySize={TIERS}
       fromPrice={FROM}
@@ -245,27 +286,7 @@ export default function EdmontonRegularCleaning() {
         { q: "What should I do to prepare?", a: "You do not need to clean before the team comes; clear counters and floors get cleaned and cluttered ones get worked around; decluttering and organising are a separate hourly add-on. What does help is telling us on the booking which room to start in and which to leave alone. If somebody works nights and will be asleep at two in the afternoon, say which room, and the order the house gets done in changes at no cost." },
         { q: "What if I need to cancel or move the visit?", a: `Give ${POLICY.cancellationNoticeHours} hours' notice and moving or cancelling costs nothing. Inside ${POLICY.cancellationNoticeHours} hours the fee is ${POLICY.cancellationFee}. If we have to move a booking, because a cleaner is ill or the roads are unsafe, we say so as soon as we know and offer the earliest slot we have, at no charge to you.` },
       ]}
-      closingSections={[
-        {
-          heading: "Before you book a standard clean in Edmonton",
-          body: (
-            <>
-              <p>
-                Nothing is charged when you book. A temporary hold goes on the card the day before to confirm it is
-                valid; it can look like a charge in a banking app, but no money moves until the clean is complete. If
-                something was missed, tell us within {POLICY.guaranteeWindowHours} hours and the team comes back to
-                re-clean it at no charge.
-              </p>
-              <p>
-                Our Edmonton team is rated {RATING_CLAIM}{REVIEWS ? ` across ${REVIEWS} reviews` : ""};{" "}
-                <Link to="/reviews/">read the reviews</Link> before you decide, then compare every home size on{" "}
-                <Link to="/pricing/">the Edmonton house cleaning price list</Link>.
-              </p>
-            </>
-          ),
-        },
-      ]}
-      ctaHeading={<>Standard cleaning in <AccentGold>Edmonton</AccentGold> from {FROM}.</>}
+      ctaHeading={<>Standard cleaning in <em className="italic text-accent-on-dark">Edmonton</em> from {FROM}.</>}
       ctaDescription="A standard clean is one visit, priced flat by home size before GST and paid once the clean is complete. The same clean on a weekly, bi-weekly or every-4-weeks schedule is recurring cleaning, discounted from the second visit."
       galleryImages={[
         { picture: kitchenImage, alt: "Clean, tidy kitchen after a standard cleaning visit" },

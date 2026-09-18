@@ -3,7 +3,6 @@ import Stars from "@/components/Stars";
 import { ExternalLink } from "lucide-react";
 import { Accent } from "@/components/Accent";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-import Eyebrow from "@/components/Eyebrow";
 import { getListing, openGoogleListing, reviewSourceUrl } from "@/lib/google-listings";
 
 export interface RecentCleanReview {
@@ -78,7 +77,7 @@ function CleanCard({ review, index, city }: { review: RecentCleanReview; index: 
 
     <article
       ref={ref}
-      className={`group bg-white rounded-2xl border border-border p-6 shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl hover:border-accent/40 ${
+      className={`group bg-white rounded-lg border border-border p-6 shadow-sm transition-all duration-500 ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
       }`}
       style={{ transitionDelay: `${index * 90}ms` }}
@@ -128,7 +127,7 @@ function PullQuote({ review, city }: { review: RecentCleanReview; city: string }
   return (
     <figure
       ref={ref}
-      className={`paper-rule relative rounded-2xl border bg-white p-8 transition-all duration-500 md:p-10 ${
+      className={`paper-rule relative rounded-lg border bg-white p-8 transition-all duration-500 md:p-10 ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
       }`}
     >
@@ -165,7 +164,7 @@ export default function CityRecentCleans({ city, reviews, reviewsTo = "/reviews/
     return (
       <section className="band band-tight band-paper band-hairline">
         <div className="container mx-auto px-4">
-          <div className="mx-auto max-w-3xl rounded-2xl border border-border bg-white p-8 text-center shadow-sm">
+          <div className="mx-auto max-w-3xl rounded-lg border border-border bg-white p-8 text-center shadow-sm">
             <Stars size={1.25} className="block mx-auto mb-3" />
             <h2 className="text-2xl font-bold md:text-3xl">
               Rated 4.9 on Google by <Accent>{city}</Accent> customers
@@ -203,8 +202,7 @@ export default function CityRecentCleans({ city, reviews, reviewsTo = "/reviews/
     <section className="band band-paper band-hairline">
       <div className="container mx-auto px-4">
         <div className="mb-10 max-w-2xl">
-          <Eyebrow>Customer Reviews</Eyebrow>
-          <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">
+          <h2 className="display-serif text-3xl md:text-4xl font-bold">
             Google reviews from <Accent>{city}</Accent>
           </h2>
           <p className="text-muted-foreground mt-3 max-w-[55ch] leading-relaxed">

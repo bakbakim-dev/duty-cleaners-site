@@ -37,7 +37,7 @@ export default function MoveOutServiceAreas({ city }: MoveOutServiceAreasProps) 
 
   const group = (label: string, places: typeof neighbourhoods) => (
     <div>
-      <h3 className="text-sm font-bold uppercase tracking-[0.12em] text-muted-foreground">{label}</h3>
+      <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">{label}</h3>
       <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-4">
         {places.map((place) => (
           <Link
@@ -64,7 +64,7 @@ export default function MoveOutServiceAreas({ city }: MoveOutServiceAreasProps) 
           and each one has its own page. Communities outside {city} city limits add a travel fee.
         </p>
 
-        <div className="flex flex-col gap-10 rounded-xl bg-white p-8 shadow-md">
+        <div className="flex flex-col gap-10 rounded-xl border border-border bg-white p-8">
           {group(`${city} neighbourhoods`, neighbourhoods)}
           {group(`Outside ${city} city limits`, towns)}
         </div>

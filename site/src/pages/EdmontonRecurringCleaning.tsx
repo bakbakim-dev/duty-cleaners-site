@@ -7,7 +7,7 @@ import {
 } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
 import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
-import { Accent, AccentGold } from "@/components/Accent";
+import { Accent } from "@/components/Accent";
 import RecurringVisitPrices from "@/components/RecurringVisitPrices";
 import { Home, Bath, UtensilsCrossed } from "lucide-react";
 import heroImage from "@/assets/gallery/family-clean-home-edmonton.webp";
@@ -82,14 +82,13 @@ export default function EdmontonRecurringCleaning() {
       seoDescription="Compare weekly, biweekly and every-four-weeks cleaning in Edmonton. Understand first-visit pricing and ongoing service before choosing a schedule."
       serviceName="Recurring House Cleaning in Edmonton"
       canonical="https://dutycleaners.ca/edmonton/recurring-cleaning"
-      heroHeading={<>Recurring House Cleaning in <AccentGold>Edmonton</AccentGold></>}
-      heroSubheading={`Recurring cleaning is the standard clean on a weekly, bi-weekly or every-4-weeks schedule. The first visit is charged at the one-time rate, from ${FROM} for a one-bedroom apartment or condo before GST; from the second, it is ${pct(WEEKLY?.discount)} off weekly, ${pct(BIWEEKLY?.discount)} off bi-weekly and ${pct(FOUR_WEEKS?.discount)} off every 4 weeks. Home type, pets and an address outside the city limits are priced separately on the quote.`}
+      heroHeading={<>Recurring House Cleaning in <em className="italic text-accent-on-dark">Edmonton</em></>}
+      heroSubheading={`Weekly, bi-weekly or every-4-weeks visits from ${FROM} before GST for a one-bedroom apartment or condo, ${pct(FOUR_WEEKS?.discount)} to ${pct(WEEKLY?.discount)} off from the second visit. You pay after each clean.`}
       heroBadges={["Weekly 20% Off", "Bi-Weekly 15% Off", "Every 4 Weeks 10% Off"]}
       heroImage={heroImage}
       heroImageAlt="Bright, tidy living room kept up by a recurring clean"
       heroImageWidth={1024}
       heroImageHeight={1024}
-      overviewEyebrow="Service Overview"
       overviewHeading={<>The same clean, <Accent>on a schedule.</Accent></>}
       overviewParagraphs={[
         <>
@@ -105,6 +104,9 @@ export default function EdmontonRecurringCleaning() {
           guide to <Link to="/how-often-should-a-cleaning-service-clean-my-house/">how often a cleaning service should clean your house</Link> works through that choice room by room.
         </>,
       ]}
+      // The schedule-and-price section stays above the checklist. "Who books"
+      // reads after the FAQ, with the other closing prose, so the page reaches
+      // the checklist and the price grid sooner.
       sections={[
         {
           heading: "Choose weekly, biweekly or every-four-weeks cleaning in Edmonton",
@@ -138,6 +140,8 @@ export default function EdmontonRecurringCleaning() {
             </>
           ),
         },
+      ]}
+      closingSections={[
         {
           heading: "Who books recurring cleaning in Edmonton",
           body: (
@@ -164,8 +168,29 @@ export default function EdmontonRecurringCleaning() {
             </>
           ),
         },
+        { heading: "Changing or rescheduling your visits", body: <><p>Move, skip or cancel a visit with {POLICY.cancellationNoticeHours} hours' notice. Inside that window the cancellation fee is {POLICY.cancellationFee}. If we move a booking and the new date does not suit you, cancelling that booking carries no fee.</p><p>Read the <Link to="/terms/">booking and cancellation terms</Link>, and tell the Edmonton office if your access instructions or room preferences change.</p></> },
+        { heading: "Does your first visit need a deep clean?", body: <p>Describe the condition of the home before choosing the first visit. Compare <Link to="/edmonton/deep-cleaning/">deep cleaning in Edmonton</Link> when the extra tasks are needed; a deep clean is not automatically required just because you want a recurring schedule.</p> },
+        {
+          heading: "Recurring cleaning in Edmonton, before you commit",
+          body: (
+            <>
+              <p>
+                Nothing is charged when you book: the card gets a temporary hold the day before each visit, which can
+                look like a charge in a banking app although no money moves, and it is charged once the clean is
+                complete. The first visit is billed at the one-time rate, so if the house is behind, a deep clean as the
+                opening visit and standard visits after it is the sensible order.
+              </p>
+              <p>
+                Our Edmonton team is rated {RATING_CLAIM}{REVIEWS ? ` across ${REVIEWS} reviews` : ""};{" "}
+                <Link to="/reviews/">read the reviews</Link>. Every service with its starting price is on{" "}
+                <Link to="/services/">all Edmonton cleaning services and prices</Link>, and the one-time rate for each
+                home size is on <Link to="/pricing/">the full Edmonton price list</Link>.
+              </p>
+            </>
+          ),
+        },
       ]}
-      includedHeading="What Every Recurring Visit Includes"
+      includedHeading="What every recurring visit includes"
       includedSubheading="Kitchen, bathrooms, bedrooms and living areas, every visit."
       included={[
         { icon: UtensilsCrossed, title: "Kitchen Cleaning", description: "Wipe-down of countertops, sinks, stovetop, exterior appliances, and cabinet fronts. Floors mopped and vacuumed." },
@@ -179,12 +204,6 @@ export default function EdmontonRecurringCleaning() {
         "Bathrooms scrubbed and wiped down",
         "Mirrors and glass surfaces polished",
         "Trash emptied",
-      ]}
-      roomTasks={[
-        { name: "Kitchen", tasks: 4, sample: "countertops, stovetop, and sink" },
-        { name: "Bathrooms", tasks: 4, sample: "scrubbing toilets, tubs, and showers" },
-        { name: "Living Areas", tasks: 4, sample: "dusting, vacuuming, and mopping" },
-        { name: "Bedrooms", tasks: 3, sample: "dusting surfaces and vacuuming under beds" },
       ]}
       pricingBySize={TIERS}
       pricingNote="Rates shown are the one-time standard price, which is what the first clean costs. The schedule discount applies from the second visit."
@@ -212,30 +231,7 @@ export default function EdmontonRecurringCleaning() {
         { q: "What if I only need a single cleaning?", a: "Book a standard clean or a deep clean as a one-time visit instead. Either can be put on a schedule later, and the discount starts from the second visit." },
         { q: "Which schedule suits an Edmonton home?", a: `Choose by how quickly the rooms need attention and how much cleaning you do between visits. Weekly may suit a busy household, biweekly regular help alongside your own upkeep, and every four weeks a lighter-use home. You can adjust the schedule with ${POLICY.cancellationNoticeHours} hours' notice as your needs change.` },
       ]}
-      closingSections={[
-        { heading: "Changing or rescheduling your visits", body: <><p>Move, skip or cancel a visit with {POLICY.cancellationNoticeHours} hours' notice. Inside that window the cancellation fee is {POLICY.cancellationFee}. If we move a booking and the new date does not suit you, cancelling that booking carries no fee.</p><p>Read the <Link to="/terms/">booking and cancellation terms</Link>, and tell the Edmonton office if your access instructions or room preferences change.</p></> },
-        { heading: "Does your first visit need a deep clean?", body: <p>Describe the condition of the home before choosing the first visit. Compare <Link to="/edmonton/deep-cleaning/">deep cleaning in Edmonton</Link> when the extra tasks are needed; a deep clean is not automatically required just because you want a recurring schedule.</p> },
-        {
-          heading: "Recurring cleaning in Edmonton, before you commit",
-          body: (
-            <>
-              <p>
-                Nothing is charged when you book: the card gets a temporary hold the day before each visit, which can
-                look like a charge in a banking app although no money moves, and it is charged once the clean is
-                complete. The first visit is billed at the one-time rate, so if the house is behind, a deep clean as the
-                opening visit and standard visits after it is the sensible order.
-              </p>
-              <p>
-                Our Edmonton team is rated {RATING_CLAIM}{REVIEWS ? ` across ${REVIEWS} reviews` : ""};{" "}
-                <Link to="/reviews/">read the reviews</Link>. Every service with its starting price is on{" "}
-                <Link to="/services/">all Edmonton cleaning services and prices</Link>, and the one-time rate for each
-                home size is on <Link to="/pricing/">the full Edmonton price list</Link>.
-              </p>
-            </>
-          ),
-        },
-      ]}
-      ctaHeading={<>Recurring cleaning in <AccentGold>Edmonton</AccentGold> from {FROM}, <AccentGold>discounted on a schedule.</AccentGold></>}
+      ctaHeading={<>Recurring cleaning in <em className="italic text-accent-on-dark">Edmonton</em> from {FROM}, <em className="italic text-accent-on-dark">discounted on a schedule.</em></>}
       ctaDescription={`The first visit is charged at the one-time rate, from ${FROM} for a one-bedroom apartment or condo before GST, and the schedule discount starts with the second. The quote adds any home-type, pet or travel charge before you book.`}
       galleryImages={[
         { picture: kitchenImage, alt: "Kitchen after a recurring cleaning visit" },

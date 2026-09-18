@@ -14,13 +14,12 @@ import {
   branchGeoFor,
 } from "@/data/proof";
 import { POLICY } from "@/data/policy";
-import CityCrossLink from "@/components/CityCrossLink";
 import ResponsiveImage from "@/components/ResponsiveImage";
 import type { Picture } from "vite-imagetools";
 import { useState, useEffect, type ReactNode } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { Star, Plus, Minus, CalendarCheck } from "lucide-react";
+import { Star, Plus, Minus, Calculator } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -70,11 +69,6 @@ interface IncludedCard {
   description: string;
 }
 
-export interface RoomTask {
-  name: string;
-  tasks: number;
-  sample: string;
-}
 
 export interface PriceTier {
   size: string;
@@ -86,6 +80,12 @@ export interface PriceTier {
 export interface ExtraItem {
   name: string;
   price?: string;
+}
+
+/** A short labelled run of exclusions, so a long "Not included" list reads as two lists. */
+export interface NotIncludedGroup {
+  label: string;
+  items: string[];
 }
 
 /**
@@ -127,7 +127,6 @@ interface ServiceDetailPageProps {
   /** Intrinsic pixels of heroImage, so the box is reserved at the right shape. */
   heroImageWidth?: number;
   heroImageHeight?: number;
-  overviewEyebrow?: string;
   overviewHeading: ReactNode;
   overviewParagraphs: ReactNode[];
   /** Rendered directly under the overview, before the checklist. */
@@ -143,21 +142,34 @@ interface ServiceDetailPageProps {
   ctaDescription: string;
   /** Build-time Pictures (`?card` imports): each carries its own srcset and intrinsic size. */
   galleryImages?: { picture: Picture; alt: string }[];
+  /**
+   * True when the strip holds nothing but the hero photo again. Desktop shows
+   * the hero image, so the strip would print the same picture twice in a row;
+   * phones never load the hero image, so the strip stays there.
+   */
+  galleryRepeatsHero?: boolean;
   /** Listing-style upgrades (optional — graceful fallbacks) */
-  roomTasks?: RoomTask[];
   pricingBySize?: PriceTier[];
   pricingNote?: string;
   extras?: ExtraItem[];
+  /**
+   * One statement at the top of "Not included" for the items that are priced
+   * add-ons rather than exclusions (oven, fridge, cabinets, windows). It names
+   * them once and points at the add-on list instead of repeating each price.
+   */
+  notIncludedLead?: string;
   notIncluded?: string[];
+  /** The same kind of rows as notIncluded, under small sub-labels. */
+  notIncludedGroups?: NotIncludedGroup[];
   fromPrice?: string;
   /** Service slug forwarded to the city quote form (#quote&service=...) for personalization. */
   quoteService?: string;
 }
 
 const FaqAccordionItem = ({
-  item, index, isOpen, onToggle,
+  item, isOpen, onToggle,
 }: {
-  item: FaqItem; index: number; isOpen: boolean; onToggle: () => void;
+  item: FaqItem; isOpen: boolean; onToggle: () => void;
 }) => (
   <div className="border border-border rounded-xl overflow-hidden transition-colors hover:border-accent/50">
     <button
@@ -165,18 +177,13 @@ const FaqAccordionItem = ({
       aria-expanded={isOpen}
       className="w-full text-left px-5 md:px-6 py-5 bg-card flex justify-between items-center gap-4 hover:bg-accent/5 transition-colors"
     >
-      <span className="flex items-start gap-4">
-        <span className="text-brand-gold font-bold text-xl md:text-2xl leading-tight shrink-0 w-8">
-          {String(index + 1).padStart(2, "0")}
-        </span>
-        <span className="font-semibold text-base md:text-lg leading-snug pt-0.5">{item.q}</span>
-      </span>
+      <span className="font-semibold text-base md:text-lg leading-snug">{item.q}</span>
       {isOpen ? <Minus className="w-5 h-5 text-accent shrink-0" /> : <Plus className="w-5 h-5 text-accent shrink-0" />}
     </button>
     {/* Always mounted (hidden when collapsed) for schema/content parity. */}
     <div
-      className={`px-5 md:px-6 pb-6 pt-2 bg-card text-muted-foreground leading-relaxed md:pl-16 ${
-        isOpen ? "animate-fade-in" : "hidden"
+      className={`px-5 md:px-6 pb-6 pt-2 bg-card text-muted-foreground leading-relaxed ${
+        isOpen ? "" : "hidden"
       }`}
     >
       {item.a}
@@ -199,7 +206,6 @@ const ServiceDetailPage = ({
   heroImageAlt,
   heroImageWidth,
   heroImageHeight,
-  overviewEyebrow,
   overviewHeading,
   overviewParagraphs,
   includedHeading,
@@ -210,11 +216,13 @@ const ServiceDetailPage = ({
   ctaHeading,
   ctaDescription,
   galleryImages,
-  roomTasks,
+  galleryRepeatsHero,
   pricingBySize,
   pricingNote,
   extras,
+  notIncludedLead,
   notIncluded,
+  notIncludedGroups,
   fromPrice,
   quoteService,
   crossCity,
@@ -301,12 +309,32 @@ const ServiceDetailPage = ({
       : {}),
   };
 
+  // Passive and throttled to one read per frame: the bar only needs to know
+  // which side of 700px the page is on.
   useEffect(() => {
-    const handleScroll = () => setShowSticky(window.scrollY > 700);
-    handleScroll();
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      setShowSticky(window.scrollY > 700);
+    };
+    const handleScroll = () => {
+      if (frame === 0) frame = window.requestAnimationFrame(update);
+    };
+    update();
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (frame !== 0) window.cancelAnimationFrame(frame);
+    };
   }, []);
+
+  const hasNotIncluded =
+    Boolean(notIncludedLead) ||
+    (notIncluded !== undefined && notIncluded.length > 0) ||
+    (notIncludedGroups !== undefined && notIncludedGroups.length > 0);
+  // Four cards sit two by two, then four across; three sit in one row. Neither leaves an orphan.
+  const includedGrid =
+    included.length % 4 === 0 ? "sm:grid-cols-2 lg:grid-cols-4" : "md:grid-cols-3";
 
   return (
     <div className="min-h-screen">
@@ -351,59 +379,43 @@ const ServiceDetailPage = ({
       {/* Hero — side-by-side */}
       <section className="relative bg-gradient-to-br from-brand-navy via-[#254a7a] to-brand-navy text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/20" aria-hidden="true"></div>
-        <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
+        <div className="container mx-auto px-4 py-14 md:py-20 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* The hero is five things: the H1, one sentence with the price, the
+                two buttons and the rating. The badges sit in a strip below it. */}
             <div>
-              {overviewEyebrow && (
-                <span className="text-brand-gold font-semibold text-sm uppercase tracking-wide mb-4 block">
-                  Professional {cityName} Cleaning
-                </span>
-              )}
-              <h1 className="display-serif text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+              <h1 className="display-serif text-4xl md:text-5xl font-bold mb-5 leading-tight">
                 {heroHeading}
               </h1>
-              <p className="text-lg md:text-xl text-white/85 leading-relaxed mb-8">
+              <p className="text-lg text-white/85 leading-relaxed mb-8 max-w-xl">
                 {heroSubheading}
               </p>
-              {heroBadges && heroBadges.length > 0 && (
-                <div className="flex flex-wrap gap-3 mb-10">
-                  {heroBadges.map((badge) => (
-                    <span
-                      key={badge}
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/25 text-sm font-semibold backdrop-blur-sm"
-                    >
-                      <span className="dc-icon dc-icon-circle-check w-4 h-4 text-brand-gold" aria-hidden="true" />
-                      {badge}
-                    </span>
-                  ))}
-                </div>
-              )}
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
                   size="lg"
-                  className="bg-accent hover:bg-accent/90 text-accent-foreground text-lg px-8 shadow-xl hover:-translate-y-0.5 transition-all"
+                  className="bg-accent hover:bg-accent/90 text-accent-foreground text-lg px-8 shadow-xl transition-colors"
                   asChild
                 >
-                  <Link to={quoteLink} className="inline-flex items-center gap-2">
-                    <CalendarCheck className="w-5 h-5" aria-hidden="true" />
+                  <Link to={quoteLink} className="inline-flex items-center gap-2 whitespace-nowrap">
+                    <Calculator className="w-5 h-5" aria-hidden="true" />
                     {quoteLabel}
                   </Link>
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
-                  className="text-lg px-8 border-2 border-white text-white hover:bg-white hover:text-brand-navy transition-all"
+                  className="text-lg px-8 border-2 border-white text-white hover:bg-white hover:text-brand-navy transition-colors"
                   asChild
                 >
-                  <a href={phoneHref} className="inline-flex items-center gap-2">
+                  <a href={phoneHref} className="inline-flex items-center gap-2 whitespace-nowrap">
                     <span className="dc-icon dc-icon-phone w-5 h-5" aria-hidden="true" />
-                    {phone}
+                    Call {phone}
                   </a>
                 </Button>
               </div>
               {/* The sourced rating, from proof.ts, in the hero rather than 900
                   words down in a sticky bar outside <main>. */}
-              <p className="mt-8 inline-flex items-center gap-2 text-sm text-white/85">
+              <p className="mt-6 inline-flex items-center gap-2 text-sm text-white/85">
                 <Star className="w-4 h-4 text-brand-gold fill-brand-gold" aria-hidden="true" />
                 <span>
                   {RATING_CLAIM}
@@ -433,7 +445,7 @@ const ServiceDetailPage = ({
                     alt={heroImageAlt ?? ""}
                     width={heroImageWidth}
                     height={heroImageHeight}
-                    className="w-full h-[500px] object-cover rounded-2xl shadow-2xl border-4 border-white/10"
+                    className="w-full h-[440px] object-cover rounded-2xl shadow-2xl border-4 border-white/10"
                     loading="eager"
                     fetchPriority="high"
                   />
@@ -444,9 +456,29 @@ const ServiceDetailPage = ({
         </div>
       </section>
 
-      {/* Photo Strip — horizontal snap-scroll, authentic interiors only */}
+      {/* The hero's badges, as one slim row under it: no cards, no motion. */}
+      {heroBadges && heroBadges.length > 0 && (
+        <div className="bg-secondary/40 border-b border-border">
+          <ul className="container mx-auto px-4 py-3 flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm font-semibold text-foreground">
+            {heroBadges.map((badge) => (
+              <li key={badge} className="inline-flex items-center gap-2">
+                <span className="dc-icon dc-icon-circle-check w-4 h-4 text-accent shrink-0" aria-hidden="true" />
+                {badge}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {/* Photo Strip — horizontal snap-scroll, authentic interiors only.
+          A strip that only repeats the hero photo is dropped on desktop, where
+          the hero already shows it; a phone never loads the hero image, so the
+          strip is the one photo it sees and stays. */}
       {galleryImages && galleryImages.length > 0 && (
-        <section aria-label={`${cityName} cleaning photo gallery`} className="bg-background border-b border-border">
+        <section
+          aria-label={`${cityName} cleaning photo gallery`}
+          className={`bg-background border-b border-border${galleryRepeatsHero ? " lg:hidden" : ""}`}
+        >
           <div className="py-6 overflow-x-auto snap-x snap-mandatory">
             <div className="flex gap-4 px-4 w-max mx-auto">
               {galleryImages.map((img, i) => (
@@ -458,7 +490,7 @@ const ServiceDetailPage = ({
                     picture={img.picture}
                     sizes="(min-width: 768px) 320px, 256px"
                     alt={img.alt}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover"
                     loading="lazy"
                   />
                 </div>
@@ -471,7 +503,7 @@ const ServiceDetailPage = ({
       {/* Overview */}
       <section className="py-16 md:py-20">
         <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-8">{overviewHeading}</h2>
+          <h2 className="display-serif text-3xl md:text-4xl font-bold mb-8">{overviewHeading}</h2>
           <div className="space-y-5 text-lg text-muted-foreground leading-relaxed">
             {overviewParagraphs.map((p, i) => (
               <p key={i}>{p}</p>
@@ -502,11 +534,11 @@ const ServiceDetailPage = ({
           {includedSubheading && (
             <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">{includedSubheading}</p>
           )}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto mb-12">
+          <div className={`grid ${includedGrid} gap-5 max-w-6xl mx-auto mb-12`}>
             {included.map((card) => (
               <div
                 key={card.title}
-                className="bg-white rounded-xl p-6 border border-border shadow-sm hover:-translate-y-1 hover:shadow-md transition-all duration-300"
+                className="bg-white rounded-xl p-6 border border-border shadow-sm"
               >
                 <span className="w-11 h-11 rounded-lg bg-accent/10 text-accent flex items-center justify-center mb-4">
                   <card.icon className="w-5 h-5" aria-hidden="true" />
@@ -517,9 +549,7 @@ const ServiceDetailPage = ({
             ))}
           </div>
           <div className="max-w-4xl mx-auto bg-white rounded-2xl border border-border p-7 md:p-9 shadow-sm">
-            <p className="text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground mb-5">
-              The Full Checklist
-            </p>
+            <h3 className="font-bold text-lg mb-5">The full checklist</h3>
             <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-3">
               {bullets.map((bullet) => (
                 <li key={bullet} className="flex items-start gap-2.5">
@@ -529,52 +559,24 @@ const ServiceDetailPage = ({
               ))}
             </ul>
           </div>
+          {/* The room-by-room row that stood here repeated this section and
+              counted tasks nobody could reconcile with the checklist above.
+              Its one useful part was this link. */}
+          <p className="max-w-4xl mx-auto mt-6 text-sm text-muted-foreground">
+            The{" "}
+            <Link to="/whats-included/" className="text-primary font-semibold hover:text-accent">
+              What's Included checklist
+            </Link>{" "}
+            sets the standard, deep and move-out lists side by side.
+          </p>
         </div>
       </section>
-
-      {/* Where We'll Clean — room-by-room with task counts */}
-      {roomTasks && roomTasks.length > 0 && (
-        <section className="py-16 md:py-20">
-          <div className="container mx-auto px-4">
-            <span className="text-accent font-semibold text-sm uppercase tracking-wide block text-center">
-              Room by Room
-            </span>
-            <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mt-2 mb-4">
-              Where we'll clean
-            </h2>
-            <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
-              Each card counts the tasks the team does in that room of {/^[AEIOU]/.test(cityName) ? "an" : "a"} {cityName} home. The{" "}
-              <Link to="/whats-included/" className="text-primary font-semibold hover:text-accent">
-                What's Included checklist
-              </Link>{" "}
-              sets the standard, deep and move-out lists side by side.
-            </p>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto">
-              {roomTasks.map((room) => (
-                <div
-                  key={room.name}
-                  className="bg-white rounded-xl border border-border p-6 shadow-sm hover:-translate-y-1 hover:shadow-lg hover:border-accent/40 transition-all duration-300"
-                >
-                  <p className="text-brand-gold font-bold text-2xl">{room.tasks} tasks</p>
-                  <h3 className="font-bold text-lg mt-1">{room.name}</h3>
-                  <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
-                    Including {room.sample}.
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* Pricing by Home Size */}
       {pricingBySize && pricingBySize.length > 0 && (
         <section className="py-16 md:py-20 bg-secondary/30">
           <div className="container mx-auto px-4">
-            <span className="text-accent font-semibold text-sm uppercase tracking-wide block text-center">
-              Pricing by Home Size
-            </span>
-            <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mt-2 mb-4">
+            <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-4">
               {quoteService === "recurring-cleaning" ? "What your first visit and later visits cost" : "Pricing by home size"}
             </h2>
             <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
@@ -584,11 +586,10 @@ const ServiceDetailPage = ({
               {pricingBySize.map((tier) => (
                 <div
                   key={tier.size}
-                  className="bg-white rounded-xl border border-border p-5 text-center shadow-sm hover:-translate-y-1 hover:shadow-lg hover:border-accent/40 transition-all duration-300"
+                  className="bg-white rounded-xl border border-border p-5 text-center shadow-sm"
                 >
                   <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{tier.size}</p>
                   <p className="text-3xl font-bold mt-2">{tier.price}</p>
-                  <p className="text-xs text-muted-foreground mt-2">Apartment or condo — full checklist</p>
                 </div>
               ))}
             </div>
@@ -625,21 +626,21 @@ const ServiceDetailPage = ({
       )}
 
       {/* Extras vs Not Included — two-column clarity */}
-      {(extras && extras.length > 0) || (notIncluded && notIncluded.length > 0) ? (
+      {(extras && extras.length > 0) || hasNotIncluded ? (
         <section className="py-16 md:py-20">
           <div className="container mx-auto px-4 max-w-5xl">
             <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-12">
               Add-ons, and what stays out of scope
             </h2>
-            <div className="grid md:grid-cols-2 gap-6">
+            {/* Two plain columns on the section background. The card grids
+                above and below are enough boxes for one page. */}
+            <div className="grid md:grid-cols-2 gap-10 md:gap-14">
               {extras && extras.length > 0 && (
-                <div className="bg-white rounded-2xl border border-border p-7 shadow-sm">
-                  <div className="flex items-center gap-3 mb-5">
-                    <span className="w-10 h-10 rounded-lg bg-accent/10 text-accent flex items-center justify-center">
-                      <Plus className="w-5 h-5" aria-hidden="true" />
-                    </span>
-                    <h3 className="text-xl font-bold">Add-ons</h3>
-                  </div>
+                <div>
+                  <h3 className="flex items-center gap-2 text-xl font-bold mb-5 pb-3 border-b border-border">
+                    <Plus className="w-5 h-5 text-accent" aria-hidden="true" />
+                    Add-ons
+                  </h3>
                   <ul className="space-y-3">
                     {extras.map((extra) => (
                       <li
@@ -651,7 +652,7 @@ const ServiceDetailPage = ({
                           {extra.name}
                         </span>
                         {extra.price && (
-                          <span className="text-sm font-semibold text-brand-gold whitespace-nowrap">{extra.price}</span>
+                          <span className="text-sm font-semibold text-foreground whitespace-nowrap">{extra.price}</span>
                         )}
                       </li>
                     ))}
@@ -661,22 +662,36 @@ const ServiceDetailPage = ({
                   </p>
                 </div>
               )}
-              {notIncluded && notIncluded.length > 0 && (
-                <div className="bg-white rounded-2xl border border-border p-7 shadow-sm">
-                  <div className="flex items-center gap-3 mb-5">
-                    <span className="w-10 h-10 rounded-lg bg-muted text-muted-foreground flex items-center justify-center">
-                      <Minus className="w-5 h-5" aria-hidden="true" />
-                    </span>
-                    <h3 className="text-xl font-bold">Not included</h3>
-                  </div>
-                  <ul className="space-y-3">
-                    {notIncluded.map((item) => (
-                      <li key={item} className="flex items-start gap-2.5 text-muted-foreground">
-                        <Minus className="w-4 h-4 mt-1 shrink-0" aria-hidden="true" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
+              {hasNotIncluded && (
+                <div>
+                  <h3 className="flex items-center gap-2 text-xl font-bold mb-5 pb-3 border-b border-border">
+                    <Minus className="w-5 h-5 text-muted-foreground" aria-hidden="true" />
+                    Not included
+                  </h3>
+                  {notIncludedLead && <p className="font-medium mb-5">{notIncludedLead}</p>}
+                  {notIncluded && notIncluded.length > 0 && (
+                    <ul className="space-y-3">
+                      {notIncluded.map((item) => (
+                        <li key={item} className="flex items-start gap-2.5 text-muted-foreground">
+                          <Minus className="w-4 h-4 mt-1 shrink-0" aria-hidden="true" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  {notIncludedGroups?.map((group) => (
+                    <div key={group.label} className="mt-5 first:mt-0">
+                      <h4 className="font-semibold text-foreground mb-3">{group.label}</h4>
+                      <ul className="space-y-3">
+                        {group.items.map((item) => (
+                          <li key={item} className="flex items-start gap-2.5 text-muted-foreground">
+                            <Minus className="w-4 h-4 mt-1 shrink-0" aria-hidden="true" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
                   <p className="text-xs text-muted-foreground mt-5">
                     If you are unsure whether a task is included,{" "}
                     <Link to="/contact-us/" className="text-primary font-semibold hover:text-accent">
@@ -706,7 +721,6 @@ const ServiceDetailPage = ({
                 <FaqAccordionItem
                   key={index}
                   item={faq}
-                  index={index}
                   isOpen={openFaqIndex === index}
                   onToggle={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
                 />
@@ -731,6 +745,32 @@ const ServiceDetailPage = ({
         </section>
       )}
 
+      {/* The other city's twin, as a light row above the final call to action,
+          so the navy band is the last thing before the navy footer and the last
+          action on the page is the quote, not a link to another city. The anchor
+          text is the only link between the twins and stays as the page gives it. */}
+      {crossCity && (
+        <section className={closingSections && closingSections.length > 0 ? "pb-16 md:pb-20" : "py-16 md:py-20"}>
+          <div className="container mx-auto px-4 max-w-4xl">
+            <div className="flex flex-col gap-4 border-y border-border py-6 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-wide text-accent">
+                  Also serving {crossCity.city}
+                </p>
+                <p className="mt-1 text-muted-foreground">{crossCity.description}</p>
+              </div>
+              <Link
+                to={crossCity.to}
+                className="inline-flex shrink-0 items-center gap-2 font-semibold text-primary hover:text-accent transition-colors"
+              >
+                {crossCity.linkText ?? `Explore ${crossCity.city} services`}
+                <span className="dc-icon dc-icon-arrow-right h-5 w-5" aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Final CTA */}
       <section className="py-20 md:py-28 bg-gradient-to-br from-brand-navy via-[#254a7a] to-brand-navy text-white text-center">
         <div className="container mx-auto px-4">
@@ -739,18 +779,18 @@ const ServiceDetailPage = ({
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               size="lg"
-              className="bg-accent hover:bg-accent/90 text-accent-foreground text-lg px-8 py-6 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all"
+              className="bg-accent hover:bg-accent/90 text-accent-foreground text-lg px-8 py-6 shadow-xl transition-colors"
               asChild
             >
-              <Link to={quoteLink} className="inline-flex items-center gap-2">
-                <CalendarCheck className="w-5 h-5" aria-hidden="true" />
+              <Link to={quoteLink} className="inline-flex items-center gap-2 whitespace-nowrap">
+                <Calculator className="w-5 h-5" aria-hidden="true" />
                 {quoteLabel}
               </Link>
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="text-lg px-8 py-6 border-2 border-white text-white hover:bg-white hover:text-brand-navy transition-all"
+              className="text-lg px-8 py-6 border-2 border-white text-white hover:bg-white hover:text-brand-navy transition-colors"
               asChild
             >
               <a href={phoneHref} className="inline-flex items-center gap-2">
@@ -778,18 +818,6 @@ const ServiceDetailPage = ({
           </p>
         </div>
       </section>
-      {crossCity && (
-        <section className="pb-16">
-          <div className="container mx-auto px-4">
-            <CityCrossLink
-              city={crossCity.city}
-              to={crossCity.to}
-              description={crossCity.description}
-              linkText={crossCity.linkText}
-            />
-          </div>
-        </section>
-      )}
       </main>
 
       <Footer />
@@ -800,7 +828,7 @@ const ServiceDetailPage = ({
           showSticky ? "translate-y-0" : "translate-y-full"
         }`}
       >
-        <div className="bg-white/95 backdrop-blur-md border-t border-border shadow-[0_-8px_30px_rgba(0,0,0,0.12)]">
+        <div className="bg-white/95 backdrop-blur-md border-t border-border shadow-[0_-8px_30px_hsl(var(--brand-navy)/0.14)]">
           <div className="container mx-auto px-4 py-3 flex items-center justify-between gap-6">
             <div className="flex items-center gap-6 min-w-0">
               <p className="font-bold truncate">{cityName} Cleaning</p>
@@ -811,7 +839,7 @@ const ServiceDetailPage = ({
               )}
               <span className="hidden lg:inline-flex items-center gap-1.5 text-sm text-muted-foreground whitespace-nowrap">
                 <Star className="w-4 h-4 text-brand-gold fill-brand-gold" aria-hidden="true" />
-                4.9 on Google
+                {RATING_CLAIM}
               </span>
             </div>
             <div className="flex items-center gap-4 shrink-0">
@@ -823,11 +851,11 @@ const ServiceDetailPage = ({
                 {phone}
               </a>
               <Button
-                className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-lg hover:-translate-y-0.5 transition-all"
+                className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-lg transition-colors"
                 asChild
               >
-                <Link to={quoteLink} className="inline-flex items-center gap-2">
-                  <CalendarCheck className="w-4 h-4" aria-hidden="true" />
+                <Link to={quoteLink} className="inline-flex items-center gap-2 whitespace-nowrap">
+                  <Calculator className="w-4 h-4" aria-hidden="true" />
                   {quoteLabel}
                 </Link>
               </Button>

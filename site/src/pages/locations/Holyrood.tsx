@@ -3,7 +3,7 @@ import { locationServices, locationWhyUs } from "@/data/location-cards";
 import { getListing } from "@/lib/google-listings";
 import { standardTierRows, FREQUENCIES } from "@/data/pricing";
 import {
-  CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import { useEffect, lazy, Suspense } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import { CheckCircle2, Star, Shield, Award, Home, Truck, SprayCan, Bath, Leaf, CalendarCheck, ThumbsUp, Mail, PaintRoller, Sparkles } from "lucide-react";
+  CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import { useEffect, lazy, Suspense } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import { CheckCircle2, Star, Shield, Home, Truck, SprayCan, Bath, Leaf, ThumbsUp, Calculator, PaintRoller, Sparkles } from "lucide-react";
 import heroImg from "@/assets/gallery/holyrood-cleaner-home.webp";
 import { buildLocationSchema } from "@/lib/location-schema";
 import HonestReviewLink from "@/components/HonestReviewLink";
@@ -110,44 +110,27 @@ export default function Holyrood() {
         {/* Hero */}
         <section className="relative py-24 bg-brand-navy overflow-hidden">
           <div className="absolute top-20 left-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-10 right-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12">
               <div className="flex-1 text-center lg:text-left">
-                <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-5 py-2 mb-6">
-                  <span className="dc-icon dc-icon-map-pin w-4 h-4 text-accent" aria-hidden="true" />
-                  <span className="text-white/90 text-sm font-medium">Serving Holyrood, Edmonton</span>
-                </div>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+                <h1 className="display-serif text-[2rem] sm:text-[2.25rem] xl:text-[2.75rem] text-white mb-6 leading-[1.12] text-balance">
                   Professional House Cleaning in Holyrood
                 </h1>
-                <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
+                <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
                   Most Holyrood houses date from the 1950s, with coved plaster corners, decades of paint along the door frames and original hardwood under many of the carpets. The Edmonton team cleans them at a flat rate by home size.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
+                    <a href="#quote">See My Instant Price</a>
+                  </Button>
+                  <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
                     <a href="tel:7809136565">
                       <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />(780) 913-6565
                     </a>
                   </Button>
-                  <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
-                    <a href="#quote">See My Instant Price</a>
-                  </Button>
-                </div>
-                <div className="flex flex-wrap justify-center lg:justify-start gap-4">
-                  {[
-                    { icon: CheckCircle2, text: "Pay After Your Clean" },
-                    { icon: CalendarCheck, text: "Open 7 Days a Week" },
-                    { icon: Award, text: "24-Hour Re-Clean Guarantee" },
-                  ].map((badge, i) => (
-                    <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
-                      <badge.icon className="w-4 h-4 text-accent" />
-                      <span className="text-white/90 text-sm">{badge.text}</span>
-                    </div>
-                  ))}
                 </div>
               </div>
-              <div className="lg:w-[500px] flex-shrink-0">
+              <div className="lg:w-[440px] flex-shrink-0">
                 <img
                   src={heroImg}
                   alt="Cleaner dusting a wooden fireplace mantel with a long-handled duster"
@@ -161,13 +144,24 @@ export default function Holyrood() {
           </div>
         </section>
 
+        {/* What the hero pills said, as one plain row under the hero */}
+        <div className="border-b border-border bg-muted/30">
+          <ul className="container mx-auto px-4 py-3 flex flex-wrap items-center justify-center gap-x-8 gap-y-1 text-sm font-medium text-foreground">
+            {["Pay After Your Clean", "Open 7 Days a Week", "24-Hour Re-Clean Guarantee"].map((text) => (
+              <li key={text} className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-primary" aria-hidden="true" />
+                {text}
+              </li>
+            ))}
+          </ul>
+        </div>
+
         {/* Services */}
         <section className="py-20 bg-muted/30">
           <div className="container mx-auto px-4">
             <AnimatedSection>
               <div className="text-center mb-14">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">
+                <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
                   Cleaning Services for Holyrood Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
@@ -193,7 +187,7 @@ export default function Holyrood() {
                   the Edmonton side — for the page that has to hold "house cleaning
                   edmonton". */}
               <p className="mt-10 text-center text-muted-foreground">
-                {"Holyrood is one of the Edmonton neighbourhoods we clean — see "}
+                {"Holyrood is one of the Edmonton neighbourhoods we clean. See "}
                 <Link to="/" className="text-primary underline underline-offset-2">
                   house cleaning services in Edmonton
                 </Link>
@@ -205,12 +199,11 @@ export default function Holyrood() {
 
         {/* Why Us */}
         <section className="py-20 bg-brand-navy relative overflow-hidden">
-          <div className="absolute top-10 right-20 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />
           <div className="container mx-auto px-4 relative z-10">
             <AnimatedSection>
               <div className="text-center mb-14">
-                <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">
+                <span className="text-accent-on-dark text-sm font-semibold tracking-wider uppercase">Why Us</span>
+                <h2 className="display-serif text-3xl md:text-4xl font-bold text-white mt-2 mb-4 text-balance">
                   Why Holyrood Residents Choose Duty Cleaners
                 </h2>
               </div>
@@ -230,8 +223,7 @@ export default function Holyrood() {
           <div className="container mx-auto px-4">
             <AnimatedSection>
               <div className="max-w-4xl mx-auto text-center mb-10">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Serving the Holyrood Area</h2>
+                <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mb-4 text-balance">Serving the Holyrood Area</h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
                   Holyrood cleans are booked through the Edmonton office on (780) 913-6565, open Monday to Saturday 8 AM to 8 PM and Sunday 9 AM to 3 PM.
                 </p>
@@ -251,8 +243,7 @@ export default function Holyrood() {
             <AnimatedSection>
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Another Neighbourhood near Holyrood</h2>
+                  <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mb-4 text-balance">Another Neighbourhood near Holyrood</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
                     Bonnie Doon is also one of the Edmonton branch's 80 city neighbourhoods, cleaned at the same flat rates as Holyrood.
                   </p>
@@ -260,7 +251,7 @@ export default function Holyrood() {
                 <CoverageChips areas={["Bonnie Doon"]} variant="compact" />
                 <div className="text-center mt-8">
                   <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
-                    View All Service Areas →
+                    View All Service Areas<span className="dc-icon dc-icon-arrow-right h-4 w-4" aria-hidden="true" />
                   </Link>
                 </div>
               </div>
@@ -288,8 +279,7 @@ export default function Holyrood() {
             <AnimatedSection>
               <div className="max-w-3xl mx-auto">
                 <div className="text-center mb-12">
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">FAQ</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Frequently Asked Questions</h2>
+                  <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">Frequently Asked Questions</h2>
                 </div>
                 <Accordion type="single" collapsible className="w-full">
                   {faqs.map((faq, index) => (
@@ -306,10 +296,9 @@ export default function Holyrood() {
 
         {/* CTA */}
         <section className="py-20 bg-brand-navy relative overflow-hidden">
-          <div className="absolute bottom-0 left-20 w-80 h-80 bg-accent/10 rounded-full blur-3xl" />
           <div className="container mx-auto px-4 relative z-10 text-center">
             <AnimatedSection>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              <h2 className="display-serif text-3xl md:text-4xl font-bold text-white mb-6 text-balance">
                 Ready to Book a Clean in Holyrood?
               </h2>
               <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
@@ -317,13 +306,13 @@ export default function Holyrood() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
-                  <a href="tel:7809136565">
-                    <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />Call (780) 913-6565
+                  <a href="#quote">
+                    <Calculator className="mr-2 w-5 h-5" />See My Instant Price
                   </a>
                 </Button>
                 <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
-                  <a href="#quote">
-                    <Mail className="mr-2 w-5 h-5" />See My Instant Price
+                  <a href="tel:7809136565">
+                    <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />Call (780) 913-6565
                   </a>
                 </Button>
               </div>

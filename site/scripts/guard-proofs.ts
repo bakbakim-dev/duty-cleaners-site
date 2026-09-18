@@ -285,8 +285,8 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/service-radius.test.ts",
     target: "dist/index.html",
-    find: "The Edmonton branch sends reference-checked cleaners across the city and the communities around it.",
-    replace: "The Edmonton branch sends reference-checked cleaners across the city and the communities within a 30km radius.",
+    find: "The Edmonton branch covers the city and the communities around it.",
+    replace: "The Edmonton branch covers the city and the communities within a 30km radius.",
     failing: "no built page states a radius its own coordinates contradict",
     why: "States a 30 km radius that location-geo.ts contradicts (Stony Plain is 33.8 km out).",
     dist: true,
@@ -834,6 +834,14 @@ export const GUARD_PROOFS: GuardProof[] = [
     replace: "from one bedroom to five or more bedrooms, a deep",
     failing: "no page describes the top tier as five or more bedrooms",
     why: "Calls the top table row five-or-more when six and seven bedrooms cost more and are priced in the quote form.",
+  },
+  {
+    guard: "src/data/owner-answers-0911.test.ts",
+    target: "src/pages/locations/Leduc.tsx",
+    find: "for five bedrooms, flat, before GST",
+    replace: "for five bedrooms or more, flat, before GST",
+    failing: "no page describes the top tier as five or more bedrooms",
+    why: "The exact wording that sat on Leduc, Morinville and the Calgary move-out FAQ until 2026-09-18: the first pattern only knew 'five or more', so 'five bedrooms or more' passed.",
   },
   {
     guard: "src/data/owner-answers-0911.test.ts",

@@ -8,7 +8,7 @@ import {
 } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
 import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
-import { Accent, AccentGold } from "@/components/Accent";
+import { Accent } from "@/components/Accent";
 import { Sparkles, Bath, UtensilsCrossed, Layers } from "lucide-react";
 import heroImage from "@/assets/gallery/kitchen-deep-clean.webp";
 import heroImageCard from "@/assets/gallery/kitchen-deep-clean.webp?card";
@@ -16,8 +16,6 @@ import heroImageCard from "@/assets/gallery/kitchen-deep-clean.webp?card";
 // Published figures come from bk-config via pricing.ts. Hand-typing them
 // here is what let this page drift out of step with /pricing and with what
 // BookingKoala actually charges.
-/** Cheapest published price for an add-on, straight from bk-config. */
-const addOnLabel = (key: string) => formatPrice(addOnFromPrice("standard", key) ?? 0);
 
 const ROWS = deepCleanTierRows();
 const TIERS = ROWS.map((row) => ({ size: row.beds, price: row.price }));
@@ -66,14 +64,13 @@ export default function EdmontonDeepCleaning() {
       seoDescription={`An Edmonton deep clean adds baseboards, switches, vents and stovetop detail to the standard checklist, from ${TIERS[0].price} before GST for a one-bedroom.`}
       serviceName="Deep House Cleaning in Edmonton"
       canonical="https://dutycleaners.ca/edmonton/deep-cleaning"
-      heroHeading={<>Deep Cleaning Services in <AccentGold>Edmonton</AccentGold></>}
-      heroSubheading={`A deep clean is everything in a standard clean plus the build-up a standard clean does not reach: baseboards, door frames, switches and outlet covers, vent covers, tile and shower glass, and the stovetop, grates and fridge top detailed. It is priced flat by home size, from ${TIERS[0].price} for a one-bedroom apartment or condo before GST, with any home-type, pet or travel charge shown on the quote.`}
+      heroHeading={<>Deep Cleaning Services in <em className="italic text-accent-on-dark">Edmonton</em></>}
+      heroSubheading={`The standard clean plus baseboards, door frames, switches and vents, from ${TIERS[0].price} before GST for a one-bedroom apartment or condo. You pay after the clean.`}
       heroBadges={["Standard Checklist Plus the Deep Package", "All Supplies Brought For You", `${POLICY.guaranteeWindowHours}-Hour Re-Clean Guarantee`]}
       heroImage={heroImage}
       heroImageAlt="Kitchen after a deep clean"
       heroImageWidth={1024}
       heroImageHeight={1024}
-      overviewEyebrow="Service Overview"
       overviewHeading={<>The reset regular cleaning <Accent>can't reach.</Accent></>}
       overviewParagraphs={[
         <>
@@ -83,6 +80,9 @@ export default function EdmontonDeepCleaning() {
         "Edmonton earns its deep cleans the hard way. The city holds its cold rather than thawing and refreezing, so the sand and salt tracked in from November arrive dry and stay, and by spring they have worked into carpet edges and along the baseboards where a vacuum no longer lifts them. The spring melt, in late March and April, brings a whole winter of grit indoors in about three weeks. Meanwhile the furnace has been running since October, and a house sealed up that long cycles dust faster, onto vent covers, baseboards and the tops of door frames.",
         "What the work looks like depends on the home. In an older house, painted trim and panelled doors hold dust along every edge of the profile, and most of the job is hand-wiping. In the bathrooms, hard Alberta water leaves mineral scale on the taps and the shower glass; scale does not scrub off, and it comes away with a mild acid given a few minutes to work. In an apartment or condo there is less trim, so more of the job is the kitchen and the bathrooms. Our team works top to bottom, room by room: scrubbing baseboards and door frames, hand-wiping switches and outlet covers, detailing the stovetop, grates and fridge top, and detail-cleaning bathrooms.",
       ]}
+      // The price section stays above the checklist. The out-of-town section
+      // reads after the FAQ, with the other closing prose, so the page reaches
+      // the checklist and the price grid sooner.
       sections={[
         {
           heading: "Deep house cleaning in Edmonton, priced by home size",
@@ -115,21 +115,6 @@ export default function EdmontonDeepCleaning() {
             </>
           ),
         },
-        {
-          heading: "Deep cleaning outside Edmonton: Fort Saskatchewan, Stony Plain and Morinville",
-          body: (
-            <>
-              <p>
-                Inside Edmonton city limits there is no travel fee. Fort Saskatchewan, Stony Plain and Morinville are
-                outside them, and a deep clean there carries a travel fee of {TRAVEL}, shown on the quote before you
-                book. Each town has its own page:{" "}
-                <Link to="/cleaning-services-fort-saskatchewan/">house cleaning in Fort Saskatchewan</Link>,{" "}
-                <Link to="/cleaning-services-stony-plain/">Stony Plain house cleaners</Link> and{" "}
-                <Link to="/cleaning-services-morinville/">cleaning services in Morinville</Link>.
-              </p>
-            </>
-          ),
-        },
       ]}
       includedHeading="What a deep clean adds"
       includedSubheading="The places a weekly visit never reaches, room by room."
@@ -152,34 +137,35 @@ export default function EdmontonDeepCleaning() {
         "Detailed cobweb and corner cleaning",
         "Floors thoroughly mopped and vacuumed",
       ]}
-      roomTasks={[
-        { name: "Kitchen Detail", tasks: 6, sample: "detailing the stovetop, grates and fridge top" },
-        { name: "Bathroom Scrub", tasks: 5, sample: "detailing tile and shower glass" },
-        { name: "Edges & Details", tasks: 5, sample: "hand-wiping baseboards and door frames" },
-        { name: "Bedrooms & Living", tasks: 4, sample: "dusting high and low areas" },
-      ]}
       pricingBySize={TIERS}
       fromPrice={TIERS[0].price}
       extras={featuredExtraRows()}
-      notIncluded={[
-        // The list was all safety exclusions — 25 lb, ladders, mould. The four
-        // below are scope, and they are what customers actually assume a deep
-        // clean covers: the commonest disputes in this trade, on the page where
-        // someone is about to spend several hundred dollars. Prices are derived
-        // from bk-config, because the published-prices guard is right that a
-        // hand-typed figure drifts the moment BookingKoala changes.
-        `Inside the oven — add it for ${addOnLabel("inside-oven")}`,
-        `Inside the fridge — add it for ${addOnLabel("inside-fridge")}`,
-        `Inside cabinets and drawers — add it from ${addOnLabel("inside-cabinets-kitchen-bathroom-only")}`,
-        `Interior windows — add them from ${addOnLabel("inside-windows")}`,
-        "Wall washing — a separate service, not part of the deep package",
-        "Moving heavy items over 25 lbs",
-        "Outdoor or exterior window cleaning",
-        "Mould remediation, bodily fluids, or pest removal",
-        "Areas beyond the reach of a 3-step ladder",
-        "Light bulbs and fragile fixtures",
-        "Garages, patios and outdoor areas, apart from the balcony or garage sweep add-on, available mostly in summer when the weather allows",
-        "Laundry and dishes",
+      // The list was all safety exclusions: 25 lb, ladders, mould. The four
+      // named in the lead are scope, and they are what customers actually
+      // assume a deep clean covers: the commonest disputes in this trade, on
+      // the page where someone is about to spend several hundred dollars. So
+      // the exclusion is stated outright, once, and the prices stay in the
+      // add-on list beside it, which reads them from bk-config.
+      notIncludedLead="The inside of the oven, the inside of the fridge, the insides of cabinets and drawers, and interior windows are not part of a deep clean. Each one is a priced add-on, listed under Add-ons."
+      notIncludedGroups={[
+        {
+          label: "Other work",
+          items: [
+            "Wall washing: an add-on booked with the clean, not part of the deep package",
+            "Outdoor or exterior window cleaning",
+            "Garages, patios and outdoor areas, apart from the balcony or garage sweep add-on, available mostly in summer when the weather allows",
+            "Laundry and dishes",
+          ],
+        },
+        {
+          label: "Safety limits",
+          items: [
+            "Moving heavy items over 25 lbs",
+            "Mould remediation, bodily fluids, or pest removal",
+            "Areas beyond the reach of a 3-step ladder",
+            "Light bulbs and fragile fixtures",
+          ],
+        },
       ]}
       faqs={[
         { q: "Can I book deep cleaning for only certain areas?", a: "A deep clean is priced by home size, as the standard checklist plus the deep-clean package for the whole home. Tell us which rooms matter most when you book, such as the bathrooms, the kitchen or a basement that has been shut up since October." },
@@ -195,6 +181,21 @@ export default function EdmontonDeepCleaning() {
         { q: "What happens if something is missed?", a: `Tell us within ${POLICY.guaranteeWindowHours} hours and the team comes back to re-clean it at no charge. Photos help but are not required. The commitment is the return visit rather than a refund, though you can call the Edmonton office on (780) 913-6565 to talk through anything else.` },
       ]}
       closingSections={[
+        {
+          heading: "Deep cleaning outside Edmonton: Fort Saskatchewan, Stony Plain and Morinville",
+          body: (
+            <>
+              <p>
+                Inside Edmonton city limits there is no travel fee. Fort Saskatchewan, Stony Plain and Morinville are
+                outside them, and a deep clean there carries a travel fee of {TRAVEL}, shown on the quote before you
+                book. Each town has its own page:{" "}
+                <Link to="/cleaning-services-fort-saskatchewan/">house cleaning in Fort Saskatchewan</Link>,{" "}
+                <Link to="/cleaning-services-stony-plain/">Stony Plain house cleaners</Link> and{" "}
+                <Link to="/cleaning-services-morinville/">cleaning services in Morinville</Link>.
+              </p>
+            </>
+          ),
+        },
         {
           heading: "After the deep clean",
           body: (
@@ -215,11 +216,12 @@ export default function EdmontonDeepCleaning() {
           ),
         },
       ]}
-      ctaHeading={<>Deep cleaning in <AccentGold>Edmonton</AccentGold> from {TIERS[0].price}.</>}
+      ctaHeading={<>Deep cleaning in <em className="italic text-accent-on-dark">Edmonton</em> from {TIERS[0].price}.</>}
       ctaDescription={`A deep clean is the standard checklist plus the deep-clean package, priced flat by home size before GST: ${TIERS[0].price} is a one-bedroom apartment or condo, and any home-type, pet or travel charge shows on the quote. Nothing is charged until the clean is complete.`}
       galleryImages={[
         { picture: heroImageCard, alt: "Kitchen after a deep clean" },
       ]}
+      galleryRepeatsHero
     />
   );
 }

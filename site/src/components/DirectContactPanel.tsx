@@ -1,6 +1,6 @@
 import { Mail, Phone } from "lucide-react";
 import { POLICY } from "@/data/policy";
-import { SUPPORT_EMAIL } from "@/data/proof";
+import { SUPPORT_EMAIL, hoursRowsFor } from "@/data/proof";
 
 interface DirectContactPanelProps {
   phone: string;
@@ -12,11 +12,11 @@ interface DirectContactPanelProps {
 const COPY = {
   Edmonton: {
     heading: "Or reach out directly.",
-    terms: `No payment today · Free to reschedule with ${POLICY.cancellationNoticeHours} hours' notice · No contracts.`,
+    terms: `No payment today. Free to reschedule with ${POLICY.cancellationNoticeHours} hours' notice. No contracts.`,
   },
   Calgary: {
     heading: "Or talk to the Calgary office.",
-    terms: `Nothing charged today · Reschedule free with ${POLICY.cancellationNoticeHours} hours' notice · No contract to sign.`,
+    terms: `Nothing charged today. Reschedule free with ${POLICY.cancellationNoticeHours} hours' notice. No contract to sign.`,
   },
 } as const;
 
@@ -26,6 +26,8 @@ const COPY = {
  */
 export default function DirectContactPanel({ phone, phoneLink, city = "Edmonton" }: DirectContactPanelProps) {
   const copy = COPY[city];
+  // One hours format on the page, read from proof.ts like the footer's.
+  const hours = hoursRowsFor(city === "Calgary" ? "calgary" : "edmonton");
   return (
     <aside className="flex h-full flex-col justify-between bg-brand-navy p-7 text-brand-navy-foreground lg:p-8">
       <div>
@@ -40,7 +42,11 @@ export default function DirectContactPanel({ phone, phoneLink, city = "Edmonton"
             <span className="dc-icon dc-icon-phone h-4 w-4 text-brand-gold" aria-hidden="true" />
             {phone}
           </a>
-          <p className="mt-1 text-sm text-white/70">Mon–Sat 8 AM–8 PM · Sun 9 AM–3 PM</p>
+          <p className="mt-1 text-sm text-white/70">
+            {hours.map(([days, time]) => (
+              <span key={days} className="block">{days}: {time}</span>
+            ))}
+          </p>
         </div>
 
         <div className="mt-5 border-t border-white/15 pt-5">

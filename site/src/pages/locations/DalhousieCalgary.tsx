@@ -3,7 +3,7 @@ import { locationServices, locationWhyUs } from "@/data/location-cards";
 import { WALL_WASHING_DESCRIPTION } from "@/data/service-copy";
 import { getListing } from "@/lib/google-listings";
 import {
-  CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import { useEffect } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"; import { CheckCircle2, Star, Shield, Award, Home, Truck, SprayCan, Leaf, CalendarCheck, ThumbsUp, Mail, PaintRoller, Sparkles } from "lucide-react";
+  CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import { useEffect } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"; import { CheckCircle2, Star, Shield, Home, Truck, SprayCan, Leaf, ThumbsUp, Calculator, PaintRoller, Sparkles } from "lucide-react";
 import cleanHomeImg from "@/assets/gallery/neighborhoods/dalhousie.webp";
 import { buildLocationSchema } from "@/lib/location-schema";
 import CoverageChips from "@/components/CoverageChips";
@@ -101,50 +101,44 @@ export default function DalhousieCalgary() {
         {/* Hero */}
         <section className="relative py-24 bg-brand-navy overflow-hidden">
           <div className="absolute top-20 left-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-10 right-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
-              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-5 py-2 mb-6">
-                <span className="dc-icon dc-icon-map-pin w-4 h-4 text-accent" aria-hidden="true" />
-                <span className="text-white/90 text-sm font-medium">Serving Dalhousie, NW Calgary</span>
-              </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+              <h1 className="display-serif text-[2rem] sm:text-[2.25rem] md:text-[3rem] text-white mb-6 leading-[1.12] text-balance">
                 Professional House Cleaning in Dalhousie
               </h1>
-              <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-lg text-white/85 mb-8 max-w-3xl mx-auto leading-relaxed">
                 Dalhousie went up mostly in the 1970s, and its four-level splits and bi-levels mean stairs, spindles and landings on every clean. Each visit is quoted flat by home size, and the quote does not grow if the clean runs long.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
-                  <a href="tel:4037681341"><span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />(403) 768-1341</a>
-                </Button>
-                <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
                   <a href="#quote">See My Instant Price</a>
                 </Button>
-              </div>
-              <div className="flex flex-wrap justify-center gap-6">
-                {[
-                  { icon: CheckCircle2, text: "Pay After Your Clean" },
-                  { icon: CalendarCheck, text: "Open 7 Days a Week" },
-                  { icon: Award, text: "24-Hour Re-Clean Guarantee" },
-                ].map((badge, i) => (
-                  <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
-                    <badge.icon className="w-4 h-4 text-accent" />
-                    <span className="text-white/90 text-sm">{badge.text}</span>
-                  </div>
-                ))}
+                <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
+                  <a href="tel:4037681341"><span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />(403) 768-1341</a>
+                </Button>
               </div>
             </div>
           </div>
         </section>
+
+        {/* What the hero pills said, as one plain row under the hero */}
+        <div className="border-b border-border bg-muted/30">
+          <ul className="container mx-auto px-4 py-3 flex flex-wrap items-center justify-center gap-x-8 gap-y-1 text-sm font-medium text-foreground">
+            {["Pay After Your Clean", "Open 7 Days a Week", "24-Hour Re-Clean Guarantee"].map((text) => (
+              <li key={text} className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-primary" aria-hidden="true" />
+                {text}
+              </li>
+            ))}
+          </ul>
+        </div>
 
         {/* Services */}
         <section className="py-20 bg-muted/30">
           <div className="container mx-auto px-4">
             <AnimatedSection>
               <div className="text-center mb-14">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Dalhousie Homes</h2>
+                <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">Cleaning Services for Dalhousie Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
                   Five services for Dalhousie homes at flat rates before 5% GST: post-construction by square footage, the other four by home size. Any pet charge or home-type surcharge shows on the quote.
                 </p>
@@ -162,7 +156,7 @@ export default function DalhousieCalgary() {
                   for "cleaning services calgary" against Edmonton's 6.3 on the
                   identical query, on comparable impressions. */}
               <p className="mt-10 text-center text-muted-foreground">
-                {"Dalhousie is one of the Calgary neighbourhoods we clean — see "}
+                {"Dalhousie is one of the Calgary neighbourhoods we clean. See "}
                 <Link
                   to="/cleaning-services-calgary/"
                   className="text-primary underline underline-offset-2"
@@ -181,8 +175,7 @@ export default function DalhousieCalgary() {
             <AnimatedSection>
               <div className="max-w-5xl mx-auto">
                 <div className="text-center mb-10">
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Dalhousie Service Area</h2>
+                  <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mb-4 text-balance">Dalhousie Service Area</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
                     Dalhousie's southern edge is Crowchild Trail, and its bookings run through the Calgary office at 2835 37 Street SW.
                   </p>
@@ -204,8 +197,7 @@ export default function DalhousieCalgary() {
                   <img width={1280} height={896} src={cleanHomeImg} alt="A carpeted family room with a bay window onto spruce trees, two black leather recliners and a wooden bookcase" className="w-full h-full object-cover aspect-[4/3]" loading="lazy" />
                 </div>
                 <div>
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Before the Team Arrives</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Getting a Dalhousie Home Ready for a Clean</h2>
+                  <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mb-4 text-balance">Getting a Dalhousie Home Ready for a Clean</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
                     You do not need to clean before the team comes to a Dalhousie home. Clear counters and floors get cleaned, cluttered ones get worked around, and decluttering is a separate hourly add-on.
                   </p>
@@ -228,8 +220,7 @@ export default function DalhousieCalgary() {
           <div className="container mx-auto px-4">
             <AnimatedSection>
               <div className="text-center mb-10">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">Local Coverage</span>
-                <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">More Calgary-area neighbourhoods we clean</h2>
+                <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mb-4 text-balance">More Calgary-area neighbourhoods we clean</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
                   Dalhousie is one of 66 Calgary neighbourhoods the Calgary branch cleans.{" "}
                   <Link to="/locations/" className="text-primary underline underline-offset-2">
@@ -258,12 +249,11 @@ export default function DalhousieCalgary() {
 
         {/* Why Choose Us */}
         <section className="py-20 bg-brand-navy relative overflow-hidden">
-          <div className="absolute top-10 right-20 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />
           <div className="container mx-auto px-4 relative z-10">
             <AnimatedSection>
               <div className="text-center mb-14">
-                <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Dalhousie Residents Choose Duty Cleaners</h2>
+                <span className="text-accent-on-dark text-sm font-semibold tracking-wider uppercase">Why Us</span>
+                <h2 className="display-serif text-3xl md:text-4xl font-bold text-white mt-2 mb-4 text-balance">Why Dalhousie Residents Choose Duty Cleaners</h2>
               </div>
             </AnimatedSection>
             <AnimatedSection>
@@ -280,8 +270,7 @@ export default function DalhousieCalgary() {
             <AnimatedSection>
               <div className="max-w-3xl mx-auto">
                 <div className="text-center mb-12">
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">FAQ</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Frequently Asked Questions</h2>
+                  <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">Frequently Asked Questions</h2>
                 </div>
                 <Accordion type="single" collapsible className="w-full">
                   {faqs.map((faq, index) => (
@@ -298,19 +287,18 @@ export default function DalhousieCalgary() {
 
         {/* CTA */}
         <section className="py-20 bg-brand-navy relative overflow-hidden">
-          <div className="absolute bottom-0 left-20 w-80 h-80 bg-accent/10 rounded-full blur-3xl" />
           <div className="container mx-auto px-4 relative z-10 text-center">
             <AnimatedSection>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Book a Clean in Dalhousie?</h2>
+              <h2 className="display-serif text-3xl md:text-4xl font-bold text-white mb-6 text-balance">Ready to Book a Clean in Dalhousie?</h2>
               <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
                 See your flat rate before you book. Nothing is charged until the clean is done.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
-                  <a href="tel:4037681341"><span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />Call (403) 768-1341</a>
+                  <a href="#quote"><Calculator className="mr-2 w-5 h-5" />See My Instant Price</a>
                 </Button>
                 <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
-                  <a href="#quote"><Mail className="mr-2 w-5 h-5" />See My Instant Price</a>
+                  <a href="tel:4037681341"><span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />Call (403) 768-1341</a>
                 </Button>
               </div>
             </AnimatedSection>

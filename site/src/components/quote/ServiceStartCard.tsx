@@ -111,7 +111,7 @@ export default function ServiceStartCard({
 
     return (
       <div className={`relative z-10 w-full max-w-[26rem] ${className}`}>
-        <div className="card-warm overflow-hidden border border-border bg-card shadow-2xl shadow-black/25">
+        <div className="overflow-hidden rounded-lg border border-border bg-card shadow-2xl shadow-black/25">
           <div className="border-t-[3px] border-accent" aria-hidden="true" />
 
           <div className="p-6 sm:p-7">
@@ -125,9 +125,6 @@ export default function ServiceStartCard({
             <h2 className="display-serif mt-2.5 text-2xl font-bold leading-snug text-brand-navy">
               What type of clean do you need?
             </h2>
-            <p className="mt-1.5 text-sm leading-relaxed text-fine-print">
-              Choose a starting point — you&rsquo;ll see the price before you book.
-            </p>
 
             <div className="mt-4 grid grid-cols-2 gap-2">
               {heroTile("standard", "Standard", service === "standard" && !deepIntent, () => {
@@ -178,7 +175,7 @@ export default function ServiceStartCard({
     >
 
       <div className="flex items-center justify-between text-base font-bold text-foreground">
-        <span>Step 1 of 4 — About your home</span>
+        <span>Step 1 of 4: about your home</span>
         <span className="text-accent">25%</span>
       </div>
       <div className="mt-2 h-2 w-full bg-secondary">

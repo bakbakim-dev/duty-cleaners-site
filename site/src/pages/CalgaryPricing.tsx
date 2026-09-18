@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-import PricingTierCard from "@/components/pricing/PricingTierCard";
+import PricingTierCard, { PricingTierCta } from "@/components/pricing/PricingTierCard";
 import RecurringDiscountCard from "@/components/pricing/RecurringDiscountCard";
 import PricingOptionCard from "@/components/pricing/PricingOptionCard";
 import PricingFormula from "@/components/PricingFormula";
@@ -32,7 +32,7 @@ import {
   startingPrice,
 } from "@/data/pricing";
 import { addOnTableRows } from "@/data/addon-table";
-import { CheckCircle2, Calculator, Shield, Star, BadgeCheck, Home, CalendarClock, Award, Info, Receipt, Clock, Users, Check } from "lucide-react";
+import { Calculator, Star, Home, Info, Receipt, Clock, Check } from "lucide-react";
 import { CITY_PROOF, COMPANY, RATING_CLAIM } from "@/data/proof";
 
 /* Derived from bk-config — never hand-typed, so the table can never
@@ -173,11 +173,9 @@ export default function CalgaryPricing() {
   const { ref: recurringRef } = useScrollAnimation();
   const { ref: examplesRef } = useScrollAnimation();
   const { ref: travelRef } = useScrollAnimation();
-  const { ref: factorsRef } = useScrollAnimation();
   const { ref: optionsRef } = useScrollAnimation();
   const { ref: whyRef } = useScrollAnimation();
   const { ref: faqRef } = useScrollAnimation();
-  const { ref: ctaRef } = useScrollAnimation();
 
   const title = `Calgary House Cleaning Prices from ${FROM_PRICE} | Duty Cleaners`;
   const description = `Calgary house cleaning prices from ${FROM_PRICE} for a one-bedroom, before GST. No trip fee inside city limits, and the card is charged after the clean.`;
@@ -219,134 +217,81 @@ export default function CalgaryPricing() {
         <Breadcrumbs />
       </div>
 
-      {/* Hero Section */}
-      <section className="bg-brand-navy py-20 md:py-28 relative overflow-hidden">
-        <div className="absolute top-10 left-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
-
+      {/* Hero Section: H1, one sentence, two buttons, one trust line. The
+          home-type charges moved to the caption under the rate cards; the rule
+          on when a quote changes is the info box there, and the hourly terms
+          are in the flat-rate-against-hourly section. */}
+      <section className="bg-brand-navy py-14 md:py-20 relative overflow-hidden">
         <div className="container mx-auto px-4 relative z-10" ref={heroRef}>
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="w-20 h-20 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-8 rotate-3 hover:rotate-0 transition-transform duration-500">
-              <Calculator className="w-10 h-10 text-accent" />
-            </div>
-
-            <h1 className="display-serif text-3xl md:text-5xl font-bold mb-6 leading-tight text-balance text-white">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="display-serif text-3xl md:text-5xl font-bold mb-5 leading-tight text-balance text-white">
               Calgary house cleaning prices,{" "}
-              <span className="text-accent">by home size</span>
+              <span className="text-accent-on-dark">by home size</span>
             </h1>
             {/* All three services in plain text, up top. The tab panels below
                 render one at a time, and a text extractor only ever saw the
                 Standard one. Every figure is derived, never typed. */}
-            <p className="text-xl md:text-2xl text-white/85 mb-3 leading-relaxed">
-              One flat rate per bedroom count, before 5% GST: {priceSpan(standardPricing)} for a standard clean,{" "}
-              {priceSpan(deepPricing)} for a deep clean, {priceSpan(moveInOutPricing)} to move in or out. Your
-              payment card is charged once the crew has finished.
+            <p className="text-lg md:text-xl text-white/90 mb-8 leading-relaxed">
+              One flat rate per bedroom count for an apartment or condo, before 5% GST and any home-type, pet or
+              travel charge: {priceSpan(standardPricing)} for a standard clean, {priceSpan(deepPricing)} for a deep
+              clean, {priceSpan(moveInOutPricing)} to move in or out. Your payment card is charged once the crew
+              has finished.
             </p>
-            <p className="text-lg text-white/90 mb-10">
-              {/* Read from the verified Form 1 table so BK and the page cannot
-                  diverge; the old line put two home types under one number. */}
-              Those rates assume an apartment or condo. A bungalow or a basement suite is {HOME_TYPE_EXTRA.bungalow} more,
-              a townhouse {HOME_TYPE_EXTRA.townhouse} more, and a two-storey house {HOME_TYPE_EXTRA.twoStorey} more.
-              Pick the home type on the form and the total
-              updates in front of you.
-            </p>
-            <p className="text-lg text-white/90 mb-10">
-              Nothing about how the day goes moves the rate. A quote changes only when a home needs substantially more
-              work than it was described as needing, and the crew explains what they found before they carry on. A
-              few rooms, or a home with no bedroom count that fits, is quoted hourly instead, from {formatPrice(HOME_HOURLY_RATE)}{" "}
-              per hour per cleaner before GST.
-            </p>
-
-            <div className="flex flex-wrap items-center justify-center gap-4 mb-10">
-              {[
-                { icon: Star, label: RATING_CLAIM },
-                { icon: Shield, label: "Pay after your clean" },
-                { icon: BadgeCheck, label: "Every fee shown on the quote" },
-              ].map((badge, i) => (
-                <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
-                  <badge.icon className="w-4 h-4 text-accent" />
-                  <span className="text-white/90 text-sm font-medium">{badge.label}</span>
-                </div>
-              ))}
-            </div>
 
             <div className="flex flex-wrap justify-center gap-4">
               {/* Without asChild + href this rendered as a bare <button> that did
-                  nothing — the primary CTA on the Calgary pricing page. Edmonton's
+                  nothing, the primary CTA on the Calgary pricing page. Edmonton's
                   identical block has always pointed at #quote. */}
-              <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-10 py-6 h-auto font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5" asChild>
+              <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-10 py-6 h-auto font-semibold whitespace-nowrap" asChild>
                 <a href="#quote">
                   <Calculator className="w-5 h-5 mr-2" />
                   See My Instant Price
                 </a>
               </Button>
-              <Button size="lg" className="bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 text-lg px-8 py-6 h-auto font-semibold transition-all duration-300" asChild>
+              <Button size="lg" className="bg-transparent border border-white/40 text-white hover:bg-white/10 text-lg px-8 py-6 h-auto font-semibold whitespace-nowrap" asChild>
                 <a href="tel:4037681341">
                   <span className="dc-icon dc-icon-phone w-5 h-5 mr-2" aria-hidden="true" />
                   (403) 768-1341
                 </a>
               </Button>
             </div>
+
+            <p className="mt-6 flex items-center justify-center gap-2 text-sm font-medium text-white/90">
+              <Star className="w-4 h-4 text-brand-gold fill-current" aria-hidden="true" />
+              {RATING_CLAIM}
+            </p>
           </div>
         </div>
       </section>
 
-      <PricingFormula city="Calgary" />
+      {/* The hero's pills, once, as a plain strip. The closing CTA band that
+          repeated them is gone: the footer band closes the page. */}
+      <div className="border-b border-border bg-muted/30">
+        <ul className="container mx-auto px-4 py-3 flex flex-wrap items-center justify-center gap-x-8 gap-y-1 text-sm text-foreground/80">
+          {[`Missed spots re-cleaned if you tell us within ${POLICY.guaranteeWindowHours} hours`, "Pay after your clean", "Every fee shown on the quote"].map((label) => (
+            <li key={label} className="flex items-center gap-2">
+              <Check className="w-4 h-4 text-accent" aria-hidden="true" />
+              {label}
+            </li>
+          ))}
+        </ul>
+      </div>
 
-      <LocalMarketNote
-        accent="calgary"
-        eyebrow="Calgary pricing, in plain terms"
-        heading="Choosing the service for your Calgary home"
-        paragraphs={[
-          "Our prices are the same in Calgary as in Edmonton — we do not charge a city premium, and there is no trip fee inside either city. What can differ is which service a Calgary home needs. Because the chinooks keep putting the roads through melt-and-grit cycles all winter, sand and de-icer accumulate along baseboards and carpet edges in a way that a standard clean is not scoped to remove.",
-          "Home type moves the number more than neighbourhood does. A Beltline or Mission condo is one of the simplest jobs in the city, and it prices at the apartment or condo rate with no home-type charge. Houses in newer suburbs such as Mahogany, Seton and Livingston carry construction dust, and a two-storey house there adds the home-type charge.",
-        ]}
-      />
-
-      {/* Service Pricing Tabs */}
-      <section className="py-20 bg-background">
+      {/* Service Pricing Tabs: directly under the hero. The formula row and the
+          local note used to come first, which left the first price card about
+          four screens down. Both now follow the add-on table. */}
+      <section className="py-16 md:py-20 bg-background">
         <div className="container mx-auto px-4" ref={tabsRef}>
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-8">
-              <span className="text-accent font-semibold text-sm uppercase tracking-wider">The rates</span>
-              <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-4">Calgary house cleaning rates, card by card</h2>
+              <h2 className="display-serif text-3xl md:text-4xl font-bold mb-4">Calgary house cleaning rates, card by card</h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 Three services, five home sizes. Every card is a flat rate before GST.
               </p>
             </div>
 
-            {/* This box used to open "prices shown are starting estimates, not
-                the final amount", which contradicted the banner further down
-                the page. The rate is fixed; here is the one thing that moves it. */}
-            <div className="mb-6 bg-accent/5 border border-accent/20 rounded-xl p-5 md:p-6 flex items-start gap-3 md:gap-4 max-w-3xl mx-auto">
-              <Info className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
-              <div>
-                <p className="text-sm text-foreground/90 leading-relaxed">
-                  <span className="font-semibold text-foreground">The rate is fixed by home size and bathroom count, and it does not go up because the crew took longer.</span>{" "}
-                  It changes in one case only: a home that needs substantially more work than the booking described,
-                  heavy build-up or far more glass and cabinetry than stated. Then the crew tells you what they found
-                  and your options before continuing.
-                </p>
-              </div>
-            </div>
-
-            <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-10">
-              Reading the cards: left to right is bedroom count, and each card assumes an apartment or condo with a
-              set number of bathrooms: {PRICING_TIERS[0].bathrooms} for the one-bedroom, {PRICING_TIERS[1].bathrooms} for the two-bedroom, and{" "}
-              {fourBedTier.bathrooms} full plus a half bath by the four-bedroom. A Beltline one-bedroom with one
-              bathroom is the first card exactly; a four-bedroom in Mahogany with two bathrooms starts under the
-              fourth card, before its home type and any pet charge are added, because that card assumes{" "}
-              {fourBedTier.bathrooms} full bathrooms and a half bath. The{" "}
-              <Link to="/calgary/regular-cleaning/" className="text-accent underline underline-offset-4 hover:text-accent/80">Calgary standard cleaning</Link>{" "}
-              rate is the base for everything. A{" "}
-              <Link to="/calgary/deep-cleaning/" className="text-accent underline underline-offset-4 hover:text-accent/80">deep clean in Calgary</Link>{" "}
-              adds the Deep Cleaning package for the size on top of it. A{" "}
-              <Link to="/move-out-cleaning-calgary/" className="text-accent underline underline-offset-4 hover:text-accent/80">move-out clean in Calgary</Link>{" "}
-              is priced on its own, with the fridge, the oven and the cabinets already inside the figure.
-            </p>
-
             <Tabs defaultValue="standard" className="w-full">
-              <TabsList className="grid w-full grid-cols-3 mb-10 h-auto bg-muted/50 rounded-xl p-1">
+              <TabsList className="grid w-full grid-cols-3 mb-8 h-auto bg-muted/50 rounded-xl p-1">
                 <TabsTrigger value="standard" className="min-h-[48px] py-3 px-2 text-sm md:text-base rounded-lg data-[state=active]:bg-brand-navy data-[state=active]:text-white">Standard Cleaning</TabsTrigger>
                 <TabsTrigger value="deep" className="min-h-[48px] py-3 px-2 text-sm md:text-base rounded-lg data-[state=active]:bg-brand-navy data-[state=active]:text-white">Deep Cleaning</TabsTrigger>
                 <TabsTrigger value="moveinout" className="min-h-[48px] py-3 px-2 text-sm md:text-base rounded-lg data-[state=active]:bg-brand-navy data-[state=active]:text-white">Move In/Out</TabsTrigger>
@@ -354,49 +299,36 @@ export default function CalgaryPricing() {
 
               <TabsContent value="standard">
                 <p className="text-center text-muted-foreground mb-8">One visit, at the flat rate for the home's size</p>
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-10">
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                   {standardPricing.map((item) => (
                     <PricingTierCard key={item.beds} beds={item.beds} price={item.price} />
                   ))}
                 </div>
+                <PricingTierCta href={quoteHrefFor(pathname)} />
 
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="bg-card rounded-xl border border-border/50 shadow-sm overflow-hidden">
-                    <div className="bg-brand-navy p-5 flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
-                        <span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent" aria-hidden="true" />
-                      </div>
-                      <h3 className="text-lg font-bold text-white">What's Included</h3>
-                    </div>
-                    <div className="p-6">
-                      <ul className="space-y-3">
-                        {standardIncludes.map((item) => (
-                          <li key={item} className="flex items-start gap-2.5">
-                            <span className="dc-icon dc-icon-circle-check w-4 h-4 text-accent mt-0.5 flex-shrink-0" aria-hidden="true" />
-                            <span className="text-sm text-muted-foreground leading-relaxed">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                <div className="grid md:grid-cols-2 gap-6 mt-12">
+                  <div className="bg-card rounded-xl border border-border/50 p-6">
+                    <h3 className="text-lg font-bold text-foreground mb-4">What's included</h3>
+                    <ul className="space-y-3">
+                      {standardIncludes.map((item) => (
+                        <li key={item} className="flex items-start gap-2.5">
+                          <span className="dc-icon dc-icon-circle-check w-4 h-4 text-accent mt-0.5 flex-shrink-0" aria-hidden="true" />
+                          <span className="text-sm text-muted-foreground leading-relaxed">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
 
-                  <div className="bg-card rounded-xl border border-border/50 shadow-sm overflow-hidden">
-                    <div className="bg-brand-navy p-5 flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
-                        <span className="dc-icon dc-icon-sparkles w-5 h-5 text-accent" aria-hidden="true" />
-                      </div>
-                      <h3 className="text-lg font-bold text-white">Available as Add-ons</h3>
-                    </div>
-                    <div className="p-6">
-                      <ul className="space-y-3">
-                        {standardAddOns.map((item) => (
-                          <li key={item} className="flex items-start gap-2.5">
-                            <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0" />
-                            <span className="text-sm text-muted-foreground leading-relaxed">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                  <div className="bg-card rounded-xl border border-border/50 p-6">
+                    <h3 className="text-lg font-bold text-foreground mb-4">Available as add-ons</h3>
+                    <ul className="space-y-3">
+                      {standardAddOns.map((item) => (
+                        <li key={item} className="flex items-start gap-2.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0" />
+                          <span className="text-sm text-muted-foreground leading-relaxed">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               </TabsContent>
@@ -410,10 +342,12 @@ export default function CalgaryPricing() {
                       beds={item.beds}
                       price={item.price}
                       note={`${item.standard} standard + ${item.packagePrice} Deep Cleaning package`}
-                      ctaHref="/cleaning-services-calgary/#quote&intent=deep"
                     />
                   ))}
                 </div>
+                {/* One button for the tab, with the deep intent the five card
+                    buttons used to carry (quote-intent.test.ts). */}
+                <PricingTierCta href="/cleaning-services-calgary/#quote&intent=deep" />
               </TabsContent>
 
               <TabsContent value="moveinout">
@@ -423,6 +357,7 @@ export default function CalgaryPricing() {
                     <PricingTierCard key={item.beds} beds={item.beds} price={item.price} />
                   ))}
                 </div>
+                <PricingTierCta href={quoteHrefFor(pathname)} />
                 <p className="text-center text-sm text-muted-foreground mt-8 max-w-2xl mx-auto">
                   Bedroom count stops being the right measure once a renovation or a new build is
                   involved, so{" "}
@@ -435,6 +370,59 @@ export default function CalgaryPricing() {
                 </p>
               </TabsContent>
             </Tabs>
+
+            {/* Caption under the cards: the one case that moves a quote, how to
+                read a card, and the charges that go on top of one. */}
+            <div className="mt-12 max-w-3xl mx-auto space-y-6">
+              {/* This box used to open "prices shown are starting estimates, not
+                  the final amount", which contradicted the rest of the page.
+                  The rate is fixed; here is the one thing that moves it. */}
+              <div className="bg-accent/5 border border-accent/20 rounded-xl p-5 md:p-6 flex items-start gap-3 md:gap-4">
+                <Info className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
+                <div>
+                  <p className="text-sm text-foreground/90 leading-relaxed">
+                    <span className="font-semibold text-foreground">The rate is fixed by home size and bathroom count, and it does not go up because the crew took longer.</span>{" "}
+                    It changes in one case only: a home that needs substantially more work than the booking described,
+                    heavy build-up or far more glass and cabinetry than stated. Then the crew tells you what they found
+                    and your options before continuing.
+                  </p>
+                </div>
+              </div>
+
+              <p className="text-muted-foreground leading-relaxed">
+                Reading the cards: left to right is bedroom count, and each card assumes an apartment or condo with a
+                set number of bathrooms.
+              </p>
+              <ul className="grid grid-cols-2 sm:grid-cols-5 gap-x-4 gap-y-2 text-sm text-muted-foreground">
+                {PRICING_TIERS.map((tier) => (
+                  <li key={tier.label}>
+                    <span className="font-semibold text-foreground">{tier.label}:</span>{" "}
+                    {tier.bathrooms} full{tier.halfBaths ? " plus a half bath" : ""}
+                  </li>
+                ))}
+              </ul>
+              <p className="text-muted-foreground leading-relaxed">
+                A Beltline one-bedroom with one
+                bathroom is the first card exactly; a four-bedroom in Mahogany with two bathrooms starts under the
+                fourth card, before its home type and any pet charge are added, because that card assumes{" "}
+                {fourBedTier.bathrooms} full bathrooms and a half bath. The{" "}
+                <Link to="/calgary/regular-cleaning/" className="text-accent underline underline-offset-4 hover:text-accent/80">Calgary standard cleaning</Link>{" "}
+                rate is the base for everything. A{" "}
+                <Link to="/calgary/deep-cleaning/" className="text-accent underline underline-offset-4 hover:text-accent/80">deep clean in Calgary</Link>{" "}
+                adds the Deep Cleaning package for the size on top of it. A{" "}
+                <Link to="/move-out-cleaning-calgary/" className="text-accent underline underline-offset-4 hover:text-accent/80">move-out clean in Calgary</Link>{" "}
+                is priced on its own, with the fridge, the oven and the cabinets already inside the figure.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                {/* Read from the verified Form 1 table so BK and the page cannot
+                    diverge; the old line put two home types under one number. */}
+                The card rates assume an apartment or condo. A bungalow or a basement suite is {HOME_TYPE_EXTRA.bungalow} more,
+                a townhouse {HOME_TYPE_EXTRA.townhouse} more, and a two-storey house {HOME_TYPE_EXTRA.twoStorey} more.
+                Pick the home type on the form and the total
+                updates in front of you. Pets are {PET_FEE} a visit, and an address past Calgary city limits carries
+                the {TRAVEL_FEE} travel fee. GST at 5% is added to the total.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -444,8 +432,7 @@ export default function CalgaryPricing() {
         <div className="container mx-auto px-4" ref={addOnsRef}>
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12">
-              <span className="text-accent font-semibold text-sm uppercase tracking-wider">Add-ons</span>
-              <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-4">Calgary add-on prices, per visit</h2>
+              <h2 className="display-serif text-3xl md:text-4xl font-bold mb-4">Calgary add-on prices, per visit</h2>
               <p className="text-lg text-muted-foreground">What a standard clean leaves out, and what each piece costs to put back in</p>
             </div>
 
@@ -498,39 +485,57 @@ export default function CalgaryPricing() {
         </div>
       </section>
 
-      {/* Recurring Service Discounts */}
-      <section className="py-20 bg-brand-navy relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-80 h-80 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
+      {/* Moved, not deleted: both used to sit ahead of the rates. The local
+          note is what keeps this page from being a copy of /pricing/. */}
+      <PricingFormula city="Calgary" />
 
-        <div className="container mx-auto px-4 relative z-10" ref={recurringRef}>
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-12">
-              <span className="text-brand-gold font-semibold text-sm uppercase tracking-wider">Recurring</span>
-              <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-4 text-white">Weekly, bi-weekly or every 4 weeks: the recurring rates</h2>
-              <p className="text-lg text-white/90">The percentage comes off the standard clean from the second visit onward.</p>
-            </div>
+      <LocalMarketNote
+        accent="calgary"
+        eyebrow="Calgary pricing, in plain terms"
+        heading="Choosing the service for your Calgary home"
+        paragraphs={[
+          "Our prices are the same in Calgary as in Edmonton. We do not charge a city premium, and there is no trip fee inside either city. What can differ is which service a Calgary home needs. Because the chinooks keep putting the roads through melt-and-grit cycles all winter, sand and de-icer accumulate along baseboards and carpet edges in a way that a standard clean is not scoped to remove.",
+          "Home type moves the number more than neighbourhood does. A Beltline or Mission condo is one of the simplest jobs in the city, and it prices at the apartment or condo rate with no home-type charge. Houses in newer suburbs such as Mahogany, Seton and Livingston carry construction dust, and a two-storey house there adds the home-type charge.",
+        ]}
+      />
 
-            <div className="grid md:grid-cols-3 gap-6 mb-8">
-              <RecurringDiscountCard percentage="20%" title="Weekly Cleaning" />
-              <RecurringDiscountCard percentage="15%" title="Bi-weekly Cleaning" />
-              <RecurringDiscountCard percentage="10%" title="Every 4 Weeks" />
-            </div>
+      {/* Recurring Service Discounts: three rows and one button on a light
+          surface. It was a navy band of three cards, each with a "Get Started"
+          button into the same funnel as every other button here. */}
+      <section className="py-16 md:py-20 bg-muted/30">
+        <div className="container mx-auto px-4" ref={recurringRef}>
+          <div className="max-w-3xl mx-auto">
+            <h2 className="display-serif text-3xl md:text-4xl font-bold mb-4 text-balance">Weekly, bi-weekly or every 4 weeks: the recurring rates</h2>
+            <p className="text-lg text-muted-foreground mb-8">The percentage comes off the standard clean from the second visit onward.</p>
 
-            <p className="text-center text-sm text-white/80 max-w-2xl mx-auto mb-6">
+            <ul className="bg-card rounded-xl border border-border/50 divide-y divide-border/50 mb-8">
+              <RecurringDiscountCard percentage="20%" title="Weekly cleaning" />
+              <RecurringDiscountCard percentage="15%" title="Bi-weekly cleaning" />
+              <RecurringDiscountCard percentage="10%" title="Every 4 weeks" />
+            </ul>
+
+            <p className="text-sm text-muted-foreground leading-relaxed mb-4">
               {/* In bk-config six of seven Deep Cleaning rows are
                   exempt_extra_from_freq_disc AND first-only, so the deep portion
                   neither recurs nor discounts. */}
-              <strong className="text-white">Note:</strong> A deep clean on the first visit is billed once at the
+              A deep clean on the first visit is billed once at the
               one-time price and neither recurs nor discounts. A move-out clean is a one-off by nature and carries no
               frequency discount at all.
             </p>
-            <p className="text-center text-sm text-white/80 max-w-2xl mx-auto">
+            <p className="text-sm text-muted-foreground leading-relaxed mb-8">
               How a bi-weekly Calgary plan works out over a year is on the{" "}
-              <Link to="/calgary/recurring-cleaning/" className="text-accent underline underline-offset-4 hover:text-white">recurring cleaning in Calgary</Link>{" "}
+              <Link to="/calgary/recurring-cleaning/" className="text-accent underline underline-offset-4 hover:text-accent/80">recurring cleaning in Calgary</Link>{" "}
               page. Hosts turning a unit between guests should read{" "}
-              <Link to="/airbnb-cleaning-services-calgary/" className="text-accent underline underline-offset-4 hover:text-white">short-term rental turnover cleaning in Calgary</Link>{" "}
+              <Link to="/airbnb-cleaning-services-calgary/" className="text-accent underline underline-offset-4 hover:text-accent/80">short-term rental turnover cleaning in Calgary</Link>{" "}
               instead; that work is priced by the hour.
             </p>
+
+            <Button className="h-auto whitespace-nowrap bg-accent px-8 py-4 text-base font-semibold text-accent-foreground hover:bg-accent/90" asChild>
+              <a href={quoteHrefFor(pathname)}>
+                <Calculator className="w-5 h-5 mr-2" />
+                See My Instant Price
+              </a>
+            </Button>
           </div>
         </div>
       </section>
@@ -540,8 +545,7 @@ export default function CalgaryPricing() {
         <div className="container mx-auto px-4" ref={examplesRef}>
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-10">
-              <span className="text-accent font-semibold text-sm uppercase tracking-wider">Worked quotes</span>
-              <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-4">Illustrative Calgary quotes, worked through</h2>
+              <h2 className="display-serif text-3xl md:text-4xl font-bold mb-4">Illustrative Calgary quotes, worked through</h2>
               <p className="text-lg text-muted-foreground">The form's own arithmetic, with every figure shown.</p>
             </div>
 
@@ -613,215 +617,123 @@ export default function CalgaryPricing() {
         </div>
       </section>
 
-      {/* Flat rate against hourly, then the no-hidden-fees banner */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4" ref={factorsRef}>
-          <div className="max-w-5xl mx-auto">
-            <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-10 text-center">
-              A whole Calgary home is priced by its home type, bedrooms, bathrooms, add-ons and frequency.
-              The one choice that pricing does not make for you is flat rate against hourly: a home cleaned
-              end to end is a flat rate, while a few rooms or a one-off task list is billed by the hour from{" "}
-              {formatPrice(HOME_HOURLY_RATE)} per cleaner before GST, with a minimum of 3 hours for one cleaner or 2 hours for two.
-            </p>
-
-            {/* No Hidden Fees Banner */}
-            <div className="bg-brand-navy rounded-2xl p-8 md:p-10 border border-white/10 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-40 h-40 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
-              <div className="relative z-10">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-11 h-11 bg-white/10 rounded-lg flex items-center justify-center">
-                    <Shield className="w-5 h-5 text-accent" />
-                  </div>
-                   <h3 className="text-xl font-bold text-white">Seen before you book, charged after the clean</h3>
-                 </div>
-                 <p className="text-white/90 leading-relaxed mb-6 max-w-2xl">
-                   The quote is fixed before you confirm, and nothing is charged at booking. Your card is charged once the crew has finished. Inside Calgary city limits there is no trip fee. Should a home turn out to need substantially more work than the booking described, the crew says so and gives you the options before continuing.
-                </p>
-                <div className="flex flex-wrap gap-4">
-                  <Button className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold shadow-md hover:shadow-lg transition-all" asChild>
-                    <a href={quoteHrefFor(pathname)}>
-                      <CalendarClock className="w-5 h-5 mr-2" />
-                      Book Your Cleaning
-                    </a>
-                  </Button>
-                  <Button className="bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-all" asChild>
-                    <a href="tel:4037681341">
-                      <span className="dc-icon dc-icon-phone w-5 h-5 mr-2" aria-hidden="true" />
-                      Call for Quote
-                    </a>
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Options */}
-      <section className="py-20 bg-muted/30">
+      {/* Flat rate against hourly. The navy "seen before you book" banner that
+          sat above this repeated the info box by the rates, and its "Book Your
+          Cleaning" / "Call for Quote" buttons were two more names for what
+          every other button on the page already does. */}
+      <section className="py-16 md:py-20 bg-background">
         <div className="container mx-auto px-4" ref={optionsRef}>
           <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12"><h2 className="display-serif text-3xl md:text-4xl font-bold mb-4">Comparing flat-rate and hourly quotes</h2><p className="text-muted-foreground leading-relaxed">Compare the written scope as well as the total. A whole-home flat rate and an hourly booking for selected tasks answer different needs. Check minimum hours, how many cleaners the rate covers, any extras and GST before choosing.</p><p className="mt-4"><Link className="text-primary underline" to="/how-much-does-a-house-cleaning-cost/">How to compare cleaning quotes and price factors</Link></p></div>
+            <div className="text-center mb-12"><h2 className="display-serif text-3xl md:text-4xl font-bold mb-4">Comparing flat-rate and hourly quotes</h2><p className="text-muted-foreground leading-relaxed">Compare the written scope as well as the total. A whole-home flat rate and an hourly booking for selected tasks answer different needs. Check minimum hours, how many cleaners the rate covers, any extras and GST before choosing.</p>
+              <p className="text-muted-foreground leading-relaxed mt-4">
+                A whole Calgary home is priced by its home type, bedrooms, bathrooms, add-ons and frequency.
+                The one choice that pricing does not make for you is flat rate against hourly: a home cleaned
+                end to end is a flat rate, while a few rooms or a one-off task list is billed by the hour from{" "}
+                {formatPrice(HOME_HOURLY_RATE)} per cleaner before GST, with a minimum of 3 hours for one cleaner or 2 hours for two.
+              </p>
+              <p className="mt-4"><Link className="text-primary underline" to="/how-much-does-a-house-cleaning-cost/">How to compare cleaning quotes and price factors</Link></p></div>
 
             <div className="grid md:grid-cols-2 gap-8">
               <PricingOptionCard
-                icon={Clock}
-                title="Hourly Cleaning"
-                description="A few rooms, a one-off list, or a home no bedroom tier fits. You write the list, the crew works down it, and you pay for the hours it took."
-                price={`from ${formatPrice(HOME_HOURLY_RATE)}/hour`}
-                priceLabel="Per cleaner, before 5% GST"
-                features={["3 hours minimum for one cleaner, 2 hours for two", "Your list, in your order", "Billed by the hour, per cleaner"]}
-                buttonText="Book Hourly Service"
-              />
-              <PricingOptionCard
                 icon={Home}
-                title="Flat-Rate Pricing"
+                title="Flat-rate pricing"
                 description="One figure for the whole home, set by bedrooms, bathrooms and home type. Standard, deep and move-in/out cleans are all priced this way, with add-ons as separate lines."
                 price={`from ${FROM_PRICE}`}
                 priceLabel="Set by home size, before 5% GST"
                 features={["Quote shown before you book", "Standard, deep and move-in/out", "No trip fee inside Calgary city limits", "Pet and home-type charges shown on the quote"]}
                 buttonText="See My Instant Price"
               />
+              {/* The funnel has no hourly service to price (QuoteFlow keeps hourly
+                  work out of self-serve), so this card phones the Calgary office. */}
+              <PricingOptionCard
+                icon={Clock}
+                title="Hourly cleaning"
+                description="A few rooms, a one-off list, or a home no bedroom tier fits. You write the list, the crew works down it, and you pay for the hours it took."
+                price={`from ${formatPrice(HOME_HOURLY_RATE)}/hour`}
+                priceLabel="Per cleaner, before 5% GST"
+                features={["3 hours minimum for one cleaner, 2 hours for two", "Your list, in your order", "Billed by the hour, per cleaner"]}
+                buttonText="(403) 768-1341"
+                buttonHref="tel:4037681341"
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Why Choose Section */}
-      <section className="py-20 bg-brand-navy relative overflow-hidden">
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="container mx-auto px-4 relative z-10" ref={whyRef}>
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-12">
-              <span className="text-brand-gold font-semibold text-sm uppercase tracking-wider">Behind the number</span>
-              <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-4 text-white">What the Calgary price buys</h2>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-6 mb-10">
-              {[
-                { icon: Clock, title: `In Alberta ${COMPANY.sinceLabel}`, desc: `${CITY_PROOF.calgary.googleReviewCount} Google reviews on the Calgary listing, ${CITY_PROOF.calgary.googleRating} average` },
-                { icon: Award, title: `${POLICY.guaranteeWindowHours}-hour re-clean`, desc: "Say so inside the window and the crew returns to redo what was missed, at no cost and with no photos needed" },
-                { icon: Users, title: "Reference-checked crews", desc: "The customer rates every visit, and the ratings decide who comes back" },
-              ].map((item, i) => (
-                <div key={i} className="group text-center" style={{ perspective: "1000px" }}>
-                  <div className="transition-all duration-500 ease-out group-hover:-translate-y-2" style={{ transformStyle: "preserve-3d" }}>
-                    <div className="w-14 h-14 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center mx-auto mb-4 transition-transform duration-500 group-hover:rotate-6">
-                      <item.icon className="w-7 h-7 text-accent" />
-                    </div>
-                    <h3 className="text-lg font-bold mb-2 text-white">{item.title}</h3>
-                    <p className="text-sm text-white/90 leading-relaxed">{item.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <p className="text-center text-white/90 leading-relaxed max-w-2xl mx-auto mb-4">
-              Pick a service on the form and the Calgary price appears before you confirm.{" "}
-              <strong className="text-white">Nothing is charged at booking.</strong>
-            </p>
-            <p className="text-center text-white/80 leading-relaxed max-w-2xl mx-auto mb-8">
-              The{" "}
-              <Link to="/reviews/" className="text-accent underline underline-offset-4 hover:text-white">{CITY_PROOF.calgary.googleReviewCount} Calgary Google reviews</Link>{" "}
-              are worth ten minutes before you book. If the job is not a standard, deep or move-out clean, it is under{" "}
-              <Link to="/calgary/services/" className="text-accent underline underline-offset-4 hover:text-white">every Calgary cleaning service, with starting prices</Link>.
-              And a clean makes a straightforward present:{" "}
-              <Link to="/gift-card/" className="text-accent underline underline-offset-4 hover:text-white">give a clean as a gift</Link>
-              .
-            </p>
-
-            <div className="text-center">
-              <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-10 py-6 h-auto font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5">
+      {/* Who does the cleaning: the page's one navy band below the hero. It was
+          headed "What the Calgary price buys" under the eyebrow "Behind the
+          number", over three facts about the company and its crews. */}
+      <section className="py-16 md:py-20 bg-brand-navy">
+        <div className="container mx-auto px-4" ref={whyRef}>
+          <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+            <div>
+              <h2 className="display-serif text-3xl md:text-4xl font-bold mb-6 text-white">Who does the cleaning in Calgary</h2>
+              <p className="text-white/90 leading-relaxed mb-4">
+                Pick a service on the form and the Calgary price appears before you confirm.{" "}
+                <strong className="text-white">Nothing is charged at booking.</strong>
+              </p>
+              <p className="text-white/80 leading-relaxed mb-8">
+                The{" "}
+                <Link to="/reviews/" className="text-accent underline underline-offset-4 hover:text-white">{CITY_PROOF.calgary.googleReviewCount} Calgary Google reviews</Link>{" "}
+                are worth ten minutes before you book. If the job is not a standard, deep or move-out clean, it is under{" "}
+                <Link to="/calgary/services/" className="text-accent underline underline-offset-4 hover:text-white">every Calgary cleaning service, with starting prices</Link>.
+                And a clean makes a straightforward present:{" "}
+                <Link to="/gift-card/" className="text-accent underline underline-offset-4 hover:text-white">give a clean as a gift</Link>
+                .
+              </p>
+              <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-10 py-6 h-auto font-semibold whitespace-nowrap">
                 <a href="#quote">
                   <Calculator className="w-5 h-5 mr-2" />
                   See My Instant Price
                 </a>
               </Button>
             </div>
+
+            <ul className="divide-y divide-white/15 border-y border-white/15">
+              {[
+                { title: `In Alberta ${COMPANY.sinceLabel}`, desc: `${CITY_PROOF.calgary.googleReviewCount} Google reviews on the Calgary listing, ${CITY_PROOF.calgary.googleRating} average` },
+                { title: `${POLICY.guaranteeWindowHours}-hour re-clean`, desc: "Say so inside the window and the crew returns to redo what was missed, at no cost and with no photos needed" },
+                { title: "Reference-checked crews", desc: "The customer rates every visit, and the ratings decide who comes back" },
+              ].map((item) => (
+                <li key={item.title} className="py-5">
+                  <h3 className="text-lg font-bold mb-1 text-white">{item.title}</h3>
+                  <p className="text-sm text-white/90 leading-relaxed">{item.desc}</p>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-20 bg-background">
+      {/* FAQ Section: accordion rows with a divider. The card and its navy
+          "Pricing Questions" bar repeated the heading directly above them. */}
+      <section className="py-16 md:py-20 bg-background">
         <div className="container mx-auto px-4" ref={faqRef}>
           <div className="max-w-3xl mx-auto">
-            <div className="text-center mb-12">
-              <span className="text-accent font-semibold text-sm uppercase tracking-wider">Asked on the phone</span>
-              <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-4">Calgary cleaning prices, question by question</h2>
+            <div className="mb-8">
+              <h2 className="display-serif text-3xl md:text-4xl font-bold mb-4">Calgary cleaning prices, question by question</h2>
               <p className="text-lg text-muted-foreground">What Calgary callers ask before they book, answered in full</p>
             </div>
 
-            <div className="bg-card rounded-xl shadow-sm border border-border/50 overflow-hidden">
-              <div className="bg-brand-navy p-5 flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
-                  <span className="dc-icon dc-icon-circle-help w-5 h-5 text-accent" aria-hidden="true" />
-                </div>
-                <h3 className="text-lg font-bold text-white">Pricing Questions</h3>
-              </div>
-              <div className="p-6">
-                <Accordion type="single" collapsible className="w-full">
-                  {faqItems.map((item) => (
-                    <AccordionItem key={item.value} value={item.value} className="border-border/50">
-                      <AccordionTrigger className="text-left hover:no-underline py-4">
-                        {item.question}
-                      </AccordionTrigger>
-                      <AccordionContent className="text-muted-foreground leading-relaxed pb-4">
-                        {item.answer}
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className="py-20 bg-brand-navy relative overflow-hidden" id="contact">
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="container mx-auto px-4 relative z-10" ref={ctaRef}>
-          <div className="max-w-2xl mx-auto text-center">
-            <div className="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-6 rotate-3 hover:rotate-0 transition-transform duration-500">
-              <span className="dc-icon dc-icon-sparkles w-8 h-8 text-accent" aria-hidden="true" />
-            </div>
-            <h2 className="display-serif text-3xl md:text-4xl font-bold mb-4 text-white">See your Calgary price</h2>
-            <p className="text-lg text-white/75 mb-8 leading-relaxed">
-              The form shows the number before you confirm anything, or phone the Calgary office and we read it to you.
-            </p>
-
-            <div className="flex flex-wrap justify-center gap-4 mb-10">
-              <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-10 py-6 h-auto font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5" asChild>
-                <Link to="/cleaning-services-calgary/#quote">
-                  <Calculator className="w-5 h-5 mr-2" />
-                  See My Instant Price
-                </Link>
-              </Button>
-              <Button size="lg" className="bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 text-lg px-8 py-6 h-auto font-semibold transition-all duration-300" asChild>
-                <a href="tel:4037681341">
-                  <span className="dc-icon dc-icon-phone w-5 h-5 mr-2" aria-hidden="true" />
-                  Calgary: (403) 768-1341
-                </a>
-              </Button>
-            </div>
-
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              {[
-                { icon: CheckCircle2, label: `Missed spots re-cleaned if you tell us within ${POLICY.guaranteeWindowHours} hours` },
-                { icon: Shield, label: "Pay after your clean" },
-                { icon: BadgeCheck, label: "Every fee shown on the quote" },
-              ].map((badge, i) => (
-                <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
-                  <badge.icon className="w-4 h-4 text-accent" />
-                  <span className="text-white/90 text-sm font-medium">{badge.label}</span>
-                </div>
+            <Accordion type="single" collapsible className="w-full border-t border-border/50">
+              {faqItems.map((item) => (
+                <AccordionItem key={item.value} value={item.value} className="border-border/50">
+                  <AccordionTrigger className="text-left hover:no-underline py-4">
+                    {item.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground leading-relaxed pb-4">
+                    {item.answer}
+                  </AccordionContent>
+                </AccordionItem>
               ))}
-            </div>
+            </Accordion>
           </div>
         </div>
       </section>
+
+      {/* The page's own closing CTA band was removed: it sat directly on top of
+          the footer's navy band, which says the same thing and is the sitewide
+          id="quote" landing target. */}
       </main>
 
       <Footer />

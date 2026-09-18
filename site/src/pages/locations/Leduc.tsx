@@ -1,7 +1,7 @@
-import { ServiceCard, WhyUsCard } from "@/components/LocationCards";
+import { ServiceCard, WhyUsCard, QuoteReceipt } from "@/components/LocationCards";
 import { locationServices, locationWhyUs } from "@/data/location-cards";
 import {
-  CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import LocalMarketNote from "@/components/LocalMarketNote"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import { Helmet } from "react-helmet-async"; import { buildLocationSchema } from "@/lib/location-schema"; import { CheckCircle2, Star, Shield, Award, Home, Truck, SprayCan, Bath, UtensilsCrossed, Leaf, CalendarCheck, ThumbsUp, Mail, PaintRoller, Sparkles } from "lucide-react";
+  CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import LocalMarketNote from "@/components/LocalMarketNote"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import { Helmet } from "react-helmet-async"; import { buildLocationSchema } from "@/lib/location-schema"; import { CheckCircle2, Star, Shield, Award, Home, Truck, SprayCan, Bath, UtensilsCrossed, Leaf, CalendarCheck, ThumbsUp, Calculator, PaintRoller, Sparkles } from "lucide-react";
 import leducChildDog from "@/assets/gallery/leduc-child-dog-clean-home.webp";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CoverageChips from "@/components/CoverageChips";
@@ -46,7 +46,8 @@ const EXAMPLE_TIER = STANDARD[2];
 const exampleQuote = (homeType: number | null, addOns: string[] = []) =>
   calculateQuote({ service: "standard", homeType, bedrooms: EXAMPLE_SIZE.beds, bathrooms: EXAMPLE_SIZE.bathrooms, halfBaths: EXAMPLE_SIZE.halfBaths, addOns, frequency: "one-time" }).firstClean;
 const EXAMPLE_BASE = formatPrice(exampleQuote(homeTypeOptions("standard")[0]?.id ?? null));
-const EXAMPLE_BASE_TEXT = EXAMPLE_BASE === EXAMPLE_TIER.price ? EXAMPLE_BASE : `${EXAMPLE_BASE} (${EXAMPLE_TIER.price} in the table, which rounds to the dollar)`;
+// The table card rounds to the dollar; the receipt says so when the two differ.
+const EXAMPLE_TABLE_NOTE = EXAMPLE_BASE === EXAMPLE_TIER.price ? undefined : `${EXAMPLE_TIER.price} in the table, which rounds to the dollar`;
 const EXAMPLE_PRICE = formatPrice(exampleQuote(54, [TRAVEL_FEE_KEY]));
 // An add-on on a standard clean; the move-in/move-out clean includes it.
 const OVEN_FROM = formatPrice(addOnFromPrice("standard", "inside-oven") ?? 0);
@@ -76,7 +77,7 @@ export default function Leduc() {
     },
     {
       question: "What does a standard clean in Leduc cost?",
-      answer: `A standard clean in Leduc runs from ${STANDARD_FROM} for a one-bedroom apartment or condo to ${STANDARD_TO} for five bedrooms or more, flat, before GST, the ${TRAVEL_FEE} travel fee and any house-type or pet surcharge. Adding the deep-clean package takes the range to ${DEEP_FROM} to ${DEEP_TO}. Book weekly and the discount is 20%; every two weeks it is 15% and every 4 weeks 10%. Discounts start from the second visit; the first clean is charged at the one-time rate.`
+      answer: `A standard clean in Leduc runs from ${STANDARD_FROM} for a one-bedroom apartment or condo to ${STANDARD_TO} for five bedrooms, flat, before GST, the ${TRAVEL_FEE} travel fee and any house-type or pet surcharge. A sixth or seventh bedroom is priced by the instant quote. Adding the deep-clean package takes the range to ${DEEP_FROM} to ${DEEP_TO}. Book weekly and the discount is 20%; every two weeks it is 15% and every 4 weeks 10%. Discounts start from the second visit; the first clean is charged at the one-time rate.`
     },
     {
       question: "When does the team arrive in Leduc?",
@@ -139,44 +140,31 @@ export default function Leduc() {
       {/* Hero */}
       <section className="relative py-20 bg-brand-navy overflow-hidden">
         <div className="absolute top-20 left-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12 max-w-6xl mx-auto">
             <div className="flex-1 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-5 py-2 mb-6">
-                <span className="dc-icon dc-icon-map-pin w-4 h-4 text-accent" aria-hidden="true" />
-                <span className="text-white/90 text-sm font-medium">Serving Leduc, AB</span>
-              </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+              <h1 className="display-serif text-[2rem] sm:text-[2.25rem] xl:text-[2.75rem] text-white mb-6 leading-[1.12] text-balance">
                 Professional House Cleaning in Leduc
               </h1>
-              <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto lg:mx-0 leading-relaxed">
-                House cleaning in Leduc starts at {STANDARD_FROM} for a one-bedroom apartment or condo before GST, plus a {TRAVEL_FEE} travel fee and any house-type or pet surcharge, with all supplies brought. Leduc cleans are rated on the Edmonton listing: {RATING_CLAIM} from {CITY_PROOF.edmonton.googleReviewCount} reviews.
+              <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                House cleaning in Leduc starts at {STANDARD_FROM} for a one-bedroom apartment or condo before GST, plus a {TRAVEL_FEE} travel fee and any house-type or pet surcharge, and you pay after the clean.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
+                  <a href="#quote">See My Instant Price</a>
+                </Button>
+                <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
                   <a href="tel:7809136565">
                     <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />(780) 913-6565
                   </a>
                 </Button>
-                <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
-                  <a href="#quote">See My Instant Price</a>
-                </Button>
               </div>
-              <div className="flex flex-wrap justify-center lg:justify-start gap-4">
-                {[
-                  { icon: CheckCircle2, text: "Pay After Your Clean" },
-                  { icon: CalendarCheck, text: "Open 7 Days a Week" },
-                  { icon: Award, text: "24-Hour Re-Clean Guarantee" },
-                ].map((badge, i) => (
-                  <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
-                    <badge.icon className="w-4 h-4 text-accent" />
-                    <span className="text-white/90 text-sm">{badge.text}</span>
-                  </div>
-                ))}
+              <div className="flex items-center justify-center lg:justify-start gap-2 text-white/90">
+                <Star className="w-4 h-4 shrink-0 fill-brand-gold text-brand-gold" aria-hidden="true" />
+                <span className="font-medium">{RATING_CLAIM}, {CITY_PROOF.edmonton.googleReviewCount} reviews on the Edmonton listing</span>
               </div>
             </div>
-            <div className="flex-shrink-0 w-full lg:w-[500px]">
+            <div className="flex-shrink-0 w-full lg:w-[440px]">
               <img width={1024} height={768}
                 src={leducChildDog}
                 alt="A child and a dog playing together in a clean home"
@@ -188,37 +176,25 @@ export default function Leduc() {
         </div>
       </section>
 
-      {/* Interactive Map */}
-      <section className="py-16 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <AnimatedSection>
-            <div className="text-center mb-8">
-              <span className="text-primary text-sm font-semibold tracking-wider uppercase">Map</span>
-              <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
-                Leduc on the map
-              </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                The Edmonton office at 18615 71 Ave NW books every Leduc clean. It also books{" "}
-                <Link to="/cleaning-services-beaumont/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Beaumont</Link>{" "}
-                and sends out the{" "}
-                <Link to="/cleaning-services-devon/" className="text-primary underline underline-offset-2 font-medium">Devon house cleaners</Link>.
-              </p>
-            </div>
-            <div className="max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-xl">
-              <GoogleMapEmbed query="Leduc, AB" title="Leduc Service Area Map" />
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
+      {/* What the hero pills said, as one plain row under the hero */}
+      <div className="border-b border-border bg-muted/30">
+        <ul className="container mx-auto px-4 py-3 flex flex-wrap items-center justify-center gap-x-8 gap-y-1 text-sm font-medium text-foreground">
+          {["Pay After Your Clean", "Open 7 Days a Week", "24-Hour Re-Clean Guarantee"].map((text) => (
+            <li key={text} className="flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-primary" aria-hidden="true" />
+              {text}
+            </li>
+          ))}
+        </ul>
+      </div>
 
       {/* Services */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="text-center mb-14">
-              <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">
-                Cleaning Services for Leduc Homes
+              <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
+                Cleaning services for Leduc homes
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
                 Standard, deep, move-out and wall washing are priced flat by home size, and post-construction by square footage. For the add-ons and every checklist, see{" "}
@@ -238,12 +214,11 @@ export default function Leduc() {
 
       {/* Why Choose Us */}
       <section className="py-20 bg-brand-navy relative overflow-hidden">
-        <div className="absolute top-10 right-20 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />
         <div className="container mx-auto px-4 relative z-10">
           <AnimatedSection>
             <div className="text-center mb-14">
-              <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">
+              <span className="text-accent-on-dark text-sm font-semibold tracking-wider uppercase">Why Us</span>
+              <h2 className="display-serif text-3xl md:text-4xl font-bold text-white mt-2 mb-4 text-balance">
                 A Leduc cleaning company that quotes before you book
               </h2>
               <p className="text-white/90 max-w-2xl mx-auto text-lg">
@@ -267,8 +242,7 @@ export default function Leduc() {
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4 text-center">
           <AnimatedSection>
-            <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-            <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
+            <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mb-4 text-balance">
               Cleaning services in Leduc and the towns around Edmonton
             </h2>
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
@@ -281,7 +255,7 @@ export default function Leduc() {
             </p>
             <CoverageChips areas={nearbyAreas} />
             <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
-              View All Service Areas →
+              View All Service Areas<span className="dc-icon dc-icon-arrow-right h-4 w-4" aria-hidden="true" />
             </Link>
 
           </AnimatedSection>
@@ -306,14 +280,32 @@ export default function Leduc() {
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="max-w-3xl mx-auto">
-              <span className="text-primary text-sm font-semibold tracking-wider uppercase">A worked quote</span>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mt-2 mb-6">
+              <span className="text-accent text-sm font-semibold tracking-wider uppercase">A worked quote</span>
+              <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mt-2 mb-6 text-balance">
                 A Leduc house cleaning quote, line by line
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>
-                  Take a three-bedroom post-war bungalow near the old core, with two bathrooms and a half bath, on a one-time standard clean. The rate for that size is {EXAMPLE_BASE_TEXT}, which assumes an apartment or condo. A bungalow adds {HOME_TYPE.bungalow} and a Leduc address adds the {TRAVEL_FEE} travel fee, so the quote comes to {EXAMPLE_PRICE} before 5% GST. A home with pets adds the compulsory {PET_FEE} pet charge on every visit.
+                  Take a three-bedroom post-war bungalow near the old core, with two bathrooms and a half bath, on a one-time standard clean.
                 </p>
+                <QuoteReceipt
+                  lines={[
+                    { label: "Rate for that size, which assumes an apartment or condo", amount: EXAMPLE_BASE, note: EXAMPLE_TABLE_NOTE },
+                    { label: "Bungalow", amount: `+ ${HOME_TYPE.bungalow}` },
+                    { label: "Travel fee for a Leduc address", amount: `+ ${TRAVEL_FEE}` },
+                  ]}
+                  total={{ label: "Quote before 5% GST", amount: EXAMPLE_PRICE }}
+                  extras={[
+                    { label: "A home with pets: the compulsory pet charge on every visit", amount: `+ ${PET_FEE}` },
+                  ]}
+                />
+                <div className="not-prose pt-1">
+                  <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
+                    <a href="#quote">
+                      <Calculator className="mr-2 w-5 h-5" />See My Instant Price
+                    </a>
+                  </Button>
+                </div>
                 <p>
                   The clean itself is priced the way our{" "}
                   <Link to="/" className="text-primary underline underline-offset-2 font-medium">house cleaning across Edmonton</Link>{" "}
@@ -333,8 +325,7 @@ export default function Leduc() {
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="max-w-3xl mx-auto">
-              <span className="text-primary text-sm font-semibold tracking-wider uppercase">Choosing</span>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mt-2 mb-6">
+              <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mb-6 text-balance">
                 Standard, deep or move-out cleaning in Leduc
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
@@ -358,14 +349,35 @@ export default function Leduc() {
         </div>
       </section>
 
+      {/* Interactive Map */}
+      <section className="py-16 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <AnimatedSection>
+            <div className="text-center mb-8">
+              <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mb-4 text-balance">
+                Leduc on the map
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                The Edmonton office at 18615 71 Ave NW books every Leduc clean. It also books{" "}
+                <Link to="/cleaning-services-beaumont/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Beaumont</Link>{" "}
+                and sends out the{" "}
+                <Link to="/cleaning-services-devon/" className="text-primary underline underline-offset-2 font-medium">Devon house cleaners</Link>.
+              </p>
+            </div>
+            <div className="max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-xl">
+              <GoogleMapEmbed query="Leduc, AB" title="Leduc Service Area Map" />
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
       {/* FAQ */}
         <section className="py-20 bg-muted/30">
           <div className="container mx-auto px-4">
             <AnimatedSection>
               <div className="max-w-3xl mx-auto">
                 <div className="text-center mb-12">
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">FAQ</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Leduc house cleaning questions</h2>
+                  <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">Leduc house cleaning questions</h2>
                 </div>
                 <Accordion type="single" collapsible className="w-full">
                   {faqs.map((faq, index) => (
@@ -390,10 +402,9 @@ export default function Leduc() {
 
       {/* CTA */}
       <section className="py-20 bg-brand-navy relative overflow-hidden">
-        <div className="absolute bottom-0 left-20 w-80 h-80 bg-accent/10 rounded-full blur-3xl" />
         <div className="container mx-auto px-4 relative z-10 text-center">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            <h2 className="display-serif text-3xl md:text-4xl font-bold text-white mb-6 text-balance">
               See your Leduc price before you book
             </h2>
             <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
@@ -401,13 +412,13 @@ export default function Leduc() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
-                <a href="tel:7809136565">
-                  <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />Call (780) 913-6565
+                <a href="#quote">
+                  <Calculator className="mr-2 w-5 h-5" />See My Instant Price
                 </a>
               </Button>
               <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
-                <a href="#quote">
-                  <Mail className="mr-2 w-5 h-5" />See My Instant Price
+                <a href="tel:7809136565">
+                  <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />Call (780) 913-6565
                 </a>
               </Button>
             </div>

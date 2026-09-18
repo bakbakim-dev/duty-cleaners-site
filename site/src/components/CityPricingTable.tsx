@@ -69,7 +69,7 @@ const COPY = {
     heading: "Pricing that fits the job",
     intro:
       "Most homes are priced flat by size. You see your number before you book, plus 5% GST, and it does not go up because a clean took longer. If a flat rate does not suit your job or your budget, we can quote it hourly instead.",
-    note: "Six or seven bedrooms, home type, pets and add-ons change the final number, and your quote shows each one before you book.",
+    note: "Six or seven bedrooms, home type, pets, a travel fee outside city limits and add-ons change the final number, and your quote shows each one before you book.",
     recurring: `Booking regularly? From your second visit you save ${RECURRING_SAVINGS}. The first clean is charged at the standard one-time rate.`,
     after: "Answer a few quick questions and see your exact price. No phone call needed.",
   },
@@ -77,7 +77,7 @@ const COPY = {
     heading: "What a clean costs in Calgary",
     intro:
       "Calgary prices are the same as Edmonton's: flat by home size, GST on top, and the figure does not climb because the team was slow. Where a flat rate is the wrong shape for the job, we can quote it by the hour.",
-    note: "Six or seven bedrooms, home type, pets and add-ons move the number, and the quote lists each one before you book.",
+    note: "Six or seven bedrooms, home type, pets, an address outside city limits and add-ons move the number, and the quote lists each one before you book.",
     recurring: `Book on a schedule and the discount starts on the second visit: ${RECURRING_SAVINGS}. The first clean is billed at the one-time rate.`,
     after: "A few questions, then the exact figure for your home. Nobody needs to phone you.",
   },
@@ -87,22 +87,22 @@ const CityPricingTable = () => {
   const { pathname } = useLocation();
   const copy = COPY[cityBase(pathname)];
   return (
-  <section id="pricing" className="py-16 md:py-20 bg-brand-navy text-brand-navy-foreground">
+  /* On the white band, not navy: the Promise band is the page's one navy
+     section, and a price table reads more easily dark on light. The table
+     head carries the navy instead. */
+  <section id="pricing" className="band band-white band-hairline">
     <div className="container mx-auto px-4">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-10">
-          <span className="text-accent-on-dark font-semibold text-sm uppercase tracking-wide">
-            Pricing
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-2">{copy.heading}</h2>
-          <p className="text-white/90 mt-4 max-w-[65ch] mx-auto">{copy.intro}</p>
-          <p className="text-white/80 mt-3 max-w-[65ch] mx-auto text-sm">{copy.note}</p>
+          <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground">{copy.heading}</h2>
+          <p className="text-muted-foreground mt-4 max-w-[65ch] mx-auto">{copy.intro}</p>
+          <p className="text-muted-foreground mt-3 max-w-[65ch] mx-auto text-sm">{copy.note}</p>
         </div>
 
         {/* Desktop: comparison table */}
-        <div className="hidden md:block">
-          <table className="w-full bg-white/10 backdrop-blur-sm rounded-xl overflow-hidden">
-            <thead className="bg-white/15 text-white">
+        <div className="hidden md:block overflow-hidden rounded-lg border border-border bg-card">
+          <table className="w-full">
+            <thead className="bg-brand-navy text-brand-navy-foreground">
               <tr>
                 <th className="py-4 px-6 text-left text-base">Service Type</th>
                 {COLUMNS.map((c) => (
@@ -116,21 +116,21 @@ const CityPricingTable = () => {
               {ROWS.map((row) => (
                 <tr
                   key={row.service}
-                  className={`border-b border-white/20 last:border-0 ${row.popular ? "bg-white/10" : ""}`}
+                  className={`border-b border-border last:border-0 ${row.popular ? "bg-secondary/40" : ""}`}
                 >
-                  <td className="py-5 px-6 font-semibold">
+                  <td className="py-5 px-6 font-semibold text-foreground">
                     <div className="flex items-center gap-2">
                       {row.service}
                       {row.popular && (
-                        <span className="inline-block bg-brand-gold text-brand-gold-foreground text-xs font-bold px-2 py-1 rounded-full w-fit">
+                        <span className="inline-block bg-brand-navy text-brand-navy-foreground text-xs font-bold px-2 py-1 rounded-full w-fit">
                           Most Popular
                         </span>
                       )}
                     </div>
                   </td>
                   {row.prices.map((p, i) => (
-                    <td key={`${row.service}-${COLUMNS[i]}`} className="py-5 px-6 text-center font-bold text-xl">
-                      <span className="mr-1 text-sm font-semibold text-white/80">from</span>
+                    <td key={`${row.service}-${COLUMNS[i]}`} className="py-5 px-6 text-center font-bold text-xl text-foreground">
+                      <span className="mr-1 text-sm font-semibold text-muted-foreground">from</span>
                       {p}
                     </td>
                   ))}
@@ -145,12 +145,12 @@ const CityPricingTable = () => {
           {ROWS.map((row) => (
             <div
               key={row.service}
-              className={`rounded-xl border border-white/20 p-5 ${row.popular ? "bg-white/[0.18]" : "bg-white/10"}`}
+              className={`rounded-lg border border-border p-5 ${row.popular ? "bg-secondary/40" : "bg-card"}`}
             >
               <div className="flex items-center gap-2 mb-3">
-                <h3 className="font-bold text-lg">{row.service}</h3>
+                <h3 className="font-bold text-lg text-foreground">{row.service}</h3>
                 {row.popular && (
-                  <span className="inline-block bg-brand-gold text-brand-gold-foreground text-xs font-bold px-2 py-1 rounded-full">
+                  <span className="inline-block bg-brand-navy text-brand-navy-foreground text-xs font-bold px-2 py-1 rounded-full">
                     Most Popular
                   </span>
                 )}
@@ -158,9 +158,9 @@ const CityPricingTable = () => {
               <dl className="space-y-2">
                 {COLUMNS.map((c, i) => (
                   <div key={c} className="flex items-baseline justify-between gap-4">
-                    <dt className="text-white/90 text-sm">{c}</dt>
-                    <dd className="font-bold text-lg">
-                      <span className="mr-1 text-sm font-semibold text-white/80">from</span>
+                    <dt className="text-muted-foreground text-sm">{c}</dt>
+                    <dd className="font-bold text-lg text-foreground">
+                      <span className="mr-1 text-sm font-semibold text-muted-foreground">from</span>
                       {row.prices[i]}
                     </dd>
                   </div>
@@ -175,11 +175,11 @@ const CityPricingTable = () => {
           because it is the largest number on this page and it was not on this
           page at all. A 3-bedroom standard at $232 becomes $185.60 weekly.
         */}
-        <p className="mt-6 text-center text-sm text-white/90 max-w-[62ch] mx-auto">
+        <p className="mt-6 text-center text-sm text-muted-foreground max-w-[62ch] mx-auto">
           {copy.recurring}{" "}
           <Link
             to={canonicalForPath(`${cityBase(pathname)}/recurring-cleaning`)}
-            className="font-semibold text-accent-on-dark underline-offset-2 hover:underline"
+            className="font-semibold text-primary underline-offset-2 hover:underline"
           >
             See recurring cleaning
           </Link>
@@ -189,11 +189,11 @@ const CityPricingTable = () => {
           <Button
             asChild
             size="lg"
-            className="bg-accent hover:bg-accent/90 text-white font-bold min-h-[48px] px-8"
+            className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold min-h-[48px] px-8"
           >
             <a href={quoteHrefFor(pathname)}>See My Instant Price</a>
           </Button>
-          <p className="text-sm text-white/90 mt-4 max-w-[60ch] mx-auto">{copy.after}</p>
+          <p className="text-sm text-muted-foreground mt-4 max-w-[60ch] mx-auto">{copy.after}</p>
         </div>
       </div>
     </div>

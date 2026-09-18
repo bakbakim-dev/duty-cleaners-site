@@ -102,10 +102,8 @@ export default function LocationPricing({ place }: LocationPricingProps) {
       <AreaScopeNote />
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
-          <span className="text-primary text-sm font-semibold tracking-wider uppercase">
-            What it costs
-          </span>
-          <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mt-2 mb-6">
+          {/* No eyebrow: "What it costs" only restated this heading, on 150 pages. */}
+          <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mb-6 text-balance">
             Cleaning prices in {name}
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed mb-4">

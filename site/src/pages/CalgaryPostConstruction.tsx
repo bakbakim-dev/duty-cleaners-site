@@ -6,14 +6,14 @@ import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Shield, Droplets, Wind, SprayCan, Ban, Star, Heart, Home, DollarSign, Calendar, Wrench, MapPin, Phone, Clock, Sparkles } from "lucide-react";
+import { Shield, Droplets, Wind, SprayCan, Star, Sparkles } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import calgaryPostConstructionBeforeAfter from "@/assets/gallery/calgary-post-construction-before-after.webp";
 import CityCrossLink from "@/components/CityCrossLink";
 import { POLICY } from "@/data/policy";
-import { COMPANY, CITY_PROOF, RATING_CLAIM } from "@/data/proof";
+import { COMPANY, CITY_PROOF, RATING_CLAIM, hoursRowsFor } from "@/data/proof";
 import { travelFee } from "@/data/addon-table";
 
 import { startingPrice, formatPrice, sqftTierOptions, withGst } from "@/data/pricing";
@@ -31,6 +31,7 @@ const tierLabel = (label: string) => label.replace(/\s*(sq\/ft|sqft)\s*$/i, " sq
 /* Post-construction carries its own travel-fee row, larger than the home-
    cleaning one. Read from bk-config, as /terms/ reads it. */
 const pcTravelFee = formatPrice(travelFee("post-construction") ?? 0);
+const OFFICE = CITY_PROOF.calgary;
 
 const PAGE_TITLE = `Post-Construction Cleaning Calgary from ${startingPriceLabel} | Duty Cleaners`;
 const META_DESCRIPTION = `Post-construction cleaning for a Calgary new build or renovation is priced by square footage, from ${startingPriceLabel} before GST for the smallest band.`;
@@ -43,24 +44,36 @@ const includedServices = [
   { icon: Shield, title: "Doors, handles and switches", desc: "The surfaces a trade touched with a dusty hand, wiped clean." },
 ];
 
+/* The six limits, grouped by whose job each one is. They used to be six
+   red-bordered rows with a Ban icon apiece. */
 const excludedServices = [
-  "Final-stage cleaning of a finished space only: no rough cleanup, and no work on a site where trades are still active",
-  "Drywall offcuts, lumber, packaging and other debris are the contractor's to remove before we arrive",
-  "No hauling or disposal of any kind",
-  "Appliance film and window stickers stay on unless you or the builder take them off first",
-  // The two-step stool was this page's own invention; policy.ts (NOT_INCLUDED)
-  // puts the limit at a 3-step ladder and the rest of the site follows it.
-  "The 3-step ladder the crew carries is the ceiling on height: no extension ladders, no scaffolding",
-  "No exterior glass, pressure washing or outdoor surfaces",
+  {
+    heading: "The contractor's part, which comes first",
+    items: [
+      "Final-stage cleaning of a finished space only: no rough cleanup, and no work on a site where trades are still active",
+      "Drywall offcuts, lumber, packaging and other debris are the contractor's to remove before we arrive",
+      "No hauling or disposal of any kind",
+    ],
+  },
+  {
+    heading: "Beyond the reach of this clean",
+    items: [
+      "Appliance film and window stickers stay on unless you or the builder take them off first",
+      // The two-step stool was this page's own invention; policy.ts (NOT_INCLUDED)
+      // puts the limit at a 3-step ladder and the rest of the site follows it.
+      "The 3-step ladder the crew carries is the ceiling on height: no extension ladders, no scaffolding",
+      "No exterior glass, pressure washing or outdoor surfaces",
+    ],
+  },
 ];
 
 const whyChooseUs = [
-  { icon: Calendar, title: "Timed after the last trade", desc: "Book us for after the final walkthrough. A clean done while a trade still has a key gets undone by the next visit. Weekday and weekend slots depend on the schedule." },
-  { icon: Shield, title: "Pay after the clean", desc: "Nothing is charged when you book. A temporary hold checks the card the day before, and the charge goes through once the clean is complete." },
-  { icon: DollarSign, title: "Priced by square footage", desc: `${startingPriceLabel} to ${topPriceLabel} before 5% GST, by the size band of the finished space. The quote shows the band before you book, and a travel fee is added only outside Calgary city limits.` },
-  { icon: Wrench, title: "Supplies and equipment", desc: "The team brings the vacuums, cloths and products. You need the power and water on, which on a new build means checking the builder has not shut them off." },
-  { icon: Heart, title: `${POLICY.guaranteeWindowHours}-hour re-clean`, desc: `A ledge or a track we missed is re-cleaned free if you tell us within ${POLICY.guaranteeWindowHours} hours.` },
-  { icon: Sparkles, title: "Reference-checked, rated by customers", desc: "Every cleaner is reference-checked before their first job and rated by the customer after every visit. Those ratings decide who we keep sending." },
+  { title: "Timed after the last trade", desc: "Book us for after the final walkthrough. A clean done while a trade still has a key gets undone by the next visit. Weekday and weekend slots depend on the schedule." },
+  { title: "Pay after the clean", desc: "Nothing is charged when you book. A temporary hold checks the card the day before, and the charge goes through once the clean is complete." },
+  { title: "Priced by square footage", desc: `${startingPriceLabel} to ${topPriceLabel} before 5% GST, by the size band of the finished space. The quote shows the band before you book, and a travel fee is added only outside Calgary city limits.` },
+  { title: "Supplies and equipment", desc: "The team brings the vacuums, cloths and products. You need the power and water on, which on a new build means checking the builder has not shut them off." },
+  { title: `${POLICY.guaranteeWindowHours}-hour re-clean`, desc: `A ledge or a track we missed is re-cleaned free if you tell us within ${POLICY.guaranteeWindowHours} hours.` },
+  { title: "Reference-checked, rated by customers", desc: "Every cleaner is reference-checked before their first job and rated by the customer after every visit. Those ratings decide who we keep sending." },
 ];
 
 /**
@@ -177,49 +190,35 @@ export default function CalgaryPostConstruction() {
       {/* Hero Section */}
       <section className="relative py-20 bg-brand-navy overflow-hidden">
         <div className="absolute top-20 left-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
             <div className="flex-1 text-center lg:text-left">
-              <div className="inline-flex flex-wrap items-center gap-2 mb-6">
-                <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
-                  <Star className="w-4 h-4 text-accent" />
-                  <span className="text-white/90 text-sm font-medium">{RATING_CLAIM}</span>
-                </span>
-                <span className="inline-flex items-center gap-2 bg-accent/20 backdrop-blur-sm rounded-full px-4 py-2">
-                  <Home className="w-4 h-4 text-accent" />
-                  <span className="text-accent text-sm font-semibold">After the last trade, not before</span>
-                </span>
-              </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
-                Post-Construction Cleaning in <span className="text-accent">Calgary, AB</span>
+              {/* H1, one priced sentence, the two buttons, the rating. The rest of
+                  what the hero used to say is in the row under it and in the
+                  section after the local note. */}
+              <h1 className="display-serif text-4xl md:text-5xl font-bold leading-[1.1] mb-6 text-white">
+                Post-Construction Cleaning in <span className="text-accent-on-dark">Calgary, AB</span>
               </h1>
-              <p className="text-xl md:text-2xl text-white/80 max-w-3xl mb-4">
+              <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto lg:mx-0 mb-8">
                 From {startingPriceLabel} before 5% GST when the finished space is{" "}
-                {tierLabel(sqftTiers[0]?.label ?? "").toLowerCase()}; the band rises with square footage, and a
-                travel fee is added outside Calgary city limits. It is the final clean on Calgary new builds, renovations and conversions, booked for after
-                the trades are out.
+                {tierLabel(sqftTiers[0]?.label ?? "").toLowerCase()}; the card is charged once the clean is done,
+                not at booking.
               </p>
-              <p className="text-base md:text-lg text-white/90 max-w-3xl mb-8">
-                The team takes drywall dust off the vent covers and out of the tracks and cabinets, and paint flecks and
-                adhesive off the glass. Nothing is charged at booking; the card is charged once the clean is done.
-              </p>
-              <div className="flex flex-wrap gap-4 justify-center lg:justify-start mb-10">
-                <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-white text-lg px-8">
+              <div className="flex flex-wrap gap-4 justify-center lg:justify-start mb-6">
+                <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-8">
                   <a href="#quote">See My Instant Price</a>
                 </Button>
-                <Button asChild size="lg" className="bg-white/95 text-brand-navy hover:bg-white text-lg px-8">
+                <Button asChild size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-lg px-8">
                   <a href="tel:4037681341">
                     <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />
                     (403) 768-1341
                   </a>
                 </Button>
               </div>
-              <div className="flex flex-wrap justify-center lg:justify-start gap-6 text-white/80">
-                <div className="flex items-center gap-2"><span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent" aria-hidden="true" /><span>Square-footage bands, before GST</span></div>
-                <div className="flex items-center gap-2"><span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent" aria-hidden="true" /><span>Charged after the clean</span></div>
-                <div className="flex items-center gap-2"><span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent" aria-hidden="true" /><span>Missed spots re-cleaned free if reported within {POLICY.guaranteeWindowHours} hours</span></div>
-              </div>
+              <p className="flex items-center justify-center lg:justify-start gap-2 text-sm font-medium text-white/90">
+                <Star className="w-4 h-4 text-brand-gold fill-current" aria-hidden="true" />
+                <span>{RATING_CLAIM}, from {OFFICE.googleReviewCount} Calgary reviews</span>
+              </p>
             </div>
             <div className="flex-shrink-0 w-full lg:w-[500px]">
               <img width={1024} height={1024}
@@ -231,6 +230,16 @@ export default function CalgaryPostConstruction() {
           </div>
         </div>
       </section>
+
+      {/* What the hero's second pill and three ticks said, in one row, with the
+          travel fee next to the from-price above it. */}
+      <div className="border-b border-border bg-secondary/30">
+        <ul className="container mx-auto px-4 py-3 flex flex-wrap justify-center gap-x-8 gap-y-1 text-sm text-muted-foreground">
+          <li>After the last trade, not before</li>
+          <li>The band rises with square footage, and outside Calgary city limits a post-construction clean adds a {pcTravelFee} travel fee</li>
+          <li>Missed spots re-cleaned free if reported within {POLICY.guaranteeWindowHours} hours</li>
+        </ul>
+      </div>
 
       <LocalMarketNote
         accent="calgary"
@@ -247,7 +256,7 @@ export default function CalgaryPostConstruction() {
         <AnimatedSection>
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">What the trades leave, and what we do about it</h2>
+              <h2 className="display-serif text-3xl md:text-4xl font-bold mb-6">What the trades leave, and what we do about it</h2>
               <p className="text-lg text-muted-foreground mb-4">
                 Sanding dust does not fall; it drifts, and it lands on the top of every door frame, inside every
                 vent, along every window channel and in the drawers of the cabinets that were installed last week.
@@ -258,6 +267,11 @@ export default function CalgaryPostConstruction() {
                 added to the clean and priced by home size.
               </p>
               <p className="text-lg text-muted-foreground mb-4">
+                It is the final clean on Calgary new builds, renovations and conversions: the team takes drywall
+                dust off the vent covers and out of the tracks and cabinets, and paint flecks and adhesive off
+                the glass.
+              </p>
+              <p className="text-lg text-muted-foreground mb-4">
                 The Calgary team does <strong>final-stage post-construction cleaning</strong>, the{" "}
                 <Link to="/move-out-cleaning-calgary/" className="text-primary underline underline-offset-4">move-in clean</Link>{" "}
                 that follows the last trade out of the building. New builds, kitchen and bathroom remodels, finished
@@ -266,7 +280,9 @@ export default function CalgaryPostConstruction() {
               </p>
               <p className="text-lg text-muted-foreground mb-4">
                 <strong>Not this service:</strong> rough cleanup, hauling, or a site where the trades are still
-                coming and going. Our part starts once the contractor has finished and taken the material away.
+                coming and going. Our part starts once the contractor has finished and taken the material away,
+                and the limits are set out under{" "}
+                <a href="#clean-stops" className="text-primary underline underline-offset-4">where this clean stops</a>.
               </p>
             </div>
           </div>
@@ -279,7 +295,7 @@ export default function CalgaryPostConstruction() {
           <AnimatedSection>
             <div className="text-center mb-8">
               <span className="text-accent font-semibold text-sm uppercase tracking-wide">Two Calgary jobs</span>
-              <h2 className="text-3xl md:text-4xl font-bold mt-2">Builder handovers and the chinook week</h2>
+              <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Builder handovers and the chinook week</h2>
             </div>
             <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
               <p>
@@ -306,7 +322,7 @@ export default function CalgaryPostConstruction() {
           <AnimatedSection>
             <div className="text-center mb-8">
               <span className="text-accent font-semibold text-sm uppercase tracking-wide">Renovations</span>
-              <h2 className="text-3xl md:text-4xl font-bold mt-2">Post-renovation cleaning after a kitchen, bathroom or basement remodel in Calgary</h2>
+              <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Post-renovation cleaning after a kitchen, bathroom or basement remodel in Calgary</h2>
             </div>
             <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
               <p>
@@ -333,28 +349,24 @@ export default function CalgaryPostConstruction() {
       </section>
 
       {/* What's Included Section */}
-      <section className="py-20 bg-brand-navy relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
-        <div className="container mx-auto px-4 relative z-10">
+      <section className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-white">What a Calgary post-construction clean covers</h2>
-            <p className="text-center text-white/90 mb-12 max-w-2xl mx-auto">
+            <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-4">What a Calgary post-construction clean covers</h2>
+            <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
               Five parts, in the order the team does them: the dust, the wet rooms, the floors, the glass, and everything a hand touches.
             </p>
           </AnimatedSection>
           <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-6">
             {includedServices.slice(0, 3).map((item, index) => (
               <AnimatedSection key={index}>
-                <div
-                  className="group bg-white/10 backdrop-blur-sm rounded-xl p-6 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:bg-white/15 cursor-default h-full"
-                  style={{ transformStyle: "preserve-3d" }}
-                >
+                <div className="bg-white rounded-xl border border-border p-6 h-full">
                   <div className="flex flex-col items-center text-center gap-3">
-                    <div className="bg-accent/20 rounded-lg p-3">
-                      <item.icon className="w-6 h-6 text-accent transition-transform duration-500 group-hover:rotate-6" />
+                    <div className="bg-accent/10 rounded-lg p-3">
+                      <item.icon className="w-6 h-6 text-accent" />
                     </div>
-                    <h3 className="font-semibold text-lg text-white">{item.title}</h3>
-                    <p className="text-white/90">{item.desc}</p>
+                    <h3 className="font-semibold text-lg">{item.title}</h3>
+                    <p className="text-muted-foreground">{item.desc}</p>
                   </div>
                 </div>
               </AnimatedSection>
@@ -363,16 +375,13 @@ export default function CalgaryPostConstruction() {
           <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-6 mt-6 md:max-w-3xl">
             {includedServices.slice(3).map((item, index) => (
               <AnimatedSection key={index + 3}>
-                <div
-                  className="group bg-white/10 backdrop-blur-sm rounded-xl p-6 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:bg-white/15 cursor-default h-full"
-                  style={{ transformStyle: "preserve-3d" }}
-                >
+                <div className="bg-white rounded-xl border border-border p-6 h-full">
                   <div className="flex flex-col items-center text-center gap-3">
-                    <div className="bg-accent/20 rounded-lg p-3">
-                      <item.icon className="w-6 h-6 text-accent transition-transform duration-500 group-hover:rotate-6" />
+                    <div className="bg-accent/10 rounded-lg p-3">
+                      <item.icon className="w-6 h-6 text-accent" />
                     </div>
-                    <h3 className="font-semibold text-lg text-white">{item.title}</h3>
-                    <p className="text-white/90">{item.desc}</p>
+                    <h3 className="font-semibold text-lg">{item.title}</h3>
+                    <p className="text-muted-foreground">{item.desc}</p>
                   </div>
                 </div>
               </AnimatedSection>
@@ -387,7 +396,7 @@ export default function CalgaryPostConstruction() {
           <AnimatedSection>
             <div className="mx-auto max-w-3xl text-center">
               <span className="text-accent font-semibold text-sm uppercase tracking-wide">Price List</span>
-              <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">What post-construction cleaning costs in Calgary</h2>
+              <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-4">What post-construction cleaning costs in Calgary</h2>
               <p className="text-muted-foreground leading-relaxed">
                 Bedrooms do not predict dust; floor area does, so this is the one clean priced by square footage.
                 Each band has one figure, with the GST shown beside it because the form adds it at the end and
@@ -437,85 +446,47 @@ export default function CalgaryPostConstruction() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-20 bg-muted/30">
+      <section className="py-20">
         <div className="container mx-auto px-4">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Six terms of a Calgary post-construction booking</h2>
+            <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-12">Six terms of a Calgary post-construction booking</h2>
           </AnimatedSection>
-          <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {whyChooseUs.map((item, index) => (
-              <AnimatedSection key={index}>
-                <div
-                  className="group bg-white rounded-xl p-6 border border-muted shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-lg h-full"
-                  style={{ transformStyle: "preserve-3d" }}
-                >
-                  <div className="bg-accent/10 rounded-lg w-12 h-12 flex items-center justify-center mb-4">
-                    <item.icon className="w-6 h-6 text-accent transition-transform duration-500 group-hover:scale-110" />
-                  </div>
-                  <h3 className="font-semibold text-lg mb-2">{item.title}</h3>
-                  <p className="text-muted-foreground">{item.desc}</p>
+          {/* The six terms, set as a definition list: a term and its sentence,
+              no icon and nothing that lifts on hover. */}
+          <AnimatedSection>
+            <dl className="max-w-5xl mx-auto grid md:grid-cols-2 gap-x-12 gap-y-8">
+              {whyChooseUs.map((item) => (
+                <div key={item.title} className="border-t border-border pt-4">
+                  <dt className="font-semibold text-lg text-foreground mb-1">{item.title}</dt>
+                  <dd className="text-muted-foreground">{item.desc}</dd>
                 </div>
-              </AnimatedSection>
-            ))}
-          </div>
+              ))}
+            </dl>
+          </AnimatedSection>
         </div>
       </section>
 
       {/* What We Don't Offer Section */}
-      <section className="py-20">
+      <section id="clean-stops" className="py-20 bg-muted/30 scroll-mt-20">
         <div className="container mx-auto px-4">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Where this clean stops</h2>
-            <p className="text-center text-muted-foreground mb-4 max-w-2xl mx-auto">
+            <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-4">Where this clean stops</h2>
+            <p className="text-center text-muted-foreground mb-10 max-w-2xl mx-auto">
               Six things that are not in the price, written down so nobody finds out on the day.
             </p>
-            <p className="text-center text-sm text-muted-foreground mb-12 max-w-2xl mx-auto italic">
-              The contractor's cleanup and ours are two different jobs, and theirs comes first.
-            </p>
           </AnimatedSection>
-          <div className="max-w-3xl mx-auto space-y-4">
-            {excludedServices.map((item, index) => (
-              <AnimatedSection key={index}>
-                <div className="flex items-start gap-4 bg-destructive/5 border border-destructive/10 rounded-xl p-5">
-                  <Ban className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />
-                  <p className="text-muted-foreground">{item}</p>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Guarantee */}
-      <section className="py-20 bg-brand-navy relative overflow-hidden">
-        <div className="absolute bottom-0 left-10 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
-        <div className="container mx-auto px-4 relative z-10">
           <AnimatedSection>
-            <div className="max-w-3xl mx-auto text-center">
-              <div className="inline-flex items-center gap-2 bg-accent/20 rounded-full px-4 py-2 mb-6">
-                <Heart className="w-4 h-4 text-accent" />
-                <span className="text-accent text-sm font-semibold uppercase">Cleaning Alberta homes {COMPANY.sinceLabel}</span>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Tell us within {POLICY.guaranteeWindowHours} hours and a missed track is re-cleaned free</h2>
-              <p className="text-lg text-white/90 mb-4">
-                Window tracks and the tops of door frames are where a post-construction clean gets caught out, so
-                both are on the checklist. If something was still missed, tell us within{" "}
-                {POLICY.guaranteeWindowHours} hours and we come back to it at no charge. Photos help; they are not a
-                condition.
-              </p>
-              <p className="text-base text-white/90 mb-8">
-                The Calgary listing is rated {RATING_CLAIM} across {CITY_PROOF.calgary.googleReviewCount} reviews, and
-                you can read them on the{" "}
-                <Link to="/reviews/" className="text-white underline underline-offset-4">reviews page</Link>.
-              </p>
-              <div className="flex flex-wrap gap-4 justify-center">
-                <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-white">
-                  <a href="#quote">See My Instant Price</a>
-                </Button>
-                <Button asChild size="lg" className="bg-white/10 hover:bg-white/20 text-white border border-white/20">
-                  <a href="/about-us/">About Duty Cleaners</a>
-                </Button>
-              </div>
+            <div className="max-w-4xl mx-auto bg-white border border-border rounded-xl p-6 md:p-8 grid md:grid-cols-2 gap-8">
+              {excludedServices.map((group) => (
+                <div key={group.heading}>
+                  <h3 className="font-semibold text-lg text-foreground mb-3">{group.heading}</h3>
+                  <ul className="list-disc pl-5 space-y-3 text-muted-foreground">
+                    {group.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
           </AnimatedSection>
         </div>
@@ -525,7 +496,7 @@ export default function CalgaryPostConstruction() {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Post-Construction Cleaning FAQs</h2>
+            <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-4">Post-Construction Cleaning FAQs</h2>
             <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
               The questions Calgary buyers, renovators and site supers ask before they book.
             </p>
@@ -563,54 +534,80 @@ export default function CalgaryPostConstruction() {
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">The Calgary office</h2>
+            <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-12">The Calgary office</h2>
           </AnimatedSection>
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {[
-              { icon: Phone, title: "Phone", desc: "Questions before you book", action: "(403) 768-1341", href: "tel:4037681341" },
-              { icon: MapPin, title: "Address", desc: "2835 37 Street SW #24\nCalgary, AB", action: "Get Directions", href: getListing("calgary").url },
-              { icon: Clock, title: "Hours", desc: "Mon-Sat: 8am–8pm\nSun: 9am–3pm", action: "Google listing", href: getListing("calgary").reviewsUrl },
-            ].map((card, index) => (
-              <AnimatedSection key={index}>
-                <div
-                  className="group bg-white rounded-xl p-6 text-center border border-muted shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-lg"
-                  style={{ transformStyle: "preserve-3d" }}
-                >
-                  <div className="bg-accent/10 rounded-full w-14 h-14 flex items-center justify-center mx-auto mb-4">
-                    <card.icon className="w-6 h-6 text-accent transition-transform duration-500 group-hover:scale-110" />
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">{card.title}</h3>
-                  <p className="text-muted-foreground mb-4 whitespace-pre-line">{card.desc}</p>
-                  <Button asChild variant="outline" className="border-accent/30 text-accent hover:bg-accent/5">
-                    <a href={card.href} target={card.href.startsWith("http") ? "_blank" : undefined} rel={card.href.startsWith("http") ? "noopener noreferrer" : undefined}>
-                      {card.action}
-                    </a>
-                  </Button>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
+          {/* Phone, address and hours in one block. Hours are read from
+              proof.ts. The "Hours" card used to end in a "Google listing"
+              button; that link moved down beside the rating. */}
+          <AnimatedSection>
+            <dl className="max-w-4xl mx-auto bg-white border border-border rounded-xl p-6 md:p-8 grid sm:grid-cols-3 gap-8">
+              <div>
+                <dt className="font-semibold text-foreground mb-1">Phone</dt>
+                <dd className="text-muted-foreground">
+                  Questions before you book
+                  <a href={OFFICE.phoneLink} className="mt-1 block text-lg font-semibold text-primary underline underline-offset-4">{OFFICE.phone}</a>
+                </dd>
+              </div>
+              <div>
+                <dt className="font-semibold text-foreground mb-1">Address</dt>
+                <dd className="text-muted-foreground">
+                  {OFFICE.address}
+                  <a href={getListing("calgary").url} target="_blank" rel="noopener noreferrer" className="mt-1 block font-semibold text-primary underline underline-offset-4">Get Directions</a>
+                </dd>
+              </div>
+              <div>
+                <dt className="font-semibold text-foreground mb-1">Hours</dt>
+                <dd className="text-muted-foreground">
+                  {hoursRowsFor("calgary").map(([days, time]) => (
+                    <span key={days} className="block">{days}: {time}</span>
+                  ))}
+                </dd>
+              </div>
+            </dl>
+          </AnimatedSection>
         </div>
       </section>
 
-      {/* Quote Section: one promise, the instant price */}
-      <section id="contact-form" className="py-20 lg:py-12 bg-brand-navy relative overflow-hidden scroll-mt-20">
-        <div className="absolute top-10 right-20 w-72 h-72 bg-accent/10 rounded-full blur-3xl" />
-        <div className="container mx-auto px-4 relative z-10">
+      {/* Closing band: the re-clean promise, where the reviews are, and the
+          price button. Two navy sections became this one; the old one was
+          headed with its button's own label and had a contact-form id. */}
+      <section className="py-20 bg-brand-navy">
+        <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">See My Instant Price</h2>
-              <p className="text-white/90 mb-8">
+              <h2 className="display-serif text-3xl md:text-4xl font-bold text-white mb-4">Tell us within {POLICY.guaranteeWindowHours} hours and a missed track is re-cleaned free</h2>
+              <p className="text-lg text-white/90 mb-4">
+                Window tracks and the tops of door frames are where a post-construction clean gets caught out, so
+                both are on the checklist. If something was still missed, tell us within{" "}
+                {POLICY.guaranteeWindowHours} hours and we come back to it at no charge. Photos help; they are not a
+                condition.
+              </p>
+              <p className="text-base text-white/90 mb-4">
+                Duty Cleaners has cleaned Alberta homes {COMPANY.sinceLabel}. The Calgary listing is rated{" "}
+                {RATING_CLAIM} across {CITY_PROOF.calgary.googleReviewCount} reviews, and
+                you can read them on the{" "}
+                <Link to="/reviews/" className="text-white underline underline-offset-4">reviews page</Link>{" "}
+                or open{" "}
+                <a href={getListing("calgary").reviewsUrl} target="_blank" rel="noopener noreferrer" className="text-white underline underline-offset-4">the Calgary branch's Google listing</a>.
+                The company is described on{" "}
+                <Link to="/about-us/" className="text-white underline underline-offset-4">About Duty Cleaners</Link>.
+              </p>
+              <p className="text-base text-white/90 mb-8">
                 The form asks for the square footage band and the date, and shows the price before you book. The other cleans
                 are listed under{" "}
                 <Link to="/calgary/services/" className="text-white underline underline-offset-4">every Calgary cleaning service, with starting prices</Link>.
               </p>
-              <a
-                href="#quote"
-                className="inline-flex h-14 items-center justify-center rounded-md bg-accent px-10 text-lg font-bold text-accent-foreground shadow-lg shadow-accent/30 transition-colors hover:bg-accent/90"
-              >
-                See My Instant Price
-              </a>
+              <div className="flex flex-wrap gap-4 justify-center">
+                <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-8">
+                  <a href="#quote">See My Instant Price</a>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-lg px-8">
+                  <a href={OFFICE.phoneLink}>
+                    <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />
+                    {OFFICE.phone}
+                  </a>
+                </Button>
+              </div>
             </div>
           </AnimatedSection>
         </div>

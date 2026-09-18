@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { canonicalForPath } from "@/data/legacy-urls";
 import { HardHat, Home, KeyRound, PaintRoller, Repeat, Truck } from "lucide-react";
 import { Accent } from "@/components/Accent";
-import Eyebrow from "@/components/Eyebrow";
 import useRevealOnScroll from "@/hooks/use-reveal-on-scroll";
 import ResponsiveImage from "@/components/ResponsiveImage";
 import type { Picture } from "vite-imagetools";
@@ -99,15 +98,14 @@ export default function CityServicesChapter({
     <section className="band band-white band-hairline">
       <div className="container mx-auto px-4">
         <div ref={heading.ref} className={`max-w-2xl ${heading.className}`}>
-          <Eyebrow>Services</Eyebrow>
-          <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">{copy.heading}</h2>
+          <h2 className="display-serif text-3xl md:text-4xl font-bold">{copy.heading}</h2>
           <span className={`rule-draw mt-4 ${heading.className}`} aria-hidden="true" />
         </div>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] lg:gap-8">
           {/* Oversized warm-paper panel */}
           <div
-            className="motion-lift paper-rule card-warm group relative flex flex-col overflow-hidden border bg-white"
+            className="motion-lift paper-rule rounded-lg shadow-[0_18px_40px_-32px_hsl(28_40%_18%/0.5)] group relative flex flex-col overflow-hidden border bg-white"
           >
             <div className="relative h-56 w-full overflow-hidden md:h-72 lg:h-80">
               <ResponsiveImage
@@ -116,18 +114,18 @@ export default function CityServicesChapter({
                 alt={featureImageAlt}
                 loading="lazy"
                 decoding="async"
-                className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+                className="h-full w-full object-cover transition-transform duration-500 ease-out motion-safe:group-hover:scale-[1.02]"
               />
             </div>
             <div className="flex flex-1 flex-col p-6 md:p-8">
-              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10">
+              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-sm bg-primary/10">
                 <span className="dc-icon dc-icon-sparkles h-7 w-7 text-primary" aria-hidden="true" />
               </div>
               <h3 className="display-serif text-2xl font-bold md:text-3xl">Standard Cleaning</h3>
               <p className="mt-3 max-w-[52ch] text-muted-foreground leading-relaxed">{copy.standard}</p>
               <Link
                   to={canonicalForPath(`${basePath}/regular-cleaning`)}
-                  className="mt-5 inline-flex items-center font-semibold text-primary transition-transform duration-300 group-hover:translate-x-1 after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  className="mt-5 inline-flex items-center font-semibold text-primary transition-transform duration-300 motion-safe:group-hover:translate-x-1 after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 >
                   Standard cleaning in {city} <span className="dc-icon dc-icon-arrow-right ml-1.5 h-4 w-4" aria-hidden="true" />
               </Link>
@@ -136,7 +134,7 @@ export default function CityServicesChapter({
 
           {/* Vertical photo panel */}
           <div
-            className="motion-lift paper-rule card-warm group relative flex min-h-[420px] flex-col overflow-hidden border bg-white"
+            className="motion-lift paper-rule rounded-lg shadow-[0_18px_40px_-32px_hsl(28_40%_18%/0.5)] group relative flex min-h-[420px] flex-col overflow-hidden border bg-white"
           >
             <div className="relative flex-1 overflow-hidden">
               <ResponsiveImage
@@ -145,18 +143,18 @@ export default function CityServicesChapter({
                 alt={deepImageAlt}
                 loading="lazy"
                 decoding="async"
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out motion-safe:group-hover:scale-[1.02]"
               />
             </div>
             <div className="p-6">
-              <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+              <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-sm bg-primary/10">
                 <Home className="h-6 w-6 text-primary" aria-hidden="true" />
               </div>
               <h3 className="font-bold">Deep Cleaning</h3>
               <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">{copy.deep}</p>
               <Link
                   to={canonicalForPath(`${basePath}/deep-cleaning`)}
-                  className="mt-3 inline-flex items-center text-sm font-semibold text-primary transition-transform duration-300 group-hover:translate-x-1 after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  className="mt-3 inline-flex items-center text-sm font-semibold text-primary transition-transform duration-300 motion-safe:group-hover:translate-x-1 after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 >
                   Deep cleaning in {city} <span className="dc-icon dc-icon-external-link ml-1 h-4 w-4" aria-hidden="true" />
               </Link>
@@ -166,9 +164,9 @@ export default function CityServicesChapter({
 
         {/* Full-width deep-ink band */}
         <div
-          className="surface-ink motion-lift card-warm group mt-6 flex flex-col gap-6 p-6 md:flex-row md:items-center md:p-8 relative"
+          className="surface-ink motion-lift rounded-lg shadow-[0_18px_40px_-32px_hsl(28_40%_18%/0.5)] group mt-6 flex flex-col gap-6 p-6 md:flex-row md:items-center md:p-8 relative"
         >
-          <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-brand-navy-foreground/10">
+          <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-sm bg-brand-navy-foreground/10">
             <Truck className="h-7 w-7 text-accent-on-dark" aria-hidden="true" />
           </div>
           <div className="flex-1">
@@ -181,7 +179,7 @@ export default function CityServicesChapter({
           </div>
           <Link
               to={canonicalForPath(`${basePath}/move-in-move-out-cleaning`)}
-              className="inline-flex items-center font-semibold text-accent-on-dark transition-transform duration-300 group-hover:translate-x-1 after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="inline-flex items-center font-semibold text-accent-on-dark transition-transform duration-300 motion-safe:group-hover:translate-x-1 after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               Move-in and move-out cleaning in {city} <span className="dc-icon dc-icon-arrow-right ml-1.5 h-4 w-4" aria-hidden="true" />
           </Link>
@@ -195,9 +193,9 @@ export default function CityServicesChapter({
           discounts, because the discount is the whole proposition.
         */}
         <div
-          className="motion-lift paper-rule card-warm group mt-6 flex items-center gap-4 border bg-white p-5 md:p-6 relative"
+          className="motion-lift paper-rule rounded-lg shadow-[0_18px_40px_-32px_hsl(28_40%_18%/0.5)] group mt-6 flex items-center gap-4 border bg-white p-5 md:p-6 relative"
         >
-          <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-accent/10">
+          <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-sm bg-accent/10">
             <Repeat className="h-6 w-6 text-accent" aria-hidden="true" />
           </div>
           <div className="flex-1">
@@ -206,7 +204,7 @@ export default function CityServicesChapter({
           </div>
           <Link
               to={canonicalForPath(`${basePath}/recurring-cleaning`)}
-              className="hidden items-center text-sm font-semibold text-accent transition-transform duration-300 group-hover:translate-x-1 sm:inline-flex after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="hidden items-center text-sm font-semibold text-accent transition-transform duration-300 motion-safe:group-hover:translate-x-1 sm:inline-flex after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               {city} recurring cleaning <span className="dc-icon dc-icon-external-link ml-1 h-4 w-4" aria-hidden="true" />
           </Link>
@@ -214,9 +212,9 @@ export default function CityServicesChapter({
 
         {/* Slim paper card */}
         <div
-          className="motion-lift paper-rule card-warm group mt-6 flex items-center gap-4 border bg-white p-5 md:p-6 relative"
+          className="motion-lift paper-rule rounded-lg shadow-[0_18px_40px_-32px_hsl(28_40%_18%/0.5)] group mt-6 flex items-center gap-4 border bg-white p-5 md:p-6 relative"
         >
-          <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-primary/10">
+          <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-sm bg-primary/10">
             <HardHat className="h-6 w-6 text-primary" aria-hidden="true" />
           </div>
           <div className="flex-1">
@@ -225,7 +223,7 @@ export default function CityServicesChapter({
           </div>
           <Link
               to={canonicalForPath(`${basePath}/post-construction-cleaning`)}
-              className="hidden items-center text-sm font-semibold text-primary transition-transform duration-300 group-hover:translate-x-1 sm:inline-flex after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="hidden items-center text-sm font-semibold text-primary transition-transform duration-300 motion-safe:group-hover:translate-x-1 sm:inline-flex after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               {city} post-construction cleaning <span className="dc-icon dc-icon-external-link ml-1 h-4 w-4" aria-hidden="true" />
           </Link>
@@ -239,9 +237,9 @@ export default function CityServicesChapter({
             /wall-washing-wall-cleaning/, Calgary's the -calgary twin; both come
             out of canonicalForPath from the route path. */}
         <div
-          className="motion-lift paper-rule card-warm group mt-6 flex items-center gap-4 border bg-white p-5 md:p-6 relative"
+          className="motion-lift paper-rule rounded-lg shadow-[0_18px_40px_-32px_hsl(28_40%_18%/0.5)] group mt-6 flex items-center gap-4 border bg-white p-5 md:p-6 relative"
         >
-          <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-primary/10">
+          <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-sm bg-primary/10">
             <PaintRoller className="h-6 w-6 text-primary" aria-hidden="true" />
           </div>
           <div className="flex-1">
@@ -250,7 +248,7 @@ export default function CityServicesChapter({
           </div>
           <Link
             to={canonicalForPath(`${basePath}/wall-washing`)}
-            className="hidden items-center text-sm font-semibold text-primary transition-transform duration-300 group-hover:translate-x-1 sm:inline-flex after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            className="hidden items-center text-sm font-semibold text-primary transition-transform duration-300 motion-safe:group-hover:translate-x-1 sm:inline-flex after:absolute after:inset-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
             {city} wall washing <span className="dc-icon dc-icon-external-link ml-1 h-4 w-4" aria-hidden="true" />
           </Link>

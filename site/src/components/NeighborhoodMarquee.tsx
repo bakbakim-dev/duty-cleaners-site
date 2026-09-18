@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { withTrailingSlash } from "@/data/legacy-urls";
 import { Link } from "react-router-dom";
+import { Pause, Play } from "lucide-react";
 import {
   calgaryNeighborhoods,
   calgarySurrounding,
@@ -15,8 +16,10 @@ interface NeighborhoodMarqueeProps {
 
 /**
  * Slow-scrolling ledger of real service areas in oversized serif — every name
- * links to its registered location page. Pauses on hover; static when the
- * visitor prefers reduced motion.
+ * links to its registered location page. It is the one marquee left on the
+ * hubs. Pauses on hover and focus, and from the pause button (WCAG 2.2.2 is
+ * Level A, and hover is no mechanism at all on a touch screen); static when
+ * the visitor prefers reduced motion.
  */
 export default function NeighborhoodMarquee({ city }: NeighborhoodMarqueeProps) {
   /*
@@ -45,6 +48,7 @@ export default function NeighborhoodMarquee({ city }: NeighborhoodMarqueeProps) 
   // one copy; add the duplicate and start the animation once JavaScript is
   // running. Until then the row simply sits still.
   const [looping, setLooping] = useState(false);
+  const [paused, setPaused] = useState(false);
   useEffect(() => setLooping(true), []);
   const run = (ariaHidden: boolean) => (
     <div className="flex w-max items-baseline" aria-hidden={ariaHidden || undefined}>
@@ -57,11 +61,8 @@ export default function NeighborhoodMarquee({ city }: NeighborhoodMarqueeProps) 
           >
             {name}
           </Link>
-          <span className="display-serif whitespace-nowrap pr-6 text-lg italic text-muted-foreground md:text-2xl">
+          <span className="display-serif whitespace-nowrap pr-12 text-lg italic text-muted-foreground md:pr-16 md:text-2xl">
             {qualifier}
-          </span>
-          <span className="px-4 text-brand-gold" aria-hidden="true">
-            ✦
           </span>
         </span>
       ))}
@@ -69,9 +70,23 @@ export default function NeighborhoodMarquee({ city }: NeighborhoodMarqueeProps) 
   );
 
   return (
-    <section className="band-hairline overflow-hidden bg-card py-10 md:py-14" aria-label={`Neighbourhoods and communities the ${city} branch serves`}>
-      <div className="dc-marquee" title="Hover to pause">
-        <div className={`flex w-max${looping ? " dc-marquee-track" : ""}`}>
+    <section className="band-hairline relative overflow-hidden bg-card py-10 md:py-14" aria-label={`Neighbourhoods and communities the ${city} branch serves`}>
+      {looping && (
+        <button
+          type="button"
+          onClick={() => setPaused((was) => !was)}
+          aria-pressed={paused}
+          className="absolute right-2 top-2 z-10 inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-white/90 text-foreground shadow-sm transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+        >
+          {paused ? <Play className="h-4 w-4" aria-hidden="true" /> : <Pause className="h-4 w-4" aria-hidden="true" />}
+          <span className="sr-only">{paused ? "Resume the scrolling place names" : "Pause the scrolling place names"}</span>
+        </button>
+      )}
+      <div className="dc-marquee">
+        <div
+          className={`flex w-max${looping ? " dc-marquee-track" : ""}`}
+          style={paused ? { animationPlayState: "paused" } : undefined}
+        >
           {run(false)}
           {looping && run(true)}
         </div>

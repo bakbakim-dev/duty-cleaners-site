@@ -3,7 +3,7 @@ import { locationServices, locationWhyUs } from "@/data/location-cards";
 import { getListing } from "@/lib/google-listings";
 import { standardTierRows, FREQUENCIES } from "@/data/pricing";
 import {
-  CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import { useEffect } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"; import { CheckCircle2, Star, Shield, Award, Home, Truck, SprayCan, Bath, Leaf, CalendarCheck, ThumbsUp, Mail, Quote, PaintRoller, Sparkles } from "lucide-react";
+  CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import { useEffect } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"; import { CheckCircle2, Star, Shield, Home, Truck, SprayCan, Bath, Leaf, ThumbsUp, Calculator, Quote, PaintRoller, Sparkles } from "lucide-react";
 import { buildLocationSchema } from "@/lib/location-schema";
 import HonestReviewLink from "@/components/HonestReviewLink";
 
@@ -87,50 +87,44 @@ export default function Hazeldean() {
         {/* Hero */}
         <section className="relative py-24 bg-brand-navy overflow-hidden">
           <div className="absolute top-20 left-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-10 right-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
-              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-5 py-2 mb-6">
-                <span className="dc-icon dc-icon-map-pin w-4 h-4 text-accent" aria-hidden="true" />
-                <span className="text-white/90 text-sm font-medium">Serving Hazeldean, Edmonton</span>
-              </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+              <h1 className="display-serif text-[2rem] sm:text-[2.25rem] md:text-[3rem] text-white mb-6 leading-[1.12] text-balance">
                 Professional House Cleaning in Hazeldean
               </h1>
-              <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-lg text-white/85 mb-8 max-w-3xl mx-auto leading-relaxed">
                 Three in four Hazeldean houses date from the end of the war to 1960, on streets between rail land to the west and Mill Creek Ravine to the east. You pay once the clean is complete, at a flat rate set by the size of the house.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
-                  <a href="tel:7809136565"><span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />(780) 913-6565</a>
-                </Button>
-                <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
                   <a href="#quote">See My Instant Price</a>
                 </Button>
-              </div>
-              <div className="flex flex-wrap justify-center gap-6">
-                {[
-                  { icon: CheckCircle2, text: "Pay After Your Clean" },
-                  { icon: CalendarCheck, text: "Open 7 Days a Week" },
-                  { icon: Award, text: "24-Hour Re-Clean Guarantee" },
-                ].map((badge, i) => (
-                  <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
-                    <badge.icon className="w-4 h-4 text-accent" />
-                    <span className="text-white/90 text-sm">{badge.text}</span>
-                  </div>
-                ))}
+                <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
+                  <a href="tel:7809136565"><span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />(780) 913-6565</a>
+                </Button>
               </div>
             </div>
           </div>
         </section>
+
+        {/* What the hero pills said, as one plain row under the hero */}
+        <div className="border-b border-border bg-muted/30">
+          <ul className="container mx-auto px-4 py-3 flex flex-wrap items-center justify-center gap-x-8 gap-y-1 text-sm font-medium text-foreground">
+            {["Pay After Your Clean", "Open 7 Days a Week", "24-Hour Re-Clean Guarantee"].map((text) => (
+              <li key={text} className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-primary" aria-hidden="true" />
+                {text}
+              </li>
+            ))}
+          </ul>
+        </div>
 
         {/* Services */}
         <section className="py-20 bg-muted/30">
           <div className="container mx-auto px-4">
             <AnimatedSection>
               <div className="text-center mb-14">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Cleaning Services for Hazeldean Homes</h2>
+                <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">Cleaning Services for Hazeldean Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">Each of these six services for a Hazeldean house shows its price before you book, and every figure is before 5% GST.</p>
               </div>
             </AnimatedSection>
@@ -150,7 +144,7 @@ export default function Hazeldean() {
                   the Edmonton side — for the page that has to hold "house cleaning
                   edmonton". */}
               <p className="mt-10 text-center text-muted-foreground">
-                {"Hazeldean is one of the Edmonton neighbourhoods we clean — see "}
+                {"Hazeldean is one of the Edmonton neighbourhoods we clean. See "}
                 <Link to="/" className="text-primary underline underline-offset-2">
                   house cleaning services in Edmonton
                 </Link>
@@ -162,12 +156,11 @@ export default function Hazeldean() {
 
         {/* Why Choose Us */}
         <section className="py-20 bg-brand-navy relative overflow-hidden">
-          <div className="absolute top-10 right-20 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />
           <div className="container mx-auto px-4 relative z-10">
             <AnimatedSection>
               <div className="text-center mb-14">
-                <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Hazeldean Residents Choose Duty Cleaners</h2>
+                <span className="text-accent-on-dark text-sm font-semibold tracking-wider uppercase">Why Us</span>
+                <h2 className="display-serif text-3xl md:text-4xl font-bold text-white mt-2 mb-4 text-balance">Why Hazeldean Residents Choose Duty Cleaners</h2>
                 <p className="text-white/90 max-w-2xl mx-auto text-lg">The same four commitments apply to every house in Hazeldean.</p>
               </div>
             </AnimatedSection>
@@ -187,12 +180,11 @@ export default function Hazeldean() {
             <AnimatedSection>
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Hazeldean and Other Edmonton Neighbourhoods</h2>
+                  <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mb-4 text-balance">Hazeldean and Other Edmonton Neighbourhoods</h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Our Edmonton branch cleans 80 neighbourhoods inside the city, Hazeldean among them, and nine communities outside it where a travel fee applies.</p>
                 </div>
                 <div className="text-center mt-8">
-                  <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">View All Service Areas →</Link>
+                  <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">View All Service Areas<span className="dc-icon dc-icon-arrow-right h-4 w-4" aria-hidden="true" /></Link>
                 </div>
               </div>
             </AnimatedSection>
@@ -218,8 +210,7 @@ export default function Hazeldean() {
             <AnimatedSection>
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-10">
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">Map</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Hazeldean on the Map</h2>
+                  <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mb-4 text-balance">Hazeldean on the Map</h2>
                 </div>
                 <div className="grid md:grid-cols-2 gap-10 items-center">
                   <div className="rounded-xl overflow-hidden shadow-lg border border-border">
@@ -240,8 +231,7 @@ export default function Hazeldean() {
             <AnimatedSection>
               <div className="max-w-3xl mx-auto">
                 <div className="text-center mb-10">
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">FAQ</span>
-                  <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">Frequently Asked Questions</h2>
+                  <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">Frequently Asked Questions</h2>
                 </div>
                 <Accordion type="single" collapsible className="space-y-3">
                   {faqs.map((faq, i) => (
@@ -258,17 +248,16 @@ export default function Hazeldean() {
 
         {/* CTA */}
         <section className="py-20 bg-brand-navy relative overflow-hidden">
-          <div className="absolute bottom-0 left-20 w-80 h-80 bg-accent/10 rounded-full blur-3xl" />
           <div className="container mx-auto px-4 relative z-10 text-center">
             <AnimatedSection>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Book a Clean in Hazeldean?</h2>
+              <h2 className="display-serif text-3xl md:text-4xl font-bold text-white mb-6 text-balance">Ready to Book a Clean in Hazeldean?</h2>
               <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">See your flat rate before you book. Nothing is charged until the clean is done.</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
-                  <a href="tel:7809136565"><span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />Call (780) 913-6565</a>
+                  <a href="#quote"><Calculator className="mr-2 w-5 h-5" />See My Instant Price</a>
                 </Button>
                 <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
-                  <a href="#quote"><Mail className="mr-2 w-5 h-5" />See My Instant Price</a>
+                  <a href="tel:7809136565"><span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />Call (780) 913-6565</a>
                 </Button>
               </div>
             </AnimatedSection>

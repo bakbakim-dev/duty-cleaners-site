@@ -43,16 +43,13 @@ export default function LocalMarketNote({
   paragraphs,
   accent = "primary",
 }: LocalMarketNoteProps) {
-  const dot = accent === "calgary" ? "bg-calgary" : "bg-primary";
-  const label = accent === "calgary" ? "text-calgary" : "text-primary";
+  // The eyebrow is the site's one eyebrow style: accent, no decorative dot.
+  const label = accent === "calgary" ? "text-calgary" : "text-accent";
   return (
     <section className="py-16 md:py-20 bg-background border-b border-border">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
-          <div className="flex items-center gap-2 mb-4">
-            <span className={`w-2 h-2 rounded-full ${dot}`} aria-hidden="true" />
-            <span className={`text-sm font-medium uppercase tracking-wide ${label}`}>{eyebrow}</span>
-          </div>
+          <span className={`block mb-3 text-sm font-semibold uppercase tracking-wider ${label}`}>{eyebrow}</span>
           <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mb-6 text-balance">
             {heading}
           </h2>

@@ -47,6 +47,20 @@ function visible(html: string): string {
     .replace(/\s+/g, " ");
 }
 
+/**
+ * `visible`, but a row of a receipt, table or list ends in a newline. The town
+ * pages set their worked quote out as a receipt (2026-09-18): "Two-storey house
+ * $55" sits directly above "Travel fee $29.99", and flattened to one run of text
+ * the $55 lands within reach of the next row's label.
+ */
+function visibleRows(html: string): string {
+  return html
+    .replace(/<script[\s\S]*?<\/script>/g, " ")
+    .replace(/<\/(?:dd|tr|li|p)>/g, "\n")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/[ \t\r\f\v]+/g, " ");
+}
+
 describe("the travel fee states one number, everywhere", () => {
   const fee = addOnFromPrice("standard", TRAVEL_FEE_KEY);
 
@@ -65,7 +79,7 @@ describe("the travel fee states one number, everywhere", () => {
     const surfaces: Array<[string, string]> = [
       ["public/llms.txt", readFileSync(join(ROOT, "public", "llms.txt"), "utf-8")],
       ["public/llms-full.txt", readFileSync(join(ROOT, "public", "llms-full.txt"), "utf-8")],
-      ...pages.map((p) => [rel(p), visible(read(p))] as [string, string]),
+      ...pages.map((p) => [rel(p), visibleRows(read(p))] as [string, string]),
     ];
     const wrong: string[] = [];
     for (const [name, text] of surfaces) {
@@ -116,6 +130,8 @@ describe("the travel fee states one number, everywhere", () => {
         const end = i + "travel fee".length;
         for (const a of allAmounts) {
           if (a.index < i - 12 || a.index > end + 12) continue;
+          // An amount on another row belongs to that row's label, not to this one.
+          if (text.slice(Math.min(a.index, i), Math.max(a.index, end)).includes("\n")) continue;
           if (a.value !== expected) wrong.push(`${name}: ${a.value} (expected ${expected})`);
         }
       }

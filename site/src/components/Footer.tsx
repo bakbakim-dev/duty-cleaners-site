@@ -110,8 +110,7 @@ export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: 
             Pages with their own id="quote" form still win — first id in the DOM. */}
         <div id={hasQuoteSection ? undefined : "quote"} className="mb-14 flex flex-col gap-6 border-b border-brand-navy-foreground/15 pb-12 md:flex-row md:items-center md:justify-between lg:mb-16 lg:pb-14">
           <div className="max-w-2xl">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-brand-gold">Ready when you are</p>
-            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">See your price before you book.</h2>
+            <h2 className="display-serif text-2xl tracking-tight sm:text-3xl">See your price before you book.</h2>
             <p className="mt-3 max-w-xl text-sm leading-6 text-brand-navy-foreground/85 sm:text-base">
               Prices are before GST, and the instant price shows the exact figure for your home.
             </p>
@@ -151,8 +150,7 @@ export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: 
         <div className="mb-14 border-b border-brand-navy-foreground/15 pb-12 lg:mb-16 lg:pb-14">
           <div className="mb-8 flex flex-col gap-2 text-center sm:flex-row sm:items-end sm:justify-between sm:text-left">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-gold">Reviews and payment</p>
-              <h2 className="mt-2 text-xl font-bold sm:text-2xl">Read the reviews, and pay once the clean is complete.</h2>
+              <h2 className="display-serif text-xl sm:text-2xl">Read the reviews, and pay once the clean is complete.</h2>
             </div>
             <p className="max-w-md text-sm leading-6 text-brand-navy-foreground/85">
               Every cleaner is reference-checked before a first job and rated by the customer after each visit, and those ratings decide who we keep sending.

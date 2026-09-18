@@ -7,10 +7,11 @@ import {
 } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
 import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
-import { Accent, AccentGold } from "@/components/Accent";
+import { Accent } from "@/components/Accent";
 import RecurringVisitPrices from "@/components/RecurringVisitPrices";
 import { Home, Bath, UtensilsCrossed } from "lucide-react";
-import heroImage from "@/assets/gallery/calgary-living-room-clean.webp";
+// The one-time page keeps calgary-living-room-clean; this page had the same hero.
+import heroImage from "@/assets/gallery/calgary-clean-home-northwest.webp";
 import kitchenImage from "@/assets/gallery/calgary-spotless-kitchen.webp?card";
 import livingRoomImage from "@/assets/hero-room-calgary-1280w.webp?card";
 import cleanerImage from "@/assets/gallery/calgary-team-cleaning.webp?card";
@@ -58,14 +59,13 @@ export default function CalgaryRecurringCleaning() {
       seoDescription="Plan recurring house cleaning in Calgary. Compare visit frequencies, first-clean pricing and ongoing booking details with Duty Cleaners."
       serviceName="Recurring House Cleaning in Calgary"
       canonical="https://dutycleaners.ca/calgary/recurring-cleaning"
-      heroHeading={<>Recurring House Cleaning in <AccentGold>Calgary</AccentGold></>}
-      heroSubheading={`Weekly, bi-weekly or every-4-weeks visits of the standard clean. Your first visit is at the one-time rate, ${FROM} before GST for a one-bedroom apartment plus any pet or home-type charge; every visit after it is 20% off weekly, 15% off bi-weekly or 10% off every 4 weeks.`}
+      heroHeading={<>Recurring House Cleaning in <em className="italic text-accent-on-dark">Calgary</em></>}
+      heroSubheading={`The standard clean on your schedule: a first visit from ${FROM} before GST for a one-bedroom apartment, then ${pct(FOUR_WEEKS?.discount)} to ${pct(WEEKLY?.discount)} off every visit after it, charged after each clean.`}
       heroBadges={["Weekly 20% Off", "Bi-Weekly 15% Off", "Every 4 Weeks 10% Off"]}
       heroImage={heroImage}
-      heroImageAlt="Living room in afternoon sun, with a beige sofa, a patterned rug, hardwood floors and a fireplace"
-      heroImageWidth={800}
-      heroImageHeight={800}
-      overviewEyebrow="Service Overview"
+      heroImageAlt="Sunlit living room with a cream sectional sofa, flowers on a glass coffee table and a hardwood floor"
+      heroImageWidth={1024}
+      heroImageHeight={768}
       overviewHeading={<>Standard cleaning, <Accent>on a schedule you set.</Accent></>}
       overviewParagraphs={[
         <>
@@ -81,6 +81,9 @@ export default function CalgaryRecurringCleaning() {
         </>,
         `Start with a manageable schedule and review how the rooms hold up between visits. Tell the Calgary office about changing entry instructions or room priorities. You can change a booking with ${POLICY.cancellationNoticeHours} hours' notice.`,
       ]}
+      // The schedule-and-price section stays above the checklist. The review
+      // and coverage sections read after the FAQ, with the other closing
+      // prose, so the page reaches the checklist and the price grid sooner.
       sections={[
         {
           heading: "Choose weekly, biweekly or every-four-weeks cleaning in Calgary",
@@ -111,6 +114,44 @@ export default function CalgaryRecurringCleaning() {
             </>
           ),
         },
+      ]}
+      includedHeading="What every recurring visit includes"
+      includedSubheading="Kitchen, bathrooms, bedrooms and living areas, on every visit."
+      included={[
+        { icon: UtensilsCrossed, title: "Kitchen Cleaning", description: "Counters, sink and stovetop wiped, the outside of the fridge, oven and dishwasher and the cabinet fronts done, then the floor vacuumed and mopped." },
+        { icon: Bath, title: "Bathrooms", description: "Toilet, tub and shower scrubbed, soap scum taken off tile and glass, mirror and vanity polished, floor washed." },
+        { icon: Home, title: "Bedrooms & Living Areas", description: "Reachable surfaces dusted, carpets and rugs vacuumed, hard floors mopped, room by room through the home." },
+      ]}
+      bullets={[
+        "Kitchen, bathrooms, and living areas cleaned",
+        "Floors vacuumed and mopped",
+        "Dusting of all accessible surfaces and furniture",
+        "Bathrooms scrubbed and wiped down",
+        "Mirrors and glass surfaces polished",
+        "Trash emptied",
+      ]}
+      pricingBySize={TIERS}
+      pricingNote="The table is the one-time rate, which is what the first visit costs. Every visit after it is 20% off weekly, 15% off bi-weekly or 10% off every 4 weeks."
+      fromPrice={FROM}
+      extras={featuredExtraRows()}
+      notIncluded={[
+        "Furniture and anything else over 25 lbs stays where it is",
+        "Exterior windows and any outdoor work",
+        "Mould remediation, bodily fluids and pest removal",
+        "Anything higher than a 3-step ladder reaches",
+        "Light bulbs, chandeliers and fragile fixtures",
+        "Garages, patios and balconies, apart from the balcony or garage sweep add-on, available mostly in summer when the weather allows",
+      ]}
+      faqs={[
+        { q: "How often should I book in Calgary specifically?", a: `A Calgary home takes in sand and de-icer from November to April, as chinooks thaw and refreeze the streets, so bi-weekly through those months and every 4 weeks through the summer is a sensible place to start. A home with a dog, a garage entry or young children may want bi-weekly all year. Start on one cadence and change it with ${POLICY.cancellationNoticeHours} hours' notice once you see how the house holds up.` },
+        { q: "What does the discount come to in dollars?", a: `On a two-bedroom apartment at ${TWO_BED}, the first visit is ${TWO_BED} and every visit after it is ${ongoing(1, WEEKLY?.id)} weekly, ${ongoing(1, BIWEEKLY?.id)} bi-weekly or ${ongoing(1, FOUR_WEEKS?.id)} every 4 weeks, before GST. The percentages are the same for every home size. A townhouse or two-storey house, a home with pets and an address outside Calgary city limits each add a charge, shown on the quote before you book.` },
+        { q: "What notice do you need to move or skip a visit?", a: `${POLICY.cancellationNoticeHours} hours. A visit moved or skipped with that much notice costs nothing. Inside ${POLICY.cancellationNoticeHours} hours the ${POLICY.cancellationFee} cancellation fee applies, and a visit where the team arrives and cannot get in is billed at ${POLICY.lockoutFee}.` },
+        { q: "Will the same Calgary team come every time?", a: "We send your regular team where we can send them. Illness, holidays and the schedule mean that is not always possible, and when it is not, another Calgary team works through the same checklist. If you would rather wait for your regular team, tell us and we will offer another date instead." },
+        { q: "What if nobody is home when the team arrives?", a: "Nobody needs to be home for a recurring visit: most customers leave a key, a lockbox code or smart-lock access, and a fob left with the concierge works in a Calgary tower. Tell us which when you book. The team locks up when they leave." },
+        { q: "Do I need to leave out cleaning products?", a: `No. The team brings its own products and equipment to every visit. If there is something you want used, or something you want kept away from a surface, note it on the booking. Optional alternative products are ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}.` },
+        { q: "Can I just book one clean and decide later?", a: `Yes. A one-time standard clean is priced flat by home size, from ${FROM} for a one-bedroom before GST. If you later put the standard clean on a schedule, the first visit of the plan is charged at the one-time rate and the discount applies from the second.` },
+      ]}
+      closingSections={[
         {
           heading: "Review the frequency as your household changes",
           body: (
@@ -140,50 +181,6 @@ export default function CalgaryRecurringCleaning() {
             </>
           ),
         },
-      ]}
-      includedHeading="What Every Recurring Visit Includes"
-      includedSubheading="Kitchen, bathrooms, bedrooms and living areas, on every visit."
-      included={[
-        { icon: UtensilsCrossed, title: "Kitchen Cleaning", description: "Counters, sink and stovetop wiped, the outside of the fridge, oven and dishwasher and the cabinet fronts done, then the floor vacuumed and mopped." },
-        { icon: Bath, title: "Bathrooms", description: "Toilet, tub and shower scrubbed, soap scum taken off tile and glass, mirror and vanity polished, floor washed." },
-        { icon: Home, title: "Bedrooms & Living Areas", description: "Reachable surfaces dusted, carpets and rugs vacuumed, hard floors mopped, room by room through the home." },
-      ]}
-      bullets={[
-        "Kitchen, bathrooms, and living areas cleaned",
-        "Floors vacuumed and mopped",
-        "Dusting of all accessible surfaces and furniture",
-        "Bathrooms scrubbed and wiped down",
-        "Mirrors and glass surfaces polished",
-        "Trash emptied",
-      ]}
-      roomTasks={[
-        { name: "Kitchen", tasks: 4, sample: "the counters, the stovetop and the sink" },
-        { name: "Bathrooms", tasks: 4, sample: "the toilet, tub and shower scrubbed" },
-        { name: "Living Areas", tasks: 4, sample: "dusting, then vacuuming and mopping" },
-        { name: "Bedrooms", tasks: 3, sample: "surfaces dusted and under the bed vacuumed" },
-      ]}
-      pricingBySize={TIERS}
-      pricingNote="The table is the one-time rate, which is what the first visit costs. Every visit after it is 20% off weekly, 15% off bi-weekly or 10% off every 4 weeks."
-      fromPrice={FROM}
-      extras={featuredExtraRows()}
-      notIncluded={[
-        "Furniture and anything else over 25 lbs stays where it is",
-        "Exterior windows and any outdoor work",
-        "Mould remediation, bodily fluids and pest removal",
-        "Anything higher than a 3-step ladder reaches",
-        "Light bulbs, chandeliers and fragile fixtures",
-        "Garages, patios and balconies, apart from the balcony or garage sweep add-on, available mostly in summer when the weather allows",
-      ]}
-      faqs={[
-        { q: "How often should I book in Calgary specifically?", a: `A Calgary home takes in sand and de-icer from November to April, as chinooks thaw and refreeze the streets, so bi-weekly through those months and every 4 weeks through the summer is a sensible place to start. A home with a dog, a garage entry or young children may want bi-weekly all year. Start on one cadence and change it with ${POLICY.cancellationNoticeHours} hours' notice once you see how the house holds up.` },
-        { q: "What does the discount come to in dollars?", a: `On a two-bedroom apartment at ${TWO_BED}, the first visit is ${TWO_BED} and every visit after it is ${ongoing(1, WEEKLY?.id)} weekly, ${ongoing(1, BIWEEKLY?.id)} bi-weekly or ${ongoing(1, FOUR_WEEKS?.id)} every 4 weeks, before GST. The percentages are the same for every home size. A townhouse or two-storey house, a home with pets and an address outside Calgary city limits each add a charge, shown on the quote before you book.` },
-        { q: "What notice do you need to move or skip a visit?", a: `${POLICY.cancellationNoticeHours} hours. A visit moved or skipped with that much notice costs nothing. Inside ${POLICY.cancellationNoticeHours} hours the ${POLICY.cancellationFee} cancellation fee applies, and a visit where the team arrives and cannot get in is billed at ${POLICY.lockoutFee}.` },
-        { q: "Will the same Calgary team come every time?", a: "We send your regular team where we can send them. Illness, holidays and the schedule mean that is not always possible, and when it is not, another Calgary team works through the same checklist. If you would rather wait for your regular team, tell us and we will offer another date instead." },
-        { q: "What if nobody is home when the team arrives?", a: "Nobody needs to be home for a recurring visit: most customers leave a key, a lockbox code or smart-lock access, and a fob left with the concierge works in a Calgary tower. Tell us which when you book. The team locks up when they leave." },
-        { q: "Do I need to leave out cleaning products?", a: `No. The team brings its own products and equipment to every visit. If there is something you want used, or something you want kept away from a surface, note it on the booking. Optional alternative products are ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}.` },
-        { q: "Can I just book one clean and decide later?", a: `Yes. A one-time standard clean is priced flat by home size, from ${FROM} for a one-bedroom before GST. If you later put the standard clean on a schedule, the first visit of the plan is charged at the one-time rate and the discount applies from the second.` },
-      ]}
-      closingSections={[
         { heading: "Changing or rescheduling your visits", body: <><p>Move, skip or cancel a visit with {POLICY.cancellationNoticeHours} hours' notice. Inside that window the cancellation fee is {POLICY.cancellationFee}. If we move a booking and the new date does not suit you, cancelling that booking carries no fee.</p><p>Read the <Link to="/terms/">booking and cancellation terms</Link>, and tell the Calgary office if your access instructions or room preferences change.</p></> },
         { heading: "Does your first visit need a deep clean?", body: <p>Describe the condition of the home before choosing the first visit. Compare <Link to="/calgary/deep-cleaning/">deep cleaning in Calgary</Link> when the extra tasks are needed; a deep clean is not automatically required just because you want a recurring schedule.</p> },
         {
@@ -206,7 +203,7 @@ export default function CalgaryRecurringCleaning() {
           ),
         },
       ]}
-      ctaHeading={<>Recurring cleaning in <AccentGold>Calgary</AccentGold> from {FROM}.</>}
+      ctaHeading={<>Recurring cleaning in <em className="italic text-accent-on-dark">Calgary</em> from {FROM}.</>}
       ctaDescription={`Your first visit is at the one-time rate, from ${FROM} before GST for a one-bedroom apartment plus any pet or home-type charge; after that, weekly is 20% off, bi-weekly 15% off and every 4 weeks 10% off. Changing or skipping a visit needs ${POLICY.cancellationNoticeHours} hours' notice.`}
       galleryImages={[
         { picture: kitchenImage, alt: "Kitchen with white cabinets, a stainless-steel fridge and range, and a quartz island" },

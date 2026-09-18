@@ -2,23 +2,23 @@ import { CITY_PROOF } from "@/data/proof";
 import { POLICY } from "@/data/policy";
 import CityCrossLink from "@/components/CityCrossLink";
 import { buildServiceSchema } from "@/lib/service-schema";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
-import { Calculator, Shield, Award, DollarSign, Home, Bath, UtensilsCrossed, ChevronUp, Mail, LucideIcon, Package, Clock } from "lucide-react";
+import { Shield, Award, DollarSign, LucideIcon, Package, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import ResponsiveImage, { SIZES } from "@/components/ResponsiveImage";
+import Stars from "@/components/Stars";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import familyCleanHome from "@/assets/gallery/family-clean-home-edmonton.webp?col";
 import kitchenDeepClean from "@/assets/gallery/kitchen-deep-clean.webp?card";
 import bathroomClean from "@/assets/gallery/bathroom-clean.webp?card";
 import livingRoomClean from "@/assets/gallery/living-room-clean.webp?card";
 import moveOutClean from "@/assets/gallery/move-out-clean.webp?col";
-import beforeAfter from "@/assets/gallery/before-after.webp";
-import windowCleaning from "@/assets/gallery/window-cleaning.webp";
 
 // Animated section wrapper
 import MoveOutDepth from "@/components/MoveOutDepth";
@@ -92,27 +92,11 @@ const AnimatedSection = ({ children, className = "" }: { children: React.ReactNo
   );
 };
 
-// 3D hover card
-const ServiceCard = ({ icon: Icon, title, description, index = 0 }: { icon: LucideIcon; title: string; description: string; index?: number }) => (
-  <div
-    className={`group bg-white rounded-xl border border-border p-6 transition-all duration-500 ease-out cursor-pointer hover:-translate-y-2 ${index % 2 === 0 ? "hover:translate-x-0.5" : "hover:-translate-x-0.5"} hover:border-primary hover:shadow-xl hover:shadow-primary/10`}
-    style={{ transformStyle: "preserve-3d" }}
-  >
-    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 transition-all duration-300 group-hover:bg-primary/20 group-hover:scale-110">
-      <Icon className="w-6 h-6 text-primary transition-transform duration-300 group-hover:rotate-12" />
-    </div>
-    <h3 className="text-lg font-bold mb-2 transition-transform duration-300 group-hover:translate-x-1">{title}</h3>
-    <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
-  </div>
-);
-
-// Why-us card for dark sections
+// Why-us card for the navy band. Static on purpose: it is text, not a link,
+// so it gets no hand cursor and no hover motion.
 const WhyUsCard = ({ icon: Icon, title, description }: { icon: LucideIcon; title: string; description: string }) => (
-  <div
-    className="group bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center transition-all duration-500 ease-out hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-xl"
-    style={{ transformStyle: "preserve-3d" }}
-  >
-    <div className="w-14 h-14 rounded-full bg-accent/20 flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:rotate-12">
+  <div className="rounded-xl border border-white/20 bg-white/10 p-6 text-center">
+    <div className="w-14 h-14 rounded-full bg-accent/20 flex items-center justify-center mx-auto mb-4">
       <Icon className="w-7 h-7 text-accent" />
     </div>
     <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
@@ -120,15 +104,36 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: LucideIcon; title
   </div>
 );
 
-// Neighborhood link pill
-
 // What a move-out clean covers, room by room. Every line matches the
 // move-in/out column on /whats-included/ and the add-on rows in bk-config.
-const services = [
-  { icon: UtensilsCrossed, title: "Kitchen", description: "Stovetop, grates, range hood and backsplash degreased. Counters, sink and taps scrubbed. Inside and outside the oven, microwave and fridge, and inside all cabinets and drawers." },
-  { icon: Bath, title: "Bathrooms", description: "Toilets, tubs and showers scrubbed. Soap scum and hard-water scale taken off tile, glass and taps. Mirrors, counters, vanities and cabinet fronts wiped, and the inside of the vanity cabinets." },
-  { icon: Home, title: "Living areas and bedrooms", description: "All floors vacuumed and mopped. Baseboards, doors, door frames, light switches, outlets and vent covers wiped. Window sills and tracks wiped, and closets and built-in storage cleaned inside. Ceiling fans are dusted on request, where they can be reached safely." },
-  { icon: Package, title: "Add-ons on the booking form", description: "Interior windows, window blinds by the set, spot or full wall washing, a finished or unfinished basement, and a sweep of the garage or balcony. Each has its own price on the booking form and is added only if you choose it." },
+// Each room carries its photo, so the checklist and the picture are one block
+// rather than two card grids saying the same thing. The alt text says what is
+// in the frame: these are furnished, AI-generated rooms until the real shoot.
+const rooms = [
+  { picture: kitchenDeepClean, alt: "Kitchen with white upper cabinets, dark lower cabinets, a stainless range hood, and a kettle and a bowl of lemons on the counter", title: "Kitchen", description: "Stovetop, grates, range hood and backsplash degreased. Counters, sink and taps scrubbed. Inside and outside the oven, microwave and fridge, and inside all cabinets and drawers." },
+  { picture: bathroomClean, alt: "Cleaner in an apron and yellow rubber gloves wiping a bathroom mirror above a white sink", title: "Bathrooms", description: "Toilets, tubs and showers scrubbed. Soap scum and hard-water scale taken off tile, glass and taps. Mirrors, counters, vanities and cabinet fronts wiped, and the inside of the vanity cabinets." },
+  { picture: livingRoomClean, alt: "Furnished living room with a golden retriever lying on a shag rug beside a vacuum head", title: "Living areas and bedrooms", description: "All floors vacuumed and mopped. Baseboards, doors, door frames, light switches, outlets and vent covers wiped. Window sills and tracks wiped, and closets and built-in storage cleaned inside. Ceiling fans are dusted on request, where they can be reached safely." },
+];
+
+/** ", from $X" for a move-in/out add-on, or nothing when bk-config has no such row. */
+const addOnLabel = (key: string) => {
+  const value = addOnFromPrice("move-in-out", key);
+  return value === null ? "" : `, from ${formatPrice(value)}`;
+};
+// The add-ons as a plain list, each with its lowest bk-config price.
+const addOns = [
+  { label: "Interior windows", key: "inside-windows" },
+  { label: "Window blinds by the set", key: "wipe-window-blinds-per-set" },
+  { label: "Spot or full wall washing", key: "spot-cleaning-inside-walls" },
+  { label: "A finished or unfinished basement", key: "unfinished-basement-sweep" },
+  { label: "A sweep of the garage or balcony", key: "sweep-only-of-garage-or-balcony" },
+];
+
+// Where an inspection looks: the three lines that used to caption the photo row.
+const inspectionPoints = [
+  { title: "Kitchens", body: "Grease off the hood and backsplash, inside the oven and fridge, cabinets wiped out once they are empty." },
+  { title: "Bathrooms", body: "Soap scum off the glass, scale off the taps, tile and grout scrubbed, the toilet inside and out." },
+  { title: "Rooms and closets", body: "Baseboards, vents, switches and the inside of the closets, then the floors last so nobody walks on them." },
 ];
 
 // One verifiable fact per card. Sources: policy.ts (insuranceClaim,
@@ -164,14 +169,8 @@ const faqs = [
 ];
 
 export default function EdmontonMoveInOut() {
-  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
-  const [showFloating, setShowFloating] = useState(false);
-
   useEffect(() => {
     window.scrollTo(0, 0);
-    const handleScroll = () => setShowFloating(window.scrollY > 800);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   /**
@@ -260,7 +259,9 @@ export default function EdmontonMoveInOut() {
           <Breadcrumbs />
         </div>
 
-        {/* Hero Section */}
+        {/* Hero: the H1, one price sentence, the two buttons and the rating.
+            The definition paragraph that sat here opens the section below, and
+            the charges outside the from-price sit in the strip under the hero. */}
         <section className="relative bg-brand-navy text-white py-20">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-10">
@@ -268,162 +269,108 @@ export default function EdmontonMoveInOut() {
                 <h1 className="display-serif text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-white">
                   Move Out Cleaning in Edmonton
                 </h1>
-                <p className="text-xl md:text-2xl mb-6 text-white/85">
-                  From {moveInOutFromPrice()} plus 5% GST for a one-bedroom apartment or condo, fixed by home size
-                  before you book. A house, a pet or an address outside Edmonton adds its own line to the quote.
-                </p>
-                {/* The answer to the search, above the fold: what it is, what it
-                    costs, what is in it, the guarantee, and how to book. */}
-                <p className="text-base md:text-lg mb-8 text-white/80 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                  A move-out clean, end of tenancy cleaning to a landlord, is the one-time clean an empty
-                  home gets before the keys change hands, done to the checklist a landlord or buyer walks
-                  through. Inside the oven, fridge,
-                  microwave, cabinets, drawers and closets are included, along with baseboards, switches,
-                  vents and all floors. Book it with the home size and the date the keys go back. The
-                  emptier the rooms are on the day, the more of that list the crew can reach.
+                <p className="text-lg md:text-xl mb-8 text-white/85 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                  From {moveInOutFromPrice()} before GST for a one-bedroom apartment or condo, fixed by home size
+                  before you book, and nothing is charged until the clean is done.
                 </p>
 
-                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
-                  <Button size="lg" className="bg-accent hover:bg-accent/90 text-white text-lg px-8 h-14" asChild>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
+                  <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-8 h-14" asChild>
                     <a href="#quote">See My Instant Price</a>
                   </Button>
-                  <Button size="lg" className="bg-white/95 text-brand-navy hover:bg-white text-lg px-8 h-14" asChild>
+                  <Button size="lg" variant="outline" className="border-white/40 text-white hover:bg-white/10 text-lg px-8 h-14" asChild>
                     <a href="tel:7809136565">
                       <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />
-                      (780) 913-6565
+                      Call (780) 913-6565
                     </a>
                   </Button>
                 </div>
 
-                <div className="flex flex-wrap justify-center lg:justify-start gap-6 text-white/90">
-                  <div className="flex items-center gap-2">
-                    <span className="dc-icon dc-icon-circle-check w-5 h-5" aria-hidden="true" />
-                    <span className="font-medium">{POLICY.guaranteeWindowHours}-hour re-clean guarantee</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="dc-icon dc-icon-circle-check w-5 h-5" aria-hidden="true" />
-                    <span className="font-medium">Nothing charged until the clean is done</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="dc-icon dc-icon-circle-check w-5 h-5" aria-hidden="true" />
-                    <span className="font-medium">{RATING_CLAIM}{REVIEWS ? `, ${REVIEWS} reviews` : ""}</span>
-                  </div>
-                </div>
+                <p className="flex items-center justify-center lg:justify-start gap-2 text-white/90">
+                  <Stars size={1} />
+                  <span className="font-medium">{RATING_CLAIM}{REVIEWS ? `, ${REVIEWS} reviews` : ""}</span>
+                </p>
               </div>
 
               <div className="flex-shrink-0">
                 <ResponsiveImage
                   picture={familyCleanHome}
                   sizes={SIZES.half}
-                  alt="Empty living room cleaned for a move-out inspection"
-                  className="lg:w-[500px] w-full rounded-2xl shadow-2xl"
+                  alt="Two adults and two small children laughing on the hardwood floor of a bright living room with a grey sofa"
+                  className="lg:w-[500px] w-full rounded-xl shadow-2xl"
                  loading="eager" fetchPriority="high"/>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Instant Quote CTA */}
-        <section id="quote" className="py-16 bg-secondary/30">
-          <div className="container mx-auto px-4">
-            <AnimatedSection>
-              <div className="max-w-3xl mx-auto text-center">
-                <span className="text-accent font-semibold text-sm uppercase tracking-wide">Get Started</span>
-                <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-3">See My Instant Price for a move-out in Edmonton</h2>
-                <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
-                  Enter the bedrooms, the bathrooms, the home type and the date you hand over the keys. The
-                  quote lists every add-on you tick, the pet charge if the home has pets, and the travel fee
-                  if the address sits outside the city, so the figure on screen is the whole figure before
-                  5% GST.
-                </p>
-                <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-10 py-6 h-auto font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5" asChild>
-                  {/* The heading above promises an instant price and "no phone call
-                      required"; this used to open the contact form. */}
-                  <a href="#quote">
-                    <Calculator className="w-5 h-5 mr-2" />
-                    See My Instant Price
-                  </a>
-                </Button>
-                <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground mt-4">
-                  <span>⚡ Instant pricing</span>
-                  <span>📞 No phone call required</span>
-                  {/* Was "No credit card required", which read as a promise about
-                      the booking. PAYMENT_TERMS puts a temporary hold on the card
-                      the day before the clean, so the true version of the claim is
-                      about the quote: seeing the price costs nothing. */}
-                  <span>💳 No card needed to see your price</span>
-                </div>
-              </div>
-            </AnimatedSection>
+        {/* Slim strip under the hero: the guarantee, and the charges that sit
+            outside the from-price, so the figure above never stands alone. */}
+        <div className="border-b border-border bg-secondary/30">
+          <div className="container mx-auto px-4 py-4">
+            <ul className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-center justify-center lg:justify-start gap-x-8 gap-y-2 text-sm">
+              <li className="flex items-center gap-2 text-foreground">
+                <span className="dc-icon dc-icon-circle-check w-4 h-4 text-primary flex-shrink-0" aria-hidden="true" />
+                <span className="font-medium">{POLICY.guaranteeWindowHours}-hour re-clean guarantee</span>
+              </li>
+              <li className="text-muted-foreground">A house, a pet or an address outside Edmonton adds its own line to the quote.</li>
+            </ul>
           </div>
-        </section>
+        </div>
 
-        {/* End of tenancy: the inspection, the deposit, and Edmonton's turnover calendar */}
-        <section className="py-16 bg-background">
-          <div className="container mx-auto px-4 max-w-4xl">
-            <AnimatedSection>
-              <div className="text-center mb-8">
-                <span className="text-accent font-semibold text-sm uppercase tracking-wide">Damage Deposit</span>
-                {/* The city belongs in the heading: this page targets "end of
-                    tenancy cleaning edmonton" and the H2 that owned the phrase
-                    named no place at all. */}
-                <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">End of tenancy cleaning in Edmonton and your damage deposit</h2>
-              </div>
-              <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
-                <p>
-                  End of tenancy cleaning in Edmonton is judged at one moment: the move-out inspection. Under{" "}
-                  <a href="https://www.alberta.ca/ending-a-tenancy" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Alberta's Residential Tenancies Act</a> the landlord completes a move-out inspection report with
-                  the tenant. Within 10 days of the tenant moving out, the landlord must return the security
-                  deposit (the damage deposit in everyday use), or return what is left with a written statement
-                  of any deductions (an estimate is allowed, with the final statement within 30 days). That report is where a landlord notes cleaning, so
-                  our <strong>move out cleaners in Edmonton</strong> clean to the inspection checklist rather
-                  than to how the home looks from the doorway.
-                </p>
-                <p>
-                  We do not promise the deposit comes back; that decision is the landlord's. What we promise is
-                  the checklist: inside the oven and fridge, inside the cabinets, drawers and closets, baseboards,
-                  switches, vents, window sills and tracks, bathrooms scrubbed, and the floors mopped last. A
-                  cited item names a room and a surface rather than an impression, which is what the checklist
-                  is built to match.
-                </p>
-                <p>
-                  A spring move-out in Edmonton meets the whole winter at once. The sand and salt tracked in
-                  since November arrive dry and stay, so by handover they are worked into the carpet edges and
-                  along the baseboards by the door, and the spring melt in late March and April brings the rest
-                  in over about three weeks. A house with the furnace running since October has cycled its dust
-                  onto the vent covers and the tops of the door frames, and hard Alberta water leaves scale on
-                  the taps and the shower glass. Each of those is a room and a surface, the kind of line a
-                  move-out inspection report can carry, and each is on the move-out checklist.
-                </p>
-                <p>
-                  {/* L8: /edmonton/march-out-cleaning/ had one contextual link into
-                      it from the whole site. This page is where the reader who
-                      needs it actually is. */}
-                  Not every handover is a landlord's. Families leaving military housing in Edmonton are held
-                  to a CFHA march-out inspection instead of a landlord's walkthrough. What CFHA's checklist
-                  asks for, and how the clean is booked around the inspection date, is set out on{" "}
-                  <Link to="/edmonton/march-out-cleaning/" className="text-primary underline underline-offset-4">march-out cleaning in Edmonton</Link>.
-                </p>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
-
-        {/* What's Included */}
+        {/* What's included: the definition, then each room's photo with its
+            checklist, the add-ons as a list, and where an inspection looks. */}
         <section className="py-16 bg-background">
           <div className="container mx-auto px-4">
+            <div className="text-center mb-12 max-w-3xl mx-auto">
+              <h2 className="display-serif text-3xl md:text-4xl font-bold">What a move-out clean in Edmonton includes</h2>
+              <p className="text-muted-foreground mt-3">Cleaned to the standard a move-out inspection looks for, room by room.</p>
+              {/* The answer to the search: what it is, what is in it and how
+                  to book. It sat in the hero and pushed the buttons below the
+                  fold; it is still the first thing under it. */}
+              <p className="text-base md:text-lg mt-5 text-muted-foreground leading-relaxed">
+                A move-out clean, which a landlord calls end of tenancy cleaning, is the one-time clean an
+                empty home gets before the keys change hands, done to the checklist a landlord or buyer walks
+                through. Inside the oven, fridge,
+                microwave, cabinets, drawers and closets are included, along with baseboards, switches,
+                vents and all floors. Book it with the home size and the date the keys go back. The
+                emptier the rooms are on the day, the more of that list the crew can reach.
+              </p>
+            </div>
             <AnimatedSection>
-              <div className="text-center mb-12">
-                <span className="text-accent font-semibold text-sm uppercase tracking-wide">What's Included</span>
-                <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">What a move-out clean in Edmonton includes</h2>
-                <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">Cleaned to the standard a move-out inspection looks for, room by room.</p>
-              </div>
-            </AnimatedSection>
-            <AnimatedSection>
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-                {services.map((s, i) => (
-                  <ServiceCard key={i} icon={s.icon} title={s.title} description={s.description} index={i} />
+              <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                {rooms.map((room) => (
+                  <div key={room.title}>
+                    <ResponsiveImage picture={room.picture} sizes={THREE_UP_SIZES} alt={room.alt} className="w-full h-64 object-cover rounded-xl" loading="lazy" />
+                    <h3 className="text-lg font-bold mt-4 mb-2">{room.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{room.description}</p>
+                  </div>
                 ))}
+              </div>
+
+              <div className="max-w-3xl mx-auto mt-12">
+                <h3 className="text-lg font-bold mb-3">Add-ons on the booking form</h3>
+                <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-2 list-disc pl-5 text-muted-foreground">
+                  {addOns.map((addOn) => (
+                    <li key={addOn.key}>{addOn.label}{addOnLabel(addOn.key)}</li>
+                  ))}
+                </ul>
+                <p className="text-sm text-muted-foreground mt-3 leading-relaxed">
+                  Each has its own price on the booking form and is added only if you choose it. Add-on
+                  prices are before 5% GST.
+                </p>
+              </div>
+
+              <div className="max-w-3xl mx-auto mt-12 border-t border-border pt-10">
+                <h2 className="display-serif text-2xl md:text-3xl font-bold mb-4">Where a move-out inspection looks</h2>
+                <dl className="space-y-3 text-muted-foreground leading-relaxed">
+                  {inspectionPoints.map((point) => (
+                    <div key={point.title}>
+                      <dt className="inline font-semibold text-foreground">{point.title}: </dt>
+                      <dd className="inline">{point.body}</dd>
+                    </div>
+                  ))}
+                </dl>
               </div>
               <p className="text-sm text-muted-foreground max-w-3xl mx-auto mt-8 text-center leading-relaxed">
                 Not included: exterior windows, carpet steam cleaning, furnace and duct cleaning, anything
@@ -439,114 +386,15 @@ export default function EdmontonMoveInOut() {
           </div>
         </section>
 
-        {/* Visual Showcase – Detail Shots */}
-        <section className="py-12 bg-secondary/30">
-          <div className="container mx-auto px-4 max-w-6xl">
-            <AnimatedSection>
-              <div className="text-center mb-8">
-                <span className="text-accent font-semibold text-sm uppercase tracking-wide">The Inspection</span>
-                <h2 className="display-serif text-2xl md:text-3xl font-bold mt-2">Where a move-out inspection looks</h2>
-              </div>
-              <div className="grid md:grid-cols-3 gap-6">
-                <div className="rounded-xl overflow-hidden shadow-lg group">
-                  <ResponsiveImage picture={kitchenDeepClean} sizes={THREE_UP_SIZES} alt="Empty kitchen after a move-out clean" className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
-                  <div className="p-4 bg-white">
-                    <h3 className="font-bold mb-1">Kitchens</h3>
-                    <p className="text-sm text-muted-foreground">Grease off the hood and backsplash, inside the oven and fridge, cabinets wiped out once they are empty.</p>
-                  </div>
-                </div>
-                <div className="rounded-xl overflow-hidden shadow-lg group">
-                  <ResponsiveImage picture={bathroomClean} sizes={THREE_UP_SIZES} alt="Bathroom tile and glass after a move-out clean" className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
-                  <div className="p-4 bg-white">
-                    <h3 className="font-bold mb-1">Bathrooms</h3>
-                    <p className="text-sm text-muted-foreground">Soap scum off the glass, scale off the taps, tile and grout scrubbed, the toilet inside and out.</p>
-                  </div>
-                </div>
-                <div className="rounded-xl overflow-hidden shadow-lg group">
-                  <ResponsiveImage picture={livingRoomClean} sizes={THREE_UP_SIZES} alt="Empty living room cleaned for a move-in" className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
-                  <div className="p-4 bg-white">
-                    <h3 className="font-bold mb-1">Rooms and closets</h3>
-                    <p className="text-sm text-muted-foreground">Baseboards, vents, switches and the inside of the closets, then the floors last so nobody walks on them.</p>
-                  </div>
-                </div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
-
-        {/* Move-in cleaning */}
-        <section className="py-16 bg-background">
-          <div className="container mx-auto px-4 max-w-6xl">
-            <AnimatedSection>
-              <div className="grid lg:grid-cols-2 gap-10 items-center">
-                <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <ResponsiveImage picture={moveOutClean} sizes={SIZES.half} alt="Family carrying boxes into a cleaned home" className="w-full h-[420px] object-cover" loading="lazy" />
-                </div>
-                <div>
-                  <span className="text-accent font-semibold text-sm uppercase tracking-wide">Move-In Cleaning</span>
-                  <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-4">Move-in cleaning for the home you are moving into</h2>
-                  <p className="text-muted-foreground leading-relaxed mb-4">
-                    Move-in cleaning is the same checklist run on the home you are moving into, before the
-                    boxes arrive. An empty home is the only time the inside of the cabinets, the closet shelves
-                    and the floor along the baseboards are all reachable at once, so it is done before the
-                    furniture goes in. Book it for the gap between getting the keys and the moving truck if
-                    you can.
-                  </p>
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li className="flex items-start gap-2"><span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent flex-shrink-0 mt-0.5" aria-hidden="true" /><span>Same flat rate by home size as a move-out, plus 5% GST</span></li>
-                    <li className="flex items-start gap-2"><span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent flex-shrink-0 mt-0.5" aria-hidden="true" /><span>Inside the oven, fridge, microwave, cabinets, drawers and closets included</span></li>
-                    <li className="flex items-start gap-2"><span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent flex-shrink-0 mt-0.5" aria-hidden="true" /><span>Leaving one home and taking the keys to another: book both, each priced by its own size</span></li>
-                  </ul>
-                </div>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
-
-        {/* Apartments, condos and houses */}
-        <section className="py-16 bg-secondary/30">
-          <div className="container mx-auto px-4 max-w-4xl">
-            <AnimatedSection>
-              <div className="text-center mb-8">
-                <span className="text-accent font-semibold text-sm uppercase tracking-wide">Home Types</span>
-                <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Move-out cleaning for Edmonton apartments, condos and houses</h2>
-              </div>
-              <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
-                <p>
-                  <strong className="text-foreground">Apartment move out cleaning.</strong> Tell us how the crew
-                  gets in: a buzzer code, a fob, or a key left with the building manager. Where the building
-                  books the elevator or limits parkade access to a move-out window, give us the times and the
-                  arrival window is booked to fit them where the schedule allows. The price is set by bedroom
-                  count, so a one-bedroom apartment is the first row on the price list.
-                </p>
-                <p>
-                  <strong className="text-foreground">Condos.</strong> The same checklist and the same access
-                  questions. In-suite laundry machines are wiped down on the outside. A balcony is a sweep
-                  only, added on the booking form, and the railings and outside glass are not cleaned.
-                </p>
-                <p>
-                  <strong className="text-foreground">Houses and basement suites.</strong> A bungalow or a
-                  basement suite, a townhouse or a two-storey house adds a home-type charge to the apartment
-                  row, and a finished basement under a house is an add-on on the booking form. A garage is a
-                  sweep of the floor only. If a basement suite is changing hands on its own, book it at its
-                  own size, as a basement suite. A house that is still furnished,
-                  with the cupboards full, is not a move-out at all — that is{" "}
-                  <Link to="/edmonton/deep-cleaning/" className="text-primary underline underline-offset-4">a deep clean in Edmonton</Link>,
-                  and we will say so rather than turn up and improvise.
-                </p>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
-
         {/* Price list — rendered here rather than by MoveOutDepth so the heading
             carries the cost query and the travel-fee line sits beside the table. */}
-        <section className="py-16 bg-white">
+        {/* id="quote": the instant-price overlay intercepts every #quote link. Without
+            JavaScript the same link now lands here, on the prices. */}
+        <section id="quote" className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <AnimatedSection>
               <div className="mx-auto max-w-3xl text-center">
-                <span className="text-accent font-semibold text-sm uppercase tracking-wide">Price List</span>
-                <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-4 text-foreground">Move out cleaning cost in Edmonton</h2>
+                <h2 className="display-serif text-3xl md:text-4xl font-bold mb-4 text-foreground">Move out cleaning cost in Edmonton</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   The move-out cleaning price list, before 5% GST. Each row assumes the bathroom count a home
                   that size usually has; a third bathroom in a two-bedroom moves the figure, and the quote
@@ -597,6 +445,26 @@ export default function EdmontonMoveInOut() {
                 sit beside these on{" "}
                 <Link to="/pricing/" className="text-primary underline underline-offset-4">the full Edmonton price list</Link>.
               </p>
+              {/* What the quote asks for, folded in from the "Get Started" band
+                  that repeated the hero's button one screen below it. */}
+              <div className="mx-auto mt-10 max-w-2xl text-center">
+                <p className="text-muted-foreground leading-relaxed mb-6">
+                  Enter the bedrooms, the bathrooms, the home type and the date you hand over the keys. The
+                  quote lists every add-on you tick, the pet charge if the home has pets, and the travel fee
+                  if the address sits outside the city, so the figure on screen is the whole figure before
+                  5% GST.
+                </p>
+                <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-8 h-14" asChild>
+                  <a href="#quote">See My Instant Price</a>
+                </Button>
+                {/* Was "No credit card required", which read as a promise about
+                    the booking. PAYMENT_TERMS puts a temporary hold on the card
+                    the day before the clean, so the true version of the claim is
+                    about the quote: seeing the price costs nothing. */}
+                <p className="text-sm text-muted-foreground mt-4">
+                  Instant pricing, no phone call required, and no card needed to see your price.
+                </p>
+              </div>
             </AnimatedSection>
           </div>
         </section>
@@ -605,13 +473,11 @@ export default function EdmontonMoveInOut() {
 
         {/* Why Choose Us — Dark */}
         <section className="py-16 bg-brand-navy relative overflow-hidden">
-          <div className="absolute top-10 right-20 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />
           <div className="container mx-auto px-4 relative z-10">
             <AnimatedSection>
               <div className="text-center mb-12">
-                <span className="text-accent font-semibold text-sm uppercase tracking-wide">Why Us</span>
-                <h2 className="display-serif text-3xl md:text-4xl font-bold text-white mt-2">The terms of a move-out booking in Edmonton</h2>
-                <p className="text-white/90 mt-3 max-w-2xl mx-auto">Six terms of the booking, each written down before the crew arrives.</p>
+                <h2 className="display-serif text-3xl md:text-4xl font-bold text-white">The terms of a move-out booking in Edmonton</h2>
+                <p className="text-white/90 mt-3 max-w-2xl mx-auto">Each term is written down before the crew arrives.</p>
               </div>
             </AnimatedSection>
             <AnimatedSection>
@@ -624,42 +490,146 @@ export default function EdmontonMoveInOut() {
           </div>
         </section>
 
-        {/* FAQ */}
+        {/* Move-in cleaning */}
         <section className="py-16 bg-background">
-          <div className="container mx-auto px-4 max-w-3xl">
+          <div className="container mx-auto px-4 max-w-6xl">
             <AnimatedSection>
-              <div className="text-center mb-10">
-                <span className="text-accent font-semibold text-sm uppercase tracking-wide">FAQ</span>
-                <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Move-out cleaning questions</h2>
+              <div className="grid lg:grid-cols-2 gap-10 items-center">
+                <div className="rounded-xl overflow-hidden">
+                  <ResponsiveImage picture={moveOutClean} sizes={SIZES.half} alt="Made bed with white linen and a tufted headboard between two white nightstands with lamps" className="w-full h-[420px] object-cover" loading="lazy" />
+                </div>
+                <div>
+                  <span className="text-accent font-semibold text-sm uppercase tracking-wide">Move-in cleaning</span>
+                  <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-4">Move-in cleaning for the home you are moving into</h2>
+                  <p className="text-muted-foreground leading-relaxed mb-4">
+                    Move-in cleaning is the same checklist run on the home you are moving into, before the
+                    boxes arrive. An empty home is the only time the inside of the cabinets, the closet shelves
+                    and the floor along the baseboards are all reachable at once, so it is done before the
+                    furniture goes in. Book it for the gap between getting the keys and the moving truck if
+                    you can.
+                  </p>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li className="flex items-start gap-2"><span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent flex-shrink-0 mt-0.5" aria-hidden="true" /><span>Same flat rate by home size as a move-out, plus 5% GST</span></li>
+                    <li className="flex items-start gap-2"><span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent flex-shrink-0 mt-0.5" aria-hidden="true" /><span>Inside the oven, fridge, microwave, cabinets, drawers and closets included</span></li>
+                    <li className="flex items-start gap-2"><span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent flex-shrink-0 mt-0.5" aria-hidden="true" /><span>Leaving one home and taking the keys to another: book both, each priced by its own size</span></li>
+                  </ul>
+                </div>
               </div>
             </AnimatedSection>
+          </div>
+        </section>
+
+        {/* End of tenancy: the inspection, the deposit, and Edmonton's turnover calendar */}
+        <section className="py-16 bg-secondary/30">
+          <div className="container mx-auto px-4 max-w-4xl">
             <AnimatedSection>
-              <div className="space-y-4">
-                {faqs.map((faq, i) => (
-                  <div key={i} className="bg-white rounded-xl border border-border overflow-hidden transition-all duration-300 hover:shadow-md">
-                    <button type="button" onClick={() => setOpenFAQ(openFAQ === i ? null : i)} aria-expanded={openFAQ === i} className="w-full flex items-center justify-between p-5 text-left font-semibold">
-                      <span>{faq.q}</span>
-                      {openFAQ === i ? <ChevronUp className="w-5 h-5 text-muted-foreground flex-shrink-0" /> : <span className="dc-icon dc-icon-chevron-down w-5 h-5 text-muted-foreground flex-shrink-0" aria-hidden="true" />}
-                    </button>
-                    {/* Always in the DOM (hidden when collapsed) so the FAQPage
-                        schema's answers match crawlable page content. */}
-                    <div
-                      className={`px-5 pb-5 text-muted-foreground leading-relaxed border-t border-border pt-4 ${
-                        openFAQ === i ? "" : "hidden"
-                      }`}
-                    >
-                      {faq.a}
-                    </div>
-                  </div>
-                ))}
+              <div className="text-center mb-8">
+                {/* The city belongs in the heading: this page targets "end of
+                    tenancy cleaning edmonton" and the H2 that owned the phrase
+                    named no place at all. */}
+                <h2 className="display-serif text-3xl md:text-4xl font-bold">End of tenancy cleaning in Edmonton and your damage deposit</h2>
               </div>
+              <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
+                <p>
+                  We do not promise the deposit comes back; that decision is the landlord's. What we promise is
+                  the checklist: inside the oven and fridge, inside the cabinets, drawers and closets, baseboards,
+                  switches, vents, window sills and tracks, bathrooms scrubbed, and the floors mopped last. A
+                  cited item names a room and a surface rather than an impression, which is what the checklist
+                  is built to match.
+                </p>
+                <p>
+                  End of tenancy cleaning in Edmonton is judged at one moment: the move-out inspection. Under{" "}
+                  <a href="https://www.alberta.ca/ending-a-tenancy" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Alberta's Residential Tenancies Act</a> the landlord completes a move-out inspection report with
+                  the tenant. Within 10 days of the tenant moving out, the landlord must return the security
+                  deposit (the damage deposit in everyday use), or return what is left with a written statement
+                  of any deductions (an estimate is allowed, with the final statement within 30 days). That report is where a landlord notes cleaning, so
+                  our <strong>move out cleaners in Edmonton</strong> clean to the inspection checklist rather
+                  than to how the home looks from the doorway.
+                </p>
+                <p>
+                  A spring move-out in Edmonton meets the whole winter at once. The sand and salt tracked in
+                  since November arrive dry and stay, so by handover they are worked into the carpet edges and
+                  along the baseboards by the door, and the spring melt in late March and April brings the rest
+                  in over about three weeks. A house with the furnace running since October has cycled its dust
+                  onto the vent covers and the tops of the door frames, and hard Alberta water leaves scale on
+                  the taps and the shower glass. Each of those is a room and a surface, the kind of line a
+                  move-out inspection report can carry, and each is on the move-out checklist.
+                </p>
+                <p>
+                  {/* L8: /edmonton/march-out-cleaning/ had one contextual link into
+                      it from the whole site. This page is where the reader who
+                      needs it actually is. */}
+                  Not every handover is a landlord's. Families leaving military housing in Edmonton are held
+                  to a CFHA march-out inspection instead of a landlord's walkthrough. What CFHA's checklist
+                  asks for, and how the clean is booked around the inspection date, is set out on{" "}
+                  <Link to="/edmonton/march-out-cleaning/" className="text-primary underline underline-offset-4">march-out cleaning in Edmonton</Link>.
+                </p>
+              </div>
+            </AnimatedSection>
+          </div>
+        </section>
+
+        {/* Apartments, condos and houses */}
+        <section className="py-16 bg-background">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <AnimatedSection>
+              <div className="text-center mb-8">
+                <h2 className="display-serif text-3xl md:text-4xl font-bold">Move-out cleaning for Edmonton apartments, condos and houses</h2>
+              </div>
+              <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
+                <p>
+                  <strong className="text-foreground">Apartment move out cleaning.</strong> Tell us how the crew
+                  gets in: a buzzer code, a fob, or a key left with the building manager. Where the building
+                  books the elevator or limits parkade access to a move-out window, give us the times and the
+                  arrival window is booked to fit them where the schedule allows. The price is set by bedroom
+                  count, so a one-bedroom apartment is the first row on the price list.
+                </p>
+                <p>
+                  <strong className="text-foreground">Condos.</strong> The same checklist and the same access
+                  questions. In-suite laundry machines are wiped down on the outside. A balcony is a sweep
+                  only, added on the booking form, and the railings and outside glass are not cleaned.
+                </p>
+                <p>
+                  <strong className="text-foreground">Houses and basement suites.</strong> A bungalow or a
+                  basement suite, a townhouse or a two-storey house adds a home-type charge to the apartment
+                  row, and a finished basement under a house is an add-on on the booking form. A garage is a
+                  sweep of the floor only. If a basement suite is changing hands on its own, book it at its
+                  own size, as a basement suite. A house that is still furnished,
+                  with the cupboards full, is not a move-out at all. That is{" "}
+                  <Link to="/edmonton/deep-cleaning/" className="text-primary underline underline-offset-4">a deep clean in Edmonton</Link>,
+                  and we will say so rather than turn up and improvise.
+                </p>
+              </div>
+            </AnimatedSection>
+          </div>
+        </section>
+
+        {/* FAQ: the shared accordion, as on the Calgary twin. It force-mounts
+            every answer, so the FAQPage schema matches crawlable content. */}
+        <section className="py-16 bg-secondary/30">
+          <div className="container mx-auto px-4 max-w-3xl">
+            <AnimatedSection>
+              <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-10">Move-out cleaning questions</h2>
+            </AnimatedSection>
+            <AnimatedSection>
+              <Accordion type="single" collapsible className="space-y-4">
+                {faqs.map((faq, i) => (
+                  <AccordionItem key={faq.q} value={`item-${i}`} className="bg-white rounded-xl px-6 border border-border">
+                    <AccordionTrigger className="text-left text-base font-semibold hover:no-underline">
+                      {faq.q}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-base text-muted-foreground leading-relaxed">
+                      {faq.a}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
             </AnimatedSection>
           </div>
         </section>
 
         {/* Final CTA */}
         <section className="py-20 bg-brand-navy relative overflow-hidden">
-          <div className="absolute bottom-0 left-20 w-80 h-80 bg-accent/10 rounded-full blur-3xl" />
           <div className="container mx-auto px-4 relative z-10 text-center">
             <AnimatedSection>
               <h2 className="display-serif text-3xl md:text-4xl font-bold text-white mb-6">
@@ -677,7 +647,7 @@ export default function EdmontonMoveInOut() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
                   <a href="#quote">
-                    <Mail className="mr-2 w-5 h-5" />See My Instant Price
+                    See My Instant Price
                   </a>
                 </Button>
                 <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
@@ -690,17 +660,6 @@ export default function EdmontonMoveInOut() {
           </div>
         </section>
 
-        {/* Floating CTA */}
-        {showFloating && (
-          <div className="fixed bottom-6 right-6 z-50 animate-in fade-in slide-in-from-bottom-4">
-            <Button size="lg" className="bg-accent hover:bg-accent/90 text-white shadow-2xl rounded-full h-14 px-6" asChild>
-              <a href="tel:7809136565">
-                <span className="dc-icon dc-icon-phone w-5 h-5 mr-2" aria-hidden="true" />
-                Call Now
-              </a>
-            </Button>
-          </div>
-        )}
         <MoveOutServiceAreas city="Edmonton" />
 
       </main>

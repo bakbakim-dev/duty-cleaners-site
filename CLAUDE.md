@@ -189,6 +189,21 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
   descriptions back or copy the cards into a page. `location-similarity.test.ts` repeats
   AuditSpur's measure on the build and fails at 0.48.
 
+## Design rules for money and location pages (owner-approved taste pass, 2026-09-18)
+- One hero pattern: H1 in `display-serif` (two lines at 1366px), one sentence carrying the from-price,
+  "before GST", the unit and pay-after wording, then "See My Instant Price" as the filled accent button,
+  the phone as the outline button, and the Google rating line. Chips sit in a slim strip under the hero.
+  The two city hubs keep the quote card in place of the buttons.
+- One accent: `accent` (burnt orange), `text-accent-on-dark` on navy. `brand-gold` is for stars, the
+  rating and small marks on navy only; gold text on a light surface fails contrast (2.36:1).
+- Every H1 and H2 on marketing pages uses `display-serif`; never inside the quote funnel.
+- Section labels above headings: at most one per three sections, never one that restates its heading.
+  Numerals only on real sequences (booking steps). No hover lift, scale or rotate on cards that are
+  not links; use `.motion-lift` on ones that are.
+- Everything that opens the quote funnel reads "See My Instant Price". The editorial-brief labels on
+  the regular and recurring service pages and the commercial "Request an Office Cleaning Quote" stay.
+- Never "five bedrooms or more"; the guard in owner-answers-0911.test.ts now catches that wording.
+
 ## Owner to-dos before or on launch day (checked 2026-09-11)
 Owner reminder request (2026-09-13): when the owner announces launch, review and present every remaining task in `site/docs/launch-day-reminder.md`. A quiet launch-announcement heartbeat is registered. SiteGround is the selected production host; older Netlify production-plan details below are historical and must not be treated as required launch purchases.
 

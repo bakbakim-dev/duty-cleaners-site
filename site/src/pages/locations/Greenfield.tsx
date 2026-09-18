@@ -81,15 +81,15 @@ export default function Greenfield() {
         {/* Hero Section */}
         <section className="pt-32 pb-16 px-4 bg-gradient-to-b from-primary/5 to-background">
           <div className="container mx-auto max-w-4xl text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
+            <h1 className="display-serif text-[2rem] sm:text-[2.25rem] md:text-[3rem] leading-[1.12] text-balance mb-6 text-foreground">
               Greenfield House Cleaning Professionals
             </h1>
             <p className="text-xl text-muted-foreground mb-8">
               Greenfield is almost all detached houses, most of them built in the 1960s. Our Edmonton branch cleans them at a flat rate by home size before GST, and a bungalow or a two-storey house adds a home-type surcharge to the condo price.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-              <Button size="lg" className="text-lg px-8" asChild>
-                <a href="#quote">GET INSTANT PRICE</a>
+              <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
+                <a href="#quote">See My Instant Price</a>
               </Button>
               <a href="tel:7809136565" className="flex items-center gap-2 text-lg font-semibold text-primary hover:text-primary/80 transition-colors">
                 <span className="dc-icon dc-icon-phone w-5 h-5" aria-hidden="true" />
@@ -145,7 +145,7 @@ export default function Greenfield() {
         {/* Main Content */}
         <section className="py-16 px-4">
           <div className="container mx-auto max-w-4xl">
-            <h2 className="text-3xl font-bold mb-6 text-foreground">
+            <h2 className="display-serif text-2xl md:text-3xl font-bold mb-6 text-foreground text-balance">
               Residential Cleaning in Greenfield, Edmonton
             </h2>
             <div className="prose prose-lg max-w-none text-muted-foreground space-y-4">
@@ -188,7 +188,7 @@ export default function Greenfield() {
             left with no path into the services at all. */}
         <section className="py-10 px-4">
           <div className="container mx-auto max-w-4xl">
-            <h2 className="text-2xl font-bold mb-4 text-foreground">Cleaning services in Greenfield</h2>
+            <h2 className="display-serif text-2xl font-bold mb-4 text-foreground text-balance">Cleaning services in Greenfield</h2>
             <ul className="grid gap-3 sm:grid-cols-2">
               <li>
                 <Link to="/edmonton/regular-cleaning/" className="font-semibold text-primary hover:text-accent">
@@ -217,7 +217,7 @@ export default function Greenfield() {
               </li>
             </ul>
             <p className="mt-6 text-muted-foreground">
-              {"Greenfield is one of the Edmonton neighbourhoods we clean — see "}
+              {"Greenfield is one of the Edmonton neighbourhoods we clean. See "}
               <Link to="/" className="text-primary underline underline-offset-2">
                 house cleaning services in Edmonton
               </Link>
@@ -255,8 +255,7 @@ export default function Greenfield() {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
               <div className="text-center mb-12">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">FAQ</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Frequently Asked Questions</h2>
+                <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">Frequently Asked Questions</h2>
               </div>
               <Accordion type="single" collapsible className="w-full">
                 {faqs.map((faq, index) => (

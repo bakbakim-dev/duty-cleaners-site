@@ -9,26 +9,21 @@ import { travelFee } from "@/data/addon-table";
 import { buildServiceSchema } from "@/lib/service-schema";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { Star, Shield, Droplets, Wind, HandMetal, Cigarette, Home, Utensils, Cloud, ClipboardCheck, Search, Brush, ThumbsUp, Phone, Sparkles } from "lucide-react";
+import { Star, Shield, Droplets, Home, ThumbsUp, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Link } from "react-router-dom";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import type { Picture } from "vite-imagetools";
 import ResponsiveImage, { SIZES } from "@/components/ResponsiveImage";
-import wallStainRemoval from "@/assets/wall-washing/wall-stain-removal.webp?card";
-import hallwayClean from "@/assets/wall-washing/hallway-clean.webp?card";
-// The same photo twice: the two-up feature beside the hero copy (?col) and
-// one of the six result cards (?card).
+// The two-up feature beside the hero copy (?col).
 import livingRoomWallsFeature from "@/assets/wall-washing/living-room-walls.webp?col";
-import livingRoomWalls from "@/assets/wall-washing/living-room-walls.webp?card";
 import kitchenGrease from "@/assets/wall-washing/kitchen-grease.webp?card";
 import dirtyWallBefore from "@/assets/wall-washing/dirty-wall-before.webp?card";
 import stainCloseup from "@/assets/wall-washing/stain-closeup.webp?card";
 import { Helmet } from "react-helmet-async";
 import CityCrossLink from "@/components/CityCrossLink";
-import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
+import { CITY_PROOF, RATING_CLAIM, hoursRowsFor } from "@/data/proof";
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -42,44 +37,21 @@ const AnimatedSection = ({ children, className = "" }: { children: React.ReactNo
   );
 };
 
-const ProblemCard = ({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: string }) => (
-  <div className="group bg-white rounded-xl border border-border p-5 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg">
-    <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center mb-3 transition-transform duration-300 group-hover:rotate-12">
-      <Icon className="w-5 h-5 text-primary" />
-    </div>
-    <h3 className="font-semibold text-foreground mb-1">{title}</h3>
-    <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
-  </div>
-);
-
+/* An illustration with its caption. Nothing happens when it is clicked, so it
+   stays still under the pointer. */
 const ResultCard = ({ src, caption }: { src: Picture; caption: string }) => (
-  <div className="group rounded-xl overflow-hidden border border-border bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+  <figure className="rounded-xl overflow-hidden border border-border bg-white">
     <div className="aspect-[4/3] overflow-hidden">
       <ResponsiveImage
         picture={src}
-        sizes={"(min-width: 1024px) 30vw, (min-width: 640px) 50vw, 100vw"}
+        sizes={"(min-width: 640px) 33vw, 100vw"}
         alt={caption}
         loading="lazy"
-        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        className="w-full h-full object-cover"
       />
     </div>
-    <div className="p-4">
-      <p className="text-sm font-medium text-foreground">{caption}</p>
-    </div>
-  </div>
-);
-
-const StepCard = ({ step, icon: Icon, title, description }: { step: number; icon: React.ElementType; title: string; description: string }) => (
-  <div className="relative bg-white rounded-xl border border-border p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-    <div className="absolute -top-3 -left-3 w-9 h-9 rounded-full bg-accent text-accent-foreground font-bold flex items-center justify-center text-sm shadow-md">
-      {step}
-    </div>
-    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-      <Icon className="w-6 h-6 text-primary" />
-    </div>
-    <h3 className="font-semibold text-lg mb-2">{title}</h3>
-    <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
-  </div>
+    <figcaption className="p-4 text-sm font-medium text-foreground">{caption}</figcaption>
+  </figure>
 );
 
 const calgaryLocations = [
@@ -97,28 +69,28 @@ const calgaryLocations = [
 ];
 
 const wallProblems = [
-  { icon: Wind, title: "Static-held dust film", description: "The grey film above vents and behind doors. Static holds it to the paint, so a duster only pushes it along." },
-  { icon: Cloud, title: "Furnace halo", description: "The soft dark band above the registers and along the ceiling line." },
-  { icon: Droplets, title: "Hard-water haze", description: "The mineral film around the shower and behind the sink that wiping does not shift." },
-  { icon: Utensils, title: "Cooking film", description: "Grease and hard-water residue combined into a film on the backsplash surround." },
-  { icon: HandMetal, title: "Handprints & scuffs", description: "Around switches, along hallways and entry walls, where hands and bags touch the wall." },
-  { icon: Cigarette, title: "Nicotine & smoke residue", description: "Yellow tar film that dulls the paint. It fades with washing; full removal is not promised." },
+  { title: "Static-held dust film", description: "The grey film above vents and behind doors. Static holds it to the paint, so a duster only pushes it along." },
+  { title: "Furnace halo", description: "The soft dark band above the registers and along the ceiling line." },
+  { title: "Hard-water haze", description: "The mineral film around the shower and behind the sink that wiping does not shift." },
+  { title: "Cooking film", description: "Grease and hard-water residue combined into a film on the backsplash surround." },
+  { title: "Handprints & scuffs", description: "Around switches, along hallways and entry walls, where hands and bags touch the wall." },
+  { title: "Nicotine & smoke residue", description: "Yellow tar film that dulls the paint. It fades with washing; full removal is not promised." },
 ];
 
 const includedItems = [
-  { icon: Brush, title: "The full wash", description: "The team washes painted drywall in each room on the booking with a damp cloth and a bucket, from the top of the wall to the baseboard, within reach of a 3-step ladder." },
-  { icon: Sparkles, title: "Marks first", description: "Scuffs, handprints and the odd crayon line are worked one at a time before the wash, so the wash does not spread them." },
-  { icon: Wind, title: "Corners and the ceiling line", description: "The furnace halo along the ceiling line is cleared before the wall is washed, or it ends up back on the wall." },
-  { icon: Droplets, title: "Hard-water haze", description: "Describe mineral marks around the shower and taps before booking. The team checks the surface and paint finish; washing is not a promise that all marks will lift." },
-  { icon: Cloud, title: "Smoke and cooking film", description: "Washing may reduce surface cooking and smoke film. Stains and odours held in paint or drywall may remain; tell us about them before booking so we can discuss the limits." },
-  { icon: Shield, title: "Light mildew on bathroom walls", description: "Light surface mildew on a painted bathroom wall is wiped where it is safe to do so. Mould inside the drywall needs remediation, which the team does not do." },
+  { title: "The full wash", description: "The team washes painted drywall in each room on the booking with a damp cloth and a bucket, from the top of the wall to the baseboard, within reach of a 3-step ladder." },
+  { title: "Marks first", description: "Scuffs, handprints and the odd crayon line are worked one at a time before the wash, so the wash does not spread them." },
+  { title: "Corners and the ceiling line", description: "The furnace halo along the ceiling line is cleared before the wall is washed, or it ends up back on the wall." },
+  { title: "Hard-water haze", description: "Describe mineral marks around the shower and taps before booking. The team checks the surface and paint finish; washing is not a promise that all marks will lift." },
+  { title: "Smoke and cooking film", description: "Washing may reduce surface cooking and smoke film. Stains and odours held in paint or drywall may remain; tell us about them before booking so we can discuss the limits." },
+  { title: "Light mildew on bathroom walls", description: "Light surface mildew on a painted bathroom wall is wiped where it is safe to do so. Mould inside the drywall needs remediation, which the team does not do." },
 ];
 
 const steps = [
-  { icon: ClipboardCheck, title: "Tick the wall add-on", description: "It sits on the booking form under the clean you are booking. Choose spot cleaning for the marks or the full wash for whole rooms, and the price for your home size appears beside it." },
-  { icon: Search, title: "Paint check on arrival", description: "The team checks each room's paint finish when it arrives. Flat and matte finishes mark if they are rubbed, so those rooms get the lighter method." },
-  { icon: Brush, title: "Wash, room by room", description: "By hand, with a product suited to painted walls. Marks are worked first, then the whole wall in one pass so it dries without streaks." },
-  { icon: ThumbsUp, title: "Locked up when the team leaves", description: `You do not need to be home: most customers leave a key, a lockbox code or smart-lock access, and the team locks up. A mark we missed is re-cleaned at no charge if you tell us within ${POLICY.guaranteeWindowHours} hours.` },
+  { title: "Tick the wall add-on", description: "It sits on the booking form under the clean you are booking. Choose spot cleaning for the marks or the full wash for whole rooms, and the price for your home size appears beside it." },
+  { title: "Paint check on arrival", description: "The team checks each room's paint finish when it arrives. Flat and matte finishes mark if they are rubbed, so those rooms get the lighter method." },
+  { title: "Wash, room by room", description: "By hand, with a product suited to painted walls. Marks are worked first, then the whole wall in one pass so it dries without streaks." },
+  { title: "Locked up when the team leaves", description: `You do not need to be home: most customers leave a key, a lockbox code or smart-lock access, and the team locks up. A mark we missed is re-cleaned at no charge if you tell us within ${POLICY.guaranteeWindowHours} hours.` },
 ];
 
 const whyUs = [
@@ -182,6 +154,8 @@ const WALL_ROWS = bedroomOptions("standard").map((bedroom) => {
 const STANDARD_FROM = STANDARD_ROWS[0]?.price ?? "";
 const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
 
+const OFFICE = CITY_PROOF.calgary;
+
 const PAGE_TITLE = "Wall Washing Add-On Calgary | Duty Cleaners";
 const META_DESCRIPTION = `Wall washing in Calgary from ${formatPrice(WALL_FROM)} before GST, added to a standard, deep or move-out clean: dust film, hard-water haze and cooking film.`;
 
@@ -224,39 +198,23 @@ export default function WallWashingCalgary() {
       </div>
 
       {/* Hero Section */}
-      <section className="relative py-20 md:py-28 bg-brand-navy overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-10 right-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
-        </div>
+      <section className="relative py-20 md:py-24 bg-brand-navy overflow-hidden">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
             <div className="flex-1 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
-                <Star className="w-4 h-4 text-accent" />
-                <span className="text-white/90 text-sm font-medium">{RATING_CLAIM}, a missed mark re-cleaned free if you tell us within {POLICY.guaranteeWindowHours} hours</span>
-              </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                Wall Washing & Cleaning <span className="text-accent">Calgary</span>
+              {/* H1, one sentence with both from-prices, the two buttons and the
+                  rating. The re-clean has its own band at the foot of the
+                  page; the caveat and the linked cleans follow the hero. */}
+              <h1 className="display-serif text-4xl md:text-5xl font-bold text-white mb-6 leading-[1.1]">
+                Wall Washing & Cleaning <span className="text-accent-on-dark">Calgary</span>
               </h1>
-              <p className="text-lg text-white/80 mb-10 leading-relaxed max-w-2xl">
-                The team washes walls by hand. The team checks the paint finish and the marks first. Some stains remain, and flat or delicate finishes may need a lighter treatment instead of a full wash.
+              <p className="text-lg text-white/90 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                An add-on to your clean, priced by home size before 5% GST: spot cleaning from{" "}
+                {formatPrice(WALL_FROM)}, the full wash from {formatPrice(WALL_FULL)}, and the card is charged
+                once the clean is done.
               </p>
-              {/* The three cleans this add-on can ride on, linked. The sentence
-                  named all three and linked none, which left the reader told
-                  what to do and not where to do it. */}
-              <p className="text-lg text-white/90 mb-10 leading-relaxed max-w-2xl">
-                Wall washing rides on{" "}
-                <Link to="/calgary/regular-cleaning/" className="text-white underline underline-offset-4">a standard clean</Link>,{" "}
-                <Link to="/calgary/deep-cleaning/" className="text-white underline underline-offset-4">a deep clean</Link>{" "}
-                or{" "}
-                <Link to="/move-out-cleaning-calgary/" className="text-white underline underline-offset-4">a move-out clean</Link>;
-                it is not a visit on its own. Spot cleaning is {formatPrice(WALL_FROM)} to{" "}
-                {formatPrice(WALL_SPOT_MAX)} by home size and the full top-to-bottom wash{" "}
-                {formatPrice(WALL_FULL)} to {formatPrice(WALL_FULL_MAX)}, both before 5% GST. Each of
-                the seven home sizes on the booking form has its own price for both.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-6">
                 <Button size="lg" variant="accent" className="w-full sm:w-auto text-base px-8" asChild>
                   <a href="#quote">
                     See My Instant Price
@@ -269,6 +227,10 @@ export default function WallWashingCalgary() {
                   </a>
                 </Button>
               </div>
+              <p className="flex items-center justify-center lg:justify-start gap-2 text-sm font-medium text-white/90">
+                <Star className="w-4 h-4 text-brand-gold fill-current" aria-hidden="true" />
+                <span>{RATING_CLAIM}, from {OFFICE.googleReviewCount} Calgary reviews</span>
+              </p>
             </div>
             <div className="flex-shrink-0 w-full lg:w-[500px]">
               <ResponsiveImage
@@ -278,6 +240,33 @@ export default function WallWashingCalgary() {
                 className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                loading="eager" fetchPriority="high"/>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Moved down from the hero: the limits of a wash, and the three cleans
+          the add-on can ride on. They are linked because a reader told what to
+          book should also be shown where. */}
+      <section className="py-10 bg-secondary/30 border-b border-border">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto space-y-4 text-muted-foreground leading-relaxed">
+            <p>
+              Walls are washed by hand after the team has checked the paint finish and the marks. Some stains
+              remain, and flat or delicate finishes may need a lighter treatment instead of a full wash.
+            </p>
+            <p>
+              Wall washing rides on{" "}
+              <Link to="/calgary/regular-cleaning/" className="text-primary underline underline-offset-4">a standard clean</Link>,{" "}
+              <Link to="/calgary/deep-cleaning/" className="text-primary underline underline-offset-4">a deep clean</Link>{" "}
+              or{" "}
+              <Link to="/move-out-cleaning-calgary/" className="text-primary underline underline-offset-4">a move-out clean</Link>;
+              it is not a visit on its own. Spot cleaning is {formatPrice(WALL_FROM)} to{" "}
+              {formatPrice(WALL_SPOT_MAX)} by home size and the full top-to-bottom wash{" "}
+              {formatPrice(WALL_FULL)} to {formatPrice(WALL_FULL_MAX)}, both before 5% GST. Each of
+              the seven home sizes on the booking form has its own price for both. The clean is priced
+              separately, and the pet, home-type and travel charges that can apply to it are listed under
+              the price table.
+            </p>
           </div>
         </div>
       </section>
@@ -298,93 +287,86 @@ export default function WallWashingCalgary() {
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="text-center mb-12 max-w-3xl mx-auto">
-              <span className="text-accent font-semibold text-sm uppercase tracking-wider">What comes off</span>
-              <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">
+              <h2 className="display-serif text-3xl md:text-4xl font-bold mb-4">
                 What comes off a Calgary wall
               </h2>
               <p className="text-muted-foreground">
                 The dust film first, then the furnace halo, the haze in the bathroom, the cooking film beside the stove, and the handprints along the hallway.
               </p>
             </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {/* Down from six pictures to the three that show a mark, or a mark
+                being wiped. The room shots showed nothing a wash changes. */}
+            <div className="grid sm:grid-cols-3 gap-6 max-w-5xl mx-auto">
               <ResultCard src={dirtyWallBefore} caption="A grey handprint on a painted wall beside a door frame" />
-              <ResultCard src={livingRoomWalls} caption="Pale painted walls above a living room sofa" />
               <ResultCard src={stainCloseup} caption="An orange stain on white paint, beside a microfibre cloth" />
-              <ResultCard src={hallwayClean} caption="A white-walled hallway with a wood floor" />
               <ResultCard src={kitchenGrease} caption="A gloved cleaner wiping film off the wall behind a gas range" />
-              <ResultCard src={wallStainRemoval} caption="A gloved hand wiping a mark off a beige wall" />
             </div>
           </AnimatedSection>
         </div>
       </section>
 
-      {/* Wall Problems Grid */}
+      {/* One section where there were two card grids (six marks, then six parts
+          of the wash on navy). Two plain lists, every sentence carried over,
+          including the limits on smoke, haze and mould. */}
       <section className="py-16 md:py-20 bg-secondary/30">
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="max-w-5xl mx-auto">
               <div className="text-center mb-12">
-                <span className="text-accent font-semibold text-sm uppercase tracking-wider">Common Issues</span>
-                <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">The six marks Calgary walls collect</h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto">
-                  The static-held dust film comes first, and five more marks follow it.
-                </p>
-              </div>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {wallProblems.map((p, i) => (
-                  <ProblemCard key={i} icon={p.icon} title={p.title} description={p.description} />
-                ))}
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* What's Included */}
-      <section className="py-16 md:py-20 bg-brand-navy relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
-        <div className="container mx-auto px-4 relative z-10">
-          <AnimatedSection>
-            <div className="max-w-5xl mx-auto">
-              <div className="text-center mb-12">
-                <span className="text-accent font-semibold text-sm uppercase tracking-wider">Our Service</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">
+                <h2 className="display-serif text-3xl md:text-4xl font-bold mb-4">
                   What a Calgary wall wash includes
                 </h2>
               </div>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                {includedItems.map((item, i) => (
-                  <div key={i} className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/10 transition-all duration-300 hover:-translate-y-1 hover:bg-white/15">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center">
-                        <item.icon className="w-5 h-5 text-accent" />
+              <div className="grid md:grid-cols-2 gap-x-12 gap-y-10">
+                <div>
+                  <h3 className="font-semibold text-xl text-foreground mb-2">The six marks Calgary walls collect</h3>
+                  <p className="text-muted-foreground mb-4">
+                    The static-held dust film comes first, and five more marks follow it.
+                  </p>
+                  <dl className="space-y-4">
+                    {wallProblems.map((p) => (
+                      <div key={p.title} className="border-t border-border pt-3">
+                        <dt className="font-semibold text-foreground">{p.title}</dt>
+                        <dd className="text-muted-foreground leading-relaxed">{p.description}</dd>
                       </div>
-                      <h3 className="font-semibold text-white">{item.title}</h3>
-                    </div>
-                    <p className="text-sm text-white/90 leading-relaxed">{item.description}</p>
-                  </div>
-                ))}
+                    ))}
+                  </dl>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-xl text-foreground mb-4">The wash, part by part</h3>
+                  <dl className="space-y-4">
+                    {includedItems.map((item) => (
+                      <div key={item.title} className="border-t border-border pt-3">
+                        <dt className="font-semibold text-foreground">{item.title}</dt>
+                        <dd className="text-muted-foreground leading-relaxed">{item.description}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
               </div>
             </div>
           </AnimatedSection>
         </div>
       </section>
 
-      {/* How It Works */}
+      {/* How It Works, as an ordered list. The order is the point, so it is a
+          real <ol> and not four cards with a badge on the corner. */}
       <section className="py-16 md:py-20 bg-background">
         <div className="container mx-auto px-4">
           <AnimatedSection>
-            <div className="text-center mb-14 max-w-3xl mx-auto">
-              <span className="text-accent font-semibold text-sm uppercase tracking-wider">Process</span>
-              <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">How wall washing is booked and done in Calgary</h2>
+            <div className="text-center mb-10 max-w-3xl mx-auto">
+              <h2 className="display-serif text-3xl md:text-4xl font-bold mb-4">How wall washing is booked and done in Calgary</h2>
               <p className="text-muted-foreground">There is no separate wall visit. The add-on goes on whichever clean you are booking, and the
                 walls in a room are done before that room's floor.</p>
             </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-              {steps.map((s, i) => (
-                <StepCard key={i} step={i + 1} icon={s.icon} title={s.title} description={s.description} />
+            <ol className="max-w-3xl mx-auto list-decimal pl-6 space-y-6 marker:font-bold marker:text-accent">
+              {steps.map((s) => (
+                <li key={s.title} className="pl-2">
+                  <h3 className="font-semibold text-lg mb-1">{s.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{s.description}</p>
+                </li>
               ))}
-            </div>
+            </ol>
           </AnimatedSection>
         </div>
       </section>
@@ -395,8 +377,7 @@ export default function WallWashingCalgary() {
           <AnimatedSection>
             <div className="max-w-3xl mx-auto">
               <div className="text-center mb-8">
-                <span className="text-accent font-semibold text-sm uppercase tracking-wider">Price list</span>
-                <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">What wall washing costs in Calgary</h2>
+                <h2 className="display-serif text-3xl md:text-4xl font-bold mb-4">What wall washing costs in Calgary</h2>
                 <p className="text-muted-foreground">
                   The add-on is priced by the size of the home on the booking, however many walls it has,
                   and the same row applies whether it rides on a standard, deep or move-out clean. Seven
@@ -450,11 +431,11 @@ export default function WallWashingCalgary() {
             <div className="max-w-5xl mx-auto">
               <div className="text-center mb-12">
                 <span className="text-accent font-semibold text-sm uppercase tracking-wider">Plain terms</span>
-                <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">What you are paying for when you add the walls</h2>
+                <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-4">What you are paying for when you add the walls</h2>
               </div>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {whyUs.map((w, i) => (
-                  <div key={i} className="bg-white rounded-xl border border-border p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                  <div key={i} className="bg-white rounded-xl border border-border p-5">
                     <div className="w-10 h-10 rounded-lg bg-accent/15 flex items-center justify-center mb-3">
                       <w.icon className="w-5 h-5 text-accent" />
                     </div>
@@ -474,8 +455,7 @@ export default function WallWashingCalgary() {
           <AnimatedSection>
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-10">
-                <span className="text-accent font-semibold text-sm uppercase tracking-wider">Service Areas</span>
-                <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Wall washing across Calgary, Airdrie and Cochrane</h2>
+                <h2 className="display-serif text-3xl md:text-4xl font-bold mb-4">Wall washing across Calgary, Airdrie and Cochrane</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
                   Inside Calgary city limits there is no travel fee on a wall wash or the clean it rides on.
                   The towns around the city carry a {TRAVEL_FEE} travel fee on the clean the walls are added to, and two of them
@@ -509,8 +489,7 @@ export default function WallWashingCalgary() {
           <AnimatedSection>
             <div className="max-w-3xl mx-auto">
               <div className="text-center mb-10">
-                <span className="text-accent font-semibold text-sm uppercase tracking-wider">FAQ</span>
-                <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Wall washing questions from Calgary customers</h2>
+                <h2 className="display-serif text-3xl md:text-4xl font-bold mb-4">Wall washing questions from Calgary customers</h2>
               </div>
               <Accordion type="single" collapsible className="bg-white rounded-xl border border-border px-6">
                 {faqs.map((f, i) => (
@@ -525,123 +504,95 @@ export default function WallWashingCalgary() {
         </div>
       </section>
 
-      {/* Happy Clients */}
-      <section className="py-16 md:py-20 bg-brand-navy relative overflow-hidden">
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
-        <div className="container mx-auto px-4 relative z-10">
-          <AnimatedSection>
-            <div className="max-w-3xl mx-auto text-center">
-              <div className="flex justify-center mb-6">
-                <Stars size={1.75} className="text-accent" />
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
-                {CITY_PROOF.calgary.googleRating} on Google from {CITY_PROOF.calgary.googleReviewCount} Calgary reviews
-              </h2>
-              <p className="text-xl font-semibold text-accent mb-6">A missed mark is re-cleaned free</p>
-              <p className="text-white/90 mb-8 max-w-xl mx-auto">
-                Those are the reviews on the Calgary branch's own Google listing. Tell us within{" "}
-                {POLICY.guaranteeWindowHours} hours about a wall we got wrong and it is put right at no
-                charge.{" "}
-                <Link to="/reviews/" className="text-white underline underline-offset-4">Read the reviews</Link>{" "}
-                before you decide.
-              </p>
-              <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10" asChild>
-                <Link to="/about-us/">About Duty Cleaners</Link>
-              </Button>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Contact Section */}
+      {/* Contact, as a single block. Hours come from proof.ts. The old "Hours"
+          card ended in a "Google listing" link, which now sits with the rating
+          in the band below. */}
       <section className="py-16 md:py-20 bg-background">
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-12">
-                <span className="text-accent font-semibold text-sm uppercase tracking-wider">Contact</span>
-                <h2 className="text-3xl md:text-4xl font-bold mt-2">The Calgary office</h2>
+              <div className="text-center mb-10">
+                <h2 className="display-serif text-3xl md:text-4xl font-bold">The Calgary office</h2>
               </div>
-              <div className="grid md:grid-cols-3 gap-6">
-                <Card className="text-center group transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-                  <CardContent className="pt-8 pb-6">
-                    <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:rotate-12">
-                      <span className="dc-icon dc-icon-phone w-6 h-6 text-primary" aria-hidden="true" />
-                    </div>
-                    <h3 className="font-semibold text-lg mb-2">Phone</h3>
-                    <p className="text-muted-foreground text-sm mb-3">Ask about a paint finish or a stain before you book</p>
-                    <a href="tel:4037681341" className="text-primary font-semibold hover:underline">(403) 768-1341</a>
-                  </CardContent>
-                </Card>
-
-                <Card className="text-center group transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-                  <CardContent className="pt-8 pb-6">
-                    <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:rotate-12">
-                      <span className="dc-icon dc-icon-map-pin w-6 h-6 text-primary" aria-hidden="true" />
-                    </div>
-                    <h3 className="font-semibold text-lg mb-2">Address</h3>
-                    <p className="text-muted-foreground text-sm mb-3">2835 37 Street SW #24<br />Calgary, AB</p>
+              <dl className="bg-white border border-border rounded-xl p-6 md:p-8 grid sm:grid-cols-3 gap-8">
+                <div>
+                  <dt className="font-semibold text-foreground mb-1">Phone</dt>
+                  <dd className="text-muted-foreground">
+                    Ask about a paint finish or a stain before you book
+                    <a href={OFFICE.phoneLink} className="mt-1 block text-lg font-semibold text-primary underline underline-offset-4">{OFFICE.phone}</a>
+                  </dd>
+                </div>
+                <div>
+                  <dt className="font-semibold text-foreground mb-1">Address</dt>
+                  <dd className="text-muted-foreground">
+                    {OFFICE.address}
                     <a
                       href="https://www.google.com/maps/search/?api=1&query=2835+37+Street+SW+%2324+Calgary+AB"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-primary font-semibold hover:underline"
+                      className="mt-1 block font-semibold text-primary underline underline-offset-4"
                     >
                       Get Directions
                     </a>
-                  </CardContent>
-                </Card>
-
-                <Card className="text-center group transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-                  <CardContent className="pt-8 pb-6">
-                    <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:rotate-12">
-                      <span className="dc-icon dc-icon-clock w-6 h-6 text-primary" aria-hidden="true" />
-                    </div>
-                    <h3 className="font-semibold text-lg mb-2">Hours</h3>
-                    <p className="text-muted-foreground text-sm"><strong>Mon–Sat:</strong> 8am – 8pm</p>
-                    <p className="text-muted-foreground text-sm mb-3"><strong>Sunday:</strong> 9am – 3pm</p>
-                    <a
-                      href={getListing("calgary").reviewsUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary font-semibold hover:underline"
-                    >
-                      Google listing
-                    </a>
-                  </CardContent>
-                </Card>
-              </div>
+                  </dd>
+                </div>
+                <div>
+                  <dt className="font-semibold text-foreground mb-1">Hours</dt>
+                  <dd className="text-muted-foreground">
+                    {hoursRowsFor("calgary").map(([days, time]) => (
+                      <span key={days} className="block">{days}: {time}</span>
+                    ))}
+                  </dd>
+                </div>
+              </dl>
             </div>
           </AnimatedSection>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="py-16 md:py-20 bg-brand-navy relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-10 right-20 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />
-        </div>
-        <div className="container mx-auto px-4 relative z-10 text-center">
+      {/* Closing band. The rating-and-re-clean section and the final call to
+          action were two navy bands; this is both, once. */}
+      <section className="py-16 md:py-20 bg-brand-navy">
+        <div className="container mx-auto px-4">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Book the walls with the next clean</h2>
-            <p className="text-white/90 mb-8 max-w-xl mx-auto">
-              Spot cleaning from {formatPrice(WALL_FROM)} and the full wash from {formatPrice(WALL_FULL)} at the
-              one-bedroom size, on top of a standard clean from {STANDARD_FROM} for a one-bedroom apartment or
-              condo, all before GST and none of it charged until the clean is done. The pet charge, a home-type
-              charge or the travel fee outside Calgary city limits can apply, and each one is on the quote before
-              you book. The cleans it can ride on are listed with their starting prices under{" "}
-              <Link to="/calgary/services/" className="text-white underline underline-offset-4">every Calgary cleaning service, with starting prices</Link>.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="accent" className="w-full sm:w-auto text-base px-8" asChild>
-                <a href="#quote">See My Instant Price</a>
-              </Button>
-              <Button size="lg" variant="outline" className="w-full sm:w-auto text-base border-white/30 text-white hover:bg-white/10" asChild>
-                <a href="tel:4037681341">
-                  <span className="dc-icon dc-icon-phone w-4 h-4 mr-2" aria-hidden="true" />
-                  Call (403) 768-1341
-                </a>
-              </Button>
+            <div className="max-w-3xl mx-auto text-center">
+              <div className="flex justify-center mb-6">
+                <Stars size={1.75} className="text-brand-gold" />
+              </div>
+              <h2 className="display-serif text-3xl md:text-4xl font-bold text-white mb-3">
+                {CITY_PROOF.calgary.googleRating} on Google from {CITY_PROOF.calgary.googleReviewCount} Calgary reviews
+              </h2>
+              <p className="text-xl font-semibold text-accent-on-dark mb-6">A missed mark is re-cleaned free</p>
+              <p className="text-white/90 mb-4 max-w-xl mx-auto">
+                Those are the reviews on{" "}
+                <a href={getListing("calgary").reviewsUrl} target="_blank" rel="noopener noreferrer" className="text-white underline underline-offset-4">the Calgary branch's own Google listing</a>.
+                Tell us within{" "}
+                {POLICY.guaranteeWindowHours} hours about a wall we got wrong and it is put right at no
+                charge.{" "}
+                <Link to="/reviews/" className="text-white underline underline-offset-4">Read the reviews</Link>{" "}
+                before you decide; the company itself is on{" "}
+                <Link to="/about-us/" className="text-white underline underline-offset-4">About Duty Cleaners</Link>.
+              </p>
+              <h3 className="text-2xl font-bold text-white mt-10 mb-3">Book the walls with the next clean</h3>
+              <p className="text-white/90 mb-8 max-w-xl mx-auto">
+                Spot cleaning from {formatPrice(WALL_FROM)} and the full wash from {formatPrice(WALL_FULL)} at the
+                one-bedroom size, on top of a standard clean from {STANDARD_FROM} for a one-bedroom apartment or
+                condo, all before GST and none of it charged until the clean is done. The pet charge, a home-type
+                charge or the travel fee outside Calgary city limits can apply, and each one is on the quote before
+                you book. The cleans it can ride on are listed with their starting prices under{" "}
+                <Link to="/calgary/services/" className="text-white underline underline-offset-4">every Calgary cleaning service, with starting prices</Link>.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button size="lg" variant="accent" className="w-full sm:w-auto text-base px-8" asChild>
+                  <a href="#quote">See My Instant Price</a>
+                </Button>
+                <Button size="lg" variant="outline" className="w-full sm:w-auto text-base border-white/30 text-white hover:bg-white/10" asChild>
+                  <a href={OFFICE.phoneLink}>
+                    <span className="dc-icon dc-icon-phone w-4 h-4 mr-2" aria-hidden="true" />
+                    {OFFICE.phone}
+                  </a>
+                </Button>
+              </div>
             </div>
           </AnimatedSection>
         </div>

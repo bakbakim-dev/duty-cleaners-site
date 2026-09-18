@@ -77,15 +77,15 @@ const QueenAlexandra = () => {
         <section className="pt-24 pb-12 px-4">
           <div className="container mx-auto max-w-6xl">
             <div className="text-center space-y-6">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">
+              <h1 className="display-serif text-[2rem] sm:text-[2.25rem] md:text-[3rem] leading-[1.12] text-balance text-foreground">
                 Queen Alexandra House Cleaning Professionals
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
                 Just over half the homes in Queen Alexandra are low-rise walk-up apartments, and about seven in ten are rented in the <a href="https://data.edmonton.ca/Census/2016-Census-Dwelling-Unit-by-Ownership-Neighbourho/d2xp-ctch" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">City of Edmonton's 2016 municipal census</a>. Every clean is a flat rate by home size, shown before you book.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <Button size="lg" asChild>
-                  <a href="#quote">GET INSTANT PRICE</a>
+                <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
+                  <a href="#quote">See My Instant Price</a>
                 </Button>
                 <Button size="lg" variant="outline" asChild>
                   <a href="tel:7809136565">
@@ -133,7 +133,7 @@ const QueenAlexandra = () => {
         {/* Main Content */}
         <section className="py-12 px-4">
           <div className="container mx-auto max-w-4xl prose prose-lg">
-            <h2 className="text-3xl font-bold">Residential Cleaning in Queen Alexandra</h2>
+            <h2 className="display-serif text-2xl md:text-3xl font-bold text-balance">Residential Cleaning in Queen Alexandra</h2>
             <p>
               Most homes in Queen Alexandra are rented, and possession dates cluster at month end. A move-out clean on a suite covers the oven, the fridge seals and every cabinet interior, whether the last tenant used them or not.
             </p>
@@ -174,7 +174,7 @@ const QueenAlexandra = () => {
         {/* CTA Section */}
         <section className="py-16 px-4 bg-muted/50">
           <div className="container mx-auto max-w-4xl text-center space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold">See Your Queen Alexandra Price Before You Book</h2>
+            <h2 className="display-serif text-2xl md:text-3xl font-bold text-balance">See Your Queen Alexandra Price Before You Book</h2>
             <Button size="lg" asChild>
               <a href="#quote">See My Instant Price</a>
             </Button>
@@ -193,7 +193,7 @@ const QueenAlexandra = () => {
             pages with no path into the service pages at all. */}
         <section className="py-10 px-4">
           <div className="container mx-auto max-w-4xl">
-            <h2 className="text-2xl font-bold mb-4 text-foreground">Cleaning services in Queen Alexandra</h2>
+            <h2 className="display-serif text-2xl font-bold mb-4 text-foreground text-balance">Cleaning services in Queen Alexandra</h2>
             <ul className="grid gap-3 sm:grid-cols-2">
               <li>
                 <Link to="/edmonton/regular-cleaning/" className="font-semibold text-primary hover:text-accent">
@@ -222,7 +222,7 @@ const QueenAlexandra = () => {
               </li>
             </ul>
             <p className="mt-6 text-muted-foreground">
-              {"Queen Alexandra is one of the Edmonton neighbourhoods we clean — see "}
+              {"Queen Alexandra is one of the Edmonton neighbourhoods we clean. See "}
               <Link to="/" className="text-primary underline underline-offset-2">
                 house cleaning services in Edmonton
               </Link>
@@ -239,8 +239,7 @@ const QueenAlexandra = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
               <div className="text-center mb-12">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">FAQ</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Frequently Asked Questions</h2>
+                <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">Frequently Asked Questions</h2>
               </div>
               <Accordion type="single" collapsible className="w-full">
                 {faqs.map((faq, index) => (
@@ -256,7 +255,7 @@ const QueenAlexandra = () => {
 
         <section className="py-16 px-4">
           <div className="container mx-auto max-w-4xl text-center space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold">Book a Clean in Queen Alexandra</h2>
+            <h2 className="display-serif text-3xl md:text-4xl font-bold text-balance">Book a Clean in Queen Alexandra</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               See your flat rate before you book, and pay nothing until the clean is done. The price is set by home size before 5% GST, and a pet charge or home-type surcharge shows on the quote when it applies.
             </p>

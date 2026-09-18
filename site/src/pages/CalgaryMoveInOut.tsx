@@ -4,18 +4,16 @@ import CityCrossLink from "@/components/CityCrossLink";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
 import ResponsiveImage, { SIZES } from "@/components/ResponsiveImage";
+import Stars from "@/components/Stars";
 import calgaryMoveInOutHero from "@/assets/calgary-move-in-out-hero.webp?col";
 import calgaryKitchenClean from "@/assets/gallery/calgary-kitchen-clean.webp?card";
 import calgaryBathroomClean from "@/assets/gallery/calgary-bathroom-clean.webp?card";
 import calgaryLivingRoomClean from "@/assets/gallery/calgary-living-room-clean.webp?card";
 import calgaryMoveOutClean from "@/assets/gallery/calgary-move-out-clean.webp?col";
-import calgaryBeforeAfter from "@/assets/gallery/calgary-before-after.webp";
-import calgaryTeamCleaning from "@/assets/gallery/calgary-team-cleaning.webp";
-import calgaryWindowCleaning from "@/assets/gallery/calgary-window-cleaning.webp";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
-import { Home, Shield, Star, DollarSign, Award, Calculator } from "lucide-react";
+import { Shield, DollarSign, Award } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import MoveOutDepth from "@/components/MoveOutDepth";
@@ -104,7 +102,7 @@ const branchSchema = () => {
 const faqs = [
   {
     q: "How much does move out cleaning cost in Calgary?",
-    a: `From ${MOVE_FROM} for a one-bedroom to ${MOVE_TO} for five bedrooms or more, before 5% GST, at the apartment rate. A townhouse or two-storey house adds a home-type charge, a home with pets adds ${PET_LABEL}, and an address outside Calgary city limits adds ${TRAVEL_FEE_LABEL} in travel. The number of bathrooms and any add-ons you pick also move the figure, and the quote form shows the exact price before you book. It is a flat rate: it does not rise if the clean takes longer than expected.`,
+    a: `From ${MOVE_FROM} for a one-bedroom to ${MOVE_TO} for five bedrooms, before 5% GST, at the apartment rate. Six and seven bedrooms cost more and are priced by the instant quote. A townhouse or two-storey house adds a home-type charge, a home with pets adds ${PET_LABEL}, and an address outside Calgary city limits adds ${TRAVEL_FEE_LABEL} in travel. The number of bathrooms and any add-ons you pick also move the figure, and the quote form shows the exact price before you book. It is a flat rate: it does not rise if the clean takes longer than expected.`,
   },
   {
     q: "How long does a move out clean take?",
@@ -143,6 +141,75 @@ const faqs = [
     a: `Cancel or move the booking with ${POLICY.cancellationNoticeHours} hours' notice at no charge. Inside that window the fee is ${POLICY.cancellationFee}. If we are the ones who have to move a clean, you are not charged for a visit we did not do, and there is no cancellation fee if the new date does not suit you.`,
   },
 ];
+
+// The flat-rate checklist, room by room, each with the photo that used to sit
+// in a second card grid below it. The alt text says what is in the frame.
+const rooms = [
+  {
+    picture: calgaryKitchenClean,
+    alt: "Kitchen with granite counters, a gas cooktop and a stainless-steel range hood",
+    title: "Kitchen",
+    items: [
+      "Countertops, sink and backsplash scrubbed",
+      "Inside and outside of cabinets, drawers and appliances",
+      "Grease off the stovetop, range hood and exhaust fan",
+      "Inside the oven, fridge and microwave",
+      "Kitchen floor vacuumed and mopped last",
+    ],
+  },
+  {
+    picture: calgaryBathroomClean,
+    alt: "White bathroom with a glass shower screen, a rain shower head and a stone vanity",
+    title: "Bathrooms",
+    items: [
+      "Toilets, tubs, showers and sinks scrubbed",
+      "Tile, floors, mirrors and shower glass",
+      "Soap scum, hard-water scale and mineral deposits",
+      "Vents and baseboards within reach",
+      "Handles, knobs, switches and the inside of the vanity",
+    ],
+  },
+  {
+    picture: calgaryLivingRoomClean,
+    alt: "Living room with a sofa and rug, white baseboards and a fireplace on hardwood floors",
+    title: "Bedrooms, living areas and entry",
+    items: [
+      "Floors vacuumed and mopped, carpet and hard surface",
+      "Doors, baseboards, switches, outlets and vent covers wiped",
+      "Window sills dusted, and ceiling fans on request where safely reachable",
+      "Inside closets, shelves and storage",
+      "Cobwebs from corners, and the road sand out of the front entry",
+    ],
+  },
+];
+
+// The add-ons as a plain list, each with its lowest bk-config price.
+const addOns = [
+  { label: "Inside windows", key: "inside-windows" },
+  { label: "Blinds, per set", key: "wipe-window-blinds-per-set" },
+  { label: "Wall washing, spot or full", key: "spot-cleaning-inside-walls" },
+  { label: "Basement, unfinished sweep or finished clean", key: "unfinished-basement-sweep" },
+  { label: "Garage or balcony sweep", key: "sweep-only-of-garage-or-balcony" },
+];
+
+// Three places the checklist reaches: the lines that captioned the photo row.
+// The shower line says what is done and names no product: the cleaners choose
+// their own (owner, 2026-09-11).
+const reachPoints = [
+  { title: "The oven and the range hood", body: "Grease shows on both at a glance, and both are on the move-out checklist." },
+  { title: "Shower glass and grout", body: "Hard-water scale is taken off the glass and the taps, and the tile and grout are scrubbed." },
+  { title: "Baseboards and closet shelves", body: "Furniture hides them for years. An empty room does not." },
+];
+
+// One of the six booking terms on the navy band. Static on purpose: it is
+// text, not a link, so it gets no hover motion.
+const TermCard = ({ icon, title, children }: { icon: React.ReactNode; title: React.ReactNode; children: React.ReactNode }) => (
+  <div className="rounded-xl border border-white/20 bg-white/10 p-6">
+    <div className="w-12 h-12 rounded-full bg-accent/20 text-accent flex items-center justify-center mb-4">{icon}</div>
+    <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
+    <p className="text-white/80 leading-relaxed">{children}</p>
+  </div>
+);
 
 export default function CalgaryMoveInOut() {
   return <div className="min-h-screen">
@@ -202,7 +269,8 @@ export default function CalgaryMoveInOut() {
         <Breadcrumbs />
       </div>
 
-      {/* Hero Section */}
+      {/* Hero: the H1, one price sentence, the two buttons and the rating. The
+          paragraph that sat here opens the section below. */}
       <section className="relative bg-brand-navy text-white py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-10">
@@ -210,42 +278,27 @@ export default function CalgaryMoveInOut() {
               <h1 className="display-serif text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-white">
                 Move Out Cleaning in Calgary
               </h1>
-              <p className="text-xl md:text-2xl mb-6 text-white/85">
-                Flat rate from {moveInOutFromPrice()} plus 5% GST, fixed by home size.
-              </p>
-              <p className="text-base md:text-lg mb-8 text-white/80 leading-relaxed">
-                A move-out clean is the one-time clean an empty home gets between tenants or owners,
-                from {moveInOutFromPrice()} for a one-bedroom. It is timed for the gap after the
-                furniture goes and before the keys do, because that is the state the inspection
-                measures the home in. Book online with the instant price, or call the Calgary office.
+              <p className="text-lg md:text-xl mb-8 text-white/85 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                Flat rate from {moveInOutFromPrice()} before GST for a one-bedroom apartment or condo, fixed
+                by home size, and you pay after the clean.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
-                <Button size="lg" className="bg-accent hover:bg-accent/90 text-white text-lg px-8 h-14" asChild>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
+                <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-8 h-14" asChild>
                   <a href="#quote">See My Instant Price</a>
                 </Button>
-                <Button size="lg" className="bg-white/95 text-brand-navy hover:bg-white text-lg px-8 h-14" asChild>
+                <Button size="lg" variant="outline" className="border-white/40 text-white hover:bg-white/10 text-lg px-8 h-14" asChild>
                   <a href="tel:4037681341">
                     <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />
-                    (403) 768-1341
+                    Call (403) 768-1341
                   </a>
                 </Button>
               </div>
 
-              <div className="flex flex-wrap justify-center lg:justify-start gap-6 text-white/90">
-                <div className="flex items-center gap-2">
-                  <span className="dc-icon dc-icon-circle-check w-5 h-5" aria-hidden="true" />
-                  <span className="font-medium">{POLICY.guaranteeWindowHours}-hour re-clean</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="dc-icon dc-icon-circle-check w-5 h-5" aria-hidden="true" />
-                  <span className="font-medium">Nothing charged until the clean is done</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="dc-icon dc-icon-circle-check w-5 h-5" aria-hidden="true" />
-                  <span className="font-medium">{RATING_CLAIM}</span>
-                </div>
-              </div>
+              <p className="flex items-center justify-center lg:justify-start gap-2 text-white/90">
+                <Stars size={1} />
+                <span className="font-medium">{RATING_CLAIM}</span>
+              </p>
             </div>
 
             <div className="flex-shrink-0">
@@ -253,43 +306,28 @@ export default function CalgaryMoveInOut() {
                 picture={calgaryMoveInOutHero}
                 sizes={SIZES.half}
                 alt="Empty living room with hardwood floors, a bay window and a fireplace"
-                className="lg:w-[500px] w-full rounded-2xl shadow-2xl"
+                className="lg:w-[500px] w-full rounded-xl shadow-2xl"
                loading="eager" fetchPriority="high"/>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Instant Quote CTA */}
-      <section id="quote" className="py-16 bg-secondary/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <span className="text-accent font-semibold text-sm uppercase tracking-wide">Get Started</span>
-            <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-3">See your move-out price before you book</h2>
-            <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
-              Choose the home size, the number of bathrooms and the date. The price shown is the
-              flat rate for the full move-out checklist, before 5% GST, and nothing is charged
-              until the clean is done.
-            </p>
-            <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-10 py-6 h-auto font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5" asChild>
-              {/* The heading above promises an instant price and "no phone call
-                  required"; this used to open the contact form. */}
-              <a href="#quote">
-                <Calculator className="w-5 h-5 mr-2" />
-                See My Instant Price
-              </a>
-            </Button>
-            <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground mt-4">
-              <span>⚡ Instant pricing</span>
-              <span>📞 No phone call required</span>
-              {/* Was "No credit card required". PAYMENT_TERMS places a temporary
-                  hold on the card the day before the clean, so that is false as a
-                  claim about booking and true as one about the quote. */}
-              <span>💳 No card needed to see your price</span>
-            </div>
-          </div>
+      {/* Slim strip under the hero: the re-clean window, and the charges that
+          sit outside the flat rate, so the figure above never stands alone. */}
+      <div className="border-b border-border bg-secondary/30">
+        <div className="container mx-auto px-4 py-4">
+          <ul className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-center justify-center lg:justify-start gap-x-8 gap-y-2 text-sm">
+            <li className="flex items-center gap-2 text-foreground">
+              <span className="dc-icon dc-icon-circle-check w-4 h-4 text-primary flex-shrink-0" aria-hidden="true" />
+              <span className="font-medium">{POLICY.guaranteeWindowHours}-hour re-clean</span>
+            </li>
+            <li className="text-muted-foreground">
+              A townhouse or house, a pet or an address outside Calgary city limits each adds a charge, shown on your quote before you book.
+            </li>
+          </ul>
         </div>
-      </section>
+      </div>
 
       {/* Introduction */}
       <section className="py-20 bg-white">
@@ -303,6 +341,12 @@ export default function CalgaryMoveInOut() {
                 paragraph used to repeat the whole of it, and so did the hero and
                 the end-of-tenancy section; it now says what makes the checklist
                 different instead. */}
+            <p>
+              A move-out clean is the one-time clean an empty home gets between tenants or owners,
+              from {moveInOutFromPrice()} for a one-bedroom. It is timed for the gap after the
+              furniture goes and before the keys do, because that is the state the inspection
+              measures the home in. Book online with the instant price, or call the Calgary office.
+            </p>
             <p>
               Move-out cleaning is the deepest clean we do.{" "}
               <Link to="/calgary/regular-cleaning/" className="text-primary underline underline-offset-4">A standard clean in Calgary</Link>{" "}
@@ -330,186 +374,196 @@ export default function CalgaryMoveInOut() {
         </div>
       </section>
 
-      {/* Services Breakdown */}
+      {/* The checklist and its photos, one block: each room's picture sits over
+          its list, the add-ons are a plain list, and the three reach points
+          that captioned the old photo row follow as text. */}
       <section className="py-20 bg-muted/20">
         <div className="container mx-auto px-4 max-w-6xl">
           <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-4">
             The move-out checklist, room by room
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto text-lg">
-            The first three cards are the flat rate. The fourth lists what you can add at booking.
+            The three rooms are the flat rate. The list under them is what you can add at booking.
           </p>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-8">
-            {/* Kitchen */}
-            <div className="bg-white rounded-xl p-8 shadow-md border-2 border-[hsl(160,100%,30%)]/20 transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.02] hover:shadow-xl hover:shadow-[hsl(200,30%,70%)]/30">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-[hsl(160,100%,30%)]/10 rounded-xl flex items-center justify-center">
-                  <Home className="w-6 h-6 text-[hsl(160,100%,30%)]" />
-                </div>
-                <h3 className="text-2xl font-bold">Kitchen</h3>
+          <div className="grid md:grid-cols-3 gap-8">
+            {rooms.map((room) => (
+              <div key={room.title}>
+                <ResponsiveImage picture={room.picture} sizes={THREE_UP_SIZES} alt={room.alt} className="w-full h-64 object-cover rounded-xl" loading="lazy" />
+                <h3 className="text-xl font-bold mt-5 mb-3">{room.title}</h3>
+                <ul className="space-y-2 text-muted-foreground">
+                  {room.items.map((item) => (
+                    <li key={item} className="flex items-start gap-2">
+                      <span className="dc-icon dc-icon-circle-check w-5 h-5 text-primary mt-0.5 flex-shrink-0" aria-hidden="true" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <ul className="space-y-3 text-muted-foreground">
-                <li className="flex items-start gap-2">
-                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-[hsl(160,100%,30%)] mt-0.5 flex-shrink-0" aria-hidden="true" />
-                  <span>Countertops, sink and backsplash scrubbed</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-[hsl(160,100%,30%)] mt-0.5 flex-shrink-0" aria-hidden="true" />
-                  <span>Inside and outside of cabinets, drawers and appliances</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-[hsl(160,100%,30%)] mt-0.5 flex-shrink-0" aria-hidden="true" />
-                  <span>Grease off the stovetop, range hood and exhaust fan</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-[hsl(160,100%,30%)] mt-0.5 flex-shrink-0" aria-hidden="true" />
-                  <span>Inside the oven, fridge and microwave</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-[hsl(160,100%,30%)] mt-0.5 flex-shrink-0" aria-hidden="true" />
-                  <span>Kitchen floor vacuumed and mopped last</span>
-                </li>
-              </ul>
-            </div>
+            ))}
+          </div>
 
-            {/* Bathroom */}
-            <div className="bg-white rounded-xl p-8 shadow-md border-2 border-blue-200 transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.02] hover:shadow-xl hover:shadow-[hsl(200,30%,70%)]/30">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
-                  <Shield className="w-6 h-6 text-blue-600" />
-                </div>
-                <h3 className="text-2xl font-bold">Bathrooms</h3>
-              </div>
-              <ul className="space-y-3 text-muted-foreground">
-                <li className="flex items-start gap-2">
-                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" aria-hidden="true" />
-                  <span>Toilets, tubs, showers and sinks scrubbed</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" aria-hidden="true" />
-                  <span>Tile, floors, mirrors and shower glass</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" aria-hidden="true" />
-                  <span>Soap scum, hard-water scale and mineral deposits</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" aria-hidden="true" />
-                  <span>Vents and baseboards within reach</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" aria-hidden="true" />
-                  <span>Handles, knobs, switches and the inside of the vanity</span>
-                </li>
-              </ul>
-            </div>
+          <div className="max-w-3xl mx-auto mt-14">
+            <h3 className="text-xl font-bold mb-3">Add-ons, each priced separately</h3>
+            <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-2 list-disc pl-5 text-muted-foreground">
+              {addOns.map((addOn) => (
+                <li key={addOn.key}>{addOn.label}{addOnLabel(addOn.key)}</li>
+              ))}
+            </ul>
+            <p className="text-sm text-muted-foreground mt-3">Add-on prices are before 5% GST.</p>
+          </div>
 
-            {/* Living Areas */}
-            <div className="bg-white rounded-xl p-8 shadow-md border-2 border-accent/20 transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.02] hover:shadow-xl hover:shadow-[hsl(200,30%,70%)]/30">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center">
-                  <Home className="w-6 h-6 text-accent" />
+          <div className="max-w-3xl mx-auto mt-12 border-t border-border pt-10">
+            <h2 className="display-serif text-2xl md:text-3xl font-bold mb-4">Three places the move-out checklist reaches</h2>
+            <dl className="space-y-3 text-muted-foreground leading-relaxed">
+              {reachPoints.map((point) => (
+                <div key={point.title}>
+                  <dt className="inline font-semibold text-foreground">{point.title}: </dt>
+                  <dd className="inline">{point.body}</dd>
                 </div>
-                <h3 className="text-2xl font-bold">Bedrooms, living areas and entry</h3>
-              </div>
-              <ul className="space-y-3 text-muted-foreground">
-                <li className="flex items-start gap-2">
-                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent mt-0.5 flex-shrink-0" aria-hidden="true" />
-                  <span>Floors vacuumed and mopped, carpet and hard surface</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent mt-0.5 flex-shrink-0" aria-hidden="true" />
-                  <span>Doors, baseboards, switches, outlets and vent covers wiped</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent mt-0.5 flex-shrink-0" aria-hidden="true" />
-                  <span>Window sills dusted, and ceiling fans on request where safely reachable</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent mt-0.5 flex-shrink-0" aria-hidden="true" />
-                  <span>Inside closets, shelves and storage</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent mt-0.5 flex-shrink-0" aria-hidden="true" />
-                  <span>Cobwebs from corners, and the road sand out of the front entry</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Add-ons */}
-            <div className="bg-white rounded-xl p-8 shadow-md border-2 border-purple-200 transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.02] hover:shadow-xl hover:shadow-[hsl(200,30%,70%)]/30">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
-                  <Star className="w-6 h-6 text-purple-600" />
-                </div>
-                <h3 className="text-2xl font-bold">Add-ons, each priced separately</h3>
-              </div>
-              <ul className="space-y-3 text-muted-foreground">
-                <li className="flex items-start gap-2">
-                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" aria-hidden="true" />
-                  <span>Inside windows{addOnLabel("inside-windows")}</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" aria-hidden="true" />
-                  <span>Blinds, per set{addOnLabel("wipe-window-blinds-per-set")}</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" aria-hidden="true" />
-                  <span>Wall washing, spot or full{addOnLabel("spot-cleaning-inside-walls")}</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" aria-hidden="true" />
-                  <span>Basement, unfinished sweep or finished clean{addOnLabel("unfinished-basement-sweep")}</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="dc-icon dc-icon-circle-check w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" aria-hidden="true" />
-                  <span>Garage or balcony sweep{addOnLabel("sweep-only-of-garage-or-balcony")}</span>
-                </li>
-              </ul>
-            </div>
+              ))}
+            </dl>
           </div>
         </div>
       </section>
 
-      {/* Visual Showcase – Detail Shots */}
-      <section className="py-12 bg-secondary/30">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <div className="text-center mb-8">
-            <span className="text-accent font-semibold text-sm uppercase tracking-wide">The walkthrough</span>
-            <h2 className="display-serif text-2xl md:text-3xl font-bold mt-2">Three places the move-out checklist reaches</h2>
+      {/* Pricing — the cost table and the FAQ now sit ABOVE the 26-name
+          coverage list. A reader who came for "move out cleaning cost calgary"
+          had to scroll past every neighbourhood we serve to reach a price. */}
+      {/* id="quote": the instant-price overlay intercepts every #quote link. Without
+          JavaScript the same link now lands here, on the prices. */}
+      <section id="quote" className="py-20 bg-white">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-4">
+            Move out cleaning cost in Calgary
+          </h2>
+          <p className="text-center text-muted-foreground mb-10 max-w-3xl mx-auto">
+            Move out cleaning in Calgary costs from {MOVE_FROM} for a one-bedroom to {MOVE_TO} for
+            a five-bedroom home, before 5% GST. Each row is the flat rate for the full checklist
+            with the usual bathroom count for that size.
+          </p>
+
+          <div className="mx-auto mb-8 max-w-2xl overflow-hidden border border-border">
+            <table className="w-full">
+              <thead className="bg-brand-navy text-brand-navy-foreground">
+                <tr>
+                  <th className="py-3 px-5 text-left text-sm font-bold">Home size</th>
+                  <th className="py-3 px-5 text-right text-sm font-bold">Move-out clean, before GST</th>
+                </tr>
+              </thead>
+              <tbody>
+                {MOVE_ROWS.map((r, i) => (
+                  <tr key={r.beds} className={i % 2 ? "bg-secondary/20" : "bg-card"}>
+                    <td className="py-3 px-5 text-foreground">{r.beds}</td>
+                    <td className="py-3 px-5 text-right font-bold text-foreground">from {r.price}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="rounded-xl overflow-hidden shadow-lg group">
-              <ResponsiveImage picture={calgaryKitchenClean} sizes={THREE_UP_SIZES} alt="Kitchen with granite counters, a gas cooktop and a stainless-steel range hood" className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
-              <div className="p-4 bg-white">
-                <h3 className="font-bold mb-1">The oven and the range hood</h3>
-                <p className="text-sm text-muted-foreground">Grease shows on both at a glance, and both are on the move-out checklist.</p>
-              </div>
-            </div>
-            <div className="rounded-xl overflow-hidden shadow-lg group">
-              <ResponsiveImage picture={calgaryBathroomClean} sizes={THREE_UP_SIZES} alt="White bathroom with a glass shower screen, a rain shower head and a stone vanity" className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
-              <div className="p-4 bg-white">
-                <h3 className="font-bold mb-1">Shower glass and grout</h3>
-                <p className="text-sm text-muted-foreground">Scale ignores scrubbing. It answers to a mild acid and a few minutes of patience.</p>
-              </div>
-            </div>
-            <div className="rounded-xl overflow-hidden shadow-lg group">
-              <ResponsiveImage picture={calgaryLivingRoomClean} sizes={THREE_UP_SIZES} alt="Living room with a sofa and rug, white baseboards and a fireplace on hardwood floors" className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
-              <div className="p-4 bg-white">
-                <h3 className="font-bold mb-1">Baseboards and closet shelves</h3>
-                <p className="text-sm text-muted-foreground">Furniture hides them for years. An empty room does not.</p>
-              </div>
-            </div>
+
+          <div className="mx-auto max-w-3xl text-muted-foreground space-y-4 mb-10">
+            <p>
+              What moves the price: the number of bathrooms, the home type (the rows are the
+              apartment rate, and a townhouse or two-storey house costs more), the {PET_LABEL} pet
+              charge in a home with pets, the add-ons you pick (inside windows, blinds, wall
+              washing, a basement, a garage sweep), and a {TRAVEL_FEE_LABEL} travel fee
+              for an address outside Calgary city limits. Airdrie, Cochrane, Okotoks and Chestermere
+              are outside; the city itself carries no travel fee. The same checklist and the same
+              rows cover{" "}
+              <Link to="/cleaning-services-airdrie/" className="text-primary underline underline-offset-4">house cleaning in Airdrie</Link>{" "}
+              and{" "}
+              <Link to="/cleaning-services-cochrane/" className="text-primary underline underline-offset-4">house cleaning in Cochrane</Link>,
+              with the fee added on the quote.
+            </p>
+            <p>
+              What does not move it: how long the clean takes. The rate on your quote is the rate
+              you pay, and a two-bedroom that takes an extra hour is still a two-bedroom. If the home
+              is staying lived in, the service you want is{" "}
+              <Link to="/calgary/deep-cleaning/" className="text-primary underline underline-offset-4">a deep clean in Calgary</Link>{" "}
+              instead, and the standard, deep and move-out rates sit row against row on{" "}
+              <Link to="/calgary/pricing/" className="text-primary underline underline-offset-4">Calgary house cleaning prices by home size</Link>.
+            </p>
+          </div>
+
+          {/* What the quote asks for, folded in from the "Get Started" band that
+              repeated the hero's button one screen below it. */}
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="text-muted-foreground mb-6">
+              Choose the home size, the number of bathrooms and the date. The price shown is the
+              flat rate for the full move-out checklist, before 5% GST, and nothing is charged
+              until the clean is done.
+            </p>
+            <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-8 h-14" asChild>
+              <a href="#quote">See My Instant Price</a>
+            </Button>
+            {/* Was "No credit card required". PAYMENT_TERMS places a temporary
+                hold on the card the day before the clean, so that is false as a
+                claim about booking and true as one about the quote. */}
+            <p className="text-sm text-muted-foreground mt-4">
+              Instant pricing, no phone call required, and no card needed to see your price.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <MoveOutDepth city="Calgary" showPricing={false} />
+
+      {/* Why book us: six terms on the page's one navy band, as on the Edmonton
+          twin. They were ten cards in six pastel hues that meant nothing. */}
+      <section className="py-20 bg-brand-navy text-white">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <h2 className="display-serif text-3xl md:text-4xl font-bold text-center text-white mb-12">
+            Why book Duty Cleaners for move-out cleaning in Calgary
+          </h2>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <TermCard icon={<Shield className="w-6 h-6" />} title="Reference-checked, rated after every visit">
+              {POLICY.insuranceClaim}
+            </TermCard>
+
+            <TermCard icon={<DollarSign className="w-6 h-6" />} title="Flat rate by home size">
+              The price is set by bedrooms and bathrooms when you book, from {MOVE_FROM} for a
+              one-bedroom. It does not rise if the clean takes longer than expected; the team
+              stays until the checklist is done.
+            </TermCard>
+
+            <TermCard icon={<span className="dc-icon dc-icon-circle-check w-6 h-6" aria-hidden="true" />} title="The charges outside the flat rate">
+              {/* Was "no hidden fees" on a page that named none of them. */}
+              A home with pets adds {PET_LABEL} a visit, a townhouse or two-storey house adds a
+              home-type charge, and an address outside Calgary city limits adds {TRAVEL_FEE_LABEL}.
+              Each shows on your quote before you book, and quoted prices are before 5% GST.
+              Cancelling inside {POLICY.cancellationNoticeHours} hours costs {POLICY.cancellationFee},
+              and if we arrive and cannot get in, the lockout charge is {POLICY.lockoutFee}.
+            </TermCard>
+
+            <TermCard icon={<span className="dc-icon dc-icon-sparkles w-6 h-6" aria-hidden="true" />} title="Supplies and equipment included">
+              The team brings everything. Optional alternative products are available for{" "}
+              {POLICY.ecoProductsFee} before GST: {POLICY.ecoProductsHowToRequest}. You only need the power and
+              running water on at the address.
+            </TermCard>
+
+            <TermCard icon={<Award className="w-6 h-6" />} title={<>A {POLICY.guaranteeWindowHours}-hour window to report a miss</>}>
+              Walk through the home after the clean and tell us within{" "}
+              {POLICY.guaranteeWindowHours} hours of it if anything was missed; we return at no
+              charge. Book the clean as close to the inspection as you can, since the window runs
+              from the clean. Photos help and are not required.
+            </TermCard>
+
+            <TermCard icon={<span className="dc-icon dc-icon-clock w-6 h-6" aria-hidden="true" />} title="Pay after the clean">
+              Nothing is charged when you book. A temporary hold checks the card the day before,
+              and the charge goes through once the clean is complete. Visa, Mastercard, American
+              Express, debit and e-transfer.
+            </TermCard>
           </div>
         </div>
       </section>
 
       {/* Move-in cleaning */}
-      <section className="py-16 bg-background">
+      <section className="py-16 bg-muted/20">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid lg:grid-cols-2 gap-10 items-center">
-            <div className="rounded-2xl overflow-hidden shadow-xl">
+            <div className="rounded-xl overflow-hidden">
               <ResponsiveImage picture={calgaryMoveOutClean} sizes={SIZES.half} alt="Empty carpeted bedroom with white walls and sunlight through the window" className="w-full h-[420px] object-cover" loading="lazy" />
             </div>
             <div>
@@ -606,160 +660,6 @@ export default function CalgaryMoveInOut() {
         </div>
       </section>
 
-      <MoveOutDepth city="Calgary" showPricing={false} />
-
-      {/* Why Choose Us */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-12">
-            Why book Duty Cleaners for move-out cleaning in Calgary
-          </h2>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-gradient-to-br from-[hsl(160,100%,97%)] to-white border-2 border-[hsl(160,100%,30%)]/20 rounded-xl p-8 transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.02] hover:shadow-xl hover:shadow-[hsl(200,30%,70%)]/30">
-              <div className="w-16 h-16 bg-[hsl(160,100%,30%)]/10 rounded-2xl flex items-center justify-center mb-4">
-                <Shield className="w-8 h-8 text-[hsl(160,100%,30%)]" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">Reference-checked, rated after every visit</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                {POLICY.insuranceClaim}
-              </p>
-            </div>
-
-            <div className="bg-gradient-to-br from-blue-50 to-white border-2 border-blue-200 rounded-xl p-8 transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.02] hover:shadow-xl hover:shadow-[hsl(200,30%,70%)]/30">
-              <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-4">
-                <DollarSign className="w-8 h-8 text-blue-600" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">Flat rate by home size</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                The price is set by bedrooms and bathrooms when you book, from {MOVE_FROM} for a
-                one-bedroom. It does not rise if the clean takes longer than expected; the team
-                stays until the checklist is done.
-              </p>
-            </div>
-
-            <div className="bg-gradient-to-br from-green-50 to-white border-2 border-green-200 rounded-xl p-8 transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.02] hover:shadow-xl hover:shadow-[hsl(200,30%,70%)]/30">
-              <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-4">
-                <span className="dc-icon dc-icon-circle-check w-8 h-8 text-green-600" aria-hidden="true" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">The charges outside the flat rate</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                {/* Was "no hidden fees" on a page that named none of them. */}
-                A home with pets adds {PET_LABEL} a visit, a townhouse or two-storey house adds a
-                home-type charge, and an address outside Calgary city limits adds {TRAVEL_FEE_LABEL}.
-                Each shows on your quote before you book, and quoted prices are before 5% GST.
-                Cancelling inside {POLICY.cancellationNoticeHours} hours costs {POLICY.cancellationFee},
-                and if we arrive and cannot get in, the lockout charge is {POLICY.lockoutFee}.
-              </p>
-            </div>
-
-            <div className="bg-gradient-to-br from-orange-50 to-white border-2 border-accent/20 rounded-xl p-8 transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.02] hover:shadow-xl hover:shadow-[hsl(200,30%,70%)]/30">
-              <div className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mb-4">
-                <span className="dc-icon dc-icon-sparkles w-8 h-8 text-accent" aria-hidden="true" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">Supplies and equipment included</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                The team brings everything. Optional alternative products are available for{" "}
-                {POLICY.ecoProductsFee} before GST: {POLICY.ecoProductsHowToRequest}. You only need the power and
-                running water on at the address.
-              </p>
-            </div>
-
-            <div className="bg-gradient-to-br from-purple-50 to-white border-2 border-purple-200 rounded-xl p-8 transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.02] hover:shadow-xl hover:shadow-[hsl(200,30%,70%)]/30">
-              <div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mb-4">
-                <Award className="w-8 h-8 text-purple-600" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">A {POLICY.guaranteeWindowHours}-hour window to report a miss</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Walk through the home after the clean and tell us within{" "}
-                {POLICY.guaranteeWindowHours} hours of it if anything was missed; we return at no
-                charge. Book the clean as close to the inspection as you can, since the window runs
-                from the clean. Photos help and are not required.
-              </p>
-            </div>
-
-            <div className="bg-gradient-to-br from-yellow-50 to-white border-2 border-yellow-200 rounded-xl p-8 transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.02] hover:shadow-xl hover:shadow-[hsl(200,30%,70%)]/30">
-              <div className="w-16 h-16 bg-yellow-100 rounded-2xl flex items-center justify-center mb-4">
-                <span className="dc-icon dc-icon-clock w-8 h-8 text-yellow-600" aria-hidden="true" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">Pay after the clean</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Nothing is charged when you book. A temporary hold checks the card the day before,
-                and the charge goes through once the clean is complete. Visa, Mastercard, American
-                Express, debit and e-transfer.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing — the cost table and the FAQ now sit ABOVE the 26-name
-          coverage list. A reader who came for "move out cleaning cost calgary"
-          had to scroll past every neighbourhood we serve to reach a price. */}
-      <section className="py-20 bg-muted/20">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-4">
-            Move out cleaning cost in Calgary
-          </h2>
-          <p className="text-center text-muted-foreground mb-10 max-w-3xl mx-auto">
-            Move out cleaning in Calgary costs from {MOVE_FROM} for a one-bedroom to {MOVE_TO} for
-            a five-bedroom home, before 5% GST. Each row is the flat rate for the full checklist
-            with the usual bathroom count for that size.
-          </p>
-
-          <div className="mx-auto mb-8 max-w-2xl overflow-hidden border border-border">
-            <table className="w-full">
-              <thead className="bg-brand-navy text-brand-navy-foreground">
-                <tr>
-                  <th className="py-3 px-5 text-left text-sm font-bold">Home size</th>
-                  <th className="py-3 px-5 text-right text-sm font-bold">Move-out clean, before GST</th>
-                </tr>
-              </thead>
-              <tbody>
-                {MOVE_ROWS.map((r, i) => (
-                  <tr key={r.beds} className={i % 2 ? "bg-secondary/20" : "bg-card"}>
-                    <td className="py-3 px-5 text-foreground">{r.beds}</td>
-                    <td className="py-3 px-5 text-right font-bold text-foreground">from {r.price}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <div className="mx-auto max-w-3xl text-muted-foreground space-y-4 mb-10">
-            <p>
-              What moves the price: the number of bathrooms, the home type (the rows are the
-              apartment rate, and a townhouse or two-storey house costs more), the {PET_LABEL} pet
-              charge in a home with pets, the add-ons you pick (inside windows, blinds, wall
-              washing, a basement, a garage sweep), and a {TRAVEL_FEE_LABEL} travel fee
-              for an address outside Calgary city limits. Airdrie, Cochrane, Okotoks and Chestermere
-              are outside; the city itself carries no travel fee. The same checklist and the same
-              rows cover{" "}
-              <Link to="/cleaning-services-airdrie/" className="text-primary underline underline-offset-4">house cleaning in Airdrie</Link>{" "}
-              and{" "}
-              <Link to="/cleaning-services-cochrane/" className="text-primary underline underline-offset-4">house cleaning in Cochrane</Link>,
-              with the fee added on the quote.
-            </p>
-            <p>
-              What does not move it: how long the clean takes. The rate on your quote is the rate
-              you pay, and a two-bedroom that takes an extra hour is still a two-bedroom. If the home
-              is staying lived in, the service you want is{" "}
-              <Link to="/calgary/deep-cleaning/" className="text-primary underline underline-offset-4">a deep clean in Calgary</Link>{" "}
-              instead, and the standard, deep and move-out rates sit row against row on{" "}
-              <Link to="/calgary/pricing/" className="text-primary underline underline-offset-4">Calgary house cleaning prices by home size</Link>.
-            </p>
-          </div>
-
-          <div className="text-center">
-            <Button size="lg" className="bg-primary hover:bg-primary/90 text-white" asChild>
-              <a href="#quote">
-                See My Instant Price
-              </a>
-            </Button>
-          </div>
-        </div>
-      </section>
-
       {/* FAQ */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 max-w-4xl">
@@ -769,11 +669,11 @@ export default function CalgaryMoveInOut() {
 
           <Accordion type="single" collapsible className="space-y-4">
             {faqs.map((faq, i) => (
-              <AccordionItem key={faq.q} value={`item-${i}`} className="bg-white rounded-xl px-6 border-2 border-border">
-                <AccordionTrigger className="text-left font-semibold hover:no-underline">
+              <AccordionItem key={faq.q} value={`item-${i}`} className="bg-white rounded-xl px-6 border border-border">
+                <AccordionTrigger className="text-left text-base font-semibold hover:no-underline">
                   {faq.q}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
+                <AccordionContent className="text-base text-muted-foreground leading-relaxed">
                   {faq.a}
                 </AccordionContent>
               </AccordionItem>
@@ -796,10 +696,10 @@ export default function CalgaryMoveInOut() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <Button size="lg" className="bg-white text-brand-navy hover:bg-white/90 text-lg px-8 h-14" asChild>
+            <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-8 h-14" asChild>
               <a href="#quote">See My Instant Price</a>
             </Button>
-            <Button size="lg" className="bg-accent hover:bg-accent/90 text-white text-lg px-8 h-14" asChild>
+            <Button size="lg" variant="outline" className="border-white/40 text-white hover:bg-white/10 text-lg px-8 h-14" asChild>
               <a href="tel:4037681341">
                 <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />
                 Call (403) 768-1341

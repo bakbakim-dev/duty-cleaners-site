@@ -55,12 +55,7 @@ export default function NearbyNeighbourhoods() {
     <section className="py-14 md:py-16 bg-muted/30 border-y border-border" aria-labelledby="nearby-heading">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center">
-          <div className="flex items-center justify-center gap-2 mb-3">
-            <span className="dc-icon dc-icon-map-pin w-4 h-4 text-primary" aria-hidden="true" />
-            <span className="text-sm font-medium uppercase tracking-wide text-primary">
-              Close by
-            </span>
-          </div>
+          {/* No eyebrow: "Close by" said what "Near <place>" says in the heading. */}
           <h2 id="nearby-heading" className="display-serif text-2xl md:text-3xl font-bold text-foreground mb-3 text-balance">
             {place ? `Near ${place}: other areas we clean` : "Other areas we clean"}
           </h2>

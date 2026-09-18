@@ -1,7 +1,7 @@
-import { ServiceCard, WhyUsCard } from "@/components/LocationCards";
+import { ServiceCard, WhyUsCard, QuoteReceipt } from "@/components/LocationCards";
 import { locationServices, locationWhyUs } from "@/data/location-cards";
 import {
-  CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import LocalMarketNote from "@/components/LocalMarketNote"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import LocationPricing from "@/components/LocationPricing"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import { Helmet } from "react-helmet-async"; import { buildLocationSchema } from "@/lib/location-schema"; import { CheckCircle2, Star, Shield, Award, Home, Truck, SprayCan, Bath, UtensilsCrossed, Leaf, CalendarCheck, ThumbsUp, Mail, PaintRoller, Sparkles } from "lucide-react";
+  CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import LocalMarketNote from "@/components/LocalMarketNote"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import LocationPricing from "@/components/LocationPricing"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import { Helmet } from "react-helmet-async"; import { buildLocationSchema } from "@/lib/location-schema"; import { CheckCircle2, Star, Shield, Award, Home, Truck, SprayCan, Bath, UtensilsCrossed, Leaf, CalendarCheck, ThumbsUp, Calculator, PaintRoller, Sparkles } from "lucide-react";
 import stonyPlainHome from "@/assets/gallery/stony-plain-home.webp";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { standardTierRows, deepCleanTierRows, moveInOutTierRows, formatPrice, addOnFromPrice, calculateQuote, homeTypeOptions, PRICING_TIERS } from "@/data/pricing";
@@ -42,7 +42,8 @@ const EXAMPLE_TIER = MOVE[1];
 const exampleQuote = (homeType: number | null, addOns: string[] = []) =>
   calculateQuote({ service: "move-in-out", homeType, bedrooms: EXAMPLE_SIZE.beds, bathrooms: EXAMPLE_SIZE.bathrooms, halfBaths: EXAMPLE_SIZE.halfBaths, addOns, frequency: "one-time" }).firstClean;
 const EXAMPLE_BASE = formatPrice(exampleQuote(homeTypeOptions("move-in-out")[0]?.id ?? null));
-const EXAMPLE_BASE_TEXT = EXAMPLE_BASE === EXAMPLE_TIER.price ? EXAMPLE_BASE : `${EXAMPLE_BASE} (${EXAMPLE_TIER.price} in the table, which rounds to the dollar)`;
+// The table card rounds to the dollar; the receipt says so when the two differ.
+const EXAMPLE_TABLE_NOTE = EXAMPLE_BASE === EXAMPLE_TIER.price ? undefined : `${EXAMPLE_TIER.price} in the table, which rounds to the dollar`;
 const EXAMPLE_PRICE = formatPrice(exampleQuote(54, [TRAVEL_FEE_KEY]));
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
@@ -132,44 +133,31 @@ export default function StonyPlain() {
       {/* Hero */}
       <section className="relative py-24 bg-brand-navy overflow-hidden">
         <div className="absolute top-20 left-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
             <div className="flex-1 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-5 py-2 mb-6">
-                <span className="dc-icon dc-icon-map-pin w-4 h-4 text-accent" aria-hidden="true" />
-                <span className="text-white/90 text-sm font-medium">Serving Stony Plain, AB</span>
-              </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+              <h1 className="display-serif text-[2rem] sm:text-[2.25rem] xl:text-[2.75rem] text-white mb-6 leading-[1.12] text-balance">
                 Professional House Cleaning in Stony Plain
               </h1>
-              <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto lg:mx-0 leading-relaxed">
-                A standard clean in Stony Plain is {STANDARD_FROM} to {STANDARD_TOP} before GST by bedroom count, priced for an apartment or condo. The {TRAVEL_FEE} travel fee is added, with a house-type surcharge and the pet charge where they apply. The Edmonton listing is rated {RATING_CLAIM} across {CITY_PROOF.edmonton.googleReviewCount} reviews.
+              <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                A standard clean in Stony Plain is {STANDARD_FROM} to {STANDARD_TOP} before GST by bedroom count, priced for an apartment or condo, plus the {TRAVEL_FEE} travel fee and any house-type or pet charge, and you pay after the clean.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
+                  <a href="#quote">See My Instant Price</a>
+                </Button>
+                <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
                   <a href="tel:7809136565">
                     <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />(780) 913-6565
                   </a>
                 </Button>
-                <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
-                  <a href="#quote">See My Instant Price</a>
-                </Button>
               </div>
-              <div className="flex flex-wrap justify-center lg:justify-start gap-6">
-                {[
-                  { icon: CheckCircle2, text: "Pay After Your Clean" },
-                  { icon: CalendarCheck, text: "Open 7 Days a Week" },
-                  { icon: Award, text: "24-Hour Re-Clean Guarantee" },
-                ].map((badge, i) => (
-                  <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
-                    <badge.icon className="w-4 h-4 text-accent" />
-                    <span className="text-white/90 text-sm">{badge.text}</span>
-                  </div>
-                ))}
+              <div className="flex items-center justify-center lg:justify-start gap-2 text-white/90">
+                <Star className="w-4 h-4 shrink-0 fill-brand-gold text-brand-gold" aria-hidden="true" />
+                <span className="font-medium">{RATING_CLAIM}, {CITY_PROOF.edmonton.googleReviewCount} reviews on the Edmonton listing</span>
               </div>
             </div>
-            <div className="flex-shrink-0 w-full lg:w-[500px]">
+            <div className="flex-shrink-0 w-full lg:w-[440px]">
               <img width={800} height={608}
                 src={stonyPlainHome}
                 alt="A two-storey house with a covered front porch, spruce trees and a mowed front lawn"
@@ -181,6 +169,18 @@ export default function StonyPlain() {
         </div>
       </section>
 
+      {/* What the hero pills said, as one plain row under the hero */}
+      <div className="border-b border-border bg-muted/30">
+        <ul className="container mx-auto px-4 py-3 flex flex-wrap items-center justify-center gap-x-8 gap-y-1 text-sm font-medium text-foreground">
+          {["Pay After Your Clean", "Open 7 Days a Week", "24-Hour Re-Clean Guarantee"].map((text) => (
+            <li key={text} className="flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-primary" aria-hidden="true" />
+              {text}
+            </li>
+          ))}
+        </ul>
+      </div>
+
       {/* A worked move-out quote. Replaces the brochure "About the
           Neighbourhood" section, its landmark cards and "Around Stony Plain",
           whose parks, museum and settlement history were not in the local
@@ -189,14 +189,32 @@ export default function StonyPlain() {
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="max-w-4xl mx-auto">
-              <span className="text-primary text-sm font-semibold tracking-wider uppercase">A worked quote</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
+              <span className="text-accent text-sm font-semibold tracking-wider uppercase">A worked quote</span>
+              <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mt-2 mb-6 text-balance">
                 Move-out cleaning in Stony Plain, priced line by line
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>
-                  Say a two-bedroom, two-bathroom bungalow in Stony Plain is being handed back to its landlord. The move-in and move-out rate for that size is {EXAMPLE_BASE_TEXT}, set for an apartment or condo. A bungalow adds {HOME_TYPE.bungalow}, and the {TRAVEL_FEE} travel fee applies because Stony Plain sits outside Edmonton city limits, which makes {EXAMPLE_PRICE} before 5% GST. A home with pets adds the {PET_FEE} pet charge on top; it is compulsory, and it shows on the quote before booking.
+                  Say a two-bedroom, two-bathroom bungalow in Stony Plain is being handed back to its landlord.
                 </p>
+                <QuoteReceipt
+                  lines={[
+                    { label: "Move-in and move-out rate for that size, set for an apartment or condo", amount: EXAMPLE_BASE, note: EXAMPLE_TABLE_NOTE },
+                    { label: "Bungalow", amount: `+ ${HOME_TYPE.bungalow}` },
+                    { label: "Travel fee, outside Edmonton city limits", amount: `+ ${TRAVEL_FEE}` },
+                  ]}
+                  total={{ label: "Quote before 5% GST", amount: EXAMPLE_PRICE }}
+                  extras={[
+                    { label: "A home with pets: the compulsory pet charge, shown on the quote before booking", amount: `+ ${PET_FEE}` },
+                  ]}
+                />
+                <div className="not-prose pt-1">
+                  <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
+                    <a href="#quote">
+                      <Calculator className="mr-2 w-5 h-5" />See My Instant Price
+                    </a>
+                  </Button>
+                </div>
                 <p>
                   For that figure the team works through the standard checklist and then the move-out extras: the inside of the oven, fridge and microwave, and the inside of every cabinet, drawer and closet. Under Alberta's Residential Tenancies Act the landlord completes a move-out inspection report with the tenant. Within 10 days of the tenant moving out, the landlord must return the deposit, or return what is left with a written statement of any deductions (an estimate is allowed, with the final statement within 30 days), as set out in{" "}
                   <a href="https://www.alberta.ca/ending-a-tenancy" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Alberta's rules on ending a tenancy</a>. We do not promise the deposit comes back; the landlord decides.
@@ -216,9 +234,8 @@ export default function StonyPlain() {
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="text-center mb-10">
-              <span className="text-primary text-sm font-semibold tracking-wider uppercase">Service Area</span>
-              <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
-                Our Stony Plain Service Area
+              <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mb-4 text-balance">
+                Our Stony Plain service area
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 Bookings in Stony Plain run through the Edmonton branch at 18615 71 Ave NW. The office is open Monday to Saturday from 8:00 AM to 8:00 PM, and Sunday from 9:00 AM to 3:00 PM.
@@ -236,9 +253,8 @@ export default function StonyPlain() {
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="text-center mb-14">
-              <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">
-                Cleaning Services for Stony Plain Homes
+              <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
+                Cleaning services for Stony Plain homes
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
                 Standard, deep and move-out cleans are set by home size, post-construction by square footage, and wall washing is added to a booked clean. The{" "}
@@ -259,12 +275,11 @@ export default function StonyPlain() {
 
       {/* Why Choose Us */}
       <section className="py-20 bg-brand-navy relative overflow-hidden">
-        <div className="absolute top-10 right-20 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />
         <div className="container mx-auto px-4 relative z-10">
           <AnimatedSection>
             <div className="text-center mb-14">
-              <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">
+              <span className="text-accent-on-dark text-sm font-semibold tracking-wider uppercase">Why Us</span>
+              <h2 className="display-serif text-3xl md:text-4xl font-bold text-white mt-2 mb-4 text-balance">
                 Who cleans a Stony Plain home, and how they are rated
               </h2>
               <p className="text-white/90 max-w-2xl mx-auto text-lg">
@@ -291,8 +306,7 @@ export default function StonyPlain() {
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="max-w-3xl mx-auto">
-              <span className="text-primary text-sm font-semibold tracking-wider uppercase">Choosing</span>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mt-2 mb-6">
+              <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mb-6 text-balance">
                 Which clean to book for a Stony Plain home
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
@@ -327,11 +341,10 @@ export default function StonyPlain() {
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4 text-center">
           <AnimatedSection>
-            <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
             {/* Renamed off "Near Stony Plain": <NearbyNeighbourhoods> above
                 already heads a block with that wording, and two of them in a
                 row read as the same section printed twice. */}
-            <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
+            <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mb-4 text-balance">
               Cleaning services in Stony Plain and other Edmonton-branch towns
             </h2>
             <p className="text-muted-foreground mb-8 max-w-3xl mx-auto text-left md:text-center">
@@ -352,7 +365,7 @@ export default function StonyPlain() {
               ))}
             </div>
             <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
-              View All Service Areas →
+              View All Service Areas<span className="dc-icon dc-icon-arrow-right h-4 w-4" aria-hidden="true" />
             </Link>
 
           </AnimatedSection>
@@ -365,8 +378,7 @@ export default function StonyPlain() {
             <AnimatedSection>
               <div className="max-w-3xl mx-auto">
                 <div className="text-center mb-12">
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">FAQ</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Stony Plain house cleaning questions</h2>
+                  <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">Stony Plain house cleaning questions</h2>
                 </div>
                 <Accordion type="single" collapsible className="w-full">
                   {faqs.map((faq, index) => (
@@ -383,10 +395,9 @@ export default function StonyPlain() {
 
       {/* CTA */}
       <section className="py-20 bg-brand-navy relative overflow-hidden">
-        <div className="absolute bottom-0 left-20 w-80 h-80 bg-accent/10 rounded-full blur-3xl" />
         <div className="container mx-auto px-4 relative z-10 text-center">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            <h2 className="display-serif text-3xl md:text-4xl font-bold text-white mb-6 text-balance">
               Book house cleaning in Stony Plain
             </h2>
             <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
@@ -394,13 +405,13 @@ export default function StonyPlain() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
-                <a href="tel:7809136565">
-                  <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />Call (780) 913-6565
+                <a href="#quote">
+                  <Calculator className="mr-2 w-5 h-5" />See My Instant Price
                 </a>
               </Button>
               <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
-                <a href="#quote">
-                  <Mail className="mr-2 w-5 h-5" />See My Instant Price
+                <a href="tel:7809136565">
+                  <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />Call (780) 913-6565
                 </a>
               </Button>
             </div>

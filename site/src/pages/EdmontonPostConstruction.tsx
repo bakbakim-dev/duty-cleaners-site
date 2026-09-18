@@ -6,18 +6,19 @@ import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Shield, Droplets, Wind, SprayCan, Ban, Star, Heart, Home, DollarSign, Calendar, Wrench, MapPin, Phone, Clock, Sparkles } from "lucide-react";
+import { Shield, Droplets, Wind, SprayCan, Star, Sparkles } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import postConstructionBeforeAfter from "@/assets/gallery/post-construction-before-after.webp";
 import CityCrossLink from "@/components/CityCrossLink";
 import { POLICY } from "@/data/policy";
-import { COMPANY, RATING_CLAIM, CITY_PROOF } from "@/data/proof";
+import { COMPANY, RATING_CLAIM, CITY_PROOF, hoursRowsFor } from "@/data/proof";
 import { travelFee } from "@/data/addon-table";
 
 import { startingPrice, formatPrice, sqftTierOptions, GST_RATE } from "@/data/pricing";
 const REVIEWS = CITY_PROOF.edmonton.googleReviewCount;
+const OFFICE = CITY_PROOF.edmonton;
 /** A before-tax figure with 5% GST added, for the worked example. */
 const withGst = (value: number) => formatPrice(Math.round(value * (1 + GST_RATE) * 100) / 100);
 /* The figure /services/ already publishes for this service, from bk-config. */
@@ -52,28 +53,40 @@ const includedServices = [
   { icon: Wind, title: "Doors, switches and sills", desc: "The handles and plates a trade opened all week, plus the baseboards and window sills below them, wiped clean." },
 ];
 
+/* Six exclusions in two plain lists. They were six red-tinted cards, each with
+   its own Ban icon, which made the limits read as a wall of warnings. */
 const excludedServices = [
-  "Final-stage post-construction cleaning only: no rough construction cleanup and no active job-site cleaning",
-  "No removal of construction debris, drywall scraps, or leftover building materials",
-  "No hauling, disposal, or large debris removal services",
-  "No removal of plastics from new appliances, and no removal of stickers from windows, doors, or surfaces",
-  // Was "more than a two-step stool", a limit that appeared on this page and
-  // nowhere else. NOT_INCLUDED in policy.ts sets it at a 3-step ladder, which is
-  // what the crew carries and what every other page tells a customer.
-  "Anything beyond the reach of a 3-step ladder, which is what the crew carries: no extension ladders, no scaffolding",
-  "No exterior window cleaning, pressure washing, or outdoor surface cleaning",
+  {
+    heading: "The contractor's jobs, finished before the crew arrives",
+    items: [
+      "Final-stage post-construction cleaning only: no rough construction cleanup and no active job-site cleaning",
+      "No removal of construction debris, drywall scraps, or leftover building materials",
+      "No hauling, disposal, or large debris removal services",
+    ],
+  },
+  {
+    heading: "Outside what the crew does",
+    items: [
+      "No removal of plastics from new appliances, and no removal of stickers from windows, doors, or surfaces",
+      // Was "more than a two-step stool", a limit that appeared on this page and
+      // nowhere else. NOT_INCLUDED in policy.ts sets it at a 3-step ladder, which is
+      // what the crew carries and what every other page tells a customer.
+      "Anything beyond the reach of a 3-step ladder, which is what the crew carries: no extension ladders, no scaffolding",
+      "No exterior window cleaning, pressure washing, or outdoor surface cleaning",
+    ],
+  },
 ];
 
 /* "Flexible Scheduling", "Professional Equipment" and "Transparent Pricing"
    were card titles that could sit on any cleaning company's page in any city.
    Each now states the term it was standing in for. */
 const whyChooseUs = [
-  { icon: Calendar, title: "Booked around your possession date", desc: "The crew arrives in a booked window, 9:00 to 10:00 AM, 12:00 to 1:00 PM or 3:00 to 4:00 PM, rather than at an exact time. Give us the date the last trade finishes and book the first open slot after it." },
-  { icon: Shield, title: "Pay after the clean", desc: "Nothing is charged when you book. The day before your appointment a temporary hold confirms the card is valid, and no money moves. Your card is charged once the clean is complete." },
-  { icon: Sparkles, title: "Ledges, tracks and vents by hand", desc: "Four places a machine cannot do are wiped by hand: the ledges, the window tracks, the vent slots and the top edge of the trim." },
-  { icon: Wrench, title: "What the crew brings, what the site needs", desc: "Vacuums, cloths, products and the 3-step ladder come with the crew. The site has to have power and running water, which on a new build is worth confirming with the builder." },
-  { icon: Heart, title: `${POLICY.guaranteeWindowHours}-hour re-clean`, desc: `Tell us within ${POLICY.guaranteeWindowHours} hours about anything we missed and we re-clean it free of charge. Photos help the team find it and are not a condition.` },
-  { icon: DollarSign, title: "The band is the price", desc: `${startingPriceLabel} to ${topPriceLabel}, before 5% GST, set by the square-footage band of the finished space. Nothing is added for a clean that runs long, and an address outside Edmonton city limits also pays the travel fee.` }
+  { title: "Booked around your possession date", desc: "The crew arrives in a booked window, 9:00 to 10:00 AM, 12:00 to 1:00 PM or 3:00 to 4:00 PM, rather than at an exact time. Give us the date the last trade finishes and book the first open slot after it." },
+  { title: "Pay after the clean", desc: "Nothing is charged when you book. The day before your appointment a temporary hold confirms the card is valid, and no money moves. Your card is charged once the clean is complete." },
+  { title: "Ledges, tracks and vents by hand", desc: "Four places a machine cannot do are wiped by hand: the ledges, the window tracks, the vent slots and the top edge of the trim." },
+  { title: "What the crew brings, what the site needs", desc: "Vacuums, cloths, products and the 3-step ladder come with the crew. The site has to have power and running water, which on a new build is worth confirming with the builder." },
+  { title: `${POLICY.guaranteeWindowHours}-hour re-clean`, desc: `Tell us within ${POLICY.guaranteeWindowHours} hours about anything we missed and we re-clean it free of charge. Photos help the team find it and are not a condition.` },
+  { title: "The band is the price", desc: `${startingPriceLabel} to ${topPriceLabel}, before 5% GST, set by the square-footage band of the finished space. Nothing is added for a clean that runs long, and an address outside Edmonton city limits also pays the travel fee.` }
 ];
 
 /**
@@ -116,7 +129,7 @@ const faqs: Faq[] = [
   },
   {
     q: "Do I need to be home during the cleaning?",
-    a: `You do not need to be. Most of these jobs run on a code left in the booking notes, a key at the builder's site office, or whatever access the realtor has arranged — the only requirement is that it opens the door on the day, because if the crew cannot get in the lockout charge is ${POLICY.lockoutFee}. Every cleaner is reference-checked before a first job and rated by the customer afterwards.`,
+    a: `You do not need to be. Most of these jobs run on a code left in the booking notes, a key at the builder's site office, or whatever access the realtor has arranged. The only requirement is that it opens the door on the day, because if the crew cannot get in the lockout charge is ${POLICY.lockoutFee}. Every cleaner is reference-checked before a first job and rated by the customer afterwards.`,
   },
   {
     q: "Do you remove stickers from new windows and appliances?",
@@ -128,7 +141,7 @@ const faqs: Faq[] = [
   },
   {
     q: "Can you clean a home that is not completely empty after renovations?",
-    a: "Construction debris and materials do have to be gone before we start — that part is not negotiable, because our team is not equipped to haul it and it hides the surfaces we are there to clean. Furniture is a different question: a renovated kitchen or bathroom in a home you still live in is normal work for us, and we clean around what is there. Tell us at booking what is still in the rooms and we will say plainly whether a post-construction clean is the right service or whether a deep clean fits better.",
+    a: "Construction debris and materials do have to be gone before we start. That part is not negotiable, because our team is not equipped to haul it and it hides the surfaces we are there to clean. Furniture is a different question: a renovated kitchen or bathroom in a home you still live in is normal work for us, and we clean around what is there. Tell us at booking what is still in the rooms and we will say plainly whether a post-construction clean is the right service or whether a deep clean fits better.",
   },
   {
     q: "Is there a guarantee on a post-construction clean?",
@@ -190,49 +203,36 @@ export default function EdmontonPostConstruction() {
       {/* Hero Section */}
       <section className="relative py-20 bg-brand-navy overflow-hidden">
         <div className="absolute top-20 left-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
             <div className="flex-1 text-center lg:text-left">
-              <div className="inline-flex flex-wrap items-center gap-2 mb-6">
-                <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
-                  <Star className="w-4 h-4 text-accent" />
-                  <span className="text-white/90 text-sm font-medium">{RATING_CLAIM}{REVIEWS ? `, ${REVIEWS} reviews` : ""}</span>
-                </span>
-                <span className="inline-flex items-center gap-2 bg-accent/20 backdrop-blur-sm rounded-full px-4 py-2">
-                  <Home className="w-4 h-4 text-accent" />
-                  <span className="text-accent text-sm font-semibold">Final-Stage Cleaning Only</span>
-                </span>
-              </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
-                Post-Construction Cleaning in <span className="text-accent">Edmonton, AB</span>
+              {/* One hero pattern: H1, one sentence with the price, two buttons,
+                  the rating. The travel fee and the re-clean sit in the strip
+                  under the hero; what the crew takes off opens the section
+                  below the local note. */}
+              <h1 className="display-serif text-4xl md:text-5xl font-bold leading-[1.1] mb-6 text-white">
+                Post-Construction Cleaning in <span className="text-accent-on-dark">Edmonton, AB</span>
               </h1>
-              <p className="text-xl md:text-2xl text-white/80 max-w-3xl mb-4">
+              <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto lg:mx-0 mb-8">
                 From {startingPriceLabel} before 5% GST for a finished space{" "}
-                {tierLabel(sqftTiers[0]?.label ?? "").toLowerCase()}, priced by square footage; an address outside
-                Edmonton city limits adds a travel fee. It is the final-stage clean for newly built and freshly
-                renovated Edmonton homes, booked once the last trade has left.
+                {tierLabel(sqftTiers[0]?.label ?? "").toLowerCase()}, booked once the last trade has left, and
+                you pay after the clean.
               </p>
-              <p className="text-base md:text-lg text-white/90 max-w-3xl mb-8">
-                The crew takes fine drywall dust, smudges and contractor residue off cabinets, windows,
-                baseboards and floors, and nothing is charged until the clean is done.
-              </p>
-              <div className="flex flex-wrap gap-4 justify-center lg:justify-start mb-10">
-                <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-white text-lg px-8">
+              <div className="flex flex-wrap gap-4 justify-center lg:justify-start mb-6">
+                <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-8">
                   <a href="#quote">See My Instant Price</a>
                 </Button>
-                <Button asChild size="lg" className="bg-white/95 text-brand-navy hover:bg-white text-lg px-8">
+                <Button asChild size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-lg px-8">
                   <a href="tel:7809136565">
                     <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />
                     (780) 913-6565
                   </a>
                 </Button>
               </div>
-              <div className="flex flex-wrap justify-center lg:justify-start gap-6 text-white/80">
-                <div className="flex items-center gap-2"><span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent" aria-hidden="true" /><span>Priced by square footage</span></div>
-                <div className="flex items-center gap-2"><span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent" aria-hidden="true" /><span>Pay after the clean</span></div>
-                <div className="flex items-center gap-2"><span className="dc-icon dc-icon-circle-check w-5 h-5 text-accent" aria-hidden="true" /><span>{POLICY.guaranteeWindowHours}-hour re-clean</span></div>
-              </div>
+              <p className="flex items-center justify-center lg:justify-start gap-2 text-sm font-medium text-white/90">
+                <Star className="w-4 h-4 text-brand-gold fill-current" aria-hidden="true" />
+                <span>{RATING_CLAIM}{REVIEWS ? `, ${REVIEWS} reviews` : ""}</span>
+              </p>
             </div>
             <div className="flex-shrink-0 w-full lg:w-[500px]">
               <img width={640} height={832}
@@ -244,6 +244,16 @@ export default function EdmontonPostConstruction() {
           </div>
         </div>
       </section>
+
+      {/* The hero's ticks, as one slim row. The travel fee stays beside the
+          from-price, so the figure above is never the whole story. */}
+      <div className="border-b border-border bg-secondary/30">
+        <ul className="container mx-auto px-4 py-3 flex flex-wrap justify-center gap-x-8 gap-y-1 text-sm text-muted-foreground">
+          <li>Priced by square footage</li>
+          <li>A post-construction clean outside Edmonton city limits adds a {pcTravelFee} travel fee</li>
+          <li>{POLICY.guaranteeWindowHours}-hour re-clean</li>
+        </ul>
+      </div>
 
       <LocalMarketNote
         eyebrow="Edmonton builds"
@@ -259,13 +269,15 @@ export default function EdmontonPostConstruction() {
         <AnimatedSection>
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">What is left behind after the trades leave</h2>
+              <h2 className="display-serif text-3xl md:text-4xl font-bold mb-6">What is left behind after the trades leave</h2>
               <p className="text-lg text-muted-foreground mb-4">
-                Drywall dust settles on baseboards, vents, counters, window ledges, and floors. Fine particles work their way into cabinets and drawers. Smudges, fingerprints, and adhesive residue cling to windows, mirrors, and new fixtures. Painted walls hold a film of the same dust, and where a trade has left a mark on the paint it wants washing rather than wiping —{" "}
+                Drywall dust settles on baseboards, vents, counters, window ledges, and floors. Fine particles work their way into cabinets and drawers. Smudges, fingerprints, and adhesive residue cling to windows, mirrors, and new fixtures. Painted walls hold a film of the same dust, and where a trade has left a mark on the paint it wants washing rather than wiping:{" "}
                 <Link to="/wall-washing-wall-cleaning/" className="text-primary underline underline-offset-4">wall washing in Edmonton</Link>{" "}
                 is a separate add-on, priced by the size of the home.
               </p>
               <p className="text-lg text-muted-foreground mb-4">
+                The crew takes fine drywall dust, smudges and contractor residue off cabinets, windows,
+                baseboards and floors.{" "}
                 Duty Cleaners in Edmonton does <strong>final-stage post-construction cleaning</strong>, the clean that
                 goes in once construction is complete and the space is empty of debris. That covers new builds, kitchen
                 and bathroom remodels, basement renovations and whole-home refreshes. A finished home that is simply
@@ -274,7 +286,9 @@ export default function EdmontonPostConstruction() {
                 instead, priced by bedrooms rather than square footage.
               </p>
               <p className="text-lg text-muted-foreground mb-4">
-                <strong>Important:</strong> we do not provide rough construction cleanup, debris hauling, or active job-site cleaning. Our service begins after your contractor has finished and removed all materials.
+                <strong>Important:</strong> our service begins after your contractor has finished and removed all
+                materials. What that leaves out is listed under{" "}
+                <a href="#not-ours" className="text-primary underline underline-offset-4">six jobs that are not ours</a>.
               </p>
             </div>
           </div>
@@ -287,7 +301,7 @@ export default function EdmontonPostConstruction() {
           <AnimatedSection>
             <div className="text-center mb-8">
               <span className="text-accent font-semibold text-sm uppercase tracking-wide">Renovations</span>
-              <h2 className="text-3xl md:text-4xl font-bold mt-2">Post-renovation cleaning after a kitchen, bathroom or basement remodel</h2>
+              <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Post-renovation cleaning after a kitchen, bathroom or basement remodel</h2>
             </div>
             <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
               <p>
@@ -316,31 +330,27 @@ export default function EdmontonPostConstruction() {
       </section>
 
       {/* What's Included Section */}
-      <section className="py-20 bg-brand-navy relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
-        <div className="container mx-auto px-4 relative z-10">
+      <section className="py-20">
+        <div className="container mx-auto px-4">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-white">
+            <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-4">
               What a post-construction clean covers in Edmonton
             </h2>
-            <p className="text-center text-white/90 mb-12 max-w-2xl mx-auto">
+            <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
               Six parts of the clean: dust, kitchen, bathrooms, floors, interior glass, and the doors, handles and switches everyone touches.
             </p>
           </AnimatedSection>
           <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-6">
             {includedServices.map((item, index) => (
               <AnimatedSection key={index}>
-                <div
-                  className="group bg-white/10 backdrop-blur-sm rounded-xl p-6 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:bg-white/15 cursor-default"
-                  style={{ transformStyle: "preserve-3d" }}
-                >
+                <div className="bg-white rounded-xl border border-border p-6 h-full">
                   <div className="flex items-start gap-4">
-                    <div className="bg-accent/20 rounded-lg p-3 flex-shrink-0">
-                      <item.icon className="w-6 h-6 text-accent transition-transform duration-500 group-hover:rotate-6" />
+                    <div className="bg-accent/10 rounded-lg p-3 flex-shrink-0">
+                      <item.icon className="w-6 h-6 text-accent" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-lg mb-1 text-white">{item.title}</h3>
-                      <p className="text-white/90">{item.desc}</p>
+                      <h3 className="font-semibold text-lg mb-1">{item.title}</h3>
+                      <p className="text-muted-foreground">{item.desc}</p>
                     </div>
                   </div>
                 </div>
@@ -356,7 +366,7 @@ export default function EdmontonPostConstruction() {
           <AnimatedSection>
             <div className="mx-auto max-w-3xl text-center">
               <span className="text-accent font-semibold text-sm uppercase tracking-wide">Price List</span>
-              <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">What post-construction cleaning costs in Edmonton</h2>
+              <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-4">What post-construction cleaning costs in Edmonton</h2>
               <p className="text-muted-foreground leading-relaxed">
                 This is the one clean we price by square footage rather than by bedrooms, because the dust
                 does not care how the rooms are divided. Pick the band the finished space falls in and that
@@ -417,85 +427,47 @@ export default function EdmontonPostConstruction() {
           <AnimatedSection>
             {/* Was "Why Edmonton Homeowners Choose Duty Cleaners", a heading that
                 promised a sales pitch and sat over six booking terms. */}
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">What is settled before an Edmonton crew arrives</h2>
+            <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-12">What is settled before an Edmonton crew arrives</h2>
           </AnimatedSection>
-          <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {whyChooseUs.map((item, index) => (
-              <AnimatedSection key={index}>
-                <div
-                  className="group bg-white rounded-xl p-6 border border-muted shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-lg h-full"
-                  style={{ transformStyle: "preserve-3d" }}
-                >
-                  <div className="bg-accent/10 rounded-lg w-12 h-12 flex items-center justify-center mb-4">
-                    <item.icon className="w-6 h-6 text-accent transition-transform duration-500 group-hover:scale-110" />
-                  </div>
-                  <h3 className="font-semibold text-lg mb-2">{item.title}</h3>
-                  <p className="text-muted-foreground">{item.desc}</p>
+          {/* Six booking terms as a definition list. They were the page's second
+              icon-card grid, and none of them is something to click. */}
+          <AnimatedSection>
+            <dl className="max-w-5xl mx-auto grid md:grid-cols-2 gap-x-12 gap-y-8">
+              {whyChooseUs.map((item) => (
+                <div key={item.title} className="border-t border-border pt-4">
+                  <dt className="font-semibold text-lg text-foreground mb-1">{item.title}</dt>
+                  <dd className="text-muted-foreground">{item.desc}</dd>
                 </div>
-              </AnimatedSection>
-            ))}
-          </div>
+              ))}
+            </dl>
+          </AnimatedSection>
         </div>
       </section>
 
       {/* What We Don't Offer Section */}
-      <section className="py-20 bg-muted/30">
+      <section id="not-ours" className="py-20 bg-muted/30 scroll-mt-20">
         <div className="container mx-auto px-4">
           <AnimatedSection>
             {/* "What We Don't Cover" over "To set clear expectations, here's what
                 falls outside our scope" was the template at its plainest. */}
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Six jobs that are not ours</h2>
-            <p className="text-center text-muted-foreground mb-4 max-w-2xl mx-auto">
+            <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-4">Six jobs that are not ours</h2>
+            <p className="text-center text-muted-foreground mb-10 max-w-2xl mx-auto">
               This is <strong>final-stage cleaning only</strong>. These six belong to the contractor or to
               you, and a crew that turns up to find them undone cannot start:
             </p>
-            <p className="text-center text-sm text-muted-foreground mb-12 max-w-2xl mx-auto italic">
-              Rough cleanup and debris removal are your contractor's job, and they have to be done before our team arrives.
-            </p>
           </AnimatedSection>
-          <div className="max-w-3xl mx-auto space-y-4">
-            {excludedServices.map((item, index) => (
-              <AnimatedSection key={index}>
-                <div className="flex items-start gap-4 bg-destructive/5 border border-destructive/10 rounded-xl p-5">
-                  <Ban className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />
-                  <p className="text-muted-foreground">{item}</p>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Satisfaction Guarantee */}
-      <section className="py-20 bg-brand-navy relative overflow-hidden">
-        <div className="absolute bottom-0 left-10 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
-        <div className="container mx-auto px-4 relative z-10">
           <AnimatedSection>
-            <div className="max-w-3xl mx-auto text-center">
-              <div className="inline-flex items-center gap-2 bg-accent/20 rounded-full px-4 py-2 mb-6">
-                <Heart className="w-4 h-4 text-accent" />
-                <span className="text-accent text-sm font-semibold uppercase">Cleaning Edmonton homes {COMPANY.sinceLabel}</span>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Tell us within {POLICY.guaranteeWindowHours} hours if we missed a ledge</h2>
-              <p className="text-lg text-white/90 mb-4">
-                If any area of the post-construction clean is not right, tell us within{" "}
-                {POLICY.guaranteeWindowHours} hours and we come back to re-clean it at no charge. Photos help
-                the team find it and are not a condition.
-              </p>
-              <p className="text-base text-white/90 mb-8">
-                The post-construction checklist names the cabinet interiors, the window tracks and the
-                baseboards, so a miss is easy to point to. Our Edmonton team is rated{" "}
-                {RATING_CLAIM}{REVIEWS ? ` across ${REVIEWS} reviews` : ""}; read them on the{" "}
-                <Link to="/reviews/" className="text-white underline underline-offset-4">reviews page</Link>.
-              </p>
-              <div className="flex flex-wrap gap-4 justify-center">
-                <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-white">
-                  <a href="#quote">See My Instant Price</a>
-                </Button>
-                <Button asChild size="lg" className="bg-white/10 hover:bg-white/20 text-white border border-white/20">
-                  <a href="/about-us/">About Duty Cleaners</a>
-                </Button>
-              </div>
+            <div className="max-w-4xl mx-auto bg-white border border-border rounded-xl p-6 md:p-8 grid md:grid-cols-2 gap-8">
+              {excludedServices.map((group) => (
+                <div key={group.heading}>
+                  <h3 className="font-semibold text-lg text-foreground mb-3">{group.heading}</h3>
+                  <ul className="list-disc pl-5 space-y-3 text-muted-foreground">
+                    {group.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
           </AnimatedSection>
         </div>
@@ -505,7 +477,7 @@ export default function EdmontonPostConstruction() {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Post-Construction Cleaning FAQs</h2>
+            <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-4">Post-Construction Cleaning FAQs</h2>
             <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
               Questions Edmonton homeowners, builders and renovators ask before a post-construction clean.
             </p>
@@ -543,55 +515,82 @@ export default function EdmontonPostConstruction() {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Talk to the Edmonton office</h2>
+            <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-12">Talk to the Edmonton office</h2>
           </AnimatedSection>
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {[
-              { icon: Phone, title: "Give us a call", desc: "Questions before you book", action: "(780) 913-6565", href: "tel:7809136565" },
-              { icon: MapPin, title: "Our office", desc: "18615 71 Ave NW\nEdmonton, AB", action: "Get Directions", href: getListing("edmonton").url },
-              { icon: Clock, title: "Hours of operation", desc: "Mon-Sat: 8am–8pm\nSun: 9am–3pm", action: "Reviews", href: getListing("edmonton").reviewsUrl },
-            ].map((card, index) => (
-              <AnimatedSection key={index}>
-                <div
-                  className="group bg-white rounded-xl p-6 text-center border border-muted shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-lg"
-                  style={{ transformStyle: "preserve-3d" }}
-                >
-                  <div className="bg-accent/10 rounded-full w-14 h-14 flex items-center justify-center mx-auto mb-4">
-                    <card.icon className="w-6 h-6 text-accent transition-transform duration-500 group-hover:scale-110" />
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">{card.title}</h3>
-                  <p className="text-muted-foreground mb-4 whitespace-pre-line">{card.desc}</p>
-                  <Button asChild variant="outline" className="border-accent/30 text-accent hover:bg-accent/5">
-                    <a href={card.href} target={card.href.startsWith("http") ? "_blank" : undefined} rel={card.href.startsWith("http") ? "noopener noreferrer" : undefined}>
-                      {card.action}
-                    </a>
-                  </Button>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
+          {/* One office block: phone, address, hours. The hours come from
+              proof.ts, so they cannot drift from the footer. The third card
+              used to be headed "Hours of operation" over a "Reviews" button;
+              the listing link now sits beside the rating in the closing band. */}
+          <AnimatedSection>
+            <dl className="max-w-4xl mx-auto bg-white border border-border rounded-xl p-6 md:p-8 grid sm:grid-cols-3 gap-8">
+              <div>
+                <dt className="font-semibold text-foreground mb-1">Give us a call</dt>
+                <dd className="text-muted-foreground">
+                  Questions before you book
+                  <a href={OFFICE.phoneLink} className="mt-1 block text-lg font-semibold text-primary underline underline-offset-4">{OFFICE.phone}</a>
+                </dd>
+              </div>
+              <div>
+                <dt className="font-semibold text-foreground mb-1">Our office</dt>
+                <dd className="text-muted-foreground">
+                  {OFFICE.address}
+                  <a href={getListing("edmonton").url} target="_blank" rel="noopener noreferrer" className="mt-1 block font-semibold text-primary underline underline-offset-4">Get Directions</a>
+                </dd>
+              </div>
+              <div>
+                <dt className="font-semibold text-foreground mb-1">Hours</dt>
+                <dd className="text-muted-foreground">
+                  {hoursRowsFor("edmonton").map(([days, time]) => (
+                    <span key={days} className="block">{days}: {time}</span>
+                  ))}
+                </dd>
+              </div>
+            </dl>
+          </AnimatedSection>
         </div>
       </section>
 
-      {/* Quote Section: one promise, the instant price */}
-      <section id="contact-form" className="py-20 lg:py-12 bg-brand-navy relative overflow-hidden scroll-mt-20">
-        <div className="absolute top-10 right-20 w-72 h-72 bg-accent/10 rounded-full blur-3xl" />
-        <div className="container mx-auto px-4 relative z-10">
+      {/* The one closing band: the re-clean, the reviews and the instant price.
+          It was two navy sections, the second headed with its own button label
+          and carrying a contact-form id with no form in it. */}
+      <section className="py-20 bg-brand-navy">
+        <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">See My Instant Price</h2>
-              <p className="text-white/90 mb-8">
+              <h2 className="display-serif text-3xl md:text-4xl font-bold text-white mb-4">Tell us within {POLICY.guaranteeWindowHours} hours if we missed a ledge</h2>
+              <p className="text-lg text-white/90 mb-4">
+                If any area of the post-construction clean is not right, tell us within{" "}
+                {POLICY.guaranteeWindowHours} hours and we come back to re-clean it at no charge. Photos help
+                the team find it and are not a condition.
+              </p>
+              <p className="text-base text-white/90 mb-4">
+                The post-construction checklist names the cabinet interiors, the window tracks and the
+                baseboards, so a miss is easy to point to. We have been cleaning Edmonton homes{" "}
+                {COMPANY.sinceLabel}, and our Edmonton team is rated{" "}
+                {RATING_CLAIM}{REVIEWS ? ` across ${REVIEWS} reviews` : ""}; read them on the{" "}
+                <Link to="/reviews/" className="text-white underline underline-offset-4">reviews page</Link>{" "}
+                or on{" "}
+                <a href={getListing("edmonton").reviewsUrl} target="_blank" rel="noopener noreferrer" className="text-white underline underline-offset-4">the Edmonton branch's Google profile</a>.
+                Who we are is on{" "}
+                <Link to="/about-us/" className="text-white underline underline-offset-4">About Duty Cleaners</Link>.
+              </p>
+              <p className="text-base text-white/90 mb-8">
                 The form quotes by square footage. Pick the band the finished space falls in and the price is
                 on screen before you book; nothing is charged until the clean is done. The other cleans, with
                 their starting prices, are listed under{" "}
                 <Link to="/services/" className="text-white underline underline-offset-4">all Edmonton cleaning services and prices</Link>.
               </p>
-              <a
-                href="#quote"
-                className="inline-flex h-14 items-center justify-center rounded-md bg-accent px-10 text-lg font-bold text-accent-foreground shadow-lg shadow-accent/30 transition-colors hover:bg-accent/90"
-              >
-                See My Instant Price
-              </a>
+              <div className="flex flex-wrap gap-4 justify-center">
+                <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-8">
+                  <a href="#quote">See My Instant Price</a>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-lg px-8">
+                  <a href={OFFICE.phoneLink}>
+                    <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />
+                    {OFFICE.phone}
+                  </a>
+                </Button>
+              </div>
             </div>
           </AnimatedSection>
         </div>

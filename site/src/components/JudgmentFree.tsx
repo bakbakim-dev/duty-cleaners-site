@@ -51,14 +51,13 @@ export default function JudgmentFree({
           decoding="async"
           className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/55" aria-hidden="true" />
+        {/* The scrim is the brand navy, the same dark tone as the Promise band
+            and the footer, rather than a second, black one. */}
+        <div className="absolute inset-0 bg-brand-navy/75" aria-hidden="true" />
         <div className="container relative mx-auto px-4 py-20 text-center md:py-28">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
-            How we show up
-          </p>
           <h2
             id="judgment-free-heading"
-            className="display-serif mx-auto mt-4 max-w-[24ch] text-3xl font-bold leading-snug text-white md:text-5xl"
+            className="display-serif mx-auto max-w-[24ch] text-3xl font-bold leading-snug text-white md:text-5xl"
           >
             We&rsquo;ve seen it all.{" "}
             <em className="italic text-accent-on-dark">We&rsquo;ve judged none of it.</em>
@@ -81,7 +80,7 @@ export default function JudgmentFree({
               asChild
             >
               <a href={quoteHrefFor(pathname)}>
-                See my price
+                See My Instant Price
                 <span className="dc-icon dc-icon-arrow-right ml-2 h-5 w-5" aria-hidden="true" />
               </a>
             </Button>

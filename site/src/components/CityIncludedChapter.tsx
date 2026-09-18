@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { Bath, Bed, ChefHat, Sofa } from "lucide-react";
 import useRevealOnScroll from "@/hooks/use-reveal-on-scroll";
 import ThresholdLine from "@/components/ThresholdLine";
-import Eyebrow from "@/components/Eyebrow";
 
 interface CityIncludedChapterProps {
   city: "Edmonton" | "Calgary";
@@ -83,8 +82,7 @@ export default function CityIncludedChapter({ city }: CityIncludedChapterProps) 
         <div className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,2fr)] lg:gap-14">
           {/* Caption rail */}
           <div ref={heading.ref} className={`lg:sticky lg:top-28 lg:self-start ${heading.className}`}>
-            <Eyebrow>What&rsquo;s Included</Eyebrow>
-            <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">{COPY[city].heading}</h2>
+            <h2 className="display-serif text-3xl md:text-4xl font-bold">{COPY[city].heading}</h2>
             <span className={`rule-draw mt-4 ${heading.className}`} aria-hidden="true" />
             <p className="mt-4 max-w-[45ch] leading-relaxed text-muted-foreground">{COPY[city].caption}</p>
             <ThresholdLine className="mt-6 hidden max-w-[220px] lg:block" />
@@ -96,11 +94,12 @@ export default function CityIncludedChapter({ city }: CityIncludedChapterProps) 
             </Link>
           </div>
 
-          {/* Numbered room ledger: hairline rows, checklist split across two columns. */}
+          {/* Room ledger: hairline rows, checklist split across two columns.
+              The rooms are not a sequence, so the 2.5rem gutter that held
+              "01" to "04" now holds the room's icon, which is the label. */}
           <div>
-            {rooms.map((room, idx) => {
+            {rooms.map((room) => {
               const Icon = room.icon;
-              const number = String(idx + 1).padStart(2, "0");
               return (
                 <div
                   key={room.title}
@@ -109,19 +108,14 @@ export default function CityIncludedChapter({ city }: CityIncludedChapterProps) 
                      80px on a 360px phone — the item text ran off the right
                      edge and could not be scrolled to, because the overflow
                      was on the document rather than a scroll container. The
-                     number and title sit side by side on mobile and the list
+                     icon and title sit side by side on mobile and the list
                      spans the full width beneath them. */
                   className="grid grid-cols-[2.5rem_minmax(0,1fr)] items-start gap-4 border-t border-border py-6 first:border-t-0 first:pt-0 md:grid-cols-[2.5rem_minmax(0,11rem)_minmax(0,1fr)] md:gap-6 md:py-7"
                 >
-                  <span className="pt-1 text-sm font-bold tracking-[0.16em] text-accent" aria-hidden="true">
-                    {number}
-                  </span>
-                  <div>
-                    <div className="flex h-10 w-10 items-center justify-center rounded-sm border border-border bg-white">
-                      <Icon className="h-5 w-5 text-primary" aria-hidden="true" />
-                    </div>
-                    <h3 className="display-serif mt-3 text-xl font-bold text-foreground">{room.title}</h3>
+                  <div className="flex h-10 w-10 items-center justify-center rounded-sm border border-border bg-white">
+                    <Icon className="h-5 w-5 text-primary" aria-hidden="true" />
                   </div>
+                  <h3 className="display-serif self-center text-xl font-bold text-foreground md:self-start md:pt-1.5">{room.title}</h3>
                   <ul className="col-span-2 grid gap-x-8 gap-y-2 pt-1 sm:grid-cols-2 md:col-span-1">
                     {room.items.map((item) => (
                       <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">

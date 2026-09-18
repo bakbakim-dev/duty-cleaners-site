@@ -43,7 +43,7 @@ export default function AnnouncementBar() {
             href={quoteHrefFor(pathname)}
             className="ml-2 inline-flex min-h-[44px] items-center font-semibold text-accent-on-dark underline-offset-2 transition-colors hover:underline"
           >
-            See my price →
+            See My Instant Price
           </a>
         </p>
 

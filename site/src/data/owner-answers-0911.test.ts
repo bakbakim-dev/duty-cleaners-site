@@ -93,7 +93,8 @@ describe("the owner's answers of 2026-09-11", () => {
   it("no page describes the top tier as five or more bedrooms", () => {
     const hits: string[] = [];
     for (const full of pageAndComponentFiles()) {
-      const m = /five-or-more|five or more|5\+ ?bed/i.exec(read(full));
+      // "five bedrooms or more" slipped past the first pattern onto three pages (found 2026-09-18).
+      const m = /five-or-more|five or more|(?:five|5) bedrooms? or more|5\+ ?bed/i.exec(read(full));
       if (m) hits.push(`${rel(full)}: "${m[0]}"`);
     }
     expect(hits, "the tables stop at 5 Bedroom; six and seven are priced in the quote form").toEqual([]);

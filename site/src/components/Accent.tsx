@@ -8,7 +8,11 @@ export function Accent({ children }: { children: ReactNode }) {
   return <em className="italic text-accent">{children}</em>;
 }
 
-/** Gold variant for dark navy hero surfaces. */
+/**
+ * The accent on dark navy surfaces. It was gold until 2026-09-18; the colour lock
+ * keeps one accent per page (burnt orange, and this lighter tint of it on navy),
+ * so the name is historical.
+ */
 export function AccentGold({ children }: { children: ReactNode }) {
-  return <em className="italic text-brand-gold">{children}</em>;
+  return <em className="italic text-accent-on-dark">{children}</em>;
 }

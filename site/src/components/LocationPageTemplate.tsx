@@ -21,7 +21,7 @@ import { Helmet } from "react-helmet-async";
 import { buildLocationSchema } from "@/lib/location-schema";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { CheckCircle2, Star, Shield, Award, Home, Truck, SprayCan, Bath, Leaf, CalendarCheck, ThumbsUp, Mail, PaintRoller, Sparkles } from "lucide-react";
+import { CheckCircle2, Star, Shield, Award, Home, Truck, SprayCan, Bath, Leaf, CalendarCheck, ThumbsUp, Calculator, PaintRoller, Sparkles } from "lucide-react";
 
 interface LocationPageProps {
   city: string;
@@ -254,52 +254,54 @@ export default function LocationPageTemplate({
         />
         <div className="absolute inset-0 bg-gradient-to-b from-brand-navy/80 via-brand-navy/70 to-brand-navy/90" />
         <div className="absolute top-20 left-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-5 py-2 mb-6">
-              <span className="dc-icon dc-icon-map-pin w-4 h-4 text-accent" aria-hidden="true" />
-              {/* Same distinction as the schema name: "Serving Leduc, Edmonton"
-                  misstates a separate town as part of the city. */}
-              <span className="text-white/90 text-sm font-medium">
-                Serving {city}, {isOwnMunicipality ? "AB" : regionLabel}
-              </span>
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+            {/* The "Serving <place>" pill that stood here repeated the breadcrumb
+                above it and the H1 below it. */}
+            <h1 className="display-serif text-[2rem] sm:text-[2.25rem] md:text-[3rem] text-white mb-6 leading-[1.12] text-balance">
               {heroTitle ?? `Professional House Cleaning in ${city}`}
             </h1>
-            <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg text-white/85 mb-8 max-w-3xl mx-auto leading-relaxed">
               {description}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
+                <a href={quoteHrefFor(pathname)}>See My Instant Price</a>
+              </Button>
+              <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
                 <a href={phoneLink}>
                   <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />{phone}
                 </a>
               </Button>
-              <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
-                <a href={quoteHrefFor(pathname)}>See My Instant Price</a>
-              </Button>
             </div>
-            <div className="flex flex-wrap justify-center gap-6">
-              {[
-                { icon: CheckCircle2, text: "Pay After Your Clean" },
-                // The same badges the hand-written neighbourhood pages carry. The
-                // content prompt retired the same-day badge (no same-day promise)
-                // and the 100% satisfaction wording: the guarantee is a 24-hour
-                // re-clean, POLICY in data/policy.ts.
-                { icon: CalendarCheck, text: "Open 7 Days a Week" },
-                { icon: Award, text: "24-Hour Re-Clean Guarantee" },
-              ].map((badge, i) => (
-                <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
-                  <badge.icon className="w-4 h-4 text-accent" />
-                  <span className="text-white/90 text-sm">{badge.text}</span>
-                </div>
-              ))}
-            </div>
+            {/* One trust line: the branch listing's own rating, read from proof.ts. */}
+            {CITY_PROOF[region].googleRating && CITY_PROOF[region].googleReviewCount ? (
+              <div className="flex items-center justify-center gap-2 text-white/90">
+                <Star className="w-4 h-4 shrink-0 fill-brand-gold text-brand-gold" aria-hidden="true" />
+                <span className="font-medium">
+                  {CITY_PROOF[region].googleRating} on Google, {CITY_PROOF[region].googleReviewCount} reviews on the {regionLabel} listing
+                </span>
+              </div>
+            ) : null}
           </div>
         </div>
       </section>
+
+      {/* What the hero pills said, as one plain row under the hero. The same
+          three the hand-written neighbourhood pages carry: the content prompt
+          retired the same-day badge (no same-day promise) and the 100%
+          satisfaction wording, and the guarantee is a 24-hour re-clean, POLICY
+          in data/policy.ts. */}
+      <div className="border-b border-border bg-muted/30">
+        <ul className="container mx-auto px-4 py-3 flex flex-wrap items-center justify-center gap-x-8 gap-y-1 text-sm font-medium text-foreground">
+          {["Pay After Your Clean", "Open 7 Days a Week", "24-Hour Re-Clean Guarantee"].map((text) => (
+            <li key={text} className="flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-primary" aria-hidden="true" />
+              {text}
+            </li>
+          ))}
+        </ul>
+      </div>
 
       {/* What it costs here.
           No location page stated a price -- 145 of them -- so a visitor who
@@ -318,8 +320,7 @@ export default function LocationPageTemplate({
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="max-w-4xl mx-auto">
-              <span className="text-primary text-sm font-semibold tracking-wider uppercase">What it costs</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">
+              <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mb-4 text-balance">
                 Cleaning prices in {city}
               </h2>
               <p className="text-muted-foreground text-lg leading-relaxed mb-4">
@@ -388,8 +389,7 @@ export default function LocationPageTemplate({
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="text-center mb-14">
-              <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">
+              <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
                 Cleaning Services for {city} Homes
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
@@ -428,8 +428,8 @@ export default function LocationPageTemplate({
                 and the rest are separate towns, not city neighbourhoods. */}
             <p className="mt-10 text-center text-muted-foreground">
               {isOwnMunicipality
-                ? `We clean ${city} and the wider ${regionLabel} area — see `
-                : `${city} is one of the ${regionLabel} neighbourhoods we clean — see `}
+                ? `We clean ${city} and the wider ${regionLabel} area. See `
+                : `${city} is one of the ${regionLabel} neighbourhoods we clean. See `}
               <Link
                 to={region === "calgary" ? canonicalForPath("/cleaning-services-calgary") : "/"}
                 className="text-primary underline underline-offset-2"
@@ -444,12 +444,11 @@ export default function LocationPageTemplate({
 
       {/* Why Choose Us */}
       <section className="py-20 bg-brand-navy relative overflow-hidden">
-        <div className="absolute top-10 right-20 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />
         <div className="container mx-auto px-4 relative z-10">
           <AnimatedSection>
             <div className="text-center mb-14">
-              <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">
+              <span className="text-accent-on-dark text-sm font-semibold tracking-wider uppercase">Why Us</span>
+              <h2 className="display-serif text-3xl md:text-4xl font-bold text-white mt-2 mb-4 text-balance">
                 Why {city} Residents Choose Duty Cleaners
               </h2>
               <p className="text-white/90 max-w-2xl mx-auto text-lg">
@@ -471,15 +470,14 @@ export default function LocationPageTemplate({
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4 text-center">
           <AnimatedSection>
-            <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-            <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
+            <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mb-4 text-balance">
               House Cleaning in {city} and the Wider {regionLabel} Area
             </h2>
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
               The {regionLabel} branch cleans homes across {city}. Every neighbourhood and community it serves is on the service-area list.
             </p>
             <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
-              View All Service Areas →
+              View All Service Areas<span className="dc-icon dc-icon-arrow-right h-4 w-4" aria-hidden="true" />
             </Link>
             {/* The commercial cross-link that sat here was removed: the content
                 prompt keeps commercial work off the house-cleaning pages. */}
@@ -493,8 +491,7 @@ export default function LocationPageTemplate({
           <AnimatedSection>
             <div className="max-w-3xl mx-auto">
               <div className="text-center mb-12">
-                <span className="text-primary text-sm font-semibold tracking-wider uppercase">FAQ</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Frequently Asked Questions</h2>
+                <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">Frequently Asked Questions</h2>
               </div>
               <Accordion type="single" collapsible className="w-full">
                 {faqs.map((faq, index) => (
@@ -511,10 +508,9 @@ export default function LocationPageTemplate({
 
       {/* CTA */}
       <section className="py-20 bg-brand-navy relative overflow-hidden">
-        <div className="absolute bottom-0 left-20 w-80 h-80 bg-accent/10 rounded-full blur-3xl" />
         <div className="container mx-auto px-4 relative z-10 text-center">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            <h2 className="display-serif text-3xl md:text-4xl font-bold text-white mb-6 text-balance">
               Ready to Book a Clean in {city}?
             </h2>
             <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
@@ -522,13 +518,13 @@ export default function LocationPageTemplate({
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
-                <a href={phoneLink}>
-                  <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />Call {phone}
+                <a href={quoteHrefFor(pathname)}>
+                  <Calculator className="mr-2 w-5 h-5" />See My Instant Price
                 </a>
               </Button>
               <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
-                <a href={quoteHrefFor(pathname)}>
-                  <Mail className="mr-2 w-5 h-5" />See My Instant Price
+                <a href={phoneLink}>
+                  <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />Call {phone}
                 </a>
               </Button>
             </div>

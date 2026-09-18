@@ -4,7 +4,7 @@ import { standardTierRows, featuredExtraRows, formatPrice, addOnFromPrice, FREQU
 import { travelFee } from "@/data/addon-table";
 import { POLICY } from "@/data/policy";
 import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
-import { Accent, AccentGold } from "@/components/Accent";
+import { Accent } from "@/components/Accent";
 import { Home, Bath, UtensilsCrossed } from "lucide-react";
 import heroImage from "@/assets/gallery/calgary-living-room-clean.webp";
 import kitchenImage from "@/assets/gallery/calgary-spotless-kitchen.webp?card";
@@ -40,14 +40,13 @@ export default function CalgaryRegularCleaning() {
       seoDescription="Need a single clean in Calgary? Review Duty Cleaners' standard cleaning checklist, add-ons and pricing before booking."
       serviceName="Standard House Cleaning in Calgary"
       canonical="https://dutycleaners.ca/calgary/regular-cleaning"
-      heroHeading={<>One-Time Standard Cleaning in <AccentGold>Calgary</AccentGold></>}
-      heroSubheading={`Kitchen, bathrooms, bedrooms and floors in one visit, at a flat rate by home size that starts at ${FROM} before GST for a one-bedroom apartment, with any pet or home-type charge added on the quote. Put the same clean on a schedule and every visit after the first is discounted.`}
+      heroHeading={<>One-Time Standard Cleaning in <em className="italic text-accent-on-dark">Calgary</em></>}
+      heroSubheading={`Kitchen, bathrooms, bedrooms and floors in one visit, at a flat rate that starts at ${FROM} before GST for a one-bedroom apartment. Nothing is charged until the clean is done.`}
       heroBadges={["Reference-Checked Cleaners", "All Supplies Brought For You", "Missed Spots Re-Cleaned Free"]}
       heroImage={heroImage}
       heroImageAlt="Sunlit living room with a beige sofa, a patterned rug on hardwood floors and a gas fireplace"
       heroImageWidth={800}
       heroImageHeight={800}
-      overviewEyebrow="Service Overview"
       overviewHeading={<>One visit, <Accent>priced flat by home size.</Accent></>}
       overviewParagraphs={[
         <>
@@ -64,6 +63,9 @@ export default function CalgaryRegularCleaning() {
           edges needs a <Link to="/calgary/deep-cleaning/">Calgary deep clean</Link> first.
         </>,
       ]}
+      // Only the scope-and-price section sits above the checklist. The condo
+      // and coverage sections read after the FAQ, with the closing prose, so
+      // the page reaches the checklist and the price grid sooner.
       sections={[
         {
           heading: "Booking a one-time maid visit: scope and price",
@@ -90,6 +92,8 @@ export default function CalgaryRegularCleaning() {
             </>
           ),
         },
+      ]}
+      closingSections={[
         {
           heading: "What a standard visit covers in an apartment or condo",
           body: (
@@ -135,6 +139,23 @@ export default function CalgaryRegularCleaning() {
             </>
           ),
         },
+        {
+          heading: "Booking a standard clean in Calgary",
+          body: (
+            <>
+              <p>
+                You pick a date and an arrival window, the quote shows the flat rate before you confirm, and nothing is
+                charged until the clean is done. If the team missed something, say so within{" "}
+                {POLICY.guaranteeWindowHours} hours and they come back for it at no charge.
+              </p>
+              <p>
+                Our Calgary team is rated {RATING_CLAIM}{REVIEWS ? ` over ${REVIEWS} reviews` : ""};{" "}
+                <Link to="/reviews/">read the reviews</Link>, then{" "}
+                <Link to="/calgary/pricing/">check the Calgary price for your home size</Link>.
+              </p>
+            </>
+          ),
+        },
       ]}
       includedHeading="What a standard clean covers"
       includedSubheading="Kitchen, bathrooms, bedrooms, floors and living areas, in one visit."
@@ -155,12 +176,6 @@ export default function CalgaryRegularCleaning() {
         "Bathrooms scrubbed and wiped down",
         "Mirrors and glass surfaces polished",
         "Trash emptied",
-      ]}
-      roomTasks={[
-        { name: "Kitchen", tasks: 4, sample: "the counters, the stovetop and the sink" },
-        { name: "Bathrooms", tasks: 4, sample: "the toilet, tub and shower scrubbed" },
-        { name: "Living Areas", tasks: 4, sample: "dusting, then vacuuming and mopping" },
-        { name: "Bedrooms", tasks: 3, sample: "surfaces dusted and under the bed vacuumed" },
       ]}
       pricingBySize={TIERS}
       fromPrice={FROM}
@@ -184,26 +199,7 @@ export default function CalgaryRegularCleaning() {
         { q: "Who supplies the products and the vacuum?", a: `We do. The team brings every product and piece of equipment, the vacuum included. If there is a product you want used or avoided, say so when you book. Optional alternative products are ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}.` },
         { q: "How should I get the house ready?", a: "You do not need to clean before the team comes; clear counters and floors get cleaned and cluttered ones get worked around; decluttering and organising are a separate hourly add-on. If a room should be skipped, or one deserves extra time, note it on the booking." },
       ]}
-      closingSections={[
-        {
-          heading: "Booking a standard clean in Calgary",
-          body: (
-            <>
-              <p>
-                You pick a date and an arrival window, the quote shows the flat rate before you confirm, and nothing is
-                charged until the clean is done. If the team missed something, say so within{" "}
-                {POLICY.guaranteeWindowHours} hours and they come back for it at no charge.
-              </p>
-              <p>
-                Our Calgary team is rated {RATING_CLAIM}{REVIEWS ? ` over ${REVIEWS} reviews` : ""};{" "}
-                <Link to="/reviews/">read the reviews</Link>, then{" "}
-                <Link to="/calgary/pricing/">check the Calgary price for your home size</Link>.
-              </p>
-            </>
-          ),
-        },
-      ]}
-      ctaHeading={<>Standard cleaning in <AccentGold>Calgary</AccentGold> from {FROM}.</>}
+      ctaHeading={<>Standard cleaning in <em className="italic text-accent-on-dark">Calgary</em> from {FROM}.</>}
       ctaDescription="That figure is the one-bedroom apartment rate before GST. A townhouse or two-storey house adds a home-type charge, a home with pets adds the pet charge and an address outside Calgary city limits adds the travel fee, all shown on the quote before you book. Nothing is charged until the clean is complete."
       galleryImages={[
         { picture: kitchenImage, alt: "Kitchen with white shaker cabinets, stainless-steel appliances and a quartz island with a double sink" },

@@ -1,7 +1,7 @@
-import { ServiceCard, WhyUsCard } from "@/components/LocationCards";
+import { ServiceCard, WhyUsCard, QuoteReceipt } from "@/components/LocationCards";
 import { locationServices, locationWhyUs } from "@/data/location-cards";
 import {
-  CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import { Helmet } from "react-helmet-async"; import { buildLocationSchema } from "@/lib/location-schema"; import { CheckCircle2, Star, Shield, Award, Home, Truck, SprayCan, Bath, UtensilsCrossed, Leaf, CalendarCheck, ThumbsUp, Mail, PaintRoller, Sparkles } from "lucide-react";
+  CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import { Helmet } from "react-helmet-async"; import { buildLocationSchema } from "@/lib/location-schema"; import { CheckCircle2, Star, Shield, Award, Home, Truck, SprayCan, Bath, UtensilsCrossed, Leaf, CalendarCheck, ThumbsUp, Calculator, PaintRoller, Sparkles } from "lucide-react";
 // Was st-albert-landmark.webp: a generated "St. Albert Farmers' Market"
 // whose sign reads "FARMS MAKT / SIT. ALBERT" under a dozen US flags.
 import stAlbertHome from "@/assets/gallery/family-clean-home-edmonton.webp";
@@ -52,7 +52,8 @@ const EXAMPLE_TIER = STANDARD[2];
 const exampleQuote = (homeType: number | null, addOns: string[] = []) =>
   calculateQuote({ service: "standard", homeType, bedrooms: EXAMPLE_SIZE.beds, bathrooms: EXAMPLE_SIZE.bathrooms, halfBaths: EXAMPLE_SIZE.halfBaths, addOns, frequency: "one-time" }).firstClean;
 const EXAMPLE_BASE = formatPrice(exampleQuote(homeTypeOptions("standard")[0]?.id ?? null));
-const EXAMPLE_BASE_TEXT = EXAMPLE_BASE === EXAMPLE_TIER.price ? EXAMPLE_BASE : `${EXAMPLE_BASE} (${EXAMPLE_TIER.price} in the table, which rounds to the dollar)`;
+// The table card rounds to the dollar; the receipt says so when the two differ.
+const EXAMPLE_TABLE_NOTE = EXAMPLE_BASE === EXAMPLE_TIER.price ? undefined : `${EXAMPLE_TIER.price} in the table, which rounds to the dollar`;
 const EXAMPLE_PRICE = formatPrice(exampleQuote(90, [TRAVEL_FEE_KEY]));
 const EXAMPLE_WITH_PET = formatPrice(exampleQuote(90, [TRAVEL_FEE_KEY, "must-choose-if-you-have-pets"]));
 
@@ -140,44 +141,31 @@ export default function StAlbert() {
       {/* Hero */}
       <section className="relative py-24 bg-brand-navy overflow-hidden">
         <div className="absolute top-20 left-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-10">
             <div className="flex-1 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-5 py-2 mb-6">
-                <span className="dc-icon dc-icon-map-pin w-4 h-4 text-accent" aria-hidden="true" />
-                <span className="text-white/90 text-sm font-medium">Serving St. Albert, AB</span>
-              </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+              <h1 className="display-serif text-[2rem] sm:text-[2.25rem] xl:text-[2.75rem] text-white mb-6 leading-[1.12] text-balance">
                 Professional House Cleaning in St. Albert
               </h1>
-              <p className="text-lg md:text-xl text-white/80 mb-10 max-w-3xl leading-relaxed">
-                A standard clean in St. Albert starts at {STANDARD_FROM} before GST for a one-bedroom apartment or condo, plus the {TRAVEL_FEE} travel fee, with a house-type surcharge and the pet charge added where they apply. Rated {RATING_CLAIM} across {CITY_PROOF.edmonton.googleReviewCount} reviews on the Edmonton listing, and the card is charged only once the clean is complete.
+              <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                A standard clean in St. Albert starts at {STANDARD_FROM} before GST for a one-bedroom apartment or condo, plus the {TRAVEL_FEE} travel fee and any house-type or pet charge, and you pay after the clean.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
+                  <a href="#quote">See My Instant Price</a>
+                </Button>
+                <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
                   <a href="tel:7809136565">
                     <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />(780) 913-6565
                   </a>
                 </Button>
-                <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
-                  <a href="#quote">See My Instant Price</a>
-                </Button>
               </div>
-              <div className="flex flex-wrap justify-center lg:justify-start gap-6">
-                {[
-                  { icon: CheckCircle2, text: "Pay After Your Clean" },
-                  { icon: CalendarCheck, text: "Open 7 Days a Week" },
-                  { icon: Award, text: "24-Hour Re-Clean Guarantee" },
-                ].map((badge, i) => (
-                  <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
-                    <badge.icon className="w-4 h-4 text-accent" />
-                    <span className="text-white/90 text-sm">{badge.text}</span>
-                  </div>
-                ))}
+              <div className="flex items-center justify-center lg:justify-start gap-2 text-white/90">
+                <Star className="w-4 h-4 shrink-0 fill-brand-gold text-brand-gold" aria-hidden="true" />
+                <span className="font-medium">{RATING_CLAIM}, {CITY_PROOF.edmonton.googleReviewCount} reviews on the Edmonton listing</span>
               </div>
             </div>
-            <div className="flex-shrink-0 w-full lg:w-[500px]">
+            <div className="flex-shrink-0 w-full lg:w-[440px]">
               <img width={1024} height={1024}
                 src={stAlbertHome}
                 alt="A family in a living room with clean floors and clear surfaces"
@@ -189,6 +177,18 @@ export default function StAlbert() {
         </div>
       </section>
 
+      {/* What the hero pills said, as one plain row under the hero */}
+      <div className="border-b border-border bg-muted/30">
+        <ul className="container mx-auto px-4 py-3 flex flex-wrap items-center justify-center gap-x-8 gap-y-1 text-sm font-medium text-foreground">
+          {["Pay After Your Clean", "Open 7 Days a Week", "24-Hour Re-Clean Guarantee"].map((text) => (
+            <li key={text} className="flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-primary" aria-hidden="true" />
+              {text}
+            </li>
+          ))}
+        </ul>
+      </div>
+
       {/* A worked quote. Replaces the brochure "About the Neighbourhood" and
           "Around St. Albert" sections, whose landmarks and history were not
           in the local note or the FACTS block. */}
@@ -196,14 +196,32 @@ export default function StAlbert() {
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="max-w-4xl mx-auto">
-              <span className="text-primary text-sm font-semibold tracking-wider uppercase">A worked quote</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
+              <span className="text-accent text-sm font-semibold tracking-wider uppercase">A worked quote</span>
+              <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mt-2 mb-6 text-balance">
                 What house cleaning in St. Albert costs, worked through
               </h2>
               <div className="prose prose-lg text-muted-foreground max-w-none space-y-4">
                 <p>
-                  Take a three-bedroom two-storey house on one of St. Albert's older streets, with two bathrooms and a half bath, booked for a one-time standard clean. The apartment or condo rate for that size is {EXAMPLE_BASE_TEXT}. A two-storey house adds {HOME_TYPE.twoStorey}, and the {TRAVEL_FEE} travel fee applies because St. Albert is outside Edmonton city limits, so the clean comes to {EXAMPLE_PRICE} before 5% GST. If the home has pets, the {PET_FEE} pet charge is compulsory and the figure becomes {EXAMPLE_WITH_PET}, still before GST.
+                  Take a three-bedroom two-storey house on one of St. Albert's older streets, with two bathrooms and a half bath, booked for a one-time standard clean.
                 </p>
+                <QuoteReceipt
+                  lines={[
+                    { label: "Apartment or condo rate for that size", amount: EXAMPLE_BASE, note: EXAMPLE_TABLE_NOTE },
+                    { label: "Two-storey house", amount: `+ ${HOME_TYPE.twoStorey}` },
+                    { label: "Travel fee, outside Edmonton city limits", amount: `+ ${TRAVEL_FEE}` },
+                  ]}
+                  total={{ label: "Quote before 5% GST", amount: EXAMPLE_PRICE }}
+                  extras={[
+                    { label: `With pets: the compulsory ${PET_FEE} pet charge`, amount: EXAMPLE_WITH_PET, note: "Still before GST" },
+                  ]}
+                />
+                <div className="not-prose pt-1">
+                  <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
+                    <a href="#quote">
+                      <Calculator className="mr-2 w-5 h-5" />See My Instant Price
+                    </a>
+                  </Button>
+                </div>
                 <p>
                   More bathrooms, a larger home type and add-ons such as the inside of the oven, the inside of the fridge or interior windows all raise a St. Albert quote, and optional alternative products add {POLICY.ecoProductsFee} before GST: {POLICY.ecoProductsHowToRequest}. How long the clean takes does not change it. If a home needs substantially more work than described, such as heavy build-up or far more glass than stated, the team explains what it found and the options before continuing.
                 </p>
@@ -224,9 +242,8 @@ export default function StAlbert() {
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="text-center mb-14">
-              <span className="text-primary text-sm font-semibold tracking-wider uppercase">Our Services</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">
-                Cleaning Services for St. Albert Homes
+              <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
+                Cleaning services for St. Albert homes
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
                 Standard, deep and move-out cleans are priced flat by home size, post-construction by square footage, and wall washing is booked together with a clean. The list of{" "}
@@ -247,12 +264,11 @@ export default function StAlbert() {
 
       {/* Why Choose Us */}
       <section className="py-20 bg-brand-navy relative overflow-hidden">
-        <div className="absolute top-10 right-20 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />
         <div className="container mx-auto px-4 relative z-10">
           <AnimatedSection>
             <div className="text-center mb-14">
-              <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">
+              <span className="text-accent-on-dark text-sm font-semibold tracking-wider uppercase">Why Us</span>
+              <h2 className="display-serif text-3xl md:text-4xl font-bold text-white mt-2 mb-4 text-balance">
                 St. Albert house cleaners you rate after every visit
               </h2>
               <p className="text-white/90 max-w-2xl mx-auto text-lg">
@@ -276,8 +292,7 @@ export default function StAlbert() {
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4 text-center">
           <AnimatedSection>
-            <span className="text-primary text-sm font-semibold tracking-wider uppercase">Coverage</span>
-            <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
+            <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mb-4 text-balance">
               Cleaning services in St. Albert and the towns around it
             </h2>
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
@@ -290,7 +305,7 @@ export default function StAlbert() {
               run from the same office. All five sit outside Edmonton city limits, so the {TRAVEL_FEE} travel fee applies in each.
             </p>
             <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
-              View All Service Areas →
+              View All Service Areas<span className="dc-icon dc-icon-arrow-right h-4 w-4" aria-hidden="true" />
             </Link>
 
           </AnimatedSection>
@@ -316,8 +331,7 @@ export default function StAlbert() {
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="max-w-3xl mx-auto">
-              <span className="text-primary text-sm font-semibold tracking-wider uppercase">Moving out</span>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mt-2 mb-6">
+              <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mb-6 text-balance">
                 Move-out cleaning in St. Albert
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
@@ -344,9 +358,8 @@ export default function StAlbert() {
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="text-center mb-10">
-              <span className="text-primary text-sm font-semibold tracking-wider uppercase">Find Us</span>
-              <h2 className="text-3xl font-bold text-foreground mt-2 mb-4">
-                St. Albert Service Area
+              <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mb-4 text-balance">
+                St. Albert service area
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 St. Albert is one of nine communities outside Edmonton city limits that the Edmonton branch cleans, all served from its office at 18615 71 Ave NW.
@@ -365,8 +378,7 @@ export default function StAlbert() {
             <AnimatedSection>
               <div className="max-w-3xl mx-auto">
                 <div className="text-center mb-12">
-                  <span className="text-primary text-sm font-semibold tracking-wider uppercase">FAQ</span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">Frequently Asked Questions</h2>
+                  <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">Frequently asked questions</h2>
                 </div>
                 <Accordion type="single" collapsible className="w-full">
                   {faqs.map((faq, index) => (
@@ -391,10 +403,9 @@ export default function StAlbert() {
 
       {/* CTA */}
       <section className="py-20 bg-brand-navy relative overflow-hidden">
-        <div className="absolute bottom-0 left-20 w-80 h-80 bg-accent/10 rounded-full blur-3xl" />
         <div className="container mx-auto px-4 relative z-10 text-center">
           <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            <h2 className="display-serif text-3xl md:text-4xl font-bold text-white mb-6 text-balance">
               Book house cleaning in St. Albert
             </h2>
             <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
@@ -402,13 +413,13 @@ export default function StAlbert() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
-                <a href="tel:7809136565">
-                  <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />Call (780) 913-6565
+                <a href="#quote">
+                  <Calculator className="mr-2 w-5 h-5" />See My Instant Price
                 </a>
               </Button>
               <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-base px-8" asChild>
-                <a href="#quote">
-                  <Mail className="mr-2 w-5 h-5" />See My Instant Price
+                <a href="tel:7809136565">
+                  <span className="dc-icon dc-icon-phone mr-2 w-5 h-5" aria-hidden="true" />Call (780) 913-6565
                 </a>
               </Button>
             </div>

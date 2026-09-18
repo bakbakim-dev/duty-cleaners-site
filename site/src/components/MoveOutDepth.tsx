@@ -71,8 +71,7 @@ export default function MoveOutDepth({ city, showPricing = true }: MoveOutDepthP
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">Pricing</p>
-            <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-4 text-foreground">
+            <h2 className="display-serif text-3xl md:text-4xl font-bold mb-4 text-foreground">
               Move in / move out cleaning prices in {city}
             </h2>
             <p className="text-muted-foreground leading-relaxed">
@@ -109,29 +108,29 @@ export default function MoveOutDepth({ city, showPricing = true }: MoveOutDepthP
       </section>
       )}
 
-      {/* 3-step process */}
+      {/* 3-step process: a real ordered list with plain numerals and no card
+          boxes, so the terms grid on each page is the only card grid. Radius
+          rule for the family: images and cards are rounded-xl, buttons follow
+          the Button component, tables and hairline boxes stay square. */}
       <section className="py-16 bg-secondary/30">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center mb-10">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">How it works</p>
+            <span className="text-accent font-semibold text-sm uppercase tracking-wide">How it works</span>
             <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 text-foreground">
               Three steps from booking to move-in ready
             </h2>
           </div>
-          <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-3">
+          <ol className="mx-auto grid max-w-5xl gap-10 md:grid-cols-3">
             {STEPS.map(({ icon: Icon, title, body }, i) => (
-              <div key={title} className="bg-card border border-border p-6">
-                <span className="text-sm font-bold tracking-[0.16em] text-accent">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div className="mt-3 flex h-10 w-10 items-center justify-center rounded-full bg-brand-navy text-brand-gold">
+              <li key={title}>
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-navy text-brand-gold">
                   <Icon className="h-5 w-5" aria-hidden="true" />
                 </div>
-                <h3 className="mt-3 font-bold text-foreground">{title}</h3>
+                <h3 className="mt-3 text-lg font-bold text-foreground">{i + 1}. {title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{body}</p>
-              </div>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
 

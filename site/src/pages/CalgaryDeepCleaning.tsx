@@ -7,7 +7,7 @@ import { deepCleanTierRows, featuredExtraRows } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
 import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
 import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
-import { Accent, AccentGold } from "@/components/Accent";
+import { Accent } from "@/components/Accent";
 import { Sparkles, Bath, UtensilsCrossed, Layers, Check } from "lucide-react";
 import heroImage from "@/assets/gallery/calgary-kitchen-clean.webp";
 import heroImageCard from "@/assets/gallery/calgary-kitchen-clean.webp?card";
@@ -46,14 +46,13 @@ export default function CalgaryDeepCleaning() {
       seoDescription={`A Calgary deep clean adds baseboards, door frames, vents, grout and stovetop degreasing to the standard clean, from ${TIERS[0].price} before GST for a one-bedroom.`}
       serviceName="Deep House Cleaning in Calgary"
       canonical="https://dutycleaners.ca/calgary/deep-cleaning"
-      heroHeading={<>Deep Cleaning Services in <AccentGold>Calgary</AccentGold></>}
-      heroSubheading={`Everything in a standard clean, plus what a standard clean does not reach: baseboards and door frames, switches and outlet covers, vent covers, tile and shower glass, the stovetop and range hood degreased. From ${TIERS[0].price} before GST for a one-bedroom, flat by home size, with any pet charge, home-type charge or travel fee added on the quote. The inside of the oven and fridge are add-ons.`}
-      heroBadges={["Baseboards & Door Frames by Hand", "All Supplies Brought For You", `Missed Spots Re-Cleaned if Reported Within ${POLICY.guaranteeWindowHours} Hours`]}
+      heroHeading={<>Deep Cleaning Services in <em className="italic text-accent-on-dark">Calgary</em></>}
+      heroSubheading={`A standard clean plus the baseboards, door frames, switch plates and vent covers it passes over, from ${TIERS[0].price} before GST for a one-bedroom apartment, charged after the clean.`}
+      heroBadges={["Baseboards & Door Frames by Hand", "All Supplies Brought For You", `${POLICY.guaranteeWindowHours}-Hour Re-Clean Guarantee`]}
       heroImage={heroImage}
       heroImageAlt="Long kitchen with granite counters, a gas cooktop under a range hood and two stainless-steel fridges"
       heroImageWidth={800}
       heroImageHeight={800}
-      overviewEyebrow="Service Overview"
       overviewHeading={<>The reset regular cleaning <Accent>can't reach.</Accent></>}
       overviewParagraphs={[
         <>
@@ -63,6 +62,9 @@ export default function CalgaryDeepCleaning() {
         "Choose a deep clean when the standard checklist is not enough for the buildup you want addressed. The package adds baseboards, doors, switches, outlet and vent covers, cobwebs and detailed kitchen tasks. Tell us about fragile finishes or marks that may need assessment; cleaning does not repair worn surfaces.",
         "For a Beltline or Eau Claire condo, include building access and parking instructions. In any Calgary neighbourhood, dust left by building or renovation work needs a post-construction scope, not a deep clean selected solely because the home is new.",
       ]}
+      // The price section stays above the checklist. The out-of-town section
+      // reads after the FAQ, with the other closing prose, so the page reaches
+      // the checklist and the price grid sooner.
       sections={[
         {
           heading: "Deep house cleaning in Calgary: two worked prices",
@@ -89,24 +91,6 @@ export default function CalgaryDeepCleaning() {
             </>
           ),
         },
-        {
-          heading: "Deep cleaning in Airdrie, Cochrane, Okotoks and Chestermere",
-          body: (
-            <>
-              <p>
-                All four are outside Calgary city limits, so a deep clean there is the same flat rate plus a {TRAVEL}{" "}
-                travel fee, shown on the quote before you book. Inside the city there is no travel fee. Airdrie and
-                Cochrane have their own pages: <Link to="/cleaning-services-airdrie/">house cleaning in Airdrie</Link>{" "}
-                and <Link to="/cleaning-services-cochrane/">cleaning services in Cochrane</Link>.
-              </p>
-              <p>
-                Outside the city the checklist and the package are the same as in Calgary, and the travel fee is the
-                one charge the distance adds. The pet charge and the home-type charge for a townhouse or two-storey house apply there just as
-                they do inside the city, and each one is a separate line on the quote before you confirm.
-              </p>
-            </>
-          ),
-        },
       ]}
       includedHeading="What a deep clean adds"
       includedSubheading="The places a standard visit passes over, room by room."
@@ -129,33 +113,34 @@ export default function CalgaryDeepCleaning() {
         "Detailed cobweb and corner cleaning",
         "Floors thoroughly mopped and vacuumed",
       ]}
-      roomTasks={[
-        { name: "Kitchen Detail", tasks: 6, sample: "the stovetop and range hood degreased" },
-        { name: "Bathroom Scrub", tasks: 5, sample: "tile and shower glass worked over" },
-        { name: "Edges & Details", tasks: 5, sample: "baseboards and door frames wiped by hand" },
-        { name: "Bedrooms & Living", tasks: 4, sample: "high and low surfaces dusted" },
-      ]}
       pricingBySize={TIERS}
       fromPrice={TIERS[0].price}
       extras={featuredExtraRows()}
-      notIncluded={[
-        // The list was all safety exclusions — 25 lb, ladders, mould. The four
-        // below are scope, and they are what customers actually assume a deep
-        // clean covers: the commonest disputes in this trade, on the page where
-        // someone is about to spend several hundred dollars. Prices are derived
-        // from bk-config, because the published-prices guard is right that a
-        // hand-typed figure drifts the moment BookingKoala changes.
-        `Inside the oven: an add-on at ${addOnLabel("inside-oven")}`,
-        `Inside the fridge: an add-on at ${addOnLabel("inside-fridge")}`,
-        `Inside cabinets and drawers: an add-on from ${addOnLabel("inside-cabinets-kitchen-bathroom-only")}`,
-        `Interior windows: an add-on from ${addOnLabel("inside-windows")}`,
-        "Wall washing, a separate add-on booked with the clean rather than part of the package",
-        "Furniture and anything else over 25 lbs stays where it is",
-        "Exterior windows and any outdoor work",
-        "Mould remediation, bodily fluids and pest removal",
-        "Anything higher than a 3-step ladder reaches",
-        "Light bulbs, chandeliers and fragile fixtures",
-        "Garages, patios and balconies, apart from the balcony or garage sweep add-on, available mostly in summer when the weather allows",
+      // The list was all safety exclusions: 25 lb, ladders, mould. The four
+      // named in the lead are scope, and they are what customers actually
+      // assume a deep clean covers: the commonest disputes in this trade, on
+      // the page where someone is about to spend several hundred dollars. So
+      // the exclusion is stated outright, once, and the prices stay in the
+      // add-on list beside it, which reads them from bk-config.
+      notIncludedLead="A deep clean does not go inside the oven, the fridge, the cabinets and drawers, or do the interior windows. Those four are priced add-ons, and the Add-ons list has each price."
+      notIncludedGroups={[
+        {
+          label: "Separate work",
+          items: [
+            "Wall washing, a separate add-on booked with the clean rather than part of the package",
+            "Exterior windows and any outdoor work",
+            "Garages, patios and balconies, apart from the balcony or garage sweep add-on, available mostly in summer when the weather allows",
+          ],
+        },
+        {
+          label: "What the team leaves alone",
+          items: [
+            "Furniture and anything else over 25 lbs stays where it is",
+            "Mould remediation, bodily fluids and pest removal",
+            "Anything higher than a 3-step ladder reaches",
+            "Light bulbs, chandeliers and fragile fixtures",
+          ],
+        },
       ]}
       faqs={[
         { q: "Is there a best time of year for a deep clean in Calgary?", a: "Book when the home's condition and your plans call for the extra checklist, whether after a period of limited upkeep or before guests arrive. There is no required season. Online bookings need at least 24 hours' notice; call for closer availability, which is not guaranteed." },
@@ -169,6 +154,24 @@ export default function CalgaryDeepCleaning() {
         { q: "How often does a Calgary home need a deep clean?", a: "There is no fixed interval for every home. Check the condition of baseboards, doors and other deep-package items, along with the upkeep you do between visits. Recurring standard cleaning can help with routine tasks but does not include every deep-clean item." },
       ]}
       closingSections={[
+        {
+          heading: "Deep cleaning in Airdrie, Cochrane, Okotoks and Chestermere",
+          body: (
+            <>
+              <p>
+                All four are outside Calgary city limits, so a deep clean there is the same flat rate plus a {TRAVEL}{" "}
+                travel fee, shown on the quote before you book. Inside the city there is no travel fee. Airdrie and
+                Cochrane have their own pages: <Link to="/cleaning-services-airdrie/">house cleaning in Airdrie</Link>{" "}
+                and <Link to="/cleaning-services-cochrane/">cleaning services in Cochrane</Link>.
+              </p>
+              <p>
+                Outside the city the checklist and the package are the same as in Calgary, and the travel fee is the
+                one charge the distance adds. The pet charge and the home-type charge for a townhouse or two-storey house apply there just as
+                they do inside the city, and each one is a separate line on the quote before you confirm.
+              </p>
+            </>
+          ),
+        },
         {
           heading: "Keeping it that way",
           body: (
@@ -189,11 +192,12 @@ export default function CalgaryDeepCleaning() {
           ),
         },
       ]}
-      ctaHeading={<>Deep cleaning in <AccentGold>Calgary</AccentGold> from {TIERS[0].price}.</>}
+      ctaHeading={<>Deep cleaning in <em className="italic text-accent-on-dark">Calgary</em> from {TIERS[0].price}.</>}
       ctaDescription={`The deep clean is priced flat by home size, from ${TIERS[0].price} before GST for a one-bedroom apartment, and a pet charge, a home-type charge or a travel fee outside Calgary city limits can apply. Anything missed is re-cleaned at no charge if you tell us within ${POLICY.guaranteeWindowHours} hours.`}
       galleryImages={[
         { picture: heroImageCard, alt: "Kitchen with granite counters and a range hood over a gas cooktop, with a dining table by the window" },
       ]}
+      galleryRepeatsHero
     />
   );
 }

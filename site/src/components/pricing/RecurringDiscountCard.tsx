@@ -1,8 +1,3 @@
-import { Button } from "@/components/ui/button";
-import { Percent } from "lucide-react";
-import { useLocation } from "react-router-dom";
-import { quoteHrefFor } from "@/lib/quote-link";
-
 interface RecurringDiscountCardProps {
   percentage: string;
   title: string;
@@ -10,38 +5,30 @@ interface RecurringDiscountCardProps {
   isPopular?: boolean;
 }
 
-const RecurringDiscountCard = ({ percentage, title, savings, isPopular = false }: RecurringDiscountCardProps) => {
-  const { pathname } = useLocation();
-  return (
-    <div className="group" style={{ perspective: "1000px" }}>
-      <div
-        className={`relative bg-white/5 backdrop-blur-sm rounded-xl border transition-all duration-500 ease-out group-hover:-translate-y-2 group-hover:shadow-xl group-hover:scale-[1.02] p-8 text-center ${
-          isPopular ? "border-accent/40 ring-1 ring-accent/20" : "border-white/10"
-        }`}
-        style={{ transformStyle: "preserve-3d" }}
-      >
+/**
+ * One row of the recurring-discount list: render it inside a <ul>. It used to
+ * be a navy card with its own "Get Started" button; three of them opened the
+ * same funnel as every other button on the page, so the section now carries
+ * one "See My Instant Price" button and these rows carry none.
+ */
+const RecurringDiscountCard = ({ percentage, title, savings, isPopular = false }: RecurringDiscountCardProps) => (
+  <li className="flex items-baseline justify-between gap-4 px-5 py-4 md:px-6 md:py-5">
+    <div>
+      <h3 className="text-lg font-semibold text-foreground">
+        {title}
         {isPopular && (
-          <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-accent-foreground text-xs font-bold px-4 py-1 rounded-full">
-            Most Popular
-          </div>
+          <span className="ml-3 align-middle rounded-full bg-brand-navy px-3 py-0.5 text-xs font-semibold text-white">
+            Most popular
+          </span>
         )}
-        <div className="w-12 h-12 bg-accent/15 rounded-xl flex items-center justify-center mx-auto mb-4 transition-transform duration-500 group-hover:rotate-6">
-          <Percent className="w-6 h-6 text-brand-gold" />
-        </div>
-        <div className="text-5xl font-bold text-brand-gold mb-1">{percentage}</div>
-        <div className="text-sm text-white/80 mb-3 uppercase tracking-wider font-semibold">OFF</div>
-        <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
-        {savings && <p className="text-white/80 text-sm mb-6">{savings}</p>}
-        <Button
-          className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-semibold shadow-md hover:shadow-lg transition-all"
-          asChild
-        >
-          {/* Starting a recurring plan means pricing it, not emailing about it. */}
-          <a href={quoteHrefFor(pathname)}>Get Started</a>
-        </Button>
-      </div>
+      </h3>
+      {savings && <p className="mt-1 text-sm text-muted-foreground">{savings}</p>}
     </div>
-  );
-};
+    <p className="shrink-0 text-foreground">
+      <span className="text-3xl font-bold">{percentage}</span>{" "}
+      <span className="text-base font-semibold">off</span>
+    </p>
+  </li>
+);
 
 export default RecurringDiscountCard;

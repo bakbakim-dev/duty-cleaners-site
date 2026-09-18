@@ -30,7 +30,7 @@ export default function HomeRhythmStrip({ slots, className = "" }: { slots: Home
     <div ref={reveal.ref} className={`grid gap-4 sm:grid-cols-3 ${className}`}>
       {slots.map((slot, idx) => (
         <figure key={slot.caption} className={idx === 1 ? "sm:mt-8" : ""}>
-          <div className="overflow-hidden rounded-xl">
+          <div className="overflow-hidden rounded-lg">
             <ResponsiveImage
               picture={slot.picture}
               sizes="(min-width: 640px) 33vw, 100vw"
