@@ -38,21 +38,20 @@ import GetInTouch from "@/components/GetInTouch";
 import { quoteCtaLabel, useQuoteProgress } from "@/lib/quote-progress";
 import { Suspense, lazy } from "react";
 const CalgaryServiceAreaMap = lazy(() => import("@/components/CalgaryServiceAreaMap"));
-import calgaryHeroRoom from "@/assets/generated/calgary-cleaning-hero-v1.webp";
-import calgaryHeroRoom640 from "@/assets/generated/calgary-cleaning-hero-v1-640w.webp";
-import calgaryHeroRoom960 from "@/assets/generated/calgary-cleaning-hero-v1-960w.webp";
-import calgaryHeroRoom1280 from "@/assets/generated/calgary-cleaning-hero-v1-1280w.webp";
+import calgaryHeroRoom from "@/assets/generated/calgary-cleaning-hero-v1.webp?hero";
 
 /* The oven, bathroom and toilet crops left with the five-photo bento mosaic:
    generated images labelled as finished Calgary cleans, printed directly above
    a line promising no stock stand-ins. What is left is what the hero strip,
    the services chapter and the seasonal strip use. */
-import galleryKitchenBA from "@/assets/gallery/calgary-kitchen-ba.webp?card";
+import galleryKitchenBA from "@/assets/gallery/calgary-kitchen-ba.webp?thumb";
 import galleryCalgaryOvenBA from "@/assets/gallery/calgary-oven-ba.webp?card";
 import galleryHappyPlaceCard from "@/assets/gallery/calgary-happy-place.webp?card";
+import galleryHappyPlaceThumb from "@/assets/gallery/calgary-happy-place.webp?thumb";
 import galleryCalgaryMoveOut from "@/assets/gallery/calgary-move-out-clean.webp?card";
 import galleryCalgaryWindow from "@/assets/gallery/calgary-window-cleaning.webp?card";
 import gallerySpotlessKitchen from "@/assets/gallery/calgary-spotless-kitchen.webp?card";
+import gallerySpotlessKitchenThumb from "@/assets/gallery/calgary-spotless-kitchen.webp?thumb";
 import {
   sitePriceRange,
   standardTierRows,
@@ -112,12 +111,7 @@ const PAGE_DESCRIPTION = "Find the right house cleaning service for your Calgary
    it a phone pulled the full file instead of the 640w variant it needs.
    the 640w variant a phone actually needs. sizes is 100vw because the hero
    is full-bleed. */
-const HERO_SRCSET = [
-  `${calgaryHeroRoom640} 640w`,
-  `${calgaryHeroRoom960} 960w`,
-  `${calgaryHeroRoom1280} 1280w`,
-  `${calgaryHeroRoom} 1672w`,
-].join(", ");
+const HERO_SRCSET = calgaryHeroRoom.sources.webp;
 
 /* The schema priceRange, derived. It was hand-typed as "$155-$539+" here and
    "$155-$539" on the twin — numerically right today, inconsistent with each
@@ -328,15 +322,15 @@ export default function Calgary2() {
            city="Calgary"
            phone="(403) 768-1341"
            phoneLink="tel:4037681341"
-           heroImage={calgaryHeroRoom}
+           heroImage={calgaryHeroRoom.img.src}
            heroSrcSet={HERO_SRCSET}
-           heroWidth={1672}
-           heroHeight={941}
+           heroWidth={calgaryHeroRoom.img.w}
+           heroHeight={calgaryHeroRoom.img.h}
            heroAlt="Professional cleaner vacuuming a living-room rug in a bright Calgary home"
            heroPosition="center 52%"
            processImages={[
-             { src: gallerySpotlessKitchen, alt: "Galley kitchen with white cabinets, a stainless fridge and a sink in the island" },
-             { src: galleryHappyPlaceCard, alt: "Kitchen with white cabinets, an island and a wooden dining table" },
+             { src: gallerySpotlessKitchenThumb, alt: "Galley kitchen with white cabinets, a stainless fridge and a sink in the island" },
+             { src: galleryHappyPlaceThumb, alt: "Kitchen with white cabinets, an island and a wooden dining table" },
              { src: galleryKitchenBA, alt: "Two views of a basement kitchen with oak cabinets and tiled counters" },
            ]}
           />

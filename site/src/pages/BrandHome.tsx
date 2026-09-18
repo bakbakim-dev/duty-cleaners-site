@@ -10,10 +10,8 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { Star, CheckCircle2, Shield, HomeIcon, Award, BadgeCheck, CalendarClock, Briefcase, Heart, Clock, Sparkles, Users } from "lucide-react";
-import heroCleanHouse from "@/assets/generated/alberta-cleaning-hero-v1.webp";
-import heroCleanHouse640 from "@/assets/generated/alberta-cleaning-hero-v1-640w.webp";
-import heroCleanHouse960 from "@/assets/generated/alberta-cleaning-hero-v1-960w.webp";
-import heroCleanHouse1280 from "@/assets/generated/alberta-cleaning-hero-v1-1280w.webp";
+import heroCleanHousePicture from "@/assets/generated/alberta-cleaning-hero-v1.webp?hero";
+const heroCleanHouse = heroCleanHousePicture.img.src;
 import HonestReviewLink from "@/components/HonestReviewLink";
 import { BOOKINGS, BOOKINGS_CLAIM, COMPANY, RATING_CLAIM } from "@/data/proof";
 // Every figure here reads from src/data/proof.ts, the single source of truth
@@ -56,12 +54,7 @@ const services = [{
   title: "Recurring Service",
   desc: "The standard clean on a schedule: weekly 20% off, bi-weekly 15%, every 4 weeks 10%, from the second visit."
 }];
-const HERO_SRCSET = [
-  `${heroCleanHouse640} 640w`,
-  `${heroCleanHouse960} 960w`,
-  `${heroCleanHouse1280} 1280w`,
-  `${heroCleanHouse} 1672w`,
-].join(", ");
+const HERO_SRCSET = heroCleanHousePicture.sources.webp;
 
 // Each branch's count stands alone. Google publishes no combined figure, and
 // this card used to print the two added together.

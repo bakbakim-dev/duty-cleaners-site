@@ -12,3 +12,7 @@ declare module "*?hero" {
   const picture: import("vite-imagetools").Picture;
   export default picture;
 }
+declare module "*?thumb" {
+  const picture: import("vite-imagetools").Picture;
+  export default picture;
+}

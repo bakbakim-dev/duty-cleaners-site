@@ -41,10 +41,8 @@ import {
 import { TRAVEL_FEE_KEY, travelFee } from "@/data/addon-table";
 import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
 import { RED_DEER_LISTING } from "@/lib/google-listings";
-import redDeerHero from "@/assets/generated/red-deer-cleaning-hero-v1.webp";
-import redDeerHero640 from "@/assets/generated/red-deer-cleaning-hero-v1-640w.webp";
-import redDeerHero960 from "@/assets/generated/red-deer-cleaning-hero-v1-960w.webp";
-import redDeerHero1280 from "@/assets/generated/red-deer-cleaning-hero-v1-1280w.webp";
+import redDeerHeroPicture from "@/assets/generated/red-deer-cleaning-hero-v1.webp?hero";
+const redDeerHero = redDeerHeroPicture.img.src;
 
 /**
  * The Red Deer branch page, at the preserved legacy URL /cleaning-services-red-deer/.
@@ -116,12 +114,7 @@ const PAGE_TITLE = `House Cleaning Red Deer from ${STANDARD_FROM} | Duty Cleaner
 const PAGE_DESCRIPTION = `House cleaning in Red Deer from ${STANDARD_FROM} before GST, with no travel fee inside the city. Book the Red Deer office online and pay after the clean.`;
 
 const FULL_ADDRESS = `${OFFICE.streetAddress}, Red Deer, AB ${OFFICE.postalCode}`;
-const HERO_SRCSET = [
-  `${redDeerHero640} 640w`,
-  `${redDeerHero960} 960w`,
-  `${redDeerHero1280} 1280w`,
-  `${redDeerHero} 1672w`,
-].join(", ");
+const HERO_SRCSET = redDeerHeroPicture.sources.webp;
 
 /**
  * The branch entity, the same shape as the Edmonton and Calgary hubs' nodes:

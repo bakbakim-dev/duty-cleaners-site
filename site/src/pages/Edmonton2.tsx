@@ -44,12 +44,10 @@ import GetInTouch from "@/components/GetInTouch";
 import { quoteCtaLabel, useQuoteProgress } from "@/lib/quote-progress";
 import { Suspense, lazy } from "react";
 const EdmontonServiceAreaMap = lazy(() => import("@/components/EdmontonServiceAreaMap"));
-import edmontonHeroRoom from "@/assets/generated/edmonton-cleaning-hero-v1.webp";
-import edmontonHeroRoom640 from "@/assets/generated/edmonton-cleaning-hero-v1-640w.webp";
-import edmontonHeroRoom960 from "@/assets/generated/edmonton-cleaning-hero-v1-960w.webp";
-import edmontonHeroRoom1280 from "@/assets/generated/edmonton-cleaning-hero-v1-1280w.webp";
+import edmontonHeroRoom from "@/assets/generated/edmonton-cleaning-hero-v1.webp?hero";
 
 import galleryLivingRoomCard from "@/assets/gallery/living-room-clean.webp?card";
+import galleryLivingRoomThumb from "@/assets/gallery/living-room-clean.webp?thumb";
 import galleryMoveOutClean from "@/assets/gallery/move-out-clean.webp?card";
 import galleryWindowDetail from "@/assets/gallery/window-cleaning.webp?card";
 import teamCheryse from "@/assets/team/edmonton-cheryse.webp";
@@ -62,9 +60,9 @@ import teamClarice from "@/assets/team/clarice-cleaner.webp";
    images captioned as finished cleans, sitting directly above a line promising
    no stand-ins. The three still imported here are the ones the hero strip and
    the services chapter use. */
-import galleryPostKitchen from "@/assets/gallery/dc-post-kitchen.webp?card";
+import galleryPostKitchen from "@/assets/gallery/dc-post-kitchen.webp?thumb";
 import galleryStoveDetail from "@/assets/gallery/dc-stove-detail.webp?card";
-import galleryModernKitchen from "@/assets/gallery/dc-modern-kitchen.webp?card";
+import galleryModernKitchen from "@/assets/gallery/dc-modern-kitchen.webp?thumb";
 import {
   sitePriceRange,
   standardTierRows,
@@ -115,12 +113,7 @@ const PAGE_DESCRIPTION = "Explore house cleaning in Edmonton. Compare services, 
    it a phone pulled the full file instead of the 640w variant it needs.
    the 640w variant a phone actually needs. sizes is 100vw because the hero
    is full-bleed. */
-const HERO_SRCSET = [
-  `${edmontonHeroRoom640} 640w`,
-  `${edmontonHeroRoom960} 960w`,
-  `${edmontonHeroRoom1280} 1280w`,
-  `${edmontonHeroRoom} 1672w`,
-].join(", ");
+const HERO_SRCSET = edmontonHeroRoom.sources.webp;
 
 /* The schema priceRange, derived. It was hand-typed as "$155-$539+" here and
    "$155-$539" on the twin — numerically right today, inconsistent with each
@@ -325,15 +318,15 @@ export default function Edmonton2() {
            city="Edmonton"
            phone="(780) 913-6565"
            phoneLink="tel:7809136565"
-           heroImage={edmontonHeroRoom}
+           heroImage={edmontonHeroRoom.img.src}
            heroSrcSet={HERO_SRCSET}
-           heroWidth={1672}
-           heroHeight={941}
+           heroWidth={edmontonHeroRoom.img.w}
+           heroHeight={edmontonHeroRoom.img.h}
            heroAlt="Professional cleaner wiping a kitchen island in a bright Edmonton home"
            heroPosition="center 48%"
            processImages={[
              { src: galleryPostKitchen, alt: "Kitchen with white cabinets, grey counters and a stainless steel range" },
-             { src: galleryLivingRoomCard, alt: "A dog lying on a living-room rug beside a vacuum cleaner" },
+             { src: galleryLivingRoomThumb, alt: "A dog lying on a living-room rug beside a vacuum cleaner" },
              { src: galleryModernKitchen, alt: "Kitchen with dark cabinets, a white island and a stainless fridge" },
            ]}
          />

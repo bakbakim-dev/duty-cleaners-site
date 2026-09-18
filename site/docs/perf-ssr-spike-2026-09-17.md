@@ -86,3 +86,22 @@ owner's decision so the generated cache rules apply), not the bundle.
 Harness rule from this: measure request-count changes over HTTP/2 (`lh-bench-h2.mjs` in the
 session scratchpad: `http2.createSecureServer` + `--ignore-certificate-errors`), never over
 the plain HTTP/1.1 server.
+
+## Addendum, 2026-09-18: the "element render delay" in PageSpeed is not a second paint
+
+A PageSpeed mobile run of the homepage reported an LCP breakdown of TTFB 10 ms, load
+delay 390 ms, load duration 160 ms and **element render delay 2,240 ms**, which reads like
+the hero being painted again after hydration. It is not. In a real Chrome on the host
+(mobile viewport, full CPU) `PerformanceObserver('largest-contentful-paint', buffered)` returns
+exactly one candidate: the hero `<img>` (the 960 candidate), painted at 788 ms, equal to first
+contentful paint, with `__dcMounted` already true and no later candidate. createRoot replaces
+the DOM but the replacement hero has the same source and size, so no new LCP entry is issued.
+PageSpeed's figure is the simulator attributing the script dependency chain to the paint (the
+byte-budget effect described above), not an observed repaint. Do not reopen SSR on the strength
+of that number.
+
+The same run's real findings were three 112-px hub thumbnails fetching a 480-px candidate (a
+`?thumb` preset now serves 224/336/480) and a 1366-px desktop picking the 1672-px hero master
+(a 1440 candidate now sits in the hero preset). The "forced reflow" at
+`use-scroll-animation.tsx:25` is the first `getBoundingClientRect` after mount forcing the
+full-page layout that the next frame would have run anyway: moved, not added.
