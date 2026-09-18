@@ -418,7 +418,7 @@ export default function GiftCard() {
               </ul>
               <p className="mt-8 text-center text-base text-muted-foreground">
                 Anything else,{" "}
-                <Link to="/contact-us/?topic=gift-card" className="text-accent underline underline-offset-2">
+                <Link to="/contact-us/#topic=gift-card" className="text-accent underline underline-offset-2">
                   ask either office
                 </Link>
                 .

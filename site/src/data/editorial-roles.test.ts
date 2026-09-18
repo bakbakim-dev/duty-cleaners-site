@@ -31,7 +31,7 @@ describe("approved editing-brief page roles", () => {
     const template = read("src/components/ServiceDetailPage.tsx");
     expect(template).toContain("Price My One-Time Clean");
     expect(template).toContain("Choose My Cleaning Schedule");
-    expect(template).toContain("?service=${quoteService}");
+    expect(template).toContain("{ service: quoteService, intent:");
   });
 
   it("area-clarification links resolve to existing built pages", () => {

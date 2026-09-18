@@ -21,7 +21,7 @@ import RiskReversalRow from "@/components/quote/RiskReversalRow";
 const CORE_SERVICE_IDS: ServiceId[] = ["standard", "move-in-out"];
 /**
  * Only self-serve work is selectable. Airbnb and short-term-rental turnovers are
- * priced per hour on a callback (/contact-us/?topic=airbnb). Office cleaning, the
+ * priced per hour on a callback (/contact-us/#topic=airbnb). Office cleaning, the
  * only commercial work quoted online, is priced by square footage and requested
  * through the contact form's "Office Cleaning" option.
  */
@@ -233,7 +233,7 @@ export default function ServiceStartCard({
           {phone}
         </a>{" "}
         or{" "}
-        <Link to="/contact-us/?topic=airbnb" className="font-semibold text-foreground underline underline-offset-4">
+        <Link to="/contact-us/#topic=airbnb" className="font-semibold text-foreground underline underline-offset-4">
           request a callback
         </Link>
         .

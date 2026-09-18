@@ -2,6 +2,7 @@ import { formatPrice, addOnFromPrice, sitePriceRange } from "@/data/pricing";
 import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
 import { GST_RATE } from "@/data/pricing";
 import { canonicalForPath, canonicalUrlForPath } from "@/data/legacy-urls";
+import { intentHref } from "@/lib/url-intent";
 import {
   schemaAddressFor,
   BRANCH_ID,
@@ -145,7 +146,7 @@ interface ServiceDetailPageProps {
   extras?: ExtraItem[];
   notIncluded?: string[];
   fromPrice?: string;
-  /** Service slug forwarded to the city quote form (?service=...) for personalization. */
+  /** Service slug forwarded to the city quote form (#quote&service=...) for personalization. */
   quoteService?: string;
 }
 
@@ -226,10 +227,9 @@ const ServiceDetailPage = ({
   // Deep Cleaning is a BookingKoala package, not a service: the funnel needs
   // the intent flag so it can show the Standard + package breakdown.
   const quoteLabel = quoteService === "recurring-cleaning" ? "Choose My Cleaning Schedule" : quoteService === "regular-cleaning" ? "Price My One-Time Clean" : "See My Instant Price";
-  const quoteQuery = quoteService
-    ? `?service=${quoteService}${quoteService === "deep-cleaning" ? "&intent=deep" : ""}`
-    : "";
-  const quoteLink = `${quoteBase}${quoteQuery}#quote`;
+  // Intent rides in the fragment (see lib/url-intent.ts), so the city page
+  // stays one URL to a crawler however many services link to its form.
+  const quoteLink = intentHref(quoteBase, { service: quoteService, intent: quoteService === "deep-cleaning" ? "deep" : null }, "quote");
   const pricingLink = canonicalForPath(city === "calgary" ? "/calgary/pricing" : "/edmonton/pricing");
   const reviewCount = CITY_PROOF[city].googleReviewCount;
 

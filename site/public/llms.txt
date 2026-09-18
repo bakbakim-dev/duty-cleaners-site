@@ -22,7 +22,7 @@ Duty Cleaners provides professional residential and commercial cleaning across E
 - No contracts — book one clean or many
 - Payment: nothing is charged when you book. The day before your appointment a temporary hold is placed on your card to confirm it is valid. It can look like a charge in your banking app, but no money moves. Your card is charged once the clean is complete.
 - Airbnb / short-term rental turnovers are priced per hour on a callback: request one through the contact form's "Airbnb Cleaning" option (https://dutycleaners.ca/contact-us/) or phone the city office
-- Commercial: office cleaning is the only commercial work quoted online, through the contact form's "Office Cleaning" option (https://dutycleaners.ca/contact-us/), and the paths /contact-us/?topic=office&city=edmonton and /contact-us/?topic=office&city=calgary open it with Office Cleaning and the city chosen. The work is scoped at a walkthrough, priced per square foot and confirmed in a written quote that states the areas and the visit frequency
+- Commercial: office cleaning is the only commercial work quoted online, through the contact form's "Office Cleaning" option (https://dutycleaners.ca/contact-us/), and the paths /contact-us/#topic=office&city=edmonton and /contact-us/#topic=office&city=calgary open it with Office Cleaning and the city chosen. The work is scoped at a walkthrough, priced per square foot and confirmed in a written quote that states the areas and the visit frequency
 - 24-hour re-clean satisfaction guarantee; photos help but are not required
 - Hours: the Edmonton and Calgary offices are open Monday–Saturday 8:00 AM–8:00 PM and Sunday 9:00 AM–3:00 PM; the Red Deer office Monday–Saturday 7:00 AM–9:00 PM, closed on Sunday
 - Arrival windows: 9:00–10:00 AM, 12:00–1:00 PM, 3:00–4:00 PM
@@ -68,8 +68,8 @@ Published tier prices are STARTING ESTIMATES for an apartment or condo, not the 
 - [Move In/Out Cleaning (Calgary)](https://dutycleaners.ca/move-out-cleaning-calgary/): Detailed cleaning for empty homes during moves
 - [Recurring Cleaning (Calgary)](https://dutycleaners.ca/calgary/recurring-cleaning/): The same standard clean on a weekly, bi-weekly or every-4-weeks schedule, discounted from the second visit
 - [Post-Construction Cleaning (Calgary)](https://dutycleaners.ca/post-construction-cleaning-calgary/): Dust and debris removal after renovations
-- [Office & Commercial Cleaning Edmonton](https://dutycleaners.ca/commercial-cleaning/): Scoped at a walkthrough, priced per square foot and confirmed in a written quote; office quotes through /contact-us/?topic=office&city=edmonton
-- [Office & Commercial Cleaning Calgary](https://dutycleaners.ca/commercial-cleaning-services-calgary/): Scoped at a walkthrough, priced per square foot and confirmed in a written quote; office quotes through /contact-us/?topic=office&city=calgary
+- [Office & Commercial Cleaning Edmonton](https://dutycleaners.ca/commercial-cleaning/): Scoped at a walkthrough, priced per square foot and confirmed in a written quote; office quotes through /contact-us/#topic=office&city=edmonton
+- [Office & Commercial Cleaning Calgary](https://dutycleaners.ca/commercial-cleaning-services-calgary/): Scoped at a walkthrough, priced per square foot and confirmed in a written quote; office quotes through /contact-us/#topic=office&city=calgary
 
 ## Locations
 

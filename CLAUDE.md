@@ -87,9 +87,11 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
   request, where a 3-step ladder reaches them safely.
 - Commercial: office cleaning is the only commercial work quoted online (contact form "Office
   Cleaning"). Airbnb/short-term-rental turnovers are priced per hour on a callback
-  (`/contact-us/?topic=airbnb`). The owner approved strengthening the two commercial pages on
+  (`/contact-us/#topic=airbnb`). The owner approved strengthening the two commercial pages on
   2026-09-11: "Office & Commercial Cleaning <city>", priced per square foot, scoped at a
-  walkthrough and confirmed in a written quote; primary CTA `/contact-us/?topic=office&city=<city>`.
+  walkthrough and confirmed in a written quote; primary CTA `/contact-us/#topic=office&city=<city>`.
+  (Link intent rides in the URL fragment since 2026-09-17, `src/lib/url-intent.ts`: the query
+  form made a crawler fetch 14 duplicate pages. Readers still accept `?topic=` for old links.)
   Each city homepage and services hub carries one pointer to its commercial page, nothing more.
   The button reads "Request an Office Cleaning Quote". The late-cancellation fee and the 24-hour
   re-clean apply to commercial clients too, and work outside office hours can be arranged (owner).

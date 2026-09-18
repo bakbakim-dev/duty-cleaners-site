@@ -256,7 +256,7 @@ describe("the copy does not read like a template filled in by a machine", () => 
     for (const rel of ["components/quote/QuoteFlow.tsx", "components/quote/ServiceStartCard.tsx"]) {
       const text = stripComments(readFileSync(join(SRC, rel), "utf-8")).toLowerCase();
       expect(text, `${rel} offers a quote for commercial property`).not.toMatch(/commercial (?:property|properties|site)/);
-      expect(text, `${rel} no longer routes short-term rentals to the callback form`).toContain("/contact-us/?topic=airbnb");
+      expect(text, `${rel} no longer routes short-term rentals to the callback form`).toContain("/contact-us/#topic=airbnb");
       expect(text, `${rel} offers a quote form where short-term rentals need a callback`).not.toMatch(/request a quote\b/);
     }
   });

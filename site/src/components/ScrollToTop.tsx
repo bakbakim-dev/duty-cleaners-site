@@ -1,5 +1,6 @@
 import { useLayoutEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { hashAnchor } from "@/lib/url-intent";
 
 /**
  * Ensures every route navigation lands at the top of the page.
@@ -23,9 +24,14 @@ const ScrollToTop = () => {
 
     // Quote deep links open the full-screen booking takeover instead of
     // scrolling to a section (see QuoteOverlayProvider) — nothing to do here.
-    if (hash === "#quote" || hash === "#quote-form") return;
-
-    const id = hash.replace("#", "");
+    const id = hashAnchor(hash);
+    if (id === "quote" || id === "quote-form") return;
+    // A fragment that carries only intent pairs (#topic=office&city=calgary)
+    // names no element: a plain navigation, top of the page.
+    if (!id) {
+      window.scrollTo(0, 0);
+      return;
+    }
     const startedAt = Date.now();
     // The quote embed loads and settles its fit-to-viewport zoom over several
     // seconds, shifting the card height each time — keep the correction

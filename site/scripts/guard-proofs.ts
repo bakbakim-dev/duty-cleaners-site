@@ -568,7 +568,7 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/copy-quality.test.ts",
     target: "src/components/quote/ServiceStartCard.tsx",
-    find: 'to="/contact-us/?topic=airbnb" className="font-semibold',
+    find: 'to="/contact-us/#topic=airbnb" className="font-semibold',
     replace: 'to="/contact-us/" className="font-semibold',
     failing: "online quotes are for office cleaning only, and short-term rentals get a callback",
     why: "Sends Airbnb hosts to the general quote form again instead of the callback request.",
@@ -758,7 +758,7 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/commercial-costguide-0911.test.ts",
     target: "src/pages/CommercialCleaningCalgary.tsx",
-    find: "const QUOTE_HREF = \"/contact-us/?topic=office&city=calgary\";",
+    find: "const QUOTE_HREF = \"/contact-us/#topic=office&city=calgary\";",
     replace: "const QUOTE_HREF = \"/contact-us/\";",
     failing: "the primary commercial CTA opens office cleaning for the branch's city",
     why: "Points the commercial CTA back at the bare contact form, so Office Cleaning and the city are no longer preselected.",
@@ -1402,6 +1402,41 @@ export const GUARD_PROOFS: GuardProof[] = [
     failing: "the privacy policy names the remembered-office preference",
     why: "Reworded so the disclosure the guard looks for is gone.",
     dist: true,
+  },
+  // ---- crawl hygiene: intent in the fragment (2026-09-17) ------------------
+  {
+    guard: "src/data/crawl-hygiene.test.ts",
+    target: "dist/cleaning-services-red-deer/index.html",
+    find: 'href="/contact-us/#city=reddeer"',
+    replace: 'href="/contact-us/?city=reddeer"',
+    failing: "no built page links to an internal URL with a query string",
+    why: "Puts the Red Deer contact link back in the query form a crawler fetches as its own page.",
+    dist: true,
+  },
+  {
+    guard: "src/data/crawl-hygiene.test.ts",
+    target: "dist/cleaning-services-red-deer/index.html",
+    find: 'href="/contact-us/#topic=office&amp;city=reddeer"',
+    replace: 'href="/contact-us/"',
+    failing: "the deep-clean and contact intents are still carried, in the fragment",
+    why: "Drops the office topic from the Red Deer link, so the form would open blank.",
+    dist: true,
+  },
+  {
+    guard: "src/data/crawl-hygiene.test.ts",
+    target: "src/lib/url-intent.ts",
+    find: '  return body.split("&").find((token) => token && !token.includes("=")) ?? "";',
+    replace: '  return "";',
+    failing: "the readers merge the fragment over the query string, and the anchor stays readable",
+    why: "Makes every fragment anchorless, so #quote&intent=deep would scroll instead of opening the quote.",
+  },
+  {
+    guard: "src/data/crawl-hygiene.test.ts",
+    target: "src/pages/Contact.tsx",
+    find: "const searchParams = intentParams(search, hash);",
+    replace: 'const searchParams = intentParams(search, "");',
+    failing: "the contact form and the quote overlay read the fragment",
+    why: "Stops the contact form reading the fragment, so #topic=office would open a blank form.",
   },
   // ---- and this registry itself ------------------------------------------
   {

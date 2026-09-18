@@ -17,7 +17,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { intentParams } from "@/lib/url-intent";
 import { canonicalForPath } from "@/data/legacy-urls";
 import { ARRIVAL_WINDOWS, PAYMENT_TERMS, POLICY } from "@/data/policy";
 import { formatPrice } from "@/data/pricing";
@@ -265,8 +266,10 @@ const GIFT_CARD_DESIGN_LABELS: Record<string, string> = {
 };
 
 export default function Contact() {
-  const { pathname } = useLocation();
-  const [searchParams] = useSearchParams();
+  const { pathname, search, hash } = useLocation();
+  // Topic, city and design arrive in the fragment (lib/url-intent.ts); the
+  // query form still works for links the site does not control.
+  const searchParams = intentParams(search, hash);
   // Gift-card visitors arrive with their choice already made — carry it into
   // the form instead of making them retype it.
   const topic = searchParams.get("topic");
@@ -305,7 +308,7 @@ export default function Contact() {
     message: presetMessage,
   });
 
-  // A visitor already on /contact-us/ who follows a ?topic= link stays on the
+  // A visitor already on /contact-us/ who follows a #topic= link stays on the
   // same component, so the initial state above never re-runs. Carry the new
   // topic and city into the form without wiping anything they have typed: the
   // message is replaced only while it is empty or still the last preset we
@@ -326,7 +329,7 @@ export default function Contact() {
     });
   }, [presetCity, presetService, presetMessage]);
 
-  // ?city=reddeer selects the Red Deer office. presetCity above covers the two
+  // #city=reddeer selects the Red Deer office. presetCity above covers the two
   // cities the commercial and Airbnb pages link with; the Red Deer page links here
   // with city=reddeer, so its preset is carried separately and never overwrites a
   // chosen city.

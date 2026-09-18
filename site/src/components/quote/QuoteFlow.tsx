@@ -64,6 +64,7 @@ import {
 import { BOOKINGS_CLAIM, RATING_CLAIM, RESPONSE_TIME_PROMISE, SUPPORT_EMAIL, cityProofFor, hasGoogleRating } from "@/data/proof";
 import { createQuoteRequestId, fingerprintQuotePayload, submitQuote, type QuotePayload } from "@/lib/quote-submit";
 import { captureTrackingParams, getStoredTracking, pageServiceFor, serviceOnOpen } from "@/lib/tracking";
+import { intentParams, intentQuery } from "@/lib/url-intent";
 import { setQuoteStep } from "@/lib/quote-progress";
 import { track } from "@/lib/analytics";
 import { CLEANLINESS_OPTIONS, FLEXIBILITY_OPTIONS, cleanerNotesLimit, validateCleanerDetails } from "@/lib/booking-details";
@@ -281,7 +282,12 @@ export default function QuoteFlow({
   servicePreset?: boolean;
   onClose?: () => void;
 }) {
-  const { pathname, search } = useLocation();
+  const { pathname, search: rawSearch, hash } = useLocation();
+  /**
+   * The page's intent as a query string: the fragment's pairs (lib/url-intent.ts)
+   * over any query string an ad or campaign link still carries.
+   */
+  const search = intentQuery(rawSearch, hash);
   const navigate = useNavigate();
 
   const proof = cityProofFor(pathname);
@@ -290,18 +296,18 @@ export default function QuoteFlow({
   const [service, setService] = useState<ServiceId>(initialService);
   /**
    * Deep-clean intent: the visitor either entered through a Deep Cleaning CTA
-   * (?intent=deep / data-quote-intent) or tapped the banner. It never invents a
+   * (#quote&intent=deep / data-quote-intent) or tapped the banner. It never invents a
    * service — it only changes copy, the line-item display and the GHL payload.
    */
   const [deepCleanIntent, setDeepCleanIntent] = useState(
-    initialIntent === "deep" || new URLSearchParams(search).get("intent") === "deep"
+    initialIntent === "deep" || intentParams(rawSearch, hash).get("intent") === "deep"
   );
   /**
    * A campaign coupon rides in on ?promo=CODE and is passed straight through
    * to BookingKoala, which validates it. We never discount our own display
    * price off a code we cannot verify.
    */
-  const promoCode = new URLSearchParams(search).get("promo")?.trim() || undefined;
+  const promoCode = intentParams(rawSearch, hash).get("promo")?.trim() || undefined;
 
   const [homeType, setHomeType] = useState<number | null>(null);
   const [bedrooms, setBedrooms] = useState(2);
@@ -421,8 +427,8 @@ export default function QuoteFlow({
   const pendingServiceRef = useRef<ServiceId | null>(null);
 
   const pickService = (next: ServiceId) => {
-    // The page address with its query: a later open of the same path with a
-    // different ?service= slug is a new request, not this choice.
+    // The page address with its intent: a later open of the same path with a
+    // different service slug is a new request, not this choice.
     choicePathRef.current = pathname + search;
     pendingServiceRef.current = null;
     setService(next);
@@ -1328,7 +1334,7 @@ export default function QuoteFlow({
                   </a>{" "}
                   or{" "}
                   <Link
-                    to={`/contact-us/?topic=airbnb&city=${proof.key}`}
+                    to={`/contact-us/#topic=airbnb&city=${proof.key}`}
                     onClick={onClose}
                     className="inline-flex min-h-[44px] items-center font-bold text-foreground underline underline-offset-4 hover:text-brand-navy"
                   >
@@ -1336,7 +1342,7 @@ export default function QuoteFlow({
                   </Link>
                   . Office cleaning is quoted separately:{" "}
                   <Link
-                    to={`/contact-us/?topic=office&city=${proof.key}`}
+                    to={`/contact-us/#topic=office&city=${proof.key}`}
                     onClick={onClose}
                     className="inline-flex min-h-[44px] items-center font-bold text-foreground underline underline-offset-4 hover:text-brand-navy"
                   >

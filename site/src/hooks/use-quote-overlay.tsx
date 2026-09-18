@@ -9,6 +9,7 @@ import {
   type ReactNode,
 } from "react";
 import { useLocation } from "react-router-dom";
+import { hashAnchor, intentParams } from "@/lib/url-intent";
 
 import type { ServiceId } from "@/data/pricing";
 
@@ -45,7 +46,8 @@ export const useQuoteOverlay = () => useContext(QuoteOverlayContext);
 
 const HISTORY_FLAG = "quoteOverlay";
 
-const isQuoteHref = (href: string) => /#quote(-form)?$/.test(href);
+// `#quote`, `#quote-form`, or either followed by intent pairs (`#quote&intent=deep`).
+const isQuoteHref = (href: string) => /#quote(-form)?(?:&[^#]*)?$/.test(href);
 
 /**
  * Owns the full-screen booking form takeover.
@@ -140,7 +142,7 @@ export function QuoteOverlayProvider({ children }: { children: ReactNode }) {
         This used to read only the data attribute, on the stated grounds that
         "CTAs can't carry a query string (they're #quote anchors)". Ten of them
         do: the five Deep Cleaning tier cards on /pricing/ and the five on
-        /calgary/pricing/ ship href="/?intent=deep#quote". No page anywhere in
+        /calgary/pricing/ ship href="/#quote&intent=deep". No page anywhere in
         the build carries data-quote-intent, so every one of those clicks was
         preventDefaulted — which also stops the URL changing, so QuoteFlow's own
         URLSearchParams read never saw it either — and the visitor who clicked a
@@ -176,9 +178,11 @@ export function QuoteOverlayProvider({ children }: { children: ReactNode }) {
   // Deep links (ads, cross-page CTAs) land with #quote — open the takeover
   // instead of scrolling to a section. Any other navigation closes it.
   useEffect(() => {
-    if (hash === "#quote" || hash === "#quote-form") {
-      // Deep links from ads / other pages: ?intent=deep in the URL.
-      const params = new URLSearchParams(search);
+    const anchor = hashAnchor(hash);
+    if (anchor === "quote" || anchor === "quote-form") {
+      // Deep links from ads / other pages: intent=deep in the fragment (or, for
+      // links the site does not control, the query string).
+      const params = intentParams(search, hash);
       openQuote(undefined, params.get("intent") === "deep" ? "deep" : null);
     } else {
       setIsOpen(false);

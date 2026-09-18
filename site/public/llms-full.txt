@@ -91,7 +91,7 @@ Charged by the hour rather than by home size: $60 per cleaner-hour, before 5% GS
 
 Office and commercial cleaning: dusting, vacuuming, mopping, bathroom cleaning, breakroom cleaning, touchpoints wiped down, and common areas. Recurring schedules available.
 
-Commercial work is NOT priced by the instant online quote. It is scoped at a walkthrough, priced per square foot and confirmed in a written quote that states the areas and the visit frequency. Office cleaning is the only commercial work quoted online: request it through the contact form at https://dutycleaners.ca/contact-us/ (service "Office Cleaning"); the paths /contact-us/?topic=office&city=edmonton and /contact-us/?topic=office&city=calgary open the form with Office Cleaning and the city chosen. For any other commercial work, phone the city office.
+Commercial work is NOT priced by the instant online quote. It is scoped at a walkthrough, priced per square foot and confirmed in a written quote that states the areas and the visit frequency. Office cleaning is the only commercial work quoted online: request it through the contact form at https://dutycleaners.ca/contact-us/ (service "Office Cleaning"); the paths /contact-us/#topic=office&city=edmonton and /contact-us/#topic=office&city=calgary open the form with Office Cleaning and the city chosen. For any other commercial work, phone the city office.
 
 - Office & Commercial Cleaning Edmonton: https://dutycleaners.ca/commercial-cleaning/
 - Office & Commercial Cleaning Calgary: https://dutycleaners.ca/commercial-cleaning-services-calgary/

@@ -47,7 +47,7 @@ const MIN_TWO = formatPrice(HOURLY_RATE * 2 * 2);
 const MIN_TWO_GST = formatPrice(withGst(HOURLY_RATE * 2 * 2));
 const FIVE_HOURS = formatPrice(HOURLY_RATE * 5);
 /** Turnovers are quoted on a callback (owner, 2026-09-10), so the primary button asks for one. */
-const TURNOVER_QUOTE = "/contact-us/?topic=airbnb&city=calgary";
+const TURNOVER_QUOTE = "/contact-us/#topic=airbnb&city=calgary";
 /** The flat one-bedroom standard rate, for the flat-rate FAQ. */
 const STANDARD_FROM = standardTierRows()[0]?.price ?? "";
 const GST_PCT = `${Math.round(GST_RATE * 100)}%`;

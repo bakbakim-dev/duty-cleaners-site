@@ -6,6 +6,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Link } from "react-router-dom";
+import { intentHref } from "@/lib/url-intent";
 import { Button } from "@/components/ui/button";
 import GiftCardDesignCard from "@/components/gift-cards/GiftCardDesignCard";
 import HowItWorksStep from "@/components/gift-cards/HowItWorksStep";
@@ -126,7 +127,7 @@ export default function GiftCards() {
                   </a>
                 </Button>
                 <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-lg px-10 py-6 h-auto font-semibold" asChild>
-                  <Link to="/contact-us/?topic=gift-card">Ask a Question</Link>
+                  <Link to="/contact-us/#topic=gift-card">Ask a Question</Link>
                 </Button>
               </div>
               <p className="mt-4 text-sm text-white/80">
@@ -168,7 +169,7 @@ export default function GiftCards() {
 
               <div className="text-center">
                 <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-8 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5" asChild>
-                  <Link to={`/contact-us/?topic=gift-card&design=${selectedDesign}`}>
+                  <Link to={intentHref("/contact-us/", { topic: "gift-card", design: selectedDesign })}>
                     <Gift className="w-5 h-5 mr-2" />
                     Continue with {giftCardDesigns.find((d) => d.id === selectedDesign)?.name}
                   </Link>

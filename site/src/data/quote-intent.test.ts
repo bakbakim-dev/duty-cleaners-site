@@ -6,7 +6,7 @@ import { join } from "node:path";
  * A quote CTA that advertises a price must open the funnel at that price.
  *
  * The five Deep Cleaning tier cards on /pricing/ and the five on
- * /calgary/pricing/ ship `href="/?intent=deep#quote"`. The overlay interceptor
+ * /calgary/pricing/ ship `href="/#quote&intent=deep"`. The overlay interceptor
  * preventDefaults every #quote click and used to read the intent ONLY from a
  * `data-quote-intent` attribute — which no page in the build has ever carried.
  * So the intent was dropped on all ten: click a card reading "$255 — $155
@@ -50,7 +50,7 @@ describe("quote CTAs carry their intent into the funnel", () => {
   it("the deep-clean CTAs still ship with the intent in their href", () => {
     const pages = builtPages();
     if (!pages.length) return; // unbuilt tree
-    const withDeepCta = pages.filter((p) => readFileSync(p, "utf-8").includes("intent=deep#quote"));
+    const withDeepCta = pages.filter((p) => readFileSync(p, "utf-8").includes("#quote&amp;intent=deep"));
     expect(
       withDeepCta.length,
       "no page ships a deep-intent quote CTA any more; re-point this guard at whatever replaced them",

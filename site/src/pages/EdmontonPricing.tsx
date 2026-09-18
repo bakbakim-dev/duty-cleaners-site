@@ -437,7 +437,7 @@ export default function EdmontonPricing() {
                       beds={item.beds}
                       price={item.price}
                       note={`${item.standard} standard + ${item.packagePrice} Deep Cleaning package`}
-                      ctaHref="/?intent=deep#quote"
+                      ctaHref="/#quote&intent=deep"
                     />
                   ))}
                 </div>

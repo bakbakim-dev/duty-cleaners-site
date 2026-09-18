@@ -61,7 +61,7 @@ const TITLE = "Office & Commercial Cleaning Edmonton | Duty Cleaners";
 const DESCRIPTION =
   "Office and commercial cleaning in Edmonton, scoped around your premises and schedule. Request a walkthrough and a written cleaning quote.";
 /** Office cleaning is the one commercial job quoted online (owner, 2026-09-10); Contact.tsx preselects it and the city. */
-const QUOTE_HREF = "/contact-us/?topic=office&city=edmonton";
+const QUOTE_HREF = "/contact-us/#topic=office&city=edmonton";
 
 export default function CommercialCleaning() {
   useEffect(() => {

@@ -87,7 +87,7 @@ describe("the commercial pages (owner, 2026-09-11)", () => {
     for (const [city, rel] of Object.entries(COMMERCIAL)) {
       const src = stripComments(read(rel));
       const href = /const QUOTE_HREF = "([^"]+)"/.exec(src)?.[1];
-      expect(href, `${rel} quote link`).toBe(`/contact-us/?topic=office&city=${city}`);
+      expect(href, `${rel} quote link`).toBe(`/contact-us/#topic=office&city=${city}`);
       const ctas = [...src.matchAll(/<Link to=\{QUOTE_HREF\}>([^<]+)<\/Link>/g)].map((m) => m[1].trim());
       expect(ctas.length, `${rel} has no CTA on QUOTE_HREF`).toBeGreaterThanOrEqual(2);
       // Owner, 2026-09-11: the label names office cleaning, the only commercial

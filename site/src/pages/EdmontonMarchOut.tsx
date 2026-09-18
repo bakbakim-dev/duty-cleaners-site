@@ -33,7 +33,7 @@ import imgWalls from "@/assets/gallery/clean-walls-edmonton.webp";
 const PHONE_DISPLAY = "(780) 913-6565";
 const PHONE_TEL = "tel:7809136565";
 // /contact force-301s to /contact-us/ and a redirect may drop the prefill.
-const CALLBACK_HREF = "/contact-us/?topic=march-out&city=edmonton";
+const CALLBACK_HREF = "/contact-us/#topic=march-out&city=edmonton";
 /* CFHA's own move-out checklist, in the Occupant Handbook. Until 11 September 2026
    this page said the clean was "done to CFHA's march-out inspection standards", but
    that checklist also covers repairs, bulbs, the furnace filter, the yard, exterior

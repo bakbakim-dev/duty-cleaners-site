@@ -46,7 +46,7 @@ const MIN_ONE_GST = formatPrice(withGst(HOURLY_RATE * 3));
 const MIN_TWO = formatPrice(HOURLY_RATE * 2 * 2);
 const FOUR_HOURS = formatPrice(HOURLY_RATE * 4);
 /** Turnovers are quoted on a callback (owner, 2026-09-10), so the primary button asks for one. */
-const TURNOVER_QUOTE = "/contact-us/?topic=airbnb&city=edmonton";
+const TURNOVER_QUOTE = "/contact-us/#topic=airbnb&city=edmonton";
 const GST_PCT = `${Math.round(GST_RATE * 100)}%`;
 const TRAVEL = travelFee("airbnb");
 const TRAVEL_LINE = TRAVEL === null ? "a travel fee, quoted when you book" : `a ${formatPrice(TRAVEL)} travel fee per visit`;

@@ -248,14 +248,14 @@ const SERVICES = [
     icon: KeyRound,
     title: "Airbnb turnovers",
     text: `Turnovers between guests are priced by the hour, at ${TURNOVER_RATE} per cleaner-hour before GST, after a call from the Red Deer office.`,
-    to: "/contact-us/?topic=airbnb&city=reddeer",
+    to: "/contact-us/#topic=airbnb&city=reddeer",
     anchor: "Request a Red Deer turnover quote",
   },
   {
     icon: Building2,
     title: "Office cleaning",
     text: "Office cleaning is scoped at a walkthrough and confirmed in a written quote before any work is booked.",
-    to: "/contact-us/?topic=office&city=reddeer",
+    to: "/contact-us/#topic=office&city=reddeer",
     anchor: "Request a Red Deer office cleaning quote",
   },
 ];
@@ -530,7 +530,7 @@ export default function RedDeer() {
                     way and pays the {TRAVEL_FEE} travel fee on a home clean or {POST_TRAVEL_FEE} on post-construction, shown on
                     the quote. For anything else, call the Red Deer office at{" "}
                     {OFFICE.phone}, or write through{" "}
-                    <Link to="/contact-us/?city=reddeer" className="text-primary underline underline-offset-2">
+                    <Link to="/contact-us/#city=reddeer" className="text-primary underline underline-offset-2">
                       the contact form for the Red Deer office
                     </Link>
                     .

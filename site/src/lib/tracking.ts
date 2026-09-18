@@ -5,12 +5,14 @@
  * (first-touch wins), so they can be forwarded through the quote funnel —
  * onto the BookingKoala handoff (src/lib/booking-redirect.ts).
  *
- * Also tracks the `service` context (from ?service=<slug> deep links) so the
+ * Also tracks the `service` context (from service=<slug> in a link's fragment
+ * or query string, see lib/url-intent.ts) so the
  * quote section can personalize its heading. Unlike ad params, service intent
  * always updates to the latest value.
  */
 
 import type { ServiceId } from "@/data/pricing";
+import { intentParams } from "@/lib/url-intent";
 
 const STORAGE_KEY = "dc-tracking";
 
@@ -48,7 +50,7 @@ export function getStoredTracking(): Record<string, string> {
 export function captureTrackingParams(): void {
   if (typeof window === "undefined") return;
   try {
-    const search = new URLSearchParams(window.location.search);
+    const search = intentParams(window.location.search, window.location.hash);
     const incoming: Record<string, string> = {};
     for (const key of TRACKED_PARAMS) {
       const value = search.get(key);
@@ -75,7 +77,7 @@ export function captureTrackingParams(): void {
  */
 export function getQuoteServiceLabel(): string | null {
   if (typeof window === "undefined") return null;
-  const fromUrl = new URLSearchParams(window.location.search).get("service");
+  const fromUrl = intentParams(window.location.search, window.location.hash).get("service");
   const slug = fromUrl ?? getStoredTracking().service ?? null;
   return slug ? SERVICE_LABELS[slug] ?? null : null;
 }
