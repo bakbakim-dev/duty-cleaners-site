@@ -162,7 +162,7 @@ const faqItems = [
   // never drift away from the terms it summarises.
   { value: "hidden-fees", question: "Are there any hidden fees?", answer: `Every card price is before 5% GST, and these are the only other charges. Home type: the cards price an apartment or condo, and a bungalow or basement suite adds ${HOME_TYPE_EXTRA.bungalow}, a townhouse ${HOME_TYPE_EXTRA.townhouse} and a two-storey house ${HOME_TYPE_EXTRA.twoStorey}. Pets: ${PET_FEE} a visit, because shed hair and nose marks on glass add time in every room. An address outside Calgary city limits, such as Airdrie, Cochrane, Okotoks or Chestermere: a ${TRAVEL_FEE} travel fee on home cleaning, or ${POST_TRAVEL_FEE} on a post-construction clean. Cancelling or moving a booking inside ${POLICY.cancellationNoticeHours} hours: ${POLICY.cancellationFee}. A lockout, where the crew arrives and cannot get in: ${POLICY.lockoutFee}. Optional alternative products: ${POLICY.ecoProductsFee}, and since the form has no box for them, ${POLICY.ecoProductsHowToRequest}. The flat rate itself does not rise because a clean ran long. It changes only when a home needs substantially more work than the booking described, and the crew tells you what they found before continuing.` },
   { value: "satisfaction", question: "What if I'm not satisfied with the cleaning?", answer: `Tell us within ${POLICY.guaranteeWindowHours} hours and the crew comes back to re-clean whatever was missed, at no cost. Photos help, but they are not required. The commitment is that return visit, and a Calgary customer who wants something else can call (403) 768-1341 and talk it through.` },
-  { value: "same-as-edmonton", question: "Is the price different in Calgary than in Edmonton?", answer: "No. One price sheet covers both cities and neither carries a premium. What can differ is which service a Calgary home needs: after a winter of chinook melt-and-grit cycles, sand and de-icer settle along baseboards and carpet edges, and baseboards are in the deep-clean package. That is a difference in what you choose, not in what we charge." },
+  { value: "same-as-edmonton", question: "Is the price different in Calgary than in Edmonton?", answer: "No. One price sheet covers both cities and neither carries a premium. What can differ is which service a Calgary home needs: after a winter of chinook melt-and-grit cycles, sand and de-icer settle along baseboards and carpet edges, and baseboards are in the deep-clean package." },
 ];
 
 export default function CalgaryPricing() {
@@ -390,8 +390,7 @@ export default function CalgaryPricing() {
               </div>
 
               <p className="text-muted-foreground leading-relaxed">
-                Reading the cards: left to right is bedroom count, and each card assumes an apartment or condo with a
-                set number of bathrooms.
+                Reading the cards: each one assumes the number of bathrooms listed below.
               </p>
               <ul className="grid grid-cols-2 sm:grid-cols-5 gap-x-4 gap-y-2 text-sm text-muted-foreground">
                 {PRICING_TIERS.map((tier) => (
@@ -470,7 +469,7 @@ export default function CalgaryPricing() {
             </div>
 
             <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto mt-8 text-center">
-              The rows are the jobs a standard visit does not do. What it does do, surface by surface, is the{" "}
+              What a standard visit does, surface by surface, is on the{" "}
               <Link to="/whats-included/" className="text-accent underline underline-offset-4 hover:text-accent/80">full what's-included checklist</Link>,
               and the two wall rows link to the Calgary wall-washing page for the detail.
             </p>
@@ -596,8 +595,7 @@ export default function CalgaryPricing() {
             <h2 className="display-serif text-2xl md:text-3xl font-bold mb-6 text-balance">Outside Calgary city limits: what the travel fee covers</h2>
             <p className="text-muted-foreground leading-relaxed mb-5">
               Inside Calgary city limits there is no trip fee. Past the city limits, each visit carries a{" "}
-              {TRAVEL_FEE} travel fee, and that fee is the only thing separating a Calgary quote from one in the towns
-              around it. A post-construction clean outside the limits carries a {POST_TRAVEL_FEE} travel fee instead. The flat rate, the add-on prices and the recurring discounts are the city figures, and the fee
+              {TRAVEL_FEE} travel fee. A post-construction clean outside the limits carries a {POST_TRAVEL_FEE} travel fee instead. The flat rate, the add-on prices and the recurring discounts are the city figures, and the fee
               shows as its own line on the quote before you confirm.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-5">
@@ -624,11 +622,10 @@ export default function CalgaryPricing() {
       <section className="py-16 md:py-20 bg-background">
         <div className="container mx-auto px-4" ref={optionsRef}>
           <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12"><h2 className="display-serif text-3xl md:text-4xl font-bold mb-4">Comparing flat-rate and hourly quotes</h2><p className="text-muted-foreground leading-relaxed">Compare the written scope as well as the total. A whole-home flat rate and an hourly booking for selected tasks answer different needs. Check minimum hours, how many cleaners the rate covers, any extras and GST before choosing.</p>
+            <div className="text-center mb-12"><h2 className="display-serif text-3xl md:text-4xl font-bold mb-4">Comparing flat-rate and hourly quotes</h2><p className="text-muted-foreground leading-relaxed">Compare the written scope as well as the total. Check minimum hours, how many cleaners the rate covers, any extras and GST before choosing.</p>
               <p className="text-muted-foreground leading-relaxed mt-4">
-                A whole Calgary home is priced by its home type, bedrooms, bathrooms, add-ons and frequency.
-                The one choice that pricing does not make for you is flat rate against hourly: a home cleaned
-                end to end is a flat rate, while a few rooms or a one-off task list is billed by the hour from{" "}
+                A Calgary home cleaned end to end is a flat rate. A few rooms or a one-off task list is
+                billed by the hour from{" "}
                 {formatPrice(HOME_HOURLY_RATE)} per cleaner before GST, with a minimum of 3 hours for one cleaner or 2 hours for two.
               </p>
               <p className="mt-4"><Link className="text-primary underline" to="/how-much-does-a-house-cleaning-cost/">How to compare cleaning quotes and price factors</Link></p></div>
@@ -640,7 +637,7 @@ export default function CalgaryPricing() {
                 description="One figure for the whole home, set by bedrooms, bathrooms and home type. Standard, deep and move-in/out cleans are all priced this way, with add-ons as separate lines."
                 price={`from ${FROM_PRICE}`}
                 priceLabel="Set by home size, before 5% GST"
-                features={["Quote shown before you book", "Standard, deep and move-in/out", "No trip fee inside Calgary city limits", "Pet and home-type charges shown on the quote"]}
+                features={["Quote shown before you book", "No trip fee inside Calgary city limits", "Pet and home-type charges shown on the quote"]}
                 buttonText="See My Instant Price"
               />
               {/* The funnel has no hourly service to price (QuoteFlow keeps hourly
@@ -651,7 +648,7 @@ export default function CalgaryPricing() {
                 description="A few rooms, a one-off list, or a home no bedroom tier fits. You write the list, the crew works down it, and you pay for the hours it took."
                 price={`from ${formatPrice(HOME_HOURLY_RATE)}/hour`}
                 priceLabel="Per cleaner, before 5% GST"
-                features={["3 hours minimum for one cleaner, 2 hours for two", "Your list, in your order", "Billed by the hour, per cleaner"]}
+                features={["3 hours minimum for one cleaner, 2 hours for two", "Your list, in your order"]}
                 buttonText="(403) 768-1341"
                 buttonHref="tel:4037681341"
               />
@@ -712,7 +709,7 @@ export default function CalgaryPricing() {
           <div className="max-w-3xl mx-auto">
             <div className="mb-8">
               <h2 className="display-serif text-3xl md:text-4xl font-bold mb-4">Calgary cleaning prices, question by question</h2>
-              <p className="text-lg text-muted-foreground">What Calgary callers ask before they book, answered in full</p>
+              <p className="text-lg text-muted-foreground">What Calgary callers ask before they book</p>
             </div>
 
             <Accordion type="single" collapsible className="w-full border-t border-border/50">

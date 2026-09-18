@@ -324,7 +324,6 @@ export default function EdmontonMoveInOut() {
           <div className="container mx-auto px-4">
             <div className="text-center mb-12 max-w-3xl mx-auto">
               <h2 className="display-serif text-3xl md:text-4xl font-bold">What a move-out clean in Edmonton includes</h2>
-              <p className="text-muted-foreground mt-3">Cleaned to the standard a move-out inspection looks for, room by room.</p>
               {/* The answer to the search: what it is, what is in it and how
                   to book. It sat in the hero and pushed the buttons below the
                   fold; it is still the first thing under it. */}
@@ -477,7 +476,6 @@ export default function EdmontonMoveInOut() {
             <AnimatedSection>
               <div className="text-center mb-12">
                 <h2 className="display-serif text-3xl md:text-4xl font-bold text-white">The terms of a move-out booking in Edmonton</h2>
-                <p className="text-white/90 mt-3 max-w-2xl mx-auto">Each term is written down before the crew arrives.</p>
               </div>
             </AnimatedSection>
             <AnimatedSection>
@@ -533,18 +531,15 @@ export default function EdmontonMoveInOut() {
                 <p>
                   We do not promise the deposit comes back; that decision is the landlord's. What we promise is
                   the checklist: inside the oven and fridge, inside the cabinets, drawers and closets, baseboards,
-                  switches, vents, window sills and tracks, bathrooms scrubbed, and the floors mopped last. A
-                  cited item names a room and a surface rather than an impression, which is what the checklist
-                  is built to match.
+                  switches, vents, window sills and tracks, bathrooms scrubbed, and the floors mopped last.
                 </p>
                 <p>
-                  End of tenancy cleaning in Edmonton is judged at one moment: the move-out inspection. Under{" "}
+                  End of tenancy cleaning in Edmonton is judged at the move-out inspection. Under{" "}
                   <a href="https://www.alberta.ca/ending-a-tenancy" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2">Alberta's Residential Tenancies Act</a> the landlord completes a move-out inspection report with
                   the tenant. Within 10 days of the tenant moving out, the landlord must return the security
                   deposit (the damage deposit in everyday use), or return what is left with a written statement
                   of any deductions (an estimate is allowed, with the final statement within 30 days). That report is where a landlord notes cleaning, so
-                  our <strong>move out cleaners in Edmonton</strong> clean to the inspection checklist rather
-                  than to how the home looks from the doorway.
+                  our <strong>move out cleaners in Edmonton</strong> clean to the inspection checklist.
                 </p>
                 <p>
                   A spring move-out in Edmonton meets the whole winter at once. The sand and salt tracked in
@@ -559,7 +554,7 @@ export default function EdmontonMoveInOut() {
                   {/* L8: /edmonton/march-out-cleaning/ had one contextual link into
                       it from the whole site. This page is where the reader who
                       needs it actually is. */}
-                  Not every handover is a landlord's. Families leaving military housing in Edmonton are held
+                  Families leaving military housing in Edmonton are held
                   to a CFHA march-out inspection instead of a landlord's walkthrough. What CFHA's checklist
                   asks for, and how the clean is booked around the inspection date, is set out on{" "}
                   <Link to="/edmonton/march-out-cleaning/" className="text-primary underline underline-offset-4">march-out cleaning in Edmonton</Link>.
@@ -595,9 +590,9 @@ export default function EdmontonMoveInOut() {
                   row, and a finished basement under a house is an add-on on the booking form. A garage is a
                   sweep of the floor only. If a basement suite is changing hands on its own, book it at its
                   own size, as a basement suite. A house that is still furnished,
-                  with the cupboards full, is not a move-out at all. That is{" "}
-                  <Link to="/edmonton/deep-cleaning/" className="text-primary underline underline-offset-4">a deep clean in Edmonton</Link>,
-                  and we will say so rather than turn up and improvise.
+                  with the cupboards full, is booked as{" "}
+                  <Link to="/edmonton/deep-cleaning/" className="text-primary underline underline-offset-4">a deep clean in Edmonton</Link>{" "}
+                  instead.
                 </p>
               </div>
             </AnimatedSection>

@@ -179,7 +179,7 @@ export default function Leduc() {
       {/* What the hero pills said, as one plain row under the hero */}
       <div className="border-b border-border bg-muted/30">
         <ul className="container mx-auto px-4 py-3 flex flex-wrap items-center justify-center gap-x-8 gap-y-1 text-sm font-medium text-foreground">
-          {["Pay After Your Clean", "Open 7 Days a Week", "24-Hour Re-Clean Guarantee"].map((text) => (
+          {["Pay after your clean", "Open 7 days a week", "24-hour re-clean guarantee"].map((text) => (
             <li key={text} className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-primary" aria-hidden="true" />
               {text}
@@ -222,9 +222,9 @@ export default function Leduc() {
                 A Leduc cleaning company that quotes before you book
               </h2>
               <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                The price is on screen before you confirm, nothing is charged until the clean is done, and the cleaner is rated by you afterwards.{" "}
-                <Link to="/reviews/" className="text-white underline underline-offset-2 font-medium">Read the reviews</Link>{" "}
-                before you book.
+                You rate the cleaner after each clean, and you can{" "}
+                <Link to="/reviews/" className="text-white underline underline-offset-2 font-medium">read the reviews</Link>{" "}
+                first.
               </p>
             </div>
           </AnimatedSection>
@@ -280,7 +280,6 @@ export default function Leduc() {
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="max-w-3xl mx-auto">
-              <span className="text-accent text-sm font-semibold tracking-wider uppercase">A worked quote</span>
               <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mt-2 mb-6 text-balance">
                 A Leduc house cleaning quote, line by line
               </h2>
@@ -408,7 +407,7 @@ export default function Leduc() {
               See your Leduc price before you book
             </h2>
             <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
-              See your flat rate before you book. Nothing is charged until the clean is done.
+              Nothing is charged until the clean is done.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>

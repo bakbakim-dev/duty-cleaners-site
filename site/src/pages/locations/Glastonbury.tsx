@@ -132,7 +132,7 @@ export default function Glastonbury() {
         {/* What the hero pills said, as one plain row under the hero */}
         <div className="border-b border-border bg-muted/30">
           <ul className="container mx-auto px-4 py-3 flex flex-wrap items-center justify-center gap-x-8 gap-y-1 text-sm font-medium text-foreground">
-            {["Pay After Your Clean", "Open 7 Days a Week", "24-Hour Re-Clean Guarantee"].map((text) => (
+            {["Pay after your clean", "Open 7 days a week", "24-hour re-clean guarantee"].map((text) => (
               <li key={text} className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-primary" aria-hidden="true" />
                 {text}

@@ -90,7 +90,7 @@ const steps = [
   { title: "Tick the wall add-on", description: "It sits on the booking form under the clean you are booking. Choose spot cleaning for the marks or the full wash for whole rooms, and the price for your home size appears beside it." },
   { title: "Paint check on arrival", description: "The team checks each room's paint finish when it arrives. Flat and matte finishes mark if they are rubbed, so those rooms get the lighter method." },
   { title: "Wash, room by room", description: "By hand, with a product suited to painted walls. Marks are worked first, then the whole wall in one pass so it dries without streaks." },
-  { title: "Locked up when the team leaves", description: `You do not need to be home: most customers leave a key, a lockbox code or smart-lock access, and the team locks up. A mark we missed is re-cleaned at no charge if you tell us within ${POLICY.guaranteeWindowHours} hours.` },
+  { title: "Locked up when the team leaves", description: `You do not need to be home: most customers leave a key, a lockbox code or smart-lock access, and the team locks up.` },
 ];
 
 const whyUs = [
@@ -99,7 +99,6 @@ const whyUs = [
   { icon: Home, title: "When it earns its price", description: "Before a listing photo, before a repaint, and on a move-out, before the landlord completes the move-out inspection report with the tenant." },
   { icon: Droplets, title: "Supplies and water", description: "The team brings every supply and piece of equipment, including the product used on painted walls. The home needs running water, and vacuuming may not be possible without electricity." },
   { icon: ThumbsUp, title: `${POLICY.guaranteeWindowHours}-hour re-clean`, description: `A wall or a mark we missed is put right at no charge. Tell us within ${POLICY.guaranteeWindowHours} hours of the clean.` },
-  { icon: Star, title: "Rated by Calgary customers", description: `${CITY_PROOF.calgary.googleRating} on Google across ${CITY_PROOF.calgary.googleReviewCount} Calgary reviews.` },
 ];
 
 const faqs = [
@@ -290,9 +289,6 @@ export default function WallWashingCalgary() {
               <h2 className="display-serif text-3xl md:text-4xl font-bold mb-4">
                 What comes off a Calgary wall
               </h2>
-              <p className="text-muted-foreground">
-                The dust film first, then the furnace halo, the haze in the bathroom, the cooking film beside the stove, and the handprints along the hallway.
-              </p>
             </div>
             {/* Down from six pictures to the three that show a mark, or a mark
                 being wiped. The room shots showed nothing a wash changes. */}
@@ -319,10 +315,7 @@ export default function WallWashingCalgary() {
               </div>
               <div className="grid md:grid-cols-2 gap-x-12 gap-y-10">
                 <div>
-                  <h3 className="font-semibold text-xl text-foreground mb-2">The six marks Calgary walls collect</h3>
-                  <p className="text-muted-foreground mb-4">
-                    The static-held dust film comes first, and five more marks follow it.
-                  </p>
+                  <h3 className="font-semibold text-xl text-foreground mb-4">The six marks Calgary walls collect</h3>
                   <dl className="space-y-4">
                     {wallProblems.map((p) => (
                       <div key={p.title} className="border-t border-border pt-3">
@@ -380,8 +373,8 @@ export default function WallWashingCalgary() {
                 <h2 className="display-serif text-3xl md:text-4xl font-bold mb-4">What wall washing costs in Calgary</h2>
                 <p className="text-muted-foreground">
                   The add-on is priced by the size of the home on the booking, however many walls it has,
-                  and the same row applies whether it rides on a standard, deep or move-out clean. Seven
-                  sizes, seven rows, ending where the booking form ends. The last column carries the 5% GST
+                  and the same row applies whether it rides on a standard, deep or move-out clean. The table
+                  has one row for each of the seven home sizes on the booking form. The last column carries the 5% GST
                   on the full wash, because that is the number that reaches the card.
                 </p>
               </div>
@@ -430,8 +423,7 @@ export default function WallWashingCalgary() {
           <AnimatedSection>
             <div className="max-w-5xl mx-auto">
               <div className="text-center mb-12">
-                <span className="text-accent font-semibold text-sm uppercase tracking-wider">Plain terms</span>
-                <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-4">What you are paying for when you add the walls</h2>
+                <h2 className="display-serif text-3xl md:text-4xl font-bold mb-4">What you are paying for when you add the walls</h2>
               </div>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {whyUs.map((w, i) => (
@@ -579,7 +571,7 @@ export default function WallWashingCalgary() {
                 one-bedroom size, on top of a standard clean from {STANDARD_FROM} for a one-bedroom apartment or
                 condo, all before GST and none of it charged until the clean is done. The pet charge, a home-type
                 charge or the travel fee outside Calgary city limits can apply, and each one is on the quote before
-                you book. The cleans it can ride on are listed with their starting prices under{" "}
+                you book. The cleans it can ride on are listed under{" "}
                 <Link to="/calgary/services/" className="text-white underline underline-offset-4">every Calgary cleaning service, with starting prices</Link>.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

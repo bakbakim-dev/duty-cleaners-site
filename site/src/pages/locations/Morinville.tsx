@@ -177,7 +177,7 @@ export default function Morinville() {
       {/* What the hero pills said, as one plain row under the hero */}
       <div className="border-b border-border bg-muted/30">
         <ul className="container mx-auto px-4 py-3 flex flex-wrap items-center justify-center gap-x-8 gap-y-1 text-sm font-medium text-foreground">
-          {["Pay After Your Clean", "Open 7 Days a Week", "24-Hour Re-Clean Guarantee"].map((text) => (
+          {["Pay after your clean", "Open 7 days a week", "24-hour re-clean guarantee"].map((text) => (
             <li key={text} className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-primary" aria-hidden="true" />
               {text}
@@ -209,9 +209,6 @@ export default function Morinville() {
                   ]}
                   total={{ label: "Quote before 5% GST", amount: EXAMPLE_PRICE }}
                 />
-                <p>
-                  Each of those lines is on the quote before you confirm, and the card is charged once the clean is complete.
-                </p>
                 <div className="not-prose pt-1">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
                     <a href="#quote">
@@ -280,7 +277,7 @@ export default function Morinville() {
                 Morinville and the other towns the Edmonton branch cleans
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                The Edmonton branch cleans Morinville and eight other communities outside the city, St. Albert among them. If your address is outside Morinville and not on that list, call the Edmonton office on {CITY_PROOF.edmonton.phone} before you book.
+                If your address is near Morinville but not in one of the nine communities outside the city that the Edmonton branch cleans, call the Edmonton office on {CITY_PROOF.edmonton.phone} before you book.
               </p>
             </div>
             <CoverageChips areas={nearbyAreas} />

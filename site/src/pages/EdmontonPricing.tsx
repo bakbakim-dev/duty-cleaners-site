@@ -420,8 +420,8 @@ export default function EdmontonPricing() {
               </div>
 
               <p className="text-muted-foreground leading-relaxed">
-                How to read the cards: each one assumes an apartment or condo with a set number of bathrooms,
-                and the form prices your actual count.
+                How to read the cards: each one assumes a set number of bathrooms, and the form prices your
+                actual count.
               </p>
               <ul className="grid grid-cols-2 sm:grid-cols-5 gap-x-4 gap-y-2 text-sm text-muted-foreground">
                 {PRICING_TIERS.map((tier) => (
@@ -501,8 +501,7 @@ export default function EdmontonPricing() {
             <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto mt-8 text-center">
               Everything a standard clean already covers, room by room, is on the{" "}
               <Link to="/whats-included/" className="text-accent underline underline-offset-4 hover:text-accent/80">what's-included checklist</Link>.
-              The table lists the tasks a standard clean does not cover. Its pet line and, outside city
-              limits, its travel-fee line are not optional.
+              The table's pet line and, outside city limits, its travel-fee line are not optional.
             </p>
 
             {/* An "Office Cleaning" card sat here until 10 September 2026. The
@@ -512,7 +511,7 @@ export default function EdmontonPricing() {
               The balcony / garage sweep is a sweep of the floor only, and it is available mostly in
               summer, when the weather allows. Some jobs stay outside every Edmonton clean, with or
               without add-ons: exterior windows, cleaning a garage or patio beyond that sweep, carpet
-              steam cleaning, furnace and duct cleaning, and lifting anything over 25 lb. Decluttering and organising are a separate hourly add-on, not part of the flat rate.
+              steam cleaning, furnace and duct cleaning, and lifting anything over 25 lb. Decluttering and organising are a separate hourly add-on.
             </p>
           </div>
         </div>
@@ -550,9 +549,8 @@ export default function EdmontonPricing() {
                   bk-config six of seven Deep Cleaning rows are
                   exempt_extra_from_freq_disc AND first-only, so the deep portion
                   neither recurs nor discounts. */}
-              The discount applies to the standard clean on every
-              visit after your first. A deep clean is charged once, on the first visit, at the one-time rate.
-              Initial cleaning and move-out services are not eligible for recurring discounts.
+              The discount applies to the standard clean only. A deep clean is charged once, on the first
+              visit, at the one-time rate. Move-out cleans get no recurring discount.
             </p>
             <p className="text-sm text-muted-foreground leading-relaxed mb-8">
               What a year of each frequency costs, and who books which, is on the{" "}
@@ -653,7 +651,7 @@ export default function EdmontonPricing() {
       <section className="py-16 md:py-20 bg-background">
         <div className="container mx-auto px-4" ref={optionsRef}>
           <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12"><h2 className="display-serif text-3xl md:text-4xl font-bold mb-4">Comparing flat-rate and hourly quotes</h2><p className="text-muted-foreground leading-relaxed">Compare the written scope as well as the total. A whole-home flat rate and an hourly booking for selected tasks answer different needs. Check minimum hours, how many cleaners the rate covers, any extras and GST before choosing.</p>
+            <div className="text-center mb-12"><h2 className="display-serif text-3xl md:text-4xl font-bold mb-4">Comparing flat-rate and hourly quotes</h2><p className="text-muted-foreground leading-relaxed">Compare the written scope as well as the total. Check minimum hours, how many cleaners the rate covers, any extras and GST before choosing.</p>
               <p className="text-muted-foreground leading-relaxed mt-4">
                 A flat rate prices a whole home. Ask for less than that, a few rooms or a one-off task
                 list, and the job is quoted hourly instead, from {formatPrice(HOME_HOURLY_RATE)} per hour per
@@ -668,9 +666,8 @@ export default function EdmontonPricing() {
                 description="The rate for most homes. Set by bedrooms, bathrooms and home type, with add-ons priced separately, for standard, deep and move-in/out cleans."
                 price={`from ${FROM_PRICE}`}
                 priceLabel="Fixed by home size, before 5% GST"
-                features={["The price shows before you book","Standard, deep and move-in/out cleans", "No trip fee inside Edmonton city limits", "Pet charge and home type shown before you book"]}
+                features={["The price shows before you book, with any pet and home-type charges", "No trip fee inside Edmonton city limits"]}
                 buttonText="See My Instant Price"
-                isHighlighted
               />
               {/* The funnel has no hourly service to price (QuoteFlow keeps hourly
                   work out of self-serve), so this card calls the office. */}
@@ -680,7 +677,7 @@ export default function EdmontonPricing() {
                 description="For partial or unusual jobs: a few rooms, a one-off task list, or a home that does not fit a size tier. You set what gets done and pay for the time it takes."
                 price={`from ${formatPrice(HOME_HOURLY_RATE)}/hour`}
                 priceLabel="Per cleaner, before 5% GST"
-                features={["Minimum booking: 1 cleaner for 3 hours or 2 cleaners for 2 hours", "You set the task list and the order", "Billed by the hour, per cleaner"]}
+                features={["Minimum booking: 1 cleaner for 3 hours or 2 cleaners for 2 hours", "You set the task list and the order"]}
                 buttonText="(780) 913-6565"
                 buttonHref="tel:7809136565"
               />

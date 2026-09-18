@@ -115,7 +115,7 @@ export function locationServices(
  */
 export function locationWhyUs(region: LocationRegion, third?: LocationWhyUsCard): LocationWhyUsCard[] {
   return [
-    { icon: Shield, title: "Reference-Checked, Then Rated by You" },
+    { icon: Shield, title: "Reference-checked, then rated by you" },
     // Each page states its own branch's count and links the listing it came
     // from. It used to add the two branches together, a sum Google never reports.
     {
@@ -136,8 +136,8 @@ export function locationWhyUs(region: LocationRegion, third?: LocationWhyUsCard)
         </>
       ),
     },
-    third ?? { icon: Leaf, title: "All Supplies Brought For You" },
+    third ?? { icon: Leaf, title: "All supplies brought for you" },
     // The window is part of the promise, so it is in the title (policy.ts: 24 hours from the clean).
-    { icon: ThumbsUp, title: "24-Hour Re-Clean Guarantee" },
+    { icon: ThumbsUp, title: "24-hour re-clean guarantee" },
   ];
 }

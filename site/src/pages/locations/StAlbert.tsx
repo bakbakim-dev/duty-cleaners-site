@@ -180,7 +180,7 @@ export default function StAlbert() {
       {/* What the hero pills said, as one plain row under the hero */}
       <div className="border-b border-border bg-muted/30">
         <ul className="container mx-auto px-4 py-3 flex flex-wrap items-center justify-center gap-x-8 gap-y-1 text-sm font-medium text-foreground">
-          {["Pay After Your Clean", "Open 7 Days a Week", "24-Hour Re-Clean Guarantee"].map((text) => (
+          {["Pay after your clean", "Open 7 days a week", "24-hour re-clean guarantee"].map((text) => (
             <li key={text} className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-primary" aria-hidden="true" />
               {text}
@@ -196,7 +196,6 @@ export default function StAlbert() {
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="max-w-4xl mx-auto">
-              <span className="text-accent text-sm font-semibold tracking-wider uppercase">A worked quote</span>
               <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mt-2 mb-6 text-balance">
                 What house cleaning in St. Albert costs, worked through
               </h2>
@@ -296,13 +295,14 @@ export default function StAlbert() {
               Cleaning services in St. Albert and the towns around it
             </h2>
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-              The Edmonton branch cleans the other communities outside the city on the same terms as St. Albert, among them{" "}
-              <Link to="/cleaning-services-morinville/" className="text-primary underline underline-offset-2 font-medium">Morinville house cleaners</Link>,{" "}
+              The Edmonton branch cleans the other communities outside the city on the same terms as St. Albert. The same office sends our{" "}
+              <Link to="/cleaning-services-morinville/" className="text-primary underline underline-offset-2 font-medium">Morinville house cleaners</Link>{" "}
+              and runs{" "}
               <Link to="/cleaning-services-sherwood-park/" className="text-primary underline underline-offset-2 font-medium">house cleaning in Sherwood Park</Link>,{" "}
               <Link to="/cleaning-services-spruce-grove/" className="text-primary underline underline-offset-2 font-medium">cleaning services in Spruce Grove</Link>{" "}
               and a{" "}
-              <Link to="/cleaning-services-leduc/" className="text-primary underline underline-offset-2 font-medium">Leduc cleaning company</Link>{" "}
-              run from the same office. All five sit outside Edmonton city limits, so the {TRAVEL_FEE} travel fee applies in each.
+              <Link to="/cleaning-services-leduc/" className="text-primary underline underline-offset-2 font-medium">Leduc cleaning company</Link>.
+              All five sit outside Edmonton city limits, so the {TRAVEL_FEE} travel fee applies in each.
             </p>
             <Link to="/locations/" className="inline-flex items-center gap-2 text-primary hover:underline font-semibold">
               View All Service Areas<span className="dc-icon dc-icon-arrow-right h-4 w-4" aria-hidden="true" />

@@ -71,15 +71,13 @@ export default function CalgaryRecurringCleaning() {
         <>
           Recurring cleaning is the <Link to="/calgary/regular-cleaning/">Calgary standard clean</Link> repeated
           weekly, bi-weekly or every 4 weeks. The first visit is charged at the one-time rate; from the second, weekly
-          is 20% off, bi-weekly 15% off and every 4 weeks 10% off. You pick the cadence; we keep to it.
+          is 20% off, bi-weekly 15% off and every 4 weeks 10% off.
         </>,
         <>
-          Choose the interval by how you use the home and the cleaning you do between visits. A Calgary condo does not
-          automatically need a different schedule from a house: cooking, pets, visitors and your available time are
-          more useful questions than a neighbourhood label. Our guide to <Link to="/how-often-should-a-cleaning-service-clean-my-house/">how often a cleaning service should clean your house</Link> works through those questions room by
+          Choose the interval by how you use the home and the cleaning you do between visits: cooking, pets, visitors
+          and the time you have. Our guide to <Link to="/how-often-should-a-cleaning-service-clean-my-house/">how often a cleaning service should clean your house</Link> works through that choice room by
           room.
         </>,
-        `Start with a manageable schedule and review how the rooms hold up between visits. Tell the Calgary office about changing entry instructions or room priorities. You can change a booking with ${POLICY.cancellationNoticeHours} hours' notice.`,
       ]}
       // The schedule-and-price section stays above the checklist. The review
       // and coverage sections read after the FAQ, with the other closing
@@ -103,7 +101,7 @@ export default function CalgaryRecurringCleaning() {
               <p>
                 Every 4 weeks is what many people mean by monthly house cleaning, and it is how the booking system
                 schedules the 10% tier: 13 visits across the year instead of 12, so the day moves through the month
-                rather than repeating on the same date. The checklist is the same on all three tiers.
+                rather than repeating on the same date.
               </p>
               <p>
                 The two-bedroom figures are the apartment rate. A townhouse or a two-storey house adds a home-type
@@ -118,9 +116,9 @@ export default function CalgaryRecurringCleaning() {
       includedHeading="What every recurring visit includes"
       includedSubheading="Kitchen, bathrooms, bedrooms and living areas, on every visit."
       included={[
-        { icon: UtensilsCrossed, title: "Kitchen Cleaning", description: "Counters, sink and stovetop wiped, the outside of the fridge, oven and dishwasher and the cabinet fronts done, then the floor vacuumed and mopped." },
+        { icon: UtensilsCrossed, title: "Kitchen", description: "Counters, sink and stovetop wiped, the outside of the fridge, oven and dishwasher and the cabinet fronts done, then the floor vacuumed and mopped." },
         { icon: Bath, title: "Bathrooms", description: "Toilet, tub and shower scrubbed, soap scum taken off tile and glass, mirror and vanity polished, floor washed." },
-        { icon: Home, title: "Bedrooms & Living Areas", description: "Reachable surfaces dusted, carpets and rugs vacuumed, hard floors mopped, room by room through the home." },
+        { icon: Home, title: "Bedrooms and living areas", description: "Reachable surfaces dusted, carpets and rugs vacuumed, hard floors mopped, room by room through the home." },
       ]}
       bullets={[
         "Kitchen, bathrooms, and living areas cleaned",
@@ -157,7 +155,7 @@ export default function CalgaryRecurringCleaning() {
           body: (
             <>
               <p>Review the interval after the first few visits. If kitchen and bathroom work is regularly falling behind between appointments, a shorter interval may help. If you keep up comfortably, a less frequent visit may be enough.</p>
-              <p>Your first schedule is not a permanent commitment. Discuss the work you want help with, what you will maintain yourself and the overall budget. Give {POLICY.cancellationNoticeHours} hours' notice to change a scheduled booking.</p>
+              <p>Your first schedule is not a permanent commitment. Tell the Calgary office what you want help with and what you will keep up yourself.</p>
               <p>If the home needs tasks beyond the standard checklist, compare <Link to="/calgary/deep-cleaning/">Calgary deep cleaning</Link> before booking. A deep clean is not automatically required for a new recurring customer.</p>
             </>
           ),
@@ -182,7 +180,6 @@ export default function CalgaryRecurringCleaning() {
           ),
         },
         { heading: "Changing or rescheduling your visits", body: <><p>Move, skip or cancel a visit with {POLICY.cancellationNoticeHours} hours' notice. Inside that window the cancellation fee is {POLICY.cancellationFee}. If we move a booking and the new date does not suit you, cancelling that booking carries no fee.</p><p>Read the <Link to="/terms/">booking and cancellation terms</Link>, and tell the Calgary office if your access instructions or room preferences change.</p></> },
-        { heading: "Does your first visit need a deep clean?", body: <p>Describe the condition of the home before choosing the first visit. Compare <Link to="/calgary/deep-cleaning/">deep cleaning in Calgary</Link> when the extra tasks are needed; a deep clean is not automatically required just because you want a recurring schedule.</p> },
         {
           heading: "Starting a recurring plan in Calgary",
           body: (
@@ -190,8 +187,7 @@ export default function CalgaryRecurringCleaning() {
               <p>
                 Pick a cadence and a first date; the quote shows the one-time rate for the first visit and the
                 discounted rate for the rest. Nothing is charged when you book, and the card is charged after each
-                clean is done. Anything missed is re-cleaned at no charge if you tell us within{" "}
-                {POLICY.guaranteeWindowHours} hours.
+                clean is done.
               </p>
               <p>
                 Our Calgary team is rated {RATING_CLAIM}{REVIEWS ? ` over ${REVIEWS} reviews` : ""};{" "}

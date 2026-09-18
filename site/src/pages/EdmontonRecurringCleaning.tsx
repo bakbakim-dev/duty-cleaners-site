@@ -96,11 +96,9 @@ export default function EdmontonRecurringCleaning() {
           bathrooms, bedrooms and living areas. You book once, and the visits repeat on the schedule you picked until
           you change it.
         </>,
-        "The first visit is charged at the one-time rate, and the schedule discount starts with the second. Each visit goes to your regular team where we can send them, and the cleaners bring all the supplies and equipment.",
+        "Each visit goes to your regular team where we can send them, and the cleaners bring all the supplies and equipment.",
         <>
-          Choose an interval around how much upkeep your household wants help with. Weekly visits may suit a busy
-          kitchen or frequently used rooms; biweekly leaves more upkeep to you between visits; every four weeks may
-          suit a lightly used home. These are options to try, not rules based on bedroom count or neighbourhood. Our
+          Choose an interval around how much upkeep your household wants help with. Our
           guide to <Link to="/how-often-should-a-cleaning-service-clean-my-house/">how often a cleaning service should clean your house</Link> works through that choice room by room.
         </>,
       ]}
@@ -177,8 +175,7 @@ export default function EdmontonRecurringCleaning() {
               <p>
                 Nothing is charged when you book: the card gets a temporary hold the day before each visit, which can
                 look like a charge in a banking app although no money moves, and it is charged once the clean is
-                complete. The first visit is billed at the one-time rate, so if the house is behind, a deep clean as the
-                opening visit and standard visits after it is the sensible order.
+                complete.
               </p>
               <p>
                 Our Edmonton team is rated {RATING_CLAIM}{REVIEWS ? ` across ${REVIEWS} reviews` : ""};{" "}
@@ -193,9 +190,9 @@ export default function EdmontonRecurringCleaning() {
       includedHeading="What every recurring visit includes"
       includedSubheading="Kitchen, bathrooms, bedrooms and living areas, every visit."
       included={[
-        { icon: UtensilsCrossed, title: "Kitchen Cleaning", description: "Wipe-down of countertops, sinks, stovetop, exterior appliances, and cabinet fronts. Floors mopped and vacuumed." },
+        { icon: UtensilsCrossed, title: "Kitchen", description: "Wipe-down of countertops, sinks, stovetop, exterior appliances, and cabinet fronts. Floors mopped and vacuumed." },
         { icon: Bath, title: "Bathrooms", description: "Toilets, tubs and showers scrubbed, soap scum off the tile and glass, mirrors and vanities polished, floors washed." },
-        { icon: Home, title: "Bedrooms & Living Areas", description: "Dusting accessible surfaces, vacuuming carpets and rugs, and mopping hard flooring throughout the home." },
+        { icon: Home, title: "Bedrooms and living areas", description: "Dusting accessible surfaces, vacuuming carpets and rugs, and mopping hard flooring throughout the home." },
       ]}
       bullets={[
         "Kitchen, bathrooms, and living areas cleaned",

@@ -198,7 +198,7 @@ const addOns = [
 const reachPoints = [
   { title: "The oven and the range hood", body: "Grease shows on both at a glance, and both are on the move-out checklist." },
   { title: "Shower glass and grout", body: "Hard-water scale is taken off the glass and the taps, and the tile and grout are scrubbed." },
-  { title: "Baseboards and closet shelves", body: "Furniture hides them for years. An empty room does not." },
+  { title: "Baseboards and closet shelves", body: "Furniture hides them for years, and the move-out clean reaches them once the room is empty." },
 ];
 
 // One of the six booking terms on the navy band. Static on purpose: it is
@@ -607,8 +607,7 @@ export default function CalgaryMoveInOut() {
               inspection report with the tenant. Within 10 days of the tenant moving out, the
               landlord must return the deposit, or return what is left with a written statement of
               any deductions (an estimate is allowed, with the final statement within 30 days). The inspection is where cleaning gets cited, so
-              an end of tenancy clean is timed for the day before it, after the furniture
-              has gone and before the keys do.
+              an end of tenancy clean is timed for the day before it.
             </p>
             <p>
               A room that looks right from the doorway can still be cited once somebody opens the
@@ -620,9 +619,7 @@ export default function CalgaryMoveInOut() {
             </p>
             <p>
               We do not promise the deposit. The landlord decides that, and a clean cannot fix
-              anything that is not cleaning. What we can do is clean to the move-out checklist and
-              come back for anything missed that you report within{" "}
-              {POLICY.guaranteeWindowHours} hours of the clean.
+              anything that is not cleaning.
             </p>
           </div>
         </div>
@@ -637,7 +634,7 @@ export default function CalgaryMoveInOut() {
           <div className="prose prose-lg max-w-none text-muted-foreground space-y-4">
             <p>
               Condos and apartments in the Beltline, Mission, Eau Claire and the downtown towers are
-              the simplest move-outs in Calgary to clean. What differs is access rather than cleaning. If the
+              the simplest move-outs in Calgary to clean. What differs is access. If the
               building books its elevator for move-outs, tell us the hours it is yours and we book
               the arrival window that fits them, where the schedule allows. Parkade access, the lobby fob, and where the keys go
               afterward (concierge desk, lockbox, or property manager) all belong in the booking
@@ -651,10 +648,6 @@ export default function CalgaryMoveInOut() {
               basement is priced as an add-on and an unfinished one as a sweep; the garage is a
               sweep, not a scrub. Houses in newer suburbs such as Mahogany, Seton and Livingston
               also carry construction dust, which settles on closet shelves and the tops of door frames.
-            </p>
-            <p>
-              Whichever you are leaving, the checklist is the same and the price is set by bedrooms
-              and bathrooms, not by the building.
             </p>
           </div>
         </div>

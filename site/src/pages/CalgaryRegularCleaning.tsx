@@ -55,9 +55,9 @@ export default function CalgaryRegularCleaning() {
           rate holds if the visit runs long, and{" "}
           <Link to="/calgary/pricing/">Calgary house cleaning prices by home size</Link> lists the rest.
         </>,
-        "A standard visit covers routine dusting and floor care in the rooms you book. Tell us about tracked-in grit, heavily used rooms or unusual buildup. Baseboards and detailed fixtures belong to the deep-clean package; dust left by renovation work needs a post-construction scope.",
+        "When you book, tell us about tracked-in grit, heavily used rooms or unusual buildup. Dust left by renovation work needs a post-construction scope.",
         <>
-          The cheaper way to stay ahead of that, in a Beltline condo or a two-storey house in Seton, is the
+          The cheaper way to stay ahead of tracked-in grit, in a Beltline condo or a two-storey house in Seton, is the
           same clean on a schedule; <Link to="/calgary/recurring-cleaning/">recurring cleaning in Calgary</Link> lists
           the weekly, bi-weekly and every-4-weeks discounts. Grit that has already worked into the baseboards and carpet
           edges needs a <Link to="/calgary/deep-cleaning/">Calgary deep clean</Link> first.
@@ -145,8 +145,7 @@ export default function CalgaryRegularCleaning() {
             <>
               <p>
                 You pick a date and an arrival window, the quote shows the flat rate before you confirm, and nothing is
-                charged until the clean is done. If the team missed something, say so within{" "}
-                {POLICY.guaranteeWindowHours} hours and they come back for it at no charge.
+                charged until the clean is done.
               </p>
               <p>
                 Our Calgary team is rated {RATING_CLAIM}{REVIEWS ? ` over ${REVIEWS} reviews` : ""};{" "}
@@ -160,9 +159,9 @@ export default function CalgaryRegularCleaning() {
       includedHeading="What a standard clean covers"
       includedSubheading="Kitchen, bathrooms, bedrooms, floors and living areas, in one visit."
       included={[
-        { icon: UtensilsCrossed, title: "Kitchen Cleaning", description: "Counters, sink and stovetop wiped, the outside of the fridge, oven and dishwasher and the cabinet fronts done, then the floor vacuumed and mopped." },
+        { icon: UtensilsCrossed, title: "Kitchen", description: "Counters, sink and stovetop wiped, the outside of the fridge, oven and dishwasher and the cabinet fronts done, then the floor vacuumed and mopped." },
         { icon: Bath, title: "Bathrooms", description: "Toilet, tub and shower scrubbed, soap scum taken off tile and glass, mirror and vanity polished, floor washed." },
-        { icon: Home, title: "Bedrooms & Living Areas", description: "Reachable surfaces dusted, carpets and rugs vacuumed, hard floors mopped, room by room through the home." },
+        { icon: Home, title: "Bedrooms and living areas", description: "Reachable surfaces dusted, carpets and rugs vacuumed, hard floors mopped, room by room through the home." },
       ]}
       bullets={[
         "Dusting of all accessible surfaces and furniture",
@@ -200,7 +199,7 @@ export default function CalgaryRegularCleaning() {
         { q: "How should I get the house ready?", a: "You do not need to clean before the team comes; clear counters and floors get cleaned and cluttered ones get worked around; decluttering and organising are a separate hourly add-on. If a room should be skipped, or one deserves extra time, note it on the booking." },
       ]}
       ctaHeading={<>Standard cleaning in <em className="italic text-accent-on-dark">Calgary</em> from {FROM}.</>}
-      ctaDescription="That figure is the one-bedroom apartment rate before GST. A townhouse or two-storey house adds a home-type charge, a home with pets adds the pet charge and an address outside Calgary city limits adds the travel fee, all shown on the quote before you book. Nothing is charged until the clean is complete."
+      ctaDescription="That figure is the one-bedroom apartment rate before GST. A townhouse or two-storey house adds a home-type charge, a home with pets adds the pet charge and an address outside Calgary city limits adds the travel fee, all shown on the quote before you book."
       galleryImages={[
         { picture: kitchenImage, alt: "Kitchen with white shaker cabinets, stainless-steel appliances and a quartz island with a double sink" },
         { picture: livingRoomImage, alt: "Sunlit white living room with tall windows behind a white sofa, white flowers on a glass coffee table and a hardwood floor" },

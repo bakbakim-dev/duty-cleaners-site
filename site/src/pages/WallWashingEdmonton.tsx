@@ -9,7 +9,7 @@ import { travelFee } from "@/data/addon-table";
 import { buildServiceSchema } from "@/lib/service-schema";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { Star, Shield, Droplets, Home, ThumbsUp, Sparkles } from "lucide-react";
+import { Star, Shield, Droplets, Home, ThumbsUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Link } from "react-router-dom";
@@ -76,9 +76,7 @@ const wallProblems = [
 
 const includedItems = [
   { title: "Full wall wash", description: "Every painted wall in the rooms you book, washed top to bottom." },
-  { title: "Stain, smudge & mark removal", description: "Spots, smudges and marks worked on one at a time before the wall is washed." },
   { title: "Spot treatment for grime & gentle mildew", description: "Built-up grime around switches and door frames, and light surface mildew on bathroom walls where the paint allows it." },
-  { title: "Nicotine & tar stain treatment", description: "Targeted cleaning to reduce yellow nicotine and tar buildup on walls in smoked-in homes." },
   { title: "Paint-ready wall cleaning", description: "Dust, residue and film taken off so primer and paint go onto a clean wall." },
 ];
 
@@ -93,8 +91,7 @@ const steps = [
 ];
 
 const whyUs = [
-  { icon: Sparkles, title: "Marks we assess", description: "Cooking film, smoke stains, handprints and scuffs. Results depend on the mark and paint finish; some marks may remain." },
-  { icon: Shield, title: "What stays", description: "The paint finish. Very flat or delicate paint limits how hard a mark can be worked, and some stains only fade." },
+  { icon: Shield, title: "What the paint allows", description: "Very flat or delicate paint limits how hard a mark can be worked, and some stains only fade." },
   { icon: Home, title: "When to book it", description: "Before painting, after a tenant moves out, or with a move-out clean." },
   { icon: Droplets, title: "What the team leaves alone", description: "Wallpaper, bare drywall and unpainted wood are not washed, and nothing is reached from higher than a 3-step ladder." },
   { icon: ThumbsUp, title: `${POLICY.guaranteeWindowHours}-hour re-clean`, description: `Tell us within ${POLICY.guaranteeWindowHours} hours about a wall or a mark we missed and we come back to it at no charge.` },
@@ -332,13 +329,10 @@ export default function WallWashingEdmonton() {
                 <h2 className="display-serif text-3xl md:text-4xl font-bold mb-4">
                   What's included in our wall washing
                 </h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto">
-                  What ends up on Edmonton walls, and what we are booked to take off.
-                </p>
               </div>
               <div className="grid md:grid-cols-2 gap-x-12 gap-y-10">
                 <div>
-                  <h3 className="font-semibold text-xl text-foreground mb-4">Common issues we fix</h3>
+                  <h3 className="font-semibold text-xl text-foreground mb-4">Marks and film the team works on</h3>
                   <dl className="space-y-4">
                     {wallProblems.map((p) => (
                       <div key={p.title} className="border-t border-border pt-3">
@@ -372,8 +366,6 @@ export default function WallWashingEdmonton() {
           <AnimatedSection>
             <div className="text-center mb-10 max-w-3xl mx-auto">
               <h2 className="display-serif text-3xl md:text-4xl font-bold mb-4">How wall cleaning works</h2>
-              <p className="text-muted-foreground">Wall washing is an add-on, so it starts where your clean does:
-                tick it in the booking form and the price appears with it.</p>
             </div>
             <ol className="max-w-3xl mx-auto list-decimal pl-6 space-y-6 marker:font-bold marker:text-accent">
               {steps.map((s) => (
@@ -397,8 +389,7 @@ export default function WallWashingEdmonton() {
                 <p className="text-muted-foreground">
                   Two add-ons, each priced by the size of the home the clean is booked for, before 5% GST.
                   Spot cleaning is the marks: the switch plates, the stairwell band, the wall behind the
-                  bin. The full wash is every painted wall in the rooms you book. The booking form carries
-                  one row per home size, and all seven of them are printed below.
+                  bin. The full wash is every painted wall in the rooms you book.
                 </p>
               </div>
               <div className="overflow-hidden border border-border rounded-xl">
@@ -563,7 +554,7 @@ export default function WallWashingEdmonton() {
         </div>
       </section>
 
-      {/* The one closing band: the rating, the re-clean and the price button.
+      {/* The one closing band: the rating, the reviews and the price button.
           It was two navy sections with the contact cards between them. */}
       <section className="py-16 md:py-20 bg-brand-navy">
         <div className="container mx-auto px-4">
@@ -572,13 +563,11 @@ export default function WallWashingEdmonton() {
               <div className="flex justify-center mb-6">
                 <Stars size={1.75} className="text-brand-gold" />
               </div>
-              <h2 className="display-serif text-3xl md:text-4xl font-bold text-white mb-3">
+              <h2 className="display-serif text-3xl md:text-4xl font-bold text-white mb-6">
                 Rated {CITY_PROOF.edmonton.googleRating} on Google across {CITY_PROOF.edmonton.googleReviewCount} Edmonton reviews
               </h2>
-              <p className="text-xl font-semibold text-accent-on-dark mb-6">{POLICY.guaranteeWindowHours}-hour re-clean</p>
               <p className="text-white/90 mb-4 max-w-xl mx-auto">
-                If a wall or a mark was missed, tell us within {POLICY.guaranteeWindowHours} hours of the clean
-                and we come back to it at no charge. The reviews are on this site as well as on Google:{" "}
+                The reviews are on this site as well as on Google:{" "}
                 <Link to="/reviews/" className="text-white underline underline-offset-4">read the reviews</Link>{" "}
                 before you book, or open{" "}
                 <a href={getListing("edmonton").reviewsUrl} target="_blank" rel="noopener noreferrer" className="text-white underline underline-offset-4">the Edmonton branch's Google profile</a>.

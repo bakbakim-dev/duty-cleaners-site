@@ -71,14 +71,14 @@ export default function EdmontonDeepCleaning() {
       heroImageAlt="Kitchen after a deep clean"
       heroImageWidth={1024}
       heroImageHeight={1024}
-      overviewHeading={<>The reset regular cleaning <Accent>can't reach.</Accent></>}
+      overviewHeading={<>When an Edmonton home <Accent>needs a deep clean.</Accent></>}
       overviewParagraphs={[
         <>
           A deep clean is the <Link to="/edmonton/regular-cleaning/">standard cleaning checklist</Link> plus the
           deep-clean package, and both halves are priced flat by home size.
         </>,
-        "Edmonton earns its deep cleans the hard way. The city holds its cold rather than thawing and refreezing, so the sand and salt tracked in from November arrive dry and stay, and by spring they have worked into carpet edges and along the baseboards where a vacuum no longer lifts them. The spring melt, in late March and April, brings a whole winter of grit indoors in about three weeks. Meanwhile the furnace has been running since October, and a house sealed up that long cycles dust faster, onto vent covers, baseboards and the tops of door frames.",
-        "What the work looks like depends on the home. In an older house, painted trim and panelled doors hold dust along every edge of the profile, and most of the job is hand-wiping. In the bathrooms, hard Alberta water leaves mineral scale on the taps and the shower glass; scale does not scrub off, and it comes away with a mild acid given a few minutes to work. In an apartment or condo there is less trim, so more of the job is the kitchen and the bathrooms. Our team works top to bottom, room by room: scrubbing baseboards and door frames, hand-wiping switches and outlet covers, detailing the stovetop, grates and fridge top, and detail-cleaning bathrooms.",
+        "Edmonton holds its cold rather than thawing and refreezing, so the sand and salt tracked in from November arrive dry and stay, and by spring they have worked into carpet edges and along the baseboards where a vacuum no longer lifts them. The spring melt, in late March and April, brings a whole winter of grit indoors in about three weeks. Meanwhile the furnace has been running since October, and a house sealed up that long cycles dust faster, onto vent covers, baseboards and the tops of door frames.",
+        "What the work looks like depends on the home. In an older house, painted trim and panelled doors hold dust along every edge of the profile, and most of the job is hand-wiping. In the bathrooms, hard Alberta water leaves mineral scale on the taps and the shower glass; scale does not scrub off, and it comes away with a mild acid given a few minutes to work. In an apartment or condo there is less trim, so more of the job is the kitchen and the bathrooms. Our team works top to bottom, room by room.",
       ]}
       // The price section stays above the checklist. The out-of-town section
       // reads after the FAQ, with the other closing prose, so the page reaches
@@ -89,9 +89,8 @@ export default function EdmontonDeepCleaning() {
           body: (
             <>
               <p>
-                The price is the standard rate for the home plus the deep-clean package for that size, and both halves
-                come from the same price list. A one-bedroom is {DEEP.price}: {DEEP.standard} for the standard clean
-                and {DEEP.packagePrice} for the package. A three-bedroom is {DEEP3.price}: {DEEP3.standard} plus{" "}
+                A one-bedroom is {DEEP.price}: {DEEP.standard} for the standard clean and {DEEP.packagePrice} for the
+                deep-clean package. A three-bedroom is {DEEP3.price}: {DEEP3.standard} plus{" "}
                 {DEEP3.packagePrice}. The package grows with the bedroom count because the trim, the doors and the
                 switch plates do.
               </p>
@@ -119,10 +118,10 @@ export default function EdmontonDeepCleaning() {
       includedHeading="What a deep clean adds"
       includedSubheading="The places a weekly visit never reaches, room by room."
       included={[
-        { icon: UtensilsCrossed, title: "Kitchen Detail Clean", description: "The team details the stovetop, grates and fridge top, wipes appliance exteriors, cabinet fronts and the backsplash, and wipes down all prep surfaces." },
-        { icon: Bath, title: "Bathroom Deep Scrub", description: "Tile, grout and shower glass detailed, soap scum and mineral build-up removed from tubs and fixtures, toilets scrubbed inside and out, vanities and mirrors polished." },
-        { icon: Layers, title: "Edges & Details", description: "Hand-wiping baseboards, door frames, light switches, outlet covers, vents, and corners that collect dust." },
-        { icon: Sparkles, title: "Full Dust Reset", description: "Detailed dusting of vents and the high and low areas a 3-step ladder reaches, throughout the home. Ceiling fans on request, where they can be reached safely." },
+        { icon: UtensilsCrossed, title: "Kitchen", description: "The team details the stovetop, grates and fridge top, wipes appliance exteriors, cabinet fronts and the backsplash, and wipes down all prep surfaces." },
+        { icon: Bath, title: "Bathrooms", description: "Tile, grout and shower glass detailed, soap scum and mineral build-up removed from tubs and fixtures, toilets scrubbed inside and out, vanities and mirrors polished." },
+        { icon: Layers, title: "Baseboards and door frames", description: "Hand-wiping baseboards, door frames, light switches, outlet covers, vents, and corners that collect dust." },
+        { icon: Sparkles, title: "Dusting, high and low", description: "Detailed dusting of vents and the high and low areas a 3-step ladder reaches, throughout the home. Ceiling fans on request, where they can be reached safely." },
       ]}
       bullets={[
         "All standard cleaning tasks included",
@@ -217,7 +216,7 @@ export default function EdmontonDeepCleaning() {
         },
       ]}
       ctaHeading={<>Deep cleaning in <em className="italic text-accent-on-dark">Edmonton</em> from {TIERS[0].price}.</>}
-      ctaDescription={`A deep clean is the standard checklist plus the deep-clean package, priced flat by home size before GST: ${TIERS[0].price} is a one-bedroom apartment or condo, and any home-type, pet or travel charge shows on the quote. Nothing is charged until the clean is complete.`}
+      ctaDescription={`The price is flat by home size, before GST: ${TIERS[0].price} is a one-bedroom apartment or condo, and any home-type, pet or travel charge shows on the quote. Nothing is charged until the clean is complete.`}
       galleryImages={[
         { picture: heroImageCard, alt: "Kitchen after a deep clean" },
       ]}

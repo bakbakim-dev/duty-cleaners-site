@@ -278,4 +278,4 @@ export const SERVICE_TERMS = [
  * matters: a visitor deciding whether to book wants to know when someone turns
  * up, and "we'll confirm your window when you book" answers nothing.
  */
-export const ARRIVAL_WINDOWS = ["9:00 – 10:00 AM", "12:00 – 1:00 PM", "3:00 – 4:00 PM"] as const;
+export const ARRIVAL_WINDOWS = ["9:00 to 10:00 AM", "12:00 to 1:00 PM", "3:00 to 4:00 PM"] as const;

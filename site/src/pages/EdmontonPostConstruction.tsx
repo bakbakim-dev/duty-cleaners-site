@@ -86,7 +86,6 @@ const whyChooseUs = [
   { title: "Ledges, tracks and vents by hand", desc: "Four places a machine cannot do are wiped by hand: the ledges, the window tracks, the vent slots and the top edge of the trim." },
   { title: "What the crew brings, what the site needs", desc: "Vacuums, cloths, products and the 3-step ladder come with the crew. The site has to have power and running water, which on a new build is worth confirming with the builder." },
   { title: `${POLICY.guaranteeWindowHours}-hour re-clean`, desc: `Tell us within ${POLICY.guaranteeWindowHours} hours about anything we missed and we re-clean it free of charge. Photos help the team find it and are not a condition.` },
-  { title: "The band is the price", desc: `${startingPriceLabel} to ${topPriceLabel}, before 5% GST, set by the square-footage band of the finished space. Nothing is added for a clean that runs long, and an address outside Edmonton city limits also pays the travel fee.` }
 ];
 
 /**
@@ -119,7 +118,7 @@ const faqs: Faq[] = [
   },
   {
     q: "How is post-construction cleaning different from a regular deep clean?",
-    a: "Post-construction cleaning targets the fine construction dust that settles on every surface, including inside cabinets, drawers, vents, and window tracks, as well as light paint splatters, smudges, and residue left behind by tradespeople. A deep clean does not open every cabinet and drawer, clear the window tracks, or lift paint flecks and adhesive residue off glass and fixtures. This one does.",
+    a: "Post-construction cleaning targets the fine construction dust that settles on every surface, including inside cabinets, drawers, vents, and window tracks, as well as light paint splatters, smudges, and residue left behind by tradespeople. A deep clean does not open every cabinet and drawer, clear the window tracks, or lift paint flecks and adhesive residue off glass and fixtures.",
     more: { lead: "For a lived-in home with no building work, compare it with", to: "/edmonton/deep-cleaning/", anchor: "a deep clean in Edmonton" },
   },
   {
@@ -276,8 +275,6 @@ export default function EdmontonPostConstruction() {
                 is a separate add-on, priced by the size of the home.
               </p>
               <p className="text-lg text-muted-foreground mb-4">
-                The crew takes fine drywall dust, smudges and contractor residue off cabinets, windows,
-                baseboards and floors.{" "}
                 Duty Cleaners in Edmonton does <strong>final-stage post-construction cleaning</strong>, the clean that
                 goes in once construction is complete and the space is empty of debris. That covers new builds, kitchen
                 and bathroom remodels, basement renovations and whole-home refreshes. A finished home that is simply
@@ -286,8 +283,7 @@ export default function EdmontonPostConstruction() {
                 instead, priced by bedrooms rather than square footage.
               </p>
               <p className="text-lg text-muted-foreground mb-4">
-                <strong>Important:</strong> our service begins after your contractor has finished and removed all
-                materials. What that leaves out is listed under{" "}
+                What the clean leaves out is listed under{" "}
                 <a href="#not-ours" className="text-primary underline underline-offset-4">six jobs that are not ours</a>.
               </p>
             </div>
@@ -300,16 +296,14 @@ export default function EdmontonPostConstruction() {
         <div className="container mx-auto px-4 max-w-4xl">
           <AnimatedSection>
             <div className="text-center mb-8">
-              <span className="text-accent font-semibold text-sm uppercase tracking-wide">Renovations</span>
-              <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Post-renovation cleaning after a kitchen, bathroom or basement remodel</h2>
+              <h2 className="display-serif text-3xl md:text-4xl font-bold">Post-renovation cleaning after a kitchen, bathroom or basement remodel</h2>
             </div>
             <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
               <p>
                 <strong className="text-foreground">Kitchen remodel.</strong> The dust from a kitchen goes into
-                the new drawers before the drawers have anything in them. We wipe every cabinet and drawer
-                inside and out, the counters, the backsplash and the outside of the new appliances. The
-                appliance interiors are not part of this clean, and the film and stickers on them have to be
-                off before we arrive, because peeling them is not cleaning and we do not do it.
+                the new drawers before the drawers have anything in them, so we wipe every cabinet and drawer
+                inside and out. The appliance interiors are not part of this clean, and the film and stickers
+                on them have to be off before we arrive.
               </p>
               <p>
                 <strong className="text-foreground">Bathroom remodel.</strong> New tile carries a grout haze that
@@ -333,12 +327,9 @@ export default function EdmontonPostConstruction() {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <AnimatedSection>
-            <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-4">
+            <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-12">
               What a post-construction clean covers in Edmonton
             </h2>
-            <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-              Six parts of the clean: dust, kitchen, bathrooms, floors, interior glass, and the doors, handles and switches everyone touches.
-            </p>
           </AnimatedSection>
           <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-6">
             {includedServices.map((item, index) => (
@@ -365,8 +356,7 @@ export default function EdmontonPostConstruction() {
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="mx-auto max-w-3xl text-center">
-              <span className="text-accent font-semibold text-sm uppercase tracking-wide">Price List</span>
-              <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-4">What post-construction cleaning costs in Edmonton</h2>
+              <h2 className="display-serif text-3xl md:text-4xl font-bold mb-4">What post-construction cleaning costs in Edmonton</h2>
               <p className="text-muted-foreground leading-relaxed">
                 This is the one clean we price by square footage rather than by bedrooms, because the dust
                 does not care how the rooms are divided. Pick the band the finished space falls in and that
@@ -426,10 +416,10 @@ export default function EdmontonPostConstruction() {
         <div className="container mx-auto px-4">
           <AnimatedSection>
             {/* Was "Why Edmonton Homeowners Choose Duty Cleaners", a heading that
-                promised a sales pitch and sat over six booking terms. */}
+                promised a sales pitch and sat over five booking terms. */}
             <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-12">What is settled before an Edmonton crew arrives</h2>
           </AnimatedSection>
-          {/* Six booking terms as a definition list. They were the page's second
+          {/* Five booking terms as a definition list. They were the page's second
               icon-card grid, and none of them is something to click. */}
           <AnimatedSection>
             <dl className="max-w-5xl mx-auto grid md:grid-cols-2 gap-x-12 gap-y-8">
@@ -450,11 +440,7 @@ export default function EdmontonPostConstruction() {
           <AnimatedSection>
             {/* "What We Don't Cover" over "To set clear expectations, here's what
                 falls outside our scope" was the template at its plainest. */}
-            <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-4">Six jobs that are not ours</h2>
-            <p className="text-center text-muted-foreground mb-10 max-w-2xl mx-auto">
-              This is <strong>final-stage cleaning only</strong>. These six belong to the contractor or to
-              you, and a crew that turns up to find them undone cannot start:
-            </p>
+            <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-10">Six jobs that are not ours</h2>
           </AnimatedSection>
           <AnimatedSection>
             <div className="max-w-4xl mx-auto bg-white border border-border rounded-xl p-6 md:p-8 grid md:grid-cols-2 gap-8">
@@ -477,7 +463,7 @@ export default function EdmontonPostConstruction() {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <AnimatedSection>
-            <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-4">Post-Construction Cleaning FAQs</h2>
+            <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-4">Post-construction cleaning FAQs</h2>
             <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
               Questions Edmonton homeowners, builders and renovators ask before a post-construction clean.
             </p>
@@ -558,14 +544,9 @@ export default function EdmontonPostConstruction() {
           <AnimatedSection>
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="display-serif text-3xl md:text-4xl font-bold text-white mb-4">Tell us within {POLICY.guaranteeWindowHours} hours if we missed a ledge</h2>
-              <p className="text-lg text-white/90 mb-4">
-                If any area of the post-construction clean is not right, tell us within{" "}
-                {POLICY.guaranteeWindowHours} hours and we come back to re-clean it at no charge. Photos help
-                the team find it and are not a condition.
-              </p>
               <p className="text-base text-white/90 mb-4">
                 The post-construction checklist names the cabinet interiors, the window tracks and the
-                baseboards, so a miss is easy to point to. We have been cleaning Edmonton homes{" "}
+                baseboards, so a miss is easy to point to, and we come back to re-clean it at no charge. We have been cleaning Edmonton homes{" "}
                 {COMPANY.sinceLabel}, and our Edmonton team is rated{" "}
                 {RATING_CLAIM}{REVIEWS ? ` across ${REVIEWS} reviews` : ""}; read them on the{" "}
                 <Link to="/reviews/" className="text-white underline underline-offset-4">reviews page</Link>{" "}

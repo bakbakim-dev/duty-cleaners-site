@@ -53,13 +53,13 @@ export default function CalgaryDeepCleaning() {
       heroImageAlt="Long kitchen with granite counters, a gas cooktop under a range hood and two stainless-steel fridges"
       heroImageWidth={800}
       heroImageHeight={800}
-      overviewHeading={<>The reset regular cleaning <Accent>can't reach.</Accent></>}
+      overviewHeading={<>When to choose <Accent>a deep clean.</Accent></>}
       overviewParagraphs={[
         <>
           A deep clean is the full <Link to="/calgary/regular-cleaning/">Calgary standard clean</Link> with the
           deep-clean package on top, priced flat by home size and starting at {TIERS[0].price} before GST for a one-bedroom.
         </>,
-        "Choose a deep clean when the standard checklist is not enough for the buildup you want addressed. The package adds baseboards, doors, switches, outlet and vent covers, cobwebs and detailed kitchen tasks. Tell us about fragile finishes or marks that may need assessment; cleaning does not repair worn surfaces.",
+        "The deep-clean package adds baseboards, doors, switches, outlet and vent covers, cobwebs and detailed kitchen tasks. Tell us about fragile finishes or marks that may need assessment; cleaning does not repair worn surfaces.",
         "For a Beltline or Eau Claire condo, include building access and parking instructions. In any Calgary neighbourhood, dust left by building or renovation work needs a post-construction scope, not a deep clean selected solely because the home is new.",
       ]}
       // The price section stays above the checklist. The out-of-town section
@@ -95,10 +95,10 @@ export default function CalgaryDeepCleaning() {
       includedHeading="What a deep clean adds"
       includedSubheading="The places a standard visit passes over, room by room."
       included={[
-        { icon: UtensilsCrossed, title: "Kitchen Detail Clean", description: "The stovetop and range hood degreased, appliance exteriors, cabinet fronts and the backsplash wiped, and every prep surface wiped down." },
-        { icon: Bath, title: "Bathroom Deep Scrub", description: "Tile, grout and shower glass worked over, soap scum and mineral scale lifted off tubs and fixtures, toilets done inside and out, vanities and mirrors polished." },
-        { icon: Layers, title: "Edges & Details", description: "Baseboards, door frames, light switches, outlet covers, vents and the corners that hold dust, all wiped by hand." },
-        { icon: Sparkles, title: "Full Dust Reset", description: "Vents and the high and low surfaces a 3-step ladder reaches, dusted through the whole home. Ceiling fans on request, where they can be reached safely." },
+        { icon: UtensilsCrossed, title: "Kitchen", description: "The stovetop and range hood degreased, appliance exteriors, cabinet fronts and the backsplash wiped, and every prep surface wiped down." },
+        { icon: Bath, title: "Bathrooms", description: "Tile, grout and shower glass worked over, soap scum and mineral scale lifted off tubs and fixtures, toilets done inside and out, vanities and mirrors polished." },
+        { icon: Layers, title: "Baseboards and door frames", description: "Baseboards, door frames, light switches, outlet covers, vents and the corners that hold dust, all wiped by hand." },
+        { icon: Sparkles, title: "Dusting, high and low", description: "Vents and the high and low surfaces a 3-step ladder reaches, dusted through the whole home. Ceiling fans on request, where they can be reached safely." },
       ]}
       bullets={[
         "All standard cleaning tasks included",
@@ -149,7 +149,7 @@ export default function CalgaryDeepCleaning() {
         { q: "Is deep cleaning more expensive than standard cleaning?", a: `Yes, by the price of the deep-clean package. For a one-bedroom that is ${DEEP.packagePrice}: ${DEEP.price} for the deep clean against ${DEEP.standard} for a standard clean. The package rises with each bedroom, to ${DEEP5.packagePrice} on a five-bedroom home, where a deep clean is ${DEEP5.price} against ${DEEP5.standard}. Those are apartment or condo rates before GST; a townhouse or two-storey house, a home with pets and an address outside Calgary city limits each add a charge on the quote.` },
         { q: "Will the team deal with mould in the shower?", a: "Light surface mildew on grout or caulking gets wiped where it is safe to. Anything heavier is mould remediation, which is a different trade, and we will tell you so rather than scrub at it." },
         { q: "How long will a Calgary deep clean take?", a: "We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
-        { q: "What does a deep clean do that a standard clean does not?", a: "The standard clean keeps a kept-up home kept up: floors, bathrooms, kitchen surfaces, dusting. The deep-clean package goes to what those visits pass over, the baseboards and door frames, the switch plates and outlet covers, the vents, the tile and shower glass, and the range hood and stovetop grease. It is the reset; the standard visits are the maintenance." },
+        { q: "What does a deep clean do that a standard clean does not?", a: "The standard clean keeps a kept-up home kept up: floors, bathrooms, kitchen surfaces, dusting. The deep-clean package goes to what those visits pass over, the baseboards and door frames, the switch plates and outlet covers, the vents, the tile and shower glass, and the range hood and stovetop grease." },
         { q: "Are the products safe around children and pets?", a: `We bring standard professional products. If anyone in the house has a sensitivity, or there is a product you would rather we did not use, say so when you book. Optional alternative products are available for ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}. A home with pets carries a ${addOnLabel("must-choose-if-you-have-pets")} charge on each visit, and it shows on the quote before you book.` },
         { q: "How often does a Calgary home need a deep clean?", a: "There is no fixed interval for every home. Check the condition of baseboards, doors and other deep-package items, along with the upkeep you do between visits. Recurring standard cleaning can help with routine tasks but does not include every deep-clean item." },
       ]}
@@ -165,15 +165,14 @@ export default function CalgaryDeepCleaning() {
                 and <Link to="/cleaning-services-cochrane/">cleaning services in Cochrane</Link>.
               </p>
               <p>
-                Outside the city the checklist and the package are the same as in Calgary, and the travel fee is the
-                one charge the distance adds. The pet charge and the home-type charge for a townhouse or two-storey house apply there just as
-                they do inside the city, and each one is a separate line on the quote before you confirm.
+                Outside the city, the pet charge and the home-type charge for a townhouse or two-storey house apply
+                just as they do inside it, and each one is a separate line on the quote before you confirm.
               </p>
             </>
           ),
         },
         {
-          heading: "Keeping it that way",
+          heading: "After the deep clean",
           body: (
             <>
               <p>

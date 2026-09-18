@@ -57,7 +57,7 @@ export default function MoveOutServiceAreas({ city }: MoveOutServiceAreasProps) 
     <section className="py-20 bg-muted/20">
       <div className="container mx-auto px-4 max-w-5xl">
         <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-4">
-          Move Out Cleaning Throughout {city}
+          Move out cleaning throughout {city}
         </h2>
         <p className="text-center text-muted-foreground mb-12">
           The move-out checklist and the prices by home size are the same in every place named here,

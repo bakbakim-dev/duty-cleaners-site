@@ -710,12 +710,9 @@ const ServiceDetailPage = ({
       {faqs.length > 0 && (
         <section className="py-16 md:py-20 bg-secondary/30">
           <div className="container mx-auto px-4 max-w-3xl">
-            <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-4">
+            <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-12">
               Frequently asked questions
             </h2>
-            <p className="text-muted-foreground text-center mb-12">
-              Questions people ask before they book
-            </p>
             <div className="space-y-4">
               {faqs.map((faq, index) => (
                 <FaqAccordionItem

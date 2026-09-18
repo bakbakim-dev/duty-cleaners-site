@@ -80,7 +80,7 @@ export default function EdmontonRegularCleaning() {
       heroImageAlt="Cleaner in a blue uniform vacuuming the hardwood floor of a sunlit living room"
       heroImageWidth={896}
       heroImageHeight={672}
-      overviewHeading={<>One visit, every room, <Accent>one flat price.</Accent></>}
+      overviewHeading={<>A standard clean, <Accent>priced flat by home size</Accent></>}
       overviewParagraphs={[
         <>
           Each visit runs through the kitchen, bathrooms, bedrooms and living areas from a written checklist: dusting,
@@ -106,14 +106,14 @@ export default function EdmontonRegularCleaning() {
           body: (
             <>
               <p>
-                Looking for a maid service or help with housekeeping? Our standard clean covers the kitchen,
+                For maid service or help with housekeeping, our standard clean covers the kitchen,
                 bathrooms, bedrooms and living areas from a checklist, once or on a recurring schedule.
                 It is not live-in help and does not include laundry or dishes. The price is flat by home size, {FROM} for a
                 one-bedroom and {THREE_BED} for a three-bedroom apartment or condo before GST, and it does not move if the
                 visit runs long.
               </p>
               <p>
-                What changes the figure is the home, not the day. Bedrooms and bathrooms set the base rate, a bungalow,
+                Bedrooms and bathrooms set the base rate, a bungalow,
                 townhouse or two-storey house adds a home-type charge on top of the apartment price, and add-ons such as
                 the inside of the oven are priced per item.
               </p>
@@ -148,7 +148,7 @@ export default function EdmontonRegularCleaning() {
                   </dl>
                 </>
               )}
-              <p>For ongoing visits, compare <Link to="/edmonton/recurring-cleaning/">Edmonton recurring cleaning plans</Link>. This page covers a single standard visit; you do not need a contract or standing booking.</p>
+              <p>A standard clean needs no contract or standing booking; for ongoing visits, compare <Link to="/edmonton/recurring-cleaning/">Edmonton recurring cleaning plans</Link>.</p>
             </>
           ),
         },
@@ -171,7 +171,7 @@ export default function EdmontonRegularCleaning() {
                 team that cannot get past the lobby is a lockout, and a lockout is charged at {POLICY.lockoutFee}.
               </p>
               <p>
-                The checklist itself does not change in a condo, and two edges of it are worth naming. An in-suite
+                The checklist is the same in a condo. An in-suite
                 laundry room is cleaned like any other room, the floor, the surfaces and the outside of the machines,
                 but the laundry itself is not on the checklist. The balcony is outdoor space and stays off it as well,
                 apart from a sweep booked as an add-on.
@@ -190,9 +190,8 @@ export default function EdmontonRegularCleaning() {
           body: (
             <>
               <p>
-                Tell us about entryway grit or rooms needing extra attention. Standard cleaning includes routine
-                vacuuming and mopping; baseboards belong to the deep-clean package. Carpet steam cleaning and
-                restoration of damaged floors are not included.
+                When you book, tell us about entryway grit or rooms that need extra attention. Restoring damaged
+                floors is not part of a standard clean.
               </p>
               <p>
                 Inside Edmonton city limits there is no travel fee. St. Albert, Sherwood Park and Spruce Grove sit outside
@@ -224,9 +223,7 @@ export default function EdmontonRegularCleaning() {
             <>
               <p>
                 Nothing is charged when you book. A temporary hold goes on the card the day before to confirm it is
-                valid; it can look like a charge in a banking app, but no money moves until the clean is complete. If
-                something was missed, tell us within {POLICY.guaranteeWindowHours} hours and the team comes back to
-                re-clean it at no charge.
+                valid; it can look like a charge in a banking app, but no money moves until the clean is complete.
               </p>
               <p>
                 Our Edmonton team is rated {RATING_CLAIM}{REVIEWS ? ` across ${REVIEWS} reviews` : ""};{" "}
@@ -240,9 +237,9 @@ export default function EdmontonRegularCleaning() {
       includedHeading="What a standard clean covers"
       includedSubheading="Kitchen, bathrooms, bedrooms and living areas, in one visit."
       included={[
-        { icon: UtensilsCrossed, title: "Kitchen Cleaning", description: "Wipe-down of countertops, sinks, stovetop, exterior appliances, and cabinet fronts. Floors mopped and vacuumed." },
+        { icon: UtensilsCrossed, title: "Kitchen", description: "Wipe-down of countertops, sinks, stovetop, exterior appliances, and cabinet fronts. Floors mopped and vacuumed." },
         { icon: Bath, title: "Bathrooms", description: "Toilets, tubs and showers scrubbed, soap scum off the tile and glass, mirrors and vanities polished, floors washed." },
-        { icon: Home, title: "Bedrooms & Living Areas", description: "Dusting accessible surfaces, vacuuming carpets and rugs, and mopping hard flooring throughout the home." },
+        { icon: Home, title: "Bedrooms and living areas", description: "Dusting accessible surfaces, vacuuming carpets and rugs, and mopping hard flooring throughout the home." },
       ]}
       bullets={[
         "Dusting of all accessible surfaces and furniture",
@@ -287,7 +284,7 @@ export default function EdmontonRegularCleaning() {
         { q: "What if I need to cancel or move the visit?", a: `Give ${POLICY.cancellationNoticeHours} hours' notice and moving or cancelling costs nothing. Inside ${POLICY.cancellationNoticeHours} hours the fee is ${POLICY.cancellationFee}. If we have to move a booking, because a cleaner is ill or the roads are unsafe, we say so as soon as we know and offer the earliest slot we have, at no charge to you.` },
       ]}
       ctaHeading={<>Standard cleaning in <em className="italic text-accent-on-dark">Edmonton</em> from {FROM}.</>}
-      ctaDescription="A standard clean is one visit, priced flat by home size before GST and paid once the clean is complete. The same clean on a weekly, bi-weekly or every-4-weeks schedule is recurring cleaning, discounted from the second visit."
+      ctaDescription="A standard clean is one visit, priced flat by home size before GST and paid once the clean is complete."
       galleryImages={[
         { picture: kitchenImage, alt: "Clean, tidy kitchen after a standard cleaning visit" },
         { picture: livingRoomImage, alt: "Freshly cleaned bathroom with tidy shelves and polished surfaces" },

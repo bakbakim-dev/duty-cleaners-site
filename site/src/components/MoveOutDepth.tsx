@@ -117,7 +117,7 @@ export default function MoveOutDepth({ city, showPricing = true }: MoveOutDepthP
           <div className="mx-auto max-w-3xl text-center mb-10">
             <span className="text-accent font-semibold text-sm uppercase tracking-wide">How it works</span>
             <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 text-foreground">
-              Three steps from booking to move-in ready
+              Three steps from booking to handover
             </h2>
           </div>
           <ol className="mx-auto grid max-w-5xl gap-10 md:grid-cols-3">
@@ -140,8 +140,6 @@ export default function MoveOutDepth({ city, showPricing = true }: MoveOutDepthP
           <div className="mx-auto max-w-2xl text-center border border-border p-8">
             <Stars size={1.25} className="block mx-auto" />
             <p className="mt-3 text-foreground">
-              Every cleaner is rated by the customer after each visit, and those ratings decide who we
-              keep sending.{" "}
               <Link to="/reviews/" className="font-semibold text-primary underline underline-offset-4">Read the reviews</Link>{" "}
               from {city} customers before booking, or go straight to the Google listing.
             </p>

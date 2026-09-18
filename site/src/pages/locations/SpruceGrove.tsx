@@ -99,7 +99,7 @@ export default function SpruceGrove() {
     },
     {
       question: "Do I need to tidy before the team comes to Spruce Grove?",
-      answer: `No. You do not need to clean before the team arrives at a Spruce Grove home. Clear counters and floors get cleaned and cluttered ones get worked around, and decluttering or organising is a separate hourly add-on.`
+      answer: `No. Clear counters and floors get cleaned and cluttered ones get worked around, and decluttering or organising is a separate hourly add-on.`
     }
   ];
   const faqJsonLd = {
@@ -176,7 +176,7 @@ export default function SpruceGrove() {
       {/* What the hero pills said, as one plain row under the hero */}
       <div className="border-b border-border bg-muted/30">
         <ul className="container mx-auto px-4 py-3 flex flex-wrap items-center justify-center gap-x-8 gap-y-1 text-sm font-medium text-foreground">
-          {["Pay After Your Clean", "Open 7 Days a Week", "24-Hour Re-Clean Guarantee"].map((text) => (
+          {["Pay after your clean", "Open 7 days a week", "24-hour re-clean guarantee"].map((text) => (
             <li key={text} className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-primary" aria-hidden="true" />
               {text}
@@ -191,7 +191,6 @@ export default function SpruceGrove() {
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="max-w-4xl mx-auto">
-              <span className="text-accent text-sm font-semibold tracking-wider uppercase">Worked example</span>
               <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mt-2 mb-6 text-balance">
                 A Spruce Grove move-in clean, worked through
               </h2>
@@ -290,8 +289,7 @@ export default function SpruceGrove() {
               </h2>
               <p className="text-white/90 max-w-2xl mx-auto text-lg">
                 Each clean ends with a rating from the customer, and those ratings decide who keeps working for us.{" "}
-                <Link to="/reviews/" className="text-white underline underline-offset-2 font-medium">Read the reviews</Link>{" "}
-                to see what they say.
+                <Link to="/reviews/" className="text-white underline underline-offset-2 font-medium">Read the reviews</Link>.
               </p>
             </div>
           </AnimatedSection>

@@ -452,8 +452,8 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/copy-quality.test.ts",
     target: "src/data/location-cards.tsx",
-    find: 'title: "All Supplies Brought For You" }',
-    replace: 'title: "All Supplies Brought For You", description: "Trusted by local families." }',
+    find: 'title: "All supplies brought for you" }',
+    replace: 'title: "All supplies brought for you", description: "Trusted by local families." }',
     failing: "no location page carries brochure vocabulary or a retired promise",
     why: "The cards all 163 location pages show live in one data file since 2026-09-18; a brochure line there would reach every page while the per-page scan saw nothing.",
   },

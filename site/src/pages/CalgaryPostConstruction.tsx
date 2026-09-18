@@ -235,7 +235,7 @@ export default function CalgaryPostConstruction() {
           travel fee next to the from-price above it. */}
       <div className="border-b border-border bg-secondary/30">
         <ul className="container mx-auto px-4 py-3 flex flex-wrap justify-center gap-x-8 gap-y-1 text-sm text-muted-foreground">
-          <li>After the last trade, not before</li>
+          <li>Booked after the last trade</li>
           <li>The band rises with square footage, and outside Calgary city limits a post-construction clean adds a {pcTravelFee} travel fee</li>
           <li>Missed spots re-cleaned free if reported within {POLICY.guaranteeWindowHours} hours</li>
         </ul>
@@ -267,20 +267,15 @@ export default function CalgaryPostConstruction() {
                 added to the clean and priced by home size.
               </p>
               <p className="text-lg text-muted-foreground mb-4">
-                It is the final clean on Calgary new builds, renovations and conversions: the team takes drywall
-                dust off the vent covers and out of the tracks and cabinets, and paint flecks and adhesive off
-                the glass.
-              </p>
-              <p className="text-lg text-muted-foreground mb-4">
                 The Calgary team does <strong>final-stage post-construction cleaning</strong>, the{" "}
                 <Link to="/move-out-cleaning-calgary/" className="text-primary underline underline-offset-4">move-in clean</Link>{" "}
                 that follows the last trade out of the building. New builds, kitchen and bathroom remodels, finished
-                basements and whole-home renovations all book the same way, by the square footage of the space
+                basements, conversions and whole-home renovations all book the same way, by the square footage of the space
                 that was worked on.
               </p>
               <p className="text-lg text-muted-foreground mb-4">
-                <strong>Not this service:</strong> rough cleanup, hauling, or a site where the trades are still
-                coming and going. Our part starts once the contractor has finished and taken the material away,
+                Rough cleanup, hauling and a site where the trades are still coming and going are not part of
+                this service. Our part starts once the contractor has finished and taken the material away,
                 and the limits are set out under{" "}
                 <a href="#clean-stops" className="text-primary underline underline-offset-4">where this clean stops</a>.
               </p>
@@ -321,8 +316,7 @@ export default function CalgaryPostConstruction() {
         <div className="container mx-auto px-4 max-w-4xl">
           <AnimatedSection>
             <div className="text-center mb-8">
-              <span className="text-accent font-semibold text-sm uppercase tracking-wide">Renovations</span>
-              <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2">Post-renovation cleaning after a kitchen, bathroom or basement remodel in Calgary</h2>
+              <h2 className="display-serif text-3xl md:text-4xl font-bold">Post-renovation cleaning after a kitchen, bathroom or basement remodel in Calgary</h2>
             </div>
             <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
               <p>
@@ -395,8 +389,7 @@ export default function CalgaryPostConstruction() {
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="mx-auto max-w-3xl text-center">
-              <span className="text-accent font-semibold text-sm uppercase tracking-wide">Price List</span>
-              <h2 className="display-serif text-3xl md:text-4xl font-bold mt-2 mb-4">What post-construction cleaning costs in Calgary</h2>
+              <h2 className="display-serif text-3xl md:text-4xl font-bold mb-4">What post-construction cleaning costs in Calgary</h2>
               <p className="text-muted-foreground leading-relaxed">
                 Bedrooms do not predict dust; floor area does, so this is the one clean priced by square footage.
                 Each band has one figure, with the GST shown beside it because the form adds it at the end and
@@ -496,7 +489,7 @@ export default function CalgaryPostConstruction() {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <AnimatedSection>
-            <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-4">Post-Construction Cleaning FAQs</h2>
+            <h2 className="display-serif text-3xl md:text-4xl font-bold text-center mb-4">Post-construction cleaning FAQs</h2>
             <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
               The questions Calgary buyers, renovators and site supers ask before they book.
             </p>
@@ -578,9 +571,7 @@ export default function CalgaryPostConstruction() {
               <h2 className="display-serif text-3xl md:text-4xl font-bold text-white mb-4">Tell us within {POLICY.guaranteeWindowHours} hours and a missed track is re-cleaned free</h2>
               <p className="text-lg text-white/90 mb-4">
                 Window tracks and the tops of door frames are where a post-construction clean gets caught out, so
-                both are on the checklist. If something was still missed, tell us within{" "}
-                {POLICY.guaranteeWindowHours} hours and we come back to it at no charge. Photos help; they are not a
-                condition.
+                both are on the checklist. Photos of a miss help; they are not a condition.
               </p>
               <p className="text-base text-white/90 mb-4">
                 Duty Cleaners has cleaned Alberta homes {COMPANY.sinceLabel}. The Calgary listing is rated{" "}

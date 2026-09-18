@@ -192,7 +192,7 @@ export default function Airdrie() {
         {/* What the hero pills said, as one plain row under the hero */}
         <div className="border-b border-border bg-muted/30">
           <ul className="container mx-auto px-4 py-3 flex flex-wrap items-center justify-center gap-x-8 gap-y-1 text-sm font-medium text-foreground">
-            {["Pay After Your Clean", "Open 7 Days a Week", "24-Hour Re-Clean Guarantee"].map((text) => (
+            {["Pay after your clean", "Open 7 days a week", "24-hour re-clean guarantee"].map((text) => (
               <li key={text} className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-primary" aria-hidden="true" />
                 {text}
@@ -239,9 +239,6 @@ export default function Airdrie() {
                       { label: `With a dog or a cat in the house: the ${PET_FEE} pet charge`, amount: EXAMPLE_WITH_PET },
                     ]}
                   />
-                  <p>
-                    Every one of those lines is on the quote before you book.
-                  </p>
                   <div className="not-prose pt-1">
                     <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
                       <a href="#quote">
@@ -250,7 +247,7 @@ export default function Airdrie() {
                     </Button>
                   </div>
                   <p>
-                    Four things move an Airdrie quote: the number of bedrooms and bathrooms, the type of home, pets, and add-ons such as the inside of the oven, the inside of the fridge or interior windows. Time does not. The price is flat by home size, and it does not change because a clean took longer than expected. If a home needs substantially more work than described, such as heavy build-up or far more glass or cabinetry than stated, the team explains what it found and the options before continuing.
+                    Four things move an Airdrie quote: the number of bedrooms and bathrooms, the type of home, pets, and add-ons such as the inside of the oven, the inside of the fridge or interior windows. How long the clean takes does not. If a home needs substantially more work than described, such as heavy build-up or far more glass or cabinetry than stated, the team explains what it found and the options before continuing.
                   </p>
                   <p>
                     Nothing is charged at booking. The day before the clean, a temporary hold is placed on the card to confirm it is valid; it can look like a charge in a banking app, but no money moves until the clean is complete. Before you book, compare{" "}
@@ -321,9 +318,6 @@ export default function Airdrie() {
                 <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
                   Cleaning services for Airdrie homes
                 </h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Six services for Airdrie homes; every booking here carries the travel fee.
-                </p>
               </div>
             </AnimatedSection>
             <AnimatedSection>
