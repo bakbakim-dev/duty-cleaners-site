@@ -33,6 +33,14 @@ BookingKoala header script.
   sitemaps from git) then vite build.
 - `bun run prerender:all` — prerenders all 210 pages into `dist/` (about 47 s). Run it after any
   build: many tests read `dist/`.
+- Images: a content image is imported as `@/assets/x.webp?card` (grid cards, thumbnails),
+  `?col` (a reading column or two-up feature) or `?hero` (full-bleed), which vite-imagetools 9.0.3
+  (pinned: the last release for Vite 5) turns into a Picture; render it with
+  `<ResponsiveImage picture sizes alt>` (`src/components/ResponsiveImage.tsx`, SIZES presets measured
+  on the built pages). Variants are WebP only and never wider than the source; encodes are cached in
+  `node_modules/.cache/imagetools`, so only new or changed images cost a rebuild. A plain
+  `@/assets/x.webp` import is still a URL string (JSON-LD, og:image, CSS backgrounds). Guarded by
+  `responsive-images.test.ts`.
 - `bunx vitest run` — the suite (32 files). `bun run typecheck` — tsc.
 - `bun run prove` — break-it proofs: every guard test has an entry in `scripts/guard-proofs.ts`
   that breaks its target and must make the named `it()` fail. Proof targets must be committed

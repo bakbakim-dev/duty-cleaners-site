@@ -5,6 +5,17 @@ import { HardHat, Home, KeyRound, PaintRoller, Repeat, Truck } from "lucide-reac
 import { Accent } from "@/components/Accent";
 import Eyebrow from "@/components/Eyebrow";
 import useRevealOnScroll from "@/hooks/use-reveal-on-scroll";
+import ResponsiveImage from "@/components/ResponsiveImage";
+import type { Picture } from "vite-imagetools";
+
+/*
+  Rendered widths of the two photo panels, measured against the container
+  (1400px max, 2rem padding) and the 1.6fr/1fr grid below: the feature panel
+  tops out near 800 CSS px and the deep panel near 500; both are full width
+  below lg.
+*/
+const FEATURE_SIZES = "(min-width: 1400px) 800px, (min-width: 1024px) 60vw, 100vw";
+const DEEP_SIZES = "(min-width: 1400px) 500px, (min-width: 1024px) 38vw, 100vw";
 
 /**
  * The discounts, read from bk-config. They are the reason to choose a
@@ -59,10 +70,11 @@ interface CityServicesChapterProps {
   city: "Edmonton" | "Calgary";
   /** e.g. "/edmonton" */
   basePath: string;
-  featureImage: string;
+  /** A ?card import for the oversized Standard Cleaning panel. */
+  featureImage: Picture;
   featureImageAlt: string;
-  /** Vertical crop for the Deep Cleaning panel. */
-  deepImage: string;
+  /** Vertical crop for the Deep Cleaning panel, a ?card import. */
+  deepImage: Picture;
   deepImageAlt: string;
 }
 
@@ -98,8 +110,9 @@ export default function CityServicesChapter({
             className="motion-lift paper-rule card-warm group relative flex flex-col overflow-hidden border bg-white"
           >
             <div className="relative h-56 w-full overflow-hidden md:h-72 lg:h-80">
-              <img
-                src={featureImage}
+              <ResponsiveImage
+                picture={featureImage}
+                sizes={FEATURE_SIZES}
                 alt={featureImageAlt}
                 loading="lazy"
                 decoding="async"
@@ -126,8 +139,9 @@ export default function CityServicesChapter({
             className="motion-lift paper-rule card-warm group relative flex min-h-[420px] flex-col overflow-hidden border bg-white"
           >
             <div className="relative flex-1 overflow-hidden">
-              <img
-                src={deepImage}
+              <ResponsiveImage
+                picture={deepImage}
+                sizes={DEEP_SIZES}
                 alt={deepImageAlt}
                 loading="lazy"
                 decoding="async"

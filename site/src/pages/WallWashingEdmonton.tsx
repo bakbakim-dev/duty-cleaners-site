@@ -15,13 +15,15 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Link } from "react-router-dom";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-import cleanWallsPhoto from "@/assets/gallery/clean-walls-edmonton.webp";
-import wallStainRemoval from "@/assets/wall-washing/wall-stain-removal.webp";
-import hallwayClean from "@/assets/wall-washing/hallway-clean.webp";
-import livingRoomWalls from "@/assets/wall-washing/living-room-walls.webp";
-import kitchenGrease from "@/assets/wall-washing/kitchen-grease.webp";
-import dirtyWallBefore from "@/assets/wall-washing/dirty-wall-before.webp";
-import stainCloseup from "@/assets/wall-washing/stain-closeup.webp";
+import type { Picture } from "vite-imagetools";
+import ResponsiveImage, { SIZES } from "@/components/ResponsiveImage";
+import cleanWallsPhoto from "@/assets/gallery/clean-walls-edmonton.webp?col";
+import wallStainRemoval from "@/assets/wall-washing/wall-stain-removal.webp?card";
+import hallwayClean from "@/assets/wall-washing/hallway-clean.webp?card";
+import livingRoomWalls from "@/assets/wall-washing/living-room-walls.webp?card";
+import kitchenGrease from "@/assets/wall-washing/kitchen-grease.webp?card";
+import dirtyWallBefore from "@/assets/wall-washing/dirty-wall-before.webp?card";
+import stainCloseup from "@/assets/wall-washing/stain-closeup.webp?card";
 import { Helmet } from "react-helmet-async";
 import CityCrossLink from "@/components/CityCrossLink";
 import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
@@ -48,15 +50,14 @@ const ProblemCard = ({ icon: Icon, title, description }: { icon: React.ElementTy
   </div>
 );
 
-const ResultCard = ({ src, caption }: { src: string; caption: string }) => (
+const ResultCard = ({ src, caption }: { src: Picture; caption: string }) => (
   <div className="group rounded-xl overflow-hidden border border-border bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
     <div className="aspect-[4/3] overflow-hidden">
-      <img
-        src={src}
+      <ResponsiveImage
+        picture={src}
+        sizes={"(min-width: 1024px) 30vw, (min-width: 640px) 50vw, 100vw"}
         alt={caption}
         loading="lazy"
-        width={1024}
-        height={768}
         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
       />
     </div>
@@ -283,8 +284,9 @@ export default function WallWashingEdmonton() {
               </div>
             </div>
             <div className="flex-shrink-0 w-full lg:w-[500px]">
-              <img width={768} height={1024}
-                src={cleanWallsPhoto}
+              <ResponsiveImage
+                picture={cleanWallsPhoto}
+                sizes={SIZES.half}
                 alt="A bright room with white painted walls and a doorway"
                 className="rounded-2xl shadow-2xl w-full h-auto object-cover"
                loading="eager" fetchPriority="high"/>

@@ -10,9 +10,12 @@ import { CITY_PROOF } from "@/data/proof";
 import { POLICY } from "@/data/policy";
 import { standardTierRows } from "@/data/pricing";
 import ServiceStartCard from "@/components/quote/ServiceStartCard";
+import ResponsiveImage from "@/components/ResponsiveImage";
+import type { Picture } from "vite-imagetools";
 
 interface ProcessImage {
-  src: string;
+  /** A ?card import: the thumbnail renders at 112 CSS px, so the 480w variant serves it. */
+  src: Picture;
   alt: string;
 }
 
@@ -390,8 +393,9 @@ export default function CityConversionIntro({
                     </div>
                     <div className="hidden h-20 w-28 shrink-0 overflow-hidden border border-border bg-brand-navy shadow-sm sm:block">
                       {image ? (
-                        <img
-                          src={image.src}
+                        <ResponsiveImage
+                          picture={image.src}
+                          sizes="112px"
                           alt={image.alt}
                           loading="lazy"
                           className="h-full w-full object-cover transition-transform duration-500 motion-safe:group-hover:scale-105"

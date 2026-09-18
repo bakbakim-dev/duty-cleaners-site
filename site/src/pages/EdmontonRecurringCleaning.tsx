@@ -11,9 +11,9 @@ import { Accent, AccentGold } from "@/components/Accent";
 import RecurringVisitPrices from "@/components/RecurringVisitPrices";
 import { Home, Bath, UtensilsCrossed } from "lucide-react";
 import heroImage from "@/assets/gallery/family-clean-home-edmonton.webp";
-import kitchenImage from "@/assets/gallery/summerside-cleaner-home.webp";
-import livingRoomImage from "@/assets/gallery/glenora-cleaner-living-room.webp";
-import cleanerImage from "@/assets/gallery/westmount-cleaner-kitchen.webp";
+import kitchenImage from "@/assets/gallery/summerside-cleaner-home.webp?card";
+import livingRoomImage from "@/assets/gallery/glenora-cleaner-living-room.webp?card";
+import cleanerImage from "@/assets/gallery/westmount-cleaner-kitchen.webp?card";
 
 // Published figures come from bk-config via pricing.ts. Hand-typing them
 // here is what let this page drift out of step with /pricing and with what
@@ -238,9 +238,9 @@ export default function EdmontonRecurringCleaning() {
       ctaHeading={<>Recurring cleaning in <AccentGold>Edmonton</AccentGold> from {FROM}, <AccentGold>discounted on a schedule.</AccentGold></>}
       ctaDescription={`The first visit is charged at the one-time rate, from ${FROM} for a one-bedroom apartment or condo before GST, and the schedule discount starts with the second. The quote adds any home-type, pet or travel charge before you book.`}
       galleryImages={[
-        { src: kitchenImage, alt: "Kitchen after a recurring cleaning visit" },
-        { src: livingRoomImage, alt: "Bright, consistently clean living room" },
-        { src: cleanerImage, alt: "Professional cleaner wiping surfaces in a home" },
+        { picture: kitchenImage, alt: "Kitchen after a recurring cleaning visit" },
+        { picture: livingRoomImage, alt: "Bright, consistently clean living room" },
+        { picture: cleanerImage, alt: "Professional cleaner wiping surfaces in a home" },
       ]}
     />
   );

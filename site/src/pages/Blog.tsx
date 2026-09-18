@@ -15,22 +15,24 @@ import { canonicalUrlForPath } from "@/data/legacy-urls";
 import { modifiedFor, POST_MODIFIED } from "@/data/post-dates";
 import { ORG_ID } from "@/data/proof";
 
-import cleaningScheduleHero from "@/assets/blog/cleaning-schedule-hero.webp";
-import cleaningFrequencyHero from "@/assets/blog/cleaning-frequency-hero.webp";
-import vinegarBakingSodaHero from "@/assets/blog/vinegar-baking-soda-hero.webp";
-import houseCleaningCostHero from "@/assets/blog/house-cleaning-cost-hero.webp";
-import choosingCleaningCompanyHero from "@/assets/blog/choosing-cleaning-company-hero.webp";
-import heroBlogSupplies from "@/assets/hero-blog-cleaning-supplies.webp";
-import cleaningProductsHero from "@/assets/hero-blog-cleaning-supplies.webp";
-import spotlessHomeTipsHero from "@/assets/blog/family-household.webp";
-import calgaryCleanerHero from "@/assets/hero-room-calgary-640w.webp";
+import cleaningScheduleHero from "@/assets/blog/cleaning-schedule-hero.webp?card";
+import cleaningFrequencyHero from "@/assets/blog/cleaning-frequency-hero.webp?card";
+import vinegarBakingSodaHero from "@/assets/blog/vinegar-baking-soda-hero.webp?card";
+import houseCleaningCostHero from "@/assets/blog/house-cleaning-cost-hero.webp?card";
+import choosingCleaningCompanyHero from "@/assets/blog/choosing-cleaning-company-hero.webp?card";
+import ResponsiveImage, { SIZES } from "@/components/ResponsiveImage";
+import type { Picture } from "vite-imagetools";
+import heroBlogSupplies from "@/assets/hero-blog-cleaning-supplies.webp?hero";
+import cleaningProductsHero from "@/assets/hero-blog-cleaning-supplies.webp?card";
+import spotlessHomeTipsHero from "@/assets/blog/family-household.webp?card";
+import calgaryCleanerHero from "@/assets/hero-room-calgary-640w.webp?card";
 
 interface BlogPost {
   id: number;
   title: string;
   excerpt: string;
   category: string;
-  image: string;
+  image: Picture;
   slug?: string;
 }
 
@@ -176,7 +178,7 @@ export default function Blog() {
                 headline: p.title,
                 description: p.excerpt,
                 url: canonicalUrlForPath(p.slug!),
-                image: absoluteAssetUrl(p.image),
+                image: absoluteAssetUrl(p.image.img.src),
                 // Unknown publication date: omit datePublished, but the revision
                 // date is git's own record (post-dates.ts), so it is still stated.
                 ...(published
@@ -209,13 +211,13 @@ export default function Blog() {
 
         {/* Hero Section - Dark Navy */}
         <section className="relative bg-brand-navy pt-32 pb-24 overflow-hidden">
-          <img
-            src={heroBlogSupplies}
+          <ResponsiveImage
+            picture={heroBlogSupplies}
+            sizes={SIZES.full}
             alt="Cleaning tools and supplies arranged on a bright surface"
-            width={1280}
-            height={725}
             className="absolute inset-0 w-full h-full object-cover opacity-25"
-           loading="eager" fetchPriority="high"/>
+            loading="eager" fetchPriority="high"
+            />
           <div className="absolute inset-0 bg-gradient-to-br from-brand-navy/85 via-brand-navy/75 to-brand-navy/90 pointer-events-none" />
           <div className="absolute top-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2" />
           <div className="absolute bottom-0 left-0 w-72 h-72 bg-primary/10 rounded-full blur-3xl -translate-x-1/3 translate-y-1/3" />

@@ -11,10 +11,11 @@ import { Calendar, ArrowLeft, AlertTriangle, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-import heroImage from "@/assets/blog/vinegar-baking-soda-hero.webp";
-import sinkImage from "@/assets/blog/cleaning-sink-baking-soda.webp";
-import bathroomImage from "@/assets/blog/bathroom-faucet-cleaning.webp";
-import laundryImage from "@/assets/blog/laundry-natural-cleaning.webp";
+import ResponsiveImage, { SIZES } from "@/components/ResponsiveImage";
+import heroImage from "@/assets/blog/vinegar-baking-soda-hero.webp?col";
+import sinkImage from "@/assets/blog/cleaning-sink-baking-soda.webp?col";
+import bathroomImage from "@/assets/blog/bathroom-faucet-cleaning.webp?col";
+import laundryImage from "@/assets/blog/laundry-natural-cleaning.webp?col";
 
 const whatToClean = [
   {
@@ -93,8 +94,8 @@ export default function BlogVinegarBakingSoda() {
         <meta name="twitter:card" content="summary_large_image" />
         {/* This post's own hero, so a share card shows the article rather
             than the generic site image. */}
-        <meta property="og:image" content={absoluteAssetUrl(heroImage)} />
-        <meta name="twitter:image" content={absoluteAssetUrl(heroImage)} />
+        <meta property="og:image" content={absoluteAssetUrl(heroImage.img.src)} />
+        <meta name="twitter:image" content={absoluteAssetUrl(heroImage.img.src)} />
         <meta name="twitter:title" content="Cleaning with Vinegar and Baking Soda | Duty Cleaners" />
         <meta name="twitter:description" content="Where vinegar and baking soda work in the kitchen, bathroom and laundry, which surfaces they damage, and why mixing them makes a weaker cleaner." />
         <meta property="og:type" content="article" />
@@ -104,7 +105,7 @@ export default function BlogVinegarBakingSoda() {
           "@type": "Article",
           "headline": "Cleaning with Vinegar and Baking Soda: Complete Guide",
           "description": "Where vinegar and baking soda work in the kitchen, bathroom and laundry, which surfaces they damage, and why mixing them makes a weaker cleaner.",
-          "image": absoluteAssetUrl(heroImage),
+          "image": absoluteAssetUrl(heroImage.img.src),
           ...(publishedFor("/cleaning-with-vinegar-and-baking-soda") ? { datePublished: publishedFor("/cleaning-with-vinegar-and-baking-soda") } : {}),
           "dateModified": modifiedOr("/cleaning-with-vinegar-and-baking-soda"),
           "author": ARTICLE_AUTHOR,
@@ -150,11 +151,13 @@ export default function BlogVinegarBakingSoda() {
               </p>
 
               <div className="aspect-video rounded-2xl overflow-hidden mb-12">
-                <img width={1920} height={1080}
-                  src={heroImage}
+                <ResponsiveImage
+                  picture={heroImage}
+                  sizes={SIZES.column}
                   alt="Baking soda and white vinegar on a clean kitchen counter - natural cleaning supplies"
                   className="w-full h-full object-cover"
-                 loading="eager" fetchPriority="high"/>
+                  loading="eager" fetchPriority="high"
+                  />
               </div>
             </div>
           </div>
@@ -229,11 +232,13 @@ export default function BlogVinegarBakingSoda() {
                 </h2>
 
                 <div className="aspect-video rounded-xl overflow-hidden mb-6">
-                  <img width={1024} height={1024}
-                    src={sinkImage}
+                  <ResponsiveImage
+                    picture={sinkImage}
+                    sizes={SIZES.column}
                     alt="Hands with yellow gloves scrubbing kitchen sink with baking soda paste"
                     className="w-full h-full object-cover"
-                   loading="lazy" decoding="async"/>
+                    loading="lazy"
+                    />
                 </div>
 
                 <p className="text-muted-foreground mb-6">
@@ -305,18 +310,22 @@ export default function BlogVinegarBakingSoda() {
 
                 <div className="mt-8 grid md:grid-cols-2 gap-6">
                   <div className="aspect-video rounded-xl overflow-hidden">
-                    <img width={1024} height={1024}
-                      src={bathroomImage}
+                    <ResponsiveImage
+                      picture={bathroomImage}
+                      sizes={SIZES.half}
                       alt="Clean modern bathroom with a chrome faucet"
                       className="w-full h-full object-cover"
-                     loading="lazy" decoding="async"/>
+                      loading="lazy"
+                      />
                   </div>
                   <div className="aspect-video rounded-xl overflow-hidden">
-                    <img width={1024} height={1024}
-                      src={laundryImage}
+                    <ResponsiveImage
+                      picture={laundryImage}
+                      sizes={SIZES.half}
                       alt="Clean laundry room with washing machine and natural cleaning supplies"
                       className="w-full h-full object-cover"
-                     loading="lazy" decoding="async"/>
+                      loading="lazy"
+                      />
                   </div>
                 </div>
               </div>

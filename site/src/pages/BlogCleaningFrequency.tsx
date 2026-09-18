@@ -14,11 +14,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { FREQUENCIES, flatRateFromPrice, formatPrice } from "@/data/pricing";
 import { POLICY } from "@/data/policy";
 
-import heroImage from "@/assets/blog/cleaning-frequency-hero.webp";
-import familyImage from "@/assets/blog/family-household.webp";
-import petsImage from "@/assets/blog/pets-home.webp";
-import professionalImage from "@/assets/blog/professional-cleaning.webp";
-import calendarImage from "@/assets/blog/cleaning-calendar.webp";
+import ResponsiveImage, { SIZES } from "@/components/ResponsiveImage";
+import heroImage from "@/assets/blog/cleaning-frequency-hero.webp?col";
+import familyImage from "@/assets/blog/family-household.webp?col";
+import petsImage from "@/assets/blog/pets-home.webp?col";
+import professionalImage from "@/assets/blog/professional-cleaning.webp?col";
+import calendarImage from "@/assets/blog/cleaning-calendar.webp?col";
 
 /** Read from BookingKoala so this article cannot quote a stale discount. */
 const RECURRING = FREQUENCIES.filter((frequency) => frequency.discount > 0).sort(
@@ -108,8 +109,8 @@ export default function BlogCleaningFrequency() {
         <meta name="twitter:card" content="summary_large_image" />
         {/* This post's own hero, so a share card shows the article rather
             than the generic site image. */}
-        <meta property="og:image" content={absoluteAssetUrl(heroImage)} />
-        <meta name="twitter:image" content={absoluteAssetUrl(heroImage)} />
+        <meta property="og:image" content={absoluteAssetUrl(heroImage.img.src)} />
+        <meta name="twitter:image" content={absoluteAssetUrl(heroImage.img.src)} />
         <meta name="twitter:title" content="How Often Should You Hire a House Cleaner?" />
         <meta name="twitter:description" content="Decide how often to hire a house cleaner based on household needs, upkeep and budget. Compare weekly, biweekly and less frequent visits." />
         <meta property="og:type" content="article" />
@@ -119,7 +120,7 @@ export default function BlogCleaningFrequency() {
           "@type": "Article",
           "headline": "How Often Should You Book Professional House Cleaning?",
           "description": "Decide how often to hire a house cleaner based on household needs, upkeep and budget. Compare weekly, biweekly and less frequent visits.",
-          "image": absoluteAssetUrl(heroImage),
+          "image": absoluteAssetUrl(heroImage.img.src),
           ...(publishedFor("/how-often-should-a-cleaning-service-clean-my-house") ? { datePublished: publishedFor("/how-often-should-a-cleaning-service-clean-my-house") } : {}),
           "dateModified": modifiedOr("/how-often-should-a-cleaning-service-clean-my-house"),
           "author": ARTICLE_AUTHOR,
@@ -163,11 +164,13 @@ export default function BlogCleaningFrequency() {
               </p>
 
               <div className="aspect-video rounded-2xl overflow-hidden mb-12">
-                <img width={1024} height={576}
-                  src={heroImage}
+                <ResponsiveImage
+                  picture={heroImage}
+                  sizes={SIZES.column}
                   alt="Professional cleaner vacuuming a modern living room"
                   className="w-full h-full object-cover"
-                 loading="eager" fetchPriority="high"/>
+                  loading="eager" fetchPriority="high"
+                  />
               </div>
             </div>
           </div>
@@ -210,11 +213,13 @@ export default function BlogCleaningFrequency() {
                 </h2>
 
                 <div className="aspect-video rounded-xl overflow-hidden mb-8">
-                  <img width={1024} height={576}
-                    src={familyImage}
+                  <ResponsiveImage
+                    picture={familyImage}
+                    sizes={SIZES.column}
                     alt="Family with children playing in a clean living room"
                     className="w-full h-full object-cover"
-                   loading="lazy" decoding="async"/>
+                    loading="lazy"
+                    />
                 </div>
 
                 <div className="space-y-6">
@@ -241,11 +246,13 @@ export default function BlogCleaningFrequency() {
               {/* Pets Image Section */}
               <div className="mb-12">
                 <div className="aspect-video rounded-xl overflow-hidden">
-                  <img width={1024} height={576}
-                    src={petsImage}
+                  <ResponsiveImage
+                    picture={petsImage}
+                    sizes={SIZES.column}
                     alt="Golden retriever dog lying on a clean wooden floor"
                     className="w-full h-full object-cover"
-                   loading="lazy" decoding="async"/>
+                    loading="lazy"
+                    />
                 </div>
                 <p className="text-center text-muted-foreground mt-4 italic">
                   A home with a pet that sheds usually needs cleaning more often, to keep hair and dander off floors and furniture.
@@ -285,11 +292,13 @@ export default function BlogCleaningFrequency() {
                 </h2>
 
                 <div className="aspect-video rounded-xl overflow-hidden mb-8">
-                  <img width={1024} height={576}
-                    src={professionalImage}
+                  <ResponsiveImage
+                    picture={professionalImage}
+                    sizes={SIZES.column}
                     alt="Professional cleaner wiping down kitchen counters"
                     className="w-full h-full object-cover"
-                   loading="lazy" decoding="async"/>
+                    loading="lazy"
+                    />
                 </div>
 
                 <p className="text-muted-foreground mb-8">
@@ -315,11 +324,13 @@ export default function BlogCleaningFrequency() {
               {/* Calendar Image */}
               <div className="mb-12">
                 <div className="aspect-video rounded-xl overflow-hidden">
-                  <img width={1024} height={576}
-                    src={calendarImage}
+                  <ResponsiveImage
+                    picture={calendarImage}
+                    sizes={SIZES.column}
                     alt="Cleaning schedule calendar on a desk"
                     className="w-full h-full object-cover"
-                   loading="lazy" decoding="async"/>
+                    loading="lazy"
+                    />
                 </div>
               </div>
 

@@ -10,6 +10,7 @@ import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
 import { Accent, AccentGold } from "@/components/Accent";
 import { Sparkles, Bath, UtensilsCrossed, Layers, Check } from "lucide-react";
 import heroImage from "@/assets/gallery/calgary-kitchen-clean.webp";
+import heroImageCard from "@/assets/gallery/calgary-kitchen-clean.webp?card";
 
 // Published figures come from bk-config via pricing.ts. Hand-typing them
 // here is what let this page drift out of step with /pricing and with what
@@ -191,7 +192,7 @@ export default function CalgaryDeepCleaning() {
       ctaHeading={<>Deep cleaning in <AccentGold>Calgary</AccentGold> from {TIERS[0].price}.</>}
       ctaDescription={`The deep clean is priced flat by home size, from ${TIERS[0].price} before GST for a one-bedroom apartment, and a pet charge, a home-type charge or a travel fee outside Calgary city limits can apply. Anything missed is re-cleaned at no charge if you tell us within ${POLICY.guaranteeWindowHours} hours.`}
       galleryImages={[
-        { src: heroImage, alt: "Kitchen with granite counters and a range hood over a gas cooktop, with a dining table by the window" },
+        { picture: heroImageCard, alt: "Kitchen with granite counters and a range hood over a gas cooktop, with a dining table by the window" },
       ]}
     />
   );

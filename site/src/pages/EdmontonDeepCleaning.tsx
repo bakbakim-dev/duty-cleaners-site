@@ -11,6 +11,7 @@ import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
 import { Accent, AccentGold } from "@/components/Accent";
 import { Sparkles, Bath, UtensilsCrossed, Layers } from "lucide-react";
 import heroImage from "@/assets/gallery/kitchen-deep-clean.webp";
+import heroImageCard from "@/assets/gallery/kitchen-deep-clean.webp?card";
 
 // Published figures come from bk-config via pricing.ts. Hand-typing them
 // here is what let this page drift out of step with /pricing and with what
@@ -217,7 +218,7 @@ export default function EdmontonDeepCleaning() {
       ctaHeading={<>Deep cleaning in <AccentGold>Edmonton</AccentGold> from {TIERS[0].price}.</>}
       ctaDescription={`A deep clean is the standard checklist plus the deep-clean package, priced flat by home size before GST: ${TIERS[0].price} is a one-bedroom apartment or condo, and any home-type, pet or travel charge shows on the quote. Nothing is charged until the clean is complete.`}
       galleryImages={[
-        { src: heroImage, alt: "Kitchen after a deep clean" },
+        { picture: heroImageCard, alt: "Kitchen after a deep clean" },
       ]}
     />
   );

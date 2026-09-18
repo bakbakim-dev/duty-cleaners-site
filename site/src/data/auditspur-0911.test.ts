@@ -34,7 +34,7 @@ describe("AuditSpur findings of 2026-09-11 stay fixed", () => {
   it("the product post's schema image is its own hero image", () => {
     const text = src("pages/BlogCleaningProducts.tsx");
     expect(text).not.toMatch(/image: "https:\/\/dutycleaners\.ca\/og-image\.jpg"/);
-    expect(text).toMatch(/image: absoluteAssetUrl\(heroImage\)/);
+    expect(text).toMatch(/image: absoluteAssetUrl\(heroImage(?:\.img\.src)?\)/);
   });
 
   it("the blog index states a revision date for posts with no known publication date", () => {

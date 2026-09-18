@@ -10,9 +10,9 @@ import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
 import { Accent, AccentGold } from "@/components/Accent";
 import { Home, Bath, UtensilsCrossed } from "lucide-react";
 import heroImage from "@/assets/gallery/family-clean-home-edmonton.webp";
-import kitchenImage from "@/assets/gallery/lakeview-clean-kitchen.webp";
-import livingRoomImage from "@/assets/gallery/edmonton-standard-bathroom-shelves.webp";
-import cleanerImage from "@/assets/gallery/westmount-cleaner-kitchen.webp";
+import kitchenImage from "@/assets/gallery/lakeview-clean-kitchen.webp?card";
+import livingRoomImage from "@/assets/gallery/edmonton-standard-bathroom-shelves.webp?card";
+import cleanerImage from "@/assets/gallery/westmount-cleaner-kitchen.webp?card";
 
 // Published figures come from bk-config via pricing.ts. Hand-typing them
 // here is what let this page drift out of step with /pricing and with what
@@ -268,9 +268,9 @@ export default function EdmontonRegularCleaning() {
       ctaHeading={<>Standard cleaning in <AccentGold>Edmonton</AccentGold> from {FROM}.</>}
       ctaDescription="A standard clean is one visit, priced flat by home size before GST and paid once the clean is complete. The same clean on a weekly, bi-weekly or every-4-weeks schedule is recurring cleaning, discounted from the second visit."
       galleryImages={[
-        { src: kitchenImage, alt: "Clean, tidy kitchen after a standard cleaning visit" },
-        { src: livingRoomImage, alt: "Freshly cleaned bathroom with tidy shelves and polished surfaces" },
-        { src: cleanerImage, alt: "Professional cleaner wiping kitchen surfaces" },
+        { picture: kitchenImage, alt: "Clean, tidy kitchen after a standard cleaning visit" },
+        { picture: livingRoomImage, alt: "Freshly cleaned bathroom with tidy shelves and polished surfaces" },
+        { picture: cleanerImage, alt: "Professional cleaner wiping kitchen surfaces" },
       ]}
     />
   );

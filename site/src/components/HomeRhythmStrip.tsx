@@ -1,19 +1,20 @@
+import type { Picture } from "vite-imagetools";
 import useRevealOnScroll from "@/hooks/use-reveal-on-scroll";
+import ResponsiveImage from "@/components/ResponsiveImage";
 
 export interface HomeRhythmSlot {
-  src: string;
+  /** A build-time Picture (an `?card` import): carries its own srcset and real intrinsic size. */
+  picture: Picture;
   alt: string;
   /** Short seasonal caption, e.g. "Snow season — the mudroom". */
   caption: string;
-  /**
-   * The photo's real intrinsic size. This used to be hard-coded as 640x480 for
-   * every slot, which was the wrong SHAPE for all six photos that pass through
-   * here — one of them is 1080x1920, portrait, and was being declared as 4:3
-   * landscape. The CSS fixes the rendered height either way, so nothing moved,
-   * but the browser was being told the wrong ratio to reserve.
-   */
-  width: number;
-  height: number;
+  /*
+    The intrinsic width and height come from the Picture. They used to be
+    passed by hand, and before that were hard-coded as 640x480 for every slot —
+    the wrong shape for all six photos that pass through here, one of them
+    1080x1920 portrait. Read from the file, the ratio the browser reserves is
+    the photo's own.
+  */
 }
 
 /**
@@ -30,13 +31,10 @@ export default function HomeRhythmStrip({ slots, className = "" }: { slots: Home
       {slots.map((slot, idx) => (
         <figure key={slot.caption} className={idx === 1 ? "sm:mt-8" : ""}>
           <div className="overflow-hidden rounded-xl">
-            <img
-              src={slot.src}
+            <ResponsiveImage
+              picture={slot.picture}
+              sizes="(min-width: 640px) 33vw, 100vw"
               alt={slot.alt}
-              loading="lazy"
-              decoding="async"
-              width={slot.width}
-              height={slot.height}
               className={`motion-image-reveal h-48 w-full object-cover md:h-64 ${reveal.className}`}
               style={{ transitionDelay: `${idx * 60}ms` }}
             />

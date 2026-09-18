@@ -15,6 +15,8 @@ import {
 } from "@/data/proof";
 import { POLICY } from "@/data/policy";
 import CityCrossLink from "@/components/CityCrossLink";
+import ResponsiveImage from "@/components/ResponsiveImage";
+import type { Picture } from "vite-imagetools";
 import { useState, useEffect, type ReactNode } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
@@ -139,7 +141,8 @@ interface ServiceDetailPageProps {
   faqs: FaqItem[];
   ctaHeading: ReactNode;
   ctaDescription: string;
-  galleryImages?: { src: string; alt: string }[];
+  /** Build-time Pictures (`?card` imports): each carries its own srcset and intrinsic size. */
+  galleryImages?: { picture: Picture; alt: string }[];
   /** Listing-style upgrades (optional — graceful fallbacks) */
   roomTasks?: RoomTask[];
   pricingBySize?: PriceTier[];
@@ -451,8 +454,9 @@ const ServiceDetailPage = ({
                   key={i}
                   className="snap-center shrink-0 w-64 md:w-80 aspect-[4/3] rounded-xl overflow-hidden border border-border shadow-sm"
                 >
-                  <img
-                    src={img.src}
+                  <ResponsiveImage
+                    picture={img.picture}
+                    sizes="(min-width: 768px) 320px, 256px"
                     alt={img.alt}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                     loading="lazy"

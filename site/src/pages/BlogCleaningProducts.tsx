@@ -10,10 +10,11 @@ import { Calendar, ArrowLeft, AlertTriangle, ShoppingCart, Check } from "lucide-
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-import heroImage from "@/assets/hero-blog-cleaning-supplies.webp";
-import flatlayImage from "@/assets/cleaning-equipment-flatlay.webp";
-import kitchenImage from "@/assets/blog/deep-cleaning-kitchen.webp";
-import bathroomImage from "@/assets/blog/bathroom-cleaning.webp";
+import ResponsiveImage, { SIZES } from "@/components/ResponsiveImage";
+import heroImage from "@/assets/hero-blog-cleaning-supplies.webp?col";
+import flatlayImage from "@/assets/cleaning-equipment-flatlay.webp?col";
+import kitchenImage from "@/assets/blog/deep-cleaning-kitchen.webp?col";
+import bathroomImage from "@/assets/blog/bathroom-cleaning.webp?col";
 
 /**
  * Replaces the old WordPress post "/8081/the-top-5-must-have-cleaning-products-
@@ -145,8 +146,8 @@ export default function BlogCleaningProducts() {
         <meta name="twitter:card" content="summary_large_image" />
         {/* This post's own hero, so a share card shows the article rather
             than the generic site image. */}
-        <meta property="og:image" content={absoluteAssetUrl(heroImage)} />
-        <meta name="twitter:image" content={absoluteAssetUrl(heroImage)} />
+        <meta property="og:image" content={absoluteAssetUrl(heroImage.img.src)} />
+        <meta name="twitter:image" content={absoluteAssetUrl(heroImage.img.src)} />
         <meta name="twitter:title" content={`${title} | Duty Cleaners`} />
         <meta name="twitter:description" content={description} />
         <meta property="og:type" content="article" />
@@ -156,7 +157,7 @@ export default function BlogCleaningProducts() {
           "@type": "Article",
           headline: title,
           description,
-          image: absoluteAssetUrl(heroImage),
+          image: absoluteAssetUrl(heroImage.img.src),
           ...(publishedFor("/the-top-5-must-have-cleaning-products-for-a-spotless-home") ? { datePublished: publishedFor("/the-top-5-must-have-cleaning-products-for-a-spotless-home") } : {}),
           dateModified: modifiedOr("/the-top-5-must-have-cleaning-products-for-a-spotless-home"),
           author: { "@type": "Organization", name: "Duty Cleaners", url: "https://dutycleaners.ca/" },
@@ -216,13 +217,13 @@ export default function BlogCleaningProducts() {
               </p>
 
               <div className="aspect-video rounded-2xl overflow-hidden mb-12">
-                <img
-                  width={1280}
-                  height={725}
-                  src={heroImage}
+                <ResponsiveImage
+                  picture={heroImage}
+                  sizes={SIZES.column}
                   alt="A small set of cleaning products and microfibre cloths arranged on a clean kitchen counter"
                   className="w-full h-full object-cover"
-                 loading="eager" fetchPriority="high"/>
+                  loading="eager" fetchPriority="high"
+                  />
               </div>
             </div>
           </div>
@@ -308,13 +309,13 @@ export default function BlogCleaningProducts() {
                 <div className="grid md:grid-cols-2 gap-6 mb-8">
                   <div>
                     <div className="aspect-video rounded-xl overflow-hidden mb-4">
-                      <img
-                        width={1024}
-                        height={1024}
-                        src={kitchenImage}
+                      <ResponsiveImage
+                        picture={kitchenImage}
+                        sizes={SIZES.half}
                         alt="Clean kitchen counters and a stovetop"
                         className="w-full h-full object-cover"
-                       loading="lazy" decoding="async"/>
+                        loading="lazy"
+                        />
                     </div>
                     <h3 className="font-bold text-foreground mb-2">Kitchen</h3>
                     <p className="text-muted-foreground text-sm">
@@ -325,13 +326,13 @@ export default function BlogCleaningProducts() {
                   </div>
                   <div>
                     <div className="aspect-video rounded-xl overflow-hidden mb-4">
-                      <img
-                        width={1024}
-                        height={576}
-                        src={bathroomImage}
+                      <ResponsiveImage
+                        picture={bathroomImage}
+                        sizes={SIZES.half}
                         alt="A clean bathroom sink, mirror and tiled walls"
                         className="w-full h-full object-cover"
-                       loading="lazy" decoding="async"/>
+                        loading="lazy"
+                        />
                     </div>
                     <h3 className="font-bold text-foreground mb-2">Bathroom</h3>
                     <p className="text-muted-foreground text-sm">
@@ -383,13 +384,13 @@ export default function BlogCleaningProducts() {
                   The whole list, in one place
                 </h2>
                 <div className="aspect-video rounded-xl overflow-hidden mb-6">
-                  <img
-                    width={1024}
-                    height={1024}
-                    src={flatlayImage}
+                  <ResponsiveImage
+                    picture={flatlayImage}
+                    sizes={SIZES.column}
                     alt="Cleaning supplies laid out flat: spray bottles, microfibre cloths and baking soda"
                     className="w-full h-full object-cover"
-                   loading="lazy" decoding="async"/>
+                    loading="lazy"
+                    />
                 </div>
                 <div className="p-6 bg-primary/10 rounded-xl border border-primary/20">
                   <div className="flex items-start gap-3">

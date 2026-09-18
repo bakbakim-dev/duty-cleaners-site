@@ -2,6 +2,26 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
+import { imagetools } from "vite-imagetools";
+
+// Responsive image variants at build time (vite-imagetools 9.0.3, the last
+// release without a Vite peer floor above 5). An import ending in ?card, ?col
+// or ?hero yields a Picture ({ sources: { webp: "… 480w, … 768w" }, img:
+// { src, w, h } }) that <ResponsiveImage> turns into srcset/sizes plus width
+// and height. WebP only: the sources are already lossy WebP, Lighthouse 13
+// scores bytes rather than formats, and a second format would multiply the
+// encode time for a generational re-encode. Widths never exceed the source.
+// Encodes are cached under node_modules/.cache/imagetools, keyed by source
+// bytes and directives, so only new or changed images cost a rebuild.
+const IMAGE_PRESETS: Record<string, string> = {
+  // Card and gallery images: 132–350 CSS px on phones and in desktop grids,
+  // so up to ~700 device px at 2x; 1024 is the source size of most of them.
+  card: "w=480;768;1024&format=webp&quality=78&as=picture",
+  // A single content column: 343 CSS px on phones, up to 896 on desktop.
+  col: "w=640;960;1280&format=webp&quality=78&as=picture",
+  // Full-bleed heroes and backgrounds.
+  hero: "w=640;960;1280;1920&format=webp&quality=78&as=picture",
+};
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -9,7 +29,17 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
-  plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
+  plugins: [
+    react(),
+    imagetools({
+      defaultDirectives: (url) => {
+        const preset = [...url.searchParams.keys()].find((k) => k in IMAGE_PRESETS);
+        return new URLSearchParams(preset ? IMAGE_PRESETS[preset] : "");
+      },
+      cache: { dir: "./node_modules/.cache/imagetools", retention: 60 * 60 * 24 * 90 },
+    }),
+    mode === "development" && componentTagger(),
+  ].filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "./src"),

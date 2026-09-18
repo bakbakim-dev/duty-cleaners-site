@@ -26,10 +26,11 @@ import { Calendar, Clock, ArrowLeft, DollarSign, Home, Users, Sparkles, Clock3, 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-import heroImage from "@/assets/blog/house-cleaning-cost-hero.webp";
-import apartmentImage from "@/assets/blog/apartment-cleaning.webp";
-import suppliesImage from "@/assets/blog/cleaning-supplies-cost.webp";
-import deepCleanImage from "@/assets/blog/deep-cleaning-kitchen.webp";
+import ResponsiveImage, { SIZES } from "@/components/ResponsiveImage";
+import heroImage from "@/assets/blog/house-cleaning-cost-hero.webp?col";
+import apartmentImage from "@/assets/blog/apartment-cleaning.webp?col";
+import suppliesImage from "@/assets/blog/cleaning-supplies-cost.webp?col";
+import deepCleanImage from "@/assets/blog/deep-cleaning-kitchen.webp?col";
 
 const POST_PATH = "/how-much-does-a-house-cleaning-cost";
 
@@ -261,8 +262,8 @@ export default function BlogHouseCleaningCost() {
         <meta name="twitter:card" content="summary_large_image" />
         {/* This post's own hero, so a share card shows the article rather
             than the generic site image. */}
-        <meta property="og:image" content={absoluteAssetUrl(heroImage)} />
-        <meta name="twitter:image" content={absoluteAssetUrl(heroImage)} />
+        <meta property="og:image" content={absoluteAssetUrl(heroImage.img.src)} />
+        <meta name="twitter:image" content={absoluteAssetUrl(heroImage.img.src)} />
         <meta name="twitter:title" content={TITLE} />
         <meta name="twitter:description" content={DESCRIPTION} />
         <meta property="og:type" content="article" />
@@ -276,7 +277,7 @@ export default function BlogHouseCleaningCost() {
           "@type": "Article",
           "headline": "House Cleaning Costs Explained: Rates, Scope and Extras",
           "description": DESCRIPTION,
-          "image": absoluteAssetUrl(heroImage),
+          "image": absoluteAssetUrl(heroImage.img.src),
           ...(published ? { datePublished: published } : {}),
           "dateModified": modified,
           "author": ARTICLE_AUTHOR,
@@ -327,11 +328,13 @@ export default function BlogHouseCleaningCost() {
               <p className="text-xl text-muted-foreground mb-8">A cleaning quote is only useful when you know what it includes. Home size, service scope and additional tasks can change the total. Learn how to compare quotes, then use our city price lists for current rates.</p>
 
               <div className="aspect-video rounded-2xl overflow-hidden mb-12">
-                <img width={1920} height={1080}
-                  src={heroImage}
+                <ResponsiveImage
+                  picture={heroImage}
+                  sizes={SIZES.column}
                   alt="Professional house cleaner with cleaning supplies and pricing checklist"
                   className="w-full h-full object-cover"
-                 loading="eager" fetchPriority="high"/>
+                  loading="eager" fetchPriority="high"
+                  />
               </div>
             </div>
           </div>
@@ -394,11 +397,13 @@ export default function BlogHouseCleaningCost() {
                 <p className="text-muted-foreground mb-6 leading-relaxed">{section("per-hour").a}</p>
 
                 <div className="aspect-video rounded-xl overflow-hidden mb-6">
-                  <img width={1024} height={1024}
-                    src={apartmentImage}
+                  <ResponsiveImage
+                    picture={apartmentImage}
+                    sizes={SIZES.column}
                     alt="Clean modern apartment living room"
                     className="w-full h-full object-cover"
-                   loading="lazy" decoding="async"/>
+                    loading="lazy"
+                    />
                 </div>
 
                 <p className="text-muted-foreground mb-6">
@@ -505,18 +510,22 @@ export default function BlogHouseCleaningCost() {
 
                 <div className="grid md:grid-cols-2 gap-6 mb-6">
                   <div className="aspect-video rounded-xl overflow-hidden">
-                    <img width={1024} height={1024}
-                      src={deepCleanImage}
+                    <ResponsiveImage
+                      picture={deepCleanImage}
+                      sizes={SIZES.half}
                       alt="Professional cleaner deep cleaning kitchen appliances"
                       className="w-full h-full object-cover"
-                     loading="lazy" decoding="async"/>
+                      loading="lazy"
+                      />
                   </div>
                   <div className="aspect-video rounded-xl overflow-hidden">
-                    <img width={1024} height={1024}
-                      src={suppliesImage}
+                    <ResponsiveImage
+                      picture={suppliesImage}
+                      sizes={SIZES.half}
                       alt="Professional cleaning supplies and equipment"
                       className="w-full h-full object-cover"
-                     loading="lazy" decoding="async"/>
+                      loading="lazy"
+                      />
                   </div>
                 </div>
                 <p className="text-muted-foreground leading-relaxed">

@@ -7,9 +7,9 @@ import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
 import { Accent, AccentGold } from "@/components/Accent";
 import { Home, Bath, UtensilsCrossed } from "lucide-react";
 import heroImage from "@/assets/gallery/calgary-living-room-clean.webp";
-import kitchenImage from "@/assets/gallery/calgary-spotless-kitchen.webp";
-import livingRoomImage from "@/assets/hero-room-calgary-1280w.webp";
-import cleanerImage from "@/assets/gallery/calgary-team-cleaning.webp";
+import kitchenImage from "@/assets/gallery/calgary-spotless-kitchen.webp?card";
+import livingRoomImage from "@/assets/hero-room-calgary-1280w.webp?card";
+import cleanerImage from "@/assets/gallery/calgary-team-cleaning.webp?card";
 
 // Published figures come from bk-config via pricing.ts. Hand-typing them
 // here is what let this page drift out of step with /pricing and with what
@@ -206,9 +206,9 @@ export default function CalgaryRegularCleaning() {
       ctaHeading={<>Standard cleaning in <AccentGold>Calgary</AccentGold> from {FROM}.</>}
       ctaDescription="That figure is the one-bedroom apartment rate before GST. A townhouse or two-storey house adds a home-type charge, a home with pets adds the pet charge and an address outside Calgary city limits adds the travel fee, all shown on the quote before you book. Nothing is charged until the clean is complete."
       galleryImages={[
-        { src: kitchenImage, alt: "Kitchen with white shaker cabinets, stainless-steel appliances and a quartz island with a double sink" },
-        { src: livingRoomImage, alt: "Sunlit white living room with tall windows behind a white sofa, white flowers on a glass coffee table and a hardwood floor" },
-        { src: cleanerImage, alt: "Two cleaners in aprons and gloves, one wiping a kitchen counter and one holding a spray bottle" },
+        { picture: kitchenImage, alt: "Kitchen with white shaker cabinets, stainless-steel appliances and a quartz island with a double sink" },
+        { picture: livingRoomImage, alt: "Sunlit white living room with tall windows behind a white sofa, white flowers on a glass coffee table and a hardwood floor" },
+        { picture: cleanerImage, alt: "Two cleaners in aprons and gloves, one wiping a kitchen counter and one holding a spray bottle" },
       ]}
     />
   );

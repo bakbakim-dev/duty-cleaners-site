@@ -28,7 +28,7 @@ import CityPricingTable from "@/components/CityPricingTable";
 import StatBand from "@/components/StatBand";
 import NeighborhoodMarquee from "@/components/NeighborhoodMarquee";
 import CostGuides from "@/components/CostGuides";
-import judgmentRoom from "@/assets/hero-faq-living-room.webp";
+import judgmentRoom from "@/assets/hero-faq-living-room.webp?hero";
 import DirectContactPanel from "@/components/DirectContactPanel";
 import { Button } from "@/components/ui/button";
 import { Calculator, CheckCircle2, Home, HardHat, Star, Shield, Award, TrendingUp, Bed, Bath, Sofa, ChefHat, ChevronUp, LucideIcon, Zap, ThumbsUp, Leaf, DollarSign, Truck, Calendar, MessageSquare, Play, Heart, KeyRound, BadgeCheck, CalendarCheck, Phone, Users } from "lucide-react";
@@ -47,12 +47,12 @@ import calgaryHeroRoom1280 from "@/assets/generated/calgary-cleaning-hero-v1-128
    generated images labelled as finished Calgary cleans, printed directly above
    a line promising no stock stand-ins. What is left is what the hero strip,
    the services chapter and the seasonal strip use. */
-import galleryKitchenBA from "@/assets/gallery/calgary-kitchen-ba.webp";
-import galleryCalgaryOvenBA from "@/assets/gallery/calgary-oven-ba.webp";
-import galleryHappyPlace from "@/assets/gallery/calgary-happy-place.webp";
-import galleryCalgaryMoveOut from "@/assets/gallery/calgary-move-out-clean.webp";
-import galleryCalgaryWindow from "@/assets/gallery/calgary-window-cleaning.webp";
-import gallerySpotlessKitchen from "@/assets/gallery/calgary-spotless-kitchen.webp";
+import galleryKitchenBA from "@/assets/gallery/calgary-kitchen-ba.webp?card";
+import galleryCalgaryOvenBA from "@/assets/gallery/calgary-oven-ba.webp?card";
+import galleryHappyPlaceCard from "@/assets/gallery/calgary-happy-place.webp?card";
+import galleryCalgaryMoveOut from "@/assets/gallery/calgary-move-out-clean.webp?card";
+import galleryCalgaryWindow from "@/assets/gallery/calgary-window-cleaning.webp?card";
+import gallerySpotlessKitchen from "@/assets/gallery/calgary-spotless-kitchen.webp?card";
 import {
   sitePriceRange,
   standardTierRows,
@@ -336,7 +336,7 @@ export default function Calgary2() {
            heroPosition="center 52%"
            processImages={[
              { src: gallerySpotlessKitchen, alt: "Galley kitchen with white cabinets, a stainless fridge and a sink in the island" },
-             { src: galleryHappyPlace, alt: "Kitchen with white cabinets, an island and a wooden dining table" },
+             { src: galleryHappyPlaceCard, alt: "Kitchen with white cabinets, an island and a wooden dining table" },
              { src: galleryKitchenBA, alt: "Two views of a basement kitchen with oak cabinets and tiled counters" },
            ]}
           />
@@ -526,23 +526,17 @@ export default function Calgary2() {
               <HomeRhythmStrip
                 slots={[
                   {
-                    src: galleryHappyPlace,
-                    width: 1080,
-                    height: 1920,
+                    picture: galleryHappyPlaceCard,
                     alt: "Kitchen island and a wooden dining table under pendant lights",
                     caption: "Kitchen and dining table",
                   },
                   {
-                    src: galleryCalgaryMoveOut,
-                    width: 800,
-                    height: 800,
+                    picture: galleryCalgaryMoveOut,
                     alt: "Empty carpeted room with sunlight through the window",
                     caption: "An empty carpeted room",
                   },
                   {
-                    src: galleryCalgaryWindow,
-                    width: 800,
-                    height: 800,
+                    picture: galleryCalgaryWindow,
                     alt: "Tall windows framing a view of city towers",
                     caption: "Interior window cleaning is an add-on",
                   },

@@ -9,9 +9,10 @@ import { Calendar, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-import heroImage from "@/assets/blog/family-household.webp";
-import bedroomImage from "@/assets/blog/daily-cleaning-bedroom.webp";
-import floorImage from "@/assets/blog/weekly-cleaning-floor.webp";
+import ResponsiveImage, { SIZES } from "@/components/ResponsiveImage";
+import heroImage from "@/assets/blog/family-household.webp?col";
+import bedroomImage from "@/assets/blog/daily-cleaning-bedroom.webp?col";
+import floorImage from "@/assets/blog/weekly-cleaning-floor.webp?col";
 
 /**
  * Replaces the old WordPress post "/1948/house-cleaning-tips-for-a-spotless-
@@ -164,13 +165,13 @@ export default function BlogSpotlessHomeTips() {
               </p>
 
               <div className="aspect-video rounded-2xl overflow-hidden mb-12">
-                <img
-                  width={1920}
-                  height={1080}
-                  src={heroImage}
+                <ResponsiveImage
+                  picture={heroImage}
+                  sizes={SIZES.column}
                   alt="A tidy living room with clear surfaces"
                   className="w-full h-full object-cover"
-                 loading="eager" fetchPriority="high"/>
+                  loading="eager" fetchPriority="high"
+                  />
               </div>
             </div>
           </div>
@@ -262,22 +263,22 @@ export default function BlogSpotlessHomeTips() {
                 </h2>
                 <div className="grid md:grid-cols-2 gap-6 mb-8">
                   <div className="aspect-video rounded-xl overflow-hidden">
-                    <img
-                      width={1024}
-                      height={576}
-                      src={bedroomImage}
+                    <ResponsiveImage
+                      picture={bedroomImage}
+                      sizes={SIZES.half}
                       alt="A tidy bedroom with a made bed"
                       className="w-full h-full object-cover"
-                     loading="lazy" decoding="async"/>
+                      loading="lazy"
+                      />
                   </div>
                   <div className="aspect-video rounded-xl overflow-hidden">
-                    <img
-                      width={1024}
-                      height={576}
-                      src={floorImage}
+                    <ResponsiveImage
+                      picture={floorImage}
+                      sizes={SIZES.half}
                       alt="Freshly cleaned hardwood floor"
                       className="w-full h-full object-cover"
-                     loading="lazy" decoding="async"/>
+                      loading="lazy"
+                      />
                   </div>
                 </div>
                 <div className="space-y-4">

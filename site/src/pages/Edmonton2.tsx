@@ -34,7 +34,7 @@ import CityPricingTable from "@/components/CityPricingTable";
 import StatBand from "@/components/StatBand";
 import NeighborhoodMarquee from "@/components/NeighborhoodMarquee";
 import CostGuides from "@/components/CostGuides";
-import judgmentRoom from "@/assets/whats-included-hero.webp";
+import judgmentRoom from "@/assets/whats-included-hero.webp?hero";
 import DirectContactPanel from "@/components/DirectContactPanel";
 import { Button } from "@/components/ui/button";
 import { Calculator, CheckCircle2, Home, HardHat, Star, Shield, Award, TrendingUp, Bed, Bath, Sofa, ChefHat, ChevronUp, LucideIcon, Zap, ThumbsUp, Leaf, DollarSign, Truck, Calendar, MessageSquare, Play, Heart, KeyRound, BadgeCheck, CalendarCheck, Users } from "lucide-react";
@@ -49,9 +49,9 @@ import edmontonHeroRoom640 from "@/assets/generated/edmonton-cleaning-hero-v1-64
 import edmontonHeroRoom960 from "@/assets/generated/edmonton-cleaning-hero-v1-960w.webp";
 import edmontonHeroRoom1280 from "@/assets/generated/edmonton-cleaning-hero-v1-1280w.webp";
 
-import galleryLivingRoom from "@/assets/gallery/living-room-clean.webp";
-import galleryMoveOutClean from "@/assets/gallery/move-out-clean.webp";
-import galleryWindowDetail from "@/assets/gallery/window-cleaning.webp";
+import galleryLivingRoomCard from "@/assets/gallery/living-room-clean.webp?card";
+import galleryMoveOutClean from "@/assets/gallery/move-out-clean.webp?card";
+import galleryWindowDetail from "@/assets/gallery/window-cleaning.webp?card";
 import teamCheryse from "@/assets/team/edmonton-cheryse.webp";
 import teamRuchan from "@/assets/team/edmonton-ruchan.webp";
 import teamScottilee from "@/assets/team/edmonton-scottilee.webp";
@@ -62,9 +62,9 @@ import teamClarice from "@/assets/team/clarice-cleaner.webp";
    images captioned as finished cleans, sitting directly above a line promising
    no stand-ins. The three still imported here are the ones the hero strip and
    the services chapter use. */
-import galleryPostKitchen from "@/assets/gallery/dc-post-kitchen.webp";
-import galleryStoveDetail from "@/assets/gallery/dc-stove-detail.webp";
-import galleryModernKitchen from "@/assets/gallery/dc-modern-kitchen.webp";
+import galleryPostKitchen from "@/assets/gallery/dc-post-kitchen.webp?card";
+import galleryStoveDetail from "@/assets/gallery/dc-stove-detail.webp?card";
+import galleryModernKitchen from "@/assets/gallery/dc-modern-kitchen.webp?card";
 import {
   sitePriceRange,
   standardTierRows,
@@ -333,7 +333,7 @@ export default function Edmonton2() {
            heroPosition="center 48%"
            processImages={[
              { src: galleryPostKitchen, alt: "Kitchen with white cabinets, grey counters and a stainless steel range" },
-             { src: galleryLivingRoom, alt: "A dog lying on a living-room rug beside a vacuum cleaner" },
+             { src: galleryLivingRoomCard, alt: "A dog lying on a living-room rug beside a vacuum cleaner" },
              { src: galleryModernKitchen, alt: "Kitchen with dark cabinets, a white island and a stainless fridge" },
            ]}
          />
@@ -373,7 +373,7 @@ export default function Edmonton2() {
         <CityServicesChapter
           city="Edmonton"
           basePath="/edmonton"
-          featureImage={galleryLivingRoom}
+          featureImage={galleryLivingRoomCard}
           featureImageAlt="Living room with a golden dog on a shaggy rug and a vacuum cleaner in front of it"
           deepImage={galleryStoveDetail}
           deepImageAlt="Glass-top stove with the oven door open, under a microwave"
@@ -553,23 +553,17 @@ export default function Edmonton2() {
               <HomeRhythmStrip
                 slots={[
                   {
-                    src: galleryLivingRoom,
-                    width: 1024,
-                    height: 1024,
+                    picture: galleryLivingRoomCard,
                     alt: "Golden dog resting on a shaggy rug in a living room, with a vacuum cleaner nearby",
                     caption: "Homes with pets carry a per-visit charge",
                   },
                   {
-                    src: galleryMoveOutClean,
-                    width: 1024,
-                    height: 1024,
+                    picture: galleryMoveOutClean,
                     alt: "Made bed with white bedding between two bedside tables and lamps",
                     caption: "The bedroom",
                   },
                   {
-                    src: galleryWindowDetail,
-                    width: 800,
-                    height: 800,
+                    picture: galleryWindowDetail,
                     alt: "Floor-to-ceiling windows looking out over city towers",
                     caption: "Interior windows are an add-on",
                   },

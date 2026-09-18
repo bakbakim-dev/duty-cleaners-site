@@ -11,11 +11,12 @@ import { Button } from "@/components/ui/button";
 import { Calculator, Shield, Award, DollarSign, Home, Bath, UtensilsCrossed, ChevronUp, Mail, LucideIcon, Package, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-import familyCleanHome from "@/assets/gallery/family-clean-home-edmonton.webp";
-import kitchenDeepClean from "@/assets/gallery/kitchen-deep-clean.webp";
-import bathroomClean from "@/assets/gallery/bathroom-clean.webp";
-import livingRoomClean from "@/assets/gallery/living-room-clean.webp";
-import moveOutClean from "@/assets/gallery/move-out-clean.webp";
+import ResponsiveImage, { SIZES } from "@/components/ResponsiveImage";
+import familyCleanHome from "@/assets/gallery/family-clean-home-edmonton.webp?col";
+import kitchenDeepClean from "@/assets/gallery/kitchen-deep-clean.webp?card";
+import bathroomClean from "@/assets/gallery/bathroom-clean.webp?card";
+import livingRoomClean from "@/assets/gallery/living-room-clean.webp?card";
+import moveOutClean from "@/assets/gallery/move-out-clean.webp?col";
 import beforeAfter from "@/assets/gallery/before-after.webp";
 import windowCleaning from "@/assets/gallery/window-cleaning.webp";
 
@@ -77,6 +78,8 @@ const WORKED_MOVE = (() => {
  * title moves when bk-config does; the width guard in onpage-seo.test.ts
  * keeps it inside a desktop snippet.
  */
+/** The three-up detail-shot grid (md:grid-cols-3 in a max-w-6xl container): a third of the row from 768 px, capped by the container. */
+const THREE_UP_SIZES = "(min-width: 1152px) 360px, (min-width: 768px) 33vw, 100vw";
 const PAGE_TITLE = `Move Out Cleaning Edmonton from ${moveInOutFromPrice()} | Duty Cleaners`;
 const META_DESCRIPTION = `Edmonton move-out and end of tenancy cleaning is priced flat by home size from ${moveInOutFromPrice()} before GST, and a miss reported within ${POLICY.guaranteeWindowHours} hours is re-cleaned free.`;
 
@@ -309,11 +312,10 @@ export default function EdmontonMoveInOut() {
               </div>
 
               <div className="flex-shrink-0">
-                <img
-                  src={familyCleanHome}
+                <ResponsiveImage
+                  picture={familyCleanHome}
+                  sizes={SIZES.half}
                   alt="Empty living room cleaned for a move-out inspection"
-                  width={500}
-                  height={500}
                   className="lg:w-[500px] w-full rounded-2xl shadow-2xl"
                  loading="eager" fetchPriority="high"/>
               </div>
@@ -447,21 +449,21 @@ export default function EdmontonMoveInOut() {
               </div>
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="rounded-xl overflow-hidden shadow-lg group">
-                  <img width={1024} height={1024} src={kitchenDeepClean} alt="Empty kitchen after a move-out clean" className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+                  <ResponsiveImage picture={kitchenDeepClean} sizes={THREE_UP_SIZES} alt="Empty kitchen after a move-out clean" className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
                   <div className="p-4 bg-white">
                     <h3 className="font-bold mb-1">Kitchens</h3>
                     <p className="text-sm text-muted-foreground">Grease off the hood and backsplash, inside the oven and fridge, cabinets wiped out once they are empty.</p>
                   </div>
                 </div>
                 <div className="rounded-xl overflow-hidden shadow-lg group">
-                  <img width={1024} height={1024} src={bathroomClean} alt="Bathroom tile and glass after a move-out clean" className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+                  <ResponsiveImage picture={bathroomClean} sizes={THREE_UP_SIZES} alt="Bathroom tile and glass after a move-out clean" className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
                   <div className="p-4 bg-white">
                     <h3 className="font-bold mb-1">Bathrooms</h3>
                     <p className="text-sm text-muted-foreground">Soap scum off the glass, scale off the taps, tile and grout scrubbed, the toilet inside and out.</p>
                   </div>
                 </div>
                 <div className="rounded-xl overflow-hidden shadow-lg group">
-                  <img width={1024} height={1024} src={livingRoomClean} alt="Empty living room cleaned for a move-in" className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+                  <ResponsiveImage picture={livingRoomClean} sizes={THREE_UP_SIZES} alt="Empty living room cleaned for a move-in" className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
                   <div className="p-4 bg-white">
                     <h3 className="font-bold mb-1">Rooms and closets</h3>
                     <p className="text-sm text-muted-foreground">Baseboards, vents, switches and the inside of the closets, then the floors last so nobody walks on them.</p>
@@ -478,7 +480,7 @@ export default function EdmontonMoveInOut() {
             <AnimatedSection>
               <div className="grid lg:grid-cols-2 gap-10 items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img width={1024} height={1024} src={moveOutClean} alt="Family carrying boxes into a cleaned home" className="w-full h-[420px] object-cover" loading="lazy" />
+                  <ResponsiveImage picture={moveOutClean} sizes={SIZES.half} alt="Family carrying boxes into a cleaned home" className="w-full h-[420px] object-cover" loading="lazy" />
                 </div>
                 <div>
                   <span className="text-accent font-semibold text-sm uppercase tracking-wide">Move-In Cleaning</span>

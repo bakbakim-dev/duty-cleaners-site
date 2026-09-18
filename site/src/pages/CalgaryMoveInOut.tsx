@@ -3,11 +3,12 @@ import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
 import CityCrossLink from "@/components/CityCrossLink";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
-import calgaryMoveInOutHero from "@/assets/calgary-move-in-out-hero.webp";
-import calgaryKitchenClean from "@/assets/gallery/calgary-kitchen-clean.webp";
-import calgaryBathroomClean from "@/assets/gallery/calgary-bathroom-clean.webp";
-import calgaryLivingRoomClean from "@/assets/gallery/calgary-living-room-clean.webp";
-import calgaryMoveOutClean from "@/assets/gallery/calgary-move-out-clean.webp";
+import ResponsiveImage, { SIZES } from "@/components/ResponsiveImage";
+import calgaryMoveInOutHero from "@/assets/calgary-move-in-out-hero.webp?col";
+import calgaryKitchenClean from "@/assets/gallery/calgary-kitchen-clean.webp?card";
+import calgaryBathroomClean from "@/assets/gallery/calgary-bathroom-clean.webp?card";
+import calgaryLivingRoomClean from "@/assets/gallery/calgary-living-room-clean.webp?card";
+import calgaryMoveOutClean from "@/assets/gallery/calgary-move-out-clean.webp?col";
 import calgaryBeforeAfter from "@/assets/gallery/calgary-before-after.webp";
 import calgaryTeamCleaning from "@/assets/gallery/calgary-team-cleaning.webp";
 import calgaryWindowCleaning from "@/assets/gallery/calgary-window-cleaning.webp";
@@ -64,6 +65,8 @@ const moveInOutFromPrice = () => moveInOutTierRows()[0]?.price ?? "";
 
 const META_DESCRIPTION = `End of tenancy and move-out cleaning in Calgary is ${MOVE_FROM} before GST for a one-bedroom, and a miss reported within ${POLICY.guaranteeWindowHours} hours is re-cleaned free.`;
 const PAGE_TITLE = `Move Out Cleaning Calgary from ${MOVE_FROM} | Duty Cleaners`;
+/** The three-up detail-shot grid (md:grid-cols-3 in a max-w-6xl container): a third of the row from 768 px, capped by the container. */
+const THREE_UP_SIZES = "(min-width: 1152px) 360px, (min-width: 768px) 33vw, 100vw";
 
 /**
  * The branch node. It used to carry the hours because buildServiceSchema did
@@ -246,11 +249,10 @@ export default function CalgaryMoveInOut() {
             </div>
 
             <div className="flex-shrink-0">
-              <img
-                src={calgaryMoveInOutHero}
+              <ResponsiveImage
+                picture={calgaryMoveInOutHero}
+                sizes={SIZES.half}
                 alt="Empty living room with hardwood floors, a bay window and a fireplace"
-                width={500}
-                height={500}
                 className="lg:w-[500px] w-full rounded-2xl shadow-2xl"
                loading="eager" fetchPriority="high"/>
             </div>
@@ -479,21 +481,21 @@ export default function CalgaryMoveInOut() {
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             <div className="rounded-xl overflow-hidden shadow-lg group">
-              <img width={800} height={800} src={calgaryKitchenClean} alt="Kitchen with granite counters, a gas cooktop and a stainless-steel range hood" className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+              <ResponsiveImage picture={calgaryKitchenClean} sizes={THREE_UP_SIZES} alt="Kitchen with granite counters, a gas cooktop and a stainless-steel range hood" className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
               <div className="p-4 bg-white">
                 <h3 className="font-bold mb-1">The oven and the range hood</h3>
                 <p className="text-sm text-muted-foreground">Grease shows on both at a glance, and both are on the move-out checklist.</p>
               </div>
             </div>
             <div className="rounded-xl overflow-hidden shadow-lg group">
-              <img width={800} height={800} src={calgaryBathroomClean} alt="White bathroom with a glass shower screen, a rain shower head and a stone vanity" className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+              <ResponsiveImage picture={calgaryBathroomClean} sizes={THREE_UP_SIZES} alt="White bathroom with a glass shower screen, a rain shower head and a stone vanity" className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
               <div className="p-4 bg-white">
                 <h3 className="font-bold mb-1">Shower glass and grout</h3>
                 <p className="text-sm text-muted-foreground">Scale ignores scrubbing. It answers to a mild acid and a few minutes of patience.</p>
               </div>
             </div>
             <div className="rounded-xl overflow-hidden shadow-lg group">
-              <img width={800} height={800} src={calgaryLivingRoomClean} alt="Living room with a sofa and rug, white baseboards and a fireplace on hardwood floors" className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+              <ResponsiveImage picture={calgaryLivingRoomClean} sizes={THREE_UP_SIZES} alt="Living room with a sofa and rug, white baseboards and a fireplace on hardwood floors" className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
               <div className="p-4 bg-white">
                 <h3 className="font-bold mb-1">Baseboards and closet shelves</h3>
                 <p className="text-sm text-muted-foreground">Furniture hides them for years. An empty room does not.</p>
@@ -508,7 +510,7 @@ export default function CalgaryMoveInOut() {
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid lg:grid-cols-2 gap-10 items-center">
             <div className="rounded-2xl overflow-hidden shadow-xl">
-              <img width={800} height={800} src={calgaryMoveOutClean} alt="Empty carpeted bedroom with white walls and sunlight through the window" className="w-full h-[420px] object-cover" loading="lazy" />
+              <ResponsiveImage picture={calgaryMoveOutClean} sizes={SIZES.half} alt="Empty carpeted bedroom with white walls and sunlight through the window" className="w-full h-[420px] object-cover" loading="lazy" />
             </div>
             <div>
               <span className="text-accent font-semibold text-sm uppercase tracking-wide">Move-in cleaning</span>

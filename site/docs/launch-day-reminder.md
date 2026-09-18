@@ -42,3 +42,14 @@ SiteGround is the chosen production host. `mikaily131.sg-host.com` is the stagin
 - Review crawl/indexing errors, traffic and conversion changes after launch against the saved Search Console baseline.
 
 Reference implementation details: `form-health-monitoring.md`, `booking-handoff-implementation-2026-09-12.md`, `funnel-and-launch-implementation-2026-09-12.md`, and the repository-root `CLAUDE.md`. Recheck dated statements before repeating them as current facts.
+
+## AI-generated images: IPTC disclosure (found 2026-09-17)
+
+Google's generative-AI content guidance (developers.google.com/search/docs/fundamentals/using-gen-ai-content,
+updated 2025-12-10) says AI-generated images must carry IPTC `DigitalSourceType` =
+`trainedAlgorithmicMedia` metadata. Every people image in the library is AI-generated
+(PHOTO-SHOOT-BRIEF.md). Two steps, owner's call on the list: (1) name which source files under
+`site/src/assets/` are AI-generated; (2) stamp them once with sharp's `withXmp()` (installed with
+vite-imagetools) and set `removeMetadata: false` in the imagetools config so the generated variants
+keep it. Google may then label those images "AI-generated" in Image Search. Moot for any image the
+photo shoot replaces.

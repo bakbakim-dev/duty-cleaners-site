@@ -14,8 +14,9 @@ import { Link } from "react-router-dom";
 
 import { COMPANY, RATING_CLAIM } from "@/data/proof";
 
-import heroImage from "@/assets/blog/choosing-cleaning-company-hero.webp";
-import reviewsImage from "@/assets/blog/reading-reviews.webp";
+import ResponsiveImage, { SIZES } from "@/components/ResponsiveImage";
+import heroImage from "@/assets/blog/choosing-cleaning-company-hero.webp?hero";
+import reviewsImage from "@/assets/blog/reading-reviews.webp?col";
 
 const keyFactors = [
   {
@@ -102,8 +103,8 @@ export default function BlogChoosingCleaningCompany() {
         <meta name="twitter:card" content="summary_large_image" />
         {/* This post's own hero, so a share card shows the article rather
             than the generic site image. */}
-        <meta property="og:image" content={absoluteAssetUrl(heroImage)} />
-        <meta name="twitter:image" content={absoluteAssetUrl(heroImage)} />
+        <meta property="og:image" content={absoluteAssetUrl(heroImage.img.src)} />
+        <meta name="twitter:image" content={absoluteAssetUrl(heroImage.img.src)} />
         <meta name="twitter:title" content="How to Choose a Cleaning Company | Duty Cleaners" />
         <meta name="twitter:description" content="Before you hire a house cleaning company, check what your home needs, how it screens cleaners, what its reviews say and what its quote includes." />
         <meta property="og:description" content="Before you hire a house cleaning company, check what your home needs, how it screens cleaners, what its reviews say and what its quote includes." />
@@ -117,7 +118,7 @@ export default function BlogChoosingCleaningCompany() {
           // Dates match the date shown on the page and in the blog index; the
           // previous values (2024-06-01 / 2026-07-02) contradicted both. The
           // old image URL pointed at /blog/... which is not a served path.
-          image: absoluteAssetUrl(heroImage),
+          image: absoluteAssetUrl(heroImage.img.src),
           ...(publishedFor("/blog/choosing-cleaning-company") ? { datePublished: publishedFor("/blog/choosing-cleaning-company") } : {}),
           dateModified: modifiedOr("/blog/choosing-cleaning-company"),
           author: ARTICLE_AUTHOR,
@@ -136,11 +137,13 @@ export default function BlogChoosingCleaningCompany() {
         {/* Hero Section */}
         <section className="relative">
           <div className="aspect-[21/9] max-h-[500px] overflow-hidden">
-            <img width={1920} height={1080}
-              src={heroImage}
+            <ResponsiveImage
+              picture={heroImage}
+              sizes={SIZES.full}
               alt="Professional cleaning team greeting homeowner"
               className="w-full h-full object-cover"
-             loading="eager" fetchPriority="high"/>
+              loading="eager" fetchPriority="high"
+              />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
           </div>
           <div className="container mx-auto px-4 -mt-32 relative z-10">
@@ -265,11 +268,13 @@ export default function BlogChoosingCleaningCompany() {
 
               {/* Reviews Image */}
               <div className="my-12">
-                <img width={1024} height={1024}
-                  src={reviewsImage}
+                <ResponsiveImage
+                  picture={reviewsImage}
+                  sizes={SIZES.column}
                   alt="Customer reading positive reviews online"
                   className="w-full rounded-xl shadow-lg"
-                 loading="lazy" decoding="async"/>
+                  loading="lazy"
+                  />
                 <p className="text-sm text-muted-foreground text-center mt-3">
                   Recent reviews, and the company's replies to them, say more than the average rating
                 </p>

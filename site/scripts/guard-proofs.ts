@@ -1219,7 +1219,7 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/auditspur-0911.test.ts",
     target: "src/pages/BlogCleaningProducts.tsx",
-    find: "          image: absoluteAssetUrl(heroImage),",
+    find: "          image: absoluteAssetUrl(heroImage.img.src),",
     replace: "          image: \"https://dutycleaners.ca/og-image.jpg\",",
     failing: "the product post's schema image is its own hero image",
     why: "Makes the post's schema image disagree with its og:image again.",
@@ -1456,6 +1456,33 @@ export const GUARD_PROOFS: GuardProof[] = [
     failing: "the march-out provider carries what the shared builders publish",
     why: "Strips the image the march-out provider gained, back to the drifted shape scan 1131 found.",
     dist: true,
+  },
+  // ---- responsive content images (scan 1131, 2026-09-17) --------------------
+  {
+    guard: "src/data/responsive-images.test.ts",
+    target: "dist/edmonton/march-out-cleaning/index.html",
+    find: ' sizes="100vw"',
+    replace: ' data-sizes="100vw"',
+    failing: "every content image on the pages scan 1131 named has a srcset, sizes, width and height",
+    why: "Takes the sizes hint off the march-out hero, so the browser would pick a candidate for a 100vw slot with no idea of the slot.",
+    dist: true,
+  },
+  {
+    guard: "src/data/responsive-images.test.ts",
+    target: "dist/blog/cleaning-schedule/index.html",
+    find: 'width="1024" height="576" alt="Woman wiping a counter',
+    replace: 'width="1000" height="576" alt="Woman wiping a counter',
+    failing: "no srcset candidate is wider than the image's own intrinsic width",
+    why: "Declares the hero narrower than its 1024w candidate, the shape of an upscaled variant.",
+    dist: true,
+  },
+  {
+    guard: "src/data/responsive-images.test.ts",
+    target: "src/components/ResponsiveImage.tsx",
+    find: '  full: "100vw",',
+    replace: '  full: "100vw, 100vw",',
+    failing: "the sizes presets describe the layouts they are named for",
+    why: "Corrupts the full-bleed preset into a string no browser parses as intended.",
   },
   // ---- and this registry itself ------------------------------------------
   {

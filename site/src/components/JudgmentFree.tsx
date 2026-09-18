@@ -1,12 +1,14 @@
 import { useLocation } from "react-router-dom";
 import { quoteHrefFor } from "@/lib/quote-link";
 import { Button } from "@/components/ui/button";
+import ResponsiveImage, { SIZES } from "@/components/ResponsiveImage";
+import type { Picture } from "vite-imagetools";
 
-import defaultRoom from "@/assets/gallery/living-room-clean.webp";
+import defaultRoom from "@/assets/gallery/living-room-clean.webp?hero";
 
 interface JudgmentFreeProps {
-  /** Calm wide room behind the pull-quote; pick one not already on the page. */
-  image?: string;
+  /** Calm wide room behind the pull-quote, a ?hero import (it is full-bleed); pick one not already on the page. */
+  image?: Picture;
   /** Describes that room; localize it so the page's city carries into image search. */
   alt?: string;
   /** Picks the wording. Both hubs render this block and must not repeat each other. */
@@ -41,8 +43,9 @@ export default function JudgmentFree({
     <section id="judgment-free" aria-labelledby="judgment-free-heading">
       {/* Interstitial — one image, one line, nothing else competing. */}
       <div className="relative isolate overflow-hidden bg-brand-navy">
-        <img
-          src={image}
+        <ResponsiveImage
+          picture={image}
+          sizes={SIZES.full}
           alt={alt}
           loading="lazy"
           decoding="async"

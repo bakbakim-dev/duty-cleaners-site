@@ -27,10 +27,11 @@ import {
 } from "@/components/ui/accordion";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
-import heroBg from "@/assets/gallery/move-out-clean.webp";
-import imgKitchen from "@/assets/gallery/kitchen-deep-clean.webp";
-import imgBathroom from "@/assets/gallery/bathroom-clean.webp";
-import imgWalls from "@/assets/gallery/clean-walls-edmonton.webp";
+import ResponsiveImage, { SIZES } from "@/components/ResponsiveImage";
+import heroBg from "@/assets/gallery/move-out-clean.webp?hero";
+import imgKitchen from "@/assets/gallery/kitchen-deep-clean.webp?card";
+import imgBathroom from "@/assets/gallery/bathroom-clean.webp?card";
+import imgWalls from "@/assets/gallery/clean-walls-edmonton.webp?card";
 
 const PHONE_DISPLAY = "(780) 913-6565";
 const PHONE_TEL = "tel:7809136565";
@@ -254,11 +255,10 @@ export default function EdmontonMarchOut() {
 
       {/* Hero */}
       <section className="relative py-20 px-4 bg-brand-navy overflow-hidden">
-        <img
-          src={heroBg}
+        <ResponsiveImage
+          picture={heroBg}
+          sizes={SIZES.full}
           alt="A bedroom with a made bed and matching nightstands"
-          width={1024}
-          height={1024}
           className="absolute inset-0 w-full h-full object-cover opacity-25"
          loading="eager" fetchPriority="high"/>
         <div className="absolute inset-0 bg-gradient-to-b from-brand-navy/85 via-brand-navy/70 to-brand-navy/90" />
@@ -367,21 +367,24 @@ export default function EdmontonMarchOut() {
               </p>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <img width={1024} height={1024}
-                src={imgKitchen}
+              <ResponsiveImage
+                picture={imgKitchen}
+                sizes={"(min-width: 1024px) 240px, 50vw"}
                 alt="A cleaned kitchen with wiped appliance fronts"
                 loading="lazy"
                 className="rounded-2xl object-cover w-full h-full aspect-[4/5]"
               />
               <div className="grid gap-4">
-                <img width={1024} height={1024}
-                  src={imgBathroom}
+                <ResponsiveImage
+                  picture={imgBathroom}
+                  sizes={"(min-width: 1024px) 240px, 50vw"}
                   alt="A cleaner wiping a bathroom mirror above the sink"
                   loading="lazy"
                   className="rounded-2xl object-cover w-full aspect-square"
                 />
-                <img width={768} height={1024}
-                  src={imgWalls}
+                <ResponsiveImage
+                  picture={imgWalls}
+                  sizes={"(min-width: 1024px) 240px, 50vw"}
                   alt="White painted walls in a bright, nearly empty room"
                   loading="lazy"
                   className="rounded-2xl object-cover w-full aspect-square"

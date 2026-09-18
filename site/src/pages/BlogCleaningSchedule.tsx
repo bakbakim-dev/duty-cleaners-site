@@ -11,11 +11,12 @@ import { Calendar, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-import heroImage from "@/assets/blog/cleaning-schedule-hero.webp";
-import bedroomImage from "@/assets/blog/daily-cleaning-bedroom.webp";
-import floorImage from "@/assets/blog/weekly-cleaning-floor.webp";
-import bathroomImage from "@/assets/blog/bathroom-cleaning.webp";
-import dishwasherImage from "@/assets/blog/dishwasher-cleaning.webp";
+import ResponsiveImage, { SIZES } from "@/components/ResponsiveImage";
+import heroImage from "@/assets/blog/cleaning-schedule-hero.webp?col";
+import bedroomImage from "@/assets/blog/daily-cleaning-bedroom.webp?col";
+import floorImage from "@/assets/blog/weekly-cleaning-floor.webp?col";
+import bathroomImage from "@/assets/blog/bathroom-cleaning.webp?col";
+import dishwasherImage from "@/assets/blog/dishwasher-cleaning.webp?col";
 
 const dailyTasks = [
   {
@@ -133,8 +134,8 @@ export default function BlogCleaningSchedule() {
         <meta name="twitter:card" content="summary_large_image" />
         {/* This post's own hero, so a share card shows the article rather
             than the generic site image. */}
-        <meta property="og:image" content={absoluteAssetUrl(heroImage)} />
-        <meta name="twitter:image" content={absoluteAssetUrl(heroImage)} />
+        <meta property="og:image" content={absoluteAssetUrl(heroImage.img.src)} />
+        <meta name="twitter:image" content={absoluteAssetUrl(heroImage.img.src)} />
         <meta name="twitter:title" content="DIY House Cleaning Schedule: Daily, Weekly & Monthly" />
         <meta name="twitter:description" content="Organize household chores with a practical DIY cleaning schedule: daily upkeep, weekly room tasks and monthly jobs, adapted to your home." />
         <meta property="og:type" content="article" />
@@ -144,7 +145,7 @@ export default function BlogCleaningSchedule() {
           "@type": "Article",
           "headline": "A Daily, Weekly and Monthly DIY Cleaning Schedule",
           "description": "Organize household chores with a practical DIY cleaning schedule: daily upkeep, weekly room tasks and monthly jobs, adapted to your home.",
-          "image": absoluteAssetUrl(heroImage),
+          "image": absoluteAssetUrl(heroImage.img.src),
           ...(publishedFor("/blog/cleaning-schedule") ? { datePublished: publishedFor("/blog/cleaning-schedule") } : {}),
           "dateModified": modifiedOr("/blog/cleaning-schedule"),
           "author": ARTICLE_AUTHOR,
@@ -188,11 +189,13 @@ export default function BlogCleaningSchedule() {
               </p>
 
               <div className="aspect-video rounded-2xl overflow-hidden mb-12">
-                <img width={1024} height={576}
-                  src={heroImage}
+                <ResponsiveImage
+                  picture={heroImage}
+                  sizes={SIZES.column}
                   alt="Woman wiping a counter in a bright, tidy kitchen"
                   className="w-full h-full object-cover"
-                 loading="eager" fetchPriority="high"/>
+                  loading="eager" fetchPriority="high"
+                  />
               </div>
             </div>
           </div>
@@ -220,11 +223,13 @@ export default function BlogCleaningSchedule() {
                 </h2>
                 
                 <div className="aspect-video rounded-xl overflow-hidden mb-6">
-                  <img width={1024} height={576}
-                    src={bedroomImage}
+                  <ResponsiveImage
+                    picture={bedroomImage}
+                    sizes={SIZES.column}
                     alt="Neatly made bed with fresh white linens in a bright bedroom"
                     className="w-full h-full object-cover"
-                   loading="lazy" decoding="async"/>
+                    loading="lazy"
+                    />
                 </div>
 
                 <p className="text-muted-foreground mb-6">
@@ -248,11 +253,13 @@ export default function BlogCleaningSchedule() {
                 </div>
 
                 <div className="mt-6 aspect-video rounded-xl overflow-hidden">
-                  <img width={1024} height={576}
-                    src={dishwasherImage}
+                  <ResponsiveImage
+                    picture={dishwasherImage}
+                    sizes={SIZES.column}
                     alt="Open dishwasher loaded with clean dishes"
                     className="w-full h-full object-cover"
-                   loading="lazy" decoding="async"/>
+                    loading="lazy"
+                    />
                 </div>
               </div>
 
@@ -263,11 +270,13 @@ export default function BlogCleaningSchedule() {
                 </h2>
 
                 <div className="aspect-video rounded-xl overflow-hidden mb-6">
-                  <img width={1024} height={576}
-                    src={floorImage}
+                  <ResponsiveImage
+                    picture={floorImage}
+                    sizes={SIZES.column}
                     alt="Person mopping hardwood floor in a bright living room"
                     className="w-full h-full object-cover"
-                   loading="lazy" decoding="async"/>
+                    loading="lazy"
+                    />
                 </div>
 
                 <p className="text-muted-foreground mb-6">
@@ -300,11 +309,13 @@ export default function BlogCleaningSchedule() {
                 </h2>
 
                 <div className="aspect-video rounded-xl overflow-hidden mb-6">
-                  <img width={1024} height={576}
-                    src={bathroomImage}
+                  <ResponsiveImage
+                    picture={bathroomImage}
+                    sizes={SIZES.column}
                     alt="Clean modern bathroom with white tiles"
                     className="w-full h-full object-cover"
-                   loading="lazy" decoding="async"/>
+                    loading="lazy"
+                    />
                 </div>
 
                 <p className="text-muted-foreground mb-6">

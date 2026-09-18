@@ -18,21 +18,23 @@ import {
 } from "@/components/ui/accordion";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import React from "react";
+import type { Picture } from "vite-imagetools";
 
-import imgBedroom from "@/assets/hero-family-bedroom.webp";
-import imgBathroom from "@/assets/gallery/bathroom-clean.webp";
-import imgKitchen from "@/assets/gallery/kitchen-deep-clean.webp";
-import imgLiving from "@/assets/gallery/living-room-clean.webp";
-import imgLaundry from "@/assets/cleaning-equipment-flatlay.webp";
-import imgEssentials from "@/assets/gallery/eco-products.webp";
-import heroBg from "@/assets/airbnb/edmonton-hero-living.webp";
+import ResponsiveImage, { SIZES } from "@/components/ResponsiveImage";
+import imgBedroom from "@/assets/hero-family-bedroom.webp?card";
+import imgBathroom from "@/assets/gallery/bathroom-clean.webp?card";
+import imgKitchen from "@/assets/gallery/kitchen-deep-clean.webp?card";
+import imgLiving from "@/assets/gallery/living-room-clean.webp?card";
+import imgLaundry from "@/assets/cleaning-equipment-flatlay.webp?card";
+import imgEssentials from "@/assets/gallery/eco-products.webp?card";
+import heroBg from "@/assets/airbnb/edmonton-hero-living.webp?hero";
 
-import gal1 from "@/assets/gallery/family-clean-home-edmonton.webp";
-import gal2 from "@/assets/gallery/bathroom-clean.webp";
-import gal3 from "@/assets/gallery/kitchen-deep-clean.webp";
-import gal4 from "@/assets/gallery/living-room-clean.webp";
-import gal5 from "@/assets/gallery/before-after.webp";
-import gal6 from "@/assets/hero-family-bedroom.webp";
+import gal1 from "@/assets/gallery/family-clean-home-edmonton.webp?card";
+import gal2 from "@/assets/gallery/bathroom-clean.webp?card";
+import gal3 from "@/assets/gallery/kitchen-deep-clean.webp?card";
+import gal4 from "@/assets/gallery/living-room-clean.webp?card";
+import gal5 from "@/assets/gallery/before-after.webp?card";
+import gal6 from "@/assets/hero-family-bedroom.webp?card";
 import { Helmet } from "react-helmet-async";
 import CityCrossLink from "@/components/CityCrossLink";
 import LocalMarketNote from "@/components/LocalMarketNote";
@@ -103,14 +105,15 @@ const WhatWeCleanCard = ({
   title,
   description,
 }: {
-  image: string;
+  image: Picture;
   title: string;
   description: string;
 }) => (
   <div className="group bg-card rounded-2xl border border-border overflow-hidden transition-all duration-500 ease-out hover:-translate-y-1.5 hover:shadow-xl">
     <div className="aspect-[4/3] overflow-hidden">
-      <img
-        src={image}
+      <ResponsiveImage
+        picture={image}
+        sizes={SIZES.card}
         alt={title}
         loading="lazy"
         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -301,8 +304,9 @@ const AirbnbCleaningEdmonton = () => {
 
       {/* Hero Section */}
       <section className="relative py-20 px-4 bg-brand-navy overflow-hidden">
-        <img width={1280} height={720}
-          src={heroBg}
+        <ResponsiveImage
+          picture={heroBg}
+          sizes={SIZES.full}
           alt="A tidy apartment living room with a grey sofa and tall windows"
           className="absolute inset-0 w-full h-full object-cover opacity-25"
          loading="eager" fetchPriority="high"/>
@@ -563,8 +567,10 @@ const AirbnbCleaningEdmonton = () => {
                     i === 0 ? "md:col-span-2 md:row-span-2" : ""
                   }`}
                 >
-                  <img
-                    src={g.src}
+                  {/* Two columns on phones, three from md; the first tile spans two of them. */}
+                  <ResponsiveImage
+                    picture={g.src}
+                    sizes={i === 0 ? "(min-width: 768px) 66vw, 50vw" : "(min-width: 768px) 33vw, 50vw"}
                     alt={g.alt}
                     loading="lazy"
                     className="w-full h-full object-cover aspect-[4/3] transition-transform duration-700 group-hover:scale-105"

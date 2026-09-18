@@ -11,9 +11,9 @@ import { Accent, AccentGold } from "@/components/Accent";
 import RecurringVisitPrices from "@/components/RecurringVisitPrices";
 import { Home, Bath, UtensilsCrossed } from "lucide-react";
 import heroImage from "@/assets/gallery/calgary-living-room-clean.webp";
-import kitchenImage from "@/assets/gallery/calgary-spotless-kitchen.webp";
-import livingRoomImage from "@/assets/hero-room-calgary-1280w.webp";
-import cleanerImage from "@/assets/gallery/calgary-team-cleaning.webp";
+import kitchenImage from "@/assets/gallery/calgary-spotless-kitchen.webp?card";
+import livingRoomImage from "@/assets/hero-room-calgary-1280w.webp?card";
+import cleanerImage from "@/assets/gallery/calgary-team-cleaning.webp?card";
 
 // Published figures come from bk-config via pricing.ts. Hand-typing them
 // here is what let this page drift out of step with /pricing and with what
@@ -209,9 +209,9 @@ export default function CalgaryRecurringCleaning() {
       ctaHeading={<>Recurring cleaning in <AccentGold>Calgary</AccentGold> from {FROM}.</>}
       ctaDescription={`Your first visit is at the one-time rate, from ${FROM} before GST for a one-bedroom apartment plus any pet or home-type charge; after that, weekly is 20% off, bi-weekly 15% off and every 4 weeks 10% off. Changing or skipping a visit needs ${POLICY.cancellationNoticeHours} hours' notice.`}
       galleryImages={[
-        { src: kitchenImage, alt: "Kitchen with white cabinets, a stainless-steel fridge and range, and a quartz island" },
-        { src: livingRoomImage, alt: "White living room with a white sofa and armchair, white flowers on a glass coffee table and a hardwood floor in morning sun" },
-        { src: cleanerImage, alt: "Two cleaners in green aprons, one wiping a counter and one holding a spray bottle" },
+        { picture: kitchenImage, alt: "Kitchen with white cabinets, a stainless-steel fridge and range, and a quartz island" },
+        { picture: livingRoomImage, alt: "White living room with a white sofa and armchair, white flowers on a glass coffee table and a hardwood floor in morning sun" },
+        { picture: cleanerImage, alt: "Two cleaners in green aprons, one wiping a counter and one holding a spray bottle" },
       ]}
     />
   );

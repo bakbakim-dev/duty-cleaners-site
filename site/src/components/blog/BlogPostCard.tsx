@@ -3,13 +3,16 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
+import type { Picture } from "vite-imagetools";
+import ResponsiveImage from "@/components/ResponsiveImage";
 
 interface BlogPostCardProps {
   title: string;
   excerpt: string;
   category: string;
   date: string;
-  image: string;
+  /** A build-time Picture (an `?card` import). */
+  image: Picture;
   slug?: string;
   index: number;
 }
@@ -44,8 +47,9 @@ export default function BlogPostCard({ title, excerpt, category, date, image, sl
       <div className="block h-full">
         <Card className="relative overflow-hidden h-full group cursor-pointer bg-white/95 border-primary/10 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02]" style={{ transformStyle: "preserve-3d" }}>
           <div className="aspect-[16/10] overflow-hidden relative">
-            <img
-              src={image}
+            <ResponsiveImage
+              picture={image}
+              sizes="(min-width: 1024px) 30vw, (min-width: 768px) 50vw, 100vw"
               alt={title}
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
               /* Nine of these render on /blog/, and the page has its own hero
