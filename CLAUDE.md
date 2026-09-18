@@ -182,6 +182,12 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
 - Location-page local notes are fact-checked. Never delete one to fix a guard: the duplicate-content
   guards depend on them. Geographic claims need an independent check.
 - `_redirects` and `.htaccess` are generated; never hand-edit them.
+- Location-page cards (2026-09-18): the service and "why us" cards on all 163 location pages come
+  from `site/src/data/location-cards.tsx` and render through `site/src/components/LocationCards.tsx`.
+  They are titles and links on purpose (only the rating card keeps a line): identical card
+  descriptions put 44 location pages at AuditSpur's 0.5 near-duplicate bar. Do not add
+  descriptions back or copy the cards into a page. `location-similarity.test.ts` repeats
+  AuditSpur's measure on the build and fails at 0.48.
 
 ## Owner to-dos before or on launch day (checked 2026-09-11)
 Owner reminder request (2026-09-13): when the owner announces launch, review and present every remaining task in `site/docs/launch-day-reminder.md`. A quiet launch-announcement heartbeat is registered. SiteGround is the selected production host; older Netlify production-plan details below are historical and must not be treated as required launch purchases.

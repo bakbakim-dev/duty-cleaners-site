@@ -1,3 +1,5 @@
+import { ServiceCard, WhyUsCard } from "@/components/LocationCards";
+import { locationServices, locationWhyUs } from "@/data/location-cards";
 import { WALL_WASHING_DESCRIPTION } from "@/data/service-copy";
 import { getListing } from "@/lib/google-listings";
 import {
@@ -18,82 +20,9 @@ const AnimatedSection = ({ children, className = "" }: { children: React.ReactNo
   );
 };
 
-const ServiceCard = ({
-  icon: Icon,
-  title,
-  description,
-  to,
-  linkText,
-}: {
-  icon: React.ElementType;
-  title: string;
-  description: string;
-  /** Absent on the two room-level cards, which have no page of their own. */
-  to?: string;
-  linkText?: string;
-}) => (
-  <div className="group bg-white rounded-xl border border-border p-6 transition-all duration-500 ease-out hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-xl" style={{ transformStyle: "preserve-3d" }}>
-    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 transition-transform duration-300 group-hover:rotate-12">
-      <Icon className="w-6 h-6 text-primary" />
-    </div>
-    <h3 className="text-lg font-bold text-foreground mb-2">{title}</h3>
-    <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
-    {to && linkText && (
-      <Link
-        to={to}
-        className="mt-4 inline-flex min-h-[44px] items-center font-semibold text-primary transition-colors hover:text-accent"
-      >
-        {linkText}
-      </Link>
-    )}
-  </div>
-);
+const services = locationServices("Meadowlark Park", "calgary", ["standard", "deep", "move-out", "post-construction", "wall-washing"]);
 
-const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: React.ReactNode }) => (
-  <div className="group bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center transition-all duration-500 ease-out hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-xl" style={{ transformStyle: "preserve-3d" }}>
-    <div className="w-14 h-14 rounded-full bg-accent/20 flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:rotate-12">
-      <Icon className="w-7 h-7 text-accent" />
-    </div>
-    <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
-    <p className="text-white/80 text-sm leading-relaxed">{description}</p>
-  </div>
-);
-
-const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Meadowlark Park" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: baseboards, doors, light switches, wall outlets and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Meadowlark Park" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Meadowlark Park" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Dust and debris cleared after renovations or new builds in Meadowlark Park.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Meadowlark Park" },
-  { icon: PaintRoller, title: "Wall Washing", description: WALL_WASHING_DESCRIPTION, to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Meadowlark Park" },
-];
-
-const whyUsItems = [
-  { icon: Shield, title: "Reference-Checked, Then Rated by You", description: "Every cleaner is reference-checked before their first job, then rated by the customer after every visit. Those ratings decide who keeps cleaning for us." },
-  // Was "287 reviews across Edmonton and Calgary" — a sum Google never
-  // reports, printed with no link, while this page's LocalBusiness node points
-  // at one listing showing a different number. Both the count and the link now
-  // come from that same listing.
-  {
-    icon: Star,
-    title: RATING_CLAIM,
-    description: (
-      <>
-        {CITY_PROOF.calgary.googleReviewCount} reviews on our{" "}
-        <a
-          href={getListing(CITY_PROOF.calgary.city).reviewsUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="font-medium text-white underline underline-offset-2 hover:text-accent"
-        >
-          {CITY_PROOF.calgary.city} Google listing
-        </a>
-        , which is where that rating is read from.
-      </>
-    ),
-  },
-  { icon: Leaf, title: "All Supplies Brought For You", description: "The team brings all supplies and equipment. Leave the water and power on until the clean is done." },
-  { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
-];
+const whyUsItems = locationWhyUs("calgary");
 
 const nearbyAreas = ["Windsor Park", "Manchester", "Stanley Park"];
 
@@ -335,9 +264,6 @@ export default function MeadowlarkPark() {
               <div className="text-center mb-14">
                 <span className="text-accent text-sm font-semibold tracking-wider uppercase">Why Us</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Why Meadowlark Park Residents Choose Duty Cleaners</h2>
-                <p className="text-white/90 max-w-2xl mx-auto text-lg">
-                  Every cleaner is reference-checked before a first job and rated after each visit, and every clean carries a 24-hour re-clean guarantee.
-                </p>
               </div>
             </AnimatedSection>
             <AnimatedSection>

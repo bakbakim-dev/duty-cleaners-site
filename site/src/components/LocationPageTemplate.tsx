@@ -1,3 +1,5 @@
+import { ServiceCard, WhyUsCard } from "@/components/LocationCards";
+import { locationServices, locationWhyUs } from "@/data/location-cards";
 import { CITY_PROOF } from "@/data/proof";
 import { RATING_CLAIM } from "@/data/proof";
 import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods";
@@ -125,53 +127,7 @@ const AnimatedSection = ({ children, className = "" }: { children: React.ReactNo
   );
 };
 
-const ServiceCard = ({
-  icon: Icon,
-  title,
-  description,
-  to,
-  linkText,
-}: {
-  icon: React.ElementType;
-  title: string;
-  description: string;
-  /** Omitted for the two room-level cards, which have no page of their own. */
-  to?: string;
-  linkText?: string;
-}) => (
-  <div
-    className="group bg-white rounded-xl border border-border p-6 transition-all duration-500 ease-out hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-xl"
-    style={{ transformStyle: "preserve-3d" }}
-  >
-    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 transition-transform duration-300 group-hover:rotate-12">
-      <Icon className="w-6 h-6 text-primary" />
-    </div>
-    <h3 className="text-lg font-bold text-foreground mb-2">{title}</h3>
-    <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
-    {to && linkText && (
-      <Link
-        to={to}
-        className="mt-4 inline-flex min-h-[44px] items-center font-semibold text-primary transition-colors hover:text-accent"
-      >
-        {linkText}
-        <span className="dc-icon dc-icon-arrow-right ml-1.5 h-4 w-4" aria-hidden="true" />
-      </Link>
-    )}
-  </div>
-);
 
-const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: React.ReactNode }) => (
-  <div
-    className="group bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center transition-all duration-500 ease-out hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-xl"
-    style={{ transformStyle: "preserve-3d" }}
-  >
-    <div className="w-14 h-14 rounded-full bg-accent/20 flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:rotate-12">
-      <Icon className="w-7 h-7 text-accent" />
-    </div>
-    <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
-    <p className="text-white/80 text-sm leading-relaxed">{description}</p>
-  </div>
-);
 
 /*
  * There used to be a copy-spinner here: `variantOf` hashed the place name to
@@ -184,80 +140,16 @@ const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType
  * copy was not local.
  *
  * These pages carry researched local notes; that is what makes them worth
- * having. Repeating one clear service description across sibling pages is
- * ordinary and fine. Do not reintroduce a spinner.
+ * having. Do not reintroduce a spinner.
+ *
+ * The service and "why us" cards now come from data/location-cards.tsx, one
+ * copy for all 163 location pages, and they are short on purpose: an earlier
+ * version of this comment called repeating one clear service description across
+ * sibling pages "ordinary and fine", and measurement said otherwise (scan 1145:
+ * 246 of 603 compared words on a location page were those descriptions,
+ * identical on ~140 pages). See the note at the top of that file.
  */
 
-const services = (place: string, region: "edmonton" | "calgary", ownMunicipality: boolean) => {
-  const city = region === "edmonton" ? "edmonton" : "calgary";
-  const moveOut = region === "edmonton" ? "/move-out-cleaning-edmonton" : "/move-out-cleaning-calgary";
-  const postCon =
-    region === "edmonton" ? "/post-construction-cleaning" : "/post-construction-cleaning-calgary";
-  const wallWashing =
-    region === "edmonton" ? "/wall-washing-wall-cleaning" : "/wall-washing-wall-cleaning-calgary";
-  return [
-  { icon: Home, title: "Standard House Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: canonicalForPath(`/${city}/regular-cleaning`), linkText: `Standard cleaning in ${place}` },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: baseboards, doors, light switches, wall outlets and vent covers.", to: canonicalForPath(`/${city}/deep-cleaning`), linkText: `Deep cleaning in ${place}` },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: canonicalForPath(moveOut), linkText: `Move-out cleaning in ${place}` },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared after a renovation or a new build, priced by square footage.", to: canonicalForPath(postCon), linkText: `Post-construction cleaning in ${place}` },
-  // Wall washing has a real page in both cities and was the only service on the
-  // menu with no card here, so the 166 location pages sent it exactly ONE
-  // in-body link between them against 88-91 for every linked sibling. Nav and
-  // footer reached it, but none of the geo-qualified body support that carries
-  // the local signal for the rest of the menu.
-  { icon: PaintRoller, title: "Wall Washing", description: "Scuffs, handprints and cooking film washed off painted walls, booked together with a clean.", to: canonicalForPath(wallWashing), linkText: `Wall washing in ${place}` },
-  // Bathroom sanitization gave up its slot: it is a task inside a standard or
-  // deep clean rather than a bookable service, it is described on
-  // /whats-included/, and the grid holds exactly six (2x3 and 3x2 both divide
-  // it; a seventh card would sit alone on a row). The 150 location pages that
-  // inline their own copy of this array were changed the same way.
-  //
-  // The sixth card used to be "Kitchen Deep Clean" — the only card with no
-  // price and no link, describing a service pricing.ts does not sell. Appliance
-  // interiors are add-ons on a standard clean and included on a move-out clean;
-  // there is no kitchen-only package to book. Recurring cleaning is a real
-  // bookable frequency with its own page in both cities, and it was the only
-  // service on the menu with no card here.
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: `The standard checklist on a schedule. The first clean is charged at the one-time rate, from ${RECURRING_FROM} for a one-bedroom, one-bathroom apartment or condo before GST${ownMunicipality && TRAVEL_FEE !== null ? `, the ${TRAVEL_FEE} travel fee` : ""} and any pet or home-type charge. From the second clean on, weekly takes ${OFF_WEEKLY} off, every two weeks ${OFF_BIWEEKLY} and every four weeks ${OFF_FOUR_WEEKLY}.`, to: canonicalForPath(`/${city}/recurring-cleaning`), linkText: `Recurring cleaning in ${place}` },
-  ];
-};
-
-const whyUsItems = (region: "edmonton" | "calgary") => [
-  { icon: Shield, title: "Reference-Checked, Then Rated by You", description: "Every cleaner is reference-checked before their first job, then rated by the customer after every visit. Those ratings decide who keeps cleaning for us." },
-  // This card used to add the two branches together and say "287 reviews across
-  // Edmonton and Calgary", unlinked, while the LocalBusiness node on the same
-  // page pointed at ONE listing showing 236 or 51. Google never reports the sum,
-  // so no reader could check it anywhere. Each page now states its own branch's
-  // count and links the listing it came from.
-  {
-    icon: Star,
-    title: RATING_CLAIM,
-    description: (
-      <>
-        {CITY_PROOF[region].googleReviewCount} reviews on our{" "}
-        <a
-          href={getListing(CITY_PROOF[region].city).reviewsUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="font-medium text-white underline underline-offset-2 hover:text-accent"
-        >
-          {CITY_PROOF[region].city} Google listing
-        </a>
-        , which is where that rating is read from.
-      </>
-    ),
-  },
-  // "and the planet" is an environmental-benefit claim. Since the June 2024
-  // Competition Act amendments those require substantiation on an internationally
-  // recognised methodology, and private applications to the Tribunal have been
-  // live since June 2025. Nothing on the site or in the repo substantiates it.
-  // The card title had already been softened from an eco claim to "High Quality
-  // Cleaning Supplies" — this finishes that edit, which was left half-done.
-  // The card now states only SERVICE_TERMS (T5 in the content prompt): the team
-  // brings supplies, and it needs running water and power.
-  { icon: Leaf, title: "All Supplies Brought For You", description: "The team brings all supplies and equipment. Leave the water and power on until the clean is done." },
-  { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
-];
 
 export default function LocationPageTemplate({
   city,
@@ -507,7 +399,7 @@ export default function LocationPageTemplate({
           </AnimatedSection>
           <AnimatedSection>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {services(city, region, isOwnMunicipality).map((s, i) => (
+              {locationServices(city, region).map((s, i) => (
                 <ServiceCard key={i} {...s} />
               ))}
             </div>
@@ -567,7 +459,7 @@ export default function LocationPageTemplate({
           </AnimatedSection>
           <AnimatedSection>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-              {whyUsItems(region).map((item, i) => (
+              {locationWhyUs(region).map((item, i) => (
                 <WhyUsCard key={i} {...item} />
               ))}
             </div>

@@ -1,3 +1,5 @@
+import { ServiceCard, WhyUsCard } from "@/components/LocationCards";
+import { locationServices, locationWhyUs } from "@/data/location-cards";
 import { WALL_WASHING_DESCRIPTION } from "@/data/service-copy";
 import { sitePriceRange } from "@/data/pricing";
 import { getListing } from "@/lib/google-listings";
@@ -18,91 +20,18 @@ const AnimatedSection = ({ children, className = "" }: { children: React.ReactNo
   );
 };
 
-const ServiceCard = ({
-  icon: Icon,
-  title,
-  description,
-  to,
-  linkText,
-}: {
-  icon: React.ElementType;
-  title: string;
-  description: string;
-  /** Absent on the two room-level cards, which have no page of their own. */
-  to?: string;
-  linkText?: string;
-}) => (
-  <div className="group bg-white rounded-xl border border-border p-6 transition-all duration-500 ease-out hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-xl" style={{ transformStyle: "preserve-3d" }}>
-    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 transition-transform duration-300 group-hover:rotate-12">
-      <Icon className="w-6 h-6 text-primary" />
-    </div>
-    <h3 className="text-lg font-bold text-foreground mb-2">{title}</h3>
-    <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
-    {to && linkText && (
-      <Link
-        to={to}
-        className="mt-4 inline-flex min-h-[44px] items-center font-semibold text-primary transition-colors hover:text-accent"
-      >
-        {linkText}
-      </Link>
-    )}
-  </div>
-);
+const services = locationServices("Marlborough", "calgary", ["standard", "deep", "move-out", "post-construction", "wall-washing"]);
 
-const WhyUsCard = ({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: React.ReactNode }) => (
-  <div className="group bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center transition-all duration-500 ease-out hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-xl" style={{ transformStyle: "preserve-3d" }}>
-    <div className="w-14 h-14 rounded-full bg-accent/20 flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:rotate-12">
-      <Icon className="w-7 h-7 text-accent" />
-    </div>
-    <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
-    <p className="text-white/80 text-sm leading-relaxed">{description}</p>
-  </div>
-);
-
-const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Marlborough" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: baseboards, doors, light switches, wall outlets and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Marlborough" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Marlborough" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Drywall and construction dust after a renovation in a Marlborough home.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Marlborough" },
-  { icon: PaintRoller, title: "Wall Washing", description: WALL_WASHING_DESCRIPTION, to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Marlborough" },
-];
-
-const whyUsItems = [
-  { icon: Shield, title: "Reference-Checked, Then Rated by You", description: "Every cleaner is reference-checked before their first job, then rated by the customer after every visit. Those ratings decide who keeps cleaning for us." },
-  // Was "287 reviews across Edmonton and Calgary" — a sum Google never
-  // reports, printed with no link, while this page's LocalBusiness node points
-  // at one listing showing a different number. Both the count and the link now
-  // come from that same listing.
-  {
-    icon: Star,
-    title: RATING_CLAIM,
-    description: (
-      <>
-        {CITY_PROOF.calgary.googleReviewCount} reviews on our{" "}
-        <a
-          href={getListing(CITY_PROOF.calgary.city).reviewsUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="font-medium text-white underline underline-offset-2 hover:text-accent"
-        >
-          {CITY_PROOF.calgary.city} Google listing
-        </a>
-        , which is where that rating is read from.
-      </>
-    ),
-  },
-  { icon: Leaf, title: "All Supplies Brought For You", description: "The team brings all supplies and equipment. Leave the water and power on until the clean is done." },
-  { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
-];
+const whyUsItems = locationWhyUs("calgary");
 
 const nearbyAreas = ["Forest Lawn", "East Village"];
 
 const faqs = [
-  { question: "How long does an initial cleaning take?", answer: "We work to a checklist, not a clock. Your Marlborough team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
+  { question: "How long does an initial cleaning take?", answer: "We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
   { question: "What cleaning services does Duty Cleaners offer in Marlborough?", answer: "We offer:\n\n• Standard Cleaning & Deep Cleaning Packages\n• Move-In And Move-Out Cleaning Service\n• Post Construction Cleaning\n• Wall Washing and Wall Cleaning" },
-  { question: "Do you offer discounts?", answer: "Yes, on a recurring standard clean in Marlborough, starting with the second visit:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nThe first clean is charged at the one-time rate." },
+  { question: "Do you offer discounts?", answer: "Yes, on a recurring standard clean, starting with the second visit:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nThe first clean is charged at the one-time rate." },
   { question: "What's included in a deep cleaning?", answer: "Deep cleaning adds the following to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Baseboards and doors wiped\n• Light switches fully cleaned\n• Vent covers wiped" },
-  { question: "What happens if something is missed?", answer: "Tell us within 24 hours and the team comes back to your Marlborough home to re-clean what was missed, at no charge. Photos help but are not required." },
+  { question: "What happens if something is missed?", answer: "Tell us within 24 hours and the team comes back to your home to re-clean what was missed, at no charge. Photos help but are not required." },
 ];
 
 const structuredData = buildLocationSchema({

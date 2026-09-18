@@ -1,3 +1,5 @@
+import { ServiceCard, WhyUsCard } from "@/components/LocationCards";
+import { locationServices, locationWhyUs } from "@/data/location-cards";
 import {
   CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import { useEffect } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import { CheckCircle2, Star, Shield, Award, Home, Truck, SprayCan, Bath, Building2, Leaf, CalendarCheck, ThumbsUp, Mail, PaintRoller, Sparkles } from "lucide-react";
 import cochraneImg from "@/assets/gallery/cochrane-clean-home.webp";
@@ -57,83 +59,9 @@ const AnimatedSection = ({ children, className = "" }: { children: React.ReactNo
   );
 };
 
-const ServiceCard = ({
-  icon: Icon,
-  title,
-  description,
-  to,
-  linkText,
-}: {
-  icon: React.ElementType;
-  title: string;
-  description: string;
-  /** Absent on the two room-level cards, which have no page of their own. */
-  to?: string;
-  linkText?: string;
-}) => (
-  <div className="group bg-white rounded-xl border border-border p-6 transition-all duration-500 ease-out hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-xl" style={{ transformStyle: "preserve-3d" }}>
-    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 transition-transform duration-300 group-hover:rotate-12">
-      <Icon className="w-6 h-6 text-primary" />
-    </div>
-    <h3 className="text-lg font-bold text-foreground mb-2">{title}</h3>
-    <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
-    {to && linkText && (
-      <Link
-        to={to}
-        className="mt-4 inline-flex min-h-[44px] items-center font-semibold text-primary transition-colors hover:text-accent"
-      >
-        {linkText}
-      </Link>
-    )}
-  </div>
-);
+const services = locationServices("Cochrane", "calgary");
 
-const WhyUsCard = ({
-  icon: Icon,
-  title,
-  description,
-  link,
-}: {
-  icon: React.ElementType;
-  title: string;
-  description: string;
-  /** Present on the rating card, which cites the listing the count comes from. */
-  link?: { href: string; text: string };
-}) => (
-  <div className="group bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center transition-all duration-500 ease-out hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-xl" style={{ transformStyle: "preserve-3d" }}>
-    <div className="w-14 h-14 rounded-full bg-accent/20 flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:rotate-12">
-      <Icon className="w-7 h-7 text-accent" />
-    </div>
-    <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
-    <p className="text-white/80 text-sm leading-relaxed">
-      {description}
-      {link && (
-        <>
-          {" "}
-          <a href={link.href} target="_blank" rel="noopener noreferrer" className="text-white underline underline-offset-2 font-medium">
-            {link.text}
-          </a>
-        </>
-      )}
-    </p>
-  </div>
-);
-
-const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/calgary/regular-cleaning/", linkText: "Standard cleaning in Cochrane" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: baseboards, doors, light switches, wall outlets and vent covers.", to: "/calgary/deep-cleaning/", linkText: "Deep cleaning in Cochrane" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Inside the oven, fridge and microwave, and inside every cabinet, drawer and closet.", to: "/move-out-cleaning-calgary/", linkText: "Move-out cleaning in Cochrane" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Construction dust cleared from a renovation or a new build in Cochrane, priced by square footage.", to: "/post-construction-cleaning-calgary/", linkText: "Post-construction cleaning in Cochrane" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Booked with a clean rather than on its own: spot cleaning or a full wash, priced by home size.", to: "/wall-washing-wall-cleaning-calgary/", linkText: "Wall washing in Cochrane" },
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: "The standard clean weekly, bi-weekly or every 4 weeks, with the discount starting on the second visit.", to: "/calgary/recurring-cleaning/", linkText: "Recurring cleaning in Cochrane" },
-];
-
-const whyUsItems = [
-  { icon: Shield, title: "Reference-Checked, Then Rated by You", description: "Every cleaner is reference-checked before their first job, then rated by the customer after every visit. Those ratings decide who keeps cleaning for us." },
-  { icon: Star, title: RATING_CLAIM, description: `That is the Calgary listing, the one a Cochrane clean is rated on, with ${CITY_PROOF.calgary.googleReviewCount} reviews on it.`, link: { href: CALGARY_LISTING.reviewsUrl, text: "Open it on Google" } },
-  { icon: Leaf, title: "All Supplies Brought For You", description: "The team brings all supplies and equipment. Leave the water and power on until the clean is done." },
-  { icon: ThumbsUp, title: "Re-Clean Guarantee", description: `Tell us within ${POLICY.guaranteeWindowHours} hours if something was missed and the team comes back to re-clean it, at no charge.` },
-];
+const whyUsItems = locationWhyUs("calgary");
 
 // The coverage chips that stood here (Sunset Ridge, Fireside, Heartland,
 // Riversong, Heritage Hills, Jumping Pound Ridge, West Valley) are gone: none

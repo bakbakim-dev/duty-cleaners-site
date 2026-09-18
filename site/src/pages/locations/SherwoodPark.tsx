@@ -1,3 +1,5 @@
+import { ServiceCard, WhyUsCard } from "@/components/LocationCards";
+import { locationServices, locationWhyUs } from "@/data/location-cards";
 import {
   CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import LocalMarketNote from "@/components/LocalMarketNote"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import { Helmet } from "react-helmet-async"; import { buildLocationSchema } from "@/lib/location-schema"; import { CheckCircle2, Star, Shield, Award, Home, Truck, SprayCan, Bath, UtensilsCrossed, Leaf, CalendarCheck, ThumbsUp, Mail, PaintRoller, Sparkles } from "lucide-react";
 import sherwoodParkHome from "@/assets/gallery/sherwood-park-home.webp";
@@ -57,83 +59,9 @@ const AnimatedSection = ({ children, className = "" }: { children: React.ReactNo
   );
 };
 
-const ServiceCard = ({
-  icon: Icon,
-  title,
-  description,
-  to,
-  linkText,
-}: {
-  icon: React.ElementType;
-  title: string;
-  description: string;
-  /** Absent on the two room-level cards, which have no page of their own. */
-  to?: string;
-  linkText?: string;
-}) => (
-  <div className="group bg-white rounded-xl border border-border p-6 transition-all duration-500 ease-out hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-xl" style={{ transformStyle: "preserve-3d" }}>
-    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 transition-transform duration-300 group-hover:rotate-12">
-      <Icon className="w-6 h-6 text-primary" />
-    </div>
-    <h3 className="text-lg font-bold text-foreground mb-2">{title}</h3>
-    <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
-    {to && linkText && (
-      <Link
-        to={to}
-        className="mt-4 inline-flex min-h-[44px] items-center font-semibold text-primary transition-colors hover:text-accent"
-      >
-        {linkText}
-      </Link>
-    )}
-  </div>
-);
+const services = locationServices("Sherwood Park", "edmonton");
 
-const WhyUsCard = ({
-  icon: Icon,
-  title,
-  description,
-  link,
-}: {
-  icon: React.ElementType;
-  title: string;
-  description: string;
-  /** Present on the rating card, which cites the listing the count comes from. */
-  link?: { href: string; text: string };
-}) => (
-  <div className="group bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-6 text-center transition-all duration-500 ease-out hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-xl" style={{ transformStyle: "preserve-3d" }}>
-    <div className="w-14 h-14 rounded-full bg-accent/20 flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:rotate-12">
-      <Icon className="w-7 h-7 text-accent" />
-    </div>
-    <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
-    <p className="text-white/80 text-sm leading-relaxed">
-      {description}
-      {link && (
-        <>
-          {" "}
-          <a href={link.href} target="_blank" rel="noopener noreferrer" className="text-white underline underline-offset-2 font-medium">
-            {link.text}
-          </a>
-        </>
-      )}
-    </p>
-  </div>
-);
-
-const services = [
-  { icon: Home, title: "Standard Cleaning", description: "A one-time clean of every room, priced flat by home size.", to: "/edmonton/regular-cleaning/", linkText: "Standard cleaning in Sherwood Park" },
-  { icon: Sparkles, title: "Deep Cleaning", description: "The standard checklist plus the deep-clean package: baseboards, doors, light switches, wall outlets and vent covers.", to: "/edmonton/deep-cleaning/", linkText: "Deep cleaning in Sherwood Park" },
-  { icon: Truck, title: "Move In/Out Cleaning", description: "Priced flat by home size, for moving out of a Sherwood Park home or into one.", to: "/move-out-cleaning-edmonton/", linkText: "Move-out cleaning in Sherwood Park" },
-  { icon: SprayCan, title: "Post-Construction Cleanup", description: "Priced by square footage, for the fine dust left after renovation work.", to: "/post-construction-cleaning/", linkText: "Post-construction cleaning in Sherwood Park" },
-  { icon: PaintRoller, title: "Wall Washing", description: "Spot cleaning or a full wash of painted walls, booked together with a clean and priced by home size.", to: "/wall-washing-wall-cleaning/", linkText: "Wall washing in Sherwood Park" },
-  { icon: CalendarCheck, title: "Recurring Cleaning", description: "The same standard clean on a weekly, bi-weekly or every-4-weeks visit, at 20%, 15% or 10% off from the second clean.", to: "/edmonton/recurring-cleaning/", linkText: "Recurring cleaning in Sherwood Park" },
-];
-
-const whyUsItems = [
-  { icon: Shield, title: "Reference-Checked, Then Rated by You", description: "Every cleaner is reference-checked before their first job, then rated by the customer after every visit. Those ratings decide who keeps cleaning for us." },
-  { icon: Star, title: RATING_CLAIM, description: `That is the Edmonton listing, the one a Sherwood Park clean is rated on, and it holds ${CITY_PROOF.edmonton.googleReviewCount} reviews.`, link: { href: EDMONTON_LISTING.reviewsUrl, text: "Open the Google listing" } },
-  { icon: Leaf, title: "All Supplies Brought For You", description: "The team brings all supplies and equipment. Leave the water and power on until the clean is done." },
-  { icon: ThumbsUp, title: "Re-Clean Guarantee", description: "Tell us within 24 hours if something was missed and the team comes back to re-clean it, at no charge." },
-];
+const whyUsItems = locationWhyUs("edmonton");
 
 export default function SherwoodPark() {
   const faqs: { question: string; answer: string; link?: { to: string; text: string } }[] = [

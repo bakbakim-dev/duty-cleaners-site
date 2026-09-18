@@ -210,7 +210,13 @@ describe("the copy does not read like a template filled in by a machine", () => 
     "spotless home",
   ];
 
-  const locationFiles = () => allTsx(join(SRC, "pages", "locations"), "pages/locations/");
+  // The cards every location page shows moved out of the 150 page files on
+  // 2026-09-18, so the files that hold them are location copy too.
+  const locationFiles = () => [
+    ...allTsx(join(SRC, "pages", "locations"), "pages/locations/"),
+    "data/location-cards.tsx",
+    "components/LocationCards.tsx",
+  ];
 
   it("no location page carries brochure vocabulary or a retired promise", () => {
     const files = locationFiles();
