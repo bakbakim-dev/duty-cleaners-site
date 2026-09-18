@@ -338,8 +338,7 @@ export default function Calgary2() {
                 </p>
                 <p>
                   The first visit uses the one-time rate for a{" "}
-                  <Link to="/calgary/regular-cleaning/" className="font-semibold text-primary hover:underline">single standard clean in Calgary</Link>,
-                  with recurring discounts starting at visit two.
+                  <Link to="/calgary/regular-cleaning/" className="font-semibold text-primary hover:underline">single standard clean in Calgary</Link>.
                 </p>
                 <p>
                   You need not be home: provide approved entry instructions. Laundry and dishes are excluded.
@@ -432,7 +431,7 @@ export default function Calgary2() {
           <div className="container mx-auto px-4">
             {/* Leads with the photo strip at full width. It was one more narrow
                 left rail with a heading, directly under the FAQ's. */}
-            <h2 className="display-serif text-3xl md:text-4xl font-bold">Calgary Service Areas</h2>
+            <h2 className="display-serif text-3xl md:text-4xl font-bold">Calgary service areas</h2>
             {/* Alt text describes what each picture shows. The old strings
                 called a kitchen a living room and an empty bedroom an
                 entryway, and named Calgary homes the pictures are not. */}
@@ -442,12 +441,12 @@ export default function Calgary2() {
                 {
                   picture: galleryHappyPlaceCard,
                   alt: "Kitchen island and a wooden dining table under pendant lights",
-                  caption: "Kitchen and dining table",
+                  caption: "Counters and cabinet fronts are on every clean",
                 },
                 {
                   picture: galleryCalgaryMoveOut,
                   alt: "Empty carpeted room with sunlight through the window",
-                  caption: "An empty carpeted room",
+                  caption: "A move-out clean is done in the empty home",
                 },
                 {
                   picture: galleryCalgaryWindow,

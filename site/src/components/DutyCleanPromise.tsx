@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { BadgeCheck, HeartHandshake, Receipt, RotateCcw, type LucideIcon } from "lucide-react";
 import { POLICY } from "@/data/policy";
+import { COMPANY } from "@/data/proof";
 import Eyebrow from "@/components/Eyebrow";
 
 interface Pillar {
@@ -15,16 +16,22 @@ interface Pillar {
  * Edmonton one. Nothing differs between the cities except the wording; the
  * figures come from policy.ts either way. The About page uses the default.
  */
+/** "under 5%" at the start of a sentence. */
+const ACCEPTANCE = COMPANY.applicantAcceptanceRate.charAt(0).toUpperCase() + COMPANY.applicantAcceptanceRate.slice(1);
+
 const PILLARS: Record<"Edmonton" | "Calgary", Pillar[]> = {
   Edmonton: [
     {
       icon: BadgeCheck,
-      title: "Earned Trust, Every Visit",
-      desc: "Every cleaner is reference-checked before their first job, then rated by the customer after every clean. Those ratings decide who keeps cleaning for us.",
+      // The trust strip at the top of the hub already says reference-checked
+      // and customer-rated in almost these words; this card adds the one
+      // vetting fact the page did not state (owner's figure, proof.ts).
+      title: "Who cleans your home",
+      desc: `${ACCEPTANCE} of applicants are accepted, and the customer rates every clean.`,
     },
     {
       icon: HeartHandshake,
-      title: "Judgment-Free, Always",
+      title: "No need to tidy first",
       // "You do not need to tidy before we arrive" contradicted the service
       // pages, which ask for clutter to be picked up. One sentence that is
       // true of both, worded identically on every page that makes the claim.
@@ -32,34 +39,34 @@ const PILLARS: Record<"Edmonton" | "Calgary", Pillar[]> = {
     },
     {
       icon: Receipt,
-      title: "Priced on What You Tell Us",
+      title: "Priced from what you tell us",
       desc: "The price is flat by home size, worked out from what you enter on the booking form. Some things only show themselves once we start: heavy build-up, far more glass or cabinetry than the form described. When that happens, the team explains what it found and the options before carrying on.",
     },
     {
       icon: RotateCcw,
-      title: `${POLICY.guaranteeWindowHours}-Hour Re-Clean Guarantee`,
+      title: `${POLICY.guaranteeWindowHours}-hour re-clean guarantee`,
       desc: `Tell us within ${POLICY.guaranteeWindowHours} hours if anything was missed and the team comes back to re-clean it at no charge. Photos help but are not required, and the commitment is the return visit rather than a refund.`,
     },
   ],
   Calgary: [
     {
       icon: BadgeCheck,
-      title: "Earned Trust, Every Visit",
-      desc: "References are checked before a cleaner's first job with us. After that, the customer's rating at the end of each visit decides whether they keep getting work.",
+      title: "Who we send",
+      desc: `Of the people who apply to clean for us, ${COMPANY.applicantAcceptanceRate} are accepted. Each visit is then rated by the customer.`,
     },
     {
       icon: HeartHandshake,
-      title: "Judgment-Free, Always",
+      title: "No clean-up before we arrive",
       desc: "You do not need to clean before the team comes: clear counters and floors get cleaned, cluttered ones get worked around, and decluttering or organising is a separate hourly add-on. Say on the booking form what state the place is in, and the team comes prepared for it. The team does not take on bodily fluids, animal waste, mould remediation, pests or rodents.",
     },
     {
       icon: Receipt,
-      title: "Priced on What You Tell Us",
+      title: "Priced from your description",
       desc: "The quote comes from the home size you enter, and a clean that runs long costs the same. Some things only show up once the team is through the door: heavy build-up, more cabinets than expected, a glass railing. When the job is substantially bigger than described, the team tells you what it found and the options before carrying on.",
     },
     {
       icon: RotateCcw,
-      title: "A Return Visit, at No Charge",
+      title: "A return visit, at no charge",
       desc: `Anything missed, reported within ${POLICY.guaranteeWindowHours} hours, is re-cleaned on a return visit at no charge. It is not a money-back guarantee, though you can always call the Calgary office to talk it through.`,
     },
   ],

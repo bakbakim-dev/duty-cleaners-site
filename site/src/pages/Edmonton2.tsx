@@ -338,7 +338,6 @@ export default function Edmonton2() {
                   <Link to="/edmonton/recurring-cleaning/" className="font-semibold text-primary hover:underline">recurring cleaning in Edmonton</Link>.
                 </p>
                 <p>
-                  The first visit uses the one-time rate; recurring discounts begin at visit two.
                   Every four weeks means 13 visits a year, not 12 calendar-month visits.
                 </p>
                 <p>
@@ -449,7 +448,7 @@ export default function Edmonton2() {
           <div className="container mx-auto px-4">
             {/* Leads with the photo strip at full width. It was one more narrow
                 left rail with a heading, directly under the FAQ's. */}
-            <h2 className="display-serif text-3xl md:text-4xl font-bold">Edmonton Service Areas</h2>
+            <h2 className="display-serif text-3xl md:text-4xl font-bold">Edmonton service areas</h2>
             {/* Alt text describes what each picture shows. The old strings
                 called a made bed an entryway floor and named Edmonton homes
                 the pictures are not. */}
@@ -464,7 +463,7 @@ export default function Edmonton2() {
                 {
                   picture: galleryMoveOutClean,
                   alt: "Made bed with white bedding between two bedside tables and lamps",
-                  caption: "The bedroom",
+                  caption: "Beds are made with your linens",
                 },
                 {
                   picture: galleryWindowDetail,
@@ -510,7 +509,6 @@ export default function Edmonton2() {
               city="Edmonton"
               neighbourhoods={edmontonNeighborhoods}
               surrounding={edmontonSurrounding}
-              intro="The Edmonton branch covers the city and the communities around it."
             />
 
             <div className="mt-10 max-w-5xl mx-auto">

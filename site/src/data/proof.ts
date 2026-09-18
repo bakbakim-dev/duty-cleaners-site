@@ -267,7 +267,7 @@ export const BOOKINGS_CLAIM = `${BOOKINGS} Alberta bookings since ${COMPANY.foun
 export const RISK_REVERSAL: { id: string; label: string; enabled: boolean }[] = [
   { id: "no-charge", label: confirm("You won't be charged today", { by: "owner", on: "2026-09-10" }), enabled: true },
   { id: "reschedule", label: "Free to reschedule or cancel with 24 hours' notice", enabled: true },
-  { id: "no-contract", label: confirm("No contracts — book one clean or many", { by: "owner", on: "2026-09-10" }), enabled: true },
+  { id: "no-contract", label: confirm("No contracts. Book one clean or many.", { by: "owner", on: "2026-09-10", note: "punctuation only changed 2026-09-18" }), enabled: true },
 ];
 
 export const activeRiskReversal = () => RISK_REVERSAL.filter((line) => line.enabled);

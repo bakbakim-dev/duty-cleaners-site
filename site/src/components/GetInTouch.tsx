@@ -52,7 +52,7 @@ const GetInTouch = ({ city }: GetInTouchProps) => {
         <div className="grid lg:grid-cols-5 gap-6 max-w-5xl mx-auto items-stretch">
           {/* Contact information */}
           <div className="lg:col-span-3 rounded-lg bg-brand-navy text-white p-6 md:p-8 shadow-lg">
-            <h3 className="text-xl font-bold">Contact Information</h3>
+            <h3 className="text-xl font-bold">Contact information</h3>
             <div className="mt-6 space-y-5">
               <a
                 href={data.phoneHref}
@@ -130,7 +130,7 @@ const GetInTouch = ({ city }: GetInTouchProps) => {
 
           {/* Quick links */}
           <div className="lg:col-span-2 rounded-lg border border-border bg-secondary/30 p-6 md:p-8">
-            <h3 className="text-xl font-bold text-brand-navy">Quick Links</h3>
+            <h3 className="text-xl font-bold text-brand-navy">Quick links</h3>
             <p className="mt-1 text-sm text-muted-foreground">Prices, reviews and answers to read before you book.</p>
             <ul className="mt-6 space-y-2">
               {quickLinks.map(({ to, icon: Icon, label, hint }) => (

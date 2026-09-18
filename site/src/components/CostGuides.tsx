@@ -17,7 +17,7 @@ const GUIDES = {
       },
       {
         title: "How often should a home actually be cleaned?",
-        blurb: "Weekly, bi-weekly or every four weeks: an honest schedule for how your home is really lived in.",
+        blurb: "Weekly, bi-weekly or every four weeks, and how to choose for the way your home is used.",
         to: "/how-often-should-a-cleaning-service-clean-my-house/",
       },
       {

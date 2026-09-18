@@ -59,7 +59,7 @@ const rooms = [
   },
   {
     icon: Sofa,
-    title: "Living Areas",
+    title: "Living areas",
     items: [
       "Dusting furniture & shelves",
       "Vacuum carpets & rugs",

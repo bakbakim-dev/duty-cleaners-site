@@ -250,7 +250,7 @@ describe("the copy does not read like a template filled in by a machine", () => 
     // hubs' standard checklist had listed "Light switches & door handles".
     const src = stripComments(readFileSync(join(SRC, "components", "CityIncludedChapter.tsx"), "utf-8"));
     const rooms = /const rooms[\s\S]*?\n\];/.exec(src)?.[0] ?? "";
-    expect(rooms, "CityIncludedChapter's checklist moved; point this guard at it").toMatch(/Living Areas/);
+    expect(rooms, "CityIncludedChapter's checklist moved; point this guard at it").toMatch(/Living areas/i);
     expect(rooms.toLowerCase(), "the standard checklist lists light switches").not.toContain("light switch");
   });
 

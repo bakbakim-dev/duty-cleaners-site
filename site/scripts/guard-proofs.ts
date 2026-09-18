@@ -285,8 +285,8 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/service-radius.test.ts",
     target: "dist/index.html",
-    find: "The Edmonton branch covers the city and the communities around it.",
-    replace: "The Edmonton branch covers the city and the communities within a 30km radius.",
+    find: "Inside Edmonton city limits there is no trip fee, in any of the 80 neighbourhoods the Edmonton branch covers.",
+    replace: "Inside Edmonton city limits there is no trip fee, in any of the 80 neighbourhoods the Edmonton branch covers within a 30km radius.",
     failing: "no built page states a radius its own coordinates contradict",
     why: "States a 30 km radius that location-geo.ts contradicts (Stony Plain is 33.8 km out).",
     dist: true,

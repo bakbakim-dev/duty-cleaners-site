@@ -71,7 +71,7 @@ const COPY = {
       "Most homes are priced flat by size. You see your number before you book, plus 5% GST, and it does not go up because a clean took longer. If a flat rate does not suit your job or your budget, we can quote it hourly instead.",
     note: "Six or seven bedrooms, home type, pets, a travel fee outside city limits and add-ons change the final number, and your quote shows each one before you book.",
     recurring: `Booking regularly? From your second visit you save ${RECURRING_SAVINGS}. The first clean is charged at the standard one-time rate.`,
-    after: "Answer a few quick questions and see your exact price. No phone call needed.",
+    after: "Answer a few quick questions and see your exact price without calling.",
   },
   "/calgary": {
     heading: "What a clean costs in Calgary",

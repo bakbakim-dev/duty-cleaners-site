@@ -72,38 +72,38 @@ const TRUST_ITEMS = {
   Edmonton: [
     {
       icon: ShieldCheck,
-      label: "You Pay After the Clean",
+      label: "You pay after the clean",
       detail:
         "Nothing is charged when you book. A temporary hold appears the day before, and your card is only charged once the clean is done.",
     },
     {
       icon: UserCheck,
-      label: "Reference-Checked & Customer-Rated",
+      label: "Reference-checked and customer-rated",
       detail:
         "Every cleaner is reference-checked before their first job, and rated by the customer after every clean. Those ratings decide who comes back.",
     },
     {
       icon: HeartHandshake,
-      label: "Re-Clean at No Charge",
+      label: "Re-clean at no charge",
       detail: `If something was missed, tell us within ${POLICY.guaranteeWindowHours} hours and we come back and re-clean it at no charge.`,
     },
   ],
   Calgary: [
     {
       icon: ShieldCheck,
-      label: "You Pay After the Clean",
+      label: "You pay after the clean",
       detail:
         "No charge at booking. The day before, a hold goes on your card to check it is valid; the charge itself goes through when the clean is finished.",
     },
     {
       icon: UserCheck,
-      label: "Reference-Checked & Customer-Rated",
+      label: "Reference-checked and customer-rated",
       detail:
         "References are checked before a cleaner takes a first job with us. After each visit the customer rates the clean, and the ratings decide who we keep sending.",
     },
     {
       icon: HeartHandshake,
-      label: `${POLICY.guaranteeWindowHours}-Hour Re-Clean Guarantee`,
+      label: `${POLICY.guaranteeWindowHours}-hour re-clean guarantee`,
       detail: `Tell us within ${POLICY.guaranteeWindowHours} hours about anything missed and a team comes back to re-clean it. There is no charge for the return visit.`,
     },
   ],

@@ -19,12 +19,12 @@ const COPY = {
   Edmonton: {
     lead: "Some homes have gotten away from people: after an illness, a new baby, a hard season, or simply more than you want to handle alone.",
     body: "Nothing needs explaining. The cleaners do the work, keep their comments to themselves, and leave. A home that has gone months without a proper clean is the kind of job the Edmonton team takes on. Describe the home on the booking form as it is today; clear information helps, and no apology is needed.",
-    safety: "Hoarding situations and large debris removal are outside the cleaning scope, and so are bodily fluids, pests and rodents. If you are not sure which side of that line your home falls on, call the Edmonton office before you book.",
+    safety: "Hoarding situations and large debris removal are outside the cleaning scope. If you are not sure which side of that line your home falls on, call the Edmonton office before you book.",
   },
   Calgary: {
     lead: "A home gets away from people after a surgery, a newborn, a bad winter, or a job that eats the evenings. Any of those is a normal reason to book.",
     body: "Leave it as it is. Nobody on the team passes remarks or asks how it got this way; they clean and they go. A kitchen that has not been properly done in a year is ordinary work for us. On the booking form, say what you see and skip the apology.",
-    safety: "The Calgary team does not take on hoarding situations, large debris removal, bodily fluids, or pest and rodent infestations. If any of those applies to your home, call the Calgary office first and talk it through.",
+    safety: "The Calgary team does not take on hoarding situations or large debris removal. If either applies to your home, call the Calgary office first and talk it through.",
   },
 } as const;
 

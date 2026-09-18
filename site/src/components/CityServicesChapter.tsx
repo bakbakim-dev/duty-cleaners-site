@@ -41,7 +41,7 @@ const WALL_FROM = formatPrice(addOnFromPrice("standard", "spot-cleaning-inside-w
  */
 const COPY = {
   Edmonton: {
-    heading: <>Pick the clean that fits the job in <Accent>Edmonton</Accent></>,
+    heading: <>Cleaning services in <Accent>Edmonton</Accent></>,
     standard: "Standard cleaning is a maintenance clean of the kitchen, bathrooms, bedrooms and floors, with the dusting and surfaces done. It suits a home that needs regular upkeep.",
     deep: "Deep cleaning is the standard checklist plus the deep-clean package, which adds the baseboards, doors, light switches, wall outlets and vent covers. In Edmonton it suits the weeks after the spring melt, which brings a whole winter of grit indoors.",
     move: "A move-in or move-out clean is done in the empty home. It is booked for tenant turnover, for listing photos and ahead of the move-out inspection a landlord completes with the tenant.",
