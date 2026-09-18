@@ -32,8 +32,8 @@ const columnPrices = (rows: { beds: string; price: string }[]) => [
 
 const ROWS = [
   {
+    // No "Most Popular" badge: nothing on the site supports the claim (owner, 2026-09-18).
     service: "Standard Cleaning",
-    popular: true,
     prices: columnPrices(standardTierRows()),
   },
   {
@@ -116,16 +116,11 @@ const CityPricingTable = () => {
               {ROWS.map((row) => (
                 <tr
                   key={row.service}
-                  className={`border-b border-border last:border-0 ${row.popular ? "bg-secondary/40" : ""}`}
+                  className="border-b border-border last:border-0"
                 >
                   <td className="py-5 px-6 font-semibold text-foreground">
                     <div className="flex items-center gap-2">
                       {row.service}
-                      {row.popular && (
-                        <span className="inline-block bg-brand-navy text-brand-navy-foreground text-xs font-bold px-2 py-1 rounded-full w-fit">
-                          Most Popular
-                        </span>
-                      )}
                     </div>
                   </td>
                   {row.prices.map((p, i) => (
@@ -145,15 +140,10 @@ const CityPricingTable = () => {
           {ROWS.map((row) => (
             <div
               key={row.service}
-              className={`rounded-lg border border-border p-5 ${row.popular ? "bg-secondary/40" : "bg-card"}`}
+              className="rounded-lg border border-border bg-card p-5"
             >
               <div className="flex items-center gap-2 mb-3">
                 <h3 className="font-bold text-lg text-foreground">{row.service}</h3>
-                {row.popular && (
-                  <span className="inline-block bg-brand-navy text-brand-navy-foreground text-xs font-bold px-2 py-1 rounded-full">
-                    Most Popular
-                  </span>
-                )}
               </div>
               <dl className="space-y-2">
                 {COLUMNS.map((c, i) => (
