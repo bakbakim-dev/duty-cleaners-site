@@ -56,3 +56,33 @@ reverted the same day: PageSpeed then counted hydration as blocking time (see th
 Harness note: the earlier "hung" Lighthouse runs were a deadlock, a blocking `spawnSync` in the
 same process as the static server Lighthouse was loading from. The bench now spawns
 asynchronously.
+
+## Bundle diet, same day: measured, nothing shipped
+
+Three candidates from the entry-chunk table above, each measured before touching the tree.
+
+- **Router swap.** Attributing the entry's *minified* bytes through its source map (not whole
+  source files) put the whole react-router stack at 21 KB. A swap across 236 files would save
+  about 5 KB gzipped. Dropped.
+- **tailwind-merge.** An instrumented `cn()` recorded, across all 210 prerendered pages, 99
+  distinct class lists where the merge removed a genuinely conflicting utility (the Button base
+  `bg-primary` under a caller's `bg-accent`, `text-sm` under `text-base`, and so on). Without it
+  those would be decided by stylesheet order. Kept.
+- **Fewer chunks.** A `manualChunks` rule folding every lucide icon into one chunk and every
+  image-URL module into another took the homepage from 27 script requests to 9 and, over the
+  HTTP/1.1 harness, from 88 / FCP 2853 / LCP 3166 to 93 / 2406 / 2793; a higher
+  `experimentalMinChunkSize` reached 94 / 2257 / 2718. Over **HTTP/2** (self-signed TLS, the
+  protocol SiteGround serves) the three builds are indistinguishable: 96 / 1961 / 2487 for the
+  committed build against 96 / 1955 / 2481 for both variants. The whole gain was the per-request
+  round trip of HTTP/1.1, which a multiplexed connection does not pay. The fold also cost a
+  blog post 150 ms (four files became six, one of them the 53 KB icon chunk). Not shipped.
+
+What separates the HTTP/2 harness (96) from PageSpeed against the host (87 to 90) is the host:
+about 100 to 150 ms of server time per request on top of the TLS round trip (curl TTFB 200 to
+270 ms from here, TLS done at about 115 ms), which the simulator adds to every one of the
+requests before paint. That is SiteGround's Apache path (NGINX Direct Delivery is off by the
+owner's decision so the generated cache rules apply), not the bundle.
+
+Harness rule from this: measure request-count changes over HTTP/2 (`lh-bench-h2.mjs` in the
+session scratchpad: `http2.createSecureServer` + `--ignore-certificate-errors`), never over
+the plain HTTP/1.1 server.
