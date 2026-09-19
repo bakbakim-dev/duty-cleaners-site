@@ -176,8 +176,8 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/htaccess-parity.test.ts",
     target: "public/.htaccess",
-    find: "  RewriteCond %{HTTPS} !=on\n  RewriteCond %{HTTP:X-Forwarded-Proto} !=https\n",
-    replace: "  RewriteCond %{HTTPS} !=on [OR]\n  RewriteCond %{HTTP:X-Forwarded-Proto} =http\n",
+    find: "[NC]\n  RewriteCond %{HTTPS} !=on\n  RewriteCond %{HTTP:X-Forwarded-Proto} !=https\n",
+    replace: "[NC]\n  RewriteCond %{HTTPS} !=on [OR]\n  RewriteCond %{HTTP:X-Forwarded-Proto} =http\n",
     failing: "does not redirect a request that is already HTTPS behind the proxy",
     why: "Restores the OR'd HTTPS conditions that loop behind a TLS-terminating proxy.",
   },
@@ -1573,6 +1573,14 @@ export const GUARD_PROOFS: GuardProof[] = [
     replace: 'email: "email",',
     failing: "forwards the page's query under the form's field names, with the referrer",
     why: "Renames a field the booking form reads, which silently drops the visitor's email from the prefill.",
+  },
+  {
+    guard: "src/data/htaccess-parity.test.ts",
+    target: "public/.htaccess",
+    find: "RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]",
+    replace: "# same-host HTTPS upgrade removed",
+    failing: "upgrades http to https on any other host, on that same host",
+    why: "Drops the rule that stops http:// on a non-production host serving pages in plain text.",
   },
   // ---- and this registry itself ------------------------------------------
   {

@@ -26,6 +26,12 @@ DirectoryIndex index.html
   RewriteRule ^(.*)$ https://dutycleaners.ca/$1 [R=301,L]
   RewriteCond %{HTTP_HOST} ^www\.dutycleaners\.ca$ [NC]
   RewriteRule ^(.*)$ https://dutycleaners.ca/$1 [R=301,L]
+  # Any other host (the staging host today) upgrades to HTTPS on the same host,
+  # so an http:// link never serves a page in plain text there either
+  # (AuditSpur, 2026-09-19). Same two AND'd conditions as above.
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 
   # Routes that must resolve but are not indexable. They serve the SPA shell,
   # which carries its own noindex, rather than index.html — four extra URLs

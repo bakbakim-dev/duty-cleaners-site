@@ -106,6 +106,17 @@ describe("the Apache and Netlify rule sets describe the same site", () => {
     ]);
   });
 
+  it("upgrades http to https on any other host, on that same host", () => {
+    if (!present) return;
+    const lines = readFileSync(join(PUBLIC, ".htaccess"), "utf-8").split(/\r?\n/).map((l) => l.trim());
+    const at = lines.indexOf("RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]");
+    expect(at, "http:// on the staging host serves pages in plain text again").toBeGreaterThan(-1);
+    expect(lines.slice(at - 2, at), "the same-host upgrade must carry both AND'd conditions").toEqual([
+      "RewriteCond %{HTTPS} !=on",
+      "RewriteCond %{HTTP:X-Forwarded-Proto} !=https",
+    ]);
+  });
+
   it("carries the security headers and scopes HSTS to the production host, without includeSubDomains or preload", () => {
     if (!present) return;
     const text = readFileSync(join(PUBLIC, ".htaccess"), "utf-8");
