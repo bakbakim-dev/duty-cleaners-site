@@ -34,7 +34,7 @@ DirectoryIndex index.html
   RewriteRule ^locations/all/?$ /spa-shell.html [L]
   RewriteRule ^gift-cards/?$ /spa-shell.html [L]
 
-  # 176 permanent redirects.
+  # 178 permanent redirects.
   RewriteRule ^8038/how-much-does-a-house-cleaning-cost/?$ /how-much-does-a-house-cleaning-cost/ [R=301,L]
   RewriteRule ^8081/the-top-5-must-have-cleaning-products-for-a-spotless-home/?$ /the-top-5-must-have-cleaning-products-for-a-spotless-home/ [R=301,L]
   RewriteRule ^8060/how-often-should-a-cleaning-service-clean-my-house/?$ /how-often-should-a-cleaning-service-clean-my-house/ [R=301,L]
@@ -168,6 +168,8 @@ DirectoryIndex index.html
   RewriteRule ^choose-professional-maid-service/?$ /blog/choosing-cleaning-company/ [R=301,L]
   RewriteRule ^choose-best-cleaning-professionals-edmonton-offers/?$ /blog/choosing-cleaning-company/ [R=301,L]
   RewriteRule ^office-commercial-cleaning-2/?$ /commercial-cleaning/ [R=301,L]
+  RewriteRule ^office-commercial-cleaning/?$ /commercial-cleaning/ [R=301,L]
+  RewriteRule ^author/lokkom/page/2/?$ /blog/ [R=301,L]
   RewriteRule ^post-construction-2/?$ /post-construction-cleaning/ [R=301,L]
   RewriteRule ^regular-house-cleaning-2/?$ /edmonton/regular-cleaning/ [R=301,L]
   RewriteRule ^homepage/booking/?$ /pricing/ [R=301,L]

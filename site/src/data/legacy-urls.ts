@@ -255,6 +255,11 @@ export const LEGACY_URLS: LegacyUrl[] = [
   { legacy: "/choose-professional-maid-service", target: "/blog/choosing-cleaning-company", mode: "redirect", impressions: 0 },
   { legacy: "/choose-best-cleaning-professionals-edmonton-offers", target: "/blog/choosing-cleaning-company", mode: "redirect", impressions: 0 },
   { legacy: "/office-commercial-cleaning-2", target: "/commercial-cleaning", mode: "redirect", impressions: 0 },
+  // Found by probing every URL the live WordPress site links or lists against the
+  // rebuild (AuditSpur scan of dutycleaners.ca, 2026-09-19): the old move-out page
+  // links this one (a 404 there too), and the author archive paginates.
+  { legacy: "/office-commercial-cleaning", target: "/commercial-cleaning", mode: "redirect", impressions: 0 },
+  { legacy: "/author/lokkom/page/2", target: "/blog", mode: "redirect", impressions: 0 },
   { legacy: "/post-construction-2", target: "/post-construction-cleaning", mode: "redirect", impressions: 0 },
   { legacy: "/regular-house-cleaning-2", target: "/edmonton/regular-cleaning", mode: "redirect", impressions: 0 },
   // Sibling of /booking-page, which already lands on /pricing.
