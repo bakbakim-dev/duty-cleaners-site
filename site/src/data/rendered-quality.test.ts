@@ -674,6 +674,10 @@ describe("price CTAs reach the price", () => {
       // corrected; each page links the table its headline figure comes from.
       ["/locations/canora-edmonton/", "https://data.edmonton.ca/Census/2016-Census-Dwelling-Unit-by-Ownership-Neighbourho/d2xp-ctch"],
       ["/locations/queen-alexandra-edmonton/", "https://data.edmonton.ca/Census/2016-Census-Dwelling-Unit-by-Ownership-Neighbourho/d2xp-ctch"],
+      // 2026-09-18: Eastwood's 2001/2005 figures (69% rented, 44% walk-ups) were
+      // true to their City documents but 20 years old; 2016 gives 1,097 of 1,658
+      // answering households renting, 877 of 1,897 units walk-ups, 651 detached.
+      ["/locations/eastwood-edmonton/", "https://data.edmonton.ca/Census/2016-Census-Dwelling-Unit-by-Ownership-Neighbourho/d2xp-ctch"],
       ["/locations/belmont-edmonton/", "https://data.edmonton.ca/Census/2016-Census-Dwelling-Unit-by-Structure-Type-Neighb/xxgm-nnaq"],
       ["/locations/bannerman/", "https://data.edmonton.ca/Census/2016-Census-Dwelling-Unit-by-Structure-Type-Neighb/xxgm-nnaq"],
       ["/locations/highland-park-calgary/", "https://www.calgary.ca/content/dam/www/programs-services/property-housing-and-neighbourhoods/neighbourhood-and-community-relationships/profiles/highland-park.pdf"],

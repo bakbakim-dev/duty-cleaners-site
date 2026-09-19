@@ -78,7 +78,7 @@ export default function Eastwood() {
     <>
       <Helmet>
         <title>Eastwood, Edmonton House Cleaning | Duty Cleaners</title>
-        <meta name="description" content="In Eastwood, Edmonton, where early-2000s census counts found most homes rented, move-out cleaning is priced flat by home size before GST." />
+        <meta name="description" content="In Eastwood, Edmonton, where the City's 2016 census found most households renting, move-out cleaning is priced flat by home size before GST." />
         <script type="application/ld+json">
           {JSON.stringify(buildLocationSchema({
   name: "Duty Cleaners – Eastwood, Edmonton",
@@ -91,12 +91,12 @@ export default function Eastwood() {
         </script>
         <link rel="canonical" href="https://dutycleaners.ca/locations/eastwood-edmonton/" />
         <meta property="og:title" content="Eastwood, Edmonton House Cleaning | Duty Cleaners" />
-        <meta property="og:description" content="In Eastwood, Edmonton, where early-2000s census counts found most homes rented, move-out cleaning is priced flat by home size before GST." />
+        <meta property="og:description" content="In Eastwood, Edmonton, where the City's 2016 census found most households renting, move-out cleaning is priced flat by home size before GST." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dutycleaners.ca/locations/eastwood-edmonton/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Eastwood, Edmonton House Cleaning | Duty Cleaners" />
-        <meta name="twitter:description" content="In Eastwood, Edmonton, where early-2000s census counts found most homes rented, move-out cleaning is priced flat by home size before GST." />
+        <meta name="twitter:description" content="In Eastwood, Edmonton, where the City's 2016 census found most households renting, move-out cleaning is priced flat by home size before GST." />
       </Helmet>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 
@@ -117,7 +117,7 @@ export default function Eastwood() {
                   Professional House Cleaning in Eastwood
                 </h1>
                 <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                  Early-2000s census counts found most Eastwood homes rented and more walk-up apartments than single-family houses. Move-out cleaning in Eastwood is priced flat by home size before 5% GST.
+                  About two-thirds of the Eastwood households that answered the <a href="https://data.edmonton.ca/Census/2016-Census-Dwelling-Unit-by-Ownership-Neighbourho/d2xp-ctch" target="_blank" rel="noopener noreferrer" className="text-accent-on-dark underline underline-offset-2">City of Edmonton's 2016 municipal census</a> were renting, and walk-up apartments outnumber single-family houses. Move-out cleaning in Eastwood is priced flat by home size before 5% GST.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>
@@ -262,7 +262,7 @@ export default function Eastwood() {
         eyebrow="On the ground"
         heading="Rented walk-ups near the rail line"
         paragraphs={[
-          "Two housing facts shape the work here, both from census counts in the early 2000s: about 69% of homes were rented, and 44% were apartments in walk-up buildings under five storeys — more than the 42% that were single-family. Rental stock in that proportion means move-out cleans rather than long-standing weekly routines. Ovens and fridges get cleaned inside, and closet shelves and window tracks get done, because a walkthrough will check them.",
+          "Two housing facts shape the work here, both from the City's 2016 municipal census: about two-thirds of the households that answered were renting, and 46% of homes were apartments in walk-up buildings under five storeys, against 34% that were single-detached houses. Rental stock in that proportion means move-out cleans rather than long-standing weekly routines. Ovens and fridges get cleaned inside, and closet shelves and window tracks get done, because a walkthrough will check them.",
           "Eastwood is split by 122 Avenue, and the two halves have different edges. Only the smaller pocket north of that line runs up to the Yellowhead Trail corridor; the larger southern portion reaches 118 Avenue, with a jagged eastern boundary that follows Fort Road in places and the CN Rail right-of-way in others. Where a home backs onto that corridor, a film builds on the outward-facing glass and in the screens; from inside, the clean takes in the sills and window tracks.",
         ]}
       />
