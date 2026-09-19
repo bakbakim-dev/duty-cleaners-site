@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 import { imagetools } from "vite-imagetools";
+import { compileHints } from "./scripts/compile-hints.mjs";
 
 // Responsive image variants at build time (vite-imagetools 9.0.3, the last
 // release without a Vite peer floor above 5). An import ending in ?card, ?col
@@ -44,6 +45,8 @@ export default defineConfig(({ mode }) => ({
       },
       cache: { dir: "./node_modules/.cache/imagetools", retention: 60 * 60 * 24 * 90 },
     }),
+    // Eager background compilation of the entry chunk (see the file for the measurement).
+    compileHints(),
     mode === "development" && componentTagger(),
   ].filter(Boolean),
   resolve: {

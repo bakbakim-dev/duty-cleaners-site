@@ -1542,6 +1542,14 @@ export const GUARD_PROOFS: GuardProof[] = [
     failing: "the sizes presets describe the layouts they are named for",
     why: "Corrupts the full-bleed preset into a string no browser parses as intended.",
   },
+  {
+    guard: "src/data/compile-hints.test.ts",
+    target: "scripts/compile-hints.mjs",
+    find: "chunk.isEntry && !chunk.code.startsWith(COMPILE_HINT)",
+    replace: "!chunk.code.startsWith(COMPILE_HINT)",
+    failing: "the plugin prepends the hint to the entry chunk and to nothing else",
+    why: "Marks every route chunk for eager compilation too, which costs time and memory for code a page may never run.",
+  },
   // ---- and this registry itself ------------------------------------------
   {
     guard: "src/data/guard-proofs.test.ts",
