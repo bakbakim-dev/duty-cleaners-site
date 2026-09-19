@@ -349,6 +349,18 @@ export const BRANCH_PROFILES: Record<Branch, readonly string[]> = {
 /** Stable @id for the Organization every branch and location node hangs off. */
 export const ORG_ID = "https://dutycleaners.ca/#org";
 
+/**
+ * The trade, for every LocalBusiness node. schema.org has no cleaning-service
+ * subtype, so the nodes stay LocalBusiness and name the trade with
+ * additionalType, the route schema.org documents for this. Wikidata Q6735317
+ * is "maid service: professional service focused on maintaining cleanliness
+ * and sanitation of buildings" (looked up 2026-09-18). It goes on every full
+ * business record, never on the three pointers in index.html: a pointer carries
+ * only @id, @type, name and url, and one extra key makes AuditSpur and Google's
+ * tester read it as an incomplete business on all 210 pages (measured 2026-09-18).
+ */
+export const BUSINESS_TRADE_TYPE = "https://www.wikidata.org/wiki/Q6735317";
+
 /** Stable @id per branch, so 166 location nodes stop being anonymous businesses. */
 export const BRANCH_ID = {
   edmonton: "https://dutycleaners.ca/#edmonton",

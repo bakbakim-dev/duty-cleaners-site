@@ -376,6 +376,7 @@ export default function FAQ() {
         <meta name="description" content={FAQ_DESCRIPTION} />
         <link rel="canonical" href="https://dutycleaners.ca/faqs/" />
         <meta property="og:title" content="House Cleaning FAQs | Duty Cleaners Alberta" />
+        <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="House Cleaning FAQs | Duty Cleaners Alberta" />
         <meta name="twitter:description" content={FAQ_DESCRIPTION} />

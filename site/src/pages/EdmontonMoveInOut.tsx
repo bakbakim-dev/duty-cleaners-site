@@ -1,3 +1,4 @@
+import { BUSINESS_TRADE_TYPE } from "@/data/proof";
 import { CITY_PROOF } from "@/data/proof";
 import { POLICY } from "@/data/policy";
 import CityCrossLink from "@/components/CityCrossLink";
@@ -189,6 +190,7 @@ export default function EdmontonMoveInOut() {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
+    additionalType: BUSINESS_TRADE_TYPE,
     "@id": BRANCH_ID.edmonton,
     name: BRANCH_IDENTITY.edmonton.name,
     telephone: CITY_PROOF.edmonton.phoneE164,

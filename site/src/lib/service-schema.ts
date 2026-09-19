@@ -1,3 +1,4 @@
+import { BUSINESS_TRADE_TYPE } from "@/data/proof";
 import {
   schemaAddressFor,
   BRANCH_PROFILES,
@@ -78,6 +79,7 @@ export function buildServiceSchema(input: {
     areaServed: { "@type": "Place", name: `${cityName}, AB` },
     provider: {
       "@type": "LocalBusiness",
+      additionalType: BUSINESS_TRADE_TYPE,
       "@id": BRANCH_ID[input.city],
       name: BRANCH_IDENTITY[input.city].name,
       url: BRANCH_IDENTITY[input.city].url,

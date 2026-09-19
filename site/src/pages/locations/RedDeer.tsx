@@ -1,3 +1,4 @@
+import { BUSINESS_TRADE_TYPE } from "@/data/proof";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
@@ -125,6 +126,7 @@ const HERO_SRCSET = redDeerHeroPicture.sources.webp;
 const branchJsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
+  additionalType: BUSINESS_TRADE_TYPE,
   "@id": BRANCH_ID.reddeer,
   name: BRANCH_IDENTITY.reddeer.name,
   url: BRANCH_IDENTITY.reddeer.url,

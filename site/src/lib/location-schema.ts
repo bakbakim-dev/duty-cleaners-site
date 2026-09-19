@@ -1,3 +1,4 @@
+import { BUSINESS_TRADE_TYPE } from "@/data/proof";
 import { CITY_PROOF } from "@/data/proof";
 // Shared JSON-LD builder for all location pages. Single source of truth for the
 // shape, the NAP and the hours — individual pages only supply their name, URL,
@@ -142,6 +143,7 @@ export function buildLocationSchema(input: LocationSchemaInput) {
     },
     provider: {
       "@type": "LocalBusiness",
+      additionalType: BUSINESS_TRADE_TYPE,
       // The branch @id, so all 155 pages of a city describe the SAME business
       // rather than one each.
       "@id": BRANCH_ID[input.city],

@@ -1,3 +1,4 @@
+import { BUSINESS_TRADE_TYPE } from "@/data/proof";
 import { CITY_PROOF } from "@/data/proof";
 import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
 import CityCrossLink from "@/components/CityCrossLink";
@@ -78,6 +79,7 @@ const branchSchema = () => {
   return {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
+    additionalType: BUSINESS_TRADE_TYPE,
     "@id": BRANCH_ID.calgary,
     name: BRANCH_IDENTITY.calgary.name,
     telephone: CITY_PROOF.calgary.phoneE164,

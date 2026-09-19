@@ -1,3 +1,4 @@
+import { BUSINESS_TRADE_TYPE } from "@/data/proof";
 import { CITY_PROOF, RATING_CLAIM, COMPANY } from "@/data/proof";
 import { canonicalUrlForPath } from "@/data/legacy-urls";
 import {
@@ -193,6 +194,7 @@ const serviceSchema = {
     "Military housing move-out cleaning in Edmonton, worked from the cleaning items on the CFHA move-out checklist. Quoted by phone.",
   provider: {
     "@type": "LocalBusiness",
+    additionalType: BUSINESS_TRADE_TYPE,
     "@id": BRANCH_ID.edmonton,
     name: BRANCH_IDENTITY.edmonton.name,
     url: BRANCH_IDENTITY.edmonton.url,

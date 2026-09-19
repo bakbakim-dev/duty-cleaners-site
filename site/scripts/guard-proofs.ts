@@ -436,6 +436,23 @@ export const GUARD_PROOFS: GuardProof[] = [
     failing: "the FAQ page and both llms files carry the owner's insurance sentence",
     why: "Rewords the owner's insurance position in the file AI assistants read, the way the legacy site overstated it.",
   },
+  {
+    guard: "src/data/business-type.test.ts",
+    target: "src/lib/location-schema.ts",
+    find: "additionalType: BUSINESS_TRADE_TYPE,",
+    replace: "",
+    failing: "each source builder follows its LocalBusiness type with additionalType",
+    why: "Drops the trade from the builder behind 150 location pages, the bare LocalBusiness AuditSpur flagged on 188 pages.",
+  },
+  {
+    guard: "src/data/business-type.test.ts",
+    target: "dist/locations/lauderdale/index.html",
+    find: '"additionalType":"https://www.wikidata.org/wiki/Q6735317"',
+    replace: '"additionalType":"https://schema.org/LocalBusiness"',
+    failing: "no built page ships a LocalBusiness node without it",
+    why: "Ships a built location page whose business node names no trade.",
+    dist: true,
+  },
   // ---- FAQ answers are lifted alone --------------------------------------
   // One proof per banned term, each putting back a sentence that really
   // shipped inside FAQPage markup.

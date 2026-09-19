@@ -1,3 +1,4 @@
+import { BUSINESS_TRADE_TYPE } from "@/data/proof";
 import { formatPrice, addOnFromPrice, sitePriceRange } from "@/data/pricing";
 import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
 import { GST_RATE } from "@/data/pricing";
@@ -253,6 +254,7 @@ const ServiceDetailPage = ({
     url: canonicalUrlForPath(new URL(canonical).pathname),
     provider: {
       "@type": "LocalBusiness",
+      additionalType: BUSINESS_TRADE_TYPE,
       // @id merges this into the existing branch entity. Without it these were
       // nine more anonymous businesses at the same address, each with its own
       // drifting url — the duplication the branch @id exists to prevent.

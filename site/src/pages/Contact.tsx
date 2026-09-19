@@ -1,3 +1,4 @@
+import { BUSINESS_TRADE_TYPE } from "@/data/proof";
 import { useLocation } from "react-router-dom";
 import { Calculator, Phone, Users, Star, Mail, CheckCircle2, MessageSquare, Heart, Shield, Building2, LucideIcon, Send } from "lucide-react";
 import { quoteHrefFor } from "@/lib/quote-link";
@@ -436,6 +437,7 @@ export default function Contact() {
                 const office = CITY_PROOF[key];
                 return {
                   "@type": "LocalBusiness",
+                  additionalType: BUSINESS_TRADE_TYPE,
                   "@id": `https://dutycleaners.ca/#${key}`,
                   name: BRANCH_IDENTITY[key].name,
                   url: BRANCH_IDENTITY[key].url,

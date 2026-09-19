@@ -1,3 +1,4 @@
+import { BUSINESS_TRADE_TYPE } from "@/data/proof";
 import { CITY_PROOF, COMPANY, RATING_CLAIM, hoursRowsFor } from "@/data/proof";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, useRef, useState } from "react";
@@ -159,6 +160,7 @@ export default function Calgary2() {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
+    additionalType: BUSINESS_TRADE_TYPE,
     "@id": "https://dutycleaners.ca/#calgary",
     name: BRANCH_IDENTITY.calgary.name,
     url: BRANCH_IDENTITY.calgary.url,

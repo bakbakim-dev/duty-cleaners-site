@@ -1,3 +1,4 @@
+import { BUSINESS_TRADE_TYPE } from "@/data/proof";
 import { CITY_PROOF, branchGeoFor } from "@/data/proof";
 import { schemaAddressFor, BRANCH_ID, BRANCH_IDENTITY, openingHoursShortFor, openingHoursSpecFor } from "@/data/proof";
 import { sitePriceRange } from "@/data/pricing";
@@ -68,6 +69,7 @@ export function buildPricingSchema({ city, standard, deep, moveInOut }: PricingS
     url: meta.url,
     provider: {
       "@type": "LocalBusiness",
+      additionalType: BUSINESS_TRADE_TYPE,
       // @id merges this into the branch entity. Without it the two pricing
       // pages declared two more anonymous businesses at the branch addresses.
       "@id": BRANCH_ID[city],
