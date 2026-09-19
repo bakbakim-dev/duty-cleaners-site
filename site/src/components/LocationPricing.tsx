@@ -110,7 +110,10 @@ export default function LocationPricing({ place }: LocationPricingProps) {
             A standard clean in {name} runs {PRICES.standard} from one bedroom to five, a deep
             clean {PRICES.deep}, and a move-in or move-out clean {PRICES.moveInOut}. Those are flat
             rates for an apartment or condo, in Canadian dollars before 5% GST. More bathrooms or a sixth or seventh bedroom raise them, and they do not go up
-            because a clean took longer than expected. A bungalow or basement suite adds{" "}
+            because a clean took longer than expected.
+          </p>
+          <p className="text-muted-foreground text-lg leading-relaxed mb-4">
+            A bungalow or basement suite adds{" "}
             {HOME_TYPE_EXTRA.bungalow}, a townhouse {HOME_TYPE_EXTRA.townhouse} and a two-storey house{" "}
             {HOME_TYPE_EXTRA.twoStorey}, and a home with pets pays a compulsory {PET_FEE} on every visit.
             {/* The fee is charged against the branch this page belongs to, so

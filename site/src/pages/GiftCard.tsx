@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -10,11 +10,11 @@ import { POLICY } from "@/data/policy";
 import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
 import { Link } from "react-router-dom";
 import { canonicalForPath } from "@/data/legacy-urls";
+import { attachBookingFrame } from "@/lib/booking-frame";
 
 const GIFT_CARD_ORIGIN = "https://dutycleaners.bookingkoala.com";
 const GIFT_CARD_URL = `${GIFT_CARD_ORIGIN}/gift-cards/send`;
 const GIFT_CARD_EMBED_URL = `${GIFT_CARD_URL}?embed=true`;
-const EMBED_SCRIPT_ID = "bk-embed-script";
 
 /** Tall enough that BookingKoala's form never grows its own inner scrollbar. */
 const EMBED_MIN_HEIGHT = 1500;
@@ -92,14 +92,13 @@ const DESCRIPTION =
 export default function GiftCard() {
   const [loaded, setLoaded] = useState(false);
 
+  const frameRef = useRef<HTMLIFrameElement>(null);
+
   useEffect(() => {
-    // BookingKoala's embed.js is the parent-side resizer — it grows the frame to fit.
-    if (document.getElementById(EMBED_SCRIPT_ID)) return;
-    const script = document.createElement("script");
-    script.id = EMBED_SCRIPT_ID;
-    script.src = `${GIFT_CARD_ORIGIN}/resources/embed.js`;
-    script.async = true;
-    document.body.appendChild(script);
+    // The bundled parent-side resizer grows the frame to fit (lib/booking-frame.ts;
+    // it replaced BookingKoala's hosted embed.js).
+    if (!frameRef.current) return;
+    return attachBookingFrame(frameRef.current, GIFT_CARD_ORIGIN);
   }, []);
 
   return (
@@ -256,6 +255,7 @@ export default function GiftCard() {
                   </p>
                 )}
                 <iframe
+                  ref={frameRef}
                   data-embed-frame
                   src={GIFT_CARD_EMBED_URL}
                   title="Buy a Duty Cleaners gift card — secure BookingKoala form"

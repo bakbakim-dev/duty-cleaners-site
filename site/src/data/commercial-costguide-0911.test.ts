@@ -119,11 +119,11 @@ describe("the commercial pages (owner, 2026-09-11)", () => {
     const faqs = commercialFaqs("Calgary", "(000) 000-0000");
     const contract = faqs.find((f) => /long-term contract/i.test(f.q))?.a ?? "";
     expect(contract).toContain(
-      `Commercial clients have the same cancellation rule as homes: a visit can be moved or cancelled with ${POLICY.cancellationNoticeHours} hours' notice, and inside that window the fee is ${POLICY.cancellationFee}.`,
+      `As with homes, a visit can be moved or cancelled with ${POLICY.cancellationNoticeHours} hours' notice; inside that window the fee is ${POLICY.cancellationFee}.`,
     );
     const missed = faqs.find((f) => /something is missed/i.test(f.q))?.a ?? "";
     expect(missed).toContain(
-      `Commercial clients have the same re-clean guarantee as homes. Tell us within ${POLICY.guaranteeWindowHours} hours of the clean`,
+      `The same re-clean guarantee as homes: tell us within ${POLICY.guaranteeWindowHours} hours of the clean`,
     );
     expect(faqs.map((f) => f.a).join(" "), "a deposit claim nobody confirmed").not.toMatch(/deposit/i);
   });
@@ -141,8 +141,8 @@ describe("the commercial pages (owner, 2026-09-11)", () => {
           " office",
       );
     }
-    const depth = stripComments(read("components/CommercialDepth.tsx")).replace(/\s+/g, " ");
-    expect(depth).toContain("other premises are scoped by phone and at a walkthrough with the {city} office");
+    // CommercialDepth used to repeat this sentence a screen below the page's own;
+    // since 2026-09-19 (the near-duplicate pair) each page says it once, above.
   });
 
   it("the residential-pricing link goes to the branch's price list", () => {

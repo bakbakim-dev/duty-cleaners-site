@@ -13,7 +13,6 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import PricingTierCard, { PricingTierCta } from "@/components/pricing/PricingTierCard";
@@ -317,18 +316,17 @@ export default function EdmontonPricing() {
             <div className="text-center mb-8">
               <h2 className="display-serif text-3xl md:text-4xl font-bold mb-4">House cleaning rates in Edmonton, by home size</h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Pick the service. Each card is the flat rate for that bedroom count, before GST.
+                Each card is the flat rate for that bedroom count, before GST.
               </p>
             </div>
 
-            <Tabs defaultValue="standard" className="w-full">
-              <TabsList className="grid w-full grid-cols-3 mb-8 h-auto bg-muted/50 rounded-xl p-1">
-                <TabsTrigger value="standard" className="min-h-[48px] py-3 px-2 text-sm md:text-base rounded-lg data-[state=active]:bg-brand-navy data-[state=active]:text-white">Standard Cleaning</TabsTrigger>
-                <TabsTrigger value="deep" className="min-h-[48px] py-3 px-2 text-sm md:text-base rounded-lg data-[state=active]:bg-brand-navy data-[state=active]:text-white">Deep Cleaning</TabsTrigger>
-                <TabsTrigger value="moveinout" className="min-h-[48px] py-3 px-2 text-sm md:text-base rounded-lg data-[state=active]:bg-brand-navy data-[state=active]:text-white">Move In/Out</TabsTrigger>
-              </TabsList>
+            {/* All three rate tables are on the page, not in tabs: inactive tab panels
+                start hidden, so anything reading the rendered text (most AI assistants)
+                missed the deep and move-out prices (AuditSpur, 2026-09-19). */}
+            <div className="space-y-16">
 
-              <TabsContent value="standard">
+              <section aria-labelledby="rates-standard">
+                <h3 id="rates-standard" className="text-2xl font-bold text-foreground text-center mb-2">Standard cleaning</h3>
                 <p className="text-center text-muted-foreground mb-8">The regular clean for a lived-in home</p>
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                   {standardPricing.map((item) => (
@@ -362,9 +360,10 @@ export default function EdmontonPricing() {
                     </ul>
                   </div>
                 </div>
-              </TabsContent>
+              </section>
 
-              <TabsContent value="deep">
+              <section aria-labelledby="rates-deep">
+                <h3 id="rates-deep" className="text-2xl font-bold text-foreground text-center mb-2">Deep cleaning</h3>
                 <p className="text-center text-muted-foreground mb-8">The standard clean plus the Deep Cleaning package for the size, baseboards included</p>
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                   {deepPricing.map((item) => (
@@ -379,9 +378,10 @@ export default function EdmontonPricing() {
                 {/* One button for the tab, still carrying the deep intent the
                     five card buttons carried (quote-intent.test.ts). */}
                 <PricingTierCta href="/#quote&intent=deep" />
-              </TabsContent>
+              </section>
 
-              <TabsContent value="moveinout">
+              <section aria-labelledby="rates-moveinout">
+                <h3 id="rates-moveinout" className="text-2xl font-bold text-foreground text-center mb-2">Move-in and move-out cleaning</h3>
                 <p className="text-center text-muted-foreground mb-8">For an empty home, with the inside of the appliances and cabinets included</p>
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                   {moveInOutPricing.map((item) => (
@@ -399,8 +399,8 @@ export default function EdmontonPricing() {
                   how many bedrooms there are. It starts at {POST_CONSTRUCTION_FROM} for under 1,000 sq ft before
                   GST, with a {POST_TRAVEL_FEE} post-construction travel fee outside city limits.
                 </p>
-              </TabsContent>
-            </Tabs>
+              </section>
+            </div>
 
             {/* Caption under the cards: how a quote can change, how to read a
                 card, and the charges that sit on top of one. */}

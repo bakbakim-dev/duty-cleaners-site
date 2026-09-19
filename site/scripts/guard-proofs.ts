@@ -491,6 +491,14 @@ export const GUARD_PROOFS: GuardProof[] = [
     why: "Similarity is a property of the whole build, so the proof lowers the ceiling: it shows the guard really reads and compares the prerendered location pages rather than an empty set.",
   },
   {
+    guard: "src/data/location-similarity.test.ts",
+    target: "src/data/location-similarity.test.ts",
+    find: "const MAX_TWIN = 0.48;",
+    replace: "const MAX_TWIN = 0.3;",
+    failing: "no Calgary service page is its Edmonton twin with the city swapped",
+    why: "Lowers the ceiling below the commercial pair's measured 0.45, which shows the guard reads and compares the built twins.",
+  },
+  {
     guard: "src/data/copy-quality.test.ts",
     target: "src/pages/EdmontonPricing.tsx",
     find: "Every 4 weeks comes to 13 visits a year rather than 12.",
@@ -1549,6 +1557,22 @@ export const GUARD_PROOFS: GuardProof[] = [
     replace: "if (code.includes(COMPILE_HINT)) return null;",
     failing: "the plugin prepends the hint to the entry chunk and to nothing else",
     why: "Marks every route chunk for eager compilation too, which costs time and memory for code a page may never run.",
+  },
+  {
+    guard: "src/lib/booking-frame.test.ts",
+    target: "src/pages/GiftCard.tsx",
+    find: "return attachBookingFrame(frameRef.current, GIFT_CARD_ORIGIN);",
+    replace: "const s = document.createElement(\"script\"); s.src = \"https://dutycleaners.bookingkoala.com/resources/embed.js\"; document.body.appendChild(s);",
+    failing: "no page or component loads a script from BookingKoala",
+    why: "Puts back the hosted embed.js, which ran with this page's privileges and could not carry an integrity hash.",
+  },
+  {
+    guard: "src/lib/booking-frame.test.ts",
+    target: "src/lib/booking-frame.ts",
+    find: 'email: "email_id",',
+    replace: 'email: "email",',
+    failing: "forwards the page's query under the form's field names, with the referrer",
+    why: "Renames a field the booking form reads, which silently drops the visitor's email from the prefill.",
   },
   // ---- and this registry itself ------------------------------------------
   {

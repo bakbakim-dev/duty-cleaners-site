@@ -80,7 +80,12 @@ Disallow: /
 User-agent: meta-externalagent
 Disallow: /
 
+# Bing obeys a delay in this catch-all group even though Bingbot has a group of its
+# own (the one exception to its most-specific-group rule), and SiteGround appends
+# ten seconds here when the file sets none. One second is SiteGround's floor.
+# Never spell the directive's name in a comment: the host rewrites any line that does.
 User-agent: *
 Allow: /
+Crawl-delay: 1
 
 Sitemap: https://dutycleaners.ca/sitemap.xml

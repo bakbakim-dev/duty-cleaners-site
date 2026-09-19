@@ -5,8 +5,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
-import { Building2, Shield, Award, Star, Briefcase, Dumbbell, UtensilsCrossed, Stethoscope, ShoppingBag, Warehouse, ThumbsUp, ClipboardCheck, CalendarCheck, LucideIcon } from "lucide-react";
-import { POLICY } from "@/data/policy";
+import { Building2, Briefcase, Dumbbell, UtensilsCrossed, Stethoscope, ShoppingBag, Warehouse, LucideIcon } from "lucide-react";
 import { CITY_PROOF } from "@/data/proof";
 import { Link } from "react-router-dom";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
@@ -42,18 +41,6 @@ const IndustryCard = ({
     </div>
     <h3 className="font-bold text-lg mb-2 transition-transform duration-300 group-hover:translate-x-1">{title}</h3>
     <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
-  </div>
-);
-
-const FeatureItem = ({ icon: Icon, title, description }: { icon: LucideIcon; title: string; description: string }) => (
-  <div className="flex gap-4 items-start">
-    <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
-      <Icon className="w-5 h-5 text-accent" />
-    </div>
-    <div>
-      <h3 className="font-semibold text-white mb-1">{title}</h3>
-      <p className="text-sm text-white/90 leading-relaxed">{description}</p>
-    </div>
   </div>
 );
 
@@ -254,29 +241,6 @@ export default function CommercialCleaningCalgary() {
           </section>
         </AnimatedSection>
 
-        {/* Why Choose Us - Dark Navy */}
-        <AnimatedSection>
-          <section className="relative bg-brand-navy text-white py-16 overflow-hidden">
-            <div className="absolute top-0 left-1/2 w-80 h-80 bg-primary/10 rounded-full blur-3xl -translate-x-1/2" />
-
-            <div className="container mx-auto px-4 relative z-10">
-              <div className="text-center mb-10">
-                <span className="text-accent font-semibold text-sm uppercase tracking-wide">Why Us</span>
-                <h2 className="text-3xl md:text-4xl font-bold mt-2">Why Choose Duty Cleaners</h2>
-              </div>
-
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                <FeatureItem icon={Shield} title="Customer-Rated Cleaners" description="Every cleaner is reference-checked before their first job and rated after every visit. Those ratings decide who keeps working on your site." />
-                <FeatureItem icon={Award} title="Experienced Professionals" description="Cleaning in Alberta since 2017. For contracts needing specific insurance certificates or security clearances, ask at the walkthrough and we confirm in writing what we can provide." />
-                <FeatureItem icon={CalendarCheck} title="Flexible Scheduling" description="Early-morning, evening and weekend visits outside the Calgary office's regular hours can be arranged around the hours your business keeps." />
-                <FeatureItem icon={ThumbsUp} title="Missed Items Re-Cleaned" description={`Tell us within ${POLICY.guaranteeWindowHours} hours of the clean if something in the agreed scope was missed, and the team comes back to clean it at no charge.`} />
-                <FeatureItem icon={Star} title="Written Quotes" description="Priced per square foot, with the areas, the visit frequency and the pricing basis set out in writing before anything is booked." />
-                <FeatureItem icon={ClipboardCheck} title="Products and Site Protocols" description="Tell us about required products and site protocols at the walkthrough. We confirm in writing which requirements we can meet before you book." />
-              </div>
-            </div>
-          </section>
-        </AnimatedSection>
-
         <CommercialDepth city="Calgary" phone={CITY_PROOF.calgary.phone} phoneLink={CITY_PROOF.calgary.phoneLink} />
 
         {/* Service areas.
@@ -296,9 +260,7 @@ export default function CommercialCleaningCalgary() {
                 </h2>
                 <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
                   We clean offices, retail units, warehouses and industrial space in Calgary and the
-                  surrounding towns, including Cochrane, Airdrie, Okotoks and Chestermere. Commercial
-                  work is priced per square foot, scoped at a walkthrough and confirmed in a written
-                  quote that states the areas, visit frequency and pricing basis before work is booked.
+                  surrounding towns, including Cochrane, Airdrie, Okotoks and Chestermere.
                 </p>
                 <CoverageChips
                   areas={[

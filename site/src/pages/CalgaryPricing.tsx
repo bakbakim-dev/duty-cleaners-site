@@ -12,7 +12,6 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import PricingTierCard, { PricingTierCta } from "@/components/pricing/PricingTierCard";
@@ -290,14 +289,13 @@ export default function CalgaryPricing() {
               </p>
             </div>
 
-            <Tabs defaultValue="standard" className="w-full">
-              <TabsList className="grid w-full grid-cols-3 mb-8 h-auto bg-muted/50 rounded-xl p-1">
-                <TabsTrigger value="standard" className="min-h-[48px] py-3 px-2 text-sm md:text-base rounded-lg data-[state=active]:bg-brand-navy data-[state=active]:text-white">Standard Cleaning</TabsTrigger>
-                <TabsTrigger value="deep" className="min-h-[48px] py-3 px-2 text-sm md:text-base rounded-lg data-[state=active]:bg-brand-navy data-[state=active]:text-white">Deep Cleaning</TabsTrigger>
-                <TabsTrigger value="moveinout" className="min-h-[48px] py-3 px-2 text-sm md:text-base rounded-lg data-[state=active]:bg-brand-navy data-[state=active]:text-white">Move In/Out</TabsTrigger>
-              </TabsList>
+            {/* All three rate tables are on the page, not in tabs: inactive tab panels
+                start hidden, so anything reading the rendered text (most AI assistants)
+                missed the deep and move-out prices (AuditSpur, 2026-09-19). */}
+            <div className="space-y-16">
 
-              <TabsContent value="standard">
+              <section aria-labelledby="rates-standard">
+                <h3 id="rates-standard" className="text-2xl font-bold text-foreground text-center mb-2">Standard cleaning</h3>
                 <p className="text-center text-muted-foreground mb-8">One visit, at the flat rate for the home's size</p>
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                   {standardPricing.map((item) => (
@@ -331,9 +329,10 @@ export default function CalgaryPricing() {
                     </ul>
                   </div>
                 </div>
-              </TabsContent>
+              </section>
 
-              <TabsContent value="deep">
+              <section aria-labelledby="rates-deep">
+                <h3 id="rates-deep" className="text-2xl font-bold text-foreground text-center mb-2">Deep cleaning</h3>
                 <p className="text-center text-muted-foreground mb-8">Standard rate plus the Deep Cleaning package for the size; the package price sits under each figure</p>
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                   {deepPricing.map((item) => (
@@ -348,9 +347,10 @@ export default function CalgaryPricing() {
                 {/* One button for the tab, with the deep intent the five card
                     buttons used to carry (quote-intent.test.ts). */}
                 <PricingTierCta href="/cleaning-services-calgary/#quote&intent=deep" />
-              </TabsContent>
+              </section>
 
-              <TabsContent value="moveinout">
+              <section aria-labelledby="rates-moveinout">
+                <h3 id="rates-moveinout" className="text-2xl font-bold text-foreground text-center mb-2">Move-in and move-out cleaning</h3>
                 <p className="text-center text-muted-foreground mb-8">An empty home, top to bottom, appliances and cabinets inside the price</p>
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                   {moveInOutPricing.map((item) => (
@@ -368,8 +368,8 @@ export default function CalgaryPricing() {
                   travel fee outside Calgary city limits. Fine drywall dust
                   reaches the same surfaces in a one-bedroom infill as in a five-bedroom house.
                 </p>
-              </TabsContent>
-            </Tabs>
+              </section>
+            </div>
 
             {/* Caption under the cards: the one case that moves a quote, how to
                 read a card, and the charges that go on top of one. */}

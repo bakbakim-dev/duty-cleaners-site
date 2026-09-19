@@ -20,6 +20,27 @@ import { join } from "node:path";
  */
 const DIST = join(__dirname, "..", "..", "dist");
 const MAX_NEAREST = 0.48;
+/**
+ * The same measure on the Edmonton/Calgary twins of each service page. The two
+ * commercial pages sat at 0.58 (AuditSpur, 2026-09-19): each said its scope,
+ * vetting, re-clean and written-quote terms three or four times, in the same words
+ * as the other. The repeats went; one short statement of each term stays on both,
+ * because the terms are the same at both offices. Measured 0.45 after the fix;
+ * every other twin is under 0.25.
+ */
+const MAX_TWIN = 0.48;
+const TWINS: Array<[string, string]> = [
+  ["/commercial-cleaning/", "/commercial-cleaning-services-calgary/"],
+  ["/", "/cleaning-services-calgary/"],
+  ["/pricing/", "/calgary/pricing/"],
+  ["/services/", "/calgary/services/"],
+  ["/move-out-cleaning-edmonton/", "/move-out-cleaning-calgary/"],
+  ["/edmonton/deep-cleaning/", "/calgary/deep-cleaning/"],
+  ["/edmonton/recurring-cleaning/", "/calgary/recurring-cleaning/"],
+  ["/edmonton/airbnb-cleaning/", "/airbnb-cleaning-services-calgary/"],
+  ["/post-construction-cleaning/", "/post-construction-cleaning-calgary/"],
+  ["/wall-washing-wall-cleaning/", "/wall-washing-wall-cleaning-calgary/"],
+];
 
 function pages(): Map<string, string[]> {
   const out = new Map<string, string[]>();
@@ -76,5 +97,28 @@ describe("location pages are not each other with the name swapped", () => {
       `Location pages within ${MAX_NEAREST} of each other (AuditSpur flags 0.5). ` +
         `Remove the shared sentence or add copy true of the place; never hide text or write filler.`,
     ).toEqual([]);
+  });
+
+  it("no Calgary service page is its Edmonton twin with the city swapped", () => {
+    const all = pages();
+    if (all.size === 0) return;
+    const counts = new Map<string, number>();
+    for (const paras of all.values()) for (const t of new Set(paras)) counts.set(t, (counts.get(t) ?? 0) + 1);
+    const floor = Math.max(10, Math.floor(0.8 * all.size));
+    const set = (url: string) => {
+      const paras = all.get(url);
+      expect(paras, `${url} is not in the build`).toBeDefined();
+      return shingles(paras!.filter((t) => (counts.get(t) ?? 0) < floor).join(" "));
+    };
+    const close: string[] = [];
+    for (const [a, b] of TWINS) {
+      const A = set(a);
+      const B = set(b);
+      let inter = 0;
+      for (const s of A) if (B.has(s)) inter++;
+      const sim = inter / (A.size + B.size - inter);
+      if (sim >= MAX_TWIN) close.push(`${sim.toFixed(3)} ${a} ~ ${b}`);
+    }
+    expect(close, `Twin pages within ${MAX_TWIN} of each other (AuditSpur flags 0.5). Say each term once, or add copy true of the city.`).toEqual([]);
   });
 });

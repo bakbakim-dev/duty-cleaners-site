@@ -1,15 +1,16 @@
 import { memo, useEffect, useRef, useState } from "react";
 import { BOOKING_ORIGIN, buildBookingEmbedUrl } from "@/lib/booking-redirect";
 import { track } from "@/lib/analytics";
+import { attachBookingFrame } from "@/lib/booking-frame";
 
-const EMBED_SCRIPT_ID = "bk-embed-script";
 const SLOW_LOAD_MS = 8000;
 
 /**
  * BookingKoala's own booking form, embedded in our page.
  *
- * Their /resources/embed.js is iframe-resizer v4.1.1 (parent side) and owns
- * all height logic — we deliberately write none. The iframe src is computed
+ * The frame's height comes from iframe-resizer v4.1.1, bundled and bound to this
+ * frame in lib/booking-frame.ts (it replaced BookingKoala's hosted embed.js).
+ * We deliberately write no height logic of our own. The iframe src is computed
  * once and never changes: a src change reloads the form and wipes whatever
  * the customer has entered.
  */
@@ -22,22 +23,18 @@ function BookingEmbed({ query, warmup = false }: { query: string; warmup?: boole
   const [blocked, setBlocked] = useState(false);
   const loadedRef = useRef(false);
   const handshakeRef = useRef(false);
+  const frameRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
-    // iframe-resizer initializes against iframes already in the DOM, so this
-    // runs after mount. The id guard survives strict-mode double effects.
-    if (document.getElementById(EMBED_SCRIPT_ID)) return;
-    const script = document.createElement("script");
-    script.id = EMBED_SCRIPT_ID;
-    script.src = `${BOOKING_ORIGIN}/resources/embed.js`;
-    script.async = true;
-    document.body.appendChild(script);
-  }, []);
+    // The invisible warm-up copy keeps its fixed height; only the real frame resizes.
+    if (warmup || !frameRef.current) return;
+    return attachBookingFrame(frameRef.current, BOOKING_ORIGIN);
+  }, [warmup]);
 
   useEffect(() => {
     // A frame refused by X-Frame-Options / CSP still fires onLoad, so the only
     // proof the real form is alive is a postMessage from the booking origin
-    // (their embed.js child side chatters constantly).
+    // (the resizer's child side inside their form chatters constantly).
     const onMessage = (event: MessageEvent) => {
       if (event.origin === BOOKING_ORIGIN) handshakeRef.current = true;
     };
@@ -129,6 +126,7 @@ function BookingEmbed({ query, warmup = false }: { query: string; warmup?: boole
 
       <iframe
         key="bk-embed"
+        ref={frameRef}
         src={src}
         title="Complete your booking — Duty Cleaners"
         width="100%"

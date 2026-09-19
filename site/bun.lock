@@ -40,6 +40,7 @@
         "cmdk": "^1.1.1",
         "date-fns": "^3.6.0",
         "embla-carousel-react": "^8.6.0",
+        "iframe-resizer": "4.1.1",
         "input-otp": "^1.5.0",
         "leaflet": "^1.9.4",
         "lucide-react": "^0.462.0",
@@ -729,6 +730,8 @@
     "has-flag": ["has-flag@4.0.0", "", {}, "sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ=="],
 
     "hasown": ["hasown@2.0.2", "", { "dependencies": { "function-bind": "^1.1.2" } }, "sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ=="],
+
+    "iframe-resizer": ["iframe-resizer@4.1.1", "", {}, "sha512-+cs/M4ivpLyKYDs9AZWK0eRA1FKXut0yQr0iaEqdMKuk5yZJeF9H691q1qW1Cz5D3wHmiT+cTubWEsaSJBLUJA=="],
 
     "ignore": ["ignore@5.3.2", "", {}, "sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g=="],
 
