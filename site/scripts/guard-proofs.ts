@@ -1545,8 +1545,8 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/compile-hints.test.ts",
     target: "scripts/compile-hints.mjs",
-    find: "chunk.isEntry && !chunk.code.startsWith(COMPILE_HINT)",
-    replace: "!chunk.code.startsWith(COMPILE_HINT)",
+    find: "if (!chunk.isEntry || code.includes(COMPILE_HINT)) return null;",
+    replace: "if (code.includes(COMPILE_HINT)) return null;",
     failing: "the plugin prepends the hint to the entry chunk and to nothing else",
     why: "Marks every route chunk for eager compilation too, which costs time and memory for code a page may never run.",
   },

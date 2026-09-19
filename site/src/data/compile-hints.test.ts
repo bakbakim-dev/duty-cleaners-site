@@ -20,11 +20,23 @@ describe("the entry chunk is compiled eagerly", () => {
       "route.js": { type: "chunk", isEntry: false, code: "const b=2;" },
       "style.css": { type: "asset" },
     };
-    const hook = (compileHints() as unknown as { generateBundle: { order: string; handler: (o: unknown, b: typeof bundle) => void } }).generateBundle;
-    expect(hook.order, "the hint must be added after Vite's own preamble").toBe("post");
-    hook.handler({}, bundle);
-    hook.handler({}, bundle);
-    expect(bundle["index.js"].code, "entry chunk").toBe(COMPILE_HINT + "const a=1;");
+    type Hook<A extends unknown[], R> = { order: string; handler: (...a: A) => R };
+    const plugin = compileHints() as unknown as {
+      renderChunk: Hook<[string, { isEntry: boolean }], { code: string } | null>;
+      generateBundle: Hook<[unknown, typeof bundle], void>;
+    };
+    expect(plugin.renderChunk.order, "the hint must be added after minification").toBe("post");
+    expect(plugin.generateBundle.order, "the hint must end up above Vite's own preamble").toBe("post");
+
+    // Before hashing: the entry gains the hint (so its file name changes), a route chunk does not.
+    expect(plugin.renderChunk.handler("const a=1;", { isEntry: true })?.code, "entry at render").toBe(COMPILE_HINT + "const a=1;");
+    expect(plugin.renderChunk.handler("const b=2;", { isEntry: false }), "route chunk at render").toBeNull();
+
+    // After Vite's preamble lands on top, the hint moves back to the first line, once.
+    bundle["index.js"].code = "const __vite__mapDeps=0;" + COMPILE_HINT + "const a=1;";
+    plugin.generateBundle.handler({}, bundle);
+    plugin.generateBundle.handler({}, bundle);
+    expect(bundle["index.js"].code, "entry chunk").toBe(COMPILE_HINT + "const __vite__mapDeps=0;const a=1;");
     expect(bundle["route.js"].code, "route chunk").toBe("const b=2;");
 
     const shell = join(DIST, "index.html");

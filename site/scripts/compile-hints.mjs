@@ -15,8 +15,7 @@
  * It is added in generateBundle, after esbuild has minified the chunk, because the
  * minifier drops comments (evanw/esbuild#4247). Only the entry gets it: route chunks
  * load on demand and are only partly used, so compiling all of them eagerly would
- * cost time and memory for nothing. The chunk's file hash predates the comment; the
- * comment is constant, so the name still changes exactly when the code does.
+ * cost time and memory for nothing.
  */
 export const COMPILE_HINT = "//# allFunctionsCalledOnLoad\n";
 
@@ -24,16 +23,25 @@ export function compileHints() {
   return {
     name: "duty:compile-hints",
     apply: "build",
-    // order "post": Vite's own generateBundle (vite:build-import-analysis) puts the
-    // __vite__mapDeps preamble at the top of the entry, and it runs after any user
-    // plugin, even an enforce: "post" one. The hint must land above that preamble.
+    // Two steps. renderChunk (order "post", after esbuild has minified) adds the hint
+    // before Rollup hashes the chunk, so the file name changes with it: a same-named
+    // file with new content would stay in browser caches (immutable) and be skipped
+    // by any name-based deploy diff. Vite's own generateBundle then puts the
+    // __vite__mapDeps preamble above it, so generateBundle (order "post", after
+    // Vite's) moves the hint back to the first line, the only place V8 reads it.
+    renderChunk: {
+      order: "post",
+      handler(code, chunk) {
+        if (!chunk.isEntry || code.includes(COMPILE_HINT)) return null;
+        return { code: COMPILE_HINT + code, map: null };
+      },
+    },
     generateBundle: {
       order: "post",
       handler(_options, bundle) {
         for (const chunk of Object.values(bundle)) {
-          if (chunk.type === "chunk" && chunk.isEntry && !chunk.code.startsWith(COMPILE_HINT)) {
-            chunk.code = COMPILE_HINT + chunk.code;
-          }
+          if (chunk.type !== "chunk" || !chunk.isEntry || chunk.code.startsWith(COMPILE_HINT)) continue;
+          chunk.code = COMPILE_HINT + chunk.code.replace(COMPILE_HINT, "");
         }
       },
     },
