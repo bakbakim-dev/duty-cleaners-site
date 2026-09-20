@@ -20,10 +20,11 @@ See `site/docs/seo-implementation-2026-09-13.md` for scope and limitations.
 A prerendered React/Vite rebuild of dutycleaners.ca: a house-cleaning company with three branches
 (Edmonton, Calgary and, since 2026-09-11, Red Deer), each with its own address, phone and Google
 listing. Edmonton and Calgary have full city hubs; Red Deer has one branch page. The app is in
-`site/`. Leads go to GoHighLevel through the API v2 contacts/upsert relay (`site/src/config/ghl.ts`,
-`site/supabase/functions/ghl-quote`); bookings hand off to BookingKoala
-(`site/src/lib/booking-redirect.ts`, `BOOKING_ORIGIN`). The site is NOT live yet: DNS still points
-at the old WordPress site, which the owner will stop using once this one is on the domain. The
+`site/`. Leads go to GoHighLevel through the SiteGround-native API v2 contacts/upsert relay
+(`site/public/api/ghl-quote.php`); bookings hand off to BookingKoala
+(`site/src/lib/booking-redirect.ts`, `BOOKING_ORIGIN`). The rebuilt site has been live at
+`dutycleaners.ca` on SiteGround since 2026-09-20; the previous WordPress site is retained in the
+SiteGround backup/archive for rollback. The
 launch checklist is the "Duty Cleaners Launch Gate" artifact; REBUILD-PLAN.md Appendix G holds the
 BookingKoala header script.
 
@@ -217,8 +218,13 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
 ## Owner to-dos before or on launch day (checked 2026-09-11)
 Owner reminder request (2026-09-13): when the owner announces launch, review and present every remaining task in `site/docs/launch-day-reminder.md`. A quiet launch-announcement heartbeat is registered. SiteGround is the selected production host; older Netlify production-plan details below are historical and must not be treated as required launch purchases.
 
-1. Publish the GoHighLevel "Instant Quote Automation" workflow. It is still a Draft with 0
-   enrolled, so leads get no admin email, customer text or pipeline card.
+1. Completed 2026-09-20: the GoHighLevel "Instant Quote Automation" workflow is published.
+   A controlled production run executed the admin email, customer SMS, New Lead-Forms opportunity
+   and trigger-tag removal, and finished successfully.
+   The separate "After-Hours Quote Reply" workflow was also published on 2026-09-20. It is limited
+   to SMS replies to Instant Quote Automation contacts carrying `quote-confirmed`, routes the real
+   Edmonton/Calgary and Red Deer office hours through five OR segments, sends the owner-approved
+   closed-office wording only on the None/closed branch, uses +15878124907, and has re-entry off.
 2. Rotate the GoHighLevel Private Integration token ("dutycleaners.ca website funnel", created and
    last updated Aug 14 2026, exposed in a screenshot), then put the new token in the relay's secret
    in the same step, or leads stop arriving.
@@ -226,30 +232,28 @@ Owner reminder request (2026-09-13): when the owner announces launch, review and
    → Header code (owner-approved, 2026-09-12). Source: `bk-prefill-v2.js`; regenerate the pasteable
    snippet with `node site/scripts/build-booking-prefill.mjs`. Native-field transfer was verified
    on five public test cases without submitting a booking. The encrypted funnel handoff now runs
-   as `site/public/api/booking-handoff.php` on SiteGround; Supabase is not required for it. It is
-   NOT yet launch-ready: the PHP endpoint and its private secret file must be uploaded to the
-   staging host, followed by an end-to-end test. See
-   `site/docs/booking-handoff-implementation-2026-09-12.md`. Do not publish the new frontend first.
+   as `site/public/api/booking-handoff.php` on SiteGround; Supabase is not required for it. The
+   production endpoint and private secret were installed on 2026-09-20. Controlled seal, unseal,
+   field round-trip, tamper-rejection and foreign-origin tests passed, and the published receiver
+   points to `https://dutycleaners.ca/api/booking-handoff.php`. A controlled final booking with a
+   date/card is still required to prove saved-record persistence. See
+   `site/docs/booking-handoff-implementation-2026-09-12.md`.
 4. Take down the old GitHub Pages preview (bakbakim-dev.github.io/dutycleaners-preview).
 5. Yelp: correct the Edmonton profile's address (it is claimed; the old URL now redirects to
    "duty-cleaners-edmonton-2", so check for a duplicate listing) and claim the Calgary profile.
 6. Book a real photo shoot (PHOTO-SHOOT-BRIEF.md): every people image is still AI-generated.
-7. The launch-gate items: production Netlify site, DNS, analytics, an end-to-end quote test.
-   Netlify refuses deploys on this account (403 Forbidden since 2026-09-11; the site stays up).
-   It is on the credit-based Free plan (300 credits a period, reset on the 4th of each month),
-   and 18 production deploys ran on 4-5 September, so the credits are spent (confirmed: the dashboard banner says production deploys are paused
-   until an upgrade or the next billing cycle). The
-   production site is meant to go on this same account, so upgrade or top up before launch day,
-   or a launch deploy fails the same way. `netlify api getAccount` shows the plan. The preview
-   now lives on the lokkom team (300 fresh credits, about 20 deploys a month): batch deploys.
-   Decide which team hosts production, then upgrade it (or move to Cloudflare Pages).
+7. Completed 2026-09-20: production moved to SiteGround, DNS serves the rebuilt site, and a
+   controlled quote ran end to end through durable capture and the published GHL workflow.
+   Netlify production plans are superseded and must not be treated as launch requirements.
 8. Say which products the $15 "optional alternative products" option means, if you want the site
    to name them. Until then it sends people to the office and makes no environmental claim.
 9. Delete the stale dutycleaners-preview site on bakbakim's Netlify team (it still serves the
    5 September build, noindexed).
-10. Redeploy the ghl-quote relay (Supabase) so it accepts the new preview origin; the code
-   allows it since 2026-09-11, but until the relay is redeployed the quote form on
-   duty-cleaners-preview.netlify.app cannot submit. Touches the lead pipeline: owner go-ahead first.
+10. Completed/superseded 2026-09-20: the quote relay runs natively on SiteGround at
+    `/api/ghl-quote.php`; Supabase is not part of the production lead path. The encrypted queue and
+    five-minute retry cron are live. The receiver acknowledges durable storage before GHL delivery.
+    Its anti-spam elapsed-time check must keep the clock-skew guard added on 2026-09-20: a negative
+    browser/server time difference is not an instant bot submission.
 11. Red Deer Google listing: its primary category shows "Janitorial service"; "House cleaning
    service" matches what the branch sells. It has no reviews yet: ask real Red Deer customers.
 12. Tracking: the GA4 property exists (account "Dutycleaners", property "Duty Cleaners - GA4",
@@ -264,11 +268,24 @@ Owner reminder request (2026-09-13): when the owner announces launch, review and
    OFF; Redact email on and redact the BookingKoala prefill query parameters (list in
    site/.env.example); Google signals off. Then verify Search Console as a Domain property (DNS
    TXT record) and add Bing Webmaster Tools on launch day.
-13. Form-health monitoring is implemented in source but not deployed. Upload
-   `public/api/form-health.php`, install the private config outside `public_html`, verify a real
-   alert and recovery email, then set `FORM_HEALTH_URL` and `FORM_HEALTH_SECRET` on the GHL relay
-   before redeploying it. Add an external uptime check because SiteGround cannot report its own
-   outage. See `site/docs/form-health-monitoring.md`.
+   Completed 2026-09-20: the Search Console Domain property was open in the owner account and the
+   new `https://dutycleaners.ca/sitemap.xml` sitemap index was submitted successfully. Search
+   Console showed Success immediately; discovered-page counts require Google to recrawl. The old
+   WordPress sitemap submissions remain as historical entries for later cleanup.
+13. Form-health monitoring was installed on the SiteGround production host on 2026-09-20 with its
+   private config outside `public_html`. Controlled failure and recovery messages reached
+   `info@dutycleaners.ca`; the delivered message showed SPF, DKIM and DMARC passing, and the owner
+   marked it not spam in Gmail. Before relying on it, verify duplicate suppression live, set
+   production failure alert reached `info@dutycleaners.ca`. Add an external uptime check because
+   SiteGround cannot report its own outage, and periodically run controlled failure/recovery and
+   end-to-end quote tests. See `site/docs/form-health-monitoring.md`.
+14. Booking domain: checkout still leaves the site for `dutycleaners.bookingkoala.com`.
+   `book.dutycleaners.ca` does not resolve (checked 2026-09-20). BookingKoala must enable the
+   custom domain and issue its certificate (their settings: owner go-ahead first), then the CNAME
+   goes in. Only after it serves their form, swap `BOOKING_ORIGIN`, `GIFT_CARD_ORIGIN` and the
+   CSP `frame-src`/`form-action` hosts in one commit and retest a booking journey.
+   `booking-handoff.php` already accepts both origins. Steps in
+   `site/docs/launch-day-reminder.md`.
 
 ## Historical documents
 REBUILD-PLAN.md, SEO-AUDIT-2026.md, CWV-BASELINE.md, notes.md (the legacy WordPress site's lead
