@@ -10,6 +10,7 @@ class Element {
   options: { text: string; value: string }[] = []; style = {}; attrs: Record<string, string> = {};
   children: Element[] = []; events: string[] = []; hidden = false; textContent = ""; id = "";
   scrolls: { block?: string; behavior?: string }[] = [];
+  className = ""; rect = { top: 0, bottom: 0, height: 0 };
   listeners: Record<string, (event: { type?: string; isTrusted?: boolean; target?: Element }) => void> = {};
   closest: (selector: string) => Element | null = () => null;
   contains(_other: Element) { return false; }
@@ -22,22 +23,33 @@ class Element {
   addEventListener(name: string, listener: (event: { type?: string; isTrusted?: boolean; target?: Element }) => void) { this.listeners[name] = listener; }
   dispatchEvent(event: { type: string }) { this.events.push(event.type); }
   scrollIntoView(options: { block?: string; behavior?: string }) { this.scrolls.push(options); }
+  getBoundingClientRect() { return this.rect; }
 }
-function fixture(fields: Record<string, string>, controls: Element[], options: { desktop?: boolean } = {}) {
+/** `viewport` switches on layout: window height, scrollTo and computed position. */
+function fixture(fields: Record<string, string>, controls: Element[], options: { desktop?: boolean; viewport?: number } = {}) {
   let tick = () => {}; let now = 0;
   const listeners: Record<string, (event: { type?: string; isTrusted?: boolean; target?: Element }) => void> = {};
   const body = new Element("body");
   const document = {
     body, activeElement: null as Element | null,
-    querySelectorAll: (selector: string) => controls.filter(el => selector.split(",").some(tag => el.tagName.toLowerCase() === tag.trim())),
+    querySelectorAll: (selector: string) => controls.filter(el => selector.split(",").some(part => {
+      const tag = part.trim();
+      return tag.startsWith(".") ? el.className.split(" ").includes(tag.slice(1)) : el.tagName.toLowerCase() === tag;
+    })),
     querySelector: () => null,
     getElementById: (id: string) => controls.find(el => el.id === id) ?? null,
     createElement: (tag: string) => new Element(tag),
     addEventListener: (name: string, callback: (event: { type?: string; isTrusted?: boolean; target?: Element }) => void) => { listeners[name] = callback; },
   };
+  const scrolledTo: { top: number; behavior: string }[] = [];
   const window = {
     addEventListener() {},
     matchMedia: (query: string) => ({ matches: query.includes("min-width") ? !!options.desktop : false }),
+    ...(options.viewport ? {
+      innerHeight: options.viewport, pageYOffset: 0,
+      scrollTo: (target: { top: number; behavior: string }) => { scrolledTo.push(target); },
+      getComputedStyle: (el: Element) => ({ position: /tjs-/.test(el.className) ? "fixed" : "static" }),
+    } : {}),
   };
   runInNewContext(source, {
     window, document, location: { pathname: "/booknow", search: "?" + new URLSearchParams(fields), hash: "" },
@@ -47,7 +59,7 @@ function fixture(fields: Record<string, string>, controls: Element[], options: {
     HTMLInputElement: Element, HTMLSelectElement: Element, HTMLTextAreaElement: Element,
     Event: class { type: string; constructor(type: string) { this.type = type; } },
   });
-  return { body, document, listeners, tick: (ms = 400) => { now += ms; tick(); }, controls };
+  return { body, document, listeners, tick: (ms = 400) => { now += ms; tick(); }, controls, scrolledTo };
 }
 function input(placeholder: string, value = "") { const el = new Element(); el.placeholder = placeholder; el.value = value; return el; }
 function select(name: string, labels: string[]) { const el = new Element("select"); el.name = name; el.options = ["", ...labels].map(text => ({ text, value: text })); return el; }
@@ -118,7 +130,7 @@ describe("BookingKoala companion receiver", () => {
     const state = fixture({ dc_city: "Edmonton", card_number: "123" }, [a, b, card]);
     state.tick(13000);
     expect([a.value,b.value,card.value]).toEqual(["","",""]);
-    expect(source).not.toMatch(/\.submit\(|requestSubmit|contentWindow|querySelectorAll\(['"]iframe|Book My Clean/);
+    expect(source).not.toMatch(/\.submit\(|requestSubmit|contentWindow|querySelectorAll\(['"]iframe/);
   });
   it("guides a fresh handoff to the date section once without stealing an active visit", () => {
     const zip = input("Postal code");
@@ -178,5 +190,76 @@ describe("BookingKoala companion receiver", () => {
     state.tick();
     expect(addressHeading.style).toMatchObject({ scrollMarginTop: "120px" });
     expect(addressHeading.scrolls).toEqual([{ block: "start", behavior: "smooth" }]);
+  });
+
+  // Page positions measured on the live form, 2026-09-21 (desktop 1440 wide,
+  // phone 375x812). The live Address Details heading carries its subtitle.
+  function liveForm(layout: { address: number; payment: number; bookBottom: number; bar?: { top: number; className: string } }) {
+    const date = input("Select a date", "09/21/2026");
+    const time = new Element("button"); time.id = "dropdownMenuButton"; time.textContent = "09:00 AM";
+    const address = input("Type Address", "123 Test Street");
+    const city = input("City", "Edmonton"), province = input("Province", "Alberta"), zip = input("Postal code", "T5J 0N3");
+    const addressHeading = new Element("h3"); addressHeading.textContent = "Address Details Where would you like us to clean?";
+    addressHeading.rect = { top: layout.address, bottom: layout.address + 74, height: 74 };
+    const paymentHeading = new Element("h3"); paymentHeading.textContent = "Payment Information";
+    paymentHeading.rect = { top: layout.payment, bottom: layout.payment + 29, height: 29 };
+    const book = new Element("button"); book.textContent = "Book My Clean →";
+    book.rect = { top: layout.bookBottom - 62, bottom: layout.bookBottom, height: 62 };
+    const controls = [date, time, address, city, province, zip, addressHeading, paymentHeading, book];
+    if (layout.bar) {
+      const bar = new Element("div"); bar.className = layout.bar.className;
+      bar.rect = { top: layout.bar.top, bottom: layout.bar.top + 99, height: 99 };
+      controls.push(bar);
+    }
+    const confirmAddress = (state: ReturnType<typeof fixture>) => {
+      const suggestion = new Element("li"); suggestion.textContent = "123 Test Street, Edmonton, Alberta, T5J 0N3";
+      suggestion.closest = selector => selector === "ul.list-group li" ? suggestion : null;
+      state.listeners.click({ target: suggestion }); state.tick(800);
+    };
+    return { controls, addressHeading, paymentHeading, book, confirmAddress };
+  }
+  const desktopForm = { address: 3565, payment: 4182, bookBottom: 4705 };
+
+  it("on desktop shows the whole Address Details heading after the arrival time, and Book My Clean too on a tall screen", () => {
+    const form = liveForm(desktopForm);
+    const state = fixture({ f_name: "Jamie" }, form.controls, { desktop: true, viewport: 900 });
+    state.tick();
+    expect(state.scrolledTo).toEqual([{ top: 3565 - 24, behavior: "smooth" }]);
+    expect(form.addressHeading.scrolls).toEqual([]);
+    const tall = liveForm(desktopForm);
+    const tallState = fixture({ f_name: "Jamie" }, tall.controls, { desktop: true, viewport: 1300 });
+    tallState.tick();
+    expect(tallState.scrolledTo).toEqual([{ top: 3565 - 120, behavior: "smooth" }]);
+  });
+
+  it("on desktop keeps Book My Clean visible after the address and shows as much of Address Details as fits", () => {
+    const form = liveForm(desktopForm);
+    const state = fixture({ f_name: "Jamie" }, form.controls, { desktop: true, viewport: 900 });
+    state.tick(); form.confirmAddress(state);
+    // Old behaviour stopped at the heading-at-120px position (4062), hiding Address Details.
+    expect(state.scrolledTo[1]).toEqual({ top: 4705 + 16 - 900, behavior: "smooth" });
+    state.tick(800);
+    expect(state.scrolledTo).toHaveLength(2);
+    // Measured only: the booking button is never focused, clicked or submitted.
+    expect(form.book.events).toEqual([]);
+  });
+
+  it("keeps the button above BookingKoala's cookie notice", () => {
+    const form = liveForm({ ...desktopForm, bar: { top: 826, className: "tjs-cookie-fixed bg-white" } });
+    const state = fixture({ f_name: "Jamie" }, form.controls, { desktop: true, viewport: 900 });
+    state.tick(); form.confirmAddress(state);
+    expect(state.scrolledTo[1].top).toBe(4705 + 16 + 74 - 900);
+  });
+
+  it("on a phone puts each heading near the top and lands Book My Clean above the summary bar", () => {
+    const form = liveForm({ address: 5530, payment: 6574, bookBottom: 7242, bar: { top: 713, className: "summary-ele tjs-summary-mob" } });
+    const state = fixture({ f_name: "Jamie" }, form.controls, { viewport: 812 });
+    state.tick();
+    expect(state.scrolledTo).toEqual([{ top: 5530 - 24, behavior: "smooth" }]);
+    form.confirmAddress(state);
+    const top = state.scrolledTo[1].top;
+    expect(top).toBe(7242 + 16 + 99 - 812);
+    expect(6574 - top).toBeGreaterThanOrEqual(24); // Payment Information still on screen
+    expect(form.book.events).toEqual([]);
   });
 });

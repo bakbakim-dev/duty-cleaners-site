@@ -183,6 +183,43 @@
     target.scrollIntoView({ block: 'start', behavior: reducedMotion() ? 'auto' : 'smooth' });
     return true;
   }
+  // Height of BookingKoala's own bars pinned to the bottom of the screen
+  // (the phone summary bar, the cookie notice): content behind them is hidden.
+  function bottomCover(viewport) {
+    var cover = 0;
+    if (typeof window.getComputedStyle !== 'function') return 0;
+    Array.prototype.slice.call(document.querySelectorAll('.tjs-summary-mob,.tjs-cookie-fixed')).forEach(function (el) {
+      var position = window.getComputedStyle(el).position;
+      if (position !== 'fixed' && position !== 'sticky') return;
+      var rect = el.getBoundingClientRect();
+      if (rect.height > 0 && rect.bottom >= viewport - 2 && rect.top < viewport) cover = Math.max(cover, viewport - rect.top);
+    });
+    return cover;
+  }
+  // Scroll so that `heading` sits at least `room` px below the top, but stop
+  // higher when that brings the whole "Book My Clean" button into view above
+  // any bottom bar; never higher than `floorRoom` px above `floorHeading`.
+  // Without layout information (or the button) it falls back to guideTo.
+  function guideKeepingBook(heading, room, floorHeading, floorRoom) {
+    var button = Array.prototype.slice.call(document.querySelectorAll('button')).filter(function (candidate) {
+      return /^book my clean\b/i.test(normal(candidate.textContent)) && visible(candidate);
+    })[0];
+    var viewport = window.innerHeight;
+    if (!heading || !button || typeof heading.getBoundingClientRect !== 'function' ||
+        typeof button.getBoundingClientRect !== 'function' || typeof window.scrollTo !== 'function' || !viewport) {
+      return guideTo(heading);
+    }
+    var scrolled = window.pageYOffset || 0;
+    var ceiling = heading.getBoundingClientRect().top + scrolled - room;
+    var lowest = button.getBoundingClientRect().bottom + scrolled + 16 + bottomCover(viewport) - viewport;
+    var floor = floorHeading && typeof floorHeading.getBoundingClientRect === 'function'
+      ? floorHeading.getBoundingClientRect().top + scrolled - floorRoom : lowest;
+    var top = Math.round(Math.max(0, Math.min(ceiling, Math.max(lowest, floor))));
+    window.scrollTo({ top: top, behavior: reducedMotion() ? 'auto' : 'smooth' });
+    return true;
+  }
+  // The live heading carries its subtitle ("Where would you like us to clean?").
+  function addressHeading() { return headingMatching(/^address details\b/i); }
   function addressIsConfirmed() {
     var state = states.dc_addr;
     if (!state || !state.addressSelectionDone || Date.now() - (state.addressSelectionAt || 0) < 700) return false;
@@ -210,8 +247,11 @@
     // where a customer goes next.  After live availability, the next genuine
     // task is always Address Details.
     if (!scheduleGuideDone) {
-      var addressTarget = headingMatching(/^address details$/i) || control('dc_addr');
-      if (guideTo(addressTarget)) scheduleGuideDone = true;
+      // Address Details heading always in view (24 px from the top at most);
+      // on a tall enough screen it stops higher so Book My Clean shows too.
+      var desktopRoom = window.matchMedia && window.matchMedia('(min-width: 768px)').matches ? 120 : 24;
+      var heading = addressHeading();
+      if (heading ? guideKeepingBook(heading, 24, heading, desktopRoom) : guideTo(control('dc_addr'))) scheduleGuideDone = true;
       return;
     }
     // Once the customer makes a real selection in BookingKoala's own address
@@ -220,7 +260,10 @@
     // payment remains a deliberate, validated BookingKoala step.
     if (!paymentGuideDone && addressIsConfirmed()) {
       var paymentTarget = headingMatching(/^payment information$/i);
-      if (guideTo(paymentTarget)) paymentGuideDone = true;
+      // Payment Information in view, the whole Book My Clean button visible,
+      // and as much of Address Details above it as the screen allows.
+      var paymentRoom = window.matchMedia && window.matchMedia('(min-width: 768px)').matches ? 120 : 24;
+      if (guideKeepingBook(paymentTarget, paymentRoom, addressHeading(), 24)) paymentGuideDone = true;
     }
   }
   function ensureBanner() {
