@@ -1,3 +1,154 @@
+<!-- Duty Cleaners brand styles: BEGIN -->
+<style>
+/*
+ * Duty Cleaners brand layer for the BookingKoala booking pages.
+ * Published in Theme Builder -> Settings -> Tracking & Conversion -> Header code,
+ * inside its own marked <style> block (site/scripts/build-booking-prefill.mjs).
+ *
+ * Colours are the site's own tokens (site/src/index.css):
+ *   navy   #1c3c63  (--brand-navy)  selected states, headings
+ *   accent #c23e0a  (--accent)      action buttons, prices
+ *   ink    #263140  (--foreground)  body text
+ * BookingKoala writes its theme colour (#00d0ff) into per-element rules
+ * (#elem_...), so these overrides use !important. Cosmetic only: nothing here
+ * hides a field or changes what the form submits.
+ */
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap");
+
+:root {
+  --dc-navy: #1c3c63;
+  --dc-navy-dark: #152f4f;
+  --dc-accent: #c23e0a;
+  --dc-accent-dark: #a33408;
+  --dc-ink: #263140;
+}
+
+/* Type: the site's system sans for body copy; Fraunces only for the page
+   heading, as the site's funnel uses it only for step headings. */
+body,
+button,
+input,
+select,
+textarea,
+.btn,
+.form-control,
+.form-select {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+}
+.bk-title {
+  font-family: "Fraunces", Georgia, "Times New Roman", serif !important;
+  color: var(--dc-navy) !important;
+  letter-spacing: -0.01em;
+}
+.bk-form-title {
+  color: var(--dc-navy) !important;
+}
+
+/* Action buttons (Book My Clean, Apply, cookie OK): the site's orange. */
+.btn-primary,
+.bk-cookie-acpt-btn {
+  background-color: var(--dc-accent) !important;
+  border-color: var(--dc-accent) !important;
+  color: #fff !important;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.bk-cookie-acpt-btn:hover {
+  background-color: var(--dc-accent-dark) !important;
+  border-color: var(--dc-accent-dark) !important;
+}
+.bk-cookie-set-btn {
+  color: var(--dc-navy) !important;
+}
+
+/* Chosen options (frequency, arrival time, tabs): navy, as in the site's funnel. */
+.bk-form-check-input:checked + .bk-form-check-btn,
+.btn-check:checked + .btn,
+.btn-check:checked + label,
+label.btn.active,
+.btn-light.active {
+  background-color: var(--dc-navy) !important;
+  border-color: var(--dc-navy) !important;
+  color: #fff !important;
+}
+/* BookingKoala styles the chosen frequency with an ID-scoped !important rule
+   (#elem_... .bk-form-check-input:checked + label). :is() takes the weight of
+   its most specific argument, and the extra class outranks their rule, which
+   is injected later in the page, without naming their IDs. */
+:is(#dc-brand, [id^="elem_"]) .bk-form-check-input:checked + label.bk-form-check-btn {
+  background-color: var(--dc-navy) !important;
+  border-color: var(--dc-navy) !important;
+  color: #fff !important;
+}
+.nav-tabs .nav-link.active,
+.nav-link.active {
+  border-color: var(--dc-accent) !important;
+  color: var(--dc-navy) !important;
+}
+.form-check-input:checked {
+  background-color: var(--dc-navy) !important;
+  border-color: var(--dc-navy) !important;
+}
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+  border-color: var(--dc-navy) !important;
+  box-shadow: 0 0 0 0.2rem rgba(28, 60, 99, 0.25) !important;
+}
+
+/* Prices in the summary: the site's accent (BookingKoala's #fc6011 fails
+   contrast on white). */
+.tjs-summary__total,
+.bk-form-sum-tbt-value,
+.bk-form-sum-total-value {
+  color: var(--dc-accent) !important;
+}
+
+/* Phone summary bar: two stacked totals had no labels. */
+#summary-price-mini {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+#summary-price-mini .bk-form-sum-tbt-value::before,
+#summary-price-mini .bk-form-sum-total-value::before {
+  display: block;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #52616b;
+  line-height: 1.2;
+}
+#summary-price-mini .bk-form-sum-tbt-value::before {
+  content: "Before GST";
+}
+#summary-price-mini .bk-form-sum-total-value::before {
+  content: "With 5% GST";
+}
+#summary-price-mini .tjs-summary__total {
+  display: block !important;
+  width: auto !important;
+  text-align: right;
+  white-space: nowrap;
+  font-size: 18px;
+}
+
+/* Tap targets: tick boxes and footer links were 16-27px tall. */
+.form-check-input.bk-form-extra-input,
+.form-check-input {
+  min-width: 24px;
+  min-height: 24px;
+}
+footer .btn-link,
+.footer .btn-link {
+  min-height: 44px;
+  display: inline-flex !important;
+  align-items: center;
+}
+</style>
+<!-- Duty Cleaners brand styles: END -->
 <!-- Duty Cleaners booking handoff v2: BEGIN -->
 <script>
 (function () {
