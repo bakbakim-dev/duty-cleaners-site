@@ -226,6 +226,16 @@ export const RATING_CLAIM = `${CITY_PROOF.edmonton.googleRating} on Google`;
 /** Whether this branch's own Google listing carries a rating the site may show. */
 export const hasGoogleRating = (branch: Branch) => CITY_PROOF[branch].googleRating !== null;
 
+/**
+ * "4.9 on Google" from this branch's own listing, or null when it has none
+ * (Red Deer). Surfaces that follow the visitor's branch, like the quote funnel,
+ * use this rather than RATING_CLAIM, which is the Edmonton listing's figure.
+ */
+export const ratingClaimFor = (branch: Branch): string | null => {
+  const rating = CITY_PROOF[branch].googleRating;
+  return rating === null ? null : `${rating} on Google`;
+};
+
 export const cityProofFor = (pathname: string) =>
   // Canonical-aware. A bare startsWith("/calgary") missed every preserved
   // legacy Calgary URL (/cleaning-services-calgary/ chief among them), so the

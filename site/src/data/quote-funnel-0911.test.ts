@@ -329,7 +329,7 @@ describe("the quote overlay reads its facts from proof.ts", () => {
     const src = codeOf("src/components/QuoteOverlay.tsx");
     expect(src).not.toMatch(/\d\.\d on Google/);
     expect(src).not.toMatch(/\(\d{3}\) \d{3}-\d{4}|tel:\d/);
-    expect(src).toMatch(/\{RATING_CLAIM\}/);
+    expect(src, "the overlay shows another branch's rating").toMatch(/\{ratingClaimFor\(key\)\}/);
     expect(src).toMatch(/cityProofFor\(pathname\)/);
   });
 });
@@ -395,5 +395,17 @@ describe("the move-out card claims only what the checklist covers", () => {
     const src = codeOf("src/components/quote/QuoteFlow.tsx");
     expect(src, "the card claims a service it is not").not.toMatch(/Already includes deep cleaning/i);
     expect(src).toMatch(/plus inside the oven, fridge, cabinets and closets/);
+  });
+});
+
+describe("a branch shows its own Google rating", () => {
+  it("the funnel and overlay read the visitor's branch, not Edmonton's", async () => {
+    const { CITY_PROOF, ratingClaimFor } = await import("@/data/proof");
+    expect(ratingClaimFor("calgary")).toBe(`${CITY_PROOF.calgary.googleRating} on Google`);
+    expect(ratingClaimFor("edmonton")).toBe(`${CITY_PROOF.edmonton.googleRating} on Google`);
+    expect(ratingClaimFor("reddeer"), "Red Deer has no reviews yet").toBeNull();
+    for (const rel of ["src/components/quote/QuoteFlow.tsx", "src/components/QuoteOverlay.tsx"]) {
+      expect(codeOf(rel), `${rel} shows the Edmonton rating on every branch`).not.toMatch(/RATING_CLAIM/);
+    }
   });
 });

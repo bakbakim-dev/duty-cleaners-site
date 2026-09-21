@@ -134,7 +134,7 @@ describe("Red Deer shows no rating it has not earned", () => {
 
     // The shared surfaces that list every office hide the rating for Red Deer.
     expect(codeOf("pages/Contact.tsx")).toMatch(/showRating=\{hasGoogleRating\("reddeer"\)\}/);
-    expect(codeOf("components/quote/QuoteFlow.tsx")).toMatch(/hasGoogleRating\(proof\.key\) \? <>Rated \{RATING_CLAIM\}/);
+    expect(codeOf("components/quote/QuoteFlow.tsx")).toMatch(/hasGoogleRating\(proof\.key\) \? <>Rated \{ratingClaimFor\(proof\.key\)\}/);
   });
 });
 

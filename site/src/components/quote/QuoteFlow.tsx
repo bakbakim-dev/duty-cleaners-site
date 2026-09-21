@@ -57,7 +57,7 @@ import {
   type DcParking,
   type ResolvedExtra,
 } from "@/lib/booking-redirect";
-import { BOOKINGS_CLAIM, RATING_CLAIM, RESPONSE_TIME_PROMISE, SUPPORT_EMAIL, cityProofFor, hasGoogleRating } from "@/data/proof";
+import { BOOKINGS_CLAIM, RESPONSE_TIME_PROMISE, SUPPORT_EMAIL, cityProofFor, hasGoogleRating, ratingClaimFor } from "@/data/proof";
 import { createQuoteRequestId, fingerprintQuotePayload, submitQuote, type QuotePayload } from "@/lib/quote-submit";
 import { captureTrackingParams, getStoredTracking, pageServiceFor, serviceOnOpen } from "@/lib/tracking";
 import { intentParams, intentQuery } from "@/lib/url-intent";
@@ -1700,9 +1700,9 @@ export default function QuoteFlow({
               {/* Proof at the point of hesitation. */}
               <p className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
                 <span className="text-gold-ink" aria-hidden="true">★</span>
-                {/* The rating is the Edmonton and Calgary listings'. The Red Deer
-                    listing has no reviews yet, so a Red Deer quote shows none. */}
-                {hasGoogleRating(proof.key) ? <>Rated {RATING_CLAIM} · </> : null}
+                {/* The branch's own listing: a Calgary quote shows Calgary's rating.
+                    The Red Deer listing has no reviews yet, so it shows none. */}
+                {hasGoogleRating(proof.key) ? <>Rated {ratingClaimFor(proof.key)} · </> : null}
                 {proof.city} customers rate every cleaner
               </p>
 

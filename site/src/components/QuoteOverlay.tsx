@@ -5,7 +5,7 @@ import { ArrowLeft, X } from "lucide-react";
 import { useQuoteOverlay } from "@/hooks/use-quote-overlay";
 import { useLocation } from "react-router-dom";
 import { branchFromPath, isCalgaryPath } from "@/lib/city-from-path";
-import { RATING_CLAIM, cityProofFor, hasGoogleRating } from "@/data/proof";
+import { cityProofFor, hasGoogleRating, ratingClaimFor } from "@/data/proof";
 import LoadErrorBoundary from "@/components/LoadErrorBoundary";
 
 /**
@@ -153,13 +153,13 @@ export default function QuoteOverlay() {
             Back to {pageLabel(pathname)}
           </button>
           <span className="hidden h-5 w-px bg-border md:inline-block" />
-          {/* The Edmonton and Calgary listings' rating: the Red Deer listing has
-              no reviews yet, so the Red Deer page's takeover shows none. */}
+          {/* The branch's own listing rating: the Red Deer listing has no
+              reviews yet, so the Red Deer page's takeover shows none. */}
           {hasGoogleRating(key) && (
           <span className="flex items-center gap-1.5">
             <Stars size={0.875} />
             <span className="truncate text-xs font-semibold text-muted-foreground sm:text-sm">
-              {RATING_CLAIM}
+              {ratingClaimFor(key)}
             </span>
           </span>
           )}

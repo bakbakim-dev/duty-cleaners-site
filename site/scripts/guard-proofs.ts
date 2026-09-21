@@ -1108,7 +1108,7 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/quote-funnel-0911.test.ts",
     target: "src/components/QuoteOverlay.tsx",
-    find: "{RATING_CLAIM}",
+    find: "{ratingClaimFor(key)}",
     replace: "4.9 on Google",
     failing: "no hand-typed rating or phone number",
     why: "Hand-types the Google rating in the quote overlay instead of reading it from proof.ts.",
@@ -1234,6 +1234,14 @@ export const GUARD_PROOFS: GuardProof[] = [
     replace: "office, on {CITY_PROOF.reddeer.phone}. Duty Cleaners does not serve Red Deer, with no travel fee",
     failing: "nothing says Red Deer is not served",
     why: "Restores a 'does not serve Red Deer' line the owner contradicted on 2026-09-11.",
+  },
+  {
+    guard: "src/data/quote-funnel-0911.test.ts",
+    target: "src/components/quote/QuoteFlow.tsx",
+    find: "<>Rated {ratingClaimFor(proof.key)} · </>",
+    replace: "<>Rated {RATING_CLAIM} · </>",
+    failing: "the funnel and overlay read the visitor's branch, not Edmonton's",
+    why: "Shows the Edmonton listing's rating on a Calgary quote again.",
   },
   {
     guard: "src/data/quote-funnel-0911.test.ts",
