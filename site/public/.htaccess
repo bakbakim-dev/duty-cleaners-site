@@ -40,7 +40,7 @@ DirectoryIndex index.html
   RewriteRule ^locations/all/?$ /spa-shell.html [L]
   RewriteRule ^gift-cards/?$ /spa-shell.html [L]
 
-  # 178 permanent redirects.
+  # 187 permanent redirects.
   RewriteRule ^8038/how-much-does-a-house-cleaning-cost/?$ /how-much-does-a-house-cleaning-cost/ [R=301,L]
   RewriteRule ^8081/the-top-5-must-have-cleaning-products-for-a-spotless-home/?$ /the-top-5-must-have-cleaning-products-for-a-spotless-home/ [R=301,L]
   RewriteRule ^8060/how-often-should-a-cleaning-service-clean-my-house/?$ /how-often-should-a-cleaning-service-clean-my-house/ [R=301,L]
@@ -179,6 +179,15 @@ DirectoryIndex index.html
   RewriteRule ^post-construction-2/?$ /post-construction-cleaning/ [R=301,L]
   RewriteRule ^regular-house-cleaning-2/?$ /edmonton/regular-cleaning/ [R=301,L]
   RewriteRule ^homepage/booking/?$ /pricing/ [R=301,L]
+  RewriteRule ^wp-content/uploads/2024/08/2\.jpg/?$ /gift-card/ [R=301,L]
+  RewriteRule ^wp-content/uploads/2024/08/4\.jpg/?$ / [R=301,L]
+  RewriteRule ^wp-content/uploads/2024/08/5\.jpg/?$ / [R=301,L]
+  RewriteRule ^wp-content/uploads/2024/08/6\.jpg/?$ / [R=301,L]
+  RewriteRule ^wp-content/uploads/2024/08/7\.png/?$ / [R=301,L]
+  RewriteRule ^wp-content/uploads/2024/08/9\.png/?$ / [R=301,L]
+  RewriteRule ^wp-content/uploads/2024/08/10\.png/?$ / [R=301,L]
+  RewriteRule ^wp-content/uploads/2024/08/11\.jpg/?$ / [R=301,L]
+  RewriteRule ^wp-content/uploads/2024/08/12\.png/?$ / [R=301,L]
   RewriteRule ^edmonton/?$ / [R=301,L]
   RewriteRule ^edmonton-2/?$ / [R=301,L]
   RewriteRule ^calgary-2/?$ /cleaning-services-calgary/ [R=301,L]

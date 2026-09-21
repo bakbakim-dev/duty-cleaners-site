@@ -264,6 +264,19 @@ export const LEGACY_URLS: LegacyUrl[] = [
   { legacy: "/regular-house-cleaning-2", target: "/edmonton/regular-cleaning", mode: "redirect", impressions: 0 },
   // Sibling of /booking-page, which already lands on /pricing.
   { legacy: "/homepage/booking", target: "/pricing", mode: "redirect", impressions: 0 },
+  // Old WordPress uploads that 404 since the switch (AuditSpur scan 1260,
+  // 2026-09-21). Each goes to the page that showed it on the old site, so a
+  // stray backlink or image-search click still lands on something relevant:
+  // 2.jpg was on the gift-card page, the rest on the homepage and city hubs.
+  { legacy: "/wp-content/uploads/2024/08/2.jpg", target: "/gift-card", mode: "redirect", impressions: 0 },
+  { legacy: "/wp-content/uploads/2024/08/4.jpg", target: "/", mode: "redirect", impressions: 0 },
+  { legacy: "/wp-content/uploads/2024/08/5.jpg", target: "/", mode: "redirect", impressions: 0 },
+  { legacy: "/wp-content/uploads/2024/08/6.jpg", target: "/", mode: "redirect", impressions: 0 },
+  { legacy: "/wp-content/uploads/2024/08/7.png", target: "/", mode: "redirect", impressions: 0 },
+  { legacy: "/wp-content/uploads/2024/08/9.png", target: "/", mode: "redirect", impressions: 0 },
+  { legacy: "/wp-content/uploads/2024/08/10.png", target: "/", mode: "redirect", impressions: 0 },
+  { legacy: "/wp-content/uploads/2024/08/11.jpg", target: "/", mode: "redirect", impressions: 0 },
+  { legacy: "/wp-content/uploads/2024/08/12.png", target: "/", mode: "redirect", impressions: 0 },
 ];
 
 /** legacy path -> modern route, for the routes we serve at the old URL. */
