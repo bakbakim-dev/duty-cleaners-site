@@ -1,10 +1,11 @@
 import { forwardRef } from "react";
 
 /**
- * Shared chapter heading for every funnel step: numbered badge, orange eyebrow,
- * editorial headline and the muted companion line. One implementation so all
- * four steps keep the same rhythm. Purely presentational — no motifs, no
- * decoration, per the funnel constraints.
+ * Shared chapter heading for every funnel step: the headline and the muted
+ * companion line. The progress row above already names and numbers the step,
+ * so `number` and `eyebrow` feed only a screen-reader prefix; a visible badge
+ * and eyebrow here said the step's name three times. Sans, not display-serif:
+ * the serif is for marketing pages, never inside the quote funnel.
  */
 const StepHeader = forwardRef<
   HTMLHeadingElement,
@@ -18,24 +19,12 @@ const StepHeader = forwardRef<
 >(function StepHeader({ number, eyebrow, title, companion, children }, ref) {
   return (
     <div className="funnel-chapter">
-      {/* On phones the progress line above already names the step, so the
-          badge row would only push the first question further down. */}
-      <div className="hidden items-center gap-3 sm:flex">
-        <span
-          aria-hidden="true"
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm bg-secondary text-sm font-bold text-secondary-foreground"
-        >
-          {number}
-        </span>
-        <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">
-          {eyebrow}
-        </span>
-      </div>
       <h2
         ref={ref}
         tabIndex={-1}
-        className="display-serif text-2xl font-bold leading-tight text-foreground focus:outline-none sm:mt-3 sm:text-3xl"
+        className="text-2xl font-bold leading-tight tracking-tight text-foreground focus:outline-none sm:text-[1.75rem]"
       >
+        <span className="sr-only">Step {Number(number)}, {eyebrow}: </span>
         {title}
       </h2>
       {companion && (

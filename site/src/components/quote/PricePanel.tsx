@@ -65,7 +65,7 @@ export default function PricePanel({
   }`;
 
   /* Reassurance pills. Green savings pill only when a recurring frequency is
-     active; "Pay $0 today" is always true — payment happens after the clean. */
+     active; "not charged today" is always true — payment happens after the clean. */
   const pills = (
     <div className="mt-3 flex flex-wrap items-center gap-2">
       {ongoing !== null && savings > 0 && (
@@ -74,7 +74,7 @@ export default function PricePanel({
         </span>
       )}
       <span className="inline-flex items-center rounded-full border border-border bg-muted px-3 py-1 text-sm font-semibold text-fine-print">
-        Pay $0 today
+        You won’t be charged today
       </span>
     </div>
   );
@@ -103,15 +103,23 @@ export default function PricePanel({
         <p className="text-sm font-semibold uppercase tracking-[0.14em] text-fine-print-on-dark">
           {serviceLabel}
         </p>
-        <p className="mt-3 text-sm font-semibold text-fine-print-on-dark">
-          {ongoing ? "First clean" : "Your price"}
-        </p>
-        <p className="text-3xl font-bold leading-tight">{priceLabel}</p>
-        {ongoing !== null && (
-          <p className="mt-2 text-sm font-semibold">
-            Then {formatPrice(ongoing)} per visit
-          </p>
-        )}
+        {/* On a plan the per-visit price is what the customer pays from then on,
+            so it gets the same size as the first clean, never small print. */}
+        <div className={ongoing !== null ? "mt-3 grid grid-cols-2 gap-3" : "mt-3"}>
+          <div>
+            <p className="text-sm font-semibold text-fine-print-on-dark">
+              {ongoing ? "First clean" : "Your price"}
+            </p>
+            <p className="text-3xl font-bold leading-tight">{priceLabel}</p>
+          </div>
+          {ongoing !== null && (
+            <div className="border-l border-brand-navy-foreground/25 pl-3">
+              <p className="text-sm font-semibold text-fine-print-on-dark">Every visit after</p>
+              <p className="text-3xl font-bold leading-tight">{formatPrice(ongoing)}</p>
+            </div>
+          )}
+        </div>
+        <p className="mt-1 text-sm text-fine-print-on-dark">Before 5% GST</p>
         {/* The service is already the card's heading; this line earns its place
             only once it has add-ons to count. */}
         {addOnCount > 0 && (
@@ -126,7 +134,7 @@ export default function PricePanel({
             </span>
           )}
           <span className="inline-flex items-center rounded-full border border-brand-navy-foreground/30 px-3 py-1 text-sm font-semibold text-fine-print-on-dark">
-            Pay $0 today
+            You won’t be charged today
           </span>
         </div>
       </aside>

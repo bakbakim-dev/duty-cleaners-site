@@ -74,7 +74,7 @@ const STEP_LABELS = [
   "About your home",
   "Your details",
   "Your price",
-  "Pick your time",
+  "Choose your time",
 ];
 
 /** Step ids sent with quote_step; the details pane of step 3 is its own id. */
@@ -155,6 +155,7 @@ function NumberChips({
   onChange,
   name,
   caption = false,
+  before,
 }: {
   legend: string;
   options: { id: number; value: number; label: string }[];
@@ -163,6 +164,8 @@ function NumberChips({
   name: string;
   /** Show the full label (with the sqft cap) under the selected chip. */
   caption?: boolean;
+  /** Rendered between the question and its choices (e.g. the counting rule). */
+  before?: React.ReactNode;
 }) {
   const selected = options.find((option) => option.value === value);
   /* "3 Bedrooms (Under 1700sqft)" → "3 Bedrooms · under 1,700 sqft" */
@@ -179,6 +182,7 @@ function NumberChips({
   return (
     <fieldset>
       <legend className="text-base font-semibold text-foreground">{legend}</legend>
+      {before && <div className="mt-2">{before}</div>}
       <div className="mt-2 flex flex-wrap gap-2" role="radiogroup" aria-label={legend}>
         {options.map((option, index) => {
           const active = option.value === value;
@@ -228,7 +232,7 @@ function NumberChips({
               className={`min-h-[48px] min-w-[56px] rounded-sm border px-3 py-1.5 text-lg font-bold transition-colors ${
                 active
                   ? "border-brand-navy bg-brand-navy text-brand-navy-foreground"
-                  : "border-border bg-card text-foreground hover:border-brand-navy/50 hover:bg-muted"
+                  : "border-input bg-card text-foreground hover:border-brand-navy/50 hover:bg-muted"
               }`}
             >
               <span className="block leading-tight">{head}</span>
@@ -298,6 +302,10 @@ export default function QuoteFlow({
   const [contact, setContact] = useState({ firstName: "", lastName: "", email: "", phone: "" });
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const confirmHeadingRef = useRef<HTMLHeadingElement>(null);
+  useEffect(() => {
+    if (submitted) confirmHeadingRef.current?.focus({ preventScroll: true });
+  }, [submitted]);
   const [failed, setFailed] = useState(false);
   const [leadCaptureFailed, setLeadCaptureFailed] = useState(false);
   const [honeypot, setHoneypot] = useState("");
@@ -351,6 +359,19 @@ export default function QuoteFlow({
    * optional and letting the visitor hit a wall at checkout.
    */
   const [detailErrors, setDetailErrors] = useState<Record<string, string>>({});
+  // A flagged question clears the moment it is answered; nothing new is flagged
+  // until the visitor tries to continue again.
+  useEffect(() => {
+    setDetailErrors((current) => {
+      const keys = Object.keys(current);
+      if (keys.length === 0) return current;
+      const fresh = validateCleanerDetails(details);
+      const still = keys.filter((key) => fresh[key]);
+      return still.length === keys.length
+        ? current
+        : Object.fromEntries(still.map((key) => [key, fresh[key]]));
+    });
+  }, [details]);
   /**
    * Step 3 is two focused panes rather than one very tall page: "price" (the
    * number, how often, add-ons) and "details" (what BookingKoala must know
@@ -376,6 +397,10 @@ export default function QuoteFlow({
     lib/tracking.ts): the CTA's service, then the page's, then the flow's own.
   */
   const { isOpen } = useQuoteOverlay();
+  // A closed overlay stays mounted: the next open starts a fresh request.
+  useEffect(() => {
+    if (!isOpen) setSubmitted(false);
+  }, [isOpen]);
   /** The path the visitor last picked a service on inside the flow. */
   const choicePathRef = useRef<string | null>(null);
   const wasOpenRef = useRef(false);
@@ -950,9 +975,9 @@ export default function QuoteFlow({
    */
 
   /**
-   * Desktop keeps the summary bar out of the way while the real CTA is on
-   * screen; mobile always shows it. Mobile is handled in CSS, so the observer
-   * only has to answer "is the CTA visible?".
+   * The summary bar steps aside while the current pane's real button is on
+   * screen. The observer only answers "is the CTA visible?"; it re-attaches
+   * when the pane changes, because each pane mounts its own button.
    */
   useEffect(() => {
     if (step !== 2) return;
@@ -964,7 +989,7 @@ export default function QuoteFlow({
     );
     observer.observe(node);
     return () => observer.disconnect();
-  }, [step]);
+  }, [step, pricePane]);
 
   /** Primary CTA — hand the visitor to BookingKoala without waiting on GHL. */
   /**
@@ -976,21 +1001,72 @@ export default function QuoteFlow({
     setDetailErrors(errors);
     const first = ["entry", "cleanliness", "parking", "flexibility", "notes"].find((key) => errors[key]);
     if (!first) return true;
-    const targets: Record<string, string> = { cleanliness: "dc-clean-group", parking: "dc-park-group", entry: "dc-entry-group", flexibility: "dc-flexibility" };
-    const target = document.getElementById(targets[first] ?? `dc-${first}`);
-    target?.scrollIntoView({ behavior: "smooth", block: "center" });
-    const focusTarget = target?.matches("input,select,textarea") ? target : target?.querySelector("button,input,select,textarea");
-    (focusTarget as HTMLElement | null)?.focus({ preventScroll: true });
+    setNudge((value) => value + 1);
+    jumpToMissing(first);
     return false;
   };
+
+  /**
+   * Where each required question lives, and how the "still to answer" summary
+   * names it. One map so the summary, the scroll target and the highlight agree.
+   */
+  const MISSING_TARGETS: Record<string, { id: string; label: string }> = {
+    pets: { id: "dc-pets-group", label: "Do you have pets?" },
+    entry: { id: "dc-entry-group", label: "How do we enter the home?" },
+    cleanliness: { id: "dc-clean-group", label: "How clean is your house?" },
+    parking: { id: "dc-park-group", label: "Where should we park?" },
+    flexibility: { id: "dc-flexibility-group", label: "Is your date/time flexible?" },
+    notes: { id: "dc-notes-group", label: "Special notes (too long)" },
+  };
+  /** Bumped on every blocked attempt so the nudge animation replays each time. */
+  const [nudge, setNudge] = useState(0);
+  const jumpToMissing = (key: string) => {
+    const target = document.getElementById(MISSING_TARGETS[key]?.id ?? "");
+    target?.scrollIntoView({ behavior: "smooth", block: "center" });
+    const focusTarget = target?.matches("input,select,textarea")
+      ? target
+      : target?.querySelector("button,input,select,textarea");
+    (focusTarget as HTMLElement | null)?.focus({ preventScroll: true });
+  };
+  const missingKeys = [
+    ...(petError ? ["pets"] : []),
+    ...["entry", "cleanliness", "parking", "flexibility", "notes"].filter((key) => detailErrors[key]),
+  ];
+  /** "1 question still needs an answer" with a jump link per question. */
+  const missingSummary = (keys: string[]) =>
+    keys.length > 0 ? (
+      <div key={`summary-${nudge}`} role="alert" className="funnel-missing-summary">
+        <span className="dc-icon dc-icon-circle-x funnel-missing-summary-icon" aria-hidden="true" />
+        <div>
+          <p className="font-bold">
+            {keys.length === 1
+              ? "One question still needs an answer"
+              : `${keys.length} questions still need an answer`}
+          </p>
+          <ul className="mt-1 space-y-1">
+            {keys.map((key) => (
+              <li key={key}>
+                <button
+                  type="button"
+                  onClick={() => jumpToMissing(key)}
+                  className="inline-flex min-h-[44px] items-center gap-1 font-semibold underline underline-offset-4"
+                >
+                  {MISSING_TARGETS[key]?.label ?? key}
+                  <span className="dc-icon dc-icon-arrow-right h-4 w-4" aria-hidden="true" />
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    ) : null;
 
   /** Pane A → pane B. Starts the second pane at the top, never mid-question. */
   const goToDetailsPane = () => {
     if (petsExtra && hasPets === null) {
       setPetError("Choose Yes or No so your total includes the correct pet charge.");
-      const target = document.getElementById("dc-pets-group");
-      target?.scrollIntoView({ behavior: "smooth", block: "center" });
-      (target?.querySelector("button") as HTMLButtonElement | null)?.focus({ preventScroll: true });
+      setNudge((value) => value + 1);
+      jumpToMissing("pets");
       return;
     }
     if (addedCount > 0) track("extras_selected", funnelProps());
@@ -1052,7 +1128,7 @@ export default function QuoteFlow({
 
   /** Secondary CTA — the original callback request. */
   const requestCallback = async () => {
-    if (step === 2 && !requireCleanerDetails()) return;
+    // A call back needs no booking answers: whatever is filled in rides along.
     setFailed(false);
     setSubmitting(true);
     const payload = confirmFields();
@@ -1120,9 +1196,11 @@ export default function QuoteFlow({
         <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-brand-navy text-brand-gold">
           <span className="dc-icon dc-icon-check h-7 w-7" aria-hidden="true" />
         </div>
-        <h2 className="text-2xl font-bold text-foreground">Request received.</h2>
+        <h2 ref={confirmHeadingRef} tabIndex={-1} className="text-2xl font-bold text-foreground focus:outline-none">
+          Request received.
+        </h2>
         <p className="mt-3 leading-relaxed text-muted-foreground">
-          We&rsquo;ll text you within {RESPONSE_TIME_PROMISE} to confirm your time. Your{" "}
+          We&rsquo;ll text you within {RESPONSE_TIME_PROMISE} to set a date and time. Your{" "}
           {serviceName.toLowerCase()} in {proof.city} is quoted at {priceLabel}
           {ongoingTotal ? `, then ${formatPrice(ongoingTotal)} per visit` : ""}.
         </p>
@@ -1147,7 +1225,7 @@ export default function QuoteFlow({
   const showPrice = step === 2;
 
   return (
-    <div className={showPrice ? "pb-32" : ""}>
+    <div className={showPrice ? "pb-[calc(8rem+env(safe-area-inset-bottom))]" : ""}>
       {/* Warm up the booking host so step 4 opens instantly. */}
       <Helmet>
         <link rel="preconnect" href={BOOKING_ORIGIN} crossOrigin="anonymous" />
@@ -1253,7 +1331,7 @@ export default function QuoteFlow({
                           className={`min-h-[48px] rounded-sm border p-4 text-left transition-colors ${
                             selected
                               ? "border-brand-navy bg-brand-navy text-brand-navy-foreground"
-                              : "border-border bg-card text-foreground hover:border-brand-navy/40"
+                              : "border-input bg-card text-foreground hover:border-brand-navy/40"
                           }`}
                         >
                           <span className="block font-bold">{option.label}</span>
@@ -1281,14 +1359,14 @@ export default function QuoteFlow({
                     commercial job quoted online (owner, 2026-09-10), through the contact form. */}
                 <p className="mt-3 text-base leading-relaxed text-foreground/80">
                   Turnover cleaning for an Airbnb or VRBO rental is priced per hour: call{" "}
-                  <a href={proof.phoneLink} className="inline-flex min-h-[44px] items-center font-bold text-foreground underline underline-offset-4 hover:text-brand-navy">
+                  <a href={proof.phoneLink} className="py-2.5 font-bold text-foreground underline underline-offset-4 hover:text-brand-navy">
                     {proof.phone}
                   </a>{" "}
                   or{" "}
                   <Link
                     to={`/contact-us/#topic=airbnb&city=${proof.key}`}
                     onClick={onClose}
-                    className="inline-flex min-h-[44px] items-center font-bold text-foreground underline underline-offset-4 hover:text-brand-navy"
+                    className="py-2.5 font-bold text-foreground underline underline-offset-4 hover:text-brand-navy"
                   >
                     request a callback
                   </Link>
@@ -1296,7 +1374,7 @@ export default function QuoteFlow({
                   <Link
                     to={`/contact-us/#topic=office&city=${proof.key}`}
                     onClick={onClose}
-                    className="inline-flex min-h-[44px] items-center font-bold text-foreground underline underline-offset-4 hover:text-brand-navy"
+                    className="py-2.5 font-bold text-foreground underline underline-offset-4 hover:text-brand-navy"
                   >
                     request an office quote
                   </Link>
@@ -1306,11 +1384,6 @@ export default function QuoteFlow({
 
               {selected.asksHomeSize && (
                 <div ref={homeSizeRef} className="space-y-6">
-                  <Callout label="Counting rule">
-                    Count offices, dens &amp; bonus rooms as bedrooms — we price by home size,
-                    not rooms cleaned. Only want some rooms done? Still count them all.
-                  </Callout>
-
                   {homeTypes.length > 0 && (
                     <div>
                       <Label htmlFor="homeType" className="text-base font-semibold">
@@ -1339,6 +1412,19 @@ export default function QuoteFlow({
                       onChange={setBedrooms}
                       name="bedrooms"
                       caption
+                      before={
+                        <div className="funnel-rule" role="note" aria-label="How to count bedrooms">
+                          <span className="dc-icon dc-icon-circle-help funnel-rule-icon" aria-hidden="true" />
+                          <div>
+                            <p className="funnel-rule-title">Count every room that could be a bedroom</p>
+                            <p className="funnel-rule-body">
+                              Offices, dens and bonus rooms count as bedrooms. We price by home size,
+                              not by the rooms you want cleaned, so count them all even if you only
+                              want some rooms done.
+                            </p>
+                          </div>
+                        </div>
+                      }
                     />
 
                     {/* Stacked, like bedrooms: seven chips in a half-width column
@@ -1356,7 +1442,7 @@ export default function QuoteFlow({
 
                       {halves.length > 0 && (
                         <NumberChips
-                          legend="Half baths"
+                          legend="Half bathrooms (toilet and sink, no tub or shower)"
                           options={halves}
                           value={halfBaths}
                           onChange={setHalfBaths}
@@ -1389,22 +1475,12 @@ export default function QuoteFlow({
                 ref={step === 1 ? stepHeadingRef : null}
                 number="02"
                 eyebrow="Where to send it"
-                title="Last step before your price."
+                title="Last step before your price"
               >
                 <p className="mt-3 text-muted-foreground">
-                  Your {serviceName.toLowerCase()} details are saved. We ask for these so we can
-                  save your quote and help you continue if booking is interrupted. There is no
-                  obligation to book.
+                  Your price is on the next screen. We keep a copy so you can come back to it, and
+                  nothing is booked.
                 </p>
-                {!quote.quoteOnly && (
-                  <Callout label="Your starting price" className="mt-4">
-                    Your {proof.city} {serviceName.toLowerCase()} starts from{" "}
-                    <span className="font-bold text-foreground">
-                      {formatPrice(deepFirstCleanBase ?? quote.firstClean)}
-                    </span>{" "}
-                    — add your details and the exact number appears on the next screen.
-                  </Callout>
-                )}
               </StepHeader>
 
               <div className="grid gap-5 sm:grid-cols-2">
@@ -1538,7 +1614,8 @@ export default function QuoteFlow({
                   <button
                     type="button"
                     onClick={() => setStep(0)}
-                    className="inline-flex min-h-[48px] items-center gap-2 text-base font-semibold text-foreground underline underline-offset-4 hover:text-brand-navy"
+                    disabled={submitting}
+                    className="inline-flex min-h-[48px] items-center gap-2 text-base font-semibold text-foreground underline underline-offset-4 hover:text-brand-navy disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     <ArrowLeft className="h-4 w-4" aria-hidden="true" />
                     Back
@@ -1559,7 +1636,7 @@ export default function QuoteFlow({
 
               {/* Proof at the point of hesitation. */}
               <p className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
-                <span className="text-brand-gold" aria-hidden="true">★</span>
+                <span className="text-gold-ink" aria-hidden="true">★</span>
                 {/* The rating is the Edmonton and Calgary listings'. The Red Deer
                     listing has no reviews yet, so a Red Deer quote shows none. */}
                 {hasGoogleRating(proof.key) ? <>Rated {RATING_CLAIM} · </> : null}
@@ -1578,8 +1655,8 @@ export default function QuoteFlow({
                 eyebrow="Your price"
                 title={
                   pricePane === "price"
-                    ? "Your price — check live availability."
-                    : "Last details, then check the live schedule"
+                    ? "Here’s your price"
+                    : "A few details for your cleaner"
                 }
               >
                 {/* Proof at the moment of doubt: the price is the hesitation point. */}
@@ -1587,8 +1664,6 @@ export default function QuoteFlow({
                   {BOOKINGS_CLAIM}
                   <span aria-hidden="true">·</span>
                   Pay after your clean
-                  <span aria-hidden="true">·</span>
-                  Tell us within 24 hours and we&rsquo;ll re-clean at no charge
                 </p>
               </StepHeader>
 
@@ -1634,66 +1709,68 @@ export default function QuoteFlow({
                       )}
                     </p>
 
-                    <p className="mt-1 text-3xl font-bold text-foreground sm:text-4xl">
-                      = First clean {formatPrice(deepFirstClean)}
-                      <span className="ml-2 align-middle text-sm font-medium text-fine-print">
-                        + 5% GST
-                      </span>
-                    </p>
-                    <p className="mt-1 text-sm text-fine-print">
-                      {formatPrice(withGst(deepFirstClean))} with GST
-                    </p>
                   </>
-                ) : (
-                  <>
-                    <p className="mt-2 text-3xl font-bold text-foreground sm:text-4xl">
-                      {quote.quoteOnly ? priceLabel : `First clean ${priceLabel}`}
-                      <span className="ml-2 align-middle text-sm font-medium text-fine-print">
-                        + 5% GST
-                      </span>
+                ) : null}
+
+                {/* Two equal figures on a recurring plan: the per-visit price is what a
+                    regular customer actually pays, so it must not read as small print
+                    under a big first-clean number. */}
+                <div className={`mt-3 grid gap-3 ${quote.ongoing !== null ? "sm:grid-cols-2" : ""}`}>
+                  <div className="funnel-price-tile">
+                    <p className="funnel-price-label">
+                      {quote.quoteOnly || quote.ongoing === null ? "Your price" : "First clean"}
+                    </p>
+                    <p className="funnel-price-figure">
+                      {showDeepBreakdown && deepFirstClean !== null
+                        ? formatPrice(deepFirstClean)
+                        : priceLabel}
                     </p>
                     {!quote.isEstimate && !quote.quoteOnly && (
-                      <p className="mt-1 text-sm text-fine-print">
-                        {formatPrice(withGst(firstCleanTotal))} with GST
+                      <p className="funnel-price-tax">
+                        + 5% GST · {formatPrice(withGst(showDeepBreakdown && deepFirstClean !== null ? deepFirstClean : firstCleanTotal))} with GST
                       </p>
                     )}
-                  </>
-                )}
-
-                {quote.ongoing !== null && (
-                  <p className="mt-3 text-lg font-semibold text-foreground">
-                    Then {formatPrice(ongoingTotal ?? 0)} per visit
-                    <span className="ml-3 inline-block bg-brand-navy px-3 py-1 text-sm font-bold text-brand-gold">
-                      Saving {formatPrice(ongoingSavings)} per visit
-                    </span>
-                  </p>
-                )}
+                  </div>
+                  {quote.ongoing !== null && (
+                    <div className="funnel-price-tile funnel-price-tile--ongoing">
+                      <p className="funnel-price-label">Every visit after</p>
+                      <p className="funnel-price-figure">{formatPrice(ongoingTotal ?? 0)}</p>
+                      <p className="funnel-price-tax">
+                        + 5% GST · {formatPrice(withGst(ongoingTotal ?? 0))} with GST
+                      </p>
+                      <p className="funnel-price-save">
+                        You save {formatPrice(ongoingSavings)} a visit
+                      </p>
+                    </div>
+                  )}
+                </div>
                 {quote.ongoing !== null && recurringAddOnTotal > 0 && (
                   <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                    Recurring add-ons apply to every visit
+                    Your add-ons repeat on every visit
                     {basketRows.some((row) => !row.extra.firstVisitOnly && row.extra.exemptFromFrequencyDiscount)
-                      ? " — some, like the travel fee, are charged at full price"
+                      ? "; some are charged at full price, without the plan discount"
                       : ""}
                     .
                   </p>
                 )}
                 {quote.ongoing !== null && basketRows.some((row) => row.extra.firstVisitOnly) && (
                   <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                    First-visit-only add-ons are not included in the recurring price.
+                    Add-ons marked first clean only are not in the per-visit price.
                   </p>
                 )}
                 {showDeepBreakdown && quote.ongoing !== null && (
                   <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                    Recurring visits are Standard upkeep; the package applies to your first clean.
+                    The Deep Cleaning package is charged once. Each visit after that is a Standard
+                    Cleaning.
                   </p>
                 )}
                 {showDeepBreakdown && quote.ongoing === null && biWeeklyPrice !== null && (
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                    Most deep-clean customers switch to Bi-Weekly upkeep after — that&rsquo;d be{" "}
+                    Want upkeep after? Bi-weekly visits would be{" "}
                     <span className="font-semibold text-foreground">
                       {formatPrice(biWeeklyPrice)}
-                    </span>
-                    /visit.
+                    </span>{" "}
+                    each, before GST.
                   </p>
                 )}
 
@@ -1721,8 +1798,8 @@ export default function QuoteFlow({
                     How often?
                   </p>
                   <p className="mb-3 text-[0.9375rem] text-muted-foreground">
-                    Recurring plans are discounted from the second visit; the first clean is at
-                    the one-time rate.
+                    Your first clean is at the one-time price. The plan discount starts on visit
+                    two.
                   </p>
                   <FrequencyChips value={frequency} onChange={setFrequency} />
 
@@ -1737,12 +1814,12 @@ export default function QuoteFlow({
                     >
                       <span className="dc-icon dc-icon-check mt-1 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
                       <span>
-                        From your second visit:{" "}
-                        <span className="font-bold">{formatPrice(ongoingTotal ?? 0)} + GST</span>, saving{" "}
-                        <span className="font-bold">{formatPrice(ongoingSavings)}</span> a visit
+                        {getFrequency(frequency).label} saves you{" "}
+                        <span className="font-bold">{formatPrice(ongoingSavings)}</span> on every visit
+                        after the first
                         {basketRows.some((row) => row.extra.firstVisitOnly || row.extra.exemptFromFrequencyDiscount)
                           ? ""
-                          : ` (${quote.discountPct}%)`}
+                          : ` (${quote.discountPct}% off)`}
                         .
                       </span>
                     </p>
@@ -1754,8 +1831,10 @@ export default function QuoteFlow({
                 <fieldset
                   id="dc-pets-group"
                   aria-describedby={petError ? "dc-pets-error" : undefined}
-                  className="rounded-lg border border-quote-shelf-border bg-quote-shelf p-5"
+                  aria-invalid={petError ? true : undefined}
+                  className={`scroll-mt-24 rounded-lg border border-quote-shelf-border bg-quote-shelf p-5${petError ? " funnel-missing" : ""}`}
                 >
+                  {petError && <span key={`flag-pets-${nudge}`} className="funnel-missing-flag">Answer needed</span>}
                   <legend className="px-1 text-lg font-bold text-foreground">
                     Do you have pets? (+{formatPrice(petsExtra.price)})
                   </legend>
@@ -1776,7 +1855,7 @@ export default function QuoteFlow({
                         className={`min-h-[48px] min-w-[96px] rounded-sm border px-4 py-2 text-base font-semibold transition-colors ${
                           hasPets === option.value
                             ? "border-brand-navy bg-brand-navy text-brand-navy-foreground"
-                            : "border-border bg-card text-foreground hover:bg-secondary"
+                            : "border-input bg-card text-foreground hover:bg-secondary"
                         }`}
                       >
                         {option.label}
@@ -1784,7 +1863,7 @@ export default function QuoteFlow({
                     ))}
                   </div>
                   {petError && (
-                    <p id="dc-pets-error" role="alert" className="mt-3 text-sm font-semibold text-destructive">
+                    <p id="dc-pets-error" className="funnel-missing-text">
                       {petError}
                     </p>
                   )}
@@ -1820,10 +1899,10 @@ export default function QuoteFlow({
                             return (
                               <li key={extra.name} className="h-full">
                                 <div
-                                  className={`flex h-full min-h-[44px] flex-col gap-1.5 rounded-lg border-[1.5px] px-4 py-3 transition-all ${
+                                  className={`flex h-full min-h-[44px] flex-col gap-1.5 rounded-lg border-[1.5px] px-4 py-3 transition-colors ${
                                     added
                                       ? "border-brand-navy bg-brand-navy text-brand-navy-foreground"
-                                      : "border-brand-navy/25 bg-card text-foreground hover:-translate-y-0.5 hover:border-brand-navy"
+                                      : "border-input bg-card text-foreground hover:border-brand-navy"
                                   }`}
                                 >
                                   {isQuantity ? (
@@ -1840,6 +1919,7 @@ export default function QuoteFlow({
                                           <button
                                             type="button"
                                             onClick={() => setQuantity(extra, 1)}
+                                            aria-label={`Add ${extraDisplayName(extra.name)}`}
                                             className={`${ADD_PILL} border-brand-navy text-brand-navy hover:bg-secondary`}
                                           >
                                             Add
@@ -1961,13 +2041,13 @@ export default function QuoteFlow({
                   {!quote.quoteOnly && !quote.isEstimate && (
                     <p
                       aria-live="polite"
-                      className="mt-5 rounded-sm bg-card p-4 text-lg font-bold text-foreground"
+                      className="mt-5 rounded-md bg-card p-4 text-base font-semibold text-foreground"
                     >
                       {addedCount === 0
-                        ? `First clean ${formatPrice(firstCleanTotal)} — no add-ons yet`
-                        : `${addedCount} add-on${addedCount === 1 ? "" : "s"} · +${formatPrice(
+                        ? `No add-ons yet. First clean ${formatPrice(firstCleanTotal)} before GST.`
+                        : `${addedCount} add-on${addedCount === 1 ? "" : "s"} (+${formatPrice(
                             addOnTotal
-                          )} → first clean ${formatPrice(firstCleanTotal)}`}
+                          )}). First clean now ${formatPrice(firstCleanTotal)} before GST.`}
                     </p>
                   )}
 
@@ -1975,6 +2055,7 @@ export default function QuoteFlow({
               )}
 
               <StepFooter
+                above={missingSummary(missingKeys.filter((key) => key === "pets"))}
                 back={
                   <button
                     type="button"
@@ -1982,18 +2063,20 @@ export default function QuoteFlow({
                     className="inline-flex min-h-[48px] items-center gap-2 text-base font-semibold text-foreground underline underline-offset-4 hover:text-brand-navy"
                   >
                     <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-                    Change details
+                    Change home size or service
                   </button>
                 }
               >
-                <Button
-                  size="lg"
-                  onClick={goToDetailsPane}
-                  className="min-h-[56px] w-full rounded-full bg-accent px-8 text-base font-bold text-accent-foreground hover:bg-accent/90 sm:w-auto"
-                >
-                  Continue
-                  <span className="dc-icon dc-icon-arrow-right ml-2 h-5 w-5" aria-hidden="true" />
-                </Button>
+                <div ref={ctaRef}>
+                  <Button
+                    size="lg"
+                    onClick={goToDetailsPane}
+                    className="min-h-[56px] w-full rounded-full bg-accent px-8 text-base font-bold text-accent-foreground hover:bg-accent/90 sm:w-auto"
+                  >
+                    Next: details for your cleaner
+                    <span className="dc-icon dc-icon-arrow-right ml-2 h-5 w-5" aria-hidden="true" />
+                  </Button>
+                </div>
               </StepFooter>
                 </>
               )}
@@ -2007,15 +2090,14 @@ export default function QuoteFlow({
                 id="dc-group"
                 className="scroll-mt-24 rounded-lg border border-quote-detail-border bg-quote-detail p-5"
               >
-                <h3 className="text-lg font-bold text-foreground">Details for your cleaner</h3>
-                <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                  Enter these once here. We&rsquo;ll transfer them to secure booking, where you can
-                  review them before choosing a live date and arrival time. The booking page will
-                  ask for and verify your service address next.
+                <p className="text-[0.9375rem] leading-relaxed text-muted-foreground">
+                  Your cleaner needs these to confirm the visit. They carry over to the booking
+                  page, where you add your address and choose a date and time.
                 </p>
-                <fieldset id="dc-entry-group" className="mt-5 scroll-mt-24">
+                <fieldset id="dc-entry-group" aria-invalid={detailErrors.entry ? true : undefined} className={`mt-5 scroll-mt-24${detailErrors.entry ? " funnel-missing" : ""}`}>
+                  {detailErrors.entry && <span key={`flag-entry-${nudge}`} className="funnel-missing-flag">Answer needed</span>}
                   <legend className="text-base font-bold text-foreground">
-                    How do we enter the home? <span className="text-accent">*</span>
+                    How do we enter the home? <span className="text-accent" aria-hidden="true">*</span>
                   </legend>
                   <div className="mt-2 flex flex-wrap gap-3">
                     {DC_ENTRY_OPTIONS.map((option) => (
@@ -2026,13 +2108,13 @@ export default function QuoteFlow({
                         onClick={() =>
                           setDetails((current) => ({
                             ...current,
-                            entry: current.entry === option.value ? null : option.value,
+                            entry: option.value,
                           }))
                         }
                         className={`min-h-[48px] rounded-sm border px-4 text-base font-semibold transition-colors ${
                           details.entry === option.value
                             ? "border-brand-navy bg-brand-navy text-brand-navy-foreground"
-                            : "border-border bg-card text-foreground hover:border-brand-navy"
+                            : "border-input bg-card text-foreground hover:border-brand-navy"
                         }`}
                       >
                         {option.label}
@@ -2040,13 +2122,14 @@ export default function QuoteFlow({
                     ))}
                   </div>
                   {detailErrors.entry && (
-                    <p className="mt-2 text-sm font-semibold text-destructive">{detailErrors.entry}</p>
+                    <p className="funnel-missing-text">{detailErrors.entry}</p>
                   )}
                 </fieldset>
 
-                <fieldset id="dc-clean-group" className="mt-5 scroll-mt-24">
+                <fieldset id="dc-clean-group" aria-invalid={detailErrors.cleanliness ? true : undefined} className={`mt-5 scroll-mt-24${detailErrors.cleanliness ? " funnel-missing" : ""}`}>
+                  {detailErrors.cleanliness && <span key={`flag-cleanliness-${nudge}`} className="funnel-missing-flag">Answer needed</span>}
                   <legend className="text-base font-bold text-foreground">
-                    On a scale of 1-5, how clean is your house? <span className="text-accent">*</span>
+                    On a scale of 1-5, how clean is your house? <span className="text-accent" aria-hidden="true">*</span>
                   </legend>
                   <div className="mt-2 flex flex-wrap gap-3">
                     {DC_CLEANLINESS_OPTIONS.map((option) => (
@@ -2057,14 +2140,13 @@ export default function QuoteFlow({
                         onClick={() =>
                           setDetails((current) => ({
                             ...current,
-                            cleanliness:
-                              current.cleanliness === option.value ? null : option.value,
+                            cleanliness: option.value,
                           }))
                         }
                         className={`min-h-[48px] rounded-sm border px-4 text-base font-semibold transition-colors ${
                           details.cleanliness === option.value
                             ? "border-brand-navy bg-brand-navy text-brand-navy-foreground"
-                            : "border-border bg-card text-foreground hover:border-brand-navy"
+                            : "border-input bg-card text-foreground hover:border-brand-navy"
                         }`}
                       >
                         {option.label}
@@ -2072,7 +2154,7 @@ export default function QuoteFlow({
                     ))}
                   </div>
                   {detailErrors.cleanliness && (
-                    <p className="mt-2 text-sm font-semibold text-destructive">{detailErrors.cleanliness}</p>
+                    <p className="funnel-missing-text">{detailErrors.cleanliness}</p>
                   )}
 
                   {(details.cleanliness ?? 0) >= 4 &&
@@ -2085,15 +2167,15 @@ export default function QuoteFlow({
                         className="mt-3 rounded-lg border border-brand-navy/25 bg-brand-navy/5 p-4"
                       >
                         <p className="text-sm leading-relaxed text-foreground">
-                          Homes in this condition usually need a Deep Cleaning — it&rsquo;s built for
-                          built-up grime and takes longer. Booking it now means an accurate price
-                          today instead of an adjustment on cleaning day.
+                          Homes at 4 or 5 usually need our Deep Cleaning package: baseboards, doors,
+                          light switches, wall outlets, vent covers and cobwebs. Adding it now keeps
+                          your price accurate.
                         </p>
                         <div className="mt-3 flex flex-wrap gap-3">
                           <button
                             type="button"
                             onClick={() => setQuantity(deepShelfRow, 1)}
-                            className="min-h-[48px] rounded-sm bg-accent px-5 text-base font-bold text-accent-foreground transition-colors hover:bg-accent/90"
+                            className="min-h-[48px] rounded-full border-2 border-brand-navy bg-card px-5 text-base font-bold text-brand-navy transition-colors hover:bg-secondary"
                           >
                             Add Deep Cleaning +{formatPrice(deepShelfRow.price)}
                           </button>
@@ -2109,9 +2191,10 @@ export default function QuoteFlow({
                     )}
                 </fieldset>
 
-                <fieldset id="dc-park-group" className="mt-5 scroll-mt-24">
+                <fieldset id="dc-park-group" aria-invalid={detailErrors.parking ? true : undefined} className={`mt-5 scroll-mt-24${detailErrors.parking ? " funnel-missing" : ""}`}>
+                  {detailErrors.parking && <span key={`flag-parking-${nudge}`} className="funnel-missing-flag">Answer needed</span>}
                   <legend className="text-base font-bold text-foreground">
-                    Where should we park? <span className="text-accent">*</span>
+                    Where should we park? <span className="text-accent" aria-hidden="true">*</span>
                   </legend>
                   <div className="mt-2 flex flex-wrap gap-3">
                     {DC_PARKING_OPTIONS.map((option) => (
@@ -2122,13 +2205,13 @@ export default function QuoteFlow({
                         onClick={() =>
                           setDetails((current) => ({
                             ...current,
-                            parking: current.parking === option.value ? null : option.value,
+                            parking: option.value,
                           }))
                         }
                         className={`min-h-[48px] rounded-sm border px-4 text-base font-semibold transition-colors ${
                           details.parking === option.value
                             ? "border-brand-navy bg-brand-navy text-brand-navy-foreground"
-                            : "border-border bg-card text-foreground hover:border-brand-navy"
+                            : "border-input bg-card text-foreground hover:border-brand-navy"
                         }`}
                       >
                         {option.label}
@@ -2136,11 +2219,12 @@ export default function QuoteFlow({
                     ))}
                   </div>
                   {detailErrors.parking && (
-                    <p className="mt-2 text-sm font-semibold text-destructive">{detailErrors.parking}</p>
+                    <p className="funnel-missing-text">{detailErrors.parking}</p>
                   )}
                 </fieldset>
 
-                <div className="mt-5">
+                <div id="dc-flexibility-group" className={`mt-5 scroll-mt-24${detailErrors.flexibility ? " funnel-missing" : ""}`}>
+                  {detailErrors.flexibility && <span key={`flag-flexibility-${nudge}`} className="funnel-missing-flag">Answer needed</span>}
                   <Label htmlFor="dc-flexibility" className="text-base font-bold">Is your date/time flexible? *</Label>
                   <select id="dc-flexibility" value={details.flexibility ?? ""}
                     aria-invalid={Boolean(detailErrors.flexibility)} aria-describedby="dc-flexibility-help"
@@ -2150,9 +2234,9 @@ export default function QuoteFlow({
                     {FLEXIBILITY_OPTIONS.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}
                   </select>
                   <p id="dc-flexibility-help" className="mt-2 text-sm text-muted-foreground">You&rsquo;ll choose from our live dates and arrival times next.</p>
-                  {detailErrors.flexibility && <p role="alert" className="mt-2 text-sm font-semibold text-destructive">{detailErrors.flexibility}</p>}
+                  {detailErrors.flexibility && <p className="funnel-missing-text">{detailErrors.flexibility}</p>}
                 </div>
-                <div className="mt-5">
+                <div id="dc-notes-group" className={`mt-5 scroll-mt-24${detailErrors.notes ? " funnel-missing" : ""}`}>
                   <Label htmlFor="dc-notes" className="text-base font-bold text-foreground">
                     Special Notes &amp; Instructions <span className="font-normal text-muted-foreground">(optional)</span>
                   </Label>
@@ -2170,18 +2254,19 @@ export default function QuoteFlow({
                       }))
                     }
                     className="mt-2 w-full rounded-sm border border-input bg-card p-3 text-base text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-                    placeholder="Pets, fragile items, a room to skip…"
+                    placeholder="Fragile items, alarm timing, where supplies are kept…"
                   />
                   <p id="dc-notes-help" className="mt-1 text-sm text-fine-print">
-                    {(details.notes ?? "").length}/{cleanerNotesLimit(details)} characters. Add anything you would like the cleaning team to know.
+                    {(details.notes ?? "").length}/{cleanerNotesLimit(details)} characters. Anything your cleaner should know.
                   </p>
-                  {detailErrors.notes && <p role="alert" className="mt-2 text-sm font-semibold text-destructive">{detailErrors.notes}</p>}
+                  {detailErrors.notes && <p className="funnel-missing-text">{detailErrors.notes}</p>}
                 </div>
               </div>
 
               {failureNotice}
 
               <StepFooter
+                above={missingSummary(missingKeys.filter((key) => key !== "pets"))}
                 back={
                   <button
                     type="button"
@@ -2200,7 +2285,7 @@ export default function QuoteFlow({
                       onClick={goToBooking}
                       className="min-h-[56px] w-full rounded-full bg-accent px-8 text-base font-bold text-accent-foreground hover:bg-accent/90 sm:w-auto"
                     >
-                      Check live availability
+                      Choose my time
                       <span className="dc-icon dc-icon-arrow-right ml-2 h-5 w-5" aria-hidden="true" />
                     </Button>
                   ) : (
@@ -2225,7 +2310,8 @@ export default function QuoteFlow({
                   <p className="text-sm text-muted-foreground">
                     Choose a live date and arrival time, then enter your address on the booking page.
                     Review the final total, including any travel fee for an address outside city limits,
-                    before adding your card. You won&rsquo;t be charged today.
+                    before adding your card. A temporary hold goes on your card the day before the
+                    clean, and the charge comes after it is done.
                     {deepCleanIntent
                       ? " Your Deep Cleaning package is already added."
                       : ""}
@@ -2239,7 +2325,7 @@ export default function QuoteFlow({
                     {submitting && (
                       <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
                     )}
-                    Prefer we call you? Request a callback instead
+                    Prefer to arrange it with us? Request a call back
                   </button>
                 </div>
               )}
@@ -2291,31 +2377,38 @@ export default function QuoteFlow({
         )}
       </div>
 
-      {/* Sticky summary: always on mobile, and on desktop only while the real
-          CTA is scrolled out of view. */}
+      {/* Sticky summary below 1024px, where there is no side panel, and only
+          while the step's real button is off screen: two orange buttons with
+          one job never show together. */}
       {showPrice && (
         <div
-          className={`fixed inset-x-0 bottom-0 z-20 border-t border-border bg-card px-4 py-3 shadow-[0_-4px_16px_hsl(var(--brand-navy)/0.12)] ${
-            ctaVisible ? "lg:hidden" : ""
+          className={`fixed inset-x-0 bottom-0 z-20 border-t border-border bg-card px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-[0_-4px_16px_hsl(var(--brand-navy)/0.12)] lg:hidden ${
+            ctaVisible ? "hidden" : ""
           }`}
         >
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-3">
-            <div className="min-w-0">
-              <p className="truncate text-sm text-muted-foreground">
-                {serviceName}
-                {addedCount > 0
-                  ? ` · ${addedCount} add-on${addedCount === 1 ? "" : "s"}`
-                  : ""}
-              </p>
-              <p className="text-lg font-bold leading-tight text-foreground">
-                {quote.quoteOnly ? priceLabel : `First clean ${priceLabel}`}
-              </p>
-              {ongoingTotal !== null && (
-                <p className="truncate text-sm text-fine-print">
-                  then {formatPrice(ongoingTotal)} per visit
+            {ongoingTotal !== null ? (
+              <div className="grid min-w-0 grid-cols-2 gap-x-4">
+                <div className="min-w-0">
+                  <p className="truncate text-xs font-semibold text-muted-foreground">First clean</p>
+                  <p className="text-lg font-bold leading-tight text-foreground">{priceLabel}</p>
+                </div>
+                <div className="min-w-0 border-l border-border pl-4">
+                  <p className="truncate text-xs font-semibold text-muted-foreground">Then per visit</p>
+                  <p className="text-lg font-bold leading-tight text-foreground">{formatPrice(ongoingTotal)}</p>
+                </div>
+              </div>
+            ) : (
+              <div className="min-w-0">
+                <p className="truncate text-sm text-muted-foreground">
+                  {serviceName}
+                  {addedCount > 0
+                    ? ` · ${addedCount} add-on${addedCount === 1 ? "" : "s"}`
+                    : ""}
                 </p>
-              )}
-            </div>
+                <p className="text-lg font-bold leading-tight text-foreground">{priceLabel}</p>
+              </div>
+            )}
             <Button
               size="lg"
               disabled={submitting}
@@ -2326,9 +2419,9 @@ export default function QuoteFlow({
                     ? goToBooking
                     : requestCallback
               }
-              className="min-h-[52px] shrink-0 bg-accent px-5 text-base font-bold text-accent-foreground hover:bg-accent/90"
+              className="min-h-[52px] shrink-0 rounded-full bg-accent px-5 text-base font-bold text-accent-foreground hover:bg-accent/90"
             >
-              {pricePane === "price" ? "Continue" : bookingUrl ? "Choose my time" : "Request booking"}
+              {pricePane === "price" ? "Next" : bookingUrl ? "Choose my time" : "Request booking"}
               <span className="dc-icon dc-icon-arrow-right ml-2 h-5 w-5" aria-hidden="true" />
             </Button>
           </div>

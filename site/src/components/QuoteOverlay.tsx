@@ -194,8 +194,8 @@ export default function QuoteOverlay() {
       {/* Warm canvas behind, white reading surface on top — the funnel itself
           stays motif-free. */}
       <div className="funnel-canvas flex-1 overflow-y-auto">
-        <div className="mx-auto w-full max-w-7xl px-4 py-6 md:px-6 md:py-8">
-          <div className="rounded-lg border border-border bg-card p-5 shadow-[0_18px_40px_-32px_hsl(var(--brand-navy)/0.5)] md:p-8">
+        <div className="mx-auto w-full max-w-7xl px-2 py-4 sm:px-4 md:px-6 md:py-8">
+          <div className="rounded-lg border border-border bg-card p-4 sm:p-5 shadow-[0_18px_40px_-32px_hsl(var(--brand-navy)/0.5)] md:p-8">
             <LoadErrorBoundary area="quote form" onDismiss={closeQuote}>
               <Suspense
                 fallback={
