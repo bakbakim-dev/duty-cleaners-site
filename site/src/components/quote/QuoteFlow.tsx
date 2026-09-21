@@ -64,6 +64,7 @@ import { intentParams, intentQuery } from "@/lib/url-intent";
 import { setQuoteStep } from "@/lib/quote-progress";
 import { track } from "@/lib/analytics";
 import { CLEANLINESS_OPTIONS, FLEXIBILITY_OPTIONS, cleanerNotesLimit, validateCleanerDetails } from "@/lib/booking-details";
+import { clearQuoteReturn, readQuoteReturn, saveQuoteReturn } from "@/lib/quote-return";
 import { prepareBookingHandoff, publicBookingUrl } from "@/lib/booking-handoff";
 import { useQuoteOverlay } from "@/hooks/use-quote-overlay";
 
@@ -276,15 +277,27 @@ export default function QuoteFlow({
 
   const proof = cityProofFor(pathname);
 
-  const [step, setStep] = useState(0);
-  const [service, setService] = useState<ServiceId>(initialService);
+  /**
+   * Answers saved when this funnel handed off to BookingKoala, present only
+   * when the visitor came back with the Back button and the browser reloaded
+   * the page (lib/quote-return.ts). Read once; the storage is cleared below.
+   */
+  const [restored] = useState(() => readQuoteReturn(pathname));
+  useEffect(() => {
+    if (restored) clearQuoteReturn();
+  }, [restored]);
+
+  const [step, setStep] = useState(restored ? 2 : 0);
+  const [service, setService] = useState<ServiceId>(restored?.service ?? initialService);
   /**
    * Deep-clean intent: the visitor either entered through a Deep Cleaning CTA
    * (#quote&intent=deep / data-quote-intent) or tapped the banner. It never invents a
    * service — it only changes copy, the line-item display and the GHL payload.
    */
   const [deepCleanIntent, setDeepCleanIntent] = useState(
-    initialIntent === "deep" || intentParams(rawSearch, hash).get("intent") === "deep"
+    restored
+      ? restored.deepCleanIntent
+      : initialIntent === "deep" || intentParams(rawSearch, hash).get("intent") === "deep"
   );
   /**
    * A campaign coupon rides in on ?promo=CODE and is passed straight through
@@ -293,22 +306,24 @@ export default function QuoteFlow({
    */
   const promoCode = intentParams(rawSearch, hash).get("promo")?.trim() || undefined;
 
-  const [homeType, setHomeType] = useState<number | null>(null);
-  const [bedrooms, setBedrooms] = useState(2);
-  const [bathrooms, setBathrooms] = useState(1);
-  const [halfBaths, setHalfBaths] = useState(0);
+  const [homeType, setHomeType] = useState<number | null>(restored?.homeType ?? null);
+  const [bedrooms, setBedrooms] = useState(restored?.bedrooms ?? 2);
+  const [bathrooms, setBathrooms] = useState(restored?.bathrooms ?? 1);
+  const [halfBaths, setHalfBaths] = useState(restored?.halfBaths ?? 0);
   /**
    * No plan is preselected: a Bi-Weekly default reached GoHighLevel and the
    * booking page as the visitor's choice before they had seen the question.
    * Null until they pick; "How often?" is then required on the price step.
    */
-  const [frequency, setFrequencyState] = useState<FrequencyId | null>(null);
+  const [frequency, setFrequencyState] = useState<FrequencyId | null>(restored?.frequency ?? null);
   const [frequencyError, setFrequencyError] = useState<string | null>(null);
   const setFrequency = (next: FrequencyId | null) => {
     setFrequencyState(next);
     if (next !== null) setFrequencyError(null);
   };
-  const [contact, setContact] = useState({ firstName: "", lastName: "", email: "", phone: "" });
+  const [contact, setContact] = useState(
+    restored?.contact ?? { firstName: "", lastName: "", email: "", phone: "" }
+  );
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const confirmHeadingRef = useRef<HTMLHeadingElement>(null);
@@ -334,20 +349,20 @@ export default function QuoteFlow({
    * id, because the id is size-specific — it is resolved at handoff from the
    * very row whose price the customer was shown. Empty by default.
    */
-  const [addOns, setAddOns] = useState<Record<string, number>>({});
+  const [addOns, setAddOns] = useState<Record<string, number>>(restored?.addOns ?? {});
   
-  const [hasPets, setHasPets] = useState<boolean | null>(null);
+  const [hasPets, setHasPets] = useState<boolean | null>(restored?.hasPets ?? null);
   const [petError, setPetError] = useState<string | null>(null);
   /** Optional answers that pre-fill the booking page's own questions. */
-  const [details, setDetails] = useState<CleanerDetails>({});
+  const [details, setDetails] = useState<CleanerDetails>(restored?.details ?? {});
   /** The condition nudge is advice, so it can be dismissed for good. */
-  const [deepNudgeDismissed, setDeepNudgeDismissed] = useState(false);
+  const [deepNudgeDismissed, setDeepNudgeDismissed] = useState(restored?.deepNudgeDismissed ?? false);
   const startedAtRef = useRef(Date.now());
   /** Stable receipts make a visible Retry safe and keep lead/confirm distinct. */
-  const leadRequestIdRef = useRef<string | null>(null);
-  const confirmRequestIdRef = useRef<string | null>(null);
+  const leadRequestIdRef = useRef<string | null>(restored?.leadRequestId ?? null);
+  const confirmRequestIdRef = useRef<string | null>(restored?.confirmRequestId ?? null);
   const leadPayloadFingerprintRef = useRef<string | null>(null);
-  const confirmPayloadFingerprintRef = useRef<string | null>(null);
+  const confirmPayloadFingerprintRef = useRef<string | null>(restored?.confirmFingerprint ?? null);
   const leadPayloadRef = useRef<Partial<QuotePayload> | null>(null);
   if (leadRequestIdRef.current === null) leadRequestIdRef.current = createQuoteRequestId();
   if (confirmRequestIdRef.current === null) confirmRequestIdRef.current = createQuoteRequestId();
@@ -387,7 +402,7 @@ export default function QuoteFlow({
    * before it can confirm). The price itself stays visible in the sidebar and
    * the sticky bar, so nothing is lost by splitting them.
    */
-  const [pricePane, setPricePane] = useState<"price" | "details">("price");
+  const [pricePane, setPricePane] = useState<"price" | "details">(restored ? "details" : "price");
   const [ctaVisible, setCtaVisible] = useState(true);
 
   /** Bring the next question just into view without yanking the page. */
@@ -411,7 +426,9 @@ export default function QuoteFlow({
     if (!isOpen) setSubmitted(false);
   }, [isOpen]);
   /** The path the visitor last picked a service on inside the flow. */
-  const choicePathRef = useRef<string | null>(null);
+  const choicePathRef = useRef<string | null>(restored?.choicePath ?? null);
+  /** The first open after a restore keeps the restored quote as it is. */
+  const restoredOpenRef = useRef(Boolean(restored));
   const wasOpenRef = useRef(false);
   const openPathRef = useRef<string | null>(null);
   /** The city the funnel was in when the visitor last changed step. */
@@ -424,7 +441,7 @@ export default function QuoteFlow({
    */
   const pendingServiceRef = useRef<ServiceId | null>(null);
   /** True once this quote's contact step has been submitted (sent or queued for retry). */
-  const contactDoneRef = useRef(false);
+  const contactDoneRef = useRef(Boolean(restored));
 
   const pickService = (next: ServiceId) => {
     // The page address with its intent: a later open of the same path with a
@@ -439,6 +456,13 @@ export default function QuoteFlow({
     wasOpenRef.current = isOpen;
     if (!opened) return;
     openPathRef.current = pathname;
+    if (restoredOpenRef.current) {
+      // Back from the booking page: the saved quote is this quote. Deciding
+      // the service again, or restarting, would throw the answers away.
+      restoredOpenRef.current = false;
+      lastStepKeyRef.current = null;
+      return;
+    }
 
     const preset = servicePreset ? initialService : null;
     const pageService = pageServiceFor(pathname, search);
@@ -522,6 +546,8 @@ export default function QuoteFlow({
     }
     const onPageShow = (event: PageTransitionEvent) => {
       if (!event.persisted) return;
+      // Restored from memory with every answer intact: the saved copy is not needed.
+      clearQuoteReturn();
       handoffBusy.current = false;
       setHandoffFailed(false);
       setHandingOff(false);
@@ -1141,6 +1167,26 @@ export default function QuoteFlow({
     if (!bookingQuery || !bookingUrl) return;
     if (!requireCleanerDetails()) return;
     handoffBusy.current = true;
+    // Kept in this tab only, for a Back button that reloads the page.
+    saveQuoteReturn({
+      path: pathname,
+      choicePath: choicePathRef.current,
+      service,
+      deepCleanIntent,
+      homeType,
+      bedrooms,
+      bathrooms,
+      halfBaths,
+      frequency,
+      addOns,
+      hasPets,
+      details,
+      contact,
+      deepNudgeDismissed,
+      leadRequestId: leadRequestIdRef.current,
+      confirmRequestId: confirmRequestIdRef.current,
+      confirmFingerprint: confirmPayloadFingerprintRef.current,
+    });
     setHandoffFailed(false);
     // A fresh, deliberate click always hands off — clear any stale guard first.
     clearHandoffFlag();

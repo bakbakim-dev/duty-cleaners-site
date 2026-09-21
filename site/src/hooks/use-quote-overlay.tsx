@@ -12,6 +12,7 @@ import { useLocation } from "react-router-dom";
 import { hashAnchor, intentParams } from "@/lib/url-intent";
 
 import type { ServiceId } from "@/data/pricing";
+import { readQuoteReturn } from "@/lib/quote-return";
 
 export type QuoteIntent = "deep" | null;
 
@@ -78,6 +79,15 @@ export function QuoteOverlayProvider({ children }: { children: ReactNode }) {
   // Set while we ourselves are unwinding the history entry, so the popstate
   // handler doesn't try to unwind it a second time.
   const closingViaHistoryRef = useRef(false);
+  /**
+   * Back from BookingKoala onto a reloaded page: reopen the funnel, which
+   * restores the saved answers itself (lib/quote-return.ts). Decided once per
+   * page load; an ordinary load discards any stale snapshot.
+   */
+  const restoreOnLoadRef = useRef<boolean | null>(null);
+  if (restoreOnLoadRef.current === null) {
+    restoreOnLoadRef.current = typeof window !== "undefined" && readQuoteReturn(pathname) !== null;
+  }
 
   const prewarmQuote = useCallback(() => setIsMounted(true), []);
 
@@ -184,6 +194,9 @@ export function QuoteOverlayProvider({ children }: { children: ReactNode }) {
       // links the site does not control, the query string).
       const params = intentParams(search, hash);
       openQuote(undefined, params.get("intent") === "deep" ? "deep" : null);
+    } else if (restoreOnLoadRef.current) {
+      restoreOnLoadRef.current = false;
+      openQuote();
     } else {
       setIsOpen(false);
     }

@@ -1236,6 +1236,22 @@ export const GUARD_PROOFS: GuardProof[] = [
     why: "Restores a 'does not serve Red Deer' line the owner contradicted on 2026-09-11.",
   },
   {
+    guard: "src/lib/quote-return.test.ts",
+    target: "src/components/quote/QuoteFlow.tsx",
+    find: "saveQuoteReturn({",
+    replace: "void ({",
+    failing: "the funnel saves at handoff and the overlay reopens on return",
+    why: "Stops saving the answers at handoff, so Back from BookingKoala onto a reloaded page loses them again.",
+  },
+  {
+    guard: "src/lib/quote-return.test.ts",
+    target: "src/lib/quote-return.ts",
+    find: "now - record.savedAt < MAX_AGE_MS &&",
+    replace: "true &&",
+    failing: "discards the snapshot on an ordinary load, another page or after two hours",
+    why: "Keeps contact details in the tab indefinitely and restores a stale quote hours later.",
+  },
+  {
     guard: "src/data/quote-funnel-0911.test.ts",
     target: "src/data/proof.ts",
     find: "confirm(4.9, { by: \"google-listing\", on: \"2026-09-17\", note: \"CID 6193344199307583189\" })",
@@ -1270,8 +1286,8 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/quote-funnel-0911.test.ts",
     target: "src/components/quote/QuoteFlow.tsx",
-    find: "useState<FrequencyId | null>(null)",
-    replace: "useState<FrequencyId | null>(\"bi-weekly-every-2-weeks\")",
+    find: "useState<FrequencyId | null>(restored?.frequency ?? null)",
+    replace: "useState<FrequencyId | null>(restored?.frequency ?? \"bi-weekly-every-2-weeks\")",
     failing: "preselects no plan and sends none until one is picked",
     why: "Preselects Bi-Weekly again, so the lead and the booking carry a plan the visitor never chose.",
   },

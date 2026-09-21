@@ -375,7 +375,7 @@ describe("price reveal survives a lead-relay outage", () => {
 describe("the funnel records only what the visitor chose, once", () => {
   it("preselects no plan and sends none until one is picked", () => {
     const src = codeOf("src/components/quote/QuoteFlow.tsx");
-    expect(src, "a plan is preselected again").toMatch(/useState<FrequencyId \| null>\(null\)/);
+    expect(src, "a plan is preselected again").toMatch(/useState<FrequencyId \| null>\(restored\?\.frequency \?\? null\)/);
     expect(src).not.toMatch(/DEFAULT_FREQUENCY/);
     expect(src, "the CRM is sent a plan nobody chose").toMatch(/frequency: awaitingPlan\s*\?\s*""/);
     expect(src, "How often? is no longer required").toMatch(/if \(missPlan\) setFrequencyError\(/);
