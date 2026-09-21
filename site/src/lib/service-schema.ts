@@ -33,6 +33,8 @@ export interface ServiceOfferRow {
   name: string;
   /** The figure as rendered, e.g. "$424". Parsed, never re-typed. */
   price: string;
+  /** Bathroom count or other condition printed beside the price. */
+  assumption?: string;
 }
 
 export function buildServiceSchema(input: {
@@ -181,8 +183,13 @@ export function buildServiceSchema(input: {
               );
               return {
                 "@type": "Offer",
-                name: row.name,
+                name: row.assumption
+                  ? `${row.name}, ${row.assumption.replace(/^Assumes\s+/i, "")}`
+                  : row.name,
                 priceCurrency: "CAD",
+                description: row.assumption
+                  ? `${row.assumption}. Rounded apartment or condo rate before 5% GST; home type, pets and travel outside city limits can change the total.`
+                  : "Published price before 5% GST.",
                 ...(numbers.length >= 2
                   ? {
                       priceSpecification: {

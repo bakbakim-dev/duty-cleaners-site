@@ -5,7 +5,13 @@ import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Gift, Mail, Wallet, Phone } from "lucide-react";
-import { standardTierRows, deepCleanTierRows, moveInOutTierRows } from "@/data/pricing";
+import {
+  deepCleanTierRows,
+  formatPrice,
+  moveInOutTierRows,
+  standardTierRows,
+  withGst,
+} from "@/data/pricing";
 import { POLICY } from "@/data/policy";
 import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
 import { Link } from "react-router-dom";
@@ -36,10 +42,12 @@ const steps = [
 const standard = standardTierRows();
 const deep = deepCleanTierRows();
 const move = moveInOutTierRows();
+const taxIncluded = (price?: string) =>
+  price ? formatPrice(withGst(Number(price.replace(/[^0-9.]/g, "")))) : "";
 const suggestions = [
-  { amount: standard[0]?.price ?? "", label: "A standard clean of a 1-bedroom, 1-bathroom apartment or condo" },
-  { amount: standard[1]?.price ?? "", label: "A standard clean of a 2-bedroom, 2-bathroom apartment or condo" },
-  { amount: deep[1]?.price ?? "", label: "A deep clean of a 2-bedroom, 2-bathroom apartment or condo" },
+  { amount: taxIncluded(standard[0]?.price), label: "A standard clean of a 1-bedroom, 1-bathroom apartment or condo" },
+  { amount: taxIncluded(standard[1]?.price), label: "A standard clean of a 2-bedroom, 2-bathroom apartment or condo" },
+  { amount: taxIncluded(deep[1]?.price), label: "A deep clean of a 2-bedroom, 2-bathroom apartment or condo" },
 ];
 
 /**
@@ -66,7 +74,7 @@ const FAQS = [
   },
   {
     q: "What if the clean costs more, or less, than the card?",
-    a: `If the clean costs more, they pay the difference at checkout. If it costs less, the remaining balance stays on the card for the next visit. A ${standard[0]?.price ?? ""} card matches a standard clean of a 1-bedroom, 1-bathroom apartment or condo, and a ${move[move.length - 1]?.price ?? ""} card matches a move-out clean of a 5-bedroom apartment or condo. Both prices are before 5% GST, and the pet charge, a home-type surcharge or a travel fee outside city limits is added on top.`,
+    a: `If the clean costs more, they pay the difference at checkout. If it costs less, the remaining balance stays on the card for the next visit. A ${taxIncluded(standard[0]?.price)} card covers a standard clean of a 1-bedroom, 1-bathroom apartment or condo, and a ${taxIncluded(move[move.length - 1]?.price)} card covers a move-out clean of a 5-bedroom apartment or condo. Those amounts include 5% GST; a pet charge, home-type surcharge, travel fee outside city limits or selected add-on costs extra.`,
   },
   {
     q: "Is there a minimum or maximum amount?",
@@ -198,9 +206,9 @@ export default function GiftCard() {
               <h2 className="mb-3 text-center text-2xl font-bold md:text-3xl">Gift card amounts that cover a whole clean</h2>
               <p className="mx-auto mb-8 max-w-2xl text-center text-base leading-relaxed text-muted-foreground">
                 Any amount works, because the balance is applied to whatever they book. If you would
-                rather cover a whole visit, these are the one-visit prices for an apartment or condo,
-                before 5% GST. A larger home type, a pet charge or a travel fee outside Edmonton or
-                Calgary city limits adds to the total.
+                rather cover a whole visit, these amounts include the one-visit apartment or condo
+                price and 5% GST. A larger home type, a pet charge, an add-on or a travel fee outside
+                Edmonton or Calgary city limits adds to the total.
               </p>
               <ul className="grid gap-5 sm:grid-cols-3">
                 {suggestions.map((item) => (
@@ -209,7 +217,7 @@ export default function GiftCard() {
                     className="rounded-2xl border border-border/60 bg-card p-6 text-center"
                   >
                     <p className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-                      From
+                      Including GST
                     </p>
                     <p className="my-2 text-3xl font-bold text-brand-navy">{item.amount}</p>
                     <p className="text-base leading-relaxed text-muted-foreground">{item.label}</p>

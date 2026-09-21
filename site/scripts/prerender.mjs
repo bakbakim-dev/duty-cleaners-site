@@ -5,6 +5,8 @@
 //
 //   node scripts/prerender.mjs          # main + blog routes (from sitemaps)
 //   node scripts/prerender.mjs --all    # every sitemap URL (200+, slow)
+//   node scripts/prerender.mjs --route=/cleaning-services-calgary/
+//                                          # one canonical route, for a safe repair
 //
 // React 18 re-renders into #root on hydration, so the snapshot is purely a
 // crawler/first-paint enhancement — client behavior is unchanged.
@@ -21,6 +23,12 @@ const DIST = resolve(dirname(fileURLToPath(import.meta.url)), "..", "dist");
 const CHROME =
   process.env.CHROME_PATH || "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
 const ALL = process.argv.includes("--all");
+const routeArgument = process.argv.find((argument) => argument.startsWith("--route="));
+const ONE_ROUTE = routeArgument ? routeArgument.slice("--route=".length) : null;
+if (ONE_ROUTE && (!ONE_ROUTE.startsWith("/") || ONE_ROUTE.includes("://"))) {
+  console.error("--route must be a site-relative path beginning with /.");
+  process.exit(1);
+}
 
 if (!existsSync(join(DIST, "index.html"))) {
   console.error("dist/index.html not found — run the build first.");
@@ -64,12 +72,17 @@ const BASE = baseMatch ? baseMatch[1] : "/";
 const sitemapFiles = ALL
   ? readdirSync(DIST).filter((f) => /^sitemap-.*\.xml$/.test(f))
   : ["sitemap-main.xml", "sitemap-blog.xml"];
-const routes = [...new Set(
+const sitemapRoutes = [...new Set(
   sitemapFiles.flatMap((f) => {
     const xml = readFileSync(join(DIST, f), "utf-8");
     return [...xml.matchAll(/<loc>https:\/\/dutycleaners\.ca([^<]*)<\/loc>/g)].map((m) => m[1] || "/");
   }),
 )];
+const routes = ONE_ROUTE ? [ONE_ROUTE] : sitemapRoutes;
+if (ONE_ROUTE && !sitemapRoutes.includes(ONE_ROUTE)) {
+  console.error(`--route is not a canonical URL in the generated sitemap: ${ONE_ROUTE}`);
+  process.exit(1);
+}
 
 const MIME = {
   ".html": "text/html", ".js": "text/javascript", ".css": "text/css", ".json": "application/json",
@@ -270,7 +283,13 @@ async function renderRoute(route) {
   }
 }
 
-const CONCURRENCY = 4;
+// Four Chrome processes is the conservative default.  A release repair can
+// safely opt into a higher bounded value through the environment so a full
+// static publish does not have to be split across partial, invalid builds.
+const requestedConcurrency = Number(process.env.PRERENDER_CONCURRENCY || 4);
+const CONCURRENCY = Number.isInteger(requestedConcurrency)
+  ? Math.min(Math.max(requestedConcurrency, 1), 12)
+  : 4;
 const queue = [...routes];
 await Promise.all(
   Array.from({ length: CONCURRENCY }, async () => {

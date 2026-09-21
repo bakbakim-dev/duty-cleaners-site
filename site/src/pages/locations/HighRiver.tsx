@@ -175,7 +175,10 @@ export default function HighRiver() {
                   Cleaning Services for High River Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Each service is priced flat by home size before GST, and the High River travel fee appears on the same quote.
+                  Standard, deep and move-in/out cleaning are priced by bedrooms, bathrooms and
+                  home type. Post-construction is priced by square footage, and wall washing is a
+                  home-size add-on booked with a clean. Every figure is before 5% GST, and the High
+                  River travel fee appears on the same quote.
                 </p>
               </div>
             </AnimatedSection>

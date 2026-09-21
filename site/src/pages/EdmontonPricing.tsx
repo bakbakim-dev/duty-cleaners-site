@@ -30,6 +30,7 @@ import {
   PRICING_TIERS,
   standardTierRows,
   startingPrice,
+  withGst,
 } from "@/data/pricing";
 import { addOnTableRows } from "@/data/addon-table";
 
@@ -101,6 +102,7 @@ const BUNGALOW = homeTypeId(/bungalow/i);
 const BI_WEEKLY = FREQUENCIES.find((f) => f.discount === 0.15)?.id ?? "one-time";
 const quote = (input: { homeType: number | null; bedrooms: number; bathrooms: number; halfBaths: number; addOns?: string[]; frequency?: string }) =>
   calculateQuote({ service: "standard", addOns: [], frequency: "one-time", ...input });
+const twoBedOneBath = quote({ homeType: APARTMENT, bedrooms: 2, bathrooms: 1, halfBaths: 0 });
 
 /** A two-bedroom condo, two bathrooms: the second card, booked bi-weekly. */
 const condo = quote({ homeType: APARTMENT, bedrooms: 2, bathrooms: 2, halfBaths: 0, frequency: BI_WEEKLY });
@@ -316,7 +318,9 @@ export default function EdmontonPricing() {
             <div className="text-center mb-8">
               <h2 className="display-serif text-3xl md:text-4xl font-bold mb-4">House cleaning rates in Edmonton, by home size</h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Each card is the flat rate for that bedroom count, before GST.
+                Each card is the apartment or condo rate for the bedroom and bathroom count shown,
+                rounded to the nearest dollar and before GST. Your instant quote uses the exact
+                price including cents.
               </p>
             </div>
 
@@ -330,10 +334,15 @@ export default function EdmontonPricing() {
                 <p className="text-center text-muted-foreground mb-8">The regular clean for a lived-in home</p>
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                   {standardPricing.map((item) => (
-                    <PricingTierCard key={item.beds} beds={item.beds} price={item.price} />
+                    <PricingTierCard key={item.beds} beds={item.beds} price={item.price} assumption={item.assumption} />
                   ))}
                 </div>
                 <PricingTierCta href={quoteHrefFor(pathname)} />
+                <p className="mx-auto mt-5 max-w-2xl text-center text-sm text-muted-foreground">
+                  Bathroom count matters: the two-bedroom card is {standardPricing[1].price} because it assumes two full bathrooms.
+                  A two-bedroom apartment or condo with one full bathroom is {formatPrice(twoBedOneBath.firstClean)} before GST,
+                  or {formatPrice(withGst(twoBedOneBath.firstClean))} with 5% GST, using the same BookingKoala pricing configuration as the quote form.
+                </p>
 
                 <div className="grid md:grid-cols-2 gap-6 mt-12">
                   <div className="bg-card rounded-xl border border-border/50 p-6">
@@ -371,6 +380,7 @@ export default function EdmontonPricing() {
                       key={item.beds}
                       beds={item.beds}
                       price={item.price}
+                      assumption={item.assumption}
                       note={`${item.standard} standard + ${item.packagePrice} Deep Cleaning package`}
                     />
                   ))}
@@ -385,7 +395,7 @@ export default function EdmontonPricing() {
                 <p className="text-center text-muted-foreground mb-8">For an empty home, with the inside of the appliances and cabinets included</p>
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                   {moveInOutPricing.map((item) => (
-                    <PricingTierCard key={item.beds} beds={item.beds} price={item.price} />
+                    <PricingTierCard key={item.beds} beds={item.beds} price={item.price} assumption={item.assumption} />
                   ))}
                 </div>
                 <PricingTierCta href={quoteHrefFor(pathname)} />

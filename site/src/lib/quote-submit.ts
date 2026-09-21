@@ -1,7 +1,7 @@
 /**
- * Sends funnel data to GoHighLevel through the `ghl-quote` edge function,
- * which calls GHL's official API v2 server-side (the Private Integration
- * token never touches the browser).
+ * Sends funnel data to GoHighLevel through Duty Cleaners' SiteGround relay.
+ * The relay calls GHL's official API v2 server-side, so the Private
+ * Integration token never touches the browser.
  *
  * Two rules this module exists to enforce:
  *   1. A successful result requires a durable receipt for the private
@@ -21,15 +21,7 @@ import {
   type FailureCategory,
 } from "@/lib/form-health";
 
-/**
- * The relay is a Supabase Edge Function, but reaching it is a single
- * unauthenticated POST — no session, no realtime, no database queries. Pulling
- * in @supabase/supabase-js for that shipped the whole SDK to every visitor on
- * every page just to build one fetch() call. `functions.invoke(name, { body })`
- * is exactly the request below, so we make it directly.
- */
-const FUNCTIONS_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1`;
-const ANON_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+const RELAY_URL = "/api/ghl-quote.php";
 
 export interface QuotePayload {
   /** Stable across retries; lead and confirmation use different ids. */
@@ -116,16 +108,12 @@ export async function submitQuote(
   const timeoutMs = options.timeoutMs ?? 12_000;
   const timer = globalThis.setTimeout(() => controller.abort(), timeoutMs);
   try {
-    const response = await fetch(`${FUNCTIONS_URL}/ghl-quote`, {
+    const response = await fetch(RELAY_URL, {
       method: "POST",
       signal: controller.signal,
       keepalive: options.keepalive ?? false,
       headers: {
         "Content-Type": "application/json",
-        // Edge Functions accept the anon key on either header; send both so we
-        // match what supabase-js did byte for byte.
-        apikey: ANON_KEY,
-        Authorization: `Bearer ${ANON_KEY}`,
       },
       body: JSON.stringify({
         ...payload,

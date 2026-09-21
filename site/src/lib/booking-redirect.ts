@@ -328,13 +328,13 @@ export interface BookingUrlInput {
   /**
    * Optional "details for your cleaner" answers. Only answered fields are
    * sent; a BookingKoala-side script reads dc_* and pre-fills the matching
-   * booking-page questions. No preferred date is ever sent — the booking page
-   * owns real crew availability.
+   * booking-page questions. BookingKoala owns the live date and arrival-time
+   * selection; the funnel deliberately does not imitate its availability.
    */
   cleanerDetails?: CleanerDetails;
   /** Campaign coupon code, passed straight through to BookingKoala. */
   coupon?: string | null;
-  contact?: { name?: string; email?: string; phone?: string };
+  contact?: { name?: string; firstName?: string; lastName?: string; email?: string; phone?: string };
   /** First-touch campaign identifiers; only TRACKED_PARAMS can pass through. */
   tracking?: Record<string, string>;
 
@@ -470,7 +470,9 @@ export function buildBookingQuery(input: BookingUrlInput): string | null {
 
 
 
-  const { first, last } = splitName(input.contact?.name ?? "");
+  const { first, last } = input.contact?.firstName !== undefined || input.contact?.lastName !== undefined
+    ? { first: input.contact.firstName?.trim() ?? "", last: input.contact.lastName?.trim() ?? "" }
+    : splitName(input.contact?.name ?? "");
   if (first) params.set("f_name", first);
   if (last) params.set("l_name", last);
 

@@ -17,7 +17,11 @@ import { compileHints } from "./scripts/compile-hints.mjs";
 const IMAGE_PRESETS: Record<string, string> = {
   // Card and gallery images: 132–350 CSS px on phones and in desktop grids,
   // so up to ~700 device px at 2x; 1024 is the source size of most of them.
-  card: "w=480;768;1024&format=webp&quality=78&as=picture",
+  // 640 closes the large jump from 480 to 768: a ~314 CSS-px card on a 2x
+  // phone needs about 628 device pixels and previously downloaded the 768w
+  // file. Lighthouse measured 174 KiB of avoidable image transfer across the
+  // six cards on the Edmonton Airbnb page from that gap.
+  card: "w=480;640;768;1024&format=webp&quality=78&as=picture",
   // The 112-px process thumbnails on the city hubs: 224 at 2x, 336 at 3x.
   // PageSpeed (2026-09-18) flagged the 480 card candidate as 4x too large for them.
   thumb: "w=224;336;480&format=webp&quality=78&as=picture",

@@ -39,6 +39,10 @@ import { Helmet } from "react-helmet-async";
 import CityCrossLink from "@/components/CityCrossLink";
 import LocalMarketNote from "@/components/LocalMarketNote";
 
+// The turnover cards render at roughly viewport width minus 6rem on phones;
+// the general 100vw card hint made the browser download a larger candidate.
+const TURNOVER_CARD_SIZES = "(min-width: 1024px) 360px, (min-width: 640px) 50vw, calc(100vw - 6rem)";
+
 /* Every figure on this page derives from bk-config, policy.ts or proof.ts.
    Nothing here is hand-typed. */
 const proof = CITY_PROOF.calgary;
@@ -104,7 +108,7 @@ const WhatWeCleanCard = ({
     <div className="aspect-[4/3] overflow-hidden">
       <ResponsiveImage
         picture={image}
-        sizes={SIZES.card}
+        sizes={TURNOVER_CARD_SIZES}
         alt={title}
         loading="lazy"
         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"

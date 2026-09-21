@@ -767,6 +767,15 @@ export const PRICING_TIERS: PricingTier[] = [
   { beds: 5, label: "5 Bedroom", bathrooms: 3, halfBaths: 1 },
 ];
 
+/** Reader-facing description of the bathroom count built into a tier price. */
+export const bathroomAssumption = (tier: Pick<PricingTier, "bathrooms" | "halfBaths">) => {
+  const full = tier.bathrooms + " full " + (tier.bathrooms === 1 ? "bathroom" : "bathrooms");
+  const half = tier.halfBaths
+    ? " + " + tier.halfBaths + " half " + (tier.halfBaths === 1 ? "bathroom" : "bathrooms")
+    : "";
+  return "Assumes " + full + half;
+};
+
 const tierStandardPrice = (tier: PricingTier) =>
   calculateQuote({
     service: "standard",
@@ -790,6 +799,7 @@ export const deepCleanTierRows = () =>
     const packagePrice = deepCleanPackagePrice(tier.beds) ?? 0;
     return {
       beds: tier.label,
+      assumption: bathroomAssumption(tier),
       standard: displayPrice(standard),
       packagePrice: displayPrice(packagePrice),
       price: displayPrice(money(standard + packagePrice)),
@@ -805,6 +815,7 @@ export const deepCleanTierRows = () =>
 export const serviceTierRows = (id: ServiceId) =>
   PRICING_TIERS.map((tier) => ({
     beds: tier.label,
+    assumption: bathroomAssumption(tier),
     price: displayPrice(
       calculateQuote({
         service: id,

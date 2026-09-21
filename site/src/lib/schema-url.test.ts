@@ -53,8 +53,8 @@ function urlValues(value: unknown, key = "", out: string[] = []): string[] {
   return out;
 }
 
-const rows = (fn: () => { beds: string; price: string }[]) =>
-  fn().map((r) => ({ beds: r.beds, price: r.price }));
+const rows = (fn: () => { beds: string; price: string; assumption: string }[]) =>
+  fn().map((r) => ({ beds: r.beds, price: r.price, assumption: r.assumption }));
 
 describe("schema URLs are canonical", () => {
   it("the pricing builder publishes a slash-canonical url for both cities", () => {

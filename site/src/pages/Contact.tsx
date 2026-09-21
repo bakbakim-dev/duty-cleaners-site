@@ -278,7 +278,11 @@ export default function Contact() {
   // Airbnb / short-term rental is quoted by callback — carry the request over
   // so the visitor doesn't retype what they already told us.
   const isAirbnb = topic === "airbnb";
-  // Office cleaning is the one commercial job quoted online (owner, 2026-09-10).
+  // Edmonton military housing march-out work is scoped against the CFHA
+  // inspection list rather than the residential instant-price table.
+  const isMarchOut = topic === "march-out";
+  // Office cleaning is scoped after a walkthrough, not through the residential
+  // instant-price funnel.
   const isOffice = topic === "office";
   const topicCity = searchParams.get("city");
   const giftDesign = searchParams.get("design");
@@ -286,16 +290,25 @@ export default function Contact() {
     ? GIFT_CARD_DESIGN_LABELS[giftDesign] ?? giftDesign.replace(/-/g, " ")
     : null;
 
-  // Office cleaning and Airbnb turnovers are quoted by the office, not by the
-  // instant price, so those visitors get the callback prompt instead of the
-  // home-pricing pitch.
-  const isCallbackTopic = isOffice || isAirbnb;
+  // Specialist work is quoted by the office, not by the instant price, so
+  // those visitors get the callback prompt instead of the home-pricing pitch.
+  const isCallbackTopic = isOffice || isAirbnb || isMarchOut;
   const presetCity = topicCity === "edmonton" || topicCity === "calgary" ? topicCity : "";
-  const presetService = isGiftCard ? "gift-card" : isAirbnb ? "airbnb" : isOffice ? "commercial" : "";
+  const presetService = isGiftCard
+    ? "gift-card"
+    : isAirbnb
+      ? "airbnb"
+      : isMarchOut
+        ? "march-out"
+        : isOffice
+          ? "commercial"
+          : "";
   const presetMessage = isGiftCard
     ? `I'd like to buy a Duty Cleaners gift card${giftDesignLabel ? ` (${giftDesignLabel} design)` : ""}. Please send me the details.`
     : isAirbnb
       ? "I'd like a callback about Airbnb / short-term rental turnover cleaning."
+      : isMarchOut
+        ? "I'd like a quote for an Edmonton military housing march-out clean."
       : isOffice
         ? "I'd like a quote for office cleaning."
         : "";
@@ -507,13 +520,15 @@ export default function Contact() {
               Contact Duty Cleaners in <span className="text-brand-gold">Edmonton, Calgary and Red Deer</span>
             </h1>
 
-            {/* Office cleaning and Airbnb turnovers have no instant price, so
-                those visitors are sent to the form and the phones instead. */}
+            {/* Specialist jobs have no instant residential price, so those
+                visitors are sent to the form and the phones instead. */}
             {isCallbackTopic ? (
               <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-8">
                 {isOffice
                   ? "Office cleaning is priced per square foot after a walkthrough of the premises, so it has no instant price."
-                  : "Airbnb and short-term rental turnovers are priced per hour on a callback, so they have no instant price."}{" "}
+                  : isAirbnb
+                    ? "Airbnb and short-term rental turnovers are priced per hour on a callback, so they have no instant price."
+                    : "Edmonton military housing march-out cleaning is quoted from the home and its CFHA inspection list, so it has no instant price."}{" "}
                 Send the form below with a phone number and the office can call you back, or call
                 the office for your city during opening hours.
               </p>
@@ -622,24 +637,52 @@ export default function Contact() {
                 {/* The page says the instant price is faster than the form, so
                     the price comes first and the form second. */}
                 {isCallbackTopic ? (
-                  /* Office cleaning and Airbnb turnovers are not priced by the
-                     instant quote, so the home-pricing pitch would send these
-                     visitors the wrong way. */
+                  /* Specialist work is not priced by the instant residential
+                     quote, so the home-pricing pitch would send these visitors
+                     the wrong way. */
                   <div className="mb-8 rounded-2xl border-2 border-accent/30 bg-accent/10 p-6">
                     <p className="text-lg font-semibold text-foreground">
-                      {isOffice ? "Office cleaning quote" : "Airbnb and short-term rental turnovers"}
+                      {isOffice
+                        ? "Office cleaning quote"
+                        : isAirbnb
+                          ? "Airbnb and short-term rental turnovers"
+                          : "Edmonton military housing march-out quote"}
                     </p>
-                    <p className="mt-1 text-muted-foreground">
-                      Tell us about the premises or turnover, timing and required scope. The office
-                      will confirm the applicable quote.
+                    <p className="mt-1 text-foreground/80">
+                      Tell us about the property, timing and required scope. The office will confirm
+                      the applicable quote.
                     </p>
+                    {isOffice && (
+                      <p className="mt-3 text-sm text-muted-foreground">
+                        Before sending the request, review the{" "}
+                        <Link
+                          to={formData.city === "calgary" ? "/commercial-cleaning-services-calgary/" : "/commercial-cleaning/"}
+                          className="font-semibold text-primary underline underline-offset-2"
+                        >
+                          {formData.city === "calgary" ? "Calgary" : "Edmonton"} commercial cleaning scope
+                        </Link>
+                        .
+                      </p>
+                    )}
+                    {isMarchOut && (
+                      <p className="mt-3 text-sm text-muted-foreground">
+                        Check the items to prepare on the{" "}
+                        <Link
+                          to="/edmonton/march-out-cleaning/"
+                          className="font-semibold text-primary underline underline-offset-2"
+                        >
+                          Edmonton military housing march-out cleaning page
+                        </Link>
+                        .
+                      </p>
+                    )}
                   </div>
                 ) : (
                   <div className="mb-8 rounded-2xl border-2 border-accent/30 bg-accent/10 p-6">
                     <p className="text-lg font-semibold text-foreground">
                       To book, or to see what a clean costs, skip the form.
                     </p>
-                    <p className="mt-1 text-muted-foreground">
+                    <p className="mt-1 text-foreground/80">
                       Answer a few questions about the home and the price is on screen in about a
                       minute, before GST. Nothing is charged when you book.
                     </p>
@@ -659,7 +702,9 @@ export default function Contact() {
                     <p className="text-muted-foreground mt-3">
                       {isOffice
                         ? "Tell us the address, roughly how much floor space needs cleaning, and how often. Leave a phone number and the office can call you back to arrange the walkthrough."
-                        : "Tell us where the rental is, its size, and how often guests turn over. Leave a phone number and the office can call you back to quote the turnovers."}
+                        : isAirbnb
+                          ? "Tell us where the rental is, its size, and how often guests turn over. Leave a phone number and the office can call you back to quote the turnovers."
+                          : "Tell us the CFHA location, move-out date, home size and any items on the inspection list. Leave a phone number and the Edmonton office can call you back with the quote."}
                     </p>
                   ) : (
                     <p className="text-muted-foreground mt-3">
@@ -675,7 +720,7 @@ export default function Contact() {
                       <p className="font-semibold text-foreground">
                         Gift card{giftDesignLabel ? ` — ${giftDesignLabel} design` : ""}
                       </p>
-                      <p className="mt-1 text-sm text-muted-foreground">
+                      <p className="mt-1 text-sm text-foreground/80">
                         We've noted your choice. Add your details and the office will contact you
                         with payment and delivery options.
                       </p>
@@ -761,6 +806,7 @@ export default function Contact() {
                           <SelectItem value="move">Move-In/Move-Out Cleaning</SelectItem>
                           <SelectItem value="post-construction">Post-Construction Cleaning</SelectItem>
                           <SelectItem value="airbnb">Airbnb Cleaning</SelectItem>
+                          <SelectItem value="march-out">Military Housing March-Out Cleaning</SelectItem>
                           <SelectItem value="gift-card">Gift Card</SelectItem>
                           <SelectItem value="commercial">Office Cleaning</SelectItem>
                           <SelectItem value="other">Other</SelectItem>
@@ -820,11 +866,31 @@ export default function Contact() {
                         form's confirmation screen states. What the page
                         can honestly say is that most questions do not need a
                         reply at all. */}
-                    <FeatureHighlight
-                      icon={CheckCircle2}
-                      title="The Price Without Asking"
-                      description="The quote form answers the most common question on its own, in about a minute, before GST."
-                    />
+                    {isOffice ? (
+                      <FeatureHighlight
+                        icon={Building2}
+                        title="What the Walkthrough Needs"
+                        description="Send the premises address, approximate floor area, visit frequency, access window and any product, security or documentation requirements."
+                      />
+                    ) : isAirbnb ? (
+                      <FeatureHighlight
+                        icon={CheckCircle2}
+                        title="What the Turnover Quote Needs"
+                        description="Send the rental address, bedrooms, turnover frequency, linen scope and usual check-out and check-in times."
+                      />
+                    ) : isMarchOut ? (
+                      <FeatureHighlight
+                        icon={CheckCircle2}
+                        title="What the March-Out Quote Needs"
+                        description="Send the CFHA location, move-out date, home size and any inspection-list items or add-ons the home needs."
+                      />
+                    ) : (
+                      <FeatureHighlight
+                        icon={CheckCircle2}
+                        title="The Price Without Asking"
+                        description="The quote form answers the most common question on its own, in about a minute, before GST."
+                      />
+                    )}
                     <FeatureHighlight
                       icon={Users}
                       title="One Email for Every Office"
@@ -905,9 +971,8 @@ export default function Contact() {
               office answers {hoursLineFor("reddeer")}.{" "}
               {isCallbackTopic ? (
                 <>
-                  An office or turnover job is priced once the office knows what it involves, so
-                  say what the premises or the turnover need and when, and the office confirms the
-                  quote.
+                  A specialist job is priced once the office knows what it involves, so say what
+                  the property needs and when, and the office confirms the quote.
                 </>
               ) : (
                 <>

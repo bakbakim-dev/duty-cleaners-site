@@ -140,7 +140,7 @@ export default function Renfrew() {
               <div className="text-center mb-14">
                 <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">Cleaning Services for Renfrew Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Every service is a flat rate by home size, and the order a house gets done in is easy to change, so an entry full of chinook grit can come first.
+                  Standard, deep, recurring and move-in/out cleaning are priced by bedrooms, bathrooms and home type. Post-construction is priced by square footage, and wall washing is a home-size add-on booked with a clean. Every figure is before 5% GST.
                 </p>
               </div>
             </AnimatedSection>

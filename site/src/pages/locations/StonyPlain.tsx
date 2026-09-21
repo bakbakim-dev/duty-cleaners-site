@@ -311,7 +311,7 @@ export default function StonyPlain() {
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>
-                  A house that is kept up wants the standard clean, from {STANDARD_FROM}. A house in one of the newer subdivisions that has never had a professional clean starts better with the deep clean from {DEEP_FROM}, so the baseboards, light switches and vent covers are done once before a standard schedule takes over. A handover needs{" "}
+                  A house that is kept up wants the standard clean, from {STANDARD_FROM}. Choose the deep clean from {DEEP_FROM} when the home needs its added baseboard, door, light-switch, outlet and vent-cover work, or when build-up calls for that scope; never having booked a professional cleaner is not enough by itself. A handover needs{" "}
                   <Link to="/move-out-cleaning-edmonton/" className="text-primary underline underline-offset-2 font-medium">move-in and move-out cleaning in Stony Plain</Link>, from {MOVE_FROM}. All three figures are before GST for a one-bedroom apartment or condo, and the house-type surcharge and the pet charge apply to each where they fit the home.
                 </p>
                 <p>

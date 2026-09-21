@@ -19,7 +19,7 @@ import cleanerImage from "@/assets/gallery/calgary-team-cleaning.webp?card";
 // Published figures come from bk-config via pricing.ts. Hand-typing them
 // here is what let this page drift out of step with /pricing and with what
 // BookingKoala actually charges.
-const TIERS = standardTierRows().map((row) => ({ size: row.beds, price: row.price }));
+const TIERS = standardTierRows().map((row) => ({ size: row.beds, price: row.price, assumption: row.assumption }));
 const FROM = TIERS[0].price;
 const TWO_BED = TIERS[1].price;
 /** Travel fee for an address outside Calgary city limits, from bk-config. */
@@ -88,7 +88,7 @@ export default function CalgaryRecurringCleaning() {
           body: (
             <>
               <p>
-                The three tiers are the same checklist at three prices. Take a two-bedroom apartment, {TWO_BED} as a
+                The three tiers are the same checklist at three prices. Take a two-bedroom apartment with {TIERS[1].assumption.replace("Assumes ", "").toLowerCase()}, {TWO_BED} as a
                 one-time clean and for the first visit of any plan. From the second visit, weekly comes to{" "}
                 {ongoing(1, WEEKLY?.id)} a visit ({pct(WEEKLY?.discount)} off), bi-weekly to{" "}
                 {ongoing(1, BIWEEKLY?.id)} ({pct(BIWEEKLY?.discount)} off) and every 4 weeks to{" "}
@@ -142,7 +142,7 @@ export default function CalgaryRecurringCleaning() {
       ]}
       faqs={[
         { q: "How often should I book in Calgary specifically?", a: `A Calgary home takes in sand and de-icer from November to April, as chinooks thaw and refreeze the streets, so bi-weekly through those months and every 4 weeks through the summer is a sensible place to start. A home with a dog, a garage entry or young children may want bi-weekly all year. Start on one cadence and change it with ${POLICY.cancellationNoticeHours} hours' notice once you see how the house holds up.` },
-        { q: "What does the discount come to in dollars?", a: `On a two-bedroom apartment at ${TWO_BED}, the first visit is ${TWO_BED} and every visit after it is ${ongoing(1, WEEKLY?.id)} weekly, ${ongoing(1, BIWEEKLY?.id)} bi-weekly or ${ongoing(1, FOUR_WEEKS?.id)} every 4 weeks, before GST. The percentages are the same for every home size. A townhouse or two-storey house, a home with pets and an address outside Calgary city limits each add a charge, shown on the quote before you book.` },
+        { q: "What does the discount come to in dollars?", a: `On a two-bedroom apartment with ${TIERS[1].assumption.replace("Assumes ", "").toLowerCase()} at ${TWO_BED}, the first visit is ${TWO_BED} and every visit after it is ${ongoing(1, WEEKLY?.id)} weekly, ${ongoing(1, BIWEEKLY?.id)} bi-weekly or ${ongoing(1, FOUR_WEEKS?.id)} every 4 weeks, before GST. The percentages are the same for every home size. A townhouse or two-storey house, a home with pets and an address outside Calgary city limits each add a charge, shown on the quote before you book.` },
         { q: "What notice do you need to move or skip a visit?", a: `${POLICY.cancellationNoticeHours} hours. A visit moved or skipped with that much notice costs nothing. Inside ${POLICY.cancellationNoticeHours} hours the ${POLICY.cancellationFee} cancellation fee applies, and a visit where the team arrives and cannot get in is billed at ${POLICY.lockoutFee}.` },
         { q: "Will the same Calgary team come every time?", a: "We send your regular team where we can send them. Illness, holidays and the schedule mean that is not always possible, and when it is not, another Calgary team works through the same checklist. If you would rather wait for your regular team, tell us and we will offer another date instead." },
         { q: "What if nobody is home when the team arrives?", a: "Nobody needs to be home for a recurring visit: most customers leave a key, a lockbox code or smart-lock access, and a fob left with the concierge works in a Calgary tower. Tell us which when you book. The team locks up when they leave." },

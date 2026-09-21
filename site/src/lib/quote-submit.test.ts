@@ -39,9 +39,11 @@ describe("durable quote submission", () => {
 
     expect(result).toMatchObject({ ok: true, stored: true, delivery: "pending", receiptId: "receipt-1" });
     const [, init] = fetchMock.mock.calls[0];
+    expect(fetchMock.mock.calls[0][0]).toBe("/api/ghl-quote.php");
     expect(init).toBeDefined();
     expect(init!.keepalive).toBe(true);
     expect(JSON.parse(String(init!.body))).toMatchObject({ request_id: requestId, stage: "lead" });
+    expect(new Headers(init!.headers).has("Authorization")).toBe(false);
   });
 
   it("classifies a response without a verifiable receipt as failed capture", async () => {

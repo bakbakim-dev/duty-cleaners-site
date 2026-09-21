@@ -343,11 +343,10 @@ describe("the quote overlay reads its facts from proof.ts", () => {
  * all: this guard pins that it has none, so the phone-only path cannot return.
  */
 describe("Red Deer postal codes book online like any in-city code", () => {
-  it("QuoteFlow has no Red Deer exception to the travel fee or the booking link", () => {
+  it("QuoteFlow leaves address validation and travel pricing to BookingKoala", () => {
     const src = codeOf("src/components/quote/QuoteFlow.tsx");
-    expect(src, "the travel fee decision is the postal code's alone").toMatch(
-      /const outsideCity = cityStatus === "unknown" \? insideCity === false : cityStatus === "outside";/,
-    );
+    expect(src).toContain("BookingKoala will ask");
+    expect(src).not.toMatch(/dc-address|dc-zip|details\.postalCode|travelFeeExtraForSelection/);
     expect(src, "a Red Deer code lost its online booking again").toMatch(
       /const bookingUrl = bookingQuery === null \? null : publicBookingUrl\(bookingQuery\);/,
     );

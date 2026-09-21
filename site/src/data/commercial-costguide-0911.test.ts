@@ -155,17 +155,17 @@ describe("the commercial pages (owner, 2026-09-11)", () => {
 });
 
 describe("the contact page's callback topics", () => {
-  it("preselects office or Airbnb and the city, and drops the home-pricing pitch", () => {
+  it("preselects specialist work and the city, and drops the home-pricing pitch", () => {
     const src = stripComments(read("pages/Contact.tsx"));
-    expect(src).toMatch(/const isCallbackTopic = isOffice \|\| isAirbnb;/);
+    expect(src).toMatch(/const isCallbackTopic = isOffice \|\| isAirbnb \|\| isMarchOut;/);
     expect(src).toMatch(/const presetCity = topicCity === "edmonton" \|\| topicCity === "calgary" \? topicCity : "";/);
-    expect(src).toMatch(/isAirbnb \? "airbnb" : isOffice \? "commercial"/);
+    expect(src).toMatch(/isAirbnb[\s\S]{0,100}\? "airbnb"[\s\S]{0,150}isMarchOut[\s\S]{0,100}\? "march-out"[\s\S]{0,150}isOffice[\s\S]{0,100}\? "commercial"/);
     expect(src, "the form no longer starts from the preset city").toMatch(/\n\s*city: presetCity,/);
     expect(src, "the form no longer starts from the preset service").toMatch(/\n\s*service: presetService,/);
     expect(
       src,
-      "office and Airbnb visitors must see the callback prompt in place of the instant-price pitch",
-    ).toMatch(/\{isCallbackTopic \? \([\s\S]*?Tell us about the premises or turnover, timing and required scope\.[\s\S]*?\) : \([\s\S]*?skip the form/);
+      "specialist visitors must see the callback prompt in place of the instant-price pitch",
+    ).toMatch(/\{isCallbackTopic \? \([\s\S]*?Tell us about the property, timing and required scope\.[\s\S]*?\) : \([\s\S]*?skip the form/);
   });
 
   it("a topic link followed on the contact page replaces an unedited preset message", () => {
@@ -179,17 +179,17 @@ describe("the contact page's callback topics", () => {
     expect(src, "the effect must follow the preset message").toMatch(/\}, \[presetCity, presetService, presetMessage\]\);/);
   });
 
-  it("office and Airbnb visitors are not pointed at the instant price anywhere on the page", () => {
+  it("specialist visitors are not pointed at the instant price anywhere on the page", () => {
     const src = stripComments(read("pages/Contact.tsx"));
     // Hero paragraph, hero button and the form's intro line each switch on the topic.
     expect(src, "hero paragraph").toMatch(
-      /\{isCallbackTopic \? \(\s*<p[^>]*>\s*\{isOffice[\s\S]{0,600}?\) : \(\s*<p[^>]*>\s*The fastest answer to most questions/,
+      /\{isCallbackTopic \? \(\s*<p[^>]*>\s*\{isOffice[\s\S]{0,1200}?\) : \(\s*<p[^>]*>\s*The fastest answer to most questions/,
     );
     expect(src, "hero button").toMatch(
       /\{isCallbackTopic \? \(\s*<Button[\s\S]{0,300}?href="#contact-form"[\s\S]{0,200}?Request a Callback[\s\S]{0,100}?\) : \(\s*<Button[\s\S]{0,300}?See My Instant Price/,
     );
     expect(src, "form intro").toMatch(
-      /\{isCallbackTopic \? \(\s*<p[^>]*>\s*\{isOffice[\s\S]{0,600}?\) : \(\s*<p[^>]*>\s*For questions the price cannot answer/,
+      /\{isCallbackTopic \? \(\s*<p[^>]*>\s*\{isOffice[\s\S]{0,1200}?\) : \(\s*<p[^>]*>\s*For questions the price cannot answer/,
     );
     expect(src, "the callback button has nowhere to go").toMatch(/<form id="contact-form"/);
     // Every instant-price pitch sits in the plain-contact branch.

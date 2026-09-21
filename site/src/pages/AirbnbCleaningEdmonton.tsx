@@ -79,6 +79,10 @@ const QUOTE = `${HUB}#quote`;
 const MINIMUM_BOOKING = HOURLY_RATE * 3;
 const TITLE = `Airbnb Cleaning Edmonton | ${RATE}/Cleaner-Hour | Duty Cleaners`;
 const DESCRIPTION = `Airbnb turnover cleaning in Edmonton is ${RATE} per cleaner-hour before GST, with a 3-hour minimum for one cleaner or 2 hours for two, and beds remade.`;
+// These cards sit inside a narrower mobile grid than the site's general card
+// preset. Naming the measured width stops a 314px card from choosing a 768px
+// source on Lighthouse's mobile viewport.
+const TURNOVER_CARD_SIZES = "(min-width: 1024px) 360px, (min-width: 640px) 50vw, calc(100vw - 6rem)";
 
 const AnimatedSection = ({
   children,
@@ -113,7 +117,7 @@ const WhatWeCleanCard = ({
     <div className="aspect-[4/3] overflow-hidden">
       <ResponsiveImage
         picture={image}
-        sizes={SIZES.card}
+        sizes={TURNOVER_CARD_SIZES}
         alt={title}
         loading="lazy"
         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -390,7 +394,7 @@ const AirbnbCleaningEdmonton = () => {
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-4">
                 <span className="dc-icon dc-icon-sparkles w-4 h-4 text-primary" aria-hidden="true" />
-                <span className="text-primary text-sm font-medium">The checklist</span>
+                <span className="text-brand-navy text-sm font-semibold">The checklist</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
                 What a short-term rental turnover includes
@@ -550,7 +554,7 @@ const AirbnbCleaningEdmonton = () => {
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-4">
                 <span className="dc-icon dc-icon-sparkles w-4 h-4 text-primary" aria-hidden="true" />
-                <span className="text-primary text-sm font-medium">After the turnover</span>
+                <span className="text-brand-navy text-sm font-semibold">After the turnover</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
                 What a finished turnover looks like

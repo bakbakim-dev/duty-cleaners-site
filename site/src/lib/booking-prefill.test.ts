@@ -9,7 +9,10 @@ class Element {
   tagName: string; name = ""; placeholder = ""; value = ""; disabled = false; readOnly = false;
   options: { text: string; value: string }[] = []; style = {}; attrs: Record<string, string> = {};
   children: Element[] = []; events: string[] = []; hidden = false; textContent = ""; id = "";
+  scrolls: { block?: string; behavior?: string }[] = [];
   listeners: Record<string, (event: { type?: string; isTrusted?: boolean; target?: Element }) => void> = {};
+  closest: (selector: string) => Element | null = () => null;
+  contains(_other: Element) { return false; }
   constructor(tag = "input") { this.tagName = tag.toUpperCase(); }
   getClientRects() { return [1]; }
   getAttribute(key: string) { return this.attrs[key] ?? null; }
@@ -18,18 +21,24 @@ class Element {
   insertBefore(el: Element) { this.children.unshift(el); }
   addEventListener(name: string, listener: (event: { type?: string; isTrusted?: boolean; target?: Element }) => void) { this.listeners[name] = listener; }
   dispatchEvent(event: { type: string }) { this.events.push(event.type); }
+  scrollIntoView(options: { block?: string; behavior?: string }) { this.scrolls.push(options); }
 }
-function fixture(fields: Record<string, string>, controls: Element[]) {
+function fixture(fields: Record<string, string>, controls: Element[], options: { desktop?: boolean } = {}) {
   let tick = () => {}; let now = 0;
   const listeners: Record<string, (event: { type?: string; isTrusted?: boolean; target?: Element }) => void> = {};
   const body = new Element("body");
   const document = {
     body, activeElement: null as Element | null,
-    querySelectorAll: (tag: string) => controls.filter(el => el.tagName.toLowerCase() === tag),
+    querySelectorAll: (selector: string) => controls.filter(el => selector.split(",").some(tag => el.tagName.toLowerCase() === tag.trim())),
+    querySelector: () => null,
+    getElementById: (id: string) => controls.find(el => el.id === id) ?? null,
     createElement: (tag: string) => new Element(tag),
     addEventListener: (name: string, callback: (event: { type?: string; isTrusted?: boolean; target?: Element }) => void) => { listeners[name] = callback; },
   };
-  const window = { addEventListener() {} };
+  const window = {
+    addEventListener() {},
+    matchMedia: (query: string) => ({ matches: query.includes("min-width") ? !!options.desktop : false }),
+  };
   runInNewContext(source, {
     window, document, location: { pathname: "/booknow", search: "?" + new URLSearchParams(fields), hash: "" },
     URLSearchParams, performance: { getEntriesByType: () => [] },
@@ -44,12 +53,27 @@ function input(placeholder: string, value = "") { const el = new Element(); el.p
 function select(name: string, labels: string[]) { const el = new Element("select"); el.name = name; el.options = ["", ...labels].map(text => ({ text, value: text })); return el; }
 
 describe("BookingKoala companion receiver", () => {
+  it.each([
+    "7806915060", "780-691-5060", "780 691 5060", "(780) 691-5060",
+    "+1 780-691-5060", "1 (780) 691 5060", "780.691.5060",
+  ])("fills the ten-digit phone field from %s", (phone) => {
+    const el = input("Phone No.");
+    const state = fixture({ phone }, [el]);
+    expect(el.value).toBe("7806915060");
+    state.tick(); state.tick();
+    expect(state.body.children[0].attrs["data-dc-prefill"]).toBe("filled");
+  });
+  it("does not put an invalid-length phone into BookingKoala's mask", () => {
+    const el = input("Phone No.");
+    fixture({ phone: "780-691-5060 ext 23" }, [el]);
+    expect(el.value).toBe("");
+  });
   it("fills text and native dropdowns and requires two stable readbacks", () => {
     const zip = input("Postal code");
     const entry = select("how_do_we_enter_the_home?", ["Someone will be home", "Other (tell us in the notes below)"]);
     const state = fixture({ dc_zip: "T5J 0N3", dc_entry: "home" }, [zip, entry]);
     expect(zip.value).toBe("T5J 0N3"); expect(entry.value).toBe("Someone will be home");
-    expect(zip.events).toEqual(["input", "change", "blur"]);
+    expect(zip.events).toEqual(["input", "keyup", "change", "blur"]);
     expect(state.body.children[0].attrs["data-dc-prefill"]).toBe("loading");
     state.tick(); state.tick();
     expect(state.body.children[0].attrs["data-dc-prefill"]).toBe("filled");
@@ -75,7 +99,9 @@ describe("BookingKoala companion receiver", () => {
     const address = input("Type Address"); controls.push(address); state.tick();
     expect(address.value).toBe("123 Test Street");
     controls[0] = input("Type Address"); state.tick(); expect(controls[0].value).toBe("123 Test Street");
-    state.tick(); state.tick(); expect(state.body.children[0].attrs["data-dc-prefill"]).toBe("filled");
+    // A plain address string is intentionally not treated as confirmed until
+    // BookingKoala's own Google suggestion has been selected.
+    state.tick(); state.tick(); expect(state.body.children[0].attrs["data-dc-prefill"]).toBe("address-confirmation");
   });
   it("maps lockbox to Other with explicit notes and supports every flexibility value", () => {
     for (const [value, label] of Object.entries({ both: "Yes - Date & Time is flexible (Specify flexibility in the comment section below)", time: "Yes - Only time is flexible    (Specify flexible times in the comment section below)", date: "Yes - Only date is flexible    (Specify flexible times in the comment section below)", none: "NO - Not Flexible At All" })) {
@@ -92,6 +118,65 @@ describe("BookingKoala companion receiver", () => {
     const state = fixture({ dc_city: "Edmonton", card_number: "123" }, [a, b, card]);
     state.tick(13000);
     expect([a.value,b.value,card.value]).toEqual(["","",""]);
-    expect(source).not.toMatch(/\.submit\(|\.click\(|requestSubmit|contentWindow|querySelectorAll\(['"]iframe/);
+    expect(source).not.toMatch(/\.submit\(|requestSubmit|contentWindow|querySelectorAll\(['"]iframe|Book My Clean/);
+  });
+  it("guides a fresh handoff to the date section once without stealing an active visit", () => {
+    const zip = input("Postal code");
+    const date = input("Select a date"); date.disabled = true;
+    let dateOpens = 0;
+    Object.assign(date, { parentElement: { click: () => { dateOpens += 1; } } });
+    const state = fixture({ dc_zip: "T5J 0N3" }, [zip, date]);
+    state.tick(800); expect(date.scrolls).toEqual([]);
+    state.tick(400); expect(date.scrolls).toEqual([{ block: "center", behavior: "smooth" }]);
+    expect(dateOpens).toBe(1);
+    state.tick(1200); expect(date.scrolls).toEqual([
+      { block: "center", behavior: "smooth" },
+      { block: "center", behavior: "auto" },
+    ]);
+    state.tick(1600); expect(date.scrolls).toHaveLength(3);
+    state.tick(4000); expect(date.scrolls).toHaveLength(3);
+    expect(dateOpens).toBe(1);
+
+    const secondDate = input("Select a date"); secondDate.disabled = true;
+    const active = fixture({ dc_zip: "T5J 0N3" }, [input("Postal code"), secondDate]);
+    active.listeners.pointerdown({}); active.tick(1600);
+    expect(secondDate.scrolls).toEqual([]);
+  });
+  it("keeps BookingKoala's address confirmation visible before opening availability", () => {
+    const address = input("Type Address");
+    const date = input("Select a date"); date.disabled = true;
+    let dateOpens = 0;
+    Object.assign(date, { parentElement: { click: () => { dateOpens += 1; } } });
+    const state = fixture({ dc_addr: "123 Test Street" }, [address, date]);
+    state.tick(5000);
+    expect(state.body.children[0].attrs["data-dc-prefill"]).toBe("address-confirmation");
+    expect(date.scrolls).toEqual([]);
+    expect(dateOpens).toBe(0);
+  });
+  it("guides live availability to Address Details, then a confirmed native address to payment", () => {
+    const date = input("Select a date", "09/21/2026");
+    const time = new Element("button"); time.id = "dropdownMenuButton"; time.textContent = "09:00 AM";
+    const address = input("Type Address", "123 Test Street");
+    const city = input("City", "Edmonton"), province = input("Province", "Alberta"), zip = input("Postal code", "T5J 0N3");
+    const addressHeading = new Element("h3"); addressHeading.textContent = "Address Details";
+    const paymentHeading = new Element("h3"); paymentHeading.textContent = "Payment Information";
+    const state = fixture({ f_name: "Jamie" }, [date, time, address, city, province, zip, addressHeading, paymentHeading]);
+    state.tick();
+    expect(addressHeading.scrolls).toEqual([{ block: "start", behavior: "smooth" }]);
+    const suggestion = new Element("li"); suggestion.textContent = "123 Test Street, Edmonton, Alberta, T5J 0N3";
+    suggestion.closest = selector => selector === "ul.list-group li" ? suggestion : null;
+    state.listeners.click({ target: suggestion }); state.tick(800);
+    expect(paymentHeading.scrolls).toEqual([{ block: "start", behavior: "smooth" }]);
+    state.tick(800);
+    expect(paymentHeading.scrolls).toHaveLength(1);
+  });
+  it("keeps the desktop handoff slightly above the top so Address Details stays in view", () => {
+    const date = input("Select a date", "09/21/2026");
+    const time = new Element("button"); time.id = "dropdownMenuButton"; time.textContent = "09:00 AM";
+    const addressHeading = new Element("h3"); addressHeading.textContent = "Address Details";
+    const state = fixture({ f_name: "Jamie" }, [date, time, addressHeading], { desktop: true });
+    state.tick();
+    expect(addressHeading.style).toMatchObject({ scrollMarginTop: "120px" });
+    expect(addressHeading.scrolls).toEqual([{ block: "start", behavior: "smooth" }]);
   });
 });

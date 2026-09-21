@@ -18,7 +18,7 @@ import cleanerImage from "@/assets/gallery/westmount-cleaner-kitchen.webp?card";
 // Published figures come from bk-config via pricing.ts. Hand-typing them
 // here is what let this page drift out of step with /pricing and with what
 // BookingKoala actually charges.
-const TIERS = standardTierRows().map((row) => ({ size: row.beds, price: row.price }));
+const TIERS = standardTierRows().map((row) => ({ size: row.beds, price: row.price, assumption: row.assumption }));
 const FROM = TIERS[0].price;
 /** Travel fee for an address outside Edmonton city limits, from bk-config. */
 const TRAVEL = formatPrice(travelFee("standard") ?? 0);
@@ -121,7 +121,7 @@ export default function EdmontonRecurringCleaning() {
               <p>
                 The tier is every 4 weeks rather than the calendar month because that is how the booking system
                 schedules it: 13 visits a year rather than 12, with the date moving through the month. Worked through on
-                a three-bedroom apartment or condo, the first visit is {firstVisit(2)} before GST, the exact figure that
+                a three-bedroom apartment or condo with {TIERS[2].assumption.replace("Assumes ", "").toLowerCase()}, the first visit is {firstVisit(2)} before GST, the exact figure that
                 price lists round to the nearest dollar. From the second visit each clean is {ongoing(2, WEEKLY?.id)}{" "}
                 weekly, {ongoing(2, BIWEEKLY?.id)} bi-weekly or {ongoing(2, FOUR_WEEKS?.id)} every 4 weeks, before GST;
                 on the bi-weekly plan that is {ongoingWithGst(2, BIWEEKLY?.id)} a visit once 5% GST is added.

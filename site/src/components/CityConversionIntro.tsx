@@ -114,13 +114,13 @@ const PROCESS_STEPS = {
     { number: "1", title: "Tell us about your home", description: "Enter the bedrooms, the bathrooms and the type of clean you need." },
     { number: "2", title: "Share your contact details", description: "We use them to send your quote and to check anything unusual." },
     { number: "3", title: "See your price", description: "The form shows the price for your home straight away, with no obligation to book." },
-    { number: "4", title: "Confirm your booking", description: "Add your service address after seeing the price, then continue to BookingKoala to check availability and confirm the booking." },
+    { number: "4", title: "Confirm your booking", description: "Continue to BookingKoala to choose a live date and arrival time, then enter your service address and payment details." },
   ],
   Calgary: [
     { number: "1", title: "Describe the home", description: "Give the number of bedrooms and bathrooms, then pick the clean." },
     { number: "2", title: "Leave your contact details", description: "Tell us where to send the quote, and leave a number in case something needs checking." },
     { number: "3", title: "See your price", description: "The figure for your home appears on screen before you commit to anything." },
-    { number: "4", title: "Book the date", description: "After the price, add your service address and continue to BookingKoala. Choose an available slot and complete the booking there." },
+    { number: "4", title: "Book the date", description: "After seeing the price, continue to BookingKoala. Choose an available date and arrival time, then enter your address and payment details." },
   ],
 } as const;
 

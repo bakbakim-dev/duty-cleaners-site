@@ -247,7 +247,11 @@ export default function CalgaryMoveInOut() {
               // source: moveInOutTierRows().
               offerCatalog: {
                 name: "Move-out cleaning by home size",
-                rows: MOVE_ROWS.map((row) => ({ name: row.beds, price: row.price })),
+                rows: MOVE_ROWS.map((row) => ({
+                  name: row.beds,
+                  price: row.price,
+                  assumption: row.assumption,
+                })),
               },
             }),
           )}
@@ -442,7 +446,8 @@ export default function CalgaryMoveInOut() {
           <p className="text-center text-muted-foreground mb-10 max-w-3xl mx-auto">
             Move out cleaning in Calgary costs from {MOVE_FROM} for a one-bedroom to {MOVE_TO} for
             a five-bedroom home, before 5% GST. Each row is the flat rate for the full checklist
-            with the usual bathroom count for that size.
+            with the bathroom count shown, rounded to the nearest dollar. Your instant quote uses
+            the exact price including cents.
           </p>
 
           <div className="mx-auto mb-8 max-w-2xl overflow-hidden border border-border">
@@ -450,6 +455,7 @@ export default function CalgaryMoveInOut() {
               <thead className="bg-brand-navy text-brand-navy-foreground">
                 <tr>
                   <th className="py-3 px-5 text-left text-sm font-bold">Home size</th>
+                  <th className="py-3 px-5 text-left text-sm font-bold">Bathrooms assumed</th>
                   <th className="py-3 px-5 text-right text-sm font-bold">Move-out clean, before GST</th>
                 </tr>
               </thead>
@@ -457,6 +463,7 @@ export default function CalgaryMoveInOut() {
                 {MOVE_ROWS.map((r, i) => (
                   <tr key={r.beds} className={i % 2 ? "bg-secondary/20" : "bg-card"}>
                     <td className="py-3 px-5 text-foreground">{r.beds}</td>
+                    <td className="py-3 px-5 text-sm text-muted-foreground">{r.assumption.replace("Assumes ", "")}</td>
                     <td className="py-3 px-5 text-right font-bold text-foreground">from {r.price}</td>
                   </tr>
                 ))}

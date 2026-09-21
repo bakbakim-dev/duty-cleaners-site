@@ -165,7 +165,7 @@ export default function Woodcroft() {
                   Cleaning Services for Woodcroft Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Six services for Woodcroft homes, recurring visits among them, each priced by home size before GST rather than by the hour.
+                  Standard, deep, recurring and move-in/out cleaning are priced by bedrooms, bathrooms and home type. Post-construction is priced by square footage, and wall washing is a home-size add-on booked with a clean. Every figure is before 5% GST.
                 </p>
               </div>
             </AnimatedSection>

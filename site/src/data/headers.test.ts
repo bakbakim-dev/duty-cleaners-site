@@ -55,6 +55,9 @@ describe("_headers", () => {
     expect(directive("script-src")).toContain("https://www.googletagmanager.com");
     expect(directive("connect-src")).toContain("https://*.google-analytics.com");
     expect(directive("connect-src")).toContain("https://*.analytics.google.com");
+    expect(directive("script-src")).toContain("https://maps.googleapis.com");
+    expect(directive("script-src")).toContain("https://maps.gstatic.com");
+    expect(directive("connect-src")).toContain("https://maps.googleapis.com");
     expect(directive("img-src")).toContain("https://*.google-analytics.com");
   });
 
@@ -62,7 +65,7 @@ describe("_headers", () => {
    * The list above is hand-maintained, which is why it could not catch the one
    * that mattered: connect-src allowed api.bookin60.com — the HighLevel form
    * endpoint, dead for external posts since it started enforcing Turnstile —
-   * while omitting the Supabase edge function every lead actually goes through.
+   * while omitting the third-party relay every lead actually went through.
    * Enforcing the policy in that state would have blocked the quote submission
    * on all 209 pages and lost every lead, and Report-Only would not have
    * stopped a single one of them, because it reports instead of blocking.
@@ -70,7 +73,7 @@ describe("_headers", () => {
    * So this derives the origins from the BUILT BUNDLE instead of trusting a
    * list: whatever the shipped JavaScript calls out to has to be in connect-src.
    */
-  it("connect-src covers every origin the built bundle actually calls", () => {
+  it("connect-src covers every third-party origin the built bundle actually calls", () => {
     const dist = join(ROOT, "dist", "assets");
     if (!existsSync(dist)) return; // unbuilt tree; the hand list above still runs
 
@@ -86,9 +89,6 @@ describe("_headers", () => {
         if (/supabase\.co|leadconnectorhq|bookin60|googleapis/.test(origin)) called.add(origin);
       }
     }
-    expect(called.size, "no callable origins found in the bundle — has the build shape changed?")
-      .toBeGreaterThan(0);
-
     // Read the directive off the POLICY LINE, not the file: the explanatory
     // comment above it also contains the words "connect-src", and matching the
     // whole file finds the prose first.
@@ -111,6 +111,13 @@ describe("_headers", () => {
       `the bundle calls ${missing.join(", ")} but connect-src does not allow it — ` +
         "enforcing this CSP would block those requests",
     ).toEqual([]);
+
+    const bundle = readdirSync(dist)
+      .filter((file) => file.endsWith(".js"))
+      .map((file) => readFileSync(join(dist, file), "utf-8"))
+      .join("\n");
+    expect(bundle).toContain("/api/ghl-quote.php");
+    expect(bundle).not.toContain("exodbynxmeezenqytkvh.supabase.co");
   });
 
   it("keeps CSP in report-only until the allowlist is confirmed", () => {

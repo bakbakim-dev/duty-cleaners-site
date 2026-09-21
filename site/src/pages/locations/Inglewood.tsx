@@ -162,7 +162,7 @@ export default function Inglewood() {
                   Cleaning Services for Inglewood Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Inglewood homes can book six services, each priced by home size, and a move-out clean includes the inside of the oven and fridge.
+                  Standard, deep, recurring and move-in/out cleaning are priced by bedrooms, bathrooms and home type. Post-construction is priced by square footage, and wall washing is a home-size add-on booked with a clean. Every figure is before 5% GST.
                 </p>
               </div>
             </AnimatedSection>

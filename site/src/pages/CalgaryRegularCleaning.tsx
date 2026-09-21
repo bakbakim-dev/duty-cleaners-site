@@ -14,7 +14,7 @@ import cleanerImage from "@/assets/gallery/calgary-team-cleaning.webp?card";
 // Published figures come from bk-config via pricing.ts. Hand-typing them
 // here is what let this page drift out of step with /pricing and with what
 // BookingKoala actually charges.
-const TIERS = standardTierRows().map((row) => ({ size: row.beds, price: row.price }));
+const TIERS = standardTierRows().map((row) => ({ size: row.beds, price: row.price, assumption: row.assumption }));
 const FROM = TIERS[0].price;
 const TWO_BED = TIERS[1].price;
 const THREE_BED = TIERS[2].price;

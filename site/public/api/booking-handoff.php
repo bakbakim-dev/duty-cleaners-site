@@ -7,7 +7,7 @@ const DC_HANDOFF_TTL_MS = 1200000;
 const DC_HANDOFF_AAD = 'duty-cleaners:booking-handoff:v1';
 const DC_HANDOFF_KEYS = [
     'f_name', 'l_name', 'email', 'phone', 'dc_entry', 'dc_clean', 'dc_park',
-    'dc_flex', 'dc_notes', 'dc_addr', 'dc_apt', 'dc_city', 'dc_prov', 'dc_zip',
+    'dc_flex', 'dc_notes', 'dc_addr', 'dc_apt', 'dc_city', 'dc_prov', 'dc_zip', 'dc_time',
 ];
 
 $websiteOrigins = [

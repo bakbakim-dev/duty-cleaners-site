@@ -8,6 +8,7 @@ import type { ReactNode } from "react";
 import { Facebook, Instagram, Twitter, Phone, Youtube, Linkedin, Shield, CreditCard, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { GOOGLE_LISTINGS, openGoogleListing } from "@/lib/google-listings";
+import { specialistCtaForLocation } from "@/lib/commercial-context";
 
 const serviceGroups = {
   residential: [
@@ -84,7 +85,8 @@ function FooterOffice({ branch, to, label }: { branch: Branch; to: string; label
 // hasQuoteSection: the four pages that render their own id="quote" form pass
 // this so the footer's sitewide fallback target doesn't duplicate the id.
 export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: boolean } = {}) {
-  const { pathname } = useLocation();
+  const location = useLocation();
+  const { pathname } = location;
   // Canonical-aware: the Calgary landing page's canonical URL is
   // /cleaning-services-calgary/, which a startsWith("/calgary") test misses.
   // Same rule as the header (Navigation.tsx): the page's own branch, else the
@@ -94,7 +96,10 @@ export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: 
   const shownBranch: Branch | null = pageBranch ?? remembered;
   const neutral = shownBranch === null;
   const city: "edmonton" | "calgary" = shownBranch === "calgary" ? "calgary" : "edmonton";
-  const quoteHref = `${city === "calgary" ? canonicalForPath("/calgary") : "/"}#quote`;
+  const specialistCta = specialistCtaForLocation(pathname, location.search, location.hash);
+  const quoteHref = specialistCta
+    ? specialistCta.href
+    : `${city === "calgary" ? canonicalForPath("/calgary") : "/"}#quote`;
   // The footer CTA must call the office the visitor is actually looking at:
   // on the Red Deer page, the Red Deer office. Read from proof.ts, not typed.
   const office = CITY_PROOF[shownBranch ?? "edmonton"];
@@ -110,9 +115,13 @@ export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: 
             Pages with their own id="quote" form still win — first id in the DOM. */}
         <div id={hasQuoteSection ? undefined : "quote"} className="mb-14 flex flex-col gap-6 border-b border-brand-navy-foreground/15 pb-12 md:flex-row md:items-center md:justify-between lg:mb-16 lg:pb-14">
           <div className="max-w-2xl">
-            <h2 className="display-serif text-2xl tracking-tight sm:text-3xl">See your price before you book.</h2>
+            <h2 className="display-serif text-2xl tracking-tight sm:text-3xl">
+              {specialistCta ? specialistCta.footerHeading : "See your price before you book."}
+            </h2>
             <p className="mt-3 max-w-xl text-sm leading-6 text-brand-navy-foreground/85 sm:text-base">
-              Prices are before GST, and the instant price shows the exact figure for your home.
+              {specialistCta
+                ? specialistCta.footerDescription
+                : "Prices are before GST, and the instant price shows the exact figure for your home."}
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row md:shrink-0">
@@ -121,7 +130,7 @@ export default function Footer({ hasQuoteSection = false }: { hasQuoteSection?: 
               className="min-h-12 bg-accent px-6 text-accent-foreground shadow-sm hover:bg-accent/90"
             >
               <Link to={quoteHref}>
-                See My Instant Price
+                {specialistCta ? specialistCta.label : "See My Instant Price"}
                 <ArrowUpRight aria-hidden="true" />
               </Link>
             </Button>

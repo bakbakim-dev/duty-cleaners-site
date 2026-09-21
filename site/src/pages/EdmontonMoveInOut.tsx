@@ -248,7 +248,11 @@ export default function EdmontonMoveInOut() {
             city: "edmonton",
             offerCatalog: {
               name: "Move-out cleaning by home size",
-              rows: moveInOutTierRows().map((row) => ({ name: row.beds, price: row.price })),
+              rows: moveInOutTierRows().map((row) => ({
+                name: row.beds,
+                price: row.price,
+                assumption: row.assumption,
+              })),
             },
           }))}
         </script>
@@ -408,6 +412,7 @@ export default function EdmontonMoveInOut() {
                   <thead className="bg-brand-navy text-brand-navy-foreground">
                     <tr>
                       <th className="py-3 px-5 text-left text-sm font-bold">Home size</th>
+                      <th className="py-3 px-5 text-left text-sm font-bold">Bathrooms assumed</th>
                       <th className="py-3 px-5 text-right text-sm font-bold">Starting price</th>
                     </tr>
                   </thead>
@@ -415,12 +420,17 @@ export default function EdmontonMoveInOut() {
                     {moveRows.map((r, i) => (
                       <tr key={r.beds} className={i % 2 ? "bg-secondary/20" : "bg-card"}>
                         <td className="py-3 px-5 text-foreground">{r.beds}</td>
+                        <td className="py-3 px-5 text-sm text-muted-foreground">{r.assumption.replace("Assumes ", "")}</td>
                         <td className="py-3 px-5 text-right font-bold text-foreground">from {r.price}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </div>
+              <p className="mx-auto mt-4 max-w-2xl text-center text-sm text-muted-foreground leading-relaxed">
+                The table rounds each apartment or condo rate to the nearest dollar. Your instant
+                quote uses the exact price including cents, then adds any applicable items below.
+              </p>
               <p className="mx-auto mt-4 max-w-2xl text-center text-sm text-muted-foreground leading-relaxed">
                 The price moves with the number of bedrooms and bathrooms, the home type, any pets, the
                 add-ons you choose such as interior windows or a finished basement, and a{" "}

@@ -257,10 +257,20 @@ Owner reminder request (2026-09-13): when the owner announces launch, review and
 11. Red Deer Google listing: its primary category shows "Janitorial service"; "House cleaning
    service" matches what the branch sells. It has no reviews yet: ask real Red Deer customers.
 12. Tracking: the GA4 property exists (account "Dutycleaners", property "Duty Cleaners - GA4",
-   web stream 3636867999, Measurement ID G-5WNJ12G60D). Stream settings done 2026-09-11 (Outbound clicks, Form
+   web stream 3636867999, Measurement ID G-5WNJ12G60D). Realtime visibly received production
+   page views on 2026-09-20. Stream settings checked the same day: Outbound clicks, Form
    interactions and history-based page changes off; Redact email on; the nine BookingKoala
-   prefill parameters redacted; stream URL https). The ID is in site/.env.production.local, so
-   the next production build switches GA on; it loads only on dutycleaners.ca / www. It goes in
+   prefill parameters redacted; stream URL https; Google Signals and user-provided data collection
+   off. Event and user-data retention are both 14 months. `generate_lead` and
+   `contact_enquiry_submitted` are configured as key events, counted once per event with no default
+   monetary value. Realtime proved `generate_lead` as a real key event on 2026-09-20, alongside
+   production `quote_step`, `quote_price_view` and `contact_submitted` funnel events. A live contact
+   form returned success, but the Chrome test profile remained opted out of analytics even after a
+   third-party-cookie exception was added; a submission from a trackable browser is still needed
+   to prove `contact_enquiry_submitted` end to end. Do not mark `booking_handoff_succeeded` as a
+   completed booking. The ID is in
+   site/.env.production.local, so the production build switches GA on; it loads only on
+   dutycleaners.ca / www. It goes in
    `site/.env.production.local` as `VITE_GA4_MEASUREMENT_ID` (git-ignored; read by the local
    production build that deploy.mjs uploads with --no-build, never by Netlify's environment).
    Analytics loads only on dutycleaners.ca / www, never on previews. In the GA web stream first:
@@ -273,12 +283,14 @@ Owner reminder request (2026-09-13): when the owner announces launch, review and
    Console showed Success immediately; discovered-page counts require Google to recrawl. The old
    WordPress sitemap submissions remain as historical entries for later cleanup.
 13. Form-health monitoring was installed on the SiteGround production host on 2026-09-20 with its
-   private config outside `public_html`. Controlled failure and recovery messages reached
-   `info@dutycleaners.ca`; the delivered message showed SPF, DKIM and DMARC passing, and the owner
-   marked it not spam in Gmail. Before relying on it, verify duplicate suppression live, set
-   production failure alert reached `info@dutycleaners.ca`. Add an external uptime check because
-   SiteGround cannot report its own outage, and periodically run controlled failure/recovery and
-   end-to-end quote tests. See `site/docs/form-health-monitoring.md`.
+   private config outside `public_html`. A controlled production `booking-handoff` failure,
+   immediate duplicate and recovery proved the full cycle: the first failure generated one inbox
+   alert at `info@dutycleaners.ca`, the duplicate generated no second email, and recovery generated
+   one inbox alert. SPF, DKIM and DMARC passed. Independent UptimeRobot monitoring was added with
+   five-minute checks for homepage HTTP, homepage content, the form-health healthy response and
+   BookingKoala content; alerts go immediately to the Google Workspace `info@dutycleaners.ca`
+   mailbox. Periodically run controlled failure/recovery and end-to-end quote tests. See
+   `site/docs/form-health-monitoring.md`.
 14. Booking domain: checkout still leaves the site for `dutycleaners.bookingkoala.com`.
    `book.dutycleaners.ca` does not resolve (checked 2026-09-20). BookingKoala must enable the
    custom domain and issue its certificate (their settings: owner go-ahead first), then the CNAME

@@ -139,7 +139,9 @@ export default function Wildwood() {
               <div className="text-center mb-14">
                 <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">Cleaning Services for Wildwood Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Every service for Wildwood's detached houses is priced flat by home size, before 5% GST.
+                  Standard, deep and move-in/out cleaning are priced by bedrooms, bathrooms and
+                  home type. Post-construction is priced by square footage, and wall washing is a
+                  home-size add-on booked with a clean. Every figure is before 5% GST.
                 </p>
               </div>
             </AnimatedSection>

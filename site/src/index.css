@@ -16,6 +16,19 @@
     U+FFFD;
 }
 
+/* Google Places' current accessible web component. The lookup is progressive:
+   when it cannot load, QuoteFlow renders the ordinary address input instead. */
+.dc-address-autocomplete {
+  display: block;
+  width: 100%;
+  color-scheme: light;
+  --gmpx-color-surface: hsl(var(--card));
+  --gmpx-color-on-surface: hsl(var(--foreground));
+  --gmpx-color-primary: hsl(var(--brand-navy));
+  --gmpx-font-family-base: inherit;
+  --gmpx-font-size-base: 1rem;
+}
+
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
 */

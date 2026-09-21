@@ -2,11 +2,13 @@
   'use strict';
   if (!/^\/booknow\/?$/.test(location.pathname) || window.__dcPrefillV2) return;
   window.__dcPrefillV2 = true;
-  // Staging receiver. Change only after the same endpoint is live on the final domain.
-  var ENDPOINT = 'https://mikaily131.sg-host.com/api/booking-handoff.php';
-  var KEYS = ['f_name','l_name','email','phone','dc_entry','dc_clean','dc_park','dc_flex','dc_notes','dc_addr','dc_apt','dc_city','dc_prov','dc_zip'];
+  // Production receiver. The SiteGround staging hostname was retired after launch.
+  var ENDPOINT = 'https://dutycleaners.ca/api/booking-handoff.php';
+  var KEYS = ['f_name','l_name','email','phone','dc_entry','dc_clean','dc_park','dc_flex','dc_notes','dc_addr','dc_apt','dc_city','dc_prov','dc_zip','dc_time'];
   var q = new URLSearchParams(location.search), fields = {}, states = {}, edited = {}, busy = false;
   var began = Date.now(), timer, banner, text, retry, lastMessage = '', applying = false;
+  var guideAttempts = 0, userStarted = false, shouldGuide = true;
+  var timeChosenByUser = false, scheduleGuideDone = false, paymentGuideDone = false;
   var duration = 20 * 60 * 1000, cacheKey = 'dc.encrypted-handoff.v2';
   var token = new URLSearchParams(location.hash.slice(1)).get('dc_handoff');
   KEYS.forEach(function (key) { if (q.has(key)) fields[key] = q.get(key); });
@@ -18,6 +20,7 @@
       history.replaceState(history.state, '', location.pathname + location.search);
     } else {
       var navigation = performance.getEntriesByType('navigation')[0];
+      if (navigation && /^(reload|back_forward)$/.test(navigation.type)) shouldGuide = false;
       var cached = JSON.parse(sessionStorage.getItem(cacheKey) || 'null');
       if (cached && cached.expires > Date.now() && cached.path === location.pathname + location.search && navigation && /^(reload|back_forward)$/.test(navigation.type)) token = cached.token;
       else sessionStorage.removeItem(cacheKey);
@@ -25,6 +28,30 @@
   } catch (ignore) { /* Restricted storage: the encrypted fragment still works. */ }
   if (!token && !Object.keys(fields).length) return;
   function normal(value) { return String(value || '').replace(/\s+/g, ' ').trim(); }
+  // BookingKoala's address control does not treat a text value as a verified
+  // address until its own Google suggestion is chosen. Normalise common
+  // Canadian street words so "37 St SW" safely matches "37 Street Southwest".
+  function addressKey(value) {
+    return normal(value).toLowerCase()
+      .replace(/\bnorthwest\b/g, 'nw').replace(/\bnortheast\b/g, 'ne')
+      .replace(/\bsouthwest\b/g, 'sw').replace(/\bsoutheast\b/g, 'se')
+      .replace(/\bstreet\b/g, 'st').replace(/\bavenue\b/g, 'ave')
+      .replace(/\broad\b/g, 'rd').replace(/\bdrive\b/g, 'dr')
+      .replace(/\bboulevard\b/g, 'blvd').replace(/\bhighway\b/g, 'hwy')
+      .replace(/\bplace\b/g, 'pl').replace(/\bcourt\b/g, 'ct')
+      .replace(/\blane\b/g, 'ln').replace(/\btrail\b/g, 'tr')
+      .replace(/[^a-z0-9]+/g, ' ').replace(/\s+/g, ' ').trim();
+  }
+  function isMatchingAddressSuggestion(option) {
+    var expectedAddress = addressKey(fields.dc_addr);
+    var expectedCity = addressKey(fields.dc_city);
+    var expectedProvince = addressKey(fields.dc_prov);
+    if (!expectedAddress) return false;
+    var candidate = addressKey(option && option.textContent);
+    return candidate.indexOf(expectedAddress) === 0 &&
+      (!expectedCity || candidate.indexOf(expectedCity) !== -1) &&
+      (!expectedProvince || candidate.indexOf(expectedProvince) !== -1);
+  }
   function canonical(key, value) {
     if (key === 'phone') return String(value || '').replace(/\D/g, '').replace(/^1(?=\d{10}$)/, '');
     if (key === 'dc_zip') return normal(value).replace(/\s/g, '').toUpperCase();
@@ -51,6 +78,7 @@
   };
   function control(key) {
     var list, spec = selects[key];
+    if (key === 'dc_time') return document.getElementById('dropdownMenuButton');
     if (spec) {
       list = Array.prototype.slice.call(document.querySelectorAll('select')).filter(visible);
       var exact = list.filter(function (el) { return el.name === spec.name; });
@@ -67,6 +95,7 @@
     return list.length === 1 ? list[0] : null;
   }
   function wanted(key, el) {
+    if (key === 'dc_time') return ({ '0900': '09:00 AM', '1200': '12:00 PM', '1500': '03:00 PM' })[fields[key]] || null;
     if (!selects[key]) return fields[key];
     var pattern = selects[key].values[fields[key]];
     if (!pattern) return null;
@@ -79,10 +108,118 @@
     if (setter && setter.set) setter.set.call(el, value); else el.value = value;
     applying = true;
     try {
+      if (typeof el.focus === 'function') el.focus();
       el.dispatchEvent(new Event('input', { bubbles: true }));
+      el.dispatchEvent(new Event('keyup', { bubbles: true }));
       el.dispatchEvent(new Event('change', { bubbles: true }));
       el.dispatchEvent(new Event('blur', { bubbles: true }));
     } finally { applying = false; }
+  }
+  // BookingKoala's address control needs to keep focus while its own Google
+  // suggestions settle. Its city/province/postal fields are deliberately
+  // filled first, then this runs last without immediately blurring the address.
+  function setAddressValue(el, value) {
+    var setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value');
+    if (setter && setter.set) setter.set.call(el, value); else el.value = value;
+    applying = true;
+    try {
+      if (typeof el.focus === 'function') el.focus();
+      el.dispatchEvent(new Event('input', { bubbles: true }));
+      el.dispatchEvent(new Event('keyup', { bubbles: true }));
+    } finally { applying = false; }
+  }
+  function guideToNextStep() {
+    // BookingKoala cannot validate a prefilled street address until the
+    // customer chooses its own Google suggestion. Do not cover that list with
+    // the date picker; once it is confirmed, the live calendar opens next.
+    if (states.dc_addr && states.dc_addr.needsAddressSelection) return;
+    var elapsed = Date.now() - began;
+    var thresholds = [1200, 2400, 4000];
+    var addressWasConfirmed = states.dc_addr && states.dc_addr.addressSelectionDone;
+    if (guideAttempts >= thresholds.length || (userStarted && !addressWasConfirmed) || !shouldGuide || elapsed < thresholds[guideAttempts]) return;
+    var targets = Array.prototype.slice.call(document.querySelectorAll('input')).filter(function (el) {
+      return /^select a date$/i.test(normal(el.placeholder || ''));
+    });
+    if (targets.length !== 1 || typeof targets[0].scrollIntoView !== 'function') return;
+    targets[0].scrollIntoView({ block: 'center', behavior: guideAttempts ? 'auto' : 'smooth' });
+    if (!normal(targets[0].value) && guideAttempts === 0) {
+      var dateTrigger = targets[0].parentElement;
+      if (dateTrigger && typeof dateTrigger.click === 'function') dateTrigger.click();
+    }
+    guideAttempts += 1;
+  }
+  function keepAddressConfirmationVisible() {
+    var state = states.dc_addr;
+    if (!state || !state.needsAddressSelection || state.dismissedCalendar || typeof document.querySelector !== 'function') return;
+    // Form 1 can launch its schedule dialog by itself. Close only that dialog
+    // while the address suggestion is awaiting the customer's one trusted
+    // click; the normal guided calendar opens immediately afterward.
+    var calendar = document.querySelector('mat-dialog-container .tjs-popup-calendar');
+    var close = calendar && calendar.querySelector ? calendar.querySelector('button.tjs-popup__closed') : null;
+    if (!close || typeof close.click !== 'function') return;
+    state.dismissedCalendar = true;
+    close.click();
+  }
+  function reducedMotion() {
+    try { return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches); }
+    catch (ignore) { return false; }
+  }
+  function headingMatching(pattern) {
+    var headings = Array.prototype.slice.call(document.querySelectorAll('h1,h2,h3,h4,h5,h6'));
+    return headings.filter(function (heading) { return pattern.test(normal(heading.textContent)); })[0] || null;
+  }
+  function guideTo(target) {
+    if (!target || typeof target.scrollIntoView !== 'function') return false;
+    // Keep the section title in view instead of centring a field. The native
+    // checkout remains in charge of every validation and final submit.
+    // On desktop, leave a small amount of room above the heading so Address
+    // Details and its first fields appear together. Phones retain the tighter
+    // top offset, where the virtual keyboard otherwise makes the first field
+    // hard to reach.
+    var desktop = window.matchMedia && window.matchMedia('(min-width: 768px)').matches;
+    try { target.style.scrollMarginTop = desktop ? '120px' : '24px'; } catch (ignore) { /* Cosmetic only. */ }
+    target.scrollIntoView({ block: 'start', behavior: reducedMotion() ? 'auto' : 'smooth' });
+    return true;
+  }
+  function addressIsConfirmed() {
+    var state = states.dc_addr;
+    if (!state || !state.addressSelectionDone || Date.now() - (state.addressSelectionAt || 0) < 700) return false;
+    // BookingKoala's own address lookup populates these after the trusted
+    // suggestion click.  Waiting for them prevents a premature jump while
+    // the form is still resolving the address.
+    return ['dc_addr', 'dc_city', 'dc_prov', 'dc_zip'].every(function (key) {
+      var el = control(key);
+      return !!(el && canonical(key, el.value));
+    });
+  }
+  function guideAfterSchedule() {
+    var dateInputs = Array.prototype.slice.call(document.querySelectorAll('input')).filter(function (candidate) {
+      return /^select a date$/i.test(normal(candidate.placeholder || ''));
+    });
+    var dateChosen = dateInputs.length === 1 && !!normal(dateInputs[0].value);
+    var time = typeof document.getElementById === 'function' ? control('dc_time') : null;
+    var arrivalChosen = !!(time && /\b(?:0?[1-9]|1[0-2]):[0-5]\d\s*(?:AM|PM)\b/i.test(normal(time.textContent)));
+    // Do not depend on one specific pointer event. BookingKoala may report a
+    // genuine arrival-time choice through a click, keyboard, touch screen, or
+    // restored browser state.
+    if (!timeChosenByUser && !(dateChosen && arrivalChosen)) return;
+    // A masked contact control can look blank to a script even when
+    // BookingKoala visibly holds the transferred value.  It must never decide
+    // where a customer goes next.  After live availability, the next genuine
+    // task is always Address Details.
+    if (!scheduleGuideDone) {
+      var addressTarget = headingMatching(/^address details$/i) || control('dc_addr');
+      if (guideTo(addressTarget)) scheduleGuideDone = true;
+      return;
+    }
+    // Once the customer makes a real selection in BookingKoala's own address
+    // lookup and it has completed the city/province/postal fields, take them
+    // to Payment Information.  Do not jump to or submit the native button:
+    // payment remains a deliberate, validated BookingKoala step.
+    if (!paymentGuideDone && addressIsConfirmed()) {
+      var paymentTarget = headingMatching(/^payment information$/i);
+      if (guideTo(paymentTarget)) paymentGuideDone = true;
+    }
   }
   function ensureBanner() {
     if (banner || !document.body) return;
@@ -103,6 +240,13 @@
   function cleanFields(input) {
     var out = {};
     KEYS.forEach(function (key) { if (typeof input[key] === 'string' && input[key].length <= (key === 'dc_notes' ? 500 : 120) && input[key].trim()) out[key] = input[key].trim(); });
+    // The BookingKoala phone mask expects exactly ten digits. Normalize even
+    // legacy/manual handoffs so punctuation or a leading +1 cannot be clipped.
+    if (out.phone) {
+      var digits = out.phone.replace(/\D/g, '').replace(/^1(?=\d{10}$)/, '');
+      if (digits.length === 10) out.phone = digits;
+      else delete out.phone;
+    }
     if (out.dc_entry === 'lockbox' && !/^Entry: Key in a lockbox\./.test(out.dc_notes || '')) {
       var note = ['Entry: Key in a lockbox.', out.dc_notes || ''].filter(Boolean).join('\n');
       if (note.length <= 500) out.dc_notes = note;
@@ -113,14 +257,54 @@
   function tick() {
     if (busy || !Object.keys(fields).length) return;
     var pending = [], review = [], verified = [];
-    Object.keys(fields).forEach(function (key) {
+    // Address must be last: BookingKoala's Google suggestions stay reliable
+    // only when a later city/province/postal fill does not steal its focus.
+    Object.keys(fields).sort(function (a, b) {
+      if (a === 'dc_addr') return 1;
+      if (b === 'dc_addr') return -1;
+      return 0;
+    }).forEach(function (key) {
       var state = states[key] || (states[key] = { attempts: 0, matches: 0 });
       try {
         var el = control(key);
         if (!el) { pending.push(key); state.matches = 0; return; }
-        if (edited[key] || document.activeElement === el) { review.push(key); return; }
         var desired = wanted(key, el);
         if (desired === null) { pending.push(key); return; }
+        // BookingKoala accepts its location only after a trusted customer click
+        // on one of its own Google suggestions. Browser scripts cannot create
+        // that trusted click, so keep the correct list open and say why.
+        if (key === 'dc_addr' && canonical(key, el.value) === canonical(key, desired)) {
+          if (state.addressSelectionDone) { state.needsAddressSelection = false; verified.push(key); return; }
+          state.needsAddressSelection = true;
+          pending.push(key);
+          return;
+        }
+        if ((edited[key] && !(key === 'dc_addr' && state.addressSelectionDone)) ||
+            (key !== 'dc_time' && document.activeElement === el)) { review.push(key); return; }
+        if (key === 'dc_time') {
+          var dateInputs = Array.prototype.slice.call(document.querySelectorAll('input')).filter(function (candidate) {
+            return /^select a date$/i.test(normal(candidate.placeholder || ''));
+          });
+          var liveDate = dateInputs.length === 1 ? normal(dateInputs[0].value) : '';
+          if (!liveDate) { state.matches = 0; pending.push(key); return; }
+          if (state.dateSeen !== liveDate) {
+            state.dateSeen = liveDate; state.attempts = 0; state.matches = 0;
+          }
+          if (canonical(key, el.textContent) === canonical(key, desired)) {
+            state.matches += 1;
+            if (state.matches >= 2) verified.push(key); else pending.push(key);
+            return;
+          }
+          var dateParts = liveDate.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+          var dateKey = dateParts ? dateParts[3] + '-' + dateParts[1] + '-' + dateParts[2] : '';
+          var options = Array.prototype.slice.call(document.querySelectorAll('#spot-dropdown li[id^="li-"]')).filter(function (candidate) {
+            return visible(candidate) && canonical(key, candidate.textContent) === canonical(key, desired) && (!dateKey || candidate.id.slice(-dateKey.length) === dateKey);
+          });
+          var option = options.length === 1 ? options[0] : null;
+          if (option && visible(option)) { option.click(); state.attempts += 1; pending.push(key); return; }
+          if (state.attempts < 3) { el.click(); state.attempts += 1; pending.push(key); return; }
+          pending.push(key); return;
+        }
         if (canonical(key, el.value) === canonical(key, desired)) {
           state.matches += 1;
           if (state.matches >= 2) verified.push(key); else pending.push(key);
@@ -129,24 +313,83 @@
         state.matches = 0;
         if (!state.attempts && normal(el.value)) { review.push(key); return; }
         if (state.attempts >= 3) { pending.push(key); return; }
-        state.attempts += 1; setValue(el, desired); pending.push(key);
+        state.attempts += 1;
+        if (key === 'dc_addr') setAddressValue(el, desired); else setValue(el, desired);
+        pending.push(key);
       } catch (ignore) { pending.push(key); }
     });
-    if (!pending.length && !review.length) show('Your details are filled in below. Review them, choose an available time and add your card before confirming. No booking has been submitted.', 'filled', false);
+    if (states.dc_addr && states.dc_addr.needsAddressSelection) show('Confirm your address: click the matching entry in BookingKoala\'s list below. This verifies it with BookingKoala before you continue. No booking has been submitted.', 'address-confirmation', false);
+    else if (!pending.length && !review.length) show('Your details are filled in below. Choose an available date and arrival time, then enter your address and payment information before confirming. No booking has been submitted.', 'filled', false);
     else if (review.length) show('We kept the details you entered or already had on this page. Please review them and complete any blank fields before confirming.', 'review', pending.length > 0);
     else if (Date.now() - began > 12000) show('Some details could not be transferred yet. You can retry or complete the blank fields below. Your booking has not been submitted.', 'partial', true);
     else show('Transferring your details to the booking form…', 'loading', false);
     if (banner) banner.setAttribute('data-dc-verified-fields', verified.join(','));
+    keepAddressConfirmationVisible();
+    guideToNextStep();
+    guideAfterSchedule();
     if (Date.now() - began > duration) stop();
   }
   function stop() { clearInterval(timer); fields = {}; }
   document.addEventListener('input', rememberEdit, true);
   document.addEventListener('change', rememberEdit, true);
+  function rememberTimeIntent(event) {
+    userStarted = true;
+    if (!event || !event.target) return;
+    var time = control('dc_time');
+    var option = event.target && event.target.closest ? event.target.closest('#spot-dropdown li[id^="li-"]') : null;
+    if (option) timeChosenByUser = true;
+    if (time && (event.target === time || time.contains(event.target) || option)) edited.dc_time = true;
+  }
+  document.addEventListener('keydown', rememberTimeIntent, true);
+  function confirmAddressSelection(event) {
+    var option = event && event.target && event.target.closest ? event.target.closest('ul.list-group li') : null;
+    var address = control('dc_addr');
+    if (!option || !address) return;
+    // With an address received from the quote form, only accept its matching
+    // BookingKoala suggestion.  When the quote intentionally contains no
+    // address, accept a suggestion only when it matches the text the customer
+    // has just typed in the native address field.
+    var optionAddress = addressKey(option.textContent);
+    var currentAddress = addressKey(address.value);
+    var matchesTypedAddress = currentAddress && (optionAddress.indexOf(currentAddress) === 0 || currentAddress.indexOf(optionAddress) === 0);
+    if (!(fields.dc_addr ? isMatchingAddressSuggestion(option) : matchesTypedAddress)) return;
+    var state = states.dc_addr || (states.dc_addr = { attempts: 0, matches: 0 });
+    state.addressSelectionDone = true;
+    state.needsAddressSelection = false;
+    state.addressSelectionAt = Date.now();
+    // BookingKoala immediately writes the city, province and postal code after
+    // its own address click. Do not misclassify those brief system updates as
+    // a customer edit; later customer changes still remain protected.
+    state.addressSelectionLockUntil = Date.now() + 1500;
+    // BookingKoala accepts the choice, but can leave its visual list open.
+    // Blur only after the actual click has reached BookingKoala's own handler.
+    if (event.type === 'click' && window.setTimeout) {
+      window.setTimeout(function () {
+        var selectedAddress = control('dc_addr');
+        if (state.addressSelectionDone && selectedAddress && typeof selectedAddress.blur === 'function') selectedAddress.blur();
+      }, 50);
+    }
+  }
+  // A physical interaction can arrive as a pointer event, click, touch, or
+  // accessibility action. Keep the schedule guide and address confirmation in
+  // one handler so both work together on the BookingKoala form.
+  function handleBookingInteraction(event) {
+    rememberTimeIntent(event);
+    confirmAddressSelection(event);
+  }
+  document.addEventListener('pointerdown', handleBookingInteraction, true);
+  document.addEventListener('click', handleBookingInteraction, true);
   function rememberEdit(event) {
     // Preserve browser autofill, accessibility tools and other integrations too.
     // Ignore only events dispatched by this receiver, not every synthetic event.
     if (applying) return;
-    Object.keys(fields).forEach(function (key) { if (control(key) === event.target) edited[key] = true; });
+    Object.keys(fields).forEach(function (key) {
+      if (key === 'dc_time' || control(key) !== event.target) return;
+      var addressState = states.dc_addr;
+      var bookingKoalaAddressUpdate = addressState && addressState.addressSelectionLockUntil > Date.now() &&
+        ['dc_addr', 'dc_city', 'dc_prov', 'dc_zip'].indexOf(key) !== -1;
+      if (!bookingKoalaAddressUpdate) edited[key] = true;
+    });
   }
   async function redeem() {
     busy = true; show('Opening your encrypted booking details…', 'loading', false);

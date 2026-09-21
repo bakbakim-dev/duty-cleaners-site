@@ -9,33 +9,32 @@ const details: CleanerDetails = { address: "123 Test Street", apartment: "4", ci
 const input = { service: "standard", homeType: 55, bedrooms: 2, bathrooms: 1, halfBaths: 0, frequencyBkId: 1, cleanerDetails: details, contact: { name: "Test Person", email: "test@example.com", phone: "7805550199" } };
 
 describe("booking handoff data contract", () => {
-  it("matches native questions and requires the complete address and flexibility after price", () => {
+  it("matches native cleaner questions while leaving address entry to BookingKoala", () => {
     expect(CLEANLINESS_OPTIONS.map(row => row.label)).toEqual(["1 - Almost Spotless", "2 - Mostly Clean", "3 - Decently Clean", "4 - Needs Attention", "5- Very Dirty"]);
     expect(validateCleanerDetails(details)).toEqual({});
-    expect(Object.keys(validateCleanerDetails({}))).toEqual(expect.arrayContaining(["address", "city", "province", "postalCode", "entry", "cleanliness", "parking", "flexibility"]));
-    expect(validateCleanerDetails({ ...details, flexibility: "time", notes: "" })).toHaveProperty("notes");
+    expect(Object.keys(validateCleanerDetails({}))).toEqual(expect.arrayContaining(["entry", "cleanliness", "parking", "flexibility"]));
+    expect(validateCleanerDetails({ ...details, flexibility: "time", notes: "" })).toEqual({});
     expect(validateCleanerDetails({ ...details, cleanliness: 8 })).toHaveProperty("cleanliness");
-    expect(validateCleanerDetails({ ...details, province: "BC", postalCode: "V6B 1A1" })).toMatchObject({
-      province: expect.any(String),
-      postalCode: expect.any(String),
-    });
-    expect(validateCleanerDetails({ ...details, city: "Calgary" })).toHaveProperty("city");
+    expect(validateCleanerDetails({ ...details, address: "", city: "", province: "", postalCode: "" })).toEqual({});
   });
   it("transfers every new field without changing lockbox meaning or truncating its note", () => {
     const params = new URLSearchParams(buildBookingQuery(input)!);
     expect(params.get("dc_entry")).toBe("lockbox");
     expect(params.get("dc_notes")).toBe("Entry: Key in a lockbox.\nTest instructions");
+    expect(params.get("date")).toBeNull();
+    expect(params.get("dc_time")).toBeNull();
     for (const [key, value] of Object.entries({ dc_addr: details.address, dc_apt: "4", dc_city: "Edmonton", dc_prov: "AB", dc_zip: "T5J 0N3", zipcode: "T5J 0N3", dc_flex: "none" })) expect(params.get(key)).toBe(value);
     expect(validateCleanerDetails({ ...details, notes: "x".repeat(cleanerNotesLimit(details) + 1) })).toHaveProperty("notes");
   });
   it("separates all personal fields from navigation and strips arbitrary parameters", () => {
     expect(PRIVATE_HANDOFF_KEYS).toEqual(["f_name", "l_name", "email", "phone", "dc_entry", "dc_clean", "dc_park", "dc_flex", "dc_notes", "dc_addr", "dc_apt", "dc_city", "dc_prov", "dc_zip"]);
-    const query = buildBookingQuery(input)! + "&unexpected=secret&date=2026-10-01";
+    const query = buildBookingQuery(input)! + "&unexpected=secret";
     const parts = splitBookingQuery(query);
     expect(parts.fields.email).toBe("test@example.com");
     expect(parts.fields.dc_addr).toBe("123 Test Street");
     const url = publicBookingUrl(query);
-    expect(url).not.toMatch(/Test|Person|example|780555|T5J|dc_|zipcode|unexpected|secret|date=/);
+    expect(url).not.toMatch(/Test|Person|example|780555|T5J|dc_|zipcode|unexpected|secret/);
+    expect(url).not.toContain("date=");
     expect(url).toContain("service_id=6");
   });
   it("uses a bounded encrypted handoff and never falls back to a personal-data URL", async () => {

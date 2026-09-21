@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { quoteHrefFor } from "@/lib/quote-link";
+import { specialistCtaForLocation } from "@/lib/commercial-context";
 import { X } from "lucide-react";
 
 const DISMISS_KEY = "dc-announcement-dismissed";
 
 export default function AnnouncementBar() {
-  const { pathname } = useLocation();
+  const location = useLocation();
+  const { pathname } = location;
+  const specialistCta = specialistCtaForLocation(pathname, location.search, location.hash);
   const [visible, setVisible] = useState(() => {
     try {
       return sessionStorage.getItem(DISMISS_KEY) !== "1";
@@ -38,12 +41,14 @@ export default function AnnouncementBar() {
               the funnel actually does. The later "Your price in about a minute"
               was a timing claim nothing measures, so the bar now states the
               payment terms (T2) and nothing else. */}
-          Nothing is charged at booking, and you pay once the clean is complete.
+          {specialistCta
+            ? specialistCta.announcement
+            : "Nothing is charged at booking, and you pay once the clean is complete."}
           <a
-            href={quoteHrefFor(pathname)}
+            href={specialistCta ? specialistCta.href : quoteHrefFor(pathname)}
             className="ml-2 inline-flex min-h-[44px] items-center font-semibold text-accent-on-dark underline-offset-2 transition-colors hover:underline"
           >
-            See My Instant Price
+            {specialistCta ? specialistCta.label : "See My Instant Price"}
           </a>
         </p>
 

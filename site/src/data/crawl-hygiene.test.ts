@@ -39,6 +39,7 @@ describe("crawl hygiene: intent rides in the fragment, never the query string", 
     for (const page of pages) {
       const html = readFileSync(page, "utf-8");
       for (const m of html.matchAll(/href="(\/[^"]*\?[^"]*)"/g)) {
+        if (/^\/(?:favicon\.svg|logo\.png)\?v=\d+$/.test(m[1])) continue;
         offenders.push(`${page.slice(DIST.length).replace(/\\/g, "/")} -> ${m[1]}`);
       }
     }

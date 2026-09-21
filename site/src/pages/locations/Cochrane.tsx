@@ -93,7 +93,7 @@ export default function Cochrane() {
     },
     {
       question: "Is move-out cleaning available in Cochrane?",
-      answer: `Yes. A move-in or move-out clean is ${MOVE_FROM} to ${MOVE_TOP} by home size for an apartment or condo, before GST, plus the ${TRAVEL_FEE} travel fee and any house-type or pet charge. What sets it apart from a standard clean is the closed things: the inside of the oven, fridge and microwave, and the inside of every cabinet, drawer and closet. In a new build in Sunset Ridge or Fireside it serves as the move-in clean before the furniture lands.`
+      answer: `Yes. A move-in or move-out clean is ${MOVE_FROM} to ${MOVE_TOP} by home size for an apartment or condo, before GST, plus the ${TRAVEL_FEE} travel fee and any house-type or pet charge. It includes the inside of the oven, fridge and microwave, and every empty cabinet, drawer and closet. In a new build, choose it only after the builder's final clean when no construction dust or trade residue remains; otherwise choose post-construction cleaning.`
     },
     {
       question: "How much is a standard clean in Cochrane?",
@@ -202,7 +202,7 @@ export default function Cochrane() {
         heading="At the base of Big Hill"
         paragraphs={[
           "The town sits at the base of Big Hill, downtown low on the Bow River valley floor, with most of the newer streets up on the higher ground either side of it. Those upper communities lose the shelter the valley gives. Wind comes off the foothills to the west over open ranch country, and screens and window tracks up there load with dry grit far faster than they do downtown. Brushing tracks out is a standing item here, not a deep-clean extra.",
-          "Construction has not let up in the north end around Sunset Ridge or in the streets south of the river in Fireside, and plenty of households there live in a house the trades only recently left. Construction dust is mildly abrasive and still working out of ductwork months later. Wet cloths, changed often: a cloth that has already picked up construction fines becomes an abrasive itself.",
+          "Construction continues around Sunset Ridge and Fireside, so the service choice depends on what is actually left in the home. Fine building dust and trade residue call for post-construction cleaning; an empty, dust-free home after the builder's final clean can use the move-in checklist.",
         ]}
         accent="calgary"
       />
@@ -221,10 +221,12 @@ export default function Cochrane() {
                 </h2>
                 <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                   <p>
-                    A house in Sunset Ridge or Fireside that the trades only recently left can start with the deep clean, which adds the deep-clean package to the standard checklist: baseboards, doors, light switches, wall outlets and vent covers. The deep clean is {DEEP_FROM} before GST for a one-bedroom apartment or condo, and on top of that come the {TRAVEL_FEE} travel fee, the home-type charge for a house and the pet charge where there is a pet.
+                    Choose by condition, not by the age of the house. If trades recently left fine building dust or residue, book{" "}
+                    <Link to="/post-construction-cleaning-calgary/" className="text-primary underline underline-offset-2">post-construction cleaning for Cochrane</Link>,
+                    priced by square footage. If there is no construction residue but the lived-in home needs the baseboards, doors, light switches, wall outlets and vent covers detailed, choose the deep clean from {DEEP_FROM} before GST for a one-bedroom apartment or condo, plus the {TRAVEL_FEE} travel fee and any home-type or pet charge.
                   </p>
                   <p>
-                    Construction dust keeps working out of the ductwork for months in a house like that, so wiping the vent covers earns its place, though cleaning inside the ducts is not part of any clean. After that, the standard clean keeps the house up. The{" "}
+                    Cleaning inside ducts is not part of either service. Once the building dust is gone, the standard clean keeps the lived-in home up. The{" "}
                     <Link to="/calgary/deep-cleaning/" className="text-primary underline underline-offset-2">Calgary deep cleaning</Link>{" "}
                     page has the checklist and the price at every bedroom count.
                   </p>
@@ -296,7 +298,7 @@ export default function Cochrane() {
                 </h2>
                 <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                   <p>
-                    A handover in either direction is booked as a move-in or move-out clean, from {MOVE_FROM} before GST for a one-bedroom apartment or condo, plus the {TRAVEL_FEE} travel fee for a Cochrane address and any house-type or pet charge. In a house the trades only recently left in Sunset Ridge or Fireside, it is the clean to book before the furniture arrives, while the cabinets and closets are still empty. The full checklist is on the page for{" "}
+                    A handover in either direction is booked as a move-in or move-out clean, from {MOVE_FROM} before GST for a one-bedroom apartment or condo, plus the {TRAVEL_FEE} travel fee for a Cochrane address and any house-type or pet charge. For a new build, this is the right route only after the builder's final clean, when construction dust and trade residue are gone. If either remains, use the post-construction service above. The full handover checklist is on the page for{" "}
                     <Link to="/move-out-cleaning-calgary/" className="text-primary underline underline-offset-2">move-out cleaning in Calgary</Link>.
                   </p>
                   <p>

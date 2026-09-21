@@ -140,7 +140,10 @@ export default function Cityscape() {
               <div className="text-center mb-14">
                 <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">Cleaning Services for Cityscape Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Each service is priced flat by home size before GST. Post-construction cleaning for a Cityscape home fresh from the builder is priced by square footage instead.
+                  Standard, deep and move-in/out cleaning are priced by bedrooms, bathrooms and
+                  home type before GST. Post-construction cleaning for a Cityscape home fresh from
+                  the builder is priced by square footage, and wall washing is a home-size add-on
+                  booked with a clean.
                 </p>
               </div>
             </AnimatedSection>

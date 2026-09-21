@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
-import { standardTierRows, deepCleanTierRows, moveInOutTierRows, featuredExtraRows, FREQUENCIES } from "./pricing";
+import { standardTierRows, deepCleanTierRows, moveInOutTierRows, featuredExtraRows, FREQUENCIES, withGst } from "./pricing";
 import { POLICY } from "./policy";
 import { giftCardGuide, GIFT_CARD_AMOUNTS } from "./gift-cards";
 
@@ -109,10 +109,10 @@ describe("published prices are derived, not typed", () => {
         const beds = m[1];
         const row = rows.find((r) => r.beds.startsWith(beds));
         expect(row, `${amount}: no ${service} tier for ${beds} bedroom`).toBeTruthy();
-        expect(dollars(row!.price), `${amount} claims a ${beds}-bedroom ${service} it cannot pay for`).toBeLessThanOrEqual(budget);
+        expect(withGst(dollars(row!.price)), `${amount} claims a ${beds}-bedroom ${service} including GST that it cannot pay for`).toBeLessThanOrEqual(budget);
         // And it must be the LARGEST such home, or the label undersells the card.
         const next = rows[rows.indexOf(row!) + 1];
-        if (next) expect(dollars(next.price), `${amount} could cover the ${next.beds} ${service} too`).toBeGreaterThan(budget);
+        if (next) expect(withGst(dollars(next.price)), `${amount} could cover the ${next.beds} ${service}, including GST, too`).toBeGreaterThan(budget);
       }
     }
   });

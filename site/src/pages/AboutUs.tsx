@@ -1,6 +1,6 @@
 import { POLICY } from "@/data/policy";
 import OfficeCallLink from "@/components/OfficeCallLink";
-import { BOOKINGS, CITY_PROOF, COMPANY, RATING_CLAIM, hoursLineFor } from "@/data/proof";
+import { BOOKINGS, CITY_PROOF, COMPANY, RATING_CLAIM, RED_DEER_PATH, hoursLineFor } from "@/data/proof";
 import { calgaryNeighborhoods, calgarySurrounding, edmontonNeighborhoods, edmontonSurrounding } from "@/data/city-locations";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -74,6 +74,11 @@ export default function AboutUs() {
               <p>
                 Duty Cleaners has handled {BOOKINGS} Alberta bookings since 2017.
                 Today, the company serves customers from three offices: Edmonton, Calgary and Red Deer.
+                The newest branch has its own page for{" "}
+                <Link to={RED_DEER_PATH} className="text-primary underline">
+                  house cleaning in Red Deer
+                </Link>
+                , including its local phone, address, hours and service details.
               </p>
               <p>
                 If something gets missed, tell us within {POLICY.guaranteeWindowHours} hours and we come

@@ -74,6 +74,8 @@ interface IncludedCard {
 export interface PriceTier {
   size: string;
   price: string;
+  /** Bathroom count used by the published price. */
+  assumption: string;
   /** Legacy field — no longer displayed. We do not quote on-site hours. */
   duration?: string;
 }
@@ -290,8 +292,9 @@ const ServiceDetailPage = ({
               const nums = (tier.price.match(/\d+/g) || []).map(Number);
               return {
                 "@type": "Offer",
-                name: tier.size,
+                name: `${tier.size}, ${tier.assumption.replace(/^Assumes\s+/i, "")}`,
                 priceCurrency: "CAD",
+                description: `${tier.assumption}. Rounded apartment or condo rate before 5% GST; home type, pets and travel outside city limits can change the total.`,
                 ...(nums.length >= 2
                   ? {
                       priceSpecification: {
@@ -582,7 +585,11 @@ const ServiceDetailPage = ({
               {quoteService === "recurring-cleaning" ? "What your first visit and later visits cost" : "Pricing by home size"}
             </h2>
             <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
-              Each price is a flat rate for the home size shown, and it does not change because a clean took longer than expected. If a home needs substantially more work than described, the team explains what it found and the options before continuing.
+              Each card is the apartment or condo rate for the bedroom and bathroom count shown,
+              rounded to the nearest dollar and before GST. The booking quote uses the exact price
+              including cents. It does not change because a clean took longer than expected. If a
+              home needs substantially more work than described, the team explains what it found and
+              the options before continuing.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-6xl mx-auto">
               {pricingBySize.map((tier) => (
@@ -592,6 +599,7 @@ const ServiceDetailPage = ({
                 >
                   <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{tier.size}</p>
                   <p className="text-3xl font-bold mt-2">{tier.price}</p>
+                  <p className="mt-2 text-xs font-medium text-foreground/80">{tier.assumption}</p>
                 </div>
               ))}
             </div>

@@ -18,7 +18,7 @@ import heroImageCard from "@/assets/gallery/kitchen-deep-clean.webp?card";
 // BookingKoala actually charges.
 
 const ROWS = deepCleanTierRows();
-const TIERS = ROWS.map((row) => ({ size: row.beds, price: row.price }));
+const TIERS = ROWS.map((row) => ({ size: row.beds, price: row.price, assumption: row.assumption }));
 /** The one-bedroom row, with its standard and package halves, for the price FAQ. */
 const DEEP = ROWS[0];
 /** The three-bedroom row, for the worked example. */
@@ -89,8 +89,8 @@ export default function EdmontonDeepCleaning() {
           body: (
             <>
               <p>
-                A one-bedroom is {DEEP.price}: {DEEP.standard} for the standard clean and {DEEP.packagePrice} for the
-                deep-clean package. A three-bedroom is {DEEP3.price}: {DEEP3.standard} plus{" "}
+                A one-bedroom ({DEEP.assumption.toLowerCase()}) is {DEEP.price}: {DEEP.standard} for the standard clean and {DEEP.packagePrice} for the
+                deep-clean package. A three-bedroom ({DEEP3.assumption.toLowerCase()}) is {DEEP3.price}: {DEEP3.standard} plus{" "}
                 {DEEP3.packagePrice}. The package grows with the bedroom count because the trim, the doors and the
                 switch plates do.
               </p>
@@ -104,7 +104,7 @@ export default function EdmontonDeepCleaning() {
               </p>
               {APT3 !== null && (
                 <p>
-                  Worked to the cent, a three-bedroom apartment or condo comes to {formatPrice(APT3)} before GST, which
+                  Worked to the cent, a three-bedroom apartment or condo with {DEEP3.assumption.replace("Assumes ", "").toLowerCase()} comes to {formatPrice(APT3)} before GST, which
                   the price list rounds to {DEEP3.price}, and {withGst(APT3)} once 5% GST is added.
                   {HOUSE3 !== null && TWO_STOREY && PET_FEE !== null
                     ? ` The same deep clean in a two-storey house with a dog adds the ${formatPrice(TWO_STOREY.price)} house-type charge and the ${formatPrice(PET_FEE)} pet charge, for ${formatPrice(HOUSE3)} before GST and ${withGst(HOUSE3)} with it.`

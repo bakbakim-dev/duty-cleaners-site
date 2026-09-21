@@ -10,6 +10,7 @@ import { useQuoteOverlay } from "@/hooks/use-quote-overlay";
 import { Menu, Calculator, Gift, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import AnnouncementBar from "@/components/AnnouncementBar";
+import { specialistCtaForLocation } from "@/lib/commercial-context";
 
 interface NavigationProps {
   city?: "edmonton" | "calgary";
@@ -265,11 +266,21 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
   // from it is resolved through canonicalForPath — otherwise the sitewide nav
   // sends a 301 hop from every page on the site.
   const cityPath = `/${linkCity}`;
-  const quoteTarget = linkCity === "calgary" ? `${canonicalForPath("/calgary")}#quote` : "/#quote";
+  const specialistCta = specialistCtaForLocation(location.pathname, location.search, location.hash);
+  const quoteTarget = specialistCta
+    ? specialistCta.href
+    : linkCity === "calgary"
+      ? `${canonicalForPath("/calgary")}#quote`
+      : "/#quote";
+  const quoteLabel = specialistCta ? specialistCta.label : "See My Instant Price";
 
   // Quote CTAs open the full-screen booking takeover instead of scrolling
   // to an in-page section, so the form gets the whole viewport.
   const handleQuoteClick = (e: MouseEvent<HTMLAnchorElement>) => {
+    if (specialistCta) {
+      setMobileMenuOpen(false);
+      return;
+    }
     e.preventDefault();
     setMobileMenuOpen(false);
     openQuote();
@@ -437,7 +448,7 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
               asChild
             >
               <Link to={quoteTarget} onClick={handleQuoteClick}>
-                See My Instant Price
+                {quoteLabel}
               </Link>
             </Button>
           </div>
@@ -460,11 +471,11 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
           <div id="mobile-menu" role="dialog" aria-modal="false" aria-label="Site menu" className="md:hidden py-4 space-y-1 border-t animate-in fade-in-0 slide-in-from-top-2 duration-200">
             {/* The primary action belongs inside the menu, not only in the bar. */}
             <a
-              href={quoteHrefFor(location.pathname)}
+              href={specialistCta ? quoteTarget : quoteHrefFor(location.pathname)}
               onClick={() => setMobileMenuOpen(false)}
               className="mb-3 flex min-h-[52px] items-center justify-center rounded-lg bg-accent px-5 text-base font-bold text-accent-foreground shadow-lg transition-colors hover:bg-accent/90"
             >
-              See My Instant Price
+              {quoteLabel}
             </a>
             <Link to="/about-us/" className="block py-3 px-2 rounded-lg text-foreground hover:bg-secondary hover:text-accent transition-colors" onClick={() => setMobileMenuOpen(false)}>
               About Us
@@ -591,7 +602,10 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
       {/* Mobile Sticky CTA Bar — rendered outside <nav> because the nav's
           backdrop-blur creates a containing block that would break fixed positioning */}
       {!mobileCtaHidden && (
-        <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 flex gap-2 border-t border-brand-navy-foreground/15 bg-brand-navy p-3 shadow-2xl">
+        <aside
+          aria-label="Quick contact and quote actions"
+          className="md:hidden fixed bottom-0 left-0 right-0 z-50 flex gap-2 border-t border-brand-navy-foreground/15 bg-brand-navy p-3 shadow-2xl"
+        >
           <Button
             asChild
             variant="outline"
@@ -605,10 +619,10 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
           <Button asChild className="min-h-[48px] flex-1 bg-accent text-base font-bold text-accent-foreground hover:bg-accent/90">
             <Link to={quoteTarget} onClick={handleQuoteClick}>
               <Calculator className="mr-2 h-5 w-5" aria-hidden="true" />
-              See My Instant Price
+              {quoteLabel}
             </Link>
           </Button>
-        </div>
+        </aside>
       )}
     </>
   );

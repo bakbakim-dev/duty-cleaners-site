@@ -40,6 +40,12 @@ const query = (input: Partial<typeof base> = {}) =>
   new URL(buildBookingUrl({ ...base, ...input })!).searchParams;
 
 describe("buildBookingUrl", () => {
+  it("maps separate first and last name fields without guessing where the surname starts", () => {
+    const params = query({ contact: { firstName: "Mary Jane", lastName: "Van Der Berg", email: "mary@example.ca", phone: "780-691-5060" } });
+    expect(params.get("f_name")).toBe("Mary Jane");
+    expect(params.get("l_name")).toBe("Van Der Berg");
+    expect(params.get("phone")).toBe("7806915060");
+  });
   it("matches the reference example exactly", () => {
     expect(buildBookingUrl(base)).toBe(
       `${BOOKING_ORIGIN}/booknow?industry_id=1&form_id=1&service_id=6&frequency_id=4` +
@@ -190,6 +196,12 @@ describe("buildBookingUrl", () => {
 });
 
 describe("normalizeBookingPhone", () => {
+  it.each([
+    "7806915060", "780-691-5060", "780 691 5060", "(780) 691-5060",
+    "+1 780-691-5060", "1 (780) 691 5060", "780.691.5060",
+  ])("normalizes customer input %s", (input) => {
+    expect(normalizeBookingPhone(input)).toBe("7806915060");
+  });
   it("strips a leading north-american country code", () => {
     expect(normalizeBookingPhone("+1 780 555 0199")).toBe("7805550199");
     expect(normalizeBookingPhone("1-780-555-0199")).toBe("7805550199");
@@ -533,8 +545,9 @@ describe("coupon prefill", () => {
     expect(query({ coupon: "SPRING20" }).get("coupon")).toBe("SPRING20");
   });
 
-  it("never sends a date — the booking page owns availability", () => {
-    expect(buildBookingUrl(base)).not.toContain("date=");
+  it("leaves date and arrival time entirely to BookingKoala's live schedule", () => {
+    expect(query({ cleanerDetails: {} }).get("date")).toBeNull();
+    expect(query({ cleanerDetails: {} }).get("dc_time")).toBeNull();
   });
 });
 

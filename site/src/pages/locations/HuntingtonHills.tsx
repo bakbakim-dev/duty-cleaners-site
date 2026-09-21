@@ -140,7 +140,9 @@ export default function HuntingtonHills() {
               <div className="text-center mb-14">
                 <h2 className="display-serif text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">Cleaning Services for Huntington Hills Homes</h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Standard, deep, move-out and post-construction cleaning in Huntington Hills are each priced by home size rather than by the hour, and wall washing is booked together with a clean.
+                  Standard, deep and move-in/out cleaning are priced by bedrooms, bathrooms and
+                  home type. Post-construction is priced by square footage, and wall washing is a
+                  home-size add-on booked with a clean. Every figure is before 5% GST.
                 </p>
               </div>
             </AnimatedSection>

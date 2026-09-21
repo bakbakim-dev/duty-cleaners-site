@@ -11,7 +11,7 @@ export function splitBookingQuery(query: string) {
   for (const [key, value] of new URLSearchParams(query)) {
     if ((PRIVATE_HANDOFF_KEYS as readonly string[]).includes(key)) fields[key] = value;
     else if (key === "zipcode") fields.dc_zip ??= value;
-    else if (/^(industry_id|form_id|service_id|frequency_id|pricing_parameter\[\d+\]|extras\[\d+\]|coupon)$/.test(key) || (TRACKED_PARAMS as readonly string[]).includes(key)) publicParams.set(key, value);
+    else if (/^(industry_id|form_id|service_id|frequency_id|pricing_parameter\[\d+\]|extras\[\d+\]|coupon|date)$/.test(key) || (TRACKED_PARAMS as readonly string[]).includes(key)) publicParams.set(key, value);
   }
   return { fields, publicQuery: publicParams.toString() };
 }

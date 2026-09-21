@@ -46,7 +46,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "What's the difference between standard and deep cleaning?",
-        answer: "A standard clean keeps a home that is already in reasonable shape clean: dusting, vacuuming, mopping, the bathrooms and the kitchen. A deep clean is the standard checklist plus the deep-clean package, which adds detailed work on the parts a regular clean passes over, such as baseboards and doors. It is the right first clean for a home that has not been professionally cleaned in a while.",
+        answer: "A standard clean covers dusting, vacuuming, mopping, bathrooms and the kitchen. A deep clean is that checklist plus detailed work on baseboards, doors, light switches, wall outlets and vent covers. Choose it when the home needs those tasks or has enough build-up to require them; whether it is the first professional visit does not decide the service by itself.",
       },
       {
         question: "How often should I schedule recurring cleaning?",

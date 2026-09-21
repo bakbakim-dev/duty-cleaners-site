@@ -80,7 +80,7 @@ export default function FortSaskatchewan() {
     },
     {
       question: "Do you offer move-out cleaning in Fort Saskatchewan?",
-      answer: `Yes. A move-in or move-out clean in Fort Saskatchewan runs from ${MOVE_FROM} for a one-bedroom apartment or condo to ${MOVE_TOP} for five bedrooms, before GST, plus the ${TRAVEL_FEE} travel fee and any house-type or pet surcharge. It covers what a standard clean leaves closed: inside the oven, fridge and microwave, and inside every cabinet, drawer and closet. For a house nobody has lived in yet, it is also the right clean to book before the furniture arrives. Under Alberta's Residential Tenancies Act the landlord completes a move-out inspection report with the tenant, and we do not promise the deposit comes back; the landlord decides.`
+      answer: `Yes. A move-in or move-out clean in Fort Saskatchewan runs from ${MOVE_FROM} for a one-bedroom apartment or condo to ${MOVE_TOP} for five bedrooms, before GST, plus the ${TRAVEL_FEE} travel fee and any house-type or pet surcharge. It covers inside the oven, fridge and microwave, and every empty cabinet, drawer and closet. For a never-occupied new build, choose it only after the builder's final clean when no fine construction dust or trade residue remains; otherwise choose post-construction cleaning. Under Alberta's Residential Tenancies Act the landlord completes a move-out inspection report with the tenant, and we do not promise the deposit comes back; the landlord decides.`
     },
     {
       question: "How much is a standard house clean in Fort Saskatchewan?",
@@ -264,7 +264,7 @@ export default function FortSaskatchewan() {
         heading="Quiet hours in a shift town"
         paragraphs={[
           "Alberta's Industrial Heartland, a hydrocarbon processing region, takes in Fort Saskatchewan and the counties around it, and enough of the households we clean run on a plant rotation that we ask about it at booking. Someone may be asleep at two in the afternoon. Tell us which room: the order a house gets done in is easy to change, and the vacuum is the part that matters.",
-          "Growth here has been steep and long: Southfort and Westpark were laid out generations after the older streets near the original fort site, so the work swings between move-in cleans in houses nobody has lived in yet and long-settled homes where a storage room has to be emptied before it can be cleaned at all.",
+          "Growth here has been steep and long: Southfort and Westpark were laid out generations after the older streets near the original fort site. In a new build, the remaining condition decides the service: post-construction for fine building dust or trade residue, and move-in cleaning only after the builder's final clean when the home is dust-free.",
         ]}
       />
 
@@ -282,7 +282,9 @@ export default function FortSaskatchewan() {
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>
-                  A new house in Southfort or Westpark that nobody has lived in yet needs a move-in clean, and the same clean serves both ends of a move. Book{" "}
+                  A new house in Southfort or Westpark uses a move-in clean only after the builder's final clean, when no fine construction dust or trade residue remains. If those are still present, book{" "}
+                  <Link to="/post-construction-cleaning/" className="text-primary underline underline-offset-2 font-medium">post-construction cleaning in the Edmonton area</Link>{" "}
+                  instead, priced by square footage. For a dust-free handover, book{" "}
                   <Link to="/move-out-cleaning-edmonton/" className="text-primary underline underline-offset-2 font-medium">move-out cleans in Fort Saskatchewan</Link>{" "}
                   from {MOVE_FROM} for a one-bedroom apartment or condo, before GST, the travel fee and any house-type or pet surcharge, and have it done before the furniture arrives, while every cabinet, drawer and closet is still empty.
                 </p>
@@ -312,7 +314,7 @@ export default function FortSaskatchewan() {
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>
-                  Take a three-bedroom, two-storey house in Fort Saskatchewan that nobody has lived in yet, with two bathrooms and a half bath, booked for a move-in clean.
+                  Take a three-bedroom, two-storey house in Fort Saskatchewan with two bathrooms and a half bath, booked for a move-in clean after the builder's final clean has removed construction dust and trade residue.
                 </p>
                 <QuoteReceipt
                   lines={[

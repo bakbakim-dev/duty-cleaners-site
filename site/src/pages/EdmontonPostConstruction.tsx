@@ -47,9 +47,9 @@ const META_DESCRIPTION = `Once the last trade leaves an Edmonton new build or re
 const includedServices = [
   { icon: Wind, title: "Where the drywall dust ends up", desc: "Off the baseboards, the vents, the window ledges, the trim and the floors, wiped and vacuumed rather than moved from one surface to the next." },
   { icon: Sparkles, title: "Kitchen, inside the cabinets", desc: "Every cabinet and drawer inside and out, the counters, the backsplash, the sink, and the outside of the new appliances once their film is off." },
-  { icon: Droplets, title: "Bathrooms, for first use", desc: "Tubs, showers, toilets, vanities, mirrors and tile, with the grout haze new tile carries taken off rather than spread." },
+  { icon: Droplets, title: "Bathrooms, for first use", desc: "Construction dust is removed from tubs, showers, toilets, vanities, mirrors and finished tile after the trade has removed grout haze, silicone and other installation residue." },
   { icon: SprayCan, title: "Floors, vacuumed before mopped", desc: "Hardwood, tile, vinyl and laminate. The grit is lifted first, because a mop grinds it into a floor that is a week old." },
-  { icon: Shield, title: "Windows and mirrors, indoors", desc: "Paint flecks and label adhesive come off first; polishing over either one is how a new pane gets scratched." },
+  { icon: Shield, title: "Windows and mirrors, indoors", desc: "Dust, fingerprints and ordinary smudges are cleaned after the builder or homeowner has removed labels, adhesive and paint." },
   { icon: Wind, title: "Doors, switches and sills", desc: "The handles and plates a trade opened all week, plus the baseboards and window sills below them, wiped clean." },
 ];
 
@@ -67,7 +67,7 @@ const excludedServices = [
   {
     heading: "Outside what the crew does",
     items: [
-      "No removal of plastics from new appliances, and no removal of stickers from windows, doors, or surfaces",
+      "No removal or scraping of appliance film, stickers, labels, paint, adhesive, silicone, grout haze or other hardened trade residue; the builder or trade removes these first",
       // Was "more than a two-step stool", a limit that appeared on this page and
       // nowhere else. NOT_INCLUDED in policy.ts sets it at a 3-step ladder, which is
       // what the crew carries and what every other page tells a customer.
@@ -102,7 +102,7 @@ interface Faq {
 const faqs: Faq[] = [
   {
     q: "What is final-stage post-construction cleaning?",
-    a: "It is the clean that goes in after the trades have finished and the material has gone. It takes the sanding dust off the vent covers and out of the window channels and the new drawers, lifts the paint flecks and adhesive off the glass, and leaves the place fit to move into. It is neither rough cleanup nor a site clean: if a trade is still due back for something, the room is not ready for us.",
+    a: "It is the clean that goes in after the trades have finished, the material has gone and trade residue has been removed. It takes sanding dust off vent covers, out of window channels and out of new drawers, then cleans finished glass and fixtures of ordinary dust, fingerprints and smudges. It is neither rough cleanup nor a site clean: if a trade is still due back for something, the room is not ready for us.",
   },
   {
     q: "How much does post-construction cleaning cost in Edmonton?",
@@ -118,7 +118,7 @@ const faqs: Faq[] = [
   },
   {
     q: "How is post-construction cleaning different from a regular deep clean?",
-    a: "Post-construction cleaning targets the fine construction dust that settles on every surface, including inside cabinets, drawers, vents, and window tracks, as well as light paint splatters, smudges, and residue left behind by tradespeople. A deep clean does not open every cabinet and drawer, clear the window tracks, or lift paint flecks and adhesive residue off glass and fixtures.",
+    a: "Post-construction cleaning targets fine construction dust on finished surfaces, including inside empty cabinets and drawers and on vent covers and window tracks. A deep clean is for a lived-in home and does not open every cabinet and drawer or clear every window track. Neither service includes scraping paint, adhesive, silicone or grout haze; those trade residues must be removed before the crew arrives.",
     more: { lead: "For a lived-in home with no building work, compare it with", to: "/edmonton/deep-cleaning/", anchor: "a deep clean in Edmonton" },
   },
   {
@@ -131,8 +131,8 @@ const faqs: Faq[] = [
     a: `You do not need to be. Most of these jobs run on a code left in the booking notes, a key at the builder's site office, or whatever access the realtor has arranged. The only requirement is that it opens the door on the day, because if the crew cannot get in the lockout charge is ${POLICY.lockoutFee}. Every cleaner is reference-checked before a first job and rated by the customer afterwards.`,
   },
   {
-    q: "Do you remove stickers from new windows and appliances?",
-    a: "No. Peeling appliance film and scraping window decals is slow work and it is not cleaning; hurried, it leaves adhesive smears and scratches on glass nobody has used yet. Take them off before we come, or the crew cleans around them and tells you which ones it left.",
+    q: "Do you remove stickers, paint or trade residue from new surfaces?",
+    a: "No. Appliance film, stickers, labels, paint flecks or splatters, adhesive, silicone and grout haze must be removed by the builder, trade or homeowner before the crew arrives. We clean ordinary dust, fingerprints and smudges from the finished surface; if hardened residue remains, the crew cleans around it and reports it rather than risking damage by scraping.",
   },
   {
     q: "Do you clean inside appliances during post-renovation cleaning?",
@@ -270,7 +270,7 @@ export default function EdmontonPostConstruction() {
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="display-serif text-3xl md:text-4xl font-bold mb-6">What is left behind after the trades leave</h2>
               <p className="text-lg text-muted-foreground mb-4">
-                Drywall dust settles on baseboards, vents, counters, window ledges, and floors. Fine particles work their way into cabinets and drawers. Smudges, fingerprints, and adhesive residue cling to windows, mirrors, and new fixtures. Painted walls hold a film of the same dust, and where a trade has left a mark on the paint it wants washing rather than wiping:{" "}
+                Drywall dust settles on baseboards, vents, counters, window ledges and floors. Fine particles work their way into cabinets and drawers, while fingerprints and ordinary smudges mark windows, mirrors and new fixtures. Painted walls hold a film of the same dust. Wall washing is a separate add-on for washable surface soil, not paint or trade-residue removal:{" "}
                 <Link to="/wall-washing-wall-cleaning/" className="text-primary underline underline-offset-4">wall washing in Edmonton</Link>{" "}
                 is a separate add-on, priced by the size of the home.
               </p>
@@ -284,7 +284,7 @@ export default function EdmontonPostConstruction() {
               </p>
               <p className="text-lg text-muted-foreground mb-4">
                 What the clean leaves out is listed under{" "}
-                <a href="#not-ours" className="text-primary underline underline-offset-4">six jobs that are not ours</a>.
+                <a href="#not-ours" className="text-primary underline underline-offset-4">where this clean stops</a>.
               </p>
             </div>
           </div>
@@ -306,9 +306,9 @@ export default function EdmontonPostConstruction() {
                 on them have to be off before we arrive.
               </p>
               <p>
-                <strong className="text-foreground">Bathroom remodel.</strong> New tile carries a grout haze that
-                wiping spreads and washing removes. The tub, the shower glass, the mirror and the vanity are
-                cleaned for first use.
+                <strong className="text-foreground">Bathroom remodel.</strong> Once the tile trade has removed grout
+                haze, silicone and installation residue, construction dust is removed from the finished tile. The tub,
+                shower glass, mirror and vanity are then cleaned for first use.
               </p>
               <p>
                 <strong className="text-foreground">Basement renovation.</strong> A basement is the job where the

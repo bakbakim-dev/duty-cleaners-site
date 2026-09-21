@@ -1,4 +1,4 @@
-import { standardTierRows, deepCleanTierRows, moveInOutTierRows } from "./pricing";
+import { standardTierRows, deepCleanTierRows, moveInOutTierRows, withGst } from "./pricing";
 
 /**
  * The gift card denominations and what each one actually buys.
@@ -20,7 +20,7 @@ const dollars = (t: Tier) => Number(t.price.replace(/[^0-9.]/g, ""));
 
 /** The dearest tier an amount pays for in full, or null if it covers none. */
 const covers = (rows: Tier[], amount: number): Tier | null =>
-  rows.filter((r) => dollars(r) <= amount).at(-1) ?? null;
+  rows.filter((r) => withGst(dollars(r)) <= amount).at(-1) ?? null;
 
 /** "1 Bedroom" -> "a 1-bedroom home"; "5 Bedroom" -> "a 5-bedroom home". */
 const home = (beds: string) => `a ${beds.replace(" Bedroom", "-bedroom").replace("+-", "+ ")} home`;
@@ -36,7 +36,9 @@ export function giftCardGuide(): GiftCardTier[] {
     if (deep) parts.push(`a deep clean of ${home(deep.beds)}`);
     if (move) parts.push(`a move-in/move-out clean of ${home(move.beds)}`);
     if (!deep && std) parts.push(`a standard clean of ${home(std.beds)}`);
-    const claim = parts.length ? `Covers ${parts.join(", or ")}` : "Goes toward any clean";
+    const claim = parts.length
+      ? `Covers ${parts.join(", or ")}, including 5% GST`
+      : "Goes toward any clean";
     return { amount: `$${amount}`, description: claim };
   });
   guide.push({ amount: "Custom", description: "Choose any amount that fits your budget" });

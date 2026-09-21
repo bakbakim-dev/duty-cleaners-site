@@ -151,7 +151,7 @@ export default function Windermere() {
                 Cleaning Services for Windermere Homes
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                Six services for Windermere homes, each a flat rate by home size before GST, with no trip fee inside Edmonton city limits.
+                Standard, deep, recurring and move-in/out cleaning are priced by bedrooms, bathrooms and home type. Post-construction is priced by square footage, and wall washing is a home-size add-on booked with a clean. Every figure is before 5% GST.
               </p>
             </div>
           </AnimatedSection>

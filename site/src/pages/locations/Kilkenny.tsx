@@ -166,7 +166,9 @@ export default function Kilkenny() {
                   Cleaning Services for Kilkenny Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Every service for Kilkenny homes is priced by home size, and a bungalow's home-type charge shows on the quote before you book.
+                  Standard, deep, recurring and move-in/out cleaning are priced by bedrooms,
+                  bathrooms and home type. Post-construction is priced by square footage, and wall
+                  washing is a home-size add-on booked with a clean. Every figure is before 5% GST.
                 </p>
               </div>
             </AnimatedSection>

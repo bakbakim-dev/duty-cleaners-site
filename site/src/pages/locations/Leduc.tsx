@@ -329,7 +329,7 @@ export default function Leduc() {
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>
-                  For a home that is kept up, the standard clean holds it, from {STANDARD_FROM} for a one-bedroom apartment or condo, before GST, the travel fee and any house-type or pet surcharge, and it can go on a repeating schedule. The deep clean, from {DEEP_FROM} on the same terms, adds baseboards, doors, light switches, wall outlets and vent covers to the standard checklist, which makes it the better first visit for a home that has not had a professional clean.
+                  For a home that is kept up, the standard clean holds it, from {STANDARD_FROM} for a one-bedroom apartment or condo, before GST, the travel fee and any house-type or pet surcharge, and it can go on a repeating schedule. Choose the deep clean from {DEEP_FROM} when its added tasks—baseboards, doors, light switches, wall outlets and vent covers—or the home's build-up are what you need. A first professional visit does not automatically require the deeper package.
                 </p>
                 <p>
                   For a handover, book{" "}

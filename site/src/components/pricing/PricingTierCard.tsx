@@ -4,6 +4,8 @@ import { Calculator } from "lucide-react";
 interface PricingTierCardProps {
   beds: string;
   price: string;
+  /** Bathroom count used to calculate this displayed tier. */
+  assumption: string;
   /** Small line under the price, e.g. the Standard + package breakdown. */
   note?: string;
 }
@@ -15,10 +17,11 @@ interface PricingTierCardProps {
  * buttons a tab wrapped "See My Instant Price" onto two lines at 142px and
  * competed with the figure they sat under.
  */
-const PricingTierCard = ({ beds, price, note }: PricingTierCardProps) => (
+const PricingTierCard = ({ beds, price, assumption, note }: PricingTierCardProps) => (
   <div className="bg-card rounded-xl border border-border/50 px-4 py-6 text-center">
     <h3 className="font-semibold text-foreground mb-1">{beds}</h3>
     <div className="text-3xl font-bold text-accent">{price}</div>
+    <p className="mt-2 text-xs font-medium text-foreground/80">{assumption}</p>
     {note ? <p className="mt-2 text-xs text-muted-foreground">{note}</p> : null}
   </div>
 );

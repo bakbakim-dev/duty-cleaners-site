@@ -165,7 +165,7 @@ export default function Hairsine() {
                   Cleaning Services for Hairsine Homes
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                  Six services cover Hairsine's townhouse courts and detached homes, from weekly standard cleans to one-off move-outs, and each is priced by the size of the home.
+                  Standard, deep, recurring and move-in/out cleaning are priced by bedrooms, bathrooms and home type. Post-construction is priced by square footage, and wall washing is a home-size add-on booked with a clean. Every figure is before 5% GST.
                 </p>
               </div>
             </AnimatedSection>

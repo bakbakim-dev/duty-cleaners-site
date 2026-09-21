@@ -2,9 +2,9 @@
 
 ## Status
 
-The BookingKoala companion receiver is published and its native-field adapter works in the live public booking form. The funnel changes and encrypted transfer endpoint are implemented locally. **The encrypted end-to-end journey is not yet verified or ready to launch.** The endpoint is a PHP file designed for the SiteGround host; Supabase is not required for this handoff. It still must be uploaded to `mikaily131.sg-host.com` with its private secret file before staging verification.
+The BookingKoala companion receiver is published and now points to `https://dutycleaners.ca/api/booking-handoff.php`. The production endpoint has a private secret outside `public_html`; Supabase is no longer used for this handoff. On 2026-09-20, production tests passed for seal, unseal, field round-trip, tamper rejection and foreign-origin rejection. A public-browser journey showed that BookingKoala receives the encrypted envelope and retains service/property choices, name, address, custom answers and notes. Earlier testing inferred that a blank-looking phone/email control with an `ng-valid` class meant the value was accepted; that inference was too strong and does not prove a saved value. On 2026-09-20, a new untouched encrypted live test with the normalized phone `7806915060` visibly showed `780-691-5060` in BookingKoala, including after choosing the first available date. No booking was submitted, so saved-record persistence remains unproved.
 
-No booking was submitted, no payment was entered, and no customer contact data was used in the live tests. The website frontend has not been deployed by this change. BookingKoala retains authority over availability, final prices, card collection and booking confirmation.
+No booking was submitted, no payment was entered, and no real customer contact data was used in the live tests. BookingKoala retains authority over availability, final prices, card collection and booking confirmation.
 
 ## Owner-approved changes implemented
 
@@ -51,15 +51,17 @@ Five public live cases successfully transferred all requested custom answers, co
 
 These figures are observations of BookingKoala's test summaries, not new price constants or a guarantee of every basket's parity. The first case also verified street/unit/city/province/postal code and the explicit lockbox note. Its address appeared in BookingKoala's native summary, and changing frequency updated the recurring total. A later customer city edit remained Calgary instead of being overwritten with the original Edmonton value.
 
-No date, card or final booking submission was tested. A success banner verifies visible form values, not a saved booking record. Full frontend-through-encryption-to-BookingKoala testing remains blocked by deployment access. Browser-specific address autocomplete, real contact masking, encrypted reload/back/expiry and a consented end-to-end booking still belong in launch QA.
+No card or final booking submission was tested. On 2026-09-20 the production browser test verified the encrypted endpoint, cleared URL fragment, service/property query mapping, name, street/unit/city/province/postal code, lockbox-to-Other mapping and note, cleanliness, parking and flexibility. A later test selected BookingKoala's first available date and observed the transferred phone still visible. Browser inspection tools returned an empty `value` for the phone even while a screenshot showed the formatted number in the visible field; do not use that readout or the `ng-valid` class alone to conclude that a phone transferred or was saved. An existing email can also trigger BookingKoala's returning-customer login state.
+
+Do not weaken privacy by returning contact data to the query string: the encrypted path keeps those details out of the navigation query. A visible live transfer for one phone is not proof that all future transfers work or that the saved booking contains it. The remaining proof is persistence through a controlled final booking. Browser-specific address autocomplete, encrypted reload/back/expiry and a consented end-to-end booking still belong in launch QA.
 
 ## Deployment and rollback
 
 1. Build and upload the site to the SiteGround staging document root. Vite copies `public/api/booking-handoff.php` into `dist/api/booking-handoff.php`.
 2. Generate a new cryptographically random secret of at least 32 characters. Copy `hosting/siteground-private/booking-handoff-secret.php.example` to `/home/customer/www/mikaily131.sg-host.com/private/booking-handoff-secret.php`, outside `public_html`, and put the secret there. Do not reuse the GHL integration token or expose the secret in source, chat, URLs or logs.
 3. Verify the PHP endpoint returns 200 for a staging-origin seal request and allows unseal only from the BookingKoala origin. Confirm rejection/expiry paths, real browser field readback and history behavior.
-4. Before the final DNS switch, change the receiver endpoint from the staging host to `https://dutycleaners.ca/api/booking-handoff.php`, regenerate `bk-header-fill.html`, and Save & Publish it in BookingKoala after the production endpoint is reachable.
-5. Resolve the separate existing GHL durable-receipt relay deployment/migration requirements before a full funnel test. Do not weaken the existing contact gate to bypass that dependency.
+4. Completed 2026-09-20: the published BookingKoala receiver points to `https://dutycleaners.ca/api/booking-handoff.php`; the public page contains one production endpoint reference and no Supabase handoff reference.
+5. Completed 2026-09-20: the separate SiteGround-native GHL durable-receipt relay, encrypted queue and five-minute retry cron are live. A controlled full funnel test reached the published GHL workflow successfully. Do not weaken the existing contact gate.
 6. Only then publish the rebuilt frontend and test the complete journey with owner-approved contact data. Do not auto-submit a real booking during tests.
 
 Receiver publication location: BookingKoala → Theme Builder → Settings → Tracking & Conversion → Header code. Both Header and Footer fields were empty before this change. Only Header was changed. To roll back this receiver, remove the marked `Duty Cleaners booking handoff v2` block and Save & Publish, preserving any later additions. Regenerate the header snippet after any edit to `bk-prefill-v2.js`.

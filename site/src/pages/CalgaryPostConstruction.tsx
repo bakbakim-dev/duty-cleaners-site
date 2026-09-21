@@ -38,9 +38,9 @@ const META_DESCRIPTION = `Post-construction cleaning for a Calgary new build or 
 
 const includedServices = [
   { icon: Wind, title: "Drywall dust, everywhere it settled", desc: "Tops of door frames, window channels, closet shelves, the vent covers and along every baseboard, wiped and vacuumed rather than pushed around." },
-  { icon: Sparkles, title: "Kitchen and bathrooms", desc: "Cabinets and drawers inside and out, counters, sinks, tubs and showers, grout haze off new tile, and the outside of the new appliances once their film and stickers are off." },
+  { icon: Sparkles, title: "Kitchen and bathrooms", desc: "Construction dust from cabinets and drawers inside and out, counters, sinks, tubs, showers and finished tile after the trades remove film, labels, grout haze and installation residue." },
   { icon: Droplets, title: "Floors", desc: "Vacuumed before they are mopped, so the grit is lifted rather than ground into new hardwood or vinyl by the mop." },
-  { icon: SprayCan, title: "Interior glass", desc: "Windows, mirrors and glass doors, with paint flecks and adhesive lifted before the glass is polished." },
+  { icon: SprayCan, title: "Interior glass", desc: "Dust, fingerprints and ordinary smudges from windows, mirrors and glass doors after the builder or homeowner removes labels, adhesive and paint." },
   { icon: Shield, title: "Doors, handles and switches", desc: "The surfaces a trade touched with a dusty hand, wiped clean." },
 ];
 
@@ -58,7 +58,7 @@ const excludedServices = [
   {
     heading: "Beyond the reach of this clean",
     items: [
-      "Appliance film and window stickers stay on unless you or the builder take them off first",
+      "No removal or scraping of appliance film, stickers, labels, paint, adhesive, silicone, grout haze or other hardened trade residue; the builder or trade removes these first",
       // The two-step stool was this page's own invention; policy.ts (NOT_INCLUDED)
       // puts the limit at a 3-step ladder and the rest of the site follows it.
       "The 3-step ladder the crew carries is the ceiling on height: no extension ladders, no scaffolding",
@@ -90,7 +90,7 @@ interface Faq {
 const faqs: Faq[] = [
   {
     q: "What is final-stage post-construction cleaning?",
-    a: "It is the clean that happens after the last trade has packed up and the debris is gone: the drywall dust off every surface it settled on, the smudges and paint flecks off the glass, the adhesive off the fixtures, so the home can be moved into. It is not a site clean. If there is still a drywall offcut in the corner or a plumber due on Thursday, the space is not ready for us.",
+    a: "It is the clean that happens after the last trade has packed up, the debris is gone and trade residue has been removed: drywall dust off finished surfaces and ordinary fingerprints and smudges off glass and fixtures, so the home can be moved into. It is not a site clean. If there is still a drywall offcut in the corner or a plumber due on Thursday, the space is not ready for us.",
   },
   {
     q: "How much does post-construction cleaning cost in Calgary?",
@@ -106,7 +106,7 @@ const faqs: Faq[] = [
   },
   {
     q: "How is post-construction cleaning different from a regular deep clean?",
-    a: "The difference is the dust. A deep clean is built for a lived-in home: grease, scale, the baseboards and the fridge top. This clean is built for fine drywall dust, which gets inside cabinets, drawers, vents and window tracks and keeps coming back for weeks, plus the paint flecks and adhesive a trade leaves on glass and fixtures. Every cabinet and drawer is opened, every vent cover wiped, every track cleared.",
+    a: "The difference is the dust. A deep clean is built for a lived-in home: grease, scale, baseboards and the fridge top. This clean is built for fine drywall dust inside empty cabinets and drawers and on vent covers and window tracks. Neither service includes scraping paint, adhesive, silicone or grout haze; the builder or trade must remove those residues before the crew arrives.",
     more: { lead: "For a Calgary home with no building work in it, the right service is", to: "/calgary/deep-cleaning/", anchor: "a deep clean in Calgary" },
   },
   {
@@ -119,8 +119,8 @@ const faqs: Faq[] = [
     a: `No. A lockbox code, a key with the site super, or the builder's access arrangement all work; put it in the booking notes. If the team arrives and cannot get in, the lockout charge is ${POLICY.lockoutFee}. Every cleaner is reference-checked and rated by the customer after each visit.`,
   },
   {
-    q: "Do you remove stickers from new windows and appliances?",
-    a: "No. The window labels, the plastic film on the appliances and the decals on the glass are the builder's or the homeowner's to take off before we arrive. If they are still on, we clean around them.",
+    q: "Do you remove stickers, paint or trade residue from new surfaces?",
+    a: "No. Appliance film, stickers, labels, paint flecks or splatters, adhesive, silicone and grout haze must be removed by the builder, trade or homeowner before the crew arrives. We clean ordinary dust, fingerprints and smudges from the finished surface; if hardened residue remains, the crew cleans around it and reports it rather than risking damage by scraping.",
   },
   {
     q: "Do you clean inside appliances during post-renovation cleaning?",
@@ -260,9 +260,9 @@ export default function CalgaryPostConstruction() {
               <p className="text-lg text-muted-foreground mb-4">
                 Sanding dust does not fall; it drifts, and it lands on the top of every door frame, inside every
                 vent, along every window channel and in the drawers of the cabinets that were installed last week.
-                Tile leaves a grout haze. Painters leave flecks on the glass. Whoever fitted the fixtures left a
-                fingerprint on each one. The flecks come off the glass with the dust; a scuff on the paint itself
-                is a different job, and that one is{" "}
+                Tile work can leave grout haze, painters can leave flecks on glass, and fitted fixtures collect
+                fingerprints. The builder or trade removes hardened installation residue first; our crew removes the
+                construction dust and ordinary smudges. Washable surface soil on painted walls can be booked as{" "}
                 <Link to="/wall-washing-wall-cleaning-calgary/" className="text-primary underline underline-offset-4">wall washing in Calgary</Link>,
                 added to the clean and priced by home size.
               </p>
@@ -321,13 +321,14 @@ export default function CalgaryPostConstruction() {
             <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
               <p>
                 <strong className="text-foreground">Kitchen.</strong> The new cabinets are wiped inside and out
-                before anything goes in them, the counters and backsplash are cleaned of grout haze and silicone
-                smears, and the outside of the appliances is done once their film is off. Inside the oven and
+                before anything goes in them. Once the trade has removed grout haze, silicone and other installation
+                residue, construction dust is cleaned from the counters and backsplash, and the outside of the appliances is done once their film is off. Inside the oven and
                 fridge is not part of this clean; there is nothing in them yet.
               </p>
               <p>
-                <strong className="text-foreground">Bathroom.</strong> Tile dust and grout haze come off the new
-                tile, and the shower glass and the mirror are cleaned for first use.
+                <strong className="text-foreground">Bathroom.</strong> Once the tile trade has removed grout haze,
+                silicone and installation residue, construction dust is removed from the finished tile, and the shower
+                glass and mirror are cleaned for first use.
               </p>
               <p>
                 <strong className="text-foreground">Basement.</strong> Dust from a basement job does not stay

@@ -19,7 +19,7 @@ import heroImageCard from "@/assets/gallery/calgary-kitchen-clean.webp?card";
 const addOnLabel = (key: string) => formatPrice(addOnFromPrice("standard", key) ?? 0);
 
 const ROWS = deepCleanTierRows();
-const TIERS = ROWS.map((row) => ({ size: row.beds, price: row.price }));
+const TIERS = ROWS.map((row) => ({ size: row.beds, price: row.price, assumption: row.assumption }));
 /** The one-bedroom row, with its standard and package halves, for the price FAQ. */
 const DEEP = ROWS[0];
 /** The two- and four-bedroom rows, for the worked examples. */
@@ -72,8 +72,8 @@ export default function CalgaryDeepCleaning() {
             <>
               <p>
                 Every deep clean is two numbers added together, the standard rate for the home and the deep-clean
-                package for its size. A two-bedroom condo in the Beltline pays {DEEP2.standard} for the standard clean
-                and {DEEP2.packagePrice} for the package, {DEEP2.price} in total. A four-bedroom in Mahogany pays{" "}
+                package for its size. A two-bedroom condo in the Beltline with {DEEP2.assumption.replace("Assumes ", "").toLowerCase()} pays {DEEP2.standard} for the standard clean
+                and {DEEP2.packagePrice} for the package, {DEEP2.price} in total. A four-bedroom in Mahogany with {DEEP4.assumption.replace("Assumes ", "").toLowerCase()} pays{" "}
                 {DEEP4.standard} plus {DEEP4.packagePrice}, or {DEEP4.price}. Both are the apartment rate before GST.
                 As a two-storey house, the Mahogany home adds the {TWO_STOREY} home-type charge, for {MAHOGANY_TOTAL}{" "}
                 before GST, and a home with a dog or a cat adds the {addOnLabel("must-choose-if-you-have-pets")} pet

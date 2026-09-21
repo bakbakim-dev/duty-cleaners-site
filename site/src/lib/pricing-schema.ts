@@ -7,6 +7,7 @@ import { canonicalUrlForPath } from "@/data/legacy-urls";
 interface PriceRow {
   beds: string;
   price: string;
+  assumption: string;
 }
 
 interface PricingSchemaInput {
@@ -51,12 +52,13 @@ export function buildPricingSchema({ city, standard, deep, moveInOut }: PricingS
     name,
     itemListElement: rows.map((row) => ({
       "@type": "Offer",
-      name: `${name} - ${row.beds}`,
+      name: `${name} - ${row.beds}, ${row.assumption.replace(/^Assumes\s+/i, "")}`,
       price: toNumber(row.price),
       priceCurrency: "CAD",
+      description: `${row.assumption}. Rounded apartment or condo rate before 5% GST; home type, pets and travel outside city limits can change the total.`,
       itemOffered: {
         "@type": "Service",
-        name: `${name} (${row.beds})`,
+        name: `${name} (${row.beds}; ${row.assumption.replace(/^Assumes\s+/i, "")})`,
         areaServed: { "@type": "City", name: `${meta.locality}, AB` },
       },
     })),

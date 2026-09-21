@@ -46,15 +46,12 @@ import {
   BOOKING_ORIGIN,
   shelfExtrasFor,
   petsExtraForSelection,
-  travelFeeExtraForSelection,
   buildBookingQuery,
   groupExtras,
   benefitForExtra,
   extraDisplayName,
-  postalCodeCityStatus,
-  postalCodeCityName,
-  normalizePostalCode,
   recurringExtraTotals,
+  normalizeBookingPhone,
 
   type CleanerDetails,
   type DcEntry,
@@ -68,7 +65,6 @@ import { intentParams, intentQuery } from "@/lib/url-intent";
 import { setQuoteStep } from "@/lib/quote-progress";
 import { track } from "@/lib/analytics";
 import { CLEANLINESS_OPTIONS, FLEXIBILITY_OPTIONS, cleanerNotesLimit, validateCleanerDetails } from "@/lib/booking-details";
-import { calgarySurrounding, edmontonSurrounding } from "@/data/city-locations";
 import { prepareBookingHandoff, publicBookingUrl } from "@/lib/booking-handoff";
 import { useQuoteOverlay } from "@/hooks/use-quote-overlay";
 
@@ -80,19 +76,6 @@ const STEP_LABELS = [
   "Your price",
   "Pick your time",
 ];
-
-const normalizedPlace = (value: string | null | undefined) =>
-  (value ?? "").trim().toLowerCase().replace(/[^a-z]/g, "");
-
-const branchKeyForAddress = (details: CleanerDetails): "edmonton" | "calgary" | "reddeer" | null => {
-  const postalCity = postalCodeCityName(details.postalCode);
-  if (postalCity) return normalizedPlace(postalCity) as "edmonton" | "calgary" | "reddeer";
-  const city = normalizedPlace(details.city);
-  if (city === "reddeer") return "reddeer";
-  if (city === "edmonton" || edmontonSurrounding.some((place) => normalizedPlace(place.name) === city)) return "edmonton";
-  if (city === "calgary" || calgarySurrounding.some((place) => normalizedPlace(place.name) === city)) return "calgary";
-  return null;
-};
 
 /** Step ids sent with quote_step; the details pane of step 3 is its own id. */
 const STEP_IDS = ["home", "contact", "price", "time"];
@@ -138,12 +121,6 @@ const DC_ENTRY_LABELS: Record<DcEntry, string> = Object.fromEntries(
 const DC_PARKING_LABELS: Record<DcParking, string> = Object.fromEntries(
   DC_PARKING_OPTIONS.map((option) => [option.value, option.label])
 ) as Record<DcParking, string>;
-
-/** Types as "T5J 0N3": uppercase, one space after the third character. */
-const formatPostalInput = (value: string) => {
-  const raw = value.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 6);
-  return raw.length > 3 ? `${raw.slice(0, 3)} ${raw.slice(3)}` : raw;
-};
 
 /** Step 4 happens on the BookingKoala page, but it is part of the same funnel. */
 const TOTAL_STEPS = STEP_LABELS.length;
@@ -314,17 +291,18 @@ export default function QuoteFlow({
   const [bathrooms, setBathrooms] = useState(1);
   const [halfBaths, setHalfBaths] = useState(0);
   const [frequency, setFrequency] = useState<FrequencyId>(DEFAULT_FREQUENCY);
-  const [contact, setContact] = useState({ name: "", email: "", phone: "" });
+  const [contact, setContact] = useState({ firstName: "", lastName: "", email: "", phone: "" });
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [failed, setFailed] = useState(false);
   const [leadCaptureFailed, setLeadCaptureFailed] = useState(false);
   const [honeypot, setHoneypot] = useState("");
-  const [errors, setErrors] = useState<{ name?: string; email?: string; phone?: string }>({});
+  const [errors, setErrors] = useState<{ firstName?: string; lastName?: string; email?: string; phone?: string }>({});
   /** Focus lands on the new step's heading so SR users hear where they are. */
   const stepHeadingRef = useRef<HTMLHeadingElement>(null);
   const firstRenderRef = useRef(true);
-  const nameRef = useRef<HTMLInputElement>(null);
+  const firstNameRef = useRef<HTMLInputElement>(null);
+  const lastNameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const phoneRef = useRef<HTMLInputElement>(null);
   const [handingOff, setHandingOff] = useState(false);
@@ -339,28 +317,10 @@ export default function QuoteFlow({
   
   const [hasPets, setHasPets] = useState<boolean | null>(null);
   const [petError, setPetError] = useState<string | null>(null);
-  /**
-   * "Is the address inside city limits?" — only asked as a fallback when the
-   * postal code can't answer it. Unanswered is priced as inside (no fee) so
-   * the CTA is never blocked; only an explicit "No" adds the travel fee.
-   */
-  const [insideCity, setInsideCity] = useState<boolean | null>(null);
   /** Optional answers that pre-fill the booking page's own questions. */
-  const [details, setDetails] = useState<CleanerDetails>({ province: "AB" });
+  const [details, setDetails] = useState<CleanerDetails>({});
   /** The condition nudge is advice, so it can be dismissed for good. */
   const [deepNudgeDismissed, setDeepNudgeDismissed] = useState(false);
-  /**
-   * The postal code decides the travel fee whenever it's complete; the manual
-   * radio is the fallback only while it can't.
-   */
-  const cityStatus = postalCodeCityStatus(details.postalCode);
-  /**
-   * Red Deer is a branch with its own office (owner, 2026-09-11): its postal
-   * codes (T4N, T4P, T4R) are in-city codes in booking-redirect.ts, so they
-   * carry no travel fee and book online like an Edmonton or Calgary address.
-   */
-  const outsideCity = cityStatus === "unknown" ? insideCity === false : cityStatus === "outside";
-
   const startedAtRef = useRef(Date.now());
   /** Stable receipts make a visible Retry safe and keep lead/confirm distinct. */
   const leadRequestIdRef = useRef<string | null>(null);
@@ -670,11 +630,6 @@ export default function QuoteFlow({
     () => petsExtraForSelection(service, bedrooms, homeType),
     [service, bedrooms, homeType]
   );
-  const travelExtra = useMemo(
-    () => travelFeeExtraForSelection(service, bedrooms, homeType),
-    [service, bedrooms, homeType]
-  );
-
   /**
    * Deep intent already puts the package in the booking URL and in the shown
    * price, so its tile is displayed as locked-on rather than toggleable — it
@@ -731,9 +686,8 @@ export default function QuoteFlow({
       if (quantity > 0) rows.push({ extra, quantity });
     }
     if (hasPets && petsExtra) rows.push({ extra: petsExtra, quantity: 1 });
-    if (outsideCity && travelExtra) rows.push({ extra: travelExtra, quantity: 1 });
     return rows;
-  }, [visibleShelf, addOns, hasPets, petsExtra, outsideCity, travelExtra]);
+  }, [visibleShelf, addOns, hasPets, petsExtra]);
 
   const addOnTotal = basketRows.reduce(
     (sum, row) => sum + row.extra.price * row.quantity,
@@ -811,7 +765,7 @@ export default function QuoteFlow({
       GHL_FREQUENCY_LABELS[getFrequency(frequency).bkId] ?? getFrequency(frequency).label,
     frequency_discount_pct: quote.discountPct,
     currency: "CAD" as const,
-    full_name: contact.name,
+    full_name: `${contact.firstName.trim()} ${contact.lastName.trim()}`,
     email: contact.email,
     phone: contact.phone,
     page_url: typeof window === "undefined" ? "" : window.location.href,
@@ -841,16 +795,17 @@ export default function QuoteFlow({
 
     // Inline, focus-managed validation — the browser bubble is not announced
     // reliably and disappears on the next keystroke.
-    const nextErrors: { name?: string; email?: string; phone?: string } = {};
-    if (contact.name.trim().length < 2) nextErrors.name = "Please enter your full name.";
+    const nextErrors: { firstName?: string; lastName?: string; email?: string; phone?: string } = {};
+    if (!contact.firstName.trim()) nextErrors.firstName = "Enter your first name.";
+    if (!contact.lastName.trim()) nextErrors.lastName = "Enter your last name.";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(contact.email.trim()))
       nextErrors.email = "Enter a valid email, like name@example.com.";
-    if (contact.phone.replace(/\D/g, "").length < 10)
-      nextErrors.phone = "Enter a 10-digit phone number so we can confirm your booking.";
+    if (!normalizeBookingPhone(contact.phone))
+      nextErrors.phone = "Enter a 10-digit Canadian or US phone number, with an optional +1.";
 
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) {
-      const first = nextErrors.name ? nameRef : nextErrors.email ? emailRef : phoneRef;
+      const first = nextErrors.firstName ? firstNameRef : nextErrors.lastName ? lastNameRef : nextErrors.email ? emailRef : phoneRef;
       first.current?.focus();
       return;
     }
@@ -912,9 +867,7 @@ export default function QuoteFlow({
   /** The step-3 payload: same contact, now carrying the quoted prices. */
   const confirmFields = () => ({
     ...homeFields(),
-    // Final routing follows the service address, even if the quote was opened
-    // from a page belonging to a different branch.
-    city: branchKeyForAddress(details) ?? proof.key,
+    city: proof.key,
     // With deep intent the quoted first clean is Standard + the package, and
     // any add-on chip is included too, so the office's quote-vs-booking check
     // compares like with like.
@@ -929,8 +882,6 @@ export default function QuoteFlow({
         ? [`Cleanliness: ${DC_CLEANLINESS_LABELS[details.cleanliness]}`]
         : []),
       ...(details.parking ? [`Parking: ${DC_PARKING_LABELS[details.parking]}`] : []),
-      ...(details.postalCode?.trim() ? [`Postal code: ${details.postalCode.trim()}`] : []),
-      ...(details.address?.trim() ? [`Service address: ${[details.address, details.apartment, details.city, details.province].filter(Boolean).join(", ")}`] : []),
       ...(details.flexibility ? [`Date/time flexibility: ${FLEXIBILITY_OPTIONS.find(option => option.value === details.flexibility)?.label}`] : []),
     ],
     notes: details.notes?.trim() || undefined,
@@ -947,9 +898,15 @@ export default function QuoteFlow({
         frequencyBkId: getFrequency(frequency).bkId,
         deepClean: deepCleanIntent,
         extras: extrasBasket,
-        cleanerDetails: details,
+        cleanerDetails: {
+          entry: details.entry,
+          cleanliness: details.cleanliness,
+          parking: details.parking,
+          flexibility: details.flexibility,
+          notes: details.notes,
+        },
         coupon: promoCode,
-        contact,
+        contact: { firstName: contact.firstName, lastName: contact.lastName, email: contact.email, phone: contact.phone },
         tracking: getStoredTracking(),
       }),
     [
@@ -1006,9 +963,9 @@ export default function QuoteFlow({
   const requireCleanerDetails = () => {
     const errors = validateCleanerDetails(details);
     setDetailErrors(errors);
-    const first = ["address", "apartment", "city", "province", "entry", "cleanliness", "parking", "flexibility", "postalCode", "notes"].find((key) => errors[key]);
+    const first = ["entry", "cleanliness", "parking", "flexibility", "notes"].find((key) => errors[key]);
     if (!first) return true;
-    const targets: Record<string, string> = { postalCode: "dc-zip", cleanliness: "dc-clean-group", parking: "dc-park-group", entry: "dc-entry-group", flexibility: "dc-flexibility" };
+    const targets: Record<string, string> = { cleanliness: "dc-clean-group", parking: "dc-park-group", entry: "dc-entry-group", flexibility: "dc-flexibility" };
     const target = document.getElementById(targets[first] ?? `dc-${first}`);
     target?.scrollIntoView({ behavior: "smooth", block: "center" });
     const focusTarget = target?.matches("input,select,textarea") ? target : target?.querySelector("button,input,select,textarea");
@@ -1455,24 +1412,45 @@ export default function QuoteFlow({
               </StepHeader>
 
               <div className="grid gap-5 sm:grid-cols-2">
-                <div className="sm:col-span-2">
-                  <Label htmlFor="name" className="text-base font-semibold">
-                    Full name <span className="text-accent" aria-hidden="true">*</span>
+                <div>
+                  <Label htmlFor="first-name" className="text-base font-semibold">
+                    First name <span className="text-accent" aria-hidden="true">*</span>
                   </Label>
                   <Input
-                    id="name"
-                    ref={nameRef}
+                    id="first-name"
+                    ref={firstNameRef}
                     required
-                    autoComplete="name"
-                    aria-invalid={Boolean(errors.name)}
-                    aria-describedby={errors.name ? "name-error" : undefined}
+                    autoComplete="given-name"
+                    aria-invalid={Boolean(errors.firstName)}
+                    aria-describedby={errors.firstName ? "first-name-error" : undefined}
                     className="mt-2 h-12 text-base"
-                    value={contact.name}
-                    onChange={(event) => setContact({ ...contact, name: event.target.value })}
+                    value={contact.firstName}
+                    onChange={(event) => setContact({ ...contact, firstName: event.target.value })}
                   />
-                  {errors.name && (
-                    <p id="name-error" role="alert" className="mt-2 text-base font-semibold text-destructive-ink">
-                      {errors.name}
+                  {errors.firstName && (
+                    <p id="first-name-error" role="alert" className="mt-2 text-base font-semibold text-destructive-ink">
+                      {errors.firstName}
+                    </p>
+                  )}
+                </div>
+                <div>
+                  <Label htmlFor="last-name" className="text-base font-semibold">
+                    Last name <span className="text-accent" aria-hidden="true">*</span>
+                  </Label>
+                  <Input
+                    id="last-name"
+                    ref={lastNameRef}
+                    required
+                    autoComplete="family-name"
+                    aria-invalid={Boolean(errors.lastName)}
+                    aria-describedby={errors.lastName ? "last-name-error" : undefined}
+                    className="mt-2 h-12 text-base"
+                    value={contact.lastName}
+                    onChange={(event) => setContact({ ...contact, lastName: event.target.value })}
+                  />
+                  {errors.lastName && (
+                    <p id="last-name-error" role="alert" className="mt-2 text-base font-semibold text-destructive-ink">
+                      {errors.lastName}
                     </p>
                   )}
                 </div>
@@ -1604,8 +1582,8 @@ export default function QuoteFlow({
                 eyebrow="Your price"
                 title={
                   pricePane === "price"
-                    ? "Your price — choose an available time."
-                    : "Last details, then pick your time"
+                    ? "Your price — check live availability."
+                    : "Last details, then check the live schedule"
                 }
               >
                 {/* Proof at the moment of doubt: the price is the hesitation point. */}
@@ -2046,28 +2024,10 @@ export default function QuoteFlow({
                 <h3 className="text-lg font-bold text-foreground">Details for your cleaner</h3>
                 <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
                   Enter these once here. We&rsquo;ll transfer them to secure booking, where you can
-                  review them before choosing your time and confirming.
+                  review them before choosing a live date and arrival time. BookingKoala will ask
+                  for and verify your service address next.
                 </p>
-                <fieldset className="mt-5 grid gap-4 sm:grid-cols-2">
-                  <legend className="mb-3 text-base font-bold">Address Details — Where would you like us to clean?</legend>
-                  {([
-                    ["address", "Address", "street-address", "e.g. 123 Main Street", true],
-                    ["apartment", "Apt/Unit # (if it is a house leave blank)", "address-line2", "Unit or apartment", false],
-                    ["city", "City", "address-level2", "City or town", true],
-                    ["province", "Province", "address-level1", "AB", true],
-                  ] as const).map(([key, label, autocomplete, placeholder, required]) => (
-                    <div key={key}>
-                      <Label htmlFor={`dc-${key}`}>{label}{required && " *"}</Label>
-                      <Input id={`dc-${key}`} autoComplete={autocomplete} maxLength={120}
-                        placeholder={placeholder} value={details[key] ?? ""} required={required}
-                        aria-invalid={Boolean(detailErrors[key])} aria-describedby={detailErrors[key] ? `dc-${key}-error` : undefined}
-                        onChange={event => setDetails(current => ({ ...current, [key]: event.target.value }))}
-                        className="mt-2 min-h-[48px] text-base" />
-                      {detailErrors[key] && <p id={`dc-${key}-error`} className="mt-2 text-sm font-semibold text-destructive">{detailErrors[key]}</p>}
-                    </div>
-                  ))}
-                </fieldset>
-                <fieldset id="dc-entry-group" className="mt-4 scroll-mt-24">
+                <fieldset id="dc-entry-group" className="mt-5 scroll-mt-24">
                   <legend className="text-base font-bold text-foreground">
                     How do we enter the home? <span className="text-accent">*</span>
                   </legend>
@@ -2194,117 +2154,6 @@ export default function QuoteFlow({
                   )}
                 </fieldset>
 
-                {/* Postal code now lives beside the price, where the travel
-                    fee it controls is shown. */}
-
-                {/* Postal code sits with the price because it decides the
-                    travel fee — one question, answered where it matters. */}
-                <div className="mt-5">
-                  <Label htmlFor="dc-zip" className="text-base font-bold text-foreground">
-                    Your postal code <span className="text-accent">*</span>
-                  </Label>
-                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                    Required to book — it confirms instantly whether a travel fee applies.
-                  </p>
-                  <input
-                    id="dc-zip"
-                    inputMode="text"
-                    autoComplete="postal-code"
-                    maxLength={7}
-                    value={details.postalCode ?? ""}
-                    onChange={(event) =>
-                      setDetails((current) => ({
-                        ...current,
-                        postalCode: formatPostalInput(event.target.value),
-                      }))
-                    }
-                    className="mt-2 w-full max-w-[12rem] rounded-sm border border-input bg-card p-3 text-base uppercase text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-                    placeholder="T5J 0N3"
-                  />
-                  {detailErrors.postalCode && (
-                    <p className="mt-2 text-sm font-semibold text-destructive">
-                      {detailErrors.postalCode}
-                    </p>
-                  )}
-                  {(details.postalCode ?? "").length >= 7 && cityStatus === "unknown" && (
-                    <p className="mt-1 text-sm text-fine-print">
-                      That doesn&rsquo;t look like a Canadian postal code — we&rsquo;ll confirm it
-                      with you.
-                    </p>
-                  )}
-                </div>
-
-                {outsideCity && travelExtra && (
-                  <p className="mt-3 text-base font-semibold text-foreground">
-                    + {formatPrice(travelExtra.price)} travel fee (outside city limits)
-                  </p>
-                )}
-
-                {/* A valid postal code is the SOURCE OF TRUTH: it replaces the
-                    Yes/No question with a visible statement, so the price can
-                    never change without the customer seeing why. */}
-                {travelExtra && cityStatus === "inside" && (
-                  <p className="mt-3 rounded-sm bg-secondary/60 p-3 text-base font-semibold leading-relaxed text-foreground">
-                    ✓ {postalCodeCityName(details.postalCode) ?? "In-city"} postal code
-                    {" "}({normalizePostalCode(details.postalCode)}) — no travel fee.
-                    {insideCity === false
-                      ? " This replaces your earlier answer."
-                      : ""}
-                  </p>
-                )}
-
-                {travelExtra && cityStatus === "outside" && (
-                  <p className="mt-3 rounded-sm bg-secondary/60 p-3 text-base leading-relaxed text-foreground">
-                    <span className="font-semibold">
-                      {normalizePostalCode(details.postalCode)} is outside Edmonton, Calgary and
-                      Red Deer city limits
-                    </span>{" "}
-                    — a {formatPrice(travelExtra.price)} travel fee applies; it covers the extra
-                    travel time.
-                    {insideCity === true ? " This replaces your earlier answer." : ""}
-                  </p>
-                )}
-
-                {/* Asked only when the postal code can't answer it. */}
-                {travelExtra && cityStatus === "unknown" && (details.postalCode ?? "").length >= 6 && (
-                  <fieldset className="mt-5 rounded-sm border border-border bg-card p-4">
-                    <legend className="px-1 text-base font-bold text-foreground">
-                      Is your service address inside Edmonton, Calgary or Red Deer city limits?
-                    </legend>
-                    <div className="mt-2 flex flex-wrap gap-3">
-                      {[
-                        { label: "Yes", value: true },
-                        { label: "No", value: false },
-                      ].map((option) => (
-                        <label
-                          key={option.label}
-                          className="flex min-h-[48px] cursor-pointer items-center gap-3 rounded-sm border border-border px-4 text-base font-semibold text-foreground hover:border-brand-navy"
-                        >
-                          <input
-                            type="radio"
-                            name="inside-city"
-                            className="h-5 w-5 accent-brand-navy"
-                            checked={insideCity === option.value}
-                            onChange={() => setInsideCity(option.value)}
-                          />
-                          {option.label}
-                        </label>
-                      ))}
-                    </div>
-                    {insideCity === false && (
-                      <p className="mt-3 rounded-sm bg-secondary/60 p-3 text-base leading-relaxed text-foreground">
-                        A {formatPrice(travelExtra.price)} travel fee applies outside city limits —
-                        it covers the extra travel time.
-                      </p>
-                    )}
-                  </fieldset>
-                )}
-
-                <Callout label="Travel fee" className="mt-4">
-                  Addresses outside Edmonton, Calgary and Red Deer city limits include a travel
-                  fee — we confirm before your clean.
-                </Callout>
-
                 <div className="mt-5">
                   <Label htmlFor="dc-flexibility" className="text-base font-bold">Is your date/time flexible? *</Label>
                   <select id="dc-flexibility" value={details.flexibility ?? ""}
@@ -2314,12 +2163,12 @@ export default function QuoteFlow({
                     <option value="">Select Option</option>
                     {FLEXIBILITY_OPTIONS.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}
                   </select>
-                  <p id="dc-flexibility-help" className="mt-2 text-sm text-muted-foreground">If flexible, specify the dates or times that work in the notes below. You will choose a live available arrival window next.</p>
+                  <p id="dc-flexibility-help" className="mt-2 text-sm text-muted-foreground">You&rsquo;ll choose from BookingKoala&rsquo;s live dates and arrival times next.</p>
                   {detailErrors.flexibility && <p role="alert" className="mt-2 text-sm font-semibold text-destructive">{detailErrors.flexibility}</p>}
                 </div>
                 <div className="mt-5">
                   <Label htmlFor="dc-notes" className="text-base font-bold text-foreground">
-                    Special Notes &amp; Instructions <span className="font-normal text-muted-foreground">{details.flexibility && details.flexibility !== "none" ? "(include your date/time flexibility)" : "(optional)"}</span>
+                    Special Notes &amp; Instructions <span className="font-normal text-muted-foreground">(optional)</span>
                   </Label>
                   <textarea
                     id="dc-notes"
@@ -2338,7 +2187,7 @@ export default function QuoteFlow({
                     placeholder="Pets, fragile items, a room to skip…"
                   />
                   <p id="dc-notes-help" className="mt-1 text-sm text-fine-print">
-                    {(details.notes ?? "").length}/{cleanerNotesLimit(details)} characters. Include entry instructions and flexibility where relevant.
+                    {(details.notes ?? "").length}/{cleanerNotesLimit(details)} characters. Add anything you would like the cleaning team to know.
                   </p>
                   {detailErrors.notes && <p role="alert" className="mt-2 text-sm font-semibold text-destructive">{detailErrors.notes}</p>}
                 </div>
@@ -2365,7 +2214,7 @@ export default function QuoteFlow({
                       onClick={goToBooking}
                       className="min-h-[56px] w-full rounded-full bg-accent px-8 text-base font-bold text-accent-foreground hover:bg-accent/90 sm:w-auto"
                     >
-                      Choose my date &amp; time
+                      Check live availability
                       <span className="dc-icon dc-icon-arrow-right ml-2 h-5 w-5" aria-hidden="true" />
                     </Button>
                   ) : (
@@ -2388,7 +2237,9 @@ export default function QuoteFlow({
               {bookingUrl && (
                 <div className="space-y-2">
                   <p className="text-sm text-muted-foreground">
-                    Review your details, choose an available time and add your card. You won&rsquo;t be charged today.
+                    Choose a live date and arrival time, then enter your address in BookingKoala.
+                    Review the final total, including any travel fee for an address outside city limits,
+                    before adding your card. You won&rsquo;t be charged today.
                     {deepCleanIntent
                       ? " Your Deep Cleaning package is already added."
                       : ""}
@@ -2437,11 +2288,7 @@ export default function QuoteFlow({
                         addOnTotal > 0 ? ` and ${formatPrice(addOnTotal)} of add-ons` : ""
                       }`
                     : addOnTotal > 0
-                      ? `Includes ${formatPrice(addOnTotal)} of add-ons${
-                          outsideCity && travelExtra
-                            ? ` (incl. ${formatPrice(travelExtra.price)} travel fee)`
-                            : ""
-                        }`
+                      ? `Includes ${formatPrice(addOnTotal)} of add-ons`
                       : undefined
                 }
                 addOnCount={basketRows.length}
@@ -2480,11 +2327,6 @@ export default function QuoteFlow({
               {ongoingTotal !== null && (
                 <p className="truncate text-sm text-fine-print">
                   then {formatPrice(ongoingTotal)} per visit
-                </p>
-              )}
-              {outsideCity && travelExtra && (
-                <p className="truncate text-sm text-fine-print">
-                  incl. {formatPrice(travelExtra.price)} travel fee
                 </p>
               )}
             </div>

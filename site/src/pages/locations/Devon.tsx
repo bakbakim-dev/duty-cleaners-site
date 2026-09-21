@@ -288,7 +288,7 @@ export default function Devon() {
               </h2>
               <div className="text-muted-foreground text-lg leading-relaxed space-y-4">
                 <p>
-                  For a house that is kept up, book the standard clean, from {STANDARD_FROM} for a one-bedroom apartment or condo, before GST, the travel fee and any house-type or pet surcharge, and put it on a repeating schedule for the discount. The deep clean, from {DEEP_FROM} on the same terms, is the better first visit for a house that has not had a professional clean, because it adds baseboards, doors, light switches, wall outlets and vent covers to the standard checklist.
+                  For a house that is kept up, book the standard clean, from {STANDARD_FROM} for a one-bedroom apartment or condo, before GST, the travel fee and any house-type or pet surcharge, and put it on a repeating schedule for the discount. Choose the deep clean from {DEEP_FROM} when the home needs its added tasks—baseboards, doors, light switches, wall outlets and vent covers—or has enough build-up to need them. A first professional visit does not automatically require the deeper package.
                 </p>
                 <p>
                   For a rental handover, book{" "}
