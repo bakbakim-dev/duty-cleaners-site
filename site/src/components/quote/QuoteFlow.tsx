@@ -1216,67 +1216,53 @@ export default function QuoteFlow({
                   </div>
                 ) : (
                   <>
-                  {/* In the scan path: deep cleaning is a booking-page package, not a service. */}
-                  {deepCleanIntent ? (
-                    <p className="mb-3 rounded-sm border border-brand-navy/30 bg-secondary/50 p-4 text-sm leading-relaxed text-muted-foreground">
-                      <span className="font-semibold text-foreground">
-                        Deep clean — good choice.
-                      </span>{" "}
-                      Pick Standard below — we add your Deep Cleaning package to the price
-                      on the next screen.
-                    </p>
-                  ) : (
-                    <p className="mb-3 text-sm leading-relaxed text-muted-foreground">
-                      Looking for a{" "}
-                      <button
-                        type="button"
-                        onClick={() => {
-                          pickService("standard");
-                          setDeepCleanIntent(true);
-                        }}
-                        className="inline-flex min-h-[44px] items-center font-bold text-foreground underline underline-offset-4 hover:text-brand-navy"
-                      >
-                        Deep Cleaning
-                      </button>
-                      ? Choose Standard — we add the package to your price on the next
-                      screen.
-                    </p>
-                  )}
-
+                  {/* Deep cleaning is a booking-page package on top of Standard, not a
+                      BookingKoala service, but customers look for it by name: its card
+                      selects Standard with deep intent, so the package is priced on the
+                      next screen and sent to the booking page like any other deep visit. */}
                   <div className="grid gap-3 sm:grid-cols-2">
-
-                    {SELECTABLE_SERVICES.map((option) => (
-                      <button
-                        key={option.id}
-                        type="button"
-                        aria-pressed={option.id === service}
-                        onClick={() => {
-                          pickService(option.id);
-                          if (option.id !== "standard") setDeepCleanIntent(false);
-                        }}
-                        className={`min-h-[48px] rounded-sm border p-4 text-left transition-colors ${
-                          option.id === service
-                            ? "border-brand-navy bg-brand-navy text-brand-navy-foreground"
-                            : "border-border bg-card text-foreground hover:border-brand-navy/40"
-                        }`}
-                      >
-                        <span className="block font-bold">{option.label}</span>
-                        <span
-                          className={`mt-1 block text-sm ${
-                            option.id === service
-                              ? "text-brand-navy-foreground/75"
-                              : "text-muted-foreground"
+                    {[
+                      ...SELECTABLE_SERVICES.slice(0, 1).map((option) => ({ ...option, deep: false })),
+                      {
+                        id: "standard" as const,
+                        label: "Deep Cleaning",
+                        blurb: "Standard plus baseboards, doors, light switches, wall outlets, vent covers and cobwebs.",
+                        deep: true,
+                      },
+                      ...SELECTABLE_SERVICES.slice(1).map((option) => ({ ...option, deep: false })),
+                    ].map((option) => {
+                      const selected = option.id === service && (option.id !== "standard" || option.deep === deepCleanIntent);
+                      return (
+                        <button
+                          key={option.deep ? "deep" : option.id}
+                          type="button"
+                          aria-pressed={selected}
+                          onClick={() => {
+                            pickService(option.id);
+                            setDeepCleanIntent(option.deep);
+                          }}
+                          className={`min-h-[48px] rounded-sm border p-4 text-left transition-colors ${
+                            selected
+                              ? "border-brand-navy bg-brand-navy text-brand-navy-foreground"
+                              : "border-border bg-card text-foreground hover:border-brand-navy/40"
                           }`}
                         >
-                          {option.blurb}
-                          {option.id === "move-in-out" && (
-                            <span className="mt-1 block font-semibold">
-                              Already includes deep cleaning.
-                            </span>
-                          )}
-                        </span>
-                      </button>
-                    ))}
+                          <span className="block font-bold">{option.label}</span>
+                          <span
+                            className={`mt-1 block text-sm ${
+                              selected ? "text-brand-navy-foreground/75" : "text-muted-foreground"
+                            }`}
+                          >
+                            {option.blurb}
+                            {option.id === "move-in-out" && (
+                              <span className="mt-1 block font-semibold">
+                                Already includes deep cleaning.
+                              </span>
+                            )}
+                          </span>
+                        </button>
+                      );
+                    })}
                   </div>
                   </>
                 )}
@@ -1731,40 +1717,35 @@ export default function QuoteFlow({
 
               {selected.supportsRecurring && (
                 <div>
-                  <p className="mb-3 text-lg font-bold text-foreground">
-                    Change how often and watch the price update
+                  <p className="mb-1 text-lg font-bold text-foreground">
+                    How often?
                   </p>
-                  <p className="-mt-2 mb-3 text-[0.9375rem] text-muted-foreground">
-                    Keep the reset without rebuilding the plan each time.
+                  <p className="mb-3 text-[0.9375rem] text-muted-foreground">
+                    Recurring plans are discounted from the second visit; the first clean is at
+                    the one-time rate.
                   </p>
                   <FrequencyChips value={frequency} onChange={setFrequency} />
 
-                  {/* The saving, stated where the choice is made. Dollars lead;
-                      the percentage reinforces. The struck figure is the real
-                      first-clean price, so the comparison is truthful. */}
+                  {/* The saving, stated once where the choice is made. The price card
+                      above already shows first clean and per-visit, so this line
+                      carries only the difference; no struck-through figure, because
+                      the first clean really is charged at the one-time rate. */}
                   {quote.ongoing !== null && quote.savings > 0 && (
-                    <div
+                    <p
                       key={frequency}
-                      className="savings-appear mt-4 rounded-lg border border-savings-border bg-savings p-5 text-savings-foreground"
+                      className="savings-appear mt-4 flex items-start gap-2 rounded-sm border border-border bg-secondary/60 p-4 text-base leading-relaxed text-foreground"
                     >
-                      <p className="text-base font-semibold">
-                        <span className="line-through">{formatPrice(firstCleanTotal)}</span>{" "}
-                        first clean &rarr;
-                      </p>
-                      <p className="text-3xl font-bold leading-tight">
-                        {formatPrice(ongoingTotal ?? 0)}
-                        <span className="ml-2 align-middle text-base font-semibold">
-                          +GST per visit
-                        </span>
-                      </p>
-                      <p className="mt-2 inline-flex items-center gap-2 rounded-sm bg-savings-foreground px-3 py-1.5 text-base font-bold text-savings">
-                        <span className="dc-icon dc-icon-check h-4 w-4" aria-hidden="true" />
-                        Frequency savings: {formatPrice(ongoingSavings)} per recurring visit
+                      <span className="dc-icon dc-icon-check mt-1 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
+                      <span>
+                        From your second visit:{" "}
+                        <span className="font-bold">{formatPrice(ongoingTotal ?? 0)} + GST</span>, saving{" "}
+                        <span className="font-bold">{formatPrice(ongoingSavings)}</span> a visit
                         {basketRows.some((row) => row.extra.firstVisitOnly || row.extra.exemptFromFrequencyDiscount)
                           ? ""
                           : ` (${quote.discountPct}%)`}
-                      </p>
-                    </div>
+                        .
+                      </span>
+                    </p>
                   )}
                 </div>
               )}
@@ -2024,8 +2005,8 @@ export default function QuoteFlow({
                 <h3 className="text-lg font-bold text-foreground">Details for your cleaner</h3>
                 <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
                   Enter these once here. We&rsquo;ll transfer them to secure booking, where you can
-                  review them before choosing a live date and arrival time. BookingKoala will ask
-                  for and verify your service address next.
+                  review them before choosing a live date and arrival time. The booking page will
+                  ask for and verify your service address next.
                 </p>
                 <fieldset id="dc-entry-group" className="mt-5 scroll-mt-24">
                   <legend className="text-base font-bold text-foreground">
@@ -2163,7 +2144,7 @@ export default function QuoteFlow({
                     <option value="">Select Option</option>
                     {FLEXIBILITY_OPTIONS.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}
                   </select>
-                  <p id="dc-flexibility-help" className="mt-2 text-sm text-muted-foreground">You&rsquo;ll choose from BookingKoala&rsquo;s live dates and arrival times next.</p>
+                  <p id="dc-flexibility-help" className="mt-2 text-sm text-muted-foreground">You&rsquo;ll choose from our live dates and arrival times next.</p>
                   {detailErrors.flexibility && <p role="alert" className="mt-2 text-sm font-semibold text-destructive">{detailErrors.flexibility}</p>}
                 </div>
                 <div className="mt-5">
@@ -2237,7 +2218,7 @@ export default function QuoteFlow({
               {bookingUrl && (
                 <div className="space-y-2">
                   <p className="text-sm text-muted-foreground">
-                    Choose a live date and arrival time, then enter your address in BookingKoala.
+                    Choose a live date and arrival time, then enter your address on the booking page.
                     Review the final total, including any travel fee for an address outside city limits,
                     before adding your card. You won&rsquo;t be charged today.
                     {deepCleanIntent

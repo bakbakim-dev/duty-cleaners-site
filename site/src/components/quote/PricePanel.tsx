@@ -100,10 +100,7 @@ export default function PricePanel({
     return (
       <aside className="rounded-lg bg-brand-navy p-5 text-brand-navy-foreground shadow-lg shadow-brand-navy/20">
         {liveRegion}
-        <p className="text-[0.6875rem] font-bold uppercase tracking-[0.2em] text-brand-gold">
-          Price authority
-        </p>
-        <p className="mt-2 text-sm font-semibold uppercase tracking-[0.14em] text-fine-print-on-dark">
+        <p className="text-sm font-semibold uppercase tracking-[0.14em] text-fine-print-on-dark">
           {serviceLabel}
         </p>
         <p className="mt-3 text-sm font-semibold text-fine-print-on-dark">

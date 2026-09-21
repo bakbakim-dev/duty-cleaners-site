@@ -345,7 +345,7 @@ describe("the quote overlay reads its facts from proof.ts", () => {
 describe("Red Deer postal codes book online like any in-city code", () => {
   it("QuoteFlow leaves address validation and travel pricing to BookingKoala", () => {
     const src = codeOf("src/components/quote/QuoteFlow.tsx");
-    expect(src).toContain("BookingKoala will ask");
+    expect(src).toMatch(/booking page will\s+ask for and verify your service address/);
     expect(src).not.toMatch(/dc-address|dc-zip|details\.postalCode|travelFeeExtraForSelection/);
     expect(src, "a Red Deer code lost its online booking again").toMatch(
       /const bookingUrl = bookingQuery === null \? null : publicBookingUrl\(bookingQuery\);/,

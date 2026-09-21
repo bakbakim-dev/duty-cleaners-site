@@ -94,8 +94,8 @@ export default function BookingHandoff({
         </p>
         <p className="mt-1 text-brand-navy-foreground/75">
           {failed ? "Your answers are still here. Try again, or continue and enter your personal details on the booking page." : hasAddOns
-            ? `Your ${priceLabel ?? "quote"} and add-ons will carry over. Check BookingKoala's live schedule next.`
-            : `Your ${priceLabel ?? "quote"} will carry over. Check BookingKoala's live schedule next.`}
+            ? `Your ${priceLabel ?? "quote"} and add-ons will carry over. Pick a live date and arrival time next.`
+            : `Your ${priceLabel ?? "quote"} will carry over. Pick a live date and arrival time next.`}
         </p>
       </div>
 

@@ -297,8 +297,23 @@
     }
     return out;
   }
+  // The Theme Builder hero is neutral ("Book your clean"), because it also
+  // greets people who came straight to /booknow. Only a visitor whose quote
+  // details actually arrived is told they carried over.
+  var heroDone = false;
+  function personaliseHero() {
+    if (heroDone) return;
+    var heading = headingMatching(/^(book your clean|here.s your price)/i);
+    if (!heading) return;
+    heading.textContent = 'Here’s your price — pick a date to lock it in';
+    Array.prototype.slice.call(document.querySelectorAll('p')).filter(function (p) {
+      return /takes about a minute/i.test(normal(p.textContent));
+    }).slice(0, 1).forEach(function (p) { p.textContent = 'Your details carried over. Takes about a minute.'; });
+    heroDone = true;
+  }
   function tick() {
     if (busy || !Object.keys(fields).length) return;
+    personaliseHero();
     var pending = [], review = [], verified = [];
     // Address must be last: BookingKoala's Google suggestions stay reliable
     // only when a later city/province/postal fill does not steal its focus.

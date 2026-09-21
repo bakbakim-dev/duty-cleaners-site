@@ -192,6 +192,19 @@ describe("BookingKoala companion receiver", () => {
     expect(addressHeading.scrolls).toEqual([{ block: "start", behavior: "smooth" }]);
   });
 
+  it("tells only a visitor whose details arrived that they carried over", () => {
+    const hero = new Element("h1"); hero.textContent = "Book your clean";
+    const sub = new Element("p"); sub.textContent = "Choose a live date and arrival time. Takes about a minute.";
+    const state = fixture({ f_name: "Jamie" }, [hero, sub]);
+    state.tick();
+    expect(hero.textContent).toBe("Here’s your price — pick a date to lock it in");
+    expect(sub.textContent).toBe("Your details carried over. Takes about a minute.");
+    const directHero = new Element("h1"); directHero.textContent = "Book your clean";
+    const direct = fixture({}, [directHero]);
+    direct.tick();
+    expect(directHero.textContent).toBe("Book your clean");
+  });
+
   // Page positions measured on the live form, 2026-09-21 (desktop 1440 wide,
   // phone 375x812). The live Address Details heading carries its subtitle.
   function liveForm(layout: { address: number; payment: number; bookBottom: number; bar?: { top: number; className: string } }) {
