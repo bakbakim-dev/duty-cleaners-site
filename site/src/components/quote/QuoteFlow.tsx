@@ -122,6 +122,10 @@ const DC_PARKING_LABELS: Record<DcParking, string> = Object.fromEntries(
   DC_PARKING_OPTIONS.map((option) => [option.value, option.label])
 ) as Record<DcParking, string>;
 
+/** The corner "Add" control on every add-on card, tick-box or quantity alike. */
+const ADD_PILL =
+  "inline-flex min-h-[44px] min-w-[4.5rem] shrink-0 items-center justify-center rounded-sm border px-3 text-sm font-bold";
+
 /** Step 4 happens on the BookingKoala page, but it is part of the same funnel. */
 const TOTAL_STEPS = STEP_LABELS.length;
 
@@ -611,6 +615,12 @@ export default function QuoteFlow({
     }).ongoing;
   }, [service, homeType, bedrooms, bathrooms, halfBaths, selected.supportsRecurring]);
 
+  /**
+   * What the customer chose, by name. The Deep Cleaning card is Standard plus
+   * the package underneath, but every label after step 1 must say what they
+   * picked, or it reads as if the choice did not register.
+   */
+  const serviceName = deepCleanIntent && service === "standard" ? "Deep Cleaning" : selected.label;
   /** True only when we can name a real package price for this home size. */
   const showDeepBreakdown = deepCleanIntent && deepCleanPrice !== null && !quote.quoteOnly;
   /** What the first clean really costs once the package is added at booking. */
@@ -642,8 +652,9 @@ export default function QuoteFlow({
     [shelf, deepCleanIntent]
   );
 
-  /** What renders: the interactive rows, plus the locked deep tile if any. */
-  const shelfGroups = useMemo(() => groupExtras(shelf), [shelf]);
+  /** What renders: the interactive rows. With deep intent the package is the
+   *  service the customer picked on step 1, so it is not offered as an extra. */
+  const shelfGroups = useMemo(() => groupExtras(visibleShelf), [visibleShelf]);
 
   // Any change of service or home size invalidates the resolved rows.
   useEffect(() => {
@@ -1112,7 +1123,7 @@ export default function QuoteFlow({
         <h2 className="text-2xl font-bold text-foreground">Request received.</h2>
         <p className="mt-3 leading-relaxed text-muted-foreground">
           We&rsquo;ll text you within {RESPONSE_TIME_PROMISE} to confirm your time. Your{" "}
-          {selected.label.toLowerCase()} in {proof.city} is quoted at {priceLabel}
+          {serviceName.toLowerCase()} in {proof.city} is quoted at {priceLabel}
           {ongoingTotal ? `, then ${formatPrice(ongoingTotal)} per visit` : ""}.
         </p>
         <RiskReversalRow className="mt-6 justify-center" />
@@ -1145,7 +1156,7 @@ export default function QuoteFlow({
 
       {/* Progress — one indicator for the whole funnel, so nothing on the page
           can disagree about how many steps there are. */}
-      <div className="mb-8">
+      <div className="mb-5 sm:mb-8">
         <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
           <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">
             Instant price / {String(step + 1).padStart(2, "0")}
@@ -1157,7 +1168,7 @@ export default function QuoteFlow({
             />
             {STEP_LABELS[step]}
           </span>
-          <span className="text-sm font-semibold text-muted-foreground">
+          <span className="hidden text-sm font-semibold text-muted-foreground sm:inline">
             {Math.round(((step + 1) / TOTAL_STEPS) * 100)}% complete
           </span>
         </div>
@@ -1193,7 +1204,6 @@ export default function QuoteFlow({
                 number="01"
                 eyebrow="Your home"
                 title="About your home"
-                companion="Start with what would make this week feel easier."
               />
               <fieldset>
                 <legend className="mb-3 text-lg font-bold text-foreground">
@@ -1203,8 +1213,7 @@ export default function QuoteFlow({
                   <div className="flex flex-wrap items-center justify-between gap-3 rounded-sm border border-brand-navy/30 bg-secondary/50 p-4">
                     <span className="flex items-center gap-2 text-base font-bold text-foreground">
                       <span className="dc-icon dc-icon-check h-5 w-5 text-brand-navy" aria-hidden="true" />
-                      {selected.label}
-                      {deepCleanIntent ? " + Deep Cleaning package" : ""}
+                      {serviceName}
                     </span>
                     <button
                       type="button"
@@ -1332,7 +1341,9 @@ export default function QuoteFlow({
                       caption
                     />
 
-                    <div className="grid gap-6 sm:grid-cols-2">
+                    {/* Stacked, like bedrooms: seven chips in a half-width column
+                        wrapped 6 and 7 onto a second row. */}
+                    <div className="grid gap-6">
                       {baths.length > 0 && (
                         <NumberChips
                           legend="Full bathrooms"
@@ -1379,18 +1390,17 @@ export default function QuoteFlow({
                 number="02"
                 eyebrow="Where to send it"
                 title="Last step before your price."
-                companion="A clear scope means fewer surprises at the door."
               >
                 <p className="mt-3 text-muted-foreground">
-                  Your {selected.label.toLowerCase()} details are saved. We ask for these so we can
+                  Your {serviceName.toLowerCase()} details are saved. We ask for these so we can
                   save your quote and help you continue if booking is interrupted. There is no
                   obligation to book.
                 </p>
                 {!quote.quoteOnly && (
                   <Callout label="Your starting price" className="mt-4">
-                    Your {proof.city} {selected.label.toLowerCase()} starts from{" "}
+                    Your {proof.city} {serviceName.toLowerCase()} starts from{" "}
                     <span className="font-bold text-foreground">
-                      {formatPrice(quote.firstClean)}
+                      {formatPrice(deepFirstCleanBase ?? quote.firstClean)}
                     </span>{" "}
                     — add your details and the exact number appears on the next screen.
                   </Callout>
@@ -1573,7 +1583,7 @@ export default function QuoteFlow({
                 }
               >
                 {/* Proof at the moment of doubt: the price is the hesitation point. */}
-                <p className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
+                <p className="mt-3 hidden flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground sm:flex">
                   {BOOKINGS_CLAIM}
                   <span aria-hidden="true">·</span>
                   Pay after your clean
@@ -1599,7 +1609,7 @@ export default function QuoteFlow({
                 <>
               <div className="rounded-lg border border-quote-price-border bg-quote-price p-6">
                 <p className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-                  {selected.label} in {proof.city}
+                  {serviceName} in {proof.city}
                 </p>
                 {showDeepBreakdown && deepFirstClean !== null ? (
                   <>
@@ -1624,7 +1634,7 @@ export default function QuoteFlow({
                       )}
                     </p>
 
-                    <p className="mt-1 text-4xl font-bold text-foreground">
+                    <p className="mt-1 text-3xl font-bold text-foreground sm:text-4xl">
                       = First clean {formatPrice(deepFirstClean)}
                       <span className="ml-2 align-middle text-sm font-medium text-fine-print">
                         + 5% GST
@@ -1636,7 +1646,7 @@ export default function QuoteFlow({
                   </>
                 ) : (
                   <>
-                    <p className="mt-2 text-4xl font-bold text-foreground">
+                    <p className="mt-2 text-3xl font-bold text-foreground sm:text-4xl">
                       {quote.quoteOnly ? priceLabel : `First clean ${priceLabel}`}
                       <span className="ml-2 align-middle text-sm font-medium text-fine-print">
                         + 5% GST
@@ -1695,16 +1705,6 @@ export default function QuoteFlow({
                 {quote.rateNote && (
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                     {quote.rateNote}
-                  </p>
-                )}
-                {/* Deep Cleaning is a tile on the shelf below — no booking-page
-                    instruction here, which used to contradict it. */}
-                {deepCleanPrice !== null && deepCleanIntent && (
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                    <span className="font-semibold text-foreground">
-                      Your Deep Cleaning package is included below
-                    </span>{" "}
-                    — already in this price.
                   </p>
                 )}
 
@@ -1799,11 +1799,6 @@ export default function QuoteFlow({
                   <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
                     These aren&rsquo;t part of the standard checklist — add only what you need.
                   </p>
-                  {deepCleanIntent && (
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                      Your Deep Cleaning package is included below.
-                    </p>
-                  )}
 
                   <div className="mt-4 space-y-6">
                     {(() => {
@@ -1833,13 +1828,24 @@ export default function QuoteFlow({
                                 >
                                   {isQuantity ? (
                                     <>
-                                      <p className="text-base font-semibold">
-                                        {extraDisplayName(extra.name)}{" "}
-                                        <span className="font-bold">
-                                          +{formatPrice(extra.price)}
-                                          {unit}
-                                        </span>
-                                      </p>
+                                      <span className="flex items-start justify-between gap-3">
+                                        <p className="text-base font-semibold">
+                                          {extraDisplayName(extra.name)}{" "}
+                                          <span className="font-bold">
+                                            +{formatPrice(extra.price)}
+                                            {unit}
+                                          </span>
+                                        </p>
+                                        {quantity === 0 && (
+                                          <button
+                                            type="button"
+                                            onClick={() => setQuantity(extra, 1)}
+                                            className={`${ADD_PILL} border-brand-navy text-brand-navy hover:bg-secondary`}
+                                          >
+                                            Add
+                                          </button>
+                                        )}
+                                      </span>
                                       {benefit && (
                                         <p
                                           className={`text-[13px] leading-snug ${
@@ -1851,16 +1857,8 @@ export default function QuoteFlow({
                                           {benefit}
                                         </p>
                                       )}
+                                      {quantity > 0 && (
                                       <div className="mt-auto flex items-center gap-2 pt-1">
-                                        {quantity === 0 ? (
-                                          <button
-                                            type="button"
-                                            onClick={() => setQuantity(extra, 1)}
-                                            className="min-h-[48px] w-full rounded-sm border border-brand-navy px-4 text-base font-bold text-brand-navy hover:bg-secondary"
-                                          >
-                                            Add
-                                          </button>
-                                        ) : (
                                           <>
                                             <button
                                               type="button"
@@ -1894,8 +1892,8 @@ export default function QuoteFlow({
                                               +
                                             </button>
                                           </>
-                                        )}
                                       </div>
+                                      )}
 
                                     </>
                                   ) : (
@@ -1925,8 +1923,15 @@ export default function QuoteFlow({
                                             </span>
                                           </span>
                                         </span>
-                                        <span className="shrink-0 text-sm font-bold">
-                                          {added ? "Added ✓" : "Add"}
+                                        <span
+                                          aria-hidden="true"
+                                          className={`${ADD_PILL} ${
+                                            added
+                                              ? "border-brand-navy-foreground/60 text-brand-navy-foreground"
+                                              : "border-brand-navy text-brand-navy"
+                                          }`}
+                                        >
+                                          {added ? "Added" : "Add"}
                                         </span>
                                       </span>
                                       {benefit && (
@@ -2254,7 +2259,7 @@ export default function QuoteFlow({
               <PricePanel
                 quote={quote}
                 variant="compact"
-                serviceLabel={`${selected.label} · ${proof.city}`}
+                serviceLabel={`${serviceName} · ${proof.city}`}
                 firstCleanOverride={panelFirstClean}
                 ongoingOverride={ongoingTotal}
                 savingsOverride={ongoingSavings}
@@ -2297,7 +2302,7 @@ export default function QuoteFlow({
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-3">
             <div className="min-w-0">
               <p className="truncate text-sm text-muted-foreground">
-                {selected.label}
+                {serviceName}
                 {addedCount > 0
                   ? ` · ${addedCount} add-on${addedCount === 1 ? "" : "s"}`
                   : ""}

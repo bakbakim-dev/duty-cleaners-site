@@ -381,7 +381,7 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-7 lg:gap-8">
+          <div className="hidden lg:flex items-center gap-5 xl:gap-8 whitespace-nowrap">
             {/* Services Dropdown */}
             <div
               className="relative"
@@ -436,10 +436,11 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
             ) : (
               <a
                 href={phoneLink}
-                className="inline-flex min-h-[44px] items-center gap-1.5 text-[0.95rem] font-semibold text-foreground transition-colors hover:text-accent"
+                aria-label={`Call ${phone}`}
+                className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center gap-1.5 text-[0.95rem] font-semibold text-foreground transition-colors hover:text-accent xl:justify-start"
               >
                 <span className="dc-icon dc-icon-phone w-4 h-4 text-accent" aria-hidden="true" />
-                {phone}
+                <span className="hidden xl:inline">{phone}</span>
               </a>
             )}
             <Button
@@ -459,7 +460,7 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-menu"
-            className="md:hidden text-foreground p-2 -mr-2 rounded-lg hover:bg-secondary transition-colors"
+            className="lg:hidden text-foreground p-2 -mr-2 rounded-lg hover:bg-secondary transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             <span className={`dc-icon w-7 h-7 ${mobileMenuOpen ? "dc-icon-x" : "dc-icon-menu"}`} aria-hidden="true" />
@@ -468,7 +469,7 @@ export default function Navigation({ city, branch: branchKey }: NavigationProps)
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div id="mobile-menu" role="dialog" aria-modal="false" aria-label="Site menu" className="md:hidden py-4 space-y-1 border-t animate-in fade-in-0 slide-in-from-top-2 duration-200">
+          <div id="mobile-menu" role="dialog" aria-modal="false" aria-label="Site menu" className="lg:hidden py-4 space-y-1 border-t animate-in fade-in-0 slide-in-from-top-2 duration-200">
             {/* The primary action belongs inside the menu, not only in the bar. */}
             <a
               href={specialistCta ? quoteTarget : quoteHrefFor(location.pathname)}

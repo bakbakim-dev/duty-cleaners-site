@@ -18,7 +18,9 @@ const StepHeader = forwardRef<
 >(function StepHeader({ number, eyebrow, title, companion, children }, ref) {
   return (
     <div className="funnel-chapter">
-      <div className="flex items-center gap-3">
+      {/* On phones the progress line above already names the step, so the
+          badge row would only push the first question further down. */}
+      <div className="hidden items-center gap-3 sm:flex">
         <span
           aria-hidden="true"
           className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm bg-secondary text-sm font-bold text-secondary-foreground"
@@ -32,7 +34,7 @@ const StepHeader = forwardRef<
       <h2
         ref={ref}
         tabIndex={-1}
-        className="display-serif mt-3 text-3xl font-bold leading-tight text-foreground focus:outline-none"
+        className="display-serif text-2xl font-bold leading-tight text-foreground focus:outline-none sm:mt-3 sm:text-3xl"
       >
         {title}
       </h2>

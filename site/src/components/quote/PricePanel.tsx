@@ -112,9 +112,13 @@ export default function PricePanel({
             Then {formatPrice(ongoing)} per visit
           </p>
         )}
-        <p className="mt-2 border-t border-brand-navy-foreground/20 pt-3 text-sm text-fine-print-on-dark">
-          {itemLine}
-        </p>
+        {/* The service is already the card's heading; this line earns its place
+            only once it has add-ons to count. */}
+        {addOnCount > 0 && (
+          <p className="mt-2 border-t border-brand-navy-foreground/20 pt-3 text-sm text-fine-print-on-dark">
+            {itemLine}
+          </p>
+        )}
         <div className="mt-3 flex flex-wrap items-center gap-2">
           {ongoing !== null && savings > 0 && (
             <span className="inline-flex items-center rounded-full bg-brand-gold px-3 py-1 text-sm font-bold text-brand-gold-foreground">

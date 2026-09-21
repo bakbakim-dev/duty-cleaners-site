@@ -1457,8 +1457,8 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/branch-preference.test.ts",
     target: "dist/cleaning-services-calgary/index.html",
-    find: "href=\"tel:4037681341\" class=\"inline-flex min-h-[44px]",
-    replace: "href=\"tel:7809136565\" class=\"inline-flex min-h-[44px]",
+    find: "href=\"tel:4037681341\" aria-label=\"Call (403) 768-1341\" class=\"inline-flex min-h-[44px] min-w-[44px]",
+    replace: "href=\"tel:7809136565\" aria-label=\"Call (780) 913-6565\" class=\"inline-flex min-h-[44px] min-w-[44px]",
     failing: "a page that belongs to a branch shows only that office in its header",
     why: "Puts the Edmonton office in the Calgary hub's header, the original bug in reverse.",
     dist: true,

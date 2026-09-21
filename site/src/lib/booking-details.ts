@@ -6,7 +6,7 @@ export const CLEANLINESS_OPTIONS = [
   { value: 2, label: "2 - Mostly Clean" },
   { value: 3, label: "3 - Decently Clean" },
   { value: 4, label: "4 - Needs Attention" },
-  { value: 5, label: "5 - Very Dirty" },
+  { value: 5, label: "5- Very Dirty" },
 ] as const;
 export const FLEXIBILITY_OPTIONS = [
   { value: "both", label: "Yes - Date & Time is flexible (Specify flexibility in the comment section below)" },

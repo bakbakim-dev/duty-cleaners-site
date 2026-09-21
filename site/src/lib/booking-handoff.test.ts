@@ -10,7 +10,7 @@ const input = { service: "standard", homeType: 55, bedrooms: 2, bathrooms: 1, ha
 
 describe("booking handoff data contract", () => {
   it("matches native cleaner questions while leaving address entry to BookingKoala", () => {
-    expect(CLEANLINESS_OPTIONS.map(row => row.label)).toEqual(["1 - Almost Spotless", "2 - Mostly Clean", "3 - Decently Clean", "4 - Needs Attention", "5 - Very Dirty"]);
+    expect(CLEANLINESS_OPTIONS.map(row => row.label)).toEqual(["1 - Almost Spotless", "2 - Mostly Clean", "3 - Decently Clean", "4 - Needs Attention", "5- Very Dirty"]);
     expect(validateCleanerDetails(details)).toEqual({});
     expect(Object.keys(validateCleanerDetails({}))).toEqual(expect.arrayContaining(["entry", "cleanliness", "parking", "flexibility"]));
     expect(validateCleanerDetails({ ...details, flexibility: "time", notes: "" })).toEqual({});
