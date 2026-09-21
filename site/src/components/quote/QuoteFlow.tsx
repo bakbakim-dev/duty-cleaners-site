@@ -1400,9 +1400,13 @@ export default function QuoteFlow({
                             }`}
                           >
                             {option.blurb}
+                            {/* What the move-out checklist on both city pages actually
+                                covers. "Already includes deep cleaning" named a different
+                                service; this names the items. */}
                             {option.id === "move-in-out" && (
                               <span className="mt-1 block font-semibold">
-                                Already includes deep cleaning.
+                                Covers baseboards, doors, switches, outlets and vent covers,
+                                plus inside the oven, fridge, cabinets and closets.
                               </span>
                             )}
                           </span>

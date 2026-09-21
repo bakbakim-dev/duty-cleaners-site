@@ -1238,6 +1238,14 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/quote-funnel-0911.test.ts",
     target: "src/components/quote/QuoteFlow.tsx",
+    find: "Covers baseboards, doors, switches, outlets and vent covers,",
+    replace: "Already includes deep cleaning. Covers baseboards,",
+    failing: "names the move-out items instead of claiming deep cleaning",
+    why: "Brings back the move-out card's claim that it includes a deep clean, a different service.",
+  },
+  {
+    guard: "src/data/quote-funnel-0911.test.ts",
+    target: "src/components/quote/QuoteFlow.tsx",
     find: "useState<FrequencyId | null>(null)",
     replace: "useState<FrequencyId | null>(\"bi-weekly-every-2-weeks\")",
     failing: "preselects no plan and sends none until one is picked",

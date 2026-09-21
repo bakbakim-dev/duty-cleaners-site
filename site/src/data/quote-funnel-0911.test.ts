@@ -389,3 +389,11 @@ describe("the funnel records only what the visitor chose, once", () => {
     expect(src, "a new quote no longer asks again").toMatch(/contactDoneRef\.current = false;/);
   });
 });
+
+describe("the move-out card claims only what the checklist covers", () => {
+  it("names the move-out items instead of claiming deep cleaning", () => {
+    const src = codeOf("src/components/quote/QuoteFlow.tsx");
+    expect(src, "the card claims a service it is not").not.toMatch(/Already includes deep cleaning/i);
+    expect(src).toMatch(/plus inside the oven, fridge, cabinets and closets/);
+  });
+});
