@@ -8,7 +8,6 @@ import PricePanel from "@/components/quote/PricePanel";
 import RiskReversalRow from "@/components/quote/RiskReversalRow";
 import StepHeader, { Callout, StepFooter } from "@/components/quote/StepHeader";
 import {
-  DEFAULT_FREQUENCY,
   FREQUENCIES,
   SELECTABLE_SERVICES,
   DEEP_CLEAN_ADDON_ID,
@@ -298,7 +297,17 @@ export default function QuoteFlow({
   const [bedrooms, setBedrooms] = useState(2);
   const [bathrooms, setBathrooms] = useState(1);
   const [halfBaths, setHalfBaths] = useState(0);
-  const [frequency, setFrequency] = useState<FrequencyId>(DEFAULT_FREQUENCY);
+  /**
+   * No plan is preselected: a Bi-Weekly default reached GoHighLevel and the
+   * booking page as the visitor's choice before they had seen the question.
+   * Null until they pick; "How often?" is then required on the price step.
+   */
+  const [frequency, setFrequencyState] = useState<FrequencyId | null>(null);
+  const [frequencyError, setFrequencyError] = useState<string | null>(null);
+  const setFrequency = (next: FrequencyId | null) => {
+    setFrequencyState(next);
+    if (next !== null) setFrequencyError(null);
+  };
   const [contact, setContact] = useState({ firstName: "", lastName: "", email: "", phone: "" });
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -414,6 +423,8 @@ export default function QuoteFlow({
    * render, so the step report waits for it rather than sending the old one.
    */
   const pendingServiceRef = useRef<ServiceId | null>(null);
+  /** True once this quote's contact step has been submitted (sent or queued for retry). */
+  const contactDoneRef = useRef(false);
 
   const pickService = (next: ServiceId) => {
     // The page address with its intent: a later open of the same path with a
@@ -457,6 +468,7 @@ export default function QuoteFlow({
       leadPayloadFingerprintRef.current = null;
       confirmPayloadFingerprintRef.current = null;
       leadPayloadRef.current = null;
+      contactDoneRef.current = false;
       setStep(0);
     } else {
       lastStepKeyRef.current = null;
@@ -520,6 +532,11 @@ export default function QuoteFlow({
   }, []);
 
   const selected = getService(service);
+  /** The plan the price is worked out on: One-Time until one is chosen. */
+  const effectiveFrequency: FrequencyId =
+    selected.supportsRecurring && frequency !== null ? frequency : "one-time";
+  /** A recurring-capable service whose plan question is still unanswered. */
+  const awaitingPlan = selected.supportsRecurring && frequency === null;
 
   const homeTypes = useMemo(() => homeTypeOptions(service), [service]);
   const beds = useMemo(() => bedroomOptions(service), [service]);
@@ -529,7 +546,7 @@ export default function QuoteFlow({
   // Keep the selections valid whenever the service (and therefore the
   // BookingKoala option set) changes.
   useEffect(() => {
-    if (!selected.supportsRecurring) setFrequency("one-time");
+    if (!selected.supportsRecurring) setFrequency(null);
   }, [selected.supportsRecurring]);
 
   useEffect(() => {
@@ -565,9 +582,9 @@ export default function QuoteFlow({
         bathrooms,
         halfBaths,
         addOns: [],
-        frequency,
+        frequency: effectiveFrequency,
       }),
-    [service, homeType, bedrooms, bathrooms, halfBaths, frequency]
+    [service, homeType, bedrooms, bathrooms, halfBaths, effectiveFrequency]
   );
 
   /** The non-personal props every funnel event carries (see lib/analytics.ts). */
@@ -575,11 +592,19 @@ export default function QuoteFlow({
     city: proof.key,
     service,
     intent: deepCleanIntent ? "deep" : "none",
-    frequency: selected.supportsRecurring ? frequency : "one-time",
+    frequency: selected.supportsRecurring ? frequency ?? "not_chosen" : "one-time",
   });
 
   const goToContact = () => {
     track("property_details_completed", funnelProps());
+    // Contact details already given for this quote: back to the price. Going
+    // through step 2 again sent a second lead and re-fired the office email
+    // and customer text; the final home details still reach the office with
+    // the booking handoff.
+    if (contactDoneRef.current) {
+      setStep(2);
+      return;
+    }
     setStep(1);
   };
 
@@ -751,6 +776,32 @@ export default function QuoteFlow({
     quote.ongoing === null ? null : round2(quote.ongoing + recurringAddOnTotal);
   const ongoingSavings = round2(quote.savings + recurringAddOnSavings);
 
+  /**
+   * Before a plan is chosen the card still leads with recurring prices: every
+   * plan's real per-visit figure (base + recurring add-ons), cheapest last.
+   */
+  const planPreview = useMemo(() => {
+    if (!awaitingPlan) return [];
+    return FREQUENCIES.filter((option) => option.discount > 0)
+      .map((option) => {
+        const planQuote = calculateQuote({
+          service,
+          homeType,
+          bedrooms,
+          bathrooms,
+          halfBaths,
+          addOns: [],
+          frequency: option.id,
+        });
+        if (planQuote.ongoing === null) return null;
+        const extras = recurringExtraTotals(basketRows, planQuote.discountPct);
+        return { id: option.id, label: option.label, price: round2(planQuote.ongoing + extras.total) };
+      })
+      .filter((row): row is { id: FrequencyId; label: string; price: number } => row !== null)
+      .sort((a, b) => b.price - a.price);
+  }, [awaitingPlan, service, homeType, bedrooms, bathrooms, halfBaths, basketRows]);
+  const plansFrom = planPreview.length > 0 ? planPreview[planPreview.length - 1].price : null;
+
   /** Name → quantity, exactly the shape the booking URL and the CRM want. */
   const extrasBasket = useMemo(() => {
     const basket: Record<string, number> = {};
@@ -797,9 +848,11 @@ export default function QuoteFlow({
     bedrooms: ghlBedroomLabel(bedrooms),
     full_bathrooms: ghlBathroomLabel(bathrooms),
     half_baths: ghlHalfBathLabel(halfBaths),
-    frequency:
-      GHL_FREQUENCY_LABELS[getFrequency(frequency).bkId] ?? getFrequency(frequency).label,
-    frequency_discount_pct: quote.discountPct,
+    frequency: awaitingPlan
+      ? ""
+      : GHL_FREQUENCY_LABELS[getFrequency(effectiveFrequency).bkId] ??
+        getFrequency(effectiveFrequency).label,
+    frequency_discount_pct: awaitingPlan ? null : quote.discountPct,
     currency: "CAD" as const,
     full_name: `${contact.firstName.trim()} ${contact.lastName.trim()}`,
     email: contact.email,
@@ -868,6 +921,7 @@ export default function QuoteFlow({
     });
     setSubmitting(false);
 
+    contactDoneRef.current = true;
     if (result.ok) {
       // This means the private lead row exists. GHL can be delivered or queued;
       // either way, the required contact gate has done its job.
@@ -931,7 +985,7 @@ export default function QuoteFlow({
         bedrooms,
         bathrooms,
         halfBaths,
-        frequencyBkId: getFrequency(frequency).bkId,
+        frequencyBkId: getFrequency(effectiveFrequency).bkId,
         deepClean: deepCleanIntent,
         extras: extrasBasket,
         cleanerDetails: {
@@ -951,7 +1005,7 @@ export default function QuoteFlow({
       bedrooms,
       bathrooms,
       halfBaths,
-      frequency,
+      effectiveFrequency,
       deepCleanIntent,
       extrasBasket,
       details,
@@ -1011,6 +1065,7 @@ export default function QuoteFlow({
    * names it. One map so the summary, the scroll target and the highlight agree.
    */
   const MISSING_TARGETS: Record<string, { id: string; label: string }> = {
+    frequency: { id: "dc-frequency-group", label: "How often?" },
     pets: { id: "dc-pets-group", label: "Do you have pets?" },
     entry: { id: "dc-entry-group", label: "How do we enter the home?" },
     cleanliness: { id: "dc-clean-group", label: "How clean is your house?" },
@@ -1029,6 +1084,7 @@ export default function QuoteFlow({
     (focusTarget as HTMLElement | null)?.focus({ preventScroll: true });
   };
   const missingKeys = [
+    ...(frequencyError ? ["frequency"] : []),
     ...(petError ? ["pets"] : []),
     ...["entry", "cleanliness", "parking", "flexibility", "notes"].filter((key) => detailErrors[key]),
   ];
@@ -1063,10 +1119,13 @@ export default function QuoteFlow({
 
   /** Pane A → pane B. Starts the second pane at the top, never mid-question. */
   const goToDetailsPane = () => {
-    if (petsExtra && hasPets === null) {
-      setPetError("Choose Yes or No so your total includes the correct pet charge.");
+    const missPlan = awaitingPlan;
+    const missPets = Boolean(petsExtra) && hasPets === null;
+    if (missPlan) setFrequencyError("Choose how often, or One-Time, so your booking carries the right plan.");
+    if (missPets) setPetError("Choose Yes or No so your total includes the correct pet charge.");
+    if (missPlan || missPets) {
       setNudge((value) => value + 1);
-      jumpToMissing("pets");
+      jumpToMissing(missPlan ? "frequency" : "pets");
       return;
     }
     if (addedCount > 0) track("extras_selected", funnelProps());
@@ -1460,7 +1519,7 @@ export default function QuoteFlow({
                   className="min-h-[56px] w-full rounded-full bg-accent text-base font-bold text-accent-foreground hover:bg-accent/90 sm:w-auto sm:px-10"
                   onClick={goToContact}
                 >
-                  Continue
+                  {contactDoneRef.current ? "See my updated price" : "Continue"}
                   <span className="dc-icon dc-icon-arrow-right ml-2 h-5 w-5" aria-hidden="true" />
                 </Button>
               </StepFooter>
@@ -1715,10 +1774,10 @@ export default function QuoteFlow({
                 {/* Two equal figures on a recurring plan: the per-visit price is what a
                     regular customer actually pays, so it must not read as small print
                     under a big first-clean number. */}
-                <div className={`mt-3 grid gap-3 ${quote.ongoing !== null ? "sm:grid-cols-2" : ""}`}>
+                <div className={`mt-3 grid gap-3 ${quote.ongoing !== null || planPreview.length > 0 ? "sm:grid-cols-2" : ""}`}>
                   <div className="funnel-price-tile">
                     <p className="funnel-price-label">
-                      {quote.quoteOnly || quote.ongoing === null ? "Your price" : "First clean"}
+                      {quote.quoteOnly || (quote.ongoing === null && planPreview.length === 0) ? "Your price" : "First clean"}
                     </p>
                     <p className="funnel-price-figure">
                       {showDeepBreakdown && deepFirstClean !== null
@@ -1743,6 +1802,20 @@ export default function QuoteFlow({
                       </p>
                     </div>
                   )}
+                  {planPreview.length > 0 && (
+                    <div className="funnel-price-tile funnel-price-tile--ongoing">
+                      <p className="funnel-price-label">Every visit after, on a plan</p>
+                      <ul className="mt-1 space-y-1">
+                        {planPreview.map((plan) => (
+                          <li key={plan.id} className="flex items-baseline justify-between gap-3">
+                            <span className="text-base font-semibold text-foreground">{plan.label}</span>
+                            <span className="text-2xl font-extrabold text-foreground">{formatPrice(plan.price)}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <p className="funnel-price-tax">Before 5% GST. Choose how often below.</p>
+                    </div>
+                  )}
                 </div>
                 {quote.ongoing !== null && recurringAddOnTotal > 0 && (
                   <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
@@ -1764,7 +1837,7 @@ export default function QuoteFlow({
                     Cleaning.
                   </p>
                 )}
-                {showDeepBreakdown && quote.ongoing === null && biWeeklyPrice !== null && (
+                {showDeepBreakdown && quote.ongoing === null && !awaitingPlan && biWeeklyPrice !== null && (
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                     Want upkeep after? Bi-weekly visits would be{" "}
                     <span className="font-semibold text-foreground">
@@ -1793,15 +1866,26 @@ export default function QuoteFlow({
               </div>
 
               {selected.supportsRecurring && (
-                <div>
+                <div
+                  id="dc-frequency-group"
+                  aria-invalid={frequencyError ? true : undefined}
+                  aria-describedby={frequencyError ? "dc-frequency-error" : undefined}
+                  className={`scroll-mt-24${frequencyError ? " funnel-missing" : ""}`}
+                >
+                  {frequencyError && <span key={`flag-frequency-${nudge}`} className="funnel-missing-flag">Answer needed</span>}
                   <p className="mb-1 text-lg font-bold text-foreground">
-                    How often?
+                    How often? <span className="text-accent" aria-hidden="true">*</span>
                   </p>
                   <p className="mb-3 text-[0.9375rem] text-muted-foreground">
                     Your first clean is at the one-time price. The plan discount starts on visit
                     two.
                   </p>
                   <FrequencyChips value={frequency} onChange={setFrequency} />
+                  {frequencyError && (
+                    <p id="dc-frequency-error" className="funnel-missing-text">
+                      {frequencyError}
+                    </p>
+                  )}
 
                   {/* The saving, stated once where the choice is made. The price card
                       above already shows first clean and per-visit, so this line
@@ -1809,12 +1893,12 @@ export default function QuoteFlow({
                       the first clean really is charged at the one-time rate. */}
                   {quote.ongoing !== null && quote.savings > 0 && (
                     <p
-                      key={frequency}
+                      key={effectiveFrequency}
                       className="savings-appear mt-4 flex items-start gap-2 rounded-sm border border-border bg-secondary/60 p-4 text-base leading-relaxed text-foreground"
                     >
                       <span className="dc-icon dc-icon-check mt-1 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
                       <span>
-                        {getFrequency(frequency).label} saves you{" "}
+                        {getFrequency(effectiveFrequency).label} saves you{" "}
                         <span className="font-bold">{formatPrice(ongoingSavings)}</span> on every visit
                         after the first
                         {basketRows.some((row) => row.extra.firstVisitOnly || row.extra.exemptFromFrequencyDiscount)
@@ -2055,7 +2139,7 @@ export default function QuoteFlow({
               )}
 
               <StepFooter
-                above={missingSummary(missingKeys.filter((key) => key === "pets"))}
+                above={missingSummary(missingKeys.filter((key) => key === "frequency" || key === "pets"))}
                 back={
                   <button
                     type="button"
@@ -2266,7 +2350,7 @@ export default function QuoteFlow({
               {failureNotice}
 
               <StepFooter
-                above={missingSummary(missingKeys.filter((key) => key !== "pets"))}
+                above={missingSummary(missingKeys.filter((key) => key !== "frequency" && key !== "pets"))}
                 back={
                   <button
                     type="button"
@@ -2349,6 +2433,7 @@ export default function QuoteFlow({
                 firstCleanOverride={panelFirstClean}
                 ongoingOverride={ongoingTotal}
                 savingsOverride={ongoingSavings}
+                plansFrom={plansFrom}
                 ongoingNote={
                   recurringAddOnTotal > 0
                     ? `Includes ${formatPrice(recurringAddOnTotal)} of recurring add-ons per visit`
@@ -2387,15 +2472,19 @@ export default function QuoteFlow({
           }`}
         >
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-3">
-            {ongoingTotal !== null ? (
+            {ongoingTotal !== null || plansFrom !== null ? (
               <div className="grid min-w-0 grid-cols-2 gap-x-4">
                 <div className="min-w-0">
                   <p className="truncate text-xs font-semibold text-muted-foreground">First clean</p>
                   <p className="text-lg font-bold leading-tight text-foreground">{priceLabel}</p>
                 </div>
                 <div className="min-w-0 border-l border-border pl-4">
-                  <p className="truncate text-xs font-semibold text-muted-foreground">Then per visit</p>
-                  <p className="text-lg font-bold leading-tight text-foreground">{formatPrice(ongoingTotal)}</p>
+                  <p className="truncate text-xs font-semibold text-muted-foreground">
+                    {ongoingTotal !== null ? "Then per visit" : "Plans from"}
+                  </p>
+                  <p className="text-lg font-bold leading-tight text-foreground">
+                    {formatPrice(ongoingTotal ?? plansFrom ?? 0)}
+                  </p>
                 </div>
               </div>
             ) : (

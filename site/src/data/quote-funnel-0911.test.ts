@@ -366,3 +366,26 @@ describe("price reveal survives a lead-relay outage", () => {
     expect(src).not.toMatch(/honour your quote/i);
   });
 });
+
+/**
+ * Owner, 2026-09-21: a Bi-Weekly default reached GoHighLevel and BookingKoala
+ * as the visitor's choice before they had seen "How often?", and going back to
+ * change the home size sent a second lead (a second office email and text).
+ */
+describe("the funnel records only what the visitor chose, once", () => {
+  it("preselects no plan and sends none until one is picked", () => {
+    const src = codeOf("src/components/quote/QuoteFlow.tsx");
+    expect(src, "a plan is preselected again").toMatch(/useState<FrequencyId \| null>\(null\)/);
+    expect(src).not.toMatch(/DEFAULT_FREQUENCY/);
+    expect(src, "the CRM is sent a plan nobody chose").toMatch(/frequency: awaitingPlan\s*\?\s*""/);
+    expect(src, "How often? is no longer required").toMatch(/if \(missPlan\) setFrequencyError\(/);
+  });
+
+  it("does not ask for contact details twice in one quote", () => {
+    const src = codeOf("src/components/quote/QuoteFlow.tsx");
+    expect(src, "going back re-sends the lead").toMatch(
+      /if \(contactDoneRef\.current\) \{\s*setStep\(2\);\s*return;\s*\}/,
+    );
+    expect(src, "a new quote no longer asks again").toMatch(/contactDoneRef\.current = false;/);
+  });
+});

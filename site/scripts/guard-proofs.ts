@@ -1238,6 +1238,22 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/quote-funnel-0911.test.ts",
     target: "src/components/quote/QuoteFlow.tsx",
+    find: "useState<FrequencyId | null>(null)",
+    replace: "useState<FrequencyId | null>(\"bi-weekly-every-2-weeks\")",
+    failing: "preselects no plan and sends none until one is picked",
+    why: "Preselects Bi-Weekly again, so the lead and the booking carry a plan the visitor never chose.",
+  },
+  {
+    guard: "src/data/quote-funnel-0911.test.ts",
+    target: "src/components/quote/QuoteFlow.tsx",
+    find: "if (contactDoneRef.current) {",
+    replace: "if (false && contactDoneRef.current) {",
+    failing: "does not ask for contact details twice in one quote",
+    why: "Sends the visitor back through the contact step, which submits a second lead for the same quote.",
+  },
+  {
+    guard: "src/data/quote-funnel-0911.test.ts",
+    target: "src/components/quote/QuoteFlow.tsx",
     find: "page, where you add your address",
     replace: "page, where we check your address",
     failing: "QuoteFlow leaves address validation and travel pricing to BookingKoala",

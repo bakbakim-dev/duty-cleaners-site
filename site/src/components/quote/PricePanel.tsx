@@ -17,7 +17,7 @@ export default function PricePanel({
   savingsOverride = null,
   ongoingNote,
   addOnCount = 0,
-
+  plansFrom = null,
 }: {
   quote: QuoteResult;
   serviceLabel: string;
@@ -32,6 +32,8 @@ export default function PricePanel({
   ongoingNote?: string;
   /** Number of add-ons currently selected — drives the itemized one-liner. */
   addOnCount?: number;
+  /** Cheapest per-visit plan price, shown until the visitor picks a plan. */
+  plansFrom?: number | null;
 }) {
 
   const firstClean = firstCleanOverride ?? quote.firstClean;
@@ -105,10 +107,10 @@ export default function PricePanel({
         </p>
         {/* On a plan the per-visit price is what the customer pays from then on,
             so it gets the same size as the first clean, never small print. */}
-        <div className={ongoing !== null ? "mt-3 grid grid-cols-2 gap-3" : "mt-3"}>
+        <div className={ongoing !== null || plansFrom !== null ? "mt-3 grid grid-cols-2 gap-3" : "mt-3"}>
           <div>
             <p className="text-sm font-semibold text-fine-print-on-dark">
-              {ongoing ? "First clean" : "Your price"}
+              {ongoing || plansFrom !== null ? "First clean" : "Your price"}
             </p>
             <p className="text-3xl font-bold leading-tight">{priceLabel}</p>
           </div>
@@ -116,6 +118,12 @@ export default function PricePanel({
             <div className="border-l border-brand-navy-foreground/25 pl-3">
               <p className="text-sm font-semibold text-fine-print-on-dark">Every visit after</p>
               <p className="text-3xl font-bold leading-tight">{formatPrice(ongoing)}</p>
+            </div>
+          )}
+          {ongoing === null && plansFrom !== null && (
+            <div className="border-l border-brand-navy-foreground/25 pl-3">
+              <p className="text-sm font-semibold text-fine-print-on-dark">Plans from</p>
+              <p className="text-3xl font-bold leading-tight">{formatPrice(plansFrom)}</p>
             </div>
           )}
         </div>

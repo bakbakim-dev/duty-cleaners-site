@@ -9,7 +9,8 @@ export default function FrequencyChips({
   onChange,
   disabled = false,
 }: {
-  value: FrequencyId;
+  /** Null until the visitor picks a plan: nothing is preselected. */
+  value: FrequencyId | null;
   onChange: (id: FrequencyId) => void;
   disabled?: boolean;
 }) {

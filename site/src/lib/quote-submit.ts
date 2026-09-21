@@ -35,7 +35,8 @@ export interface QuotePayload {
   half_baths: string | number;
   addons: string[];
   frequency: string;
-  frequency_discount_pct: number;
+  /** Null while the visitor has not chosen a plan yet. */
+  frequency_discount_pct: number | null;
   first_clean_price: number | null;
   recurring_price: number | null;
   currency: "CAD";
