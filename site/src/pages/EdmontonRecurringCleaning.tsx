@@ -6,7 +6,7 @@ import {
   addOnFromPrice, GST_RATE,
 } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
-import { CITY_PROOF, RATING_CLAIM, hoursLineFor } from "@/data/proof";
+import { CITY_PROOF, EDMONTON_RATING_CLAIM, hoursLineFor } from "@/data/proof";
 import { Accent } from "@/components/Accent";
 import RecurringVisitPrices from "@/components/RecurringVisitPrices";
 import { Home, Bath, UtensilsCrossed } from "lucide-react";
@@ -204,7 +204,7 @@ export default function EdmontonRecurringCleaning() {
                 complete.
               </p>
               <p>
-                Our Edmonton team is rated {RATING_CLAIM}{REVIEWS ? ` across ${REVIEWS} reviews` : ""};{" "}
+                Our Edmonton team is rated {EDMONTON_RATING_CLAIM}{REVIEWS ? ` across ${REVIEWS} reviews` : ""};{" "}
                 <Link to="/reviews/">read the reviews</Link>. Every service with its starting price is on{" "}
                 <Link to="/services/">all Edmonton cleaning services and prices</Link>, and the one-time rate for each
                 home size is on <Link to="/pricing/">the full Edmonton price list</Link>.

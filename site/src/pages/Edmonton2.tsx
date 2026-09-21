@@ -1,5 +1,5 @@
 import { BUSINESS_TRADE_TYPE } from "@/data/proof";
-import { CITY_PROOF, COMPANY, RATING_CLAIM, hoursRowsFor } from "@/data/proof";
+import { CITY_PROOF, COMPANY, CALGARY_RATING_CLAIM, hoursRowsFor } from "@/data/proof";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import {
   BRANCH_PROFILES,
@@ -566,7 +566,7 @@ export default function Edmonton2() {
           <CityCrossLink
             city="Calgary"
             to="/cleaning-services-calgary/"
-            description={`House cleaning from the Calgary branch at the same prices, rated ${RATING_CLAIM}.`}
+            description={`House cleaning from the Calgary branch at the same prices, rated ${CALGARY_RATING_CLAIM}.`}
           />
         </div>
 

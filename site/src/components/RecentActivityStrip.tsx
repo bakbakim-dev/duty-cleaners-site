@@ -1,7 +1,7 @@
 import Stars from "@/components/Stars";
 import { BadgeCheck } from "lucide-react";
 import type { RecentCleanReview } from "@/components/CityRecentCleans";
-import { BOOKINGS_CLAIM, RATING_CLAIM, CITY_PROOF } from "@/data/proof";
+import { BOOKINGS_CLAIM, CALGARY_RATING_CLAIM, EDMONTON_RATING_CLAIM, CITY_PROOF } from "@/data/proof";
 import { getListing, openGoogleListing } from "@/lib/google-listings";
 
 type RecentActivityStripProps = {
@@ -27,7 +27,7 @@ const RecentActivityStrip = ({ city }: RecentActivityStripProps) => {
   const ratingLabel =
     proof.googleRating && proof.googleReviewCount
       ? `${proof.googleRating} on Google · ${proof.googleReviewCount} ${city} reviews`
-      : `${RATING_CLAIM} in ${city}`;
+      : `${isCalgary ? CALGARY_RATING_CLAIM : EDMONTON_RATING_CLAIM} in ${city}`;
   return (
     <div className="border-y border-border bg-white py-3" aria-label={`${city} trust signals`}>
       <div className="container mx-auto px-4">

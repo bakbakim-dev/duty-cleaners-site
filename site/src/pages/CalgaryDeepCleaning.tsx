@@ -6,7 +6,7 @@ import ServiceDetailPage from "@/components/ServiceDetailPage";
 import { deepCleanTierRows, featuredExtraRows } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
 import { BK_PRICE_OVERRIDES } from "@/data/bk-price-overrides";
-import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
+import { CITY_PROOF, CALGARY_RATING_CLAIM } from "@/data/proof";
 import { Accent } from "@/components/Accent";
 import { Sparkles, Bath, UtensilsCrossed, Layers, Check } from "lucide-react";
 import heroImage from "@/assets/gallery/calgary-kitchen-clean.webp";
@@ -183,7 +183,7 @@ export default function CalgaryDeepCleaning() {
                 job: <Link to="/wall-washing-wall-cleaning-calgary/">wall washing in Calgary</Link>.
               </p>
               <p>
-                Our Calgary team is rated {RATING_CLAIM}{REVIEWS ? ` over ${REVIEWS} reviews` : ""};{" "}
+                Our Calgary team is rated {CALGARY_RATING_CLAIM}{REVIEWS ? ` over ${REVIEWS} reviews` : ""};{" "}
                 <Link to="/reviews/">read the reviews</Link>. The rest of what we do here, each with its starting
                 price, is on <Link to="/calgary/services/">every Calgary cleaning service, with starting prices</Link>.
               </p>

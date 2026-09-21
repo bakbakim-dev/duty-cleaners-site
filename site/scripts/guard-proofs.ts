@@ -1237,6 +1237,22 @@ export const GUARD_PROOFS: GuardProof[] = [
   },
   {
     guard: "src/data/quote-funnel-0911.test.ts",
+    target: "src/data/proof.ts",
+    find: "confirm(4.9, { by: \"google-listing\", on: \"2026-09-17\", note: \"CID 6193344199307583189\" })",
+    replace: "confirm(4.8, { by: \"google-listing\", on: \"2026-09-17\", note: \"CID 6193344199307583189\" })",
+    failing: "company-wide lines hold only while the Edmonton and Calgary listings agree",
+    why: "Lets the Calgary listing's rating differ from Edmonton's while company-wide lines still state one figure for both.",
+  },
+  {
+    guard: "src/data/quote-funnel-0911.test.ts",
+    target: "src/pages/CalgaryPricing.tsx",
+    find: "{CALGARY_RATING_CLAIM}",
+    replace: "{RATING_CLAIM}",
+    failing: "Calgary pages show the Calgary listing's rating",
+    why: "Puts the Edmonton listing's rating back on a Calgary page.",
+  },
+  {
+    guard: "src/data/quote-funnel-0911.test.ts",
     target: "src/components/quote/QuoteFlow.tsx",
     find: "<>Rated {ratingClaimFor(proof.key)} · </>",
     replace: "<>Rated {RATING_CLAIM} · </>",

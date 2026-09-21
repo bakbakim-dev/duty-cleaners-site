@@ -1,5 +1,5 @@
 import { BUSINESS_TRADE_TYPE } from "@/data/proof";
-import { CITY_PROOF, COMPANY, RATING_CLAIM, hoursRowsFor } from "@/data/proof";
+import { CITY_PROOF, COMPANY, EDMONTON_RATING_CLAIM, hoursRowsFor } from "@/data/proof";
 import LocalMarketNote from "@/components/LocalMarketNote";
 import { useEffect, useRef, useState } from "react";
 import { CALGARY_REVIEWS } from "@/data/reviews";
@@ -547,7 +547,7 @@ export default function Calgary2() {
           <CityCrossLink
             city="Edmonton"
             to="/"
-            description={`The Edmonton branch, rated ${RATING_CLAIM}, prices homes from the same table and backs each clean with the same re-clean guarantee.`}
+            description={`The Edmonton branch, rated ${EDMONTON_RATING_CLAIM}, prices homes from the same table and backs each clean with the same re-clean guarantee.`}
           />
         </div>
 

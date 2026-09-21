@@ -13,7 +13,7 @@ import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import postConstructionBeforeAfter from "@/assets/gallery/post-construction-before-after.webp";
 import CityCrossLink from "@/components/CityCrossLink";
 import { POLICY } from "@/data/policy";
-import { COMPANY, RATING_CLAIM, CITY_PROOF, hoursRowsFor } from "@/data/proof";
+import { COMPANY, EDMONTON_RATING_CLAIM, CITY_PROOF, hoursRowsFor } from "@/data/proof";
 import { travelFee } from "@/data/addon-table";
 
 import { startingPrice, formatPrice, sqftTierOptions, GST_RATE } from "@/data/pricing";
@@ -230,7 +230,7 @@ export default function EdmontonPostConstruction() {
               </div>
               <p className="flex items-center justify-center lg:justify-start gap-2 text-sm font-medium text-white/90">
                 <Star className="w-4 h-4 text-brand-gold fill-current" aria-hidden="true" />
-                <span>{RATING_CLAIM}{REVIEWS ? `, ${REVIEWS} reviews` : ""}</span>
+                <span>{EDMONTON_RATING_CLAIM}{REVIEWS ? `, ${REVIEWS} reviews` : ""}</span>
               </p>
             </div>
             <div className="flex-shrink-0 w-full lg:w-[500px]">
@@ -548,7 +548,7 @@ export default function EdmontonPostConstruction() {
                 The post-construction checklist names the cabinet interiors, the window tracks and the
                 baseboards, so a miss is easy to point to, and we come back to re-clean it at no charge. We have been cleaning Edmonton homes{" "}
                 {COMPANY.sinceLabel}, and our Edmonton team is rated{" "}
-                {RATING_CLAIM}{REVIEWS ? ` across ${REVIEWS} reviews` : ""}; read them on the{" "}
+                {EDMONTON_RATING_CLAIM}{REVIEWS ? ` across ${REVIEWS} reviews` : ""}; read them on the{" "}
                 <Link to="/reviews/" className="text-white underline underline-offset-4">reviews page</Link>{" "}
                 or on{" "}
                 <a href={getListing("edmonton").reviewsUrl} target="_blank" rel="noopener noreferrer" className="text-white underline underline-offset-4">the Edmonton branch's Google profile</a>.

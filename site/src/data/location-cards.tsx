@@ -32,7 +32,7 @@
 import type { ElementType, ReactNode } from "react";
 import { CalendarCheck, Home, Leaf, PaintRoller, Shield, Sparkles, SprayCan, Star, ThumbsUp, Truck } from "lucide-react";
 import { canonicalForPath } from "@/data/legacy-urls";
-import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
+import { CITY_PROOF, branchRatingClaim } from "@/data/proof";
 import { getListing } from "@/lib/google-listings";
 
 export type LocationRegion = "edmonton" | "calgary";
@@ -120,7 +120,7 @@ export function locationWhyUs(region: LocationRegion, third?: LocationWhyUsCard)
     // from. It used to add the two branches together, a sum Google never reports.
     {
       icon: Star,
-      title: RATING_CLAIM,
+      title: branchRatingClaim(region),
       description: (
         <>
           {CITY_PROOF[region].googleReviewCount} reviews on our{" "}

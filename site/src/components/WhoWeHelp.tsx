@@ -1,7 +1,7 @@
 import { Accessibility, Baby, Briefcase, Building2, Home, PawPrint, type LucideIcon } from "lucide-react";
 import { Accent } from "@/components/Accent";
 import { addOnFromPrice, formatPrice, FREQUENCIES } from "@/data/pricing";
-import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
+import { CITY_PROOF, branchRatingClaim } from "@/data/proof";
 
 type City = "Edmonton" | "Calgary";
 
@@ -71,9 +71,10 @@ const personas: Persona[] = [
 
 export function WhoWeHelp({ city }: { city: City }) {
   const proof = city === "Calgary" ? CITY_PROOF.calgary : CITY_PROOF.edmonton;
+  const ratingClaim = branchRatingClaim(city === "Calgary" ? "calgary" : "edmonton");
   const ratingLine = proof.googleReviewCount
-    ? `Rated ${RATING_CLAIM}, from ${proof.googleReviewCount} reviews on the ${city} listing.`
-    : `Rated ${RATING_CLAIM} by ${city} customers.`;
+    ? `Rated ${ratingClaim}, from ${proof.googleReviewCount} reviews on the ${city} listing.`
+    : `Rated ${ratingClaim} by ${city} customers.`;
 
   return (
     <section id="who-we-help" className="bg-white py-16 md:py-24" aria-labelledby={`who-we-help-${city.toLowerCase()}`}>

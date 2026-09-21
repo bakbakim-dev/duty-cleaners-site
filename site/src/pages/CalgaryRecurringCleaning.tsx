@@ -6,7 +6,7 @@ import {
   addOnFromPrice,
 } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
-import { CITY_PROOF, RATING_CLAIM, hoursLineFor } from "@/data/proof";
+import { CITY_PROOF, CALGARY_RATING_CLAIM, hoursLineFor } from "@/data/proof";
 import { Accent } from "@/components/Accent";
 import RecurringVisitPrices from "@/components/RecurringVisitPrices";
 import { Home, Bath, UtensilsCrossed } from "lucide-react";
@@ -213,7 +213,7 @@ export default function CalgaryRecurringCleaning() {
                 clean is done.
               </p>
               <p>
-                Our Calgary team is rated {RATING_CLAIM}{REVIEWS ? ` over ${REVIEWS} reviews` : ""};{" "}
+                Our Calgary team is rated {CALGARY_RATING_CLAIM}{REVIEWS ? ` over ${REVIEWS} reviews` : ""};{" "}
                 <Link to="/reviews/">read the reviews</Link>. The one-time rate for every home size is on{" "}
                 <Link to="/calgary/pricing/">the Calgary price list</Link>, and the rest of what we do is on{" "}
                 <Link to="/calgary/services/">every Calgary cleaning service, with starting prices</Link>.

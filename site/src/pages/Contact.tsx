@@ -27,7 +27,7 @@ import { travelFee } from "@/data/addon-table";
 import { createQuoteRequestId, fingerprintQuotePayload, submitQuote } from "@/lib/quote-submit";
 import { track } from "@/lib/analytics";
 import { z } from "zod";
-import { CITY_PROOF, SUPPORT_EMAIL, schemaAddressFor, branchGeoFor, BRANCH_IDENTITY, BRANCH_PROFILES, ORG_ID, RATING_CLAIM, RED_DEER_PATH, hasGoogleRating, hoursLineFor, hoursRowsFor, openingHoursSpecFor, type Branch } from "@/data/proof";
+import { CITY_PROOF, SUPPORT_EMAIL, schemaAddressFor, branchGeoFor, BRANCH_IDENTITY, BRANCH_PROFILES, ORG_ID, RATING_CLAIM, branchRatingClaim, RED_DEER_PATH, hasGoogleRating, hoursLineFor, hoursRowsFor, openingHoursSpecFor, type Branch } from "@/data/proof";
 
 const TITLE = "Contact Duty Cleaners | Edmonton, Calgary & Red Deer";
 const DESCRIPTION = `Call Duty Cleaners in Edmonton ${CITY_PROOF.edmonton.phone}, Calgary ${CITY_PROOF.calgary.phone} or Red Deer ${CITY_PROOF.reddeer.phone}, or send the form. Hours for each office are listed.`;
@@ -183,7 +183,7 @@ const OfficeCard = ({
         {showRating && (
         <div className="flex items-center gap-1 text-sm text-white/90">
           <Star className="w-4 h-4 text-accent fill-accent" />
-          <span>{RATING_CLAIM}{reviewCount ? `, ${reviewCount} reviews` : ""}</span>
+          <span>{branchRatingClaim(city === "Calgary" ? "calgary" : "edmonton")}{reviewCount ? `, ${reviewCount} reviews` : ""}</span>
         </div>
         )}
       </div>

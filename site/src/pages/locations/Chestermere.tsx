@@ -3,7 +3,7 @@ import { locationServices, locationWhyUs } from "@/data/location-cards";
 import { WALL_WASHING_DESCRIPTION } from "@/data/service-copy";
 import { getListing } from "@/lib/google-listings";
 import {
-  CITY_PROOF } from "@/data/proof"; import { RATING_CLAIM } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import { useEffect } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import { CheckCircle2, Star, Shield, Home, Truck, SprayCan, Bath, UtensilsCrossed, Leaf, ThumbsUp, Calculator, Building2, PaintRoller, Sparkles } from "lucide-react";
+  CITY_PROOF } from "@/data/proof"; import { CALGARY_RATING_CLAIM } from "@/data/proof"; import NearbyNeighbourhoods from "@/components/NearbyNeighbourhoods"; import LocalMarketNote from "@/components/LocalMarketNote"; import { useEffect } from "react"; import { Helmet } from "react-helmet-async"; import Navigation from "@/components/Navigation"; import Footer from "@/components/Footer"; import Breadcrumbs from "@/components/Breadcrumbs"; import { Button } from "@/components/ui/button"; import { useScrollAnimation } from "@/hooks/use-scroll-animation"; import { Link } from "react-router-dom"; import { CheckCircle2, Star, Shield, Home, Truck, SprayCan, Bath, UtensilsCrossed, Leaf, ThumbsUp, Calculator, Building2, PaintRoller, Sparkles } from "lucide-react";
 import chestermereImg from "@/assets/gallery/chestermere-landmark.webp";
 import { buildLocationSchema } from "@/lib/location-schema";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -80,11 +80,11 @@ export default function Chestermere() {
   return (
     <>
       <Helmet>
-        <title>{`House Cleaning Chestermere, ${RATING_CLAIM} | Duty Cleaners`}</title>
+        <title>{`House Cleaning Chestermere, ${CALGARY_RATING_CLAIM} | Duty Cleaners`}</title>
         <meta name="description" content="No season is a dry one at a Chestermere back door, and house cleaning here is priced flat by home size with a 24-hour re-clean guarantee." />
-        <meta property="og:title" content={`House Cleaning Chestermere, ${RATING_CLAIM} | Duty Cleaners`} />
+        <meta property="og:title" content={`House Cleaning Chestermere, ${CALGARY_RATING_CLAIM} | Duty Cleaners`} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`House Cleaning Chestermere, ${RATING_CLAIM} | Duty Cleaners`} />
+        <meta name="twitter:title" content={`House Cleaning Chestermere, ${CALGARY_RATING_CLAIM} | Duty Cleaners`} />
         <meta name="twitter:description" content="No season is a dry one at a Chestermere back door, and house cleaning here is priced flat by home size with a 24-hour re-clean guarantee." />
         <meta property="og:description" content="No season is a dry one at a Chestermere back door, and house cleaning here is priced flat by home size with a 24-hour re-clean guarantee." />
         <meta property="og:type" content="website" />

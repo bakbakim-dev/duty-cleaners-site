@@ -33,7 +33,7 @@ import {
   branchGeoFor,
   BRANCH_ID,
   ORG_ID,
-  RATING_CLAIM,
+  EDMONTON_RATING_CLAIM,
   BRANCH_IDENTITY,
   openingHoursShortFor,
   openingHoursSpecFor,
@@ -294,7 +294,7 @@ export default function EdmontonMoveInOut() {
 
                 <p className="flex items-center justify-center lg:justify-start gap-2 text-white/90">
                   <Stars size={1} />
-                  <span className="font-medium">{RATING_CLAIM}{REVIEWS ? `, ${REVIEWS} reviews` : ""}</span>
+                  <span className="font-medium">{EDMONTON_RATING_CLAIM}{REVIEWS ? `, ${REVIEWS} reviews` : ""}</span>
                 </p>
               </div>
 

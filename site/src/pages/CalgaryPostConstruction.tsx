@@ -13,7 +13,7 @@ import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import calgaryPostConstructionBeforeAfter from "@/assets/gallery/calgary-post-construction-before-after.webp";
 import CityCrossLink from "@/components/CityCrossLink";
 import { POLICY } from "@/data/policy";
-import { COMPANY, CITY_PROOF, RATING_CLAIM, hoursRowsFor } from "@/data/proof";
+import { COMPANY, CITY_PROOF, CALGARY_RATING_CLAIM, hoursRowsFor } from "@/data/proof";
 import { travelFee } from "@/data/addon-table";
 
 import { startingPrice, formatPrice, sqftTierOptions, withGst } from "@/data/pricing";
@@ -217,7 +217,7 @@ export default function CalgaryPostConstruction() {
               </div>
               <p className="flex items-center justify-center lg:justify-start gap-2 text-sm font-medium text-white/90">
                 <Star className="w-4 h-4 text-brand-gold fill-current" aria-hidden="true" />
-                <span>{RATING_CLAIM}, from {OFFICE.googleReviewCount} Calgary reviews</span>
+                <span>{CALGARY_RATING_CLAIM}, from {OFFICE.googleReviewCount} Calgary reviews</span>
               </p>
             </div>
             <div className="flex-shrink-0 w-full lg:w-[500px]">
@@ -576,7 +576,7 @@ export default function CalgaryPostConstruction() {
               </p>
               <p className="text-base text-white/90 mb-4">
                 Duty Cleaners has cleaned Alberta homes {COMPANY.sinceLabel}. The Calgary listing is rated{" "}
-                {RATING_CLAIM} across {CITY_PROOF.calgary.googleReviewCount} reviews, and
+                {CALGARY_RATING_CLAIM} across {CITY_PROOF.calgary.googleReviewCount} reviews, and
                 you can read them on the{" "}
                 <Link to="/reviews/" className="text-white underline underline-offset-4">reviews page</Link>{" "}
                 or open{" "}

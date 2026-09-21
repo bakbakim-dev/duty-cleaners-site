@@ -223,6 +223,17 @@ export const BOOKINGS = confirm("5,000+", { by: "owner", on: "2026-09-10", note:
  */
 export const RATING_CLAIM = `${CITY_PROOF.edmonton.googleRating} on Google`;
 
+/**
+ * Each branch's own figure. A page that belongs to one branch uses its own;
+ * RATING_CLAIM is only for company-wide lines ("the Edmonton and Calgary
+ * offices are rated ..."), which hold while both listings agree. A guard in
+ * quote-funnel-0911.test.ts fails the day they differ.
+ */
+export const EDMONTON_RATING_CLAIM = `${CITY_PROOF.edmonton.googleRating} on Google`;
+export const CALGARY_RATING_CLAIM = `${CITY_PROOF.calgary.googleRating} on Google`;
+export const branchRatingClaim = (branch: "edmonton" | "calgary") =>
+  branch === "calgary" ? CALGARY_RATING_CLAIM : EDMONTON_RATING_CLAIM;
+
 /** Whether this branch's own Google listing carries a rating the site may show. */
 export const hasGoogleRating = (branch: Branch) => CITY_PROOF[branch].googleRating !== null;
 

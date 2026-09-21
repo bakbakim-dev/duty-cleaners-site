@@ -1,5 +1,5 @@
 import { GST_RATE } from "@/data/pricing";
-import { RATING_CLAIM, CITY_PROOF, COMPANY } from "@/data/proof";
+import { CALGARY_RATING_CLAIM, CITY_PROOF, COMPANY } from "@/data/proof";
 import { POLICY } from "@/data/policy";
 import { travelFee } from "@/data/addon-table";
 import { canonicalForPath } from "@/data/legacy-urls";
@@ -427,7 +427,7 @@ export default function CalgaryServices() {
               </div>
               <div className="flex items-center gap-2 text-white/90">
                 <Star className="w-5 h-5 text-accent" />
-                <span className="text-sm">{RATING_CLAIM}</span>
+                <span className="text-sm">{CALGARY_RATING_CLAIM}</span>
               </div>
             </div>
           </div>

@@ -36,7 +36,7 @@ import { addOnTableRows } from "@/data/addon-table";
 
 import heroPricingCleaner from "@/assets/hero-edmonton-pricing-cleaner.webp";
 import { Calculator, Star, Home, Info, Receipt, Clock, Check } from "lucide-react";
-import { CITY_PROOF, COMPANY, RATING_CLAIM } from "@/data/proof";
+import { CITY_PROOF, COMPANY, EDMONTON_RATING_CLAIM } from "@/data/proof";
 
 /* Derived from bk-config — never hand-typed, so the table can never
    drift from what BookingKoala actually charges. */
@@ -290,7 +290,7 @@ export default function EdmontonPricing() {
 
             <p className="mt-6 flex items-center justify-center gap-2 text-sm font-medium text-white/90">
               <Star className="w-4 h-4 text-brand-gold fill-current" aria-hidden="true" />
-              {`${RATING_CLAIM} across ${CITY_PROOF.edmonton.googleReviewCount} Edmonton reviews`}
+              {`${EDMONTON_RATING_CLAIM} across ${CITY_PROOF.edmonton.googleReviewCount} Edmonton reviews`}
             </p>
           </div>
         </div>

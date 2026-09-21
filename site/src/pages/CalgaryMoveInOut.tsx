@@ -27,7 +27,7 @@ import {
   branchGeoFor,
   BRANCH_ID,
   ORG_ID,
-  RATING_CLAIM,
+  CALGARY_RATING_CLAIM,
   BRANCH_IDENTITY,
   openingHoursShortFor,
   openingHoursSpecFor,
@@ -303,7 +303,7 @@ export default function CalgaryMoveInOut() {
 
               <p className="flex items-center justify-center lg:justify-start gap-2 text-white/90">
                 <Stars size={1} />
-                <span className="font-medium">{RATING_CLAIM}</span>
+                <span className="font-medium">{CALGARY_RATING_CLAIM}</span>
               </p>
             </div>
 

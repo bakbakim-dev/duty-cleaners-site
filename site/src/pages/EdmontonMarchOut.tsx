@@ -1,5 +1,5 @@
 import { BUSINESS_TRADE_TYPE } from "@/data/proof";
-import { CITY_PROOF, RATING_CLAIM, COMPANY } from "@/data/proof";
+import { CITY_PROOF, EDMONTON_RATING_CLAIM, COMPANY } from "@/data/proof";
 import { canonicalUrlForPath } from "@/data/legacy-urls";
 import {
   BRANCH_ID,
@@ -279,7 +279,7 @@ export default function EdmontonMarchOut() {
           <p className="text-lg mb-8 text-white/90 max-w-3xl mx-auto leading-relaxed">
             A march-out clean is the move-out clean for military housing. The Edmonton team works through
             the kitchen, bathrooms, floors and fixtures against the inspection list for the home, and the
-            inspector decides whether it passes. Duty Cleaners is rated {RATING_CLAIM} across{" "}
+            inspector decides whether it passes. Duty Cleaners is rated {EDMONTON_RATING_CLAIM} across{" "}
             {proof.googleReviewCount} reviews on the Edmonton listing, and has cleaned Alberta homes{" "}
             {COMPANY.sinceLabel}.
           </p>

@@ -22,7 +22,7 @@ import dirtyWallBefore from "@/assets/wall-washing/dirty-wall-before.webp?card";
 import stainCloseup from "@/assets/wall-washing/stain-closeup.webp?card";
 import { Helmet } from "react-helmet-async";
 import CityCrossLink from "@/components/CityCrossLink";
-import { CITY_PROOF, RATING_CLAIM, hoursRowsFor } from "@/data/proof";
+import { CITY_PROOF, EDMONTON_RATING_CLAIM, hoursRowsFor } from "@/data/proof";
 
 const AnimatedSection = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -237,7 +237,7 @@ export default function WallWashingEdmonton() {
               </div>
               <p className="flex items-center justify-center lg:justify-start gap-2 text-sm font-medium text-white/90">
                 <Star className="w-4 h-4 text-brand-gold fill-current" aria-hidden="true" />
-                <span>{RATING_CLAIM} across {PROOF.googleReviewCount} Edmonton reviews</span>
+                <span>{EDMONTON_RATING_CLAIM} across {PROOF.googleReviewCount} Edmonton reviews</span>
               </p>
             </div>
             <div className="flex-shrink-0 w-full lg:w-[500px]">

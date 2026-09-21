@@ -7,7 +7,7 @@ import {
   deepCleanTierRows, featuredExtraRows, calculateQuote, homeTypeOptions, PRICING_TIERS, DEEP_CLEAN_ADDON_ID, GST_RATE,
 } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
-import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
+import { CITY_PROOF, EDMONTON_RATING_CLAIM } from "@/data/proof";
 import { Accent } from "@/components/Accent";
 import { Sparkles, Bath, UtensilsCrossed, Layers } from "lucide-react";
 import heroImage from "@/assets/gallery/kitchen-deep-clean.webp";
@@ -207,7 +207,7 @@ export default function EdmontonDeepCleaning() {
                 service: <Link to="/wall-washing-wall-cleaning/">wall washing in Edmonton</Link>.
               </p>
               <p>
-                Our Edmonton team is rated {RATING_CLAIM}{REVIEWS ? ` across ${REVIEWS} reviews` : ""};{" "}
+                Our Edmonton team is rated {EDMONTON_RATING_CLAIM}{REVIEWS ? ` across ${REVIEWS} reviews` : ""};{" "}
                 <Link to="/reviews/">read the reviews</Link>. Everything we do in the city, with a starting price
                 beside each, is on <Link to="/services/">all Edmonton cleaning services and prices</Link>.
               </p>

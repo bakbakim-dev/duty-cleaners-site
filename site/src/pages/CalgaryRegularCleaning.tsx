@@ -3,7 +3,7 @@ import ServiceDetailPage from "@/components/ServiceDetailPage";
 import { standardTierRows, featuredExtraRows, formatPrice, addOnFromPrice, FREQUENCIES } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
 import { POLICY } from "@/data/policy";
-import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
+import { CITY_PROOF, CALGARY_RATING_CLAIM } from "@/data/proof";
 import { Accent } from "@/components/Accent";
 import { Home, Bath, UtensilsCrossed } from "lucide-react";
 import heroImage from "@/assets/gallery/calgary-living-room-clean.webp";
@@ -148,7 +148,7 @@ export default function CalgaryRegularCleaning() {
                 charged until the clean is done.
               </p>
               <p>
-                Our Calgary team is rated {RATING_CLAIM}{REVIEWS ? ` over ${REVIEWS} reviews` : ""};{" "}
+                Our Calgary team is rated {CALGARY_RATING_CLAIM}{REVIEWS ? ` over ${REVIEWS} reviews` : ""};{" "}
                 <Link to="/reviews/">read the reviews</Link>, then{" "}
                 <Link to="/calgary/pricing/">check the Calgary price for your home size</Link>.
               </p>

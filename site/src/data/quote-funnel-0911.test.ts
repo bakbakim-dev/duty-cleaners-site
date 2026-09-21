@@ -409,3 +409,31 @@ describe("a branch shows its own Google rating", () => {
     }
   });
 });
+
+describe("every rating on the site is the listing it names", () => {
+  it("company-wide lines hold only while the Edmonton and Calgary listings agree", async () => {
+    // RATING_CLAIM ("the Edmonton and Calgary offices are rated 4.9") is left on
+    // company-wide pages: About, the brand home, Reviews, FAQ, gift cards,
+    // Locations. The day the two listings differ, those sentences are false and
+    // must be reworded per branch.
+    const { CITY_PROOF } = await import("@/data/proof");
+    expect(
+      CITY_PROOF.calgary.googleRating,
+      "the listings now differ: reword every company-wide RATING_CLAIM line per branch",
+    ).toBe(CITY_PROOF.edmonton.googleRating);
+  });
+
+  it("Calgary pages show the Calgary listing's rating", () => {
+    const calgaryPages = [
+      "src/pages/CalgaryDeepCleaning.tsx", "src/pages/CalgaryMoveInOut.tsx",
+      "src/pages/CalgaryPostConstruction.tsx", "src/pages/CalgaryPricing.tsx",
+      "src/pages/CalgaryRecurringCleaning.tsx", "src/pages/CalgaryRegularCleaning.tsx",
+      "src/pages/CalgaryServices.tsx", "src/pages/AirbnbCleaningCalgary.tsx",
+      "src/pages/BlogChoosingCalgaryCleaner.tsx", "src/pages/WallWashingCalgary.tsx",
+      "src/pages/locations/Chestermere.tsx", "src/pages/locations/Crossfield.tsx",
+    ];
+    for (const rel of calgaryPages) {
+      expect(codeOf(rel), `${rel} shows another listing's rating`).not.toMatch(/\bRATING_CLAIM\b|EDMONTON_RATING_CLAIM/);
+    }
+  });
+});

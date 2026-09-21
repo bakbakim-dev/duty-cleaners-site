@@ -1,7 +1,7 @@
 import { HOURLY_RATE, GST_RATE, formatPrice, withGst, FREQUENCIES, standardTierRows, addOnFromPrice } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
 import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
-import { CITY_PROOF, RATING_CLAIM, COMPANY } from "@/data/proof";
+import { CITY_PROOF, EDMONTON_RATING_CLAIM, COMPANY } from "@/data/proof";
 import { canonicalForPath } from "@/data/legacy-urls";
 import { Star, Shield, Calendar, Home, ClipboardCheck, KeyRound, Wand2, DoorOpen, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -200,7 +200,7 @@ const AirbnbCleaningEdmonton = () => {
 
   const whyChooseUs = [
     { icon: Clock, title: "A booked arrival window", description: `The team arrives in one of three windows: ${WINDOWS_LINE}. When checkout and check-in fall on the same day, tell us both times and we look for the window that fits between them.` },
-    { icon: Star, title: RATING_CLAIM, description: `That is the rating across ${proof.googleReviewCount} reviews on the Edmonton Google listing, for a company that has cleaned Alberta homes ${COMPANY.sinceLabel}. Every cleaner is reference-checked before their first job and rated by the customer after every visit.` },
+    { icon: Star, title: EDMONTON_RATING_CLAIM, description: `That is the rating across ${proof.googleReviewCount} reviews on the Edmonton Google listing, for a company that has cleaned Alberta homes ${COMPANY.sinceLabel}. Every cleaner is reference-checked before their first job and rated by the customer after every visit.` },
     { icon: Calendar, title: "Paid after the turnover", description: "Nothing is charged when you book. The day before, a temporary hold confirms the card, and the charge goes through once the turnover is complete. Book one turnover or a run of them." },
     { icon: Shield, title: "We bring the supplies", description: `Products and equipment come with the team. Optional alternative products are available for ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}.` },
   ];
@@ -330,7 +330,7 @@ const AirbnbCleaningEdmonton = () => {
           <p className="text-xl md:text-2xl mb-6 text-white/90 font-medium">
             Turnovers are {RATE} per cleaner-hour before GST. The smallest booking is {MIN_ONE} for one
             cleaner for 3 hours, or {MIN_TWO} for two cleaners for 2 hours each, before GST. The Edmonton
-            listing is rated {RATING_CLAIM} across {proof.googleReviewCount} reviews.
+            listing is rated {EDMONTON_RATING_CLAIM} across {proof.googleReviewCount} reviews.
           </p>
           <p className="text-lg mb-8 text-white/90 max-w-3xl mx-auto leading-relaxed">
             Between guests the team works to the same checklist every visit: beds stripped and remade
@@ -541,7 +541,7 @@ const AirbnbCleaningEdmonton = () => {
               <Link to="/reviews/" className="text-accent underline underline-offset-2">
                 read the reviews
               </Link>{" "}
-              behind the {RATING_CLAIM} figure. The Edmonton listing carries {proof.googleReviewCount} of them.
+              behind the {EDMONTON_RATING_CLAIM} figure. The Edmonton listing carries {proof.googleReviewCount} of them.
             </p>
           </div>
         </AnimatedSection>

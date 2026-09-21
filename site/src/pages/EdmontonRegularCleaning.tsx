@@ -6,7 +6,7 @@ import {
 } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
 import { POLICY } from "@/data/policy";
-import { CITY_PROOF, RATING_CLAIM } from "@/data/proof";
+import { CITY_PROOF, EDMONTON_RATING_CLAIM } from "@/data/proof";
 import { Accent } from "@/components/Accent";
 import { Home, Bath, UtensilsCrossed } from "lucide-react";
 // The recurring page keeps the family photo; this page had the same hero.
@@ -226,7 +226,7 @@ export default function EdmontonRegularCleaning() {
                 valid; it can look like a charge in a banking app, but no money moves until the clean is complete.
               </p>
               <p>
-                Our Edmonton team is rated {RATING_CLAIM}{REVIEWS ? ` across ${REVIEWS} reviews` : ""};{" "}
+                Our Edmonton team is rated {EDMONTON_RATING_CLAIM}{REVIEWS ? ` across ${REVIEWS} reviews` : ""};{" "}
                 <Link to="/reviews/">read the reviews</Link> before you decide, then compare every home size on{" "}
                 <Link to="/pricing/">the Edmonton house cleaning price list</Link>.
               </p>

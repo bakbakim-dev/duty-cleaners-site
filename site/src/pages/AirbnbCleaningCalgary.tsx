@@ -1,7 +1,7 @@
 import { HOURLY_RATE, GST_RATE, formatPrice, withGst, FREQUENCIES, standardTierRows } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
 import { POLICY, ARRIVAL_WINDOWS } from "@/data/policy";
-import { CITY_PROOF, RATING_CLAIM, COMPANY } from "@/data/proof";
+import { CITY_PROOF, CALGARY_RATING_CLAIM, COMPANY } from "@/data/proof";
 import { canonicalForPath } from "@/data/legacy-urls";
 import { Star, Shield, Calendar, Home, ClipboardCheck, KeyRound, Wand2, DoorOpen, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -191,7 +191,7 @@ const AirbnbCleaningCalgary = () => {
 
   const whyChooseUs = [
     { icon: Clock, title: "Three arrival windows a day", description: `${ARRIVAL_WINDOWS.join(", ")}. With an 11 o'clock checkout and a 4 o'clock check-in, the midday window is the one to ask for; tell us both times when you book.` },
-    { icon: Star, title: RATING_CLAIM, description: `The Calgary listing has ${proof.googleReviewCount} reviews behind that figure. Cleaners are reference-checked before their first job and rated by the customer after each one; the ratings decide who we keep sending.` },
+    { icon: Star, title: CALGARY_RATING_CLAIM, description: `The Calgary listing has ${proof.googleReviewCount} reviews behind that figure. Cleaners are reference-checked before their first job and rated by the customer after each one; the ratings decide who we keep sending.` },
     { icon: Calendar, title: "Book one or book the season", description: `Each turnover is its own booking. Nothing is charged at booking, the card is charged after the turnover, and moving or cancelling one costs nothing with ${POLICY.cancellationNoticeHours} hours' notice.` },
     { icon: Shield, title: "Alternative products on request", description: `Optional alternative products are ${POLICY.ecoProductsFee} before GST: ${POLICY.ecoProductsHowToRequest}. The unit needs running water for any turnover, and vacuuming may not be possible if the power is off.` },
   ];
@@ -317,7 +317,7 @@ const AirbnbCleaningCalgary = () => {
             Airbnb Cleaning Service in Calgary
           </h1>
           <p className="text-xl md:text-2xl mb-6 text-white/90 font-medium">
-            {RATE} per cleaner-hour plus GST, {RATING_CLAIM}
+            {RATE} per cleaner-hour plus GST, {CALGARY_RATING_CLAIM}
           </p>
           <p className="text-lg mb-4 text-white/90 max-w-3xl mx-auto leading-relaxed">
             The smallest Calgary turnover is {MIN_ONE} before GST for one cleaner for 3 hours, or {MIN_TWO} for
@@ -532,7 +532,7 @@ const AirbnbCleaningCalgary = () => {
               covers your own months.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              The Calgary listing is rated {RATING_CLAIM} across{" "}
+              The Calgary listing is rated {CALGARY_RATING_CLAIM} across{" "}
               <Link to="/reviews/" className="text-accent underline underline-offset-2">
                 {proof.googleReviewCount} Google reviews
               </Link>

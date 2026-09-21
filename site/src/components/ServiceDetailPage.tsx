@@ -9,7 +9,7 @@ import {
   BRANCH_ID,
   BRANCH_IDENTITY,
   CITY_PROOF,
-  RATING_CLAIM,
+  branchRatingClaim,
   openingHoursShortFor,
   openingHoursSpecFor,
   branchGeoFor,
@@ -247,6 +247,7 @@ const ServiceDetailPage = ({
   const quoteLink = intentHref(quoteBase, { service: quoteService, intent: quoteService === "deep-cleaning" ? "deep" : null }, "quote");
   const pricingLink = canonicalForPath(city === "calgary" ? "/calgary/pricing" : "/edmonton/pricing");
   const reviewCount = CITY_PROOF[city].googleReviewCount;
+  const ratingClaim = branchRatingClaim(city);
 
   const serviceSchema = {
     "@context": "https://schema.org",
@@ -423,7 +424,7 @@ const ServiceDetailPage = ({
               <p className="mt-6 inline-flex items-center gap-2 text-sm text-white/85">
                 <Star className="w-4 h-4 text-brand-gold fill-brand-gold" aria-hidden="true" />
                 <span>
-                  {RATING_CLAIM}
+                  {ratingClaim}
                   {reviewCount ? `, ${reviewCount} reviews for our ${cityName} team` : ""}
                 </span>
               </p>
@@ -846,7 +847,7 @@ const ServiceDetailPage = ({
               )}
               <span className="hidden lg:inline-flex items-center gap-1.5 text-sm text-muted-foreground whitespace-nowrap">
                 <Star className="w-4 h-4 text-brand-gold fill-brand-gold" aria-hidden="true" />
-                {RATING_CLAIM}
+                {ratingClaim}
               </span>
             </div>
             <div className="flex items-center gap-4 shrink-0">

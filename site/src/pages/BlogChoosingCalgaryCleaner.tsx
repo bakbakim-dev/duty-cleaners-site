@@ -7,7 +7,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { Calendar, Clock, ArrowLeft, CheckCircle2, XCircle, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { COMPANY, CITY_PROOF, RATING_CLAIM } from "@/data/proof";
+import { COMPANY, CITY_PROOF, CALGARY_RATING_CLAIM } from "@/data/proof";
 import { flatRateFromPrice, formatPrice } from "@/data/pricing";
 
 import { modifiedFor } from "@/data/post-dates";
@@ -180,7 +180,7 @@ export default function BlogChoosingCalgaryCleaner() {
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
                   Duty Cleaners has cleaned homes in Alberta {COMPANY.sinceLabel}, and the Calgary
-                  branch is rated {RATING_CLAIM} across {CITY_PROOF.calgary.googleReviewCount} reviews.
+                  branch is rated {CALGARY_RATING_CLAIM} across {CITY_PROOF.calgary.googleReviewCount} reviews.
                   The price is flat by home size and shown before you book, and every cleaner is
                   reference-checked before a first job and rated by the customer after each visit.
                   If something was missed, tell us within 24 hours and we come back and re-clean it

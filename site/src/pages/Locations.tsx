@@ -1,5 +1,5 @@
 import { CITY_PROOF, RED_DEER_PATH, hoursRowsFor } from "@/data/proof";
-import { COMPANY, RATING_CLAIM } from "@/data/proof";
+import { COMPANY, RATING_CLAIM, EDMONTON_RATING_CLAIM, CALGARY_RATING_CLAIM } from "@/data/proof";
 import { formatPrice } from "@/data/pricing";
 import { travelFee } from "@/data/addon-table";
 import Navigation from "@/components/Navigation";
@@ -37,7 +37,7 @@ const TRAVEL_FEE = formatPrice(travelFee("standard") ?? 0);
 const mainLocations = [
   {
     name: "Edmonton",
-    rating: RATING_CLAIM,
+    rating: EDMONTON_RATING_CLAIM,
     phone: CITY_PROOF.edmonton.phone,
     phoneHref: CITY_PROOF.edmonton.phoneLink,
     address: CITY_PROOF.edmonton.streetAddress,
@@ -61,7 +61,7 @@ const mainLocations = [
   },
   {
     name: "Calgary",
-    rating: RATING_CLAIM,
+    rating: CALGARY_RATING_CLAIM,
     phone: CITY_PROOF.calgary.phone,
     phoneHref: CITY_PROOF.calgary.phoneLink,
     address: CITY_PROOF.calgary.streetAddress,
