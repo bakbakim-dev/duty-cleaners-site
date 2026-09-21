@@ -969,7 +969,7 @@ export const GUARD_PROOFS: GuardProof[] = [
     target: "src/pages/Contact.tsx",
     find: "const presetCity = topicCity === \"edmonton\" || topicCity === \"calgary\" ? topicCity : \"\";",
     replace: "const presetCity = \"\";",
-    failing: "preselects office or Airbnb and the city, and drops the home-pricing pitch",
+    failing: "preselects specialist work and the city, and drops the home-pricing pitch",
     why: "Stops the contact form preselecting the branch's city for visitors sent from the commercial and Airbnb pages.",
   },
   {
@@ -985,7 +985,7 @@ export const GUARD_PROOFS: GuardProof[] = [
     target: "src/pages/Contact.tsx",
     find: "Request a Callback",
     replace: "See My Instant Price",
-    failing: "office and Airbnb visitors are not pointed at the instant price anywhere on the page",
+    failing: "specialist visitors are not pointed at the instant price anywhere on the page",
     why: "Brings back the instant-price push in the hero for office and Airbnb visitors, whose jobs have no instant price.",
   },
   {
