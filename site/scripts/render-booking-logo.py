@@ -1,6 +1,8 @@
 """Render the site header logo (navy "DC" plate + stacked DUTY / CLEANERS
-wordmark, Navigation.tsx) as a transparent PNG for BookingKoala's Theme
+wordmark, Navigation.tsx) as transparent PNGs for BookingKoala's Theme
 Builder, which takes an image rather than HTML. 4x scale for sharp display.
+Two versions: booking-logo.png for the white header, booking-logo-light.png
+(white plate, navy monogram, white wordmark) for the navy footer.
 
     python site/scripts/render-booking-logo.py
 """
@@ -40,27 +42,30 @@ pad = 2 * S
 width = int(plate + gap + word_w + pad * 2)
 height = int(plate + pad * 2)
 
-img = Image.new("RGBA", (width, height), (0, 0, 0, 0))
-d = ImageDraw.Draw(img)
 
-# Plate with the serif monogram, centred.
-d.rectangle([pad, pad, pad + plate, pad + plate], fill=NAVY)
-box = d.textbbox((0, 0), "DC", font=serif)
-tw, th = box[2] - box[0], box[3] - box[1]
-d.text((pad + (plate - tw) / 2 - box[0], pad + (plate - th) / 2 - box[1]), "DC", font=serif, fill=WHITE)
+def render(plate_fill, mono_fill, duty_fill, cleaners_fill, name):
+    img = Image.new("RGBA", (width, height), (0, 0, 0, 0))
+    d = ImageDraw.Draw(img)
+    # Plate with the serif monogram, centred.
+    d.rectangle([pad, pad, pad + plate, pad + plate], fill=plate_fill)
+    box = d.textbbox((0, 0), "DC", font=serif)
+    tw, th = box[2] - box[0], box[3] - box[1]
+    d.text((pad + (plate - tw) / 2 - box[0], pad + (plate - th) / 2 - box[1]), "DC", font=serif, fill=mono_fill)
+    # Stacked wordmark, vertically centred on the plate like leading-none + mt-0.5.
+    x = pad + plate + gap
+    duty_box = d.textbbox((0, 0), "DUTY", font=small)
+    big_box = d.textbbox((0, 0), "CLEANERS", font=big)
+    duty_h = duty_box[3] - duty_box[1]
+    big_h = big_box[3] - big_box[1]
+    block = duty_h + 4 * S + big_h
+    top = pad + (plate - block) / 2
+    draw_tracked(d, (x, top - duty_box[1]), "DUTY", small, duty_track, duty_fill)
+    draw_tracked(d, (x, top + duty_h + 4 * S - big_box[1]), "CLEANERS", big, cleaners_track, cleaners_fill)
+    out = Path(__file__).resolve().parents[2] / "brand" / name
+    out.parent.mkdir(exist_ok=True)
+    img.save(out)
+    print(f"wrote {out} ({width}x{height})")
 
-# Stacked wordmark, vertically centred on the plate like leading-none + mt-0.5.
-x = pad + plate + gap
-duty_box = d.textbbox((0, 0), "DUTY", font=small)
-big_box = d.textbbox((0, 0), "CLEANERS", font=big)
-duty_h = duty_box[3] - duty_box[1]
-big_h = big_box[3] - big_box[1]
-block = duty_h + 4 * S + big_h
-top = pad + (plate - block) / 2
-draw_tracked(d, (x, top - duty_box[1]), "DUTY", small, duty_track, NAVY70)
-draw_tracked(d, (x, top + duty_h + 4 * S - big_box[1]), "CLEANERS", big, cleaners_track, NAVY)
 
-out = Path(__file__).resolve().parents[2] / "brand" / "booking-logo.png"
-out.parent.mkdir(exist_ok=True)
-img.save(out)
-print(f"wrote {out} ({width}x{height})")
+render(NAVY, WHITE, NAVY70, NAVY, "booking-logo.png")
+render(WHITE, NAVY, (255, 255, 255, 179), WHITE, "booking-logo-light.png")

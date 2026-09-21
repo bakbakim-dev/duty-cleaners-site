@@ -44,6 +44,17 @@ textarea,
   color: var(--dc-navy) !important;
 }
 
+/* Logos (brand/booking-logo*.png): BookingKoala forces a 50px height with
+   object-fit: fill, which squashed the wide mark to 72x50 in the header.
+   Keep the image's own proportions, capped at 48px tall. */
+img[src*="duty-cleaners-booking-logo"] {
+  width: auto !important;
+  height: auto !important;
+  max-width: none !important;
+  max-height: 48px !important;
+  object-fit: contain;
+}
+
 /* Action buttons (Book My Clean, Apply, cookie OK): the site's orange. */
 .btn-primary,
 .bk-cookie-acpt-btn {
