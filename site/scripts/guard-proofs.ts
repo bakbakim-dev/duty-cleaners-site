@@ -1236,6 +1236,22 @@ export const GUARD_PROOFS: GuardProof[] = [
     why: "Restores a 'does not serve Red Deer' line the owner contradicted on 2026-09-11.",
   },
   {
+    guard: "src/data/quote-funnel-0911.test.ts",
+    target: "src/components/quote/QuoteFlow.tsx",
+    find: "[HISTORY_STACK]: [...stack, stepKey]",
+    replace: "[HISTORY_STACK]: [stepKey]",
+    failing: "each step the visitor moves forward to gets its own history entry",
+    why: "Stops recording the path through the funnel, so Back no longer steps back one screen.",
+  },
+  {
+    guard: "src/data/quote-funnel-0911.test.ts",
+    target: "src/hooks/use-quote-overlay.tsx",
+    find: "window.history.go(-funnelStackOf(window.history.state).length);",
+    replace: "window.history.back();",
+    failing: "closing the funnel unwinds every step it added",
+    why: "Closing the form leaves the funnel's steps in history, so Back reopens a closed form.",
+  },
+  {
     guard: "src/lib/quote-return.test.ts",
     target: "src/components/quote/QuoteFlow.tsx",
     find: "saveQuoteReturn({",

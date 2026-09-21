@@ -437,3 +437,28 @@ describe("every rating on the site is the listing it names", () => {
     }
   });
 });
+
+/**
+ * Owner, 2026-09-21: the browser's Back button closed the whole funnel from any
+ * step. It now steps back one screen at a time; Back on the first screen closes.
+ */
+describe("the browser Back button steps through the funnel", () => {
+  it("each step the visitor moves forward to gets its own history entry", () => {
+    const flow = codeOf("src/components/quote/QuoteFlow.tsx");
+    expect(flow, "steps no longer push history entries").toMatch(/\[HISTORY_STACK\]: \[\.\.\.stack, stepKey\]/);
+    expect(flow, "the funnel's own Back buttons stack entries instead of rewinding").toMatch(
+      /window\.history\.go\(earlier - \(stack\.length - 1\)\)/,
+    );
+    expect(flow, "Back mid-handoff still sends the visitor to the booking page").toMatch(/if \(handoffCancelledRef\.current\) \{/);
+    const overlay = codeOf("src/hooks/use-quote-overlay.tsx");
+    expect(overlay, "Back between steps closes the form again").toMatch(
+      /if \(event\.state\?\.\[HISTORY_FLAG\] && !closingViaHistoryRef\.current\) \{/,
+    );
+  });
+
+  it("closing the funnel unwinds every step it added", () => {
+    expect(codeOf("src/hooks/use-quote-overlay.tsx"), "closing leaves funnel steps in history").toMatch(
+      /window\.history\.go\(-funnelStackOf\(window\.history\.state\)\.length\);/,
+    );
+  });
+});

@@ -66,7 +66,7 @@ import { track } from "@/lib/analytics";
 import { CLEANLINESS_OPTIONS, FLEXIBILITY_OPTIONS, cleanerNotesLimit, validateCleanerDetails } from "@/lib/booking-details";
 import { clearQuoteReturn, readQuoteReturn, saveQuoteReturn } from "@/lib/quote-return";
 import { prepareBookingHandoff, publicBookingUrl } from "@/lib/booking-handoff";
-import { useQuoteOverlay } from "@/hooks/use-quote-overlay";
+import { HISTORY_FLAG, HISTORY_STACK, funnelStackOf, useQuoteOverlay } from "@/hooks/use-quote-overlay";
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
@@ -344,6 +344,8 @@ export default function QuoteFlow({
   const [handingOff, setHandingOff] = useState(false);
   const [handoffFailed, setHandoffFailed] = useState(false);
   const handoffBusy = useRef(false);
+  /** Set when Back is pressed mid-handoff: the pending redirect is dropped. */
+  const handoffCancelledRef = useRef(false);
   /**
    * The add-on basket: BookingKoala extra name → quantity. Keyed by name, not
    * id, because the id is size-specific — it is resolved at handoff from the
@@ -513,6 +515,65 @@ export default function QuoteFlow({
 
   useEffect(() => {
     captureTrackingParams();
+  }, []);
+
+  /**
+   * The browser's Back and Forward buttons move between funnel steps instead of
+   * closing the whole form. Each step the visitor moves forward to gets its own
+   * history entry; moving back with the funnel's own buttons rewinds history to
+   * that step's entry rather than stacking another one, so Back never replays
+   * a step the visitor already left.
+   */
+  const stepKey = step === 2 ? `2:${pricePane}` : String(step);
+  const stepKeyRef = useRef(stepKey);
+  stepKeyRef.current = stepKey;
+  useEffect(() => {
+    if (!isOpen || !window.history.state?.[HISTORY_FLAG]) return;
+    const stack = funnelStackOf(window.history.state);
+    if (stack[stack.length - 1] === stepKey) return;
+    const earlier = stack.lastIndexOf(stepKey);
+    if (earlier >= 0) {
+      window.history.go(earlier - (stack.length - 1));
+      return;
+    }
+    if (stack[stack.length - 1] === "1" && step === 2 && contactDoneRef.current) {
+      // The contact step is done: the price replaces it in history, so Back
+      // goes to the home questions, never to a form that would send the lead again.
+      window.history.replaceState(
+        { ...window.history.state, [HISTORY_STACK]: [...stack.slice(0, -1), stepKey] },
+        "",
+        window.location.href,
+      );
+      return;
+    }
+    window.history.pushState(
+      { ...window.history.state, [HISTORY_FLAG]: true, [HISTORY_STACK]: [...stack, stepKey] },
+      "",
+      window.location.href,
+    );
+  }, [isOpen, stepKey]);
+  useEffect(() => {
+    const onPopState = (event: PopStateEvent) => {
+      if (!event.state?.[HISTORY_FLAG]) return;
+      // Back during the "carrying your answers" screen cancels the handoff.
+      if (handoffBusy.current) {
+        handoffCancelledRef.current = true;
+        handoffBusy.current = false;
+        setHandingOff(false);
+        clearHandoffFlag();
+      }
+      const stack = funnelStackOf(event.state);
+      const key = stack[stack.length - 1];
+      if (key === stepKeyRef.current) return;
+      const [stepPart, pane] = key.split(":");
+      setStep(Number(stepPart) || 0);
+      if (pane === "price" || pane === "details") setPricePane(pane);
+      window.requestAnimationFrame(() => {
+        stepHeadingRef.current?.scrollIntoView({ block: "start" });
+      });
+    };
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
   }, []);
 
   // Share progress with the page-level floating CTA so it can nudge the
@@ -1167,6 +1228,7 @@ export default function QuoteFlow({
     if (!bookingQuery || !bookingUrl) return;
     if (!requireCleanerDetails()) return;
     handoffBusy.current = true;
+    handoffCancelledRef.current = false;
     // Kept in this tab only, for a Back button that reloads the page.
     saveQuoteReturn({
       path: pathname,
@@ -1210,6 +1272,11 @@ export default function QuoteFlow({
       prepareBookingHandoff(bookingQuery),
     ]);
     if (confirmation.ok) setLeadCaptureFailed(false);
+    if (handoffCancelledRef.current) {
+      // The visitor pressed Back while we were preparing: stay on the funnel.
+      handoffCancelledRef.current = false;
+      return;
+    }
     if (!secureUrl) {
       track("booking_handoff_failed", funnelProps());
       handoffBusy.current = false;

@@ -45,7 +45,17 @@ const QuoteOverlayContext = createContext<QuoteOverlayValue>({
 
 export const useQuoteOverlay = () => useContext(QuoteOverlayContext);
 
-const HISTORY_FLAG = "quoteOverlay";
+export const HISTORY_FLAG = "quoteOverlay";
+/**
+ * Every history entry the funnel owns carries `quoteStack`: the funnel steps
+ * from the opening entry to this one ("0", "1", "2:price", "2:details"). Back
+ * steps through them, and closing the funnel unwinds all of them at once.
+ */
+export const HISTORY_STACK = "quoteStack";
+export const funnelStackOf = (state: unknown): string[] => {
+  const stack = (state as Record<string, unknown> | null)?.[HISTORY_STACK];
+  return Array.isArray(stack) && stack.length > 0 ? (stack as string[]) : ["0"];
+};
 
 // `#quote`, `#quote-form`, or either followed by intent pairs (`#quote&intent=deep`).
 const isQuoteHref = (href: string) => /#quote(-form)?(?:&[^#]*)?$/.test(href);
@@ -100,7 +110,7 @@ export function QuoteOverlayProvider({ children }: { children: ReactNode }) {
       if (!wasOpen && !window.history.state?.[HISTORY_FLAG]) {
         // Same URL, extra entry: Back becomes "close the form".
         window.history.pushState(
-          { ...window.history.state, [HISTORY_FLAG]: true },
+          { ...window.history.state, [HISTORY_FLAG]: true, [HISTORY_STACK]: ["0"] },
           "",
           window.location.href
         );
@@ -113,13 +123,20 @@ export function QuoteOverlayProvider({ children }: { children: ReactNode }) {
     setIsOpen(false);
     if (window.history.state?.[HISTORY_FLAG] && !closingViaHistoryRef.current) {
       closingViaHistoryRef.current = true;
-      window.history.back();
+      // Unwind every funnel step at once, back to the page the form opened on.
+      window.history.go(-funnelStackOf(window.history.state).length);
     }
   }, []);
 
-  // Back button closes the takeover instead of leaving the page.
+  // Back steps through the funnel (QuoteFlow listens for that); leaving the
+  // funnel's first entry closes the takeover instead of leaving the page.
   useEffect(() => {
-    const onPopState = () => {
+    const onPopState = (event: PopStateEvent) => {
+      if (event.state?.[HISTORY_FLAG] && !closingViaHistoryRef.current) {
+        // A funnel entry: Back between steps, or Forward back into the form.
+        setIsOpen(true);
+        return;
+      }
       closingViaHistoryRef.current = true;
       setIsOpen(false);
       window.setTimeout(() => {

@@ -70,7 +70,7 @@ describe("the funnel survives Back from the booking page", () => {
 
   it("the funnel saves at handoff and the overlay reopens on return", () => {
     const flow = readFileSync(join(__dirname, "../components/quote/QuoteFlow.tsx"), "utf-8");
-    expect(flow, "the handoff no longer saves the answers").toMatch(/handoffBusy\.current = true;\s*\/\/[^\n]*\n\s*saveQuoteReturn\(\{/);
+    expect(flow, "the handoff no longer saves the answers").toMatch(/handoffBusy\.current = true;[\s\S]{0,300}?saveQuoteReturn\(\{/);
     expect(flow, "the funnel no longer restores them").toMatch(/useState\(\(\) => readQuoteReturn\(pathname\)\)/);
     const overlay = readFileSync(join(__dirname, "../hooks/use-quote-overlay.tsx"), "utf-8");
     expect(overlay, "the overlay no longer reopens on return").toMatch(/else if \(restoreOnLoadRef\.current\) \{/);
