@@ -181,7 +181,7 @@ function NumberChips({
 
   return (
     <fieldset>
-      <legend className="text-base font-bold text-foreground">{legend}</legend>
+      <legend className="text-lg font-bold text-foreground">{legend}</legend>
       {before && <div className="mt-2">{before}</div>}
       <div className="mt-2 flex flex-wrap gap-2" role="radiogroup" aria-label={legend}>
         {options.map((option, index) => {
@@ -229,10 +229,10 @@ function NumberChips({
               onKeyDown={onKeyDown}
               tabIndex={index === focusIndex ? 0 : -1}
               aria-label={option.label}
-              className={`min-h-[48px] min-w-[56px] rounded-md border px-3 py-1.5 text-lg font-bold transition-colors ${
+              className={`min-h-[48px] min-w-[56px] rounded-md border px-3 py-1.5 text-lg transition-colors ${
                 active
-                  ? "border-brand-navy bg-brand-navy text-brand-navy-foreground"
-                  : "border-input bg-card text-foreground hover:border-brand-navy/50 hover:bg-muted"
+                  ? "border-brand-navy bg-brand-navy font-bold text-brand-navy-foreground"
+                  : "border-input bg-card font-medium text-foreground hover:border-brand-navy/50 hover:bg-muted"
               }`}
             >
               <span className="block leading-tight">{head}</span>
@@ -1301,9 +1301,19 @@ export default function QuoteFlow({
   /** Secondary CTA — the original callback request. */
   const requestCallback = async () => {
     // A call back needs no booking answers: whatever is filled in rides along.
+    // It reaches GoHighLevel on the same confirmed-quote path as a booking, so
+    // it has to say what it is, or the office cannot tell it from a visitor who
+    // went on to book: the source and a contact note both name it.
     setFailed(false);
     setSubmitting(true);
-    const payload = confirmFields();
+    const base = confirmFields();
+    const payload = {
+      ...base,
+      source: `${base.source ?? "dutycleaners.ca instant quote"} (call-back requested)`,
+      notes: ["CALL-BACK REQUESTED from the website quote. Please call to arrange a date and time.", base.notes]
+        .filter(Boolean)
+        .join("\n\n"),
+    } as Partial<QuotePayload>;
     const result = await submitQuote(payload, {
       requestId: requestIdForPayload(payload, confirmRequestIdRef, confirmPayloadFingerprintRef),
     });
@@ -1527,39 +1537,13 @@ export default function QuoteFlow({
                   </>
                 )}
 
-                {/* Hourly and per-site work never enters the self-serve funnel. Short-term
-                    rentals are priced per hour on a callback, and office cleaning is the one
-                    commercial job quoted online (owner, 2026-09-10), through the contact form. */}
-                <p className="mt-3 text-base leading-relaxed text-foreground/80">
-                  Turnover cleaning for an Airbnb or VRBO rental is priced per hour: call{" "}
-                  <a href={proof.phoneLink} className="py-2.5 font-bold text-foreground underline underline-offset-4 hover:text-brand-navy">
-                    {proof.phone}
-                  </a>{" "}
-                  or{" "}
-                  <Link
-                    to={`/contact-us/#topic=airbnb&city=${proof.key}`}
-                    onClick={onClose}
-                    className="py-2.5 font-bold text-foreground underline underline-offset-4 hover:text-brand-navy"
-                  >
-                    request a callback
-                  </Link>
-                  . Office cleaning is quoted separately:{" "}
-                  <Link
-                    to={`/contact-us/#topic=office&city=${proof.key}`}
-                    onClick={onClose}
-                    className="py-2.5 font-bold text-foreground underline underline-offset-4 hover:text-brand-navy"
-                  >
-                    request an office quote
-                  </Link>
-                  .
-                </p>
               </fieldset>
 
               {selected.asksHomeSize && (
-                <div ref={homeSizeRef} className="space-y-6">
+                <div ref={homeSizeRef} className="space-y-8 border-t border-border pt-8">
                   {homeTypes.length > 0 && (
                     <div>
-                      <Label htmlFor="homeType" className="text-base font-bold">
+                      <Label htmlFor="homeType" className="text-lg font-bold">
                         What type of home?
                       </Label>
                       <select
@@ -1577,7 +1561,7 @@ export default function QuoteFlow({
                     </div>
                   )}
 
-                  <div className="grid gap-6">
+                  <div className="grid gap-8">
                     <NumberChips
                       legend="Bedrooms"
                       options={beds}
@@ -1602,7 +1586,7 @@ export default function QuoteFlow({
 
                     {/* Stacked, like bedrooms: seven chips in a half-width column
                         wrapped 6 and 7 onto a second row. */}
-                    <div className="grid gap-6">
+                    <div className="grid gap-8">
                       {baths.length > 0 && (
                         <NumberChips
                           legend="Full bathrooms"
@@ -1637,6 +1621,33 @@ export default function QuoteFlow({
                   <span className="dc-icon dc-icon-arrow-right ml-2 h-5 w-5" aria-hidden="true" />
                 </Button>
               </StepFooter>
+
+              {/* Hourly and per-site work never enters the self-serve funnel. Short-term
+                  rentals are priced per hour on a callback, and office cleaning is the one
+                  commercial job quoted online (owner, 2026-09-10), through the contact form. */}
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                Turnover cleaning for an Airbnb or VRBO rental is priced per hour: call{" "}
+                <a href={proof.phoneLink} className="py-2.5 font-bold text-foreground underline underline-offset-4 hover:text-brand-navy">
+                  {proof.phone}
+                </a>{" "}
+                or{" "}
+                <Link
+                  to={`/contact-us/#topic=airbnb&city=${proof.key}`}
+                  onClick={onClose}
+                  className="py-2.5 font-bold text-foreground underline underline-offset-4 hover:text-brand-navy"
+                >
+                  request a callback
+                </Link>
+                . Office cleaning is quoted separately:{" "}
+                <Link
+                  to={`/contact-us/#topic=office&city=${proof.key}`}
+                  onClick={onClose}
+                  className="py-2.5 font-bold text-foreground underline underline-offset-4 hover:text-brand-navy"
+                >
+                  request an office quote
+                </Link>
+                .
+              </p>
 
             </div>
           )}
@@ -2057,10 +2068,10 @@ export default function QuoteFlow({
                           setPetError(null);
                           peek(shelfRef);
                         }}
-                        className={`min-h-[48px] min-w-[96px] rounded-md border px-4 py-2 text-base font-semibold transition-colors ${
+                        className={`min-h-[48px] min-w-[96px] rounded-md border px-4 py-2 text-base transition-colors ${
                           hasPets === option.value
-                            ? "border-brand-navy bg-brand-navy text-brand-navy-foreground"
-                            : "border-input bg-card text-foreground hover:bg-secondary"
+                            ? "border-brand-navy bg-brand-navy font-semibold text-brand-navy-foreground"
+                            : "border-input bg-card font-medium text-foreground hover:border-brand-navy"
                         }`}
                       >
                         {option.label}
@@ -2298,12 +2309,12 @@ export default function QuoteFlow({
                   answers use the encrypted handoff; failed transfers offer retry. */}
               <div id="dc-group" className="scroll-mt-24">
                 <p className="text-[0.9375rem] leading-relaxed text-muted-foreground">
-                  Your cleaner needs these to confirm the visit. They carry over to the booking
-                  page, where you add your address and choose a date and time.
+                  Tell us how we get in, how the home looks today and where to park, so your
+                  cleaner arrives prepared.
                 </p>
-                <fieldset id="dc-entry-group" aria-invalid={detailErrors.entry ? true : undefined} className={`mt-5 scroll-mt-24${detailErrors.entry ? " funnel-missing" : ""}`}>
+                <fieldset id="dc-entry-group" aria-invalid={detailErrors.entry ? true : undefined} className={`mt-6 scroll-mt-24${detailErrors.entry ? " funnel-missing" : ""}`}>
                   {detailErrors.entry && <span key={`flag-entry-${nudge}`} className="funnel-missing-flag">Answer needed</span>}
-                  <legend className="text-base font-bold text-foreground">
+                  <legend className="text-lg font-bold text-foreground">
                     How do we enter the home? <span className="text-brand-navy" aria-hidden="true">*</span>
                   </legend>
                   <div className="mt-2 flex flex-wrap gap-3">
@@ -2318,10 +2329,10 @@ export default function QuoteFlow({
                             entry: option.value,
                           }))
                         }
-                        className={`min-h-[48px] rounded-md border px-4 text-base font-semibold transition-colors ${
+                        className={`min-h-[48px] rounded-md border px-4 text-base transition-colors ${
                           details.entry === option.value
-                            ? "border-brand-navy bg-brand-navy text-brand-navy-foreground"
-                            : "border-input bg-card text-foreground hover:border-brand-navy"
+                            ? "border-brand-navy bg-brand-navy font-semibold text-brand-navy-foreground"
+                            : "border-input bg-card font-medium text-foreground hover:border-brand-navy"
                         }`}
                       >
                         {option.label}
@@ -2333,9 +2344,9 @@ export default function QuoteFlow({
                   )}
                 </fieldset>
 
-                <fieldset id="dc-clean-group" aria-invalid={detailErrors.cleanliness ? true : undefined} className={`mt-5 scroll-mt-24${detailErrors.cleanliness ? " funnel-missing" : ""}`}>
+                <fieldset id="dc-clean-group" aria-invalid={detailErrors.cleanliness ? true : undefined} className={`mt-8 scroll-mt-24 border-t border-border pt-6${detailErrors.cleanliness ? " funnel-missing" : ""}`}>
                   {detailErrors.cleanliness && <span key={`flag-cleanliness-${nudge}`} className="funnel-missing-flag">Answer needed</span>}
-                  <legend className="text-base font-bold text-foreground">
+                  <legend className="text-lg font-bold text-foreground">
                     On a scale of 1-5, how clean is your house? <span className="text-brand-navy" aria-hidden="true">*</span>
                   </legend>
                   <div className="mt-2 flex flex-wrap gap-3">
@@ -2350,10 +2361,10 @@ export default function QuoteFlow({
                             cleanliness: option.value,
                           }))
                         }
-                        className={`min-h-[48px] rounded-md border px-4 text-base font-semibold transition-colors ${
+                        className={`min-h-[48px] rounded-md border px-4 text-base transition-colors ${
                           details.cleanliness === option.value
-                            ? "border-brand-navy bg-brand-navy text-brand-navy-foreground"
-                            : "border-input bg-card text-foreground hover:border-brand-navy"
+                            ? "border-brand-navy bg-brand-navy font-semibold text-brand-navy-foreground"
+                            : "border-input bg-card font-medium text-foreground hover:border-brand-navy"
                         }`}
                       >
                         {option.label}
@@ -2398,9 +2409,9 @@ export default function QuoteFlow({
                     )}
                 </fieldset>
 
-                <fieldset id="dc-park-group" aria-invalid={detailErrors.parking ? true : undefined} className={`mt-5 scroll-mt-24${detailErrors.parking ? " funnel-missing" : ""}`}>
+                <fieldset id="dc-park-group" aria-invalid={detailErrors.parking ? true : undefined} className={`mt-8 scroll-mt-24 border-t border-border pt-6${detailErrors.parking ? " funnel-missing" : ""}`}>
                   {detailErrors.parking && <span key={`flag-parking-${nudge}`} className="funnel-missing-flag">Answer needed</span>}
-                  <legend className="text-base font-bold text-foreground">
+                  <legend className="text-lg font-bold text-foreground">
                     Where should we park? <span className="text-brand-navy" aria-hidden="true">*</span>
                   </legend>
                   <div className="mt-2 flex flex-wrap gap-3">
@@ -2415,10 +2426,10 @@ export default function QuoteFlow({
                             parking: option.value,
                           }))
                         }
-                        className={`min-h-[48px] rounded-md border px-4 text-base font-semibold transition-colors ${
+                        className={`min-h-[48px] rounded-md border px-4 text-base transition-colors ${
                           details.parking === option.value
-                            ? "border-brand-navy bg-brand-navy text-brand-navy-foreground"
-                            : "border-input bg-card text-foreground hover:border-brand-navy"
+                            ? "border-brand-navy bg-brand-navy font-semibold text-brand-navy-foreground"
+                            : "border-input bg-card font-medium text-foreground hover:border-brand-navy"
                         }`}
                       >
                         {option.label}
@@ -2430,9 +2441,9 @@ export default function QuoteFlow({
                   )}
                 </fieldset>
 
-                <div id="dc-flexibility-group" className={`mt-5 scroll-mt-24${detailErrors.flexibility ? " funnel-missing" : ""}`}>
+                <div id="dc-flexibility-group" className={`mt-8 scroll-mt-24 border-t border-border pt-6${detailErrors.flexibility ? " funnel-missing" : ""}`}>
                   {detailErrors.flexibility && <span key={`flag-flexibility-${nudge}`} className="funnel-missing-flag">Answer needed</span>}
-                  <Label htmlFor="dc-flexibility" className="text-base font-bold">Is your date/time flexible? <span className="text-brand-navy" aria-hidden="true">*</span></Label>
+                  <Label htmlFor="dc-flexibility" className="text-lg font-bold">Is your date/time flexible? <span className="text-brand-navy" aria-hidden="true">*</span></Label>
                   <select id="dc-flexibility" value={details.flexibility ?? ""}
                     aria-invalid={Boolean(detailErrors.flexibility)} aria-describedby="dc-flexibility-help"
                     onChange={event => setDetails(current => ({ ...current, flexibility: event.target.value as CleanerDetails["flexibility"] }))}
@@ -2443,13 +2454,13 @@ export default function QuoteFlow({
                   <p id="dc-flexibility-help" className="mt-2 text-sm text-muted-foreground">You&rsquo;ll choose from our live dates and arrival times next.</p>
                   {detailErrors.flexibility && <p className="funnel-missing-text">{detailErrors.flexibility}</p>}
                 </div>
-                <div id="dc-notes-group" className={`mt-5 scroll-mt-24${detailErrors.notes ? " funnel-missing" : ""}`}>
-                  <Label htmlFor="dc-notes" className="text-base font-bold text-foreground">
+                <div id="dc-notes-group" className={`mt-8 scroll-mt-24 border-t border-border pt-6${detailErrors.notes ? " funnel-missing" : ""}`}>
+                  <Label htmlFor="dc-notes" className="text-lg font-bold text-foreground">
                     Notes for your cleaner <span className="font-normal text-muted-foreground">(optional)</span>
                   </Label>
                   <textarea
                     id="dc-notes"
-                    rows={3}
+                    rows={4}
                     maxLength={cleanerNotesLimit(details)}
                     aria-invalid={Boolean(detailErrors.notes)}
                     aria-describedby="dc-notes-help"
@@ -2461,7 +2472,7 @@ export default function QuoteFlow({
                       }))
                     }
                     className="mt-2 w-full rounded-md border border-input bg-card p-3 text-base text-foreground"
-                    placeholder="Fragile items, alarm timing, where supplies are kept…"
+                    placeholder="If you won't be home, how do we get in? Garage, side door, backyard, key left out, lockbox or door code. Is parking hard to find? Anything else we should know."
                   />
                   <p id="dc-notes-help" className="mt-1 text-sm text-fine-print">
                     {(details.notes ?? "").length}/{cleanerNotesLimit(details)} characters. Anything your cleaner should know.

@@ -1318,8 +1318,8 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/quote-funnel-0911.test.ts",
     target: "src/components/quote/QuoteFlow.tsx",
-    find: "page, where you add your address",
-    replace: "page, where we check your address",
+    find: "then enter your address on the booking page",
+    replace: "then we check your address in this form",
     failing: "QuoteFlow leaves address validation and travel pricing to BookingKoala",
     why: "Reintroduces the interim Red Deer special case that kept Red Deer codes off the normal booking path.",
   },

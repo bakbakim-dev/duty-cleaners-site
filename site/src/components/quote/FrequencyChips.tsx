@@ -31,7 +31,7 @@ export default function FrequencyChips({
                 : "border-input bg-card text-foreground hover:border-brand-navy"
             }`}
           >
-            <span className="block text-base font-bold">{frequency.label}</span>
+            <span className={`block text-base ${selected ? "font-bold" : "font-semibold"}`}>{frequency.label}</span>
             <span
               className={`block text-sm font-medium ${
                 selected ? "text-brand-navy-foreground/85" : "text-muted-foreground"
