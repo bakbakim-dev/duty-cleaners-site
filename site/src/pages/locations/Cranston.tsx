@@ -27,7 +27,7 @@ const whyUsItems = locationWhyUs("calgary");
 const nearbyAreas = ["Auburn Bay", "Mahogany"];
 
 const faqs = [
-  { question: "How long does an initial cleaning take?", answer: "We work to a checklist, not a clock. Your cleaners stay until every task in your service scope is complete, and your flat rate does not change based on how long it takes." },
+  { question: "How long does an initial cleaning take?", answer: "It depends on the size and condition of the home. The price is set by home size for the condition you describe, and if the home needs much more work than that, we agree any extra charge with you before doing it." },
   { question: "What cleaning services does Duty Cleaners offer in Cranston?", answer: "We offer:\n\n• Standard Cleaning & Deep Cleaning Packages\n• Move-In And Move-Out Cleaning Service\n• Post Construction Cleaning\n• Wall Washing and Wall Cleaning" },
   { question: "Do you offer discounts?", answer: "Yes. Booking the standard clean on a recurring schedule earns a discount from the second visit:\n\n• Every week: 20% off\n• Every two weeks: 15% off\n• Every four weeks: 10% off\n\nThe first clean is charged at the one-time rate." },
   { question: "What's included in a deep cleaning?", answer: "Deep cleaning adds the following to our standard package:\n\n• Wall outlet covers wiped\n• Cobweb removal\n• Baseboards and doors wiped\n• Light switches fully cleaned\n• Vent covers wiped" },

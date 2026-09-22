@@ -22,9 +22,9 @@ const values: Value[] = [
   {
     icon: Star,
     label: "Craft",
-    title: "A Checklist, Not a Clock",
+    title: "The Checklist, Done Right",
     desc: () =>
-      "The team works through the checklist for the service you booked and stays until it is done. The price is flat by home size and does not change because a clean took longer than expected. If something was missed, tell us within 24 hours and we come back and re-clean it at no charge.",
+      "The team works through the checklist for the service you booked. The price is set by home size for the condition you describe, and any extra work is agreed with you before it is done. If something was missed, tell us within 24 hours and we come back and re-clean it at no charge.",
   },
   {
     icon: Clock,

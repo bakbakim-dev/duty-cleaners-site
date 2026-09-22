@@ -46,7 +46,7 @@ export default function PrinceCharles() {
   const faqs = [
     {
       question: "How long does an initial cleaning take?",
-      answer: `We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
+      answer: `It depends on the size and condition of the home. The price is set by home size for the condition you describe, and if the home needs much more work than that, we agree any extra charge with you before doing it.`
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Prince Charles?",
@@ -118,7 +118,7 @@ export default function PrinceCharles() {
                   Professional House Cleaning in Prince Charles
                 </h1>
                 <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                  Most homes in Prince Charles are compact wartime and 1950s houses with original trim, next to the Blatchford build-out. The price is a flat rate by home size, and it does not rise when small rooms take longer.
+                  Most homes in Prince Charles are compact wartime and 1950s houses with original trim, next to the Blatchford build-out. The price is set by home size, not by how the rooms are divided.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>

@@ -135,8 +135,8 @@ export default function AboutUs() {
                 icon: DollarSign,
                 iconWrap: "bg-primary/10",
                 iconColor: "text-primary",
-                title: "A Flat Price by Home Size",
-                text: "The price is set by bedrooms, bathrooms and home type before you book, and it does not change because a clean took longer than expected. Prices are before 5% GST, and a pet charge or a travel fee outside city limits shows on the quote where it applies.",
+                title: "A Set Price by Home Size",
+                text: "The price is set by bedrooms, bathrooms and home type before you book, for a home in the condition you describe. Prices are before 5% GST, and a pet charge or a travel fee outside city limits shows on the quote where it applies.",
               },
               {
                 icon: Shield,

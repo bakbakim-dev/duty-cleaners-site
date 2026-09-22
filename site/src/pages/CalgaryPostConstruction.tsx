@@ -111,7 +111,7 @@ const faqs: Faq[] = [
   },
   {
     q: "How long does a post-construction cleaning take?",
-    a: "It depends on the square footage, the number of bathrooms and how much dust the trades left, so we do not quote a number of hours for a Calgary post-construction clean. We work to a checklist, not a clock. Your team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.",
+    a: "It depends on the square footage, the number of bathrooms and how much dust the trades left, so we do not quote a number of hours for a Calgary post-construction clean. The price is set by the square-footage band for the condition you describe, and if the site needs much more work than that, we agree any extra charge with you before doing it.",
     more: { lead: "Once the house has stopped shedding dust, what it needs after that is", to: "/calgary/regular-cleaning/", anchor: "a standard house clean in Calgary" },
   },
   {

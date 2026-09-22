@@ -45,7 +45,7 @@ export default function Sherbrooke() {
   const faqs = [
     {
       question: "How long does an initial cleaning take?",
-      answer: `We work to a checklist, not a clock. Your Sherbrooke team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
+      answer: `It depends on the size and condition of the home. The price is set by home size for the condition you describe, and if the home needs much more work than that, we agree any extra charge with you before doing it.`
     },
     {
       question: "What cleaning services does Duty Cleaners offer in Sherbrooke?",
@@ -117,7 +117,7 @@ export default function Sherbrooke() {
                   Professional House Cleaning in Sherbrooke
                 </h1>
                 <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                  Sherbrooke's post-war bungalows are compact, with coved plaster, original casings and hardwood that shows dust. The Edmonton team cleans them at a flat rate by home size, and the rate does not change if a clean takes longer.
+                  Sherbrooke's post-war bungalows are compact, with coved plaster, original casings and hardwood that shows dust. The Edmonton team cleans them at a set price by home size.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-base px-8" asChild>

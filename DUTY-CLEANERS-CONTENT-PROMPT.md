@@ -197,10 +197,14 @@ R3  Over 5,000 bookings across Alberta since 2017, confirmed by the owner on 10 
 R4  Quote a customer review only if it is given to you verbatim with the reviewer's name, city
     and month. Never paraphrase one, shorten one into a new meaning, or write one.
 
-Prices: all in Canadian dollars before 5% GST, flat by home size. The price does not change
-because a clean took longer than expected. If a home needs substantially more work than
-described (heavy build-up, far more glass or cabinetry than stated), the team explains what it
-found and the options before continuing.
+Prices: all in Canadian dollars before 5% GST, set by home size for the condition the customer
+describes. A clean is booked as one visit. If a home needs much more work than described (heavy
+build-up, clutter, far more glass or cabinetry than stated), the team explains what it found and
+any extra charge is agreed with the customer before that work is done; work beyond the booked
+visit is quoted and scheduled separately, by phone or email (owner, 2026-09-22). Never write that
+the team stays until the job is done, that the price holds however long a clean takes, or that it
+"does not change because a clean took longer": each hands a customer an argument against a fair
+extra charge.
 P1  Standard clean, one visit, for an apartment or condo:
       1 bedroom, 1 bathroom                      $155
       2 bedrooms, 2 bathrooms                    $195
@@ -344,8 +348,9 @@ happens if something is missed, plainly and without apology. State the limits ju
 trust, and it is what an assistant will quote.
 
 Match this voice. These lines are already on the site:
-- "We work to a checklist, not a clock. Your team stays until every task in your service scope is
-  complete, and your flat rate does not change based on how long it takes."
+- "It depends on the size and condition of the home. The price is set by home size for the
+  condition you describe, and if the home needs much more work than that, we agree any extra
+  charge with you before doing it."
 - "Someone may be asleep at two in the afternoon. Tell us which room: the order a house gets done
   in is easy to change, and the vacuum is the part that matters."
 - "Calgary is hard on floors and easy on nothing."

@@ -178,7 +178,8 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
   when booking. The sentence lives in `POLICY.insuranceStatus` (policy.ts) and must reach /faqs/ and both
   llms files verbatim (guarded). "Insured", "bonded" and "licensed" stay banned as claims.
 - Typical visit length (2-bedroom, 1-bathroom apartment): standard about 2 hours 30 minutes, deep about
-  4 hours (`POLICY.typicalVisitLength`). The price stays flat whatever the time.
+  4 hours (`POLICY.typicalVisitLength`). Superseded 2026-09-22: the price does not hold "whatever
+  the time" (see Owner decisions 2026-09-22, extra work).
 - Cleaners change the bedding on request, using linens the customer leaves out. A family member can book
   and pay for someone else's recurring plan (the seniors sections on both recurring pages).
 
@@ -208,6 +209,15 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
 - The last funnel screen: one main button ("Choose my time"); the call-back is a smaller
   "Prefer a call?" control under it, never an equal button. No "What happens next" paragraph,
   no arrival-window or "comment section" explainer (the booking page shows the windows).
+- Extra work (owner, 2026-09-22): a clean is booked as one visit (normally one day). The price is set
+  by home size for the condition the customer describes; if the home needs much more work than
+  described, the team explains what it found and any extra charge is agreed with the customer before
+  that work is done; work beyond the booked visit is quoted and scheduled separately, by phone or
+  email (`PRICING_TERMS` in policy.ts, the funnel price card, the cleanliness question). Never write
+  "we work to a checklist, not a clock", "the team stays until every task is done", "the price holds
+  however long it takes" or "does not change if the clean runs long": they hand a customer an
+  argument against a fair extra charge. Guarded sitewide in `extra-work-terms.test.ts`. "Flat rate"
+  as the name of the pricing model (by home size, not by the hour) is fine.
 - Card holds: never "no money moves" or "it is not a charge" alone. A hold is for the price; on
   a debit card the amount is set aside until the charge (`PAYMENT_TERMS`). Guarded.
 

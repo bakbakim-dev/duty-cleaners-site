@@ -209,7 +209,13 @@ export const POLICY: ServicePolicy = {
   /**
    * Owner, 2026-09-18: a standard clean of a 2-bedroom, 1-bathroom apartment
    * usually takes about 2 hours 30 minutes, and a deep clean of the same
-   * apartment about 4 hours. The price stays flat whatever the time.
+   * apartment about 4 hours.
+   *
+   * Owner, 2026-09-22: a clean is booked as one visit. The price is set by home
+   * size for the condition described; much more work than described is agreed
+   * with the customer before it is done, and work beyond the booked visit is
+   * quoted and scheduled separately by phone or email. Never promise that the
+   * team stays until done, or that the price holds however long it takes.
    */
   typicalVisitLength: confirm(
     { standard: "about 2 hours 30 minutes", deep: "about 4 hours" },
@@ -263,8 +269,8 @@ export const PRICING_TERMS = [
   // Compulsory, not an add-on: BookingKoala's extra is literally named "Must
   // choose if you have pets", and it recurs on every visit.
   `Homes with pets are charged ${money(addOnFromPrice("standard", "must-choose-if-you-have-pets"))} per visit — paw prints, nose marks on glass and shed hair add real time in every room. It appears on your quote before you book, and litter boxes and animal waste stay outside what we handle.`,
-  "Most homes are priced flat by size. Your flat rate does not change because a clean took longer than expected.",
-  "If the home turns out to need substantially more work than described, such as heavy build-up or far more glass or cabinetry than stated, the team will explain what they found and your options before continuing.",
+  "Most homes are priced by size. The price covers the checklist for the service booked, for a home in the condition you describe when you book. A clean is booked as one visit.",
+  "If the home turns out to need much more work than described, such as heavy build-up, clutter or far more glass or cabinetry than stated, the team explains what it found, and any extra charge is agreed with you before that work is done. Work that needs more than the booked visit is quoted and scheduled separately, by phone or email.",
   `Recurring discounts of ${recurringDiscounts()} apply from your second visit. The first clean is charged at the standard one-time rate.`,
   "Hourly service has a minimum of 3 hours for one cleaner, or 2 hours for two cleaners.",
 ] as const;

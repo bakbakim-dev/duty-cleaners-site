@@ -104,11 +104,11 @@ const branchSchema = () => {
 const faqs = [
   {
     q: "How much does move out cleaning cost in Calgary?",
-    a: `From ${MOVE_FROM} for a one-bedroom to ${MOVE_TO} for five bedrooms, before 5% GST, at the apartment rate. Six and seven bedrooms cost more and are priced by the instant quote. A townhouse or two-storey house adds a home-type charge, a home with pets adds ${PET_LABEL}, and an address outside Calgary city limits adds ${TRAVEL_FEE_LABEL} in travel. The number of bathrooms and any add-ons you pick also move the figure, and the quote form shows the exact price before you book. It is a flat rate: it does not rise if the clean takes longer than expected.`,
+    a: `From ${MOVE_FROM} for a one-bedroom to ${MOVE_TO} for five bedrooms, before 5% GST, at the apartment rate. Six and seven bedrooms cost more and are priced by the instant quote. A townhouse or two-storey house adds a home-type charge, a home with pets adds ${PET_LABEL}, and an address outside Calgary city limits adds ${TRAVEL_FEE_LABEL} in travel. The number of bathrooms and any add-ons you pick also move the figure, and the quote form shows the exact price before you book. The price is for an empty home in the condition you describe.`,
   },
   {
     q: "How long does a move out clean take?",
-    a: "We work to the move-out checklist rather than a set number of hours. The team stays until every item on it is done, and the flat rate does not change based on how long that takes. You are given an arrival window when you book, not a finish time.",
+    a: "It depends on the size and condition of the home, which must be empty. The price is set by home size for the condition you describe, and if it needs much more work than that, we agree any extra charge with you before doing it. You are given an arrival window when you book, not a finish time.",
   },
   {
     q: "Do I need to be there?",
@@ -531,10 +531,9 @@ export default function CalgaryMoveInOut() {
               {POLICY.insuranceClaim}
             </TermCard>
 
-            <TermCard icon={<DollarSign className="w-6 h-6" />} title="Flat rate by home size">
+            <TermCard icon={<DollarSign className="w-6 h-6" />} title="Set price by home size">
               The price is set by bedrooms and bathrooms when you book, from {MOVE_FROM} for a
-              one-bedroom. It does not rise if the clean takes longer than expected; the team
-              stays until the checklist is done.
+              one-bedroom. It is for an empty home in the condition you describe; much more work than that is agreed with you, and priced, before it is done.
             </TermCard>
 
             <TermCard icon={<span className="dc-icon dc-icon-circle-check w-6 h-6" aria-hidden="true" />} title="The charges outside the flat rate">

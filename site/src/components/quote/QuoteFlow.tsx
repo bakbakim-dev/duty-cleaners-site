@@ -2267,22 +2267,26 @@ export default function QuoteFlow({
                   {selected.asksHomeSize
                     ? `${bedrooms} bed · ${bathrooms} bath${halfBaths > 0 ? ` · ${halfBaths} half bath` : ""}`
                     : serviceName}
-                  {quote.isEstimate
-                    ? " · a range until the size is confirmed"
-                    : " · flat rate, we stay until the checklist is done"}
+                  {quote.isEstimate ? " · a range until the size is confirmed" : " · set price for your home size"}
                 </p>
+                {/* Owner, 2026-09-22: the price is for the condition described, a clean
+                    is one booked visit, and extra work is agreed before it is done.
+                    Stated before the customer commits, so a later extra charge follows
+                    a rule they already accepted; never "we stay until it's done". */}
                 {!quote.isEstimate && !quote.quoteOnly && (
-                  <ul className="mt-3 space-y-1 text-sm text-fine-print">
-                    {service === "standard" && POLICY.typicalVisitLength && (
-                      <li>
-                        A 2-bedroom, 1-bathroom apartment usually takes {POLICY.typicalVisitLength.standard}
-                        {deepCleanIntent ? ` (${POLICY.typicalVisitLength.deep} with the Deep Cleaning package)` : ""}.
-                        The price is flat whatever the time.
-                      </li>
-                    )}
+                  <ul className="mt-3 space-y-1.5 text-sm text-fine-print">
                     <li>
-                      If the home needs substantially more work than described, the team explains what
-                      they found and your options before continuing.
+                      Priced for a{service === "move-in-out" ? "n empty" : ""} home in the condition you describe.
+                      {service === "standard" && POLICY.typicalVisitLength
+                        ? ` A 2-bedroom, 1-bathroom apartment usually takes ${
+                            deepCleanIntent ? POLICY.typicalVisitLength.deep : POLICY.typicalVisitLength.standard
+                          }, booked as one visit.`
+                        : " Booked as one visit."}
+                    </li>
+                    <li>
+                      Much more work than described, like heavy build-up or clutter? We show you what we
+                      found and agree any extra charge with you first. Work beyond the booked visit is
+                      scheduled separately.
                     </li>
                   </ul>
                 )}
@@ -2765,8 +2769,8 @@ export default function QuoteFlow({
                     On a scale of 1-5, how clean is your house? <span className="text-brand-navy" aria-hidden="true">*</span>
                   </legend>
                   <p className="mt-1 text-sm text-fine-print">
-                    For your cleaner&rsquo;s preparation. It does not change your price unless you choose
-                    to add the package below.
+                    Pick the closest match: your price is for the condition you describe here, and your
+                    cleaner prepares for it. Much more work than this is agreed with you before it is done.
                   </p>
                   <div className="mt-2 flex flex-wrap gap-3">
                     {DC_CLEANLINESS_OPTIONS.map((option) => (

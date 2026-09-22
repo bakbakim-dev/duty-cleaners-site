@@ -28,7 +28,7 @@ const nearbyAreas = ["Tuxedo Park", "Mount Pleasant", "Greenview", "Thorncliffe"
 const faqs = [
   {
     question: "How long does an initial cleaning take?",
-    answer: `We work to a checklist, not a clock. Your Highland Park team stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
+    answer: `It depends on the size and condition of the home. The price is set by home size for the condition you describe, and if the home needs much more work than that, we agree any extra charge with you before doing it.`
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Highland Park?",
@@ -198,7 +198,7 @@ export default function HighlandPark() {
                 <div>
                   <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mb-4 text-balance">Hard Water in Highland Park Bathrooms</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Hard Alberta water leaves mineral scale on taps and shower glass, in a long-held detached house and a rented suite alike. The standard clean covers every bathroom in the home at a flat rate, and the price does not change because scale took longer than expected. Heavy build-up is the exception: the team explains what it found and the options before continuing.
+                    Hard Alberta water leaves mineral scale on taps and shower glass, in a long-held detached house and a rented suite alike. The standard clean covers every bathroom in the home, priced by home size. Heavy build-up is the exception: the team explains what it found, and any extra charge is agreed with you before that work is done.
                   </p>
                   <ul className="space-y-3">
                     {["Rated by the customer after every visit","The team brings all supplies and equipment","A free re-clean if you report a miss within 24 hours"].map((t,i)=>(

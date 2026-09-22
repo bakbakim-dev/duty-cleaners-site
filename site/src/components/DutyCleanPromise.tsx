@@ -40,7 +40,7 @@ const PILLARS: Record<"Edmonton" | "Calgary", Pillar[]> = {
     {
       icon: Receipt,
       title: "Priced from what you tell us",
-      desc: "The price is flat by home size, worked out from what you enter on the booking form. Some things only show themselves once we start: heavy build-up, far more glass or cabinetry than the form described. When that happens, the team explains what it found and the options before carrying on.",
+      desc: "The price is set by home size, worked out from what you enter on the booking form, for a home in the condition you describe. Some things only show themselves once we start: heavy build-up, clutter, far more glass or cabinetry than the form described. When that happens, the team explains what it found, and any extra charge is agreed with you before that work is done.",
     },
     {
       icon: RotateCcw,
@@ -75,7 +75,7 @@ const PILLARS: Record<"Edmonton" | "Calgary", Pillar[]> = {
 const COPY = {
   Edmonton: {
     eyebrow: "Included With Every Clean",
-    lead: "The team works through the checklist and stays until every task on it is done, however long the clean takes.",
+    lead: "The team works through the checklist for the service you booked, in one visit.",
   },
   Calgary: {
     eyebrow: "Standing terms, every Calgary visit",

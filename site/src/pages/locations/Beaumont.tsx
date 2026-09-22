@@ -87,7 +87,7 @@ export default function Beaumont() {
     },
     {
       question: "How much does a standard clean cost in Beaumont?",
-      answer: `${STANDARD_FROM} for a one-bedroom apartment or condo up to ${STANDARD_TOP} for five bedrooms, before GST, plus the ${TRAVEL_FEE} travel fee; a house-type charge and the pet charge can apply on top. A deep clean starts at ${DEEP_FROM}. The rate is flat: it is set by the size of the home, and it does not change because a clean took longer than expected.`
+      answer: `${STANDARD_FROM} for a one-bedroom apartment or condo up to ${STANDARD_TOP} for five bedrooms, before GST, plus the ${TRAVEL_FEE} travel fee; a house-type charge and the pet charge can apply on top. A deep clean starts at ${DEEP_FROM}. The price is set by the size of the home, for the condition you describe.`
     },
     {
       question: "Is there a discount for regular cleaning in Beaumont?",

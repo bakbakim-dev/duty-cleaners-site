@@ -212,7 +212,7 @@ export default function PricePanel({
       {firstCleanNote && (
         <p className="mt-1 text-sm text-muted-foreground">{firstCleanNote}</p>
       )}
-      <p className="mt-1 text-sm text-muted-foreground">Flat rate — we stay until the job is done right.</p>
+      <p className="mt-1 text-sm text-muted-foreground">Set price by home size, for the condition you describe.</p>
       <p className="mt-1 text-[0.9375rem] text-muted-foreground">
         Know the number before you give up the afternoon.
       </p>

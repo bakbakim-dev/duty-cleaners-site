@@ -19,7 +19,7 @@ const COPY = {
   },
   Calgary: {
     heading: "The Calgary checklist, room by room",
-    caption: "Every standard visit in a Calgary home runs on this list. The team works through it in order and stays until each task on it is done.",
+    caption: "Every standard visit in a Calgary home runs on this list. The team works through it in order, room by room.",
   },
 } as const;
 

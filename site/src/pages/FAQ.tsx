@@ -54,7 +54,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "How long does a house cleaning take?",
-        answer: `For a two-bedroom, one-bathroom apartment, a standard clean usually takes ${POLICY.typicalVisitLength?.standard} and a deep clean ${POLICY.typicalVisitLength?.deep}. Size, condition and the service booked all change that, so a bigger home takes longer. We work to a checklist, not a clock: the team stays until every task in the service scope is done. The rate is flat by home size, so it costs the same whether the clean runs short or long.`,
+        answer: `For a two-bedroom, one-bathroom apartment, a standard clean usually takes ${POLICY.typicalVisitLength?.standard} and a deep clean ${POLICY.typicalVisitLength?.deep}. Size, condition and the service booked all change that, so a bigger home takes longer. A clean is booked as one visit. The price is set by home size for the condition you describe; if the home needs much more work than that, we agree any extra charge with you before doing it, and anything beyond the booked visit is quoted and scheduled separately, by phone or email.`,
       },
       {
         question: "Should I tip the cleaners?",
@@ -147,7 +147,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "What if my home needs extra attention or is very dirty?",
-        answer: "The flat price is based on the home size and condition you describe when you book, and it does not change because a clean takes longer than expected. If the home needs substantially more work than described, such as heavy build-up or far more glass or cabinetry than stated, the team explains what it found and the options before continuing.",
+        answer: "The price is based on the home size and the condition you describe when you book. If the home needs much more work than described, such as heavy build-up, clutter or far more glass or cabinetry than stated, the team explains what it found, and any extra charge is agreed with you before that work is done. A job that needs more than the booked visit is quoted and scheduled separately, by phone or email.",
       },
       {
         question: "Does the deep cleaning package include wall washing and cleaning inside appliances?",
@@ -165,7 +165,7 @@ const faqCategories: FAQCategory[] = [
       },
       {
         question: "How long does a move-out cleaning take?",
-        answer: "We do not quote a set number of hours for a move-out clean. The team works through the full move-out checklist, including inside the cabinets, closets and appliances, until every task is done. The flat rate stays the same however long that takes.",
+        answer: "It depends on the size and condition of the home, which must be empty. The team works through the full move-out checklist, including inside the cabinets, closets and appliances. The price is set by home size for the condition you describe; if the home needs much more work than that, we agree any extra charge with you before doing it.",
       },
       {
         question: "Do you clean inside appliances?",

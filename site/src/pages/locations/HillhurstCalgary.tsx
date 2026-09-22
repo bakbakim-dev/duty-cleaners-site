@@ -28,7 +28,7 @@ const nearbyAreas = ["Sunnyside","Kensington","Crescent Heights"];
 const faqs = [
   {
     question: "How long does an initial cleaning take?",
-    answer: `We work to a checklist, not a clock. The crew stays until every task in your service scope is complete, and your flat rate does not change based on how long it takes.`
+    answer: `It depends on the size and condition of the home. The price is set by home size for the condition you describe, and if the home needs much more work than that, we agree any extra charge with you before doing it.`
   },
   {
     question: "What cleaning services does Duty Cleaners offer in Hillhurst?",
@@ -199,7 +199,7 @@ export default function HillhurstCalgary() {
                   <span className="text-accent text-sm font-semibold tracking-wider uppercase">Winter floors</span>
                   <h2 className="display-serif text-2xl md:text-3xl font-bold text-foreground mt-2 mb-4 text-balance">Chinook Grit and Fir Floors in Hillhurst</h2>
                   <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                    Calgary thaws and refreezes on chinooks all winter, so sand and de-icer come through the door again and again from November to April. In a Hillhurst house that grit settles along baseboards and carpet edges, and on fir floors that already show water spots. Clear floors get cleaned at every visit, and the flat rate does not change because the grit took longer than expected.
+                    Calgary thaws and refreezes on chinooks all winter, so sand and de-icer come through the door again and again from November to April. In a Hillhurst house that grit settles along baseboards and carpet edges, and on fir floors that already show water spots. Clear floors get cleaned at every visit.
                   </p>
                   <ul className="space-y-3">
                     {["Reference-checked before the first job","Supplies and equipment brought to the house","Re-clean at no charge when a miss is reported within 24 hours"].map((t,i)=>(

@@ -1862,6 +1862,23 @@ export const GUARD_PROOFS: GuardProof[] = [
     failing: "fits a phone: the price step never scrolls sideways",
     why: "The price step would again scroll sideways on a phone, cutting off its main button.",
   },
+  // ---- 2026-09-22: extra work is agreed first; no unlimited-time promises --
+  {
+    guard: "src/data/extra-work-terms.test.ts",
+    target: "src/components/LocationPageTemplate.tsx",
+    find: "It depends on the size and condition of the home. The price is set by home size",
+    replace: "We work to a checklist, not a clock. The price is set by home size",
+    failing: "no page, component, policy line or llms file says the team stays until done or the price holds however long it takes",
+    why: "Puts back the promise a customer quotes against a fair extra charge.",
+  },
+  {
+    guard: "src/data/extra-work-terms.test.ts",
+    target: "src/components/quote/QuoteFlow.tsx",
+    find: "agree any extra charge with you first",
+    replace: "we stay until the checklist is done",
+    failing: "the funnel and the published terms state the extra-work rule before the customer books",
+    why: "The price card would again promise unlimited time instead of the agree-first rule.",
+  },
   // ---- and this registry itself ------------------------------------------
   {
     guard: "src/data/guard-proofs.test.ts",

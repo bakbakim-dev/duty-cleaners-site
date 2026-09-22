@@ -581,7 +581,7 @@ export default function BlogHouseCleaningCost() {
                   <div className="p-5 bg-muted/30 rounded-xl border">
                     <h4 className="font-semibold text-foreground mb-2">You should not need an estimate visit</h4>
                     <p className="text-muted-foreground text-sm">
-                      A company that prices by home size can show you the number before you book. Ours shows on screen before you book, as a flat rate before 5% GST that does not change if the clean runs long. If a home needs substantially more work than described, the team explains what it found and the options before continuing. Treat &ldquo;we&rsquo;ll assess it on arrival&rdquo; as a reason to ask more questions.{" "}
+                      A company that prices by home size can show you the number before you book. Ours shows on screen before you book, as a set price before 5% GST for the home and condition you describe. If a home needs substantially more work than described, the team explains what it found and the options before continuing. Treat &ldquo;we&rsquo;ll assess it on arrival&rdquo; as a reason to ask more questions.{" "}
                       <Link to="/reviews/" className="text-primary underline">Read the reviews</Link> from both cities before you decide.
                     </p>
                   </div>

@@ -106,7 +106,7 @@ const faqs: Faq[] = [
   },
   {
     q: "How much does post-construction cleaning cost in Edmonton?",
-    a: `It is priced by the square footage of the finished space: ${startingPriceLabel} for ${tierLabel(sqftTiers[0]?.label ?? "").toLowerCase()}, rising by band to ${topPriceLabel} for ${tierLabel(sqftTiers[sqftTiers.length - 1]?.label ?? "")}, all before 5% GST. The band is set before you book and does not change if the clean runs long. Inside Edmonton city limits there is no travel fee; outside them a post-construction clean carries a ${pcTravelFee} travel fee.`,
+    a: `It is priced by the square footage of the finished space: ${startingPriceLabel} for ${tierLabel(sqftTiers[0]?.label ?? "").toLowerCase()}, rising by band to ${topPriceLabel} for ${tierLabel(sqftTiers[sqftTiers.length - 1]?.label ?? "")}, all before 5% GST. The band is set before you book, for the condition you describe. Inside Edmonton city limits there is no travel fee; outside them a post-construction clean carries a ${pcTravelFee} travel fee.`,
   },
   {
     q: "Do you remove construction debris or leftover materials?",
@@ -123,7 +123,7 @@ const faqs: Faq[] = [
   },
   {
     q: "How long does a post-construction cleaning take?",
-    a: "We work to a checklist, not a clock, and the crew stays until every item on the post-construction list is done. The price is set by the square-footage band before you book, and it does not change because the clean ran long. The booking gives an arrival window, 9:00 to 10:00 AM, 12:00 to 1:00 PM or 3:00 to 4:00 PM, rather than an exact start time.",
+    a: "It depends on the square footage and how much dust the trades left. The price is set by the square-footage band before you book, for the condition you describe; if the site needs much more work than that, we agree any extra charge with you before doing it. The booking gives an arrival window, 9:00 to 10:00 AM, 12:00 to 1:00 PM or 3:00 to 4:00 PM, rather than an exact start time.",
     more: { lead: "Once the dust stops resurfacing, the home moves onto", to: "/edmonton/regular-cleaning/", anchor: "a standard house clean in Edmonton" },
   },
   {
@@ -360,7 +360,7 @@ export default function EdmontonPostConstruction() {
               <p className="text-muted-foreground leading-relaxed">
                 This is the one clean we price by square footage rather than by bedrooms, because the dust
                 does not care how the rooms are divided. Pick the band the finished space falls in and that
-                is the rate, before 5% GST. It does not rise if the clean runs long.
+                is the rate, before 5% GST. It is for the condition you describe; much more work than that is agreed with you before it is done.
               </p>
             </div>
             <div className="mx-auto mt-10 max-w-2xl overflow-hidden border border-border rounded-xl">

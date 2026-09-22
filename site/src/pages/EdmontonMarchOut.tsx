@@ -165,7 +165,7 @@ const faqs = [
   },
   {
     q: "Why is there no instant online price for a march-out clean?",
-    a: `The online form prices a civilian home by size, and a march-out follows the inspection list for the home, which decides the add-ons the job needs. The Edmonton office prices it by phone at ${PHONE_DISPLAY}, Monday to Saturday 8:00 AM to 8:00 PM and Sunday 9:00 AM to 3:00 PM, and every figure is before ${GST_PCT} GST. The price does not change because the clean took longer. It changes only if the home needs substantially more work than was described, and the team explains the options before carrying on.`,
+    a: `The online form prices a civilian home by size, and a march-out follows the inspection list for the home, which decides the add-ons the job needs. The Edmonton office prices it by phone at ${PHONE_DISPLAY}, Monday to Saturday 8:00 AM to 8:00 PM and Sunday 9:00 AM to 3:00 PM, and every figure is before ${GST_PCT} GST. It is for the home as described; if it needs much more work than that, the team explains what it found, and any extra charge is agreed with you before that work is done.`,
   },
   {
     q: "What if the inspector finds something the clean missed?",

@@ -66,7 +66,7 @@ const faqs = [
   },
   {
     question: "How long does an initial cleaning take?",
-    answer: "We work to a checklist, not a clock. Your cleaners stay until every task in your service scope is complete, and your flat rate does not change based on how long it takes.",
+    answer: "It depends on the size and condition of the home. The price is set by home size for the condition you describe, and if the home needs much more work than that, we agree any extra charge with you before doing it.",
   },
   {
     question: "Do you offer discounts?",

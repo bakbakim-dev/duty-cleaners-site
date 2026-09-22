@@ -13,7 +13,7 @@ export default function York() {
         paragraphs: [
           "York is an established northeast neighbourhood of well-kept family homes, and the houses here were built when floor plans were divided rather than open. A home split into more separate rooms takes longer to clean than an open-plan home of the same square footage, because every room adds its own doorway, trim, corners and floor edges.",
           "Older homes also carry more hand-cleaned surface in general — original trim, door frames, window sills and radiator or baseboard heating all need wiping rather than a pass with a vacuum. It is slower work and it is where the visible difference between a standard clean and a deep clean shows up in a house like this.",
-          "The 66 Street and Manning Drive corridors put road grit through the area all winter, and because Edmonton holds its cold, that grit arrives dry and works into carpet edges and along baseboards rather than melting away. Rates are flat by home size, there is no trip fee inside city limits, and the flat rate does not change if the clean runs long.",
+          "The 66 Street and Manning Drive corridors put road grit through the area all winter, and because Edmonton holds its cold, that grit arrives dry and works into carpet edges and along baseboards rather than melting away. Rates are set by home size, and there is no trip fee inside city limits.",
         ],
       }}
       phone="(780) 913-6565"

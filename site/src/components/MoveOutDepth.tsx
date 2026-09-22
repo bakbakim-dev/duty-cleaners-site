@@ -75,9 +75,7 @@ export default function MoveOutDepth({ city, showPricing = true }: MoveOutDepthP
               Move in / move out cleaning prices in {city}
             </h2>
             <p className="text-muted-foreground leading-relaxed">
-              Each price is a flat rate for an apartment or condo of that size, before 5% GST. The price
-              does not change because a clean took longer than expected, and the card is charged only
-              once the clean is complete.
+              Each price is set for an empty apartment or condo of that size in the condition you describe, before 5% GST, and the card is charged only once the clean is complete.
             </p>
           </div>
 
