@@ -2069,12 +2069,15 @@ export default function QuoteFlow({
                     : "A few details for your cleaner"
                 }
               >
-                {/* Proof at the moment of doubt: the price is the hesitation point. */}
-                <p className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-fine-print">
-                  {BOOKINGS_CLAIM}
-                  <span aria-hidden="true">·</span>
-                  Pay after your clean
-                </p>
+                {/* Owner, 2026-09-22: not under the price heading (wasted space);
+                    the details pane keeps it. */}
+                {pricePane === "details" && (
+                  <p className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-fine-print">
+                    {BOOKINGS_CLAIM}
+                    <span aria-hidden="true">·</span>
+                    Pay after your clean
+                  </p>
+                )}
               </StepHeader>
 
               {leadCaptureFailed && (
@@ -2570,7 +2573,9 @@ export default function QuoteFlow({
                     })()}
                   </div>
 
-                  {!quote.quoteOnly && !quote.isEstimate && (
+                  {/* Only once something is added: with nothing added it repeated the
+                      price card (owner, 2026-09-22). */}
+                  {!quote.quoteOnly && !quote.isEstimate && (basketRows.length > 0 || travelFeeExtra) && (
                     <p
                       aria-live="polite"
                       className="mt-5 border-t border-border pt-4 text-base font-semibold text-foreground"
@@ -2597,7 +2602,7 @@ export default function QuoteFlow({
                 above={
                   <>
                     {missingSummary(missingKeys.filter((key) => key === "frequency" || key === "pets" || key === "limits"))}
-                    <RiskReversalRow />
+                    {/* No reassurance row here: step 1 and the last screen carry it (owner, 2026-09-22). */}
                   </>
                 }
                 back={
