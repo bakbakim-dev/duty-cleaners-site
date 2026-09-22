@@ -61,11 +61,12 @@ import {
 import { BOOKINGS_CLAIM, CITY_PROOF, RESPONSE_TIME_PROMISE, SUPPORT_EMAIL, cityProofFor, hasGoogleRating, hoursLineFor, ratingClaimFor } from "@/data/proof";
 import { POLICY } from "@/data/policy";
 import { travelFee } from "@/data/addon-table";
-import { BRANCH_CITY, areaOptionsFor, areaPhrase, areaPresetFor, type ServiceArea } from "@/lib/service-area";
+import { BRANCH_CITY, BRANCH_OPTIONS, areaPhrase, areaPresetFor, asksBranch, initialAreaFor, type ServiceArea } from "@/lib/service-area";
+import type { Branch } from "@/lib/city-from-path";
 import { createQuoteRequestId, fingerprintQuotePayload, submitQuote, type QuotePayload } from "@/lib/quote-submit";
 import { captureTrackingParams, getStoredTracking, pageServiceFor, serviceOnOpen } from "@/lib/tracking";
 import { intentParams, intentQuery } from "@/lib/url-intent";
-import { setQuoteStep } from "@/lib/quote-progress";
+import { setQuoteBranch, setQuoteStep } from "@/lib/quote-progress";
 import { track } from "@/lib/analytics";
 import { CLEANLINESS_OPTIONS, FLEXIBILITY_OPTIONS, cleanerNotesLimit, validateCleanerDetails } from "@/lib/booking-details";
 import { clearQuoteReturn, readQuoteReturn, saveQuoteReturn } from "@/lib/quote-return";
@@ -297,14 +298,27 @@ export default function QuoteFlow({
    * travel fee applies. A location page presets it; elsewhere step 1 asks.
    * Every office detail after that follows the answer, not the page.
    */
-  const [area, setArea] = useState<ServiceArea | null>(() => restored?.area ?? areaPresetFor(pathname));
-  const [areaExpanded, setAreaExpanded] = useState(() => !(restored?.area ?? areaPresetFor(pathname)));
+  const [area, setArea] = useState<ServiceArea | null>(() => restored?.area ?? initialAreaFor(pathname));
+  /** Step 1's branch question, on pages that name no branch. */
   const [areaError, setAreaError] = useState<string | null>(null);
-  const chooseArea = (next: ServiceArea) => {
-    setArea(next);
+  /** The price step's "inside city limits?" question. */
+  const [limitsError, setLimitsError] = useState<string | null>(null);
+  const chooseBranch = (branch: Branch) => {
+    setArea((current) => (current?.branch === branch ? current : { branch, outside: null }));
     setAreaError(null);
   };
+  const chooseOutside = (outside: boolean) => {
+    // A page's town name only stands while the answer is the page's own.
+    setArea((current) =>
+      current ? { branch: current.branch, outside, place: current.outside === outside ? current.place : undefined } : current
+    );
+    setLimitsError(null);
+  };
   const proof = area ? CITY_PROOF[area.branch] : pageProof;
+  // The overlay header (QuoteOverlay) shows the same office as the funnel.
+  useEffect(() => {
+    setQuoteBranch(area?.branch ?? null);
+  }, [area?.branch]);
   /** "in Leduc", "near Calgary"; the page's city until the question is answered. */
   const wherePhrase = area ? areaPhrase(area) : `in ${proof.city}`;
 
@@ -499,13 +513,16 @@ export default function QuoteFlow({
       !preset && pageService !== null && next === pageService && choicePathRef.current !== pathname + search;
     // A location page settles where the home is. A different answer from the
     // one this quote was priced on makes it a new quote.
-    const pageArea = areaPresetFor(pathname);
+    // A page that names a branch (or, for a location page, the whole answer)
+    // sets it. A different answer from the one this quote was priced on makes
+    // it a new quote. A page that names none keeps the visitor's own answer.
+    const pageArea = initialAreaFor(pathname);
     const areaChanged =
-      pageArea !== null && (area === null || pageArea.branch !== area.branch || pageArea.outside !== area.outside);
-    if (pageArea) {
-      setArea(pageArea);
-      setAreaExpanded(false);
-    }
+      pageArea !== null &&
+      (area === null ||
+        pageArea.branch !== area.branch ||
+        (areaPresetFor(pathname) !== null && pageArea.outside !== area.outside));
+    if (pageArea && areaChanged) setArea(pageArea);
     // A lead sent for another service or area is not this quote: start again
     // at step 1 (the contact details stay filled in).
     const restart = step > 0 && (next !== service || areaChanged);
@@ -711,8 +728,7 @@ export default function QuoteFlow({
 
   const goToContact = () => {
     if (!area) {
-      setAreaExpanded(true);
-      setAreaError("Please tell us where the home is: it sets your office and any travel fee.");
+      setAreaError("Please tell us where the home is, so the right office prices it.");
       setNudge((value) => value + 1);
       jumpToMissing("area");
       return;
@@ -865,13 +881,16 @@ export default function QuoteFlow({
    * is BookingKoala's own row, so the price here is the price there, and the
    * handoff ticks the same box. It repeats on every visit, at full price.
    */
-  const travelFeeExtra = useMemo(
-    () => (area?.outside ? travelFeeExtraForSelection(service, bedrooms, homeType) : null),
-    [area, service, bedrooms, homeType]
+  const travelFeeRow = useMemo(
+    () => travelFeeExtraForSelection(service, bedrooms, homeType),
+    [service, bedrooms, homeType]
   );
+  /** What the "nearby town" answer adds, shown on the answer itself. */
+  const travelFeeOffered = travelFeeRow?.price ?? travelFee(service);
+  const travelFeeExtra = area?.outside === true ? travelFeeRow : null;
   const travelFeeAmount = travelFeeExtra?.price ?? 0;
   /** A service with no online form still quotes its fee in words. */
-  const offlineTravelFee = area?.outside && !travelFeeExtra ? travelFee(service) : null;
+  const offlineTravelFee = area?.outside === true && !travelFeeExtra ? travelFee(service) : null;
 
   /** Everything added, priced from its own resolved row. */
   const basketRows = useMemo(() => {
@@ -1107,7 +1126,7 @@ export default function QuoteFlow({
     addons: [
       ...(showDeepBreakdown ? ["Deep Cleaning (package)"] : []),
       ...basketLabels,
-      ...(area ? [`Home ${areaPhrase(area)}${area.outside ? " (outside city limits)" : ""}`] : []),
+      ...(area ? [`Home ${areaPhrase(area)}${area.outside === true ? " (outside city limits)" : ""}`] : []),
 
       ...(details.entry ? [`Entry: ${DC_ENTRY_LABELS[details.entry]}`] : []),
       ...(details.cleanliness
@@ -1215,6 +1234,7 @@ export default function QuoteFlow({
     flexibility: { id: "dc-flexibility-group", label: "Is your date/time flexible?" },
     notes: { id: "dc-notes-group", label: "Special notes (too long)" },
     area: { id: "dc-area-group", label: "Where is the home?" },
+    limits: { id: "dc-limits-group", label: "Inside city limits?" },
   };
   /** Bumped on every blocked attempt so the nudge animation replays each time. */
   const [nudge, setNudge] = useState(0);
@@ -1229,6 +1249,7 @@ export default function QuoteFlow({
   const missingKeys = [
     ...(frequencyError ? ["frequency"] : []),
     ...(petError ? ["pets"] : []),
+    ...(limitsError ? ["limits"] : []),
     ...["entry", "cleanliness", "parking", "flexibility", "notes"].filter((key) => detailErrors[key]),
   ];
   /** "1 question still needs an answer" with a jump link per question. */
@@ -1264,11 +1285,13 @@ export default function QuoteFlow({
   const goToDetailsPane = () => {
     const missPlan = awaitingPlan;
     const missPets = Boolean(petsExtra) && hasPets === null;
+    const missLimits = travelFeeOffered !== null && area !== null && area.outside === null;
     if (missPlan) setFrequencyError("Please choose One-Time, or how often you\u2019d like us to come.");
     if (missPets) setPetError("Please tell us whether you have pets; it changes the price.");
-    if (missPlan || missPets) {
+    if (missLimits) setLimitsError("Please tell us whether the home is inside city limits; it changes the price.");
+    if (missPlan || missPets || missLimits) {
       setNudge((value) => value + 1);
-      jumpToMissing(missPlan ? "frequency" : "pets");
+      jumpToMissing(missPlan ? "frequency" : missPets ? "pets" : "limits");
       return;
     }
     if (addedCount > 0) track("extras_selected", funnelProps());
@@ -1703,75 +1726,41 @@ export default function QuoteFlow({
                 </div>
               )}
 
-              {/* Where is the home? (owner, 2026-09-22; lib/service-area.ts) */}
-              <div
-                id="dc-area-group"
-                className={`mt-8 scroll-mt-24 border-t border-border pt-8${areaError ? " funnel-missing" : ""}`}
-              >
-                {areaError && <span key={`flag-area-${nudge}`} className="funnel-missing-flag">Answer needed</span>}
-                {area && !areaExpanded ? (
-                  <div className="flex flex-wrap items-center justify-between gap-3 rounded-md border border-brand-navy/30 bg-secondary/50 p-4">
-                    <span className="text-base text-foreground">
-                      <span className="flex items-center gap-2 font-bold">
-                        <span className="dc-icon dc-icon-check h-5 w-5 text-brand-navy" aria-hidden="true" />
-                        Home {areaPhrase(area)}
-                      </span>
-                      {area.outside && travelFee(service) !== null && (
-                        <span className="mt-1 block text-sm text-muted-foreground">
-                          Outside {BRANCH_CITY[area.branch]} city limits: your price includes the{" "}
-                          {formatPrice(travelFee(service) ?? 0)} travel fee.
-                        </span>
-                      )}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => setAreaExpanded(true)}
-                      className="inline-flex min-h-[44px] items-center text-base font-bold text-foreground underline underline-offset-4 hover:text-brand-navy"
-                    >
-                      Change
-                    </button>
+              {/* Which branch, asked only where the page names none (lib/service-area.ts).
+                  Inside or outside city limits is asked on the price step. */}
+              {asksBranch(pathname) && (
+                <div
+                  id="dc-area-group"
+                  className={`mt-8 scroll-mt-24 border-t border-border pt-8${areaError ? " funnel-missing" : ""}`}
+                >
+                  {areaError && <span key={`flag-area-${nudge}`} className="funnel-missing-flag">Answer needed</span>}
+                  <p id="dc-area-label" className="text-lg font-bold text-foreground">
+                    Where is the home? <span className="text-brand-navy" aria-hidden="true">*</span>
+                  </p>
+                  <div role="radiogroup" aria-labelledby="dc-area-label" className="mt-2 grid gap-2 sm:grid-cols-3">
+                    {BRANCH_OPTIONS.map((option) => {
+                      const active = area?.branch === option.branch;
+                      return (
+                        <button
+                          key={option.branch}
+                          type="button"
+                          role="radio"
+                          aria-checked={active}
+                          onClick={() => chooseBranch(option.branch)}
+                          className={`min-h-[48px] rounded-md border px-3 py-2 text-left text-base transition-colors ${
+                            active
+                              ? "border-brand-navy bg-brand-navy font-bold text-brand-navy-foreground"
+                              : "border-input bg-card font-medium text-foreground hover:border-brand-navy"
+                          }`}
+                        >
+                          {option.label}
+                        </button>
+                      );
+                    })}
                   </div>
-                ) : (
-                  <>
-                    <p id="dc-area-label" className="text-lg font-bold text-foreground">
-                      Where is the home? <span className="text-brand-navy" aria-hidden="true">*</span>
-                    </p>
-                    <div
-                      role="radiogroup"
-                      aria-labelledby="dc-area-label"
-                      aria-describedby="dc-area-help"
-                      className="mt-2 grid grid-cols-2 gap-2"
-                    >
-                      {areaOptionsFor(pathname).map((option) => {
-                        const active = area?.branch === option.branch && area.outside === option.outside;
-                        return (
-                          <button
-                            key={`${option.branch}-${option.outside}`}
-                            type="button"
-                            role="radio"
-                            aria-checked={active}
-                            onClick={() => chooseArea({ branch: option.branch, outside: option.outside })}
-                            className={`min-h-[48px] rounded-md border px-3 py-2 text-left text-base transition-colors ${
-                              active
-                                ? "border-brand-navy bg-brand-navy font-bold text-brand-navy-foreground"
-                                : "border-input bg-card font-medium text-foreground hover:border-brand-navy"
-                            }`}
-                          >
-                            {option.label}
-                          </button>
-                        );
-                      })}
-                    </div>
-                    {travelFee(service) !== null && (
-                      <p id="dc-area-help" className="mt-2 text-sm text-fine-print">
-                        Outside city limits, like St. Albert, Sherwood Park, Airdrie or Okotoks? Choose
-                        &ldquo;Near&rdquo;: your price includes the {formatPrice(travelFee(service) ?? 0)} travel fee.
-                      </p>
-                    )}
-                  </>
-                )}
-                {areaError && <p className="funnel-missing-text">{areaError}</p>}
-              </div>
+                  {areaError && <p className="funnel-missing-text">{areaError}</p>}
+                </div>
+              )}
 
               <StepFooter above={<RiskReversalRow />}>
                 <Button
@@ -2291,6 +2280,48 @@ export default function QuoteFlow({
                 </fieldset>
               )}
 
+              {/* Inside or outside city limits (owner, 2026-09-22): required, beside
+                  pets, because it changes the price. Never an opt-in add-on. */}
+              {area && travelFeeOffered !== null && (
+                <fieldset
+                  id="dc-limits-group"
+                  aria-describedby={limitsError ? "dc-limits-error" : undefined}
+                  aria-invalid={limitsError ? true : undefined}
+                  className={`scroll-mt-24 border-t border-border pt-6${limitsError ? " funnel-missing" : ""}`}
+                >
+                  {limitsError && <span key={`flag-limits-${nudge}`} className="funnel-missing-flag">Answer needed</span>}
+                  <legend className="text-lg font-bold text-foreground">
+                    Is the home inside {BRANCH_CITY[area.branch]} city limits?{" "}
+                    <span className="text-brand-navy" aria-hidden="true">*</span>
+                  </legend>
+                  <div className="mt-3 flex flex-wrap gap-3">
+                    {[
+                      { label: "Yes", value: false },
+                      { label: `No, a nearby town (+${formatPrice(travelFeeOffered)})`, value: true },
+                    ].map((option) => (
+                      <button
+                        key={option.label}
+                        type="button"
+                        aria-pressed={area.outside === option.value}
+                        onClick={() => chooseOutside(option.value)}
+                        className={`min-h-[48px] min-w-[96px] rounded-md border px-4 py-2 text-base transition-colors ${
+                          area.outside === option.value
+                            ? "border-brand-navy bg-brand-navy font-semibold text-brand-navy-foreground"
+                            : "border-input bg-card font-medium text-foreground hover:border-brand-navy"
+                        }`}
+                      >
+                        {option.label}
+                      </button>
+                    ))}
+                  </div>
+                  {limitsError && (
+                    <p id="dc-limits-error" className="funnel-missing-text">
+                      {limitsError}
+                    </p>
+                  )}
+                </fieldset>
+              )}
+
               {shelfGroups.length > 0 && (
                 <div ref={shelfRef} className="border-t border-border pt-6">
                   <h3 className="text-lg font-bold text-foreground">
@@ -2483,7 +2514,7 @@ export default function QuoteFlow({
               <StepFooter
                 above={
                   <>
-                    {missingSummary(missingKeys.filter((key) => key === "frequency" || key === "pets"))}
+                    {missingSummary(missingKeys.filter((key) => key === "frequency" || key === "pets" || key === "limits"))}
                     <RiskReversalRow />
                   </>
                 }
@@ -2719,7 +2750,7 @@ export default function QuoteFlow({
               <StepFooter
                 above={
                   <>
-                    {missingSummary(missingKeys.filter((key) => key !== "frequency" && key !== "pets"))}
+                    {missingSummary(missingKeys.filter((key) => key !== "frequency" && key !== "pets" && key !== "limits"))}
                     {bookingUrl && (
                       <p className="mb-4 text-[0.9375rem] leading-relaxed text-fine-print">
                         <span className="font-semibold text-foreground">Next:</span> pick your date and

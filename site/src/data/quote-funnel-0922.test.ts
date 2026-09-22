@@ -29,7 +29,7 @@ const FLOW = "src/components/quote/QuoteFlow.tsx";
 describe("the travel fee is in the funnel's price", () => {
   it("a home outside city limits carries BookingKoala's travel-fee row into the price and the handoff", () => {
     const src = codeOf(FLOW);
-    expect(src).toMatch(/area\?\.outside \? travelFeeExtraForSelection\(service, bedrooms, homeType\) : null/);
+    expect(src).toMatch(/const travelFeeExtra = area\?\.outside === true \? travelFeeRow : null;/);
     expect(src).toMatch(/const firstCleanTotal = \(deepFirstCleanBase \?\? quote\.firstClean\) \+ addOnTotal \+ travelFeeAmount;/);
     expect(src, "the booking page would not tick the fee the price includes").toMatch(
       /for \(const row of chargeRows\) basket\[row\.extra\.name\] = row\.quantity;/,
@@ -41,6 +41,22 @@ describe("the travel fee is in the funnel's price", () => {
     const src = codeOf(FLOW);
     expect(src).toMatch(/if \(!area\) \{[\s\S]{0,300}jumpToMissing\("area"\);\s*return;/);
     expect(src).toContain("Where is the home?");
+  });
+
+  it("the price step requires an answer to 'inside city limits?', beside pets, not an opt-in add-on", () => {
+    const src = codeOf(FLOW);
+    expect(src).toMatch(/const missLimits = travelFeeOffered !== null && area !== null && area\.outside === null;/);
+    expect(src).toContain("city limits?");
+    expect(src).toMatch(/No, a nearby town \(\+\$\{formatPrice\(travelFeeOffered\)\}\)/);
+  });
+});
+
+describe("the overlay header shows the office the visitor chose", () => {
+  it("the Call button and phone line follow the answer, not the page", () => {
+    const flow = codeOf(FLOW);
+    const overlay = codeOf("src/components/QuoteOverlay.tsx");
+    expect(flow).toMatch(/setQuoteBranch\(area\?\.branch \?\? null\)/);
+    expect(overlay).toMatch(/chosenBranch \? CITY_PROOF\[chosenBranch\] : cityProofFor\(pathname\)/);
   });
 });
 

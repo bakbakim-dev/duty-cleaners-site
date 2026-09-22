@@ -6,7 +6,7 @@ import { useQuoteOverlay } from "@/hooks/use-quote-overlay";
 import { useQuoteProgress } from "@/lib/quote-progress";
 import { useLocation } from "react-router-dom";
 import { branchFromPath, isCalgaryPath } from "@/lib/city-from-path";
-import { cityProofFor, hasGoogleRating, ratingClaimFor } from "@/data/proof";
+import { CITY_PROOF, cityProofFor, hasGoogleRating, ratingClaimFor } from "@/data/proof";
 import LoadErrorBoundary from "@/components/LoadErrorBoundary";
 
 /**
@@ -51,11 +51,12 @@ export default function QuoteOverlay() {
   const panelRef = useRef<HTMLDivElement>(null);
   const openerRef = useRef<HTMLElement | null>(null);
   const scrollYRef = useRef(0);
-  // The branch's own number, from data/proof.ts: never typed here.
-  const { phone, phoneLink, key } = cityProofFor(pathname);
   // The home and contact steps are one column; the price step adds a rail.
   // Sizing the card to the step stops the short steps floating in a wide box.
-  const { step: quoteStep } = useQuoteProgress();
+  const { step: quoteStep, branch: chosenBranch } = useQuoteProgress();
+  // The branch's own number, from data/proof.ts: never typed here. Once the
+  // visitor says where the home is, the header follows that office.
+  const { phone, phoneLink, key } = chosenBranch ? CITY_PROOF[chosenBranch] : cityProofFor(pathname);
   const cardWidth = quoteStep >= 2 ? "max-w-7xl" : "max-w-3xl";
 
   // Lock the page behind the takeover, trap focus, and support Escape.

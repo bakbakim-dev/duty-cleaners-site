@@ -1,4 +1,5 @@
 import { useSyncExternalStore } from "react";
+import type { Branch } from "@/lib/city-from-path";
 
 /**
  * Tiny shared store for "how far did the visitor get in the quote funnel".
@@ -13,18 +14,29 @@ export type QuoteProgress = {
   step: number;
   /** True once the visitor has interacted with the funnel at all. */
   started: boolean;
+  /**
+   * The branch the visitor's answer chose (lib/service-area.ts), so the
+   * overlay's header phone and rating follow it; null until known.
+   */
+  branch: Branch | null;
 };
 
 const TOTAL_STEPS = 4;
 
-let progress: QuoteProgress = { step: 0, started: false };
+let progress: QuoteProgress = { step: 0, started: false, branch: null };
 const listeners = new Set<() => void>();
 
 const emit = () => listeners.forEach((listener) => listener());
 
 export function setQuoteStep(step: number) {
   if (progress.step === step && (progress.started || step === 0)) return;
-  progress = { step, started: progress.started || step > 0 };
+  progress = { ...progress, step, started: progress.started || step > 0 };
+  emit();
+}
+
+export function setQuoteBranch(branch: Branch | null) {
+  if (progress.branch === branch) return;
+  progress = { ...progress, branch };
   emit();
 }
 

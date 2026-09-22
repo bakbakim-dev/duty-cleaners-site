@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { areaOptionsFor, areaPhrase, areaPresetFor } from "@/lib/service-area";
+import { areaPhrase, areaPresetFor, asksBranch, initialAreaFor, BRANCH_OPTIONS } from "@/lib/service-area";
 import { edmontonSurrounding, calgarySurrounding } from "@/data/city-locations";
 
 describe("where is the home: page presets", () => {
@@ -22,25 +22,27 @@ describe("where is the home: page presets", () => {
     expect(areaPresetFor("/locations/tuscany/")?.outside).toBe(false);
   });
 
-  it("hubs, service pages, the homepage and Red Deer ask, because nearby towns land there too", () => {
-    for (const path of ["/", "/cleaning-services-calgary/", "/pricing/", "/cleaning-services-red-deer/", "/faqs/", "/move-out-cleaning-calgary/"]) {
-      expect(areaPresetFor(path), path).toBeNull();
+  it("a hub or service page names its branch but leaves city limits to the price step", () => {
+    expect(initialAreaFor("/cleaning-services-calgary/")).toEqual({ branch: "calgary", outside: null });
+    expect(initialAreaFor("/pricing/")).toEqual({ branch: "edmonton", outside: null });
+    expect(initialAreaFor("/cleaning-services-red-deer/")).toEqual({ branch: "reddeer", outside: null });
+    expect(initialAreaFor("/move-out-cleaning-calgary/")).toEqual({ branch: "calgary", outside: null });
+  });
+
+  it("only pages that name no branch ask for one on step 1", () => {
+    for (const path of ["/", "/faqs/", "/contact-us/", "/blog/some-post/"]) expect(asksBranch(path), path).toBe(true);
+    for (const path of ["/cleaning-services-calgary/", "/pricing/", "/cleaning-services-leduc/", "/cleaning-services-red-deer/"]) {
+      expect(asksBranch(path), path).toBe(false);
     }
+    expect(BRANCH_OPTIONS.map((option) => option.label)).toEqual(["Edmonton area", "Calgary area", "Red Deer area"]);
   });
 });
 
-describe("where is the home: the answers", () => {
-  it("offers each branch city and its nearby towns, the page's branch first", () => {
-    expect(areaOptionsFor("/").map((option) => option.label)).toEqual([
-      "Edmonton", "Near Edmonton", "Calgary", "Near Calgary", "Red Deer", "Near Red Deer",
-    ]);
-    expect(areaOptionsFor("/cleaning-services-calgary/")[0]).toEqual({ branch: "calgary", outside: false, label: "Calgary" });
-    expect(areaOptionsFor("/cleaning-services-red-deer/")[0].label).toBe("Red Deer");
-  });
-
-  it("names the place when the page gave it", () => {
+describe("where is the home: the wording", () => {
+  it("names the place when the page gave it, and hedges until city limits are answered", () => {
     expect(areaPhrase({ branch: "edmonton", outside: true, place: "Leduc" })).toBe("in Leduc");
     expect(areaPhrase({ branch: "calgary", outside: true })).toBe("near Calgary");
     expect(areaPhrase({ branch: "reddeer", outside: false })).toBe("in Red Deer");
+    expect(areaPhrase({ branch: "calgary", outside: null })).toBe("in the Calgary area");
   });
 });

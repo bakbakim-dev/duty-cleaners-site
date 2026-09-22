@@ -192,12 +192,16 @@ the regenerated `site/public/sitemap*.xml` and `site/src/data/post-dates.ts`.
   rule (finished basements are separate add-ons). Raise it again when the funnel copy is next touched.
 
 ## Owner decisions (2026-09-22) — do not contradict or re-ask
-- Step 1 asks "Where is the home?": Edmonton / Calgary / Red Deer, or "Near" each
-  (`src/lib/service-area.ts`). Town pages preset "near", neighbourhood pages preset the city;
-  hubs, service pages and the homepage ask. "Near" puts BookingKoala's travel-fee row in the
-  funnel price (every visit, full price) and the handoff ticks the same box, so the funnel and
-  the booking page show one total. The branch (office, hours, GHL `city` tag, wording) follows
-  the answer, not the page.
+- Where the home is, in two questions (owner chose the "lighter version", 2026-09-22;
+  `src/lib/service-area.ts`). Step 1 asks "Where is the home?" (Edmonton / Calgary / Red Deer
+  area) only on pages that name no branch: the homepage and the branch-less pages. The price
+  step asks "Is the home inside <city> city limits?" (Yes / No, a nearby town +$29.99), required,
+  beside pets. Town pages answer "no" and neighbourhood pages "yes" in advance. "No" puts
+  BookingKoala's travel-fee row in the funnel price (every visit, full price) and the handoff
+  ticks the same box. Never make the fee an opt-in add-on or leave it to the booking page: a
+  mandatory fee must be in the price shown (Competition Act drip pricing; Cineplex was fined
+  $38.9M in 2024 for a fee shown at checkout). The branch (office, hours, GHL `city` tag,
+  wording, and the overlay header's phone and rating) follows the answer, not the page.
 - The booking page ticks or unticks the travel fee from the postal code the customer types
   (`bk-travel-fee.js`, the third block of the BookingKoala header code, published 2026-09-22).
   Its FSA rules must match `postalCodeCityStatus`; `bk-travel-fee.test.ts` checks every FSA.

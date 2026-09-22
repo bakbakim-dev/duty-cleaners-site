@@ -1702,6 +1702,14 @@ export const GUARD_PROOFS: GuardProof[] = [
   {
     guard: "src/data/quote-funnel-0922.test.ts",
     target: "src/components/quote/QuoteFlow.tsx",
+    find: "const missLimits = travelFeeOffered !== null && area !== null && area.outside === null;",
+    replace: "const missLimits = false;",
+    failing: "the price step requires an answer to 'inside city limits?', beside pets, not an opt-in add-on",
+    why: "Lets a nearby-town visitor continue without the travel fee in the price.",
+  },
+  {
+    guard: "src/data/quote-funnel-0922.test.ts",
+    target: "src/components/quote/QuoteFlow.tsx",
     find: '{submitting ? "Sending…" : "Prefer a call? We’ll call you"}',
     replace: '{submitting ? "Sending…" : "Ask us to call me instead"}',
     failing: "the call-back is a smaller control under Choose my time, not an equal button beside it",
@@ -1754,6 +1762,14 @@ export const GUARD_PROOFS: GuardProof[] = [
     replace: "It can look like a charge in your banking app, but no money moves.",
     failing: "the site, the policy source and the llms files describe a hold accurately",
     why: "Tells debit customers a hold leaves their balance alone, when the amount is set aside.",
+  },
+  {
+    guard: "src/data/quote-funnel-0922.test.ts",
+    target: "src/components/QuoteOverlay.tsx",
+    find: "chosenBranch ? CITY_PROOF[chosenBranch] : cityProofFor(pathname)",
+    replace: "cityProofFor(pathname)",
+    failing: "the Call button and phone line follow the answer, not the page",
+    why: "A Red Deer visitor on the homepage would be shown Edmonton's phone number in the header.",
   },
   // ---- and this registry itself ------------------------------------------
   {
