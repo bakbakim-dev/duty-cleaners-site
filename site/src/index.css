@@ -677,7 +677,7 @@ All colors MUST be HSL.
   display: flex;
   gap: 0.75rem;
   align-items: flex-start;
-  border: 2px solid hsl(var(--brand-navy));
+  border: 1.5px solid hsl(var(--brand-navy) / 0.55);
   border-radius: 0.5rem;
   background-color: hsl(var(--brand-navy) / 0.06);
   padding: 0.875rem 1rem;
@@ -755,10 +755,12 @@ All colors MUST be HSL.
   padding: 2rem 1rem 1rem;
 }
 /* A legend on a bordered fieldset sits in the border line; float it back inside. */
+.funnel-canvas fieldset.border-t > legend,
 .funnel-missing > legend {
   float: left;
   width: 100%;
 }
+.funnel-canvas fieldset.border-t > legend + *,
 .funnel-missing > legend + * {
   clear: both;
 }

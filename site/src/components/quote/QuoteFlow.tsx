@@ -181,7 +181,7 @@ function NumberChips({
 
   return (
     <fieldset>
-      <legend className="text-base font-semibold text-foreground">{legend}</legend>
+      <legend className="text-base font-bold text-foreground">{legend}</legend>
       {before && <div className="mt-2">{before}</div>}
       <div className="mt-2 flex flex-wrap gap-2" role="radiogroup" aria-label={legend}>
         {options.map((option, index) => {
@@ -1490,10 +1490,19 @@ export default function QuoteFlow({
                           }}
                           className={`min-h-[48px] rounded-md border p-4 text-left transition-colors ${
                             selected
-                              ? "border-brand-navy bg-brand-navy text-brand-navy-foreground"
-                              : "border-input bg-card text-foreground hover:border-brand-navy/40"
+                              ? "border-brand-navy bg-brand-navy text-brand-navy-foreground shadow-[0_10px_24px_-16px_hsl(var(--brand-navy)/0.7)]"
+                              : "border-input text-foreground hover:border-brand-navy"
                           }`}
                         >
+                          {option.id === "standard" && !option.deep && (
+                            <span
+                              className={`mb-1 block text-xs font-semibold ${
+                                selected ? "text-brand-navy-foreground/80" : "text-brand-navy"
+                              }`}
+                            >
+                              Start here
+                            </span>
+                          )}
                           <span className="block font-bold">{option.label}</span>
                           <span
                             className={`mt-1 block text-sm ${
@@ -1550,7 +1559,7 @@ export default function QuoteFlow({
                 <div ref={homeSizeRef} className="space-y-6">
                   {homeTypes.length > 0 && (
                     <div>
-                      <Label htmlFor="homeType" className="text-base font-semibold">
+                      <Label htmlFor="homeType" className="text-base font-bold">
                         What type of home?
                       </Label>
                       <select
@@ -2028,10 +2037,10 @@ export default function QuoteFlow({
                   id="dc-pets-group"
                   aria-describedby={petError ? "dc-pets-error" : undefined}
                   aria-invalid={petError ? true : undefined}
-                  className={`scroll-mt-24 rounded-lg border border-quote-shelf-border bg-quote-shelf p-5${petError ? " funnel-missing" : ""}`}
+                  className={`scroll-mt-24 border-t border-border pt-6${petError ? " funnel-missing" : ""}`}
                 >
                   {petError && <span key={`flag-pets-${nudge}`} className="funnel-missing-flag">Answer needed</span>}
-                  <legend className="px-1 text-lg font-bold text-foreground">
+                  <legend className="text-lg font-bold text-foreground">
                     Do you have pets? (+{formatPrice(petsExtra.price)}{petsExtra.firstVisitOnly ? "" : " per visit"})
                   </legend>
                   <div className="mt-3 flex flex-wrap gap-3">
@@ -2067,7 +2076,7 @@ export default function QuoteFlow({
               )}
 
               {shelfGroups.length > 0 && (
-                <div ref={shelfRef} className="rounded-lg border border-quote-shelf-border bg-quote-shelf p-5">
+                <div ref={shelfRef} className="border-t border-border pt-6">
                   <h3 className="text-lg font-bold text-foreground">
                     Want to add anything? (optional)
                   </h3>
@@ -2237,7 +2246,7 @@ export default function QuoteFlow({
                   {!quote.quoteOnly && !quote.isEstimate && (
                     <p
                       aria-live="polite"
-                      className="mt-5 rounded-md bg-card p-4 text-base font-semibold text-foreground"
+                      className="mt-5 border-t border-border pt-4 text-base font-semibold text-foreground"
                     >
                       {addedCount === 0
                         ? `No add-ons yet. First clean ${formatPrice(firstCleanTotal)} before GST.`
@@ -2287,10 +2296,7 @@ export default function QuoteFlow({
               {/* Details for your cleaner. The booking page requires these to
                   confirm the clean, so they are asked here, in the open — the
                   answers use the encrypted handoff; failed transfers offer retry. */}
-              <div
-                id="dc-group"
-                className="scroll-mt-24 rounded-lg border border-quote-detail-border bg-quote-detail p-5"
-              >
+              <div id="dc-group" className="scroll-mt-24">
                 <p className="text-[0.9375rem] leading-relaxed text-muted-foreground">
                   Your cleaner needs these to confirm the visit. They carry over to the booking
                   page, where you add your address and choose a date and time.
